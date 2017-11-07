@@ -41,8 +41,12 @@ namespace CSharpGL
             {
                 builder.Append(c);
             }
-            //// Chinese characters
-            //for (char c = (char)0x4E00; c <= 0x9FA5; c++)
+            // Chinese characters
+            for (char c = (char)0x4E00; c <= 0x9FA5; c++)
+            {
+                builder.Append(c);
+            }
+            //for (char c = (char)0; c < char.MaxValue; c++)
             //{
             //    builder.Append(c);
             //}
@@ -171,6 +175,24 @@ namespace CSharpGL
             {
                 bitmaps[i].Save(string.Format("{0}.png", i));
             }
+
+            //using (var sw = new System.IO.StreamWriter("defaultGlyphServer.txt"))
+            //{
+            //    foreach (var item in dictionary)
+            //    {
+            //        string line = string.Empty;
+            //        try
+            //        {
+            //            line = item.Value.ToString();
+            //            sw.WriteLine(line);
+            //        }
+            //        catch (Exception ex)
+            //        {
+            //            Console.WriteLine(ex);
+            //            //line = string.Format("glyph:[??], quad:[{0}]", item.Value.quad);
+            //        }
+            //    }
+            //}
         }
 
         private static void FillDictionary(List<ChunkBase> chunkList, PagesContext context, Dictionary<string, GlyphInfo> dictionary, int pageWidth, int pageHeight)
