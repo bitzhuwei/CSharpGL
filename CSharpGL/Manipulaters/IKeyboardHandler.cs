@@ -12,6 +12,6 @@ namespace CSharpGL
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        void canvas_KeyPress(object sender, KeyPressEventArgs e);
+        void canvas_KeyPress(object sender, GLKeyPressEventArgs e);
     }
 }

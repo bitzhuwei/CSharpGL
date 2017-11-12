@@ -50,46 +50,52 @@ namespace CSharpGL
         private GLRenderContext renderContext;
         GLRenderContext IGLCanvas.RenderContext { get { return this.renderContext; } }
 
-        event KeyPressEventHandler IGLCanvas.KeyPress
+        private event GLEventHandler<GLKeyPressEventArgs> glKeyPress;
+        event GLEventHandler<GLKeyPressEventArgs> IGLCanvas.KeyPress
         {
-            add { this.KeyPress += value; }
-            remove { this.KeyPress -= value; }
+            add { this.glKeyPress += value; }
+            remove { this.glKeyPress -= value; }
         }
 
-        event MouseEventHandler IGLCanvas.MouseDown
+        private event GLEventHandler<GLMouseEventArgs> glMouseDown;
+        event GLEventHandler<GLMouseEventArgs> IGLCanvas.MouseDown
         {
-            add { this.MouseDown += value; }
-            remove { this.MouseDown -= value; }
+            add { this.glMouseDown += value; }
+            remove { this.glMouseDown -= value; }
+        }
+        private event GLEventHandler<GLMouseEventArgs> glMouseMove;
+        event GLEventHandler<GLMouseEventArgs> IGLCanvas.MouseMove
+        {
+            add { this.glMouseMove += value; }
+            remove { this.glMouseMove -= value; }
         }
 
-        event MouseEventHandler IGLCanvas.MouseMove
+        private event GLEventHandler<GLMouseEventArgs> glMouseUp;
+        event GLEventHandler<GLMouseEventArgs> IGLCanvas.MouseUp
         {
-            add { this.MouseMove += value; }
-            remove { this.MouseMove -= value; }
+            add { this.glMouseUp += value; }
+            remove { this.glMouseUp -= value; }
         }
 
-        event MouseEventHandler IGLCanvas.MouseUp
+        private event GLEventHandler<GLMouseEventArgs> glMouseWheel;
+        event GLEventHandler<GLMouseEventArgs> IGLCanvas.MouseWheel
         {
-            add { this.MouseUp += value; }
-            remove { this.MouseUp -= value; }
+            add { this.glMouseWheel += value; }
+            remove { this.glMouseWheel -= value; }
         }
 
-        event MouseEventHandler IGLCanvas.MouseWheel
+        private event GLEventHandler<GLKeyEventArgs> glKeyDown;
+        event GLEventHandler<GLKeyEventArgs> IGLCanvas.KeyDown
         {
-            add { this.MouseWheel += value; }
-            remove { this.MouseWheel -= value; }
+            add { this.glKeyDown += value; }
+            remove { this.glKeyDown -= value; }
         }
 
-        event KeyEventHandler IGLCanvas.KeyDown
+        private event GLEventHandler<GLKeyEventArgs> glKeyUp;
+        event GLEventHandler<GLKeyEventArgs> IGLCanvas.KeyUp
         {
-            add { this.KeyDown += value; }
-            remove { this.KeyDown -= value; }
-        }
-
-        event KeyEventHandler IGLCanvas.KeyUp
-        {
-            add { this.KeyUp += value; }
-            remove { this.KeyUp -= value; }
+            add { this.glKeyUp += value; }
+            remove { this.glKeyUp -= value; }
         }
 
         event EventHandler IGLCanvas.Resize

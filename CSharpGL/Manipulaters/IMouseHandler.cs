@@ -12,27 +12,27 @@ namespace CSharpGL
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        void canvas_MouseDown(object sender, MouseEventArgs e);
+        void canvas_MouseDown(object sender, GLMouseEventArgs e);
 
         /// <summary>
         ///
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        void canvas_MouseMove(object sender, MouseEventArgs e);
+        void canvas_MouseMove(object sender, GLMouseEventArgs e);
 
         /// <summary>
         ///
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        void canvas_MouseUp(object sender, MouseEventArgs e);
+        void canvas_MouseUp(object sender, GLMouseEventArgs e);
 
         /// <summary>
         ///
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        void canvas_MouseWheel(object sender, MouseEventArgs e);
+        void canvas_MouseWheel(object sender, GLMouseEventArgs e);
     }
 }

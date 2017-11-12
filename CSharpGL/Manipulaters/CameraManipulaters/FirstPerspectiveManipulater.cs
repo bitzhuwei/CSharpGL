@@ -17,15 +17,15 @@ namespace CSharpGL
 
         private char downKey;
         private char frontKey;
-        private KeyPressEventHandler keyPressEvent;
-        private MouseButtons lastBindingMouseButtons;
-        private Point lastPosition;
+        private GLEventHandler<GLKeyPressEventArgs> keyPressEvent;
+        private GLMouseButtons lastBindingMouseButtons;
+        private ivec2 lastPosition;
         private char leftKey;
-        private MouseEventHandler mouseDownEvent;
+        private GLEventHandler<GLMouseEventArgs> mouseDownEvent;
         private bool mouseDownFlag = false;
-        private MouseEventHandler mouseMoveEvent;
-        private MouseEventHandler mouseUpEvent;
-        private MouseEventHandler mouseWheelEvent;
+        private GLEventHandler<GLMouseEventArgs> mouseMoveEvent;
+        private GLEventHandler<GLMouseEventArgs> mouseUpEvent;
+        private GLEventHandler<GLMouseEventArgs> mouseWheelEvent;
         private char rightKey;
         private char upcaseBackKey;
         private char upcaseDownKey;
@@ -39,7 +39,7 @@ namespace CSharpGL
         ///
         /// </summary>
         public FirstPerspectiveManipulater()
-            : this(1f, 0.12f, 0.12f, MouseButtons.Left | MouseButtons.Right) { }
+            : this(1f, 0.12f, 0.12f, GLMouseButtons.Left | GLMouseButtons.Right) { }
 
         /// <summary>
         ///
@@ -50,7 +50,7 @@ namespace CSharpGL
         /// <param name="bindingMouseButtons"></param>
         public FirstPerspectiveManipulater(
             float stepLength, float horizontalRotationSpeed,
-            float verticalRotationSpeed, MouseButtons bindingMouseButtons)
+            float verticalRotationSpeed, GLMouseButtons bindingMouseButtons)
         {
             this.FrontKey = 'w';
             this.BackKey = 's';
@@ -64,11 +64,11 @@ namespace CSharpGL
             this.VerticalRotationSpeed = verticalRotationSpeed;
             this.BindingMouseButtons = bindingMouseButtons;
 
-            this.keyPressEvent = new KeyPressEventHandler(((IKeyboardHandler)this).canvas_KeyPress);
-            this.mouseDownEvent = new MouseEventHandler(((IMouseHandler)this).canvas_MouseDown);
-            this.mouseMoveEvent = new MouseEventHandler(((IMouseHandler)this).canvas_MouseMove);
-            this.mouseUpEvent = new MouseEventHandler(((IMouseHandler)this).canvas_MouseUp);
-            this.mouseWheelEvent = new MouseEventHandler(((IMouseHandler)this).canvas_MouseWheel);
+            this.keyPressEvent = (((IKeyboardHandler)this).canvas_KeyPress);
+            this.mouseDownEvent = (((IMouseHandler)this).canvas_MouseDown);
+            this.mouseMoveEvent = (((IMouseHandler)this).canvas_MouseMove);
+            this.mouseUpEvent = (((IMouseHandler)this).canvas_MouseUp);
+            this.mouseWheelEvent = (((IMouseHandler)this).canvas_MouseWheel);
         }
 
         /// <summary>
@@ -87,7 +87,7 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        public MouseButtons BindingMouseButtons { get; set; }
+        public GLMouseButtons BindingMouseButtons { get; set; }
 
         /// <summary>
         ///
@@ -188,7 +188,7 @@ namespace CSharpGL
             canvas.MouseWheel += this.mouseWheelEvent;
         }
 
-        void IKeyboardHandler.canvas_KeyPress(object sender, KeyPressEventArgs e)
+        void IKeyboardHandler.canvas_KeyPress(object sender, GLKeyPressEventArgs e)
         {
             bool updated = false;
 
@@ -243,26 +243,26 @@ namespace CSharpGL
             }
         }
 
-        void IMouseHandler.canvas_MouseDown(object sender, MouseEventArgs e)
+        void IMouseHandler.canvas_MouseDown(object sender, GLMouseEventArgs e)
         {
             this.lastBindingMouseButtons = this.BindingMouseButtons;
-            if ((e.Button & this.lastBindingMouseButtons) != MouseButtons.None)
+            if ((e.Button & this.lastBindingMouseButtons) != GLMouseButtons.None)
             {
                 this.mouseDownFlag = true;
                 this.lastPosition = e.Location;
             }
         }
 
-        void IMouseHandler.canvas_MouseMove(object sender, MouseEventArgs e)
+        void IMouseHandler.canvas_MouseMove(object sender, GLMouseEventArgs e)
         {
             if (this.mouseDownFlag
-                && ((e.Button & this.lastBindingMouseButtons) != MouseButtons.None)
-                && (e.X != this.lastPosition.X || e.Y != this.lastPosition.Y))
+                && ((e.Button & this.lastBindingMouseButtons) != GLMouseButtons.None)
+                && (e.X != this.lastPosition.x || e.Y != this.lastPosition.y))
             {
-                mat4 rotationMatrix = glm.rotate(this.HorizontalRotationSpeed * (e.X - this.lastPosition.X), -this.camera.UpVector);
+                mat4 rotationMatrix = glm.rotate(this.HorizontalRotationSpeed * (e.X - this.lastPosition.x), -this.camera.UpVector);
                 var front = new vec4(this.camera.GetFront(), 1.0f);
                 vec4 front1 = rotationMatrix * front;
-                rotationMatrix = glm.rotate(this.VerticalRotationSpeed * (this.lastPosition.Y - e.Y), this.camera.GetRight());
+                rotationMatrix = glm.rotate(this.VerticalRotationSpeed * (this.lastPosition.y - e.Y), this.camera.GetRight());
                 vec4 front2 = rotationMatrix * front1;
                 //front2 = front2.normalize();
                 this.camera.Target = this.camera.Position + new vec3(front2);
@@ -271,15 +271,15 @@ namespace CSharpGL
             }
         }
 
-        void IMouseHandler.canvas_MouseUp(object sender, MouseEventArgs e)
+        void IMouseHandler.canvas_MouseUp(object sender, GLMouseEventArgs e)
         {
-            if ((e.Button & this.lastBindingMouseButtons) != MouseButtons.None)
+            if ((e.Button & this.lastBindingMouseButtons) != GLMouseButtons.None)
             {
                 this.mouseDownFlag = false;
             }
         }
 
-        void IMouseHandler.canvas_MouseWheel(object sender, MouseEventArgs e)
+        void IMouseHandler.canvas_MouseWheel(object sender, GLMouseEventArgs e)
         {
             this.camera.MouseWheel(e.Delta);
         }

@@ -108,8 +108,88 @@ namespace CSharpGL
             {
                 this.assist.Resize(this.Width, this.Height);
             }
+            else
+            {
+                this.KeyPress += WinGLCanvas_KeyPress;
+                this.MouseDown += WinGLCanvas_MouseDown;
+                this.MouseMove += WinGLCanvas_MouseMove;
+                this.MouseUp += WinGLCanvas_MouseUp;
+                this.MouseWheel += WinGLCanvas_MouseWheel;
+                this.KeyDown += WinGLCanvas_KeyDown;
+                this.KeyUp += WinGLCanvas_KeyUp;
+            }
 
             CreateRenderContext();
+        }
+
+        void WinGLCanvas_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            GLEventHandler<GLKeyPressEventArgs> KeyPress = this.glKeyPress;
+            if (KeyPress != null)
+            {
+                GLKeyPressEventArgs arg = e.Translate();
+                KeyPress(sender, arg);
+            }
+        }
+
+        void WinGLCanvas_MouseDown(object sender, MouseEventArgs e)
+        {
+            GLEventHandler<GLMouseEventArgs> MouseDown = this.glMouseDown;
+            if (MouseDown != null)
+            {
+                GLMouseEventArgs arg = e.Translate();
+                MouseDown(sender, arg);
+            }
+        }
+
+        void WinGLCanvas_MouseMove(object sender, MouseEventArgs e)
+        {
+            GLEventHandler<GLMouseEventArgs> MouseMove = this.glMouseMove;
+            if (MouseMove != null)
+            {
+                GLMouseEventArgs arg = e.Translate();
+                MouseMove(sender, arg);
+            }
+        }
+
+        void WinGLCanvas_MouseUp(object sender, MouseEventArgs e)
+        {
+            GLEventHandler<GLMouseEventArgs> MouseUp = this.glMouseUp;
+            if (MouseUp != null)
+            {
+                GLMouseEventArgs arg = e.Translate();
+                MouseUp(sender, arg);
+            }
+        }
+
+        void WinGLCanvas_MouseWheel(object sender, MouseEventArgs e)
+        {
+            GLEventHandler<GLMouseEventArgs> MouseWheel = this.glMouseWheel;
+            if (MouseWheel != null)
+            {
+                GLMouseEventArgs arg = e.Translate();
+                MouseWheel(sender, arg);
+            }
+        }
+
+        void WinGLCanvas_KeyDown(object sender, KeyEventArgs e)
+        {
+            GLEventHandler<GLKeyEventArgs> keyDown = this.glKeyDown;
+            if (keyDown != null)
+            {
+                GLKeyEventArgs arg = e.Translate();
+                keyDown(sender, arg);
+            }
+        }
+
+        void WinGLCanvas_KeyUp(object sender, KeyEventArgs e)
+        {
+            GLEventHandler<GLKeyEventArgs> keyUp = this.glKeyUp;
+            if (keyUp != null)
+            {
+                GLKeyEventArgs arg = e.Translate();
+                keyUp(sender, arg);
+            }
         }
 
         #endregion ISupportInitialize 成员

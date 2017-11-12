@@ -20,11 +20,11 @@ namespace CSharpGL
         private IGLCanvas canvas;
 
         private bool mouseDownFlag;
-        private MouseButtons lastBindingMouseButtons;
-        private MouseEventHandler mouseDownEvent;
-        private MouseEventHandler mouseMoveEvent;
-        private MouseEventHandler mouseUpEvent;
-        private MouseEventHandler mouseWheelEvent;
+        private GLMouseButtons lastBindingMouseButtons;
+        private GLEventHandler<GLMouseEventArgs> mouseDownEvent;
+        private GLEventHandler<GLMouseEventArgs> mouseMoveEvent;
+        private GLEventHandler<GLMouseEventArgs> mouseUpEvent;
+        private GLEventHandler<GLMouseEventArgs> mouseWheelEvent;
         private mat4 totalRotation = mat4.identity();
         private bool isBinded = false;
 
@@ -40,21 +40,21 @@ namespace CSharpGL
         /// Rotate model using arc-ball method.
         /// </summary>
         /// <param name="bindingMouseButtons"></param>
-        public ArcBallManipulater(MouseButtons bindingMouseButtons = MouseButtons.Left)
+        public ArcBallManipulater(GLMouseButtons bindingMouseButtons = GLMouseButtons.Left)
         {
             this.MouseSensitivity = 6.0f;
             this.BindingMouseButtons = bindingMouseButtons;
 
-            this.mouseDownEvent = new MouseEventHandler(((IMouseHandler)this).canvas_MouseDown);
-            this.mouseMoveEvent = new MouseEventHandler(((IMouseHandler)this).canvas_MouseMove);
-            this.mouseUpEvent = new MouseEventHandler(((IMouseHandler)this).canvas_MouseUp);
-            this.mouseWheelEvent = new MouseEventHandler(((IMouseHandler)this).canvas_MouseWheel);
+            this.mouseDownEvent = (((IMouseHandler)this).canvas_MouseDown);
+            this.mouseMoveEvent = (((IMouseHandler)this).canvas_MouseMove);
+            this.mouseUpEvent = (((IMouseHandler)this).canvas_MouseUp);
+            this.mouseWheelEvent = (((IMouseHandler)this).canvas_MouseWheel);
         }
 
         /// <summary>
         ///
         /// </summary>
-        public MouseButtons BindingMouseButtons { get; set; }
+        public GLMouseButtons BindingMouseButtons { get; set; }
 
         /// <summary>
         /// </summary>
@@ -92,10 +92,10 @@ namespace CSharpGL
             return totalRotation;
         }
 
-        void IMouseHandler.canvas_MouseDown(object sender, MouseEventArgs e)
+        void IMouseHandler.canvas_MouseDown(object sender, GLMouseEventArgs e)
         {
             this.lastBindingMouseButtons = this.BindingMouseButtons;
-            if ((e.Button & this.lastBindingMouseButtons) != MouseButtons.None)
+            if ((e.Button & this.lastBindingMouseButtons) != GLMouseButtons.None)
             {
                 var control = sender as Control;
                 this.SetBounds(control.Width, control.Height);
@@ -111,9 +111,9 @@ namespace CSharpGL
             }
         }
 
-        void IMouseHandler.canvas_MouseMove(object sender, MouseEventArgs e)
+        void IMouseHandler.canvas_MouseMove(object sender, GLMouseEventArgs e)
         {
-            if (mouseDownFlag && ((e.Button & this.lastBindingMouseButtons) != MouseButtons.None))
+            if (mouseDownFlag && ((e.Button & this.lastBindingMouseButtons) != GLMouseButtons.None))
             {
                 if (!cameraState.IsSameState(this.camera))
                 {
@@ -138,15 +138,15 @@ namespace CSharpGL
             }
         }
 
-        void IMouseHandler.canvas_MouseUp(object sender, MouseEventArgs e)
+        void IMouseHandler.canvas_MouseUp(object sender, GLMouseEventArgs e)
         {
-            if ((e.Button & this.lastBindingMouseButtons) != MouseButtons.None)
+            if ((e.Button & this.lastBindingMouseButtons) != GLMouseButtons.None)
             {
                 mouseDownFlag = false;
             }
         }
 
-        void IMouseHandler.canvas_MouseWheel(object sender, MouseEventArgs e)
+        void IMouseHandler.canvas_MouseWheel(object sender, GLMouseEventArgs e)
         {
         }
 

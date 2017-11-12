@@ -41,37 +41,37 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        event KeyPressEventHandler KeyPress;
+        event GLEventHandler<GLKeyPressEventArgs> KeyPress;
 
         /// <summary>
         /// 
         /// </summary>
-        event MouseEventHandler MouseDown;
+        event GLEventHandler<GLMouseEventArgs> MouseDown;
 
         /// <summary>
         /// 
         /// </summary>
-        event MouseEventHandler MouseMove;
+        event GLEventHandler<GLMouseEventArgs> MouseMove;
 
         /// <summary>
         /// 
         /// </summary>
-        event MouseEventHandler MouseUp;
+        event GLEventHandler<GLMouseEventArgs> MouseUp;
 
         /// <summary>
         /// 
         /// </summary>
-        event MouseEventHandler MouseWheel;
+        event GLEventHandler<GLMouseEventArgs> MouseWheel;
 
         /// <summary>
         ///
         /// </summary>
-        event KeyEventHandler KeyDown;
+        event GLEventHandler<GLKeyEventArgs> KeyDown;
 
         /// <summary>
         ///
         /// </summary>
-        event KeyEventHandler KeyUp;
+        event GLEventHandler<GLKeyEventArgs> KeyUp;
 
         /// <summary>
         ///

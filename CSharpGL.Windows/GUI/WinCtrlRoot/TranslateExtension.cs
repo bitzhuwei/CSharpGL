@@ -10,6 +10,20 @@ namespace CSharpGL
     /// </summary>
     public static class TranslateExtension
     {
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="e"></param>
+        /// <returns></returns>
+        public static GLKeyPressEventArgs Translate(this System.Windows.Forms.KeyPressEventArgs e)
+        {
+            var args = new GLKeyPressEventArgs(e.KeyChar);
+            args.Handled = e.Handled;
+
+            return args;
+        }
+
         /// <summary>
         /// 
         /// </summary>
