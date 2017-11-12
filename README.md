@@ -1,7 +1,8 @@
 # Object Oriented OpenGL in C\#   
-:green_apple:CSharpGL is an Object-Orinted OpenGL library in pure C# wihtout any third party supports.  
-It abstracts concepts(buffer, shader, state, matrix, vector, texture, canvas, scene, camera, light, text, GUI ...) from OpenGL API into types(class, struct and enum) and algorithms(transform, layout, picking ...).  
-More than 25 simple demonstration projects show how to use CSharpGL. And there will be more. Here are some of them.
+:green_apple:CSharpGL is an Object-Orinted OpenGL wrapper in pure C# wihtout any third party supports.  
+It abstracts concepts(buffer, shader, state, matrix, vector, texture, canvas, scene, camera, light, picking, text, GUI ...) from OpenGL API and common requirements.  
+More than 25 simple demonstration projects show how to use CSharpGL. And there will be more.  
+Here are some of them.
 ## 3DTextureSlicing.
 ![3DTextureSlicing](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/3DTextureSlicing/3DTextureSlicing.png?raw=true)
 ![3DTextureSlicing.classification](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/3DTextureSlicing/3DTextureSlicing.classification.png?raw=true)
