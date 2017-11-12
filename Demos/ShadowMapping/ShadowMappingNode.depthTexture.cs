@@ -16,7 +16,7 @@ namespace ShadowMapping
 
 uniform mat4 " + mvpMatrix + @";
 
-layout (location = 0) in vec4 " + inPosition + @";;
+in vec4 " + inPosition + @";
 
 void main(void)
 {
@@ -27,8 +27,7 @@ void main(void)
         //        private const string shadowFragmentCode =
         //            @"#version 330 core
         //
-        //layout(location = 0) out float fragmentdepth;
-        ////out vec4 out_Color;
+        //out float fragmentdepth;
         //
         //void main(void) {
         //    fragmentdepth = gl_FragCoord.z;

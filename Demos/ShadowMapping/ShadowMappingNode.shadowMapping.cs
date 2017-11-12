@@ -20,8 +20,8 @@ uniform mat4 " + projection_matrix + @";
 
 uniform mat4 " + shadow_matrix + @";
 
-layout (location = 0) in vec4 " + inPosition + @";
-layout (location = 1) in vec3 " + inNormal + @";
+in vec4 " + inPosition + @";
+in vec3 " + inNormal + @";
 
 out VS_FS_INTERFACE
 {
@@ -56,7 +56,7 @@ uniform vec3 " + material_diffuse + @";
 uniform vec3 " + material_specular + @";
 uniform float " + material_specular_power + @";
 
-layout (location = 0) out vec4 color;
+out vec4 color;
 
 in VS_FS_INTERFACE
 {

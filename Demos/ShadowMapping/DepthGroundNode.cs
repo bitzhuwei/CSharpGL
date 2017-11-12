@@ -19,7 +19,7 @@ namespace CSharpGL
 
 uniform mat4 " + mvpMatrix + @";
 
-layout (location = 0) in vec4 " + inPosition + @";;
+in vec4 " + inPosition + @";
 
 void main(void)
 {
@@ -32,8 +32,7 @@ void main(void)
         //
         //uniform vec4 " + color + @";
         //
-        //layout(location = 0) out vec4 out_Color;
-        ////out vec4 out_Color;
+        //out vec4 out_Color;
         //
         //void main(void) {
         //    out_Color = color;
