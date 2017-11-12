@@ -25,17 +25,17 @@ namespace CSharpGL
         //public GLRenderContext RenderContext { get; private set; }
 
         //#endregion
-        int IGLCanvas.Width
-        {
-            get { return this.Width; }
-            set { this.Width = value; }
-        }
+        //int IGLCanvas.Width
+        //{
+        //    get { return this.Width; }
+        //    set { this.Width = value; }
+        //}
 
-        int IGLCanvas.Height
-        {
-            get { return this.Height; }
-            set { this.Height = value; }
-        }
+        //int IGLCanvas.Height
+        //{
+        //    get { return this.Height; }
+        //    set { this.Height = value; }
+        //}
 
         //Rectangle IGLCanvas.ClientRectangle
         //{
@@ -98,15 +98,15 @@ namespace CSharpGL
             remove { this.glKeyUp -= value; }
         }
 
-        event EventHandler IGLCanvas.Resize
-        {
-            add { this.Resize += value; }
-            remove { this.Resize -= value; }
-        }
+        //event EventHandler IGLCanvas.Resize
+        //{
+        //    add { this.Resize += value; }
+        //    remove { this.Resize -= value; }
+        //}
 
-        bool IGLCanvas.IsDisposed
-        {
-            get { return this.IsDisposed; }
-        }
+        //bool IGLCanvas.IsDisposed
+        //{
+        //    get { return this.IsDisposed; }
+        //}
     }
 }
