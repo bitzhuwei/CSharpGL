@@ -110,6 +110,7 @@ namespace CSharpGL
             }
             else
             {
+                this.KeyPress += WinGLCanvas_KeyPress;
                 this.MouseDown += WinGLCanvas_MouseDown;
                 this.MouseMove += WinGLCanvas_MouseMove;
                 this.MouseUp += WinGLCanvas_MouseUp;
@@ -119,6 +120,16 @@ namespace CSharpGL
             }
 
             CreateRenderContext();
+        }
+
+        void WinGLCanvas_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            GLEventHandler<GLKeyPressEventArgs> KeyPress = this.glKeyPress;
+            if (KeyPress != null)
+            {
+                GLKeyPressEventArgs arg = e.Translate();
+                KeyPress(sender, arg);
+            }
         }
 
         void WinGLCanvas_MouseDown(object sender, MouseEventArgs e)

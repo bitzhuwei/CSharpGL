@@ -41,7 +41,7 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        event KeyPressEventHandler KeyPress;
+        event GLEventHandler<GLKeyPressEventArgs> KeyPress;
 
         /// <summary>
         /// 

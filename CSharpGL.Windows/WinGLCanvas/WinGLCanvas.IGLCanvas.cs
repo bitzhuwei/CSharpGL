@@ -50,10 +50,11 @@ namespace CSharpGL
         private GLRenderContext renderContext;
         GLRenderContext IGLCanvas.RenderContext { get { return this.renderContext; } }
 
-        event KeyPressEventHandler IGLCanvas.KeyPress
+        private event GLEventHandler<GLKeyPressEventArgs> glKeyPress;
+        event GLEventHandler<GLKeyPressEventArgs> IGLCanvas.KeyPress
         {
-            add { this.KeyPress += value; }
-            remove { this.KeyPress -= value; }
+            add { this.glKeyPress += value; }
+            remove { this.glKeyPress -= value; }
         }
 
         private event GLEventHandler<GLMouseEventArgs> glMouseDown;

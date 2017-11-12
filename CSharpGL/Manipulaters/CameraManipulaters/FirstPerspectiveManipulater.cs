@@ -17,7 +17,7 @@ namespace CSharpGL
 
         private char downKey;
         private char frontKey;
-        private KeyPressEventHandler keyPressEvent;
+        private GLEventHandler<GLKeyPressEventArgs> keyPressEvent;
         private GLMouseButtons lastBindingMouseButtons;
         private ivec2 lastPosition;
         private char leftKey;
@@ -64,7 +64,7 @@ namespace CSharpGL
             this.VerticalRotationSpeed = verticalRotationSpeed;
             this.BindingMouseButtons = bindingMouseButtons;
 
-            this.keyPressEvent = new KeyPressEventHandler(((IKeyboardHandler)this).canvas_KeyPress);
+            this.keyPressEvent = (((IKeyboardHandler)this).canvas_KeyPress);
             this.mouseDownEvent = (((IMouseHandler)this).canvas_MouseDown);
             this.mouseMoveEvent = (((IMouseHandler)this).canvas_MouseMove);
             this.mouseUpEvent = (((IMouseHandler)this).canvas_MouseUp);
@@ -188,7 +188,7 @@ namespace CSharpGL
             canvas.MouseWheel += this.mouseWheelEvent;
         }
 
-        void IKeyboardHandler.canvas_KeyPress(object sender, KeyPressEventArgs e)
+        void IKeyboardHandler.canvas_KeyPress(object sender, GLKeyPressEventArgs e)
         {
             bool updated = false;
 
