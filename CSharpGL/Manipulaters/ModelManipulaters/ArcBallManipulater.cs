@@ -24,7 +24,7 @@ namespace CSharpGL
         private MouseEventHandler mouseDownEvent;
         private MouseEventHandler mouseMoveEvent;
         private MouseEventHandler mouseUpEvent;
-        private MouseEventHandler mouseWheelEvent;
+        private GLEventHandler<GLMouseEventArgs> mouseWheelEvent;
         private mat4 totalRotation = mat4.identity();
         private bool isBinded = false;
 
@@ -48,7 +48,7 @@ namespace CSharpGL
             this.mouseDownEvent = new MouseEventHandler(((IMouseHandler)this).canvas_MouseDown);
             this.mouseMoveEvent = new MouseEventHandler(((IMouseHandler)this).canvas_MouseMove);
             this.mouseUpEvent = new MouseEventHandler(((IMouseHandler)this).canvas_MouseUp);
-            this.mouseWheelEvent = new MouseEventHandler(((IMouseHandler)this).canvas_MouseWheel);
+            this.mouseWheelEvent = (((IMouseHandler)this).canvas_MouseWheel);
         }
 
         /// <summary>
@@ -146,7 +146,7 @@ namespace CSharpGL
             }
         }
 
-        void IMouseHandler.canvas_MouseWheel(object sender, MouseEventArgs e)
+        void IMouseHandler.canvas_MouseWheel(object sender, GLMouseEventArgs e)
         {
         }
 

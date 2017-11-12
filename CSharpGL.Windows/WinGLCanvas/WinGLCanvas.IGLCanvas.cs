@@ -74,10 +74,11 @@ namespace CSharpGL
             remove { this.MouseUp -= value; }
         }
 
-        event MouseEventHandler IGLCanvas.MouseWheel
+        private event GLEventHandler<GLMouseEventArgs> glMouseWheel;
+        event GLEventHandler<GLMouseEventArgs> IGLCanvas.MouseWheel
         {
-            add { this.MouseWheel += value; }
-            remove { this.MouseWheel -= value; }
+            add { this.glMouseWheel += value; }
+            remove { this.glMouseWheel -= value; }
         }
 
         private event GLEventHandler<GLKeyEventArgs> glKeyDown;

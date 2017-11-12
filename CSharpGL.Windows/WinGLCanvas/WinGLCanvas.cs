@@ -110,11 +110,22 @@ namespace CSharpGL
             }
             else
             {
+                this.MouseWheel += WinGLCanvas_MouseWheel;
                 this.KeyDown += WinGLCanvas_KeyDown;
                 this.KeyUp += WinGLCanvas_KeyUp;
             }
 
             CreateRenderContext();
+        }
+
+        void WinGLCanvas_MouseWheel(object sender, MouseEventArgs e)
+        {
+            GLEventHandler<GLMouseEventArgs> MouseWheel = this.glMouseWheel;
+            if (MouseWheel != null)
+            {
+                GLMouseEventArgs arg = e.Translate();
+                MouseWheel(sender, arg);
+            }
         }
 
         void WinGLCanvas_KeyDown(object sender, KeyEventArgs e)

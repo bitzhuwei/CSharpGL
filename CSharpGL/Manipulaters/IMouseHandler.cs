@@ -33,6 +33,6 @@ namespace CSharpGL
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        void canvas_MouseWheel(object sender, MouseEventArgs e);
+        void canvas_MouseWheel(object sender, GLMouseEventArgs e);
     }
 }

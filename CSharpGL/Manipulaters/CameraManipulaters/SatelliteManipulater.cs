@@ -22,7 +22,7 @@ namespace CSharpGL
         private bool mouseDownFlag = false;
         private MouseEventHandler mouseMoveEvent;
         private MouseEventHandler mouseUpEvent;
-        private MouseEventHandler mouseWheelEvent;
+        private GLEventHandler<GLMouseEventArgs> mouseWheelEvent;
         private vec3 right;
         private vec3 up;
 
@@ -37,7 +37,7 @@ namespace CSharpGL
             this.mouseDownEvent = new MouseEventHandler(((IMouseHandler)this).canvas_MouseDown);
             this.mouseMoveEvent = new MouseEventHandler(((IMouseHandler)this).canvas_MouseMove);
             this.mouseUpEvent = new MouseEventHandler(((IMouseHandler)this).canvas_MouseUp);
-            this.mouseWheelEvent = new MouseEventHandler(((IMouseHandler)this).canvas_MouseWheel);
+            this.mouseWheelEvent = (((IMouseHandler)this).canvas_MouseWheel);
         }
 
         /// <summary>
@@ -143,7 +143,7 @@ namespace CSharpGL
             }
         }
 
-        void IMouseHandler.canvas_MouseWheel(object sender, MouseEventArgs e)
+        void IMouseHandler.canvas_MouseWheel(object sender, GLMouseEventArgs e)
         {
             this.camera.MouseWheel(e.Delta);
         }

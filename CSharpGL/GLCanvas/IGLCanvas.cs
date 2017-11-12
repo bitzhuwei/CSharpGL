@@ -61,7 +61,7 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        event MouseEventHandler MouseWheel;
+        event GLEventHandler<GLMouseEventArgs> MouseWheel;
 
         /// <summary>
         ///
