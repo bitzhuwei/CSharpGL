@@ -43,6 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseDataStructures\Events\GLKeyPressEventArgs.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="BaseDataStructures\FullDictionary.cs" />
     <Compile Include="BaseDataStructures\IBoundingBox\BoundingBox.cs" />
     <Compile Include="BaseDataStructures\IBoundingBox\IBoundingBox.cs" />
