@@ -33,8 +33,8 @@ namespace CSharpGL
 
         int IGLCanvas.Height
         {
-            get { return this.Width; }
-            set { this.Width = value; }
+            get { return this.Height; }
+            set { this.Height = value; }
         }
 
         Rectangle IGLCanvas.ClientRectangle
