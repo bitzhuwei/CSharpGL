@@ -110,10 +110,21 @@ namespace CSharpGL
             }
             else
             {
+                this.KeyDown += WinGLCanvas_KeyDown;
                 this.KeyUp += WinGLCanvas_KeyUp;
             }
 
             CreateRenderContext();
+        }
+
+        void WinGLCanvas_KeyDown(object sender, KeyEventArgs e)
+        {
+            GLEventHandler<GLKeyEventArgs> keyDown = this.glKeyDown;
+            if (keyDown != null)
+            {
+                GLKeyEventArgs arg = e.Translate();
+                keyDown(sender, arg);
+            }
         }
 
         void WinGLCanvas_KeyUp(object sender, KeyEventArgs e)

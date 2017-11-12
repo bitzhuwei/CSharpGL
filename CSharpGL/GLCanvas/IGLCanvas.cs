@@ -66,7 +66,7 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        event KeyEventHandler KeyDown;
+        event GLEventHandler<GLKeyEventArgs> KeyDown;
 
         /// <summary>
         ///
