@@ -100,7 +100,7 @@ namespace CSharpGL
                     SetCamera(this.camera.Position, this.camera.Target, this.camera.UpVector);
                 }
 
-                this._lastPosition = new Point(e.X, this.canvas.ClientRectangle.Height - e.Y - 1);
+                this._lastPosition = new Point(e.X, this.canvas.Height - e.Y - 1);
 
                 mouseDownFlag = true;
             }
@@ -115,7 +115,7 @@ namespace CSharpGL
                     SetCamera(this.camera.Position, this.camera.Target, this.camera.UpVector);
                 }
 
-                Point location = new Point(e.X, this.canvas.ClientRectangle.Height - e.Y - 1);
+                Point location = new Point(e.X, this.canvas.Height - e.Y - 1);
                 Point differenceOnScreen = new Point(location.X - this._lastPosition.X, location.Y - this._lastPosition.Y);
                 mat4 model = this.renderer.GetModelMatrix();
                 mat4 view = this.camera.GetViewMatrix();

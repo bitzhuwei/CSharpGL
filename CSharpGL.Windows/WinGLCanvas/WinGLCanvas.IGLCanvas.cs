@@ -37,10 +37,10 @@ namespace CSharpGL
             set { this.Height = value; }
         }
 
-        Rectangle IGLCanvas.ClientRectangle
-        {
-            get { return this.ClientRectangle; }
-        }
+        //Rectangle IGLCanvas.ClientRectangle
+        //{
+        //get { return this.ClientRectangle; }
+        //}
 
         void IGLCanvas.Repaint()
         {

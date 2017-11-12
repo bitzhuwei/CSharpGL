@@ -22,10 +22,10 @@ namespace CSharpGL
         /// </summary>
         int Height { get; set; }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        Rectangle ClientRectangle { get; }
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //Rectangle ClientRectangle { get; }
 
         /// <summary>
         /// 
