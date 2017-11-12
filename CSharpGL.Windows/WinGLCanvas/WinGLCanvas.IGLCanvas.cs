@@ -86,10 +86,11 @@ namespace CSharpGL
             remove { this.KeyDown -= value; }
         }
 
-        event KeyEventHandler IGLCanvas.KeyUp
+        private event GLEventHandler<GLKeyEventArgs> glKeyUp;
+        event GLEventHandler<GLKeyEventArgs> IGLCanvas.KeyUp
         {
-            add { this.KeyUp += value; }
-            remove { this.KeyUp -= value; }
+            add { this.glKeyUp += value; }
+            remove { this.glKeyUp -= value; }
         }
 
         event EventHandler IGLCanvas.Resize

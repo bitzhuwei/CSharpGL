@@ -108,8 +108,22 @@ namespace CSharpGL
             {
                 this.assist.Resize(this.Width, this.Height);
             }
+            else
+            {
+                this.KeyUp += WinGLCanvas_KeyUp;
+            }
 
             CreateRenderContext();
+        }
+
+        void WinGLCanvas_KeyUp(object sender, KeyEventArgs e)
+        {
+            GLEventHandler<GLKeyEventArgs> keyUp = this.glKeyUp;
+            if (keyUp != null)
+            {
+                GLKeyEventArgs arg = e.Translate();
+                keyUp(sender, arg);
+            }
         }
 
         #endregion ISupportInitialize 成员
