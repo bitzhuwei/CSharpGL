@@ -50,6 +50,6 @@ And now it also shows how to use GLImage, GLButton and GLLabel.
 ![Texture2D](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/Texture2D/Texture2D.png?raw=true)
 ## Texture2DArray
 There's no visible difference from Texture2D you can see from one single picture. Download this demo and try it!
-![Texture2DArray](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/Texture2DArray/Texture2DArray.png?raw=true)
+![Texture2DArray](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/Texture2DArray/Texture2DArray.gif?raw=true)
 # :question:Support or Contact
 Check my blog [here](http://www.cnblogs.com/bitzhuwei/) or join my QQ Group<a target="_blank" href="http://shang.qq.com/wpa/qunwpa?idkey=98131e619f6da03b96ad2213a1278da4fdd05b42a58d053125ce6ba76cf991f9"><img border="0" src="http://pub.idqqimg.com/wpa/images/group.png" alt="CSharpGL(C#+OpenGL)" title="CSharpGL(C#+OpenGL)"></a>.
