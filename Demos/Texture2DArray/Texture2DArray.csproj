@@ -44,7 +44,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CrateTextureSource.cs" />
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -99,10 +98,7 @@
     <Content Include="4.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Crate.bmp">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Texture2DArray.png" />
+    <Content Include="Texture2DArray.gif" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\CSharpGL.Windows\CSharpGL.Windows.csproj">
