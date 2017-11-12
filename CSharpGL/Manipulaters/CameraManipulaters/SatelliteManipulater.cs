@@ -16,12 +16,12 @@ namespace CSharpGL
         private ICamera camera;
         private IGLCanvas canvas;
 
-        private MouseButtons lastBindingMouseButtons;
-        private Point lastPosition = new Point();
-        private MouseEventHandler mouseDownEvent;
+        private GLMouseButtons lastBindingMouseButtons;
+        private ivec2 lastPosition = new ivec2();
+        private GLEventHandler<GLMouseEventArgs> mouseDownEvent;
         private bool mouseDownFlag = false;
-        private MouseEventHandler mouseMoveEvent;
-        private MouseEventHandler mouseUpEvent;
+        private GLEventHandler<GLMouseEventArgs> mouseMoveEvent;
+        private GLEventHandler<GLMouseEventArgs> mouseUpEvent;
         private GLEventHandler<GLMouseEventArgs> mouseWheelEvent;
         private vec3 right;
         private vec3 up;
@@ -29,21 +29,21 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        public SatelliteManipulater(MouseButtons bindingMouseButtons = MouseButtons.Right)
+        public SatelliteManipulater(GLMouseButtons bindingMouseButtons = GLMouseButtons.Right)
         {
             this.HorizontalRotationFactor = 4;
             this.VerticalRotationFactor = 4;
             this.BindingMouseButtons = bindingMouseButtons;
-            this.mouseDownEvent = new MouseEventHandler(((IMouseHandler)this).canvas_MouseDown);
-            this.mouseMoveEvent = new MouseEventHandler(((IMouseHandler)this).canvas_MouseMove);
-            this.mouseUpEvent = new MouseEventHandler(((IMouseHandler)this).canvas_MouseUp);
+            this.mouseDownEvent = (((IMouseHandler)this).canvas_MouseDown);
+            this.mouseMoveEvent = (((IMouseHandler)this).canvas_MouseMove);
+            this.mouseUpEvent = (((IMouseHandler)this).canvas_MouseUp);
             this.mouseWheelEvent = (((IMouseHandler)this).canvas_MouseWheel);
         }
 
         /// <summary>
         ///
         /// </summary>
-        public MouseButtons BindingMouseButtons { get; set; }
+        public GLMouseButtons BindingMouseButtons { get; set; }
 
         /// <summary>
         ///
@@ -71,10 +71,10 @@ namespace CSharpGL
             canvas.MouseWheel += this.mouseWheelEvent;
         }
 
-        void IMouseHandler.canvas_MouseDown(object sender, MouseEventArgs e)
+        void IMouseHandler.canvas_MouseDown(object sender, GLMouseEventArgs e)
         {
             this.lastBindingMouseButtons = this.BindingMouseButtons;
-            if ((e.Button & this.lastBindingMouseButtons) != MouseButtons.None)
+            if ((e.Button & this.lastBindingMouseButtons) != GLMouseButtons.None)
             {
                 this.lastPosition = e.Location;
                 var control = sender as Control;
@@ -84,11 +84,11 @@ namespace CSharpGL
             }
         }
 
-        void IMouseHandler.canvas_MouseMove(object sender, MouseEventArgs e)
+        void IMouseHandler.canvas_MouseMove(object sender, GLMouseEventArgs e)
         {
             if (this.mouseDownFlag
-                && ((e.Button & this.lastBindingMouseButtons) != MouseButtons.None)
-                && (e.X != lastPosition.X || e.Y != lastPosition.Y))
+                && ((e.Button & this.lastBindingMouseButtons) != GLMouseButtons.None)
+                && (e.X != lastPosition.x || e.Y != lastPosition.y))
             {
                 IViewCamera camera = this.camera;
                 if (camera == null) { return; }
@@ -97,9 +97,9 @@ namespace CSharpGL
                 vec3 right = this.right;
                 vec3 up = this.up;
                 Size bound = this.bound;
-                Point downPosition = this.lastPosition;
+                ivec2 downPosition = this.lastPosition;
                 {
-                    float deltaX = -this.HorizontalRotationFactor * (e.X - downPosition.X) / bound.Width;
+                    float deltaX = -this.HorizontalRotationFactor * (e.X - downPosition.x) / bound.Width;
                     float cos = (float)Math.Cos(deltaX);
                     float sin = (float)Math.Sin(deltaX);
                     vec3 newBack = new vec3(
@@ -112,7 +112,7 @@ namespace CSharpGL
                     right = right.normalize();
                 }
                 {
-                    float deltaY = this.VerticalRotationFactor * (e.Y - downPosition.Y) / bound.Height;
+                    float deltaY = this.VerticalRotationFactor * (e.Y - downPosition.y) / bound.Height;
                     float cos = (float)Math.Cos(deltaY);
                     float sin = (float)Math.Sin(deltaY);
                     vec3 newBack = new vec3(
@@ -135,9 +135,9 @@ namespace CSharpGL
             }
         }
 
-        void IMouseHandler.canvas_MouseUp(object sender, MouseEventArgs e)
+        void IMouseHandler.canvas_MouseUp(object sender, GLMouseEventArgs e)
         {
-            if ((e.Button & this.lastBindingMouseButtons) != MouseButtons.None)
+            if ((e.Button & this.lastBindingMouseButtons) != GLMouseButtons.None)
             {
                 this.mouseDownFlag = false;
             }

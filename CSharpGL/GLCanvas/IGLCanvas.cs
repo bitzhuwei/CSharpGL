@@ -46,17 +46,17 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        event MouseEventHandler MouseDown;
+        event GLEventHandler<GLMouseEventArgs> MouseDown;
 
         /// <summary>
         /// 
         /// </summary>
-        event MouseEventHandler MouseMove;
+        event GLEventHandler<GLMouseEventArgs> MouseMove;
 
         /// <summary>
         /// 
         /// </summary>
-        event MouseEventHandler MouseUp;
+        event GLEventHandler<GLMouseEventArgs> MouseUp;
 
         /// <summary>
         /// 

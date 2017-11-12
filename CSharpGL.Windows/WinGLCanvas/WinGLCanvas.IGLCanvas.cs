@@ -56,22 +56,24 @@ namespace CSharpGL
             remove { this.KeyPress -= value; }
         }
 
-        event MouseEventHandler IGLCanvas.MouseDown
+        private event GLEventHandler<GLMouseEventArgs> glMouseDown;
+        event GLEventHandler<GLMouseEventArgs> IGLCanvas.MouseDown
         {
-            add { this.MouseDown += value; }
-            remove { this.MouseDown -= value; }
+            add { this.glMouseDown += value; }
+            remove { this.glMouseDown -= value; }
+        }
+        private event GLEventHandler<GLMouseEventArgs> glMouseMove;
+        event GLEventHandler<GLMouseEventArgs> IGLCanvas.MouseMove
+        {
+            add { this.glMouseMove += value; }
+            remove { this.glMouseMove -= value; }
         }
 
-        event MouseEventHandler IGLCanvas.MouseMove
+        private event GLEventHandler<GLMouseEventArgs> glMouseUp;
+        event GLEventHandler<GLMouseEventArgs> IGLCanvas.MouseUp
         {
-            add { this.MouseMove += value; }
-            remove { this.MouseMove -= value; }
-        }
-
-        event MouseEventHandler IGLCanvas.MouseUp
-        {
-            add { this.MouseUp += value; }
-            remove { this.MouseUp -= value; }
+            add { this.glMouseUp += value; }
+            remove { this.glMouseUp -= value; }
         }
 
         private event GLEventHandler<GLMouseEventArgs> glMouseWheel;

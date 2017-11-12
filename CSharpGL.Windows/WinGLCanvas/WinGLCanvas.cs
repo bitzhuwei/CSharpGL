@@ -110,12 +110,45 @@ namespace CSharpGL
             }
             else
             {
+                this.MouseDown += WinGLCanvas_MouseDown;
+                this.MouseMove += WinGLCanvas_MouseMove;
+                this.MouseUp += WinGLCanvas_MouseUp;
                 this.MouseWheel += WinGLCanvas_MouseWheel;
                 this.KeyDown += WinGLCanvas_KeyDown;
                 this.KeyUp += WinGLCanvas_KeyUp;
             }
 
             CreateRenderContext();
+        }
+
+        void WinGLCanvas_MouseDown(object sender, MouseEventArgs e)
+        {
+            GLEventHandler<GLMouseEventArgs> MouseDown = this.glMouseDown;
+            if (MouseDown != null)
+            {
+                GLMouseEventArgs arg = e.Translate();
+                MouseDown(sender, arg);
+            }
+        }
+
+        void WinGLCanvas_MouseMove(object sender, MouseEventArgs e)
+        {
+            GLEventHandler<GLMouseEventArgs> MouseMove = this.glMouseMove;
+            if (MouseMove != null)
+            {
+                GLMouseEventArgs arg = e.Translate();
+                MouseMove(sender, arg);
+            }
+        }
+
+        void WinGLCanvas_MouseUp(object sender, MouseEventArgs e)
+        {
+            GLEventHandler<GLMouseEventArgs> MouseUp = this.glMouseUp;
+            if (MouseUp != null)
+            {
+                GLMouseEventArgs arg = e.Translate();
+                MouseUp(sender, arg);
+            }
         }
 
         void WinGLCanvas_MouseWheel(object sender, MouseEventArgs e)
