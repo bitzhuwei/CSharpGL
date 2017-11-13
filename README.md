@@ -11,7 +11,7 @@ Get to know how CSharpGL\OpenGL implements picking and draging with modern OpenG
 ## Texture2D
 This shows how 2D texture works.
 And now it also shows how to use GLImage, GLButton and GLLabel.
-![Texture2D](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/Texture2D/Texture2D.png?raw=true)
+![Texture2D](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/Texture2D/Texture2D.gif?raw=true)
 ## Texture2DArray
 ![Texture2DArray](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/Texture2DArray/Texture2DArray.gif?raw=true)
 ## Environment Mapping.
