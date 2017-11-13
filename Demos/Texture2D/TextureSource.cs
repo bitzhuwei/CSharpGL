@@ -6,10 +6,10 @@ using CSharpGL;
 
 namespace Texture2D
 {
-    class CrateTextureSource : ITextureSource
+    class TextureSource : ITextureSource
     {
         private readonly Texture texture;
-        public CrateTextureSource(string filename)
+        public TextureSource(string filename)
         {
             var bmp = new System.Drawing.Bitmap(filename);
             bmp.RotateFlip(System.Drawing.RotateFlipType.Rotate180FlipX);
@@ -24,6 +24,7 @@ namespace Texture2D
             texture.Initialize();
             bmp.Dispose();
         }
+
         #region ITextureSource 成员
 
         public Texture BindingTexture { get { return texture; } }

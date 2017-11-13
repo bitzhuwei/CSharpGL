@@ -123,22 +123,22 @@ namespace Texture2D
         {
             var rectangle = RectangleNode.Create();
             rectangle.Scale *= 3;
-            rectangle.TextureSource = new CrateTextureSource(@"Crate.bmp");
+            rectangle.TextureSource = new TextureSource(@"Lenna.png");
 
-            var blend = RectangleNode.Create();
-            blend.Scale *= 1.5f;
-            blend.WorldPosition = new vec3(-0.5f, 0, 0.1f);
-            blend.RenderUnit.Methods[0].StateList.Add(new BlendState(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.OneMinusSourceAlpha));
-            blend.TextureSource = new CrateTextureSource(@"particle.png");
+            //var blend = RectangleNode.Create();
+            //blend.Scale *= 1.5f;
+            //blend.WorldPosition = new vec3(-0.5f, 0, 0.1f);
+            //blend.RenderUnit.Methods[0].StateList.Add(new BlendState(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.OneMinusSourceAlpha));
+            //blend.TextureSource = new TextureSource(@"particle.png");
 
-            var blend2 = RectangleNode.Create();
-            blend2.Scale *= 1.5f;
-            blend2.WorldPosition = new vec3(0.5f, 0, 0.2f);
-            blend2.RenderUnit.Methods[0].StateList.Add(new BlendState(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.OneMinusSourceAlpha));
-            blend2.TextureSource = new CrateTextureSource(@"particle.png");
+            //var blend2 = RectangleNode.Create();
+            //blend2.Scale *= 1.5f;
+            //blend2.WorldPosition = new vec3(0.5f, 0, 0.2f);
+            //blend2.RenderUnit.Methods[0].StateList.Add(new BlendState(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.OneMinusSourceAlpha));
+            //blend2.TextureSource = new TextureSource(@"particle.png");
 
             // note: this tells us that the right way is to render the nearest transparenct object at last.
-            var group = new GroupNode(rectangle, blend, blend2);
+            var group = new GroupNode(rectangle);//, blend, blend2);
 
             return group;
         }
