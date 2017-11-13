@@ -116,13 +116,5 @@ namespace CSharpGL
         /// </summary>
         private DIBSection dibSection;
 
-        ///// <summary>
-        ///// Gets the internal DIB section.
-        ///// </summary>
-        ///// <value>The internal DIB section.</value>
-        //public DIBSection InternalDIBSection
-        //{
-        //    get { return dibSection; }
-        //}
     }
 }
