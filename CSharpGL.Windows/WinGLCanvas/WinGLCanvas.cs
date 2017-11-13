@@ -119,7 +119,17 @@ namespace CSharpGL
                 this.KeyUp += WinGLCanvas_KeyUp;
             }
 
-            CreateRenderContext();
+            // Create the render context.
+            var renderContext = new FBORenderContext(Width, Height, 32, null);
+            renderContext.MakeCurrent();
+            this.renderContext = renderContext;
+
+            // Set the most basic OpenGL styles.
+            GL.Instance.ShadeModel(GL.GL_SMOOTH);
+            GL.Instance.ClearDepth(1.0f);
+            GL.Instance.Enable(GL.GL_DEPTH_TEST);// depth test is disabled by default.
+            GL.Instance.DepthFunc(GL.GL_LEQUAL);
+            GL.Instance.Hint(GL.GL_PERSPECTIVE_CORRECTION_HINT, GL.GL_NICEST);
         }
 
         void WinGLCanvas_KeyPress(object sender, KeyPressEventArgs e)
@@ -193,26 +203,6 @@ namespace CSharpGL
         }
 
         #endregion ISupportInitialize 成员
-
-        /// <summary>
-        ///
-        /// </summary>
-        protected virtual void CreateRenderContext()
-        {
-            // Initialises OpenGL.
-
-            // Create the render context.
-            var renderContext = new FBORenderContext(Width, Height, 32, null);
-            renderContext.MakeCurrent();
-            this.renderContext = renderContext;
-
-            // Set the most basic OpenGL styles.
-            GL.Instance.ShadeModel(GL.GL_SMOOTH);
-            GL.Instance.ClearDepth(1.0f);
-            GL.Instance.Enable(GL.GL_DEPTH_TEST);// depth test is disabled by default.
-            GL.Instance.DepthFunc(GL.GL_LEQUAL);
-            GL.Instance.Hint(GL.GL_PERSPECTIVE_CORRECTION_HINT, GL.GL_NICEST);
-        }
 
         /// <summary>
         ///
