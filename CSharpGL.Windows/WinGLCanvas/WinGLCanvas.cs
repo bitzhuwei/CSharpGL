@@ -104,9 +104,11 @@ namespace CSharpGL
 
         void ISupportInitialize.EndInit()
         {
+            int width = this.Width, height = this.Height;
+
             if (this.designMode)
             {
-                this.assist.Resize(this.Width, this.Height);
+                this.assist.Resize(width, height);
             }
             else
             {
@@ -120,7 +122,8 @@ namespace CSharpGL
             }
 
             // Create the render context.
-            var renderContext = new FBORenderContext(Width, Height, 32, null);
+            const short bitDepth = 32;
+            var renderContext = new FBORenderContext(width, height, bitDepth, null);
             renderContext.MakeCurrent();
             this.renderContext = renderContext;
 

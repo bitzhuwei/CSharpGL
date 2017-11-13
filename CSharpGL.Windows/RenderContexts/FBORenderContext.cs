@@ -15,7 +15,7 @@ namespace CSharpGL
         /// <param name="bitDepth"></param>
         /// <param name="parameter"></param>
         /// <returns></returns>
-        public FBORenderContext(int width, int height, int bitDepth, object parameter)
+        public FBORenderContext(int width, int height, short bitDepth, object parameter)
             //  Call the base class.
             : base(width, height, bitDepth, parameter)
         {

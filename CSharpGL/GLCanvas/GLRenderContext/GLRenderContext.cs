@@ -15,7 +15,7 @@ namespace CSharpGL
         /// <param name="bitDepth">The bit depth.</param>
         /// <param name="parameter">The extra parameter.</param>
         /// <returns></returns>
-        public GLRenderContext(int width, int height, int bitDepth, object parameter)
+        public GLRenderContext(int width, int height, short bitDepth, object parameter)
         {
             this.Width = width;
             this.Height = height;
@@ -70,6 +70,6 @@ namespace CSharpGL
         /// Gets or sets the bit depth.
         /// </summary>
         /// <value>The bit depth.</value>
-        public int BitDepth { get; protected set; }
+        public short BitDepth { get; protected set; }
     }
 }
