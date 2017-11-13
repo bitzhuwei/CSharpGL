@@ -45,7 +45,7 @@ namespace CSharpGL
         protected override void DisposeUnmanagedResources()
         {
             //  Delete the render buffers.
-            //this.framebuffer.Unbind();
+            this.framebuffer.Unbind();
             this.framebuffer.Dispose();
 
             //  Destroy the internal dc.
