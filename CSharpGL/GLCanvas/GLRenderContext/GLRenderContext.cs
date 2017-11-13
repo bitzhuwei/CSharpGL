@@ -13,9 +13,8 @@ namespace CSharpGL
         /// <param name="width">The width.</param>
         /// <param name="height">The height.</param>
         /// <param name="bitDepth">The bit depth.</param>
-        /// <param name="parameter">The extra parameter.</param>
         /// <returns></returns>
-        public GLRenderContext(int width, int height, short bitDepth, object parameter)
+        public GLRenderContext(int width, int height, short bitDepth)
         {
             this.Width = width;
             this.Height = height;

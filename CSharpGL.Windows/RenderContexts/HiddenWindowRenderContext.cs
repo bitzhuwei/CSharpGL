@@ -14,10 +14,9 @@ namespace CSharpGL
         /// <param name="width">The width.</param>
         /// <param name="height">The height.</param>
         /// <param name="bitDepth">The bit depth.</param>
-        /// <param name="parameter">The parameter</param>
         /// <returns></returns>
-        public HiddenWindowRenderContext(int width, int height, short bitDepth, object parameter)
-            : base(width, height, bitDepth, parameter)
+        public HiddenWindowRenderContext(int width, int height, short bitDepth)
+            : base(width, height, bitDepth)
         {
             // Create a new window class, as basic as possible.
             if (!this.CreateBasicRenderContext(width, height, bitDepth))

@@ -13,11 +13,10 @@ namespace CSharpGL
         /// <param name="width"></param>
         /// <param name="height"></param>
         /// <param name="bitDepth"></param>
-        /// <param name="parameter"></param>
         /// <returns></returns>
-        public FBORenderContext(int width, int height, short bitDepth, object parameter)
+        public FBORenderContext(int width, int height, short bitDepth)
             //  Call the base class.
-            : base(width, height, bitDepth, parameter)
+            : base(width, height, bitDepth)
         {
             // Create frame buffer object.
             Framebuffer framebuffer = CreateFramebuffer(width, height);
