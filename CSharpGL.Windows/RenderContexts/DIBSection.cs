@@ -116,8 +116,8 @@ namespace CSharpGL
             IntPtr hBitmap = this.HBitmap;
             if (hBitmap != IntPtr.Zero)
             {
-                Win32.DeleteObject(hBitmap);
                 this.HBitmap = IntPtr.Zero;
+                Win32.DeleteObject(hBitmap);
             }
         }
 
