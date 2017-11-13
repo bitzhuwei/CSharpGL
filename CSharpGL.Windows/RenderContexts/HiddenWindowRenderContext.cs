@@ -16,13 +16,14 @@ namespace CSharpGL
         /// <param name="bitDepth">The bit depth.</param>
         /// <param name="parameter">The parameter</param>
         /// <returns></returns>
-        public override bool Create(int width, int height, int bitDepth, object parameter)
+        public HiddenWindowRenderContext(int width, int height, int bitDepth, object parameter)
+            : base(width, height, bitDepth, parameter)
         {
-            //  Call the base.
-            base.Create(width, height, bitDepth, parameter);
-
             // Create a new window class, as basic as possible.
-            if (!this.CreateBasicRenderContext(width, height, bitDepth)) { return false; }
+            if (!this.CreateBasicRenderContext(width, height, bitDepth))
+            {
+                throw new Exception(string.Format("Create basic render context failed!"));
+            }
 
             //	Create the render context.
             this.RenderContextHandle = Win32.wglCreateContext(this.DeviceContextHandle);
@@ -33,9 +34,6 @@ namespace CSharpGL
             //  Update the context if required.
             // if I update context, something in legacy opengl will not work...
             //this.UpdateContextVersion();
-
-            //  Return success.
-            return true;
         }
 
         /// <summary>

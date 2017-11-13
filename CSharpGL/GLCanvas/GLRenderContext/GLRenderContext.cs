@@ -3,26 +3,23 @@
 namespace CSharpGL
 {
     /// <summary>
-    /// All information for creating render context and device context.
+    /// OpenGL render context.
     /// </summary>
     public abstract partial class GLRenderContext : IDisposable
     {
         /// <summary>
-        /// Creates the render context provider. Must also create the OpenGL extensions.
+        //  Set the width, height and bit depth.
         /// </summary>
         /// <param name="width">The width.</param>
         /// <param name="height">The height.</param>
         /// <param name="bitDepth">The bit depth.</param>
         /// <param name="parameter">The extra parameter.</param>
         /// <returns></returns>
-        public virtual bool Create(int width, int height, int bitDepth, object parameter)
+        public GLRenderContext(int width, int height, int bitDepth, object parameter)
         {
-            //  Set the width, height and bit depth.
             this.Width = width;
             this.Height = height;
             this.BitDepth = bitDepth;
-
-            return true;
         }
 
         /// <summary>

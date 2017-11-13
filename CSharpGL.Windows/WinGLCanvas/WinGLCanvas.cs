@@ -200,16 +200,13 @@ namespace CSharpGL
         protected virtual void CreateRenderContext()
         {
             // Initialises OpenGL.
-            var renderContext = new FBORenderContext();
 
-            //  Create the render context.
-            renderContext.Create(Width, Height, 32, null);
-
+            // Create the render context.
+            var renderContext = new FBORenderContext(Width, Height, 32, null);
+            renderContext.MakeCurrent();
             this.renderContext = renderContext;
 
-            renderContext.MakeCurrent();
-
-            //  Set the most basic OpenGL styles.
+            // Set the most basic OpenGL styles.
             GL.Instance.ShadeModel(GL.GL_SMOOTH);
             GL.Instance.ClearDepth(1.0f);
             GL.Instance.Enable(GL.GL_DEPTH_TEST);// depth test is disabled by default.

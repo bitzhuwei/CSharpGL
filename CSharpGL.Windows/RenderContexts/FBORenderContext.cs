@@ -15,11 +15,10 @@ namespace CSharpGL
         /// <param name="bitDepth"></param>
         /// <param name="parameter"></param>
         /// <returns></returns>
-        public override bool Create(int width, int height, int bitDepth, object parameter)
-        {
+        public FBORenderContext(int width, int height, int bitDepth, object parameter)
             //  Call the base class.
-            base.Create(width, height, bitDepth, parameter);
-
+            : base(width, height, bitDepth, parameter)
+        {
             // Create frame buffer object.
             Framebuffer framebuffer = CreateFramebuffer(width, height);
             framebuffer.Bind();
@@ -29,8 +28,6 @@ namespace CSharpGL
             var dibSection = new DIBSection();
             dibSection.Create(this.DeviceContextHandle, width, height, bitDepth);
             this.dibSection = dibSection;
-
-            return true;
         }
 
         private static Framebuffer CreateFramebuffer(int width, int height)
