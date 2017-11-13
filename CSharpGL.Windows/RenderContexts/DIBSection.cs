@@ -15,8 +15,7 @@ namespace CSharpGL
         /// <param name="width">The width.</param>
         /// <param name="height">The height.</param>
         /// <param name="bitCount">The bit count.</param>
-        /// <returns></returns>
-        public virtual bool Create(IntPtr deviceContext, int width, int height, int bitCount)
+        public DIBSection(IntPtr deviceContext, int width, int height, int bitCount)
         {
             this.Width = width;
             this.Height = height;
@@ -43,8 +42,6 @@ namespace CSharpGL
 
             //	Set the OpenGL pixel format.
             SetPixelFormat(mdc, bitCount);
-
-            return true;
         }
 
         /// <summary>

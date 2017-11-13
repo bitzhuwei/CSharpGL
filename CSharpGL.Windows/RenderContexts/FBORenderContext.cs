@@ -24,9 +24,7 @@ namespace CSharpGL
             this.framebuffer = framebuffer;
 
             //  Create the DIB section.
-            var dibSection = new DIBSection();
-            dibSection.Create(this.DeviceContextHandle, width, height, bitDepth);
-            this.dibSection = dibSection;
+            this.dibSection = new DIBSection(this.DeviceContextHandle, width, height, bitDepth);
         }
 
         private static Framebuffer CreateFramebuffer(int width, int height)
@@ -47,6 +45,7 @@ namespace CSharpGL
         protected override void DisposeUnmanagedResources()
         {
             //  Delete the render buffers.
+            //this.framebuffer.Unbind();
             this.framebuffer.Dispose();
 
             //  Destroy the internal dc.
