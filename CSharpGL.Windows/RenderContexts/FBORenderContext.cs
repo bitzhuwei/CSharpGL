@@ -13,24 +13,18 @@ namespace CSharpGL
         /// <param name="width"></param>
         /// <param name="height"></param>
         /// <param name="bitDepth"></param>
-        /// <param name="parameter"></param>
         /// <returns></returns>
-        public override bool Create(int width, int height, int bitDepth, object parameter)
-        {
+        public FBORenderContext(int width, int height, short bitDepth)
             //  Call the base class.
-            base.Create(width, height, bitDepth, parameter);
-
+            : base(width, height, bitDepth)
+        {
             // Create frame buffer object.
             Framebuffer framebuffer = CreateFramebuffer(width, height);
             framebuffer.Bind();
             this.framebuffer = framebuffer;
 
             //  Create the DIB section.
-            var dibSection = new DIBSection();
-            dibSection.Create(this.DeviceContextHandle, width, height, bitDepth);
-            this.dibSection = dibSection;
-
-            return true;
+            this.dibSection = new DIBSection(this.DeviceContextHandle, width, height, bitDepth);
         }
 
         private static Framebuffer CreateFramebuffer(int width, int height)
@@ -51,13 +45,12 @@ namespace CSharpGL
         protected override void DisposeUnmanagedResources()
         {
             //  Delete the render buffers.
+            this.framebuffer.Unbind();
             this.framebuffer.Dispose();
 
             //  Destroy the internal dc.
             //Win32.DeleteDC(this.dibSection.MemoryDeviceContext);
             this.dibSection.Dispose();
-
-            //this.dibSection.Dispose();
 
             //	Call the base, which will delete the render context handle and window.
             base.DisposeUnmanagedResources();
@@ -81,6 +74,7 @@ namespace CSharpGL
             ////  Resize the render buffer storage.
             //this.framebuffer.Resize(width, height);
 
+            this.framebuffer.Unbind();
             this.framebuffer.Dispose();
             Framebuffer framebuffer = CreateFramebuffer(width, height);
             framebuffer.Bind();
@@ -122,13 +116,5 @@ namespace CSharpGL
         /// </summary>
         private DIBSection dibSection;
 
-        ///// <summary>
-        ///// Gets the internal DIB section.
-        ///// </summary>
-        ///// <value>The internal DIB section.</value>
-        //public DIBSection InternalDIBSection
-        //{
-        //    get { return dibSection; }
-        //}
     }
 }
