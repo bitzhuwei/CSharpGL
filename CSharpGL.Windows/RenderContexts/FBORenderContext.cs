@@ -78,6 +78,7 @@ namespace CSharpGL
             ////  Resize the render buffer storage.
             //this.framebuffer.Resize(width, height);
 
+            this.framebuffer.Unbind();
             this.framebuffer.Dispose();
             Framebuffer framebuffer = CreateFramebuffer(width, height);
             framebuffer.Bind();
