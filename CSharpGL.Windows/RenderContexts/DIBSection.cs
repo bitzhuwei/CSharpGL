@@ -41,7 +41,7 @@ namespace CSharpGL
             Win32.SelectObject(mdc, this.HBitmap);
 
             //	Set the OpenGL pixel format.
-            SetPixelFormat(mdc, bitCount);
+            this.SetPixelFormat(mdc, bitCount);
         }
 
         /// <summary>
@@ -81,7 +81,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="hDC"></param>
         /// <param name="bitCount">The bitcount.</param>
-        protected virtual bool SetPixelFormat(IntPtr hDC, int bitCount)
+        protected void SetPixelFormat(IntPtr hDC, int bitCount)
         {
             //	Create the big lame pixel format majoo.
             var pixelFormat = new PixelFormatDescriptor();
@@ -97,16 +97,14 @@ namespace CSharpGL
 
             //	Match an appropriate pixel format
             int iPixelformat = Win32.ChoosePixelFormat(hDC, pixelFormat);
-            if (iPixelformat == 0) { return false; }
+            if (iPixelformat == 0) { throw new Exception(string.Format("ChoosePixelFormat([{0}], [{1}]) failed!", hDC, pixelFormat)); }
 
             //	Sets the pixel format
             if (Win32.SetPixelFormat(hDC, iPixelformat, pixelFormat) == 0)
             {
                 int lastError = Marshal.GetLastWin32Error();
-                return false;
+                throw new Exception(string.Format("SetPixelFormat([{0}], [{1}], [{2}]) failed! Win32Error:[{3}].", hDC, iPixelformat, pixelFormat, lastError));
             }
-
-            return true;
         }
 
         /// <summary>

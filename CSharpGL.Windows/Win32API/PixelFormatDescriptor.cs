@@ -88,35 +88,10 @@ namespace CSharpGL
         {
             nSize = (ushort)Marshal.SizeOf(this);
         }
-    }
 
-    //struct PixelFormatDescriptor
-    //{
-    //    public ushort nSize;
-    //    public ushort nVersion;
-    //    public uint dwFlags;
-    //    public byte iPixelType;
-    //    public byte cColorBits;
-    //    public byte cRedBits;
-    //    public byte cRedShift;
-    //    public byte cGreenBits;
-    //    public byte cGreenShift;
-    //    public byte cBlueBits;
-    //    public byte cBlueShift;
-    //    public byte cAlphaBits;
-    //    public byte cAlphaShift;
-    //    public byte cAccumBits;
-    //    public byte cAccumRedBits;
-    //    public byte cAccumGreenBits;
-    //    public byte cAccumBlueBits;
-    //    public byte cAccumAlphaBits;
-    //    public byte cDepthBits;
-    //    public byte cStencilBits;
-    //    public byte cAuxBuffers;
-    //    public sbyte iLayerType;
-    //    public byte bReserved;
-    //    public uint dwLayerMask;
-    //    public uint dwVisibleMask;
-    //    public uint dwDamageMask;
-    //}
+        public override string ToString()
+        {
+            return string.Concat(nSize, " ", nVersion, " ", dwFlags, " ", iPixelType, " ", cColorBits, " ", cRedBits, " ", cGreenBits, " ", cGreenShift, " ", cBlueBits, " ", cBlueShift, " ", cAlphaBits, " ", cAlphaShift, " ", cAccumBits, " ", cAccumRedBits, " ", cAccumGreenBits, " ", cAccumBlueBits, " ", cAccumAlphaBits, " ", cDepthBits, " ", cStencilBits, " ", cAuxBuffers, " ", iLayerType, " ", bReserved, " ", dwLayerMask, " ", dwVisibleMask, " ", dwDamageMask);
+        }
+    }
 }
