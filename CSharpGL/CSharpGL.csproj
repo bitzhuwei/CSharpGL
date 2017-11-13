@@ -43,48 +43,48 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseDataStructures\Events\GLKeyPressEventArgs.cs">
+    <Compile Include="BasicDataStructures\Events\GLKeyPressEventArgs.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="BaseDataStructures\FullDictionary.cs" />
-    <Compile Include="BaseDataStructures\IBoundingBox\BoundingBox.cs" />
-    <Compile Include="BaseDataStructures\IBoundingBox\IBoundingBox.cs" />
-    <Compile Include="BaseDataStructures\IBoundingBox\IBoundingBoxHelper.cs" />
-    <Compile Include="BaseDataStructures\GLSL\bvec2.cs" />
-    <Compile Include="BaseDataStructures\GLSL\bvec3.cs" />
-    <Compile Include="BaseDataStructures\GLSL\bvec4.cs" />
-    <Compile Include="BaseDataStructures\GLSL\dvec2.cs" />
-    <Compile Include="BaseDataStructures\GLSL\dvec3.cs" />
-    <Compile Include="BaseDataStructures\GLSL\dvec4.cs" />
-    <Compile Include="BaseDataStructures\GLSL\glm_camera.cs" />
-    <Compile Include="BaseDataStructures\GLSL\glm_inverse.cs" />
-    <Compile Include="BaseDataStructures\GLSL\glm_trigonometric.cs" />
-    <Compile Include="BaseDataStructures\GLSL\ivec2.cs" />
-    <Compile Include="BaseDataStructures\GLSL\ivec3.cs" />
-    <Compile Include="BaseDataStructures\GLSL\ivec4.cs" />
-    <Compile Include="BaseDataStructures\GLSL\mat2.cs" />
-    <Compile Include="BaseDataStructures\GLSL\mat3.cs" />
-    <Compile Include="BaseDataStructures\GLSL\mat4.cs" />
-    <Compile Include="BaseDataStructures\GLSL\MatrixHelper.cs" />
-    <Compile Include="BaseDataStructures\GLSL\ModelMatrixHelper.cs" />
-    <Compile Include="BaseDataStructures\GLSL\Quaternion.cs" />
-    <Compile Include="BaseDataStructures\GLSL\uvec2.cs" />
-    <Compile Include="BaseDataStructures\GLSL\uvec3.cs" />
-    <Compile Include="BaseDataStructures\GLSL\uvec4.cs" />
-    <Compile Include="BaseDataStructures\GLSL\vec2.cs" />
-    <Compile Include="BaseDataStructures\GLSL\vec3.cs" />
-    <Compile Include="BaseDataStructures\GLSL\vec4.cs" />
-    <Compile Include="BaseDataStructures\GLSL\VectorHelper.cs" />
-    <Compile Include="BaseDataStructures\MarkableStruct.cs" />
-    <Compile Include="BaseDataStructures\PropertyGrid\TypeConverters\ILoadFromString.cs" />
-    <Compile Include="BaseDataStructures\Utilities\AssemblyHelper.cs" />
-    <Compile Include="BaseDataStructures\Utilities\ColorHelper.cs" />
-    <Compile Include="BaseDataStructures\Utilities\NotDealWithNewEnumItemException.cs" />
-    <Compile Include="BaseDataStructures\Utilities\PositionHelper.cs" />
+    <Compile Include="BasicDataStructures\FullDictionary.cs" />
+    <Compile Include="BasicDataStructures\IBoundingBox\BoundingBox.cs" />
+    <Compile Include="BasicDataStructures\IBoundingBox\IBoundingBox.cs" />
+    <Compile Include="BasicDataStructures\IBoundingBox\IBoundingBoxHelper.cs" />
+    <Compile Include="BasicDataStructures\GLSL\bvec2.cs" />
+    <Compile Include="BasicDataStructures\GLSL\bvec3.cs" />
+    <Compile Include="BasicDataStructures\GLSL\bvec4.cs" />
+    <Compile Include="BasicDataStructures\GLSL\dvec2.cs" />
+    <Compile Include="BasicDataStructures\GLSL\dvec3.cs" />
+    <Compile Include="BasicDataStructures\GLSL\dvec4.cs" />
+    <Compile Include="BasicDataStructures\GLSL\glm_camera.cs" />
+    <Compile Include="BasicDataStructures\GLSL\glm_inverse.cs" />
+    <Compile Include="BasicDataStructures\GLSL\glm_trigonometric.cs" />
+    <Compile Include="BasicDataStructures\GLSL\ivec2.cs" />
+    <Compile Include="BasicDataStructures\GLSL\ivec3.cs" />
+    <Compile Include="BasicDataStructures\GLSL\ivec4.cs" />
+    <Compile Include="BasicDataStructures\GLSL\mat2.cs" />
+    <Compile Include="BasicDataStructures\GLSL\mat3.cs" />
+    <Compile Include="BasicDataStructures\GLSL\mat4.cs" />
+    <Compile Include="BasicDataStructures\GLSL\MatrixHelper.cs" />
+    <Compile Include="BasicDataStructures\GLSL\ModelMatrixHelper.cs" />
+    <Compile Include="BasicDataStructures\GLSL\Quaternion.cs" />
+    <Compile Include="BasicDataStructures\GLSL\uvec2.cs" />
+    <Compile Include="BasicDataStructures\GLSL\uvec3.cs" />
+    <Compile Include="BasicDataStructures\GLSL\uvec4.cs" />
+    <Compile Include="BasicDataStructures\GLSL\vec2.cs" />
+    <Compile Include="BasicDataStructures\GLSL\vec3.cs" />
+    <Compile Include="BasicDataStructures\GLSL\vec4.cs" />
+    <Compile Include="BasicDataStructures\GLSL\VectorHelper.cs" />
+    <Compile Include="BasicDataStructures\MarkableStruct.cs" />
+    <Compile Include="BasicDataStructures\PropertyGrid\TypeConverters\ILoadFromString.cs" />
+    <Compile Include="BasicDataStructures\Utilities\AssemblyHelper.cs" />
+    <Compile Include="BasicDataStructures\Utilities\ColorHelper.cs" />
+    <Compile Include="BasicDataStructures\Utilities\NotDealWithNewEnumItemException.cs" />
+    <Compile Include="BasicDataStructures\Utilities\PositionHelper.cs" />
     <None Include="GLCanvas\GLRenderContext\readme.md" />
     <Content Include="GLObjects\Texture\Storages\TexImageBase\readme.md" />
     <Content Include="GLObjects\Texture\Storages\TexImages\readme.md" />
-    <None Include="Manipulaters\readme.md" />
+    <None Include="Scene\Manipulaters\readme.md" />
     <None Include="Scene\Actions\DependentActions\readme.md" />
     <None Include="GLCanvas\readme.md" />
     <Compile Include="GLAPI\GL.PrintError.cs" />
@@ -114,16 +114,16 @@
     <Compile Include="Scene\Actions\DependentActions\GUI\GUILayoutAction.cs" />
     <Compile Include="Scene\Actions\DependentActions\GUI\GUIRenderAction.cs" />
     <Compile Include="Scene\Actions\DependentActions\GUI\IGUIRenderable.cs" />
-    <Compile Include="BaseDataStructures\Events\GLEventHandler`1.cs" />
+    <Compile Include="BasicDataStructures\Events\GLEventHandler`1.cs" />
     <Compile Include="Scene\GlyphMap\ChunkBase.cs" />
     <Compile Include="Scene\GlyphMap\CharDumper.cs" />
     <Compile Include="Scene\GlyphMap\GlyphInfo.cs" />
     <Compile Include="Scene\GlyphMap\GlyphServer.cs" />
     <Compile Include="Scene\GlyphMap\PagesContext.cs" />
     <Compile Include="Scene\GlyphMap\StringChunk.cs" />
-    <Compile Include="BaseDataStructures\Events\GLKeyEventArgs.cs" />
-    <Compile Include="BaseDataStructures\Events\GLMouseEventArgs.cs" />
-    <Compile Include="BaseDataStructures\Events\GLEventArgs.cs" />
+    <Compile Include="BasicDataStructures\Events\GLKeyEventArgs.cs" />
+    <Compile Include="BasicDataStructures\Events\GLMouseEventArgs.cs" />
+    <Compile Include="BasicDataStructures\Events\GLEventArgs.cs" />
     <Compile Include="Scene\GUI\GLControl.Events.cs" />
     <Compile Include="Scene\GUI\GLControl.Layout.cs">
       <SubType>Code</SubType>
@@ -136,13 +136,13 @@
     <Compile Include="Scene\GUI\GLControls\CtrlImage\CtrlImage.cs" />
     <Compile Include="Scene\GUI\GLControl.cs" />
     <Compile Include="Scene\GUI\GLControls\CtrlImage\CtrlImageModel.cs" />
-    <Compile Include="Manipulaters\CameraManipulaters\FirstPerspectiveManipulater.cs" />
-    <Compile Include="Manipulaters\CameraManipulaters\SatelliteManipulater.cs" />
-    <Compile Include="Manipulaters\IKeyboardHandler.cs" />
-    <Compile Include="Manipulaters\IMouseHandler.cs" />
-    <Compile Include="Manipulaters\Manipulater.cs" />
-    <Compile Include="Manipulaters\ModelManipulaters\ArcBallManipulater.cs" />
-    <Compile Include="Manipulaters\ModelManipulaters\TranslateManipulater.cs" />
+    <Compile Include="Scene\Manipulaters\CameraManipulaters\FirstPerspectiveManipulater.cs" />
+    <Compile Include="Scene\Manipulaters\CameraManipulaters\SatelliteManipulater.cs" />
+    <Compile Include="Scene\Manipulaters\IKeyboardHandler.cs" />
+    <Compile Include="Scene\Manipulaters\IMouseHandler.cs" />
+    <Compile Include="Scene\Manipulaters\Manipulater.cs" />
+    <Compile Include="Scene\Manipulaters\ModelManipulaters\ArcBallManipulater.cs" />
+    <Compile Include="Scene\Manipulaters\ModelManipulaters\TranslateManipulater.cs" />
     <Compile Include="Scene\Actions\DependentActions\DependentActionBase.cs" />
     <Compile Include="Scene\Actions\DependentActions\3DWorld\TransformAction.cs" />
     <Compile Include="Scene\Actions\IndependentActions\PickingAction.cs" />
@@ -279,47 +279,47 @@
     <Compile Include="Scene\SceneNodes\ModernNode\ModernNode.Property.cs" />
     <Compile Include="Scene\SceneNodes\ModernNode\ModernNode.UniformArrays.cs" />
     <Compile Include="Scene\SceneNodes\ModernNode\ModernNode.Uniforms.cs" />
-    <Compile Include="BaseDataStructures\PropertyGrid\TypeConverters\StructTypeConverter.cs" />
-    <Compile Include="BaseDataStructures\PropertyGrid\UITypeEditors\FormIListEditor`1.cs">
+    <Compile Include="BasicDataStructures\PropertyGrid\TypeConverters\StructTypeConverter.cs" />
+    <Compile Include="BasicDataStructures\PropertyGrid\UITypeEditors\FormIListEditor`1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="BaseDataStructures\PropertyGrid\UITypeEditors\FormIListEditor`1.Designer.cs">
+    <Compile Include="BasicDataStructures\PropertyGrid\UITypeEditors\FormIListEditor`1.Designer.cs">
       <DependentUpon>FormIListEditor`1.cs</DependentUpon>
     </Compile>
-    <Compile Include="BaseDataStructures\PropertyGrid\UITypeEditors\FormIndexBufferBoard.cs">
+    <Compile Include="BasicDataStructures\PropertyGrid\UITypeEditors\FormIndexBufferBoard.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="BaseDataStructures\PropertyGrid\UITypeEditors\FormIndexBufferBoard.Designer.cs">
+    <Compile Include="BasicDataStructures\PropertyGrid\UITypeEditors\FormIndexBufferBoard.Designer.cs">
       <DependentUpon>FormIndexBufferBoard.cs</DependentUpon>
     </Compile>
-    <Compile Include="BaseDataStructures\PropertyGrid\UITypeEditors\FormPropertyGridEditor.cs">
+    <Compile Include="BasicDataStructures\PropertyGrid\UITypeEditors\FormPropertyGridEditor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="BaseDataStructures\PropertyGrid\UITypeEditors\FormPropertyGridEditor.Designer.cs">
+    <Compile Include="BasicDataStructures\PropertyGrid\UITypeEditors\FormPropertyGridEditor.Designer.cs">
       <DependentUpon>FormPropertyGridEditor.cs</DependentUpon>
     </Compile>
-    <Compile Include="BaseDataStructures\PropertyGrid\UITypeEditors\FormSelectType.cs">
+    <Compile Include="BasicDataStructures\PropertyGrid\UITypeEditors\FormSelectType.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="BaseDataStructures\PropertyGrid\UITypeEditors\FormSelectType.Designer.cs">
+    <Compile Include="BasicDataStructures\PropertyGrid\UITypeEditors\FormSelectType.Designer.cs">
       <DependentUpon>FormSelectType.cs</DependentUpon>
     </Compile>
-    <Compile Include="BaseDataStructures\PropertyGrid\UITypeEditors\FormUniformVariableDictEditor.cs">
+    <Compile Include="BasicDataStructures\PropertyGrid\UITypeEditors\FormUniformVariableDictEditor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="BaseDataStructures\PropertyGrid\UITypeEditors\FormUniformVariableDictEditor.Designer.cs">
+    <Compile Include="BasicDataStructures\PropertyGrid\UITypeEditors\FormUniformVariableDictEditor.Designer.cs">
       <DependentUpon>FormUniformVariableDictEditor.cs</DependentUpon>
     </Compile>
-    <Compile Include="BaseDataStructures\PropertyGrid\UITypeEditors\FormUniformVariableType.cs">
+    <Compile Include="BasicDataStructures\PropertyGrid\UITypeEditors\FormUniformVariableType.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="BaseDataStructures\PropertyGrid\UITypeEditors\FormUniformVariableType.Designer.cs">
+    <Compile Include="BasicDataStructures\PropertyGrid\UITypeEditors\FormUniformVariableType.Designer.cs">
       <DependentUpon>FormUniformVariableType.cs</DependentUpon>
     </Compile>
-    <Compile Include="BaseDataStructures\PropertyGrid\UITypeEditors\IListEditor.cs" />
-    <Compile Include="BaseDataStructures\PropertyGrid\UITypeEditors\IndexBufferEditor.cs" />
-    <Compile Include="BaseDataStructures\PropertyGrid\UITypeEditors\PropertyGridEditor.cs" />
-    <Compile Include="BaseDataStructures\PropertyGrid\UITypeEditors\UniformVariableListEditor.cs" />
+    <Compile Include="BasicDataStructures\PropertyGrid\UITypeEditors\IListEditor.cs" />
+    <Compile Include="BasicDataStructures\PropertyGrid\UITypeEditors\IndexBufferEditor.cs" />
+    <Compile Include="BasicDataStructures\PropertyGrid\UITypeEditors\PropertyGridEditor.cs" />
+    <Compile Include="BasicDataStructures\PropertyGrid\UITypeEditors\UniformVariableListEditor.cs" />
     <Compile Include="Scene\SceneNodes\RenderUnits\IPickableRenderUnit\IPickableRenderMethodBuilder.cs" />
     <Compile Include="Scene\SceneNodes\RenderUnits\IPickableRenderUnit\IPickableRenderMethod.cs" />
     <Compile Include="Scene\SceneNodes\RenderUnits\ModenrRenderUnit\RenderMethod.IDisposable.cs" />
@@ -365,8 +365,8 @@
     <Content Include="Scene\SceneNodes\ConcreteNodes\Transformers\translate.png" />
     <Content Include="Scene\Actions\IndependentActions\IPickable\readme.md" />
     <Content Include="Scene\Actions\IndependentActions\ILegacyPickable\readme.md" />
-    <Content Include="BaseDataStructures\PropertyGrid\TypeConverters\readme.md" />
-    <Content Include="BaseDataStructures\PropertyGrid\UITypeEditors\readme.md" />
+    <Content Include="BasicDataStructures\PropertyGrid\TypeConverters\readme.md" />
+    <Content Include="BasicDataStructures\PropertyGrid\UITypeEditors\readme.md" />
     <None Include="Scene\Actions\IndependentActions\readme.md" />
     <None Include="Scene\GlyphMap\readme.md" />
     <None Include="Scene\SceneNodes\ConcreteNodes\Billboard\readme.md" />
@@ -378,25 +378,25 @@
     <Compile Include="Scene\Actions\IndependentActions\LegacyPickingAction.cs" />
     <Compile Include="Scene\Actions\DependentActions\3DWorld\RenderAction.cs" />
     <Compile Include="Scene\Scene.cs" />
-    <None Include="BaseDataStructures\IBoundingBox\readme.md" />
-    <None Include="BaseDataStructures\readme.md" />
-    <Compile Include="BaseDataStructures\NoisyArray.cs" />
-    <Compile Include="BaseDataStructures\Pixel.cs" />
-    <Compile Include="BaseDataStructures\UnamangedArray\TempUnmanagedArray`1.cs" />
-    <Compile Include="BaseDataStructures\UnamangedArray\TempUnmanagedArray`1.IDisposable.cs" />
-    <Compile Include="BaseDataStructures\UnamangedArray\UnmanagedArrayBase.cs" />
-    <Compile Include="BaseDataStructures\UnamangedArray\UnmanagedArrayBase.IDisposable.cs" />
-    <Compile Include="BaseDataStructures\UnamangedArray\UnmanagedArray`1.cs" />
-    <Compile Include="BaseDataStructures\UnamangedArray\UnmanagedArray`1.IDisposable.cs" />
-    <Compile Include="BaseDataStructures\UpdatingRecord.cs" />
-    <Compile Include="BaseDataStructures\Utilities\ArrayHelper.cs" />
-    <Compile Include="BaseDataStructures\Utilities\DoubleHelper.cs">
+    <None Include="BasicDataStructures\IBoundingBox\readme.md" />
+    <None Include="BasicDataStructures\readme.md" />
+    <Compile Include="BasicDataStructures\NoisyArray.cs" />
+    <Compile Include="BasicDataStructures\Pixel.cs" />
+    <Compile Include="BasicDataStructures\UnamangedArray\TempUnmanagedArray`1.cs" />
+    <Compile Include="BasicDataStructures\UnamangedArray\TempUnmanagedArray`1.IDisposable.cs" />
+    <Compile Include="BasicDataStructures\UnamangedArray\UnmanagedArrayBase.cs" />
+    <Compile Include="BasicDataStructures\UnamangedArray\UnmanagedArrayBase.IDisposable.cs" />
+    <Compile Include="BasicDataStructures\UnamangedArray\UnmanagedArray`1.cs" />
+    <Compile Include="BasicDataStructures\UnamangedArray\UnmanagedArray`1.IDisposable.cs" />
+    <Compile Include="BasicDataStructures\UpdatingRecord.cs" />
+    <Compile Include="BasicDataStructures\Utilities\ArrayHelper.cs" />
+    <Compile Include="BasicDataStructures\Utilities\DoubleHelper.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="BaseDataStructures\Utilities\FloatHelper.cs">
+    <Compile Include="BasicDataStructures\Utilities\FloatHelper.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="BaseDataStructures\Utilities\StructHelper.cs" />
+    <Compile Include="BasicDataStructures\Utilities\StructHelper.cs" />
     <None Include="GLAPI\readme.md" />
     <Compile Include="GLAPI\GL.Enumerations\BindBufferBaseTarget.cs" />
     <Compile Include="GLAPI\GL.Enumerations\BlendFunc.cs" />
