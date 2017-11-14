@@ -27,7 +27,7 @@ namespace CSharpGL
                     ShaderProgram program = method.Program;
                     if (program == null) { return; }
 
-                    program.SetUniform(width, value);
+                    program.SetUniform(width, _width);
                 }
             }
         }
@@ -52,7 +52,7 @@ namespace CSharpGL
                     ShaderProgram program = method.Program;
                     if (program == null) { return; }
 
-                    program.SetUniform(height, value);
+                    program.SetUniform(height, _height);
                 }
             }
         }
