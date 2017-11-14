@@ -96,7 +96,9 @@ namespace WorldSpaceBillboard
                         stick.Color = Color.Green.ToVec4();
                         group.Children.Add(stick);
                         {
-                            var billboard = TextBillboardNodeBackup.Create(textureSource, 200, 40);
+                            //var billboard = TextBillboardNodeBackup.Create(textureSource, 200, 40);
+                            var billboard = TextBillboardNode.Create(200, 40, 100);
+                            billboard.Text = "Hello Billboard!";
                             billboard.WorldPosition = new vec3(0, y * 4, 0);
                             stick.Children.Add(billboard);
                         }

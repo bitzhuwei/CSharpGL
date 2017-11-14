@@ -14,7 +14,7 @@ namespace CSharpGL
         private const string width = "width";
         private const string height = "height";
         private const string screenSize = "screenSize";
-        private const string glyphTexture = "tex";
+        private const string glyphTexture = "glyphTexture";
         private const string textColor = "textColor";
 
         private const string vertexCode =

@@ -40,7 +40,7 @@ namespace CSharpGL
                 if (v != text)
                 {
                     text = v;
-                    ArrangeCharaters(v, GlyphServer.defaultServer);
+                    ArrangeCharaters(v, this.glyphServer);
                     DoTextChanged();
                 }
             }
@@ -119,30 +119,12 @@ namespace CSharpGL
                     wByH = height * 1.0f / 1.0f;
                 }
 
-                var leftTop = new vec2(totalWidth, height / 2);
-                var leftBottom = new vec2(totalWidth, -height / 2);
-                var rightBottom = new vec2(totalWidth + wByH, -height / 2);
-                var rightTop = new vec2(totalWidth + wByH, height / 2);
+                var leftTop = new vec2(totalWidth, height);
+                var leftBottom = new vec2(totalWidth, 0);
+                var rightBottom = new vec2(totalWidth + wByH, 0);
+                var rightTop = new vec2(totalWidth + wByH, height);
                 positionArray[index++] = new QuadPositionStruct(leftTop, leftBottom, rightBottom, rightTop);
                 totalWidth += wByH;
-            }
-
-            // move to center.
-            const float scale = 1f;
-            for (int i = 0; i < text.Length; i++)
-            {
-                if (i >= this.textModel.Capacity) { break; }
-
-                QuadPositionStruct quad = positionArray[i];
-                var newPos = new QuadPositionStruct(
-                    // y is already in [-1, 1], so just shrink x to [-1, 1]
-                    new vec2(quad.leftTop.x / totalWidth * 2.0f - 1f, quad.leftTop.y) * scale,
-                    new vec2(quad.leftBottom.x / totalWidth * 2.0f - 1f, quad.leftBottom.y) * scale,
-                    new vec2(quad.rightBottom.x / totalWidth * 2.0f - 1f, quad.rightBottom.y) * scale,
-                    new vec2(quad.rightTop.x / totalWidth * 2.0f - 1f, quad.rightTop.y) * scale
-                    );
-
-                positionArray[i] = newPos;
             }
 
             buffer.UnmapBuffer();
