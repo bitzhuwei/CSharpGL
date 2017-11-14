@@ -66,7 +66,7 @@ namespace CSharpGL
             GlyphServer server = this.glyphServer;
             Texture texture = server.GlyphTexture;
             string name = glyphTexture;
-            var method = this.RenderUnit.Methods[0]; // the only render unit in this node.
+            RenderMethod method = this.RenderUnit.Methods[0]; // the only render unit in this node.
             ShaderProgram program = method.Program;
             program.SetUniform(name, texture);
         }
