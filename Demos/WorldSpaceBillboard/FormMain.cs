@@ -28,7 +28,7 @@ namespace WorldSpaceBillboard
         {
             var rootElement = GetTree();
 
-            var position = new vec3(5, 3, 4) * 0.2f;
+            var position = new vec3(5, 3, 4);
             var center = new vec3(0, 0, 0);
             var up = new vec3(0, 1, 0);
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
@@ -73,7 +73,33 @@ namespace WorldSpaceBillboard
 
         private SceneNodeBase GetTree()
         {
+            const float length = 6;
             var group = new GroupNode();
+            {
+                var floor = CubeNode.Create();
+                floor.Scale = new vec3(length, 0.1f, length);
+                floor.Color = Color.Brown.ToVec4();
+                group.Children.Add(floor);
+            }
+            {
+                for (int i = 0; i < 3; i++)
+                {
+                    for (int j = 0; j < 3; j++)
+                    {
+                        float x = -length / 2 + length / 2 * i;
+                        float y = 0.25f;
+                        float z = -length / 2 + length / 2 * j;
+                        var stick = CubeNode.Create();
+                        stick.Scale = new vec3(0.1f, y * 2, 0.1f);
+                        stick.WorldPosition = new vec3(x, y, z);
+                        stick.Color = Color.Green.ToVec4();
+                        group.Children.Add(stick);
+                        {
+
+                        }
+                    }
+                }
+            }
 
             return group;
         }
