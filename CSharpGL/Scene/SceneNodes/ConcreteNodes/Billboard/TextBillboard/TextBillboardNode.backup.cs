@@ -21,7 +21,7 @@ namespace CSharpGL
     /// <summary>
     /// A billboard that renders text and always faces camera in 3D world. Its size is described by Width\Height(in pixels).
     /// </summary>
-    public class TextBillboardNode : ModernNode
+    public class TextBillboardNodeBackup : ModernNode
     {
         #region shaders
 
@@ -119,14 +119,14 @@ void main(void) {
         /// <param name="width"></param>
         /// <param name="height"></param>
         /// <returns></returns>
-        public static TextBillboardNode Create(ITextureSource textureSource, int width, int height)
+        public static TextBillboardNodeBackup Create(ITextureSource textureSource, int width, int height)
         {
             var vs = new VertexShader(vertexCode);// this vertex shader has no vertex attributes.
             var fs = new FragmentShader(fragmentCode);
             var provider = new ShaderArray(vs, fs);
             var map = new AttributeMap();
             var builder = new RenderMethodBuilder(provider, map);
-            var node = new TextBillboardNode(textureSource, width, height, new TextBillboard(), builder);
+            var node = new TextBillboardNodeBackup(textureSource, width, height, new TextBillboard(), builder);
             node.Initialize();
 
             return node;
@@ -172,7 +172,7 @@ void main(void) {
         /// </summary>
         public float Delta { get; set; }
 
-        private TextBillboardNode(ITextureSource textureSource, int width, int height, IBufferSource model, RenderMethodBuilder renderUnitBuilder)
+        private TextBillboardNodeBackup(ITextureSource textureSource, int width, int height, IBufferSource model, RenderMethodBuilder renderUnitBuilder)
             : base(model, renderUnitBuilder)
         {
             this.TextureSource = textureSource;

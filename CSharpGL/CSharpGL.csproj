@@ -201,7 +201,7 @@
     <Compile Include="Scene\GUI\Structs\GUIPoint.cs" />
     <Compile Include="Scene\GUI\Structs\GUISizeF.cs" />
     <Compile Include="Scene\GUI\Structs\GUISize.cs" />
-    <Compile Include="Scene\SceneNodes\ConcreteNodes\Billboard\TextBillboard\TextBillboardNode.cs" />
+    <Compile Include="Scene\SceneNodes\ConcreteNodes\Billboard\TextBillboard\TextBillboardNode.backup.cs" />
     <Compile Include="Scene\SceneNodes\ConcreteNodes\Billboard\TextureBillboardNode.cs" />
     <Compile Include="Scene\SceneNodes\ConcreteNodes\LightContainerNode\ILocalLightContainer.cs" />
     <Compile Include="Scene\SceneNodes\ConcreteNodes\LightContainerNode\LightContainerNode.cs" />
