@@ -14,6 +14,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="width"></param>
         /// <param name="height"></param>
+        /// <param name="glyphServer"></param>
         /// <returns></returns>
         public static TextBillboardNode Create(int width, int height, GlyphServer glyphServer = null)
         {
@@ -58,9 +59,16 @@ namespace CSharpGL
         {
             base.DoInitialize();
 
+            this.positionBuffer = this.labelModel.GetVertexAttributeBuffer(CtrlLabelModel.position);
+            this.strBuffer = this.labelModel.GetVertexAttributeBuffer(CtrlLabelModel.str);
+            this.indexBuffer = this.labelModel.GetIndexBuffer() as ZeroIndexBuffer;
+
+            GlyphServer server = this.glyphServer;
+            Texture texture = server.GlyphTexture;
+            string name = glyphTexture;
             var method = this.RenderUnit.Methods[0]; // the only render unit in this node.
             ShaderProgram program = method.Program;
-            program.SetUniform(glyphTexture, this.glyphServer.GlyphTexture);
+            program.SetUniform(name, texture);
         }
 
         /// <summary>
@@ -83,8 +91,6 @@ namespace CSharpGL
             program.SetUniform(projectionMatrix, projection);
             program.SetUniform(viewMatrix, view);
             program.SetUniform(modelMatrix, model);
-            program.SetUniform(width, this._width);
-            program.SetUniform(height, this._height);
             program.SetUniform(screenSize, new vec2(viewport[2], viewport[3]));
 
             method.Render();
