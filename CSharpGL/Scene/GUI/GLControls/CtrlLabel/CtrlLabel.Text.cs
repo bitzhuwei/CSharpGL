@@ -8,7 +8,7 @@ namespace CSharpGL
     public partial class CtrlLabel
     {
         private string text = string.Empty;
-        private CtrlLabelModel labelModel;
+        private GlyphsModel labelModel;
         private VertexBuffer positionBuffer;
         private VertexBuffer strBuffer;
         private ZeroIndexBuffer indexBuffer;

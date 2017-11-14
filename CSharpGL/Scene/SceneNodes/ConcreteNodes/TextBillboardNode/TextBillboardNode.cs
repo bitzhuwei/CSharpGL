@@ -14,9 +14,10 @@ namespace CSharpGL
         /// </summary>
         /// <param name="width"></param>
         /// <param name="height"></param>
+        /// <param name="capacity">Maximum characters count.</param>
         /// <param name="glyphServer"></param>
         /// <returns></returns>
-        public static TextBillboardNode Create(int width, int height, GlyphServer glyphServer = null)
+        public static TextBillboardNode Create(int width, int height, int capacity, GlyphServer glyphServer = null)
         {
             var vs = new VertexShader(vertexCode);// this vertex shader has no vertex attributes.
             var fs = new FragmentShader(fragmentCode);
@@ -24,7 +25,7 @@ namespace CSharpGL
             var map = new AttributeMap();
             var blendState = new BlendState(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.OneMinusSourceAlpha);
             var builder = new RenderMethodBuilder(provider, map, blendState);
-            var node = new TextBillboardNode(width, height, new TextBillboardModel(), builder, glyphServer);
+            var node = new TextBillboardNode(width, height, new GlyphsModel(capacity), builder, glyphServer);
             node.Initialize();
 
             return node;
@@ -42,11 +43,12 @@ namespace CSharpGL
         }
 
 
-        private TextBillboardNode(int width, int height, TextBillboardModel model, RenderMethodBuilder renderUnitBuilder, GlyphServer glyphServer = null)
+        private TextBillboardNode(int width, int height, GlyphsModel model, RenderMethodBuilder renderUnitBuilder, GlyphServer glyphServer = null)
             : base(model, renderUnitBuilder)
         {
             this.Width = width;
             this.Height = height;
+            this.textModel = model;
 
             if (glyphServer == null) { this.glyphServer = GlyphServer.defaultServer; }
             else { this.glyphServer = glyphServer; }
@@ -59,9 +61,9 @@ namespace CSharpGL
         {
             base.DoInitialize();
 
-            this.positionBuffer = this.labelModel.GetVertexAttributeBuffer(CtrlLabelModel.position);
-            this.strBuffer = this.labelModel.GetVertexAttributeBuffer(CtrlLabelModel.str);
-            this.indexBuffer = this.labelModel.GetIndexBuffer() as ZeroIndexBuffer;
+            this.positionBuffer = this.textModel.GetVertexAttributeBuffer(GlyphsModel.position);
+            this.strBuffer = this.textModel.GetVertexAttributeBuffer(GlyphsModel.str);
+            this.indexBuffer = this.textModel.GetIndexBuffer() as ZeroIndexBuffer;
 
             GlyphServer server = this.glyphServer;
             Texture texture = server.GlyphTexture;

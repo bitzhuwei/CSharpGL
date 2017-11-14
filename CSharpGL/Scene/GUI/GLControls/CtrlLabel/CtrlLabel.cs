@@ -30,14 +30,14 @@ namespace CSharpGL
 
             this.Size = new GUISize(20, 20);
 
-            var model = new CtrlLabelModel(capacity);
+            var model = new GlyphsModel(capacity);
             this.labelModel = model;
             var vs = new VertexShader(vert);
             var fs = new FragmentShader(frag);
             var codes = new ShaderArray(vs, fs);
             var map = new AttributeMap();
-            map.Add(inPosition, CtrlLabelModel.position);
-            map.Add(inSTR, CtrlLabelModel.str);
+            map.Add(inPosition, GlyphsModel.position);
+            map.Add(inSTR, GlyphsModel.str);
             var blend = new BlendState(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.OneMinusSourceAlpha);
             var methodBuilder = new RenderMethodBuilder(codes, map, blend);
             this.RenderUnit = new ModernRenderUnit(model, methodBuilder);
@@ -57,8 +57,8 @@ namespace CSharpGL
         {
             this.RenderUnit.Initialize();
 
-            this.positionBuffer = this.labelModel.GetVertexAttributeBuffer(CtrlLabelModel.position);
-            this.strBuffer = this.labelModel.GetVertexAttributeBuffer(CtrlLabelModel.str);
+            this.positionBuffer = this.labelModel.GetVertexAttributeBuffer(GlyphsModel.position);
+            this.strBuffer = this.labelModel.GetVertexAttributeBuffer(GlyphsModel.str);
             this.indexBuffer = this.labelModel.GetIndexBuffer() as ZeroIndexBuffer;
 
             GlyphServer server = GlyphServer.defaultServer;

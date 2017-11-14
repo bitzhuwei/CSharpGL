@@ -8,7 +8,7 @@ namespace CSharpGL
     public partial class TextBillboardNode
     {
         private string text = string.Empty;
-        private CtrlLabelModel labelModel;
+        private GlyphsModel textModel;
         private VertexBuffer positionBuffer;
         private VertexBuffer strBuffer;
         private ZeroIndexBuffer indexBuffer;
@@ -69,7 +69,7 @@ namespace CSharpGL
             int index = 0;
             foreach (var c in text)
             {
-                if (index >= this.labelModel.Capacity) { break; }
+                if (index >= this.textModel.Capacity) { break; }
 
                 GlyphInfo glyphInfo;
                 if (server.GetGlyphInfo(c, out glyphInfo))
@@ -103,7 +103,7 @@ namespace CSharpGL
             int index = 0;
             foreach (var c in text)
             {
-                if (index >= this.labelModel.Capacity) { break; }
+                if (index >= this.textModel.Capacity) { break; }
 
                 GlyphInfo glyphInfo;
                 float wByH = 0;
@@ -131,7 +131,7 @@ namespace CSharpGL
             const float scale = 1f;
             for (int i = 0; i < text.Length; i++)
             {
-                if (i >= this.labelModel.Capacity) { break; }
+                if (i >= this.textModel.Capacity) { break; }
 
                 QuadPositionStruct quad = positionArray[i];
                 var newPos = new QuadPositionStruct(

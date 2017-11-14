@@ -6,9 +6,9 @@ using System.Text;
 namespace CSharpGL
 {
     /// <summary>
-    /// Renders a Label(string).
+    /// Renders a string.
     /// </summary>
-    public class CtrlLabelModel : IBufferSource
+    public class GlyphsModel : IBufferSource
     {
         /// <summary>
         /// 
@@ -27,7 +27,7 @@ namespace CSharpGL
         /// 
         /// </summary>
         /// <param name="capacity"></param>
-        public CtrlLabelModel(int capacity)
+        public GlyphsModel(int capacity)
         {
             this.Capacity = capacity;
         }

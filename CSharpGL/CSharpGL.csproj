@@ -192,7 +192,7 @@
     <Compile Include="Scene\GUI\GLControls\CtrlLabel\CtrlLabel.Text.cs" />
     <Compile Include="Scene\GUI\GLControls\CtrlLabel\CtrlLabel.cs" />
     <Compile Include="Scene\GUI\GLControls\CtrlLabel\CtrlLabel.shaders.cs" />
-    <Compile Include="Scene\GUI\GLControls\CtrlLabel\CtrlLabelModel.cs" />
+    <Compile Include="Scene\GlyphMap\GlyphsModel.cs" />
     <Compile Include="Scene\GlyphMap\QuadStruct.cs" />
     <Compile Include="Scene\GUI\GLControls\CtrlRoot\CtrlRoot.cs" />
     <Compile Include="Scene\GUI\GLControlChildren.cs" />
@@ -203,7 +203,6 @@
     <Compile Include="Scene\GUI\Structs\GUISize.cs" />
     <Compile Include="Scene\SceneNodes\ConcreteNodes\TextBillboardNode\TextBillboardNode.Size.cs" />
     <Compile Include="Scene\SceneNodes\ConcreteNodes\TextBillboardNode\TextBillboardNode.Text.cs" />
-    <Compile Include="Scene\SceneNodes\ConcreteNodes\TextBillboardNode\TextBillboardModel.cs" />
     <Compile Include="Scene\SceneNodes\ConcreteNodes\TextBillboardNode\TextBillboardNode.shaders.cs" />
     <Compile Include="Scene\SceneNodes\ConcreteNodes\TextBillboardNode\TextBillboardNode.cs" />
     <Compile Include="Scene\SceneNodes\ConcreteNodes\TextBillboardNode\TextBillboardNode.backup.cs" />
