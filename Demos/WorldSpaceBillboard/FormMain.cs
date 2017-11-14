@@ -82,6 +82,7 @@ namespace WorldSpaceBillboard
                 group.Children.Add(floor);
             }
             {
+                var textureSource = new BitmapTextureSource("Lenna.png");
                 for (int i = 0; i < 3; i++)
                 {
                     for (int j = 0; j < 3; j++)
@@ -95,7 +96,9 @@ namespace WorldSpaceBillboard
                         stick.Color = Color.Green.ToVec4();
                         group.Children.Add(stick);
                         {
-
+                            var billboard = TextBillboardNode.Create(textureSource, 200, 40);
+                            billboard.WorldPosition = new vec3(0, y * 4, 0);
+                            stick.Children.Add(billboard);
                         }
                     }
                 }
