@@ -201,6 +201,9 @@
     <Compile Include="Scene\GUI\Structs\GUIPoint.cs" />
     <Compile Include="Scene\GUI\Structs\GUISizeF.cs" />
     <Compile Include="Scene\GUI\Structs\GUISize.cs" />
+    <Compile Include="Scene\SceneNodes\ConcreteNodes\TextBillboardNode\TextBillboardNode.Size.cs" />
+    <Compile Include="Scene\SceneNodes\ConcreteNodes\TextBillboardNode\TextBillboardNode.Text.cs" />
+    <Compile Include="Scene\SceneNodes\ConcreteNodes\TextBillboardNode\TextBillboardModel.cs" />
     <Compile Include="Scene\SceneNodes\ConcreteNodes\TextBillboardNode\TextBillboardNode.shaders.cs" />
     <Compile Include="Scene\SceneNodes\ConcreteNodes\TextBillboardNode\TextBillboardNode.cs" />
     <Compile Include="Scene\SceneNodes\ConcreteNodes\TextBillboardNode\TextBillboardNode.backup.cs" />
