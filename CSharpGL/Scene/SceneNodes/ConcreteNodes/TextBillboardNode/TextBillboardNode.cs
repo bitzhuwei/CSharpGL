@@ -51,6 +51,9 @@ namespace CSharpGL
             else { this.glyphServer = glyphServer; }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         protected override void DoInitialize()
         {
             base.DoInitialize();
@@ -58,8 +61,8 @@ namespace CSharpGL
             var method = this.RenderUnit.Methods[0]; // the only render unit in this node.
             ShaderProgram program = method.Program;
             program.SetUniform(glyphTexture, this.glyphServer.GlyphTexture);
-
         }
+
         /// <summary>
         /// 
         /// </summary>
