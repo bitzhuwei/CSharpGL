@@ -18,6 +18,8 @@ namespace CSharpGL
             {
                 if (_width != value)
                 {
+                    _width = value;
+
                     ModernRenderUnit unit = this.RenderUnit;
                     if (unit == null) { return; }
                     RenderMethod method = unit.Methods[0];
@@ -26,8 +28,6 @@ namespace CSharpGL
                     if (program == null) { return; }
 
                     program.SetUniform(width, value);
-
-                    _width = value;
                 }
             }
         }
@@ -43,6 +43,8 @@ namespace CSharpGL
             {
                 if (_height != value)
                 {
+                    _height = value;
+
                     ModernRenderUnit unit = this.RenderUnit;
                     if (unit == null) { return; }
                     RenderMethod method = unit.Methods[0];
@@ -51,8 +53,6 @@ namespace CSharpGL
                     if (program == null) { return; }
 
                     program.SetUniform(height, value);
-
-                    _height = value;
                 }
             }
         }

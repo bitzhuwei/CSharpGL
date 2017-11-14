@@ -159,6 +159,8 @@ namespace CSharpGL
             {
                 if (color != value)
                 {
+                    color = value;
+
                     ModernRenderUnit unit = this.RenderUnit;
                     if (unit == null) { return; }
                     RenderMethod method = unit.Methods[0];
@@ -167,8 +169,6 @@ namespace CSharpGL
                     if (program == null) { return; }
 
                     program.SetUniform("textColor", value);
-
-                    color = value;
                 }
             }
         }
