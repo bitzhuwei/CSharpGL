@@ -82,7 +82,7 @@
     <Compile Include="BasicDataStructures\Utilities\NotDealWithNewEnumItemException.cs" />
     <Compile Include="BasicDataStructures\Utilities\PositionHelper.cs" />
     <None Include="GLCanvas\GLRenderContext\readme.md" />
-    <Content Include="GLObjects\Texture\Storages\TexImageBase\readme.md" />
+    <Content Include="GLObjects\Texture\Storages\TexImages.FromBitmap\readme.md" />
     <Content Include="GLObjects\Texture\Storages\TexImages\readme.md" />
     <None Include="GLObjects\Texture\Storages\readme.md" />
     <None Include="Scene\Manipulaters\readme.md" />
@@ -98,8 +98,8 @@
     <Compile Include="GLObjects\Shaders\Shaders\TessEvaluationShader.cs" />
     <Compile Include="GLObjects\Shaders\Shaders\TessControlShader.cs" />
     <Compile Include="GLObjects\Texture\MipmapBuilder.cs" />
-    <Compile Include="GLObjects\Texture\Storages\TexImageBase\TexImageBitmaps.cs" />
-    <Compile Include="GLObjects\Texture\Storages\TexImageBase\TexImageBitmap.cs" />
+    <Compile Include="GLObjects\Texture\Storages\TexImages.FromBitmap\TexImageBitmaps.cs" />
+    <Compile Include="GLObjects\Texture\Storages\TexImages.FromBitmap\TexImageBitmap.cs" />
     <Compile Include="GLObjects\Texture\Storages\TexImages\CubemapTexImage2D.cs" />
     <Compile Include="GLObjects\Texture\Storages\TexImages\TexImage2D.cs">
       <SubType>Code</SubType>
