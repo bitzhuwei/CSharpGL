@@ -54,7 +54,9 @@ namespace CSharpGL
 
             this.indexBuffer.RenderingVertexCount = text.Length * 4; // each alphabet needs 4 vertexes.
 
-            this.Width = (int)(totalWidth * this.Height / totalHeight); // auto size means auto width.
+            this.widthByHeight = totalWidth / totalHeight;
+            this.heightByWidth = totalHeight / totalWidth;
+            this.Width = (int)(this.Height * this.widthByHeight);// auto size means auto width.
         }
 
         /// <summary>
@@ -97,7 +99,7 @@ namespace CSharpGL
             int textureHeight = server.TextureHeight;
             VertexBuffer buffer = this.positionBuffer;
             var positionArray = (QuadPositionStruct*)buffer.MapBuffer(MapBufferAccess.ReadWrite);
-            float height = this._height * 2; // height is 2 of _height.
+            const float height = 2; // 2 is the height value in clip space.
             totalWidth = 0;
             totalHeight = height;
             int index = 0;
@@ -148,18 +150,18 @@ namespace CSharpGL
             buffer.UnmapBuffer();
         }
 
-        private vec3 color = new vec3(0, 0, 0);
+        private vec3 _color = new vec3(0, 0, 0);
         /// <summary>
         /// Text color.
         /// </summary>
         public vec3 Color
         {
-            get { return color; }
+            get { return this._color; }
             set
             {
-                if (color != value)
+                if (this._color != value)
                 {
-                    color = value;
+                    this._color = value;
 
                     ModernRenderUnit unit = this.RenderUnit;
                     if (unit == null) { return; }
@@ -168,7 +170,7 @@ namespace CSharpGL
                     ShaderProgram program = method.Program;
                     if (program == null) { return; }
 
-                    program.SetUniform(textColor, value);
+                    program.SetUniform(textColor, this._color);
                 }
             }
         }

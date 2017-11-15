@@ -48,8 +48,14 @@ namespace CSharpGL
         private TextBillboardNode(int width, int height, GlyphsModel model, RenderMethodBuilder renderUnitBuilder, GlyphServer glyphServer = null)
             : base(model, renderUnitBuilder)
         {
-            this.Width = width;
-            this.Height = height;
+            if (width <= 0) { width = 1; }
+            if (height <= 0) { height = 1; }
+
+            this._width = width;
+            this._height = height;
+            this.widthByHeight = (float)width / (float)height;
+            this.heightByWidth = (float)height / (float)width;
+
             this.textModel = model;
 
             if (glyphServer == null) { this.glyphServer = GlyphServer.defaultServer; }
@@ -72,8 +78,9 @@ namespace CSharpGL
             RenderMethod method = this.RenderUnit.Methods[0]; // the only render unit in this node.
             ShaderProgram program = method.Program;
             program.SetUniform(glyphTexture, texture);
-            program.SetUniform(width, _width);
-            program.SetUniform(height, _height);
+            program.SetUniform(width, this._width);
+            program.SetUniform(height, this._height);
+            program.SetUniform(textColor, this._color);
         }
 
         /// <summary>
@@ -98,9 +105,9 @@ namespace CSharpGL
             program.SetUniform(modelMatrix, model);
             program.SetUniform(screenSize, new vec2(viewport[2], viewport[3]));
 
-            program.SetUniform(width, this._width);
-            program.SetUniform(height, this._height);
-            program.SetUniform(textColor, this.color);
+            //program.SetUniform(width, this._width);
+            //program.SetUniform(height, this._height);
+            //program.SetUniform(textColor, this.color);
 
             method.Render(IndexBuffer.ControlMode.Random);
         }

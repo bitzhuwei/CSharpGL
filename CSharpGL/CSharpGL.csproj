@@ -206,7 +206,7 @@
     <Compile Include="Scene\SceneNodes\ConcreteNodes\TextBillboardNode\TextBillboardNode.shaders.cs" />
     <Compile Include="Scene\SceneNodes\ConcreteNodes\TextBillboardNode\TextBillboardNode.cs" />
     <Compile Include="Scene\SceneNodes\ConcreteNodes\TextBillboardNode\TextBillboardNode.backup.cs" />
-    <Compile Include="Scene\SceneNodes\ConcreteNodes\Billboard\TextureBillboardNode.cs" />
+    <Compile Include="Scene\SceneNodes\ConcreteNodes\TextureBillboard\TextureBillboardNode.cs" />
     <Compile Include="Scene\SceneNodes\ConcreteNodes\LightContainerNode\ILocalLightContainer.cs" />
     <Compile Include="Scene\SceneNodes\ConcreteNodes\LightContainerNode\LightContainerNode.cs" />
     <Compile Include="Scene\SceneNodes\ConcreteNodes\RenderToTextureNode\RenderToTexttureNode.cs" />
@@ -373,9 +373,9 @@
     <Content Include="BasicDataStructures\PropertyGrid\UITypeEditors\readme.md" />
     <None Include="Scene\Actions\IndependentActions\readme.md" />
     <None Include="Scene\GlyphMap\readme.md" />
-    <None Include="Scene\SceneNodes\ConcreteNodes\Billboard\readme.md" />
-    <None Include="Scene\SceneNodes\ConcreteNodes\Billboard\billboard.frag" />
-    <None Include="Scene\SceneNodes\ConcreteNodes\Billboard\billboard.vert" />
+    <None Include="Scene\SceneNodes\ConcreteNodes\TextureBillboard\readme.md" />
+    <None Include="Scene\SceneNodes\ConcreteNodes\TextureBillboard\billboard.frag" />
+    <None Include="Scene\SceneNodes\ConcreteNodes\TextureBillboard\billboard.vert" />
     <None Include="Scene\Lights\readme.md" />
     <None Include="Scene\readme.md" />
     <Compile Include="Scene\SceneNodes\SceneNodeBase.LagacyMatrix.cs" />

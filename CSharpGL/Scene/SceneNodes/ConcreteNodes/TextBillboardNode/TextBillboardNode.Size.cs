@@ -7,18 +7,29 @@ namespace CSharpGL
 {
     public partial class TextBillboardNode
     {
+        /// <summary>
+        /// height / width.
+        /// </summary>
+        private float heightByWidth;
+        /// <summary>
+        /// width / height.
+        /// </summary>
+        private float widthByHeight;
+
         private float _width;// TODO: make this an int type!
         /// <summary>
         /// Billboard's width(in pixels).
         /// </summary>
         public int Width
         {
-            get { return (int)_width; }
+            get { return (int)this._width; }
             set
             {
-                if (_width != value)
+                if (this._width != value)
                 {
-                    _width = value;
+                    this._width = value;
+
+                    this._height = (value * this.heightByWidth);
 
                     ModernRenderUnit unit = this.RenderUnit;
                     if (unit == null) { return; }
@@ -27,7 +38,8 @@ namespace CSharpGL
                     ShaderProgram program = method.Program;
                     if (program == null) { return; }
 
-                    program.SetUniform(width, _width);
+                    program.SetUniform(width, this._width);
+                    program.SetUniform(height, this._height);
                 }
             }
         }
@@ -38,12 +50,13 @@ namespace CSharpGL
         /// </summary>
         public int Height
         {
-            get { return (int)_height; }
+            get { return (int)this._height; }
             set
             {
-                if (_height != value)
+                if (this._height != value)
                 {
-                    _height = value;
+                    this._height = value;
+                    this._width = (value * this.widthByHeight);
 
                     ModernRenderUnit unit = this.RenderUnit;
                     if (unit == null) { return; }
@@ -52,7 +65,8 @@ namespace CSharpGL
                     ShaderProgram program = method.Program;
                     if (program == null) { return; }
 
-                    program.SetUniform(height, _height);
+                    program.SetUniform(width, this._width);
+                    program.SetUniform(height, this._height);
                 }
             }
         }

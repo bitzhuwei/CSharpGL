@@ -25,9 +25,10 @@ namespace CSharpGL
 uniform mat4 " + projectionMatrix + @";
 uniform mat4 " + viewMatrix + @";
 uniform mat4 " + modelMatrix + @";
+uniform vec2 " + screenSize + @";
+
 uniform float " + width + @";
 uniform float " + height + @";
-uniform vec2 " + screenSize + @";
 
 in vec2 " + inPosition + @";// character's quad's position(in pixels) relative to left bottom(0, 0).
 in vec3 " + inSTR + @";// character's quad's texture coordinate.
@@ -39,7 +40,7 @@ const float value = 0.1;
 void main(void) {
 	vec4 position = projectionMatrix * viewMatrix * modelMatrix * vec4(0, 0, 0, 1);
     position = position / position.w;
-    position.xy += (inPosition - vec2(width, height)) / screenSize;
+    position.xy += (inPosition * height - vec2(width, height)) / screenSize;
 	gl_Position = position;
 
     passSTR = inSTR;
@@ -48,10 +49,10 @@ void main(void) {
         private const string fragmentCode =
             @"#version 330 core
 
-in vec3 passSTR;
-
 uniform sampler2DArray " + glyphTexture + @";
 uniform vec3 " + textColor + @";
+
+in vec3 passSTR;
 
 out vec4 out_Color;
 
