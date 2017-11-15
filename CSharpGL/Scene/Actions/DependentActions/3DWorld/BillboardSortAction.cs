@@ -66,7 +66,29 @@ namespace CSharpGL
         /// <param name="list"></param>
         private void Insert(TextBillboardNode billboard, mat4 viewMatrix)
         {
-            throw new NotImplementedException();
+            vec3 viewPosition = billboard.GetAbsoluteViewPosition(viewMatrix);
+            int left = 0, right = this.depthList.Count - 1;
+            while (left <= right)
+            {
+                int middle = (left + right) / 2;
+                float value = this.depthList[middle];
+                if (value < viewPosition.z)
+                {
+                    left = middle + 1;
+                }
+                else if (value == viewPosition.z)
+                {
+                    left = middle;
+                    break;
+                }
+                else //(viewPosition.z < value)
+                {
+                    right = middle - 1;
+                }
+            }
+
+            this.depthList.Insert(left, viewPosition.z);
+            this.billboardList.Insert(left, billboard);
         }
 
     }
