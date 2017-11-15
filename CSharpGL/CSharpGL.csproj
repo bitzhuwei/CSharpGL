@@ -358,6 +358,7 @@
     <Compile Include="Scene\SceneNodes\RenderUnits\TransformFeedbackObjectHelper.cs" />
     <Compile Include="Scene\SceneNodes\SceneNodeBase.cs" />
     <Compile Include="Scene\SceneNodes\SceneNodeBase.IDisposable.cs" />
+    <Compile Include="Scene\SceneNodes\SceneNodeBase.AbsoluteTransformInfo.cs" />
     <Compile Include="Scene\SceneNodes\SceneNodeBase.IWorldSpace.cs" />
     <Compile Include="Scene\Actions\Flags.cs" />
     <Compile Include="Scene\SceneNodes\SceneNodeBaseChildren.cs" />
