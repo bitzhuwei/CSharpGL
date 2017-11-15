@@ -47,7 +47,7 @@ uniform vec2 " + screenSize + @";
 
 out vec2 passUV;
 
-const float value = 0.5;
+const float value = 1;
 
 void main(void) {
 	vec2 vertexes[4] = vec2[4](vec2(value, value), vec2(-value, value), vec2(-value, -value), vec2(value, -value));
@@ -56,7 +56,7 @@ void main(void) {
 	vec4 position = projectionMatrix * viewMatrix * modelMatrix * vec4(0, 0, 0, 1);
     position = position / position.w;
     vec2 diffPos = vertexes[gl_VertexID];
-    position.xy += diffPos * vec2(width, height) / screenSize * 2;
+    position.xy += diffPos * vec2(width, height) / screenSize;
 	gl_Position = position;
 
 	passUV = texCoord[gl_VertexID];
