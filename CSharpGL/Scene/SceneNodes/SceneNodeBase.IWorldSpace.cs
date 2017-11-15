@@ -31,7 +31,14 @@ namespace CSharpGL
         public vec3 WorldPosition
         {
             get { return worldPosition; }
-            set { worldPosition = value; worldSpacePropertyUpdated = true; }
+            set
+            {
+                if (worldPosition != value)
+                {
+                    worldPosition = value;
+                    worldSpacePropertyUpdated = true;
+                }
+            }
         }
 
         private float rotationAngle;
@@ -43,7 +50,14 @@ namespace CSharpGL
         public float RotationAngle
         {
             get { return rotationAngle; }
-            set { rotationAngle = value; worldSpacePropertyUpdated = true; }
+            set
+            {
+                if (rotationAngle != value)
+                {
+                    rotationAngle = value;
+                    worldSpacePropertyUpdated = true;
+                }
+            }
         }
 
         private vec3 _rotationAxis = new vec3(0, 1, 0);
@@ -54,8 +68,15 @@ namespace CSharpGL
         [Description("Rotation axis in world space relative to parent node.")]
         public vec3 RotationAxis
         {
-            get { return this._rotationAxis; }
-            set { this._rotationAxis = value; worldSpacePropertyUpdated = true; }
+            get { return _rotationAxis; }
+            set
+            {
+                if (_rotationAxis != value)
+                {
+                    _rotationAxis = value;
+                    worldSpacePropertyUpdated = true;
+                }
+            }
         }
 
         private vec3 _scale = new vec3(1, 1, 1);
@@ -66,8 +87,15 @@ namespace CSharpGL
         [Description("Scale in world space relative to parent node.")]
         public vec3 Scale
         {
-            get { return this._scale; }
-            set { this._scale = value; worldSpacePropertyUpdated = true; }
+            get { return _scale; }
+            set
+            {
+                if (_scale != value)
+                {
+                    _scale = value;
+                    worldSpacePropertyUpdated = true;
+                }
+            }
         }
 
         private vec3 _modelSize = new vec3(1, 1, 1);
@@ -79,7 +107,14 @@ namespace CSharpGL
         public vec3 ModelSize
         {
             get { return this._modelSize; }
-            set { this._modelSize = value; worldSpacePropertyUpdated = true; }
+            set
+            {
+                if (_modelSize != value)
+                {
+                    _modelSize = value;
+                    worldSpacePropertyUpdated = true;
+                }
+            }
         }
 
         #endregion
