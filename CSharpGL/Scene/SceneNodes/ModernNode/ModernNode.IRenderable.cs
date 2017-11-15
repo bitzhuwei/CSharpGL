@@ -8,8 +8,10 @@ namespace CSharpGL
 
         private ThreeFlags enableRendering = ThreeFlags.BeforeChildren | ThreeFlags.Children;
         /// <summary>
-        /// 
+        /// Render before/after children? Render children? 
+        /// RenderAction cares about this property. Other actions, maybe, maybe not, your choice.
         /// </summary>
+        [Browsable(false)]
         [Category(strModernNode)]
         [Description("Render before/after children? Render children?")]
         public ThreeFlags EnableRendering
