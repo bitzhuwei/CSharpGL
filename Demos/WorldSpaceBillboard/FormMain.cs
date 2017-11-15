@@ -41,8 +41,12 @@ namespace WorldSpaceBillboard
             var list = new ActionList();
             var transformAction = new TransformAction(scene);
             list.Add(transformAction);
+            var billboardSortAction = new BillboardSortAction(scene);
+            list.Add(billboardSortAction);
             var renderAction = new RenderAction(scene);
             list.Add(renderAction);
+            var billboardRenderAction = new BillboardRenderAction(scene, billboardSortAction);
+            list.Add(billboardRenderAction);
             this.actionList = list;
 
             Match(this.trvScene, scene.RootElement);
@@ -100,6 +104,7 @@ namespace WorldSpaceBillboard
                             var billboard = TextBillboardNode.Create(200, 40, 100);
                             billboard.Text = string.Format("Hello Billboard[{0}]!", i * 3 + j);
                             billboard.Color = Color.White.ToVec3();
+                            billboard.EnableRendering = ThreeFlags.None;// we don't render it in RenderAction. we render it in BillboardRenderAction.
                             billboard.WorldPosition = new vec3(0, y * 4, 0);
                             stick.Children.Add(billboard);
                         }
