@@ -41,11 +41,11 @@ namespace CSharpGL
             {
                 builder.Append(c);
             }
-            // Chinese characters
-            for (char c = (char)0x4E00; c <= 0x9FA5; c++)
-            {
-                builder.Append(c);
-            }
+            //// Chinese characters
+            //for (char c = (char)0x4E00; c <= 0x9FA5; c++)
+            //{
+            //    builder.Append(c);
+            //}
             //for (char c = (char)0; c < char.MaxValue; c++)
             //{
             //    builder.Append(c);

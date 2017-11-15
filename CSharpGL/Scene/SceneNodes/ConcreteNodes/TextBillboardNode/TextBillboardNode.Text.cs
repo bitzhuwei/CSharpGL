@@ -5,10 +5,10 @@ using System.Text;
 
 namespace CSharpGL
 {
-    public partial class CtrlLabel
+    public partial class TextBillboardNode
     {
         private string text = string.Empty;
-        private GlyphsModel labelModel;
+        private GlyphsModel textModel;
         private VertexBuffer positionBuffer;
         private VertexBuffer strBuffer;
         private ZeroIndexBuffer indexBuffer;
@@ -40,7 +40,7 @@ namespace CSharpGL
                 if (v != text)
                 {
                     text = v;
-                    ArrangeCharaters(v, GlyphServer.defaultServer);
+                    ArrangeCharaters(v, this.glyphServer);
                     DoTextChanged();
                 }
             }
@@ -54,7 +54,9 @@ namespace CSharpGL
 
             this.indexBuffer.RenderingVertexCount = text.Length * 4; // each alphabet needs 4 vertexes.
 
-            this.Width = (int)(totalWidth * this.Height / totalHeight); // auto size means auto width.
+            this.widthByHeight = totalWidth / totalHeight;
+            this.heightByWidth = totalHeight / totalWidth;
+            this.Width = (int)(this.Height * this.widthByHeight);// auto size means auto width.
         }
 
         /// <summary>
@@ -69,7 +71,7 @@ namespace CSharpGL
             int index = 0;
             foreach (var c in text)
             {
-                if (index >= this.labelModel.Capacity) { break; }
+                if (index >= this.textModel.Capacity) { break; }
 
                 GlyphInfo glyphInfo;
                 if (server.GetGlyphInfo(c, out glyphInfo))
@@ -97,13 +99,13 @@ namespace CSharpGL
             int textureHeight = server.TextureHeight;
             VertexBuffer buffer = this.positionBuffer;
             var positionArray = (QuadPositionStruct*)buffer.MapBuffer(MapBufferAccess.ReadWrite);
-            const float height = 2.0f; // let's say height is 2.0f.
+            const float height = 2; // 2 is the height value in clip space.
             totalWidth = 0;
             totalHeight = height;
             int index = 0;
             foreach (var c in text)
             {
-                if (index >= this.labelModel.Capacity) { break; }
+                if (index >= this.textModel.Capacity) { break; }
 
                 GlyphInfo glyphInfo;
                 float wByH = 0;
@@ -119,47 +121,30 @@ namespace CSharpGL
                     wByH = height * 1.0f / 1.0f;
                 }
 
-                var leftTop = new vec2(totalWidth, height / 2);
-                var leftBottom = new vec2(totalWidth, -height / 2);
-                var rightBottom = new vec2(totalWidth + wByH, -height / 2);
-                var rightTop = new vec2(totalWidth + wByH, height / 2);
+                var leftTop = new vec2(totalWidth, height);
+                var leftBottom = new vec2(totalWidth, 0);
+                var rightBottom = new vec2(totalWidth + wByH, 0);
+                var rightTop = new vec2(totalWidth + wByH, height);
                 positionArray[index++] = new QuadPositionStruct(leftTop, leftBottom, rightBottom, rightTop);
+
                 totalWidth += wByH;
-            }
-
-            // move to center.
-            const float scale = 1f;
-            for (int i = 0; i < text.Length; i++)
-            {
-                if (i >= this.labelModel.Capacity) { break; }
-
-                QuadPositionStruct quad = positionArray[i];
-                var newPos = new QuadPositionStruct(
-                    // y is already in [-1, 1], so just shrink x to [-1, 1]
-                    new vec2(quad.leftTop.x / totalWidth * 2.0f - 1f, quad.leftTop.y) * scale,
-                    new vec2(quad.leftBottom.x / totalWidth * 2.0f - 1f, quad.leftBottom.y) * scale,
-                    new vec2(quad.rightBottom.x / totalWidth * 2.0f - 1f, quad.rightBottom.y) * scale,
-                    new vec2(quad.rightTop.x / totalWidth * 2.0f - 1f, quad.rightTop.y) * scale
-                    );
-
-                positionArray[i] = newPos;
             }
 
             buffer.UnmapBuffer();
         }
 
-        private vec3 color = new vec3(0, 0, 0);
+        private vec3 _color = new vec3(0, 0, 0);
         /// <summary>
         /// Text color.
         /// </summary>
         public vec3 Color
         {
-            get { return color; }
+            get { return this._color; }
             set
             {
-                if (color != value)
+                if (this._color != value)
                 {
-                    color = value;
+                    this._color = value;
 
                     ModernRenderUnit unit = this.RenderUnit;
                     if (unit == null) { return; }
@@ -168,7 +153,7 @@ namespace CSharpGL
                     ShaderProgram program = method.Program;
                     if (program == null) { return; }
 
-                    program.SetUniform("textColor", value);
+                    program.SetUniform(textColor, this._color);
                 }
             }
         }

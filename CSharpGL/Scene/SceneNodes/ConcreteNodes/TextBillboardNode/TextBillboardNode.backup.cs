@@ -21,7 +21,7 @@ namespace CSharpGL
     /// <summary>
     /// A billboard that renders text and always faces camera in 3D world. Its size is described by Width\Height(in pixels).
     /// </summary>
-    public class TextBillboardNode : ModernNode
+    public class TextBillboardNodeBackup : ModernNode
     {
         #region shaders
 
@@ -47,7 +47,7 @@ uniform vec2 " + screenSize + @";
 
 out vec2 passUV;
 
-const float value = 0.5;
+const float value = 1;
 
 void main(void) {
 	vec2 vertexes[4] = vec2[4](vec2(value, value), vec2(-value, value), vec2(-value, -value), vec2(value, -value));
@@ -56,7 +56,7 @@ void main(void) {
 	vec4 position = projectionMatrix * viewMatrix * modelMatrix * vec4(0, 0, 0, 1);
     position = position / position.w;
     vec2 diffPos = vertexes[gl_VertexID];
-    position.xy += diffPos * vec2(width, height) / screenSize ;
+    position.xy += diffPos * vec2(width, height) / screenSize;
 	gl_Position = position;
 
 	passUV = texCoord[gl_VertexID];
@@ -119,14 +119,14 @@ void main(void) {
         /// <param name="width"></param>
         /// <param name="height"></param>
         /// <returns></returns>
-        public static TextBillboardNode Create(ITextureSource textureSource, int width, int height)
+        public static TextBillboardNodeBackup Create(ITextureSource textureSource, int width, int height)
         {
             var vs = new VertexShader(vertexCode);// this vertex shader has no vertex attributes.
             var fs = new FragmentShader(fragmentCode);
             var provider = new ShaderArray(vs, fs);
             var map = new AttributeMap();
             var builder = new RenderMethodBuilder(provider, map);
-            var node = new TextBillboardNode(textureSource, width, height, new TextBillboard(), builder);
+            var node = new TextBillboardNodeBackup(textureSource, width, height, new TextBillboard(), builder);
             node.Initialize();
 
             return node;
@@ -172,7 +172,7 @@ void main(void) {
         /// </summary>
         public float Delta { get; set; }
 
-        private TextBillboardNode(ITextureSource textureSource, int width, int height, IBufferSource model, RenderMethodBuilder renderUnitBuilder)
+        private TextBillboardNodeBackup(ITextureSource textureSource, int width, int height, IBufferSource model, RenderMethodBuilder renderUnitBuilder)
             : base(model, renderUnitBuilder)
         {
             this.TextureSource = textureSource;

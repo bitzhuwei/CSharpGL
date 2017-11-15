@@ -73,6 +73,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FrontToBackPeeling", "Demos
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Texture2DArray", "Demos\Texture2DArray\Texture2DArray.csproj", "{EBBB33B4-F841-45FA-8891-4A9C563B870B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorldSpaceBillboard", "Demos\WorldSpaceBillboard\WorldSpaceBillboard.csproj", "{F5DE0F62-A278-4E18-BF94-23A4CAF374D6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -211,6 +213,10 @@ Global
 		{EBBB33B4-F841-45FA-8891-4A9C563B870B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EBBB33B4-F841-45FA-8891-4A9C563B870B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EBBB33B4-F841-45FA-8891-4A9C563B870B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5DE0F62-A278-4E18-BF94-23A4CAF374D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5DE0F62-A278-4E18-BF94-23A4CAF374D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5DE0F62-A278-4E18-BF94-23A4CAF374D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5DE0F62-A278-4E18-BF94-23A4CAF374D6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -247,5 +253,6 @@ Global
 		{38314542-9FD3-4808-8ACA-06408D425BEE} = {772765C9-9DD4-487B-8FEB-5EAACA9F955B}
 		{A5D2CFC1-5B69-45E3-8A1D-8EE6686F91F4} = {772765C9-9DD4-487B-8FEB-5EAACA9F955B}
 		{EBBB33B4-F841-45FA-8891-4A9C563B870B} = {772765C9-9DD4-487B-8FEB-5EAACA9F955B}
+		{F5DE0F62-A278-4E18-BF94-23A4CAF374D6} = {772765C9-9DD4-487B-8FEB-5EAACA9F955B}
 	EndGlobalSection
 EndGlobal

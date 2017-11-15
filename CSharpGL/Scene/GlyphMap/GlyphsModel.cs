@@ -6,9 +6,9 @@ using System.Text;
 namespace CSharpGL
 {
     /// <summary>
-    /// Renders a Label(string).
+    /// Renders a string.
     /// </summary>
-    public class CtrlLabelModel : IBufferSource
+    public class GlyphsModel : IBufferSource
     {
         /// <summary>
         /// 
@@ -18,7 +18,7 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        public const string str = "str";
+        public const string STR = "str";
         private VertexBuffer uvBuffer;
 
         private IndexBuffer indexBuffer;
@@ -27,7 +27,7 @@ namespace CSharpGL
         /// 
         /// </summary>
         /// <param name="capacity"></param>
-        public CtrlLabelModel(int capacity)
+        public GlyphsModel(int capacity)
         {
             this.Capacity = capacity;
         }
@@ -50,7 +50,7 @@ namespace CSharpGL
 
                 return this.positionBuffer;
             }
-            else if (bufferName == str)
+            else if (bufferName == STR)
             {
                 if (this.uvBuffer == null)
                 {

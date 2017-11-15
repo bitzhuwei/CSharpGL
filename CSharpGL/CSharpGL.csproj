@@ -111,6 +111,7 @@
     <Compile Include="GLObjects\TransformFeedbackObject\TransformFeedbackObject.StaticCtor.cs" />
     <Compile Include="GLObjects\TransformFeedbackObject\TransformFeedbackObject.cs" />
     <Compile Include="GLObjects\GLBuffers\IndependentBuffers\TransformFeedbackBuffer.cs" />
+    <Compile Include="Scene\Actions\DependentActions\3DWorld\BillboardSortAction.cs" />
     <Compile Include="Scene\Actions\DependentActions\GUI\GUILayoutAction.cs" />
     <Compile Include="Scene\Actions\DependentActions\GUI\GUIRenderAction.cs" />
     <Compile Include="Scene\Actions\DependentActions\GUI\IGUIRenderable.cs" />
@@ -192,7 +193,7 @@
     <Compile Include="Scene\GUI\GLControls\CtrlLabel\CtrlLabel.Text.cs" />
     <Compile Include="Scene\GUI\GLControls\CtrlLabel\CtrlLabel.cs" />
     <Compile Include="Scene\GUI\GLControls\CtrlLabel\CtrlLabel.shaders.cs" />
-    <Compile Include="Scene\GUI\GLControls\CtrlLabel\CtrlLabelModel.cs" />
+    <Compile Include="Scene\GlyphMap\GlyphsModel.cs" />
     <Compile Include="Scene\GlyphMap\QuadStruct.cs" />
     <Compile Include="Scene\GUI\GLControls\CtrlRoot\CtrlRoot.cs" />
     <Compile Include="Scene\GUI\GLControlChildren.cs" />
@@ -201,8 +202,12 @@
     <Compile Include="Scene\GUI\Structs\GUIPoint.cs" />
     <Compile Include="Scene\GUI\Structs\GUISizeF.cs" />
     <Compile Include="Scene\GUI\Structs\GUISize.cs" />
-    <Compile Include="Scene\SceneNodes\ConcreteNodes\Billboard\TextBillboard\TextBillboardNode.cs" />
-    <Compile Include="Scene\SceneNodes\ConcreteNodes\Billboard\TextureBillboardNode.cs" />
+    <Compile Include="Scene\SceneNodes\ConcreteNodes\TextBillboardNode\TextBillboardNode.Size.cs" />
+    <Compile Include="Scene\SceneNodes\ConcreteNodes\TextBillboardNode\TextBillboardNode.Text.cs" />
+    <Compile Include="Scene\SceneNodes\ConcreteNodes\TextBillboardNode\TextBillboardNode.shaders.cs" />
+    <Compile Include="Scene\SceneNodes\ConcreteNodes\TextBillboardNode\TextBillboardNode.cs" />
+    <Compile Include="Scene\SceneNodes\ConcreteNodes\TextBillboardNode\TextBillboardNode.backup.cs" />
+    <Compile Include="Scene\SceneNodes\ConcreteNodes\TextureBillboard\TextureBillboardNode.cs" />
     <Compile Include="Scene\SceneNodes\ConcreteNodes\LightContainerNode\ILocalLightContainer.cs" />
     <Compile Include="Scene\SceneNodes\ConcreteNodes\LightContainerNode\LightContainerNode.cs" />
     <Compile Include="Scene\SceneNodes\ConcreteNodes\RenderToTextureNode\RenderToTexttureNode.cs" />
@@ -369,9 +374,9 @@
     <Content Include="BasicDataStructures\PropertyGrid\UITypeEditors\readme.md" />
     <None Include="Scene\Actions\IndependentActions\readme.md" />
     <None Include="Scene\GlyphMap\readme.md" />
-    <None Include="Scene\SceneNodes\ConcreteNodes\Billboard\readme.md" />
-    <None Include="Scene\SceneNodes\ConcreteNodes\Billboard\billboard.frag" />
-    <None Include="Scene\SceneNodes\ConcreteNodes\Billboard\billboard.vert" />
+    <None Include="Scene\SceneNodes\ConcreteNodes\TextureBillboard\readme.md" />
+    <None Include="Scene\SceneNodes\ConcreteNodes\TextureBillboard\billboard.frag" />
+    <None Include="Scene\SceneNodes\ConcreteNodes\TextureBillboard\billboard.vert" />
     <None Include="Scene\Lights\readme.md" />
     <None Include="Scene\readme.md" />
     <Compile Include="Scene\SceneNodes\SceneNodeBase.LagacyMatrix.cs" />

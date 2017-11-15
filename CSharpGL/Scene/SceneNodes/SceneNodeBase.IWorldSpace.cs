@@ -24,10 +24,10 @@ namespace CSharpGL
 
         private vec3 worldPosition;
         /// <summary>
-        /// 
+        /// Position in world space relative to parent node.
         /// </summary>
         [Category(strSceneNodeBase)]
-        [Description("Position in world space.")]
+        [Description("Position in world space relative to parent node.")]
         public vec3 WorldPosition
         {
             get { return worldPosition; }
@@ -36,10 +36,10 @@ namespace CSharpGL
 
         private float rotationAngle;
         /// <summary>
-        /// 
+        /// Rotation angle in degrees in world space relative to parent node.
         /// </summary>
         [Category(strSceneNodeBase)]
-        [Description("Rotation angle in degrees in world space.")]
+        [Description("Rotation angle in degrees in world space relative to parent node.")]
         public float RotationAngle
         {
             get { return rotationAngle; }
@@ -48,10 +48,10 @@ namespace CSharpGL
 
         private vec3 _rotationAxis = new vec3(0, 1, 0);
         /// <summary>
-        /// 
+        /// Rotation axis in world space relative to parent node.
         /// </summary>
         [Category(strSceneNodeBase)]
-        [Description("Rotation axis in world space.")]
+        [Description("Rotation axis in world space relative to parent node.")]
         public vec3 RotationAxis
         {
             get { return this._rotationAxis; }
@@ -60,10 +60,10 @@ namespace CSharpGL
 
         private vec3 _scale = new vec3(1, 1, 1);
         /// <summary>
-        /// 
+        /// Scale in world space relative to parent node.
         /// </summary>
         [Category(strSceneNodeBase)]
-        [Description("Scale in world space.")]
+        [Description("Scale in world space relative to parent node.")]
         public vec3 Scale
         {
             get { return this._scale; }
@@ -72,7 +72,7 @@ namespace CSharpGL
 
         private vec3 _modelSize = new vec3(1, 1, 1);
         /// <summary>
-        /// 
+        /// This model's size.
         /// </summary>
         [Category(strSceneNodeBase)]
         [Description("This model's size.")]
