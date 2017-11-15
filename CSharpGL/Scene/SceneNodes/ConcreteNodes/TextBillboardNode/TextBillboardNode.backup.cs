@@ -56,7 +56,7 @@ void main(void) {
 	vec4 position = projectionMatrix * viewMatrix * modelMatrix * vec4(0, 0, 0, 1);
     position = position / position.w;
     vec2 diffPos = vertexes[gl_VertexID];
-    position.xy += diffPos * vec2(width, height) / screenSize ;
+    position.xy += diffPos * vec2(width, height) / screenSize * 2;
 	gl_Position = position;
 
 	passUV = texCoord[gl_VertexID];
