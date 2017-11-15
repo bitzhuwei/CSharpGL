@@ -19,13 +19,13 @@ namespace CSharpGL
         /// Set up texture's content with 'glTexImage1D()'.
         /// </summary>
         /// <param name="internalFormat"></param>
-        /// <param name="mipmapLevelCount"></param>
-        /// <param name="border"></param>
         /// <param name="width"></param>
         /// <param name="format"></param>
         /// <param name="type"></param>
         /// <param name="dataProvider"></param>
-        public TexImage1D(uint internalFormat, int mipmapLevelCount, int border, int width, uint format, uint type, LeveledDataProvider dataProvider = null)
+        /// <param name="mipmapLevelCount"></param>
+        /// <param name="border"></param>
+        public TexImage1D(uint internalFormat, int width, uint format, uint type, LeveledDataProvider dataProvider = null, int mipmapLevelCount = 1, int border = 0)
             : base(TextureTarget.Texture1D, internalFormat, mipmapLevelCount, border)
         {
             this.width = width;

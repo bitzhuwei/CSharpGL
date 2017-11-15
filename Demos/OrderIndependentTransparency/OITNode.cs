@@ -70,9 +70,8 @@ namespace OrderIndependentTransparency
             {
                 if (this.headTexture != null) { this.headTexture.Dispose(); }
 
-                int level = 0, border = 0;
                 uint internalformat = GL.GL_R32UI, format = GL.GL_RED_INTEGER, type = GL.GL_UNSIGNED_BYTE;
-                var storage = new TexImage2D(TexImage2D.Target.Texture2D, internalformat, level, border, width, height, format, type);
+                var storage = new TexImage2D(TexImage2D.Target.Texture2D, internalformat, width, height, format, type);
                 var texture = new Texture(TextureTarget.Texture2D, storage,
                     TexParameter.Create(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_REPEAT),
                     TexParameter.Create(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_REPEAT),
