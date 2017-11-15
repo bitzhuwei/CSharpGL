@@ -130,23 +130,6 @@ namespace CSharpGL
                 totalWidth += wByH;
             }
 
-            //// move to center.
-            //const float scale = 1f;
-            //for (int i = 0; i < text.Length; i++)
-            //{
-            //    if (i >= this.textModel.Capacity) { break; }
-
-            //    QuadPositionStruct quad = positionArray[i];
-            //    var newPos = new QuadPositionStruct(
-            //        // y is already in [-1, 1], so just shrink x to [-1, 1]
-            //        new vec2(quad.leftTop.x / totalWidth * 2.0f - 1f, quad.leftTop.y) * scale,
-            //        new vec2(quad.leftBottom.x / totalWidth * 2.0f - 1f, quad.leftBottom.y) * scale,
-            //        new vec2(quad.rightBottom.x / totalWidth * 2.0f - 1f, quad.rightBottom.y) * scale,
-            //        new vec2(quad.rightTop.x / totalWidth * 2.0f - 1f, quad.rightTop.y) * scale
-            //        );
-
-            //    positionArray[i] = newPos;
-            //}
             buffer.UnmapBuffer();
         }
 
