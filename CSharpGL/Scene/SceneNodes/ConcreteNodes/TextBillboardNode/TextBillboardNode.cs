@@ -23,8 +23,10 @@ namespace CSharpGL
             var fs = new FragmentShader(fragmentCode);
             var provider = new ShaderArray(vs, fs);
             var map = new AttributeMap();
+            map.Add(inPosition, GlyphsModel.position);
+            map.Add(inSTR, GlyphsModel.STR);
             var blendState = new BlendState(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.OneMinusSourceAlpha);
-            var builder = new RenderMethodBuilder(provider, map);
+            var builder = new RenderMethodBuilder(provider, map, blendState);
             var node = new TextBillboardNode(width, height, new GlyphsModel(capacity), builder, glyphServer);
             node.Initialize();
 
@@ -62,7 +64,7 @@ namespace CSharpGL
             base.DoInitialize();
 
             this.positionBuffer = this.textModel.GetVertexAttributeBuffer(GlyphsModel.position);
-            this.strBuffer = this.textModel.GetVertexAttributeBuffer(GlyphsModel.str);
+            this.strBuffer = this.textModel.GetVertexAttributeBuffer(GlyphsModel.STR);
             this.indexBuffer = this.textModel.GetIndexBuffer() as ZeroIndexBuffer;
 
             GlyphServer server = this.glyphServer;
@@ -95,6 +97,10 @@ namespace CSharpGL
             program.SetUniform(viewMatrix, view);
             program.SetUniform(modelMatrix, model);
             program.SetUniform(screenSize, new vec2(viewport[2], viewport[3]));
+
+            program.SetUniform(width, this._width);
+            program.SetUniform(height, this._height);
+            program.SetUniform(textColor, this.color);
 
             method.Render(IndexBuffer.ControlMode.Random);
         }

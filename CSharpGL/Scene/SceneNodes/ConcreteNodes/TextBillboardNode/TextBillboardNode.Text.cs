@@ -97,7 +97,7 @@ namespace CSharpGL
             int textureHeight = server.TextureHeight;
             VertexBuffer buffer = this.positionBuffer;
             var positionArray = (QuadPositionStruct*)buffer.MapBuffer(MapBufferAccess.ReadWrite);
-            const float height = 2.0f; // let's say height is 2.0f.
+            float height = this._height * 2; // height is 2 of _height.
             totalWidth = 0;
             totalHeight = height;
             int index = 0;
@@ -124,9 +124,27 @@ namespace CSharpGL
                 var rightBottom = new vec2(totalWidth + wByH, 0);
                 var rightTop = new vec2(totalWidth + wByH, height);
                 positionArray[index++] = new QuadPositionStruct(leftTop, leftBottom, rightBottom, rightTop);
+
                 totalWidth += wByH;
             }
 
+            //// move to center.
+            //const float scale = 1f;
+            //for (int i = 0; i < text.Length; i++)
+            //{
+            //    if (i >= this.textModel.Capacity) { break; }
+
+            //    QuadPositionStruct quad = positionArray[i];
+            //    var newPos = new QuadPositionStruct(
+            //        // y is already in [-1, 1], so just shrink x to [-1, 1]
+            //        new vec2(quad.leftTop.x / totalWidth * 2.0f - 1f, quad.leftTop.y) * scale,
+            //        new vec2(quad.leftBottom.x / totalWidth * 2.0f - 1f, quad.leftBottom.y) * scale,
+            //        new vec2(quad.rightBottom.x / totalWidth * 2.0f - 1f, quad.rightBottom.y) * scale,
+            //        new vec2(quad.rightTop.x / totalWidth * 2.0f - 1f, quad.rightTop.y) * scale
+            //        );
+
+            //    positionArray[i] = newPos;
+            //}
             buffer.UnmapBuffer();
         }
 

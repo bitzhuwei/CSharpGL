@@ -14,6 +14,8 @@ namespace CSharpGL
         private const string width = "width";
         private const string height = "height";
         private const string screenSize = "screenSize";
+        private const string inPosition = "inPosition";
+        private const string inSTR = "inSTR";
         private const string glyphTexture = "glyphTexture";
         private const string textColor = "textColor";
 
@@ -27,18 +29,20 @@ uniform float " + width + @";
 uniform float " + height + @";
 uniform vec2 " + screenSize + @";
 
-in vec2 inPosition;// character's quad's position(in pixels) relative to left bottom(0, 0).
-in vec3 inSTR;// character's quad's texture coordinate.
+in vec2 " + inPosition + @";// character's quad's position(in pixels) relative to left bottom(0, 0).
+in vec3 " + inSTR + @";// character's quad's texture coordinate.
 
 out vec3 passSTR;
+
+const float value = 0.1;
 
 void main(void) {
 	vec4 position = projectionMatrix * viewMatrix * modelMatrix * vec4(0, 0, 0, 1);
     position = position / position.w;
-    position.xy += (inPosition - vec2(width / 2, height / 2)) / screenSize;
+    position.xy += (inPosition - vec2(width, height)) / screenSize;
 	gl_Position = position;
 
-	passSTR = inSTR;
+    passSTR = inSTR;
 }
 ";
         private const string fragmentCode =

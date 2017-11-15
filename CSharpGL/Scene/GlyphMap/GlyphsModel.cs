@@ -18,7 +18,7 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        public const string str = "str";
+        public const string STR = "str";
         private VertexBuffer uvBuffer;
 
         private IndexBuffer indexBuffer;
@@ -50,7 +50,7 @@ namespace CSharpGL
 
                 return this.positionBuffer;
             }
-            else if (bufferName == str)
+            else if (bufferName == STR)
             {
                 if (this.uvBuffer == null)
                 {
