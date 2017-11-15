@@ -24,7 +24,7 @@ namespace CSharpGL
             var provider = new ShaderArray(vs, fs);
             var map = new AttributeMap();
             var blendState = new BlendState(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.OneMinusSourceAlpha);
-            var builder = new RenderMethodBuilder(provider, map, blendState);
+            var builder = new RenderMethodBuilder(provider, map);
             var node = new TextBillboardNode(width, height, new GlyphsModel(capacity), builder, glyphServer);
             node.Initialize();
 
@@ -96,7 +96,7 @@ namespace CSharpGL
             program.SetUniform(modelMatrix, model);
             program.SetUniform(screenSize, new vec2(viewport[2], viewport[3]));
 
-            method.Render();
+            method.Render(IndexBuffer.ControlMode.Random);
         }
 
         /// <summary>
