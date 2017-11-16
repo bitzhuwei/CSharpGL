@@ -10,10 +10,11 @@ namespace CSharpGL
     /// </summary>
     public abstract class LightBase : ITextureSource
     {
+        private vec3 color = new vec3(1, 1, 1);
         /// <summary>
         /// 
         /// </summary>
-        public vec3 Color { get; set; }
+        public vec3 Color { get { return this.color; } set { this.color = value; } }
 
         /// <summary>
         /// 

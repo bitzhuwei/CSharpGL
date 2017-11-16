@@ -19,7 +19,8 @@ namespace DirectionalLight
         private const string halfVector = "halfVector";
         private const string shiness = "shiness";
         private const string strength = "strength";
-        private const string lightDirection = "lightDirection"; // TODO: we assume light's color is white(vec3(1, 1, 1))
+        private const string lightDirection = "lightDirection";
+        private const string lightColor = "lightColor";
         private const string diffuseColor = "diffuseColor";
         private const string ambientColor = "ambientColor";
 
@@ -74,6 +75,7 @@ namespace DirectionalLight
             program.SetUniform(normalMatrix, normal);
             vec3 lightDir = new vec3(view * new vec4(this.Light.Direction, 0.0f));
             program.SetUniform(lightDirection, lightDir);
+            program.SetUniform(lightColor, this.Light.Color);
             var cameraDrection = new vec3(0, 0, 1); // camera direction in eye/view/camera space.
             program.SetUniform(halfVector, (lightDir + cameraDrection).normalize());
 

@@ -31,7 +31,7 @@
                 activeTexture(value.TextureUnitIndex + GL.GL_TEXTURE0);
                 //OpenGL.BindTexture(GL.GL_TEXTURE_2D, this.value[i].TextureId);
                 GL.Instance.BindTexture(value.target, value.TextureId);
-                // TODO: assign the first location or last?
+                // TODO: assign the first location or last? 20171117:maybe I should not create this type.
                 this.Location = program.glUniform(VarName, (int)value.TextureUnitIndex);
             }
         }

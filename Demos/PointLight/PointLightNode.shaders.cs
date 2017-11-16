@@ -36,6 +36,7 @@ uniform float strength = 1;
 uniform vec3 ambientColor = vec3(0.2, 0.2, 0.2);
 uniform vec3 diffuseColor = vec3(1, 0.8431, 0);
 uniform vec3 lightPosition = vec3(0, 0, 0); // light's position in eye space.
+uniform vec3 lightColor;
 uniform float constantAttenuation = 1.0;
 uniform float linearAttenuation = 0.0001;
 uniform float quadraticAttenuation = 0.0001;
@@ -62,7 +63,7 @@ void main(void)
         specular = pow(specular, shiness) * strength;
     }
 	
-    vFragColor = vec4((ambientColor + diffuse) * diffuseColor + specular, 1);
+    vFragColor = vec4(((ambientColor + diffuse) * diffuseColor + specular) * lightColor, 1);
 }
 ";
 
