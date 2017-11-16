@@ -25,11 +25,11 @@ namespace CSharpGL
         /// </summary>
         /// <param name="target"></param>
         /// <param name="internalFormat"></param>
-        /// <param name="mipmapLevelCount"></param>
         /// <param name="width"></param>
         /// <param name="height"></param>
         /// <param name="depth"></param>
-        public TexStorage3D(Target target, uint internalFormat, int mipmapLevelCount, int width, int height, int depth)
+        /// <param name="mipmapLevelCount"></param>
+        public TexStorage3D(Target target, uint internalFormat, int width, int height, int depth, int mipmapLevelCount = 1)
             : base((TextureTarget)target, internalFormat, mipmapLevelCount)
         {
             this.width = width;

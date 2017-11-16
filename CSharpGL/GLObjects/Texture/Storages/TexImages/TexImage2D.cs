@@ -21,14 +21,14 @@ namespace CSharpGL
         /// </summary>
         /// <param name="target"></param>
         /// <param name="internalFormat"></param>
-        /// <param name="mipmapLevelCount"></param>
-        /// <param name="border"></param>
         /// <param name="width"></param>
         /// <param name="height"></param>
         /// <param name="format"></param>
         /// <param name="type"></param>
         /// <param name="dataProvider"></param>
-        public TexImage2D(Target target, uint internalFormat, int mipmapLevelCount, int border, int width, int height, uint format, uint type, LeveledDataProvider dataProvider = null)
+        /// <param name="mipmapLevelCount"></param>
+        /// <param name="border"></param>
+        public TexImage2D(Target target, uint internalFormat, int width, int height, uint format, uint type, LeveledDataProvider dataProvider = null, int mipmapLevelCount = 1, int border = 0)
             : base((TextureTarget)target, internalFormat, mipmapLevelCount, border)
         {
             this.width = width; this.height = height;

@@ -22,12 +22,13 @@ namespace CSharpGL
         /// <param name="internalFormat"></param>
         /// <param name="width"></param>
         /// <param name="height"></param>
-        /// <param name="border"></param>
         /// <param name="format"></param>
         /// <param name="type"></param>
         /// <param name="dataProvider"></param>
-        public CubemapTexImage2D(uint internalFormat, int width, int height, int border, uint format, uint type, CubemapDataProvider dataProvider)
-            : base(TextureTarget.TextureCubeMap, internalFormat)
+        /// <param name="mipmapLevelCount"></param>
+        /// <param name="border"></param>
+        public CubemapTexImage2D(uint internalFormat, int width, int height, uint format, uint type, CubemapDataProvider dataProvider, int mipmapLevelCount = 1, int border = 0)
+            : base(TextureTarget.TextureCubeMap, internalFormat, mipmapLevelCount, border)
         {
             if (dataProvider == null) { throw new ArgumentNullException("dataProvider"); }
 

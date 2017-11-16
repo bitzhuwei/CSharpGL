@@ -111,7 +111,7 @@ namespace RaycastVolumeRendering
 
         private Texture initVol3DTex(byte[] data, int width, int height, int depth)
         {
-            var storage = new TexImage3D(TexImage3D.Target.Texture3D, GL.GL_INTENSITY, 1, 0, width, height, depth, GL.GL_LUMINANCE, GL.GL_UNSIGNED_BYTE, new ArrayDataProvider<byte>(data));
+            var storage = new TexImage3D(TexImage3D.Target.Texture3D, GL.GL_INTENSITY, width, height, depth, GL.GL_LUMINANCE, GL.GL_UNSIGNED_BYTE, new ArrayDataProvider<byte>(data));
             var texture = new Texture(
                 TextureTarget.Texture3D, storage,
                 new TexParameteri(TexParameter.PropertyName.TextureWrapR, (int)GL.GL_REPEAT),
@@ -128,7 +128,7 @@ namespace RaycastVolumeRendering
         {
             //if (this.backface2DTexture != null) { this.backface2DTexture.Dispose(); }
 
-            var storage = new TexImage2D(TexImage2D.Target.Texture2D, GL.GL_RGBA16F, 1, 0, width, height, GL.GL_RGBA, GL.GL_FLOAT);
+            var storage = new TexImage2D(TexImage2D.Target.Texture2D, GL.GL_RGBA16F, width, height, GL.GL_RGBA, GL.GL_FLOAT);
             var texture = new Texture(
                 TextureTarget.Texture2D, storage,
                 new TexParameteri(TexParameter.PropertyName.TextureWrapR, (int)GL.GL_REPEAT),
@@ -151,7 +151,7 @@ namespace RaycastVolumeRendering
             }
 
             const int width = 256;
-            var storage = new TexImage1D(GL.GL_RGBA8, 1, 0, width, GL.GL_RGBA, GL.GL_UNSIGNED_BYTE, new ArrayDataProvider<byte>(tff));
+            var storage = new TexImage1D(GL.GL_RGBA8, width, GL.GL_RGBA, GL.GL_UNSIGNED_BYTE, new ArrayDataProvider<byte>(tff));
             var texture = new Texture(
                 TextureTarget.Texture1D, storage,
                 new TexParameteri(TexParameter.PropertyName.TextureWrapR, (int)GL.GL_REPEAT),

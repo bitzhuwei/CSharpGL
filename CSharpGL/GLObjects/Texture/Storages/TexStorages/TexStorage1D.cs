@@ -22,9 +22,9 @@ namespace CSharpGL
         /// 
         /// </summary>
         /// <param name="internalFormat"></param>
-        /// <param name="mipmapLevelCount"></param>
         /// <param name="width"></param>
-        public TexStorage1D(uint internalFormat, int mipmapLevelCount, int width)
+        /// <param name="mipmapLevelCount"></param>
+        public TexStorage1D(uint internalFormat, int width, int mipmapLevelCount = 1)
             : base(TextureTarget.Texture1D, internalFormat, mipmapLevelCount)
         {
             this.width = width;
