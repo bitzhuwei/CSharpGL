@@ -17,7 +17,7 @@ namespace CSharpGL
 
         private Log()
         {
-            string filename = string.Format("{0:yyyy-MM-dd.HH-mm-ss}.log", DateTime.Now);
+            string filename = string.Format("CSharpGL.{0:yyyy-MM-dd.HH-mm-ss}.log", DateTime.Now);
             var writer = new StreamWriter(filename);
             writer.AutoFlush = true;
             this.writer = writer;
