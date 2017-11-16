@@ -5,15 +5,10 @@ namespace CSharpGL
 {
     /// <summary>
     /// type of Vertex Buffer Object, which represents one of vertex's attribute(position, color, uv coordinate, normal, etc).
-    /// <para>In CSharpGL, one <see cref="VertexBuffer"/> contains only one kind of attribute.</para>
+    /// <para>In CSharpGL, one <see cref="VertexBuffer"/> object contains only one kind of attribute.</para>
     /// </summary>
     public partial class VertexBuffer : GLBuffer, ICloneable
     {
-        ///// <summary>
-        ///// TODO: temporary field here. not know where to use it yet.
-        ///// </summary>
-        //internal static OpenGL.glPatchParameterfv glPatchParameterfv;
-
         /// <summary>
         /// Vertex' attribute buffer's pointer.
         /// </summary>

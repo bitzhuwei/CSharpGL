@@ -17,6 +17,7 @@ namespace CSharpGL
         internal static readonly GLDelegates.void_uint_int_uint_int_IntPtr glVertexAttribIPointer;
         internal static readonly GLDelegates.void_uint_int_uint_int_IntPtr glVertexAttribLPointer;
         internal static readonly GLDelegates.void_uint_int glPatchParameteri;
+        internal static readonly GLDelegates.void_uint_floatN glPatchParameterfv;
         internal static readonly GLDelegates.void_uint glEnableVertexAttribArray;
         internal static readonly GLDelegates.void_uint_uint glVertexAttribDivisor;
         internal static readonly GLDelegates.void_uint_int_int_int glDrawArraysInstanced;
@@ -36,6 +37,7 @@ namespace CSharpGL
             glVertexAttribIPointer = GL.Instance.GetDelegateFor("glVertexAttribIPointer", GLDelegates.typeof_void_uint_int_uint_int_IntPtr) as GLDelegates.void_uint_int_uint_int_IntPtr;
             glVertexAttribLPointer = GL.Instance.GetDelegateFor("glVertexAttribLPointer", GLDelegates.typeof_void_uint_int_uint_int_IntPtr) as GLDelegates.void_uint_int_uint_int_IntPtr;
             glPatchParameteri = GL.Instance.GetDelegateFor("glPatchParameteri", GLDelegates.typeof_void_uint_int) as GLDelegates.void_uint_int;
+            glPatchParameterfv = GL.Instance.GetDelegateFor("glPatchParameterfv", GLDelegates.typeof_void_uint_floatN) as GLDelegates.void_uint_floatN;
             glEnableVertexAttribArray = GL.Instance.GetDelegateFor("glEnableVertexAttribArray", GLDelegates.typeof_void_uint) as GLDelegates.void_uint;
             glVertexAttribDivisor = GL.Instance.GetDelegateFor("glVertexAttribDivisor", GLDelegates.typeof_void_uint_uint) as GLDelegates.void_uint_uint;
             glDrawArraysInstanced = GL.Instance.GetDelegateFor("glDrawArraysInstanced", GLDelegates.typeof_void_uint_int_int_int) as GLDelegates.void_uint_int_int_int;
