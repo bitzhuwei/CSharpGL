@@ -67,9 +67,9 @@ namespace RaycastVolumeRendering
             this.RaycastingSetupUniforms(width, height);
         }
 
-        private Framebuffer InitFramebuffer(int texWidth, int texHeight)
+        private Framebuffer InitFramebuffer(int width, int height)
         {
-            var framebuffer = new Framebuffer(texWidth, texHeight);
+            var framebuffer = new Framebuffer(width, height);
             framebuffer.Bind();
             Texture texture = this.backface2DTexture;
             framebuffer.Attach(texture);
