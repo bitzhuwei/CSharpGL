@@ -19,7 +19,8 @@ namespace PointLight
         private const string viewMatrix = "viewMatrix";
         private const string modelMatrix = "modelMatrix";
         private const string normalMatrix = "normalMatrix";
-        private const string lightPosition = "lightPosition"; // TODO: we assume light's color is white(vec3(1, 1, 1))
+        private const string lightPosition = "lightPosition";
+        private const string lightColor = "lightColor";
         private const string diffuseColor = "diffuseColor";
         private const string ambientColor = "ambientColor";
         //private const string constantAttenuation = "constantAttenuation";
@@ -74,7 +75,8 @@ namespace PointLight
             program.SetUniform(viewMatrix, view);
             program.SetUniform(modelMatrix, model);
             program.SetUniform(normalMatrix, normal);
-            program.SetUniform(lightPosition, new vec3(view * new vec4(light.Position, 1.0f)));
+            program.SetUniform(lightPosition, new vec3(view * new vec4(this.light.Position, 1.0f)));
+            program.SetUniform(lightColor, this.light.Color);
 
             method.Render();
         }

@@ -155,7 +155,6 @@ namespace Blending
 
         public BlendingConfig(Color color, vec3 position, float alpha)
         {
-            // TODO: Complete member initialization
             this.color = color;
             this.position = position;
             this.alpha = alpha;

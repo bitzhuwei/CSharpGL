@@ -22,11 +22,6 @@ namespace CSharpGL
         /// </summary>
         int Height { get; set; }
 
-        ///// <summary>
-        ///// 
-        ///// </summary>
-        //Rectangle ClientRectangle { get; }
-
         /// <summary>
         /// 
         /// </summary>
@@ -37,7 +32,6 @@ namespace CSharpGL
         /// </summary>
         GLRenderContext RenderContext { get; }
 
-        // TODO: use GLKeyPressEventHandler instead.
         /// <summary>
         /// 
         /// </summary>

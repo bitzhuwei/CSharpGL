@@ -31,6 +31,7 @@ uniform vec3 " + halfVector + @";
 uniform float " + shiness + @" = 6;
 uniform float " + strength + @" = 1;
 uniform vec3 " + lightDirection + @"; // direction towards light source in view space
+uniform vec3 " + lightColor + @";
 uniform vec3 " + diffuseColor + @" = vec3(1, 0.8431, 0); // diffuse color of surface
 uniform vec3 " + ambientColor + @" = vec3(0.2, 0.2, 0.2);
 
@@ -51,7 +52,7 @@ void main()
         specular = pow(specular, shiness) * strength;
     }
     
-    vFragColor = vec4((ambientColor + diffuse) * diffuseColor + specular, 1.0);
+    vFragColor = vec4(((ambientColor + diffuse) * diffuseColor + specular) * lightColor, 1.0);
 }
 ";
 

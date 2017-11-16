@@ -103,11 +103,7 @@ namespace CSharpGL
             program.SetUniform(projectionMatrix, projection);
             program.SetUniform(viewMatrix, view);
             program.SetUniform(modelMatrix, model);
-            program.SetUniform(screenSize, new vec2(viewport[2], viewport[3]));
-
-            //program.SetUniform(width, this._width);
-            //program.SetUniform(height, this._height);
-            //program.SetUniform(textColor, this.color);
+            program.SetUniform(screenSize, new ivec2(viewport[2], viewport[3]));
 
             method.Render(IndexBuffer.ControlMode.Random);
         }
