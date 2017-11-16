@@ -53,6 +53,7 @@ namespace CSharpGL
                         break;
                 }
 
+                Log.instance.Write(message);
                 throw new Exception(message);
             }
 
