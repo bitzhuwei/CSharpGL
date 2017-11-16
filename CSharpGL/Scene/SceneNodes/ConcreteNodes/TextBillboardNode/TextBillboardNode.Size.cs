@@ -16,7 +16,7 @@ namespace CSharpGL
         /// </summary>
         private float widthByHeight;
 
-        private int _width;// TODO: make this an int type!
+        private int _width;
         /// <summary>
         /// Billboard's width(in pixels).
         /// </summary>
