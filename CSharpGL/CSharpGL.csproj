@@ -91,6 +91,7 @@
     <None Include="GLCanvas\readme.md" />
     <Compile Include="GLAPI\GL.PrintError.cs" />
     <Compile Include="GLAPI\GL.DrawText.cs" />
+    <Compile Include="GLObjects\Framebuffer\TextureAttachment.cs" />
     <Compile Include="GLObjects\Framebuffer\RenderbufferAttachment.cs" />
     <Compile Include="GLObjects\GLBuffers\IndependentBuffers\TransformFeedbackBuffer.AsVertexBuffer.cs">
       <SubType>Code</SubType>
