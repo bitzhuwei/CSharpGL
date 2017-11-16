@@ -79,9 +79,9 @@ namespace CSharpGL
                         asm = Assembly.Load(path);
                     }
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    //TODO: add log.
+                    Log.instance.Write(ex);
                 }
 
                 // 把程序集添加到列表中

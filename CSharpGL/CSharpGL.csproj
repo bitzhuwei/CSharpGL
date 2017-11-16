@@ -79,6 +79,8 @@
     <Compile Include="BasicDataStructures\PropertyGrid\TypeConverters\ILoadFromString.cs" />
     <Compile Include="BasicDataStructures\Utilities\AssemblyHelper.cs" />
     <Compile Include="BasicDataStructures\Utilities\ColorHelper.cs" />
+    <Compile Include="BasicDataStructures\Utilities\Log\Log.IDisposable.cs" />
+    <Compile Include="BasicDataStructures\Utilities\Log\Log.cs" />
     <Compile Include="BasicDataStructures\Utilities\NotDealWithNewEnumItemException.cs" />
     <Compile Include="BasicDataStructures\Utilities\PositionHelper.cs" />
     <None Include="GLCanvas\GLRenderContext\readme.md" />
