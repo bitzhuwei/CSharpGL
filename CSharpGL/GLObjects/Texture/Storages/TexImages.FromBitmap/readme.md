@@ -1,2 +1,1 @@
-﻿# TexImageBase
-Fast and simple ways of using `Texture`.
+﻿Fast and simple ways of using `Texture`.
