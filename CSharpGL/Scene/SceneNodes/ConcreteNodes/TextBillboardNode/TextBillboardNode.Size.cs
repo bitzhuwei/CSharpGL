@@ -16,20 +16,20 @@ namespace CSharpGL
         /// </summary>
         private float widthByHeight;
 
-        private float _width;// TODO: make this an int type!
+        private int _width;// TODO: make this an int type!
         /// <summary>
         /// Billboard's width(in pixels).
         /// </summary>
         public int Width
         {
-            get { return (int)this._width; }
+            get { return this._width; }
             set
             {
                 if (this._width != value)
                 {
                     this._width = value;
 
-                    this._height = (value * this.heightByWidth);
+                    this._height = (int)(value * this.heightByWidth);
 
                     ModernRenderUnit unit = this.RenderUnit;
                     if (unit == null) { return; }
@@ -44,19 +44,19 @@ namespace CSharpGL
             }
         }
 
-        private float _height;
+        private int _height;
         /// <summary>
         /// Billboard's height(in pixels).
         /// </summary>
         public int Height
         {
-            get { return (int)this._height; }
+            get { return this._height; }
             set
             {
                 if (this._height != value)
                 {
                     this._height = value;
-                    this._width = (value * this.widthByHeight);
+                    this._width = (int)(value * this.widthByHeight);
 
                     ModernRenderUnit unit = this.RenderUnit;
                     if (unit == null) { return; }

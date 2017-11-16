@@ -25,10 +25,10 @@ namespace CSharpGL
 uniform mat4 " + projectionMatrix + @";
 uniform mat4 " + viewMatrix + @";
 uniform mat4 " + modelMatrix + @";
-uniform vec2 " + screenSize + @";
+uniform ivec2 " + screenSize + @";
 
-uniform float " + width + @";
-uniform float " + height + @";
+uniform int " + width + @";
+uniform int " + height + @";
 
 in vec2 " + inPosition + @";// character's quad's position(in pixels) relative to left bottom(0, 0).
 in vec3 " + inSTR + @";// character's quad's texture coordinate.
@@ -40,7 +40,9 @@ const float value = 0.1;
 void main(void) {
 	vec4 position = projectionMatrix * viewMatrix * modelMatrix * vec4(0, 0, 0, 1);
     position = position / position.w;
-    position.xy += (inPosition * height - vec2(width, height)) / screenSize;
+    float deltaX = (inPosition.x * height - width) / screenSize.x;
+    float deltaY = (inPosition.y * height - height) / screenSize.y;
+    position.x += deltaX; position.y += deltaY;
 	gl_Position = position;
 
     passSTR = inSTR;
