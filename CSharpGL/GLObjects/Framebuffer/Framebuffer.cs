@@ -11,8 +11,17 @@ namespace CSharpGL
         private static GLDelegates.void_int_uintN glGenFramebuffers;
         private static GLDelegates.void_uint_uint glBindFramebuffer;
         private static GLDelegates.void_uint_uint_uint_int glFramebufferTexture;
+        /// <summary>
+        /// (GLenum target​, GLenum attachment​, GLenum textarget​, GLuint texture​, GLint level);
+        /// </summary>
         private static GLDelegates.void_uint_uint_uint_uint_int glFramebufferTexture1D;
+        /// <summary>
+        /// (GLenum target​, GLenum attachment​, GLenum textarget​, GLuint texture​, GLint level);
+        /// </summary>
         private static GLDelegates.void_uint_uint_uint_uint_int glFramebufferTexture2D;
+        /// <summary>
+        /// (GLenum target​, GLenum attachment​, GLuint texture​, GLint level​, GLint layer);
+        /// </summary>
         private static GLDelegates.void_uint_uint_uint_int_int glFramebufferTextureLayer;
         private static GLDelegates.void_int_uintN glDrawBuffers;
         private static GLDelegates.void_uint glDrawBuffer;
