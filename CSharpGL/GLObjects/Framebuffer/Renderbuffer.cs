@@ -38,17 +38,8 @@
             glRenderbufferStorage(GL.GL_RENDERBUFFER,
                 internalformat,// TODO: add comment about GL.GL_DEPTH24_STENCIL8, GL.GL_RGBA,
                 width, height);
+            glBindRenderbuffer(GL.GL_RENDERBUFFER, 0);
         }
-
-        /// <summary>
-        ///
-        /// </summary>
-        public RenderbufferType BufferType { get; private set; }
-
-        /// <summary>
-        ///
-        /// </summary>
-        public int Height { get; set; }
 
         /// <summary>
         /// Framebuffer Id.
@@ -58,7 +49,17 @@
         /// <summary>
         ///
         /// </summary>
+        public int Height { get; set; }
+
+        /// <summary>
+        ///
+        /// </summary>
         public int Width { get; set; }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public RenderbufferType BufferType { get; private set; }
 
         ///// <summary>
         ///// Bind a named renderbuffer object.
