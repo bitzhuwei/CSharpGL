@@ -99,12 +99,12 @@ namespace CSharpGL
                 TextureTarget target = this.Target;
                 GL.Instance.BindTexture((uint)target, ids[0]);
 
-                this.builtInSampler.Apply(this.Target);
+                this.builtInSampler.Apply(target);
                 this.Storage.Apply();
                 MipmapBuilder mipmapBuilder = this.mipmapBuilder;
-                if (mipmapBuilder != null) { mipmapBuilder.GenerateMipmmap((uint)this.Target); }
+                if (mipmapBuilder != null) { mipmapBuilder.GenerateMipmmap((uint)target); }
 
-                GL.Instance.BindTexture((uint)this.Target, 0);
+                GL.Instance.BindTexture((uint)target, 0);
 
                 this.initialized = true;
             }
