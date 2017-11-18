@@ -8,7 +8,7 @@ namespace ZeroAttributeInVertexShader
 {
     partial class ZeroAttributeNode
     {
-        private const string vertexShader = @"#version 430 core
+        private const string vertexShader = @"#version 150 core
 
 out vec2 v_texCoord;
 uniform mat4 mvp;
@@ -23,7 +23,7 @@ void main(void)
 	gl_Position = mvp * vertices[gl_VertexID];
 }
 ";
-        private const string fragmentShader = @"#version 430 core
+        private const string fragmentShader = @"#version 150 core
 
 uniform sampler2D u_texture; 
 
