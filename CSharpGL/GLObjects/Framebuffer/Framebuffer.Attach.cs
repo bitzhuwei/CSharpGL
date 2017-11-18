@@ -5,29 +5,11 @@ namespace CSharpGL
 {
     public partial class Framebuffer
     {
-        private static readonly uint[] attachment_id =
-        {
-			GL.GL_COLOR_ATTACHMENT0,
-			GL.GL_COLOR_ATTACHMENT1,
-			GL.GL_COLOR_ATTACHMENT2,
-			GL.GL_COLOR_ATTACHMENT3,
-			GL.GL_COLOR_ATTACHMENT4,
-			GL.GL_COLOR_ATTACHMENT5,
-			GL.GL_COLOR_ATTACHMENT6,
-			GL.GL_COLOR_ATTACHMENT7,
-			GL.GL_COLOR_ATTACHMENT8,
-			GL.GL_COLOR_ATTACHMENT9,
-			GL.GL_COLOR_ATTACHMENT10,
-			GL.GL_COLOR_ATTACHMENT11,
-			GL.GL_COLOR_ATTACHMENT12,
-			GL.GL_COLOR_ATTACHMENT13,
-			GL.GL_COLOR_ATTACHMENT14,
-			GL.GL_COLOR_ATTACHMENT15,
-        };
+        private static readonly int maxColorAttachmentCount;
+        private uint nextColorAttachmentIndex = 0;
 
         private List<Renderbuffer> colorBufferList = new List<Renderbuffer>();
         private Renderbuffer depthBuffer;
-        private int nextColorAttachmentIndex = 0;
 
         /// <summary>
         /// et the list of draw buffers.

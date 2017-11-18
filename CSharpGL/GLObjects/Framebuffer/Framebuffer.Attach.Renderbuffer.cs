@@ -33,11 +33,12 @@ namespace CSharpGL
 
         private Renderbuffer AttachColorbuffer(FramebufferTarget target)
         {
-            if (nextColorAttachmentIndex >= attachment_id.Length)
+            if (nextColorAttachmentIndex >= Framebuffer.maxColorAttachmentCount)
             { throw new IndexOutOfRangeException("Not enough attach points!"); }
 
             Renderbuffer colorBuffer = Renderbuffer.CreateColorbuffer(this.Width, this.Height, GL.GL_RGBA);
-            glFramebufferRenderbuffer((uint)target, attachment_id[nextColorAttachmentIndex++], GL.GL_RENDERBUFFER, colorBuffer.Id);
+            glFramebufferRenderbuffer((uint)target, GL.GL_COLOR_ATTACHMENT0 + this.nextColorAttachmentIndex, GL.GL_RENDERBUFFER, colorBuffer.Id);
+            this.nextColorAttachmentIndex++;
 
             this.colorBufferList.Add(colorBuffer);
 
