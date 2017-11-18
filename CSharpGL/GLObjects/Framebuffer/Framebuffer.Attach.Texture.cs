@@ -7,6 +7,7 @@ namespace CSharpGL
     {
         /// <summary>
         /// Attach texture's image\images in one mipmap level.
+        /// If there are multiple images in one mipmap level of the specified <paramref name="texture"/>, then we will start 'layered rendering'.
         /// <para>Bind() this framebuffer before invoking this method.</para>
         /// </summary>
         /// <param name="texture">texture of which the image to be attached.</param>
