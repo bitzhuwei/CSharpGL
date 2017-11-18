@@ -40,6 +40,7 @@ namespace CSharpGL
                 if (context != IntPtr.Zero)
                 {
                     glDeleteRenderbuffers(this.renderbuffer.Length, this.renderbuffer);
+                    this.renderbuffer[0] = 0;
                 }
             }
 

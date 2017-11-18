@@ -67,7 +67,7 @@ namespace ComputeShader.HelloComputeShader
             {
                 // This is the texture that the compute program will write into
                 var storage = new TexStorage2D(TexStorage2D.Target.Texture2D, GL.GL_RGBA32F, 8, 256, 256);
-                var texture = new Texture(TextureTarget.Texture2D, storage);
+                var texture = new Texture(storage);
                 texture.Initialize();
                 this.outputTexture = texture;
             }

@@ -11,7 +11,18 @@ namespace CSharpGL
         private static GLDelegates.void_int_uintN glGenFramebuffers;
         private static GLDelegates.void_uint_uint glBindFramebuffer;
         private static GLDelegates.void_uint_uint_uint_int glFramebufferTexture;
-        private static GLDelegates.void_uint_uint_uint_uint_int glFramebufferTexture2D;
+        ///// <summary>
+        ///// (GLenum target​, GLenum attachment​, GLenum textarget​, GLuint texture​, GLint level);
+        ///// </summary>
+        //private static GLDelegates.void_uint_uint_uint_uint_int glFramebufferTexture1D;
+        ///// <summary>
+        ///// (GLenum target​, GLenum attachment​, GLenum textarget​, GLuint texture​, GLint level);
+        ///// </summary>
+        //private static GLDelegates.void_uint_uint_uint_uint_int glFramebufferTexture2D;
+        /// <summary>
+        /// (GLenum target​, GLenum attachment​, GLuint texture​, GLint level​, GLint layer);
+        /// </summary>
+        private static GLDelegates.void_uint_uint_uint_int_int glFramebufferTextureLayer;
         private static GLDelegates.void_int_uintN glDrawBuffers;
         private static GLDelegates.void_uint glDrawBuffer;
         private static GLDelegates.void_uint glReadBuffer;
@@ -60,7 +71,9 @@ namespace CSharpGL
             glGenFramebuffers = GL.Instance.GetDelegateFor("glGenFramebuffers", GLDelegates.typeof_void_int_uintN) as GLDelegates.void_int_uintN;
             glBindFramebuffer = GL.Instance.GetDelegateFor("glBindFramebuffer", GLDelegates.typeof_void_uint_uint) as GLDelegates.void_uint_uint;
             glFramebufferTexture = GL.Instance.GetDelegateFor("glFramebufferTexture", GLDelegates.typeof_void_uint_uint_uint_int) as GLDelegates.void_uint_uint_uint_int;
-            glFramebufferTexture2D = GL.Instance.GetDelegateFor("glFramebufferTexture2D", GLDelegates.typeof_void_uint_uint_uint_uint_int) as GLDelegates.void_uint_uint_uint_uint_int;
+            //glFramebufferTexture1D = GL.Instance.GetDelegateFor("glFramebufferTexture1D", GLDelegates.typeof_void_uint_uint_uint_uint_int) as GLDelegates.void_uint_uint_uint_uint_int;
+            //glFramebufferTexture2D = GL.Instance.GetDelegateFor("glFramebufferTexture2D", GLDelegates.typeof_void_uint_uint_uint_uint_int) as GLDelegates.void_uint_uint_uint_uint_int;
+            glFramebufferTextureLayer = GL.Instance.GetDelegateFor("glFramebufferTextureLayer", GLDelegates.typeof_void_uint_uint_uint_int_int) as GLDelegates.void_uint_uint_uint_int_int;
             glDrawBuffers = GL.Instance.GetDelegateFor("glDrawBuffers", GLDelegates.typeof_void_int_uintN) as GLDelegates.void_int_uintN;
             glDrawBuffer = GL.Instance.GetDelegateFor("glDrawBuffer", GLDelegates.typeof_void_uint) as GLDelegates.void_uint;
             glReadBuffer = GL.Instance.GetDelegateFor("glReadBuffer", GLDelegates.typeof_void_uint) as GLDelegates.void_uint;
@@ -68,6 +81,8 @@ namespace CSharpGL
             glFramebufferParameteri = GL.Instance.GetDelegateFor("glFramebufferParameteri", GLDelegates.typeof_void_uint_uint_int) as GLDelegates.void_uint_uint_int;
             glCheckFramebufferStatus = GL.Instance.GetDelegateFor("glCheckFramebufferStatus", GLDelegates.typeof_uint_uint) as GLDelegates.uint_uint;
             glDeleteFramebuffers = GL.Instance.GetDelegateFor("glDeleteFramebuffers", GLDelegates.typeof_void_int_uintN) as GLDelegates.void_int_uintN;
+
+            Framebuffer.maxColorAttachmentCount = Framebuffer.MaxColorAttachments();
 
             Framebuffer.bindingStack.Push(null);// default framebuffer with Id = 0.
         }
@@ -128,26 +143,5 @@ namespace CSharpGL
         {
             return string.Format("Framebuffer Id: {0}", this.Id);
         }
-    }
-
-    /// <summary>
-    ///
-    /// </summary>
-    public enum FramebufferTarget : uint
-    {
-        /// <summary>
-        /// used to draw(write only) something.
-        /// </summary>
-        DrawFramebuffer = GL.GL_DRAW_FRAMEBUFFER,
-
-        /// <summary>
-        /// used to read from(read only).
-        /// </summary>
-        ReadFramebuffer = GL.GL_READ_FRAMEBUFFER,
-
-        /// <summary>
-        /// both read/write.
-        /// </summary>
-        Framebuffer = GL.GL_FRAMEBUFFER,
     }
 }

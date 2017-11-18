@@ -54,7 +54,7 @@ namespace CSharpGL
                 var bitmap = this.bitmap;
                 bitmap.RotateFlip(System.Drawing.RotateFlipType.Rotate180FlipX);
                 var texImageBitmap = new TexImageBitmap(bitmap);
-                var texture = new Texture(TextureTarget.Texture2D, texImageBitmap);
+                var texture = new Texture(texImageBitmap);
                 texture.BuiltInSampler.Add(new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP_TO_EDGE));
                 texture.BuiltInSampler.Add(new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_CLAMP_TO_EDGE));
                 texture.BuiltInSampler.Add(new TexParameteri(TexParameter.PropertyName.TextureWrapR, (int)GL.GL_CLAMP_TO_EDGE));

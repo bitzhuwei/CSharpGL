@@ -91,6 +91,10 @@
     <None Include="GLCanvas\readme.md" />
     <Compile Include="GLAPI\GL.PrintError.cs" />
     <Compile Include="GLAPI\GL.DrawText.cs" />
+    <Compile Include="GLObjects\Framebuffer\FramebufferTarget.cs" />
+    <Compile Include="GLObjects\Framebuffer\Framebuffer.Attach.Renderbuffer.cs" />
+    <Compile Include="GLObjects\Framebuffer\Framebuffer.Attach.Texture.cs" />
+    <Compile Include="GLObjects\Framebuffer\AttachmentLocation.cs" />
     <Compile Include="GLObjects\GLBuffers\IndependentBuffers\TransformFeedbackBuffer.AsVertexBuffer.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -472,7 +476,7 @@
     <Compile Include="Scene\Camera\ICamera\IPerspectiveViewCamera.cs" />
     <Compile Include="Scene\Camera\ICamera\IViewCamera.cs" />
     <Compile Include="Scene\Camera\IViewCamera.Orientation.cs" />
-    <Compile Include="GLObjects\Framebuffer\Framebuffer.Attachments.cs" />
+    <Compile Include="GLObjects\Framebuffer\Framebuffer.Attach.cs" />
     <Compile Include="GLObjects\Framebuffer\Framebuffer.Completeness.cs" />
     <Compile Include="GLObjects\Framebuffer\Framebuffer.cs" />
     <Compile Include="GLObjects\Framebuffer\Framebuffer.IDisposable.cs" />

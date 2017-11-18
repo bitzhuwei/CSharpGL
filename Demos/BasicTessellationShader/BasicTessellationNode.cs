@@ -45,7 +45,7 @@ namespace BasicTessellationShader
             {
                 var bitmap = new Bitmap(@"heightmap.png");
                 var storage = new TexImageBitmap(bitmap);
-                var texture = new Texture(TextureTarget.Texture2D, storage);
+                var texture = new Texture(storage);
                 texture.BuiltInSampler.Add(new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_REPEAT));
                 texture.BuiltInSampler.Add(new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_REPEAT));
                 texture.BuiltInSampler.Add(new TexParameteri(TexParameter.PropertyName.TextureWrapR, (int)GL.GL_REPEAT));
@@ -60,7 +60,7 @@ namespace BasicTessellationShader
             {
                 var bitmap = new Bitmap(@"diffuse.png");
                 var storage = new TexImageBitmap(bitmap);
-                var texture = new Texture(TextureTarget.Texture2D, storage);
+                var texture = new Texture(storage);
                 texture.BuiltInSampler.Add(new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_REPEAT));
                 texture.BuiltInSampler.Add(new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_REPEAT));
                 texture.BuiltInSampler.Add(new TexParameteri(TexParameter.PropertyName.TextureWrapR, (int)GL.GL_REPEAT));

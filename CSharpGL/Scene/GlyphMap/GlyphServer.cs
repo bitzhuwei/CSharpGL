@@ -213,7 +213,7 @@ namespace CSharpGL
         private static Texture GenerateTexture(Bitmap[] bitmaps)
         {
             var storage = new TexImageBitmaps(bitmaps);
-            var texture = new Texture(TextureTarget.Texture2DArray, storage,
+            var texture = new Texture(storage,
                 new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_REPEAT),
                 new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_REPEAT),
                 //new TexParameteri(TexParameter.PropertyName.TextureWrapR, (int)GL.GL_REPEAT),
