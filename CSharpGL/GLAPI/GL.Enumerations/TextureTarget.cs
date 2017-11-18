@@ -1,7 +1,7 @@
 ﻿namespace CSharpGL
 {
     /// <summary>
-    /// Specifies the target to which the texture is bound. Must be either GL_TEXTURE_1D, GL_TEXTURE_2D, GL_TEXTURE_3D, or GL_TEXTURE_CUBE_MAP.
+    /// Specifies the target to which the texture is bound.
     /// </summary>
     public enum TextureTarget : uint
     {
@@ -11,7 +11,7 @@
         Unknown = 0,
 
         /// <summary>
-        /// The initial value is GL_ZERO
+        /// 
         /// </summary>
         Texture1D = GL.GL_TEXTURE_1D,
 
