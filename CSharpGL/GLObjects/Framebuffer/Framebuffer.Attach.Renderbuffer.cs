@@ -8,13 +8,13 @@ namespace CSharpGL
         /// <summary>
         /// Attach a renderbuffer.
         /// </summary>
-        /// <param name="renderbuffer"></param>
+        /// <param name="renderbufferType"></param>
         /// <param name="target"></param>
         /// <returns></returns>
-        public Renderbuffer Attach(RenderbufferType renderbuffer, FramebufferTarget target = FramebufferTarget.Framebuffer)
+        public Renderbuffer Attach(RenderbufferType renderbufferType, FramebufferTarget target = FramebufferTarget.Framebuffer)
         {
             Renderbuffer result = null;
-            switch (renderbuffer)
+            switch (renderbufferType)
             {
                 case RenderbufferType.DepthBuffer:
                     result = AttachDepthbuffer(target);
@@ -25,7 +25,7 @@ namespace CSharpGL
                     break;
 
                 default:
-                    throw new Exception("Unexpected RenderbufferType!");
+                    throw new NotDealWithNewEnumItemException(typeof(RenderbufferType));
             }
 
             return result;
@@ -33,7 +33,7 @@ namespace CSharpGL
 
         private Renderbuffer AttachColorbuffer(FramebufferTarget target)
         {
-            if (nextColorAttachmentIndex >= Framebuffer.maxColorAttachmentCount)
+            if (this.nextColorAttachmentIndex >= Framebuffer.maxColorAttachmentCount)
             { throw new IndexOutOfRangeException("Not enough attach points!"); }
 
             Renderbuffer colorBuffer = Renderbuffer.CreateColorbuffer(this.Width, this.Height, GL.GL_RGBA);
@@ -51,7 +51,7 @@ namespace CSharpGL
             { throw new Exception("Depth buffer already exists!"); }
 
             Renderbuffer depthBuffer = Renderbuffer.CreateDepthbuffer(this.Width, this.Height, DepthComponentType.DepthComponent24);
-            glFramebufferRenderbuffer((uint)target, (uint)RenderbufferAttachment.DepthAttachment, GL.GL_RENDERBUFFER, depthBuffer.Id);
+            glFramebufferRenderbuffer((uint)target, GL.GL_DEPTH_ATTACHMENT, GL.GL_RENDERBUFFER, depthBuffer.Id);
 
             this.depthBuffer = depthBuffer;
 
