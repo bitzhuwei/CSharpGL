@@ -93,7 +93,7 @@
     <Compile Include="GLAPI\GL.DrawText.cs" />
     <Compile Include="GLObjects\Framebuffer\Framebuffer.Attach.Renderbuffer.cs" />
     <Compile Include="GLObjects\Framebuffer\Framebuffer.Attach.Texture.cs" />
-    <Compile Include="GLObjects\Framebuffer\TextureAttachment.cs" />
+    <Compile Include="GLObjects\Framebuffer\AttachmentLocation.cs" />
     <Compile Include="GLObjects\Framebuffer\RenderbufferAttachment.cs" />
     <Compile Include="GLObjects\GLBuffers\IndependentBuffers\TransformFeedbackBuffer.AsVertexBuffer.cs">
       <SubType>Code</SubType>

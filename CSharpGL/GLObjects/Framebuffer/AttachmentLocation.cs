@@ -6,26 +6,26 @@ namespace CSharpGL
     /// <summary>
     /// 
     /// </summary>
-    public enum TextureAttachment : uint
+    public enum AttachmentLocation : uint
     {
         /// <summary>
         /// 
         /// </summary>
-        ColorAttachment = GL.GL_COLOR_ATTACHMENT0,
+        Color = GL.GL_COLOR_ATTACHMENT0,
 
         /// <summary>
         ///
         /// </summary>
-        DepthAttachment = GL.GL_DEPTH_ATTACHMENT,
+        Depth = GL.GL_DEPTH_ATTACHMENT,
 
         /// <summary>
         ///
         /// </summary>
-        StencilAttachment = GL.GL_STENCIL_ATTACHMENT,
+        Stencil = GL.GL_STENCIL_ATTACHMENT,
 
         /// <summary>
         ///
         /// </summary>
-        DepthStencilAttachment = GL.GL_DEPTH_STENCIL_ATTACHMENT,
+        DepthStencil = GL.GL_DEPTH_STENCIL_ATTACHMENT,
     }
 }

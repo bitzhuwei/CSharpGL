@@ -68,7 +68,7 @@ namespace CSharpGL
                 new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP_TO_EDGE),
                 new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_CLAMP_TO_EDGE));
             texture.Initialize();
-            framebuffer.Attach(texture, true);
+            framebuffer.Attach(texture, AttachmentLocation.Depth);
             this.BindingTexture = texture;
 
             //framebuffer.Attach(depthBuffer);// special
