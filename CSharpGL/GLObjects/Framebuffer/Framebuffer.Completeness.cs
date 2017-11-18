@@ -50,6 +50,7 @@ namespace CSharpGL
                         break;
 
                     default:
+                        message = string.Format("Not specified error type:[0x{0:X}]!", result);
                         break;
                 }
 
