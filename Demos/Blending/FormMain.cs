@@ -72,7 +72,8 @@ namespace Blending
             var group = new GroupNode();
             {
                 var bmp = new Bitmap(@"Crate.bmp");
-                var texture = new Texture(TextureTarget.Texture2D, new TexImageBitmap(bmp));
+                TexStorageBase storage = new TexImageBitmap(bmp);
+                var texture = new Texture(storage);
                 texture.BuiltInSampler.Add(new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP_TO_EDGE));
                 texture.BuiltInSampler.Add(new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_CLAMP_TO_EDGE));
                 texture.BuiltInSampler.Add(new TexParameteri(TexParameter.PropertyName.TextureWrapR, (int)GL.GL_CLAMP_TO_EDGE));
@@ -109,7 +110,7 @@ namespace Blending
                 {
                     var bmp = new Bitmap(1, 1);
                     using (var g = Graphics.FromImage(bmp)) { g.Clear(item.color); }
-                    var texture = new Texture(TextureTarget.Texture2D, new TexImageBitmap(bmp));
+                    var texture = new Texture(new TexImageBitmap(bmp));
                     texture.BuiltInSampler.Add(new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP_TO_EDGE));
                     texture.BuiltInSampler.Add(new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_CLAMP_TO_EDGE));
                     texture.BuiltInSampler.Add(new TexParameteri(TexParameter.PropertyName.TextureWrapR, (int)GL.GL_CLAMP_TO_EDGE));

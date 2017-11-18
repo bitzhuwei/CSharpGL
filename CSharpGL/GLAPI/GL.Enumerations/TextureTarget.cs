@@ -5,10 +5,10 @@
     /// </summary>
     public enum TextureTarget : uint
     {
-        ///// <summary>
-        /////
-        ///// </summary>
-        //Unknown = 0,
+        /// <summary>
+        ///
+        /// </summary>
+        Unknown = 0,
 
         /// <summary>
         /// The initial value is GL_ZERO

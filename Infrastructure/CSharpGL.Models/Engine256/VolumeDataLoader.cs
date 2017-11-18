@@ -32,8 +32,7 @@ namespace CSharpGL
             // generate OpenGL texture
             var dataProvider = new ArrayDataProvider<byte>(bytes);
             var storage = new TexImage3D(TexImage3D.Target.Texture3D, GL.GL_RED, XDIM, YDIM, ZDIM, GL.GL_RED, GL.GL_UNSIGNED_BYTE, dataProvider);
-            var texture = new Texture(
-              TextureTarget.Texture3D, storage, new MipmapBuilder(),
+            var texture = new Texture(storage, new MipmapBuilder(),
               new TexParameteri(TexParameter.PropertyName.TextureWrapR, (int)GL.GL_CLAMP),
               new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP),
               new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_CLAMP),

@@ -15,7 +15,7 @@ namespace SimpleNoise.Sun
 
             var bitmap = new Bitmap(@"sunColor.png");
             var storage = new TexImage1D(GL.GL_RGBA, bitmap.Width, GL.GL_BGRA, GL.GL_UNSIGNED_BYTE, new ImageDataProvider(bitmap));
-            var texture = new Texture(TextureTarget.Texture1D, storage,
+            var texture = new Texture(storage,
                 new TexParameteri(TexParameter.PropertyName.TextureWrapR, (int)GL.GL_CLAMP_TO_EDGE),
                 new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP_TO_EDGE),
                 new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_CLAMP_TO_EDGE),

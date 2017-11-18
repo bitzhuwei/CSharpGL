@@ -82,7 +82,7 @@ void main()
             var dataProvider = new CubemapDataProvider(
                 bitmaps[0], bitmaps[1], bitmaps[2], bitmaps[3], bitmaps[4], bitmaps[5]);
             var storage = new CubemapTexImage2D(GL.GL_RGBA, bitmaps[0].Width, bitmaps[0].Height, GL.GL_BGRA, GL.GL_UNSIGNED_BYTE, dataProvider);
-            var texture = new Texture(TextureTarget.TextureCubeMap, storage,
+            var texture = new Texture(storage,
                 new TexParameteri(TexParameter.PropertyName.TextureMagFilter, (int)GL.GL_LINEAR),
                 new TexParameteri(TexParameter.PropertyName.TextureMinFilter, (int)GL.GL_LINEAR),
                 new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP_TO_EDGE),

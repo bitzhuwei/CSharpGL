@@ -55,7 +55,7 @@ namespace CSharpGL
             framebuffer.Bind();
             Renderbuffer colorbuffer = framebuffer.Attach(RenderbufferType.ColorBuffer);//0
             //Texture texture = framebuffer.Attach(TextureAttachment.ColorAttachment);//1
-            var texture = new Texture(TextureTarget.Texture2D, new TexImageBitmap(width, height),
+            var texture = new Texture(new TexImageBitmap(width, height),
                 new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_REPEAT),
                 new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_REPEAT),
                 new TexParameteri(TexParameter.PropertyName.TextureWrapR, (int)GL.GL_REPEAT),

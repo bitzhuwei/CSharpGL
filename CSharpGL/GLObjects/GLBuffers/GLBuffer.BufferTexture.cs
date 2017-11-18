@@ -10,8 +10,7 @@
         /// <returns></returns>
         public Texture DumpBufferTexture(uint internalFormat, bool autoDispose)
         {
-            var texture = new Texture(TextureTarget.TextureBuffer,
-                new TexBufferStorage(internalFormat, this, autoDispose));
+            var texture = new Texture(new TexBufferStorage(internalFormat, this, autoDispose));
             texture.Initialize();
             return texture;
         }

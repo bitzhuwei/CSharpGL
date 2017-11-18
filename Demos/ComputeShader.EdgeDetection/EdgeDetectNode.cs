@@ -83,7 +83,7 @@ namespace ComputeShader.EdgeDetection
         private void InitFinalTexture()
         {
             var storage = new TexStorage2D(TexStorage2D.Target.Texture2D, GL.GL_RGBA32F, 8, width, height);
-            var texture = new Texture(TextureTarget.Texture2D, storage);
+            var texture = new Texture(storage);
             texture.Initialize();
 
             this.finalTexture = texture;
@@ -92,7 +92,7 @@ namespace ComputeShader.EdgeDetection
         private void InitIntermediateTexture()
         {
             var storage = new TexStorage2D(TexStorage2D.Target.Texture2D, GL.GL_RGBA32F, 8, width, height);
-            var texture = new Texture(TextureTarget.Texture2D, storage);
+            var texture = new Texture(storage);
             texture.Initialize();
 
             this.intermediateTexture = texture;
@@ -102,7 +102,7 @@ namespace ComputeShader.EdgeDetection
         {
             bitmap.RotateFlip(RotateFlipType.Rotate180FlipX);
 
-            var texture = new Texture(TextureTarget.Texture2D, new TexImageBitmap(bitmap, GL.GL_RGBA32F));
+            var texture = new Texture(new TexImageBitmap(bitmap, GL.GL_RGBA32F));
             texture.BuiltInSampler.Add(new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP_TO_EDGE));
             texture.BuiltInSampler.Add(new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_CLAMP_TO_EDGE));
             texture.BuiltInSampler.Add(new TexParameteri(TexParameter.PropertyName.TextureWrapR, (int)GL.GL_CLAMP_TO_EDGE));

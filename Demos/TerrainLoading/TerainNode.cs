@@ -81,7 +81,7 @@ namespace TerrainLoading
             }
 
             var storage = new TexImageBitmap(image, GL.GL_RED);
-            var heightMapTexture = new Texture(TextureTarget.Texture2D, storage,
+            var heightMapTexture = new Texture(storage,
                 //new TexParameteri(TexParameter.PropertyName.TextureWrapR, (int)GL.GL_CLAMP),
                 new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP),
                 new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_CLAMP),

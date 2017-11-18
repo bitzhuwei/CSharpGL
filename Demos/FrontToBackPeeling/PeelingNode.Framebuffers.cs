@@ -34,7 +34,7 @@ namespace FrontToBackPeeling
             for (int i = 0; i < 2; i++)
             {
                 var depthStorage = new TexImage2D(TexImage2D.Target.TextureRectangle, GL.GL_DEPTH_COMPONENT32, width, height, GL.GL_DEPTH_COMPONENT, GL.GL_FLOAT);
-                var depthTexture = new Texture(TextureTarget.TextureRectangle, depthStorage,
+                var depthTexture = new Texture(depthStorage,
                     new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP),
                     new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_CLAMP),
                     new TexParameteri(TexParameter.PropertyName.TextureMagFilter, (int)GL.GL_NEAREST),
@@ -43,7 +43,7 @@ namespace FrontToBackPeeling
                 depthTexture.Initialize();
 
                 var colorStorage = new TexImage2D(TexImage2D.Target.TextureRectangle, GL.GL_RGBA, width, height, GL.GL_RGBA, GL.GL_FLOAT);
-                var colorTexture = new Texture(TextureTarget.TextureRectangle, colorStorage,
+                var colorTexture = new Texture(colorStorage,
                     new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP),
                     new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_CLAMP),
                     new TexParameteri(TexParameter.PropertyName.TextureMagFilter, (int)GL.GL_NEAREST),
@@ -67,7 +67,7 @@ namespace FrontToBackPeeling
 
             {
                 var colorStorage = new TexImage2D(TexImage2D.Target.TextureRectangle, GL.GL_RGBA, width, height, GL.GL_RGBA, GL.GL_FLOAT);
-                var colorTexture = new Texture(TextureTarget.TextureRectangle, colorStorage,
+                var colorTexture = new Texture(colorStorage,
                     new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP),
                     new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_CLAMP),
                     new TexParameteri(TexParameter.PropertyName.TextureMagFilter, (int)GL.GL_NEAREST),

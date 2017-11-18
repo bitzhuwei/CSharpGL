@@ -18,7 +18,21 @@ namespace CSharpGL
         /// <summary>
         /// binding target of this texture.
         /// </summary>
-        public TextureTarget Target { get; protected set; }
+        public TextureTarget Target
+        {
+            get
+            {
+                var storage = this.Storage;
+                if (storage != null)
+                {
+                    return storage.target;
+                }
+                else
+                {
+                    return TextureTarget.Unknown;
+                }
+            }
+        }
 
         /// <summary>
         /// texture's id/name from glGenTextures().
@@ -35,12 +49,10 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="target"></param>
         /// <param name="storage"></param>
         /// <param name="texParameters"></param>
-        public Texture(TextureTarget target, TexStorageBase storage, params TexParameter[] texParameters)
+        public Texture(TexStorageBase storage, params TexParameter[] texParameters)
         {
-            this.Target = target;
             this.Storage = storage;
             this.builtInSampler.AddRange(texParameters);
         }
@@ -48,13 +60,11 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="target"></param>
         /// <param name="storage"></param>
         /// <param name="mipmapBuilder"></param>
         /// <param name="texParameters"></param>
-        public Texture(TextureTarget target, TexStorageBase storage, MipmapBuilder mipmapBuilder, params TexParameter[] texParameters)
+        public Texture(TexStorageBase storage, MipmapBuilder mipmapBuilder, params TexParameter[] texParameters)
         {
-            this.Target = target;
             this.Storage = storage;
             this.mipmapBuilder = mipmapBuilder;
             this.builtInSampler.AddRange(texParameters);

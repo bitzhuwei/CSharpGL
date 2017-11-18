@@ -57,8 +57,7 @@ namespace CSharpGL
             framebuffer.Bind();
             //framebuffer.Attach(colorBuffer);//0
             //this.BindingTexture = framebuffer.Attach(TextureAttachment.DepthAttachment);//1
-            var texture = new Texture(TextureTarget.Texture2D,
-                new TexImage2D(TexImage2D.Target.Texture2D, GL.GL_DEPTH_COMPONENT32, width, height, GL.GL_DEPTH_COMPONENT, GL.GL_FLOAT),
+            var texture = new Texture(new TexImage2D(TexImage2D.Target.Texture2D, GL.GL_DEPTH_COMPONENT32, width, height, GL.GL_DEPTH_COMPONENT, GL.GL_FLOAT),
                 // 设置默认滤波模式
                 new TexParameteri(TexParameter.PropertyName.TextureMinFilter, (int)GL.GL_LINEAR),
                 new TexParameteri(TexParameter.PropertyName.TextureMagFilter, (int)GL.GL_LINEAR),
