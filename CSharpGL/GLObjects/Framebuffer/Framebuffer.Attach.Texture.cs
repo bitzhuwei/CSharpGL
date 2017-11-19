@@ -39,7 +39,7 @@ namespace CSharpGL
         /// <param name="cubemapArrayTexture">texture​ must either be null or an existing cube map array texture.</param>
         /// <param name="location">attachment point.</param>
         /// <param name="layer">Specifies the layer of <paramref name="cubemapArrayTexture"/>​ to attach.</param>
-        /// <param name="face">Specifies the face of <paramref name="cubemapArrayTexture"/>​ to attach.</aram>
+        /// <param name="face">Specifies the face of <paramref name="cubemapArrayTexture"/>​ to attach.</param>
         /// <param name="mipmapLevel">Specifies the mipmap level of <paramref name="cubemapArrayTexture"/>​ to attach.</param>
         public void Attach(FramebufferTarget target, Texture cubemapArrayTexture, AttachmentLocation location, int layer, CubemapFace face, int mipmapLevel = 0)
         {
