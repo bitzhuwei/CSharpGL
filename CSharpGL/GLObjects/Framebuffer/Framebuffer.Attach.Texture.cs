@@ -31,31 +31,19 @@ namespace CSharpGL
             }
         }
 
-        // https://www.khronos.org/opengl/wiki/GLAPI/glFramebufferTextureLayer
         /// <summary>
         /// Attach a single layer of a <paramref name="cubemapArrayTexture"/> to the framebuffer.
         /// <para>Bind() this framebuffer before invoking this method.</para>
         /// </summary>
         /// <param name="target"></param>
-        /// <param name="cubemapArrayTexture">texture​ must either be null or an existing three-dimensional texture, one- or two-dimensional array texture, cube map array texture, or multisample array texture.</param>
+        /// <param name="cubemapArrayTexture">texture​ must either be null or an existing cube map array texture.</param>
         /// <param name="location">attachment point.</param>
         /// <param name="layer">Specifies the layer of <paramref name="cubemapArrayTexture"/>​ to attach.</param>
-        /// <param name="face"></param>
+        /// <param name="face">Specifies the face of <paramref name="cubemapArrayTexture"/>​ to attach.</aram>
         /// <param name="mipmapLevel">Specifies the mipmap level of <paramref name="cubemapArrayTexture"/>​ to attach.</param>
         public void Attach(FramebufferTarget target, Texture cubemapArrayTexture, AttachmentLocation location, int layer, CubemapFace face, int mipmapLevel = 0)
         {
-            if (location == AttachmentLocation.Color)
-            {
-                if (this.nextColorAttachmentIndex >= Framebuffer.maxColorAttachmentCount)
-                { throw new IndexOutOfRangeException("Not enough color attach points!"); }
-
-                glFramebufferTextureLayer((uint)target, GL.GL_COLOR_ATTACHMENT0 + this.nextColorAttachmentIndex, cubemapArrayTexture != null ? cubemapArrayTexture.Id : 0, mipmapLevel, (layer * 6 + (int)((uint)face - GL.GL_TEXTURE_CUBE_MAP_POSITIVE_X)));
-                this.nextColorAttachmentIndex++;
-            }
-            else
-            {
-                glFramebufferTextureLayer((uint)target, (uint)location, cubemapArrayTexture != null ? cubemapArrayTexture.Id : 0, mipmapLevel, (layer * 6 + (int)((uint)face - GL.GL_TEXTURE_CUBE_MAP_POSITIVE_X)));
-            }
+            this.Attach(target, cubemapArrayTexture, location, (layer * 6 + (int)((uint)face - GL.GL_TEXTURE_CUBE_MAP_POSITIVE_X)), mipmapLevel);
         }
 
         // https://www.khronos.org/opengl/wiki/GLAPI/glFramebufferTextureLayer
