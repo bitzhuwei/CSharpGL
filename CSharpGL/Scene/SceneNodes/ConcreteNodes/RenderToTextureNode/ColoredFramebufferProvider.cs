@@ -62,7 +62,7 @@ namespace CSharpGL
                 new TexParameteri(TexParameter.PropertyName.TextureMinFilter, (int)GL.GL_LINEAR),
                 new TexParameteri(TexParameter.PropertyName.TextureMagFilter, (int)GL.GL_LINEAR));
             texture.Initialize();
-            framebuffer.Attach(texture, AttachmentLocation.Color);
+            framebuffer.Attach(FramebufferTarget.Framebuffer, texture, AttachmentLocation.Color);
             Renderbuffer depthbuffer = framebuffer.Attach(RenderbufferType.DepthBuffer);// special
             framebuffer.SetDrawBuffer(GL.GL_COLOR_ATTACHMENT0 + 1);// as in 1 in framebuffer.Attach(TextureAttachment.ColorAttachment);//1
             framebuffer.CheckCompleteness();

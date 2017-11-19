@@ -55,12 +55,12 @@ namespace CSharpGL
         /// <returns></returns>
         public override IEnumerator<CubemapData> GetEnumerator()
         {
-            yield return new CubemapData(this.positiveX, CubemapData.Target.PositiveX, false);
-            yield return new CubemapData(this.negtiveX, CubemapData.Target.NegtiveX, false);
-            yield return new CubemapData(this.positiveY, CubemapData.Target.PositiveY, false);
-            yield return new CubemapData(this.negtiveY, CubemapData.Target.NegtiveY, false);
-            yield return new CubemapData(this.positiveZ, CubemapData.Target.PositiveZ, false);
-            yield return new CubemapData(this.negtiveZ, CubemapData.Target.NegtiveZ, false);
+            yield return new CubemapData(this.positiveX, CubemapFace.PositiveX, false);
+            yield return new CubemapData(this.negtiveX, CubemapFace.NegtiveX, false);
+            yield return new CubemapData(this.positiveY, CubemapFace.PositiveY, false);
+            yield return new CubemapData(this.negtiveY, CubemapFace.NegtiveY, false);
+            yield return new CubemapData(this.positiveZ, CubemapFace.PositiveZ, false);
+            yield return new CubemapData(this.negtiveZ, CubemapFace.NegtiveZ, false);
         }
 
         #region IDisposable 成员

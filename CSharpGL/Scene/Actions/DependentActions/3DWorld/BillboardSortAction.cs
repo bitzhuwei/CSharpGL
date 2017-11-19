@@ -62,8 +62,7 @@ namespace CSharpGL
         /// binary insertion sort.
         /// </summary>
         /// <param name="billboard"></param>
-        /// <param name="camera"></param>
-        /// <param name="list"></param>
+        /// <param name="viewMatrix"></param>
         private void Insert(TextBillboardNode billboard, mat4 viewMatrix)
         {
             vec3 viewPosition = billboard.GetAbsoluteViewPosition(viewMatrix);

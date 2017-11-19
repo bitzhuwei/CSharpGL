@@ -10,17 +10,24 @@ namespace CSharpGL
     {
         private static GLDelegates.void_int_uintN glGenFramebuffers;
         private static GLDelegates.void_uint_uint glBindFramebuffer;
+        /// <summary>
+        /// void glFramebufferTexture(GLenum target​, GLenum attachment​, GLuint texture​, GLint level​);
+        /// </summary>
         private static GLDelegates.void_uint_uint_uint_int glFramebufferTexture;
         ///// <summary>
-        ///// (GLenum target​, GLenum attachment​, GLenum textarget​, GLuint texture​, GLint level);
+        ///// void glFramebufferTexture1D(GLenum target​, GLenum attachment​, GLenum textarget​, GLuint texture​, GLint level​);
         ///// </summary>
         //private static GLDelegates.void_uint_uint_uint_uint_int glFramebufferTexture1D;
         ///// <summary>
-        ///// (GLenum target​, GLenum attachment​, GLenum textarget​, GLuint texture​, GLint level);
+        ///// void glFramebufferTexture2D(GLenum target​, GLenum attachment​, GLenum textarget​, GLuint texture​, GLint level​);
         ///// </summary>
         //private static GLDelegates.void_uint_uint_uint_uint_int glFramebufferTexture2D;
+        ///// <summary>
+        ///// void glFramebufferTexture3D(GLenum target​, GLenum attachment​, GLenum textarget​, GLuint texture​, GLint level​, GLint layer​);
+        ///// </summary>
+        //private static GLDelegates.void_uint_uint_uint_uint_int_int glFramebufferTexture3D;
         /// <summary>
-        /// (GLenum target​, GLenum attachment​, GLuint texture​, GLint level​, GLint layer);
+        /// void glFramebufferTextureLayer(GLenum target​, GLenum attachment​, GLuint texture​, GLint level​, GLint layer​);
         /// </summary>
         private static GLDelegates.void_uint_uint_uint_int_int glFramebufferTextureLayer;
         private static GLDelegates.void_int_uintN glDrawBuffers;
@@ -31,12 +38,12 @@ namespace CSharpGL
         private static GLDelegates.uint_uint glCheckFramebufferStatus;
         private static GLDelegates.void_int_uintN glDeleteFramebuffers;
 
-        private uint[] frameBuffer = new uint[1];
+        private uint[] frameBufferId = new uint[1];
 
         /// <summary>
         /// Framebuffer Id.
         /// </summary>
-        public uint Id { get { return frameBuffer[0]; } }
+        public uint Id { get { return frameBufferId[0]; } }
 
         /// <summary>
         /// 0 means no renderbuffer attached.
@@ -73,6 +80,7 @@ namespace CSharpGL
             glFramebufferTexture = GL.Instance.GetDelegateFor("glFramebufferTexture", GLDelegates.typeof_void_uint_uint_uint_int) as GLDelegates.void_uint_uint_uint_int;
             //glFramebufferTexture1D = GL.Instance.GetDelegateFor("glFramebufferTexture1D", GLDelegates.typeof_void_uint_uint_uint_uint_int) as GLDelegates.void_uint_uint_uint_uint_int;
             //glFramebufferTexture2D = GL.Instance.GetDelegateFor("glFramebufferTexture2D", GLDelegates.typeof_void_uint_uint_uint_uint_int) as GLDelegates.void_uint_uint_uint_uint_int;
+            //glFramebufferTexture3D = GL.Instance.GetDelegateFor("glFramebufferTexture3D", GLDelegates.typeof_void_uint_uint_uint_uint_int_int) as GLDelegates.void_uint_uint_uint_uint_int_int;
             glFramebufferTextureLayer = GL.Instance.GetDelegateFor("glFramebufferTextureLayer", GLDelegates.typeof_void_uint_uint_uint_int_int) as GLDelegates.void_uint_uint_uint_int_int;
             glDrawBuffers = GL.Instance.GetDelegateFor("glDrawBuffers", GLDelegates.typeof_void_int_uintN) as GLDelegates.void_int_uintN;
             glDrawBuffer = GL.Instance.GetDelegateFor("glDrawBuffer", GLDelegates.typeof_void_uint) as GLDelegates.void_uint;
@@ -94,7 +102,7 @@ namespace CSharpGL
         /// <param name="height"></param>
         public Framebuffer(int width, int height)
         {
-            glGenFramebuffers(1, frameBuffer);
+            glGenFramebuffers(1, frameBufferId);
 
             this.Width = width;
             this.Height = height;

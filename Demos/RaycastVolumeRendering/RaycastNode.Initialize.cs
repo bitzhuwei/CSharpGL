@@ -72,7 +72,7 @@ namespace RaycastVolumeRendering
             var framebuffer = new Framebuffer(width, height);
             framebuffer.Bind();
             Texture texture = this.backface2DTexture;
-            framebuffer.Attach(texture, AttachmentLocation.Color);
+            framebuffer.Attach(FramebufferTarget.Framebuffer, texture, AttachmentLocation.Color);
             //Renderbuffer depthBuffer = Renderbuffer.CreateDepthbuffer(texWidth, texHeight, DepthComponentType.DepthComponent);
             framebuffer.Attach(RenderbufferType.DepthBuffer);
             framebuffer.CheckCompleteness();
