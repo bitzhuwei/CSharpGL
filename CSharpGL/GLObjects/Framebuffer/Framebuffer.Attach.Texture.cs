@@ -6,6 +6,8 @@ namespace CSharpGL
     public partial class Framebuffer
     {
         // https://www.khronos.org/opengl/wiki/GLAPI/glFramebufferTexture
+        // https://www.khronos.org/opengl/wiki/GLAPI/glFramebufferTextureLayer
+
         /// <summary>
         /// Attach a level of the <paramref name="texture"/> as a logical buffer to the currently bound framebuffer object.
         /// If there are multiple images in one mipmap level of the <paramref name="texture"/>, then we will start 'layered rendering'.
@@ -17,6 +19,8 @@ namespace CSharpGL
         /// <param name="mipmapLevel">Specifies the mipmap level of <paramref name="texture"/>​ to attach.</param>
         public void Attach(FramebufferTarget target, Texture texture, AttachmentLocation location, int mipmapLevel = 0)
         {
+            if (texture == null) { throw new ArgumentNullException("texture"); }
+
             if (location == AttachmentLocation.Color)
             {
                 if (this.nextColorAttachmentIndex >= Framebuffer.maxColorAttachmentCount)
@@ -46,7 +50,6 @@ namespace CSharpGL
             this.Attach(target, cubemapArrayTexture, location, (layer * 6 + (int)((uint)face - GL.GL_TEXTURE_CUBE_MAP_POSITIVE_X)), mipmapLevel);
         }
 
-        // https://www.khronos.org/opengl/wiki/GLAPI/glFramebufferTextureLayer
         /// <summary>
         /// Attach a single layer of a <paramref name="texture"/> to the framebuffer.
         /// <para>Bind() this framebuffer before invoking this method.</para>
