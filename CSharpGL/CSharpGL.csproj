@@ -422,7 +422,6 @@
     <Compile Include="GLAPI\GL.Enumerations\ErrorCode.cs" />
     <Compile Include="GLAPI\GL.Enumerations\FrontFaceMode.cs" />
     <Compile Include="GLAPI\GL.Enumerations\GetTarget.cs" />
-    <Compile Include="GLAPI\GL.Enumerations\GetTexImage.cs" />
     <Compile Include="GLAPI\GL.Enumerations\Hint.cs" />
     <Compile Include="GLAPI\GL.Enumerations\MapBufferAccess.cs" />
     <Compile Include="GLAPI\GL.Enumerations\MapBufferRangeAccess.cs" />
@@ -436,11 +435,6 @@
     <Compile Include="GLAPI\GL.Enumerations\ShadeModel.cs" />
     <Compile Include="GLAPI\GL.Enumerations\ShaderType.cs" />
     <Compile Include="GLAPI\GL.Enumerations\StringName.cs" />
-    <Compile Include="GLAPI\GL.Enumerations\TexImage2D.cs" />
-    <Compile Include="GLAPI\GL.Enumerations\TexStorage1DTarget.cs" />
-    <Compile Include="GLAPI\GL.Enumerations\TexStorage2DTarget.cs" />
-    <Compile Include="GLAPI\GL.Enumerations\TexStorage3DTarget.cs" />
-    <Compile Include="GLAPI\GL.Enumerations\TexSubImage2D.cs" />
     <Compile Include="GLAPI\GL.Enumerations\TextureTarget.cs" />
     <Compile Include="GLAPI\GL.Enumerations\TransformFeedbackTarget.cs" />
     <Compile Include="GLAPI\GL.Constants\GL.1.2.Consts.cs" />

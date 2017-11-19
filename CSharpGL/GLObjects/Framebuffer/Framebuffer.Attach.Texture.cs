@@ -5,6 +5,7 @@ namespace CSharpGL
 {
     public partial class Framebuffer
     {
+        // https://www.khronos.org/opengl/wiki/GLAPI/glFramebufferTexture
         /// <summary>
         /// Attach texture's image\images in one mipmap level.
         /// If there are multiple images in one mipmap level of the specified <paramref name="texture"/>, then we will start 'layered rendering'.
@@ -13,7 +14,7 @@ namespace CSharpGL
         /// <param name="target"></param>
         /// <param name="texture">texture of which the image to be attached.</param>
         /// <param name="location">attachment point.</param>
-        /// <param name="mipmapLevel">In which mipmap level should the image be attached?</param>
+        /// <param name="mipmapLevel">Specifies the mipmap level of <paramref name="texture"/>​ to attach.</param>
         public void Attach(FramebufferTarget target, Texture texture, AttachmentLocation location, int mipmapLevel = 0)
         {
             if (location == AttachmentLocation.Color)
@@ -36,10 +37,10 @@ namespace CSharpGL
         /// <para>Bind() this framebuffer before invoking this method.</para>
         /// </summary>
         /// <param name="target"></param>
-        /// <param name="texture">texture of which the image to be attached.</param>
+        /// <param name="texture">texture​ must either be null or an existing three-dimensional texture, one- or two-dimensional array texture, cube map array texture, or multisample array texture.</param>
         /// <param name="location">attachment point.</param>
-        /// <param name="layer">layer.</param>
-        /// <param name="mipmapLevel">In which mipmap level should the image be attached?</param>
+        /// <param name="layer">Specifies the layer of <paramref name="texture"/>​ to attach.</param>
+        /// <param name="mipmapLevel">Specifies the mipmap level of <paramref name="texture"/>​ to attach.</param>
         public void Attach(FramebufferTarget target, Texture texture, AttachmentLocation location, int layer, int mipmapLevel = 0)
         {
             if (location == AttachmentLocation.Color)
