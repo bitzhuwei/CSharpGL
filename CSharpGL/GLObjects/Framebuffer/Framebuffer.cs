@@ -14,18 +14,18 @@ namespace CSharpGL
         /// void glFramebufferTexture(GLenum target​, GLenum attachment​, GLuint texture​, GLint level​);
         /// </summary>
         private static GLDelegates.void_uint_uint_uint_int glFramebufferTexture;
-        /// <summary>
-        /// void glFramebufferTexture1D(GLenum target​, GLenum attachment​, GLenum textarget​, GLuint texture​, GLint level​);
-        /// </summary>
-        private static GLDelegates.void_uint_uint_uint_uint_int glFramebufferTexture1D;
-        /// <summary>
-        /// void glFramebufferTexture2D(GLenum target​, GLenum attachment​, GLenum textarget​, GLuint texture​, GLint level​);
-        /// </summary>
-        private static GLDelegates.void_uint_uint_uint_uint_int glFramebufferTexture2D;
-        /// <summary>
-        /// void glFramebufferTexture3D(GLenum target​, GLenum attachment​, GLenum textarget​, GLuint texture​, GLint level​, GLint layer​);
-        /// </summary>
-        private static GLDelegates.void_uint_uint_uint_uint_int_int glFramebufferTexture3D;
+        ///// <summary>
+        ///// void glFramebufferTexture1D(GLenum target​, GLenum attachment​, GLenum textarget​, GLuint texture​, GLint level​);
+        ///// </summary>
+        //private static GLDelegates.void_uint_uint_uint_uint_int glFramebufferTexture1D;
+        ///// <summary>
+        ///// void glFramebufferTexture2D(GLenum target​, GLenum attachment​, GLenum textarget​, GLuint texture​, GLint level​);
+        ///// </summary>
+        //private static GLDelegates.void_uint_uint_uint_uint_int glFramebufferTexture2D;
+        ///// <summary>
+        ///// void glFramebufferTexture3D(GLenum target​, GLenum attachment​, GLenum textarget​, GLuint texture​, GLint level​, GLint layer​);
+        ///// </summary>
+        //private static GLDelegates.void_uint_uint_uint_uint_int_int glFramebufferTexture3D;
         /// <summary>
         /// void glFramebufferTextureLayer(GLenum target​, GLenum attachment​, GLuint texture​, GLint level​, GLint layer​);
         /// </summary>
@@ -78,9 +78,9 @@ namespace CSharpGL
             glGenFramebuffers = GL.Instance.GetDelegateFor("glGenFramebuffers", GLDelegates.typeof_void_int_uintN) as GLDelegates.void_int_uintN;
             glBindFramebuffer = GL.Instance.GetDelegateFor("glBindFramebuffer", GLDelegates.typeof_void_uint_uint) as GLDelegates.void_uint_uint;
             glFramebufferTexture = GL.Instance.GetDelegateFor("glFramebufferTexture", GLDelegates.typeof_void_uint_uint_uint_int) as GLDelegates.void_uint_uint_uint_int;
-            glFramebufferTexture1D = GL.Instance.GetDelegateFor("glFramebufferTexture1D", GLDelegates.typeof_void_uint_uint_uint_uint_int) as GLDelegates.void_uint_uint_uint_uint_int;
-            glFramebufferTexture2D = GL.Instance.GetDelegateFor("glFramebufferTexture2D", GLDelegates.typeof_void_uint_uint_uint_uint_int) as GLDelegates.void_uint_uint_uint_uint_int;
-            glFramebufferTexture3D = GL.Instance.GetDelegateFor("glFramebufferTexture3D", GLDelegates.typeof_void_uint_uint_uint_uint_int_int) as GLDelegates.void_uint_uint_uint_uint_int_int;
+            //glFramebufferTexture1D = GL.Instance.GetDelegateFor("glFramebufferTexture1D", GLDelegates.typeof_void_uint_uint_uint_uint_int) as GLDelegates.void_uint_uint_uint_uint_int;
+            //glFramebufferTexture2D = GL.Instance.GetDelegateFor("glFramebufferTexture2D", GLDelegates.typeof_void_uint_uint_uint_uint_int) as GLDelegates.void_uint_uint_uint_uint_int;
+            //glFramebufferTexture3D = GL.Instance.GetDelegateFor("glFramebufferTexture3D", GLDelegates.typeof_void_uint_uint_uint_uint_int_int) as GLDelegates.void_uint_uint_uint_uint_int_int;
             glFramebufferTextureLayer = GL.Instance.GetDelegateFor("glFramebufferTextureLayer", GLDelegates.typeof_void_uint_uint_uint_int_int) as GLDelegates.void_uint_uint_uint_int_int;
             glDrawBuffers = GL.Instance.GetDelegateFor("glDrawBuffers", GLDelegates.typeof_void_int_uintN) as GLDelegates.void_int_uintN;
             glDrawBuffer = GL.Instance.GetDelegateFor("glDrawBuffer", GLDelegates.typeof_void_uint) as GLDelegates.void_uint;
