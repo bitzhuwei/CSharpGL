@@ -8,7 +8,7 @@ namespace CSharpGL
     public abstract partial class GLRenderContext : IDisposable
     {
         /// <summary>
-        //  Set the width, height and bit depth.
+        ///  Set the width, height and bit depth.
         /// </summary>
         /// <param name="width">The width.</param>
         /// <param name="height">The height.</param>
