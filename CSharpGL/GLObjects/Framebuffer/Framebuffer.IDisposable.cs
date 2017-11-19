@@ -52,7 +52,7 @@ namespace CSharpGL
                     IntPtr context = GL.Instance.GetCurrentContext();
                     if (context != IntPtr.Zero)
                     {
-                        glDeleteFramebuffers(this.frameBuffer.Length, this.frameBuffer);
+                        glDeleteFramebuffers(this.frameBufferId.Length, this.frameBufferId);
                     }
                 }
             }

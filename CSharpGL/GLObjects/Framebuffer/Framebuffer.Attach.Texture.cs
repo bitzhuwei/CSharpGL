@@ -7,13 +7,13 @@ namespace CSharpGL
     {
         // https://www.khronos.org/opengl/wiki/GLAPI/glFramebufferTexture
         /// <summary>
-        /// Attach texture's image\images in one mipmap level.
-        /// If there are multiple images in one mipmap level of the specified <paramref name="texture"/>, then we will start 'layered rendering'.
+        /// Attach a level of the <paramref name="texture"/> as a logical buffer to the currently bound framebuffer object.
+        /// If there are multiple images in one mipmap level of the <paramref name="texture"/>, then we will start 'layered rendering'.
         /// <para>Bind() this framebuffer before invoking this method.</para>
         /// </summary>
-        /// <param name="target"></param>
-        /// <param name="texture">texture of which the image to be attached.</param>
-        /// <param name="location">attachment point.</param>
+        /// <param name="target">GL_FRAMEBUFFER is equivalent to GL_DRAW_FRAMEBUFFER</param>
+        /// <param name="texture">Specifies the texture object to attach to the framebuffer attachment point named by <paramref name="location"/>.</param>
+        /// <param name="location">Specifies the attachment point of the framebuffer.</param>
         /// <param name="mipmapLevel">Specifies the mipmap level of <paramref name="texture"/>​ to attach.</param>
         public void Attach(FramebufferTarget target, Texture texture, AttachmentLocation location, int mipmapLevel = 0)
         {
@@ -35,7 +35,7 @@ namespace CSharpGL
         /// Attach a single layer of a <paramref name="cubemapArrayTexture"/> to the framebuffer.
         /// <para>Bind() this framebuffer before invoking this method.</para>
         /// </summary>
-        /// <param name="target"></param>
+        /// <param name="target">GL_FRAMEBUFFER is equivalent to GL_DRAW_FRAMEBUFFER</param>
         /// <param name="cubemapArrayTexture">texture​ must either be null or an existing cube map array texture.</param>
         /// <param name="location">attachment point.</param>
         /// <param name="layer">Specifies the layer of <paramref name="cubemapArrayTexture"/>​ to attach.</param>
@@ -51,7 +51,7 @@ namespace CSharpGL
         /// Attach a single layer of a <paramref name="texture"/> to the framebuffer.
         /// <para>Bind() this framebuffer before invoking this method.</para>
         /// </summary>
-        /// <param name="target"></param>
+        /// <param name="target">GL_FRAMEBUFFER is equivalent to GL_DRAW_FRAMEBUFFER    </param>
         /// <param name="texture">texture​ must either be null or an existing three-dimensional texture, one- or two-dimensional array texture, cube map array texture, or multisample array texture.</param>
         /// <param name="location">attachment point.</param>
         /// <param name="layer">Specifies the layer of <paramref name="texture"/>​ to attach.</param>
