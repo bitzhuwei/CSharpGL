@@ -43,6 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Amber\readme.md" />
+    <Compile Include="Amber\AmberLoader.cs" />
     <Compile Include="Cube\TextureCubeNode.cs" />
     <Compile Include="Cube\CubeNode.cs" />
     <Compile Include="Ground\GroundNode.cs" />
@@ -90,7 +92,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="TrefoilKnotModel\TrefoilKnotModel.cs" />
-    <Compile Include="Engine256\VolumeDataLoader.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\CSharpGL\CSharpGL.csproj">
@@ -112,9 +113,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="KleinBottle\以从零编写一个KleinBottle渲染器为例学习如何使用CSharpGL.md" />
-    <None Include="Engine256\Engine256.raw">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="nanosuit.obj_">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -125,6 +123,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

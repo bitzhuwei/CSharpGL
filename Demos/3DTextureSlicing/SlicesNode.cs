@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using CSharpGL;
+using System.Drawing;
 
 namespace _3DTextureSlicing
 {
@@ -58,7 +59,15 @@ namespace _3DTextureSlicing
 
             this.vVertexBuffer = this.RenderUnit.Model.GetVertexAttributeBuffer(SlicesModel.position);
 
-            Texture volume = Engine256Loader.Load();
+            var bmp = new Bitmap(1, 1);
+            var bmpG = Graphics.FromImage(bmp);
+            var font = new Font("Arial", 256, GraphicsUnit.Pixel);
+            string text = "煮";
+            SizeF bigSize = bmpG.MeasureString(text, font);
+            var bitmap = new Bitmap((int)Math.Ceiling(bigSize.Width), (int)Math.Ceiling(bigSize.Height));
+            using (var g = Graphics.FromImage(bitmap))
+            { g.DrawString(text, font, Brushes.White, 0, 0); }
+            Texture volume = AmberLoader.Load(bitmap);
             volume.TextureUnitIndex = 0;
             Texture lut = TransferFunctionLoader.Load();
             lut.TextureUnitIndex = 1;
