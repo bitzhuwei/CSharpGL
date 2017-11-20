@@ -12,9 +12,7 @@ Get to know how CSharpGL\OpenGL implements picking and draging with modern OpenG
 This shows how 2D texture works.
 And now it also shows how to use CtrlImage, CtrlButton and CtrlLabel.
 ![Texture2D](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/Texture2D/Texture2D.gif?raw=true)
-## Texture2DArray
-![Texture2DArray](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/Texture2DArray/Texture2DArray.gif?raw=true)
-## Environment Mapping.
+# Environment Mapping.
 ### Reflection
 ![Reflection](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/EnvironmentMapping/Reflection.png?raw=true)
 ### Refraction
