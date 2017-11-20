@@ -71,24 +71,28 @@ namespace CSharpGL
                 }
             }
             // boundary
-            for (int y = 10; y < image.Height - 10; y++)
+            for (int y = length / 10; y < length; y++)
             {
-                for (int x = 10; x < image.Width; x++)
+                for (int x = length / 10; x < length; x++)
                 {
-                    int xx = (x - image.Width / 2) * (x - image.Width / 2);
-                    int yy = (y - image.Height / 2) * (y - image.Height / 2);
+                    int xx = (x - length / 2) * (x - length / 2);
+                    int yy = (y - length / 2) * (y - length / 2);
                     for (int delta = 0; delta < 10; delta++)
                     {
-                        int z = (int)Math.Sqrt((length / 2 - delta) * (length / 2 - delta) - xx - yy);
-                        int index0 = (length / 2 - delta + z) * (image.Width * image.Height) + image.Width * y + x;
-                        if (index0 < bytes.Length)
+                        int zz = (length / 2 - delta) * (length / 2 - delta) - xx - yy;
+                        if (zz >= 0)
                         {
-                            bytes[index0] += (byte)(delta);
-                        }
-                        int index1 = (length / 2 - delta - z) * (image.Width * image.Height) + image.Width * y + x;
-                        if (index1 < bytes.Length)
-                        {
-                            bytes[index1] += (byte)(delta);
+                            int z = (int)Math.Sqrt(zz);
+                            int index0 = (length / 2 - delta + z) * (length * length) + length * y + x;
+                            if (index0 < bytes.Length)
+                            {
+                                bytes[index0] += (byte)(10 - delta);
+                            }
+                            int index1 = (length / 2 - delta - z) * (length * length) + length * y + x;
+                            if (index1 < bytes.Length)
+                            {
+                                bytes[index1] += (byte)(10 - delta);
+                            }
                         }
                     }
                 }
