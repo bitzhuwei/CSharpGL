@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using CSharpGL;
+using System.Drawing;
 
 namespace GPURaycasting
 {
@@ -56,7 +57,15 @@ namespace GPURaycasting
         {
             base.DoInitialize();
 
-            Texture volume = Engine256Loader.Load();
+            var bmp = new Bitmap(1, 1);
+            var bmpG = Graphics.FromImage(bmp);
+            var font = new Font("Arial", 256, GraphicsUnit.Pixel);
+            string text = "煮";
+            SizeF bigSize = bmpG.MeasureString(text, font);
+            var bitmap = new Bitmap((int)Math.Ceiling(bigSize.Width), (int)Math.Ceiling(bigSize.Height));
+            using (var g = Graphics.FromImage(bitmap))
+            { g.DrawString(text, font, Brushes.White, 0, 0); }
+            Texture volume = AmberLoader.Load(bitmap);
             volume.TextureUnitIndex = 0;
 
             for (int i = 0; i < this.RenderUnit.Methods.Length; i++)
@@ -64,7 +73,7 @@ namespace GPURaycasting
                 RenderMethod method = this.RenderUnit.Methods[i];
                 ShaderProgram program = method.Program;
                 program.SetUniform("volume", volume);
-                program.SetUniform("step_size", new vec3(1.0f / Engine256Loader.XDIM, 1.0f / Engine256Loader.YDIM, 1.0f / Engine256Loader.ZDIM));
+                program.SetUniform("step_size", new vec3(1.0f / AmberLoader.XDIM, 1.0f / AmberLoader.YDIM, 1.0f / AmberLoader.ZDIM));
             }
         }
 
