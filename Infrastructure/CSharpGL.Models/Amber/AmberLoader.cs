@@ -12,10 +12,7 @@ namespace CSharpGL
     {
 
         //dimensions of volume data
-        public const int XDIM = 256;
-        public const int YDIM = 256;
-        public const int ZDIM = 256;
-        private const string volume_file = @"Engine256\Engine256.raw";
+        public const int length = 256;
 
         /// <summary>
         /// load a volume from the given raw data file and generates an OpenGL 3D texture from it
@@ -23,10 +20,10 @@ namespace CSharpGL
         /// <returns></returns>
         public static Texture Load(Bitmap image)
         {
-            var bytes = new byte[XDIM * YDIM * ZDIM];
-            if (image.Width != XDIM || image.Height != YDIM)
+            var bytes = new byte[length * length * length];
+            if (image.Width != length || image.Height != length)
             {
-                image = (Bitmap)image.GetThumbnailImage(XDIM, YDIM, null, IntPtr.Zero);
+                image = (Bitmap)image.GetThumbnailImage(length, length, null, IntPtr.Zero);
             }
 
             image.RotateFlip(RotateFlipType.Rotate180FlipX);
@@ -34,7 +31,7 @@ namespace CSharpGL
 
             // generate OpenGL texture
             var dataProvider = new ArrayDataProvider<byte>(bytes);
-            var storage = new TexImage3D(TexImage3D.Target.Texture3D, GL.GL_RED, XDIM, YDIM, ZDIM, GL.GL_RED, GL.GL_UNSIGNED_BYTE, dataProvider);
+            var storage = new TexImage3D(TexImage3D.Target.Texture3D, GL.GL_RED, length, length, length, GL.GL_RED, GL.GL_UNSIGNED_BYTE, dataProvider);
             var texture = new Texture(storage, new MipmapBuilder(),
               new TexParameteri(TexParameter.PropertyName.TextureWrapR, (int)GL.GL_CLAMP),
               new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP),
@@ -57,7 +54,7 @@ namespace CSharpGL
                     Color color = image.GetPixel(x, y);
                     if (color.A > 0)
                     {
-                        for (int z = (int)(ZDIM * 4.5 / 10); z < (int)(ZDIM * 5.5 / 10); z++)
+                        for (int z = (int)(length * 4.5 / 10); z < (int)(length * 5.5 / 10); z++)
                         {
                             for (int deltaY = -1; deltaY < 2; deltaY++)
                             {
@@ -82,13 +79,13 @@ namespace CSharpGL
                     int yy = (y - image.Height / 2) * (y - image.Height / 2);
                     for (int delta = 0; delta < 10; delta++)
                     {
-                        int z = (int)Math.Sqrt((ZDIM / 2 - delta) * (ZDIM / 2 - delta) - xx - yy);
-                        int index0 = (ZDIM / 2 - delta + z) * (image.Width * image.Height) + image.Width * y + x;
+                        int z = (int)Math.Sqrt((length / 2 - delta) * (length / 2 - delta) - xx - yy);
+                        int index0 = (length / 2 - delta + z) * (image.Width * image.Height) + image.Width * y + x;
                         if (index0 < bytes.Length)
                         {
                             bytes[index0] += (byte)(delta);
                         }
-                        int index1 = (ZDIM / 2 - delta - z) * (image.Width * image.Height) + image.Width * y + x;
+                        int index1 = (length / 2 - delta - z) * (image.Width * image.Height) + image.Width * y + x;
                         if (index1 < bytes.Length)
                         {
                             bytes[index1] += (byte)(delta);

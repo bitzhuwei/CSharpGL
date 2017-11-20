@@ -73,7 +73,7 @@ namespace GPURaycasting
                 RenderMethod method = this.RenderUnit.Methods[i];
                 ShaderProgram program = method.Program;
                 program.SetUniform("volume", volume);
-                program.SetUniform("step_size", new vec3(1.0f / AmberLoader.XDIM, 1.0f / AmberLoader.YDIM, 1.0f / AmberLoader.ZDIM));
+                program.SetUniform("step_size", new vec3(1.0f / AmberLoader.length, 1.0f / AmberLoader.YDIM, 1.0f / AmberLoader.ZDIM));
             }
         }
 
