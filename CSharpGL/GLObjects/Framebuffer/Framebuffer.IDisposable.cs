@@ -2,7 +2,6 @@
 
 namespace CSharpGL
 {
-    //TODO: IDisposable
     public partial class Framebuffer : IDisposable
     {
         /// <summary>
