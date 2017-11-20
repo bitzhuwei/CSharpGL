@@ -2,7 +2,7 @@
 
 namespace CSharpGL
 {
-    public partial class Framebuffer : IDisposable
+    public partial class Framebuffer
     {
         /// <summary>
         ///
