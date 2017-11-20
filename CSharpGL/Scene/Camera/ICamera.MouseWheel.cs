@@ -2,6 +2,7 @@
 {
     public static partial class CameraHelper
     {
+        // TODO: This is not a good implemtation. rewrite it!
         /// <summary>
         /// 对摄像机执行一次缩放操作
         /// </summary>

@@ -12,7 +12,7 @@ namespace CSharpGL
     public class SatelliteManipulater : Manipulater, IMouseHandler
     {
         private vec3 back;
-        private Size bound = new Size();
+        private GUISize bound = new GUISize();
         private ICamera camera;
         private IGLCanvas canvas;
 
@@ -96,7 +96,7 @@ namespace CSharpGL
                 vec3 back = this.back;
                 vec3 right = this.right;
                 vec3 up = this.up;
-                Size bound = this.bound;
+                GUISize bound = this.bound;
                 ivec2 downPosition = this.lastPosition;
                 {
                     float deltaX = -this.HorizontalRotationFactor * (e.X - downPosition.x) / bound.Width;
