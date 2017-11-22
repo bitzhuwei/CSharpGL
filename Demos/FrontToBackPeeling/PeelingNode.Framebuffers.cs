@@ -55,7 +55,7 @@ namespace FrontToBackPeeling
                 framebuffer.Bind();
 
                 framebuffer.Attach(FramebufferTarget.Framebuffer, depthTexture, AttachmentLocation.Depth);
-                framebuffer.Attach(FramebufferTarget.Framebuffer, colorTexture, AttachmentLocation.Color);
+                framebuffer.Attach(FramebufferTarget.Framebuffer, colorTexture, 0u);
 
                 framebuffer.CheckCompleteness();
                 framebuffer.Unbind();
@@ -79,7 +79,7 @@ namespace FrontToBackPeeling
                 framebuffer.Bind();
 
                 framebuffer.Attach(FramebufferTarget.Framebuffer, this.depthAttachments[0], AttachmentLocation.Depth);
-                framebuffer.Attach(FramebufferTarget.Framebuffer, colorTexture, AttachmentLocation.Color);
+                framebuffer.Attach(FramebufferTarget.Framebuffer, colorTexture, 0u);
 
                 framebuffer.CheckCompleteness();
                 framebuffer.Unbind();

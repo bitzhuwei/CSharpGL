@@ -6,56 +6,67 @@ namespace CSharpGL
     public partial class Framebuffer
     {
         /// <summary>
-        /// Attach a renderbuffer.
+        /// Attach a <see cref="Renderbuffer"/> object as a color attachment to the currently bound framebuffer object.
         /// </summary>
-        /// <param name="renderbufferType"></param>
         /// <param name="target"></param>
-        /// <returns></returns>
-        public Renderbuffer Attach(RenderbufferType renderbufferType, FramebufferTarget target = FramebufferTarget.Framebuffer)
+        /// <param name="renderbuffer"></param>
+        /// <param name="colorAttachmentLocation">ranges from 0 to <see cref="Framebuffer.maxColorAttachmentCount"/> - 1.</param>
+        public void Attach(FramebufferTarget target, Renderbuffer renderbuffer, uint colorAttachmentLocation)
         {
-            Renderbuffer result = null;
-            switch (renderbufferType)
-            {
-                case RenderbufferType.DepthBuffer:
-                    result = AttachDepthbuffer(target);
-                    break;
-
-                case RenderbufferType.ColorBuffer:
-                    result = AttachColorbuffer(target);
-                    break;
-
-                default:
-                    throw new NotDealWithNewEnumItemException(typeof(RenderbufferType));
-            }
-
-            return result;
-        }
-
-        private Renderbuffer AttachColorbuffer(FramebufferTarget target)
-        {
-            if (this.nextColorAttachmentIndex >= Framebuffer.maxColorAttachmentCount)
+            if (colorAttachmentLocation >= Framebuffer.maxColorAttachmentCount)
             { throw new IndexOutOfRangeException("Not enough attach points!"); }
 
-            Renderbuffer colorBuffer = Renderbuffer.CreateColorbuffer(this.Width, this.Height, GL.GL_RGBA);
-            glFramebufferRenderbuffer((uint)target, GL.GL_COLOR_ATTACHMENT0 + this.nextColorAttachmentIndex, GL.GL_RENDERBUFFER, colorBuffer.Id);
-            this.nextColorAttachmentIndex++;
+            glFramebufferRenderbuffer((uint)target, GL.GL_COLOR_ATTACHMENT0 + colorAttachmentLocation, GL.GL_RENDERBUFFER, renderbuffer.Id);
 
-            this.colorBufferList.Add(colorBuffer);
-
-            return colorBuffer;
+            this.colorBuffers[colorAttachmentLocation] = renderbuffer;
         }
 
-        private Renderbuffer AttachDepthbuffer(FramebufferTarget target)
+        /// <summary>
+        /// Attach a <see cref="Renderbuffer"/> object to the currently bound framebuffer object.
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="renderbuffer"></param>
+        /// <param name="location"></param>
+        public void Attach(FramebufferTarget target, Renderbuffer renderbuffer, AttachmentLocation location)
         {
-            if (this.depthBuffer != null)
-            { throw new Exception("Depth buffer already exists!"); }
+            switch (location)
+            {
+                case AttachmentLocation.Depth:
+                    {
+                        if (this.depthBuffer != null)
+                        { throw new Exception("Depth buffer already exists!"); }
 
-            Renderbuffer depthBuffer = Renderbuffer.CreateDepthbuffer(this.Width, this.Height, DepthComponentType.DepthComponent24);
-            glFramebufferRenderbuffer((uint)target, GL.GL_DEPTH_ATTACHMENT, GL.GL_RENDERBUFFER, depthBuffer.Id);
+                        glFramebufferRenderbuffer((uint)target, GL.GL_DEPTH_ATTACHMENT, GL.GL_RENDERBUFFER, renderbuffer.Id);
 
-            this.depthBuffer = depthBuffer;
+                        this.depthBuffer = renderbuffer;
+                    }
+                    break;
+                case AttachmentLocation.Stencil:
+                    {
+                        if (this.stencilBuffer != null)
+                        { throw new Exception("Stencil buffer already exists!"); }
 
-            return depthBuffer;
+                        glFramebufferRenderbuffer((uint)target, GL.GL_STENCIL_ATTACHMENT, GL.GL_RENDERBUFFER, renderbuffer.Id);
+
+                        this.stencilBuffer = renderbuffer;
+                    }
+                    break;
+                case AttachmentLocation.DepthStencil:
+                    {
+                        if (this.depthBuffer != null)
+                        { throw new Exception("Depth buffer already exists!"); }
+                        if (this.stencilBuffer != null)
+                        { throw new Exception("Stencil buffer already exists!"); }
+
+                        glFramebufferRenderbuffer((uint)target, GL.GL_DEPTH_STENCIL_ATTACHMENT, GL.GL_RENDERBUFFER, renderbuffer.Id);
+
+                        this.depthBuffer = renderbuffer;
+                        this.stencilBuffer = renderbuffer;
+                    }
+                    break;
+                default:
+                    throw new NotDealWithNewEnumItemException(typeof(AttachmentLocation));
+            }
         }
     }
 }

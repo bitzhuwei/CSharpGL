@@ -14,5 +14,10 @@
         ///
         /// </summary>
         ColorBuffer,
+
+        /// <summary>
+        /// 
+        /// </summary>
+        StencilBuffer,
     }
 }

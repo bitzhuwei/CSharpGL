@@ -6,10 +6,10 @@ namespace CSharpGL
     public partial class Framebuffer
     {
         private static readonly int maxColorAttachmentCount;
-        private uint nextColorAttachmentIndex = 0;
 
-        private List<Renderbuffer> colorBufferList = new List<Renderbuffer>();
+        private Renderbuffer[] colorBuffers;
         private Renderbuffer depthBuffer;
+        private Renderbuffer stencilBuffer;
 
         /// <summary>
         /// et the list of draw buffers.
