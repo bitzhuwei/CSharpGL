@@ -59,7 +59,7 @@ namespace CSharpGL
                     var depth = new float[1];
                     GCHandle pinned = GCHandle.Alloc(depth, GCHandleType.Pinned);
                     IntPtr header = pinned.AddrOfPinnedObject();
-                    // same result with: IntPtr header = Marshal.UnsafeAddrOfPinnedArrayElement(array, 0);
+                    // same with: IntPtr header = Marshal.UnsafeAddrOfPinnedArrayElement(array, 0);
                     GL.Instance.ReadPixels(x, y, 1, 1, GL.GL_DEPTH_COMPONENT, GL.GL_FLOAT, header);
                     pinned.Free();
 
