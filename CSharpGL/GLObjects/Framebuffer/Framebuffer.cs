@@ -106,6 +106,8 @@ namespace CSharpGL
 
             this.Width = width;
             this.Height = height;
+
+            this.colorBuffers = new Renderbuffer[Framebuffer.maxColorAttachmentCount];
         }
 
         /// <summary>

@@ -59,7 +59,7 @@ namespace CSharpGL
                     var depth = new float[1];
                     GCHandle pinned = GCHandle.Alloc(depth, GCHandleType.Pinned);
                     IntPtr header = pinned.AddrOfPinnedObject();
-                    // same result with: IntPtr header = Marshal.UnsafeAddrOfPinnedArrayElement(array, 0);
+                    // same with: IntPtr header = Marshal.UnsafeAddrOfPinnedArrayElement(array, 0);
                     GL.Instance.ReadPixels(x, y, 1, 1, GL.GL_DEPTH_COMPONENT, GL.GL_FLOAT, header);
                     pinned.Free();
 
@@ -150,8 +150,14 @@ namespace CSharpGL
         {
             var framebuffer = new Framebuffer(width, height);
             framebuffer.Bind();
-            framebuffer.Attach(RenderbufferType.ColorBuffer);
-            framebuffer.Attach(RenderbufferType.DepthBuffer);
+            {
+                var renderbuffer = new Renderbuffer(width, height, GL.GL_RGBA, RenderbufferType.ColorBuffer);
+                framebuffer.Attach(FramebufferTarget.Framebuffer, renderbuffer, 0u);// 0
+            }
+            {
+                var renderbuffer = new Renderbuffer(width, height, GL.GL_DEPTH_COMPONENT24, RenderbufferType.DepthBuffer);
+                framebuffer.Attach(FramebufferTarget.Framebuffer, renderbuffer, AttachmentLocation.Depth);// special
+            }
             framebuffer.CheckCompleteness();
             framebuffer.Unbind();
 

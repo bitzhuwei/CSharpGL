@@ -41,10 +41,13 @@ namespace CSharpGL
                     }
                 }
                 {
-                    Renderbuffer[] array = this.colorBufferList.ToArray();
+                    Renderbuffer[] array = this.colorBuffers;
                     foreach (var item in array)
                     {
-                        item.Dispose();
+                        if (item != null)
+                        {
+                            item.Dispose();
+                        }
                     }
                 }
                 {

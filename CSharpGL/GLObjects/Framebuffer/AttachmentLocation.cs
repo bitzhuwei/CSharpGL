@@ -8,10 +8,6 @@ namespace CSharpGL
     /// </summary>
     public enum AttachmentLocation : uint
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        Color = GL.GL_COLOR_ATTACHMENT0,
 
         /// <summary>
         ///

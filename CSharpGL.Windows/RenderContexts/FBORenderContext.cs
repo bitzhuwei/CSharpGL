@@ -15,15 +15,12 @@ namespace CSharpGL
         /// <param name="bitDepth"></param>
         /// <returns></returns>
         public FBORenderContext(int width, int height, short bitDepth)
-            //  Call the base class.
             : base(width, height, bitDepth)
         {
-            // Create frame buffer object.
             Framebuffer framebuffer = CreateFramebuffer(width, height);
             framebuffer.Bind();
             this.framebuffer = framebuffer;
 
-            //  Create the DIB section.
             this.dibSection = new DIBSection(this.DeviceContextHandle, width, height, bitDepth);
         }
 
@@ -31,8 +28,14 @@ namespace CSharpGL
         {
             var framebuffer = new Framebuffer(width, height);
             framebuffer.Bind();
-            framebuffer.Attach(RenderbufferType.ColorBuffer);
-            framebuffer.Attach(RenderbufferType.DepthBuffer);
+            {
+                var renderbuffer = new Renderbuffer(width, height, GL.GL_RGBA, RenderbufferType.ColorBuffer);
+                framebuffer.Attach(FramebufferTarget.Framebuffer, renderbuffer, 0u);// 0
+            }
+            {
+                var renderbuffer = new Renderbuffer(width, height, GL.GL_DEPTH_COMPONENT24, RenderbufferType.DepthBuffer);
+                framebuffer.Attach(FramebufferTarget.Framebuffer, renderbuffer, AttachmentLocation.Depth);// special
+            }
             framebuffer.CheckCompleteness();
             framebuffer.Unbind();
 
@@ -44,12 +47,11 @@ namespace CSharpGL
         /// </summary>
         protected override void DisposeUnmanagedResources()
         {
-            //  Delete the render buffers.
+            //  Delete the framebuffer.
             this.framebuffer.Unbind();
             this.framebuffer.Dispose();
 
             //  Destroy the internal dc.
-            //Win32.DeleteDC(this.dibSection.MemoryDeviceContext);
             this.dibSection.Dispose();
 
             //	Call the base, which will delete the render context handle and window.
