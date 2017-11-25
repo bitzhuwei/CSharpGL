@@ -72,42 +72,42 @@ namespace CSharpGL
             this.namesInIBufferSource.Add(nameInIBufferSource);
         }
 
-        /// <summary>
-        ///
-        /// </summary>
-        /// <returns></returns>
-        public XElement ToXElement()
-        {
-            XElement result = new XElement(typeof(AttributeMap).Name,
-                from nameInShader in this.namesInShader
-                join nameInIBufferSource in this.namesInIBufferSource
-                on this.namesInShader.IndexOf(nameInShader) equals this.namesInIBufferSource.IndexOf(nameInIBufferSource)
-                select new NamePair(nameInShader, nameInIBufferSource).ToXElement()
-                );
+        ///// <summary>
+        /////
+        ///// </summary>
+        ///// <returns></returns>
+        //public XElement ToXElement()
+        //{
+        //    XElement result = new XElement(typeof(AttributeMap).Name,
+        //        from nameInShader in this.namesInShader
+        //        join nameInIBufferSource in this.namesInIBufferSource
+        //        on this.namesInShader.IndexOf(nameInShader) equals this.namesInIBufferSource.IndexOf(nameInIBufferSource)
+        //        select new NamePair(nameInShader, nameInIBufferSource).ToXElement()
+        //        );
 
-            return result;
-        }
+        //    return result;
+        //}
 
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="xElement"></param>
-        /// <returns></returns>
-        public static AttributeMap Parse(XElement xElement)
-        {
-            if (xElement.Name != typeof(AttributeMap).Name) { throw new Exception(); }
+        ///// <summary>
+        /////
+        ///// </summary>
+        ///// <param name="xElement"></param>
+        ///// <returns></returns>
+        //public static AttributeMap Parse(XElement xElement)
+        //{
+        //    if (xElement.Name != typeof(AttributeMap).Name) { throw new Exception(); }
 
-            AttributeMap result = new AttributeMap();
+        //    AttributeMap result = new AttributeMap();
 
-            foreach (XElement item in xElement.Elements(typeof(NamePair).Name))
-            {
-                var pair = NamePair.Parse(item);
-                result.namesInShader.Add(pair.VarNameInShader);
-                result.namesInIBufferSource.Add(pair.NameInIBufferSource);
-            }
+        //    foreach (XElement item in xElement.Elements(typeof(NamePair).Name))
+        //    {
+        //        var pair = NamePair.Parse(item);
+        //        result.namesInShader.Add(pair.VarNameInShader);
+        //        result.namesInIBufferSource.Add(pair.NameInIBufferSource);
+        //    }
 
-            return result;
-        }
+        //    return result;
+        //}
 
         /// <summary>
         ///
