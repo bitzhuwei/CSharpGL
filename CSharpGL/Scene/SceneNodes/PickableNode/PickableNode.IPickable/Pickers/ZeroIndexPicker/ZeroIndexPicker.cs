@@ -162,7 +162,7 @@ namespace CSharpGL
                         break;
 
                     default:
-                        throw new Exception("Unexpected PickingGeometryType!");
+                        throw new NotDealWithNewEnumItemException(typeof(GeometryType));
                 }
             }
 
@@ -350,7 +350,7 @@ namespace CSharpGL
                     break;
 
                 default:
-                    throw new Exception("Unexpected DrawMode!");
+                    throw new NotDealWithNewEnumItemException(typeof(DrawMode));
             }
 
             return result;

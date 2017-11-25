@@ -109,7 +109,7 @@ namespace CSharpGL
                     break;
 
                 default:
-                    throw new Exception("Unexpected VBOConfig!");
+                    throw new NotDealWithNewEnumItemException(typeof(VBOConfig));
             }
 
             return dataSize;

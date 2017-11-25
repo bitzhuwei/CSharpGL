@@ -97,7 +97,7 @@ namespace CSharpGL
                     result = (pickingType & faceTypes) != noType;
                     break;
                 default:
-                    throw new Exception("not expected PickingGeometryType!");
+                    throw new NotDealWithNewEnumItemException(typeof(GeometryType));
             }
 
             return result;
@@ -125,7 +125,7 @@ namespace CSharpGL
                     result = PickingGeometryTypes.Polygon;
                     break;
                 default:
-                    throw new Exception("not expected PickingGeometryType!");
+                    throw new NotDealWithNewEnumItemException(typeof(GeometryType));
             }
 
             return result;

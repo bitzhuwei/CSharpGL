@@ -391,7 +391,7 @@ namespace CSharpGL
                         break;
 
                     default:
-                        throw new NotImplementedException();
+                        throw new NotDealWithNewEnumItemException(typeof(RenderTrigger));
                 }
             }
         }

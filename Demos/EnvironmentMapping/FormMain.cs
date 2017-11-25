@@ -71,7 +71,7 @@ namespace EnvironmentMapping
                     case GeometryType.Polygon:
                         throw new NotImplementedException();
                     default:
-                        break;
+                        throw new NotDealWithNewEnumItemException(typeof(GeometryType));
                 }
             }
             else

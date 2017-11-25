@@ -65,7 +65,7 @@ namespace CSharpGL
                     break;
 
                 default:
-                    break;
+                    throw new NotDealWithNewEnumItemException(typeof(DrawMode));
             }
 
             if (recognizer == null)

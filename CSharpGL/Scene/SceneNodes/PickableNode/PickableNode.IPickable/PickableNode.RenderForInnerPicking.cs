@@ -108,7 +108,7 @@ namespace CSharpGL
                     break;
 
                 default:
-                    throw new Exception("Unexpected IndexBufferElementType!");
+                    throw new NotDealWithNewEnumItemException(typeof(IndexBufferElementType));
             }
 
             return result;

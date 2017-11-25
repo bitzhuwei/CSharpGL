@@ -117,7 +117,7 @@ namespace CSharpGL
                 case DrawMode.Patches:
                     break;
                 default:
-                    break;
+                    throw new NotDealWithNewEnumItemException(typeof(DrawMode));
             }
 
             if (!sucessful)
@@ -189,7 +189,7 @@ namespace CSharpGL
                 case DrawMode.Patches:
                     break;
                 default:
-                    break;
+                    throw new NotDealWithNewEnumItemException(typeof(DrawMode));
             }
 
             if (!sucessful)

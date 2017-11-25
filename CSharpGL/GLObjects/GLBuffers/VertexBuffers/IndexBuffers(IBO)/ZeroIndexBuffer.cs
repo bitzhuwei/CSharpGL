@@ -75,7 +75,7 @@ namespace CSharpGL
                     }
                     break;
                 default:
-                    throw new ArgumentException(string.Format("Invalid value[{0}]", controlMode));
+                    throw new NotDealWithNewEnumItemException(typeof(ControlMode));
             }
 
         }

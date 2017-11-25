@@ -120,7 +120,7 @@ namespace CSharpGL
                     break;
 
                 default:
-                    throw new Exception("Unexpected IndependentBufferTarget!");
+                    throw new NotDealWithNewEnumItemException(typeof(IndependentBufferTarget));
             }
 
             return buffer;
