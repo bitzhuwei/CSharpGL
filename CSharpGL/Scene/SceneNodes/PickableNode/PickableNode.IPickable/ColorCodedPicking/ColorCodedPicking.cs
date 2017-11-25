@@ -23,11 +23,9 @@ namespace CSharpGL
             // get coded color.
             GL.Instance.ReadPixels(x, y, 1, 1, GL.GL_RGBA, GL.GL_UNSIGNED_BYTE, header);
             pinned.Free();
-            Pixel pixel = array[0];
-            uint stageVertexId = pixel.IsWhite() ?
-                uint.MaxValue :
-                // This is when (x, y) is not on background and some primitive is picked.
-                pixel.ToStageVertexId();
+
+            // If nothing is picked, stageVertexId will be uint.MaxValue.
+            uint stageVertexId = array[0].ToStageVertexId();
 
             return stageVertexId;
         }

@@ -82,15 +82,6 @@ namespace CSharpGL
         ///
         /// </summary>
         /// <returns></returns>
-        public bool IsWhite()
-        {
-            return this.r == byte.MaxValue && this.g == byte.MaxValue && this.b == byte.MaxValue && this.a == byte.MaxValue;
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <returns></returns>
         public override string ToString()
         {
             return string.Format("R:{0}, G:{1}, B:{2}, A:{3}", r, g, b, a);
