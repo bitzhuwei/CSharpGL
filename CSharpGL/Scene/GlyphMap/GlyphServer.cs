@@ -29,31 +29,54 @@ namespace CSharpGL
         private GlyphServer() { }
 
         /// <summary>
-        /// default server only accepts visible ASCII code.
+        /// for each render context, there's a default glyph server.
         /// </summary>
-        public static readonly GlyphServer defaultServer;
-
-        static GlyphServer()
+        private static readonly Dictionary<IntPtr, GlyphServer> defaultServerDict = new Dictionary<IntPtr, GlyphServer>();
+        private static readonly object synObj = new object();
+        /// <summary>
+        /// default server only provides visible ASCII code.
+        /// </summary>
+        public static GlyphServer DefaultServer
         {
-            var builder = new StringBuilder();
-            // ascii
-            for (char c = ' '; c <= '~'; c++)
+            get
             {
-                builder.Append(c);
+                IntPtr context = GL.Instance.GetCurrentContext();
+                if (context == null) { throw new Exception("Render context not exists!"); }
+
+                GlyphServer server;
+                var dict = GlyphServer.defaultServerDict;
+                if (!dict.TryGetValue(context, out server))
+                {
+                    lock (synObj) // the process of creating a glyph serve may take a long time(several seconds), so we need a lock.
+                    {
+                        if (!dict.TryGetValue(context, out server))
+                        {
+                            var builder = new StringBuilder();
+                            // ascii
+                            for (char c = ' '; c <= '~'; c++)
+                            {
+                                builder.Append(c);
+                            }
+                            //// Chinese characters
+                            //for (char c = (char)0x4E00; c <= 0x9FA5; c++)
+                            //{
+                            //    builder.Append(c);
+                            //}
+                            //for (char c = (char)0; c < char.MaxValue; c++)
+                            //{
+                            //    builder.Append(c);
+                            //}
+                            var font = new Font("Arial", 32, GraphicsUnit.Pixel);
+                            string charSet = builder.ToString();
+                            server = GlyphServer.Create(font, charSet, 1024, 1024, 1000);
+                            font.Dispose();
+                            dict.Add(context, server);
+                        }
+                    }
+                }
+
+                return server;
             }
-            //// Chinese characters
-            //for (char c = (char)0x4E00; c <= 0x9FA5; c++)
-            //{
-            //    builder.Append(c);
-            //}
-            //for (char c = (char)0; c < char.MaxValue; c++)
-            //{
-            //    builder.Append(c);
-            //}
-            string charSet = builder.ToString();
-            var font = new Font("Arial", 32, GraphicsUnit.Pixel);
-            defaultServer = GlyphServer.Create(font, charSet, 1024, 1024, 1000);
-            font.Dispose();
         }
 
         /// <summary>

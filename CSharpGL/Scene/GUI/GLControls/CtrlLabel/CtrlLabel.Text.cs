@@ -40,7 +40,7 @@ namespace CSharpGL
                 if (v != text)
                 {
                     text = v;
-                    ArrangeCharaters(v, GlyphServer.defaultServer);
+                    ArrangeCharaters(v, GlyphServer.DefaultServer);
                     DoTextChanged();
                 }
             }

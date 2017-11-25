@@ -114,6 +114,8 @@
     <None Include="nanosuit.obj_">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="readme.md" />
+    <None Include="SimpleObjFileFormat\readme.md" />
     <None Include="TrefoilKnotModel\TrefoilKnot.frag">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
