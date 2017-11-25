@@ -20,7 +20,7 @@ namespace Texture2D
             InitializeComponent();
 
             // How to use GlyphServer:
-            var server = GlyphServer.defaultServer;
+            var server = GlyphServer.DefaultServer;
             var keys = "Hello CSharpGL!";
             foreach (var item in keys)
             {

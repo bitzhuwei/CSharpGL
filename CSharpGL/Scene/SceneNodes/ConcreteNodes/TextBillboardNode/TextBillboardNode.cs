@@ -58,7 +58,7 @@ namespace CSharpGL
 
             this.textModel = model;
 
-            if (glyphServer == null) { this.glyphServer = GlyphServer.defaultServer; }
+            if (glyphServer == null) { this.glyphServer = GlyphServer.DefaultServer; }
             else { this.glyphServer = glyphServer; }
         }
 

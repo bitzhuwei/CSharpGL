@@ -61,7 +61,7 @@ namespace CSharpGL
             this.strBuffer = this.labelModel.GetVertexAttributeBuffer(GlyphsModel.STR);
             this.indexBuffer = this.labelModel.GetIndexBuffer() as ZeroIndexBuffer;
 
-            GlyphServer server = GlyphServer.defaultServer;
+            GlyphServer server = GlyphServer.DefaultServer;
             Texture texture = server.GlyphTexture;
             string name = glyphTexture;
             this.RenderUnit.Methods[0].Program.SetUniform(name, texture);
