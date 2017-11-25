@@ -27,7 +27,7 @@
                     break;
 
                 default:
-                    break;
+                    throw new NotDealWithNewEnumItemException(typeof(IndexBufferElementType));
             }
         }
 

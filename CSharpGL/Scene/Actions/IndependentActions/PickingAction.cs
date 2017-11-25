@@ -152,7 +152,9 @@ namespace CSharpGL
             framebuffer.Bind();
             {
                 var renderbuffer = new Renderbuffer(width, height, GL.GL_RGBA, RenderbufferType.ColorBuffer);
-                framebuffer.Attach(FramebufferTarget.Framebuffer, renderbuffer, 0u);// 0
+                // attach the renderbufer as first color buffer attachment.
+                const uint location = 0;
+                framebuffer.Attach(FramebufferTarget.Framebuffer, renderbuffer, location);
             }
             {
                 var renderbuffer = new Renderbuffer(width, height, GL.GL_DEPTH_COMPONENT24, RenderbufferType.DepthBuffer);

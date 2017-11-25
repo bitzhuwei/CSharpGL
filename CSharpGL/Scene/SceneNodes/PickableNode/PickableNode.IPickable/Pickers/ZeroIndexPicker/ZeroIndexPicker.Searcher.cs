@@ -67,8 +67,7 @@ namespace CSharpGL
                     result = null;
                     break;
                 default:
-                    result = null;
-                    break;
+                    throw new NotDealWithNewEnumItemException(typeof(DrawMode));
             }
 
             return result;
@@ -134,8 +133,7 @@ namespace CSharpGL
                     result = null;
                     break;
                 default:
-                    result = null;
-                    break;
+                    throw new NotDealWithNewEnumItemException(typeof(DrawMode));
             }
 
             return result;

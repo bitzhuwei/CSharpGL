@@ -17,7 +17,7 @@ namespace CSharpGL
             : base(GUIAnchorStyles.Left | GUIAnchorStyles.Top)
         {
             var model = new CtrlButtonModel();
-            var vs = new VertexShader(vert, inPosition, inColor);
+            var vs = new VertexShader(vert);
             var fs = new FragmentShader(frag);
             var codes = new ShaderArray(vs, fs);
             var map = new AttributeMap();

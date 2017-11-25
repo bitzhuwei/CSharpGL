@@ -35,7 +35,7 @@ namespace Normal
             var builders = new RenderMethodBuilder[2];
             {
                 // render model
-                var vs = new VertexShader(vertexShader, vPosition, vNormal);
+                var vs = new VertexShader(vertexShader);
                 var fs = new FragmentShader(fragmentShader);
                 var provider = new ShaderArray(vs, fs);
                 var map = new AttributeMap();
@@ -45,7 +45,7 @@ namespace Normal
             }
             {
                 // render normal
-                var vs = new VertexShader(normalVertex, vPosition, vNormal);
+                var vs = new VertexShader(normalVertex);
                 var gs = new GeometryShader(normalGeometry);
                 var fs = new FragmentShader(normalFragment);
                 var provider = new ShaderArray(vs, gs, fs);

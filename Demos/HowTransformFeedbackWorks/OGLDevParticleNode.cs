@@ -22,12 +22,12 @@ namespace HowTransformFeedbackWorks
         {
             IShaderProgramProvider updateProvider, renderProvider;
             {
-                var vs = new VertexShader(updateVert, inPosition, inVelocity);
+                var vs = new VertexShader(updateVert);
                 var feedbackVaryings = new string[] { outPosition, outVelocity };
                 updateProvider = new ShaderArray(feedbackVaryings, ShaderProgram.BufferMode.Separate, vs);
             }
             {
-                var vs = new VertexShader(renderVert, vposition);
+                var vs = new VertexShader(renderVert);
                 var gs = new GeometryShader(renderGeom);
                 var fs = new FragmentShader(renderFrag);
                 renderProvider = new ShaderArray(vs, gs, fs);

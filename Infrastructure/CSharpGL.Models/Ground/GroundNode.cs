@@ -54,7 +54,7 @@ void main(void) {
         {
             RenderMethodBuilder renderBuilder;
             {
-                var vs = new VertexShader(vertexCode, inPosition);
+                var vs = new VertexShader(vertexCode);
                 var fs = new FragmentShader(fragmentCode);
                 var provider = new ShaderArray(vs, fs);
                 var map = new AttributeMap();

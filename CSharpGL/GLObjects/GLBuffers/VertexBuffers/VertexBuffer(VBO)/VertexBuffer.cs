@@ -109,7 +109,7 @@ namespace CSharpGL
                         break;
 
                     default:
-                        throw new Exception("Unexpected VertexAttribPointerType!");
+                        throw new NotDealWithNewEnumItemException(typeof(VertexAttribPointerType));
                 }
 
                 if (patchVertexes > 0)// tessellation shading.

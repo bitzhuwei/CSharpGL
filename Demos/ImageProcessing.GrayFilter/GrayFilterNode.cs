@@ -12,7 +12,7 @@ namespace ImageProcessing.GrayFilter
         public static GrayFilterNode Create()
         {
             var model = new GrayFilterModel();
-            var vs = new VertexShader(renderVert, "a_vertex", "a_texCoord");
+            var vs = new VertexShader(renderVert);
             var fs = new FragmentShader(renderFrag);
             var provider = new ShaderArray(vs, fs);
             var map = new AttributeMap();

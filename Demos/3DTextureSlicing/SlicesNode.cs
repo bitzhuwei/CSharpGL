@@ -26,7 +26,7 @@ namespace _3DTextureSlicing
             var model = new SlicesModel();
             RenderMethodBuilder defaultBuilder, classificationBuilder;
             {
-                var vs = new VertexShader(defaultVert, "vVertex");
+                var vs = new VertexShader(defaultVert);
                 var fs = new FragmentShader(defaultFrag);
                 var provider = new ShaderArray(vs, fs);
                 var map = new AttributeMap();
@@ -34,7 +34,7 @@ namespace _3DTextureSlicing
                 defaultBuilder = new RenderMethodBuilder(provider, map, new BlendState(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.OneMinusSourceAlpha));
             }
             {
-                var vs = new VertexShader(classificationVert, "vVertex");
+                var vs = new VertexShader(classificationVert);
                 var fs = new FragmentShader(classificationFrag);
                 var provider = new ShaderArray(vs, fs);
                 var map = new AttributeMap();

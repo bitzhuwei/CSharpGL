@@ -63,7 +63,7 @@ void main(void) {
         /// <returns></returns>
         public static TeapotNode Create()
         {
-            var vs = new VertexShader(vertexCode, inPosition, inColor);
+            var vs = new VertexShader(vertexCode);
             var fs = new FragmentShader(fragmentCode);
             var provider = new ShaderArray(vs, fs);
             var map = new AttributeMap();

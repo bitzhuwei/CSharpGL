@@ -34,7 +34,7 @@ namespace CSharpGL
                     break;
 
                 default:
-                    throw new Exception("Unexpected CameraType!");
+                    throw new NotDealWithNewEnumItemException(typeof(CameraType));
             }
 
             return result;

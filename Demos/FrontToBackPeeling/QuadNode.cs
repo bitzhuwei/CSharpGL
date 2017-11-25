@@ -37,7 +37,7 @@ namespace FrontToBackPeeling
         {
             RenderMethodBuilder blendBuilder, finalBuilder;
             {
-                var vs = new VertexShader(Shaders.blendVert, "vVertex");
+                var vs = new VertexShader(Shaders.blendVert);
                 var fs = new FragmentShader(Shaders.blendFrag);
                 var provider = new ShaderArray(vs, fs);
                 var map = new AttributeMap();
@@ -45,7 +45,7 @@ namespace FrontToBackPeeling
                 blendBuilder = new RenderMethodBuilder(provider, map);
             }
             {
-                var vs = new VertexShader(Shaders.blendVert, "vVertex");// reuse blend vertex shader.
+                var vs = new VertexShader(Shaders.blendVert);// reuse blend vertex shader.
                 var fs = new FragmentShader(Shaders.finalFrag);
                 var provider = new ShaderArray(vs, fs);
                 var map = new AttributeMap();

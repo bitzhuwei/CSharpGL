@@ -40,7 +40,7 @@ namespace CSharpGL
                     break;
 
                 default:
-                    throw new Exception("Unexpected PickingGeometryType!");
+                    throw new NotDealWithNewEnumItemException(typeof(GeometryType));
             }
 
             return result;
@@ -77,7 +77,7 @@ namespace CSharpGL
                     break;
 
                 default:
-                    throw new Exception("Unexpected PickingGeometryType!");
+                    throw new NotDealWithNewEnumItemException(typeof(GeometryType));
             }
 
             return mode;

@@ -10,7 +10,7 @@ namespace SimpleNoise.Sun
             var model = new Sphere(1, 180, 360);
             RenderMethodBuilder renderBuilder;
             {
-                var vs = new VertexShader(renderVert, "in_Position");
+                var vs = new VertexShader(renderVert);
                 var fs = new FragmentShader(renderFrag);
                 var provider = new ShaderArray(vs, fs);
                 var map = new AttributeMap();

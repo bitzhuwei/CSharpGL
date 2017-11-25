@@ -60,7 +60,7 @@ namespace CSharpGL
             {
                 //  Create  result set.
                 pickedRenderer = new List<HitTarget>();
-                uint posinarray = 0;
+                int posinarray = 0;
                 //  Go through each name.
                 for (int hit = 0; hit < hits; hit++)
                 {

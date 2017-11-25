@@ -25,7 +25,7 @@ namespace GPURaycasting
             var model = new RaycastingModel();
             RenderMethodBuilder defaultBuilder, isosurfaceBuilder;
             {
-                var vs = new VertexShader(defaultVert, "vVertex");
+                var vs = new VertexShader(defaultVert);
                 var fs = new FragmentShader(defaultFrag);
                 var provider = new ShaderArray(vs, fs);
                 var map = new AttributeMap();
@@ -33,7 +33,7 @@ namespace GPURaycasting
                 defaultBuilder = new RenderMethodBuilder(provider, map, new BlendState(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.OneMinusSourceAlpha));
             }
             {
-                var vs = new VertexShader(isourfaceVert, "vVertex");
+                var vs = new VertexShader(isourfaceVert);
                 var fs = new FragmentShader(isosurfaceFrag);
                 var provider = new ShaderArray(vs, fs);
                 var map = new AttributeMap();

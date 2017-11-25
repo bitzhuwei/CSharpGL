@@ -27,7 +27,7 @@ namespace OrderIndependentTransparency
         {
             var builders = new RenderMethodBuilder[2];
             {
-                var vs = new VertexShader(buildListsVert, vPosition, vNormal);
+                var vs = new VertexShader(buildListsVert);
                 var fs = new FragmentShader(buildListsFrag);
                 var provider = new ShaderArray(vs, fs);
                 var map = new AttributeMap();
@@ -36,7 +36,7 @@ namespace OrderIndependentTransparency
                 builders[buildLists] = new RenderMethodBuilder(provider, map);
             }
             {
-                var vs = new VertexShader(resolveListsVert, vPosition, vNormal);
+                var vs = new VertexShader(resolveListsVert);
                 var fs = new FragmentShader(resolveListsFrag);
                 var provider = new ShaderArray(vs, fs);
                 var map = new AttributeMap();

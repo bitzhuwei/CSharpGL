@@ -38,7 +38,7 @@ namespace ComputeShader.HelloComputeShader
                 compute = new RenderMethodBuilder(provider, map);
             }
             {
-                var vs = new VertexShader(renderVert, "position");
+                var vs = new VertexShader(renderVert);
                 var fs = new FragmentShader(renderFrag);
                 var provider = new ShaderArray(vs, fs);
                 var map = new AttributeMap();

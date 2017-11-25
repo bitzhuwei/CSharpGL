@@ -39,7 +39,7 @@ namespace DirectionalLight
         /// <returns></returns>
         public static DirectionalLightNode Create(CSharpGL.DirectionalLight light, IBufferSource model, string position, string normal, vec3 size)
         {
-            var vs = new VertexShader(directionalLightVert, vPosition, vNormal);
+            var vs = new VertexShader(directionalLightVert);
             var fs = new FragmentShader(directionalLightFrag);
             var provider = new ShaderArray(vs, fs);
             var map = new AttributeMap();

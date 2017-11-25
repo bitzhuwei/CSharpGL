@@ -75,7 +75,7 @@ namespace CSharpGL
                     break;
 
                 default:
-                    throw new Exception("Unexpected DrawMode!");
+                    throw new NotDealWithNewEnumItemException(typeof(DrawMode));
             }
 
             return result;

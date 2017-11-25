@@ -18,7 +18,7 @@ namespace CSharpGL
         /// <returns></returns>
         public static IShaderProgramProvider GetPickingShaderProgramProvider()
         {
-            var vs = new VertexShader(pickVertexShader, "in_Position");
+            var vs = new VertexShader(pickVertexShader);
             var fs = new FragmentShader(pickFragmentShader);
             var provider = new ShaderArray(vs, fs);
             return provider;
@@ -27,11 +27,12 @@ namespace CSharpGL
         private static readonly string pickVertexShader =
 @"#version 150 core
 
-"
-+ @"in vec3 " + in_Position + @";
-flat out vec4 pass_Color; // glShadeMode(GL_FLAT); in legacy opengl.
 uniform mat4 MVP;
 uniform int pickingBaseId; // how many vertices have been coded so far?
+
+in vec3 " + in_Position + @";
+
+flat out vec4 pass_Color; // glShadeMode(GL_FLAT); in legacy opengl.
 
 void main(void) {
 	gl_Position = MVP * vec4(in_Position, 1.0);
@@ -47,7 +48,9 @@ void main(void) {
 
         private static readonly string pickFragmentShader =
 @"#version 150 core
+
 flat in vec4 pass_Color; // glShadeMode(GL_FLAT); in legacy opengl.
+
 out vec4 out_Color;
 
 void main(void) {

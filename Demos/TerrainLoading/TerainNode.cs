@@ -19,7 +19,7 @@ namespace TerrainLoading
             var model = new TerainModel();
             RenderMethodBuilder defaultBuilder;
             {
-                var vs = new VertexShader(vert, "vVertex");
+                var vs = new VertexShader(vert);
                 var fs = new FragmentShader(frag);
                 var provider = new ShaderArray(vs, fs);
                 var map = new AttributeMap();

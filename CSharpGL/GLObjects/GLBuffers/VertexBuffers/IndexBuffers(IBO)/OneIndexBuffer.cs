@@ -101,7 +101,7 @@ namespace CSharpGL
                     }
                     break;
                 default:
-                    throw new ArgumentException(string.Format("Invalid value[{0}]", controlMode));
+                    throw new NotDealWithNewEnumItemException(typeof(ControlMode));
             }
 
             glBindBuffer(GL.GL_ELEMENT_ARRAY_BUFFER, 0);
@@ -125,7 +125,7 @@ namespace CSharpGL
                     break;
 
                 default:
-                    throw new Exception("Unexpected IndexBufferElementType!");
+                    throw new NotDealWithNewEnumItemException(typeof(IndexBufferElementType));
             }
             return offset;
         }
