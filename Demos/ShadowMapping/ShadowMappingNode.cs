@@ -36,14 +36,14 @@ namespace ShadowMapping
         {
             RenderMethodBuilder shadowBuilder, lightBuilder;
             {
-                var vs = new VertexShader(shadowVertexCode, inPosition);
+                var vs = new VertexShader(shadowVertexCode);
                 var provider = new ShaderArray(vs);
                 var map = new AttributeMap();
                 map.Add(inPosition, position);
                 shadowBuilder = new RenderMethodBuilder(provider, map);
             }
             {
-                var vs = new VertexShader(lightVertexCode, inPosition, inNormal);
+                var vs = new VertexShader(lightVertexCode);
                 var fs = new FragmentShader(lightFragmentCode);
                 var provider = new ShaderArray(vs, fs);
                 var map = new AttributeMap();

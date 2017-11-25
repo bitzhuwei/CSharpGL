@@ -20,7 +20,7 @@ namespace CSharpGL
             : base(GUIAnchorStyles.Left | GUIAnchorStyles.Top)
         {
             var model = new CtrlImageModel();
-            var vs = new VertexShader(vert, inPosition, inUV);
+            var vs = new VertexShader(vert);
             var fs = new FragmentShader(frag);
             var codes = new ShaderArray(vs, fs);
             var map = new AttributeMap();

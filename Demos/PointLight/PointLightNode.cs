@@ -39,7 +39,7 @@ namespace PointLight
         /// <returns></returns>
         public static PointLightNode Create(CSharpGL.PointLight light, IBufferSource model, string position, string normal, vec3 size)
         {
-            var vs = new VertexShader(pointLightVert, vPosition, vNormal);
+            var vs = new VertexShader(pointLightVert);
             var fs = new FragmentShader(pointLightFrag);
             var provider = new ShaderArray(vs, fs);
             var map = new AttributeMap();

@@ -16,7 +16,7 @@ namespace BasicTessellationShader
 
         public static BasicTessellationNode Create(ObjVNF model)
         {
-            var vs = new VertexShader(renderVert, "Position_VS_in", "TexCoord_VS_in", "Normal_VS_in");
+            var vs = new VertexShader(renderVert);
             var tc = new TessControlShader(renderTesc);
             var te = new TessEvaluationShader(renderTese);
             var fs = new FragmentShader(renderFrag);

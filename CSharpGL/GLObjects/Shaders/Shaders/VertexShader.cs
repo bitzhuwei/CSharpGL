@@ -16,11 +16,9 @@ namespace CSharpGL
         /// A GLSL vertex shader.
         /// </summary>
         /// <param name="source">Source code.</param>
-        /// <param name="attributeNames">"inPosition" in "in vec3 inPosition" in shader code.</param>
-        public VertexShader(string source, params string[] attributeNames)
+        public VertexShader(string source)
         {
             this.Source = source;
-            this.AttributeNames = attributeNames;
         }
 
         /// <summary>
@@ -35,11 +33,5 @@ namespace CSharpGL
         /// Source Code.
         /// </summary>
         public string Source { get; private set; }
-
-        /// <summary>
-        /// "inPosition" in "in vec3 inPosition" in shader code.
-        /// </summary>
-        public string[] AttributeNames { get; private set; }
-
     }
 }

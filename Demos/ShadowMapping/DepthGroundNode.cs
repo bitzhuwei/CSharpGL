@@ -51,7 +51,7 @@ void main(void)
         {
             RenderMethodBuilder shadowmapBuilder;
             {
-                var vs = new VertexShader(vertexCode, inPosition);
+                var vs = new VertexShader(vertexCode);
                 var provider = new ShaderArray(vs);
                 var map = new AttributeMap();
                 map.Add(inPosition, GroundModel.strPosition);

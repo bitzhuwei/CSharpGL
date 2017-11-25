@@ -12,7 +12,7 @@ namespace Texture2DArray
         private Bitmap[] bitmaps;
         public static LayeredRectangleNode Create(Bitmap[] bitmaps)
         {
-            var vs = new VertexShader(vertexCode, inPosition, inUV);
+            var vs = new VertexShader(vertexCode);
             var fs = new FragmentShader(fragmentCode);
             var provider = new ShaderArray(vs, fs);
             var map = new AttributeMap();

@@ -64,7 +64,7 @@ void main(void) {
         /// <returns></returns>
         public static PropellerRenderer Create()
         {
-            var vs = new VertexShader(vertexCode, "inPositoin", "inColor");
+            var vs = new VertexShader(vertexCode);
             var fs = new FragmentShader(fragmentCode);
             var provider = new ShaderArray(vs, fs);
             var map = new AttributeMap();

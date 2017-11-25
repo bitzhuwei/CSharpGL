@@ -80,7 +80,7 @@ void main()
         {
             RenderMethodBuilder reflectBuilder, refractBuilder;
             {
-                var vs = new VertexShader(vertexCode, inPosition, inNormal);
+                var vs = new VertexShader(vertexCode);
                 var fs = new FragmentShader(reflectFragmentCode);
                 var provider = new ShaderArray(vs, fs);
                 var map = new AttributeMap();
@@ -89,7 +89,7 @@ void main()
                 reflectBuilder = new RenderMethodBuilder(provider, map);
             }
             {
-                var vs = new VertexShader(vertexCode, inPosition, inNormal);
+                var vs = new VertexShader(vertexCode);
                 var fs = new FragmentShader(refractFragmentCode);
                 var provider = new ShaderArray(vs, fs);
                 var map = new AttributeMap();

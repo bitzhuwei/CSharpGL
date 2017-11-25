@@ -10,7 +10,7 @@ namespace CSharpGL
     {
         public static KleinBottleNode Create(KleinBottleModel model)
         {
-            var vs = new VertexShader(vertexShaderCode, "in_Position", "in_TexCoord");
+            var vs = new VertexShader(vertexShaderCode);
             var fs = new FragmentShader(fragmentShaderCode);
             var provider = new ShaderArray(vs, fs);
             var map = new AttributeMap();

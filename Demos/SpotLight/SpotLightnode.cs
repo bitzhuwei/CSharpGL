@@ -40,7 +40,7 @@ namespace SpotLight
         /// <returns></returns>
         public static SpotLightNode Create(CSharpGL.SpotLight light, IBufferSource model, string position, string normal, vec3 size)
         {
-            var vs = new VertexShader(spotLightVert, vPosition, vNormal);
+            var vs = new VertexShader(spotLightVert);
             var fs = new FragmentShader(spotLightFrag);
             var provider = new ShaderArray(vs, fs);
             var map = new AttributeMap();
