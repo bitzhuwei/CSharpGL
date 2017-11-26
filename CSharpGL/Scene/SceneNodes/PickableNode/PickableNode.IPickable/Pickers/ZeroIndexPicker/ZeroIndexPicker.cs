@@ -25,14 +25,14 @@ namespace CSharpGL
         public override PickedGeometry GetPickedGeometry(PickingEventArgs arg, uint stageVertexId)
         {
             uint lastVertexId;
-            if (!this.Renderer.GetLastVertexIdOfPickedGeometry(stageVertexId, out lastVertexId))
+            if (!this.Node.GetLastVertexIdOfPickedGeometry(stageVertexId, out lastVertexId))
             { return null; }
 
             PickingGeometryTypes pickingType = arg.GeometryType;
 
             if ((pickingType & PickingGeometryTypes.Point) == PickingGeometryTypes.Point)
             {
-                DrawMode mode = this.Renderer.PickingRenderUnit.VertexArrayObject.IndexBuffer.Mode;
+                DrawMode mode = this.Node.PickingRenderUnit.VertexArrayObject.IndexBuffer.Mode;
                 GeometryType typeOfMode = mode.ToGeometryType();
                 if (typeOfMode == GeometryType.Point)
                 { return PickWhateverItIs(arg, stageVertexId, lastVertexId, mode, typeOfMode); }
@@ -54,7 +54,7 @@ namespace CSharpGL
             }
             else if ((pickingType & PickingGeometryTypes.Line) == PickingGeometryTypes.Line)
             {
-                DrawMode mode = this.Renderer.PickingRenderUnit.VertexArrayObject.IndexBuffer.Mode;
+                DrawMode mode = this.Node.PickingRenderUnit.VertexArrayObject.IndexBuffer.Mode;
                 GeometryType typeOfMode = mode.ToGeometryType();
                 if (pickingType.Contains(typeOfMode))
                 { return PickWhateverItIs(arg, stageVertexId, lastVertexId, mode, typeOfMode); }
@@ -71,7 +71,7 @@ namespace CSharpGL
             }
             else
             {
-                DrawMode mode = this.Renderer.PickingRenderUnit.VertexArrayObject.IndexBuffer.Mode;
+                DrawMode mode = this.Node.PickingRenderUnit.VertexArrayObject.IndexBuffer.Mode;
                 GeometryType typeOfMode = mode.ToGeometryType();
                 if (pickingType.Contains(typeOfMode)) // I want what it is
                 { return PickWhateverItIs(arg, stageVertexId, lastVertexId, mode, typeOfMode); }
@@ -93,7 +93,7 @@ namespace CSharpGL
         {
             var vertexIds = new uint[] { searcher.Search(arg, lastVertexId, this), };
             vec3[] positions = FillPickedGeometrysPosition(vertexIds);
-            var pickedGeometry = new PickedGeometry(GeometryType.Line, positions, vertexIds, stageVertexId, this.Renderer);
+            var pickedGeometry = new PickedGeometry(GeometryType.Line, positions, vertexIds, stageVertexId, this.Node);
 
             return pickedGeometry;
         }
@@ -107,7 +107,7 @@ namespace CSharpGL
 
             // Fill primitive's position information.
             int vertexCount = typeOfMode.GetVertexCount();
-            if (vertexCount == -1) { vertexCount = this.Renderer.PickingRenderUnit.PositionBuffer.VertexCount; }
+            if (vertexCount == -1) { vertexCount = this.Node.PickingRenderUnit.PositionBuffer.VertexCount; }
 
             uint[] vertexIds; vec3[] positions;
 
@@ -166,7 +166,7 @@ namespace CSharpGL
                 }
             }
 
-            PickedGeometry pickedGeometry = new PickedGeometry(typeOfMode, positions, vertexIds, stageVertexId, this.Renderer);
+            PickedGeometry pickedGeometry = new PickedGeometry(typeOfMode, positions, vertexIds, stageVertexId, this.Node);
             return pickedGeometry;
         }
 
@@ -174,7 +174,7 @@ namespace CSharpGL
         {
             var vertexIds = new uint[] { lastVertexId, };
             var positions = FillPickedGeometrysPosition(vertexIds);
-            var pickedGeometry = new PickedGeometry(GeometryType.Point, positions, vertexIds, stageVertexId, this.Renderer);
+            var pickedGeometry = new PickedGeometry(GeometryType.Point, positions, vertexIds, stageVertexId, this.Node);
 
             return pickedGeometry;
         }
@@ -194,14 +194,14 @@ namespace CSharpGL
         {
             var vertexIds = searcher.Search(arg, lastVertexId, this);
             var positions = FillPickedGeometrysPosition(vertexIds);
-            var pickedGeometry = new PickedGeometry(GeometryType.Line, positions, vertexIds, stageVertexId, this.Renderer);
+            var pickedGeometry = new PickedGeometry(GeometryType.Line, positions, vertexIds, stageVertexId, this.Node);
 
             return pickedGeometry;
         }
 
         /// <summary>
         /// 现在，已经判定了鼠标在某个点上。
-        /// 我需要判定此点是否出现在图元上。
+        /// 我需要判定此点是否应该出现在图元上。
         /// now that I know the mouse is picking on some point,
         /// I need to make sure that point should appear.
         /// </summary>
@@ -211,7 +211,7 @@ namespace CSharpGL
         private bool OnPrimitiveTest(uint lastVertexId, DrawMode mode)
         {
             bool result = false;
-            var indexBuffer = this.Renderer.PickingRenderUnit.VertexArrayObject.IndexBuffer as ZeroIndexBuffer;
+            var indexBuffer = this.Node.PickingRenderUnit.VertexArrayObject.IndexBuffer as ZeroIndexBuffer;
             int first = indexBuffer.FirstVertex;
             if (first < 0) { return false; }
             int vertexCount = indexBuffer.RenderingVertexCount;
@@ -359,7 +359,7 @@ namespace CSharpGL
         private void PickingLastLineInLineLoop(out uint[] vertexIds, out vec3[] positions)
         {
             const int vertexCount = 2;
-            VertexBuffer buffer = this.Renderer.PickingRenderUnit.PositionBuffer;
+            VertexBuffer buffer = this.Node.PickingRenderUnit.PositionBuffer;
             var offsets = new int[vertexCount] { (buffer.VertexCount - 1) * buffer.Config.GetDataSize() * buffer.Config.GetDataTypeByteLength(), 0, };
             vertexIds = new uint[vertexCount];
             positions = new vec3[vertexCount];

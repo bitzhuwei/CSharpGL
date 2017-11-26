@@ -23,7 +23,7 @@ namespace CSharpGL
                 array[3] = lastVertexId - 3;
                 buffer.UnmapBuffer();
             }
-            picker.Renderer.Render4InnerPicking(arg, buffer);
+            picker.Node.Render4InnerPicking(arg, buffer);
             uint id = ColorCodedPicking.ReadStageVertexId(arg.X, arg.Y);
 
             buffer.Dispose();
