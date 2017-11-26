@@ -343,8 +343,6 @@
     <Compile Include="Scene\SceneNodes\ConcreteNodes\RenderToTextureNode\ColoredFramebufferProvider.cs" />
     <Compile Include="Scene\SceneNodes\ConcreteNodes\LegacyBoundingBoxNode.cs" />
     <Compile Include="Scene\SceneNodes\ConcreteNodes\GroupNode.cs" />
-    <Compile Include="Scene\SceneNodes\ConcreteNodes\Transformers\ModelHelpers\ArrowHelper.cs" />
-    <Compile Include="Scene\SceneNodes\ConcreteNodes\Transformers\TranslateRenderer.cs" />
     <Compile Include="Scene\Actions\ActionBase.cs" />
     <Compile Include="Scene\Actions\DependentActions\3DWorld\ShadowMappingAction.cs" />
     <Compile Include="Scene\Actions\IndependentActions\ILegacyPickable\ILegacyPickable.cs" />
@@ -373,9 +371,6 @@
     <Content Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\readme.md" />
     <Content Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\Pickers\readme.md" />
     <Content Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\Pickers\OneIndexPicker\readme.md" />
-    <Content Include="Scene\SceneNodes\ConcreteNodes\Transformers\rotate.png" />
-    <Content Include="Scene\SceneNodes\ConcreteNodes\Transformers\scale.png" />
-    <Content Include="Scene\SceneNodes\ConcreteNodes\Transformers\translate.png" />
     <Content Include="Scene\Actions\IndependentActions\IPickable\readme.md" />
     <Content Include="Scene\Actions\IndependentActions\ILegacyPickable\readme.md" />
     <Content Include="BasicDataStructures\PropertyGrid\TypeConverters\readme.md" />
