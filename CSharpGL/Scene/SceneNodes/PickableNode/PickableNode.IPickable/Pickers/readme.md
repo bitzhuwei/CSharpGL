@@ -1,2 +1,2 @@
 ﻿# Pickers
-Perform picking action for `PickableRenderer`.
+Perform picking action for `PickableNode`.
