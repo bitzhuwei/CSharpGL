@@ -40,10 +40,7 @@ namespace CSharpGL
         public void RenderBeforeChildren(RenderEventArgs arg)
         {
             // update camera's position.
-            var position = new vec4(this.WorldPosition, 1.0f);
-            var cascadePosition = this.cascadeModelMatrix * position;
-            cascadePosition = cascadePosition / cascadePosition.w;
-            this.camera.Position = new vec3(cascadePosition);
+            this.camera.Position = this.GetAbsoluteWorldPosition();
         }
 
         /// <summary>
