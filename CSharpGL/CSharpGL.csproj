@@ -215,7 +215,6 @@
     <Compile Include="Scene\SceneNodes\ConcreteNodes\TextBillboardNode\TextBillboardNode.Text.cs" />
     <Compile Include="Scene\SceneNodes\ConcreteNodes\TextBillboardNode\TextBillboardNode.shaders.cs" />
     <Compile Include="Scene\SceneNodes\ConcreteNodes\TextBillboardNode\TextBillboardNode.cs" />
-    <Compile Include="Scene\SceneNodes\ConcreteNodes\TextBillboardNode\TextBillboardNode.backup.cs" />
     <Compile Include="Scene\SceneNodes\ConcreteNodes\TextureBillboardNode\TextureBillboardNode.cs" />
     <Compile Include="Scene\SceneNodes\ConcreteNodes\LightContainerNode\ILocalLightContainer.cs" />
     <Compile Include="Scene\SceneNodes\ConcreteNodes\LightContainerNode\LightContainerNode.cs" />
