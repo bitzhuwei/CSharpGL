@@ -17,7 +17,7 @@ namespace CSharpGL
         /// <param name="node"></param>
         public PickerBase(PickableNode node)
         {
-            this.Renderer = node;
+            this.Node = node;
         }
 
         /// <summary>
@@ -31,12 +31,12 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        public PickableNode Renderer { get; set; }
+        public PickableNode Node { get; set; }
 
 
         protected vec3[] FillPickedGeometrysPosition(uint firstIndex, int indexCount)
         {
-            VertexBuffer buffer = this.Renderer.PickingRenderUnit.PositionBuffer;
+            VertexBuffer buffer = this.Node.PickingRenderUnit.PositionBuffer;
             int offset = (int)(firstIndex * buffer.Config.GetDataSize() * buffer.Config.GetDataTypeByteLength());
             //IntPtr pointer = GL.MapBuffer(BufferTarget.ArrayBuffer, MapBufferAccess.ReadOnly);
             IntPtr pointer = buffer.MapBufferRange(
@@ -60,8 +60,11 @@ namespace CSharpGL
                 ErrorCode error = (ErrorCode)GL.Instance.GetError();
                 if (error != ErrorCode.NoError)
                 {
-                    throw new Exception(string.Format(
-                        "Error:[{0}] glMapBufferRange failed: buffer ID: [{1}]", error, buffer.BufferId.ToString()));
+                    var str = string.Format(
+                        "Error:[{0}] glMapBufferRange failed: buffer ID: [{1}]", error, buffer.BufferId.ToString());
+                    Log.instance.Write(str);
+                    Debug.Write(str);
+                    //throw new Exception(str);
                 }
             }
             buffer.UnmapBuffer();
@@ -73,7 +76,7 @@ namespace CSharpGL
         {
             var positions = new vec3[indexes.Length];
 
-            VertexBuffer buffer = this.Renderer.PickingRenderUnit.PositionBuffer;
+            VertexBuffer buffer = this.Node.PickingRenderUnit.PositionBuffer;
             buffer.Bind();
             for (int i = 0; i < indexes.Length; i++)
             {

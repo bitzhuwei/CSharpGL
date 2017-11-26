@@ -25,7 +25,7 @@ namespace CSharpGL
         /// <returns></returns>
         public override PickedGeometry GetPickedGeometry(PickingEventArgs arg, uint stageVertexId)
         {
-            PickableNode node = this.Renderer;
+            PickableNode node = this.Node;
 
             uint lastVertexId;
             if (!node.GetLastVertexIdOfPickedGeometry(stageVertexId, out lastVertexId))
@@ -106,7 +106,7 @@ namespace CSharpGL
         {
             var vertexIds = new uint[] { searcher.Search(arg, primitiveInfo, this), };
             vec3[] positions = FillPickedGeometrysPosition(vertexIds);
-            var pickedGeometry = new PickedGeometry(GeometryType.Point, positions, vertexIds, stageVertexId, this.Renderer);
+            var pickedGeometry = new PickedGeometry(GeometryType.Point, positions, vertexIds, stageVertexId, this.Node);
 
             return pickedGeometry;
         }
@@ -123,7 +123,7 @@ namespace CSharpGL
         {
             var vertexIds = searcher.Search(arg, primitiveInfo, this);
             vec3[] positions = FillPickedGeometrysPosition(vertexIds);
-            var pickedGeometry = new PickedGeometry(GeometryType.Line, positions, vertexIds, stageVertexId, this.Renderer);
+            var pickedGeometry = new PickedGeometry(GeometryType.Line, positions, vertexIds, stageVertexId, this.Node);
 
             return pickedGeometry;
         }
@@ -140,7 +140,7 @@ namespace CSharpGL
         {
             uint[] vertexIds = primitiveInfo.VertexIds;
             vec3[] positions = FillPickedGeometrysPosition(vertexIds);
-            var pickedGeometry = new PickedGeometry(typeOfMode, positions, vertexIds, stageVertexId, this.Renderer);
+            var pickedGeometry = new PickedGeometry(typeOfMode, positions, vertexIds, stageVertexId, this.Node);
 
             return pickedGeometry;
         }
@@ -162,7 +162,7 @@ namespace CSharpGL
         {
             var vertexIds = new uint[] { lastVertexId, };
             vec3[] positions = FillPickedGeometrysPosition(vertexIds);
-            var pickedGeometry = new PickedGeometry(GeometryType.Point, positions, vertexIds, stageVertexId, this.Renderer);
+            var pickedGeometry = new PickedGeometry(GeometryType.Point, positions, vertexIds, stageVertexId, this.Node);
 
             return pickedGeometry;
         }
@@ -194,7 +194,7 @@ namespace CSharpGL
         /// <returns></returns>
         private uint Pick(PickingEventArgs arg, OneIndexBuffer twoPrimitivesIndexBuffer)
         {
-            this.Renderer.Render4InnerPicking(arg, twoPrimitivesIndexBuffer);
+            this.Node.Render4InnerPicking(arg, twoPrimitivesIndexBuffer);
 
             uint pickedIndex = ColorCodedPicking.ReadStageVertexId(arg.X, arg.Y);
 
@@ -211,7 +211,7 @@ namespace CSharpGL
         /// <returns></returns>
         private List<RecognizedPrimitiveInfo> GetLastIndexIdList(PickingEventArgs arg, uint lastVertexId)
         {
-            var indexBuffer = this.Renderer.PickingRenderUnit.VertexArrayObject.IndexBuffer;
+            var indexBuffer = this.Node.PickingRenderUnit.VertexArrayObject.IndexBuffer;
             PrimitiveRecognizer recognizer = PrimitiveRecognizerFactory.Create(
                 (arg.GeometryType.Contains(GeometryType.Point)
                 && indexBuffer.Mode.ToGeometryType() == GeometryType.Line) ?
@@ -233,7 +233,7 @@ namespace CSharpGL
 
         private PrimitiveRestartState GetPrimitiveRestartState()
         {
-            foreach (GLState item in this.Renderer.PickingRenderUnit.StateList)
+            foreach (GLState item in this.Node.PickingRenderUnit.StateList)
             {
                 var target = item as PrimitiveRestartState;
                 if (target != null)

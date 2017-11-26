@@ -77,23 +77,7 @@ namespace HelloCSharpGL
 
         private SceneNodeBase GetPropellerRTT()
         {
-            var teapot = TeapotNode.Create();
-            teapot.Scale *= 0.5f;
-
-            int width = 600, height = 400;
-            var innerCamera = new Camera(new vec3(0, 2, 5), new vec3(0, 0, 0), new vec3(0, 1, 0), CameraType.Ortho, width, height);
-            var rtt = new RenderToTexttureNode(width, height, innerCamera, new ColoredFramebufferProvider());
-            rtt.Children.Add(teapot);
-
-            var billboard = TextureBillboardNode.Create(rtt as ITextureSource, width, height);
-
-            var group = new GroupNode();
-            group.Children.Add(rtt);// rtt must be before billboard.
-            group.Children.Add(billboard);
-            group.WorldPosition = new vec3(3, 0.5f, 0);// this looks nice.
-
             var propeller = GetPropellerFlabellum();
-            propeller.Children.Add(group);
 
             return propeller;
         }

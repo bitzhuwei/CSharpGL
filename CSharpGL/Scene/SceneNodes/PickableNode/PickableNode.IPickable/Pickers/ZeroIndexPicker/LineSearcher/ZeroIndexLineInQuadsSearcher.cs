@@ -22,7 +22,7 @@
                 array[6] = lastVertexId - 0; array[7] = lastVertexId - 3;
                 buffer.UnmapBuffer();
             }
-            picker.Renderer.Render4InnerPicking(arg, buffer);
+            picker.Node.Render4InnerPicking(arg, buffer);
             uint id = ColorCodedPicking.ReadStageVertexId(arg.X, arg.Y);
 
             buffer.Dispose();

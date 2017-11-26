@@ -1,1 +1,1 @@
-﻿# `IPickable` of `PicakbleRenderer`
+﻿# `IPickable` of `PickableNode`

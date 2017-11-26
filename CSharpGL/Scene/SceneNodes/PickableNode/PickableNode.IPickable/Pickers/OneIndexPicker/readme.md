@@ -1,2 +1,2 @@
-﻿# `ZeroIndexPicker`
-Perform picking action for `PickableRenderer` with `OneIndexzBuffer`.
+﻿# `OneIndexPicker`
+Perform picking action for `PickableNode` with `OneIndexzBuffer`.

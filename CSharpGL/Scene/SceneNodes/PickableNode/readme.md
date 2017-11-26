@@ -1,2 +1,2 @@
-﻿# `PickableRenderer`
-supports modern rendering and picking.
+﻿# `PickableNode`
+supports modern rendering and picking primitive inside the node.
