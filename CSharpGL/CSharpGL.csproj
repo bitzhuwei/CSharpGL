@@ -382,9 +382,6 @@
     <Content Include="BasicDataStructures\PropertyGrid\UITypeEditors\readme.md" />
     <None Include="Scene\Actions\IndependentActions\readme.md" />
     <None Include="Scene\GlyphMap\readme.md" />
-    <None Include="Scene\SceneNodes\ConcreteNodes\TextureBillboardNode\readme.md" />
-    <None Include="Scene\SceneNodes\ConcreteNodes\TextureBillboardNode\billboard.frag" />
-    <None Include="Scene\SceneNodes\ConcreteNodes\TextureBillboardNode\billboard.vert" />
     <None Include="Scene\Lights\readme.md" />
     <None Include="Scene\readme.md" />
     <Compile Include="Scene\SceneNodes\SceneNodeBase.LagacyMatrix.cs" />
