@@ -40,9 +40,9 @@ void main(void)
 
 layout (early_fragment_tests) in;
 
+layout (binding = 0, offset = 0) uniform atomic_uint list_counter;
 layout (binding = 0, r32ui) uniform uimage2D head_pointer_image;
 layout (binding = 1, rgba32ui) uniform writeonly uimageBuffer list_buffer;
-layout (binding = 0, offset = 0) uniform atomic_uint list_counter;
 
 in vec4 surface_color;
 
