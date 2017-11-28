@@ -40,16 +40,13 @@ void main(void)
 
 layout (early_fragment_tests) in;
 
+layout (binding = 0, offset = 0) uniform atomic_uint list_counter;
 layout (binding = 0, r32ui) uniform uimage2D head_pointer_image;
 layout (binding = 1, rgba32ui) uniform writeonly uimageBuffer list_buffer;
 
-layout (binding = 0, offset = 0) uniform atomic_uint list_counter;
-
-layout (location = 0) out vec4 color;
-
 in vec4 surface_color;
 
-uniform vec3 light_position = vec3(40.0, 20.0, 100.0);
+layout (location = 0) out vec4 color;
 
 void main(void)
 {
