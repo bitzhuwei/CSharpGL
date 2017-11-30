@@ -86,7 +86,7 @@ namespace HowTransformFeedbackWorks
         public override void RenderBeforeChildren(RenderEventArgs arg)
         {
             TransformFeedbackObject tf = transformFeedbackObjects[(currentIndex + 1) % 2];
-            // update
+            // update content at (currentIndex + 1)
             {
                 GL.Instance.Enable(GL.GL_RASTERIZER_DISCARD);
 
@@ -97,7 +97,7 @@ namespace HowTransformFeedbackWorks
 
                 GL.Instance.Disable(GL.GL_RASTERIZER_DISCARD);
             }
-            // render
+            // render at (currentIndex + 1)
             {
                 RenderMethod method = this.RenderUnit.Methods[(currentIndex + 1) % 2 + 2];
                 ShaderProgram program = method.Program;
