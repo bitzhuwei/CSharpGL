@@ -27,18 +27,14 @@ namespace HowTransformFeedbackWorks
                 var vs = new VertexShader(updateVert);
                 var feedbackVaryings = new string[] { outPosition, outVelocity };
                 updateProvider = new ShaderArray(feedbackVaryings, ShaderProgram.BufferMode.Separate, vs);
-                {
-                    var map = new AttributeMap();
-                    map.Add(inPosition, DemoModel.inPosition);
-                    map.Add(inVelocity, DemoModel.inVelocity);
-                    updateBuilder = new RenderMethodBuilder(updateProvider, map);
-                }
-                {
-                    var map = new AttributeMap();
-                    map.Add(inPosition, DemoModel.inPosition2);
-                    map.Add(inVelocity, DemoModel.inVelocity2);
-                    updateBuilder2 = new RenderMethodBuilder(updateProvider, map);
-                }
+                var map = new AttributeMap();
+                map.Add(inPosition, DemoModel.inPosition);
+                map.Add(inVelocity, DemoModel.inVelocity);
+                var map2 = new AttributeMap();
+                map2.Add(inPosition, DemoModel.inPosition2);
+                map2.Add(inVelocity, DemoModel.inVelocity2);
+                updateBuilder = new RenderMethodBuilder(updateProvider, map);
+                updateBuilder2 = new RenderMethodBuilder(updateProvider, map2);
             }
 
             RenderMethodBuilder renderBuilder, renderBuilder2;
@@ -47,18 +43,14 @@ namespace HowTransformFeedbackWorks
                 var vs = new VertexShader(renderVert);
                 var fs = new FragmentShader(renderFrag);
                 renderProvider = new ShaderArray(vs, fs);
-                {
-                    var map = new AttributeMap();
-                    map.Add(inPosition, DemoModel.inPosition);
-                    map.Add(inVelocity, DemoModel.inVelocity);
-                    renderBuilder = new RenderMethodBuilder(renderProvider, map);
-                }
-                {
-                    var map = new AttributeMap();
-                    map.Add(inPosition, DemoModel.inPosition2);
-                    map.Add(inVelocity, DemoModel.inVelocity2);
-                    renderBuilder2 = new RenderMethodBuilder(renderProvider, map);
-                }
+                var map = new AttributeMap();
+                map.Add(inPosition, DemoModel.inPosition);
+                map.Add(inVelocity, DemoModel.inVelocity);
+                var map2 = new AttributeMap();
+                map2.Add(inPosition, DemoModel.inPosition2);
+                map2.Add(inVelocity, DemoModel.inVelocity2);
+                renderBuilder = new RenderMethodBuilder(renderProvider, map);
+                renderBuilder2 = new RenderMethodBuilder(renderProvider, map2);
             }
 
             var model = new DemoModel();
