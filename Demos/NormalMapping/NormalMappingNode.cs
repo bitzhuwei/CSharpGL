@@ -34,12 +34,25 @@ namespace NormalMapping
 
         public override void RenderBeforeChildren(RenderEventArgs arg)
         {
-            throw new NotImplementedException();
+            ICamera camera = arg.CameraStack.Peek();
+            mat4 projection = camera.GetProjectionMatrix();
+            mat4 view = camera.GetViewMatrix();
+            mat4 model = this.GetModelMatrix();
+            mat4 normal = glm.transpose(glm.inverse(view * model));
+
+            RenderMethod method = this.RenderUnit.Methods[0];
+            ShaderProgram program = method.Program;
+            //program.SetUniform(projectionMatrix, projection);
+            //program.SetUniform(viewMatrix, view);
+            //program.SetUniform(modelMatrix, model);
+            //program.SetUniform(normalMatrix, normal);
+
+            method.Render();
         }
 
         public override void RenderAfterChildren(RenderEventArgs arg)
         {
-            throw new NotImplementedException();
+            // nothing to do.
         }
     }
 }
