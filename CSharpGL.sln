@@ -75,6 +75,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Texture2DArray", "Demos\Tex
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorldSpaceBillboard", "Demos\WorldSpaceBillboard\WorldSpaceBillboard.csproj", "{F5DE0F62-A278-4E18-BF94-23A4CAF374D6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NormalMapping", "Demos\NormalMapping\NormalMapping.csproj", "{1F81C7FB-6F8A-48B8-A966-B90D1B75EDA7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -217,6 +219,10 @@ Global
 		{F5DE0F62-A278-4E18-BF94-23A4CAF374D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F5DE0F62-A278-4E18-BF94-23A4CAF374D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F5DE0F62-A278-4E18-BF94-23A4CAF374D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F81C7FB-6F8A-48B8-A966-B90D1B75EDA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F81C7FB-6F8A-48B8-A966-B90D1B75EDA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F81C7FB-6F8A-48B8-A966-B90D1B75EDA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F81C7FB-6F8A-48B8-A966-B90D1B75EDA7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -254,5 +260,6 @@ Global
 		{A5D2CFC1-5B69-45E3-8A1D-8EE6686F91F4} = {772765C9-9DD4-487B-8FEB-5EAACA9F955B}
 		{EBBB33B4-F841-45FA-8891-4A9C563B870B} = {772765C9-9DD4-487B-8FEB-5EAACA9F955B}
 		{F5DE0F62-A278-4E18-BF94-23A4CAF374D6} = {772765C9-9DD4-487B-8FEB-5EAACA9F955B}
+		{1F81C7FB-6F8A-48B8-A966-B90D1B75EDA7} = {772765C9-9DD4-487B-8FEB-5EAACA9F955B}
 	EndGlobalSection
 EndGlobal
