@@ -22,7 +22,7 @@ namespace NormalMapping
             map.Add("Tangent", NormalMappingModel.strTangent);
             var builder = new RenderMethodBuilder(array, map);
             var node = new NormalMappingNode(model, builder);
-
+            node.ModelSize = new vec3(2, 2, 0.1f);
             node.Initialize();
 
             return node;
