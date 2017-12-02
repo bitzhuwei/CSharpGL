@@ -97,10 +97,8 @@ namespace NormalMapping
 
             RenderMethod method = this.RenderUnit.Methods[0];
             ShaderProgram program = method.Program;
-            //program.SetUniform(projectionMatrix, projection);
-            //program.SetUniform(viewMatrix, view);
-            //program.SetUniform(modelMatrix, model);
-            //program.SetUniform(normalMatrix, normal);
+            program.SetUniform("gMVP", projection * view * model);
+            program.SetUniform("gWorld", model);
 
             method.Render();
         }
