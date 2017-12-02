@@ -14,7 +14,7 @@ namespace NormalMapping
     {
         private Scene scene;
         private ActionList actionList;
-        //private NormalNode node;
+        private NormalMappingNode rootNode;
 
         public FormMain()
         {
@@ -27,7 +27,7 @@ namespace NormalMapping
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-            var position = new vec3(0, 0, 1) * 14;
+            var position = new vec3(-0.5f, 0, 1) * 14;
             var center = new vec3(0, 0, 0);
             var up = new vec3(0, 1, 0);
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
@@ -37,6 +37,7 @@ namespace NormalMapping
                 var node = NormalMappingNode.Create();
                 float max = node.ModelSize.max();
                 node.Scale *= 16.0f / max;
+                this.rootNode = node;
                 this.scene.RootElement = node;
             }
 
@@ -59,6 +60,15 @@ namespace NormalMapping
         void winGLCanvas1_Resize(object sender, EventArgs e)
         {
             this.scene.Camera.AspectRatio = ((float)this.winGLCanvas1.Width) / ((float)this.winGLCanvas1.Height);
+        }
+
+        private void rdoNormalMapping_CheckedChanged(object sender, EventArgs e)
+        {
+            var node = this.rootNode;
+            if (node != null)
+            {
+                node.NormalMapping = this.rdoNormalMapping.Checked;
+            }
         }
     }
 }
