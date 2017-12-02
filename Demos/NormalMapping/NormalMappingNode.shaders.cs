@@ -15,8 +15,8 @@ layout (location = 1) in vec2 TexCoord;
 layout (location = 2) in vec3 Normal;                                               
 layout (location = 3) in vec3 Tangent;                                              
                                                                                     
-uniform mat4 gWVP;                                                                  
-uniform mat4 gLightWVP;                                                             
+uniform mat4 gMVP;                                                                  
+uniform mat4 gLightMVP;                                                             
 uniform mat4 gWorld;                                                                
                                                                                     
 out vec4 LightSpacePos;                                                             
@@ -27,8 +27,8 @@ out vec3 Tangent0;
                                                                                     
 void main()                                                                         
 {                                                                                   
-    gl_Position   = gWVP * vec4(Position, 1.0);                                     
-    LightSpacePos = gLightWVP * vec4(Position, 1.0);                                
+    gl_Position   = gMVP * vec4(Position, 1.0);                                     
+    LightSpacePos = gLightMVP * vec4(Position, 1.0);                                
     TexCoord0     = TexCoord;                                                       
     Normal0       = (gWorld * vec4(Normal, 0.0)).xyz;                               
     Tangent0      = (gWorld * vec4(Tangent, 0.0)).xyz;                              
