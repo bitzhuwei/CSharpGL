@@ -33,7 +33,7 @@ namespace NormalMapping
         {
         }
 
-        private DirectionalLight__ m_dirLight;
+        private DirectionalLight m_dirLight;
         private Texture m_pTexture;
         private Texture m_pNormalMap;
         private Texture m_pNotNormalMap;
@@ -45,6 +45,7 @@ namespace NormalMapping
             set
             {
                 this.normalMapping = value;
+
                 RenderMethod method = this.RenderUnit.Methods[0];
                 ShaderProgram program = method.Program;
                 program.SetUniform("gNormalMap", value ? this.m_pNormalMap : this.m_pNotNormalMap);
@@ -58,11 +59,10 @@ namespace NormalMapping
             RenderMethod method = this.RenderUnit.Methods[0];
             ShaderProgram program = method.Program;
             {
-                var dirLight = new DirectionalLight__();
+                var dirLight = new DirectionalLight(new vec3(1.0f, 0.0f, 0.0f));
                 dirLight.AmbientIntensity = 0.2f;
                 dirLight.DiffuseIntensity = 0.8f;
                 dirLight.Color = new vec3(1.0f, 1.0f, 1.0f);
-                dirLight.Direction = new vec3(1.0f, 0.0f, 0.0f);
                 program.SetUniform("gDirectionalLight.Base.Color", dirLight.Color);
                 program.SetUniform("gDirectionalLight.Base.AmbientIntensity", dirLight.AmbientIntensity);
                 program.SetUniform("gDirectionalLight.Base.DiffuseIntensity", dirLight.DiffuseIntensity);

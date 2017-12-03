@@ -49,7 +49,6 @@
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="Lights\Lights.cs" />
     <Compile Include="NormalMappingModel.cs" />
     <Compile Include="NormalMappingNode.shaders.cs" />
     <Compile Include="NormalMappingNode.cs" />
