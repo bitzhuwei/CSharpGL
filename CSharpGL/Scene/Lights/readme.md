@@ -1,1 +1,2 @@
-﻿# Light in Scene.
+﻿# Lighs in Scene.
+not finished yet.
