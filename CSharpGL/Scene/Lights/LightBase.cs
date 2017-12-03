@@ -19,6 +19,16 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
+        public float AmbientIntensity { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public float DiffuseIntensity { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public vec3 Position { get; set; }
 
         private readonly IFramebufferProvider framebufferProvider = new DepthFramebufferProvider();

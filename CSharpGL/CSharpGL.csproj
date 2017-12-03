@@ -146,6 +146,7 @@
     <Compile Include="Scene\GUI\GLControls\CtrlImage\CtrlImage.cs" />
     <Compile Include="Scene\GUI\GLControl.cs" />
     <Compile Include="Scene\GUI\GLControls\CtrlImage\CtrlImageModel.cs" />
+    <Compile Include="Scene\Lights\Attenuation.cs" />
     <Compile Include="Scene\Manipulaters\CameraManipulaters\FirstPerspectiveManipulater.cs" />
     <Compile Include="Scene\Manipulaters\CameraManipulaters\SatelliteManipulater.cs" />
     <Compile Include="Scene\Manipulaters\IKeyboardHandler.cs" />

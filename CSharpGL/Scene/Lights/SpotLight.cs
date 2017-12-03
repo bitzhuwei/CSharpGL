@@ -30,6 +30,16 @@ namespace CSharpGL
         /// </summary>
         public float Far { get; set; }
 
+        private Attenuation attenuation = new Attenuation(1.0f, 0.0f, 0.0f);
+        /// <summary>
+        /// 
+        /// </summary>
+        public Attenuation Attenuation
+        {
+            get { return attenuation; }
+            set { attenuation = value; }
+        }
+
         /// <summary>
         /// 
         /// </summary>
