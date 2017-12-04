@@ -45,7 +45,6 @@
   <ItemGroup>
     <Compile Include="BasicDataStructures\Connection\ConnectionFieldBase.cs" />
     <Compile Include="BasicDataStructures\Connection\ConnectionField.cs" />
-    <Compile Include="BasicDataStructures\Connection\ConnectionFromField.cs" />
     <Compile Include="BasicDataStructures\Events\GLKeyPressEventArgs.cs">
       <SubType>Code</SubType>
     </Compile>
