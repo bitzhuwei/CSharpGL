@@ -28,6 +28,12 @@ namespace CSharpGL
         /// </summary>
         public SceneNodeBase RootElement { get; set; }
 
+        private List<LightBase> lights = new List<LightBase>();
+        /// <summary>
+        /// All lights in the scene.
+        /// </summary>
+        public List<LightBase> Lights { get { return this.lights; } }
+
         /// <summary>
         /// 
         /// </summary>
@@ -49,11 +55,6 @@ namespace CSharpGL
         //public vec3 AmbientLight { get; set; }
 
         /// <summary>
-        /// 
-        /// </summary>
-        public List<LightBase> Lights { get; private set; }
-
-        /// <summary>
         /// camera, canvas, nodes.
         /// rendering, picking. 
         /// </summary>
@@ -63,8 +64,6 @@ namespace CSharpGL
         {
             this.Camera = camera;
             this.Canvas = canvas;
-
-            this.Lights = new List<LightBase>();
         }
     }
 }
