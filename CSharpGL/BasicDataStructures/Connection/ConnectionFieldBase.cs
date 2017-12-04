@@ -41,7 +41,7 @@ namespace CSharpGL
         /// <summary>
         /// Raise notify event for specified <param name="field"></param>.
         /// </summary>
-        protected void RaiseNotifyEvent(ConnectionFieldBase field)
+        protected static void RaiseNotifyEvent(ConnectionFieldBase field)
         {
             var notified = field.Notified;
             if (notified != null)
