@@ -7,31 +7,32 @@ namespace CSharpGL
     /// <summary>
     /// Helper class for logging.
     /// </summary>
-    public partial class Log// : IDisposable
+    public static class Log// : IDisposable
     {
-        /// <summary>
-        /// Single instance.
-        /// </summary>
-        public static readonly Log instance = new Log();
-        private StreamWriter writer;
-
-        private Log()
-        {
-            string filename = string.Format("CSharpGL.{0:yyyy-MM-dd.HH-mm-ss}.log", DateTime.Now);
-            var writer = new StreamWriter(filename);
-            writer.AutoFlush = true;
-            this.writer = writer;
-        }
-
+        private static StreamWriter writer;
+        private static readonly object synObj = new object();
         /// <summary>
         /// 
         /// </summary>
         /// <param name="obj"></param>
-        public void Write(object obj)
+        public static void Write(object obj)
         {
-            this.writer.Write(DateTime.Now);
-            this.writer.WriteLine(":");
-            this.writer.WriteLine(obj);
+            if (writer == null)
+            {
+                lock (synObj)
+                {
+                    if (writer == null)
+                    {
+                        string filename = string.Format("CSharpGL.{0:yyyy-MM-dd--HH-mm-ss}.log", DateTime.Now);
+                        writer = new StreamWriter(filename);
+                        writer.AutoFlush = true;
+                    }
+                }
+            }
+
+            writer.Write(DateTime.Now);
+            writer.WriteLine(":");
+            writer.WriteLine(obj);
         }
     }
 }
