@@ -62,7 +62,7 @@ namespace CSharpGL
                 {
                     var str = string.Format(
                         "Error:[{0}] glMapBufferRange failed: buffer ID: [{1}]", error, buffer.BufferId.ToString());
-                    Log.instance.Write(str);
+                    Log.Write(str);
                     Debug.Write(str);
                     //throw new Exception(str);
                 }

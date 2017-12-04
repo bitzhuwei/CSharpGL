@@ -81,7 +81,7 @@ namespace CSharpGL
                 }
                 catch (Exception ex)
                 {
-                    Log.instance.Write(ex);
+                    Log.Write(ex);
                 }
 
                 // 把程序集添加到列表中

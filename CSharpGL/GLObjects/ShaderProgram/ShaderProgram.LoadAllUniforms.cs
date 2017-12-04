@@ -147,7 +147,7 @@ namespace CSharpGL
                 }
                 else // TODO: not dealt with uniform array or blocks.
                 {
-                    Log.instance.Write(string.Format("Not dealt with uniform type:[{0}]", type));
+                    Log.Write(string.Format("Not dealt with uniform type:[{0}]", type));
                     return null;
                 }
             }
