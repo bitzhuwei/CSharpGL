@@ -43,6 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="BasicDataStructures\Connection\readme.md" />
+    <Compile Include="BasicDataStructures\Connection\ConnectionFieldBase.cs" />
+    <Compile Include="BasicDataStructures\Connection\ConnectionField.cs" />
     <Compile Include="BasicDataStructures\Events\GLKeyPressEventArgs.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -75,7 +78,6 @@
     <Compile Include="BasicDataStructures\GLSL\vec3.cs" />
     <Compile Include="BasicDataStructures\GLSL\vec4.cs" />
     <Compile Include="BasicDataStructures\GLSL\VectorHelper.cs" />
-    <Compile Include="BasicDataStructures\MarkableStruct.cs" />
     <Compile Include="BasicDataStructures\PropertyGrid\TypeConverters\ILoadFromString.cs" />
     <Compile Include="BasicDataStructures\Utilities\AssemblyHelper.cs" />
     <Compile Include="BasicDataStructures\Utilities\ColorHelper.cs" />
