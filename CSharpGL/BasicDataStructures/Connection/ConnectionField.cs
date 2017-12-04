@@ -6,14 +6,14 @@ using System.Text;
 namespace CSharpGL
 {
     /// <summary>
-    /// When Someone chhanged its value, I will know.
-    /// <para>If my value has changed, others will know.</para>
+    /// When Someone has changed its value, I will be notified.
+    /// <para>If my value have changed, I will notify others.</para>
     /// </summary>
     public class ConnectionField<T> : ConnectionFieldBase
     {
         private T _value;
         /// <summary>
-        /// 
+        /// The value.
         /// </summary>
         public T Value
         {
@@ -35,7 +35,7 @@ namespace CSharpGL
         /// <summary>
         /// When Someone chhanged its value, I will know.
         /// </summary>
-        /// <param name="value"></param>
+        /// <param name="value">Initial value. This will not notify anyone.</param>
         public ConnectionField(T value)
         {
             this._value = value;

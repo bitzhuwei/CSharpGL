@@ -6,7 +6,8 @@ using System.Text;
 namespace CSharpGL
 {
     /// <summary>
-    /// When Someone chhanged its value, I will know.
+    /// When Someone has changed its value, I will be notified.
+    /// <para>If my value have changed, I will notify others.</para>
     /// </summary>
     public class ConnectionFieldBase
     {
@@ -17,7 +18,7 @@ namespace CSharpGL
 
         /// <summary>
         /// Send a connection request to <paramref name="field"/>.
-        /// <para>If <paramref name="field"/>'s value has changed, I will know.</para>
+        /// <para>If <paramref name="field"/>'s value has changed, I will be notified.</para>
         /// </summary>
         /// <param name="field">The field that I want to connect to.</param>
         public void ConnectTo(ConnectionFieldBase field)
@@ -29,7 +30,7 @@ namespace CSharpGL
 
         ///// <summary>
         ///// There is a connection request from <paramref name="field"/>.
-        ///// <para>If my value has changed, <paramref name="field"/> will know.</para>
+        ///// <para>If my value have changed, I will notify <paramref name="field"/>.</para>
         ///// </summary>
         ///// <param name="field">The field that wants to connect to me(my value's change).</param>
         //public void ConnectFrom(ConnectionFieldBase field)
@@ -38,7 +39,7 @@ namespace CSharpGL
         //}
 
         /// <summary>
-        /// 
+        /// Raise notify event for specified <param name="field"></param>.
         /// </summary>
         protected void RaiseNotifyEvent(ConnectionFieldBase field)
         {
@@ -50,7 +51,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// Raised when one of the 'from' fields' value has changed.
+        /// Raised when one of the fields that I connected to has changed its value.
         /// </summary>
         public event EventHandler Notified;
 

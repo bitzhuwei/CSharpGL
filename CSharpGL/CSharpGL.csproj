@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="BasicDataStructures\Connection\readme.md" />
     <Compile Include="BasicDataStructures\Connection\ConnectionFieldBase.cs" />
     <Compile Include="BasicDataStructures\Connection\ConnectionField.cs" />
     <Compile Include="BasicDataStructures\Events\GLKeyPressEventArgs.cs">
