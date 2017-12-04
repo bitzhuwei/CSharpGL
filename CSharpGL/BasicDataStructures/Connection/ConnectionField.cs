@@ -7,38 +7,15 @@ namespace CSharpGL
 {
     /// <summary>
     /// When Someone chhanged its value, I will know.
+    /// <para>If my value has changed, others will know.</para>
     /// </summary>
-    public class ConnectionField
+    public class ConnectionField<T> : ConnectionFieldBase
     {
-        private List<ConnectionField> to = new List<ConnectionField>();
-
-        /// <summary>
-        /// Send a connection request to <paramref name="field"/>.
-        /// <para>If <paramref name="field"/>'s value has changed, I will know.</para>
-        /// </summary>
-        /// <param name="field">The field that I want to connect to.</param>
-        public void ConnectTo(ConnectionField field)
-        {
-            if (field == null) { throw new ArgumentNullException("field"); }
-
-            field.to.Add(this);
-        }
-
-        ///// <summary>
-        ///// There is a connection request from <paramref name="field"/>.
-        ///// <para>If my value has changed, <paramref name="field"/> will know.</para>
-        ///// </summary>
-        ///// <param name="field">The field that wants to connect to me(my value's change).</param>
-        //public void ConnectFrom(ConnectionField field)
-        //{
-        //    this.to.Add(field);
-        //}
-
-        private object _value;
+        private T _value;
         /// <summary>
         /// 
         /// </summary>
-        public object Value
+        public T Value
         {
             get { return _value; }
             set
@@ -49,24 +26,28 @@ namespace CSharpGL
                     // Notify all fields in 'to' that my value has changed.
                     foreach (var item in this.to)
                     {
-                        item.RaiseNotifyEvent();
+                        RaiseNotifyEvent(item);
                     }
                 }
             }
         }
 
-        private void RaiseNotifyEvent()
+        /// <summary>
+        /// When Someone chhanged its value, I will know.
+        /// </summary>
+        /// <param name="value"></param>
+        public ConnectionField(T value)
         {
-            var notified = this.Notified;
-            if (notified != null)
-            {
-                notified(this, EventArgs.Empty);
-            }
+            this._value = value;
         }
 
         /// <summary>
-        /// Raised when one of the 'from' fields' value has changed.
+        /// 
         /// </summary>
-        public event EventHandler Notified;
+        /// <returns></returns>
+        public override string ToString()
+        {
+            return string.Format("value:{0}", this._value);
+        }
     }
 }

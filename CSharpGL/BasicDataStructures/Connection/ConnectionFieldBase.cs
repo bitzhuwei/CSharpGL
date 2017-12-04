@@ -1,0 +1,58 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace CSharpGL
+{
+    /// <summary>
+    /// When Someone chhanged its value, I will know.
+    /// </summary>
+    public class ConnectionFieldBase
+    {
+        /// <summary>
+        /// 
+        /// </summary>
+        protected List<ConnectionFieldBase> to = new List<ConnectionFieldBase>();
+
+        /// <summary>
+        /// Send a connection request to <paramref name="field"/>.
+        /// <para>If <paramref name="field"/>'s value has changed, I will know.</para>
+        /// </summary>
+        /// <param name="field">The field that I want to connect to.</param>
+        public void ConnectTo(ConnectionFieldBase field)
+        {
+            if (field == null) { throw new ArgumentNullException("field"); }
+
+            field.to.Add(this);
+        }
+
+        ///// <summary>
+        ///// There is a connection request from <paramref name="field"/>.
+        ///// <para>If my value has changed, <paramref name="field"/> will know.</para>
+        ///// </summary>
+        ///// <param name="field">The field that wants to connect to me(my value's change).</param>
+        //public void ConnectFrom(ConnectionFieldBase field)
+        //{
+        //    this.to.Add(field);
+        //}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        protected void RaiseNotifyEvent(ConnectionFieldBase field)
+        {
+            var notified = field.Notified;
+            if (notified != null)
+            {
+                notified(field, EventArgs.Empty);
+            }
+        }
+
+        /// <summary>
+        /// Raised when one of the 'from' fields' value has changed.
+        /// </summary>
+        public event EventHandler Notified;
+
+    }
+}
