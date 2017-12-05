@@ -100,7 +100,9 @@
   <ItemGroup>
     <Content Include="Cube\CubeNode.jpg" />
     <Content Include="Cube\TextureCubeNode.jpg" />
-    <Content Include="KleinBottle\KleinBottle.png" />
+    <Content Include="KleinBottle\KleinBottle.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Propeller\Propeller+4Flabellum.png" />
     <Content Include="Teapot\Teapot.png" />
   </ItemGroup>

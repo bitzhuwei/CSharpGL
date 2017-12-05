@@ -30,7 +30,7 @@ namespace StencilTest
             //var teapot = ShadowMappingRenderer.Create();
             //var rootElement = teapot;
 
-            var position = new vec3(5, 3, 5) * 3;
+            var position = new vec3(0, 3, 5);
             var center = new vec3(0, 0, 0);
             var up = new vec3(0, 1, 0);
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
@@ -44,10 +44,9 @@ namespace StencilTest
             this.trvScene.ExpandAll();
 
             var tansformAction = new TransformAction(scene);
-            var shadowMappingAction = new ShadowMappingAction(scene);
             var renderAction = new RenderAction(scene);
             var actionList = new ActionList();
-            actionList.Add(tansformAction); actionList.Add(shadowMappingAction); actionList.Add(renderAction);
+            actionList.Add(tansformAction); actionList.Add(renderAction);
             this.actionList = actionList;
 
             var manipulater = new FirstPerspectiveManipulater();
@@ -75,6 +74,14 @@ namespace StencilTest
         private SceneNodeBase GetRootElement()
         {
             var group = new GroupNode();
+
+            var teapotNode = TeapotNode.Create();
+            group.Children.Add(teapotNode);
+
+            var bottleNode = KleinBottleNode.Create(new KleinBottleModel());
+            bottleNode.Scale = new vec3(1, 1, 1) * 0.05f;
+            group.Children.Add(bottleNode);
+
             return group;
         }
 
@@ -105,7 +112,6 @@ namespace StencilTest
 
         private void winGLCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
         {
-            //this.scene.Render();
             this.actionList.Act();
         }
 
