@@ -54,8 +54,9 @@ namespace CSharpGL
             var framebuffer = new Framebuffer(width, height);
             framebuffer.Bind();
             {
-                var renderbuffer = new Renderbuffer(width, height, GL.GL_RGBA, RenderbufferType.ColorBuffer);
-                framebuffer.Attach(FramebufferTarget.Framebuffer, renderbuffer, 0u);// 0
+                var renderbuffer = new Renderbuffer(width, height, GL.GL_RGBA);
+                uint colorAttachmentLocation = 0;
+                framebuffer.Attach(FramebufferTarget.Framebuffer, renderbuffer, colorAttachmentLocation);// 0
             }
             {
                 var texture = new Texture(new TexImageBitmap(width, height),
@@ -69,7 +70,7 @@ namespace CSharpGL
                 this.BindingTexture = texture;
             }
             {
-                var renderbuffer = new Renderbuffer(width, height, GL.GL_DEPTH_COMPONENT24, RenderbufferType.DepthBuffer);
+                var renderbuffer = new Renderbuffer(width, height, GL.GL_DEPTH_COMPONENT24);
                 framebuffer.Attach(FramebufferTarget.Framebuffer, renderbuffer, AttachmentLocation.Depth);// special
             }
             framebuffer.SetDrawBuffer(GL.GL_COLOR_ATTACHMENT0 + 1);// as in 1 in framebuffer.Attach(FramebufferTarget.Framebuffer, texture, 1u);// 1

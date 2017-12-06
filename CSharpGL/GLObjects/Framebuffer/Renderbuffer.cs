@@ -26,12 +26,10 @@
         /// <param name="width"></param>
         /// <param name="height"></param>
         /// <param name="internalformat"></param>
-        /// <param name="bufferType"></param>
-        public Renderbuffer(int width, int height, uint internalformat, RenderbufferType bufferType)
+        public Renderbuffer(int width, int height, uint internalformat)
         {
             this.Width = width;
             this.Height = height;
-            this.BufferType = bufferType;
 
             glGenRenderbuffers(1, renderbuffer);
             glBindRenderbuffer(GL.GL_RENDERBUFFER, renderbuffer[0]);
@@ -55,11 +53,6 @@
         ///
         /// </summary>
         public int Width { get; set; }
-
-        /// <summary>
-        ///
-        /// </summary>
-        public RenderbufferType BufferType { get; private set; }
 
         ///// <summary>
         ///// Bind a named renderbuffer object.
@@ -104,7 +97,7 @@
         /// <returns></returns>
         public override string ToString()
         {
-            return string.Format("{0}: [w:{1}, h:{2}] {3}", this.GetType().Name, this.Width, this.Height, this.BufferType);
+            return string.Format("{0}: [w:{1}, h:{2}]", this.GetType().Name, this.Width, this.Height);
         }
     }
 }

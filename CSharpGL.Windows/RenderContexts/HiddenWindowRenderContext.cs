@@ -139,6 +139,7 @@ namespace CSharpGL
                 catch (Exception ex)
                 {
                     Debug.WriteLine(ex);
+                    Log.Write(ex);
                 }
             }
         }

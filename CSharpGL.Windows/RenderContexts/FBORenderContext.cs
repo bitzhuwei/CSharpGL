@@ -29,13 +29,18 @@ namespace CSharpGL
             var framebuffer = new Framebuffer(width, height);
             framebuffer.Bind();
             {
-                var renderbuffer = new Renderbuffer(width, height, GL.GL_RGBA, RenderbufferType.ColorBuffer);
-                framebuffer.Attach(FramebufferTarget.Framebuffer, renderbuffer, 0u);// 0
+                var renderbuffer = new Renderbuffer(width, height, GL.GL_RGBA);
+                uint colorAttachmentLocation = 0;
+                framebuffer.Attach(FramebufferTarget.Framebuffer, renderbuffer, colorAttachmentLocation);// 0
             }
             {
-                var renderbuffer = new Renderbuffer(width, height, GL.GL_DEPTH_COMPONENT24, RenderbufferType.DepthBuffer);
+                var renderbuffer = new Renderbuffer(width, height, GL.GL_DEPTH_COMPONENT24);
                 framebuffer.Attach(FramebufferTarget.Framebuffer, renderbuffer, AttachmentLocation.Depth);// special
             }
+            //{
+            //    var renderbuffer = new Renderbuffer(width, height, GL.GL_STENCIL_INDEX8);
+            //    framebuffer.Attach(FramebufferTarget.Framebuffer, renderbuffer, AttachmentLocation.Stencil);
+            //}
             framebuffer.CheckCompleteness();
             framebuffer.Unbind();
 

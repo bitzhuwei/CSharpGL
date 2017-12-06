@@ -26,7 +26,7 @@
         /// <returns></returns>
         public static Renderbuffer CreateDepthbuffer(int width, int height, uint internalFormat = GL.GL_DEPTH_COMPONENT)
         {
-            var renderbuffer = new Renderbuffer(width, height, internalFormat, RenderbufferType.DepthBuffer);
+            var renderbuffer = new Renderbuffer(width, height, internalFormat);
 
             return renderbuffer;
         }
@@ -40,7 +40,7 @@
         /// <returns></returns>
         public static Renderbuffer CreateColorbuffer(int width, int height, uint internalFormat = GL.GL_RGBA)
         {
-            var renderbuffer = new Renderbuffer(width, height, internalFormat, RenderbufferType.ColorBuffer);
+            var renderbuffer = new Renderbuffer(width, height, internalFormat);
 
             return renderbuffer;
         }
