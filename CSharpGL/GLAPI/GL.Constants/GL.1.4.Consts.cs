@@ -53,14 +53,14 @@ namespace CSharpGL
         /////
         ///// </summary>
         //public const uint GL_TEXTURE_LOD_BIAS = 0x8501;
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_INCR_WRAP = 0x8507;
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_DECR_WRAP = 0x8508;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_INCR_WRAP = 0x8507;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_DECR_WRAP = 0x8508;
         ///// <summary>
         /////
         ///// </summary>

@@ -92,6 +92,7 @@
     <None Include="Scene\Actions\DependentActions\readme.md" />
     <None Include="GLCanvas\readme.md" />
     <Compile Include="GLAPI\GL.Enumerations\CubemapFace.cs" />
+    <Compile Include="GLAPI\GL.Enumerations\StencilTest.cs" />
     <Compile Include="GLAPI\GL.PrintError.cs" />
     <Compile Include="GLAPI\GL.DrawText.cs" />
     <Compile Include="GLObjects\Framebuffer\FramebufferTarget.cs" />
@@ -102,6 +103,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="GLObjects\GLStates\EnableStates\StencilTestState.cs" />
+    <Compile Include="GLObjects\GLStates\StencilMaskState.cs" />
+    <Compile Include="GLObjects\GLStates\StencilOpState.cs" />
+    <Compile Include="GLObjects\GLStates\StencilFuncState.cs" />
+    <Compile Include="GLObjects\GLStates\UserDefineState.cs" />
     <Compile Include="GLObjects\ShaderProgram\ShaderProgram.StaticCtor.cs" />
     <Compile Include="GLObjects\ShaderProgram\ShaderProgram.LoadAllUniforms.cs" />
     <Compile Include="GLObjects\Shaders\Shaders\TessEvaluationShader.cs" />
