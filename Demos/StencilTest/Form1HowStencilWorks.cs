@@ -73,16 +73,60 @@ namespace StencilTest
 
         private SceneNodeBase GetRootElement()
         {
-            var group = new GroupNode();
-
-            var teapotNode = TeapotNode.Create();
-            group.Children.Add(teapotNode);
+            //var teapotNode = TeapotNode.Create();
+            //teapotNode.RenderWireframe = false;
+            //{
+            //    var stencilFunc = new StencilFuncState(EStencilFunc.Always, 1, 0xFF);
+            //    var stencilOp = new StencilOpState(EStencilOp.Keep, EStencilOp.Keep, EStencilOp.Replace);
+            //    var stencilMask = new StencilMaskState(0xFF);
+            //    var colorMask = new ColorMaskState(false, false, false, false);
+            //    var depthMask = new DepthMaskState(false);
+            //    var clearBuffer = new UserDefineState();
+            //    clearBuffer.On += clearBuffer_On;
+            //    var list = teapotNode.RenderUnit.Methods[0].StateList;
+            //    list.Add(stencilFunc);
+            //    list.Add(stencilOp);
+            //    list.Add(stencilMask);
+            //    list.Add(colorMask);
+            //    list.Add(depthMask);
+            //    list.Add(clearBuffer);
+            //}
+            var quaterNode = QuaterNode.Create();
+            /*
+            GL.Instance.StencilFunc(GL.GL_ALWAYS, 1, 0xFF);
+            GL.Instance.StencilOp(GL.GL_KEEP, GL.GL_KEEP, GL.GL_REPLACE);
+            GL.Instance.StencilMask(0xFF);
+            GL.Instance.DepthMask(false);
+            GL.Instance.Clear(GL.GL_STENCIL_BUFFER_BIT);
+             */
 
             var bottleNode = KleinBottleNode.Create(new KleinBottleModel());
             bottleNode.Scale = new vec3(1, 1, 1) * 0.05f;
+            {
+                var stencilFunc = new StencilFuncState(EStencilFunc.Equal, 1, 0xFF);
+                var stencilMask = new StencilMaskState(0x00);
+                var depthMask = new DepthMaskState(true);
+                var list = bottleNode.RenderUnit.Methods[0].StateList;
+                //list.Add(stencilFunc);
+                //list.Add(stencilMask);
+                //list.Add(depthMask);
+            }
+            /*
+            glStencilFunc(GL_EQUAL, 1, 0xFF);
+            glStencilMask(0x00);
+            glDepthMask(GL_TRUE);
+             */
+
+            var group = new HowStencilTestWorkNode();
+            group.Children.Add(quaterNode);
             group.Children.Add(bottleNode);
 
             return group;
+        }
+
+        void clearBuffer_On(object sender, EventArgs e)
+        {
+            GL.Instance.Clear(GL.GL_STENCIL_BUFFER_BIT);
         }
 
         //private SceneNodeBase GetRootElement()

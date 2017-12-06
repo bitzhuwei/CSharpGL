@@ -49,8 +49,12 @@
     <Compile Include="Form1HowStencilWorks.Designer.cs">
       <DependentUpon>Form1HowStencilWorks.cs</DependentUpon>
     </Compile>
+    <Compile Include="HowStencilTestWorkNode.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QuaterModel.cs" />
+    <Compile Include="QuaterNode.shader.cs" />
+    <Compile Include="QuaterNode.cs" />
     <EmbeddedResource Include="Form1HowStencilWorks.resx">
       <DependentUpon>Form1HowStencilWorks.cs</DependentUpon>
     </EmbeddedResource>
