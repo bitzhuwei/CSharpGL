@@ -11,35 +11,35 @@ namespace CSharpGL
     public enum EStencilFunc : uint
     {
         /// <summary>
-        /// 
+        /// Always passes.
         /// </summary>
         Always = GL.GL_ALWAYS,
         /// <summary>
-        /// 
+        /// Always fails
         /// </summary>
         Never = GL.GL_NEVER,
         /// <summary>
-        /// 
+        /// Passes if ( ref & mask) &lt; ( stencil & mask)
         /// </summary>
         Less = GL.GL_LESS,
         /// <summary>
-        /// 
+        /// Passes if ( ref & mask) &lt;= ( stencil & mask)
         /// </summary>
         LEqual = GL.GL_LEQUAL,
         /// <summary>
-        /// 
+        /// Passes if ( ref & mask) &gt; ( stencil & mask)
         /// </summary>
         Greater = GL.GL_GREATER,
         /// <summary>
-        /// 
+        /// Passes if ( ref & mask) &gt;= ( stencil & mask).
         /// </summary>
         GEqual = GL.GL_GEQUAL,
         /// <summary>
-        /// 
+        /// Passes if ( ref & mask) = ( stencil & mask)
         /// </summary>
         Equal = GL.GL_EQUAL,
         /// <summary>
-        /// 
+        /// Passes if ( ref & mask) != ( stencil & mask)
         /// </summary>
         NotEqual = GL.GL_NOTEQUAL,
     }
