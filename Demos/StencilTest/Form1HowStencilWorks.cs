@@ -119,6 +119,7 @@ namespace StencilTest
 
             var group = new HowStencilTestWorkNode();
             group.Children.Add(quaterNode);
+            //group.Children.Add(teapotNode);
             group.Children.Add(bottleNode);
 
             return group;
