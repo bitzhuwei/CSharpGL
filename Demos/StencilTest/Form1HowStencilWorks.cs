@@ -103,10 +103,10 @@ namespace StencilTest
             var bottleNode = KleinBottleNode.Create(new KleinBottleModel());
             bottleNode.Scale = new vec3(1, 1, 1) * 0.05f;
             {
-                var stencilFunc = new StencilFuncState(EStencilFunc.Equal, 1, 0xFF);
-                var stencilMask = new StencilMaskState(0x00);
-                var depthMask = new DepthMaskState(true);
-                var list = bottleNode.RenderUnit.Methods[0].StateList;
+                //var stencilFunc = new StencilFuncState(EStencilFunc.Equal, 1, 0xFF);
+                //var stencilMask = new StencilMaskState(0x00);
+                //var depthMask = new DepthMaskState(true);
+                //var list = bottleNode.RenderUnit.Methods[0].StateList;
                 //list.Add(stencilFunc);
                 //list.Add(stencilMask);
                 //list.Add(depthMask);

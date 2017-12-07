@@ -8,7 +8,7 @@ namespace StencilTest
 {
     class HowStencilTestWorkNode : ModernNode
     {
-        private StencilTestState stencilTest = new StencilTestState(true);
+        //private StencilTestState stencilTest = new StencilTestState(true);
 
         public HowStencilTestWorkNode()
             : base(null)
@@ -17,12 +17,12 @@ namespace StencilTest
 
         public override void RenderBeforeChildren(RenderEventArgs arg)
         {
-            this.stencilTest.On();
+            //this.stencilTest.On();
         }
 
         public override void RenderAfterChildren(RenderEventArgs arg)
         {
-            this.stencilTest.Off();
+            //this.stencilTest.Off();
         }
     }
 }
