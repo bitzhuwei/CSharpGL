@@ -24,9 +24,6 @@ namespace CSharpGL
                 throw new Exception(string.Format("Create basic render context failed!"));
             }
 
-            //	Create the render context.
-            this.RenderContextHandle = Win32.wglCreateContext(this.DeviceContextHandle);
-
             //  Make the context current.
             this.MakeCurrent();
 
@@ -48,15 +45,7 @@ namespace CSharpGL
             wndClass.Init();
             wndClass.style = ClassStyles.HorizontalRedraw | ClassStyles.VerticalRedraw | ClassStyles.OwnDC;
             wndClass.lpfnWndProc = wndProcDelegate;
-            wndClass.cbClsExtra = 0;
-            wndClass.cbWndExtra = 0;
-            wndClass.hInstance = IntPtr.Zero;
-            wndClass.hIcon = IntPtr.Zero;
-            wndClass.hCursor = IntPtr.Zero;
-            wndClass.hbrBackground = IntPtr.Zero;
-            wndClass.lpszMenuName = null;
             wndClass.lpszClassName = "CSharpGLRenderWindow";
-            wndClass.hIconSm = IntPtr.Zero;
             Win32.RegisterClassEx(ref wndClass);
 
             //	Create the window. Position and size it.
@@ -93,6 +82,9 @@ namespace CSharpGL
             {
                 return false;
             }
+
+            //	Create the render context.
+            this.RenderContextHandle = Win32.wglCreateContext(this.DeviceContextHandle);
 
             return true;
         }
