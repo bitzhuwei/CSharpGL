@@ -3,10 +3,9 @@ namespace CSharpGL
 {
     public partial class ModernNode
     {
-
         #region IRenderable 成员
 
-        private ThreeFlags enableRendering = ThreeFlags.BeforeChildren | ThreeFlags.Children;
+        private ThreeFlags enableRendering = ThreeFlags.BeforeChildren | ThreeFlags.Children | ThreeFlags.AfterChildren;
         /// <summary>
         /// Render before/after children? Render children? 
         /// RenderAction cares about this property. Other actions, maybe, maybe not, your choice.

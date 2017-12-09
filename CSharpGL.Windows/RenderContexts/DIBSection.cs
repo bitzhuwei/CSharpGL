@@ -84,26 +84,27 @@ namespace CSharpGL
         protected void SetPixelFormat(IntPtr hDC, int bitCount)
         {
             //	Create the big lame pixel format majoo.
-            var pixelFormat = new PixelFormatDescriptor();
-            pixelFormat.Init();
+            var pdf = new PixelFormatDescriptor();
+            pdf.Init();
 
             //	Set the values for the pixel format.
-            pixelFormat.nVersion = 1;
-            pixelFormat.dwFlags = (Win32.PFD_DRAW_TO_BITMAP | Win32.PFD_SUPPORT_OPENGL | Win32.PFD_SUPPORT_GDI);
-            pixelFormat.iPixelType = Win32.PFD_TYPE_RGBA;
-            pixelFormat.cColorBits = (byte)bitCount;
-            pixelFormat.cDepthBits = 32;
-            pixelFormat.iLayerType = Win32.PFD_MAIN_PLANE;
+            pdf.nVersion = 1;
+            pdf.dwFlags = (Win32.PFD_DRAW_TO_BITMAP | Win32.PFD_SUPPORT_OPENGL | Win32.PFD_SUPPORT_GDI);
+            pdf.iPixelType = Win32.PFD_TYPE_RGBA;
+            pdf.cColorBits = (byte)bitCount;
+            pdf.cDepthBits = 32;
+            pdf.cStencilBits = 8;
+            pdf.iLayerType = Win32.PFD_MAIN_PLANE;
 
             //	Match an appropriate pixel format
-            int iPixelformat = Win32.ChoosePixelFormat(hDC, pixelFormat);
-            if (iPixelformat == 0) { throw new Exception(string.Format("ChoosePixelFormat([{0}], [{1}]) failed!", hDC, pixelFormat)); }
+            int iPixelformat = Win32.ChoosePixelFormat(hDC, pdf);
+            if (iPixelformat == 0) { throw new Exception(string.Format("ChoosePixelFormat([{0}], [{1}]) failed!", hDC, pdf)); }
 
             //	Sets the pixel format
-            if (Win32.SetPixelFormat(hDC, iPixelformat, pixelFormat) == 0)
+            if (Win32.SetPixelFormat(hDC, iPixelformat, pdf) == 0)
             {
                 int lastError = Marshal.GetLastWin32Error();
-                throw new Exception(string.Format("SetPixelFormat([{0}], [{1}], [{2}]) failed! Win32Error:[{3}].", hDC, iPixelformat, pixelFormat, lastError));
+                throw new Exception(string.Format("SetPixelFormat([{0}], [{1}], [{2}]) failed! Win32Error:[{3}].", hDC, iPixelformat, pdf, lastError));
             }
         }
 

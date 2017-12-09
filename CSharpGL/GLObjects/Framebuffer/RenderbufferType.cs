@@ -1,23 +1,23 @@
-﻿namespace CSharpGL
-{
-    /// <summary>
-    ///
-    /// </summary>
-    public enum RenderbufferType
-    {
-        /// <summary>
-        ///
-        /// </summary>
-        DepthBuffer,
+﻿//namespace CSharpGL
+//{
+//    /// <summary>
+//    ///
+//    /// </summary>
+//    public enum RenderbufferType
+//    {
+//        /// <summary>
+//        ///
+//        /// </summary>
+//        DepthBuffer,
 
-        /// <summary>
-        ///
-        /// </summary>
-        ColorBuffer,
+//        /// <summary>
+//        ///
+//        /// </summary>
+//        ColorBuffer,
 
-        /// <summary>
-        /// 
-        /// </summary>
-        StencilBuffer,
-    }
-}
+//        /// <summary>
+//        /// 
+//        /// </summary>
+//        StencilBuffer,
+//    }
+//}

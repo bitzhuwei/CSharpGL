@@ -12,11 +12,18 @@ namespace CSharpGL
     /// </summary>
     public class RenderAction : DependentActionBase
     {
+        public uint ClearMask { get; set; }
+
         /// <summary>
         /// Render <see cref="IRenderable"/> objects.
         /// </summary>
         /// <param name="scene"></param>
-        public RenderAction(Scene scene) : base(scene) { }
+        /// <param name="clearMask"></param>
+        public RenderAction(Scene scene, uint clearMask = GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT | GL.GL_STENCIL_BUFFER_BIT)
+            : base(scene)
+        {
+            this.ClearMask = clearMask;
+        }
 
         /// <summary>
         /// 
@@ -28,7 +35,7 @@ namespace CSharpGL
             //GL.Instance.GetIntegerv((uint)GetTarget.ColorClearValue, value);
             vec4 clearColor = this.Scene.ClearColor;
             GL.Instance.ClearColor(clearColor.x, clearColor.y, clearColor.z, clearColor.w);
-            GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT | GL.GL_STENCIL_BUFFER_BIT);
+            GL.Instance.Clear(this.ClearMask);
 
             var arg = new RenderEventArgs(this.Scene, this.Scene.Camera);
             RenderAction.Render(this.Scene.RootElement, arg);

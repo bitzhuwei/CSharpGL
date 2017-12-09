@@ -1939,66 +1939,6 @@ namespace CSharpGL
 
         //#endregion
 
-        #region WGL_create_context
-
-        //  Constants
-        /// <summary>
-        ///
-        /// </summary>
-        public const int WGL_CONTEXT_MAJOR_VERSION = 0x2091;
-
-        /// <summary>
-        ///
-        /// </summary>
-        public const int WGL_CONTEXT_MINOR_VERSION = 0x2092;
-
-        /// <summary>
-        ///
-        /// </summary>
-        public const int WGL_CONTEXT_LAYER_PLANE = 0x2093;
-
-        /// <summary>
-        ///
-        /// </summary>
-        public const int WGL_CONTEXT_FLAGS = 0x2094;
-
-        /// <summary>
-        ///
-        /// </summary>
-        public const int WGL_CONTEXT_PROFILE_MASK = 0x9126;
-
-        /// <summary>
-        ///
-        /// </summary>
-        public const int WGL_CONTEXT_DEBUG_BIT = 0x0001;
-
-        /// <summary>
-        ///
-        /// </summary>
-        public const int WGL_CONTEXT_FORWARD_COMPATIBLE_BIT = 0x0002;
-
-        /// <summary>
-        ///
-        /// </summary>
-        public const int WGL_CONTEXT_CORE_PROFILE_BIT = 0x00000001;
-
-        /// <summary>
-        ///
-        /// </summary>
-        public const int WGL_CONTEXT_COMPATIBILITY_PROFILE_BIT = 0x00000002;
-
-        /// <summary>
-        ///
-        /// </summary>
-        public const int ERROR_INVALID_VERSION = 0x2095;
-
-        /// <summary>
-        ///
-        /// </summary>
-        public const int ERROR_INVALID_PROFILE = 0x2096;
-
-        #endregion WGL_create_context
-
         //#region GL_explicit_uniform_location
 
         ////  Constants

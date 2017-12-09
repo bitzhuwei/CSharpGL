@@ -2034,6 +2034,7 @@ namespace CSharpGL
 
         /// <summary>
         /// This function sets the current stencil buffer function.
+        /// <para>Pass if (<paramref name="reference"/> &amp; <paramref name="mask"/>) <paramref name="func"/> (stencil &amp; <paramref name="mask"/>).</para>
         /// </summary>
         /// <param name="func">The function type.</param>
         /// <param name="reference">The function reference.</param>
