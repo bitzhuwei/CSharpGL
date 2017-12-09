@@ -109,9 +109,10 @@ namespace CSharpGL
                 {
                     int[] attribList = new int[]
                     {
-                        WinGL.WGL_DRAW_TO_WINDOW_ARB, (int)GL.GL_TRUE,
                         WinGL.WGL_SUPPORT_OPENGL_ARB, (int)GL.GL_TRUE,
+                        WinGL.WGL_DRAW_TO_WINDOW_ARB, (int)GL.GL_TRUE,
                         WinGL.WGL_DOUBLE_BUFFER_ARB,(int)GL. GL_TRUE,
+                        WinGL.WGL_ACCELERATION_ARB,WinGL.WGL_FULL_ACCELERATION_ARB,
                         WinGL.WGL_PIXEL_TYPE_ARB, WinGL.WGL_TYPE_RGBA_ARB,
                         WinGL.WGL_COLOR_BITS_ARB, 32,
                         WinGL.WGL_DEPTH_BITS_ARB, 24,
