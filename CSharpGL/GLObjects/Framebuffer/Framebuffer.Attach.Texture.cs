@@ -22,7 +22,7 @@ namespace CSharpGL
             if (colorAtttachmentLocation >= Framebuffer.maxColorAttachmentCount)
             { throw new IndexOutOfRangeException(string.Format("Invalid color attachment point[{0}]!", colorAtttachmentLocation)); }
 
-            glFramebufferTexture((uint)target, colorAtttachmentLocation, texture != null ? texture.Id : 0u, mipmapLevel);
+            glFramebufferTexture((uint)target, GL.GL_COLOR_ATTACHMENT0 + colorAtttachmentLocation, texture != null ? texture.Id : 0u, mipmapLevel);
         }
 
         /// <summary>
@@ -54,7 +54,7 @@ namespace CSharpGL
             if (colorAtttachmentLocation >= Framebuffer.maxColorAttachmentCount)
             { throw new IndexOutOfRangeException(string.Format("Invalid color attachment point[{0}]!", colorAtttachmentLocation)); }
 
-            glFramebufferTextureLayer((uint)target, colorAtttachmentLocation, texture != null ? texture.Id : 0u, mipmapLevel, layer);
+            glFramebufferTextureLayer((uint)target, GL.GL_COLOR_ATTACHMENT0 + colorAtttachmentLocation, texture != null ? texture.Id : 0u, mipmapLevel, layer);
         }
 
         /// <summary>
