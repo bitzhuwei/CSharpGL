@@ -101,7 +101,7 @@ namespace StencilTest
              */
 
             var bottleNode = KleinBottleNode.Create(new KleinBottleModel());
-            bottleNode.Scale = new vec3(1, 1, 1) * 0.05f;
+            bottleNode.Scale = new vec3(1, 1, 1) * 0.1f;
             {
                 //var stencilFunc = new StencilFuncState(EStencilFunc.Equal, 1, 0xFF);
                 //var stencilMask = new StencilMaskState(0x00);

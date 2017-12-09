@@ -51,20 +51,20 @@ namespace StencilTest
         {
             base.DoInitialize();
 
-            var stencilFunc = new StencilFuncState(EStencilFunc.Always, 1, 0xFF);
-            var stencilOp = new StencilOpState(EStencilOp.Keep, EStencilOp.Keep, EStencilOp.Replace);
-            var stencilMask = new StencilMaskState(0xFF);
-            var colorMask = new ColorMaskState(false, false, false, false);
-            var depthMask = new DepthMaskState(false);
-            var clearBuffer = new UserDefineState();
-            clearBuffer.On += clearBuffer_On;
-            var list = this.RenderUnit.Methods[0].StateList;
-            list.Add(stencilFunc);
-            list.Add(stencilOp);
-            list.Add(stencilMask);
-            //list.Add(colorMask);
-            list.Add(depthMask);
-            list.Add(clearBuffer);
+            //var stencilFunc = new StencilFuncState(EStencilFunc.Always, 1, 0xFF);
+            //var stencilOp = new StencilOpState(EStencilOp.Keep, EStencilOp.Keep, EStencilOp.Replace);
+            //var stencilMask = new StencilMaskState(0xFF);
+            //var colorMask = new ColorMaskState(false, false, false, false);
+            //var depthMask = new DepthMaskState(false);
+            //var clearBuffer = new UserDefineState();
+            //clearBuffer.On += clearBuffer_On;
+            //var list = this.RenderUnit.Methods[0].StateList;
+            //list.Add(stencilFunc);
+            //list.Add(stencilOp);
+            //list.Add(stencilMask);
+            ////list.Add(colorMask);
+            //list.Add(depthMask);
+            //list.Add(clearBuffer);
         }
 
         void clearBuffer_On(object sender, EventArgs e)
@@ -74,7 +74,7 @@ namespace StencilTest
 
         public override void RenderBeforeChildren(RenderEventArgs arg)
         {
-            //StencilStates();
+            StencilStates();
 
             RenderMethod method = this.RenderUnit.Methods[0];
             method.Render();
