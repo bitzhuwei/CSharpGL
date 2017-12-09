@@ -131,10 +131,6 @@ namespace CSharpGL
                         return false;
                     }
 
-                    //OpenGL.WGL_CONTEXT_MAJOR_VERSION_ARB, requestedVersionNumber.Major,  kw
-                    //OpenGL.WGL_CONTEXT_MINOR_VERSION_ARB, requestedVersionNumber.Minor,
-                    //OpenGL.WGL_CONTEXT_FLAGS_ARB, OpenGL.WGL_CONTEXT_FORWARD_COMPATIBLE_BIT_ARB,
-
                     int[] attributes =
                     {
                         WinGL.WGL_CONTEXT_MAJOR_VERSION_ARB, major,
