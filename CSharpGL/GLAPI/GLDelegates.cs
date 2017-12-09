@@ -78,6 +78,22 @@ namespace CSharpGL
         /// <param name="_1"></param>
         /// <param name="_2"></param>
         /// <param name="_3"></param>
+        /// <param name="_4"></param>
+        /// <param name="_5"></param>
+        /// <returns></returns>
+        public delegate bool bool_IntPtr_intN_floatN_uint_intN_uintN(IntPtr _0, int[] _1, float[] _2, uint _3, int[] _4, uint[] _5);
+        /// <summary>
+        /// 
+        /// </summary>
+        public static readonly Type typeof_bool_IntPtr_intN_floatN_uint_intN_uintN = typeof(bool_IntPtr_intN_floatN_uint_intN_uintN);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="_0"></param>
+        /// <param name="_1"></param>
+        /// <param name="_2"></param>
+        /// <param name="_3"></param>
         /// <returns></returns>
         public delegate IntPtr IntPtr_IntPtr_uint_IntPtr_IntPtr(IntPtr _0, uint _1, IntPtr _2, IntPtr _3);
         /// <summary>
