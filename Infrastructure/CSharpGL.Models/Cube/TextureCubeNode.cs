@@ -108,7 +108,6 @@ void main(void) {
 
         public override void RenderAfterChildren(RenderEventArgs arg)
         {
-            throw new NotImplementedException();
         }
     }
 
