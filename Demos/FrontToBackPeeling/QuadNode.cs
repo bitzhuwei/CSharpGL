@@ -81,7 +81,6 @@ namespace FrontToBackPeeling
 
         public override void RenderAfterChildren(RenderEventArgs arg)
         {
-            throw new NotImplementedException();
         }
     }
 }
