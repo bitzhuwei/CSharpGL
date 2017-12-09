@@ -27,8 +27,6 @@ namespace ShadowMapping
         private void FormMain_Load(object sender, EventArgs e)
         {
             var rootElement = GetRootElement();
-            //var teapot = ShadowMappingRenderer.Create();
-            //var rootElement = teapot;
 
             var position = new vec3(0, 0, 1);
             var center = new vec3(0, 0, 0);
@@ -99,34 +97,8 @@ namespace ShadowMapping
             return group;
         }
 
-        //private SceneNodeBase GetRootElement()
-        //{
-        //    int width = 600, height = 400;
-        //    var innerCamera = new Camera(new vec3(0, 2, 5), new vec3(0, 0, 0), new vec3(0, 1, 0), CameraType.Perspecitive, width, height);
-        //    (innerCamera as IPerspectiveViewCamera).Far = 50;
-        //    IFramebufferProvider source = new DepthFramebufferProvider();
-        //    var rtt = new RTTRenderer(width, height, innerCamera, source);
-        //    {
-        //        var teapot = DepthTextureRenderer.Create();
-        //        rtt.Children.Add(teapot);
-        //        var ground = GroundRenderer.Create(); ground.Color = Color.Gray.ToVec4(); ground.Scale *= 10; ground.WorldPosition = new vec3(0, -3, 0);
-        //        rtt.Children.Add(ground);
-        //    }
-
-        //    var rectangle = RectangleRenderer.Create();
-        //    rectangle.TextureSource = rtt;
-
-        //    var group = new GroupRenderer();
-        //    group.Children.Add(rtt);// rtt must be before rectangle.
-        //    group.Children.Add(rectangle);
-        //    //group.WorldPosition = new vec3(3, 0.5f, 0);// this looks nice.
-
-        //    return group;
-        //}
-
         private void winGLCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
         {
-            //this.scene.Render();
             this.actionList.Act();
         }
 
