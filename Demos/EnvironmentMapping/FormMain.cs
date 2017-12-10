@@ -184,7 +184,11 @@ namespace EnvironmentMapping
 
         private void winGLCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
         {
-            this.actionList.Act();
+            ActionList list = this.actionList;
+            if (list != null)
+            {
+                list.Act();
+            }
         }
 
         void winGLCanvas1_Resize(object sender, EventArgs e)
