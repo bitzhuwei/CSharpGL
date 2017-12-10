@@ -101,12 +101,18 @@ namespace CSharpGL
 
             //  Now the none-trivial case. We must use the WGL_create_context extension to
             //  attempt to create a 3.0+ context.
-            int major, minor;
-            GetHighestVersion(out major, out minor);
-            if ((major > 2) || (major == 2 && minor > 1))
+            try
             {
-                try
+                var wglChoosePixelFormatARB = GL.Instance.GetDelegateFor("wglChoosePixelFormatARB", GLDelegates.typeof_bool_IntPtr_intN_floatN_uint_intN_uintN) as GLDelegates.bool_IntPtr_intN_floatN_uint_intN_uintN;
+                if (wglChoosePixelFormatARB == null) { return false; }
+                var wglCreateContextAttribs = GL.Instance.GetDelegateFor("wglCreateContextAttribsARB", GLDelegates.typeof_IntPtr_IntPtr_IntPtr_intN) as GLDelegates.IntPtr_IntPtr_IntPtr_intN;
+                if (wglCreateContextAttribs == null) { return false; }
+
+                int major, minor;
+                GetHighestVersion(out major, out minor);
+                if ((major > 2) || (major == 2 && minor > 1))
                 {
+
                     int[] attribList = new int[]
                     {
                         WinGL.WGL_SUPPORT_OPENGL_ARB, (int)GL.GL_TRUE,
@@ -120,42 +126,44 @@ namespace CSharpGL
                         0,        //End
                     };
 
+                    IntPtr dc = this.DeviceContextHandle;
                     //	Match an appropriate pixel format
                     int[] pixelFormat = new int[1];
                     uint[] numFormats = new uint[1];
-                    var wglChoosePixelFormatARB = GL.Instance.GetDelegateFor("wglChoosePixelFormatARB", GLDelegates.typeof_bool_IntPtr_intN_floatN_uint_intN_uintN) as GLDelegates.bool_IntPtr_intN_floatN_uint_intN_uintN;
-                    if (false == wglChoosePixelFormatARB(this.DeviceContextHandle, attribList, null, 1, pixelFormat, numFormats))
+                    if (false == wglChoosePixelFormatARB(dc, attribList, null, 1, pixelFormat, numFormats))
                     { return false; }
                     //	Sets the pixel format
-                    if (Win32.SetPixelFormat(this.DeviceContextHandle, pixelFormat[0], new PixelFormatDescriptor()) == 0)
+                    if (Win32.SetPixelFormat(dc, pixelFormat[0], new PixelFormatDescriptor()) == 0)
                     {
                         return false;
                     }
 
                     int[] attributes =
                     {
-                        WinGL.WGL_CONTEXT_MAJOR_VERSION_ARB, major,
-                        WinGL.WGL_CONTEXT_MINOR_VERSION_ARB, minor,
-                        WinGL.WGL_CONTEXT_PROFILE_MASK_ARB, 
+                        WinGL.WGL_CONTEXT_MAJOR_VERSION_ARB, 
+                        major,
+                        WinGL.WGL_CONTEXT_MINOR_VERSION_ARB, 
+                        minor,
+                        WinGL.WGL_CONTEXT_PROFILE_MASK_ARB,  
                         WinGL.WGL_CONTEXT_COMPATIBILITY_PROFILE_BIT_ARB,
 //#if DEBUG
 //                        GL.WGL_CONTEXT_FLAGS, GL.WGL_CONTEXT_DEBUG_BIT,// this is a debug context
 //#endif
                         0
                     };
-                    var wglCreateContextAttribs = GL.Instance.GetDelegateFor("wglCreateContextAttribsARB", GLDelegates.typeof_IntPtr_IntPtr_IntPtr_intN) as GLDelegates.IntPtr_IntPtr_IntPtr_intN;
-                    IntPtr hrc = wglCreateContextAttribs(this.DeviceContextHandle, IntPtr.Zero, attributes);
+                    IntPtr hrc = wglCreateContextAttribs(dc, IntPtr.Zero, attributes);
                     Win32.wglMakeCurrent(IntPtr.Zero, IntPtr.Zero);
                     Win32.wglDeleteContext(this.RenderContextHandle);
-                    Win32.wglMakeCurrent(this.DeviceContextHandle, hrc);
+                    Win32.wglMakeCurrent(dc, hrc);
                     this.RenderContextHandle = hrc;
                 }
-                catch (Exception ex)
-                {
-                    Debug.WriteLine(ex);
-                    Log.Write(ex);
-                }
             }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+                Log.Write(ex);
+            }
+
             return true;
         }
 
