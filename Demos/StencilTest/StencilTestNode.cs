@@ -56,13 +56,12 @@ namespace StencilTest
             if (this.StencilTest)
             {
                 GL.Instance.Enable(GL.GL_STENCIL_TEST);
-                GL.Instance.ClearStencil(0);
-                GL.Instance.Clear(GL.GL_STENCIL_BUFFER_BIT);
                 GL.Instance.StencilFunc(GL.GL_ALWAYS, 1, 0xFF);
                 GL.Instance.StencilOp(GL.GL_KEEP, GL.GL_KEEP, GL.GL_REPLACE);
-                //GL.Instance.StencilMask(0xFF);
+                GL.Instance.StencilMask(0xFF);
                 GL.Instance.DepthMask(false);
                 //GL.Instance.ColorMask(false, false, false, false);
+                GL.Instance.Clear(GL.GL_STENCIL_BUFFER_BIT);
 
                 this.polygonModeState.Enabled = true;
                 this.Color = new vec4(1, 1, 1, 1);
@@ -71,7 +70,7 @@ namespace StencilTest
 
                 GL.Instance.StencilFunc(GL.GL_EQUAL, 1, 0xFF);
                 GL.Instance.StencilOp(GL.GL_KEEP, GL.GL_KEEP, GL.GL_KEEP);
-                //GL.Instance.StencilMask(0x00);
+                GL.Instance.StencilMask(0x00);
                 GL.Instance.DepthMask(true);
                 //GL.Instance.ColorMask(true, true, true, true);
 
@@ -79,6 +78,8 @@ namespace StencilTest
                 this.Color = new vec4(1, 0, 0, 1);
                 program.SetUniform(color, this.Color);
                 method.Render();
+
+                GL.Instance.Disable(GL.GL_STENCIL_TEST);
             }
             else
             {
