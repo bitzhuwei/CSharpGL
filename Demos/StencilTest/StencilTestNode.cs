@@ -36,6 +36,8 @@ namespace StencilTest
             this.Color = new vec4(1, 1, 1, 1);
         }
 
+        public bool StencilTest { get; set; }
+
         public override void RenderBeforeChildren(RenderEventArgs arg)
         {
             if (!this.IsInitialized) { this.Initialize(); }
@@ -51,15 +53,47 @@ namespace StencilTest
             program.SetUniform(viewMatrix, view);
             program.SetUniform(modelMatrix, model);
 
-            this.polygonModeState.Enabled = true;
-            this.Color = new vec4(1, 1, 1, 1);
-            program.SetUniform(color, this.Color);
-            method.Render();
+            if (this.StencilTest)
+            {
+                GL.Instance.Enable(GL.GL_STENCIL_TEST);
+                GL.Instance.ClearStencil(0);
+                GL.Instance.Clear(GL.GL_STENCIL_BUFFER_BIT);
+                GL.Instance.StencilFunc(GL.GL_ALWAYS, 1, 0xFF);
+                GL.Instance.StencilOp(GL.GL_KEEP, GL.GL_KEEP, GL.GL_REPLACE);
+                //GL.Instance.StencilMask(0xFF);
+                GL.Instance.DepthMask(false);
+                //GL.Instance.ColorMask(false, false, false, false);
 
-            this.polygonModeState.Enabled = false;
-            this.Color = new vec4(1, 0, 0, 1);
-            program.SetUniform(color, this.Color);
-            method.Render();
+                this.polygonModeState.Enabled = true;
+                this.Color = new vec4(1, 1, 1, 1);
+                program.SetUniform(color, this.Color);
+                method.Render();
+
+                GL.Instance.StencilFunc(GL.GL_EQUAL, 1, 0xFF);
+                GL.Instance.StencilOp(GL.GL_KEEP, GL.GL_KEEP, GL.GL_KEEP);
+                //GL.Instance.StencilMask(0x00);
+                GL.Instance.DepthMask(true);
+                //GL.Instance.ColorMask(true, true, true, true);
+
+                this.polygonModeState.Enabled = false;
+                this.Color = new vec4(1, 0, 0, 1);
+                program.SetUniform(color, this.Color);
+                method.Render();
+            }
+            else
+            {
+                GL.Instance.Disable(GL.GL_STENCIL_TEST);
+
+                this.polygonModeState.Enabled = true;
+                this.Color = new vec4(1, 1, 1, 1);
+                program.SetUniform(color, this.Color);
+                method.Render();
+
+                this.polygonModeState.Enabled = false;
+                this.Color = new vec4(1, 0, 0, 1);
+                program.SetUniform(color, this.Color);
+                method.Render();
+            }
         }
 
         public override void RenderAfterChildren(RenderEventArgs arg)
