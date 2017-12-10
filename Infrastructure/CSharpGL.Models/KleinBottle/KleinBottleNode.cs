@@ -33,7 +33,8 @@ namespace CSharpGL
         {
             base.DoInitialize();
 
-            var bmp = new Bitmap(@"KleinBottle\KleinBottle.png");
+            string folder = System.Windows.Forms.Application.StartupPath;
+            var bmp = new Bitmap(System.IO.Path.Combine(folder, @"KleinBottle\KleinBottle.png"));
             var texture = new Texture(new TexImage1D(GL.GL_RGBA, bmp.Width, GL.GL_BGRA, GL.GL_UNSIGNED_BYTE, new ImageDataProvider(bmp)));
             texture.BuiltInSampler.Add(new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP_TO_EDGE));
             texture.BuiltInSampler.Add(new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_CLAMP_TO_EDGE));

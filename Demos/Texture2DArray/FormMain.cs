@@ -60,7 +60,8 @@ namespace Texture2DArray
         {
             var root = new WinCtrlRoot(this.winGLCanvas1.Width, this.winGLCanvas1.Height);
 
-            var bitmap = new Bitmap(@"particle.png");
+            string folder = System.Windows.Forms.Application.StartupPath;
+            var bitmap = new Bitmap(System.IO.Path.Combine(folder, @"particle.png"));
             {
                 var control = new CtrlImage(bitmap, false);
                 control.Location = new GUIPoint(10, 10);
@@ -82,9 +83,10 @@ namespace Texture2DArray
         private SceneNodeBase GetRootElement()
         {
             var bmps = new Bitmap[5];
+            string folder = System.Windows.Forms.Application.StartupPath;
             for (int i = 0; i < bmps.Length; i++)
             {
-                bmps[i] = new Bitmap(string.Format("{0}.png", i));
+                bmps[i] = new Bitmap(System.IO.Path.Combine(folder, string.Format("{0}.png", i)));
             }
 
             var node = LayeredRectangleNode.Create(bmps);

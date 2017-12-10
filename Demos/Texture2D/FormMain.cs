@@ -82,7 +82,8 @@ namespace Texture2D
         {
             var root = new WinCtrlRoot(this.winGLCanvas1.Width, this.winGLCanvas1.Height);
 
-            var bitmap = new Bitmap(@"particle.png");
+            string folder = System.Windows.Forms.Application.StartupPath;
+            var bitmap = new Bitmap(System.IO.Path.Combine(folder, @"particle.png"));
             {
                 var control = new CtrlImage(bitmap, false) { Anchor = GUIAnchorStyles.Left | GUIAnchorStyles.Bottom };
                 control.Location = new GUIPoint(10, 10);
@@ -123,7 +124,8 @@ namespace Texture2D
         {
             var rectangle = RectangleNode.Create();
             rectangle.Scale *= 3;
-            rectangle.TextureSource = new TextureSource(@"Lenna.png");
+            string folder = System.Windows.Forms.Application.StartupPath;
+            rectangle.TextureSource = new TextureSource(System.IO.Path.Combine(folder, @"Lenna.png"));
 
             //var blend = RectangleNode.Create();
             //blend.Scale *= 1.5f;

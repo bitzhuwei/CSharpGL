@@ -43,7 +43,8 @@ namespace BasicTessellationShader
         {
             base.DoInitialize();
             {
-                var bitmap = new Bitmap(@"heightmap.png");
+                string folder = System.Windows.Forms.Application.StartupPath;
+                var bitmap = new Bitmap(System.IO.Path.Combine(folder, @"heightmap.png"));
                 var storage = new TexImageBitmap(bitmap);
                 var texture = new Texture(storage);
                 texture.BuiltInSampler.Add(new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_REPEAT));
@@ -58,7 +59,8 @@ namespace BasicTessellationShader
                 this.displacementMap = texture;
             }
             {
-                var bitmap = new Bitmap(@"diffuse.png");
+                string folder = System.Windows.Forms.Application.StartupPath;
+                var bitmap = new Bitmap(System.IO.Path.Combine(folder, @"diffuse.png"));
                 var storage = new TexImageBitmap(bitmap);
                 var texture = new Texture(storage);
                 texture.BuiltInSampler.Add(new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_REPEAT));

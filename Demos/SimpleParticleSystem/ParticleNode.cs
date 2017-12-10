@@ -42,7 +42,8 @@ namespace SimpleParticleSystem
         {
             base.DoInitialize();
 
-            var image = new Bitmap("particle.png");
+            string folder = System.Windows.Forms.Application.StartupPath;
+            var image = new Bitmap(System.IO.Path.Combine(folder, "particle.png"));
             this.UpdateTexture(image);
 
             this.DeltaTime = 0.03f;

@@ -90,7 +90,8 @@ namespace Skybox
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
             this.teapot = TeapotNode.Create(); this.teapot.Scale *= 3;
             teapot.Children.Add(new LegacyBoundingBoxNode(teapot.ModelSize));
-            var totalBmp = new Bitmap(@"cubemaps_skybox.png");
+            string folder = System.Windows.Forms.Application.StartupPath;
+            var totalBmp = new Bitmap(System.IO.Path.Combine(folder, @"cubemaps_skybox.png"));
             this.skybox = SkyboxNode.Create(totalBmp); this.skybox.Scale *= 60;
             var group = new GroupNode(this.teapot, this.skybox);
 

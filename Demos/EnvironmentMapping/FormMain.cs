@@ -93,7 +93,8 @@ namespace EnvironmentMapping
             var up = new vec3(0, 1, 0);
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
 
-            var totalBmp = new Bitmap(@"cubemaps_skybox.png");
+            string folder = System.Windows.Forms.Application.StartupPath;
+            var totalBmp = new Bitmap(System.IO.Path.Combine(folder, @"cubemaps_skybox.png"));
             Bitmap[] bitmaps = GetBitmaps(totalBmp);
             this.skybox = SkyboxNode.Create(bitmaps); this.skybox.Scale *= 60;
             string objFilename = "nanosuit.obj_";

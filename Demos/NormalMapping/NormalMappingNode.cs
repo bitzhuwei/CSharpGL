@@ -71,7 +71,8 @@ namespace NormalMapping
                 this.m_dirLight = dirLight;
             }
             {
-                var bmp = new Bitmap(@"bricks.jpg");
+                string folder = System.Windows.Forms.Application.StartupPath;
+                var bmp = new Bitmap(System.IO.Path.Combine(folder, @"bricks.jpg"));
                 var storage = new TexImageBitmap(bmp);
                 var texture = new Texture(storage,
                     new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP_TO_EDGE),
@@ -86,7 +87,8 @@ namespace NormalMapping
                 this.m_pTexture = texture;
             }
             {
-                var bmp = new Bitmap(@"normal_map.jpg");
+                string folder = System.Windows.Forms.Application.StartupPath;
+                var bmp = new Bitmap(System.IO.Path.Combine(folder, @"normal_map.jpg"));
                 var storage = new TexImageBitmap(bmp);
                 var texture = new Texture(storage,
                     new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP_TO_EDGE),
@@ -101,7 +103,8 @@ namespace NormalMapping
                 this.m_pNormalMap = texture;
             }
             {
-                var bmp = new Bitmap(@"normal_up.jpg");
+                string folder = System.Windows.Forms.Application.StartupPath;
+                var bmp = new Bitmap(System.IO.Path.Combine(folder, @"normal_up.jpg"));
                 var storage = new TexImageBitmap(bmp);
                 var texture = new Texture(storage,
                     new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP_TO_EDGE),
