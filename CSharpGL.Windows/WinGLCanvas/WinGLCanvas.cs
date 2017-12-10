@@ -122,7 +122,7 @@ namespace CSharpGL
             }
 
             // Create the render context.
-            const short bitDepth = 32;
+            const byte bitDepth = 32;
             var renderContext = new FBORenderContext(width, height, bitDepth);
             renderContext.MakeCurrent();
             this.renderContext = renderContext;

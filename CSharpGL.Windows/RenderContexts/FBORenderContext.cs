@@ -12,16 +12,16 @@ namespace CSharpGL
         /// </summary>
         /// <param name="width"></param>
         /// <param name="height"></param>
-        /// <param name="bitDepth"></param>
+        /// <param name="colorBitDepth"></param>
         /// <returns></returns>
-        public FBORenderContext(int width, int height, short bitDepth)
-            : base(width, height, bitDepth)
+        public FBORenderContext(int width, int height, byte colorBitDepth)
+            : base(width, height, colorBitDepth)
         {
             Framebuffer framebuffer = CreateFramebuffer(width, height);
             framebuffer.Bind();
             this.framebuffer = framebuffer;
 
-            this.dibSection = new DIBSection(this.DeviceContextHandle, width, height, bitDepth);
+            this.dibSection = new DIBSection(this.DeviceContextHandle, width, height, colorBitDepth);
         }
 
         private static Framebuffer CreateFramebuffer(int width, int height)

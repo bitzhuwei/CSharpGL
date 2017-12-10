@@ -14,8 +14,8 @@ namespace CSharpGL
         /// <param name="deviceContext"></param>
         /// <param name="width">The width.</param>
         /// <param name="height">The height.</param>
-        /// <param name="bitCount">The bit count.</param>
-        public DIBSection(IntPtr deviceContext, int width, int height, int bitCount)
+        /// <param name="colorBitDepth">The bit count.</param>
+        public DIBSection(IntPtr deviceContext, int width, int height, short colorBitDepth)
         {
             this.Width = width;
             this.Height = height;
@@ -29,7 +29,7 @@ namespace CSharpGL
             info.Init();
 
             //	Set the data.
-            info.biBitCount = (short)bitCount;
+            info.biBitCount = colorBitDepth;
             info.biPlanes = 1;
             info.biWidth = width;
             info.biHeight = height;
@@ -41,7 +41,7 @@ namespace CSharpGL
             Win32.SelectObject(mdc, this.HBitmap);
 
             //	Set the OpenGL pixel format.
-            this.SetPixelFormat(mdc, bitCount);
+            this.SetPixelFormat(mdc, colorBitDepth);
         }
 
         /// <summary>

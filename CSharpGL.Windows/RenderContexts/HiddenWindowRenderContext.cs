@@ -13,13 +13,13 @@ namespace CSharpGL
         /// </summary>
         /// <param name="width">The width.</param>
         /// <param name="height">The height.</param>
-        /// <param name="bitDepth">The bit depth.</param>
+        /// <param name="colorBitDepth">The bit depth.</param>
         /// <returns></returns>
-        public HiddenWindowRenderContext(int width, int height, short bitDepth)
-            : base(width, height, bitDepth)
+        public HiddenWindowRenderContext(int width, int height, byte colorBitDepth)
+            : base(width, height, colorBitDepth)
         {
             // Create a new window class, as basic as possible.
-            if (!this.CreateBasicRenderContext(width, height, bitDepth))
+            if (!this.CreateBasicRenderContext(width, height, colorBitDepth))
             {
                 throw new Exception(string.Format("Create basic render context failed!"));
             }
@@ -29,7 +29,7 @@ namespace CSharpGL
 
             //  Update the context if required.
             // if I update context, something in legacy opengl will not work...
-            this.UpdateContextVersion();
+            this.UpdateContextVersion(colorBitDepth);
         }
 
         /// <summary>
@@ -37,9 +37,9 @@ namespace CSharpGL
         /// </summary>
         /// <param name="width"></param>
         /// <param name="height"></param>
-        /// <param name="bitDepth"></param>
+        /// <param name="colorBitDepth"></param>
         /// <returns></returns>
-        private bool CreateBasicRenderContext(int width, int height, int bitDepth)
+        private bool CreateBasicRenderContext(int width, int height, byte colorBitDepth)
         {
             var wndClass = new WNDCLASSEX();
             wndClass.Init();
@@ -65,8 +65,8 @@ namespace CSharpGL
             pfd.nVersion = 1;
             pfd.dwFlags = Win32.PFD_DRAW_TO_WINDOW | Win32.PFD_SUPPORT_OPENGL | Win32.PFD_DOUBLEBUFFER;
             pfd.iPixelType = Win32.PFD_TYPE_RGBA;
-            pfd.cColorBits = (byte)bitDepth;
-            pfd.cDepthBits = 16;
+            pfd.cColorBits = colorBitDepth;
+            pfd.cDepthBits = 24;
             pfd.cStencilBits = 8;
             pfd.iLayerType = Win32.PFD_MAIN_PLANE;
 
@@ -94,7 +94,7 @@ namespace CSharpGL
         /// move the render context to the OpenGL version originally requested. If this is &gt; 2.1, this
         /// means building a new context. If this fails, we'll have to make do with 2.1.
         /// </summary>
-        protected bool UpdateContextVersion()
+        protected bool UpdateContextVersion(int colorBitDepth)
         {
             //  If the request version number is anything up to and including 2.1, standard render contexts
             //  will provide what we need (as long as the graphics card drivers are up to date).
@@ -111,12 +111,12 @@ namespace CSharpGL
                     {
                         WinGL.WGL_SUPPORT_OPENGL_ARB, (int)GL.GL_TRUE,
                         WinGL.WGL_DRAW_TO_WINDOW_ARB, (int)GL.GL_TRUE,
-                        WinGL.WGL_DOUBLE_BUFFER_ARB,(int)GL. GL_TRUE,
-                        WinGL.WGL_ACCELERATION_ARB,WinGL.WGL_FULL_ACCELERATION_ARB,
-                        WinGL.WGL_PIXEL_TYPE_ARB, WinGL.WGL_TYPE_RGBA_ARB,
-                        WinGL.WGL_COLOR_BITS_ARB, 32,
-                        WinGL.WGL_DEPTH_BITS_ARB, 24,
-                        WinGL.WGL_STENCIL_BITS_ARB, 8,
+                        WinGL.WGL_DOUBLE_BUFFER_ARB,  (int)GL.GL_TRUE,
+                        WinGL.WGL_ACCELERATION_ARB,   WinGL.WGL_FULL_ACCELERATION_ARB,
+                        WinGL.WGL_PIXEL_TYPE_ARB,     WinGL.WGL_TYPE_RGBA_ARB,
+                        WinGL.WGL_COLOR_BITS_ARB,     colorBitDepth,
+                        WinGL.WGL_DEPTH_BITS_ARB,     24,
+                        WinGL.WGL_STENCIL_BITS_ARB,   8,
                         0,        //End
                     };
 
@@ -136,8 +136,8 @@ namespace CSharpGL
                     {
                         WinGL.WGL_CONTEXT_MAJOR_VERSION_ARB, major,
                         WinGL.WGL_CONTEXT_MINOR_VERSION_ARB, minor,
-                        WinGL.WGL_CONTEXT_PROFILE_MASK_ARB, WinGL.WGL_CONTEXT_COMPATIBILITY_PROFILE_BIT_ARB,
-                        //WinGL.WGL_CONTEXT_FLAGS, WinGL.WGL_CONTEXT_FORWARD_COMPATIBLE_BIT,// compatible profile
+                        WinGL.WGL_CONTEXT_PROFILE_MASK_ARB, 
+                        WinGL.WGL_CONTEXT_COMPATIBILITY_PROFILE_BIT_ARB,
 //#if DEBUG
 //                        GL.WGL_CONTEXT_FLAGS, GL.WGL_CONTEXT_DEBUG_BIT,// this is a debug context
 //#endif
