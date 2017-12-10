@@ -1,4 +1,7 @@
-﻿# glClearBufferSubData
+﻿# `GLBuffer`
+Buffer in OpenGL is an array of fixed length on server(graphics card) side.
+
+# glClearBufferSubData
 
 from([http://blog.csdn.net/csxiaoshui/article/details/45894867](http://blog.csdn.net/csxiaoshui/article/details/45894867))
 
