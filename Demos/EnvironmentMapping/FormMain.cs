@@ -97,7 +97,7 @@ namespace EnvironmentMapping
             var totalBmp = new Bitmap(System.IO.Path.Combine(folder, @"cubemaps_skybox.png"));
             Bitmap[] bitmaps = GetBitmaps(totalBmp);
             this.skybox = SkyboxNode.Create(bitmaps); this.skybox.Scale *= 60;
-            string objFilename = "nanosuit.obj_";
+            string objFilename = System.IO.Path.Combine(folder, "nanosuit.obj_");
             var parser = new ObjVNFParser(false);
             ObjVNFResult result = parser.Parse(objFilename);
             if (result.Error != null)

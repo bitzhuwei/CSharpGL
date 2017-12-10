@@ -32,7 +32,8 @@ namespace BasicTessellationShader
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
             this.scene = new Scene(camera, this.winGLCanvas1);
             {
-                string objFilename = "quad2.obj_";
+                string folder = System.Windows.Forms.Application.StartupPath;
+                string objFilename = System.IO.Path.Combine(folder, "quad2.obj_");
                 var parser = new ObjVNFParser(true);
                 ObjVNFResult result = parser.Parse(objFilename);
                 if (result.Error != null)

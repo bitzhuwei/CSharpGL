@@ -22,6 +22,7 @@ namespace TraverseAllDemos
                 {
                     if (item.ToLower().EndsWith(".vshost.exe")) { continue; }
                     if (item.ToLower().Contains(@"\obj\")) { continue; }
+                    if (item.ToLower().Contains(@"\release\")) { continue; }
                     if (item == self) { continue; }
 
                     Process proc = Process.Start(item);

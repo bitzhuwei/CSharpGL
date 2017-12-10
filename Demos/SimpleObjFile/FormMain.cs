@@ -110,7 +110,8 @@ namespace SimpleObjFile
             var manipulater = new FirstPerspectiveManipulater();
             manipulater.Bind(camera, this.winGLCanvas1);
 
-            string filename = "nanosuit.obj_";
+            string folder = System.Windows.Forms.Application.StartupPath;
+            string filename = System.IO.Path.Combine(folder, "nanosuit.obj_");
             var parser = new ObjVNFParser(false);
             ObjVNFResult result = parser.Parse(filename);
             if (result.Error != null)
