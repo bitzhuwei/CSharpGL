@@ -254,7 +254,9 @@ namespace CSharpGL
                 ErrorCode error = (ErrorCode)GL.Instance.GetError();
                 if (error != ErrorCode.NoError)
                 {
-                    Debug.WriteLine(string.Format("{0}: OpenGL error: {1}", this.GetType().FullName, error));
+                    string str = string.Format("{0}: OpenGL error: {1}", this.GetType().FullName, error);
+                    Debug.WriteLine(str);
+                    Log.Write(str);
                 }
             }
 
