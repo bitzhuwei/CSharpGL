@@ -50,6 +50,9 @@
       <DependentUpon>Form1HowStencilWorks.cs</DependentUpon>
     </Compile>
     <Compile Include="HowStencilTestWorkNode.cs" />
+    <Compile Include="StencilTestModel.cs" />
+    <Compile Include="StencilTestNode.shader.cs" />
+    <Compile Include="StencilTestNode.cs" />
     <None Include="readme.md" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
