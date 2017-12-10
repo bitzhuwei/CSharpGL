@@ -26,9 +26,10 @@ namespace RaycastVolumeRendering
             this.width = viewport[2];
             this.height = viewport[3];
 
-            this.transferFunc1DTexture = InitTFF1DTexture(@"tff.dat");
+            string folder = System.Windows.Forms.Application.StartupPath;
+            this.transferFunc1DTexture = InitTFF1DTexture(System.IO.Path.Combine(folder, @"tff.dat"));
 
-            byte[] volumeData = GetVolumeData(@"head256.raw", 256, 256, 225);
+            byte[] volumeData = GetVolumeData(System.IO.Path.Combine(folder, @"head256.raw"), 256, 256, 225);
             this.volume3DTexture = initVol3DTex(volumeData, 256, 256, 225);
 
             this.Resize(width, height);
