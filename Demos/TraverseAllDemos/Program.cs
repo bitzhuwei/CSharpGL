@@ -17,7 +17,9 @@ namespace TraverseAllDemos
                 var dirInfo = new System.IO.DirectoryInfo(folder);
                 var demoRootDir = dirInfo.Parent.Parent.Parent;
 
-                string[] exes = System.IO.Directory.GetFiles(demoRootDir.FullName, "*.exe", System.IO.SearchOption.AllDirectories);
+                string[] exes = (from item in System.IO.Directory.GetFiles(demoRootDir.FullName, "*.exe", System.IO.SearchOption.AllDirectories)
+                                 orderby item
+                                 select item).ToArray();
                 foreach (var item in exes)
                 {
                     if (item.ToLower().EndsWith(".vshost.exe")) { continue; }
@@ -25,9 +27,12 @@ namespace TraverseAllDemos
                     if (item.ToLower().Contains(@"\release\")) { continue; }
                     if (item == self) { continue; }
 
+                    Console.WriteLine("Opening {0} ...", item);
                     Process proc = Process.Start(item);
                     proc.WaitForExit();
                 }
+
+                Console.WriteLine("All done!");
             }
             catch (Exception ex)
             {
