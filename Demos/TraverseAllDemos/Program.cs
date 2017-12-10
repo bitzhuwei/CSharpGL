@@ -15,7 +15,7 @@ namespace TraverseAllDemos
                 string self = typeof(Program).Assembly.Location;
                 string folder = System.AppDomain.CurrentDomain.SetupInformation.ApplicationBase;
                 var dirInfo = new System.IO.DirectoryInfo(folder);
-                var demoRootDir = dirInfo.Parent.Parent.Parent;
+                var demoRootDir = dirInfo.Parent.Parent.Parent; // Demos\...
 
                 string[] exes = (from item in System.IO.Directory.GetFiles(demoRootDir.FullName, "*.exe", System.IO.SearchOption.AllDirectories)
                                  orderby item
