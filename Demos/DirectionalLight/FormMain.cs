@@ -34,7 +34,8 @@ namespace DirectionalLight
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
             this.scene = new Scene(camera, this.winGLCanvas1);
 
-            string objFilename = "nanosuit.obj_";
+            string folder = System.Windows.Forms.Application.StartupPath;
+            string objFilename = System.IO.Path.Combine(folder, "nanosuit.obj_");
             var parser = new ObjVNFParser(false);
             ObjVNFResult result = parser.Parse(objFilename);
             if (result.Error != null)
@@ -69,7 +70,11 @@ namespace DirectionalLight
 
         private void winGLCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
         {
-            this.actionList.Act();
+            ActionList list = this.actionList;
+            if (list != null)
+            {
+                list.Act();
+            }
         }
 
         void winGLCanvas1_Resize(object sender, EventArgs e)

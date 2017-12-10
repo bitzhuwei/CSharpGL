@@ -46,7 +46,8 @@ namespace TerrainLoading
             program.SetUniform("TERRAIN_SIZE", new ivec2(TerainModel.TERRAIN_WIDTH, TerainModel.TERRAIN_DEPTH));
             program.SetUniform("scale", (TerainModel.TERRAIN_WIDTH + TerainModel.TERRAIN_DEPTH) * 0.08f);
 
-            var image = new Bitmap("heightmap512x512.png");
+            string folder = System.Windows.Forms.Application.StartupPath;
+            var image = new Bitmap(System.IO.Path.Combine(folder, "heightmap512x512.png"));
             this.UpdateHeightmap(image);
         }
 

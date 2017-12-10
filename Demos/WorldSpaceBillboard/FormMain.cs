@@ -85,29 +85,26 @@ namespace WorldSpaceBillboard
                 floor.Color = Color.Brown.ToVec4();
                 group.Children.Add(floor);
             }
+            for (int i = 0; i < 3; i++)
             {
-                var textureSource = new BitmapTextureSource("Lenna.png");
-                for (int i = 0; i < 3; i++)
+                for (int j = 0; j < 3; j++)
                 {
-                    for (int j = 0; j < 3; j++)
+                    float x = -length / 2 + length / 2 * i;
+                    float y = 0.25f;
+                    float z = -length / 2 + length / 2 * j;
+                    var stick = CubeNode.Create();
+                    stick.Scale = new vec3(0.1f, y * 2, 0.1f);
+                    stick.WorldPosition = new vec3(x, y, z);
+                    stick.Color = Color.Green.ToVec4();
+                    group.Children.Add(stick);
                     {
-                        float x = -length / 2 + length / 2 * i;
-                        float y = 0.25f;
-                        float z = -length / 2 + length / 2 * j;
-                        var stick = CubeNode.Create();
-                        stick.Scale = new vec3(0.1f, y * 2, 0.1f);
-                        stick.WorldPosition = new vec3(x, y, z);
-                        stick.Color = Color.Green.ToVec4();
-                        group.Children.Add(stick);
-                        {
-                            //var billboard = TextBillboardNodeBackup.Create(textureSource, 200, 40);
-                            var billboard = TextBillboardNode.Create(200, 40, 100);
-                            billboard.Text = string.Format("Hello Billboard[{0}]!", i * 3 + j);
-                            billboard.Color = Color.White.ToVec3();
-                            billboard.EnableRendering = ThreeFlags.None;// we don't render it in RenderAction. we render it in BillboardRenderAction.
-                            billboard.WorldPosition = new vec3(0, y * 4, 0);
-                            stick.Children.Add(billboard);
-                        }
+                        //var billboard = TextBillboardNodeBackup.Create(textureSource, 200, 40);
+                        var billboard = TextBillboardNode.Create(200, 40, 100);
+                        billboard.Text = string.Format("Hello Billboard[{0}]!", i * 3 + j);
+                        billboard.Color = Color.White.ToVec3();
+                        billboard.EnableRendering = ThreeFlags.None;// we don't render it in RenderAction. we render it in BillboardRenderAction.
+                        billboard.WorldPosition = new vec3(0, y * 4, 0);
+                        stick.Children.Add(billboard);
                     }
                 }
             }
@@ -117,7 +114,11 @@ namespace WorldSpaceBillboard
 
         private void winGLCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
         {
-            this.actionList.Act();
+            ActionList list = this.actionList;
+            if (list != null)
+            {
+                list.Act();
+            }
         }
 
         void winGLCanvas1_Resize(object sender, EventArgs e)

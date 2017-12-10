@@ -73,10 +73,17 @@ namespace ColorCodedPicking
 
         private void winGLCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
         {
-            this.actionList.Act();
+            ActionList list = this.actionList;
+            if (list != null)
+            {
+                list.Act();
+            }
             {
                 DirectTextNode node = this.textNode;
-                GL.Instance.DrawText(node.Position.X, node.Position.Y, node.TextColor, node.FontName, node.FontSize, node.Text);
+                if (node != null)
+                {
+                    GL.Instance.DrawText(node.Position.X, node.Position.Y, node.TextColor, node.FontName, node.FontSize, node.Text);
+                }
             }
         }
 

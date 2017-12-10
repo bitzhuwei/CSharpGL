@@ -71,7 +71,8 @@ namespace Blending
         {
             var group = new GroupNode();
             {
-                var bmp = new Bitmap(@"Crate.bmp");
+                string folder = System.Windows.Forms.Application.StartupPath;
+                var bmp = new Bitmap(System.IO.Path.Combine(folder, @"Crate.bmp"));
                 TexStorageBase storage = new TexImageBitmap(bmp);
                 var texture = new Texture(storage);
                 texture.BuiltInSampler.Add(new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP_TO_EDGE));
@@ -132,7 +133,11 @@ namespace Blending
 
         private void winGLCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
         {
-            this.actionList.Act();
+            ActionList list = this.actionList;
+            if (list != null)
+            {
+                list.Act();
+            }
         }
 
         void winGLCanvas1_Resize(object sender, EventArgs e)

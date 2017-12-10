@@ -93,10 +93,11 @@ namespace EnvironmentMapping
             var up = new vec3(0, 1, 0);
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
 
-            var totalBmp = new Bitmap(@"cubemaps_skybox.png");
+            string folder = System.Windows.Forms.Application.StartupPath;
+            var totalBmp = new Bitmap(System.IO.Path.Combine(folder, @"cubemaps_skybox.png"));
             Bitmap[] bitmaps = GetBitmaps(totalBmp);
             this.skybox = SkyboxNode.Create(bitmaps); this.skybox.Scale *= 60;
-            string objFilename = "nanosuit.obj_";
+            string objFilename = System.IO.Path.Combine(folder, "nanosuit.obj_");
             var parser = new ObjVNFParser(false);
             ObjVNFResult result = parser.Parse(objFilename);
             if (result.Error != null)
@@ -183,7 +184,11 @@ namespace EnvironmentMapping
 
         private void winGLCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
         {
-            this.actionList.Act();
+            ActionList list = this.actionList;
+            if (list != null)
+            {
+                list.Act();
+            }
         }
 
         void winGLCanvas1_Resize(object sender, EventArgs e)

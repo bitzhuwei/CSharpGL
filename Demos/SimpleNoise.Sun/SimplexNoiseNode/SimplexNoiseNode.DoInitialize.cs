@@ -13,7 +13,8 @@ namespace SimpleNoise.Sun
             this.lastTime = DateTime.Now;
             this.RotateSpeed = 0.2f;
 
-            var bitmap = new Bitmap(@"sunColor.png");
+            string folder = System.Windows.Forms.Application.StartupPath;
+            var bitmap = new Bitmap(System.IO.Path.Combine(folder, @"sunColor.png"));
             var storage = new TexImage1D(GL.GL_RGBA, bitmap.Width, GL.GL_BGRA, GL.GL_UNSIGNED_BYTE, new ImageDataProvider(bitmap));
             var texture = new Texture(storage,
                 new TexParameteri(TexParameter.PropertyName.TextureWrapR, (int)GL.GL_CLAMP_TO_EDGE),
