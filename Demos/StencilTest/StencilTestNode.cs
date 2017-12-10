@@ -16,12 +16,19 @@ namespace StencilTest
             var provider = new ShaderArray(vs, fs);
             var map = new AttributeMap();
             map.Add(inPosition, StencilTestModel.strPosition);
-            var builder = new RenderMethodBuilder(provider, map);
+            var polygonModeState = new PolygonModeState(PolygonMode.Line);
+            var lineWidthState = new LineWidthState(10);
+            var builder = new RenderMethodBuilder(provider, map, polygonModeState, lineWidthState);
             var node = new StencilTestNode(model, builder);
+            node.polygonModeState = polygonModeState;
+            node.lineWidthState = lineWidthState;
             node.Initialize();
 
             return node;
         }
+
+        private PolygonModeState polygonModeState;
+        private LineWidthState lineWidthState;
 
         private StencilTestNode(IBufferSource model, params RenderMethodBuilder[] builders)
             : base(model, builders)
@@ -43,8 +50,15 @@ namespace StencilTest
             program.SetUniform(projectionMatrix, projection);
             program.SetUniform(viewMatrix, view);
             program.SetUniform(modelMatrix, model);
-            program.SetUniform(color, this.Color);
 
+            this.polygonModeState.Enabled = true;
+            this.Color = new vec4(1, 1, 1, 1);
+            program.SetUniform(color, this.Color);
+            method.Render();
+
+            this.polygonModeState.Enabled = false;
+            this.Color = new vec4(1, 0, 0, 1);
+            program.SetUniform(color, this.Color);
             method.Render();
         }
 
