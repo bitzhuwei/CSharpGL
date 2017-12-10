@@ -12,6 +12,9 @@ namespace CSharpGL
     /// </summary>
     public class RenderAction : DependentActionBase
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public uint ClearMask { get; set; }
 
         /// <summary>
