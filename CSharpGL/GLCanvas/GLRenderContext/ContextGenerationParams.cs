@@ -5,10 +5,14 @@ using System.Text;
 
 namespace CSharpGL
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class ContextGenerationParams
     {
-        public int width;
-        public int height;
+        /// <summary>
+        /// 
+        /// </summary>
         public byte colorBitDepth = 32;
     }
 }
