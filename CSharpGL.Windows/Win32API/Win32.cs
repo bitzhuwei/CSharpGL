@@ -146,7 +146,7 @@ namespace CSharpGL
             [In, MarshalAs(UnmanagedType.LPStruct)] PixelFormatDescriptor ppfd);
 
         [DllImport(gdi32, SetLastError = true)]
-        internal unsafe static extern int SetPixelFormat(IntPtr hDC, int iPixelFormat,
+        internal unsafe static extern bool SetPixelFormat(IntPtr hDC, int iPixelFormat,
             [In, MarshalAs(UnmanagedType.LPStruct)] PixelFormatDescriptor ppfd);
 
         //[DllImport(gdi32, SetLastError = true)]

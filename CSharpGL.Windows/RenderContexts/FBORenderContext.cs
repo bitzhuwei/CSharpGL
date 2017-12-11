@@ -12,16 +12,16 @@ namespace CSharpGL
         /// </summary>
         /// <param name="width"></param>
         /// <param name="height"></param>
-        /// <param name="colorBitDepth"></param>
+        /// <param name="parameters"></param>
         /// <returns></returns>
-        public FBORenderContext(int width, int height, byte colorBitDepth)
-            : base(width, height, colorBitDepth)
+        public FBORenderContext(int width, int height, ContextGenerationParams parameters)
+            : base(width, height, parameters)
         {
             Framebuffer framebuffer = CreateFramebuffer(width, height);
             framebuffer.Bind();
             this.framebuffer = framebuffer;
 
-            this.dibSection = new DIBSection(this.DeviceContextHandle, width, height, colorBitDepth);
+            this.dibSection = new DIBSection(this.DeviceContextHandle, width, height, parameters);
         }
 
         private static Framebuffer CreateFramebuffer(int width, int height)
@@ -74,7 +74,7 @@ namespace CSharpGL
             base.SetDimensions(width, height);
 
             //	Resize dib section.
-            this.dibSection.Resize(width, height, this.BitDepth);
+            this.dibSection.Resize(width, height, this.Parameters.ColorBits);
 
             //  TODO: We should be able to just use the code below - however we
             //  get invalid dimension issues at the moment, so recreate for now.

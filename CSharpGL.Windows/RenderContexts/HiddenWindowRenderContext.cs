@@ -13,13 +13,13 @@ namespace CSharpGL
         /// </summary>
         /// <param name="width">The width.</param>
         /// <param name="height">The height.</param>
-        /// <param name="colorBitDepth">The bit depth.</param>
+        /// <param name="parameters">parameters.</param>
         /// <returns></returns>
-        public HiddenWindowRenderContext(int width, int height, byte colorBitDepth)
-            : base(width, height, colorBitDepth)
+        public HiddenWindowRenderContext(int width, int height, ContextGenerationParams parameters)
+            : base(width, height, parameters)
         {
             // Create a new window class, as basic as possible.
-            if (!this.CreateBasicRenderContext(width, height, colorBitDepth))
+            if (!this.CreateBasicRenderContext(width, height, parameters))
             {
                 throw new Exception(string.Format("Create basic render context failed!"));
             }
@@ -29,7 +29,7 @@ namespace CSharpGL
 
             //  Update the context if required.
             // if I update context, something in legacy opengl will not work...
-            this.UpdateContextVersion(colorBitDepth);
+            this.UpdateContextVersion(parameters);
         }
 
         /// <summary>
@@ -37,9 +37,9 @@ namespace CSharpGL
         /// </summary>
         /// <param name="width"></param>
         /// <param name="height"></param>
-        /// <param name="colorBitDepth"></param>
+        /// <param name="parameters"></param>
         /// <returns></returns>
-        private bool CreateBasicRenderContext(int width, int height, byte colorBitDepth)
+        private bool CreateBasicRenderContext(int width, int height, ContextGenerationParams parameters)
         {
             var wndClass = new WNDCLASSEX();
             wndClass.Init();
@@ -65,9 +65,9 @@ namespace CSharpGL
             pfd.nVersion = 1;
             pfd.dwFlags = Win32.PFD_DRAW_TO_WINDOW | Win32.PFD_SUPPORT_OPENGL | Win32.PFD_DOUBLEBUFFER;
             pfd.iPixelType = Win32.PFD_TYPE_RGBA;
-            pfd.cColorBits = colorBitDepth;
-            pfd.cDepthBits = 24;
-            pfd.cStencilBits = 8;
+            pfd.cColorBits = parameters.ColorBits;
+            pfd.cDepthBits = parameters.DepthBits;
+            pfd.cStencilBits = parameters.StencilBits;
             pfd.iLayerType = Win32.PFD_MAIN_PLANE;
 
             //	Match an appropriate pixel format
@@ -78,7 +78,7 @@ namespace CSharpGL
             }
 
             //	Sets the pixel format
-            if (Win32.SetPixelFormat(this.DeviceContextHandle, iPixelformat, pfd) == 0)
+            if (false == Win32.SetPixelFormat(this.DeviceContextHandle, iPixelformat, pfd))
             {
                 return false;
             }
@@ -94,7 +94,8 @@ namespace CSharpGL
         /// move the render context to the OpenGL version originally requested. If this is &gt; 2.1, this
         /// means building a new context. If this fails, we'll have to make do with 2.1.
         /// </summary>
-        protected bool UpdateContextVersion(int colorBitDepth)
+        /// <param name="parameters"></param>
+        protected bool UpdateContextVersion(ContextGenerationParams parameters)
         {
             //  If the request version number is anything up to and including 2.1, standard render contexts
             //  will provide what we need (as long as the graphics card drivers are up to date).
@@ -120,9 +121,9 @@ namespace CSharpGL
                         WinGL.WGL_DOUBLE_BUFFER_ARB,  (int)GL.GL_TRUE,
                         WinGL.WGL_ACCELERATION_ARB,   WinGL.WGL_FULL_ACCELERATION_ARB,
                         WinGL.WGL_PIXEL_TYPE_ARB,     WinGL.WGL_TYPE_RGBA_ARB,
-                        WinGL.WGL_COLOR_BITS_ARB,     colorBitDepth,
-                        WinGL.WGL_DEPTH_BITS_ARB,     24,
-                        WinGL.WGL_STENCIL_BITS_ARB,   8,
+                        WinGL.WGL_COLOR_BITS_ARB,     parameters.ColorBits,
+                        WinGL.WGL_DEPTH_BITS_ARB,     parameters.DepthBits,
+                        WinGL.WGL_STENCIL_BITS_ARB,   parameters.StencilBits,
                         0,        //End
                     };
 
@@ -133,7 +134,7 @@ namespace CSharpGL
                     if (false == wglChoosePixelFormatARB(dc, attribList, null, 1, pixelFormat, numFormats))
                     { return false; }
                     //	Sets the pixel format
-                    if (Win32.SetPixelFormat(dc, pixelFormat[0], new PixelFormatDescriptor()) == 0)
+                    if (false == Win32.SetPixelFormat(dc, pixelFormat[0], new PixelFormatDescriptor()))
                     {
                         return false;
                     }

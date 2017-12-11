@@ -14,8 +14,8 @@ namespace CSharpGL
         /// <param name="deviceContext"></param>
         /// <param name="width">The width.</param>
         /// <param name="height">The height.</param>
-        /// <param name="colorBitDepth">The bit count.</param>
-        public DIBSection(IntPtr deviceContext, int width, int height, short colorBitDepth)
+        /// <param name="parameters">parameters.</param>
+        public DIBSection(IntPtr deviceContext, int width, int height, ContextGenerationParams parameters)
         {
             this.Width = width;
             this.Height = height;
@@ -29,7 +29,7 @@ namespace CSharpGL
             info.Init();
 
             //	Set the data.
-            info.biBitCount = colorBitDepth;
+            info.biBitCount = parameters.ColorBits;
             info.biPlanes = 1;
             info.biWidth = width;
             info.biHeight = height;
@@ -41,7 +41,7 @@ namespace CSharpGL
             Win32.SelectObject(mdc, this.HBitmap);
 
             //	Set the OpenGL pixel format.
-            this.SetPixelFormat(mdc, colorBitDepth);
+            this.SetPixelFormat(mdc, parameters);
         }
 
         /// <summary>
@@ -49,8 +49,8 @@ namespace CSharpGL
         /// </summary>
         /// <param name="width">The width.</param>
         /// <param name="height">The height.</param>
-        /// <param name="bitCount">The bit count.</param>
-        public void Resize(int width, int height, int bitCount)
+        /// <param name="colorBits">The bit count.</param>
+        public void Resize(int width, int height, int colorBits)
         {
             //	Destroy existing objects.
             this.DestroyBitmap();
@@ -64,7 +64,7 @@ namespace CSharpGL
             info.Init();
 
             //	Set the data.
-            info.biBitCount = (short)bitCount;
+            info.biBitCount = (short)colorBits;
             info.biPlanes = 1;
             info.biWidth = width;
             info.biHeight = height;
@@ -80,8 +80,8 @@ namespace CSharpGL
         /// This function sets the pixel format of the underlying bitmap.
         /// </summary>
         /// <param name="hDC"></param>
-        /// <param name="bitCount">The bitcount.</param>
-        protected void SetPixelFormat(IntPtr hDC, int bitCount)
+        /// <param name="parameters">parameters.</param>
+        protected void SetPixelFormat(IntPtr hDC, ContextGenerationParams parameters)
         {
             //	Create the big lame pixel format majoo.
             var pdf = new PixelFormatDescriptor();
@@ -91,9 +91,9 @@ namespace CSharpGL
             pdf.nVersion = 1;
             pdf.dwFlags = (Win32.PFD_DRAW_TO_BITMAP | Win32.PFD_SUPPORT_OPENGL | Win32.PFD_SUPPORT_GDI);
             pdf.iPixelType = Win32.PFD_TYPE_RGBA;
-            pdf.cColorBits = (byte)bitCount;
-            pdf.cDepthBits = 32;
-            pdf.cStencilBits = 8;
+            pdf.cColorBits = parameters.ColorBits;
+            pdf.cDepthBits = parameters.DepthBits;
+            pdf.cStencilBits = parameters.StencilBits;
             pdf.iLayerType = Win32.PFD_MAIN_PLANE;
 
             //	Match an appropriate pixel format
@@ -101,7 +101,7 @@ namespace CSharpGL
             if (iPixelformat == 0) { throw new Exception(string.Format("ChoosePixelFormat([{0}], [{1}]) failed!", hDC, pdf)); }
 
             //	Sets the pixel format
-            if (Win32.SetPixelFormat(hDC, iPixelformat, pdf) == 0)
+            if (false == Win32.SetPixelFormat(hDC, iPixelformat, pdf))
             {
                 int lastError = Marshal.GetLastWin32Error();
                 throw new Exception(string.Format("SetPixelFormat([{0}], [{1}], [{2}]) failed! Win32Error:[{3}].", hDC, iPixelformat, pdf, lastError));

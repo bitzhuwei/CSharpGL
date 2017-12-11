@@ -8,17 +8,17 @@ namespace CSharpGL
     public abstract partial class GLRenderContext : IDisposable
     {
         /// <summary>
-        ///  Set the width, height and bit depth.
+        ///  Set the width, height and parameters.
         /// </summary>
         /// <param name="width">The width.</param>
         /// <param name="height">The height.</param>
-        /// <param name="bitDepth">The bit depth.</param>
+        /// <param name="parameters">parameters.</param>
         /// <returns></returns>
-        public GLRenderContext(int width, int height, short bitDepth)
+        public GLRenderContext(int width, int height, ContextGenerationParams parameters)
         {
             this.Width = width;
             this.Height = height;
-            this.BitDepth = bitDepth;
+            this.Parameters = parameters;
         }
 
         /// <summary>
@@ -69,6 +69,6 @@ namespace CSharpGL
         /// Gets or sets the bit depth.
         /// </summary>
         /// <value>The bit depth.</value>
-        public short BitDepth { get; protected set; }
+        public ContextGenerationParams Parameters { get; protected set; }
     }
 }
