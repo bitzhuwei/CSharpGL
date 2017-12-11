@@ -17,14 +17,14 @@ namespace CSharpGL
         public FBORenderContext(int width, int height, ContextGenerationParams parameters)
             : base(width, height, parameters)
         {
-            Framebuffer framebuffer = CreateFramebuffer(width, height);
+            Framebuffer framebuffer = CreateFramebuffer(width, height, parameters);
             framebuffer.Bind();
             this.framebuffer = framebuffer;
 
             this.dibSection = new DIBSection(this.DeviceContextHandle, width, height, parameters);
         }
 
-        private static Framebuffer CreateFramebuffer(int width, int height)
+        private static Framebuffer CreateFramebuffer(int width, int height, ContextGenerationParams parameters)
         {
             var framebuffer = new Framebuffer(width, height);
             framebuffer.Bind();
@@ -37,6 +37,7 @@ namespace CSharpGL
                 var renderbuffer = new Renderbuffer(width, height, GL.GL_DEPTH_COMPONENT24);
                 framebuffer.Attach(FramebufferTarget.Framebuffer, renderbuffer, AttachmentLocation.Depth);// special
             }
+            if (parameters.UseStencilBuffer)
             {
                 var renderbuffer = new Renderbuffer(width, height, GL.GL_STENCIL_INDEX8);
                 framebuffer.Attach(FramebufferTarget.Framebuffer, renderbuffer, AttachmentLocation.Stencil);
@@ -68,10 +69,11 @@ namespace CSharpGL
         /// </summary>
         /// <param name="width"></param>
         /// <param name="height"></param>
-        public override void SetDimensions(int width, int height)
+        /// <param name="parameters"></param>
+        public override void SetDimensions(int width, int height, ContextGenerationParams parameters)
         {
             //  Call the base.
-            base.SetDimensions(width, height);
+            base.SetDimensions(width, height, parameters);
 
             //	Resize dib section.
             this.dibSection.Resize(width, height, this.Parameters.ColorBits);
@@ -83,7 +85,7 @@ namespace CSharpGL
 
             this.framebuffer.Unbind();
             this.framebuffer.Dispose();
-            Framebuffer framebuffer = CreateFramebuffer(width, height);
+            Framebuffer framebuffer = CreateFramebuffer(width, height, parameters);
             framebuffer.Bind();
             this.framebuffer = framebuffer;
         }

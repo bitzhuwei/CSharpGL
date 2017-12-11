@@ -27,9 +27,12 @@ namespace CSharpGL
             //  Make the context current.
             this.MakeCurrent();
 
-            //  Update the context if required.
-            // if I update context, something in legacy opengl will not work...
-            this.UpdateContextVersion(parameters);
+            if (parameters.UpdateContextVersion)
+            {
+                //  Update the context if required.
+                // if I update context, something in legacy opengl will not work...
+                this.UpdateContextVersion(parameters);
+            }
         }
 
         /// <summary>
