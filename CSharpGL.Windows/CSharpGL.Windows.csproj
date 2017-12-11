@@ -58,6 +58,9 @@
     <Compile Include="Nodes\Propeller\FlabellumRenderer.cs" />
     <Compile Include="Nodes\Propeller\PropellerRenderer.cs" />
     <Compile Include="WinGLCanvas\DesignModeAssist.cs" />
+    <Compile Include="WinGLCanvas\WinGLCanvas.Events.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="WinGLCanvas\WinGLCanvas.ISupportInitialize.cs">
       <SubType>UserControl</SubType>
     </Compile>
