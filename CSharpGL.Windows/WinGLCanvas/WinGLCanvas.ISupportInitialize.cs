@@ -35,7 +35,12 @@ namespace CSharpGL
             }
 
             // Create the render context.
-            var parameters = new ContextGenerationParams();
+            ContextGenerationParams parameters = this.parameters;
+            if (this.designMode)
+            {
+                parameters.UpdateContextVersion = false;
+                parameters.UseStencilBuffer = false;
+            }
             var renderContext = new FBORenderContext(width, height, parameters);
             renderContext.MakeCurrent();
             this.renderContext = renderContext;
