@@ -95,7 +95,7 @@ namespace CSharpGL
                 {
                     renderContext.MakeCurrent();
 
-                    renderContext.SetDimensions(width, height);
+                    renderContext.SetDimensions(width, height, this.parameters);
 
                     GL.Instance.Viewport(0, 0, width, height);
 
