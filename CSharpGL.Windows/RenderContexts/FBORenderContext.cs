@@ -37,10 +37,10 @@ namespace CSharpGL
                 var renderbuffer = new Renderbuffer(width, height, GL.GL_DEPTH_COMPONENT24);
                 framebuffer.Attach(FramebufferTarget.Framebuffer, renderbuffer, AttachmentLocation.Depth);// special
             }
-            //{
-            //    var renderbuffer = new Renderbuffer(width, height, GL.GL_STENCIL_INDEX8);
-            //    framebuffer.Attach(FramebufferTarget.Framebuffer, renderbuffer, AttachmentLocation.Stencil);
-            //}
+            {
+                var renderbuffer = new Renderbuffer(width, height, GL.GL_STENCIL_INDEX8);
+                framebuffer.Attach(FramebufferTarget.Framebuffer, renderbuffer, AttachmentLocation.Stencil);
+            }
             framebuffer.CheckCompleteness();
             framebuffer.Unbind();
 
