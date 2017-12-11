@@ -29,7 +29,7 @@ namespace CSharpGL
             info.Init();
 
             //	Set the data.
-            info.biBitCount = parameters.ColorBitDepth;
+            info.biBitCount = parameters.ColorBits;
             info.biPlanes = 1;
             info.biWidth = width;
             info.biHeight = height;
@@ -49,8 +49,8 @@ namespace CSharpGL
         /// </summary>
         /// <param name="width">The width.</param>
         /// <param name="height">The height.</param>
-        /// <param name="bitCount">The bit count.</param>
-        public void Resize(int width, int height, int bitCount)
+        /// <param name="colorBits">The bit count.</param>
+        public void Resize(int width, int height, int colorBits)
         {
             //	Destroy existing objects.
             this.DestroyBitmap();
@@ -64,7 +64,7 @@ namespace CSharpGL
             info.Init();
 
             //	Set the data.
-            info.biBitCount = (short)bitCount;
+            info.biBitCount = (short)colorBits;
             info.biPlanes = 1;
             info.biWidth = width;
             info.biHeight = height;
@@ -91,9 +91,9 @@ namespace CSharpGL
             pdf.nVersion = 1;
             pdf.dwFlags = (Win32.PFD_DRAW_TO_BITMAP | Win32.PFD_SUPPORT_OPENGL | Win32.PFD_SUPPORT_GDI);
             pdf.iPixelType = Win32.PFD_TYPE_RGBA;
-            pdf.cColorBits = parameters.ColorBitDepth;
-            pdf.cDepthBits = 32;
-            pdf.cStencilBits = 8;
+            pdf.cColorBits = parameters.ColorBits;
+            pdf.cDepthBits = parameters.DepthBits;
+            pdf.cStencilBits = parameters.StencilBits;
             pdf.iLayerType = Win32.PFD_MAIN_PLANE;
 
             //	Match an appropriate pixel format

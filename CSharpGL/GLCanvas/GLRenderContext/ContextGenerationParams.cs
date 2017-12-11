@@ -10,14 +10,34 @@ namespace CSharpGL
     /// </summary>
     public class ContextGenerationParams
     {
-        private byte colorBitDepth = 32;
+        private byte colorBits = 32;
         /// <summary>
         /// 
         /// </summary>
-        public byte ColorBitDepth
+        public byte ColorBits
         {
-            get { return colorBitDepth; }
-            set { colorBitDepth = value; }
+            get { return colorBits; }
+            set { colorBits = value; }
+        }
+
+        private byte depthBits = 24;
+        /// <summary>
+        /// 
+        /// </summary>
+        public byte DepthBits
+        {
+            get { return depthBits; }
+            set { depthBits = value; }
+        }
+
+        private byte stencilBits = 8;
+        /// <summary>
+        /// 
+        /// </summary>
+        public byte StencilBits
+        {
+            get { return stencilBits; }
+            set { stencilBits = value; }
         }
     }
 }

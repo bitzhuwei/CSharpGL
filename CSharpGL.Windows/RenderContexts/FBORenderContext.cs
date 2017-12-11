@@ -74,7 +74,7 @@ namespace CSharpGL
             base.SetDimensions(width, height);
 
             //	Resize dib section.
-            this.dibSection.Resize(width, height, this.Parameters.ColorBitDepth);
+            this.dibSection.Resize(width, height, this.Parameters.ColorBits);
 
             //  TODO: We should be able to just use the code below - however we
             //  get invalid dimension issues at the moment, so recreate for now.

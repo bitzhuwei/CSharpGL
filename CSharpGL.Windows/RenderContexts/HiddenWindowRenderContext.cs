@@ -65,9 +65,9 @@ namespace CSharpGL
             pfd.nVersion = 1;
             pfd.dwFlags = Win32.PFD_DRAW_TO_WINDOW | Win32.PFD_SUPPORT_OPENGL | Win32.PFD_DOUBLEBUFFER;
             pfd.iPixelType = Win32.PFD_TYPE_RGBA;
-            pfd.cColorBits = parameters.ColorBitDepth;
-            pfd.cDepthBits = 24;
-            pfd.cStencilBits = 8;
+            pfd.cColorBits = parameters.ColorBits;
+            pfd.cDepthBits = parameters.DepthBits;
+            pfd.cStencilBits = parameters.StencilBits;
             pfd.iLayerType = Win32.PFD_MAIN_PLANE;
 
             //	Match an appropriate pixel format
@@ -121,9 +121,9 @@ namespace CSharpGL
                         WinGL.WGL_DOUBLE_BUFFER_ARB,  (int)GL.GL_TRUE,
                         WinGL.WGL_ACCELERATION_ARB,   WinGL.WGL_FULL_ACCELERATION_ARB,
                         WinGL.WGL_PIXEL_TYPE_ARB,     WinGL.WGL_TYPE_RGBA_ARB,
-                        WinGL.WGL_COLOR_BITS_ARB,     parameters.ColorBitDepth,
-                        WinGL.WGL_DEPTH_BITS_ARB,     24,
-                        WinGL.WGL_STENCIL_BITS_ARB,   8,
+                        WinGL.WGL_COLOR_BITS_ARB,     parameters.ColorBits,
+                        WinGL.WGL_DEPTH_BITS_ARB,     parameters.DepthBits,
+                        WinGL.WGL_STENCIL_BITS_ARB,   parameters.StencilBits,
                         0,        //End
                     };
 
