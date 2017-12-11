@@ -66,7 +66,7 @@
             this.winGLCanvas1.Size = new System.Drawing.Size(777, 573);
             this.winGLCanvas1.TabIndex = 0;
             this.winGLCanvas1.TimerTriggerInterval = 40;
-            this.winGLCanvas1.UpdateContextVersion = false;
+            this.winGLCanvas1.UpdateContextVersion = true;
             this.winGLCanvas1.UseStencilBuffer = true;
             // 
             // statusStrip1
