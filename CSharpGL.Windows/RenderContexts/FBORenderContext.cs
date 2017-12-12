@@ -65,10 +65,10 @@ namespace CSharpGL
         /// <param name="width"></param>
         /// <param name="height"></param>
         /// <param name="parameters"></param>
-        public override void SetDimensions(int width, int height, ContextGenerationParams parameters)
+        public override void SetDimensions(int width, int height)
         {
             //  Call the base.
-            base.SetDimensions(width, height, parameters);
+            base.SetDimensions(width, height);
 
             //  TODO: We should be able to just use the code below - however we
             //  get invalid dimension issues at the moment, so recreate for now.
@@ -77,7 +77,7 @@ namespace CSharpGL
 
             this.framebuffer.Unbind();
             this.framebuffer.Dispose();
-            Framebuffer framebuffer = CreateFramebuffer(width, height, parameters);
+            Framebuffer framebuffer = CreateFramebuffer(width, height, this.Parameters);
             framebuffer.Bind();
             this.framebuffer = framebuffer;
         }

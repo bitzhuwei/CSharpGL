@@ -18,16 +18,15 @@ namespace StencilTest
             var fs = new FragmentShader(fragmentCode);
             var array = new ShaderArray(vs, fs);
             var map = new AttributeMap();
-            //var stencilFunc = new StencilFuncState(EStencilFunc.Always, 1, 0xFF);
-            //var stencilOp = new StencilOpState(EStencilOp.Keep, EStencilOp.Keep, EStencilOp.Replace);
-            //var stencilMask = new StencilMaskState(0xFF);
-            //var colorMask = new ColorMaskState(false, false, false, false);
-            //var depthMask = new DepthMaskState(false);
-            //var clearBuffer = new UserDefineState();
-            //clearBuffer.On += clearBuffer_On;
+            var stencilFunc = new StencilFuncState(EStencilFunc.Always, 1, 0xFF, EStencilFunc.Equal, 1, 0xFF);
+            var stencilOp = new StencilOpState(EStencilOp.Keep, EStencilOp.Keep, EStencilOp.Replace, EStencilOp.Keep, EStencilOp.Keep, EStencilOp.Keep);
+            var stencilMask = new StencilMaskState(0xFF, 0x00);
+            var colorMask = new ColorMaskState(false, false, false, false);
+            var depthMask = new DepthMaskState(false);
+            var clearBuffer = new UserDefineState();
+            clearBuffer.TurnOn += clearBuffer_On;
 
-            var builder = new RenderMethodBuilder(array, map);
-            //, stencilFunc, stencilOp, stencilMask, colorMask, depthMask);
+            var builder = new RenderMethodBuilder(array, map, stencilFunc, stencilOp, stencilMask, colorMask, depthMask, clearBuffer);
             var node = new QuaterNode(model, builder);
 
             node.Initialize();
@@ -35,10 +34,10 @@ namespace StencilTest
             return node;
         }
 
-        //static void clearBuffer_On(object sender, EventArgs e)
-        //{
-        //    GL.Instance.Clear(GL.GL_STENCIL_BUFFER_BIT);
-        //}
+        private static void clearBuffer_On(object sender, EventArgs e)
+        {
+            GL.Instance.Clear(GL.GL_STENCIL_BUFFER_BIT);
+        }
 
         private QuaterNode(IBufferSource model, params RenderMethodBuilder[] builders)
             : base(model, builders)
@@ -47,35 +46,8 @@ namespace StencilTest
 
         }
 
-        protected override void DoInitialize()
-        {
-            base.DoInitialize();
-
-            //var stencilFunc = new StencilFuncState(EStencilFunc.Always, 1, 0xFF);
-            //var stencilOp = new StencilOpState(EStencilOp.Keep, EStencilOp.Keep, EStencilOp.Replace);
-            //var stencilMask = new StencilMaskState(0xFF);
-            //var colorMask = new ColorMaskState(false, false, false, false);
-            //var depthMask = new DepthMaskState(false);
-            //var clearBuffer = new UserDefineState();
-            //clearBuffer.On += clearBuffer_On;
-            //var list = this.RenderUnit.Methods[0].StateList;
-            //list.Add(stencilFunc);
-            //list.Add(stencilOp);
-            //list.Add(stencilMask);
-            ////list.Add(colorMask);
-            //list.Add(depthMask);
-            //list.Add(clearBuffer);
-        }
-
-        void clearBuffer_On(object sender, EventArgs e)
-        {
-            GL.Instance.Clear(GL.GL_STENCIL_BUFFER_BIT);
-        }
-
         public override void RenderBeforeChildren(RenderEventArgs arg)
         {
-            StencilStates();
-
             RenderMethod method = this.RenderUnit.Methods[0];
             method.Render();
         }
@@ -118,16 +90,16 @@ namespace StencilTest
             //GL.Instance.GetIntegerv(GL.GL_STENCIL_BITS, values); value = values[0];
 
             GL.Instance.DepthMask(false);
-            //GL.Instance.ColorMask(false, false, false, false);
+            GL.Instance.ColorMask(false, false, false, false);
             //GL.Instance.Clear(GL.GL_STENCIL_BUFFER_BIT);
         }
 
         public override void RenderAfterChildren(RenderEventArgs arg)
         {
-            GL.Instance.StencilFunc(GL.GL_EQUAL, 1, 0xFF);
-            GL.Instance.StencilOp(GL.GL_KEEP, GL.GL_KEEP, GL.GL_KEEP);
+            //GL.Instance.StencilFunc(GL.GL_EQUAL, 1, 0xFF);
+            //GL.Instance.StencilOp(GL.GL_KEEP, GL.GL_KEEP, GL.GL_KEEP);
             //GL.Instance.StencilMask(0x00);
-            GL.Instance.DepthMask(true);
+            //GL.Instance.DepthMask(true);
             //GL.Instance.ColorMask(true, true, true, true);
         }
     }

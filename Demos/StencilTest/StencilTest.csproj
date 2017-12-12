@@ -43,6 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Form1HowStencilWorks.MouseMove.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form1HowStencilWorks.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -50,6 +53,7 @@
       <DependentUpon>Form1HowStencilWorks.cs</DependentUpon>
     </Compile>
     <Compile Include="HowStencilTestWorkNode.cs" />
+    <Compile Include="OutlineCubeNode.cs" />
     <Compile Include="StencilTestModel.cs" />
     <Compile Include="StencilTestNode.shader.cs" />
     <Compile Include="StencilTestNode.cs" />

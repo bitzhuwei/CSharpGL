@@ -11,31 +11,53 @@ namespace CSharpGL
     public class StencilFuncState : GLState
     {
         /// <summary>
-        ///
+        /// before sending drawing command to GPU.
         /// </summary>
-        public EStencilFunc Func { get; set; }
+        public EStencilFunc BeforeFunc { get; set; }
 
         /// <summary>
-        ///
+        /// before sending drawing command to GPU.
         /// </summary>
-        public int Reference { get; private set; }
+        public int BeforeReference { get; private set; }
 
         /// <summary>
-        ///
+        /// before sending drawing command to GPU.
         /// </summary>
-        public uint Mask { get; private set; }
+        public uint BeforeMask { get; private set; }
+        /// <summary>
+        /// after sending drawing command to GPU.
+        /// </summary>
+        public EStencilFunc AfterFunc { get; set; }
+
+        /// <summary>
+        /// after sending drawing command to GPU.
+        /// </summary>
+        public int AfterReference { get; private set; }
+
+        /// <summary>
+        /// after sending drawing command to GPU.
+        /// </summary>
+        public uint AfterMask { get; private set; }
 
         /// <summary>
         /// glStencilFunc
         /// </summary>
-        /// <param name="func"></param>
-        /// <param name="reference"></param>
-        /// <param name="mask"></param>
-        public StencilFuncState(EStencilFunc func, int reference, uint mask)
+        /// <param name="beforeFunc"></param>
+        /// <param name="beforeReference"></param>
+        /// <param name="beforeMask"></param>
+        /// <param name="afterFunc"></param>
+        /// <param name="afterReference"></param>
+        /// <param name="afterMask"></param>
+        public StencilFuncState(EStencilFunc beforeFunc, int beforeReference, uint beforeMask,
+            EStencilFunc afterFunc, int afterReference, uint afterMask)
         {
-            this.Func = func;
-            this.Reference = reference;
-            this.Mask = mask;
+            this.BeforeFunc = beforeFunc;
+            this.BeforeReference = beforeReference;
+            this.BeforeMask = beforeMask;
+
+            this.AfterFunc = afterFunc;
+            this.AfterReference = afterReference;
+            this.AfterMask = afterMask;
         }
 
         private float[] original = new float[10];
@@ -45,7 +67,9 @@ namespace CSharpGL
         /// </summary>
         public override string ToString()
         {
-            return string.Format("glStencilFunc({0}, {1}, {2});", Func);
+            return string.Format("glStencilFunc({0}, {1}, {2}); - glStencilFunc({3}, {4}, {5});",
+                BeforeFunc, BeforeReference, BeforeMask,
+                AfterFunc, AfterReference, AfterMask);
         }
 
         /// <summary>
@@ -53,9 +77,7 @@ namespace CSharpGL
         /// </summary>
         protected override void StateOn()
         {
-            GL.Instance.GetFloatv((uint)GetTarget.StencilFunc, original);
-
-            GL.Instance.StencilFunc((uint)this.Func, this.Reference, this.Mask);
+            GL.Instance.StencilFunc((uint)this.BeforeFunc, this.BeforeReference, this.BeforeMask);
         }
 
         /// <summary>
@@ -63,7 +85,7 @@ namespace CSharpGL
         /// </summary>
         protected override void StateOff()
         {
-            //GL.Instance.LineWidth(original[0]);
+            GL.Instance.StencilFunc((uint)this.AfterFunc, this.AfterReference, this.AfterMask);
         }
     }
 }

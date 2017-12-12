@@ -11,17 +11,24 @@ namespace CSharpGL
     public class StencilMaskState : GLState
     {
         /// <summary>
-        ///
+        /// before sending drawing command to GPU.
         /// </summary>
-        public uint Mask { get; set; }
+        public uint BeforeMask { get; set; }
+
+        /// <summary>
+        /// after sending drawing command to GPU.
+        /// </summary>
+        public uint AfterMask { get; set; }
 
         /// <summary>
         /// glStencilMask
         /// </summary>
-        /// <param name="mask"></param>
-        public StencilMaskState(uint mask)
+        /// <param name="beforeMask"></param>
+        /// <param name="afterMask"></param>
+        public StencilMaskState(uint beforeMask, uint afterMask)
         {
-            this.Mask = mask;
+            this.BeforeMask = beforeMask;
+            this.AfterMask = afterMask;
         }
 
         private float[] original = new float[1];
@@ -31,7 +38,7 @@ namespace CSharpGL
         /// </summary>
         public override string ToString()
         {
-            return string.Format("glStencilMask({0});", Mask);
+            return string.Format("glStencilMask({0}) - glStencilMask({1})", BeforeMask, AfterMask);
         }
 
         /// <summary>
@@ -39,9 +46,7 @@ namespace CSharpGL
         /// </summary>
         protected override void StateOn()
         {
-            GL.Instance.GetFloatv((uint)GetTarget.StencilValueMask, original);
-
-            GL.Instance.StencilMask(this.Mask);
+            GL.Instance.StencilMask(this.BeforeMask);
         }
 
         /// <summary>
@@ -49,7 +54,7 @@ namespace CSharpGL
         /// </summary>
         protected override void StateOff()
         {
-            //GL.Instance.LineWidth(original[0]);
+            GL.Instance.StencilMask(this.AfterMask);
         }
     }
 }
