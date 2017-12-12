@@ -81,13 +81,13 @@ namespace StencilTest
             //return StencilTestNode.Create();
 
             // demo 2:
-            var quaterNode = QuaterNode.Create();
-            var bottleNode = KleinBottleNode.Create(new KleinBottleModel());
-            bottleNode.Scale = new vec3(1, 1, 1) * 0.1f;
-            var group = new HowStencilTestWorkNode();
-            group.Children.Add(quaterNode);
-            group.Children.Add(bottleNode);
-            return group;
+            //var quaterNode = QuaterNode.Create();
+            //var bottleNode = KleinBottleNode.Create(new KleinBottleModel());
+            //bottleNode.Scale = new vec3(1, 1, 1) * 0.1f;
+            //var group = new HowStencilTestWorkNode();
+            //group.Children.Add(quaterNode);
+            //group.Children.Add(bottleNode);
+            //return group;
 
             // demo 3:
             return OutlineCubeNode.Create();

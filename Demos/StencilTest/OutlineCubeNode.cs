@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using CSharpGL;
+using System.ComponentModel;
 
 namespace StencilTest
 {
@@ -14,7 +15,7 @@ namespace StencilTest
         private const string modelMatrix = "modelMatrix";
         private const string color = "color";
         private const string vertexCode =
-            @"#version 330 core
+            @"#version 150 core
 
 in vec3 " + inPosition + @";
 
@@ -27,12 +28,11 @@ void main(void) {
 }
 ";
         private const string fragmentCode =
-            @"#version 330 core
+            @"#version 150 core
 
 uniform vec4 " + color + @";
 
-layout(location = 0) out vec4 out_Color;
-//out vec4 out_Color;
+out vec4 out_Color;
 
 void main(void) {
     out_Color = color;
@@ -77,6 +77,53 @@ void main(void) {
 
             if (DisplayOutline)
             {
+                // render object and prepare stencil buffer.
+                GL.Instance.Enable(GL.GL_STENCIL_TEST);
+                GL.Instance.ClearStencil(0);
+                GL.Instance.Clear(GL.GL_STENCIL_BUFFER_BIT);
+                GL.Instance.StencilFunc(GL.GL_ALWAYS, 1, 0xFF);
+                GL.Instance.StencilOp(GL.GL_KEEP, GL.GL_KEEP, GL.GL_REPLACE);
+                GL.Instance.StencilMask(0xFF);
+
+                ICamera camera = arg.CameraStack.Peek();
+                mat4 projection = camera.GetProjectionMatrix();
+                mat4 view = camera.GetViewMatrix();
+                mat4 model = this.GetModelMatrix();
+
+                var method = this.RenderUnit.Methods[0]; // the only render unit in this node.
+                ShaderProgram program = method.Program;
+                program.SetUniform(projectionMatrix, projection);
+                program.SetUniform(viewMatrix, view);
+                program.SetUniform(modelMatrix, model);
+                program.SetUniform(color, this.Color);
+                method.Render();
+
+                // render outline.
+                GL.Instance.StencilFunc(GL.GL_NOTEQUAL, 1, 0xFF);
+                GL.Instance.StencilOp(GL.GL_KEEP, GL.GL_KEEP, GL.GL_KEEP);
+                GL.Instance.StencilMask(0x00);
+                GL.Instance.DepthMask(false);
+
+                mat4 parentMat = mat4.identity();
+                var parent = this.Parent;
+                if (parent != null) { parentMat = parent.GetModelMatrix(); }
+                mat4 matrix = glm.translate(mat4.identity(), this.WorldPosition);
+                matrix = glm.scale(matrix, this.Scale * 1.1f);
+                matrix = glm.rotate(matrix, this.RotationAngle, this.RotationAxis);
+                program.SetUniform(projectionMatrix, projection);
+                program.SetUniform(viewMatrix, view);
+                program.SetUniform(modelMatrix, parentMat * matrix);
+                program.SetUniform(color, new vec4(0.04f, 0.28f, 0.26f, 1.0f));
+                method.Render();
+                GL.Instance.DepthMask(true);
+
+                GL.Instance.Disable(GL.GL_STENCIL_TEST);
+
+                //// render original object.
+                //GL.Instance.DepthMask(true);
+                //program.SetUniform(modelMatrix, model);
+                //program.SetUniform(color, this.Color);
+                //method.Render();
             }
             else
             {
@@ -99,6 +146,7 @@ void main(void) {
         {
         }
 
+        [Browsable(false)]
         public bool DisplayOutline { get; set; }
     }
 

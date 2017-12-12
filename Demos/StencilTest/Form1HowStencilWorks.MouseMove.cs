@@ -37,6 +37,7 @@ namespace StencilTest
             }
 
             this.lastPickedNode = currentNode;
+            this.lblState.Text = string.Format("picked: {0}", this.lastPickedNode);
         }
 
         IPickable lastPickedNode;
