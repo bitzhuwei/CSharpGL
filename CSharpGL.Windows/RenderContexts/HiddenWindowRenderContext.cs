@@ -234,20 +234,20 @@ namespace CSharpGL
         /// </summary>
         /// <param name="width">Width.</param>
         /// <param name="height">Height.</param>
-        public override void SetDimensions(int width, int height, ContextGenerationParams parameters)
+        public override void SetDimensions(int width, int height)
         {
             //  Call the base.
-            base.SetDimensions(width, height, parameters);
+            base.SetDimensions(width, height);
 
-            ////	Set the window size.
-            //Win32.SetWindowPos(windowHandle, IntPtr.Zero, 0, 0, Width, Height,
-            //    SetWindowPosFlags.SWP_NOACTIVATE |
-            //    SetWindowPosFlags.SWP_NOCOPYBITS |
-            //    SetWindowPosFlags.SWP_NOMOVE |
-            //    SetWindowPosFlags.SWP_NOOWNERZORDER);
+            //	Set the window size.
+            Win32.SetWindowPos(windowHandle, IntPtr.Zero, 0, 0, Width, Height,
+                SetWindowPosFlags.SWP_NOACTIVATE |
+                SetWindowPosFlags.SWP_NOCOPYBITS |
+                SetWindowPosFlags.SWP_NOMOVE |
+                SetWindowPosFlags.SWP_NOOWNERZORDER);
 
             //	Resize dib section.
-            this.dibSection.Resize(width, height, this.Parameters.ColorBits);
+            this.dibSection.Resize(width, height, this.Parameters);
         }
 
         /// <summary>

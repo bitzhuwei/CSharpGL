@@ -49,8 +49,8 @@ namespace CSharpGL
         /// </summary>
         /// <param name="width">The width.</param>
         /// <param name="height">The height.</param>
-        /// <param name="colorBits">The bit count.</param>
-        public void Resize(int width, int height, int colorBits)
+        /// <param name="parameters">parameters.</param>
+        public void Resize(int width, int height, ContextGenerationParams parameters)
         {
             //	Destroy existing objects.
             this.DestroyBitmap();
@@ -64,7 +64,7 @@ namespace CSharpGL
             info.Init();
 
             //	Set the data.
-            info.biBitCount = (short)colorBits;
+            info.biBitCount = parameters.ColorBits;
             info.biPlanes = 1;
             info.biWidth = width;
             info.biHeight = height;
