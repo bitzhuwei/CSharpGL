@@ -40,7 +40,6 @@ namespace CSharpGL
             {
                 parameters = new ContextGenerationParams();
                 parameters.UpdateContextVersion = false;
-                parameters.UseStencilBuffer = false;
             }
             else
             {

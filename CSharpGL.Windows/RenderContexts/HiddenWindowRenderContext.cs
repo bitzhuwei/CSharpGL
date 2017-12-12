@@ -71,11 +71,11 @@ namespace CSharpGL
             pfd.dwFlags = Win32.PFD_DRAW_TO_WINDOW | Win32.PFD_SUPPORT_OPENGL | Win32.PFD_DOUBLEBUFFER;
             pfd.iPixelType = Win32.PFD_TYPE_RGBA;
             pfd.cColorBits = parameters.ColorBits;
-            pfd.cAccumBits = 8;
-            pfd.cAccumRedBits = 8;
-            pfd.cAccumGreenBits = 8;
-            pfd.cAccumBlueBits = 8;
-            pfd.cAccumAlphaBits = 8;
+            pfd.cAccumBits = parameters.AccumBits;
+            pfd.cAccumRedBits = parameters.AccumRedBits;
+            pfd.cAccumGreenBits = parameters.AccumGreenBits;
+            pfd.cAccumBlueBits = parameters.AccumBlueBits;
+            pfd.cAccumAlphaBits = parameters.AccumAlphaBits;
             pfd.cDepthBits = parameters.DepthBits;
             pfd.cStencilBits = parameters.StencilBits;
             pfd.iLayerType = Win32.PFD_MAIN_PLANE;
@@ -126,19 +126,19 @@ namespace CSharpGL
 
                     int[] attribList = new int[]
                     {
-                        WinGL.WGL_SUPPORT_OPENGL_ARB, (int)GL.GL_TRUE,
-                        WinGL.WGL_DRAW_TO_WINDOW_ARB, (int)GL.GL_TRUE,
-                        WinGL.WGL_DOUBLE_BUFFER_ARB,  (int)GL.GL_TRUE,
-                        WinGL.WGL_ACCELERATION_ARB,   WinGL.WGL_FULL_ACCELERATION_ARB,
-                        WinGL.WGL_PIXEL_TYPE_ARB,     WinGL.WGL_TYPE_RGBA_ARB,
-                        WinGL.WGL_COLOR_BITS_ARB,     parameters.ColorBits,
-                        WinGL.WGL_ACCUM_BITS_ARB,     8,
-                        WinGL.WGL_ACCUM_RED_BITS_ARB, 8,
-                        WinGL.WGL_ACCUM_GREEN_BITS_ARB,8,
-                        WinGL.WGL_ACCUM_BLUE_BITS_ARB,8,
-                        WinGL.WGL_ACCUM_ALPHA_BITS_ARB,8,
-                        WinGL.WGL_DEPTH_BITS_ARB,     parameters.DepthBits,
-                        WinGL.WGL_STENCIL_BITS_ARB,   parameters.StencilBits,
+                        WinGL.WGL_SUPPORT_OPENGL_ARB,   (int)GL.GL_TRUE,
+                        WinGL.WGL_DRAW_TO_WINDOW_ARB,   (int)GL.GL_TRUE,
+                        WinGL.WGL_DOUBLE_BUFFER_ARB,    (int)GL.GL_TRUE,
+                        WinGL.WGL_ACCELERATION_ARB,     WinGL.WGL_FULL_ACCELERATION_ARB,
+                        WinGL.WGL_PIXEL_TYPE_ARB,       WinGL.WGL_TYPE_RGBA_ARB,
+                        WinGL.WGL_COLOR_BITS_ARB,       parameters.ColorBits,
+                        WinGL.WGL_ACCUM_BITS_ARB,       parameters.AccumBits,
+                        WinGL.WGL_ACCUM_RED_BITS_ARB,   parameters.AccumRedBits,
+                        WinGL.WGL_ACCUM_GREEN_BITS_ARB, parameters.AccumGreenBits,
+                        WinGL.WGL_ACCUM_BLUE_BITS_ARB,  parameters.AccumBlueBits,
+                        WinGL.WGL_ACCUM_ALPHA_BITS_ARB, parameters.AccumAlphaBits,
+                        WinGL.WGL_DEPTH_BITS_ARB,       parameters.DepthBits,
+                        WinGL.WGL_STENCIL_BITS_ARB,     parameters.StencilBits,
                         0,        //End
                     };
 

@@ -58,7 +58,6 @@ namespace CSharpGL
                 //this.mouseEnter = (x, y) => ShowCursor(0);// hide system's cursor.
                 //this.mouseLeave = (x, y) => ShowCursor(1);// show system's cursor.
             }
-
         }
 
         //private bool showingCursor = true;
@@ -102,26 +101,6 @@ namespace CSharpGL
         [Category(strWinGLCanvas)]
         [Description("FPS")]
         public double FPS { get; private set; }
-
-        private ContextGenerationParams parameters = new ContextGenerationParams();
-        ///// <summary>
-        ///// 
-        ///// </summary>
-        //[Category(strWinGLCanvas)]
-        //[Description("Paramters of creating render context. Any setup after InitializeComponent() is invalid.")]
-        //public ContextGenerationParams Parameters { get { return this.parameters; } }
-
-        public bool UpdateContextVersion
-        {
-            get { return this.parameters.UpdateContextVersion; }
-            set { this.parameters.UpdateContextVersion = value; }
-        }
-
-        public bool UseStencilBuffer
-        {
-            get { return this.parameters.UseStencilBuffer; }
-            set { this.parameters.UseStencilBuffer = value; }
-        }
 
         ///// <summary>
         ///// Gets or sets the desired OpenGL version.
