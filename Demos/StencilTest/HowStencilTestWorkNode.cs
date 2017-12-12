@@ -8,21 +8,22 @@ namespace StencilTest
 {
     class HowStencilTestWorkNode : ModernNode
     {
-        //private StencilTestState stencilTest = new StencilTestState(true);
+        private StencilTestState stencilTest = new StencilTestState(true);
 
         public HowStencilTestWorkNode()
             : base(null)
         {
+            this.EnableRendering = ThreeFlags.BeforeChildren | ThreeFlags.Children | ThreeFlags.AfterChildren;
         }
 
         public override void RenderBeforeChildren(RenderEventArgs arg)
         {
-            //this.stencilTest.On();
+            this.stencilTest.On();
         }
 
         public override void RenderAfterChildren(RenderEventArgs arg)
         {
-            //this.stencilTest.Off();
+            this.stencilTest.Off();
         }
     }
 }
