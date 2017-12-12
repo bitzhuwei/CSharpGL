@@ -14,6 +14,7 @@ namespace StencilTest
     {
         Scene scene;
         private ActionList actionList;
+        private PickingAction pickingAction;
 
         public Form1HowStencilWorks()
         {
@@ -22,6 +23,7 @@ namespace StencilTest
             this.Load += FormMain_Load;
             this.winGLCanvas1.OpenGLDraw += winGLCanvas1_OpenGLDraw;
             this.winGLCanvas1.Resize += winGLCanvas1_Resize;
+            this.winGLCanvas1.MouseMove += winGLCanvas1_MouseMove;
         }
 
         private void FormMain_Load(object sender, EventArgs e)
@@ -48,6 +50,8 @@ namespace StencilTest
             var actionList = new ActionList();
             actionList.Add(tansformAction); actionList.Add(renderAction);
             this.actionList = actionList;
+
+            this.pickingAction = new PickingAction(scene);
 
             var manipulater = new FirstPerspectiveManipulater();
             manipulater.Bind(camera, this.winGLCanvas1);
@@ -86,6 +90,7 @@ namespace StencilTest
             return group;
 
             // demo 3:
+            return OutlineCubeNode.Create();
 
         }
 
@@ -139,5 +144,6 @@ namespace StencilTest
 
             this.lblState.Text = string.Format("{0} objects selected.", 1);
         }
+
     }
 }
