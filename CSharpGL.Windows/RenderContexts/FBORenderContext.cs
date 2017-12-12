@@ -20,8 +20,6 @@ namespace CSharpGL
             Framebuffer framebuffer = CreateFramebuffer(width, height, parameters);
             framebuffer.Bind();
             this.framebuffer = framebuffer;
-
-            this.dibSection = new DIBSection(this.DeviceContextHandle, width, height, parameters);
         }
 
         private static Framebuffer CreateFramebuffer(int width, int height, ContextGenerationParams parameters)
@@ -57,9 +55,6 @@ namespace CSharpGL
             this.framebuffer.Unbind();
             this.framebuffer.Dispose();
 
-            //  Destroy the internal dc.
-            this.dibSection.Dispose();
-
             //	Call the base, which will delete the render context handle and window.
             base.DisposeUnmanagedResources();
         }
@@ -75,9 +70,6 @@ namespace CSharpGL
             //  Call the base.
             base.SetDimensions(width, height, parameters);
 
-            //	Resize dib section.
-            this.dibSection.Resize(width, height, this.Parameters.ColorBits);
-
             //  TODO: We should be able to just use the code below - however we
             //  get invalid dimension issues at the moment, so recreate for now.
             ////  Resize the render buffer storage.
@@ -91,39 +83,9 @@ namespace CSharpGL
         }
 
         /// <summary>
-        ///
-        /// </summary>
-        /// <param name="deviceContext"></param>
-        public override void Blit(IntPtr deviceContext)
-        {
-            if (this.DeviceContextHandle != IntPtr.Zero)
-            {
-                //  Set the read buffer.
-                GL.Instance.ReadBuffer(GL.GL_COLOR_ATTACHMENT0);
-
-                //	Read the pixels into the DIB section.
-                GL.Instance.ReadPixels(0, 0, this.Width, this.Height, GL.GL_BGRA,
-                    GL.GL_UNSIGNED_BYTE, this.dibSection.Bits);
-
-                //	Blit the DC (containing the DIB section) to the target DC.
-                Win32.BitBlt(deviceContext, 0, 0, this.Width, this.Height,
-                    this.dibSection.MemoryDeviceContext, 0, 0, Win32.SRCCOPY);
-            }
-        }
-
-        /// <summary>
         /// somehing wrong if this field is removed. I don't know why.
         /// </summary>
         private Framebuffer framebuffer;
-
-        ///// <summary>
-        /////
-        ///// </summary>
-        //private IntPtr dibSectionDeviceContext = IntPtr.Zero;
-        /// <summary>
-        ///
-        /// </summary>
-        private DIBSection dibSection;
 
     }
 }
