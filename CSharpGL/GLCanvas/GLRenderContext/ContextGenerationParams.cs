@@ -33,16 +33,6 @@ namespace CSharpGL
             set { depthBits = value; }
         }
 
-        private byte stencilBits = 8;
-        /// <summary>
-        /// 
-        /// </summary>
-        public byte StencilBits
-        {
-            get { return stencilBits; }
-            set { stencilBits = value; }
-        }
-
         private bool updateContextVersion = true;
         /// <summary>
         /// update render context version?
@@ -53,14 +43,14 @@ namespace CSharpGL
             set { updateContextVersion = value; }
         }
 
-        private bool useStencilBuffer = false;
+        private byte stencilBits = 0;
         /// <summary>
-        /// attach a stencil buffer to FBO in render context?
+        /// initi with stencil buffer?
         /// </summary>
-        public bool UseStencilBuffer
+        public byte StencilBits
         {
-            get { return useStencilBuffer; }
-            set { useStencilBuffer = value; }
+            get { return stencilBits; }
+            set { stencilBits = value; }
         }
     }
 }

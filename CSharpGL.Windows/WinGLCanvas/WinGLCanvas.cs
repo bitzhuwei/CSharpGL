@@ -58,7 +58,6 @@ namespace CSharpGL
                 //this.mouseEnter = (x, y) => ShowCursor(0);// hide system's cursor.
                 //this.mouseLeave = (x, y) => ShowCursor(1);// show system's cursor.
             }
-
         }
 
         //private bool showingCursor = true;
@@ -117,10 +116,10 @@ namespace CSharpGL
             set { this.parameters.UpdateContextVersion = value; }
         }
 
-        public bool UseStencilBuffer
+        public byte StencilBits
         {
-            get { return this.parameters.UseStencilBuffer; }
-            set { this.parameters.UseStencilBuffer = value; }
+            get { return this.parameters.StencilBits; }
+            set { this.parameters.StencilBits = value; }
         }
 
         ///// <summary>
