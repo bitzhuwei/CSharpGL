@@ -23,6 +23,52 @@ namespace CSharpGL
             set { colorBits = value; }
         }
 
+        private byte accumBits = 0;
+        /// <summary>
+        /// initi with accumulation buffer?
+        /// </summary>
+        public byte AccumBits
+        {
+            get { return accumBits; }
+            set { accumBits = value; }
+        }
+        private byte accumRedBits = 0;
+        /// <summary>
+        /// initi with accumulation buffer?
+        /// </summary>
+        public byte AccumRedBits
+        {
+            get { return accumRedBits; }
+            set { accumRedBits = value; }
+        }
+        private byte accumGreenBits = 0;
+        /// <summary>
+        /// initi with accumulation buffer?
+        /// </summary>
+        public byte AccumGreenBits
+        {
+            get { return accumGreenBits; }
+            set { accumGreenBits = value; }
+        }
+        private byte accumBlueBits = 0;
+        /// <summary>
+        /// initi with accumulation buffer?
+        /// </summary>
+        public byte AccumBlueBits
+        {
+            get { return accumBlueBits; }
+            set { accumBlueBits = value; }
+        }
+        private byte accumAlphaBits = 0;
+        /// <summary>
+        /// initi with accumulation buffer?
+        /// </summary>
+        public byte AccumAlphaBits
+        {
+            get { return accumAlphaBits; }
+            set { accumAlphaBits = value; }
+        }
+
         private byte depthBits = 24;
         /// <summary>
         /// 
