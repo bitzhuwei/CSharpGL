@@ -32,6 +32,10 @@ namespace CSharpGL
         /// <returns></returns>
         public PickedGeometry Pick(int x, int y, bool pickTriangle, bool pickQuad, bool pickPolygon)
         {
+            int width = this.Scene.Canvas.Width, height = this.Scene.Canvas.Height;
+            if (x < 0 || width <= x) { return null; }
+            if (y < 0 || height <= y) { return null; }
+
             PickingGeometryTypes geometryTypes = 0;
             if (pickTriangle) { geometryTypes |= PickingGeometryTypes.Triangle; }
             if (pickQuad) { geometryTypes |= PickingGeometryTypes.Quad; }
