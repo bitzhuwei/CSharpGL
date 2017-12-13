@@ -268,8 +268,8 @@ namespace CSharpGL
 
             if (this.DeviceContextHandle != IntPtr.Zero)
             {
-                //  Set the read buffer.
-                GL.Instance.ReadBuffer(GL.GL_COLOR_ATTACHMENT0);
+                ////  Set the read buffer.
+                //GL.Instance.ReadBuffer(GL.GL_COLOR_ATTACHMENT0);
 
                 //	Read the pixels into the DIB section.
                 GL.Instance.ReadPixels(0, 0, this.Width, this.Height, GL.GL_BGRA,
