@@ -54,13 +54,16 @@
     </Compile>
     <Compile Include="HowStencilTestWorkNode.cs" />
     <Compile Include="OutlineCubeNode.cs" />
+    <Compile Include="QuaterModel.cs" />
+    <Compile Include="ClearStencilNode.cs" />
+    <Compile Include="ClearStencilNode.shader.cs" />
     <Compile Include="StencilTestModel.cs" />
     <Compile Include="StencilTestNode.shader.cs" />
     <Compile Include="StencilTestNode.cs" />
     <None Include="readme.md" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="QuaterModel.cs" />
+    <Compile Include="ClearStencilModel.cs" />
     <Compile Include="QuaterNode.shader.cs" />
     <Compile Include="QuaterNode.cs" />
     <EmbeddedResource Include="Form1HowStencilWorks.resx">
@@ -98,6 +101,11 @@
       <Project>{3798671c-d1a4-43aa-a4ae-edfef21cad34}</Project>
       <Name>CSharpGL.Models</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Lenna.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

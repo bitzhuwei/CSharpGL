@@ -17,6 +17,7 @@ namespace CSharpGL
             if (error != ErrorCode.NoError)
             {
                 Console.WriteLine(error);
+                Log.Write(error);
             }
         }
     }

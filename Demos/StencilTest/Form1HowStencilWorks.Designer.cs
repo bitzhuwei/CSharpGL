@@ -95,7 +95,7 @@
             this.Controls.Add(this.trvScene);
             this.Controls.Add(this.winGLCanvas1);
             this.Name = "Form1HowStencilWorks";
-            this.Text = "Shadow Mapping - CSharpGL";
+            this.Text = "How Stencil Test Works - CSharpGL";
             ((System.ComponentModel.ISupportInitialize)(this.winGLCanvas1)).EndInit();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
