@@ -90,8 +90,10 @@ namespace StencilTest
             //return group;
 
             // demo 3:
-            return OutlineCubeNode.Create();
-
+            var clearStencilNode = ClearStencilNode.Create(); // this helps clear stencil buffer because glClear(GL_STENCIL_BUFFER_BIT); doesn't work.
+            var outlineCubeNode = OutlineCubeNode.Create();
+            var group = new GroupNode(clearStencilNode, outlineCubeNode);
+            return group;
         }
 
         void clearBuffer_On(object sender, EventArgs e)
