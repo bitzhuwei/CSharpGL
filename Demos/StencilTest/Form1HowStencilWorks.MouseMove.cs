@@ -17,6 +17,9 @@ namespace StencilTest
         {
             int x = e.X;
             int y = this.winGLCanvas1.Height - e.Y - 1;
+            if (x < 0 || this.winGLCanvas1.Width <= x) { return; }
+            if (y < 0 || this.winGLCanvas1.Height <= y) { return; }
+
             var pickedGeometry = this.pickingAction.Pick(x, y, true, true, false);
 
             var lastNode = this.lastPickedNode as OutlineCubeNode;
