@@ -29,10 +29,8 @@ namespace StencilTest
         private void FormMain_Load(object sender, EventArgs e)
         {
             var rootElement = GetRootElement();
-            //var teapot = ShadowMappingRenderer.Create();
-            //var rootElement = teapot;
 
-            var position = new vec3(0, 3, 5);
+            var position = new vec3(4, 3, 5) * 0.5f;
             var center = new vec3(0, 0, 0);
             var up = new vec3(0, 1, 0);
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
@@ -91,8 +89,29 @@ namespace StencilTest
 
             // demo 3:
             var clearStencilNode = ClearStencilNode.Create(); // this helps clear stencil buffer because glClear(GL_STENCIL_BUFFER_BIT); doesn't work.
-            var outlineCubeNode = OutlineCubeNode.Create();
-            var group = new GroupNode(clearStencilNode, outlineCubeNode);
+            string folder = System.Windows.Forms.Application.StartupPath;
+            var bitmap = new Bitmap(System.IO.Path.Combine(folder, @"Lenna.png"));
+            bitmap.RotateFlip(RotateFlipType.Rotate180FlipX);
+            var texture = new Texture(new TexImageBitmap(bitmap));
+            texture.BuiltInSampler.Add(new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_REPEAT));
+            texture.BuiltInSampler.Add(new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_REPEAT));
+            texture.BuiltInSampler.Add(new TexParameteri(TexParameter.PropertyName.TextureWrapR, (int)GL.GL_REPEAT));
+            texture.BuiltInSampler.Add(new TexParameteri(TexParameter.PropertyName.TextureMinFilter, (int)GL.GL_LINEAR));
+            texture.BuiltInSampler.Add(new TexParameteri(TexParameter.PropertyName.TextureMagFilter, (int)GL.GL_LINEAR));
+            texture.Initialize();
+            bitmap.Dispose();
+
+            var group = new GroupNode(clearStencilNode);
+            for (int x = 0; x < 3; x++)
+            {
+                for (int z = 0; z < 3; z++)
+                {
+                    var outlineCubeNode = OutlineCubeNode.Create(texture);
+                    outlineCubeNode.Scale = new vec3(1, 1, 1) * 0.6f;
+                    outlineCubeNode.WorldPosition = new vec3(x - 1, 0, z - 1);
+                    group.Children.Add(outlineCubeNode);
+                }
+            }
             return group;
         }
 

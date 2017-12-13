@@ -19,7 +19,7 @@ namespace CSharpGL
         private const string tex = "tex";
         private const string alpha = "alpha";
         private const string vertexCode =
-            @"#version 330 core
+            @"#version 150 core
 
 in vec3 " + inPosition + @";
 in vec2 " + inUV + @";
@@ -36,7 +36,7 @@ void main(void) {
 }
 ";
         private const string fragmentCode =
-            @"#version 330 core
+            @"#version 150 core
 in vec2 passUV;
 
 uniform sampler2D " + tex + @";
