@@ -28,7 +28,7 @@ void main(void)
 layout (triangles) in;
 layout (line_strip, max_vertices = 2) out;
 
-uniform float normalLength = 0.5;
+uniform float normalLength = 0.2;
 uniform vec3 vertexColor = vec3(1, 1, 1);
 uniform vec3 pointerColor = vec3(0.5, 0.5, 0.5);
 uniform mat4 projectionMatrix;
