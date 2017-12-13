@@ -37,7 +37,7 @@
         {
             GL.Instance.GetIntegerv((uint)GetTarget.PolygonMode, originalPolygonMode);
 
-            GL.Instance.PolygonMode((uint)GL.GL_FRONT_AND_BACK, (uint)this.Mode);
+            GL.Instance.PolygonMode(GL.GL_FRONT_AND_BACK, (uint)this.Mode);
         }
 
         /// <summary>
