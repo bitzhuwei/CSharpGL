@@ -79,6 +79,5 @@ void main(void)
     outColor = vec4(fragment_in.color, 1);
 }
 ";
-
     }
 }
