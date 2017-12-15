@@ -17,7 +17,7 @@ namespace CSharpGL
             var zeroIndexBuffer = picker.Node.PickingRenderUnit.VertexArrayObject.IndexBuffer as ZeroIndexBuffer;
             // when the temp index buffer could be long, it's no longer needed.
             // what a great OpenGL API design!
-            ZeroIndexBuffer indexBuffer = ZeroIndexBuffer.Create(DrawMode.Points, zeroIndexBuffer.FirstVertex, zeroIndexBuffer.RenderingVertexCount, zeroIndexBuffer.PrimCount);
+            ZeroIndexBuffer indexBuffer = ZeroIndexBuffer.Create(DrawMode.Points, zeroIndexBuffer.FirstVertex, zeroIndexBuffer.RenderingVertexCount, zeroIndexBuffer.InstanceCount);
             picker.Node.Render4InnerPicking(arg, indexBuffer);
             uint id = ColorCodedPicking.ReadStageVertexId(arg.X, arg.Y);
 

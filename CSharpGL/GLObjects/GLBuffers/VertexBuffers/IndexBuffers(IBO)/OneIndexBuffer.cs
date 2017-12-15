@@ -17,11 +17,11 @@ namespace CSharpGL
         /// <para>表示第3个参数，表示索引元素的类型。</para></param>
         /// <param name="vertexCount">此VBO含有多个个元素？<para>How many elements?</para></param>
         /// <param name="byteLength">此VBO中的数据在内存中占用多少个字节？<para>How many bytes in this buffer?</para></param>
-        /// <param name="primCount">primCount in instanced rendering.</param>
+        /// <param name="instanceCount">primCount in instanced rendering.</param>
         /// <param name="frameCount">How many frames are there?</param>
         internal OneIndexBuffer(uint bufferId, DrawMode mode,
-            IndexBufferElementType elementType, int vertexCount, int byteLength, int primCount = 1, int frameCount = 1)
-            : base(mode, bufferId, 0, vertexCount, byteLength, primCount, frameCount)
+            IndexBufferElementType elementType, int vertexCount, int byteLength, int instanceCount = 1, int frameCount = 1)
+            : base(mode, bufferId, 0, vertexCount, byteLength, instanceCount, frameCount)
         {
             this.Target = BufferTarget.ElementArrayBuffer;
 
@@ -39,8 +39,8 @@ namespace CSharpGL
         /// <param name="controlMode">index buffer is accessable randomly or only by frame.</param>
         public override void Draw(ControlMode controlMode)
         {
-            int primCount = this.PrimCount;
-            if (primCount < 1) { throw new Exception("error: primCount is less than 1."); }
+            int instanceCount = this.InstanceCount;
+            if (instanceCount < 1) { throw new Exception("error: instanceCount is less than 1."); }
             int frameCount = this.FrameCount;
             if (FrameCount < 1) { throw new Exception("error: frameCount is less than 1."); }
 
@@ -53,7 +53,7 @@ namespace CSharpGL
             switch (controlMode)
             {
                 case ControlMode.ByFrame:
-                    if (primCount == 1)
+                    if (instanceCount == 1)
                     {
                         if (frameCount == 1)
                         {
@@ -68,16 +68,16 @@ namespace CSharpGL
                     {
                         if (frameCount == 1)
                         {
-                            glDrawElementsInstanced(mode, vertexCount, (uint)this.ElementType, offset, primCount);
+                            glDrawElementsInstanced(mode, vertexCount, (uint)this.ElementType, offset, instanceCount);
                         }
                         else
                         {
-                            glDrawElementsInstancedBaseVertex(mode, vertexCount, (uint)this.ElementType, offset, primCount, this.CurrentFrame * vertexCount);
+                            glDrawElementsInstancedBaseVertex(mode, vertexCount, (uint)this.ElementType, offset, instanceCount, this.CurrentFrame * vertexCount);
                         }
                     }
                     break;
                 case ControlMode.Random:
-                    if (primCount == 1)
+                    if (instanceCount == 1)
                     {
                         if (frameCount == 1)
                         {
@@ -92,11 +92,11 @@ namespace CSharpGL
                     {
                         if (frameCount == 1)
                         {
-                            glDrawElementsInstanced(mode, this.RenderingVertexCount, (uint)this.ElementType, offset, primCount);
+                            glDrawElementsInstanced(mode, this.RenderingVertexCount, (uint)this.ElementType, offset, instanceCount);
                         }
                         else
                         {
-                            glDrawElementsInstancedBaseVertex(mode, this.RenderingVertexCount, (uint)this.ElementType, offset, primCount, this.CurrentFrame * vertexCount);
+                            glDrawElementsInstancedBaseVertex(mode, this.RenderingVertexCount, (uint)this.ElementType, offset, instanceCount, this.CurrentFrame * vertexCount);
                         }
                     }
                     break;
@@ -136,7 +136,7 @@ namespace CSharpGL
         /// <returns></returns>
         public override string ToString()
         {
-            int primCount = this.PrimCount;
+            int primCount = this.InstanceCount;
             if (primCount < 1) { return string.Format("error: primCount is less than 1."); }
             int frameCount = this.FrameCount;
             if (FrameCount < 1) { return string.Format("error: frameCount is less than 1."); }

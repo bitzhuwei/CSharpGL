@@ -31,7 +31,7 @@ namespace CSharpGL
             : base(bufferId, vertexCount, byteLength)
         {
             this.Mode = mode;
-            this.PrimCount = primCount;
+            this.InstanceCount = primCount;
             this.FrameCount = frameCount;
 
             this.FirstVertex = firstVertex;
@@ -41,7 +41,7 @@ namespace CSharpGL
         /// <summary>
         /// primCount in instanced rendering.
         /// </summary>
-        public int PrimCount { get; private set; }
+        public int InstanceCount { get; private set; }
 
         /// <summary>
         /// How many frames are there?
