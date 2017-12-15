@@ -95,15 +95,16 @@ namespace CSharpGL
 
             this.CheckLinkStatus(programId);
 
-            UniformVarInShader[] variables = LoadAllUniformsInShader();
-            foreach (var item in variables)
-            {
-                UniformVariable variable = item.GetUniformVariable(programId);
-                if (variable != null)
-                {
-                    this.uniformVariables.Add(variable.VarName, variable);
-                }
-            }
+            // I'm not ready for this. Some uniform variable types are not supported.
+            //UniformVarInShader[] variables = LoadAllUniformsInShader();
+            //foreach (var item in variables)
+            //{
+            //    UniformVariable variable = item.GetUniformVariable(programId);
+            //    if (variable != null)
+            //    {
+            //        this.uniformVariables.Add(variable.VarName, variable);
+            //    }
+            //}
         }
 
         private void CheckLinkStatus(uint programId)
