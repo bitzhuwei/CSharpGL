@@ -8,7 +8,7 @@ namespace CSharpGL
     public class FBORenderContext : WinGLRenderContext
     {
         /// <summary>
-        /// Creates the render context provider. Must also create the OpenGL extensions.
+        /// A render context.
         /// </summary>
         /// <param name="width"></param>
         /// <param name="height"></param>
