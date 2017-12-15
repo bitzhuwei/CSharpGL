@@ -5,7 +5,7 @@ namespace CSharpGL
     /// <summary>
     /// A render context.
     /// </summary>
-    public class FBORenderContext : HiddenWindowRenderContext
+    public class FBORenderContext : WinGLRenderContext
     {
         /// <summary>
         /// Creates the render context provider. Must also create the OpenGL extensions.
@@ -35,7 +35,7 @@ namespace CSharpGL
                 var renderbuffer = new Renderbuffer(width, height, GL.GL_DEPTH_COMPONENT24);
                 framebuffer.Attach(FramebufferTarget.Framebuffer, renderbuffer, AttachmentLocation.Depth);// special
             }
-            if (parameters.StencilBits > 8)
+            if (parameters.StencilBits > 0)
             {
                 var renderbuffer = new Renderbuffer(width, height, GL.GL_STENCIL_INDEX8);
                 framebuffer.Attach(FramebufferTarget.Framebuffer, renderbuffer, AttachmentLocation.Stencil);

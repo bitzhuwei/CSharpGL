@@ -6,16 +6,16 @@ namespace CSharpGL
     /// <summary>
     /// creates render device and render context.
     /// </summary>
-    public class HiddenWindowRenderContext : GLRenderContext
+    public class WinGLRenderContext : GLRenderContext
     {
         /// <summary>
-        /// Creates the render context provider. Must also create the OpenGL extensions.
+        /// creates render device and render context.
         /// </summary>
         /// <param name="width">The width.</param>
         /// <param name="height">The height.</param>
         /// <param name="parameters">parameters.</param>
         /// <returns></returns>
-        public HiddenWindowRenderContext(int width, int height, ContextGenerationParams parameters)
+        public WinGLRenderContext(int width, int height, ContextGenerationParams parameters)
             : base(width, height, parameters)
         {
             // Create a new window class, as basic as possible.

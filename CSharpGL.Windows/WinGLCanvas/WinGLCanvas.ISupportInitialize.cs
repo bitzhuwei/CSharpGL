@@ -45,7 +45,7 @@ namespace CSharpGL
             {
                 parameters = this.parameters;
             }
-            var renderContext = new HiddenWindowRenderContext(width, height, parameters);
+            var renderContext = new WinGLRenderContext(width, height, parameters);
             renderContext.MakeCurrent();
             this.renderContext = renderContext;
 
