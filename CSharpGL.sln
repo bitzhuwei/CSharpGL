@@ -83,6 +83,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TraverseAllDemos", "Demos\T
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Accumulation", "Demos\Accumulation\Accumulation.csproj", "{40ADAE9C-F3BA-4DCA-85B7-2AC59344048A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleInstancedRendering", "Demos\SimpleInstancedRendering\SimpleInstancedRendering.csproj", "{410308DE-F954-44D3-9350-2402A4A369AF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -241,6 +243,10 @@ Global
 		{40ADAE9C-F3BA-4DCA-85B7-2AC59344048A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{40ADAE9C-F3BA-4DCA-85B7-2AC59344048A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{40ADAE9C-F3BA-4DCA-85B7-2AC59344048A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{410308DE-F954-44D3-9350-2402A4A369AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{410308DE-F954-44D3-9350-2402A4A369AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{410308DE-F954-44D3-9350-2402A4A369AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{410308DE-F954-44D3-9350-2402A4A369AF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -282,5 +288,6 @@ Global
 		{368252A1-1E97-4979-A074-11EA3553480F} = {772765C9-9DD4-487B-8FEB-5EAACA9F955B}
 		{2D58E63D-720C-4CCE-9695-4CB5AC43B91B} = {772765C9-9DD4-487B-8FEB-5EAACA9F955B}
 		{40ADAE9C-F3BA-4DCA-85B7-2AC59344048A} = {772765C9-9DD4-487B-8FEB-5EAACA9F955B}
+		{410308DE-F954-44D3-9350-2402A4A369AF} = {772765C9-9DD4-487B-8FEB-5EAACA9F955B}
 	EndGlobalSection
 EndGlobal
