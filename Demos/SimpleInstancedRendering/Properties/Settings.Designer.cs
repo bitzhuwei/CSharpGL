@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SimpleInstencedRendering.Properties
+namespace SimpleInstancedRendering.Properties
 {
 
 

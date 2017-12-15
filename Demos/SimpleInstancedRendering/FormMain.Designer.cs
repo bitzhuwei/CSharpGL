@@ -1,4 +1,4 @@
-﻿namespace SimpleInstencedRendering
+﻿namespace SimpleInstancedRendering
 {
     partial class FormMain
     {

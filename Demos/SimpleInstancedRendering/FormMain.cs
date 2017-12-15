@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace SimpleInstencedRendering
+namespace SimpleInstancedRendering
 {
     public partial class FormMain : Form
     {

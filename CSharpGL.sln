@@ -83,7 +83,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TraverseAllDemos", "Demos\T
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Accumulation", "Demos\Accumulation\Accumulation.csproj", "{40ADAE9C-F3BA-4DCA-85B7-2AC59344048A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleInstencedRendering", "Demos\SimpleInstencedRendering\SimpleInstencedRendering.csproj", "{410308DE-F954-44D3-9350-2402A4A369AF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleInstancedRendering", "Demos\SimpleInstancedRendering\SimpleInstancedRendering.csproj", "{410308DE-F954-44D3-9350-2402A4A369AF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

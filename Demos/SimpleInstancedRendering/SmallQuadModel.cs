@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using CSharpGL;
 
-namespace SimpleInstencedRendering
+namespace SimpleInstancedRendering
 {
     class SmallQuadModel : IBufferSource
     {
