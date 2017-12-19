@@ -2,6 +2,8 @@
 
 namespace CSharpGL
 {
+    // TODO: 'glClipPlane' doesn't work in modern opengl. I don't know why.
+    // I didn't try legacy opengl, because I can clip planes in shader.
     /// <summary>
     /// specify a plane against which all geometry is clipped.
     /// <para>you can't use glClipPlane and vertex programs together.</para>
