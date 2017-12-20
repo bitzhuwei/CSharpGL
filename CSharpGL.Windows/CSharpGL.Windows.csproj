@@ -78,7 +78,6 @@
     </Compile>
     <Compile Include="RenderContexts\DIBSection.cs" />
     <Compile Include="RenderContexts\DIBSection.IDisposable.cs" />
-    <Compile Include="RenderContexts\FBORenderContext.cs" />
     <Compile Include="RenderContexts\WinGLRenderContext.cs" />
     <Compile Include="WinGLCanvas\RenderTrigger.cs" />
     <Compile Include="GLAPI\FontBitmapEntry.cs" />
