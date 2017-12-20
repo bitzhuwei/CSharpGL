@@ -54,7 +54,6 @@
             this.btnOpenImage.TabIndex = 1;
             this.btnOpenImage.Text = "Open Image ...";
             this.btnOpenImage.UseVisualStyleBackColor = true;
-            this.btnOpenImage.Click += new System.EventHandler(this.btnOpenImage_Click);
             // 
             // openImageDlg
             // 
