@@ -43,13 +43,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DeferredShadingNode.cs" />
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="FullScreenModel.cs" />
+    <Compile Include="FullScreenNode.shaders.cs" />
+    <Compile Include="FullScreenNode.cs" />
     <Compile Include="ManyCubesModel.cs" />
+    <Compile Include="ManyCubesNode.shaders.cs" />
+    <Compile Include="ManyCubesNode.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormMain.resx">

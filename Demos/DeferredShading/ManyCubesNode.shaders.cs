@@ -35,36 +35,31 @@ void main()
 }
 ";
 
-        private const string secondPassVert = @"#version 330 core
+        private const string regularVert = @"version 330 core
 
-in vec2 texCoord;
+in vec3 vPosition; // per-vertex position
+in vec3 vColor; // per-vertex normal
 
-out vec2 passTexCoord;
+uniform mat4 MVP; // combined model view projection matrix
 
-const float value = 1;
+out vec3 passColor;
 
-void main(void) {
-	vec2 vertexes[4] = vec2[4](vec2(value, value), vec2(-value, value), vec2(-value, -value), vec2(value, -value));
-	vec2 texCoord[4] = vec2[4](vec2(1.0, 1.0), vec2(0.0, 1.0), vec2(0.0, 0.0), vec2(1.0, 0.0));
-    gl_Position = vec4(vertexes[gl_VertexID], 0, 1);
-
-    passTexCoord = texCoord;
+void main()
+{
+	gl_Position = MVP * vec4(vPosition, 1);
+    passColor = vColor;
 }
 ";
+        private const string regularFrag = @"#version 330 core
 
+in vec3 passColor;
 
-        private const string secondPassFrag = @"#version 330 core
+layout (location = 0) out vec3 vFragColor;
 
-uniform sampler2D colorSampler;
-
-in vec2 passTexCoord;
-
-out vec4 vFragColor;
-
-void main(void) {
-    vFragColor = texture(colorSampler, passTexCoord);
+void main()
+{
+    vFragColor = passColor;
 }
 ";
-
     }
 }
