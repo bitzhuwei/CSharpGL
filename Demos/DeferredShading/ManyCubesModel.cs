@@ -71,7 +71,7 @@ namespace DeferredShading
                             x + 1 - (float)lengthX / 2.0f,
                             y + 1 - (float)lengthY / 2.0f,
                             z + 1 - (float)lengthZ / 2.0f
-                            ));
+                            ) * 1.1f);
                         index++;
                     }
                 }
