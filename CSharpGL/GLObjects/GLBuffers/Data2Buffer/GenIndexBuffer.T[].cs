@@ -5,6 +5,38 @@ namespace CSharpGL
 {
     public static partial class Data2Buffer
     {
+
+        /// <summary>
+        /// Creates a <see cref="OneIndexBuffer"/> object directly in server side(GPU) without initializing its value.
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="length">How many indexes are there?(How many uint/ushort/bytes?)</param>
+        /// <param name="mode"></param>
+        /// <param name="usage"></param>
+        /// <returns></returns>
+        public static OneIndexBuffer GenIndexBuffer<T>(this T[] array, IndexBufferElementType type, DrawMode mode, BufferUsage usage) where T : struct
+        {
+            GCHandle pinned = GCHandle.Alloc(array, GCHandleType.Pinned);
+            IntPtr header = pinned.AddrOfPinnedObject();
+            // same result with: IntPtr header = Marshal.UnsafeAddrOfPinnedArrayElement(array, 0);
+            UnmanagedArrayBase unmanagedArray = new TempUnmanagedArray<T>(header, array.Length);// It's not neecessary to call Dispose() for this unmanaged array.
+            int byteLength = unmanagedArray.ByteLength;
+            uint[] buffers = new uint[1];
+            {
+                glGenBuffers(1, buffers);
+                const uint target = GL.GL_ELEMENT_ARRAY_BUFFER;
+                glBindBuffer(target, buffers[0]);
+                glBufferData(target, byteLength, unmanagedArray.Header, (uint)usage);
+                glBindBuffer(target, 0);
+            }
+            pinned.Free();
+
+            var buffer = new OneIndexBuffer(
+                 buffers[0], mode, type, byteLength / type.GetSize(), byteLength);
+
+            return buffer;
+        }
+
         /// <summary>
         /// 生成一个用于存储索引的VBO。索引指定了<see cref="VertexBuffer"/>里各个顶点的渲染顺序。
         /// Generates a Vertex Buffer Object storing vertexes' indexes, which indicate the rendering order of each vertex.
