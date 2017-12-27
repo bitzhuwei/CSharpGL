@@ -60,42 +60,20 @@ namespace CSharpGL
         /// <returns></returns>
         public static OneIndexBuffer Create(IndexBufferElementType type, int length, DrawMode mode, BufferUsage usage)
         {
-            int byteLength = GetSize(type) * length;
+            int byteLength = type.GetSize() * length;
             uint[] buffers = new uint[1];
-            glGenBuffers(1, buffers);
-            const uint target = GL.GL_ELEMENT_ARRAY_BUFFER;
-            glBindBuffer(target, buffers[0]);
-            glBufferData(target, byteLength, IntPtr.Zero, (uint)usage);
-            glBindBuffer(target, 0);
+            {
+                glGenBuffers(1, buffers);
+                const uint target = GL.GL_ELEMENT_ARRAY_BUFFER;
+                glBindBuffer(target, buffers[0]);
+                glBufferData(target, byteLength, IntPtr.Zero, (uint)usage);
+                glBindBuffer(target, 0);
+            }
 
             var buffer = new OneIndexBuffer(
                  buffers[0], mode, type, length, byteLength);
 
             return buffer;
-        }
-
-        private static int GetSize(IndexBufferElementType type)
-        {
-            int result = 0;
-            switch (type)
-            {
-                case IndexBufferElementType.UByte:
-                    result = sizeof(byte);
-                    break;
-
-                case IndexBufferElementType.UShort:
-                    result = sizeof(ushort);
-                    break;
-
-                case IndexBufferElementType.UInt:
-                    result = sizeof(uint);
-                    break;
-
-                default:
-                    throw new NotDealWithNewEnumItemException(typeof(IndexBufferElementType));
-            }
-
-            return result;
         }
 
         /// <summary>
