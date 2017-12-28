@@ -7,31 +7,31 @@ using CSharpGL;
 namespace DeferredShading
 {
     /// <summary>
-    /// render many cubes in deferred shading way.
+    /// render many cubes in regular way.
     /// </summary>
-    partial class ManyCubesNode : ModernNode
+    partial class ManyCubesNode0 : ModernNode
     {
         /// <summary>
-        /// render many cubes in deferred shading way.
+        /// render many cubes in regular way.
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public static ManyCubesNode Create(ManyCubesModel model)
+        public static ManyCubesNode0 Create(ManyCubesModel model)
         {
             var map = new AttributeMap();
             map.Add("vPosition", ManyCubesModel.strPosition);
             map.Add("vColor", ManyCubesModel.strColor);
-            var vs = new VertexShader(firstPassVert);
-            var fs = new FragmentShader(firstPassFrag);
+            var vs = new VertexShader(regularVert);
+            var fs = new FragmentShader(regularFrag);
             var array = new ShaderArray(vs, fs);
             var firstPassBuilder = new RenderMethodBuilder(array, map);
-            var node = new ManyCubesNode(model, firstPassBuilder);
+            var node = new ManyCubesNode0(model, firstPassBuilder);
             node.Initialize();
 
             return node;
         }
 
-        private ManyCubesNode(IBufferSource model, params RenderMethodBuilder[] builders)
+        private ManyCubesNode0(IBufferSource model, params RenderMethodBuilder[] builders)
             : base(model, builders) { }
 
         public override void RenderBeforeChildren(RenderEventArgs arg)

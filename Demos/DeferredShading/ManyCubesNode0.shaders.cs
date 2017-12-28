@@ -6,9 +6,9 @@ using CSharpGL;
 
 namespace DeferredShading
 {
-    partial class ManyCubesNode
+    partial class ManyCubesNode0
     {
-        private const string firstPassVert = @"#version 330 core
+        private const string regularVert = @"#version 330 core
 
 in vec3 vPosition; // per-vertex position
 in vec3 vColor; // per-vertex normal
@@ -23,7 +23,7 @@ void main()
     passColor = vColor;
 }
 ";
-        private const string firstPassFrag = @"#version 330 core
+        private const string regularFrag = @"#version 330 core
 
 in vec3 passColor;
 
@@ -34,6 +34,5 @@ void main()
     vFragColor = passColor;
 }
 ";
-
     }
 }

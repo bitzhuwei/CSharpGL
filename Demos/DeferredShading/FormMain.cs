@@ -14,6 +14,8 @@ namespace DeferredShading
     {
         private Scene scene;
         private ActionList actionList;
+        private SceneNodeBase regularNode;
+        private SceneNodeBase deferredShadingNode;
 
         public FormMain()
         {
@@ -44,22 +46,28 @@ namespace DeferredShading
             manipulater.StepLength = 0.1f;
         }
 
-        //private SceneNodeBase GetRootElement()
-        //{
-        //    var manyCubesNode = ManyCubesNode.Create(100, 80, 60);
-
-        //    return manyCubesNode;
-        //}
         private SceneNodeBase GetRootElement()
         {
-            var manyCubesNode = ManyCubesNode.Create(50, 40, 30);
+            int lengthX = 50;
+            int lengthY = 40;
+            int lengthZ = 30;
+            int scale = 2;
+            var model = new ManyCubesModel((int)(lengthX * scale), (int)(lengthY * scale), (int)(lengthZ * scale));
+
+            var manyCubesNode = ManyCubesNode.Create(model);
             var deferredShadingNode = new DeferredShadingNode();
             deferredShadingNode.Children.Add(manyCubesNode);
             var fullScreenNode = FullScreenNode.Create(deferredShadingNode as ITextureSource);
             var groupNode = new GroupNode(deferredShadingNode, fullScreenNode);
 
+            this.deferredShadingNode = groupNode;
+
+            var manyCubesNode0 = ManyCubesNode0.Create(model);
+            this.regularNode = manyCubesNode0;
+
             return groupNode;
         }
+
         private void winGLCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
         {
             ActionList list = this.actionList;
@@ -74,6 +82,18 @@ namespace DeferredShading
             if (this.scene != null)
             {
                 this.scene.Camera.AspectRatio = ((float)this.winGLCanvas1.Width) / ((float)this.winGLCanvas1.Height);
+            }
+        }
+
+        private void chkDeferredShading_CheckedChanged(object sender, EventArgs e)
+        {
+            if (this.chkDeferredShading.Checked)
+            {
+                this.scene.RootElement = this.deferredShadingNode;
+            }
+            else
+            {
+                this.scene.RootElement = this.regularNode;
             }
         }
 

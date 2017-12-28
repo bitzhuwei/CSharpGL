@@ -54,6 +54,8 @@
     <Compile Include="FullScreenNode.shaders.cs" />
     <Compile Include="FullScreenNode.cs" />
     <Compile Include="ManyCubesModel.cs" />
+    <Compile Include="ManyCubesNode0.cs" />
+    <Compile Include="ManyCubesNode0.shaders.cs" />
     <Compile Include="ManyCubesNode.shaders.cs" />
     <Compile Include="ManyCubesNode.cs" />
     <Compile Include="Program.cs" />
