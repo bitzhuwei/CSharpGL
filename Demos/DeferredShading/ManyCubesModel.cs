@@ -46,7 +46,8 @@ namespace DeferredShading
             {
                 if (this.colorBuffer == null)
                 {
-                    this.colorBuffer = VertexBuffer.Create(typeof(SingleCubeColor), lengthX * lengthY * lengthZ, VBOConfig.Vec3, BufferUsage.StaticDraw);
+                    SingleCubeColor[] colors = GetColors(lengthX, lengthY, lengthZ);
+                    this.colorBuffer = colors.GenVertexBuffer(VBOConfig.Vec3, BufferUsage.StaticDraw);
                 }
 
                 return this.colorBuffer;
@@ -55,6 +56,30 @@ namespace DeferredShading
             {
                 throw new ArgumentException();
             }
+        }
+
+        private SingleCubeColor[] GetColors(int lengthX, int lengthY, int lengthZ)
+        {
+            var random = new Random();
+            var result = new SingleCubeColor[lengthX * lengthY * lengthZ];
+            uint index = 0;
+            for (int x = 0; x < lengthX; x++)
+            {
+                for (int y = 0; y < lengthY; y++)
+                {
+                    for (int z = 0; z < lengthZ; z++)
+                    {
+                        result[index] = new SingleCubeColor(new vec3(
+                            (float)random.NextDouble(),
+                            (float)random.NextDouble(),
+                            (float)random.NextDouble()
+                            ));
+                        index++;
+                    }
+                }
+            }
+
+            return result;
         }
 
         private SingleCubePosition[] GetPositions(int lengthX, int lengthY, int lengthZ)
@@ -71,7 +96,7 @@ namespace DeferredShading
                             x + 1 - (float)lengthX / 2.0f,
                             y + 1 - (float)lengthY / 2.0f,
                             z + 1 - (float)lengthZ / 2.0f
-                            ) * 1.1f);
+                            ) * 1.5f);
                         index++;
                     }
                 }
@@ -170,6 +195,18 @@ namespace DeferredShading
         public vec3 c5;
         public vec3 c6;
         public vec3 c7;
+
+        public SingleCubeColor(vec3 color)
+        {
+            this.c0 = color;
+            this.c1 = color;
+            this.c2 = color;
+            this.c3 = color;
+            this.c4 = color;
+            this.c5 = color;
+            this.c6 = color;
+            this.c7 = color;
+        }
     }
 
     struct SingleCubePosition

@@ -26,7 +26,7 @@ namespace DeferredShading
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-            var position = new vec3(0, 0, 0.9f);
+            var position = new vec3(5, 4, 3) * 20;
             var center = new vec3(0, 0, 0);
             var up = new vec3(0, 1, 0);
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
@@ -44,9 +44,15 @@ namespace DeferredShading
             manipulater.StepLength = 0.1f;
         }
 
+        //private SceneNodeBase GetRootElement()
+        //{
+        //    var manyCubesNode = ManyCubesNode.Create(100, 80, 60);
+
+        //    return manyCubesNode;
+        //}
         private SceneNodeBase GetRootElement()
         {
-            var manyCubesNode = ManyCubesNode.Create(100, 80, 60);
+            var manyCubesNode = ManyCubesNode.Create(50, 40, 30);
             var deferredShadingNode = new DeferredShadingNode();
             deferredShadingNode.Children.Add(manyCubesNode);
             var fullScreenNode = FullScreenNode.Create(deferredShadingNode as ITextureSource);
@@ -54,7 +60,6 @@ namespace DeferredShading
 
             return groupNode;
         }
-
         private void winGLCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
         {
             ActionList list = this.actionList;
