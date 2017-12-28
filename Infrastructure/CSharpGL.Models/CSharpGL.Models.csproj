@@ -45,6 +45,7 @@
   <ItemGroup>
     <None Include="Amber\readme.md" />
     <Compile Include="Amber\AmberLoader.cs" />
+    <Compile Include="Cube\CubeModel.cs" />
     <Compile Include="Cube\TextureCubeNode.cs" />
     <Compile Include="Cube\CubeNode.cs" />
     <Compile Include="Ground\GroundNode.cs" />
