@@ -31,6 +31,7 @@ namespace DeferredShading
             var up = new vec3(0, 1, 0);
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
             this.scene = new Scene(camera, this.winGLCanvas1);
+            this.scene.RootElement = GetRootElement();
             var list = new ActionList();
             var transformAction = new TransformAction(scene);
             list.Add(transformAction);
@@ -41,6 +42,17 @@ namespace DeferredShading
             var manipulater = new FirstPerspectiveManipulater();
             manipulater.Bind(camera, this.winGLCanvas1);
             manipulater.StepLength = 0.1f;
+        }
+
+        private SceneNodeBase GetRootElement()
+        {
+            var manyCubesNode = ManyCubesNode.Create(100, 80, 60);
+            var deferredShadingNode = new DeferredShadingNode();
+            deferredShadingNode.Children.Add(manyCubesNode);
+            var fullScreenNode = FullScreenNode.Create(deferredShadingNode as ITextureSource);
+            var groupNode = new GroupNode(deferredShadingNode, fullScreenNode);
+
+            return groupNode;
         }
 
         private void winGLCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
@@ -54,7 +66,10 @@ namespace DeferredShading
 
         void winGLCanvas1_Resize(object sender, EventArgs e)
         {
-            this.scene.Camera.AspectRatio = ((float)this.winGLCanvas1.Width) / ((float)this.winGLCanvas1.Height);
+            if (this.scene != null)
+            {
+                this.scene.Camera.AspectRatio = ((float)this.winGLCanvas1.Width) / ((float)this.winGLCanvas1.Height);
+            }
         }
 
     }

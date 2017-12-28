@@ -20,7 +20,7 @@ void main(void) {
 	vec2 texCoord[4] = vec2[4](vec2(1.0, 1.0), vec2(0.0, 1.0), vec2(0.0, 0.0), vec2(1.0, 0.0));
     gl_Position = vec4(vertexes[gl_VertexID], 0, 1);
 
-    passTexCoord = texCoord[gl_VertexID],;
+    passTexCoord = texCoord[gl_VertexID];
 }
 ";
 

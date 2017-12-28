@@ -12,20 +12,6 @@ namespace DeferredShading
         private Texture texture;
         private int width;
         private int height;
-        private ManyCubesNode firstPassNode;
-
-        public DeferredShadingNode()
-        {
-            var viewport = new int[4]; GL.Instance.GetIntegerv((uint)GetTarget.Viewport, viewport);
-
-            if (this.width != viewport[2] || this.height != viewport[3])
-            {
-                Resize(viewport[2], viewport[3]);
-
-                this.width = viewport[2];
-                this.height = viewport[3];
-            }
-        }
 
         #region IRenderable 成员
 
@@ -33,7 +19,7 @@ namespace DeferredShading
         {
             get
             {
-                return ThreeFlags.BeforeChildren | ThreeFlags.Children;
+                return ThreeFlags.BeforeChildren | ThreeFlags.Children | ThreeFlags.AfterChildren;
             }
             set
             {
@@ -42,7 +28,7 @@ namespace DeferredShading
 
         public void RenderBeforeChildren(RenderEventArgs arg)
         {
-            var viewport = new int[4]; GL.Instance.GetIntegerv((uint)GetTarget.Viewport, viewport);
+            var viewport = new int[4]; GL.Instance.GetIntegerv(GL.GL_VIEWPORT, viewport);
 
             if (this.width != viewport[2] || this.height != viewport[3])
             {

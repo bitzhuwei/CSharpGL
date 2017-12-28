@@ -29,15 +29,6 @@ namespace DeferredShading
         private FullScreenNode(IBufferSource model, params RenderMethodBuilder[] builders)
             : base(model, builders) { }
 
-        protected override void DoInitialize()
-        {
-            base.DoInitialize();
-
-            this.texture = this.textureSource.BindingTexture;
-            var method = this.RenderUnit.Methods[0];
-            var program = method.Program;
-            program.SetUniform("colorSampler", this.texture);
-        }
         public override void RenderBeforeChildren(RenderEventArgs arg)
         {
             if (!this.IsInitialized) { this.Initialize(); }
@@ -47,7 +38,10 @@ namespace DeferredShading
             if (this.texture != this.textureSource.BindingTexture)
             {
                 this.texture = this.textureSource.BindingTexture;
-                program.SetUniform("colorSampler", this.texture);
+                if (this.texture != null)
+                {
+                    program.SetUniform("colorSampler", this.texture);
+                }
             }
 
             method.Render();
