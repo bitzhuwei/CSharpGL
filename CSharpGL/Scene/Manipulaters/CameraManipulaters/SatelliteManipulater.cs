@@ -132,6 +132,12 @@ namespace CSharpGL
                 this.right = right;
                 this.up = up;
                 this.lastPosition = e.Location;
+
+                IGLCanvas canvas = this.canvas;
+                if (canvas != null && canvas.RenderTrigger == RenderTrigger.Manual)
+                {
+                    canvas.Repaint();
+                }
             }
         }
 

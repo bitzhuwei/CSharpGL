@@ -135,6 +135,12 @@ namespace CSharpGL
                 this.renderer.WorldPosition += newWorldPosition - worldPosition;
 
                 this._lastPosition = location;
+
+                IGLCanvas canvas = this.canvas;
+                if (canvas != null && canvas.RenderTrigger == RenderTrigger.Manual)
+                {
+                    canvas.Repaint();
+                }
             }
         }
 
