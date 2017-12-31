@@ -33,6 +33,16 @@ namespace CSharpGL
         GLRenderContext RenderContext { get; }
 
         /// <summary>
+        /// Gets or sets the render trigger.
+        /// </summary>
+        RenderTrigger RenderTrigger { get; set; }
+
+        /// <summary>
+        /// Interval between two rendering passes. Must be greater than 0.(in milliseconds)
+        /// </summary>
+        int TimerTriggerInterval { get; set; }
+
+        /// <summary>
         /// 
         /// </summary>
         event GLEventHandler<GLKeyPressEventArgs> KeyPress;

@@ -135,6 +135,12 @@ namespace CSharpGL
                     mat4 newRotation = glm.rotate(angle, _normalVector);
                     this.totalRotation = newRotation * totalRotation;
                 }
+
+                IGLCanvas canvas = this.canvas;
+                if (canvas != null && canvas.RenderTrigger == RenderTrigger.Manual)
+                {
+                    canvas.Repaint();
+                }
             }
         }
 

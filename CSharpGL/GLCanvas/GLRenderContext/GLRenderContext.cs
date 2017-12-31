@@ -26,7 +26,6 @@ namespace CSharpGL
         /// </summary>
         /// <param name="width">Width.</param>
         /// <param name="height">Height.</param>
-        /// <param name="parameters"></param>
         public virtual void SetDimensions(int width, int height)
         {
             this.Width = width;

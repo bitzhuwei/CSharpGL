@@ -51,7 +51,7 @@ namespace DeferredShading
             int lengthX = 50;
             int lengthY = 40;
             int lengthZ = 30;
-            int scale = 2;
+            float scale = 1.5f;
             var model = new ManyCubesModel((int)(lengthX * scale), (int)(lengthY * scale), (int)(lengthZ * scale));
 
             var manyCubesNode = ManyCubesNode.Create(model);

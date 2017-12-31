@@ -46,7 +46,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.winGLCanvas1.Location = new System.Drawing.Point(12, 34);
             this.winGLCanvas1.Name = "winGLCanvas1";
-            this.winGLCanvas1.RenderTrigger = CSharpGL.RenderTrigger.TimerBased;
+            this.winGLCanvas1.RenderTrigger = CSharpGL.RenderTrigger.Manual;
             this.winGLCanvas1.Size = new System.Drawing.Size(927, 638);
             this.winGLCanvas1.StencilBits = ((byte)(0));
             this.winGLCanvas1.TabIndex = 0;
