@@ -240,6 +240,11 @@ namespace CSharpGL
 
             if (updated)
             {
+                IGLCanvas canvas = this.canvas;
+                if (canvas.RenderTrigger == RenderTrigger.Manual)
+                {
+                    canvas.Repaint();
+                }
             }
         }
 
@@ -268,6 +273,12 @@ namespace CSharpGL
                 this.camera.Target = this.camera.Position + new vec3(front2);
 
                 this.lastPosition = e.Location;
+
+                IGLCanvas canvas = this.canvas;
+                if (canvas != null && canvas.RenderTrigger == RenderTrigger.Manual)
+                {
+                    canvas.Repaint();
+                }
             }
         }
 
@@ -282,6 +293,12 @@ namespace CSharpGL
         void IMouseHandler.canvas_MouseWheel(object sender, GLMouseEventArgs e)
         {
             this.camera.MouseWheel(e.Delta);
+
+            IGLCanvas canvas = this.canvas;
+            if (canvas != null && canvas.RenderTrigger == RenderTrigger.Manual)
+            {
+                canvas.Repaint();
+            }
         }
 
         /// <summary>
