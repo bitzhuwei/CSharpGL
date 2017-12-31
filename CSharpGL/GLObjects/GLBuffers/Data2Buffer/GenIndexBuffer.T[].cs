@@ -9,8 +9,8 @@ namespace CSharpGL
         /// <summary>
         /// Creates a <see cref="OneIndexBuffer"/> object directly in server side(GPU) without initializing its value.
         /// </summary>
+        /// <param name="array"></param>
         /// <param name="type"></param>
-        /// <param name="length">How many indexes are there?(How many uint/ushort/bytes?)</param>
         /// <param name="mode"></param>
         /// <param name="usage"></param>
         /// <returns></returns>
