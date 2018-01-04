@@ -10,10 +10,10 @@ namespace DeferredShading
     {
         private const string firstPassVert = @"#version 330 core
 
-in vec3 vPosition; // per-vertex position
-in vec3 vColor; // per-vertex normal
+in vec3 vPosition;
+in vec3 vColor;
 
-uniform mat4 MVP; // combined model view projection matrix
+uniform mat4 MVP;
 
 out vec3 passColor;
 
