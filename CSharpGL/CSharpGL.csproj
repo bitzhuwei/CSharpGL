@@ -311,11 +311,11 @@
     <Compile Include="BasicDataStructures\PropertyGrid\UITypeEditors\FormIListEditor`1.Designer.cs">
       <DependentUpon>FormIListEditor`1.cs</DependentUpon>
     </Compile>
-    <Compile Include="BasicDataStructures\PropertyGrid\UITypeEditors\FormIndexBufferBoard.cs">
+    <Compile Include="BasicDataStructures\PropertyGrid\UITypeEditors\FormDrawCommandBoard.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="BasicDataStructures\PropertyGrid\UITypeEditors\FormIndexBufferBoard.Designer.cs">
-      <DependentUpon>FormIndexBufferBoard.cs</DependentUpon>
+    <Compile Include="BasicDataStructures\PropertyGrid\UITypeEditors\FormDrawCommandBoard.Designer.cs">
+      <DependentUpon>FormDrawCommandBoard.cs</DependentUpon>
     </Compile>
     <Compile Include="BasicDataStructures\PropertyGrid\UITypeEditors\FormPropertyGridEditor.cs">
       <SubType>Form</SubType>

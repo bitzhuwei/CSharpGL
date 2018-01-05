@@ -34,8 +34,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// Creates a <see cref="DrawArraysCmd"/> object directly in server side(GPU) without initializing its value.
-        /// <para><see cref="DrawArraysCmd"/> is not a real buffer like <see cref="OnDrawElementsCmd>.</para>
+        /// Creates a <see cref="DrawArraysCmd"/> object.
         /// </summary>
         /// <param name="mode"></param>
         /// <param name="firstVertex"></param>

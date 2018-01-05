@@ -13,7 +13,7 @@ namespace RaycastVolumeRendering
         private VertexBuffer positionBuffer;
         private VertexBuffer colorBuffer;
 
-        private IndexBuffer indexBuffer = null;
+        private IDrawCommand drawCmd = null;
 
 
         // draw the six faces of the boundbox by drawwing triangles
@@ -125,7 +125,7 @@ namespace RaycastVolumeRendering
 
         public IDrawCommand GetDrawCommand()
         {
-            if (indexBuffer == null)
+            if (drawCmd == null)
             {
                 //int length = indices.Length;
                 //OneIndexBuffer buffer = CSharpGL.Buffer.Create(IndexElementType.UInt, length, DrawMode.Triangles, BufferUsage.StaticDraw);
@@ -139,11 +139,11 @@ namespace RaycastVolumeRendering
                 //    }
                 //    buffer.UnmapBuffer();
                 //}
-                //this.indexBuffer = buffer;
-                this.indexBuffer = indices.GenIndexBuffer(DrawMode.Triangles, BufferUsage.StaticDraw);
+                //this.drawCmd = buffer;
+                this.drawCmd = indices.GenIndexBuffer(DrawMode.Triangles, BufferUsage.StaticDraw);
             }
 
-            return indexBuffer;
+            return drawCmd;
         }
 
     }

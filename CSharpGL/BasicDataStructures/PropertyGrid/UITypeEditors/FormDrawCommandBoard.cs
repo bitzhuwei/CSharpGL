@@ -6,15 +6,15 @@ namespace CSharpGL
     /// <summary>
     ///
     /// </summary>
-    public partial class FormIndexBufferBoard : Form
+    public partial class FormDrawCommandBoard : Form
     {
         private IndexBufferController controller;
 
         /// <summary>
         ///
         /// </summary>
-        /// <param name="indexBuffer"></param>
-        public FormIndexBufferBoard(IndexBuffer indexBuffer = null)
+        /// <param name="drawCmd"></param>
+        public FormDrawCommandBoard(IndexBuffer drawCmd = null)
         {
             InitializeComponent();
 
@@ -24,64 +24,64 @@ namespace CSharpGL
                 this.cmbDrawMode.Items.Add((CSharpGL.DrawMode)item);
             }
 
-            if (indexBuffer != null)
+            if (drawCmd != null)
             {
-                this.SetTarget(indexBuffer);
+                this.SetTarget(drawCmd);
             }
         }
 
         /// <summary>
         ///
         /// </summary>
-        /// <param name="indexBuffer"></param>
-        public void SetTarget(IndexBuffer indexBuffer)
+        /// <param name="drawCmd"></param>
+        public void SetTarget(IndexBuffer drawCmd)
         {
-            if (indexBuffer == null) { throw new ArgumentNullException(); }
+            if (drawCmd == null) { throw new ArgumentNullException(); }
 
-            this.controller = indexBuffer.CreateController();
+            this.controller = drawCmd.CreateController();
 
             UpdateUI(this.controller);
 
             this.Text = string.Format("{0}", this.controller);
         }
 
-        private void UpdateUI(IndexBufferController indexBufferController)
+        private void UpdateUI(IndexBufferController drawCmdController)
         {
             int index = -1;
             foreach (object item in this.cmbDrawMode.Items)
             {
                 index++;
-                if ((DrawMode)item == indexBufferController.IndexBuffer.Mode)
+                if ((DrawMode)item == drawCmdController.DrawCmd.Mode)
                 {
                     this.cmbDrawMode.SelectedIndex = index;
                     break;
                 }
             }
 
-            if (indexBufferController is ZeroIndexBufferController)
+            if (drawCmdController is ZeroIndexBufferController)
             {
                 this.lblFirst.Text = "First Vertex:";
                 this.lblCount.Text = "Vertex Count:";
                 this.trackFirst.Minimum = 0;
-                this.trackFirst.Maximum = indexBufferController.OriginalCount();
-                this.trackFirst.Value = indexBufferController.First();
+                this.trackFirst.Maximum = drawCmdController.OriginalCount();
+                this.trackFirst.Value = drawCmdController.First();
                 this.trackCount.Minimum = 0;
-                this.trackCount.Maximum = indexBufferController.OriginalCount();
-                this.trackCount.Value = indexBufferController.Count();
+                this.trackCount.Maximum = drawCmdController.OriginalCount();
+                this.trackCount.Value = drawCmdController.Count();
                 this.lblFirstValue.Text = this.trackFirst.Value.ToString();
                 this.lblCountValue.Text = this.trackCount.Value.ToString();
                 this.Text = string.Format("{0}", this.controller);
             }
-            else if (indexBufferController is OneIndexBufferController)
+            else if (drawCmdController is OneIndexBufferController)
             {
                 this.lblFirst.Text = "First Index:";
                 this.lblCount.Text = "Element Count:";
                 this.trackFirst.Minimum = 0;
-                this.trackFirst.Maximum = indexBufferController.OriginalCount();
-                this.trackFirst.Value = indexBufferController.First();
+                this.trackFirst.Maximum = drawCmdController.OriginalCount();
+                this.trackFirst.Value = drawCmdController.First();
                 this.trackCount.Minimum = 0;
-                this.trackCount.Maximum = indexBufferController.OriginalCount();
-                this.trackCount.Value = indexBufferController.Count();
+                this.trackCount.Maximum = drawCmdController.OriginalCount();
+                this.trackCount.Value = drawCmdController.Count();
                 this.lblFirstValue.Text = this.trackFirst.Value.ToString();
                 this.lblCountValue.Text = this.trackCount.Value.ToString();
             }
@@ -131,13 +131,13 @@ namespace CSharpGL
 
         private void cmbDrawMode_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.controller.IndexBuffer.Mode = ((DrawMode)this.cmbDrawMode.SelectedItem);
+            this.controller.DrawCmd.Mode = ((DrawMode)this.cmbDrawMode.SelectedItem);
         }
     }
 
     internal abstract class IndexBufferController
     {
-        public abstract IndexBuffer IndexBuffer { get; }
+        public abstract IDrawCommand DrawCmd { get; }
 
         public abstract int First();
 
@@ -152,107 +152,107 @@ namespace CSharpGL
 
     internal class ZeroIndexBufferController : IndexBufferController
     {
-        private DrawArraysCmd indexBuffer;
+        private DrawArraysCmd drawCmd;
 
-        public override IndexBuffer IndexBuffer
+        public override IDrawCommand DrawCmd
         {
-            get { return this.indexBuffer; }
+            get { return this.drawCmd; }
         }
 
-        public ZeroIndexBufferController(DrawArraysCmd indexBuffer)
+        public ZeroIndexBufferController(DrawArraysCmd drawCmd)
         {
-            this.indexBuffer = indexBuffer;
+            this.drawCmd = drawCmd;
         }
 
         public override int First()
         {
-            return this.indexBuffer.FirstVertex;
+            return this.drawCmd.FirstVertex;
         }
 
         public override int Count()
         {
-            return this.indexBuffer.RenderingVertexCount;
+            return this.drawCmd.RenderingVertexCount;
         }
 
         public override int OriginalCount()
         {
-            return this.indexBuffer.VertexCount;
+            return this.drawCmd.VertexCount;
         }
 
         public override void SetFirst(int value)
         {
-            this.indexBuffer.FirstVertex = value;
+            this.drawCmd.FirstVertex = value;
         }
 
         internal override void SetCount(int value)
         {
-            this.indexBuffer.RenderingVertexCount = value;
+            this.drawCmd.RenderingVertexCount = value;
         }
 
         public override string ToString()
         {
-            return string.Format("{0}", this.indexBuffer);
+            return string.Format("{0}", this.drawCmd);
         }
     }
 
     internal class OneIndexBufferController : IndexBufferController
     {
-        public override IndexBuffer IndexBuffer
+        public override IDrawCommand DrawCmd
         {
-            get { return this.indexBuffer; }
+            get { return this.drawCmd; }
         }
 
-        private DrawElementsCmd indexBuffer;
+        private DrawElementsCmd drawCmd;
 
-        public OneIndexBufferController(DrawElementsCmd indexBuffer)
+        public OneIndexBufferController(DrawElementsCmd drawCmd)
         {
-            this.indexBuffer = indexBuffer;
+            this.drawCmd = drawCmd;
         }
 
         public override int First()
         {
-            return this.indexBuffer.FirstVertex;
+            return this.drawCmd.FirstVertex;
         }
 
         public override int Count()
         {
-            return this.indexBuffer.RenderingVertexCount;
+            return this.drawCmd.RenderingVertexCount;
         }
 
         public override int OriginalCount()
         {
-            return indexBuffer.VertexCount;
+            return drawCmd.VertexCount;
         }
 
         public override void SetFirst(int value)
         {
-            this.indexBuffer.FirstVertex = value;
+            this.drawCmd.FirstVertex = value;
         }
 
         internal override void SetCount(int value)
         {
-            this.indexBuffer.RenderingVertexCount = value;
+            this.drawCmd.RenderingVertexCount = value;
         }
 
         public override string ToString()
         {
-            return string.Format("{0}", this.indexBuffer);
+            return string.Format("{0}", this.drawCmd);
         }
     }
 
     internal static class ControllerFactory
     {
-        public static IndexBufferController CreateController(this IndexBuffer indexBuffer)
+        public static IndexBufferController CreateController(this IDrawCommand drawCmd)
         {
             {
-                var ptr = indexBuffer as DrawArraysCmd;
+                var ptr = drawCmd as DrawArraysCmd;
                 if (ptr != null)
                 {
                     return new ZeroIndexBufferController(ptr);
                 }
             }
             {
-                var ptr = indexBuffer as DrawElementsCmd;
+                var ptr = drawCmd as DrawElementsCmd;
                 if (ptr != null)
                 {
                     return new OneIndexBufferController(ptr);

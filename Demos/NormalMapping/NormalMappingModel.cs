@@ -57,7 +57,7 @@ namespace NormalMapping
         public const string strTangent = "tangent";
         private VertexBuffer tangentBuffer;
 
-        private IndexBuffer indexBuffer;
+        private IDrawCommand drawCmd;
 
         #region IBufferSource 成员
 
@@ -107,12 +107,12 @@ namespace NormalMapping
 
         public IDrawCommand GetDrawCommand()
         {
-            if (this.indexBuffer == null)
+            if (this.drawCmd == null)
             {
-                this.indexBuffer = DrawArraysCmd.Create(DrawMode.Quads, 0, 4);
+                this.drawCmd = new DrawArraysCmd(DrawMode.Quads, 0, 4);
             }
 
-            return this.indexBuffer;
+            return this.drawCmd;
         }
 
         #endregion

@@ -46,7 +46,7 @@ namespace CSharpGL
         private VertexBuffer normalBuffer;
         private VertexBuffer colorBuffer;
         private VertexBuffer uvBuffer;
-        private IndexBuffer indexBuffer = null;
+        private IDrawCommand drawCmd = null;
 
         /// <summary>
         ///
@@ -156,7 +156,7 @@ namespace CSharpGL
         /// <returns></returns>
         public IDrawCommand GetDrawCommand()
         {
-            if (this.indexBuffer == null)
+            if (this.drawCmd == null)
             {
                 int length = model.indexes.Length;
                 if (model.positions.Length < byte.MaxValue)
@@ -175,7 +175,7 @@ namespace CSharpGL
                         }
                         buffer.UnmapBuffer();
                     }
-                    this.indexBuffer = buffer;
+                    this.drawCmd = buffer;
                 }
                 else if (model.positions.Length < ushort.MaxValue)
                 {
@@ -193,7 +193,7 @@ namespace CSharpGL
                         }
                         buffer.UnmapBuffer();
                     }
-                    this.indexBuffer = buffer;
+                    this.drawCmd = buffer;
                 }
                 else
                 {
@@ -208,11 +208,11 @@ namespace CSharpGL
                         }
                         buffer.UnmapBuffer();
                     }
-                    this.indexBuffer = buffer;
+                    this.drawCmd = buffer;
                 }
             }
 
-            return indexBuffer;
+            return drawCmd;
         }
 
         /// <summary>

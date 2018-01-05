@@ -12,7 +12,7 @@ namespace CSharpGL
         public override object EditValue(ITypeDescriptorContext context, IServiceProvider provider, object value)
         {
             //打开属性编辑器修改数据
-            var editor = new FormIndexBufferBoard(value as IndexBuffer);
+            var editor = new FormDrawCommandBoard(value as IndexBuffer);
             editor.ShowDialog();
 
             return value;

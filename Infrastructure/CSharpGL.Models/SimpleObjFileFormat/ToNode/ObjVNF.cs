@@ -48,7 +48,7 @@ namespace CSharpGL
         public const string strNormal = "normal";
         private VertexBuffer normalBuffer;
 
-        private IndexBuffer indexBuffer;
+        private IDrawCommand drawCmd;
 
         public VertexBuffer GetVertexAttributeBuffer(string bufferName)
         {
@@ -85,14 +85,14 @@ namespace CSharpGL
 
         public IDrawCommand GetDrawCommand()
         {
-            if (this.indexBuffer == null)
+            if (this.drawCmd == null)
             {
                 int polygon = (this.mesh.faces[0] is ObjVNFTriangle) ? 3 : 4;
                 DrawMode mode = (this.mesh.faces[0] is ObjVNFTriangle) ? DrawMode.Triangles : DrawMode.Quads;
-                DrawElementsCmd indexBuffer = DrawElementsCmd.Create(IndexBufferElementType.UInt, polygon * this.mesh.faces.Length, mode, BufferUsage.StaticDraw);
+                DrawElementsCmd drawCmd = GLBuffer.Create(IndexBufferElementType.UInt, polygon * this.mesh.faces.Length, mode, BufferUsage.StaticDraw);
                 unsafe
                 {
-                    var array = (uint*)indexBuffer.MapBuffer(MapBufferAccess.WriteOnly);
+                    var array = (uint*)drawCmd.MapBuffer(MapBufferAccess.WriteOnly);
                     int index = 0;
                     foreach (var face in this.mesh.faces)
                     {
@@ -101,13 +101,13 @@ namespace CSharpGL
                             array[index++] = vertexIndex;
                         }
                     }
-                    indexBuffer.UnmapBuffer();
+                    drawCmd.UnmapBuffer();
                 }
 
-                this.indexBuffer = indexBuffer;
+                this.drawCmd = drawCmd;
             }
 
-            return this.indexBuffer;
+            return this.drawCmd;
         }
 
         #endregion

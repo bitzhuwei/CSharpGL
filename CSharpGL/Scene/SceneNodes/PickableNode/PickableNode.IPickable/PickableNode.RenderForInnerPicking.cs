@@ -13,8 +13,8 @@ namespace CSharpGL
         /// select a primitive geometry(point, line, triangle, quad, polygon) from points/lines/triangles/quads/polygons in this node.
         /// </summary>
         /// <param name="arg"></param>
-        /// <param name="indexBuffer">indicates the primitive to pick a line from.</param>
-        internal void Render4InnerPicking(PickingEventArgs arg, IndexBuffer indexBuffer)
+        /// <param name="drawCmd">indicates the primitive to pick a line from.</param>
+        internal void Render4InnerPicking(PickingEventArgs arg, IDrawCommand drawCmd)
         {
             // record clear color
             var originalClearColor = new float[4];
@@ -28,7 +28,7 @@ namespace CSharpGL
             // restore clear color
             GL.Instance.ClearColor(originalClearColor[0], originalClearColor[1], originalClearColor[2], originalClearColor[3]);
 
-            this.RenderForPicking(arg, indexBuffer);
+            this.RenderForPicking(arg, drawCmd);
 
             GL.Instance.Flush();
 
@@ -37,7 +37,7 @@ namespace CSharpGL
             //    e.CanvasRect.Width, e.CanvasRect.Height, filename);
         }
 
-        private void RenderForPicking(PickingEventArgs arg, IndexBuffer tempIndexBuffer)
+        private void RenderForPicking(PickingEventArgs arg, IDrawCommand tempIndexBuffer)
         {
             if (!this.IsInitialized) { this.Initialize(); }
 
@@ -84,26 +84,26 @@ namespace CSharpGL
         private PrimitiveRestartState ushortRestartIndexState = null;
         private PrimitiveRestartState uintRestartIndexState = null;
 
-        private PrimitiveRestartState GetPrimitiveRestartState(DrawElementsCmd indexBuffer)
+        private PrimitiveRestartState GetPrimitiveRestartState(DrawElementsCmd drawCmd)
         {
             PrimitiveRestartState result = null;
-            switch (indexBuffer.ElementType)
+            switch (drawCmd.ElementType)
             {
                 case IndexBufferElementType.UByte:
                     if (this.ubyteRestartIndexState == null)
-                    { this.ubyteRestartIndexState = new PrimitiveRestartState(indexBuffer.ElementType); }
+                    { this.ubyteRestartIndexState = new PrimitiveRestartState(drawCmd.ElementType); }
                     result = this.ubyteRestartIndexState;
                     break;
 
                 case IndexBufferElementType.UShort:
                     if (this.ushortRestartIndexState == null)
-                    { this.ushortRestartIndexState = new PrimitiveRestartState(indexBuffer.ElementType); }
+                    { this.ushortRestartIndexState = new PrimitiveRestartState(drawCmd.ElementType); }
                     result = this.ushortRestartIndexState;
                     break;
 
                 case IndexBufferElementType.UInt:
                     if (this.uintRestartIndexState == null)
-                    { this.uintRestartIndexState = new PrimitiveRestartState(indexBuffer.ElementType); }
+                    { this.uintRestartIndexState = new PrimitiveRestartState(drawCmd.ElementType); }
                     result = this.uintRestartIndexState;
                     break;
 

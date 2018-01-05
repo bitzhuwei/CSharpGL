@@ -21,7 +21,7 @@ namespace CSharpGL
         public const string STR = "str";
         private VertexBuffer uvBuffer;
 
-        private IndexBuffer indexBuffer;
+        private IDrawCommand drawCmd;
 
         /// <summary>
         /// 
@@ -71,17 +71,17 @@ namespace CSharpGL
         /// <returns></returns>
         public IDrawCommand GetDrawCommand()
         {
-            if (this.indexBuffer == null)
+            if (this.drawCmd == null)
             {
                 int primCount = 1;
                 int frameCount = 1;
-                var indexBuffer = DrawArraysCmd.Create(DrawMode.Quads, 0, this.Capacity * 4, primCount, frameCount);
+                var drawCmd = new DrawArraysCmd(DrawMode.Quads, 0, this.Capacity * 4, primCount, frameCount);
                 // note: use ZeroIndexBuffer.Draw(ControlMode.Random) to enable this property.
-                indexBuffer.RenderingVertexCount = 0;
-                this.indexBuffer = indexBuffer;
+                drawCmd.RenderingVertexCount = 0;
+                this.drawCmd = drawCmd;
             }
 
-            return this.indexBuffer;
+            return this.drawCmd;
         }
 
         #endregion

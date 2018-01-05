@@ -211,10 +211,10 @@ namespace CSharpGL
         private bool OnPrimitiveTest(uint lastVertexId, DrawMode mode)
         {
             bool result = false;
-            var indexBuffer = this.Node.PickingRenderUnit.VertexArrayObject.DrawCommand as DrawArraysCmd;
-            int first = indexBuffer.FirstVertex;
+            var drawCmd = this.Node.PickingRenderUnit.VertexArrayObject.DrawCommand as DrawArraysCmd;
+            int first = drawCmd.FirstVertex;
             if (first < 0) { return false; }
-            int vertexCount = indexBuffer.RenderingVertexCount;
+            int vertexCount = drawCmd.RenderingVertexCount;
             if (vertexCount <= 0) { return false; }
             int last = first + vertexCount - 1;
             switch (mode)

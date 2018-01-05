@@ -27,7 +27,6 @@ namespace CSharpGL
         /// <para>count: Specifies the number of indices to be rendered.</para>
         /// <para>primcount: Specifies the number of instances of the specified range of indices to be rendered.</para>
         /// </summary>
-        internal static readonly GLDelegates.void_uint_int_int_int glDrawArraysInstanced;
         internal static readonly GLDelegates.void_uint_int_uint_IntPtr_int glDrawElementsInstanced;
         internal static readonly GLDelegates.void_uint_int_uint_IntPtr_int glDrawElementsBaseVertex;
         internal static readonly GLDelegates.void_uint_int_uint_IntPtr_int_int glDrawElementsInstancedBaseVertex;
@@ -47,7 +46,6 @@ namespace CSharpGL
             glPatchParameterfv = GL.Instance.GetDelegateFor("glPatchParameterfv", GLDelegates.typeof_void_uint_floatN) as GLDelegates.void_uint_floatN;
             glEnableVertexAttribArray = GL.Instance.GetDelegateFor("glEnableVertexAttribArray", GLDelegates.typeof_void_uint) as GLDelegates.void_uint;
             glVertexAttribDivisor = GL.Instance.GetDelegateFor("glVertexAttribDivisor", GLDelegates.typeof_void_uint_uint) as GLDelegates.void_uint_uint;
-            glDrawArraysInstanced = GL.Instance.GetDelegateFor("glDrawArraysInstanced", GLDelegates.typeof_void_uint_int_int_int) as GLDelegates.void_uint_int_int_int;
             glDrawElementsInstanced = GL.Instance.GetDelegateFor("glDrawElementsInstanced", GLDelegates.typeof_void_uint_int_uint_IntPtr_int) as GLDelegates.void_uint_int_uint_IntPtr_int;
             glDrawElementsBaseVertex = GL.Instance.GetDelegateFor("glDrawElementsBaseVertex", GLDelegates.typeof_void_uint_int_uint_IntPtr_int) as GLDelegates.void_uint_int_uint_IntPtr_int;
             glDrawElementsInstancedBaseVertex = GL.Instance.GetDelegateFor("glDrawElementsInstancedBaseVertex", GLDelegates.typeof_void_uint_int_uint_IntPtr_int_int) as GLDelegates.void_uint_int_uint_IntPtr_int_int;

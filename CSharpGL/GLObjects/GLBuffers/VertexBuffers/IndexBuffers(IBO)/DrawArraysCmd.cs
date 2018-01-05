@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 
 namespace CSharpGL
 {
@@ -6,7 +7,7 @@ namespace CSharpGL
     /// <summary>
     /// Wraps glDrawArrays(uint mode, int first, int count).
     /// </summary>
-    public sealed partial class DrawArraysCmd : IndexBuffer
+    public sealed partial class DrawArraysCmd : IDrawCommand
     {
         /// <summary>
         /// Wraps glDrawArrays(uint mode, int first, int count).
@@ -16,24 +17,69 @@ namespace CSharpGL
         /// <param name="vertexCount">要渲染多少个元素？<para>How many vertexes to be rendered?</para></param>
         /// <param name="instanceCount">primCount in instanced rendering.</param>
         /// <param name="frameCount">How many frames are there?</param>
-        internal DrawArraysCmd(DrawMode mode, int firstVertex, int vertexCount, int instanceCount = 1, int frameCount = 1)
-            : base(mode, 0, firstVertex, vertexCount, vertexCount * sizeof(uint), instanceCount, frameCount)
+        public DrawArraysCmd(DrawMode mode, int firstVertex, int vertexCount, int instanceCount = 1, int frameCount = 1)
         {
-            this.Target = BufferTarget.ZeroIndexArrayBuffer;
+            this.Mode = mode;
+            this.FirstVertex = firstVertex;
+            this.VertexCount = vertexCount;
+            this.InstanceCount = instanceCount;
+            this.FrameCount = frameCount;
         }
 
         /// <summary>
-        ///
+        /// 此VBO含有多少个元素？
+        /// <para>How many elements in thie buffer?</para>
+        /// </summary>
+        public int VertexCount { get; private set; }
+
+        /// <summary>
+        /// primCount in instanced rendering.
+        /// </summary>
+        public int InstanceCount { get; private set; }
+
+        /// <summary>
+        /// How many frames are there?
+        /// </summary>
+        [Category("ControlMode.ByFrame")]
+        public int FrameCount { get; set; }
+
+        /// <summary>
+        /// Gets or sets index of current frame.
+        /// </summary>
+        [Category("ControlMode.ByFrame")]
+        public int CurrentFrame { get; set; }
+
+
+        /// <summary>
+        /// 要渲染的第一个顶点的位置。<para>Index of first vertex to be rendered.</para>
+        /// </summary>
+        [Category("ControlMode.Random")]
+        public int FirstVertex { get; set; }
+
+        /// <summary>
+        /// 要渲染多少个元素？<para>How many vertexes to be rendered?</para>
+        /// </summary>
+        [Category("ControlMode.Random")]
+        public int RenderingVertexCount { get; set; }
+
+        #region IDrawCommand
+
+        /// <summary>
+        /// 用哪种方式渲染各个顶点？（GL.GL_TRIANGLES etc.）
+        /// </summary>
+        public DrawMode Mode { get; set; }
+
+        /// <summary>
         /// </summary>
         /// <param name="controlMode">index buffer is accessable randomly or only by frame.</param>
-        public override void Draw(ControlMode controlMode)
+        public void Draw(ControlMode controlMode)
         {
             uint mode = (uint)this.Mode;
 
             int instanceCount = this.InstanceCount;
             if (instanceCount < 1) { throw new Exception("error: instanceCount is less than 1."); }
             int frameCount = this.FrameCount;
-            if (FrameCount < 1) { throw new Exception("error: frameCount is less than 1."); }
+            if (frameCount < 1) { throw new Exception("error: frameCount is less than 1."); }
 
             switch (controlMode)
             {
@@ -79,6 +125,8 @@ namespace CSharpGL
             }
 
         }
+
+        #endregion IDrawCommand
 
         /// <summary>
         ///
@@ -133,6 +181,13 @@ namespace CSharpGL
             }
 
             return builder.ToString();
+        }
+
+        internal static readonly GLDelegates.void_uint_int_int_int glDrawArraysInstanced;
+
+        static DrawArraysCmd()
+        {
+            glDrawArraysInstanced = GL.Instance.GetDelegateFor("glDrawArraysInstanced", GLDelegates.typeof_void_uint_int_int_int) as GLDelegates.void_uint_int_int_int;
         }
     }
 }

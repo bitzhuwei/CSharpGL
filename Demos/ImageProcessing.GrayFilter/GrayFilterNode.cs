@@ -89,7 +89,7 @@ namespace ImageProcessing.GrayFilter
         public const string texCoord = "texCoord";
         private VertexBuffer texCoordBuffer;
 
-        private IndexBuffer indexBuffer;
+        private IDrawCommand drawCmd;
 
         private static readonly vec3[] positions = new vec3[]
         {
@@ -133,12 +133,12 @@ namespace ImageProcessing.GrayFilter
 
         public IDrawCommand GetDrawCommand()
         {
-            if (this.indexBuffer == null)
+            if (this.drawCmd == null)
             {
-                this.indexBuffer = DrawArraysCmd.Create(DrawMode.QuadStrip, 0, positions.Length);
+                this.drawCmd = new DrawArraysCmd(DrawMode.QuadStrip, 0, positions.Length);
             }
 
-            return this.indexBuffer;
+            return this.drawCmd;
         }
 
         #endregion

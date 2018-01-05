@@ -165,7 +165,7 @@ void main()
             public const string strPosition = "position";
             private VertexBuffer positionBuffer;
 
-            private IndexBuffer indexBuffer;
+            private IDrawCommand drawCmd;
 
             #region IBufferable 成员
 
@@ -186,12 +186,12 @@ void main()
 
             public IDrawCommand GetDrawCommand()
             {
-                if (this.indexBuffer == null)
+                if (this.drawCmd == null)
                 {
-                    this.indexBuffer = DrawArraysCmd.Create(DrawMode.Quads, 0, positions.Length);
+                    this.drawCmd = new DrawArraysCmd(DrawMode.Quads, 0, positions.Length);
                 }
 
-                return this.indexBuffer;
+                return this.drawCmd;
             }
 
             #endregion

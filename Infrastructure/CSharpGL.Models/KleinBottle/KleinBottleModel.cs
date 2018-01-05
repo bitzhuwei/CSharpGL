@@ -59,7 +59,7 @@ namespace CSharpGL
         public const string strTexCoord = "texCoord";
         private VertexBuffer colorBuffer;
 
-        private IndexBuffer indexBuffer = null;
+        private IDrawCommand drawCmd;
 
         private VertexBuffer GetTexCoordBuffer()
         {
@@ -182,7 +182,7 @@ namespace CSharpGL
 
         public IDrawCommand GetDrawCommand()
         {
-            if (this.indexBuffer == null)
+            if (this.drawCmd == null)
             {
                 int uCount = GetUCount(interval);
                 int vCount = GetVCount(interval);
@@ -214,10 +214,10 @@ namespace CSharpGL
                     }
                     buffer.UnmapBuffer();
                 }
-                this.indexBuffer = buffer;
+                this.drawCmd = buffer;
             }
 
-            return this.indexBuffer;
+            return this.drawCmd;
         }
 
         #endregion

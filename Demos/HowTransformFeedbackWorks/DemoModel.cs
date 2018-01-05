@@ -17,7 +17,7 @@ namespace HowTransformFeedbackWorks
         private VertexBuffer velocityBuffer;
         private VertexBuffer velocityBuffer2;
 
-        private IndexBuffer indexBuffer;
+        private IDrawCommand drawCmd;
 
         private static readonly vec3[] positions = new vec3[3];
         //{
@@ -79,12 +79,12 @@ namespace HowTransformFeedbackWorks
 
         public IDrawCommand GetDrawCommand()
         {
-            if (this.indexBuffer == null)
+            if (this.drawCmd == null)
             {
-                this.indexBuffer = DrawArraysCmd.Create(DrawMode.Triangles, 0, positions.Length);
+                this.drawCmd = new DrawArraysCmd(DrawMode.Triangles, 0, positions.Length);
             }
 
-            return this.indexBuffer;
+            return this.drawCmd;
         }
 
         #endregion

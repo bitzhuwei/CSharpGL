@@ -13,7 +13,7 @@ namespace TerrainLoading
 
         private uint[] indices = new uint[(2 * TERRAIN_WIDTH + 1) * (TERRAIN_DEPTH - 1)];
 
-        private IndexBuffer indexBuffer;
+        private IDrawCommand drawCmd;
 
         public TerainModel()
         {
@@ -43,12 +43,12 @@ namespace TerrainLoading
 
         public IDrawCommand GetDrawCommand()
         {
-            if (this.indexBuffer == null)
+            if (this.drawCmd == null)
             {
-                this.indexBuffer = this.indices.GenIndexBuffer(DrawMode.TriangleStrip, BufferUsage.StaticDraw);
+                this.drawCmd = this.indices.GenIndexBuffer(DrawMode.TriangleStrip, BufferUsage.StaticDraw);
             }
 
-            return this.indexBuffer;
+            return this.drawCmd;
         }
 
         #endregion

@@ -11,7 +11,7 @@ namespace _3DTextureSlicing
         public const string position = "position";
         private VertexBuffer slicesBuffer;
 
-        private IndexBuffer indexBuffer;
+        private IDrawCommand drawCmd;
 
         const int MAX_SLICES = 512;
         private vec3[] vTextureSlices = new vec3[MAX_SLICES * 12];
@@ -38,12 +38,12 @@ namespace _3DTextureSlicing
 
         public IDrawCommand GetDrawCommand()
         {
-            if (this.indexBuffer == null)
+            if (this.drawCmd == null)
             {
-                this.indexBuffer = DrawArraysCmd.Create(DrawMode.Triangles, 0, this.vTextureSlices.Length);
+                this.drawCmd = new DrawArraysCmd(DrawMode.Triangles, 0, this.vTextureSlices.Length);
             }
 
-            return this.indexBuffer;
+            return this.drawCmd;
         }
 
         #endregion

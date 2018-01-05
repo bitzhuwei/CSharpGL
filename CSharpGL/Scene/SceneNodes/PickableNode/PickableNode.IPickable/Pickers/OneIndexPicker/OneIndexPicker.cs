@@ -211,21 +211,21 @@ namespace CSharpGL
         /// <returns></returns>
         private List<RecognizedPrimitiveInfo> GetLastIndexIdList(PickingEventArgs arg, uint lastVertexId)
         {
-            var indexBuffer = this.Node.PickingRenderUnit.VertexArrayObject.DrawCommand;
+            var drawCmd = this.Node.PickingRenderUnit.VertexArrayObject.DrawCommand;
             PrimitiveRecognizer recognizer = PrimitiveRecognizerFactory.Create(
                 (arg.GeometryType.Contains(GeometryType.Point)
-                && indexBuffer.Mode.ToGeometryType() == GeometryType.Line) ?
-                DrawMode.Points : indexBuffer.Mode);
+                && drawCmd.Mode.ToGeometryType() == GeometryType.Line) ?
+                DrawMode.Points : drawCmd.Mode);
 
             PrimitiveRestartState glState = GetPrimitiveRestartState();
 
-            var buffer = indexBuffer as DrawElementsCmd;
+            var buffer = drawCmd as DrawElementsCmd;
             IntPtr pointer = buffer.MapBuffer(MapBufferAccess.ReadOnly);
             List<RecognizedPrimitiveInfo> primitiveInfoList = null;
             if (glState == null)
-            { primitiveInfoList = recognizer.Recognize(lastVertexId, pointer, indexBuffer as DrawElementsCmd); }
+            { primitiveInfoList = recognizer.Recognize(lastVertexId, pointer, drawCmd as DrawElementsCmd); }
             else
-            { primitiveInfoList = recognizer.Recognize(lastVertexId, pointer, indexBuffer as DrawElementsCmd, glState.RestartIndex); }
+            { primitiveInfoList = recognizer.Recognize(lastVertexId, pointer, drawCmd as DrawElementsCmd, glState.RestartIndex); }
             buffer.UnmapBuffer();
 
             return primitiveInfoList;

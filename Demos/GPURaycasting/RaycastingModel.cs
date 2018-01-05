@@ -11,7 +11,7 @@ namespace GPURaycasting
         public const string position = "position";
         private VertexBuffer positionBuffer;
 
-        private IndexBuffer indexBuffer;
+        private IDrawCommand drawCmd;
 
         /// <summary>
         /// unit cube vertices 
@@ -65,12 +65,12 @@ namespace GPURaycasting
 
         public IDrawCommand GetDrawCommand()
         {
-            if (this.indexBuffer == null)
+            if (this.drawCmd == null)
             {
-                this.indexBuffer = cubeIndices.GenIndexBuffer(DrawMode.Triangles, BufferUsage.StaticDraw);
+                this.drawCmd = cubeIndices.GenIndexBuffer(DrawMode.Triangles, BufferUsage.StaticDraw);
             }
 
-            return this.indexBuffer;
+            return this.drawCmd;
         }
 
         #endregion
