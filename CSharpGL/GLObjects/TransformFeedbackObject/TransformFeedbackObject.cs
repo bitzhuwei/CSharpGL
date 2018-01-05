@@ -260,7 +260,7 @@ namespace CSharpGL
 
             if (stateList != null) { stateList.On(); }
 
-            DrawMode mode = vao.IndexBuffer.Mode;
+            DrawMode mode = vao.DrawCommand.Mode;
             this.Bind();
             this.Begin(mode);
             vao.Bind();

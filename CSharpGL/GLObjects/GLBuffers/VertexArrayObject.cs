@@ -31,11 +31,11 @@ namespace CSharpGL
         public VertexShaderAttribute[] VertexAttributes { get; private set; }
 
         /// <summary>
-        /// The one and only one index buffer used to indexing vertex attribute buffers.
+        /// The draw command.
         /// </summary>
         [Category(strVertexArrayObject)]
         [Description("The one and only one index buffer used to indexing vertex attribute buffers.)")]
-        public IndexBuffer IndexBuffer { get; private set; }
+        public IDrawCommand DrawCommand { get; private set; }
 
         private uint[] ids = new uint[1];
 
@@ -66,7 +66,7 @@ namespace CSharpGL
             //    throw new ArgumentNullException("vertexAttributeBuffers");
             //}
 
-            this.IndexBuffer = indexBuffer;
+            this.DrawCommand = indexBuffer;
             this.VertexAttributes = vertexAttributes;
 
             glGenVertexArrays(1, ids);
@@ -108,7 +108,7 @@ namespace CSharpGL
             }
             else
             {
-                this.IndexBuffer.Draw(controlMode);
+                this.DrawCommand.Draw(controlMode);
             }
 
             this.Unbind();
@@ -172,8 +172,8 @@ namespace CSharpGL
                         }
                     }
                     {
-                        IndexBuffer indexBuffer = this.IndexBuffer;
-                        indexBuffer.Dispose();
+                        var disp = this.DrawCommand as IDisposable;
+                        if (disp != null) { disp.Dispose(); }
                     }
                 }
             }

@@ -32,7 +32,7 @@ namespace CSharpGL
 
             if ((pickingType & PickingGeometryTypes.Point) == PickingGeometryTypes.Point)
             {
-                DrawMode mode = this.Node.PickingRenderUnit.VertexArrayObject.IndexBuffer.Mode;
+                DrawMode mode = this.Node.PickingRenderUnit.VertexArrayObject.DrawCommand.Mode;
                 GeometryType typeOfMode = mode.ToGeometryType();
                 if (typeOfMode == GeometryType.Point)
                 { return PickWhateverItIs(arg, stageVertexId, lastVertexId, mode, typeOfMode); }
@@ -54,7 +54,7 @@ namespace CSharpGL
             }
             else if ((pickingType & PickingGeometryTypes.Line) == PickingGeometryTypes.Line)
             {
-                DrawMode mode = this.Node.PickingRenderUnit.VertexArrayObject.IndexBuffer.Mode;
+                DrawMode mode = this.Node.PickingRenderUnit.VertexArrayObject.DrawCommand.Mode;
                 GeometryType typeOfMode = mode.ToGeometryType();
                 if (pickingType.Contains(typeOfMode))
                 { return PickWhateverItIs(arg, stageVertexId, lastVertexId, mode, typeOfMode); }
@@ -71,7 +71,7 @@ namespace CSharpGL
             }
             else
             {
-                DrawMode mode = this.Node.PickingRenderUnit.VertexArrayObject.IndexBuffer.Mode;
+                DrawMode mode = this.Node.PickingRenderUnit.VertexArrayObject.DrawCommand.Mode;
                 GeometryType typeOfMode = mode.ToGeometryType();
                 if (pickingType.Contains(typeOfMode)) // I want what it is
                 { return PickWhateverItIs(arg, stageVertexId, lastVertexId, mode, typeOfMode); }
@@ -211,7 +211,7 @@ namespace CSharpGL
         private bool OnPrimitiveTest(uint lastVertexId, DrawMode mode)
         {
             bool result = false;
-            var indexBuffer = this.Node.PickingRenderUnit.VertexArrayObject.IndexBuffer as ZeroIndexBuffer;
+            var indexBuffer = this.Node.PickingRenderUnit.VertexArrayObject.DrawCommand as ZeroIndexBuffer;
             int first = indexBuffer.FirstVertex;
             if (first < 0) { return false; }
             int vertexCount = indexBuffer.RenderingVertexCount;

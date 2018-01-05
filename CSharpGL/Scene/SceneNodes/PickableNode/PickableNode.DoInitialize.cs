@@ -14,11 +14,11 @@ namespace CSharpGL
 
             {
                 IPickableRenderMethod renderUnit = this.pickingRenderUnitBuilder.ToRenderMethod(this.RenderUnit.Model);
-                if (renderUnit.VertexArrayObject.IndexBuffer is ZeroIndexBuffer)
+                if (renderUnit.VertexArrayObject.DrawCommand is ZeroIndexBuffer)
                 {
                     this.picker = new ZeroIndexPicker(this);
                 }
-                else if (renderUnit.VertexArrayObject.IndexBuffer is OneIndexBuffer)
+                else if (renderUnit.VertexArrayObject.DrawCommand is OneIndexBuffer)
                 {
                     this.picker = new OneIndexPicker(this);
                 }
