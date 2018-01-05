@@ -104,6 +104,8 @@
     <Compile Include="GLObjects\GLBuffers\IndependentBuffers\TransformFeedbackBuffer.AsVertexBuffer.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="GLObjects\GLBuffers\VertexBuffers\IndexBuffers%28IBO%29\IDrawCommand.cs" />
+    <Compile Include="GLObjects\GLBuffers\VertexBuffers\IndexBuffers%28IBO%29\MultiZeroIndexBuffer.cs" />
     <Compile Include="GLObjects\GLStates\EnableStates\StencilTestState.cs" />
     <Compile Include="GLObjects\GLStates\StencilMaskState.cs" />
     <Compile Include="GLObjects\GLStates\StencilOpState.cs" />

@@ -565,6 +565,15 @@ namespace CSharpGL
         public override void DrawArrays(uint mode, int first, int count) { glDrawArrays(mode, first, count); }
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="mode"></param>
+        /// <param name="first"></param>
+        /// <param name="count"></param>
+        /// <param name="drawcount"></param>
+        public override void MultiDrawArrays(uint mode, int[] first, int[] count, int drawcount) { glMultiDrawArrays(mode, first, count, drawcount); }
+
+        /// <summary>
         /// Specify which color buffers are to be drawn into.
         /// </summary>
         /// <param name="mode">Specifies up to	four color buffers to be drawn into. Symbolic constants GL.NONE, GL.FRONT_LEFT, GL.FRONT_RIGHT,	GL.BACK_LEFT, GL.BACK_RIGHT, GL.FRONT, GL.BACK, GL.LEFT, GL.RIGHT, GL.FRONT_AND_BACK, and GL.AUXi, where i is between 0 and (GL.AUX_BUFFERS - 1), are accepted (GL.AUX_BUFFERS is not the upper limit{} use glGet to query the number of	available aux buffers.)  The initial value is GL.FRONT for single- buffered contexts, and GL.BACK for double-buffered contexts.</param>

@@ -105,7 +105,7 @@ namespace CSharpGL
             program.SetUniform(modelMatrix, model);
             program.SetUniform(screenSize, new ivec2(viewport[2], viewport[3]));
 
-            method.Render(IndexBuffer.ControlMode.Random);
+            method.Render(ControlMode.Random);
         }
 
         /// <summary>

@@ -5,11 +5,11 @@ namespace CSharpGL
 {
     /// <summary>
     /// 索引buffer渲染器的基类。
-    /// <para>Base type for Vertex Buffer Object' pointer storing vertex' index.</para>
+    /// <para>Base type for Vertex Buffer Object's pointer storing vertex' index.</para>
     /// </summary>
     [Browsable(true)]
     [Editor(typeof(IndexBufferEditor), typeof(UITypeEditor))]
-    public abstract class IndexBuffer : GLBuffer
+    public abstract class IndexBuffer : GLBuffer, IDrawCommand
     {
         /// <summary>
         /// 用哪种方式渲染各个顶点？（GL.GL_TRIANGLES etc.）
@@ -75,21 +75,5 @@ namespace CSharpGL
         /// <param name="controlMode">index buffer is accessable randomly or only by frame.</param>
         public abstract void Draw(ControlMode controlMode);
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public enum ControlMode
-        {
-            /// <summary>
-            /// 
-            /// </summary>
-            ByFrame,
-
-            /// <summary>
-            /// 
-            /// </summary>
-            Random,
-
-        }
     }
 }
