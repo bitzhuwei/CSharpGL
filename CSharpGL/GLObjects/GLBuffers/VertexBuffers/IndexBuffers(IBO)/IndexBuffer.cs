@@ -12,11 +12,6 @@ namespace CSharpGL
     public abstract class IndexBuffer : GLBuffer, IDrawCommand
     {
         /// <summary>
-        /// 用哪种方式渲染各个顶点？（GL.GL_TRIANGLES etc.）
-        /// </summary>
-        public DrawMode Mode { get; set; }
-
-        /// <summary>
         /// 索引buffer渲染器的基类。
         /// <para>Base type for Vertex Buffer Object' pointer storing vertex' index.</para>
         /// </summary>
@@ -68,6 +63,13 @@ namespace CSharpGL
         [Category("ControlMode.Random")]
         public int RenderingVertexCount { get; set; }
 
+        #region IDrawCommand
+
+        /// <summary>
+        /// 用哪种方式渲染各个顶点？（GL.GL_TRIANGLES etc.）
+        /// </summary>
+        public DrawMode Mode { get; set; }
+
         /// <summary>
         /// 执行此VBO的渲染操作。
         /// <para>Render using this VBO.</para>
@@ -75,5 +77,6 @@ namespace CSharpGL
         /// <param name="controlMode">index buffer is accessable randomly or only by frame.</param>
         public abstract void Draw(ControlMode controlMode);
 
+        #endregion IDrawCommand
     }
 }
