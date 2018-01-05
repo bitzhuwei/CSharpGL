@@ -13,7 +13,7 @@
             uint lastVertexId, ZeroIndexPicker picker)
         {
             // 创建临时索引
-            OneIndexBuffer buffer = GLBuffer.Create(IndexBufferElementType.UInt, 6, DrawMode.Lines, BufferUsage.StaticDraw);
+            DrawElementsCmd buffer = GLBuffer.Create(IndexBufferElementType.UInt, 6, DrawMode.Lines, BufferUsage.StaticDraw);
             unsafe
             {
                 var array = (uint*)buffer.MapBuffer(MapBufferAccess.WriteOnly);

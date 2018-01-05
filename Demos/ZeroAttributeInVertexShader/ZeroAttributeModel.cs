@@ -66,7 +66,7 @@ namespace ZeroAttributeInVertexShader
         {
             if (this.indexBuffer == null)
             {
-                ZeroIndexBuffer buffer = ZeroIndexBuffer.Create(this.Mode, this.FirstVertex, this.VertexCount, this.PrimCount);
+                DrawArraysCmd buffer = DrawArraysCmd.Create(this.Mode, this.FirstVertex, this.VertexCount, this.PrimCount);
                 this.indexBuffer = buffer;
             }
 

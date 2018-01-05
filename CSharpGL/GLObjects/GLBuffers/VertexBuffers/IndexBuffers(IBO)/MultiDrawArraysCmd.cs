@@ -8,7 +8,7 @@ namespace CSharpGL
     /// </summary>
     [Browsable(true)]
     [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
-    public abstract class MultiZeroIndexBuffer : IDrawCommand
+    public abstract class MultiDrawArraysCmd : IDrawCommand
     {
         /// <summary>
         /// 用哪种方式渲染各个顶点？（GL.GL_TRIANGLES etc.）
@@ -31,7 +31,7 @@ namespace CSharpGL
         /// <param name="mode"></param>
         /// <param name="first"></param>
         /// <param name="count"></param>
-        internal MultiZeroIndexBuffer(DrawMode mode, int[] first, int[] count)
+        internal MultiDrawArraysCmd(DrawMode mode, int[] first, int[] count)
         {
             if (first == null || count == null) { throw new System.ArgumentNullException(); }
             if (first.Length != count.Length) { throw new System.ArgumentException(); }

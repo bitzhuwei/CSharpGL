@@ -92,7 +92,7 @@ namespace HowTransformFeedbackWorks
         {
             if (this.indexBuffer == null)
             {
-                this.indexBuffer = ZeroIndexBuffer.Create(DrawMode.Points, 0, positions.Length);
+                this.indexBuffer = DrawArraysCmd.Create(DrawMode.Points, 0, positions.Length);
             }
 
             return this.indexBuffer;

@@ -152,14 +152,14 @@ namespace CSharpGL
 
     internal class ZeroIndexBufferController : IndexBufferController
     {
-        private ZeroIndexBuffer indexBuffer;
+        private DrawArraysCmd indexBuffer;
 
         public override IndexBuffer IndexBuffer
         {
             get { return this.indexBuffer; }
         }
 
-        public ZeroIndexBufferController(ZeroIndexBuffer indexBuffer)
+        public ZeroIndexBufferController(DrawArraysCmd indexBuffer)
         {
             this.indexBuffer = indexBuffer;
         }
@@ -202,9 +202,9 @@ namespace CSharpGL
             get { return this.indexBuffer; }
         }
 
-        private OneIndexBuffer indexBuffer;
+        private DrawElementsCmd indexBuffer;
 
-        public OneIndexBufferController(OneIndexBuffer indexBuffer)
+        public OneIndexBufferController(DrawElementsCmd indexBuffer)
         {
             this.indexBuffer = indexBuffer;
         }
@@ -245,14 +245,14 @@ namespace CSharpGL
         public static IndexBufferController CreateController(this IndexBuffer indexBuffer)
         {
             {
-                var ptr = indexBuffer as ZeroIndexBuffer;
+                var ptr = indexBuffer as DrawArraysCmd;
                 if (ptr != null)
                 {
                     return new ZeroIndexBufferController(ptr);
                 }
             }
             {
-                var ptr = indexBuffer as OneIndexBuffer;
+                var ptr = indexBuffer as DrawElementsCmd;
                 if (ptr != null)
                 {
                     return new OneIndexBufferController(ptr);

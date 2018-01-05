@@ -13,7 +13,7 @@ namespace CSharpGL
         /// <param name="oneIndexBuffer"></param>
         /// <returns></returns>
         public List<RecognizedPrimitiveInfo> Recognize(
-         uint lastVertexId, IntPtr pointer, OneIndexBuffer oneIndexBuffer)
+         uint lastVertexId, IntPtr pointer, DrawElementsCmd oneIndexBuffer)
         {
             var lastIndexIdList = new List<RecognizedPrimitiveInfo>();
             switch (oneIndexBuffer.ElementType)
@@ -37,11 +37,11 @@ namespace CSharpGL
             return lastIndexIdList;
         }
 
-        protected abstract void RecognizeUInt(uint lastVertexId, IntPtr pointer, OneIndexBuffer oneIndexBuffer, List<RecognizedPrimitiveInfo> primitiveInfoList);
+        protected abstract void RecognizeUInt(uint lastVertexId, IntPtr pointer, DrawElementsCmd oneIndexBuffer, List<RecognizedPrimitiveInfo> primitiveInfoList);
 
-        protected abstract void RecognizeUShort(uint lastVertexId, IntPtr pointer, OneIndexBuffer oneIndexBuffer, List<RecognizedPrimitiveInfo> primitiveInfoList);
+        protected abstract void RecognizeUShort(uint lastVertexId, IntPtr pointer, DrawElementsCmd oneIndexBuffer, List<RecognizedPrimitiveInfo> primitiveInfoList);
 
-        protected abstract void RecognizeByte(uint lastVertexId, IntPtr pointer, OneIndexBuffer oneIndexBuffer, List<RecognizedPrimitiveInfo> primitiveInfoList);
+        protected abstract void RecognizeByte(uint lastVertexId, IntPtr pointer, DrawElementsCmd oneIndexBuffer, List<RecognizedPrimitiveInfo> primitiveInfoList);
 
         /// <summary>
         /// 识别出以<paramref name="lastVertexId"/>结尾的图元。
@@ -53,7 +53,7 @@ namespace CSharpGL
         /// <param name="primitiveRestartIndex"></param>
         /// <returns></returns>
         public List<RecognizedPrimitiveInfo> Recognize(
-            uint lastVertexId, IntPtr pointer, OneIndexBuffer oneIndexBuffer, uint primitiveRestartIndex)
+            uint lastVertexId, IntPtr pointer, DrawElementsCmd oneIndexBuffer, uint primitiveRestartIndex)
         {
             var lastIndexIdList = new List<RecognizedPrimitiveInfo>();
             if (lastVertexId != primitiveRestartIndex)
@@ -80,10 +80,10 @@ namespace CSharpGL
             return lastIndexIdList;
         }
 
-        protected abstract void RecognizeUInt(uint lastVertexId, IntPtr pointer, OneIndexBuffer oneIndexBuffer, List<RecognizedPrimitiveInfo> primitiveInfoList, uint primitiveRestartIndex);
+        protected abstract void RecognizeUInt(uint lastVertexId, IntPtr pointer, DrawElementsCmd oneIndexBuffer, List<RecognizedPrimitiveInfo> primitiveInfoList, uint primitiveRestartIndex);
 
-        protected abstract void RecognizeUShort(uint lastVertexId, IntPtr pointer, OneIndexBuffer oneIndexBuffer, List<RecognizedPrimitiveInfo> primitiveInfoList, uint primitiveRestartIndex);
+        protected abstract void RecognizeUShort(uint lastVertexId, IntPtr pointer, DrawElementsCmd oneIndexBuffer, List<RecognizedPrimitiveInfo> primitiveInfoList, uint primitiveRestartIndex);
 
-        protected abstract void RecognizeByte(uint lastVertexId, IntPtr pointer, OneIndexBuffer oneIndexBuffer, List<RecognizedPrimitiveInfo> primitiveInfoList, uint primitiveRestartIndex);
+        protected abstract void RecognizeByte(uint lastVertexId, IntPtr pointer, DrawElementsCmd oneIndexBuffer, List<RecognizedPrimitiveInfo> primitiveInfoList, uint primitiveRestartIndex);
     }
 }

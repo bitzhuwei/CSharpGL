@@ -51,7 +51,7 @@ namespace ComputeShader.HelloComputeShader
         {
             if (indexBuffer == null)
             {
-                indexBuffer = ZeroIndexBuffer.Create(DrawMode.TriangleFan, 0, vertsData.Length);
+                indexBuffer = DrawArraysCmd.Create(DrawMode.TriangleFan, 0, vertsData.Length);
             }
 
             return indexBuffer;

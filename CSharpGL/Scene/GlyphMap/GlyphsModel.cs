@@ -75,7 +75,7 @@ namespace CSharpGL
             {
                 int primCount = 1;
                 int frameCount = 1;
-                var indexBuffer = ZeroIndexBuffer.Create(DrawMode.Quads, 0, this.Capacity * 4, primCount, frameCount);
+                var indexBuffer = DrawArraysCmd.Create(DrawMode.Quads, 0, this.Capacity * 4, primCount, frameCount);
                 // note: use ZeroIndexBuffer.Draw(ControlMode.Random) to enable this property.
                 indexBuffer.RenderingVertexCount = 0;
                 this.indexBuffer = indexBuffer;

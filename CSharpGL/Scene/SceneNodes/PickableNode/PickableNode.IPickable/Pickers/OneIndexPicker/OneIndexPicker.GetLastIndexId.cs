@@ -36,7 +36,7 @@ namespace CSharpGL
             {
                 for (int right = left + 1; right < primitiveInfoList.Count; right++)
                 {
-                    OneIndexBuffer twoPrimitivesIndexBuffer;
+                    DrawElementsCmd twoPrimitivesIndexBuffer;
                     uint leftLastIndex, rightLastIndex;
                     AssembleIndexBuffer(
                         primitiveInfoList[left], primitiveInfoList[right], this.Node.PickingRenderUnit.VertexArrayObject.DrawCommand.Mode,
@@ -102,7 +102,7 @@ namespace CSharpGL
             RecognizedPrimitiveInfo recognizedPrimitiveIndex0,
             RecognizedPrimitiveInfo recognizedPrimitiveIndex1,
             DrawMode drawMode,
-            out OneIndexBuffer oneIndexBuffer,
+            out DrawElementsCmd oneIndexBuffer,
             out uint lastIndex0, out uint lastIndex1)
         {
             List<uint> indexArray = ArrangeIndexes(

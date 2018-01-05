@@ -59,7 +59,7 @@ namespace CSharpGL
             this.lineWidthState.On();
             this.pointSizeState.On();
 
-            var oneIndexBuffer = tempIndexBuffer as OneIndexBuffer;
+            var oneIndexBuffer = tempIndexBuffer as DrawElementsCmd;
             if (oneIndexBuffer != null)
             {
                 PrimitiveRestartState glState = this.GetPrimitiveRestartState(oneIndexBuffer);
@@ -84,7 +84,7 @@ namespace CSharpGL
         private PrimitiveRestartState ushortRestartIndexState = null;
         private PrimitiveRestartState uintRestartIndexState = null;
 
-        private PrimitiveRestartState GetPrimitiveRestartState(OneIndexBuffer indexBuffer)
+        private PrimitiveRestartState GetPrimitiveRestartState(DrawElementsCmd indexBuffer)
         {
             PrimitiveRestartState result = null;
             switch (indexBuffer.ElementType)

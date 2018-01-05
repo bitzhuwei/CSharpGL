@@ -6,7 +6,7 @@ namespace CSharpGL
     /// <summary>
     /// Wraps glDrawArrays(uint mode, int first, int count).
     /// </summary>
-    public sealed partial class ZeroIndexBuffer : IndexBuffer
+    public sealed partial class DrawArraysCmd : IndexBuffer
     {
         /// <summary>
         /// Wraps glDrawArrays(uint mode, int first, int count).
@@ -16,7 +16,7 @@ namespace CSharpGL
         /// <param name="vertexCount">要渲染多少个元素？<para>How many vertexes to be rendered?</para></param>
         /// <param name="instanceCount">primCount in instanced rendering.</param>
         /// <param name="frameCount">How many frames are there?</param>
-        internal ZeroIndexBuffer(DrawMode mode, int firstVertex, int vertexCount, int instanceCount = 1, int frameCount = 1)
+        internal DrawArraysCmd(DrawMode mode, int firstVertex, int vertexCount, int instanceCount = 1, int frameCount = 1)
             : base(mode, 0, firstVertex, vertexCount, vertexCount * sizeof(uint), instanceCount, frameCount)
         {
             this.Target = BufferTarget.ZeroIndexArrayBuffer;

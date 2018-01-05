@@ -46,7 +46,7 @@ namespace StencilTest
         {
             if (this.indexBuffer == null)
             {
-                this.indexBuffer = ZeroIndexBuffer.Create(DrawMode.Triangles, 0, positions.Length);
+                this.indexBuffer = DrawArraysCmd.Create(DrawMode.Triangles, 0, positions.Length);
             }
 
             return this.indexBuffer;

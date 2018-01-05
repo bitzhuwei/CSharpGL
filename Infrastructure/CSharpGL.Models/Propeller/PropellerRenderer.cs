@@ -180,7 +180,7 @@ void main(void) {
         public const string strColor = "color";
         private VertexBuffer colorBuffer;
 
-        private OneIndexBuffer indexBuffer;
+        private DrawElementsCmd indexBuffer;
 
         #region IBufferable 成员
 

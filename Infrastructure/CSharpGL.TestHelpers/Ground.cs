@@ -172,7 +172,7 @@ namespace CSharpGL
             if (this.indexBuffer == null)
             {
                 int vertexCount = positions.Length;
-                ZeroIndexBuffer buffer = ZeroIndexBuffer.Create(DrawMode.Lines, 0, vertexCount);
+                DrawArraysCmd buffer = DrawArraysCmd.Create(DrawMode.Lines, 0, vertexCount);
                 this.indexBuffer = buffer;
             }
 

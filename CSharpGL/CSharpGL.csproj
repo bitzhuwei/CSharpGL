@@ -105,7 +105,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="GLObjects\GLBuffers\VertexBuffers\IndexBuffers%28IBO%29\IDrawCommand.cs" />
-    <Compile Include="GLObjects\GLBuffers\VertexBuffers\IndexBuffers%28IBO%29\MultiZeroIndexBuffer.cs" />
+    <Compile Include="GLObjects\GLBuffers\VertexBuffers\IndexBuffers%28IBO%29\MultiDrawArraysCmd.cs" />
     <Compile Include="GLObjects\GLStates\EnableStates\StencilTestState.cs" />
     <Compile Include="GLObjects\GLStates\StencilMaskState.cs" />
     <Compile Include="GLObjects\GLStates\StencilOpState.cs" />
@@ -540,10 +540,10 @@
     <Compile Include="GLObjects\GLBuffers\VertexBuffers\IndexBuffers%28IBO%29\IndexBufferElementType.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="GLObjects\GLBuffers\VertexBuffers\IndexBuffers%28IBO%29\OneIndexBuffer.cs">
+    <Compile Include="GLObjects\GLBuffers\VertexBuffers\IndexBuffers%28IBO%29\DrawElementsCmd.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="GLObjects\GLBuffers\VertexBuffers\IndexBuffers%28IBO%29\ZeroIndexBuffer.cs">
+    <Compile Include="GLObjects\GLBuffers\VertexBuffers\IndexBuffers%28IBO%29\DrawArraysCmd.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="GLObjects\GLBuffers\VertexBuffers\VertexBuffer%28VBO%29\VBOConfig.cs">

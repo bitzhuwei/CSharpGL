@@ -6,7 +6,7 @@ namespace CSharpGL
     /// <summary>
     /// Wraps glDrawElements(uint mode, int count, uint type, IntPtr indices).
     /// </summary>
-    public sealed partial class OneIndexBuffer : IndexBuffer
+    public sealed partial class DrawElementsCmd : IndexBuffer
     {
         /// <summary>
         /// Wraps glDrawElements(uint mode, int count, uint type, IntPtr indices).
@@ -19,7 +19,7 @@ namespace CSharpGL
         /// <param name="byteLength">此VBO中的数据在内存中占用多少个字节？<para>How many bytes in this buffer?</para></param>
         /// <param name="instanceCount">primCount in instanced rendering.</param>
         /// <param name="frameCount">How many frames are there?</param>
-        internal OneIndexBuffer(uint bufferId, DrawMode mode,
+        internal DrawElementsCmd(uint bufferId, DrawMode mode,
             IndexBufferElementType elementType, int vertexCount, int byteLength, int instanceCount = 1, int frameCount = 1)
             : base(mode, bufferId, 0, vertexCount, byteLength, instanceCount, frameCount)
         {

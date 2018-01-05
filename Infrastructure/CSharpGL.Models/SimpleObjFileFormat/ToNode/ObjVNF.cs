@@ -89,7 +89,7 @@ namespace CSharpGL
             {
                 int polygon = (this.mesh.faces[0] is ObjVNFTriangle) ? 3 : 4;
                 DrawMode mode = (this.mesh.faces[0] is ObjVNFTriangle) ? DrawMode.Triangles : DrawMode.Quads;
-                OneIndexBuffer indexBuffer = OneIndexBuffer.Create(IndexBufferElementType.UInt, polygon * this.mesh.faces.Length, mode, BufferUsage.StaticDraw);
+                DrawElementsCmd indexBuffer = DrawElementsCmd.Create(IndexBufferElementType.UInt, polygon * this.mesh.faces.Length, mode, BufferUsage.StaticDraw);
                 unsafe
                 {
                     var array = (uint*)indexBuffer.MapBuffer(MapBufferAccess.WriteOnly);

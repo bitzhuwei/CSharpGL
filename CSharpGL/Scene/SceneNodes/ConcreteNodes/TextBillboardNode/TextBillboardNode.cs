@@ -71,7 +71,7 @@ namespace CSharpGL
 
             this.positionBuffer = this.textModel.GetVertexAttributeBuffer(GlyphsModel.position);
             this.strBuffer = this.textModel.GetVertexAttributeBuffer(GlyphsModel.STR);
-            this.indexBuffer = this.textModel.GetDrawCommand() as ZeroIndexBuffer;
+            this.indexBuffer = this.textModel.GetDrawCommand() as DrawArraysCmd;
 
             GlyphServer server = this.glyphServer;
             Texture texture = server.GlyphTexture;

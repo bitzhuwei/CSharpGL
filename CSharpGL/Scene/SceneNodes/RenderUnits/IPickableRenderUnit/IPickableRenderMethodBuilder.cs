@@ -63,7 +63,7 @@ namespace CSharpGL
             var renderUnit = new IPickableRenderMethod(pickProgram, pickingVAO, positionBuffer, this.states);
 
             // RULE: Renderer takes uint.MaxValue, ushort.MaxValue or byte.MaxValue as PrimitiveRestartIndex. So take care this rule when designing a model's index buffer.
-            var ptr = cmd as OneIndexBuffer;
+            var ptr = cmd as DrawElementsCmd;
             if (ptr != null)
             {
                 GLState glState = new PrimitiveRestartState(ptr.ElementType);

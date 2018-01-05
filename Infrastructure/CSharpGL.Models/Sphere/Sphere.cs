@@ -4,7 +4,7 @@ namespace CSharpGL
     /// <summary>
     /// Sphere.
     /// http://images.cnblogs.com/cnblogs_com/bitzhuwei/554293/o_sphere.jpg
-    /// <para>Uses <see cref="OneIndexBuffer"/></para>
+    /// <para>Uses <see cref="DrawElementsCmd"/></para>
     /// </summary>
     public class Sphere : IBufferSource
     {
@@ -161,7 +161,7 @@ namespace CSharpGL
                 int length = model.indexes.Length;
                 if (model.positions.Length < byte.MaxValue)
                 {
-                    OneIndexBuffer buffer = GLBuffer.Create(IndexBufferElementType.UByte, length, DrawMode.TriangleStrip, BufferUsage.StaticDraw);
+                    DrawElementsCmd buffer = GLBuffer.Create(IndexBufferElementType.UByte, length, DrawMode.TriangleStrip, BufferUsage.StaticDraw);
                     unsafe
                     {
                         IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
@@ -179,7 +179,7 @@ namespace CSharpGL
                 }
                 else if (model.positions.Length < ushort.MaxValue)
                 {
-                    OneIndexBuffer buffer = GLBuffer.Create(IndexBufferElementType.UShort, length, DrawMode.TriangleStrip, BufferUsage.StaticDraw);
+                    DrawElementsCmd buffer = GLBuffer.Create(IndexBufferElementType.UShort, length, DrawMode.TriangleStrip, BufferUsage.StaticDraw);
                     unsafe
                     {
                         IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
@@ -197,7 +197,7 @@ namespace CSharpGL
                 }
                 else
                 {
-                    OneIndexBuffer buffer = GLBuffer.Create(IndexBufferElementType.UInt, length, DrawMode.TriangleStrip, BufferUsage.StaticDraw);
+                    DrawElementsCmd buffer = GLBuffer.Create(IndexBufferElementType.UInt, length, DrawMode.TriangleStrip, BufferUsage.StaticDraw);
                     unsafe
                     {
                         IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);

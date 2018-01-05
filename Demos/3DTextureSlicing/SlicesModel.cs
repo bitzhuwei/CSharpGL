@@ -40,7 +40,7 @@ namespace _3DTextureSlicing
         {
             if (this.indexBuffer == null)
             {
-                this.indexBuffer = ZeroIndexBuffer.Create(DrawMode.Triangles, 0, this.vTextureSlices.Length);
+                this.indexBuffer = DrawArraysCmd.Create(DrawMode.Triangles, 0, this.vTextureSlices.Length);
             }
 
             return this.indexBuffer;

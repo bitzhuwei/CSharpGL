@@ -12,7 +12,7 @@
         internal override uint[] Search(PickingEventArgs arg,
             uint lastVertexId, ZeroIndexPicker picker)
         {
-            OneIndexBuffer buffer = GLBuffer.Create(IndexBufferElementType.UInt, 8, DrawMode.Lines, BufferUsage.StaticDraw);
+            DrawElementsCmd buffer = GLBuffer.Create(IndexBufferElementType.UInt, 8, DrawMode.Lines, BufferUsage.StaticDraw);
             unsafe
             {
                 var array = (uint*)buffer.MapBuffer(MapBufferAccess.WriteOnly);

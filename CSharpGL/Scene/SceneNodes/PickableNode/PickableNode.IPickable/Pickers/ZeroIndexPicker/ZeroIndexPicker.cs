@@ -6,12 +6,12 @@ using System.Text;
 namespace CSharpGL
 {
     /// <summary>
-    /// Get picked geometry from a <see cref="PickableNode"/> with <see cref="ZeroIndexBuffer"/> as index buffer.
+    /// Get picked geometry from a <see cref="PickableNode"/> with <see cref="DrawArraysCmd"/> as index buffer.
     /// </summary>
     partial class ZeroIndexPicker : PickerBase
     {
         /// <summary>
-        /// Get picked geometry from a <see cref="PickableNode"/> with <see cref="ZeroIndexBuffer"/> as index buffer.
+        /// Get picked geometry from a <see cref="PickableNode"/> with <see cref="DrawArraysCmd"/> as index buffer.
         /// </summary>
         /// <param name="node"></param>
         public ZeroIndexPicker(PickableNode node) : base(node) { }
@@ -211,7 +211,7 @@ namespace CSharpGL
         private bool OnPrimitiveTest(uint lastVertexId, DrawMode mode)
         {
             bool result = false;
-            var indexBuffer = this.Node.PickingRenderUnit.VertexArrayObject.DrawCommand as ZeroIndexBuffer;
+            var indexBuffer = this.Node.PickingRenderUnit.VertexArrayObject.DrawCommand as DrawArraysCmd;
             int first = indexBuffer.FirstVertex;
             if (first < 0) { return false; }
             int vertexCount = indexBuffer.RenderingVertexCount;

@@ -14,7 +14,7 @@ namespace CSharpGL
         internal override uint Search(PickingEventArgs arg, uint lastVertexId, ZeroIndexPicker picker)
         {
             // 创建临时索引
-            OneIndexBuffer buffer = GLBuffer.Create(IndexBufferElementType.UInt, 3, DrawMode.Points, BufferUsage.StaticDraw);
+            DrawElementsCmd buffer = GLBuffer.Create(IndexBufferElementType.UInt, 3, DrawMode.Points, BufferUsage.StaticDraw);
             unsafe
             {
                 var array = (uint*)buffer.MapBuffer(MapBufferAccess.WriteOnly);

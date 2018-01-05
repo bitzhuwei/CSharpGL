@@ -52,7 +52,7 @@ namespace SimpleInstancedRendering
             if (this.indexBuffer == null)
             {
                 int primCount = 100;// render 100 instances.
-                this.indexBuffer = ZeroIndexBuffer.Create(DrawMode.Triangles, 0, 6, primCount);
+                this.indexBuffer = DrawArraysCmd.Create(DrawMode.Triangles, 0, 6, primCount);
             }
 
             return this.indexBuffer;

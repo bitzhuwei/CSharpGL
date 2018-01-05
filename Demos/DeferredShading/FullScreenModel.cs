@@ -22,7 +22,7 @@ namespace DeferredShading
         {
             if (this.indexBuffer == null)
             {
-                this.indexBuffer = ZeroIndexBuffer.Create(DrawMode.Quads, 0, 4);
+                this.indexBuffer = DrawArraysCmd.Create(DrawMode.Quads, 0, 4);
             }
 
             return this.indexBuffer;

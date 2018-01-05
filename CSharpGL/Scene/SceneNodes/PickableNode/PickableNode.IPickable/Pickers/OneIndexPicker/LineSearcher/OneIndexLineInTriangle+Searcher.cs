@@ -23,7 +23,7 @@ namespace CSharpGL
             //else if (indexList[1] == indexList[2]) { return new uint[] { indexList[1], indexList[0], }; }
 
             var targetIndexList = new uint[6] { indexList[0], indexList[1], indexList[1], indexList[2], indexList[2], indexList[0], };
-            OneIndexBuffer buffer = targetIndexList.GenIndexBuffer(DrawMode.Lines, BufferUsage.StaticDraw);
+            DrawElementsCmd buffer = targetIndexList.GenIndexBuffer(DrawMode.Lines, BufferUsage.StaticDraw);
             picker.Node.Render4InnerPicking(arg, buffer);
             uint id = ColorCodedPicking.ReadStageVertexId(arg.X, arg.Y);
 

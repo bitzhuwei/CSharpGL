@@ -162,7 +162,7 @@ namespace CSharpGL
             if (this.indexBuffer == null)
             {
                 int uCount = GetUCount(interval);
-                ZeroIndexBuffer buffer = ZeroIndexBuffer.Create(DrawMode.Points, 0, uCount);
+                DrawArraysCmd buffer = DrawArraysCmd.Create(DrawMode.Points, 0, uCount);
                 this.indexBuffer = buffer;
             }
 

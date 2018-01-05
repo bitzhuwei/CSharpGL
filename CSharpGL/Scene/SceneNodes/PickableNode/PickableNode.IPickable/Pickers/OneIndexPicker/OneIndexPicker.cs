@@ -7,12 +7,12 @@ using System.Text;
 namespace CSharpGL
 {
     /// <summary>
-    /// Get picked geometry from a <see cref="PickableNode"/> with <see cref="ZeroIndexBuffer"/> as index buffer.
+    /// Get picked geometry from a <see cref="PickableNode"/> with <see cref="DrawArraysCmd"/> as index buffer.
     /// </summary>
     partial class OneIndexPicker : PickerBase
     {
         /// <summary>
-        /// Get picked geometry from a <see cref="PickableNode"/> with <see cref="ZeroIndexBuffer"/> as index buffer.
+        /// Get picked geometry from a <see cref="PickableNode"/> with <see cref="DrawArraysCmd"/> as index buffer.
         /// </summary>
         /// <param name="node"></param>
         public OneIndexPicker(PickableNode node) : base(node) { }
@@ -192,7 +192,7 @@ namespace CSharpGL
         /// <param name="arg"></param>
         /// <param name="twoPrimitivesIndexBuffer"></param>
         /// <returns></returns>
-        private uint Pick(PickingEventArgs arg, OneIndexBuffer twoPrimitivesIndexBuffer)
+        private uint Pick(PickingEventArgs arg, DrawElementsCmd twoPrimitivesIndexBuffer)
         {
             this.Node.Render4InnerPicking(arg, twoPrimitivesIndexBuffer);
 
@@ -219,13 +219,13 @@ namespace CSharpGL
 
             PrimitiveRestartState glState = GetPrimitiveRestartState();
 
-            var buffer = indexBuffer as OneIndexBuffer;
+            var buffer = indexBuffer as DrawElementsCmd;
             IntPtr pointer = buffer.MapBuffer(MapBufferAccess.ReadOnly);
             List<RecognizedPrimitiveInfo> primitiveInfoList = null;
             if (glState == null)
-            { primitiveInfoList = recognizer.Recognize(lastVertexId, pointer, indexBuffer as OneIndexBuffer); }
+            { primitiveInfoList = recognizer.Recognize(lastVertexId, pointer, indexBuffer as DrawElementsCmd); }
             else
-            { primitiveInfoList = recognizer.Recognize(lastVertexId, pointer, indexBuffer as OneIndexBuffer, glState.RestartIndex); }
+            { primitiveInfoList = recognizer.Recognize(lastVertexId, pointer, indexBuffer as DrawElementsCmd, glState.RestartIndex); }
             buffer.UnmapBuffer();
 
             return primitiveInfoList;

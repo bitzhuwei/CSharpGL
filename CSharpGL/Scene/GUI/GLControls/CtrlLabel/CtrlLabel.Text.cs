@@ -11,7 +11,7 @@ namespace CSharpGL
         private GlyphsModel labelModel;
         private VertexBuffer positionBuffer;
         private VertexBuffer strBuffer;
-        private ZeroIndexBuffer indexBuffer;
+        private DrawArraysCmd indexBuffer;
 
         /// <summary>
         /// 

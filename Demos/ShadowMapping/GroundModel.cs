@@ -53,7 +53,7 @@ namespace ShadowMapping
         {
             if (this.indexBuffer == null)
             {
-                this.indexBuffer = ZeroIndexBuffer.Create(DrawMode.Quads, 0, positions.Length);
+                this.indexBuffer = DrawArraysCmd.Create(DrawMode.Quads, 0, positions.Length);
             }
 
             return this.indexBuffer;
