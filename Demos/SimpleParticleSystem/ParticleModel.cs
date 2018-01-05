@@ -41,7 +41,7 @@ namespace SimpleParticleSystem
             }
         }
 
-        public IndexBuffer GetIndexBuffer()
+        public IDrawCommand GetDrawCommand()
         {
             if (this.indexBuffer == null)
             {

@@ -47,7 +47,7 @@ namespace ComputeShader.HelloComputeShader
             }
         }
 
-        public IndexBuffer GetIndexBuffer()
+        public IDrawCommand GetDrawCommand()
         {
             if (indexBuffer == null)
             {

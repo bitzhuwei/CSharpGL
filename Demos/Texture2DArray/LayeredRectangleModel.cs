@@ -66,7 +66,7 @@ namespace Texture2DArray
             throw new NotImplementedException();
         }
 
-        public IndexBuffer GetIndexBuffer()
+        public IDrawCommand GetDrawCommand()
         {
             if (this.indexBuffer == null)
             {

@@ -20,7 +20,7 @@ namespace StencilTest
             throw new Exception("vertex buffer is not needed.");
         }
 
-        public IndexBuffer GetIndexBuffer()
+        public IDrawCommand GetDrawCommand()
         {
             if (this.indexBuffer == null)
             {

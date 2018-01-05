@@ -77,7 +77,7 @@ namespace HowTransformFeedbackWorks
             }
         }
 
-        public IndexBuffer GetIndexBuffer()
+        public IDrawCommand GetDrawCommand()
         {
             if (this.indexBuffer == null)
             {

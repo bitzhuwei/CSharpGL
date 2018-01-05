@@ -51,14 +51,14 @@ namespace CSharpGL
         /// VAO是用来管理VBO的。可以进一步减少DrawCall。
         /// <para>VAO is used to reduce draw-call.</para>
         /// </summary>
-        /// <param name="indexBuffer">index buffer pointer that used to invoke draw command.</param>
+        /// <param name="drawCommand">index buffer pointer that used to invoke draw command.</param>
         /// <param name="shaderProgram">shader program that <paramref name="vertexAttributes"/> bind to.</param>
         /// <param name="vertexAttributes">给出此VAO要管理的所有VBO。<para>All VBOs that are managed by this VAO.</para></param>
-        public VertexArrayObject(IndexBuffer indexBuffer, ShaderProgram shaderProgram, params VertexShaderAttribute[] vertexAttributes)
+        public VertexArrayObject(IDrawCommand drawCommand, ShaderProgram shaderProgram, params VertexShaderAttribute[] vertexAttributes)
         {
-            if (indexBuffer == null)
+            if (drawCommand == null)
             {
-                throw new ArgumentNullException("indexBuffer");
+                throw new ArgumentNullException("drawCommand");
             }
             // Zero vertex attribute is allowed in GLSL.
             //if (vertexAttributeBuffers == null || vertexAttributeBuffers.Length == 0)
@@ -66,7 +66,7 @@ namespace CSharpGL
             //    throw new ArgumentNullException("vertexAttributeBuffers");
             //}
 
-            this.DrawCommand = indexBuffer;
+            this.DrawCommand = drawCommand;
             this.VertexAttributes = vertexAttributes;
 
             glGenVertexArrays(1, ids);

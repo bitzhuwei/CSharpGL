@@ -157,7 +157,7 @@ namespace CSharpGL
             return new vec3((float)x, (float)y, (float)z);
         }
 
-        public IndexBuffer GetIndexBuffer()
+        public IDrawCommand GetDrawCommand()
         {
             if (this.indexBuffer == null)
             {

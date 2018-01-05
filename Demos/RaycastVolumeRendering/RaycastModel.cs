@@ -123,7 +123,7 @@ namespace RaycastVolumeRendering
             }
         }
 
-        public IndexBuffer GetIndexBuffer()
+        public IDrawCommand GetDrawCommand()
         {
             if (indexBuffer == null)
             {

@@ -54,16 +54,16 @@ namespace CSharpGL
             { throw new Exception(string.Format("Position buffer must use a type composed of 3 float as PropertyBuffer<T>'s T!")); }
 
 
-            // init index buffer.
-            IndexBuffer indexBuffer = model.GetIndexBuffer();
+            // init draw command.
+            IDrawCommand cmd = model.GetDrawCommand();
 
             // init VAO.
-            var pickingVAO = new VertexArrayObject(indexBuffer, pickProgram, new VertexShaderAttribute(positionBuffer, PickingShaderHelper.in_Position));
+            var pickingVAO = new VertexArrayObject(cmd, pickProgram, new VertexShaderAttribute(positionBuffer, PickingShaderHelper.in_Position));
 
             var renderUnit = new IPickableRenderMethod(pickProgram, pickingVAO, positionBuffer, this.states);
 
             // RULE: Renderer takes uint.MaxValue, ushort.MaxValue or byte.MaxValue as PrimitiveRestartIndex. So take care this rule when designing a model's index buffer.
-            var ptr = indexBuffer as OneIndexBuffer;
+            var ptr = cmd as OneIndexBuffer;
             if (ptr != null)
             {
                 GLState glState = new PrimitiveRestartState(ptr.ElementType);
