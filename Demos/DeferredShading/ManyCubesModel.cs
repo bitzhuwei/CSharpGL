@@ -30,7 +30,7 @@ namespace DeferredShading
 
         #region IBufferSource 成员
 
-        public VertexBuffer GetVertexAttributeBuffer(string bufferName)
+        public IEnumerable<VertexBuffer> GetVertexAttributeBuffer(string bufferName)
         {
             if (bufferName == strPosition)
             {
@@ -105,7 +105,7 @@ namespace DeferredShading
             return result;
         }
 
-        public IndexBuffer GetIndexBuffer()
+        public IEnumerable<IndexBuffer> GetIndexBuffer()
         {
             if (this.indexBuffer == null)
             {

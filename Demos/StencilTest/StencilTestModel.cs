@@ -25,7 +25,7 @@ namespace StencilTest
 
         #region IBufferSource 成员
 
-        public VertexBuffer GetVertexAttributeBuffer(string bufferName)
+        public IEnumerable<VertexBuffer> GetVertexAttributeBuffer(string bufferName)
         {
             if (bufferName == strPosition)
             {
@@ -42,7 +42,7 @@ namespace StencilTest
             }
         }
 
-        public IndexBuffer GetIndexBuffer()
+        public IEnumerable<IndexBuffer> GetIndexBuffer()
         {
             if (this.indexBuffer == null)
             {

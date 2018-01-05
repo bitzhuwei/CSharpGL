@@ -15,12 +15,12 @@ namespace StencilTest
 
         #region IBufferSource 成员
 
-        public VertexBuffer GetVertexAttributeBuffer(string bufferName)
+        public IEnumerable<VertexBuffer> GetVertexAttributeBuffer(string bufferName)
         {
             throw new Exception("vertex buffer is not needed.");
         }
 
-        public IndexBuffer GetIndexBuffer()
+        public IEnumerable<IndexBuffer> GetIndexBuffer()
         {
             if (this.indexBuffer == null)
             {

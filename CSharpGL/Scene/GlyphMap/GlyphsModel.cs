@@ -39,7 +39,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="bufferName"></param>
         /// <returns></returns>
-        public VertexBuffer GetVertexAttributeBuffer(string bufferName)
+        public IEnumerable<VertexBuffer> GetVertexAttributeBuffer(string bufferName)
         {
             if (bufferName == position)
             {
@@ -48,7 +48,7 @@ namespace CSharpGL
                     this.positionBuffer = VertexBuffer.Create(typeof(QuadPositionStruct), this.Capacity, VBOConfig.Vec2, BufferUsage.DynamicDraw);
                 }
 
-                return this.positionBuffer;
+                yield return this.positionBuffer;
             }
             else if (bufferName == STR)
             {
@@ -57,7 +57,7 @@ namespace CSharpGL
                     this.uvBuffer = VertexBuffer.Create(typeof(QuadSTRStruct), this.Capacity, VBOConfig.Vec3, BufferUsage.DynamicDraw);
                 }
 
-                return this.uvBuffer;
+                yield return this.uvBuffer;
             }
             else
             {
@@ -69,7 +69,7 @@ namespace CSharpGL
         /// 
         /// </summary>
         /// <returns></returns>
-        public IndexBuffer GetIndexBuffer()
+        public IEnumerable<IndexBuffer> GetIndexBuffer()
         {
             if (this.indexBuffer == null)
             {
@@ -81,7 +81,7 @@ namespace CSharpGL
                 this.indexBuffer = indexBuffer;
             }
 
-            return this.indexBuffer;
+            yield return this.indexBuffer;
         }
 
         #endregion

@@ -156,7 +156,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="bufferName">buffer name(Gets this name from 'strPosition' etc.</param>
         /// <returns>Vertex Buffer Object.</returns>
-        public VertexBuffer GetVertexAttributeBuffer(string bufferName)
+        public IEnumerable<VertexBuffer> GetVertexAttributeBuffer(string bufferName)
         {
             if (bufferName == strPosition)
             {
@@ -180,7 +180,7 @@ namespace CSharpGL
             }
         }
 
-        public IndexBuffer GetIndexBuffer()
+        public IEnumerable<IndexBuffer> GetIndexBuffer()
         {
             if (this.indexBuffer == null)
             {
