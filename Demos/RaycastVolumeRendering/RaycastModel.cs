@@ -71,7 +71,7 @@ namespace RaycastVolumeRendering
                 boundingBox[i] = boundingBox[i] - 0.5f;
             }
         }
-        public VertexBuffer GetVertexAttributeBuffer(string bufferName)
+        public IEnumerable<VertexBuffer> GetVertexAttributeBuffer(string bufferName)
         {
             if (bufferName == strposition)
             {
@@ -123,7 +123,7 @@ namespace RaycastVolumeRendering
             }
         }
 
-        public IndexBuffer GetIndexBuffer()
+        public IEnumerable<IndexBuffer> GetIndexBuffer()
         {
             if (indexBuffer == null)
             {

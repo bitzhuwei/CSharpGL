@@ -69,9 +69,18 @@ namespace CSharpGL
         {
             base.DoInitialize();
 
-            this.positionBuffer = this.textModel.GetVertexAttributeBuffer(GlyphsModel.position);
-            this.strBuffer = this.textModel.GetVertexAttributeBuffer(GlyphsModel.STR);
-            this.indexBuffer = this.textModel.GetIndexBuffer() as ZeroIndexBuffer;
+            foreach (var item in this.textModel.GetVertexAttributeBuffer(GlyphsModel.position))
+            { // make sure textModel only returns one buffer.
+                this.positionBuffer = item;
+            }
+            foreach (var item in this.textModel.GetVertexAttributeBuffer(GlyphsModel.STR))
+            { // make sure textModel only returns one buffer.
+                this.strBuffer = item;
+            }
+            foreach (var item in this.textModel.GetIndexBuffer())
+            { // make sure textModel only returns one buffer.
+                this.indexBuffer = item as ZeroIndexBuffer;
+            }
 
             GlyphServer server = this.glyphServer;
             Texture texture = server.GlyphTexture;

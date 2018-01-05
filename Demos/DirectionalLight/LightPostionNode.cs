@@ -136,7 +136,7 @@ void main(void) {
 
             #region IBufferable 成员
 
-            public VertexBuffer GetVertexAttributeBuffer(string bufferName)
+            public IEnumerable<VertexBuffer> GetVertexAttributeBuffer(string bufferName)
             {
                 if (bufferName == strPosition)
                 {
@@ -151,7 +151,7 @@ void main(void) {
                 throw new NotImplementedException();
             }
 
-            public IndexBuffer GetIndexBuffer()
+            public IEnumerable<IndexBuffer> GetIndexBuffer()
             {
                 if (this.indexBuffer == null)
                 {

@@ -44,7 +44,7 @@ namespace HowTransformFeedbackWorks
 
         #region IBufferSource 成员
 
-        public VertexBuffer GetVertexAttributeBuffer(string bufferName)
+        public IEnumerable<VertexBuffer> GetVertexAttributeBuffer(string bufferName)
         {
             if (bufferName == inPosition)
             {
@@ -88,7 +88,7 @@ namespace HowTransformFeedbackWorks
             }
         }
 
-        public IndexBuffer GetIndexBuffer()
+        public IEnumerable<IndexBuffer> GetIndexBuffer()
         {
             if (this.indexBuffer == null)
             {

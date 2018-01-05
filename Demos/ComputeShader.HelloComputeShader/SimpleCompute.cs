@@ -18,7 +18,7 @@ namespace ComputeShader.HelloComputeShader
         private VertexBuffer positionBuffer = null;
         private IndexBuffer indexBuffer;
 
-        public VertexBuffer GetVertexAttributeBuffer(string bufferName)
+        public IEnumerable<VertexBuffer> GetVertexAttributeBuffer(string bufferName)
         {
             if (bufferName == strPosition)
             {
@@ -47,7 +47,7 @@ namespace ComputeShader.HelloComputeShader
             }
         }
 
-        public IndexBuffer GetIndexBuffer()
+        public IEnumerable<IndexBuffer> GetIndexBuffer()
         {
             if (indexBuffer == null)
             {

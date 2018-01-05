@@ -50,7 +50,7 @@ namespace CSharpGL
 
         private IndexBuffer indexBuffer;
 
-        public VertexBuffer GetVertexAttributeBuffer(string bufferName)
+        public IEnumerable<VertexBuffer> GetVertexAttributeBuffer(string bufferName)
         {
             if (bufferName == strPosition)
             {
@@ -83,7 +83,7 @@ namespace CSharpGL
             throw new ArgumentException("bufferName");
         }
 
-        public IndexBuffer GetIndexBuffer()
+        public IEnumerable<IndexBuffer> GetIndexBuffer()
         {
             if (this.indexBuffer == null)
             {
