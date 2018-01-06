@@ -22,8 +22,9 @@ namespace CSharpGL
         internal IndexBuffer(uint bufferId, IndexBufferElementType elementType, int vertexCount, int byteLength)
             : base(bufferId, vertexCount, byteLength)
         {
-            this.ElementType = elementType;
+            this.Target = BufferTarget.ElementArrayBuffer;
 
+            this.ElementType = elementType;
         }
 
         /// <summary>
