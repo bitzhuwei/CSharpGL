@@ -1431,6 +1431,66 @@ namespace CSharpGL
         /// </summary>
         /// <param name="_0"></param>
         /// <param name="_1"></param>
+        /// <param name="_2"></param>
+        /// <param name="_3"></param>
+        /// <param name="_4"></param>
+        /// <param name="_5"></param>
+        public delegate void void_uint_intN_uint_IntPtr_int_intN(uint _0, int[] _1, uint _2, IntPtr _3, int _4, int[] _5);
+        /// <summary>
+        /// 
+        /// </summary>
+        public static readonly Type typeof_void_uint_intN_uint_IntPtr_int_intN = typeof(void_uint_intN_uint_IntPtr_int_intN);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="_0"></param>
+        /// <param name="_1"></param>
+        /// <param name="_2"></param>
+        /// <param name="_3"></param>
+        /// <param name="_4"></param>
+        /// <param name="_5"></param>
+        public delegate void void_uint_intN_uint_uintNN_int_intN(uint _0, int[] _1, uint _2, uint[][] _3, int _4, int[] _5);
+        /// <summary>
+        /// 
+        /// </summary>
+        public static readonly Type typeof_void_uint_intN_uint_uintNN_int_intN = typeof(void_uint_intN_uint_uintNN_int_intN);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="_0"></param>
+        /// <param name="_1"></param>
+        /// <param name="_2"></param>
+        /// <param name="_3"></param>
+        /// <param name="_4"></param>
+        /// <param name="_5"></param>
+        public delegate void void_uint_intN_uint_ushortNN_int_intN(uint _0, int[] _1, uint _2, ushort[][] _3, int _4, int[] _5);
+        /// <summary>
+        /// 
+        /// </summary>
+        public static readonly Type typeof_void_uint_intN_uint_ushortNN_int_intN = typeof(void_uint_intN_uint_ushortNN_int_intN);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="_0"></param>
+        /// <param name="_1"></param>
+        /// <param name="_2"></param>
+        /// <param name="_3"></param>
+        /// <param name="_4"></param>
+        /// <param name="_5"></param>
+        public delegate void void_uint_intN_uint_byteNN_int_intN(uint _0, int[] _1, uint _2, byte[][] _3, int _4, int[] _5);
+        /// <summary>
+        /// 
+        /// </summary>
+        public static readonly Type typeof_void_uint_intN_uint_byteNN_int_intN = typeof(void_uint_intN_uint_byteNN_int_intN);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="_0"></param>
+        /// <param name="_1"></param>
         public delegate void void_uint_intN(uint _0, int[] _1);
         /// <summary>
         /// 
