@@ -589,13 +589,75 @@ namespace CSharpGL
         public override void DrawElements(uint mode, int count, uint type, IntPtr indices) { glDrawElements(mode, count, type, indices); }
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="mode"></param>
+        /// <param name="count"></param>
+        /// <param name="type"></param>
+        /// <param name="indices"></param>
+        /// <param name="drawcount"></param>
+        public override void MultiDrawElements(uint mode, int[] count, uint type, IntPtr indices, int drawcount)
+        { glMultiDrawElements(mode, count, type, indices, drawcount); }
+
+        /// <summary>
         /// Render primitives from array data.
         /// </summary>
         /// <param name="mode">Specifies what kind of primitives to	render. Symbolic constants GL.POINTS, GL.LINE_STRIP, GL.LINE_LOOP, GL.LINES, GL.TRIANGLE_STRIP, GL.TRIANGLE_FAN, GL.TRIANGLES, GL.QUAD_STRIP, GL.QUADS, and GL.POLYGON are accepted.</param>
         /// <param name="count">Specifies the number of elements to be rendered.</param>
         /// <param name="type"></param>
         /// <param name="indices">Specifies a pointer to the location where the indices are stored.</param>
-        public override void DrawElements(uint mode, int count, uint type, uint[] indices) { glDrawElements(mode, count, type, indices); }
+        public override void DrawElements(uint mode, int count, uint[] indices) { glDrawElements(mode, count, GL.GL_UNSIGNED_INT, indices); }
+
+        /// <summary>
+        /// Render primitives from array data.
+        /// </summary>
+        /// <param name="mode">Specifies what kind of primitives to	render. Symbolic constants GL.POINTS, GL.LINE_STRIP, GL.LINE_LOOP, GL.LINES, GL.TRIANGLE_STRIP, GL.TRIANGLE_FAN, GL.TRIANGLES, GL.QUAD_STRIP, GL.QUADS, and GL.POLYGON are accepted.</param>
+        /// <param name="count">Specifies the number of elements to be rendered.</param>
+        /// <param name="type"></param>
+        /// <param name="indices">Specifies a pointer to the location where the indices are stored.</param>
+        public override void DrawElements(uint mode, int count, ushort[] indices) { glDrawElements(mode, count, GL.GL_UNSIGNED_SHORT, indices); }
+
+        /// <summary>
+        /// Render primitives from array data.
+        /// </summary>
+        /// <param name="mode">Specifies what kind of primitives to	render. Symbolic constants GL.POINTS, GL.LINE_STRIP, GL.LINE_LOOP, GL.LINES, GL.TRIANGLE_STRIP, GL.TRIANGLE_FAN, GL.TRIANGLES, GL.QUAD_STRIP, GL.QUADS, and GL.POLYGON are accepted.</param>
+        /// <param name="count">Specifies the number of elements to be rendered.</param>
+        /// <param name="type"></param>
+        /// <param name="indices">Specifies a pointer to the location where the indices are stored.</param>
+        public override void DrawElements(uint mode, int count, byte[] indices) { glDrawElements(mode, count, GL.GL_UNSIGNED_BYTE, indices); }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="mode"></param>
+        /// <param name="count"></param>
+        /// <param name="type"></param>
+        /// <param name="indices"></param>
+        /// <param name="drawcount"></param>
+        public override void MultiDrawElements(uint mode, int[] count, uint[][] indices, int drawcount)
+        { glMultiDrawElements(mode, count, GL.GL_UNSIGNED_INT, indices, drawcount); }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="mode"></param>
+        /// <param name="count"></param>
+        /// <param name="type"></param>
+        /// <param name="indices"></param>
+        /// <param name="drawcount"></param>
+        public override void MultiDrawElements(uint mode, int[] count, ushort[][] indices, int drawcount)
+        { glMultiDrawElements(mode, count, GL.GL_UNSIGNED_SHORT, indices, drawcount); }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="mode"></param>
+        /// <param name="count"></param>
+        /// <param name="type"></param>
+        /// <param name="indices"></param>
+        /// <param name="drawcount"></param>
+        public override void MultiDrawElements(uint mode, int[] count, byte[][] indices, int drawcount)
+        { glMultiDrawElements(mode, count, GL.GL_UNSIGNED_BYTE, indices, drawcount); }
 
         /// <summary>
         /// Draws a rectangle of pixel data at the current raster position.

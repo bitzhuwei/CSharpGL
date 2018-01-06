@@ -50,7 +50,5 @@ namespace CSharpGL
         {
             GL.Instance.MultiDrawArrays((uint)this.Mode, this.First, this.Count, this.First.Length);
         }
-
-
     }
 }

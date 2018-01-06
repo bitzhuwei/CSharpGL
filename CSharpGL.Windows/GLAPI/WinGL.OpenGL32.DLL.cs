@@ -734,6 +734,17 @@ namespace CSharpGL
         private static extern void glDrawElements(uint mode, int count, uint type, IntPtr indices);
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="mode"></param>
+        /// <param name="count"></param>
+        /// <param name="type"></param>
+        /// <param name="indices"></param>
+        /// <param name="drawcount"></param>
+        [DllImport(Win32.opengl32, EntryPoint = "glMultiDrawElements", SetLastError = true)]
+        private static extern void glMultiDrawElements(uint mode, int[] count, uint type, IntPtr indices, int drawcount);
+
+        /// <summary>
         /// Render primitives from array data.
         /// </summary>
         /// <param name="mode">Specifies what kind of primitives to	render. Symbolic constants GL.POINTS, GL.LINE_STRIP, GL.LINE_LOOP, GL.LINES, GL.TRIANGLE_STRIP, GL.TRIANGLE_FAN, GL.TRIANGLES, GL.QUAD_STRIP, GL.QUADS, and GL.POLYGON are accepted.</param>
@@ -742,6 +753,59 @@ namespace CSharpGL
         /// <param name="indices">Specifies a pointer to the location where the indices are stored.</param>
         [DllImport(Win32.opengl32, EntryPoint = "glDrawElements", SetLastError = true)]
         private static extern void glDrawElements(uint mode, int count, uint type, uint[] indices);
+
+        /// <summary>
+        /// Render primitives from array data.
+        /// </summary>
+        /// <param name="mode">Specifies what kind of primitives to	render. Symbolic constants GL.POINTS, GL.LINE_STRIP, GL.LINE_LOOP, GL.LINES, GL.TRIANGLE_STRIP, GL.TRIANGLE_FAN, GL.TRIANGLES, GL.QUAD_STRIP, GL.QUADS, and GL.POLYGON are accepted.</param>
+        /// <param name="count">Specifies the number of elements to be rendered.</param>
+        /// <param name="type"></param>
+        /// <param name="indices">Specifies a pointer to the location where the indices are stored.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glDrawElements", SetLastError = true)]
+        private static extern void glDrawElements(uint mode, int count, uint type, ushort[] indices);
+
+        /// <summary>
+        /// Render primitives from array data.
+        /// </summary>
+        /// <param name="mode">Specifies what kind of primitives to	render. Symbolic constants GL.POINTS, GL.LINE_STRIP, GL.LINE_LOOP, GL.LINES, GL.TRIANGLE_STRIP, GL.TRIANGLE_FAN, GL.TRIANGLES, GL.QUAD_STRIP, GL.QUADS, and GL.POLYGON are accepted.</param>
+        /// <param name="count">Specifies the number of elements to be rendered.</param>
+        /// <param name="type"></param>
+        /// <param name="indices">Specifies a pointer to the location where the indices are stored.</param>
+        [DllImport(Win32.opengl32, EntryPoint = "glDrawElements", SetLastError = true)]
+        private static extern void glDrawElements(uint mode, int count, uint type, byte[] indices);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="mode"></param>
+        /// <param name="count"></param>
+        /// <param name="type"></param>
+        /// <param name="indices"></param>
+        /// <param name="drawcount"></param>
+        [DllImport(Win32.opengl32, EntryPoint = "glMultiDrawElements", SetLastError = true)]
+        private static extern void glMultiDrawElements(uint mode, int[] count, uint type, uint[][] indices, int drawcount);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="mode"></param>
+        /// <param name="count"></param>
+        /// <param name="type"></param>
+        /// <param name="indices"></param>
+        /// <param name="drawcount"></param>
+        [DllImport(Win32.opengl32, EntryPoint = "glMultiDrawElements", SetLastError = true)]
+        private static extern void glMultiDrawElements(uint mode, int[] count, uint type, ushort[][] indices, int drawcount);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="mode"></param>
+        /// <param name="count"></param>
+        /// <param name="type"></param>
+        /// <param name="indices"></param>
+        /// <param name="drawcount"></param>
+        [DllImport(Win32.opengl32, EntryPoint = "glMultiDrawElements", SetLastError = true)]
+        private static extern void glMultiDrawElements(uint mode, int[] count, uint type, byte[][] indices, int drawcount);
 
         /// <summary>
         /// Draws a rectangle of pixel data at the current raster position.

@@ -81,6 +81,7 @@ namespace CSharpGL
         /// 用哪种方式渲染各个顶点？（GL.GL_TRIANGLES etc.）
         /// </summary>
         public DrawMode Mode { get; set; }
+
         /// <summary>
         ///
         /// </summary>
@@ -97,7 +98,6 @@ namespace CSharpGL
             int vertexCount = indexBuffer.VertexCount;
             IndexBufferElementType elementType = indexBuffer.ElementType;
             IntPtr offset = GetOffset(elementType, this.FirstVertex);
-
 
             GLBuffer.glBindBuffer(GL.GL_ELEMENT_ARRAY_BUFFER, indexBuffer.BufferId);
             switch (controlMode)
