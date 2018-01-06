@@ -11,7 +11,6 @@ namespace CSharpGL
         /// </summary>
         /// <param name="array"></param>
         /// <param name="type"></param>
-        /// <param name="mode"></param>
         /// <param name="usage"></param>
         /// <returns></returns>
         public static IndexBuffer GenIndexBuffer<T>(this T[] array, IndexBufferElementType type, BufferUsage usage) where T : struct
@@ -67,7 +66,6 @@ namespace CSharpGL
         /// </summary>
         /// <param name="array"></param>
         /// <param name="usage"></param>
-        /// <param name="primCount">primCount in instanced rendering.</param>
         /// <returns></returns>
         public static IndexBuffer GenIndexBuffer(this uint[] array, BufferUsage usage)
         {
@@ -80,7 +78,6 @@ namespace CSharpGL
         /// </summary>
         /// <param name="array"></param>
         /// <param name="usage"></param>
-        /// <param name="primCount">primCount in instanced rendering.</param>
         /// <returns></returns>
         private static IndexBuffer GenIndexBuffer<T>(this T[] array, BufferUsage usage) where T : struct
         {
