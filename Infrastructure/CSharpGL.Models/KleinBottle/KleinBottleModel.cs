@@ -59,7 +59,7 @@ namespace CSharpGL
         public const string strTexCoord = "texCoord";
         private VertexBuffer colorBuffer;
 
-        private IndexBuffer indexBuffer = null;
+        private IDrawCommand drawCmd;
 
         private VertexBuffer GetTexCoordBuffer()
         {
@@ -180,14 +180,14 @@ namespace CSharpGL
             }
         }
 
-        public IndexBuffer GetIndexBuffer()
+        public IDrawCommand GetDrawCommand()
         {
-            if (this.indexBuffer == null)
+            if (this.drawCmd == null)
             {
                 int uCount = GetUCount(interval);
                 int vCount = GetVCount(interval);
                 int length = (uCount + 1) * vCount + (vCount + 1 + 1) * uCount;
-                OneIndexBuffer buffer = CSharpGL.GLBuffer.Create(IndexBufferElementType.UInt, length, DrawMode.LineStrip, BufferUsage.StaticDraw);
+                IndexBuffer buffer = CSharpGL.GLBuffer.Create(IndexBufferElementType.UInt, length, BufferUsage.StaticDraw);
                 unsafe
                 {
                     IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
@@ -214,10 +214,10 @@ namespace CSharpGL
                     }
                     buffer.UnmapBuffer();
                 }
-                this.indexBuffer = buffer;
+                this.drawCmd = new DrawElementsCmd(buffer, DrawMode.LineStrip);
             }
 
-            return this.indexBuffer;
+            return this.drawCmd;
         }
 
         #endregion

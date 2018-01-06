@@ -180,7 +180,7 @@ void main(void) {
         public const string strColor = "color";
         private VertexBuffer colorBuffer;
 
-        private OneIndexBuffer indexBuffer;
+        private IDrawCommand drawCmd;
 
         #region IBufferable 成员
 
@@ -208,14 +208,15 @@ void main(void) {
             throw new NotImplementedException();
         }
 
-        public IndexBuffer GetIndexBuffer()
+        public IDrawCommand GetDrawCommand()
         {
-            if (this.indexBuffer == null)
+            if (this.drawCmd == null)
             {
-                this.indexBuffer = indexes.GenIndexBuffer(DrawMode.Quads, BufferUsage.StaticDraw);
+                IndexBuffer buffer = indexes.GenIndexBuffer(BufferUsage.StaticDraw);
+                this.drawCmd = new DrawElementsCmd(buffer, DrawMode.Quads);
             }
 
-            return this.indexBuffer;
+            return this.drawCmd;
         }
 
         #endregion

@@ -4,7 +4,7 @@ namespace CSharpGL
     /// <summary>
     /// Sphere.
     /// http://images.cnblogs.com/cnblogs_com/bitzhuwei/554293/o_sphere.jpg
-    /// <para>Uses <see cref="OneIndexBuffer"/></para>
+    /// <para>Uses <see cref="DrawElementsCmd"/></para>
     /// </summary>
     public class Sphere : IBufferSource
     {
@@ -46,7 +46,7 @@ namespace CSharpGL
         private VertexBuffer normalBuffer;
         private VertexBuffer colorBuffer;
         private VertexBuffer uvBuffer;
-        private IndexBuffer indexBuffer = null;
+        private IDrawCommand drawCmd = null;
 
         /// <summary>
         ///
@@ -154,14 +154,14 @@ namespace CSharpGL
         ///
         /// </summary>
         /// <returns></returns>
-        public IndexBuffer GetIndexBuffer()
+        public IDrawCommand GetDrawCommand()
         {
-            if (this.indexBuffer == null)
+            if (this.drawCmd == null)
             {
                 int length = model.indexes.Length;
                 if (model.positions.Length < byte.MaxValue)
                 {
-                    OneIndexBuffer buffer = GLBuffer.Create(IndexBufferElementType.UByte, length, DrawMode.TriangleStrip, BufferUsage.StaticDraw);
+                    IndexBuffer buffer = GLBuffer.Create(IndexBufferElementType.UByte, length, BufferUsage.StaticDraw);
                     unsafe
                     {
                         IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
@@ -175,11 +175,11 @@ namespace CSharpGL
                         }
                         buffer.UnmapBuffer();
                     }
-                    this.indexBuffer = buffer;
+                    this.drawCmd = new DrawElementsCmd(buffer, DrawMode.TriangleStrip);
                 }
                 else if (model.positions.Length < ushort.MaxValue)
                 {
-                    OneIndexBuffer buffer = GLBuffer.Create(IndexBufferElementType.UShort, length, DrawMode.TriangleStrip, BufferUsage.StaticDraw);
+                    IndexBuffer buffer = GLBuffer.Create(IndexBufferElementType.UShort, length, BufferUsage.StaticDraw);
                     unsafe
                     {
                         IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
@@ -193,11 +193,11 @@ namespace CSharpGL
                         }
                         buffer.UnmapBuffer();
                     }
-                    this.indexBuffer = buffer;
+                    this.drawCmd = new DrawElementsCmd(buffer, DrawMode.TriangleStrip);
                 }
                 else
                 {
-                    OneIndexBuffer buffer = GLBuffer.Create(IndexBufferElementType.UInt, length, DrawMode.TriangleStrip, BufferUsage.StaticDraw);
+                    IndexBuffer buffer = GLBuffer.Create(IndexBufferElementType.UInt, length, BufferUsage.StaticDraw);
                     unsafe
                     {
                         IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
@@ -208,11 +208,11 @@ namespace CSharpGL
                         }
                         buffer.UnmapBuffer();
                     }
-                    this.indexBuffer = buffer;
+                    this.drawCmd = new DrawElementsCmd(buffer, DrawMode.TriangleStrip);
                 }
             }
 
-            return indexBuffer;
+            return drawCmd;
         }
 
         /// <summary>

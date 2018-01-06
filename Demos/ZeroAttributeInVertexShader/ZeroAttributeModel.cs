@@ -62,18 +62,18 @@ namespace ZeroAttributeInVertexShader
         ///
         /// </summary>
         /// <returns></returns>
-        public IndexBuffer GetIndexBuffer()
+        public IDrawCommand GetDrawCommand()
         {
-            if (this.indexBuffer == null)
+            if (this.drawCmd == null)
             {
-                ZeroIndexBuffer buffer = ZeroIndexBuffer.Create(this.Mode, this.FirstVertex, this.VertexCount, this.PrimCount);
-                this.indexBuffer = buffer;
+                var buffer = new DrawArraysCmd(this.Mode, this.FirstVertex, this.VertexCount, this.PrimCount);
+                this.drawCmd = buffer;
             }
 
-            return this.indexBuffer;
+            return this.drawCmd;
         }
 
-        private IndexBuffer indexBuffer;
+        private IDrawCommand drawCmd;
 
     }
 }

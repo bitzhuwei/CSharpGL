@@ -16,11 +16,6 @@
         ElementArrayBuffer = GL.GL_ELEMENT_ARRAY_BUFFER,
 
         /// <summary>
-        /// This buffer doesn't have (or need) a valid binding target.
-        /// </summary>
-        ZeroIndexArrayBuffer = 0,
-
-        /// <summary>
         ///
         /// </summary>
         UniformBuffer = GL.GL_UNIFORM_BUFFER,

@@ -94,7 +94,7 @@ namespace CSharpGL
         /// <param name="index"></param>
         /// <param name="controlMode">index buffer is accessable randomly or only by frame.</param>
         /// <param name="transformFeedbackObj"></param>
-        public void Render(int index, IndexBuffer.ControlMode controlMode, TransformFeedbackObject transformFeedbackObj = null)
+        public void Render(int index, ControlMode controlMode, TransformFeedbackObject transformFeedbackObj = null)
         {
             if (index < 0 || this.Methods.Length <= index) { throw new System.IndexOutOfRangeException(); }
 

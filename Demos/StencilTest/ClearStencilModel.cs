@@ -11,7 +11,7 @@ namespace StencilTest
     /// </summary>
     class ClearStencilModel : IBufferSource
     {
-        private IndexBuffer indexBuffer;
+        private IDrawCommand drawCmd;
 
         #region IBufferSource 成员
 
@@ -20,14 +20,14 @@ namespace StencilTest
             throw new Exception("vertex buffer is not needed.");
         }
 
-        public IndexBuffer GetIndexBuffer()
+        public IDrawCommand GetDrawCommand()
         {
-            if (this.indexBuffer == null)
+            if (this.drawCmd == null)
             {
-                this.indexBuffer = ZeroIndexBuffer.Create(DrawMode.Quads, 0, 4);
+                this.drawCmd = new DrawArraysCmd(DrawMode.Quads, 0, 4);
             }
 
-            return this.indexBuffer;
+            return this.drawCmd;
         }
 
         #endregion

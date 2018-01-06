@@ -571,6 +571,15 @@ namespace CSharpGL
         public abstract void DrawArrays(uint mode, int first, int count);
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="mode"></param>
+        /// <param name="first"></param>
+        /// <param name="count"></param>
+        /// <param name="drawcount"></param>
+        public abstract void MultiDrawArrays(uint mode, int[] first, int[] count, int drawcount);
+
+        /// <summary>
         /// Specify which color buffers are to be drawn into.
         /// </summary>
         /// <param name="mode">Specifies up to	four color buffers to be drawn into. Symbolic constants GL.NONE, GL.FRONT_LEFT, GL.FRONT_RIGHT,	GL.BACK_LEFT, GL.BACK_RIGHT, GL.FRONT, GL.BACK, GL.LEFT, GL.RIGHT, GL.FRONT_AND_BACK, and GL.AUXi, where i is between 0 and (GL.AUX_BUFFERS - 1), are accepted (GL.AUX_BUFFERS is not the upper limit{} use glGet to query the number of	available aux buffers.)  The initial value is GL.FRONT for single- buffered contexts, and GL.BACK for double-buffered contexts.</param>
@@ -590,9 +599,24 @@ namespace CSharpGL
         /// </summary>
         /// <param name="mode">Specifies what kind of primitives to	render. Symbolic constants GL.POINTS, GL.LINE_STRIP, GL.LINE_LOOP, GL.LINES, GL.TRIANGLE_STRIP, GL.TRIANGLE_FAN, GL.TRIANGLES, GL.QUAD_STRIP, GL.QUADS, and GL.POLYGON are accepted.</param>
         /// <param name="count">Specifies the number of elements to be rendered.</param>
-        /// <param name="type"></param>
         /// <param name="indices">Specifies a pointer to the location where the indices are stored.</param>
-        public abstract void DrawElements(uint mode, int count, uint type, uint[] indices);
+        public abstract void DrawElements(uint mode, int count, uint[] indices);
+
+        /// <summary>
+        /// Render primitives from array data.
+        /// </summary>
+        /// <param name="mode">Specifies what kind of primitives to	render. Symbolic constants GL.POINTS, GL.LINE_STRIP, GL.LINE_LOOP, GL.LINES, GL.TRIANGLE_STRIP, GL.TRIANGLE_FAN, GL.TRIANGLES, GL.QUAD_STRIP, GL.QUADS, and GL.POLYGON are accepted.</param>
+        /// <param name="count">Specifies the number of elements to be rendered.</param>
+        /// <param name="indices">Specifies a pointer to the location where the indices are stored.</param>
+        public abstract void DrawElements(uint mode, int count, ushort[] indices);
+
+        /// <summary>
+        /// Render primitives from array data.
+        /// </summary>
+        /// <param name="mode">Specifies what kind of primitives to	render. Symbolic constants GL.POINTS, GL.LINE_STRIP, GL.LINE_LOOP, GL.LINES, GL.TRIANGLE_STRIP, GL.TRIANGLE_FAN, GL.TRIANGLES, GL.QUAD_STRIP, GL.QUADS, and GL.POLYGON are accepted.</param>
+        /// <param name="count">Specifies the number of elements to be rendered.</param>
+        /// <param name="indices">Specifies a pointer to the location where the indices are stored.</param>
+        public abstract void DrawElements(uint mode, int count, byte[] indices);
 
         /// <summary>
         /// Draws a rectangle of pixel data at the current raster position.

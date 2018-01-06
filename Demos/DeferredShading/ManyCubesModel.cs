@@ -22,7 +22,7 @@ namespace DeferredShading
         public const string strColor = "color";
         private VertexBuffer colorBuffer;
 
-        private IndexBuffer indexBuffer;
+        private IDrawCommand drawCmd;
 
         private int lengthX;
         private int lengthY;
@@ -105,15 +105,16 @@ namespace DeferredShading
             return result;
         }
 
-        public IndexBuffer GetIndexBuffer()
+        public IDrawCommand GetDrawCommand()
         {
-            if (this.indexBuffer == null)
+            if (this.drawCmd == null)
             {
                 SingleCubeIndex[] indexes = GetIndexes(lengthX, lengthY, lengthZ);
-                this.indexBuffer = indexes.GenIndexBuffer(IndexBufferElementType.UInt, DrawMode.QuadStrip, BufferUsage.StaticDraw);
+                var buffer = indexes.GenIndexBuffer(IndexBufferElementType.UInt, BufferUsage.StaticDraw);
+                this.drawCmd = new DrawElementsCmd(buffer, DrawMode.QuadStrip);
             }
 
-            return this.indexBuffer;
+            return this.drawCmd;
         }
 
         private SingleCubeIndex[] GetIndexes(int lengthX, int lengthY, int lengthZ)

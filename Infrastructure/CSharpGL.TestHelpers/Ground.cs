@@ -105,7 +105,7 @@ namespace CSharpGL
         private VertexBuffer positionBuffer;
         private VertexBuffer colorBuffer;
 
-        private IndexBuffer indexBuffer;
+        private IDrawCommand drawCmd;
 
         /// <summary>
         ///
@@ -167,16 +167,15 @@ namespace CSharpGL
         ///
         /// </summary>
         /// <returns></returns>
-        public IndexBuffer GetIndexBuffer()
+        public IDrawCommand GetDrawCommand()
         {
-            if (this.indexBuffer == null)
+            if (this.drawCmd == null)
             {
                 int vertexCount = positions.Length;
-                ZeroIndexBuffer buffer = ZeroIndexBuffer.Create(DrawMode.Lines, 0, vertexCount);
-                this.indexBuffer = buffer;
+                this.drawCmd = new DrawArraysCmd(DrawMode.Lines, 0, vertexCount);
             }
 
-            return this.indexBuffer;
+            return this.drawCmd;
         }
 
     }

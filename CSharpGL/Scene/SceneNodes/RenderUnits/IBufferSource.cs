@@ -15,11 +15,9 @@
         VertexBuffer GetVertexAttributeBuffer(string bufferName);
 
         /// <summary>
-        /// 获取描述索引的<see cref="GLBuffer"/>。
-        /// 应为<see cref="ZeroIndexBuffer"/>或<see cref="OneIndexBuffer"/>。
         /// </summary>
         /// <returns></returns>
-        IndexBuffer GetIndexBuffer();
+        IDrawCommand GetDrawCommand();
 
     }
 }

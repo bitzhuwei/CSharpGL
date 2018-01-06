@@ -34,8 +34,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// Creates a <see cref="ZeroIndexBuffer"/> object directly in server side(GPU) without initializing its value.
-        /// <para><see cref="ZeroIndexBuffer"/> is not a real buffer like <see cref="OneIndexBuffer"/>.</para>
+        /// Creates a <see cref="DrawArraysCmd"/> object.
         /// </summary>
         /// <param name="mode"></param>
         /// <param name="firstVertex"></param>
@@ -43,22 +42,21 @@ namespace CSharpGL
         /// <param name="primCount"></param>
         /// <param name="frameCount"></param>
         /// <returns></returns>
-        public static ZeroIndexBuffer Create(DrawMode mode, int firstVertex, int vertexCount, int primCount = 1, int frameCount = 1)
+        public static DrawArraysCmd Create(DrawMode mode, int firstVertex, int vertexCount, int primCount = 1, int frameCount = 1)
         {
-            ZeroIndexBuffer buffer = new ZeroIndexBuffer(mode, firstVertex, vertexCount, primCount, frameCount);
+            DrawArraysCmd buffer = new DrawArraysCmd(mode, firstVertex, vertexCount, primCount, frameCount);
 
             return buffer;
         }
 
         /// <summary>
-        /// Creates a <see cref="OneIndexBuffer"/> object directly in server side(GPU) without initializing its value.
+        /// Creates a <see cref="DrawElementsCmd"/> object directly in server side(GPU) without initializing its value.
         /// </summary>
         /// <param name="type"></param>
         /// <param name="length">How many indexes are there?(How many uint/ushort/bytes?)</param>
-        /// <param name="mode"></param>
         /// <param name="usage"></param>
         /// <returns></returns>
-        public static OneIndexBuffer Create(IndexBufferElementType type, int length, DrawMode mode, BufferUsage usage)
+        public static IndexBuffer Create(IndexBufferElementType type, int length, BufferUsage usage)
         {
             int byteLength = type.GetSize() * length;
             uint[] buffers = new uint[1];
@@ -70,8 +68,8 @@ namespace CSharpGL
                 glBindBuffer(target, 0);
             }
 
-            var buffer = new OneIndexBuffer(
-                 buffers[0], mode, type, length, byteLength);
+            var buffer = new IndexBuffer(
+                 buffers[0], type, length, byteLength);
 
             return buffer;
         }

@@ -25,7 +25,7 @@ namespace CSharpGL
         public const string uv = "uv";
         private VertexBuffer uvBuffer;
 
-        private IndexBuffer indexBuffer;
+        private IDrawCommand drawCmd;
 
         #region IBufferSource 成员
 
@@ -64,14 +64,14 @@ namespace CSharpGL
         /// 
         /// </summary>
         /// <returns></returns>
-        public IndexBuffer GetIndexBuffer()
+        public IDrawCommand GetDrawCommand()
         {
-            if (this.indexBuffer == null)
+            if (this.drawCmd == null)
             {
-                this.indexBuffer = ZeroIndexBuffer.Create(DrawMode.Quads, 0, positions.Length);
+                this.drawCmd = new DrawArraysCmd(DrawMode.Quads, 0, positions.Length);
             }
 
-            return this.indexBuffer;
+            return this.drawCmd;
         }
 
         #endregion

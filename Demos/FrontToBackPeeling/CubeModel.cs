@@ -15,7 +15,7 @@ namespace FrontToBackPeeling
         public const string positions = "positions";
         private VertexBuffer positionBuffer;
 
-        private IndexBuffer indexBuffer;
+        private IDrawCommand drawCmd;
 
         #region IBufferSource 成员
 
@@ -36,14 +36,15 @@ namespace FrontToBackPeeling
             }
         }
 
-        public IndexBuffer GetIndexBuffer()
+        public IDrawCommand GetDrawCommand()
         {
-            if (this.indexBuffer == null)
+            if (this.drawCmd == null)
             {
-                this.indexBuffer = cubeIndices.GenIndexBuffer(DrawMode.Triangles, BufferUsage.StaticDraw);
+                IndexBuffer buffer = cubeIndices.GenIndexBuffer(BufferUsage.StaticDraw);
+                this.drawCmd = new DrawElementsCmd(buffer, DrawMode.Triangles);
             }
 
-            return this.indexBuffer;
+            return this.drawCmd;
         }
 
         #endregion

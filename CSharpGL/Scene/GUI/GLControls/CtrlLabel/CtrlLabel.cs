@@ -59,7 +59,7 @@ namespace CSharpGL
 
             this.positionBuffer = this.labelModel.GetVertexAttributeBuffer(GlyphsModel.position);
             this.strBuffer = this.labelModel.GetVertexAttributeBuffer(GlyphsModel.STR);
-            this.indexBuffer = this.labelModel.GetIndexBuffer() as ZeroIndexBuffer;
+            this.drawCmd = this.labelModel.GetDrawCommand() as DrawArraysCmd;
 
             GlyphServer server = GlyphServer.DefaultServer;
             Texture texture = server.GlyphTexture;
@@ -77,7 +77,7 @@ namespace CSharpGL
 
             ModernRenderUnit unit = this.RenderUnit;
             RenderMethod method = unit.Methods[0];
-            method.Render(IndexBuffer.ControlMode.Random);
+            method.Render(ControlMode.Random);
         }
     }
 }

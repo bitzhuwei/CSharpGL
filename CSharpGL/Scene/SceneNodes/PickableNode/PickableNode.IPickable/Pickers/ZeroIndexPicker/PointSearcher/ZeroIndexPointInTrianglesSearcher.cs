@@ -14,7 +14,7 @@ namespace CSharpGL
         internal override uint Search(PickingEventArgs arg, uint lastVertexId, ZeroIndexPicker picker)
         {
             // 创建临时索引
-            OneIndexBuffer buffer = GLBuffer.Create(IndexBufferElementType.UInt, 3, DrawMode.Points, BufferUsage.StaticDraw);
+            IndexBuffer buffer = GLBuffer.Create(IndexBufferElementType.UInt, 3, BufferUsage.StaticDraw);
             unsafe
             {
                 var array = (uint*)buffer.MapBuffer(MapBufferAccess.WriteOnly);
@@ -23,8 +23,9 @@ namespace CSharpGL
                 array[2] = lastVertexId - 2;
                 buffer.UnmapBuffer();
             }
+            var cmd = new DrawElementsCmd(buffer, DrawMode.Points);
             // 用临时索引渲染此三角形图元（仅渲染此三角形图元）
-            picker.Node.Render4InnerPicking(arg, buffer);
+            picker.Node.Render4InnerPicking(arg, cmd);
             // id是拾取到的Line的Last Vertex Id
             uint id = ColorCodedPicking.ReadStageVertexId(arg.X, arg.Y);
 

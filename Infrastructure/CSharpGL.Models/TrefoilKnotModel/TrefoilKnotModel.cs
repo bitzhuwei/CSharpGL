@@ -48,7 +48,7 @@ namespace CSharpGL
         public const string strTexCoord = "texCoord";
         private VertexBuffer colorBuffer;
 
-        private IndexBuffer indexBuffer = null;
+        private IDrawCommand drawCmd = null;
 
         /// <summary>
         /// 获取指定的顶点属性缓存。
@@ -157,16 +157,16 @@ namespace CSharpGL
             return new vec3((float)x, (float)y, (float)z);
         }
 
-        public IndexBuffer GetIndexBuffer()
+        public IDrawCommand GetDrawCommand()
         {
-            if (this.indexBuffer == null)
+            if (this.drawCmd == null)
             {
                 int uCount = GetUCount(interval);
-                ZeroIndexBuffer buffer = ZeroIndexBuffer.Create(DrawMode.Points, 0, uCount);
-                this.indexBuffer = buffer;
+                DrawArraysCmd buffer = new DrawArraysCmd(DrawMode.Points, 0, uCount);
+                this.drawCmd = buffer;
             }
 
-            return this.indexBuffer;
+            return this.drawCmd;
         }
     }
 }

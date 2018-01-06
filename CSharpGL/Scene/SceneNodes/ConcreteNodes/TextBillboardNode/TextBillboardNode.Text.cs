@@ -11,7 +11,7 @@ namespace CSharpGL
         private GlyphsModel textModel;
         private VertexBuffer positionBuffer;
         private VertexBuffer strBuffer;
-        private ZeroIndexBuffer indexBuffer;
+        private DrawArraysCmd drawCmd;
 
         /// <summary>
         /// 
@@ -52,7 +52,7 @@ namespace CSharpGL
             PositionPass(text, server, out totalWidth, out totalHeight);
             UVPass(text, server);
 
-            this.indexBuffer.RenderingVertexCount = text.Length * 4; // each alphabet needs 4 vertexes.
+            this.drawCmd.RenderingVertexCount = text.Length * 4; // each alphabet needs 4 vertexes.
 
             this.widthByHeight = totalWidth / totalHeight;
             this.heightByWidth = totalHeight / totalWidth;

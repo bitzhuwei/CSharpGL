@@ -7,14 +7,13 @@ namespace CSharpGL
     {
 
         /// <summary>
-        /// Creates a <see cref="OneIndexBuffer"/> object directly in server side(GPU) without initializing its value.
+        /// Creates a <see cref="DrawElementsCmd"/> object directly in server side(GPU) without initializing its value.
         /// </summary>
         /// <param name="array"></param>
         /// <param name="type"></param>
-        /// <param name="mode"></param>
         /// <param name="usage"></param>
         /// <returns></returns>
-        public static OneIndexBuffer GenIndexBuffer<T>(this T[] array, IndexBufferElementType type, DrawMode mode, BufferUsage usage) where T : struct
+        public static IndexBuffer GenIndexBuffer<T>(this T[] array, IndexBufferElementType type, BufferUsage usage) where T : struct
         {
             GCHandle pinned = GCHandle.Alloc(array, GCHandleType.Pinned);
             IntPtr header = pinned.AddrOfPinnedObject();
@@ -31,8 +30,8 @@ namespace CSharpGL
             }
             pinned.Free();
 
-            var buffer = new OneIndexBuffer(
-                 buffers[0], mode, type, byteLength / type.GetSize(), byteLength);
+            var buffer = new IndexBuffer(
+                 buffers[0], type, byteLength / type.GetSize(), byteLength);
 
             return buffer;
         }
@@ -42,13 +41,11 @@ namespace CSharpGL
         /// Generates a Vertex Buffer Object storing vertexes' indexes, which indicate the rendering order of each vertex.
         /// </summary>
         /// <param name="array"></param>
-        /// <param name="mode">用哪种方式渲染各个顶点？（GL.GL_TRIANGLES etc.）</param>
         /// <param name="usage"></param>
-        /// <param name="primCount">primCount in instanced rendering.</param>
         /// <returns></returns>
-        public static OneIndexBuffer GenIndexBuffer(this byte[] array, DrawMode mode, BufferUsage usage, int primCount = 1)
+        public static IndexBuffer GenIndexBuffer(this byte[] array, BufferUsage usage)
         {
-            return GenIndexBuffer<byte>(array, mode, usage, primCount);
+            return GenIndexBuffer<byte>(array, usage);
         }
 
         /// <summary>
@@ -56,13 +53,11 @@ namespace CSharpGL
         /// Generates a Vertex Buffer Object storing vertexes' indexes, which indicate the rendering order of each vertex.
         /// </summary>
         /// <param name="array"></param>
-        /// <param name="mode">用哪种方式渲染各个顶点？（GL.GL_TRIANGLES etc.）</param>
         /// <param name="usage"></param>
-        /// <param name="primCount">primCount in instanced rendering.</param>
         /// <returns></returns>
-        public static OneIndexBuffer GenIndexBuffer(this ushort[] array, DrawMode mode, BufferUsage usage, int primCount = 1)
+        public static IndexBuffer GenIndexBuffer(this ushort[] array, BufferUsage usage)
         {
-            return GenIndexBuffer<ushort>(array, mode, usage, primCount);
+            return GenIndexBuffer<ushort>(array, usage);
         }
 
         /// <summary>
@@ -70,13 +65,11 @@ namespace CSharpGL
         /// Generates a Vertex Buffer Object storing vertexes' indexes, which indicate the rendering order of each vertex.
         /// </summary>
         /// <param name="array"></param>
-        /// <param name="mode">用哪种方式渲染各个顶点？（GL.GL_TRIANGLES etc.）</param>
         /// <param name="usage"></param>
-        /// <param name="primCount">primCount in instanced rendering.</param>
         /// <returns></returns>
-        public static OneIndexBuffer GenIndexBuffer(this uint[] array, DrawMode mode, BufferUsage usage, int primCount = 1)
+        public static IndexBuffer GenIndexBuffer(this uint[] array, BufferUsage usage)
         {
-            return GenIndexBuffer<uint>(array, mode, usage, primCount);
+            return GenIndexBuffer<uint>(array, usage);
         }
 
         /// <summary>
@@ -84,11 +77,9 @@ namespace CSharpGL
         /// Generates a Vertex Buffer Object storing vertexes' indexes, which indicate the rendering order of each vertex.
         /// </summary>
         /// <param name="array"></param>
-        /// <param name="mode">用哪种方式渲染各个顶点？（GL.GL_TRIANGLES etc.）</param>
         /// <param name="usage"></param>
-        /// <param name="primCount">primCount in instanced rendering.</param>
         /// <returns></returns>
-        private static OneIndexBuffer GenIndexBuffer<T>(this T[] array, DrawMode mode, BufferUsage usage, int primCount = 1) where T : struct
+        private static IndexBuffer GenIndexBuffer<T>(this T[] array, BufferUsage usage) where T : struct
         {
             IndexBufferElementType elementType;
             if (typeof(T) == typeof(uint)) { elementType = IndexBufferElementType.UInt; }
@@ -110,7 +101,7 @@ namespace CSharpGL
             }
             pinned.Free();
 
-            var buffer = new OneIndexBuffer(buffers[0], mode, elementType, unmanagedArray.Length, unmanagedArray.ByteLength, primCount);
+            var buffer = new IndexBuffer(buffers[0], elementType, unmanagedArray.Length, unmanagedArray.ByteLength);
 
 
             return buffer;

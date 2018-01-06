@@ -20,7 +20,7 @@ namespace CSharpGL
         public const string strPosition = "position";
         private VertexBuffer positionBuffer;
 
-        private IndexBuffer indexBuffer;
+        private IDrawCommand drawCmd;
 
         #region IBufferable 成员
 
@@ -39,14 +39,14 @@ namespace CSharpGL
             throw new NotImplementedException();
         }
 
-        public IndexBuffer GetIndexBuffer()
+        public IDrawCommand GetDrawCommand()
         {
-            if (this.indexBuffer == null)
+            if (this.drawCmd == null)
             {
-                this.indexBuffer = ZeroIndexBuffer.Create(DrawMode.TriangleStrip, 0, positions.Length);
+                this.drawCmd = new DrawArraysCmd(DrawMode.TriangleStrip, 0, positions.Length);
             }
 
-            return this.indexBuffer;
+            return this.drawCmd;
         }
 
         #endregion

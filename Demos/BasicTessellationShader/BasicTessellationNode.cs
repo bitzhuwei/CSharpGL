@@ -86,8 +86,8 @@ namespace BasicTessellationShader
             {
                 RenderMethod method = this.RenderUnit.Methods[0];
                 VertexArrayObject vao = method.VertexArrayObject;
-                IndexBuffer indexBuffer = vao.IndexBuffer;
-                indexBuffer.Mode = DrawMode.Patches;
+                IDrawCommand cmd = vao.DrawCommand;
+                cmd.Mode = DrawMode.Patches;
 
                 var polygonModeState = new PolygonModeState(CSharpGL.PolygonMode.Fill);
                 method.StateList.Add(polygonModeState);

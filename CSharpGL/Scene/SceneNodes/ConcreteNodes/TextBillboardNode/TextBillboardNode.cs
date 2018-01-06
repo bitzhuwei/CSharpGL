@@ -71,7 +71,7 @@ namespace CSharpGL
 
             this.positionBuffer = this.textModel.GetVertexAttributeBuffer(GlyphsModel.position);
             this.strBuffer = this.textModel.GetVertexAttributeBuffer(GlyphsModel.STR);
-            this.indexBuffer = this.textModel.GetIndexBuffer() as ZeroIndexBuffer;
+            this.drawCmd = this.textModel.GetDrawCommand() as DrawArraysCmd;
 
             GlyphServer server = this.glyphServer;
             Texture texture = server.GlyphTexture;
@@ -105,7 +105,7 @@ namespace CSharpGL
             program.SetUniform(modelMatrix, model);
             program.SetUniform(screenSize, new ivec2(viewport[2], viewport[3]));
 
-            method.Render(IndexBuffer.ControlMode.Random);
+            method.Render(ControlMode.Random);
         }
 
         /// <summary>

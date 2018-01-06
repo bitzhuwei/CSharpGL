@@ -16,7 +16,7 @@ namespace ComputeShader.HelloComputeShader
 
         public const string strPosition = "position";
         private VertexBuffer positionBuffer = null;
-        private IndexBuffer indexBuffer;
+        private IDrawCommand drawCmd;
 
         public VertexBuffer GetVertexAttributeBuffer(string bufferName)
         {
@@ -47,14 +47,14 @@ namespace ComputeShader.HelloComputeShader
             }
         }
 
-        public IndexBuffer GetIndexBuffer()
+        public IDrawCommand GetDrawCommand()
         {
-            if (indexBuffer == null)
+            if (drawCmd == null)
             {
-                indexBuffer = ZeroIndexBuffer.Create(DrawMode.TriangleFan, 0, vertsData.Length);
+                drawCmd = new DrawArraysCmd(DrawMode.TriangleFan, 0, vertsData.Length);
             }
 
-            return indexBuffer;
+            return drawCmd;
         }
     }
 }

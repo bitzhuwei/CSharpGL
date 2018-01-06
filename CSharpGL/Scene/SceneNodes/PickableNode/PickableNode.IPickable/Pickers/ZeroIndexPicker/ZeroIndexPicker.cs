@@ -6,12 +6,12 @@ using System.Text;
 namespace CSharpGL
 {
     /// <summary>
-    /// Get picked geometry from a <see cref="PickableNode"/> with <see cref="ZeroIndexBuffer"/> as index buffer.
+    /// Get picked geometry from a <see cref="PickableNode"/> with <see cref="DrawArraysCmd"/> as index buffer.
     /// </summary>
     partial class ZeroIndexPicker : PickerBase
     {
         /// <summary>
-        /// Get picked geometry from a <see cref="PickableNode"/> with <see cref="ZeroIndexBuffer"/> as index buffer.
+        /// Get picked geometry from a <see cref="PickableNode"/> with <see cref="DrawArraysCmd"/> as index buffer.
         /// </summary>
         /// <param name="node"></param>
         public ZeroIndexPicker(PickableNode node) : base(node) { }
@@ -32,7 +32,7 @@ namespace CSharpGL
 
             if ((pickingType & PickingGeometryTypes.Point) == PickingGeometryTypes.Point)
             {
-                DrawMode mode = this.Node.PickingRenderUnit.VertexArrayObject.IndexBuffer.Mode;
+                DrawMode mode = this.Node.PickingRenderUnit.VertexArrayObject.DrawCommand.Mode;
                 GeometryType typeOfMode = mode.ToGeometryType();
                 if (typeOfMode == GeometryType.Point)
                 { return PickWhateverItIs(arg, stageVertexId, lastVertexId, mode, typeOfMode); }
@@ -54,7 +54,7 @@ namespace CSharpGL
             }
             else if ((pickingType & PickingGeometryTypes.Line) == PickingGeometryTypes.Line)
             {
-                DrawMode mode = this.Node.PickingRenderUnit.VertexArrayObject.IndexBuffer.Mode;
+                DrawMode mode = this.Node.PickingRenderUnit.VertexArrayObject.DrawCommand.Mode;
                 GeometryType typeOfMode = mode.ToGeometryType();
                 if (pickingType.Contains(typeOfMode))
                 { return PickWhateverItIs(arg, stageVertexId, lastVertexId, mode, typeOfMode); }
@@ -71,7 +71,7 @@ namespace CSharpGL
             }
             else
             {
-                DrawMode mode = this.Node.PickingRenderUnit.VertexArrayObject.IndexBuffer.Mode;
+                DrawMode mode = this.Node.PickingRenderUnit.VertexArrayObject.DrawCommand.Mode;
                 GeometryType typeOfMode = mode.ToGeometryType();
                 if (pickingType.Contains(typeOfMode)) // I want what it is
                 { return PickWhateverItIs(arg, stageVertexId, lastVertexId, mode, typeOfMode); }
@@ -211,10 +211,10 @@ namespace CSharpGL
         private bool OnPrimitiveTest(uint lastVertexId, DrawMode mode)
         {
             bool result = false;
-            var indexBuffer = this.Node.PickingRenderUnit.VertexArrayObject.IndexBuffer as ZeroIndexBuffer;
-            int first = indexBuffer.FirstVertex;
+            var drawCmd = this.Node.PickingRenderUnit.VertexArrayObject.DrawCommand as DrawArraysCmd;
+            int first = drawCmd.FirstVertex;
             if (first < 0) { return false; }
-            int vertexCount = indexBuffer.RenderingVertexCount;
+            int vertexCount = drawCmd.RenderingVertexCount;
             if (vertexCount <= 0) { return false; }
             int last = first + vertexCount - 1;
             switch (mode)

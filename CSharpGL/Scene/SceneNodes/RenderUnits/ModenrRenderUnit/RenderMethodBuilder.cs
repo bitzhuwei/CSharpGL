@@ -59,19 +59,19 @@ namespace CSharpGL
                 vertexAttributeBuffers = list.ToArray();
             }
 
-            // init index buffer.
-            IndexBuffer indexBuffer = model.GetIndexBuffer();
+            // init draw command.
+            IDrawCommand cmd = model.GetDrawCommand();
 
             // init VAO.
-            var vertexArrayObject = new VertexArrayObject(indexBuffer, program, vertexAttributeBuffers);
+            var vertexArrayObject = new VertexArrayObject(cmd, program, vertexAttributeBuffers);
 
             var result = new RenderMethod(program, vertexArrayObject, this.states);
 
             // RULE: Renderer takes uint.MaxValue, ushort.MaxValue or byte.MaxValue as PrimitiveRestartIndex. So take care of this rule when designing a model's index buffer.
-            var ptr = indexBuffer as OneIndexBuffer;
+            var ptr = cmd as DrawElementsCmd;
             if (ptr != null)
             {
-                GLState glState = new PrimitiveRestartState(ptr.ElementType);
+                GLState glState = new PrimitiveRestartState(ptr.IndexBufferObject.ElementType);
                 result.StateList.Add(glState);
             }
 

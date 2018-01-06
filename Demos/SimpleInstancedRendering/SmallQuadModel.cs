@@ -13,7 +13,7 @@ namespace SimpleInstancedRendering
         public const string strColor = "color";
         private VertexBuffer colorBuffer;
 
-        private IndexBuffer indexBuffer;
+        private IDrawCommand drawCmd;
 
         private const float scale = 0.05f;
         private static readonly vec2[] positions = new vec2[] { new vec2(-1, 1) * scale, new vec2(1, -1) * scale, new vec2(-1, -1) * scale, new vec2(-1, 1) * scale, new vec2(1, -1) * scale, new vec2(1, 1) * scale };
@@ -47,15 +47,15 @@ namespace SimpleInstancedRendering
             }
         }
 
-        public IndexBuffer GetIndexBuffer()
+        public IDrawCommand GetDrawCommand()
         {
-            if (this.indexBuffer == null)
+            if (this.drawCmd == null)
             {
-                int primCount = 100;// render 100 instances.
-                this.indexBuffer = ZeroIndexBuffer.Create(DrawMode.Triangles, 0, 6, primCount);
+                int instanceCount = 100;// render 100 instances.
+                this.drawCmd = new DrawArraysCmd(DrawMode.Triangles, 0, 6, instanceCount);
             }
 
-            return this.indexBuffer;
+            return this.drawCmd;
         }
 
         #endregion
