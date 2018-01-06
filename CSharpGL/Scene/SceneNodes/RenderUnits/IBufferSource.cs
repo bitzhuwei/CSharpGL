@@ -9,7 +9,8 @@ namespace CSharpGL
     public interface IBufferSource
     {
         /// <summary>
-        /// 获取顶点某种属性的<see cref="VertexBuffer"/>。
+        /// Gets vertex buffer of some vertex attribute specified with <paramref name="bufferName"/>.
+        /// <para>The vertex buffer is sliced into blocks of same size(except the last one when the remainder is not 0.) I recommend 1024*1024*4 as block size, which is the block size in OVITO.</para>
         /// </summary>
         /// <param name="bufferName">CPU代码指定的buffer名字，用以区分各个用途的buffer。</param>
         /// <returns></returns>
