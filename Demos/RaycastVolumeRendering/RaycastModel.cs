@@ -128,7 +128,7 @@ namespace RaycastVolumeRendering
             if (drawCmd == null)
             {
                 //int length = indices.Length;
-                //OneIndexBuffer buffer = CSharpGL.Buffer.Create(IndexElementType.UInt, length, DrawMode.Triangles, BufferUsage.StaticDraw);
+                //IndexBuffer buffer = CSharpGL.Buffer.Create(IndexElementType.UInt, length, BufferUsage.StaticDraw);
                 //unsafe
                 //{
                 //    IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
@@ -139,8 +139,8 @@ namespace RaycastVolumeRendering
                 //    }
                 //    buffer.UnmapBuffer();
                 //}
-                //this.drawCmd = buffer;
-                this.drawCmd = indices.GenIndexBuffer(DrawMode.Triangles, BufferUsage.StaticDraw);
+                IndexBuffer buffer = indices.GenIndexBuffer(BufferUsage.StaticDraw);
+                this.drawCmd = new DrawElementsCmd(buffer, DrawMode.Triangles);
             }
 
             return drawCmd;

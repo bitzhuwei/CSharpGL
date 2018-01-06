@@ -87,23 +87,23 @@ namespace CSharpGL
         private PrimitiveRestartState GetPrimitiveRestartState(DrawElementsCmd drawCmd)
         {
             PrimitiveRestartState result = null;
-            switch (drawCmd.ElementType)
+            switch (drawCmd.IndexBufferObject.ElementType)
             {
                 case IndexBufferElementType.UByte:
                     if (this.ubyteRestartIndexState == null)
-                    { this.ubyteRestartIndexState = new PrimitiveRestartState(drawCmd.ElementType); }
+                    { this.ubyteRestartIndexState = new PrimitiveRestartState(drawCmd.IndexBufferObject.ElementType); }
                     result = this.ubyteRestartIndexState;
                     break;
 
                 case IndexBufferElementType.UShort:
                     if (this.ushortRestartIndexState == null)
-                    { this.ushortRestartIndexState = new PrimitiveRestartState(drawCmd.ElementType); }
+                    { this.ushortRestartIndexState = new PrimitiveRestartState(drawCmd.IndexBufferObject.ElementType); }
                     result = this.ushortRestartIndexState;
                     break;
 
                 case IndexBufferElementType.UInt:
                     if (this.uintRestartIndexState == null)
-                    { this.uintRestartIndexState = new PrimitiveRestartState(drawCmd.ElementType); }
+                    { this.uintRestartIndexState = new PrimitiveRestartState(drawCmd.IndexBufferObject.ElementType); }
                     result = this.uintRestartIndexState;
                     break;
 

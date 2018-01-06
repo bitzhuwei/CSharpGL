@@ -110,7 +110,8 @@ namespace DeferredShading
             if (this.drawCmd == null)
             {
                 SingleCubeIndex[] indexes = GetIndexes(lengthX, lengthY, lengthZ);
-                this.drawCmd = indexes.GenIndexBuffer(IndexBufferElementType.UInt, DrawMode.QuadStrip, BufferUsage.StaticDraw);
+                var buffer = indexes.GenIndexBuffer(IndexBufferElementType.UInt, BufferUsage.StaticDraw);
+                this.drawCmd = new DrawElementsCmd(buffer, DrawMode.QuadStrip);
             }
 
             return this.drawCmd;

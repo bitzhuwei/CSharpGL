@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Drawing.Design;
 
 namespace CSharpGL
 {
@@ -7,6 +8,7 @@ namespace CSharpGL
     /// <summary>
     /// Wraps glDrawArrays(uint mode, int first, int count).
     /// </summary>
+    [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
     public sealed partial class DrawArraysCmd : IDrawCommand
     {
         /// <summary>
@@ -183,6 +185,13 @@ namespace CSharpGL
             return builder.ToString();
         }
 
+        /// <summary>
+        /// void glDrawArraysInstanced(GLenum mode​, GLint first​, GLsizei count​, GLsizei primcount​);
+        /// <para>mode: Specifies what kind of primitives to render. Symbolic constants GL_POINTS, GL_LINE_STRIP, GL_LINE_LOOP, GL_LINES, GL_TRIANGLE_STRIP, GL_TRIANGLE_FAN, GL_TRIANGLES, GL_LINES_ADJACENCY, GL_LINE_STRIP_ADJACENCY, GL_TRIANGLES_ADJACENCY, GL_TRIANGLE_STRIP_ADJACENCY and GL_PATCHES are accepted.</para>
+        /// <para>first: Specifies the starting index in the enabled arrays.</para>
+        /// <para>count: Specifies the number of indices to be rendered.</para>
+        /// <para>primcount: Specifies the number of instances of the specified range of indices to be rendered.</para>
+        /// </summary>
         internal static readonly GLDelegates.void_uint_int_int_int glDrawArraysInstanced;
 
         static DrawArraysCmd()

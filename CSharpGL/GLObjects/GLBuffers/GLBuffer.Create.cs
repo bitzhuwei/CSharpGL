@@ -54,10 +54,9 @@ namespace CSharpGL
         /// </summary>
         /// <param name="type"></param>
         /// <param name="length">How many indexes are there?(How many uint/ushort/bytes?)</param>
-        /// <param name="mode"></param>
         /// <param name="usage"></param>
         /// <returns></returns>
-        public static DrawElementsCmd Create(IndexBufferElementType type, int length, DrawMode mode, BufferUsage usage)
+        public static IndexBuffer Create(IndexBufferElementType type, int length, BufferUsage usage)
         {
             int byteLength = type.GetSize() * length;
             uint[] buffers = new uint[1];
@@ -69,8 +68,8 @@ namespace CSharpGL
                 glBindBuffer(target, 0);
             }
 
-            var buffer = new DrawElementsCmd(
-                 buffers[0], mode, type, length, byteLength);
+            var buffer = new IndexBuffer(
+                 buffers[0], type, length, byteLength);
 
             return buffer;
         }

@@ -161,7 +161,7 @@ namespace CSharpGL
                 int length = model.indexes.Length;
                 if (model.positions.Length < byte.MaxValue)
                 {
-                    DrawElementsCmd buffer = GLBuffer.Create(IndexBufferElementType.UByte, length, DrawMode.TriangleStrip, BufferUsage.StaticDraw);
+                    IndexBuffer buffer = GLBuffer.Create(IndexBufferElementType.UByte, length, BufferUsage.StaticDraw);
                     unsafe
                     {
                         IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
@@ -175,11 +175,11 @@ namespace CSharpGL
                         }
                         buffer.UnmapBuffer();
                     }
-                    this.drawCmd = buffer;
+                    this.drawCmd = new DrawElementsCmd(buffer, DrawMode.TriangleStrip);
                 }
                 else if (model.positions.Length < ushort.MaxValue)
                 {
-                    DrawElementsCmd buffer = GLBuffer.Create(IndexBufferElementType.UShort, length, DrawMode.TriangleStrip, BufferUsage.StaticDraw);
+                    IndexBuffer buffer = GLBuffer.Create(IndexBufferElementType.UShort, length, BufferUsage.StaticDraw);
                     unsafe
                     {
                         IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
@@ -193,11 +193,11 @@ namespace CSharpGL
                         }
                         buffer.UnmapBuffer();
                     }
-                    this.drawCmd = buffer;
+                    this.drawCmd = new DrawElementsCmd(buffer, DrawMode.TriangleStrip);
                 }
                 else
                 {
-                    DrawElementsCmd buffer = GLBuffer.Create(IndexBufferElementType.UInt, length, DrawMode.TriangleStrip, BufferUsage.StaticDraw);
+                    IndexBuffer buffer = GLBuffer.Create(IndexBufferElementType.UInt, length, BufferUsage.StaticDraw);
                     unsafe
                     {
                         IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
@@ -208,7 +208,7 @@ namespace CSharpGL
                         }
                         buffer.UnmapBuffer();
                     }
-                    this.drawCmd = buffer;
+                    this.drawCmd = new DrawElementsCmd(buffer, DrawMode.TriangleStrip);
                 }
             }
 

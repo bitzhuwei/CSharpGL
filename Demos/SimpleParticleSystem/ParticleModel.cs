@@ -45,7 +45,8 @@ namespace SimpleParticleSystem
         {
             if (this.drawCmd == null)
             {
-                this.drawCmd = this.indices.GenIndexBuffer(DrawMode.TriangleStrip, BufferUsage.StaticDraw);
+                IndexBuffer buffer = this.indices.GenIndexBuffer(BufferUsage.StaticDraw);
+                this.drawCmd = new DrawElementsCmd(buffer, DrawMode.TriangleStrip);
             }
 
             return this.drawCmd;

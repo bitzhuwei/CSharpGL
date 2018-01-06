@@ -40,7 +40,8 @@ namespace FrontToBackPeeling
         {
             if (this.drawCmd == null)
             {
-                this.drawCmd = quadIndices.GenIndexBuffer(DrawMode.Triangles, BufferUsage.StaticDraw);
+                IndexBuffer buffer = quadIndices.GenIndexBuffer(BufferUsage.StaticDraw);
+                this.drawCmd = new DrawElementsCmd(buffer, DrawMode.Triangles);
             }
 
             return this.drawCmd;

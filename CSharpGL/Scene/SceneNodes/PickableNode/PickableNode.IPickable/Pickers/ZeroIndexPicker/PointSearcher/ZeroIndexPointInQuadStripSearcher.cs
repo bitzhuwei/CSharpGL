@@ -13,7 +13,7 @@ namespace CSharpGL
         /// <returns></returns>
         internal override uint Search(PickingEventArgs arg, uint lastVertexId, ZeroIndexPicker picker)
         {
-            DrawElementsCmd buffer = GLBuffer.Create(IndexBufferElementType.UInt, 4, DrawMode.Points, BufferUsage.StaticDraw);
+            IndexBuffer buffer = GLBuffer.Create(IndexBufferElementType.UInt, 4, BufferUsage.StaticDraw);
             unsafe
             {
                 var array = (uint*)buffer.MapBuffer(MapBufferAccess.WriteOnly);
@@ -23,7 +23,8 @@ namespace CSharpGL
                 array[3] = lastVertexId - 3;
                 buffer.UnmapBuffer();
             }
-            picker.Node.Render4InnerPicking(arg, buffer);
+            var cmd = new DrawElementsCmd(buffer, DrawMode.Points);
+            picker.Node.Render4InnerPicking(arg, cmd);
             uint id = ColorCodedPicking.ReadStageVertexId(arg.X, arg.Y);
 
             buffer.Dispose();

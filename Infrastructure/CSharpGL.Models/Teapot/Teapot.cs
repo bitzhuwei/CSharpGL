@@ -19,7 +19,7 @@ namespace CSharpGL
         public const string strNormal = "normal";
         private VertexBuffer normalBuffer;
 
-        private DrawElementsCmd drawCmd;
+        private IDrawCommand drawCmd;
 
         #region IBufferable 成员
 
@@ -62,7 +62,7 @@ namespace CSharpGL
             {
                 Face[] faces = Teapot.faceData;
                 int length = faces.Length * 3;
-                DrawElementsCmd buffer = GLBuffer.Create(IndexBufferElementType.UShort, length, DrawMode.Triangles, BufferUsage.StaticDraw);
+                IndexBuffer buffer = GLBuffer.Create(IndexBufferElementType.UShort, length, BufferUsage.StaticDraw);
                 unsafe
                 {
                     IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
@@ -75,7 +75,7 @@ namespace CSharpGL
                     }
                     buffer.UnmapBuffer();
                 }
-                this.drawCmd = buffer;
+                this.drawCmd = new DrawElementsCmd(buffer, DrawMode.Triangles);
             }
 
             return this.drawCmd;

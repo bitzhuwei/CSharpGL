@@ -12,7 +12,7 @@
         internal override uint[] Search(PickingEventArgs arg,
             uint lastVertexId, ZeroIndexPicker picker)
         {
-            DrawElementsCmd buffer = GLBuffer.Create(IndexBufferElementType.UInt, 6, DrawMode.Lines, BufferUsage.StaticDraw);
+            IndexBuffer buffer = GLBuffer.Create(IndexBufferElementType.UInt, 6, BufferUsage.StaticDraw);
             unsafe
             {
                 var array = (uint*)buffer.MapBuffer(MapBufferAccess.WriteOnly);
@@ -21,8 +21,8 @@
                 array[4] = lastVertexId - 0; array[5] = lastVertexId - 4;
                 buffer.UnmapBuffer();
             }
-
-            picker.Node.Render4InnerPicking(arg, buffer);
+            var cmd = new DrawElementsCmd(buffer, DrawMode.Lines);
+            picker.Node.Render4InnerPicking(arg, cmd);
             uint id = ColorCodedPicking.ReadStageVertexId(arg.X, arg.Y);
 
             buffer.Dispose();

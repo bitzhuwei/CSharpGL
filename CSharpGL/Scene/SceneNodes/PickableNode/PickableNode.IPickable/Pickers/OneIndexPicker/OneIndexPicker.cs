@@ -219,7 +219,7 @@ namespace CSharpGL
 
             PrimitiveRestartState glState = GetPrimitiveRestartState();
 
-            var buffer = drawCmd as DrawElementsCmd;
+            var buffer = (drawCmd as DrawElementsCmd).IndexBufferObject;
             IntPtr pointer = buffer.MapBuffer(MapBufferAccess.ReadOnly);
             List<RecognizedPrimitiveInfo> primitiveInfoList = null;
             if (glState == null)

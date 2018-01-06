@@ -71,7 +71,7 @@ namespace CSharpGL
             var ptr = cmd as DrawElementsCmd;
             if (ptr != null)
             {
-                GLState glState = new PrimitiveRestartState(ptr.ElementType);
+                GLState glState = new PrimitiveRestartState(ptr.IndexBufferObject.ElementType);
                 result.StateList.Add(glState);
             }
 

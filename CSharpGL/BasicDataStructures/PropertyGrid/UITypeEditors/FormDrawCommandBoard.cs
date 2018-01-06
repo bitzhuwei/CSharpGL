@@ -14,7 +14,7 @@ namespace CSharpGL
         ///
         /// </summary>
         /// <param name="drawCmd"></param>
-        public FormDrawCommandBoard(IndexBuffer drawCmd = null)
+        public FormDrawCommandBoard(IDrawCommand drawCmd = null)
         {
             InitializeComponent();
 
@@ -34,7 +34,7 @@ namespace CSharpGL
         ///
         /// </summary>
         /// <param name="drawCmd"></param>
-        public void SetTarget(IndexBuffer drawCmd)
+        public void SetTarget(IDrawCommand drawCmd)
         {
             if (drawCmd == null) { throw new ArgumentNullException(); }
 
@@ -221,7 +221,7 @@ namespace CSharpGL
 
         public override int OriginalCount()
         {
-            return drawCmd.VertexCount;
+            return drawCmd.IndexBufferObject.VertexCount;
         }
 
         public override void SetFirst(int value)

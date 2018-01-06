@@ -95,14 +95,14 @@ namespace CSharpGL
         /// <param name="recognizedPrimitiveIndex0"></param>
         /// <param name="recognizedPrimitiveIndex1"></param>
         /// <param name="drawMode"></param>
-        /// <param name="oneIndexBuffer"></param>
+        /// <param name="cmd"></param>
         /// <param name="lastIndex0"></param>
         /// <param name="lastIndex1"></param>
         private void AssembleIndexBuffer(
             RecognizedPrimitiveInfo recognizedPrimitiveIndex0,
             RecognizedPrimitiveInfo recognizedPrimitiveIndex1,
             DrawMode drawMode,
-            out DrawElementsCmd oneIndexBuffer,
+            out DrawElementsCmd cmd,
             out uint lastIndex0, out uint lastIndex1)
         {
             List<uint> indexArray = ArrangeIndexes(
@@ -114,7 +114,9 @@ namespace CSharpGL
                 + recognizedPrimitiveIndex1.VertexIds.Length)
             { throw new Exception(string.Format("index array[{0}] not same length with [recognized primitive1 index length{1}] + [1] + recognized primitive2 index length[{2}]", indexArray.Count, recognizedPrimitiveIndex0.VertexIds.Length, recognizedPrimitiveIndex1.VertexIds.Length)); }
 
-            oneIndexBuffer = indexArray.ToArray().GenIndexBuffer(drawMode, BufferUsage.StaticDraw);
+            IndexBuffer buffer = indexArray.ToArray().GenIndexBuffer(BufferUsage.StaticDraw);
+            cmd = new DrawElementsCmd(buffer, drawMode, 0);
+
             //oneIndexBuffer = Buffer.Create(IndexElementType.UInt,
             //    recognizedPrimitiveIndex0.VertexIds.Length
             //    + 1

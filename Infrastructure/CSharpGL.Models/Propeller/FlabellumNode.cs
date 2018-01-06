@@ -172,7 +172,7 @@ void main(void) {
         public const string strColor = "color";
         private VertexBuffer colorBuffer;
 
-        private DrawElementsCmd drawCmd;
+        private IDrawCommand drawCmd;
 
         #region IBufferable 成员
 
@@ -204,7 +204,8 @@ void main(void) {
         {
             if (this.drawCmd == null)
             {
-                this.drawCmd = indexes.GenIndexBuffer(DrawMode.Quads, BufferUsage.StaticDraw);
+                IndexBuffer buffer = indexes.GenIndexBuffer(BufferUsage.StaticDraw);
+                this.drawCmd = new DrawElementsCmd(buffer, DrawMode.Quads);
             }
 
             return this.drawCmd;
