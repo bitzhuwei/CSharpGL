@@ -783,7 +783,7 @@ namespace CSharpGL
         /// <param name="indices"></param>
         /// <param name="drawcount"></param>
         [DllImport(Win32.opengl32, EntryPoint = "glMultiDrawElements", SetLastError = true)]
-        private static extern void glMultiDrawElements(uint mode, int[] count, uint type, uint[][] indices, int drawcount);
+        private static extern void glMultiDrawElements(uint mode, int[] count, uint type, uint[] indices, int drawcount);
 
         /// <summary>
         /// 
@@ -794,7 +794,7 @@ namespace CSharpGL
         /// <param name="indices"></param>
         /// <param name="drawcount"></param>
         [DllImport(Win32.opengl32, EntryPoint = "glMultiDrawElements", SetLastError = true)]
-        private static extern void glMultiDrawElements(uint mode, int[] count, uint type, ushort[][] indices, int drawcount);
+        private static extern void glMultiDrawElements(uint mode, int[] count, uint type, ushort[] indices, int drawcount);
 
         /// <summary>
         /// 
@@ -805,7 +805,7 @@ namespace CSharpGL
         /// <param name="indices"></param>
         /// <param name="drawcount"></param>
         [DllImport(Win32.opengl32, EntryPoint = "glMultiDrawElements", SetLastError = true)]
-        private static extern void glMultiDrawElements(uint mode, int[] count, uint type, byte[][] indices, int drawcount);
+        private static extern void glMultiDrawElements(uint mode, int[] count, uint type, byte[] indices, int drawcount);
 
         /// <summary>
         /// Draws a rectangle of pixel data at the current raster position.

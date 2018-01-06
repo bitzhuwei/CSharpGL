@@ -9,7 +9,7 @@ namespace CSharpGL
     /// Wraps glDrawElements(uint mode, int count, uint type, IntPtr indices).
     /// </summary>
     [Editor(typeof(DrawElementsCmdEditor), typeof(UITypeEditor))]
-    public sealed partial class DrawElementsCmd : IDrawCommand
+    public class DrawElementsCmd : IDrawCommand
     {
         private IndexBuffer indexBuffer;
         /// <summary>

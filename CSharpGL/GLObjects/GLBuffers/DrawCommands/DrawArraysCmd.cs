@@ -9,7 +9,7 @@ namespace CSharpGL
     /// Wraps glDrawArrays(uint mode, int first, int count).
     /// </summary>
     [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
-    public sealed partial class DrawArraysCmd : IDrawCommand
+    public class DrawArraysCmd : IDrawCommand
     {
         /// <summary>
         /// Wraps glDrawArrays(uint mode, int first, int count).
