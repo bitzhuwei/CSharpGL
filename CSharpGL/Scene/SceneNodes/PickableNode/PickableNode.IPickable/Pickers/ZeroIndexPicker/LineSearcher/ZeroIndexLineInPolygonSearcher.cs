@@ -15,7 +15,7 @@
             // when the temp index buffer could be long, it's no longer needed.
             // what a great OpenGL API design!
             DrawArraysCmd drawCmd = new DrawArraysCmd(DrawMode.LineLoop, cmd.FirstVertex, cmd.RenderingVertexCount, cmd.InstanceCount, cmd.FrameCount);
-            picker.Node.Render4InnerPicking(arg, drawCmd);
+            picker.Node.Render4InnerPicking(arg, ControlMode.ByFrame, drawCmd);
             uint id = ColorCodedPicking.ReadStageVertexId(arg.X, arg.Y);
 
             if (id == cmd.FirstVertex)

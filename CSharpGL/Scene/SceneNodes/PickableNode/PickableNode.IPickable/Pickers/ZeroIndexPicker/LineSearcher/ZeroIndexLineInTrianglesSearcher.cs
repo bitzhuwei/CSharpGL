@@ -24,7 +24,7 @@
             }
             var cmd = new DrawElementsCmd(buffer, DrawMode.Lines);
             // 用临时索引渲染此三角形图元（仅渲染此三角形图元）
-            picker.Node.Render4InnerPicking(arg, cmd);
+            picker.Node.Render4InnerPicking(arg, ControlMode.ByFrame, cmd);
             // id是拾取到的Line的Last Vertex Id
             uint id = ColorCodedPicking.ReadStageVertexId(arg.X, arg.Y);
 

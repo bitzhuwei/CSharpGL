@@ -21,7 +21,7 @@ namespace CSharpGL
         /// <param name="arg"></param>
         public virtual void RenderForPicking(PickingEventArgs arg)
         {
-            this.RenderForPicking(arg, null);
+            this.RenderForPicking(arg, this.ControlMode, null);
         }
 
         #endregion

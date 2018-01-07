@@ -20,7 +20,7 @@ namespace CSharpGL
 
             IndexBuffer buffer = indexList.GenIndexBuffer(BufferUsage.StaticDraw);
             var cmd = new DrawElementsCmd(buffer, DrawMode.LineLoop);
-            picker.Node.Render4InnerPicking(arg, cmd);
+            picker.Node.Render4InnerPicking(arg, ControlMode.ByFrame, cmd);
             uint id = ColorCodedPicking.ReadStageVertexId(arg.X, arg.Y);
 
             buffer.Dispose();

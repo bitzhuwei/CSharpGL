@@ -23,7 +23,7 @@
                 buffer.UnmapBuffer();
             }
             var cmd = new DrawElementsCmd(buffer, DrawMode.Lines);
-            picker.Node.Render4InnerPicking(arg, cmd);
+            picker.Node.Render4InnerPicking(arg, ControlMode.ByFrame, cmd);
             uint id = ColorCodedPicking.ReadStageVertexId(arg.X, arg.Y);
 
             buffer.Dispose();
