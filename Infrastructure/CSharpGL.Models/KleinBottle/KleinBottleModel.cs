@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace CSharpGL
 {
@@ -156,7 +157,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="bufferName">buffer name(Gets this name from 'strPosition' etc.</param>
         /// <returns>Vertex Buffer Object.</returns>
-        public VertexBuffer GetVertexAttributeBuffer(string bufferName)
+        public IEnumerable<VertexBuffer> GetVertexAttributeBuffer(string bufferName)
         {
             if (bufferName == strPosition)
             {
@@ -164,7 +165,7 @@ namespace CSharpGL
                 {
                     this.positionBuffer = GetPositionBuffer();
                 }
-                return this.positionBuffer;
+                yield return this.positionBuffer;
             }
             else if (bufferName == strTexCoord)
             {
@@ -172,7 +173,7 @@ namespace CSharpGL
                 {
                     this.colorBuffer = GetTexCoordBuffer();
                 }
-                return this.colorBuffer;
+                yield return this.colorBuffer;
             }
             else
             {
@@ -180,44 +181,39 @@ namespace CSharpGL
             }
         }
 
-        public IDrawCommand GetDrawCommand()
+        public IEnumerable<IDrawCommand> GetDrawCommand()
         {
             if (this.drawCmd == null)
             {
                 int uCount = GetUCount(interval);
                 int vCount = GetVCount(interval);
                 int length = (uCount + 1) * vCount + (vCount + 1 + 1) * uCount;
-                IndexBuffer buffer = CSharpGL.GLBuffer.Create(IndexBufferElementType.UInt, length, BufferUsage.StaticDraw);
-                unsafe
+                int index = 0;
+                var array = new uint[length];
+                // vertical lines.
+                for (int i = 0; i < vCount; i++)
                 {
-                    IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
-                    var array = (uint*)pointer;
-                    int index = 0;
-                    // vertical lines.
-                    for (int i = 0; i < vCount; i++)
+                    for (int j = 0; j < uCount; j++)
                     {
-                        for (int j = 0; j < uCount; j++)
-                        {
-                            array[index++] = (uint)(i + j * vCount);
-                        }
-                        array[index++] = uint.MaxValue;// primitive restart index.
+                        array[index++] = (uint)(i + j * vCount);
                     }
-                    // horizontal lines.
-                    for (int i = 0; i < uCount; i++)
-                    {
-                        for (int j = 0; j < vCount; j++)
-                        {
-                            array[index++] = (uint)(j + i * vCount);
-                        }
-                        array[index++] = (uint)(0 + i * vCount);
-                        array[index++] = uint.MaxValue;// primitive restart index.
-                    }
-                    buffer.UnmapBuffer();
+                    array[index++] = uint.MaxValue;// primitive restart index.
                 }
+                // horizontal lines.
+                for (int i = 0; i < uCount; i++)
+                {
+                    for (int j = 0; j < vCount; j++)
+                    {
+                        array[index++] = (uint)(j + i * vCount);
+                    }
+                    array[index++] = (uint)(0 + i * vCount);
+                    array[index++] = uint.MaxValue;// primitive restart index.
+                }
+                IndexBuffer buffer = array.GenIndexBuffer(BufferUsage.StaticDraw);
                 this.drawCmd = new DrawElementsCmd(buffer, DrawMode.LineStrip);
             }
 
-            return this.drawCmd;
+            yield return this.drawCmd;
         }
 
         #endregion

@@ -14,25 +14,30 @@ namespace CSharpGL
         /// Get picked geometry from a <see cref="PickableNode"/> with <see cref="DrawArraysCmd"/> as index buffer.
         /// </summary>
         /// <param name="node"></param>
-        public ZeroIndexPicker(PickableNode node) : base(node) { }
+        /// <param name="positionBuffer"></param>
+        /// <param name="drawCommand"></param>
+        public ZeroIndexPicker(PickableNode node, VertexBuffer positionBuffer, IDrawCommand drawCommand) : base(node, positionBuffer, drawCommand) { }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="arg"></param>
-        /// <param name="stageVertexId"></param>
+        /// <param name="stageVertexId">The last vertex's id that constructs the picked primitive.
+        /// <para>This id is in scene's all <see cref="IPickable"/>s' order.</para></param>
+        /// <param name="baseId">Index of first vertex of the buffer that The geometry belongs to.
+        /// <para>This id is in scene's all <see cref="IPickable"/>s' order.</para></param>
         /// <returns></returns>
-        public override PickedGeometry GetPickedGeometry(PickingEventArgs arg, uint stageVertexId)
+        public override PickedGeometry GetPickedGeometry(PickingEventArgs arg, uint stageVertexId, uint baseId)
         {
-            uint lastVertexId;
-            if (!this.Node.GetLastVertexIdOfPickedGeometry(stageVertexId, out lastVertexId))
-            { return null; }
+            if (stageVertexId < baseId) { return null; }
+            uint lastVertexId = stageVertexId - baseId;
+            if (this.PositionBuffer.VertexCount <= lastVertexId) { return null; }
 
             PickingGeometryTypes pickingType = arg.GeometryType;
 
             if ((pickingType & PickingGeometryTypes.Point) == PickingGeometryTypes.Point)
             {
-                DrawMode mode = this.Node.PickingRenderUnit.VertexArrayObject.DrawCommand.Mode;
+                DrawMode mode = this.DrawCommand.Mode;
                 GeometryType typeOfMode = mode.ToGeometryType();
                 if (typeOfMode == GeometryType.Point)
                 { return PickWhateverItIs(arg, stageVertexId, lastVertexId, mode, typeOfMode); }
@@ -54,7 +59,7 @@ namespace CSharpGL
             }
             else if ((pickingType & PickingGeometryTypes.Line) == PickingGeometryTypes.Line)
             {
-                DrawMode mode = this.Node.PickingRenderUnit.VertexArrayObject.DrawCommand.Mode;
+                DrawMode mode = this.DrawCommand.Mode;
                 GeometryType typeOfMode = mode.ToGeometryType();
                 if (pickingType.Contains(typeOfMode))
                 { return PickWhateverItIs(arg, stageVertexId, lastVertexId, mode, typeOfMode); }
@@ -71,7 +76,7 @@ namespace CSharpGL
             }
             else
             {
-                DrawMode mode = this.Node.PickingRenderUnit.VertexArrayObject.DrawCommand.Mode;
+                DrawMode mode = this.DrawCommand.Mode;
                 GeometryType typeOfMode = mode.ToGeometryType();
                 if (pickingType.Contains(typeOfMode)) // I want what it is
                 { return PickWhateverItIs(arg, stageVertexId, lastVertexId, mode, typeOfMode); }
@@ -107,7 +112,7 @@ namespace CSharpGL
 
             // Fill primitive's position information.
             int vertexCount = typeOfMode.GetVertexCount();
-            if (vertexCount == -1) { vertexCount = this.Node.PickingRenderUnit.PositionBuffer.VertexCount; }
+            if (vertexCount == -1) { vertexCount = (from item in this.Node.PickingRenderUnit.PositionBuffers select item.VertexCount).Sum(); }
 
             uint[] vertexIds; vec3[] positions;
 
@@ -211,7 +216,7 @@ namespace CSharpGL
         private bool OnPrimitiveTest(uint lastVertexId, DrawMode mode)
         {
             bool result = false;
-            var drawCmd = this.Node.PickingRenderUnit.VertexArrayObject.DrawCommand as DrawArraysCmd;
+            var drawCmd = this.DrawCommand as DrawArraysCmd;
             int first = drawCmd.FirstVertex;
             if (first < 0) { return false; }
             int vertexCount = drawCmd.RenderingVertexCount;
@@ -359,26 +364,29 @@ namespace CSharpGL
         private void PickingLastLineInLineLoop(out uint[] vertexIds, out vec3[] positions)
         {
             const int vertexCount = 2;
-            VertexBuffer buffer = this.Node.PickingRenderUnit.PositionBuffer;
-            var offsets = new int[vertexCount] { (buffer.VertexCount - 1) * buffer.Config.GetDataSize() * buffer.Config.GetDataTypeByteLength(), 0, };
-            vertexIds = new uint[vertexCount];
-            positions = new vec3[vertexCount];
-            buffer.Bind();
-            for (int i = 0; i < vertexCount; i++)
+            VertexBuffer[] buffers = this.Node.PickingRenderUnit.PositionBuffers;
+            int sum = (from item in buffers select item.VertexCount).Sum();
+            vertexIds = new uint[vertexCount] { (uint)(sum - 1), 0 };
+            var workItems = buffers.GetWorkItems(vertexIds);
+            var positionList = new List<vec3>();
+            foreach (var item in workItems)
             {
-                IntPtr pointer = buffer.MapBufferRange(
-                    offsets[i],
-                    1 * buffer.Config.GetDataSize() * buffer.Config.GetDataTypeByteLength(),
-                    MapBufferRangeAccess.MapReadBit, false);
+                VertexBuffer buffer = buffers[item.Key];
+                IntPtr pointer = buffer.MapBuffer(MapBufferAccess.ReadOnly);
                 unsafe
                 {
                     var array = (vec3*)pointer.ToPointer();
-                    positions[i] = array[0];
+                    foreach (var tuple in item)
+                    {
+                        positionList.Add(array[tuple.indexInBuffer]);
+                    }
                 }
-                buffer.UnmapBuffer(false);
-                vertexIds[i] = (uint)offsets[i] / (uint)(buffer.Config.GetDataSize() * buffer.Config.GetDataTypeByteLength());
+                buffer.UnmapBuffer();
             }
-            buffer.Unbind();
+
+            if (positionList.Count != vertexCount) { throw new Exception(); }
+
+            positions = positionList.ToArray();
         }
     }
 }

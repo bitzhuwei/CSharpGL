@@ -50,7 +50,7 @@ namespace CSharpGL
 
         private IDrawCommand drawCmd;
 
-        public VertexBuffer GetVertexAttributeBuffer(string bufferName)
+        public IEnumerable<VertexBuffer> GetVertexAttributeBuffer(string bufferName)
         {
             if (bufferName == strPosition)
             {
@@ -59,7 +59,7 @@ namespace CSharpGL
                     this.positionBuffer = mesh.vertexes.GenVertexBuffer(VBOConfig.Vec3, BufferUsage.StaticDraw);
                 }
 
-                return this.positionBuffer;
+                yield return this.positionBuffer;
             }
             else if (bufferName == strTexCoord)
             {
@@ -68,7 +68,7 @@ namespace CSharpGL
                     this.texCoordBuffer = mesh.texCoords.GenVertexBuffer(VBOConfig.Vec2, BufferUsage.StaticDraw);
                 }
 
-                return this.texCoordBuffer;
+                yield return this.texCoordBuffer;
             }
             else if (bufferName == strNormal)
             {
@@ -77,37 +77,35 @@ namespace CSharpGL
                     this.normalBuffer = mesh.normals.GenVertexBuffer(VBOConfig.Vec3, BufferUsage.StaticDraw);
                 }
 
-                return this.normalBuffer;
+                yield return this.normalBuffer;
             }
-
-            throw new ArgumentException("bufferName");
+            else
+            {
+                throw new ArgumentException("bufferName");
+            }
         }
 
-        public IDrawCommand GetDrawCommand()
+        public IEnumerable<IDrawCommand> GetDrawCommand()
         {
             if (this.drawCmd == null)
             {
                 int polygon = (this.mesh.faces[0] is ObjVNFTriangle) ? 3 : 4;
                 DrawMode mode = (this.mesh.faces[0] is ObjVNFTriangle) ? DrawMode.Triangles : DrawMode.Quads;
-                IndexBuffer buffer = GLBuffer.Create(IndexBufferElementType.UInt, polygon * this.mesh.faces.Length, BufferUsage.StaticDraw);
-                unsafe
+                int index = 0;
+                var array = new uint[polygon * this.mesh.faces.Length];
+                foreach (var face in this.mesh.faces)
                 {
-                    var array = (uint*)buffer.MapBuffer(MapBufferAccess.WriteOnly);
-                    int index = 0;
-                    foreach (var face in this.mesh.faces)
+                    foreach (var vertexIndex in face.VertexIndexes())
                     {
-                        foreach (var vertexIndex in face.VertexIndexes())
-                        {
-                            array[index++] = vertexIndex;
-                        }
+                        array[index++] = vertexIndex;
                     }
-                    buffer.UnmapBuffer();
                 }
+                IndexBuffer buffer = array.GenIndexBuffer(BufferUsage.StaticDraw);
 
                 this.drawCmd = new DrawElementsCmd(buffer, mode);
             }
 
-            return this.drawCmd;
+            yield return this.drawCmd;
         }
 
         #endregion

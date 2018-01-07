@@ -9,13 +9,17 @@ namespace CSharpGL
     /// Wraps glDrawElements(uint mode, int count, uint type, IntPtr indices).
     /// </summary>
     [Editor(typeof(DrawElementsCmdEditor), typeof(UITypeEditor))]
-    public class DrawElementsCmd : IDrawCommand
+    public class DrawElementsCmd : IDrawCommand, IHasIndexBuffer
     {
+        #region IHasIndexBuffer
+
         private IndexBuffer indexBuffer;
         /// <summary>
         /// 
         /// </summary>
         public IndexBuffer IndexBufferObject { get { return this.indexBuffer; } }
+
+        #endregion IHasIndexBuffer
 
         /// <summary>
         /// Wraps glDrawElements(uint mode, int count, uint type, IntPtr indices).

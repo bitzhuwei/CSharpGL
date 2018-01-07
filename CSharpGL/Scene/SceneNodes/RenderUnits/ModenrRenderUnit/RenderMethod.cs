@@ -26,7 +26,7 @@ namespace CSharpGL
         /// </summary>
         [Category(strRenderMethod)]
         [Description("Vertex Array Object.")]
-        public VertexArrayObject VertexArrayObject { get; private set; }
+        public VertexArrayObject[] VertexArrayObjects { get; private set; }
 
         /// <summary>
         ///
@@ -39,12 +39,12 @@ namespace CSharpGL
         /// A smallest unit that can render somthing.
         /// </summary>
         /// <param name="program"></param>
-        /// <param name="vao"></param>
+        /// <param name="vaos"></param>
         /// <param name="states"></param>
-        public RenderMethod(ShaderProgram program, VertexArrayObject vao, params GLState[] states)
+        public RenderMethod(ShaderProgram program, VertexArrayObject[] vaos, params GLState[] states)
         {
             this.Program = program;
-            this.VertexArrayObject = vao;
+            this.VertexArrayObjects = vaos;
             this.StateList = new GLStateList();
             this.StateList.AddRange(states);
         }
@@ -86,14 +86,20 @@ namespace CSharpGL
             if (transformFeedbackObj != null)
             {
                 transformFeedbackObj.Bind();
-                transformFeedbackObj.Begin(this.VertexArrayObject.DrawCommand.Mode);
-                this.VertexArrayObject.Draw(controlMode);
-                transformFeedbackObj.End();
+                foreach (var vao in this.VertexArrayObjects)
+                {
+                    transformFeedbackObj.Begin(vao.DrawCommand.Mode);
+                    vao.Draw(controlMode);
+                    transformFeedbackObj.End();
+                }
                 transformFeedbackObj.Unbind();
             }
             else
             {
-                this.VertexArrayObject.Draw(controlMode);
+                foreach (var vao in this.VertexArrayObjects)
+                {
+                    vao.Draw(controlMode);
+                }
             }
 
             stateList.Off();

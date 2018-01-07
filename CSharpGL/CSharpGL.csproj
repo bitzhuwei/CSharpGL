@@ -101,12 +101,14 @@
     <Compile Include="GLObjects\Framebuffer\Framebuffer.Attach.Renderbuffer.cs" />
     <Compile Include="GLObjects\Framebuffer\Framebuffer.Attach.Texture.cs" />
     <Compile Include="GLObjects\Framebuffer\AttachmentLocation.cs" />
+    <Compile Include="GLObjects\GLBuffers\DrawCommands\IHasIndexBuffer.cs" />
     <Compile Include="GLObjects\GLBuffers\DrawCommands\MultiDrawElementsCmd.cs" />
     <Compile Include="GLObjects\GLBuffers\IndependentBuffers\TransformFeedbackBuffer.AsVertexBuffer.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="GLObjects\GLBuffers\DrawCommands\IDrawCommand.cs" />
     <Compile Include="GLObjects\GLBuffers\DrawCommands\MultiDrawArraysCmd.cs" />
+    <Compile Include="GLObjects\GLBuffers\VertexBuffers\VertexBuffer%28VBO%29\VeretxBufferArrayHelper.cs" />
     <Compile Include="GLObjects\GLStates\EnableStates\StencilTestState.cs" />
     <Compile Include="GLObjects\GLStates\StencilMaskState.cs" />
     <Compile Include="GLObjects\GLStates\StencilOpState.cs" />
@@ -363,7 +365,6 @@
     <Compile Include="Scene\Actions\DependentActions\3DWorld\IShadowMapping.cs" />
     <Compile Include="Scene\Actions\DependentActions\3DWorld\IWorldSpace.cs" />
     <Compile Include="Scene\Actions\IndependentActions\IPickable\IPickable.cs" />
-    <Compile Include="Scene\Actions\IndependentActions\IPickable\IPickableHelper.cs" />
     <Compile Include="Scene\Actions\IndependentActions\IPickable\IPickedGeometry.cs" />
     <Compile Include="Scene\Actions\IndependentActions\IPickable\PickedGeometry.cs" />
     <Compile Include="Scene\Actions\IndependentActions\IPickable\PickingGeometryType.cs" />

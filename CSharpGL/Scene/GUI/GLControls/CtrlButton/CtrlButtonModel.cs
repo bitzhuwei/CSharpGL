@@ -66,7 +66,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="bufferName"></param>
         /// <returns></returns>
-        public VertexBuffer GetVertexAttributeBuffer(string bufferName)
+        public IEnumerable<VertexBuffer> GetVertexAttributeBuffer(string bufferName)
         {
             if (bufferName == position)
             {
@@ -75,7 +75,7 @@ namespace CSharpGL
                     this.posiitonBuffer = positions.GenVertexBuffer(VBOConfig.Vec2, BufferUsage.StaticDraw);
                 }
 
-                return this.posiitonBuffer;
+                yield return this.posiitonBuffer;
             }
             else if (bufferName == color)
             {
@@ -84,7 +84,7 @@ namespace CSharpGL
                     this.colorBuffer = colors.GenVertexBuffer(VBOConfig.Vec3, BufferUsage.StaticDraw);
                 }
 
-                return this.colorBuffer;
+                yield return this.colorBuffer;
             }
             else
             {
@@ -96,14 +96,14 @@ namespace CSharpGL
         /// 
         /// </summary>
         /// <returns></returns>
-        public IDrawCommand GetDrawCommand()
+        public IEnumerable<IDrawCommand> GetDrawCommand()
         {
             if (this.drawCmd == null)
             {
                 this.drawCmd = new DrawArraysCmd(DrawMode.QuadStrip, 0, positions.Length);
             }
 
-            return this.drawCmd;
+            yield return this.drawCmd;
         }
 
         #endregion

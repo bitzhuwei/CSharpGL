@@ -73,10 +73,13 @@ namespace HowTransformFeedbackWorks
             {
                 var tf = new TransformFeedbackObject();
                 RenderMethod method = this.RenderUnit.Methods[i];
-                VertexShaderAttribute[] attributes = method.VertexArrayObject.VertexAttributes;
-                for (uint t = 0; t < attributes.Length; t++)
+                foreach (var vao in method.VertexArrayObjects)
                 {
-                    tf.BindBuffer(t, attributes[t].Buffer);
+                    VertexShaderAttribute[] attributes = vao.VertexAttributes;
+                    for (uint t = 0; t < attributes.Length; t++)
+                    {
+                        tf.BindBuffer(t, attributes[t].Buffer);
+                    }
                 }
                 this.transformFeedbackObjects[i] = tf;
             }

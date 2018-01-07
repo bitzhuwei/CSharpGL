@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 namespace CSharpGL
 {
     /// <summary>
@@ -54,7 +55,7 @@ namespace CSharpGL
         /// <param name="bufferName"></param>
         /// <param name="varNameInShader"></param>
         /// <returns></returns>
-        public VertexBuffer GetVertexAttributeBuffer(string bufferName)
+        public IEnumerable<VertexBuffer> GetVertexAttributeBuffer(string bufferName)
         {
             if (bufferName == strPosition)
             {
@@ -76,7 +77,7 @@ namespace CSharpGL
                     // another way to do this:
                     this.positionBuffer = this.model.positions.GenVertexBuffer(VBOConfig.Vec3, BufferUsage.StaticDraw);
                 }
-                return this.positionBuffer;
+                yield return this.positionBuffer;
             }
             else if (bufferName == strNormal)
             {
@@ -98,7 +99,7 @@ namespace CSharpGL
                     // another way to do this:
                     this.normalBuffer = this.model.normals.GenVertexBuffer(VBOConfig.Vec3, BufferUsage.StaticDraw);
                 }
-                return this.normalBuffer;
+                yield return this.normalBuffer;
             }
             else if (bufferName == strColor)
             {
@@ -120,7 +121,7 @@ namespace CSharpGL
                     // another way to do this:
                     this.colorBuffer = this.model.colors.GenVertexBuffer(VBOConfig.Vec3, BufferUsage.StaticDraw);
                 }
-                return this.colorBuffer;
+                yield return this.colorBuffer;
             }
             else if (bufferName == strUV)
             {
@@ -142,11 +143,11 @@ namespace CSharpGL
                     // another way to do this:
                     this.uvBuffer = model.uv.GenVertexBuffer(VBOConfig.Vec2, BufferUsage.StaticDraw);
                 }
-                return this.uvBuffer;
+                yield return this.uvBuffer;
             }
             else
             {
-                return null;
+                throw new ArgumentException();
             }
         }
 
@@ -154,65 +155,83 @@ namespace CSharpGL
         ///
         /// </summary>
         /// <returns></returns>
-        public IDrawCommand GetDrawCommand()
+        public IEnumerable<IDrawCommand> GetDrawCommand()
         {
             if (this.drawCmd == null)
             {
                 int length = model.indexes.Length;
                 if (model.positions.Length < byte.MaxValue)
                 {
-                    IndexBuffer buffer = GLBuffer.Create(IndexBufferElementType.UByte, length, BufferUsage.StaticDraw);
-                    unsafe
-                    {
-                        IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
-                        var array = (byte*)pointer;
-                        for (int i = 0; i < model.indexes.Length; i++)
-                        {
-                            if (model.indexes[i] == uint.MaxValue)
-                            { array[i] = byte.MaxValue; }
-                            else
-                            { array[i] = (byte)model.indexes[i]; }
-                        }
-                        buffer.UnmapBuffer();
-                    }
+                    IndexBuffer buffer = GetBufferInBytes(length);
                     this.drawCmd = new DrawElementsCmd(buffer, DrawMode.TriangleStrip);
                 }
                 else if (model.positions.Length < ushort.MaxValue)
                 {
-                    IndexBuffer buffer = GLBuffer.Create(IndexBufferElementType.UShort, length, BufferUsage.StaticDraw);
-                    unsafe
-                    {
-                        IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
-                        var array = (ushort*)pointer;
-                        for (int i = 0; i < model.indexes.Length; i++)
-                        {
-                            if (model.indexes[i] == uint.MaxValue)
-                            { array[i] = ushort.MaxValue; }
-                            else
-                            { array[i] = (ushort)model.indexes[i]; }
-                        }
-                        buffer.UnmapBuffer();
-                    }
+                    IndexBuffer buffer = GetBufferInUShort(length);
                     this.drawCmd = new DrawElementsCmd(buffer, DrawMode.TriangleStrip);
                 }
                 else
                 {
-                    IndexBuffer buffer = GLBuffer.Create(IndexBufferElementType.UInt, length, BufferUsage.StaticDraw);
-                    unsafe
-                    {
-                        IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
-                        var array = (uint*)pointer;
-                        for (int i = 0; i < model.indexes.Length; i++)
-                        {
-                            array[i] = model.indexes[i];
-                        }
-                        buffer.UnmapBuffer();
-                    }
+                    IndexBuffer buffer = GetBufferInUInt(length);
                     this.drawCmd = new DrawElementsCmd(buffer, DrawMode.TriangleStrip);
                 }
             }
 
-            return drawCmd;
+            yield return drawCmd;
+        }
+
+        private IndexBuffer GetBufferInUInt(int length)
+        {
+            IndexBuffer buffer = GLBuffer.Create(IndexBufferElementType.UInt, length, BufferUsage.StaticDraw);
+            unsafe
+            {
+                IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
+                var array = (uint*)pointer;
+                for (int i = 0; i < model.indexes.Length; i++)
+                {
+                    array[i] = model.indexes[i];
+                }
+                buffer.UnmapBuffer();
+            }
+            return buffer;
+        }
+
+        private IndexBuffer GetBufferInUShort(int length)
+        {
+            IndexBuffer buffer = GLBuffer.Create(IndexBufferElementType.UShort, length, BufferUsage.StaticDraw);
+            unsafe
+            {
+                IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
+                var array = (ushort*)pointer;
+                for (int i = 0; i < model.indexes.Length; i++)
+                {
+                    if (model.indexes[i] == uint.MaxValue)
+                    { array[i] = ushort.MaxValue; }
+                    else
+                    { array[i] = (ushort)model.indexes[i]; }
+                }
+                buffer.UnmapBuffer();
+            }
+            return buffer;
+        }
+
+        private IndexBuffer GetBufferInBytes(int length)
+        {
+            IndexBuffer buffer = GLBuffer.Create(IndexBufferElementType.UByte, length, BufferUsage.StaticDraw);
+            unsafe
+            {
+                IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
+                var array = (byte*)pointer;
+                for (int i = 0; i < model.indexes.Length; i++)
+                {
+                    if (model.indexes[i] == uint.MaxValue)
+                    { array[i] = byte.MaxValue; }
+                    else
+                    { array[i] = (byte)model.indexes[i]; }
+                }
+                buffer.UnmapBuffer();
+            }
+            return buffer;
         }
 
         /// <summary>

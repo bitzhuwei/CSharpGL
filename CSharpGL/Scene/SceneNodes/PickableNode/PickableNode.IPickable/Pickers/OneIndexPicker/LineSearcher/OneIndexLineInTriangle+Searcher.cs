@@ -24,7 +24,7 @@ namespace CSharpGL
 
             var targetIndexList = new uint[6] { indexList[0], indexList[1], indexList[1], indexList[2], indexList[2], indexList[0], };
             IndexBuffer buffer = targetIndexList.GenIndexBuffer(BufferUsage.StaticDraw);
-            var cmd = new DrawElementsCmd(buffer, DrawMode.Lines, 0);
+            var cmd = new DrawElementsCmd(buffer, DrawMode.Lines);
             picker.Node.Render4InnerPicking(arg, cmd);
             uint id = ColorCodedPicking.ReadStageVertexId(arg.X, arg.Y);
 

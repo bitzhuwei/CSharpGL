@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace CSharpGL
 {
@@ -113,7 +114,7 @@ namespace CSharpGL
         /// <param name="bufferName"></param>
         /// <param name="varNameInShader"></param>
         /// <returns></returns>
-        public VertexBuffer GetVertexAttributeBuffer(string bufferName)
+        public IEnumerable<VertexBuffer> GetVertexAttributeBuffer(string bufferName)
         {
             if (bufferName == strPosition)
             {
@@ -134,7 +135,7 @@ namespace CSharpGL
                     //this.positionBuffer = buffer;
                     this.positionBuffer = positions.GenVertexBuffer(VBOConfig.Vec3, BufferUsage.StaticDraw);
                 }
-                return this.positionBuffer;
+                yield return this.positionBuffer;
             }
             else if (bufferName == strColor)
             {
@@ -155,7 +156,7 @@ namespace CSharpGL
                     //this.colorBuffer = buffer;
                     this.colorBuffer = colors.GenVertexBuffer(VBOConfig.Vec3, BufferUsage.StaticDraw);
                 }
-                return this.colorBuffer;
+                yield return this.colorBuffer;
             }
             else
             {
@@ -167,7 +168,7 @@ namespace CSharpGL
         ///
         /// </summary>
         /// <returns></returns>
-        public IDrawCommand GetDrawCommand()
+        public IEnumerable<IDrawCommand> GetDrawCommand()
         {
             if (this.drawCmd == null)
             {
@@ -175,7 +176,7 @@ namespace CSharpGL
                 this.drawCmd = new DrawArraysCmd(DrawMode.Lines, 0, vertexCount);
             }
 
-            return this.drawCmd;
+            yield return this.drawCmd;
         }
 
     }

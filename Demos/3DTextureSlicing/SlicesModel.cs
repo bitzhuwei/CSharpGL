@@ -19,7 +19,7 @@ namespace _3DTextureSlicing
 
         #region IBufferSource 成员
 
-        public VertexBuffer GetVertexAttributeBuffer(string bufferName)
+        public IEnumerable<VertexBuffer> GetVertexAttributeBuffer(string bufferName)
         {
             if (bufferName == position)
             {
@@ -28,7 +28,7 @@ namespace _3DTextureSlicing
                     this.slicesBuffer = this.vTextureSlices.GenVertexBuffer(VBOConfig.Vec3, BufferUsage.DynamicDraw);
                 }
 
-                return this.slicesBuffer;
+                yield return this.slicesBuffer;
             }
             else
             {
@@ -36,14 +36,14 @@ namespace _3DTextureSlicing
             }
         }
 
-        public IDrawCommand GetDrawCommand()
+        public IEnumerable<IDrawCommand> GetDrawCommand()
         {
             if (this.drawCmd == null)
             {
                 this.drawCmd = new DrawArraysCmd(DrawMode.Triangles, 0, this.vTextureSlices.Length);
             }
 
-            return this.drawCmd;
+            yield return this.drawCmd;
         }
 
         #endregion

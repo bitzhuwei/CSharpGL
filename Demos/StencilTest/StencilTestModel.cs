@@ -25,7 +25,7 @@ namespace StencilTest
 
         #region IBufferSource 成员
 
-        public VertexBuffer GetVertexAttributeBuffer(string bufferName)
+        public IEnumerable<VertexBuffer> GetVertexAttributeBuffer(string bufferName)
         {
             if (bufferName == strPosition)
             {
@@ -34,7 +34,7 @@ namespace StencilTest
                     this.positionBuffer = positions.GenVertexBuffer(VBOConfig.Vec3, BufferUsage.StaticDraw);
                 }
 
-                return this.positionBuffer;
+                yield return this.positionBuffer;
             }
             else
             {
@@ -42,14 +42,14 @@ namespace StencilTest
             }
         }
 
-        public IDrawCommand GetDrawCommand()
+        public IEnumerable<IDrawCommand> GetDrawCommand()
         {
             if (this.drawCmd == null)
             {
                 this.drawCmd = new DrawArraysCmd(DrawMode.Triangles, 0, positions.Length);
             }
 
-            return this.drawCmd;
+            yield return this.drawCmd;
         }
 
         #endregion

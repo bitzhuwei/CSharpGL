@@ -105,7 +105,7 @@ namespace ImageProcessing.GrayFilter
 
         #region IBufferSource 成员
 
-        public VertexBuffer GetVertexAttributeBuffer(string bufferName)
+        public IEnumerable<VertexBuffer> GetVertexAttributeBuffer(string bufferName)
         {
             if (bufferName == position)
             {
@@ -114,7 +114,7 @@ namespace ImageProcessing.GrayFilter
                     this.positionBuffer = positions.GenVertexBuffer(VBOConfig.Vec3, BufferUsage.StaticDraw);
                 }
 
-                return this.positionBuffer;
+                yield return this.positionBuffer;
             }
             else if (bufferName == texCoord)
             {
@@ -123,7 +123,7 @@ namespace ImageProcessing.GrayFilter
                     this.texCoordBuffer = texCoords.GenVertexBuffer(VBOConfig.Vec2, BufferUsage.StaticDraw);
                 }
 
-                return this.texCoordBuffer;
+                yield return this.texCoordBuffer;
             }
             else
             {
@@ -131,14 +131,14 @@ namespace ImageProcessing.GrayFilter
             }
         }
 
-        public IDrawCommand GetDrawCommand()
+        public IEnumerable<IDrawCommand> GetDrawCommand()
         {
             if (this.drawCmd == null)
             {
                 this.drawCmd = new DrawArraysCmd(DrawMode.QuadStrip, 0, positions.Length);
             }
 
-            return this.drawCmd;
+            yield return this.drawCmd;
         }
 
         #endregion

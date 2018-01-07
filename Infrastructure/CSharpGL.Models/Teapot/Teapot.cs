@@ -23,7 +23,7 @@ namespace CSharpGL
 
         #region IBufferable 成员
 
-        public VertexBuffer GetVertexAttributeBuffer(string bufferName)
+        public IEnumerable<VertexBuffer> GetVertexAttributeBuffer(string bufferName)
         {
             if (bufferName == strPosition)
             {
@@ -32,7 +32,7 @@ namespace CSharpGL
                     this.positionBuffer = Teapot.positionData.GenVertexBuffer(VBOConfig.Vec3, BufferUsage.StaticDraw);
                 }
 
-                return this.positionBuffer;
+                yield return this.positionBuffer;
             }
             else if (bufferName == strColor)
             {
@@ -41,7 +41,7 @@ namespace CSharpGL
                     this.colorBuffer = Teapot.normalData.GenVertexBuffer(VBOConfig.Vec3, BufferUsage.StaticDraw);
                 }
 
-                return this.colorBuffer;
+                yield return this.colorBuffer;
             }
             else if (bufferName == strNormal)
             {
@@ -50,35 +50,32 @@ namespace CSharpGL
                     this.normalBuffer = Teapot.normalData.GenVertexBuffer(VBOConfig.Vec3, BufferUsage.StaticDraw);
                 }
 
-                return this.normalBuffer;
+                yield return this.normalBuffer;
             }
-
-            throw new NotImplementedException();
+            else
+            {
+                throw new ArgumentException();
+            }
         }
 
-        public IDrawCommand GetDrawCommand()
+        public IEnumerable<IDrawCommand> GetDrawCommand()
         {
             if (this.drawCmd == null)
             {
                 Face[] faces = Teapot.faceData;
                 int length = faces.Length * 3;
-                IndexBuffer buffer = GLBuffer.Create(IndexBufferElementType.UShort, length, BufferUsage.StaticDraw);
-                unsafe
+                var array = new ushort[length];
+                for (int i = 0; i < faces.Length; i++)
                 {
-                    IntPtr pointer = buffer.MapBuffer(MapBufferAccess.WriteOnly);
-                    var array = (ushort*)pointer;
-                    for (int i = 0; i < faces.Length; i++)
-                    {
-                        array[i * 3 + 0] = (ushort)(faces[i].vertexId1 - 1);
-                        array[i * 3 + 1] = (ushort)(faces[i].vertexId2 - 1);
-                        array[i * 3 + 2] = (ushort)(faces[i].vertexId3 - 1);
-                    }
-                    buffer.UnmapBuffer();
+                    array[i * 3 + 0] = (ushort)(faces[i].vertexId1 - 1);
+                    array[i * 3 + 1] = (ushort)(faces[i].vertexId2 - 1);
+                    array[i * 3 + 2] = (ushort)(faces[i].vertexId3 - 1);
                 }
+                IndexBuffer buffer = array.GenIndexBuffer(BufferUsage.StaticDraw);
                 this.drawCmd = new DrawElementsCmd(buffer, DrawMode.Triangles);
             }
 
-            return this.drawCmd;
+            yield return this.drawCmd;
         }
 
         #endregion

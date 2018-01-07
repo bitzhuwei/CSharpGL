@@ -71,7 +71,7 @@ namespace RaycastVolumeRendering
                 boundingBox[i] = boundingBox[i] - 0.5f;
             }
         }
-        public VertexBuffer GetVertexAttributeBuffer(string bufferName)
+        public IEnumerable<VertexBuffer> GetVertexAttributeBuffer(string bufferName)
         {
             if (bufferName == strposition)
             {
@@ -93,7 +93,7 @@ namespace RaycastVolumeRendering
                     //this.positionBuffer = buffer;
                     this.positionBuffer = boundingBox.GenVertexBuffer(VBOConfig.Vec3, BufferUsage.StaticDraw);
                 }
-                return this.positionBuffer;
+                yield return this.positionBuffer;
             }
             else if (bufferName == strcolor)
             {
@@ -115,15 +115,15 @@ namespace RaycastVolumeRendering
                     //this.colorBuffer = buffer;
                     this.colorBuffer = boundingBoxColor.GenVertexBuffer(VBOConfig.Vec3, BufferUsage.StaticDraw);
                 }
-                return this.colorBuffer;
+                yield return this.colorBuffer;
             }
             else
             {
-                return null;
+                throw new ArgumentException();
             }
         }
 
-        public IDrawCommand GetDrawCommand()
+        public IEnumerable<IDrawCommand> GetDrawCommand()
         {
             if (drawCmd == null)
             {
@@ -143,7 +143,7 @@ namespace RaycastVolumeRendering
                 this.drawCmd = new DrawElementsCmd(buffer, DrawMode.Triangles);
             }
 
-            return drawCmd;
+            yield return drawCmd;
         }
 
     }

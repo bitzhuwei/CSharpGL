@@ -44,7 +44,7 @@ namespace HowTransformFeedbackWorks
 
         #region IBufferSource 成员
 
-        public VertexBuffer GetVertexAttributeBuffer(string bufferName)
+        public IEnumerable<VertexBuffer> GetVertexAttributeBuffer(string bufferName)
         {
             if (bufferName == inPosition)
             {
@@ -53,7 +53,7 @@ namespace HowTransformFeedbackWorks
                     this.positionBuffer = positions.GenVertexBuffer(VBOConfig.Vec3, BufferUsage.DynamicCopy);
                 }
 
-                return this.positionBuffer;
+                yield return this.positionBuffer;
             }
             else if (bufferName == inPosition2)
             {
@@ -62,7 +62,7 @@ namespace HowTransformFeedbackWorks
                     this.positionBuffer2 = positions.GenVertexBuffer(VBOConfig.Vec3, BufferUsage.DynamicCopy);
                 }
 
-                return this.positionBuffer2;
+                yield return this.positionBuffer2;
             }
             else if (bufferName == inVelocity)
             {
@@ -71,7 +71,7 @@ namespace HowTransformFeedbackWorks
                     this.velocityBuffer = velocitys.GenVertexBuffer(VBOConfig.Vec3, BufferUsage.DynamicCopy);
                 }
 
-                return this.velocityBuffer;
+                yield return this.velocityBuffer;
             }
             else if (bufferName == inVelocity2)
             {
@@ -80,7 +80,7 @@ namespace HowTransformFeedbackWorks
                     this.velocityBuffer2 = velocitys.GenVertexBuffer(VBOConfig.Vec3, BufferUsage.DynamicCopy);
                 }
 
-                return this.velocityBuffer2;
+                yield return this.velocityBuffer2;
             }
             else
             {
@@ -88,14 +88,14 @@ namespace HowTransformFeedbackWorks
             }
         }
 
-        public IDrawCommand GetDrawCommand()
+        public IEnumerable<IDrawCommand> GetDrawCommand()
         {
             if (this.drawCmd == null)
             {
                 this.drawCmd = new DrawArraysCmd(DrawMode.Points, 0, positions.Length);
             }
 
-            return this.drawCmd;
+            yield return this.drawCmd;
         }
 
         #endregion

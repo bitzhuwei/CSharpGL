@@ -11,15 +11,15 @@
         /// <returns></returns>
         internal override uint[] Search(PickingEventArgs arg, uint lastVertexId, ZeroIndexPicker picker)
         {
-            var zeroIndexBuffer = picker.Node.PickingRenderUnit.VertexArrayObject.DrawCommand as DrawArraysCmd;
+            var cmd = picker.DrawCommand as DrawArraysCmd;
             // when the temp index buffer could be long, it's no longer needed.
             // what a great OpenGL API design!
-            DrawArraysCmd drawCmd = new DrawArraysCmd(DrawMode.LineLoop, zeroIndexBuffer.FirstVertex, zeroIndexBuffer.RenderingVertexCount, zeroIndexBuffer.InstanceCount);
+            DrawArraysCmd drawCmd = new DrawArraysCmd(DrawMode.LineLoop, cmd.FirstVertex, cmd.RenderingVertexCount, cmd.InstanceCount, cmd.FrameCount);
             picker.Node.Render4InnerPicking(arg, drawCmd);
             uint id = ColorCodedPicking.ReadStageVertexId(arg.X, arg.Y);
 
-            if (id == zeroIndexBuffer.FirstVertex)
-            { return new uint[] { (uint)(zeroIndexBuffer.FirstVertex + zeroIndexBuffer.RenderingVertexCount - 1), id, }; }
+            if (id == cmd.FirstVertex)
+            { return new uint[] { (uint)(cmd.FirstVertex + cmd.RenderingVertexCount - 1), id, }; }
             else
             { return new uint[] { id - 1, id, }; }
         }

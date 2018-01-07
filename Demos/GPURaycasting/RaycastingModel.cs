@@ -46,7 +46,7 @@ namespace GPURaycasting
 
         #region IBufferSource 成员
 
-        public VertexBuffer GetVertexAttributeBuffer(string bufferName)
+        public IEnumerable<VertexBuffer> GetVertexAttributeBuffer(string bufferName)
         {
             if (bufferName == position)
             {
@@ -55,7 +55,7 @@ namespace GPURaycasting
                     this.positionBuffer = positions.GenVertexBuffer(VBOConfig.Vec3, BufferUsage.StaticDraw);
                 }
 
-                return this.positionBuffer;
+                yield return this.positionBuffer;
             }
             else
             {
@@ -63,7 +63,7 @@ namespace GPURaycasting
             }
         }
 
-        public IDrawCommand GetDrawCommand()
+        public IEnumerable<IDrawCommand> GetDrawCommand()
         {
             if (this.drawCmd == null)
             {
@@ -71,7 +71,7 @@ namespace GPURaycasting
                 this.drawCmd = new DrawElementsCmd(buffer, DrawMode.Triangles);
             }
 
-            return this.drawCmd;
+            yield return this.drawCmd;
         }
 
         #endregion

@@ -30,7 +30,7 @@ namespace DeferredShading
 
         #region IBufferSource 成员
 
-        public VertexBuffer GetVertexAttributeBuffer(string bufferName)
+        public IEnumerable<VertexBuffer> GetVertexAttributeBuffer(string bufferName)
         {
             if (bufferName == strPosition)
             {
@@ -40,7 +40,7 @@ namespace DeferredShading
                     this.positionBuffer = positions.GenVertexBuffer(VBOConfig.Vec3, BufferUsage.StaticDraw);
                 }
 
-                return this.positionBuffer;
+                yield return this.positionBuffer;
             }
             else if (bufferName == strColor)
             {
@@ -50,7 +50,7 @@ namespace DeferredShading
                     this.colorBuffer = colors.GenVertexBuffer(VBOConfig.Vec3, BufferUsage.StaticDraw);
                 }
 
-                return this.colorBuffer;
+                yield return this.colorBuffer;
             }
             else
             {
@@ -105,7 +105,7 @@ namespace DeferredShading
             return result;
         }
 
-        public IDrawCommand GetDrawCommand()
+        public IEnumerable<IDrawCommand> GetDrawCommand()
         {
             if (this.drawCmd == null)
             {
@@ -114,7 +114,7 @@ namespace DeferredShading
                 this.drawCmd = new DrawElementsCmd(buffer, DrawMode.QuadStrip);
             }
 
-            return this.drawCmd;
+            yield return this.drawCmd;
         }
 
         private SingleCubeIndex[] GetIndexes(int lengthX, int lengthY, int lengthZ)

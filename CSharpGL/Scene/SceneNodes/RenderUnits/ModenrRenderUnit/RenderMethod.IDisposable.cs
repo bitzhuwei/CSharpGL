@@ -40,10 +40,13 @@ namespace CSharpGL
                 } // end if
 
                 // Dispose unmanaged resources.
-                VertexArrayObject vao = this.VertexArrayObject;
-                if (vao != null)
+                VertexArrayObject[] vaos = this.VertexArrayObjects;
+                if (vaos != null)
                 {
-                    vao.Dispose();
+                    foreach (var vao in vaos)
+                    {
+                        vao.Dispose();
+                    }
                 }
                 ShaderProgram program = this.Program;
                 if (program != null)

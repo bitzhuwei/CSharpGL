@@ -15,19 +15,19 @@ namespace StencilTest
 
         #region IBufferSource 成员
 
-        public VertexBuffer GetVertexAttributeBuffer(string bufferName)
+        public IEnumerable<VertexBuffer> GetVertexAttributeBuffer(string bufferName)
         {
             throw new Exception("vertex buffer is not needed.");
         }
 
-        public IDrawCommand GetDrawCommand()
+        public IEnumerable<IDrawCommand> GetDrawCommand()
         {
             if (this.drawCmd == null)
             {
                 this.drawCmd = new DrawArraysCmd(DrawMode.Quads, 0, 4);
             }
 
-            return this.drawCmd;
+            yield return this.drawCmd;
         }
 
         #endregion
