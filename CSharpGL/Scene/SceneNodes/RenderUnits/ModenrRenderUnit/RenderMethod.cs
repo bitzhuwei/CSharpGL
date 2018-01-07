@@ -39,12 +39,12 @@ namespace CSharpGL
         /// A smallest unit that can render somthing.
         /// </summary>
         /// <param name="program"></param>
-        /// <param name="vao"></param>
+        /// <param name="vaos"></param>
         /// <param name="states"></param>
-        public RenderMethod(ShaderProgram program, VertexArrayObject[] vao, params GLState[] states)
+        public RenderMethod(ShaderProgram program, VertexArrayObject[] vaos, params GLState[] states)
         {
             this.Program = program;
-            this.VertexArrayObjects = vao;
+            this.VertexArrayObjects = vaos;
             this.StateList = new GLStateList();
             this.StateList.AddRange(states);
         }
