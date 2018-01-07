@@ -53,7 +53,7 @@ namespace ZeroAttributeInVertexShader
         /// <param name="bufferName"></param>
         /// <param name="varNameInShader"></param>
         /// <returns></returns>
-        public VertexBuffer GetVertexAttributeBuffer(string bufferName)
+        public IEnumerable<VertexBuffer> GetVertexAttributeBuffer(string bufferName)
         {
             throw new Exception("No vertex attribute buffer for this model!");
         }
@@ -62,7 +62,7 @@ namespace ZeroAttributeInVertexShader
         ///
         /// </summary>
         /// <returns></returns>
-        public IDrawCommand GetDrawCommand()
+        public IEnumerable<IDrawCommand> GetDrawCommand()
         {
             if (this.drawCmd == null)
             {
@@ -70,7 +70,7 @@ namespace ZeroAttributeInVertexShader
                 this.drawCmd = buffer;
             }
 
-            return this.drawCmd;
+            yield return this.drawCmd;
         }
 
         private IDrawCommand drawCmd;

@@ -57,7 +57,8 @@ namespace _3DTextureSlicing
         {
             base.DoInitialize();
 
-            this.vVertexBuffer = this.RenderUnit.Model.GetVertexAttributeBuffer(SlicesModel.position);
+            // make sure model only returns once.
+            this.vVertexBuffer = (from item in this.RenderUnit.Model.GetVertexAttributeBuffer(SlicesModel.position) select item).First();
 
             var bmp = new Bitmap(1, 1);
             var bmpG = Graphics.FromImage(bmp);

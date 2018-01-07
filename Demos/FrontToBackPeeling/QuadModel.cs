@@ -19,7 +19,7 @@ namespace FrontToBackPeeling
 
         #region IBufferSource 成员
 
-        public VertexBuffer GetVertexAttributeBuffer(string bufferName)
+        public IEnumerable<VertexBuffer> GetVertexAttributeBuffer(string bufferName)
         {
             if (positions == bufferName)
             {
@@ -28,7 +28,7 @@ namespace FrontToBackPeeling
                     this.positionBuffer = quadVerts.GenVertexBuffer(VBOConfig.Vec2, BufferUsage.StaticDraw);
                 }
 
-                return this.positionBuffer;
+                yield return this.positionBuffer;
             }
             else
             {
@@ -36,7 +36,7 @@ namespace FrontToBackPeeling
             }
         }
 
-        public IDrawCommand GetDrawCommand()
+        public IEnumerable<IDrawCommand> GetDrawCommand()
         {
             if (this.drawCmd == null)
             {
@@ -44,7 +44,7 @@ namespace FrontToBackPeeling
                 this.drawCmd = new DrawElementsCmd(buffer, DrawMode.Triangles);
             }
 
-            return this.drawCmd;
+            yield return this.drawCmd;
         }
 
         #endregion

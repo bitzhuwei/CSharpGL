@@ -136,7 +136,7 @@ void main(void) {
 
             #region IBufferable 成员
 
-            public VertexBuffer GetVertexAttributeBuffer(string bufferName)
+            public IEnumerable<VertexBuffer> GetVertexAttributeBuffer(string bufferName)
             {
                 if (bufferName == strPosition)
                 {
@@ -145,20 +145,22 @@ void main(void) {
                         this.positionBuffer = positions.GenVertexBuffer(VBOConfig.Vec3, BufferUsage.StaticDraw);
                     }
 
-                    return this.positionBuffer;
+                    yield return this.positionBuffer;
                 }
-
-                throw new NotImplementedException();
+                else
+                {
+                    throw new ArgumentException();
+                }
             }
 
-            public IDrawCommand GetDrawCommand()
+            public IEnumerable<IDrawCommand> GetDrawCommand()
             {
                 if (this.drawCmd == null)
                 {
                     this.drawCmd = new DrawArraysCmd(DrawMode.TriangleStrip, 0, positions.Length);
                 }
 
-                return this.drawCmd;
+                yield return this.drawCmd;
             }
 
             #endregion
@@ -170,22 +172,22 @@ void main(void) {
             /// four vertexes.
             /// </summary>
             private static readonly vec3[] positions = new vec3[]
-        {
-            new vec3(+xLength, +yLength, +zLength),//  0
-            new vec3(+xLength, -yLength, +zLength),//  1
-            new vec3(+xLength, +yLength, -zLength),//  2
-            new vec3(+xLength, -yLength, -zLength),//  3
-            new vec3(-xLength, -yLength, -zLength),//  4
-            new vec3(+xLength, -yLength, +zLength),//  5
-            new vec3(-xLength, -yLength, +zLength),//  6
-            new vec3(+xLength, +yLength, +zLength),//  7
-            new vec3(-xLength, +yLength, +zLength),//  8
-            new vec3(+xLength, +yLength, -zLength),//  9
-            new vec3(-xLength, +yLength, -zLength),// 10
-            new vec3(-xLength, -yLength, -zLength),// 11
-            new vec3(-xLength, +yLength, +zLength),// 12
-            new vec3(-xLength, -yLength, +zLength),// 13
-        };
+            {
+                new vec3(+xLength, +yLength, +zLength),//  0
+                new vec3(+xLength, -yLength, +zLength),//  1
+                new vec3(+xLength, +yLength, -zLength),//  2
+                new vec3(+xLength, -yLength, -zLength),//  3
+                new vec3(-xLength, -yLength, -zLength),//  4
+                new vec3(+xLength, -yLength, +zLength),//  5
+                new vec3(-xLength, -yLength, +zLength),//  6
+                new vec3(+xLength, +yLength, +zLength),//  7
+                new vec3(-xLength, +yLength, +zLength),//  8
+                new vec3(+xLength, +yLength, -zLength),//  9
+                new vec3(-xLength, +yLength, -zLength),// 10
+                new vec3(-xLength, -yLength, -zLength),// 11
+                new vec3(-xLength, +yLength, +zLength),// 12
+                new vec3(-xLength, -yLength, +zLength),// 13
+            };
         }
     }
 }

@@ -125,7 +125,7 @@ void main(void)
 
             #region IBufferable 成员
 
-            public VertexBuffer GetVertexAttributeBuffer(string bufferName)
+            public IEnumerable<VertexBuffer> GetVertexAttributeBuffer(string bufferName)
             {
                 if (bufferName == strPosition)
                 {
@@ -134,20 +134,20 @@ void main(void)
                         this.positionBuffer = positions.GenVertexBuffer(VBOConfig.Vec3, BufferUsage.StaticDraw);
                     }
 
-                    return this.positionBuffer;
+                    yield return this.positionBuffer;
                 }
 
                 throw new NotImplementedException();
             }
 
-            public IDrawCommand GetDrawCommand()
+            public IEnumerable<IDrawCommand> GetDrawCommand()
             {
                 if (this.drawCmd == null)
                 {
                     this.drawCmd = new DrawArraysCmd(DrawMode.Quads, 0, positions.Length);
                 }
 
-                return this.drawCmd;
+                yield return this.drawCmd;
             }
 
             #endregion

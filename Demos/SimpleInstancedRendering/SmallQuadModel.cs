@@ -21,7 +21,7 @@ namespace SimpleInstancedRendering
 
         #region IBufferSource 成员
 
-        public VertexBuffer GetVertexAttributeBuffer(string bufferName)
+        public IEnumerable<VertexBuffer> GetVertexAttributeBuffer(string bufferName)
         {
             if (bufferName == strPosition)
             {
@@ -30,7 +30,7 @@ namespace SimpleInstancedRendering
                     this.positionBuffer = positions.GenVertexBuffer(VBOConfig.Vec2, BufferUsage.StaticDraw);
                 }
 
-                return this.positionBuffer;
+                yield return this.positionBuffer;
             }
             else if (bufferName == strColor)
             {
@@ -39,7 +39,7 @@ namespace SimpleInstancedRendering
                     this.colorBuffer = colors.GenVertexBuffer(VBOConfig.Vec3, BufferUsage.StaticDraw);
                 }
 
-                return this.colorBuffer;
+                yield return this.colorBuffer;
             }
             else
             {
@@ -47,7 +47,7 @@ namespace SimpleInstancedRendering
             }
         }
 
-        public IDrawCommand GetDrawCommand()
+        public IEnumerable<IDrawCommand> GetDrawCommand()
         {
             if (this.drawCmd == null)
             {
@@ -55,7 +55,7 @@ namespace SimpleInstancedRendering
                 this.drawCmd = new DrawArraysCmd(DrawMode.Triangles, 0, 6, instanceCount);
             }
 
-            return this.drawCmd;
+            yield return this.drawCmd;
         }
 
         #endregion

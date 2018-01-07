@@ -1,5 +1,6 @@
 ﻿using CSharpGL;
 using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace ComputeShader.HelloComputeShader
@@ -18,7 +19,7 @@ namespace ComputeShader.HelloComputeShader
         private VertexBuffer positionBuffer = null;
         private IDrawCommand drawCmd;
 
-        public VertexBuffer GetVertexAttributeBuffer(string bufferName)
+        public IEnumerable<VertexBuffer> GetVertexAttributeBuffer(string bufferName)
         {
             if (bufferName == strPosition)
             {
@@ -39,7 +40,7 @@ namespace ComputeShader.HelloComputeShader
                     this.positionBuffer = vertsData.GenVertexBuffer(VBOConfig.Vec3, BufferUsage.StaticDraw);
                 }
 
-                return this.positionBuffer;
+                yield return this.positionBuffer;
             }
             else
             {
@@ -47,14 +48,14 @@ namespace ComputeShader.HelloComputeShader
             }
         }
 
-        public IDrawCommand GetDrawCommand()
+        public IEnumerable<IDrawCommand> GetDrawCommand()
         {
             if (drawCmd == null)
             {
                 drawCmd = new DrawArraysCmd(DrawMode.TriangleFan, 0, vertsData.Length);
             }
 
-            return drawCmd;
+            yield return drawCmd;
         }
     }
 }

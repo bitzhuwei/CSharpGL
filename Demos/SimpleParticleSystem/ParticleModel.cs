@@ -33,7 +33,7 @@ namespace SimpleParticleSystem
 
         #region IBufferSource 成员
 
-        public VertexBuffer GetVertexAttributeBuffer(string bufferName)
+        public IEnumerable<VertexBuffer> GetVertexAttributeBuffer(string bufferName)
         {
             // no vertex attribute buffer needed.
             {
@@ -41,7 +41,7 @@ namespace SimpleParticleSystem
             }
         }
 
-        public IDrawCommand GetDrawCommand()
+        public IEnumerable<IDrawCommand> GetDrawCommand()
         {
             if (this.drawCmd == null)
             {
@@ -49,7 +49,7 @@ namespace SimpleParticleSystem
                 this.drawCmd = new DrawElementsCmd(buffer, DrawMode.TriangleStrip);
             }
 
-            return this.drawCmd;
+            yield return this.drawCmd;
         }
 
         #endregion
