@@ -1,6 +1,6 @@
 ﻿namespace CSharpGL
 {
-    internal class ZeroIndexLineInTrianglesAdjacencySearcher : ZeroIndexLineSearcher
+    internal class DrawArraysLineInTriangleStripAdjacencySearcher : DrawArraysLineSearcher
     {
         /// <summary>
         ///
@@ -10,7 +10,7 @@
         /// <param name="picker"></param>
         /// <returns></returns>
         internal override uint[] Search(PickingEventArgs arg,
-            uint lastVertexId, ZeroIndexPicker picker)
+            uint lastVertexId, DrawArraysPicker picker)
         {
             IndexBuffer buffer = GLBuffer.Create(IndexBufferElementType.UInt, 6, BufferUsage.StaticDraw);
             unsafe

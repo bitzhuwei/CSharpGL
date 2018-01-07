@@ -6,9 +6,9 @@ using System.Text;
 namespace CSharpGL
 {
     /// <summary>
-    /// Get picked geometry from a <see cref="PickableNode"/> with <see cref="DrawArraysCmd"/> as index buffer.
+    /// Get picked geometry from a <see cref="PickableNode"/> with <see cref="DrawArraysCmd"/> and <see cref="MultiDrawArraysCmd"/> as index buffer.
     /// </summary>
-    partial class ZeroIndexPicker : PickerBase
+    partial class DrawArraysPicker : PickerBase
     {
         /// <summary>
         /// Get picked geometry from a <see cref="PickableNode"/> with <see cref="DrawArraysCmd"/> as index buffer.
@@ -16,7 +16,7 @@ namespace CSharpGL
         /// <param name="node"></param>
         /// <param name="positionBuffer"></param>
         /// <param name="drawCommand"></param>
-        public ZeroIndexPicker(PickableNode node, VertexBuffer positionBuffer, IDrawCommand drawCommand) : base(node, positionBuffer, drawCommand) { }
+        public DrawArraysPicker(PickableNode node, VertexBuffer positionBuffer, IDrawCommand drawCommand) : base(node, positionBuffer, drawCommand) { }
 
         /// <summary>
         /// 
@@ -50,7 +50,7 @@ namespace CSharpGL
                 }
                 else
                 {
-                    ZeroIndexPointSearcher searcher = GetPointSearcher(mode);
+                    DrawArraysPointSearcher searcher = GetPointSearcher(mode);
                     if (searcher != null)// point is from triangle, quad or polygon
                     { return SearchPoint(arg, stageVertexId, lastVertexId, searcher); }
                     else
@@ -65,7 +65,7 @@ namespace CSharpGL
                 { return PickWhateverItIs(arg, stageVertexId, lastVertexId, mode, typeOfMode); }
                 else
                 {
-                    ZeroIndexLineSearcher searcher = GetLineSearcher(mode);
+                    DrawArraysLineSearcher searcher = GetLineSearcher(mode);
                     if (searcher != null)// line is from triangle, quad or polygon
                     { return SearchLine(arg, stageVertexId, lastVertexId, searcher); }
                     else if (mode == DrawMode.Points)// want a line when rendering GL_POINTS
@@ -94,7 +94,7 @@ namespace CSharpGL
         /// <param name="lastVertexId"></param>
         /// <param name="searcher"></param>
         /// <returns></returns>
-        private PickedGeometry SearchPoint(PickingEventArgs arg, uint stageVertexId, uint lastVertexId, ZeroIndexPointSearcher searcher)
+        private PickedGeometry SearchPoint(PickingEventArgs arg, uint stageVertexId, uint lastVertexId, DrawArraysPointSearcher searcher)
         {
             var vertexIds = new uint[] { searcher.Search(arg, lastVertexId, this), };
             vec3[] positions = FillPickedGeometrysPosition(vertexIds);
@@ -195,7 +195,7 @@ namespace CSharpGL
         /// <param name="searcher"></param>
         /// <returns></returns>
         private PickedGeometry SearchLine(PickingEventArgs arg, uint stageVertexId,
-            uint lastVertexId, ZeroIndexLineSearcher searcher)
+            uint lastVertexId, DrawArraysLineSearcher searcher)
         {
             var vertexIds = searcher.Search(arg, lastVertexId, this);
             var positions = FillPickedGeometrysPosition(vertexIds);

@@ -5,20 +5,20 @@ using System.Text;
 
 namespace CSharpGL
 {
-    partial class ZeroIndexPicker
+    partial class DrawArraysPicker
     {
-        private static readonly ZeroIndexLineSearcher lineInTriangles = new ZeroIndexLineInTriangleSearcher();
-        private static readonly ZeroIndexLineSearcher lineInTrianglesAdjacency = new ZeroIndexLineInTrianglesAdjacencySearcher();
-        private static readonly ZeroIndexLineSearcher lineInTriangleStrip = new ZeroIndexLineInTriangleStripSearcher();
-        private static readonly ZeroIndexLineSearcher lineInTriangleStripAdjacency = new ZeroIndexLineInTriangleStripAdjacencySearcher();
-        private static readonly ZeroIndexLineSearcher lineInTriangleFan = new ZeroIndexLineInTriangleFanSearcher();
-        private static readonly ZeroIndexLineSearcher lineInQuads = new ZeroIndexLineInQuadSearcher();
-        private static readonly ZeroIndexLineSearcher lineInQuadStrip = new ZeroIndexLineInQuadStripSearcher();
-        private static readonly ZeroIndexLineSearcher lineInPolygon = new ZeroIndexLineInPolygonSearcher();
+        private static readonly DrawArraysLineSearcher lineInTriangles = new DrawArraysLineInTriangleSearcher();
+        private static readonly DrawArraysLineSearcher lineInTrianglesAdjacency = new DrawArraysLineInTrianglesAdjacencySearcher();
+        private static readonly DrawArraysLineSearcher lineInTriangleStrip = new DrawArraysLineInTriangleStripSearcher();
+        private static readonly DrawArraysLineSearcher lineInTriangleStripAdjacency = new DrawArraysLineInTriangleStripAdjacencySearcher();
+        private static readonly DrawArraysLineSearcher lineInTriangleFan = new DrawArraysLineInTriangleFanSearcher();
+        private static readonly DrawArraysLineSearcher lineInQuads = new DrawArraysLineInQuadSearcher();
+        private static readonly DrawArraysLineSearcher lineInQuadStrip = new DrawArraysLineInQuadStripSearcher();
+        private static readonly DrawArraysLineSearcher lineInPolygon = new DrawArraysLineInPolygonSearcher();
 
-        private static ZeroIndexLineSearcher GetLineSearcher(DrawMode mode)
+        private static DrawArraysLineSearcher GetLineSearcher(DrawMode mode)
         {
-            ZeroIndexLineSearcher result = null;
+            DrawArraysLineSearcher result = null;
             switch (mode)
             {
                 case DrawMode.Points:
@@ -73,18 +73,18 @@ namespace CSharpGL
             return result;
         }
 
-        private static readonly ZeroIndexPointSearcher pointInTriangles = new ZeroIndexPointInTriangleSearcher();
-        private static readonly ZeroIndexPointSearcher pointInTrianglesAdjacency = new ZeroIndexPointInTrianglesAdjacencySearcher();
-        private static readonly ZeroIndexPointSearcher pointInTriangleStrip = new ZeroIndexPointInTriangleStripSearcher();
-        private static readonly ZeroIndexPointSearcher pointInTriangleStripAdjacency = new ZeroIndexPointInTriangleStripAdjacencySearcher();
-        private static readonly ZeroIndexPointSearcher pointInTriangleFan = new ZeroIndexPointInTriangleFanSearcher();
-        private static readonly ZeroIndexPointSearcher pointInQuads = new ZeroIndexPointInQuadSearcher();
-        private static readonly ZeroIndexPointSearcher pointInQuadStrip = new ZeroIndexPointInQuadStripSearcher();
-        private static readonly ZeroIndexPointSearcher pointInPolygon = new ZeroIndexPointInPolygonSearcher();
+        private static readonly DrawArraysPointSearcher pointInTriangles = new DrawArraysPointInTriangleSearcher();
+        private static readonly DrawArraysPointSearcher pointInTrianglesAdjacency = new DrawArraysPointInTrianglesAdjacencySearcher();
+        private static readonly DrawArraysPointSearcher pointInTriangleStrip = new DrawArraysPointInTriangleStripSearcher();
+        private static readonly DrawArraysPointSearcher pointInTriangleStripAdjacency = new DrawArraysPointInTriangleStripAdjacencySearcher();
+        private static readonly DrawArraysPointSearcher pointInTriangleFan = new DrawArraysPointInTriangleFanSearcher();
+        private static readonly DrawArraysPointSearcher pointInQuads = new DrawArraysPointInQuadSearcher();
+        private static readonly DrawArraysPointSearcher pointInQuadStrip = new DrawArraysPointInQuadStripSearcher();
+        private static readonly DrawArraysPointSearcher pointInPolygon = new DrawArraysPointInPolygonSearcher();
 
-        private static ZeroIndexPointSearcher GetPointSearcher(DrawMode mode)
+        private static DrawArraysPointSearcher GetPointSearcher(DrawMode mode)
         {
-            ZeroIndexPointSearcher result = null;
+            DrawArraysPointSearcher result = null;
             switch (mode)
             {
                 case DrawMode.Points:

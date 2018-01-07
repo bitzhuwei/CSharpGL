@@ -2,7 +2,7 @@
 
 namespace CSharpGL
 {
-    internal class ZeroIndexPointInPolygonSearcher : ZeroIndexPointSearcher
+    internal class DrawArraysPointInPolygonSearcher : DrawArraysPointSearcher
     {
         /// <summary>
         ///
@@ -12,7 +12,7 @@ namespace CSharpGL
         /// <param name="picker"></param>
         /// <returns></returns>
         internal override uint Search(PickingEventArgs arg,
-            uint lastVertexId, ZeroIndexPicker picker)
+            uint lastVertexId, DrawArraysPicker picker)
         {
             var zeroIndexBuffer = picker.DrawCommand as DrawArraysCmd;
             // when the temp index buffer could be long, it's no longer needed.

@@ -19,7 +19,7 @@ namespace CSharpGL
                 if (item.DrawCommand is DrawArraysCmd
                     || item.DrawCommand is MultiDrawArraysCmd)
                 {
-                    pickerList.Add(new ZeroIndexPicker(this, item.VertexAttributes[0].Buffer, item.DrawCommand));
+                    pickerList.Add(new DrawArraysPicker(this, item.VertexAttributes[0].Buffer, item.DrawCommand));
                 }
                 else if (item.DrawCommand is DrawElementsCmd
                     || item.DrawCommand is MultiDrawElementsCmd) // I don't know what will happen during picking if overlaps exists in glMultiDrawElements(..). I also don't care, because that is modeling's problem.
