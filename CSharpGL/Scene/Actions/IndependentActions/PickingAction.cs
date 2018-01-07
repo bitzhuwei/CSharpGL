@@ -177,7 +177,7 @@ namespace CSharpGL
                 var pickable = sceneElement as IPickable;
                 TwoFlags flags = (pickable != null) ? pickable.EnablePicking : TwoFlags.None;
                 bool before = ((flags & TwoFlags.BeforeChildren) == TwoFlags.BeforeChildren);
-                bool children = ((flags & TwoFlags.Children) == TwoFlags.Children);
+                bool children = (pickable == null) || ((flags & TwoFlags.Children) == TwoFlags.Children);
 
                 if (before)
                 {
