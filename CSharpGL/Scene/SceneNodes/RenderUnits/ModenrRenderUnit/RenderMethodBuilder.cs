@@ -55,6 +55,7 @@ namespace CSharpGL
             foreach (AttributeMap.NamePair item in this.map)
             {
                 blockCount = 0;
+                allBlocks[index] = new List<VertexBuffer>();
                 foreach (var buffer in model.GetVertexAttributeBuffer(item.NameInIBufferSource))
                 {
                     if (buffer == null) { throw new Exception(string.Format("[{0}] returns null buffer pointer!", model)); }
