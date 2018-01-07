@@ -19,7 +19,7 @@ namespace CSharpGL
             if (indexList.Length < 3) { throw new ArgumentException(); }
 
             IndexBuffer buffer = indexList.GenIndexBuffer(BufferUsage.StaticDraw);
-            var cmd = new DrawElementsCmd(buffer, DrawMode.Points, 0);
+            var cmd = new DrawElementsCmd(buffer, DrawMode.Points);
             picker.Node.Render4InnerPicking(arg, cmd);
             uint id = ColorCodedPicking.ReadStageVertexId(arg.X, arg.Y);
 
