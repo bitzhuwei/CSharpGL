@@ -15,7 +15,7 @@ namespace CSharpGL
             {
                 IPickableRenderMethod renderUnit = this.pickingRenderUnitBuilder.ToRenderMethod(this.RenderUnit.Model);
                 var pickerList = new List<PickerBase>();
-                foreach (var item in renderUnit.VertexArrayObject)
+                foreach (var item in renderUnit.VertexArrayObjects)
                 {
                     if (item.DrawCommand is DrawArraysCmd)
                     {

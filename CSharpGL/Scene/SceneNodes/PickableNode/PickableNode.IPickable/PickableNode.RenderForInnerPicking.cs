@@ -71,7 +71,7 @@ namespace CSharpGL
             {
                 var pickable = this as IPickable;
                 uint baseId = pickable.PickingBaseId;
-                foreach (var vao in this.PickingRenderUnit.VertexArrayObject)
+                foreach (var vao in this.PickingRenderUnit.VertexArrayObjects)
                 {
                     program.glUniform("pickingBaseId", (int)(baseId));
                     vao.Draw(this.ControlMode, tmpCmd);

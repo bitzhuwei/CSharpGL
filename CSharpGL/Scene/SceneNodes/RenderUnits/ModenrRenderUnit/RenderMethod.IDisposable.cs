@@ -40,7 +40,7 @@ namespace CSharpGL
                 } // end if
 
                 // Dispose unmanaged resources.
-                VertexArrayObject[] vaos = this.VertexArrayObject;
+                VertexArrayObject[] vaos = this.VertexArrayObjects;
                 if (vaos != null)
                 {
                     foreach (var vao in vaos)
