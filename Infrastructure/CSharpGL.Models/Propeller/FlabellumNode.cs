@@ -176,7 +176,7 @@ void main(void) {
 
         #region IBufferable 成员
 
-        public VertexBuffer GetVertexAttributeBuffer(string bufferName)
+        public IEnumerable<VertexBuffer> GetVertexAttributeBuffer(string bufferName)
         {
             if (bufferName == strPosition)
             {
@@ -185,7 +185,7 @@ void main(void) {
                     this.positionBuffer = positions.GenVertexBuffer(VBOConfig.Vec3, BufferUsage.StaticDraw);
                 }
 
-                return this.positionBuffer;
+                yield return this.positionBuffer;
             }
             else if (bufferName == strColor)
             {
@@ -194,13 +194,13 @@ void main(void) {
                     this.colorBuffer = colors.GenVertexBuffer(VBOConfig.Vec3, BufferUsage.StaticDraw);
                 }
 
-                return this.colorBuffer;
+                yield return this.colorBuffer;
             }
 
             throw new NotImplementedException();
         }
 
-        public IDrawCommand GetDrawCommand()
+        public IEnumerable<IDrawCommand> GetDrawCommand()
         {
             if (this.drawCmd == null)
             {
@@ -208,7 +208,7 @@ void main(void) {
                 this.drawCmd = new DrawElementsCmd(buffer, DrawMode.Quads);
             }
 
-            return this.drawCmd;
+            yield return this.drawCmd;
         }
 
         #endregion

@@ -14,14 +14,23 @@ namespace CSharpGL
 
             {
                 IPickableRenderMethod renderUnit = this.pickingRenderUnitBuilder.ToRenderMethod(this.RenderUnit.Model);
-                if (renderUnit.VertexArrayObject.DrawCommand is DrawArraysCmd)
+                var pickerList = new List<PickerBase>();
+                foreach (var item in renderUnit.VertexArrayObject)
                 {
-                    this.picker = new ZeroIndexPicker(this);
+                    if (item.DrawCommand is DrawArraysCmd)
+                    {
+                        pickerList.Add(new ZeroIndexPicker(this, item.VertexAttributes[0].Buffer, item.DrawCommand));
+                    }
+                    else if (item.DrawCommand is DrawElementsCmd)
+                    {
+                        pickerList.Add(new OneIndexPicker(this, item.VertexAttributes[0].Buffer, item.DrawCommand));
+                    }
+                    else
+                    {
+                        throw new NotImplementedException();
+                    }
                 }
-                else if (renderUnit.VertexArrayObject.DrawCommand is DrawElementsCmd)
-                {
-                    this.picker = new OneIndexPicker(this);
-                }
+                this.picker = pickerList.ToArray();
 
                 this.PickingRenderUnit = renderUnit;
             }

@@ -15,25 +15,29 @@ namespace CSharpGL
         /// Get picked geometry from a <see cref="PickableNode"/> with <see cref="DrawArraysCmd"/> as index buffer.
         /// </summary>
         /// <param name="node"></param>
-        public OneIndexPicker(PickableNode node) : base(node) { }
+        /// <param name="positionBuffer"></param>
+        /// <param name="drawCommand"></param>
+        public OneIndexPicker(PickableNode node, VertexBuffer positionBuffer, IDrawCommand drawCommand) : base(node, positionBuffer, drawCommand) { }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="arg"></param>
-        /// <param name="stageVertexId"></param>
+        /// <param name="stageVertexId">The last vertex's id that constructs the picked primitive.
+        /// <para>This id is in scene's all <see cref="IPickable"/>s' order.</para></param>
+        /// <param name="baseId">Index of first vertex of the buffer that The geometry belongs to.
+        /// <para>This id is in scene's all <see cref="IPickable"/>s' order.</para></param>
         /// <returns></returns>
-        public override PickedGeometry GetPickedGeometry(PickingEventArgs arg, uint stageVertexId)
+        public override PickedGeometry GetPickedGeometry(PickingEventArgs arg, uint stageVertexId, uint baseId)
         {
+            if (stageVertexId < baseId) { return null; }
+            uint lastVertexId = stageVertexId - baseId;
+            if (this.PositionBuffer.VertexCount <= lastVertexId) { return null; }
+
             PickableNode node = this.Node;
 
-            uint lastVertexId;
-            if (!node.GetLastVertexIdOfPickedGeometry(stageVertexId, out lastVertexId))
-            { return null; }
-
-            // 找到 lastIndexId
-            RecognizedPrimitiveInfo lastIndexId = this.GetLastIndexIdOfPickedGeometry(
-                arg, lastVertexId);
+            // Find lastIndexId
+            RecognizedPrimitiveInfo lastIndexId = this.GetLastIndexIdOfPickedGeometry(arg, lastVertexId);
             if (lastIndexId == null)
             {
                 Debug.WriteLine(string.Format(
@@ -43,7 +47,7 @@ namespace CSharpGL
             }
 
             PickingGeometryTypes geometryType = arg.GeometryType;
-            DrawMode drawMode = node.PickingRenderUnit.VertexArrayObject.DrawCommand.Mode;
+            DrawMode drawMode = this.DrawCommand.Mode;
             GeometryType typeOfMode = drawMode.ToGeometryType();
 
             if ((geometryType & PickingGeometryTypes.Point) == PickingGeometryTypes.Point)
@@ -211,7 +215,7 @@ namespace CSharpGL
         /// <returns></returns>
         private List<RecognizedPrimitiveInfo> GetLastIndexIdList(PickingEventArgs arg, uint lastVertexId)
         {
-            var drawCmd = this.Node.PickingRenderUnit.VertexArrayObject.DrawCommand;
+            var drawCmd = this.DrawCommand;
             PrimitiveRecognizer recognizer = PrimitiveRecognizerFactory.Create(
                 (arg.GeometryType.Contains(GeometryType.Point)
                 && drawCmd.Mode.ToGeometryType() == GeometryType.Line) ?
@@ -219,7 +223,7 @@ namespace CSharpGL
 
             PrimitiveRestartState glState = GetPrimitiveRestartState();
 
-            var buffer = (drawCmd as DrawElementsCmd).IndexBufferObject;
+            var buffer = (drawCmd as IHasIndexBuffer).IndexBufferObject;
             IntPtr pointer = buffer.MapBuffer(MapBufferAccess.ReadOnly);
             List<RecognizedPrimitiveInfo> primitiveInfoList = null;
             if (glState == null)

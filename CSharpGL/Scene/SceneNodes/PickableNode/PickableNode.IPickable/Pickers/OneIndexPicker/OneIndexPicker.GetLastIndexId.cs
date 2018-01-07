@@ -39,7 +39,7 @@ namespace CSharpGL
                     DrawElementsCmd twoPrimitivesIndexBuffer;
                     uint leftLastIndex, rightLastIndex;
                     AssembleIndexBuffer(
-                        primitiveInfoList[left], primitiveInfoList[right], this.Node.PickingRenderUnit.VertexArrayObject.DrawCommand.Mode,
+                        primitiveInfoList[left], primitiveInfoList[right], this.DrawCommand.Mode,
                         out twoPrimitivesIndexBuffer, out leftLastIndex, out rightLastIndex);
                     uint pickedIndex = Pick(arg, twoPrimitivesIndexBuffer);
                     if (pickedIndex == rightLastIndex)

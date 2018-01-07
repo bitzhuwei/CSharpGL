@@ -5,7 +5,7 @@ namespace CSharpGL
     {
         #region IPickable 成员
 
-        private PickerBase picker;
+        private PickerBase[] picker;
 
         /// <summary>
         /// 
@@ -17,10 +17,22 @@ namespace CSharpGL
         {
             PickedGeometry result = null;
 
-            PickerBase picker = this.picker;
+            PickerBase[] picker = this.picker;
             if (picker != null)
             {
-                result = picker.GetPickedGeometry(arg, stageVertexId);
+                var pickable = this as IPickable;
+                uint baseId = pickable.PickingBaseId;
+                for (int i = 0; i < picker.Length; i++)
+                {
+                    var blockVertexCount = (uint)this.PickingRenderUnit.PositionBuffer[i].VertexCount;
+                    if (baseId <= stageVertexId && stageVertexId < baseId + blockVertexCount)
+                    {
+                        result = picker[i].GetPickedGeometry(arg, stageVertexId, baseId);
+                        break;
+                    }
+
+                    baseId += blockVertexCount;
+                }
             }
 
             return result;

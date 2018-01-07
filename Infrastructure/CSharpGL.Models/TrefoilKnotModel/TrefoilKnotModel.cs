@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace CSharpGL
 {
@@ -56,7 +57,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="bufferName">buffer name(Gets this name from 'strPosition' etc.</param>
         /// <returns>Vertex Buffer Object.</returns>
-        public VertexBuffer GetVertexAttributeBuffer(string bufferName)
+        public IEnumerable<VertexBuffer> GetVertexAttributeBuffer(string bufferName)
         {
             if (bufferName == strPosition)
             {
@@ -64,7 +65,7 @@ namespace CSharpGL
                 {
                     this.positionBuffer = GetPositionBuffer();
                 }
-                return this.positionBuffer;
+                yield return this.positionBuffer;
             }
             else if (bufferName == strTexCoord)
             {
@@ -72,7 +73,7 @@ namespace CSharpGL
                 {
                     this.colorBuffer = GetTexCoordBuffer();
                 }
-                return this.colorBuffer;
+                yield return this.colorBuffer;
             }
             else
             {
@@ -157,7 +158,7 @@ namespace CSharpGL
             return new vec3((float)x, (float)y, (float)z);
         }
 
-        public IDrawCommand GetDrawCommand()
+        public IEnumerable<IDrawCommand> GetDrawCommand()
         {
             if (this.drawCmd == null)
             {
@@ -166,7 +167,7 @@ namespace CSharpGL
                 this.drawCmd = buffer;
             }
 
-            return this.drawCmd;
+            yield return this.drawCmd;
         }
     }
 }
