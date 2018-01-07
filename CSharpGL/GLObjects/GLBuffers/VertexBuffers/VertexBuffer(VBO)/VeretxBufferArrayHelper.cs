@@ -19,7 +19,7 @@ namespace CSharpGL
         public static IEnumerable<IGrouping<int, IndexInBuffer>> GetWorkItems(this GLBuffer[] buffers, IEnumerable<uint> indexes)
         {
             var counts = new uint[buffers.Length + 1];
-            for (int i = 1; i < counts.Length + 1; i++)
+            for (int i = 1; i < counts.Length; i++)
             {
                 // counts:  [0]------------[1]------------[2]-----------[3]
                 // buffers:     buffers[0]     buffers[1]     buffer[2]
