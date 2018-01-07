@@ -128,8 +128,10 @@ void main(void) {
 
                 yield return this.positionBuffer;
             }
-
-            throw new NotImplementedException();
+            else
+            {
+                throw new ArgumentException();
+            }
         }
 
         public IEnumerable<IDrawCommand> GetDrawCommand()

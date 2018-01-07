@@ -174,8 +174,10 @@ void main(void) {
 
                 yield return this.uvBuffer;
             }
-
-            throw new NotImplementedException();
+            else
+            {
+                throw new ArgumentException();
+            }
         }
 
         public IEnumerable<IDrawCommand> GetDrawCommand()

@@ -35,8 +35,10 @@ namespace CSharpGL
 
                 yield return this.positionBuffer;
             }
-
-            throw new NotImplementedException();
+            else
+            {
+                throw new ArgumentException();
+            }
         }
 
         public IEnumerable<IDrawCommand> GetDrawCommand()

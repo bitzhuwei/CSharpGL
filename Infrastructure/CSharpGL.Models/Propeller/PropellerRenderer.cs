@@ -204,8 +204,10 @@ void main(void) {
 
                 yield return this.colorBuffer;
             }
-
-            throw new NotImplementedException();
+            else
+            {
+                throw new ArgumentException();
+            }
         }
 
         public IEnumerable<IDrawCommand> GetDrawCommand()

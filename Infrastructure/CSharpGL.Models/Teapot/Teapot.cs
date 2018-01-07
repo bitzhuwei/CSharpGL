@@ -52,8 +52,10 @@ namespace CSharpGL
 
                 yield return this.normalBuffer;
             }
-
-            throw new NotImplementedException();
+            else
+            {
+                throw new ArgumentException();
+            }
         }
 
         public IEnumerable<IDrawCommand> GetDrawCommand()
