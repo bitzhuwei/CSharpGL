@@ -112,7 +112,7 @@ namespace CSharpGL
 
             // Fill primitive's position information.
             int vertexCount = typeOfMode.GetVertexCount();
-            if (vertexCount == -1) { vertexCount = (from item in this.Node.PickingRenderUnit.PositionBuffer select item.VertexCount).Sum(); }
+            if (vertexCount == -1) { vertexCount = (from item in this.Node.PickingRenderUnit.PositionBuffers select item.VertexCount).Sum(); }
 
             uint[] vertexIds; vec3[] positions;
 
@@ -364,7 +364,7 @@ namespace CSharpGL
         private void PickingLastLineInLineLoop(out uint[] vertexIds, out vec3[] positions)
         {
             const int vertexCount = 2;
-            VertexBuffer[] buffers = this.Node.PickingRenderUnit.PositionBuffer;
+            VertexBuffer[] buffers = this.Node.PickingRenderUnit.PositionBuffers;
             int sum = (from item in buffers select item.VertexCount).Sum();
             vertexIds = new uint[vertexCount] { (uint)(sum - 1), 0 };
             var workItems = buffers.GetWorkItems(vertexIds);

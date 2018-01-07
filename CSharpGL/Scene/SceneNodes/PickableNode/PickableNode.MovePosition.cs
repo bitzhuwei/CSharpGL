@@ -28,7 +28,7 @@ namespace CSharpGL
         /// <returns></returns>
         public vec3[] MovePositions(vec3 modelSpacePositionDiff, IEnumerable<uint> positionIndexes)
         {
-            var buffers = this.PickingRenderUnit.PositionBuffer;
+            var buffers = this.PickingRenderUnit.PositionBuffers;
             var workItems = buffers.GetWorkItems(positionIndexes);
 
             var list = new List<vec3>();

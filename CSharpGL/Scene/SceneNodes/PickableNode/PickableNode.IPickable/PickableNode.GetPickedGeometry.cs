@@ -24,7 +24,7 @@ namespace CSharpGL
                 uint baseId = pickable.PickingBaseId;
                 for (int i = 0; i < picker.Length; i++)
                 {
-                    var blockVertexCount = (uint)this.PickingRenderUnit.PositionBuffer[i].VertexCount;
+                    var blockVertexCount = (uint)this.PickingRenderUnit.PositionBuffers[i].VertexCount;
                     if (baseId <= stageVertexId && stageVertexId < baseId + blockVertexCount)
                     {
                         result = picker[i].GetPickedGeometry(arg, stageVertexId, baseId);

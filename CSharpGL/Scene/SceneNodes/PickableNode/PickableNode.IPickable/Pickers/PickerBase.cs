@@ -15,7 +15,7 @@ namespace CSharpGL
         /// Get picked geometry.
         /// </summary>
         /// <param name="node"></param>
-        /// <param name="PositionBuffer"></param>
+        /// <param name="positionBuffer"></param>
         /// <param name="drawCommand"></param>
         public PickerBase(PickableNode node, VertexBuffer positionBuffer, IDrawCommand drawCommand)
         {
@@ -63,7 +63,7 @@ namespace CSharpGL
 
         protected vec3[] FillPickedGeometrysPosition(uint[] positionIndexes)
         {
-            VertexBuffer[] buffers = this.Node.PickingRenderUnit.PositionBuffer;
+            VertexBuffer[] buffers = this.Node.PickingRenderUnit.PositionBuffers;
             var workItems = buffers.GetWorkItems(positionIndexes);
             var positions = new List<vec3>();
             foreach (var item in workItems)
