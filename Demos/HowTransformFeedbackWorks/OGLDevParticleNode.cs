@@ -93,6 +93,7 @@ namespace HowTransformFeedbackWorks
             {
                 var tf = new TransformFeedbackObject();
                 RenderMethod method = this.RenderUnit.Methods[i];
+                // make sure there is only one vao in this case.
                 foreach (var vao in method.VertexArrayObjects)
                 {
                     VertexShaderAttribute[] attributes = vao.VertexAttributes;
