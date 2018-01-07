@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 
 namespace CSharpGL
 {
@@ -69,9 +70,10 @@ namespace CSharpGL
         {
             base.DoInitialize();
 
-            this.positionBuffer = this.textModel.GetVertexAttributeBuffer(GlyphsModel.position);
-            this.strBuffer = this.textModel.GetVertexAttributeBuffer(GlyphsModel.STR);
-            this.drawCmd = this.textModel.GetDrawCommand() as DrawArraysCmd;
+            // make sure textModel only returns once.
+            this.positionBuffer = (from item in this.textModel.GetVertexAttributeBuffer(GlyphsModel.position) select item).First();
+            this.strBuffer = (from item in this.textModel.GetVertexAttributeBuffer(GlyphsModel.STR) select item).First();
+            this.drawCmd = (from item in this.textModel.GetDrawCommand() select item).First() as DrawArraysCmd;
 
             GlyphServer server = this.glyphServer;
             Texture texture = server.GlyphTexture;

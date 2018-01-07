@@ -20,7 +20,7 @@ namespace CSharpGL
         /// </summary>
         [Category(strIPickableRenderMethod)]
         [Description("Position buffer.")]
-        public VertexBuffer PositionBuffer { get; private set; }
+        public VertexBuffer[] PositionBuffer { get; private set; }
 
         /// <summary>
         /// A smallest unit that can render somthing.
@@ -29,7 +29,7 @@ namespace CSharpGL
         /// <param name="vao"></param>
         /// <param name="positionBuffer"></param>
         /// <param name="states"></param>
-        public IPickableRenderMethod(ShaderProgram program, VertexArrayObject vao, VertexBuffer positionBuffer, params GLState[] states)
+        public IPickableRenderMethod(ShaderProgram program, VertexArrayObject[] vao, VertexBuffer[] positionBuffer, params GLState[] states)
             : base(program, vao, states)
         {
             this.PositionBuffer = positionBuffer;

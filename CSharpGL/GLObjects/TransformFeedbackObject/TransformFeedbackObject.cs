@@ -250,9 +250,9 @@ namespace CSharpGL
         /// 
         /// </summary>
         /// <param name="program"></param>
-        /// <param name="vao"></param>
+        /// <param name="vaos"></param>
         /// <param name="stateList"></param>
-        public void Draw(ShaderProgram program, VertexArrayObject vao, GLStateList stateList = null)
+        public void Draw(ShaderProgram program, VertexArrayObject[] vaos, GLStateList stateList = null)
         {
             // 绑定shader
             program.Bind();
@@ -260,13 +260,16 @@ namespace CSharpGL
 
             if (stateList != null) { stateList.On(); }
 
-            DrawMode mode = vao.DrawCommand.Mode;
             this.Bind();
-            this.Begin(mode);
-            vao.Bind();
-            this.Draw(mode);
-            vao.Unbind();
-            this.End();
+            foreach (var vao in vaos)
+            {
+                DrawMode mode = vao.DrawCommand.Mode;
+                this.Begin(mode);
+                vao.Bind();
+                this.Draw(mode);
+                vao.Unbind();
+                this.End();
+            }
             this.Unbind();
 
             if (stateList != null) { stateList.Off(); }

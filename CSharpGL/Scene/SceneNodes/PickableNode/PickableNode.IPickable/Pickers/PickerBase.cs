@@ -15,100 +15,75 @@ namespace CSharpGL
         /// Get picked geometry.
         /// </summary>
         /// <param name="node"></param>
-        public PickerBase(PickableNode node)
+        /// <param name="PositionBuffer"></param>
+        /// <param name="drawCommand"></param>
+        public PickerBase(PickableNode node, VertexBuffer positionBuffer, IDrawCommand drawCommand)
         {
             this.Node = node;
+            this.PositionBuffer = positionBuffer;
+            this.DrawCommand = drawCommand;
         }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="arg"></param>
-        /// <param name="stageVertexId"></param>
+        /// <param name="stageVertexId">The last vertex's id that constructs the picked primitive.
+        /// <para>This id is in scene's all <see cref="IPickable"/>s' order.</para></param>
+        /// <param name="baseId">Index of first vertex of the buffer that The geometry belongs to.
+        /// <para>This id is in scene's all <see cref="IPickable"/>s' order.</para></param>
         /// <returns></returns>
-        public abstract PickedGeometry GetPickedGeometry(PickingEventArgs arg, uint stageVertexId);
+        public abstract PickedGeometry GetPickedGeometry(PickingEventArgs arg, uint stageVertexId, uint baseId);
 
         /// <summary>
         /// 
         /// </summary>
-        public PickableNode Node { get; set; }
+        public PickableNode Node { get; private set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public VertexBuffer PositionBuffer { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public IDrawCommand DrawCommand { get; private set; }
 
         protected vec3[] FillPickedGeometrysPosition(uint firstIndex, int indexCount)
         {
-            VertexBuffer buffer = this.Node.PickingRenderUnit.PositionBuffer;
-            int offset = (int)(firstIndex * buffer.Config.GetDataSize() * buffer.Config.GetDataTypeByteLength());
-            //IntPtr pointer = GL.MapBuffer(BufferTarget.ArrayBuffer, MapBufferAccess.ReadOnly);
-            IntPtr pointer = buffer.MapBufferRange(
-                offset,
-                indexCount * buffer.Config.GetDataSize() * buffer.Config.GetDataTypeByteLength(),
-                MapBufferRangeAccess.MapReadBit);
-            var positions = new vec3[indexCount];
-            if (pointer.ToInt64() != 0)
+            var positionIndexes = new uint[indexCount];
+            for (uint i = 0; i < indexCount; i++)
             {
+                positionIndexes[i] = firstIndex + i;
+            }
+
+            return FillPickedGeometrysPosition(positionIndexes);
+        }
+
+        protected vec3[] FillPickedGeometrysPosition(uint[] positionIndexes)
+        {
+            VertexBuffer[] buffers = this.Node.PickingRenderUnit.PositionBuffer;
+            var workItems = buffers.GetWorkItems(positionIndexes);
+            var positions = new List<vec3>();
+            foreach (var item in workItems)
+            {
+                VertexBuffer buffer = buffers[item.Key];
+                IntPtr pointer = buffer.MapBuffer(MapBufferAccess.ReadOnly);
                 unsafe
                 {
                     var array = (vec3*)pointer.ToPointer();
-                    for (uint i = 0; i < indexCount; i++)
+                    foreach (var tuple in item)
                     {
-                        positions[i] = array[i];
+                        positions.Add(array[tuple.indexInBuffer]);
                     }
                 }
+                buffer.UnmapBuffer();
             }
-            else
-            {
-                ErrorCode error = (ErrorCode)GL.Instance.GetError();
-                if (error != ErrorCode.NoError)
-                {
-                    var str = string.Format(
-                        "Error:[{0}] glMapBufferRange failed: buffer ID: [{1}]", error, buffer.BufferId.ToString());
-                    Log.Write(str);
-                    Debug.Write(str);
-                    //throw new Exception(str);
-                }
-            }
-            buffer.UnmapBuffer();
 
-            return positions;
+            return positions.ToArray();
         }
 
-        protected vec3[] FillPickedGeometrysPosition(uint[] indexes)
-        {
-            var positions = new vec3[indexes.Length];
-
-            VertexBuffer buffer = this.Node.PickingRenderUnit.PositionBuffer;
-            buffer.Bind();
-            for (int i = 0; i < indexes.Length; i++)
-            {
-                int offset = (int)(indexes[i] * buffer.Config.GetDataSize() * buffer.Config.GetDataTypeByteLength());
-                //IntPtr pointer = GL.MapBuffer(BufferTarget.ArrayBuffer, MapBufferAccess.ReadOnly);
-                IntPtr pointer = buffer.MapBufferRange(
-                    offset,
-                    1 * buffer.Config.GetDataSize() * buffer.Config.GetDataTypeByteLength(),
-                    MapBufferRangeAccess.MapReadBit, false);
-                if (pointer.ToInt64() != 0)
-                {
-                    unsafe
-                    {
-                        var array = (vec3*)pointer.ToPointer();
-                        positions[i] = array[0];
-                    }
-                }
-                else
-                {
-                    ErrorCode error = (ErrorCode)GL.Instance.GetError();
-                    if (error != ErrorCode.NoError)
-                    {
-                        Debug.WriteLine(string.Format(
-                            "Error:[{0}] glMapBufferRange failed: buffer ID: [{1}]", error, buffer.BufferId.ToString()));
-                    }
-                }
-                buffer.UnmapBuffer(false);
-            }
-            buffer.Unbind();
-
-            return positions;
-        }
 
     }
 }

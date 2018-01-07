@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
+
 namespace CSharpGL
 {
     public abstract partial class PickableNode
@@ -12,24 +14,9 @@ namespace CSharpGL
         /// <param name="modelSpacePositionDiff"></param>
         /// <param name="positionIndexes"></param>
         /// <returns></returns>
-        public IList<vec3> MovePositions(vec3 modelSpacePositionDiff, IEnumerable<uint> positionIndexes)
+        public vec3[] MovePositions(vec3 modelSpacePositionDiff, params uint[] positionIndexes)
         {
-            var list = new List<vec3>();
-
-            VertexBuffer buffer = this.PickingRenderUnit.PositionBuffer;
-            IntPtr pointer = buffer.MapBuffer(MapBufferAccess.ReadWrite);
-            unsafe
-            {
-                var array = (vec3*)pointer.ToPointer();
-                foreach (uint index in positionIndexes)
-                {
-                    array[index] = array[index] + modelSpacePositionDiff;
-                    list.Add(array[index]);
-                }
-            }
-            buffer.UnmapBuffer();
-
-            return list;
+            return this.MovePositions(modelSpacePositionDiff, positionIndexes as IEnumerable<uint>);
         }
 
         /// <summary>
@@ -39,25 +26,29 @@ namespace CSharpGL
         /// <param name="modelSpacePositionDiff"></param>
         /// <param name="positionIndexes"></param>
         /// <returns></returns>
-        public vec3[] MovePositions(vec3 modelSpacePositionDiff, params uint[] positionIndexes)
+        public vec3[] MovePositions(vec3 modelSpacePositionDiff, IEnumerable<uint> positionIndexes)
         {
-            var list = new vec3[positionIndexes.Length];
+            var buffers = this.PickingRenderUnit.PositionBuffer;
+            var workItems = buffers.GetWorkItems(positionIndexes);
 
-            VertexBuffer buffer = this.PickingRenderUnit.PositionBuffer;
-            IntPtr pointer = buffer.MapBuffer(MapBufferAccess.ReadWrite);
-            unsafe
+            var list = new List<vec3>();
+            foreach (var item in workItems)
             {
-                var array = (vec3*)pointer.ToPointer();
-                int t = 0;
-                foreach (uint index in positionIndexes)
+                VertexBuffer buffer = buffers[item.Key];
+                IntPtr pointer = buffer.MapBuffer(MapBufferAccess.ReadWrite);
+                unsafe
                 {
-                    array[index] = array[index] + modelSpacePositionDiff;
-                    list[t++] = array[index];
+                    var array = (vec3*)pointer.ToPointer();
+                    foreach (var tuple in item)
+                    {
+                        array[tuple.indexInBuffer] = array[tuple.indexInBuffer] + modelSpacePositionDiff;
+                        list.Add(array[tuple.indexInBuffer]);
+                    }
                 }
+                buffer.UnmapBuffer();
             }
-            buffer.UnmapBuffer();
 
-            return list;
+            return list.ToArray();
         }
     }
 }

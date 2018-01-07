@@ -37,7 +37,7 @@ namespace CSharpGL
             //    e.CanvasRect.Width, e.CanvasRect.Height, filename);
         }
 
-        private void RenderForPicking(PickingEventArgs arg, IDrawCommand tempIndexBuffer)
+        private void RenderForPicking(PickingEventArgs arg, IDrawCommand tmpCmd)
         {
             if (!this.IsInitialized) { this.Initialize(); }
 
@@ -47,7 +47,6 @@ namespace CSharpGL
 
             // 绑定shader
             program.Bind();
-            program.glUniform("pickingBaseId", (int)(((IPickable)this).PickingBaseId));
             {
                 mat4 projection = arg.Scene.Camera.GetProjectionMatrix();
                 mat4 view = arg.Scene.Camera.GetViewMatrix();
@@ -59,17 +58,29 @@ namespace CSharpGL
             this.lineWidthState.On();
             this.pointSizeState.On();
 
-            var oneIndexBuffer = tempIndexBuffer as DrawElementsCmd;
-            if (oneIndexBuffer != null)
+            PrimitiveRestartState restart = null;
+            var hasIndexBuffer = tmpCmd as IHasIndexBuffer;
+            if (hasIndexBuffer != null)
             {
-                PrimitiveRestartState glState = this.GetPrimitiveRestartState(oneIndexBuffer);
-                glState.On();
-                this.PickingRenderUnit.VertexArrayObject.Draw(this.ControlMode, tempIndexBuffer);
-                glState.Off();
+                restart = this.GetPrimitiveRestartState(hasIndexBuffer.IndexBufferObject.ElementType);
             }
-            else
+            if (restart != null)
             {
-                this.PickingRenderUnit.VertexArrayObject.Draw(this.ControlMode, tempIndexBuffer);
+                restart.On();
+            }
+            {
+                var pickable = this as IPickable;
+                uint baseId = pickable.PickingBaseId;
+                foreach (var vao in this.PickingRenderUnit.VertexArrayObject)
+                {
+                    program.glUniform("pickingBaseId", (int)(baseId));
+                    vao.Draw(this.ControlMode, tmpCmd);
+                    baseId += (uint)vao.VertexAttributes[0].Buffer.VertexCount;
+                }
+            }
+            if (restart != null)
+            {
+                restart.Off();
             }
 
             this.pointSizeState.Off();
@@ -84,26 +95,26 @@ namespace CSharpGL
         private PrimitiveRestartState ushortRestartIndexState = null;
         private PrimitiveRestartState uintRestartIndexState = null;
 
-        private PrimitiveRestartState GetPrimitiveRestartState(DrawElementsCmd drawCmd)
+        private PrimitiveRestartState GetPrimitiveRestartState(IndexBufferElementType type)
         {
             PrimitiveRestartState result = null;
-            switch (drawCmd.IndexBufferObject.ElementType)
+            switch (type)
             {
                 case IndexBufferElementType.UByte:
                     if (this.ubyteRestartIndexState == null)
-                    { this.ubyteRestartIndexState = new PrimitiveRestartState(drawCmd.IndexBufferObject.ElementType); }
+                    { this.ubyteRestartIndexState = new PrimitiveRestartState(type); }
                     result = this.ubyteRestartIndexState;
                     break;
 
                 case IndexBufferElementType.UShort:
                     if (this.ushortRestartIndexState == null)
-                    { this.ushortRestartIndexState = new PrimitiveRestartState(drawCmd.IndexBufferObject.ElementType); }
+                    { this.ushortRestartIndexState = new PrimitiveRestartState(type); }
                     result = this.ushortRestartIndexState;
                     break;
 
                 case IndexBufferElementType.UInt:
                     if (this.uintRestartIndexState == null)
-                    { this.uintRestartIndexState = new PrimitiveRestartState(drawCmd.IndexBufferObject.ElementType); }
+                    { this.uintRestartIndexState = new PrimitiveRestartState(type); }
                     result = this.uintRestartIndexState;
                     break;
 
