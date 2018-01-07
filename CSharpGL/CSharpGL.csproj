@@ -365,7 +365,6 @@
     <Compile Include="Scene\Actions\DependentActions\3DWorld\IShadowMapping.cs" />
     <Compile Include="Scene\Actions\DependentActions\3DWorld\IWorldSpace.cs" />
     <Compile Include="Scene\Actions\IndependentActions\IPickable\IPickable.cs" />
-    <Compile Include="Scene\Actions\IndependentActions\IPickable\IPickableHelper.cs" />
     <Compile Include="Scene\Actions\IndependentActions\IPickable\IPickedGeometry.cs" />
     <Compile Include="Scene\Actions\IndependentActions\IPickable\PickedGeometry.cs" />
     <Compile Include="Scene\Actions\IndependentActions\IPickable\PickingGeometryType.cs" />
