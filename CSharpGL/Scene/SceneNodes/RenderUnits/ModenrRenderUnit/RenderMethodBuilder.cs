@@ -69,10 +69,10 @@ namespace CSharpGL
             }
 
             // init draw commands.
-            var allDrawCommands = (from item in model.GetDrawCommand()
-                                   where (item != null)
-                                   select item).ToArray();
-            int cmdCount = allDrawCommands.Length;
+            var drawCmds = (from item in model.GetDrawCommand()
+                            where (item != null)
+                            select item).ToArray();
+            int cmdCount = drawCmds.Length;
             if (attrCount > 0 && cmdCount != blockCount) { throw new Exception("Draw Commands count != vertex buffer block count."); }
 
             // init VAOs.
@@ -86,13 +86,13 @@ namespace CSharpGL
                     string varNameInShader = allNames[a];
                     vertexShaderAttributes[a] = new VertexShaderAttribute(vertexAttribute[c], varNameInShader);
                 }
-                vaos[c] = new VertexArrayObject(allDrawCommands[c], program, vertexShaderAttributes);
+                vaos[c] = new VertexArrayObject(drawCmds[c], program, vertexShaderAttributes);
             }
 
             var renderUnit = new RenderMethod(program, vaos, this.states);
 
             // RULE: Renderer takes uint.MaxValue, ushort.MaxValue or byte.MaxValue as PrimitiveRestartIndex. So take care of this rule when designing a model's index buffer.
-            foreach (var cmd in allDrawCommands)
+            foreach (var cmd in drawCmds)
             {
                 var ptr = cmd as IHasIndexBuffer;
                 if (ptr != null)

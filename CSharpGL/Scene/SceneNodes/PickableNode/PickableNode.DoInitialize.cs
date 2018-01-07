@@ -12,28 +12,33 @@ namespace CSharpGL
         {
             base.DoInitialize();
 
+            IPickableRenderMethod renderUnit = this.pickingRenderUnitBuilder.ToRenderMethod(this.RenderUnit.Model);
+            var pickerList = new List<PickerBase>();
+            foreach (var vao in renderUnit.VertexArrayObjects)
             {
-                IPickableRenderMethod renderUnit = this.pickingRenderUnitBuilder.ToRenderMethod(this.RenderUnit.Model);
-                var pickerList = new List<PickerBase>();
-                foreach (var item in renderUnit.VertexArrayObjects)
+                IDrawCommand cmd = vao.DrawCommand;
+                if (cmd is DrawArraysCmd
+                    || cmd is MultiDrawArraysCmd)
                 {
-                    if (item.DrawCommand is DrawArraysCmd)
-                    {
-                        pickerList.Add(new ZeroIndexPicker(this, item.VertexAttributes[0].Buffer, item.DrawCommand));
-                    }
-                    else if (item.DrawCommand is DrawElementsCmd)
-                    {
-                        pickerList.Add(new OneIndexPicker(this, item.VertexAttributes[0].Buffer, item.DrawCommand));
-                    }
-                    else
-                    {
-                        throw new NotImplementedException();
-                    }
+                    //I don't know what will happen during picking if 'overlap' exists in glMultiDrawArrays(..). I don't care either, because that is a problem that should be solved in modeling stage.
+                    VertexBuffer positionBuffer = vao.VertexAttributes[0].Buffer; // according to base.DoInitialize(), this is the position buffer of the only vertex attribute.
+                    pickerList.Add(new DrawArraysPicker(this, positionBuffer, cmd));
                 }
-                this.picker = pickerList.ToArray();
-
-                this.PickingRenderUnit = renderUnit;
+                else if (cmd is DrawElementsCmd
+                    || cmd is MultiDrawElementsCmd)
+                {
+                    //I don't know what will happen during picking if 'overlap' exists in glMultiDrawElements(..). I don't care either, because that is a problem that should be solved in modeling stage.
+                    VertexBuffer positionBuffer = vao.VertexAttributes[0].Buffer; // according to base.DoInitialize(), this is the position buffer of the only vertex attribute.
+                    pickerList.Add(new DrawElementsPicker(this, positionBuffer, cmd));
+                }
+                else
+                {
+                    throw new NotImplementedException(string.Format("`{0}` is a new IDrawCommand. CSharpGL has not supported `IPickable` with it yet.", cmd.GetType()));
+                }
             }
+            this.picker = pickerList.ToArray();
+
+            this.PickingRenderUnit = renderUnit;
         }
     }
 }
