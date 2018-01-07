@@ -2,7 +2,7 @@
 
 namespace CSharpGL
 {
-    internal class OneIndexLineInPolygonSearcher : OneIndexLineSearcher
+    internal class DrawElementsLineInPolygonSearcher : DrawElementsLineSearcher
     {
         /// <summary>
         ///
@@ -13,7 +13,7 @@ namespace CSharpGL
         /// <returns></returns>
         internal override uint[] Search(PickingEventArgs arg,
             RecognizedPrimitiveInfo primitiveInfo,
-            OneIndexPicker picker)
+            DrawElementsPicker picker)
         {
             uint[] indexList = primitiveInfo.VertexIds;
             if (indexList.Length < 3) { throw new ArgumentException(); }

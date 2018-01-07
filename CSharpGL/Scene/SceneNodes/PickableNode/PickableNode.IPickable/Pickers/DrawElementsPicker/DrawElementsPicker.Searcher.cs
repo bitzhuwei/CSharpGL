@@ -5,15 +5,15 @@ using System.Text;
 
 namespace CSharpGL
 {
-    partial class OneIndexPicker
+    partial class DrawElementsPicker
     {
-        private static readonly OneIndexLineSearcher lineInTriangle = new OneIndexLineInTriangleSearcher();
-        private static readonly OneIndexLineSearcher lineInQuad = new OneIndexLineInQuadSearcher();
-        private static readonly OneIndexLineSearcher lineInPolygon = new OneIndexLineInPolygonSearcher();
+        private static readonly DrawElementsLineSearcher lineInTriangle = new DrawElementsLineInTriangleSearcher();
+        private static readonly DrawElementsLineSearcher lineInQuad = new DrawElementsLineInQuadSearcher();
+        private static readonly DrawElementsLineSearcher lineInPolygon = new DrawElementsLineInPolygonSearcher();
 
-        private static OneIndexLineSearcher GetLineSearcher(DrawMode mode)
+        private static DrawElementsLineSearcher GetLineSearcher(DrawMode mode)
         {
-            OneIndexLineSearcher result = null;
+            DrawElementsLineSearcher result = null;
             switch (mode)
             {
                 case DrawMode.Points:
@@ -61,13 +61,13 @@ namespace CSharpGL
             return result;
         }
 
-        private static readonly OneIndexPointSearcher pointInTriangle = new OneIndexPointInTriangleSearcher();
-        private static readonly OneIndexPointSearcher pointInQuad = new OneIndexPointInQuadSearcher();
-        private static readonly OneIndexPointSearcher pointInPolygon = new OneIndexPointInPolygonSearcher();
+        private static readonly DrawElementsPointSearcher pointInTriangle = new DrawElementsPointInTriangleSearcher();
+        private static readonly DrawElementsPointSearcher pointInQuad = new DrawElementsPointInQuadSearcher();
+        private static readonly DrawElementsPointSearcher pointInPolygon = new DrawElementsPointInPolygonSearcher();
 
-        private static OneIndexPointSearcher GetPointSearcher(DrawMode mode)
+        private static DrawElementsPointSearcher GetPointSearcher(DrawMode mode)
         {
-            OneIndexPointSearcher result = null;
+            DrawElementsPointSearcher result = null;
             switch (mode)
             {
                 case DrawMode.Points:

@@ -2,7 +2,7 @@
 
 namespace CSharpGL
 {
-    internal class OneIndexPointInTriangleSearcher : OneIndexPointSearcher
+    internal class DrawElementsPointInQuadSearcher : DrawElementsPointSearcher
     {
         /// <summary>
         ///
@@ -13,10 +13,10 @@ namespace CSharpGL
         /// <returns></returns>
         internal override uint Search(PickingEventArgs arg,
             RecognizedPrimitiveInfo primitiveInfo,
-            OneIndexPicker picker)
+            DrawElementsPicker picker)
         {
             uint[] indexList = primitiveInfo.VertexIds;
-            if (indexList.Length != 3) { throw new ArgumentException(); }
+            if (indexList.Length != 4) { throw new ArgumentException(); }
 
             IndexBuffer buffer = indexList.GenIndexBuffer(BufferUsage.StaticDraw);
             var cmd = new DrawElementsCmd(buffer, DrawMode.Points);
@@ -25,7 +25,8 @@ namespace CSharpGL
 
             buffer.Dispose();
 
-            if (id == indexList[0] || id == indexList[1] || id == indexList[2])
+            if (id == indexList[0] || id == indexList[1]
+                || id == indexList[2] || id == indexList[3])
             { return id; }
             else
             { throw new Exception("This should not happen!"); }

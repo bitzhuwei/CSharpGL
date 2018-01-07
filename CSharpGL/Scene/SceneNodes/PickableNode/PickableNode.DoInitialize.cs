@@ -24,7 +24,7 @@ namespace CSharpGL
                 else if (item.DrawCommand is DrawElementsCmd
                     || item.DrawCommand is MultiDrawElementsCmd) // I don't know what will happen during picking if overlaps exists in glMultiDrawElements(..). I also don't care, because that is modeling's problem.
                 {
-                    pickerList.Add(new OneIndexPicker(this, item.VertexAttributes[0].Buffer, item.DrawCommand));
+                    pickerList.Add(new DrawElementsPicker(this, item.VertexAttributes[0].Buffer, item.DrawCommand));
                 }
                 else
                 {

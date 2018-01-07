@@ -1,6 +1,6 @@
 ﻿namespace CSharpGL
 {
-    internal abstract class OneIndexPointSearcher
+    internal abstract class DrawElementsPointSearcher
     {
         /// <summary>
         ///
@@ -11,6 +11,6 @@
         /// <returns></returns>
         internal abstract uint Search(PickingEventArgs arg,
             RecognizedPrimitiveInfo primitiveInfo,
-            OneIndexPicker picker);
+            DrawElementsPicker picker);
     }
 }

@@ -5,7 +5,7 @@ using System.Linq;
 namespace CSharpGL
 {
     // check http://www.cnblogs.com/bitzhuwei/p/CSharpGL-18-Picking-of-OneIndexBuffer.html
-    partial class OneIndexPicker
+    partial class DrawElementsPicker
     {
         /// <summary>
         /// 在所有可能的图元（lastVertexId匹配）中，

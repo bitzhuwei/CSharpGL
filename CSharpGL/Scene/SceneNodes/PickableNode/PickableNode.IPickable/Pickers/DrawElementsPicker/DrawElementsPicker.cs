@@ -9,7 +9,7 @@ namespace CSharpGL
     /// <summary>
     /// Get picked geometry from a <see cref="PickableNode"/> with <see cref="DrawArraysCmd"/> as index buffer.
     /// </summary>
-    partial class OneIndexPicker : PickerBase
+    partial class DrawElementsPicker : PickerBase
     {
         /// <summary>
         /// Get picked geometry from a <see cref="PickableNode"/> with <see cref="DrawArraysCmd"/> as index buffer.
@@ -17,7 +17,7 @@ namespace CSharpGL
         /// <param name="node"></param>
         /// <param name="positionBuffer"></param>
         /// <param name="drawCommand"></param>
-        public OneIndexPicker(PickableNode node, VertexBuffer positionBuffer, IDrawCommand drawCommand) : base(node, positionBuffer, drawCommand) { }
+        public DrawElementsPicker(PickableNode node, VertexBuffer positionBuffer, IDrawCommand drawCommand) : base(node, positionBuffer, drawCommand) { }
 
         /// <summary>
         /// 
@@ -64,7 +64,7 @@ namespace CSharpGL
                 }
                 else
                 {
-                    OneIndexPointSearcher searcher = GetPointSearcher(drawMode);
+                    DrawElementsPointSearcher searcher = GetPointSearcher(drawMode);
                     if (searcher != null)// line is from triangle, quad or polygon
                     { return SearchPoint(arg, stageVertexId, lastVertexId, lastIndexId, searcher); }
                     else
@@ -80,7 +80,7 @@ namespace CSharpGL
                 { return PickWhateverItIs(arg, stageVertexId, lastIndexId, typeOfMode); }
                 else
                 {
-                    OneIndexLineSearcher searcher = GetLineSearcher(drawMode);
+                    DrawElementsLineSearcher searcher = GetLineSearcher(drawMode);
                     if (searcher != null)// line is from triangle, quad or polygon
                     { return SearchLine(arg, stageVertexId, lastIndexId, searcher); }
                     else
@@ -106,7 +106,7 @@ namespace CSharpGL
         /// <param name="primitiveInfo"></param>
         /// <param name="searcher"></param>
         /// <returns></returns>
-        private PickedGeometry SearchPoint(PickingEventArgs arg, uint stageVertexId, uint lastVertexId, RecognizedPrimitiveInfo primitiveInfo, OneIndexPointSearcher searcher)
+        private PickedGeometry SearchPoint(PickingEventArgs arg, uint stageVertexId, uint lastVertexId, RecognizedPrimitiveInfo primitiveInfo, DrawElementsPointSearcher searcher)
         {
             var vertexIds = new uint[] { searcher.Search(arg, primitiveInfo, this), };
             vec3[] positions = FillPickedGeometrysPosition(vertexIds);
@@ -123,7 +123,7 @@ namespace CSharpGL
         /// <param name="primitiveInfo"></param>
         /// <param name="searcher"></param>
         /// <returns></returns>
-        private PickedGeometry SearchLine(PickingEventArgs arg, uint stageVertexId, RecognizedPrimitiveInfo primitiveInfo, OneIndexLineSearcher searcher)
+        private PickedGeometry SearchLine(PickingEventArgs arg, uint stageVertexId, RecognizedPrimitiveInfo primitiveInfo, DrawElementsLineSearcher searcher)
         {
             var vertexIds = searcher.Search(arg, primitiveInfo, this);
             vec3[] positions = FillPickedGeometrysPosition(vertexIds);
