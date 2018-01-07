@@ -72,11 +72,12 @@ namespace CSharpGL
             var allDrawCommands = (from item in model.GetDrawCommand()
                                    where (item != null)
                                    select item).ToArray();
-            if (attrCount > 0 && allDrawCommands.Length != blockCount) { throw new Exception("Draw Commands count != vertex buffer block count."); }
+            int cmdCount = allDrawCommands.Length;
+            if (attrCount > 0 && cmdCount != blockCount) { throw new Exception("Draw Commands count != vertex buffer block count."); }
 
             // init VAO.
-            var vaos = new VertexArrayObject[blockCount];
-            for (int b = 0; b < blockCount; b++)
+            var vaos = new VertexArrayObject[cmdCount];
+            for (int b = 0; b < cmdCount; b++)
             {
                 var vertexAttributeBuffers = new VertexShaderAttribute[attrCount];
                 for (int a = 0; a < attrCount; a++)
