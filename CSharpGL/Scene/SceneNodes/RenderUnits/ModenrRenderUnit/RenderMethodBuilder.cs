@@ -68,23 +68,25 @@ namespace CSharpGL
                 index++;
             }
 
-            // init draw command.
+            // init draw commands.
             var allDrawCommands = (from item in model.GetDrawCommand()
                                    where (item != null)
                                    select item).ToArray();
             int cmdCount = allDrawCommands.Length;
             if (attrCount > 0 && cmdCount != blockCount) { throw new Exception("Draw Commands count != vertex buffer block count."); }
 
-            // init VAO.
+            // init VAOs.
             var vaos = new VertexArrayObject[cmdCount];
-            for (int b = 0; b < cmdCount; b++)
+            for (int c = 0; c < cmdCount; c++)
             {
-                var vertexAttributeBuffers = new VertexShaderAttribute[attrCount];
+                var vertexShaderAttributes = new VertexShaderAttribute[attrCount];
                 for (int a = 0; a < attrCount; a++)
                 {
-                    vertexAttributeBuffers[a] = new VertexShaderAttribute(allBlocks[a][b], allNames[a]);
+                    List<VertexBuffer> vertexAttribute = allBlocks[a];
+                    string varNameInShader = allNames[a];
+                    vertexShaderAttributes[a] = new VertexShaderAttribute(vertexAttribute[c], varNameInShader);
                 }
-                vaos[b] = new VertexArrayObject(allDrawCommands[b], program, vertexAttributeBuffers);
+                vaos[c] = new VertexArrayObject(allDrawCommands[c], program, vertexShaderAttributes);
             }
 
             var renderUnit = new RenderMethod(program, vaos, this.states);
