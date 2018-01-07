@@ -10,10 +10,6 @@ namespace CSharpGL
     [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
     public class MultiDrawArraysCmd : IDrawCommand
     {
-        /// <summary>
-        /// 用哪种方式渲染各个顶点？（GL.GL_TRIANGLES etc.）
-        /// </summary>
-        public DrawMode Mode { get; set; }
 
         /// <summary>
         /// 
@@ -41,6 +37,13 @@ namespace CSharpGL
             this.Count = count;
         }
 
+        #region IDrawCommand
+
+        /// <summary>
+        /// 用哪种方式渲染各个顶点？（GL.GL_TRIANGLES etc.）
+        /// </summary>
+        public DrawMode Mode { get; set; }
+
         /// <summary>
         /// 执行此VBO的渲染操作。
         /// <para>Render using this VBO.</para>
@@ -50,5 +53,8 @@ namespace CSharpGL
         {
             GL.Instance.MultiDrawArrays((uint)this.Mode, this.First, this.Count, this.First.Length);
         }
+
+        #endregion IDrawCommand
+
     }
 }
