@@ -34,7 +34,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// Creates a <see cref="DrawElementsCmd"/> object directly in server side(GPU) without initializing its value.
+        /// Creates a <see cref="IndexBuffer"/> object directly in server side(GPU) without initializing its value.
         /// </summary>
         /// <param name="type"></param>
         /// <param name="length">How many indexes are there?(How many uint/ushort/bytes?)</param>
