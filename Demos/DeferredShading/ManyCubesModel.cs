@@ -9,7 +9,7 @@ namespace DeferredShading
     class ManyCubesModel : IBufferSource
     {
         private readonly int blockSize;
-        public ManyCubesModel(int lengthX, int lengthY, int lengthZ, int blockSize = 1024*1024)
+        public ManyCubesModel(int lengthX, int lengthY, int lengthZ, int blockSize = 1024*4)
         {
             this.lengthX = lengthX;
             this.lengthY = lengthY;
@@ -19,12 +19,12 @@ namespace DeferredShading
         }
 
         public const string strPosition = "position";
-        private VertexBuffer[] positionBuffers;
+        private VertexBuffer positionBuffer;
 
         public const string strColor = "color";
-        private VertexBuffer[] colorBuffers;
+        private VertexBuffer colorBuffer;
 
-        private IDrawCommand[] drawCmds;
+        private IDrawCommand drawCmd;
 
         private int lengthX;
         private int lengthY;
@@ -36,29 +36,23 @@ namespace DeferredShading
         {
             if (bufferName == strPosition)
             {
-                if (this.positionBuffers == null)
+                if (this.positionBuffer == null)
                 {
                     SingleCubePosition[] positions = GetPositions(lengthX, lengthY, lengthZ);
-                    this.positionBuffers = positions.GenVertexBuffers(VBOConfig.Vec3, BufferUsage.StaticDraw, this.blockSize);
+                    this.positionBuffer = positions.GenVertexBuffer(VBOConfig.Vec3, BufferUsage.StaticDraw);
                 }
 
-                foreach (var item in this.positionBuffers)
-                {
-                    yield return item;
-                }
+                yield return this.positionBuffer;
             }
             else if (bufferName == strColor)
             {
-                if (this.colorBuffers == null)
+                if (this.colorBuffer == null)
                 {
                     SingleCubeColor[] colors = GetColors(lengthX, lengthY, lengthZ);
-                    this.colorBuffers = colors.GenVertexBuffers(VBOConfig.Vec3, BufferUsage.StaticDraw, this.blockSize);
+                    this.colorBuffer = colors.GenVertexBuffer(VBOConfig.Vec3, BufferUsage.StaticDraw);
                 }
 
-                foreach (var item in this.colorBuffers)
-                {
-                    yield return item;
-                }
+                yield return this.colorBuffer;
             }
             else
             {
@@ -115,22 +109,14 @@ namespace DeferredShading
 
         public IEnumerable<IDrawCommand> GetDrawCommand()
         {
-            if (this.drawCmds == null)
+            if (this.drawCmd == null)
             {
                 SingleCubeIndex[] indexes = GetIndexes(lengthX, lengthY, lengthZ);
-                IndexBuffer[] buffers = indexes.GenIndexBuffers(IndexBufferElementType.UInt, BufferUsage.StaticDraw, this.blockSize);
-                var cmds = new IDrawCommand[buffers.Length];
-                for (int i = 0; i < buffers.Length; i++)
-                {
-                    cmds[i] = new DrawElementsCmd(buffers[i], DrawMode.QuadStrip);
-                }
-                this.drawCmds = cmds;
+                IndexBuffer buffer = indexes.GenIndexBuffer(IndexBufferElementType.UInt, BufferUsage.StaticDraw);
+                this.drawCmd = new DrawElementsCmd(buffer, DrawMode.QuadStrip);
             }
 
-            foreach (var item in this.drawCmds)
-            {
-                yield return item;
-            }
+            yield return this.drawCmd;
         }
 
         private SingleCubeIndex[] GetIndexes(int lengthX, int lengthY, int lengthZ)
