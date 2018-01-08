@@ -19,15 +19,18 @@ namespace CSharpGL
         /// <returns></returns>
         public static VertexBuffer GenVertexBuffer(this UnmanagedArrayBase array, VBOConfig config, BufferUsage usage, uint instancedDivisor = 0, int patchVertexes = 0)
         {
-            uint[] buffers = new uint[1];
-            glGenBuffers(1, buffers);
-            const uint target = GL.GL_ARRAY_BUFFER;
-            glBindBuffer(target, buffers[0]);
-            glBufferData(target, array.ByteLength, array.Header, (uint)usage);
-            glBindBuffer(target, 0);
+            var ids = new uint[1];
+            {
+                glGenBuffers(1, ids);
+                const uint target = GL.GL_ARRAY_BUFFER;
+                glBindBuffer(target, ids[0]);
+                glBufferData(target, array.ByteLength, array.Header, (uint)usage);
+                glBindBuffer(target, 0);
+            }
 
             var buffer = new VertexBuffer(
-                buffers[0], config, array.Length, array.ByteLength, instancedDivisor, patchVertexes);
+                ids[0], config, array.Length, array.ByteLength,
+                instancedDivisor, patchVertexes);
 
             return buffer;
         }

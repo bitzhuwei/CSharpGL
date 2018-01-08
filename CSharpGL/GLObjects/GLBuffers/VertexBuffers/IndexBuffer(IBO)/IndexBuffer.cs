@@ -15,10 +15,9 @@ namespace CSharpGL
         /// </summary>
         /// <param name="bufferId">用glGenBuffers()得到的VBO的Id。<para>Id got from glGenBuffers();</para></param>
         /// <param name="elementType">type in glDrawElements(uint mode, int count, uint type, IntPtr indices);</param>
-        /// <param name="length">此VBO含有多少个元素？<para>How many elements?</para></param>
         /// <param name="byteLength">此VBO中的数据在内存中占用多少个字节？<para>How many bytes in this buffer</para></param>
-        internal IndexBuffer(uint bufferId, IndexBufferElementType elementType, int length, int byteLength)
-            : base(bufferId, length, byteLength)
+        internal IndexBuffer(uint bufferId, IndexBufferElementType elementType, int byteLength)
+            : base(bufferId, byteLength / elementType.GetSize(), byteLength)
         {
             this.Target = BufferTarget.ElementArrayBuffer;
 

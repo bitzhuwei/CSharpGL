@@ -52,8 +52,7 @@ namespace CSharpGL
                 glBindBuffer(target, 0);
             }
 
-            var buffer = new IndexBuffer(
-                 buffers[0], type, length, byteLength);
+            var buffer = new IndexBuffer(buffers[0], type, byteLength);
 
             return buffer;
         }
