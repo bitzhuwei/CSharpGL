@@ -31,7 +31,7 @@ namespace CSharpGL
         {
             if (stageVertexId < baseId) { return null; }
             uint lastVertexId = stageVertexId - baseId;
-            if (this.PositionBuffer.VertexCount <= lastVertexId) { return null; }
+            if (this.PositionBuffer.Length <= lastVertexId) { return null; }
 
             PickingGeometryTypes pickingType = arg.GeometryType;
 
@@ -112,7 +112,7 @@ namespace CSharpGL
 
             // Fill primitive's position information.
             int vertexCount = typeOfMode.GetVertexCount();
-            if (vertexCount == -1) { vertexCount = (from item in this.Node.PickingRenderUnit.PositionBuffers select item.VertexCount).Sum(); }
+            if (vertexCount == -1) { vertexCount = (from item in this.Node.PickingRenderUnit.PositionBuffers select item.Length).Sum(); }
 
             uint[] vertexIds; vec3[] positions;
 
@@ -365,7 +365,7 @@ namespace CSharpGL
         {
             const int vertexCount = 2;
             VertexBuffer[] buffers = this.Node.PickingRenderUnit.PositionBuffers;
-            int sum = (from item in buffers select item.VertexCount).Sum();
+            int sum = (from item in buffers select item.Length).Sum();
             vertexIds = new uint[vertexCount] { (uint)(sum - 1), 0 };
             var workItems = buffers.GetWorkItems(vertexIds);
             var positionList = new List<vec3>();

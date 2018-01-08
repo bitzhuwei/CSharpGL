@@ -7,7 +7,7 @@ namespace CSharpGL
     {
         protected override void RecognizeUInt(uint lastVertexId, IntPtr pointer, DrawElementsCmd cmd, List<RecognizedPrimitiveInfo> primitiveInfoList)
         {
-            int length = cmd.IndexBufferObject.VertexCount;
+            int length = cmd.IndexBufferObject.Length;
             unsafe
             {
                 var array = (uint*)pointer.ToPointer();
@@ -26,7 +26,7 @@ namespace CSharpGL
 
         protected override void RecognizeUShort(uint lastVertexId, IntPtr pointer, DrawElementsCmd cmd, List<RecognizedPrimitiveInfo> primitiveInfoList)
         {
-            int length = cmd.IndexBufferObject.VertexCount;
+            int length = cmd.IndexBufferObject.Length;
             unsafe
             {
                 var array = (ushort*)pointer.ToPointer();
@@ -45,7 +45,7 @@ namespace CSharpGL
 
         protected override void RecognizeByte(uint lastVertexId, IntPtr pointer, DrawElementsCmd cmd, List<RecognizedPrimitiveInfo> primitiveInfoList)
         {
-            int length = cmd.IndexBufferObject.VertexCount;
+            int length = cmd.IndexBufferObject.Length;
             unsafe
             {
                 var array = (byte*)pointer.ToPointer();
@@ -64,7 +64,7 @@ namespace CSharpGL
 
         protected override void RecognizeUInt(uint lastVertexId, IntPtr pointer, DrawElementsCmd cmd, List<RecognizedPrimitiveInfo> primitiveInfoList, uint primitiveRestartIndex)
         {
-            int length = cmd.IndexBufferObject.VertexCount;
+            int length = cmd.IndexBufferObject.Length;
             unsafe
             {
                 var array = (uint*)pointer.ToPointer();
@@ -92,7 +92,7 @@ namespace CSharpGL
 
         protected override void RecognizeUShort(uint lastVertexId, IntPtr pointer, DrawElementsCmd cmd, List<RecognizedPrimitiveInfo> primitiveInfoList, uint primitiveRestartIndex)
         {
-            int length = cmd.IndexBufferObject.VertexCount;
+            int length = cmd.IndexBufferObject.Length;
             unsafe
             {
                 var array = (ushort*)pointer.ToPointer();
@@ -120,7 +120,7 @@ namespace CSharpGL
 
         protected override void RecognizeByte(uint lastVertexId, IntPtr pointer, DrawElementsCmd cmd, List<RecognizedPrimitiveInfo> primitiveInfoList, uint primitiveRestartIndex)
         {
-            int length = cmd.IndexBufferObject.VertexCount;
+            int length = cmd.IndexBufferObject.Length;
             unsafe
             {
                 var array = (byte*)pointer.ToPointer();

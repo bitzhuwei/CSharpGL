@@ -76,7 +76,7 @@ namespace CSharpGL
                 {
                     program.glUniform("pickingBaseId", (int)(baseId));
                     vao.Draw(controlMode, tmpCmd);
-                    baseId += (uint)vao.VertexAttributes[0].Buffer.VertexCount;
+                    baseId += (uint)vao.VertexAttributes[0].Buffer.Length;
                 }
             }
             if (restart != null)
