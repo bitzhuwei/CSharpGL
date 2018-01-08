@@ -5,8 +5,9 @@ using System.Runtime.InteropServices;
 
 namespace CSharpGL
 {
+    //TODO: not tested yet.
     /// <summary>
-    /// Render something using 'glMultiDrawArrays'.
+    /// Render something using 'glMultiDrawElements'.
     /// </summary>
     [Browsable(true)]
     [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
