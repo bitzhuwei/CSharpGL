@@ -30,21 +30,13 @@ namespace CSharpGL
             do
             {
                 IntPtr header = Marshal.UnsafeAddrOfPinnedArrayElement(array, current);
-                if (current + blockSize <= totalLength)
-                {
-                    UnmanagedArrayBase unmanagedArray = new TempUnmanagedArray<T>(header, blockSize);// It's not necessary to call Dispose() for this unmanaged array.
-                    VertexBuffer buffer = GenVertexBuffer(unmanagedArray, config, usage, instancedDivisor, patchVertexes);
-                    list.Add(buffer);
-                    current += blockSize;
-                }
-                else
-                {
-                    int length = totalLength - current;
-                    UnmanagedArrayBase unmanagedArray = new TempUnmanagedArray<T>(header, length);// It's not necessary to call Dispose() for this unmanaged array.
-                    VertexBuffer buffer = GenVertexBuffer(unmanagedArray, config, usage, instancedDivisor, patchVertexes);
-                    list.Add(buffer);
-                    current += length;
-                }
+                int length = (current + blockSize <= totalLength) ? blockSize : (totalLength - current);
+                UnmanagedArrayBase unmanagedArray = new TempUnmanagedArray<T>(header, length);// It's not necessary to call Dispose() for this unmanaged array.
+                VertexBuffer buffer = GenVertexBuffer(unmanagedArray, config, usage, instancedDivisor, patchVertexes);
+                list.Add(buffer);
+
+                current += length;
+
             } while (current < totalLength);
             pinned.Free();
 
