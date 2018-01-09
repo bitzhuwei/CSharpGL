@@ -48,7 +48,6 @@ namespace CSharpGL
             : this(mode, count, IndexBufferElementType.UInt, baseVertex)
         {
             if (indices == null || count == null) { throw new System.ArgumentNullException(); }
-            if (indices.Length != count.Length) { throw new System.ArgumentException(); }
 
             this.indices = indices;
         }
@@ -64,7 +63,6 @@ namespace CSharpGL
             : this(mode, count, IndexBufferElementType.UShort, baseVertex)
         {
             if (indices == null || count == null) { throw new System.ArgumentNullException(); }
-            if (indices.Length != count.Length) { throw new System.ArgumentException(); }
 
             this.indices = indices;
         }
@@ -79,7 +77,6 @@ namespace CSharpGL
             : this(mode, count, IndexBufferElementType.UByte, baseVertex)
         {
             if (indices == null || count == null) { throw new System.ArgumentNullException(); }
-            if (indices.Length != count.Length) { throw new System.ArgumentException(); }
 
             this.indices = indices;
         }
