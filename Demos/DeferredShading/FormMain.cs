@@ -43,7 +43,7 @@ namespace DeferredShading
 
             var manipulater = new FirstPerspectiveManipulater();
             manipulater.Bind(camera, this.winGLCanvas1);
-            manipulater.StepLength = 0.1f;
+            manipulater.StepLength = 1f;
         }
 
         private SceneNodeBase GetRootElement()

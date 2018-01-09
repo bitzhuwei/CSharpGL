@@ -5,13 +5,24 @@ using System.Runtime.InteropServices;
 
 namespace CSharpGL
 {
+    //TODO: not tested yet.
     /// <summary>
-    /// Render something using 'glMultiDrawArrays'.
+    /// Render something using 'glMultiDrawElements'.
     /// </summary>
     [Browsable(true)]
     [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
-    public class MultiDrawElementsCmd : IDrawCommand
+    public class MultiDrawElementsCmd : IDrawCommand//, IHasIndexBuffer
     {
+        //#region IHasIndexBuffer 成员
+
+        //private IndexBuffer indexBuffer;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public IndexBuffer IndexBufferObject { get { return this.indexBuffer; } }
+
+        //#endregion
+
         /// <summary>
         /// 用哪种方式渲染各个顶点？（GL.GL_TRIANGLES etc.）
         /// </summary>
@@ -22,10 +33,7 @@ namespace CSharpGL
         /// </summary>
         public int[] Count { get; private set; }
 
-        private byte[] byteIndices;
-        private ushort[] ushortIndices;
-        private uint[] uintIndices;
-
+        private Array indices;
         private IndexBufferElementType type;
         private int[] baseVertex;
 
@@ -42,7 +50,7 @@ namespace CSharpGL
             if (indices == null || count == null) { throw new System.ArgumentNullException(); }
             if (indices.Length != count.Length) { throw new System.ArgumentException(); }
 
-            this.uintIndices = indices;
+            this.indices = indices;
         }
 
         /// <summary>
@@ -58,7 +66,7 @@ namespace CSharpGL
             if (indices == null || count == null) { throw new System.ArgumentNullException(); }
             if (indices.Length != count.Length) { throw new System.ArgumentException(); }
 
-            this.ushortIndices = indices;
+            this.indices = indices;
         }
         /// <summary>
         /// 
@@ -73,7 +81,7 @@ namespace CSharpGL
             if (indices == null || count == null) { throw new System.ArgumentNullException(); }
             if (indices.Length != count.Length) { throw new System.ArgumentException(); }
 
-            this.byteIndices = indices;
+            this.indices = indices;
         }
 
         /// <summary>
@@ -85,36 +93,20 @@ namespace CSharpGL
         /// <param name="baseVertex"></param>
         private MultiDrawElementsCmd(DrawMode mode, int[] count, IndexBufferElementType type, int[] baseVertex = null)
         {
-            this.type = type;
             this.Mode = mode;
             this.Count = count;
+            this.type = type;
             this.baseVertex = baseVertex;
         }
 
         /// <summary>
-        /// 执行此VBO的渲染操作。
-        /// <para>Render using this VBO.</para>
         /// </summary>
         /// <param name="controlMode">index buffer is accessable randomly or only by frame.</param>
         public void Draw(ControlMode controlMode)
         {
-            GCHandle pinned;
-            IntPtr header;
-            switch (this.type)
-            {
-                case IndexBufferElementType.UByte:
-                    pinned = GCHandle.Alloc(this.byteIndices, GCHandleType.Pinned);
-                    break;
-                case IndexBufferElementType.UShort:
-                    pinned = GCHandle.Alloc(this.ushortIndices, GCHandleType.Pinned);
-                    break;
-                case IndexBufferElementType.UInt:
-                    pinned = GCHandle.Alloc(this.uintIndices, GCHandleType.Pinned);
-                    break;
-                default:
-                    throw new NotDealWithNewEnumItemException(typeof(IndexBufferElementType));
-            }
-            header = pinned.AddrOfPinnedObject();
+            //GLBuffer.glBindBuffer(GL.GL_ELEMENT_ARRAY_BUFFER, indexBuffer.BufferId);
+            GCHandle pinned = GCHandle.Alloc(this.indices, GCHandleType.Pinned);
+            IntPtr header = pinned.AddrOfPinnedObject();
             // same result with: IntPtr header = Marshal.UnsafeAddrOfPinnedArrayElement(array, 0);
             if (this.baseVertex == null)
             {
@@ -125,6 +117,7 @@ namespace CSharpGL
                 glMultiDrawElementsBaseVertex((uint)this.Mode, this.Count, (uint)this.type, header, this.Count.Length, this.baseVertex);
             }
             pinned.Free();
+            //GLBuffer.glBindBuffer(GL.GL_ELEMENT_ARRAY_BUFFER, 0);
         }
 
         /// <summary>
@@ -140,5 +133,6 @@ namespace CSharpGL
             glMultiDrawElements = GL.Instance.GetDelegateFor("glMultiDrawElements", GLDelegates.typeof_void_uint_intN_uint_IntPtr_int) as GLDelegates.void_uint_intN_uint_IntPtr_int;
             glMultiDrawElementsBaseVertex = GL.Instance.GetDelegateFor("glMultiDrawElementsBaseVertex", GLDelegates.typeof_void_uint_intN_uint_IntPtr_int_intN) as GLDelegates.void_uint_intN_uint_IntPtr_int_intN;
         }
+
     }
 }

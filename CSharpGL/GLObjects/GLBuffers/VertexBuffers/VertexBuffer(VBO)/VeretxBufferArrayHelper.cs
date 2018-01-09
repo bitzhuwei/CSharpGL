@@ -23,7 +23,7 @@ namespace CSharpGL
             {
                 // counts:  [0]------------[1]------------[2]-----------[3]
                 // buffers:     buffers[0]     buffers[1]     buffer[2]
-                counts[i] = counts[i - 1] + (uint)buffers[i - 1].VertexCount;
+                counts[i] = counts[i - 1] + (uint)buffers[i - 1].Length;
             }
 
             var updateList = new List<IndexInBuffer>();

@@ -34,23 +34,7 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// Creates a <see cref="DrawArraysCmd"/> object.
-        /// </summary>
-        /// <param name="mode"></param>
-        /// <param name="firstVertex"></param>
-        /// <param name="vertexCount"></param>
-        /// <param name="primCount"></param>
-        /// <param name="frameCount"></param>
-        /// <returns></returns>
-        public static DrawArraysCmd Create(DrawMode mode, int firstVertex, int vertexCount, int primCount = 1, int frameCount = 1)
-        {
-            DrawArraysCmd buffer = new DrawArraysCmd(mode, firstVertex, vertexCount, primCount, frameCount);
-
-            return buffer;
-        }
-
-        /// <summary>
-        /// Creates a <see cref="DrawElementsCmd"/> object directly in server side(GPU) without initializing its value.
+        /// Creates a <see cref="IndexBuffer"/> object directly in server side(GPU) without initializing its value.
         /// </summary>
         /// <param name="type"></param>
         /// <param name="length">How many indexes are there?(How many uint/ushort/bytes?)</param>
@@ -68,8 +52,7 @@ namespace CSharpGL
                 glBindBuffer(target, 0);
             }
 
-            var buffer = new IndexBuffer(
-                 buffers[0], type, length, byteLength);
+            var buffer = new IndexBuffer(buffers[0], type, byteLength);
 
             return buffer;
         }

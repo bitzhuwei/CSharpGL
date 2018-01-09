@@ -38,7 +38,7 @@ namespace CSharpGL
             this.indexBuffer = indexBuffer;
             this.Mode = mode;
             this.FirstVertex = firstVertex;
-            this.RenderingVertexCount = indexBuffer.VertexCount;
+            this.RenderingVertexCount = indexBuffer.Length;
 
             this.InstanceCount = instanceCount;
             this.FrameCount = frameCount;
@@ -99,7 +99,7 @@ namespace CSharpGL
 
             uint mode = (uint)this.Mode;
             IndexBuffer indexBuffer = this.indexBuffer;
-            int vertexCount = indexBuffer.VertexCount;
+            int vertexCount = indexBuffer.Length;
             IndexBufferElementType elementType = indexBuffer.ElementType;
             IntPtr offset = GetOffset(elementType, this.FirstVertex);
 
@@ -199,7 +199,7 @@ namespace CSharpGL
 
             var mode = this.Mode;
             IndexBuffer indexBuffer = this.indexBuffer;
-            int vertexCount = indexBuffer.VertexCount;
+            int vertexCount = indexBuffer.Length;
             IndexBufferElementType elementType = indexBuffer.ElementType;
             IntPtr offset = GetOffset(elementType, this.FirstVertex);
 

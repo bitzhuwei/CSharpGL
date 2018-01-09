@@ -32,7 +32,7 @@ namespace CSharpGL
         {
             if (stageVertexId < baseId) { return null; }
             uint lastVertexId = stageVertexId - baseId;
-            if (this.PositionBuffer.VertexCount <= lastVertexId) { return null; }
+            if (this.PositionBuffer.Length <= lastVertexId) { return null; }
 
             PickableNode node = this.Node;
 
