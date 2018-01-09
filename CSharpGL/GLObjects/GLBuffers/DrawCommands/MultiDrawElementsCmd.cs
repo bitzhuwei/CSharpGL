@@ -57,28 +57,28 @@ namespace CSharpGL
         /// </summary>
         /// <param name="mode"></param>
         /// <param name="count"></param>
-        /// <param name="indices"></param>
+        /// <param name="allIndices"></param>
         /// <param name="baseVertex"></param>
-        public MultiDrawElementsCmd(DrawMode mode, int[] count, ushort[] indices, int[] baseVertex = null)
+        public MultiDrawElementsCmd(DrawMode mode, int[] count, ushort[] allIndices, int[] baseVertex = null)
             : this(mode, count, IndexBufferElementType.UShort, baseVertex)
         {
-            if (indices == null || count == null) { throw new System.ArgumentNullException(); }
+            if (allIndices == null || count == null) { throw new System.ArgumentNullException(); }
 
-            this.allIndices = indices;
+            this.allIndices = allIndices;
         }
         /// <summary>
         /// 
         /// </summary>
         /// <param name="mode"></param>
         /// <param name="count"></param>
-        /// <param name="indices"></param>
+        /// <param name="allIndices"></param>
         /// <param name="baseVertex"></param>
-        public MultiDrawElementsCmd(DrawMode mode, int[] count, byte[] indices, int[] baseVertex = null)
+        public MultiDrawElementsCmd(DrawMode mode, int[] count, byte[] allIndices, int[] baseVertex = null)
             : this(mode, count, IndexBufferElementType.UByte, baseVertex)
         {
-            if (indices == null || count == null) { throw new System.ArgumentNullException(); }
+            if (allIndices == null || count == null) { throw new System.ArgumentNullException(); }
 
-            this.allIndices = indices;
+            this.allIndices = allIndices;
         }
 
         /// <summary>
