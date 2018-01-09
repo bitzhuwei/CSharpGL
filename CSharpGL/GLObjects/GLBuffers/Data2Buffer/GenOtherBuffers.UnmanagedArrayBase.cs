@@ -81,42 +81,44 @@ namespace CSharpGL
         /// <returns></returns>
         private static GLBuffer GenIndependentBuffer(this UnmanagedArrayBase array, IndependentBufferTarget bufferTarget, BufferUsage usage)
         {
-            uint[] buffers = new uint[1];
-            glGenBuffers(1, buffers);
-            var target = (uint)bufferTarget;
-            glBindBuffer(target, buffers[0]);
-            glBufferData(target, array.ByteLength, array.Header, (uint)usage);
-            glBindBuffer(target, 0);
+            uint[] ids = new uint[1];
+            {
+                glGenBuffers(1, ids);
+                var target = (uint)bufferTarget;
+                glBindBuffer(target, ids[0]);
+                glBufferData(target, array.ByteLength, array.Header, (uint)usage);
+                glBindBuffer(target, 0);
+            }
 
             GLBuffer buffer = null;
             switch (bufferTarget)
             {
                 case IndependentBufferTarget.AtomicCounterBuffer:
-                    buffer = new AtomicCounterBuffer(buffers[0], array.Length, array.ByteLength);
+                    buffer = new AtomicCounterBuffer(ids[0], array.Length, array.ByteLength);
                     break;
 
                 case IndependentBufferTarget.PixelPackBuffer:
-                    buffer = new PixelPackBuffer(buffers[0], array.Length, array.ByteLength);
+                    buffer = new PixelPackBuffer(ids[0], array.Length, array.ByteLength);
                     break;
 
                 case IndependentBufferTarget.PixelUnpackBuffer:
-                    buffer = new PixelUnpackBuffer(buffers[0], array.Length, array.ByteLength);
+                    buffer = new PixelUnpackBuffer(ids[0], array.Length, array.ByteLength);
                     break;
 
                 case IndependentBufferTarget.ShaderStorageBuffer:
-                    buffer = new ShaderStorageBuffer(buffers[0], array.Length, array.ByteLength);
+                    buffer = new ShaderStorageBuffer(ids[0], array.Length, array.ByteLength);
                     break;
 
                 case IndependentBufferTarget.TextureBuffer:
-                    buffer = new TextureBuffer(buffers[0], array.Length, array.ByteLength);
+                    buffer = new TextureBuffer(ids[0], array.Length, array.ByteLength);
                     break;
 
                 case IndependentBufferTarget.UniformBuffer:
-                    buffer = new UniformBuffer(buffers[0], array.Length, array.ByteLength);
+                    buffer = new UniformBuffer(ids[0], array.Length, array.ByteLength);
                     break;
 
                 case IndependentBufferTarget.TransformFeedbackBuffer:
-                    buffer = new TransformFeedbackBuffer(buffers[0], array.Length, array.ByteLength);
+                    buffer = new TransformFeedbackBuffer(ids[0], array.Length, array.ByteLength);
                     break;
 
                 default:
