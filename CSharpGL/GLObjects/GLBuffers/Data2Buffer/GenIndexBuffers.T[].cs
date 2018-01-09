@@ -21,16 +21,17 @@ namespace CSharpGL
             if (blockSize <= 0) { throw new ArgumentException("blockSize must be greater than 0."); }
 
             GCHandle pinned = GCHandle.Alloc(array, GCHandleType.Pinned);
-            IntPtr header = pinned.AddrOfPinnedObject();
+            //IntPtr header = pinned.AddrOfPinnedObject();
             // same result with: IntPtr header = Marshal.UnsafeAddrOfPinnedArrayElement(array, 0);
             var list = new List<IndexBuffer>();
             int current = 0;
             int totalLength = array.Length;
             do
             {
+                IntPtr header = Marshal.UnsafeAddrOfPinnedArrayElement(array, current);
                 if (current + blockSize <= totalLength)
                 {
-                    UnmanagedArrayBase unmanagedArray = new TempUnmanagedArray<T>((IntPtr)(header.ToInt32() + current), blockSize);// It's not necessary to call Dispose() for this unmanaged array.
+                    UnmanagedArrayBase unmanagedArray = new TempUnmanagedArray<T>(header, blockSize);// It's not necessary to call Dispose() for this unmanaged array.
                     IndexBuffer buffer = GenIndexBuffer(unmanagedArray, type, usage);
                     list.Add(buffer);
                     current += blockSize;
@@ -38,7 +39,7 @@ namespace CSharpGL
                 else
                 {
                     int length = totalLength - current;
-                    UnmanagedArrayBase unmanagedArray = new TempUnmanagedArray<T>((IntPtr)(header.ToInt32() + current), length);// It's not necessary to call Dispose() for this unmanaged array.
+                    UnmanagedArrayBase unmanagedArray = new TempUnmanagedArray<T>(header, length);// It's not necessary to call Dispose() for this unmanaged array.
                     IndexBuffer buffer = GenIndexBuffer(unmanagedArray, type, usage);
                     list.Add(buffer);
                     current += length;

@@ -22,16 +22,17 @@ namespace CSharpGL
         public static VertexBuffer[] GenVertexBuffers<T>(this T[] array, VBOConfig config, BufferUsage usage, int blockSize, uint instancedDivisor = 0, int patchVertexes = 0) where T : struct
         {
             GCHandle pinned = GCHandle.Alloc(array, GCHandleType.Pinned);
-            IntPtr header = pinned.AddrOfPinnedObject();
+            //IntPtr header = pinned.AddrOfPinnedObject();
             // same result with: IntPtr header = Marshal.UnsafeAddrOfPinnedArrayElement(array, 0);
             var list = new List<VertexBuffer>();
             int current = 0;
             int totalLength = array.Length;
             do
             {
+                IntPtr header = Marshal.UnsafeAddrOfPinnedArrayElement(array, current);
                 if (current + blockSize <= totalLength)
                 {
-                    UnmanagedArrayBase unmanagedArray = new TempUnmanagedArray<T>((IntPtr)(header.ToInt32() + current), blockSize);// It's not necessary to call Dispose() for this unmanaged array.
+                    UnmanagedArrayBase unmanagedArray = new TempUnmanagedArray<T>(header, blockSize);// It's not necessary to call Dispose() for this unmanaged array.
                     VertexBuffer buffer = GenVertexBuffer(unmanagedArray, config, usage, instancedDivisor, patchVertexes);
                     list.Add(buffer);
                     current += blockSize;
@@ -39,7 +40,7 @@ namespace CSharpGL
                 else
                 {
                     int length = totalLength - current;
-                    UnmanagedArrayBase unmanagedArray = new TempUnmanagedArray<T>((IntPtr)(header.ToInt32() + current), length);// It's not necessary to call Dispose() for this unmanaged array.
+                    UnmanagedArrayBase unmanagedArray = new TempUnmanagedArray<T>(header, length);// It's not necessary to call Dispose() for this unmanaged array.
                     VertexBuffer buffer = GenVertexBuffer(unmanagedArray, config, usage, instancedDivisor, patchVertexes);
                     list.Add(buffer);
                     current += length;
