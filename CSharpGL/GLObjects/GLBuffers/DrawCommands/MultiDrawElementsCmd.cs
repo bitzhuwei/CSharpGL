@@ -33,7 +33,7 @@ namespace CSharpGL
         /// </summary>
         public int[] Count { get; private set; }
 
-        private Array indices;
+        private Array allIndices;
         private IndexBufferElementType type;
         private int[] baseVertex;
 
@@ -42,14 +42,14 @@ namespace CSharpGL
         /// </summary>
         /// <param name="mode"></param>
         /// <param name="count"></param>
-        /// <param name="indices"></param>
+        /// <param name="allIndices"></param>
         /// <param name="baseVertex"></param>
-        public MultiDrawElementsCmd(DrawMode mode, int[] count, uint[] indices, int[] baseVertex = null)
+        public MultiDrawElementsCmd(DrawMode mode, int[] count, uint[] allIndices, int[] baseVertex = null)
             : this(mode, count, IndexBufferElementType.UInt, baseVertex)
         {
-            if (indices == null || count == null) { throw new System.ArgumentNullException(); }
+            if (allIndices == null || count == null) { throw new System.ArgumentNullException(); }
 
-            this.indices = indices;
+            this.allIndices = allIndices;
         }
 
         /// <summary>
@@ -64,7 +64,7 @@ namespace CSharpGL
         {
             if (indices == null || count == null) { throw new System.ArgumentNullException(); }
 
-            this.indices = indices;
+            this.allIndices = indices;
         }
         /// <summary>
         /// 
@@ -78,7 +78,7 @@ namespace CSharpGL
         {
             if (indices == null || count == null) { throw new System.ArgumentNullException(); }
 
-            this.indices = indices;
+            this.allIndices = indices;
         }
 
         /// <summary>
@@ -102,9 +102,17 @@ namespace CSharpGL
         public void Draw(ControlMode controlMode)
         {
             //GLBuffer.glBindBuffer(GL.GL_ELEMENT_ARRAY_BUFFER, indexBuffer.BufferId);
-            GCHandle pinned = GCHandle.Alloc(this.indices, GCHandleType.Pinned);
-            IntPtr header = pinned.AddrOfPinnedObject();
-            // same result with: IntPtr header = Marshal.UnsafeAddrOfPinnedArrayElement(array, 0);
+            GCHandle pinAll = GCHandle.Alloc(this.allIndices, GCHandleType.Pinned);
+            var count = this.Count;
+            var indices = new IntPtr[count.Length];
+            int current = 0;
+            for (int i = 0; i < indices.Length; i++)
+            {
+                indices[i] = Marshal.UnsafeAddrOfPinnedArrayElement(allIndices, current);
+                current += count[i];
+            }
+            GCHandle pinIndices = GCHandle.Alloc(indices, GCHandleType.Pinned);
+            IntPtr header = pinIndices.AddrOfPinnedObject();
             if (this.baseVertex == null)
             {
                 glMultiDrawElements((uint)this.Mode, this.Count, (uint)this.type, header, this.Count.Length);
@@ -113,7 +121,8 @@ namespace CSharpGL
             {
                 glMultiDrawElementsBaseVertex((uint)this.Mode, this.Count, (uint)this.type, header, this.Count.Length, this.baseVertex);
             }
-            pinned.Free();
+            pinIndices.Free();
+            pinAll.Free();
             //GLBuffer.glBindBuffer(GL.GL_ELEMENT_ARRAY_BUFFER, 0);
         }
 
