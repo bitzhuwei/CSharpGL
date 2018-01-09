@@ -9,7 +9,7 @@ namespace DeferredShading
     class ManyCubesModel : IBufferSource
     {
         private readonly int blockSize;
-        public ManyCubesModel(int lengthX, int lengthY, int lengthZ, int blockSize = 1024*4)
+        public ManyCubesModel(int lengthX, int lengthY, int lengthZ, int blockSize = 1024 * 4)
         {
             this.lengthX = lengthX;
             this.lengthY = lengthY;
