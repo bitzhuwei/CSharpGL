@@ -28,11 +28,7 @@ namespace CSharpGL
         /// </summary>
         public DrawMode Mode { get; set; }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public int[] Count { get; private set; }
-
+        private int[] count;
         private Array allIndices;
         private IndexBufferElementType type;
         private int[] baseVertex;
@@ -91,7 +87,7 @@ namespace CSharpGL
         private MultiDrawElementsCmd(DrawMode mode, int[] count, IndexBufferElementType type, int[] baseVertex = null)
         {
             this.Mode = mode;
-            this.Count = count;
+            this.count = count;
             this.type = type;
             this.baseVertex = baseVertex;
         }
@@ -103,7 +99,7 @@ namespace CSharpGL
         {
             //GLBuffer.glBindBuffer(GL.GL_ELEMENT_ARRAY_BUFFER, indexBuffer.BufferId);
             GCHandle pinAll = GCHandle.Alloc(this.allIndices, GCHandleType.Pinned);
-            var count = this.Count;
+            var count = this.count;
             var indices = new IntPtr[count.Length];
             int current = 0;
             for (int i = 0; i < indices.Length; i++)
@@ -115,11 +111,11 @@ namespace CSharpGL
             IntPtr header = pinIndices.AddrOfPinnedObject();
             if (this.baseVertex == null)
             {
-                glMultiDrawElements((uint)this.Mode, this.Count, (uint)this.type, header, this.Count.Length);
+                glMultiDrawElements((uint)this.Mode, this.count, (uint)this.type, header, this.count.Length);
             }
             else
             {
-                glMultiDrawElementsBaseVertex((uint)this.Mode, this.Count, (uint)this.type, header, this.Count.Length, this.baseVertex);
+                glMultiDrawElementsBaseVertex((uint)this.Mode, this.count, (uint)this.type, header, this.count.Length, this.baseVertex);
             }
             pinIndices.Free();
             pinAll.Free();
