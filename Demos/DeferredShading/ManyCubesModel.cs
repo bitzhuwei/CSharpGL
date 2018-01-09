@@ -15,7 +15,7 @@ namespace DeferredShading
             this.lengthY = lengthY;
             this.lengthZ = lengthZ;
 
-            this.blockSize = (lengthX * lengthY * lengthZ) / 2;
+            this.blockSize = blockSize;// (lengthX * lengthY * lengthZ) / 2;
         }
 
         public const string strPosition = "position";
@@ -139,7 +139,7 @@ namespace DeferredShading
             for (uint i = 0; i < result.Length; i++)
             {
                 var index = (uint)(i % blockSize);
-                result[i] = new SingleCubeIndex(i);
+                result[i] = new SingleCubeIndex(index);
             }
 
             return result;
