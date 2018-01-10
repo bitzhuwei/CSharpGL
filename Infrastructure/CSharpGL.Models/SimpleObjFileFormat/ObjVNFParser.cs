@@ -18,18 +18,18 @@ namespace CSharpGL
         /// <param name="quad2triangle"></param>
         public ObjVNFParser(bool quad2triangle)
         {
-            var generality = new GeneralityParser();
+            var generalityParser = new GeneralityParser();
             var meshParser = new MeshParser();
             var normalParser = new NormalParser();
             var texCoordParser = new TexCoordParser();
             var locationParser = new LocationParser();
             if (quad2triangle)
             {
-                this.parserList = new ObjParserBase[] { generality, meshParser, normalParser, texCoordParser, new Quad2TriangleParser(), locationParser, };
+                this.parserList = new ObjParserBase[] { generalityParser, meshParser, normalParser, texCoordParser, new Quad2TriangleParser(), locationParser, };
             }
             else
             {
-                this.parserList = new ObjParserBase[] { generality, meshParser, normalParser, texCoordParser, locationParser, };
+                this.parserList = new ObjParserBase[] { generalityParser, meshParser, normalParser, texCoordParser, locationParser, };
             }
         }
 
