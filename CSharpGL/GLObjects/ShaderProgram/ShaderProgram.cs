@@ -28,7 +28,7 @@ namespace CSharpGL
         /// A mapping of attribute names to locations. This allows us to very easily specify
         /// attribute data by name, quickly looking up the location first if needed.
         /// </summary>
-        private readonly Dictionary<string, int> attributeNamesToLocations = new Dictionary<string, int>();
+        private readonly Dictionary<string, int> attributeLocationDict = new Dictionary<string, int>();
 
         /// <summary>
         /// 
@@ -95,7 +95,7 @@ namespace CSharpGL
 
             this.CheckLinkStatus(programId);
 
-            // I'm not ready for this. Some uniform variable types are not supported.
+            // TODO: I'm not ready for this. Some uniform variable types are not supported.
             //UniformVarInShader[] variables = LoadAllUniformsInShader();
             //foreach (var item in variables)
             //{
@@ -116,6 +116,7 @@ namespace CSharpGL
             }
 
         }
+
         /// <summary>
         /// 
         /// </summary>
@@ -131,10 +132,8 @@ namespace CSharpGL
         /// <returns></returns>
         public int GetAttributeLocation(string attributeName)
         {
-            //  If we don't have the attribute name in the dictionary, get it's
-            //  location and add it.
             int location;
-            if (!attributeNamesToLocations.TryGetValue(attributeName, out location))
+            if (!attributeLocationDict.TryGetValue(attributeName, out location))
             {
                 location = glGetAttribLocation(this.ProgramId, attributeName);
                 if (location < 0)
@@ -142,10 +141,9 @@ namespace CSharpGL
                     Debug.WriteLine(string.Format("Failed to getAttribLocation for [{0}]", attributeName));
                 }
 
-                attributeNamesToLocations[attributeName] = location;
+                attributeLocationDict[attributeName] = location;
             }
 
-            //  Return the attribute location.
             return location;
         }
 
@@ -175,14 +173,12 @@ namespace CSharpGL
         private string GetInfoLog(uint programId)
         {
             //  Get the info log length.
-            int[] infoLength = new int[] { 0 };
+            var infoLength = new int[1];
             glGetProgramiv(programId, GL.GL_INFO_LOG_LENGTH, infoLength);
             int bufSize = infoLength[0];
 
             //  Get the compile info.
             StringBuilder il = new StringBuilder(bufSize);
-
-            var glGetProgramInfoLog = GL.Instance.GetDelegateFor("glGetProgramInfoLog", GLDelegates.typeof_void_uint_int_IntPtr_StringBuilder) as GLDelegates.void_uint_int_IntPtr_StringBuilder;
             glGetProgramInfoLog(programId, bufSize, IntPtr.Zero, il);
 
             string log = il.ToString();
@@ -221,5 +217,6 @@ namespace CSharpGL
                 item.SetUniform(this);
             }
         }
+
     }
 }

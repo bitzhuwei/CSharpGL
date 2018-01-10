@@ -9,17 +9,19 @@ namespace CSharpGL
 {
     public partial class ShaderProgram
     {
-        internal static GLDelegates.uint_void glCreateProgram;
-        internal static GLDelegates.void_uint_uint glAttachShader;
-        internal static GLDelegates.void_uint glLinkProgram;
-        internal static GLDelegates.void_uint_uint glDetachShader;
-        internal static GLDelegates.void_uint glDeleteProgram;
-        internal static GLDelegates.int_uint_string glGetAttribLocation;
-        internal static GLDelegates.void_uint_uint_int_intN_intN_uintN_string glGetActiveUniform;
-        internal static GLDelegates.void_uint_int_floatN glGetUniformfv;
-        internal static GLDelegates.void_uint_int_intN glGetUniformiv;
-        internal static GLDelegates.void_uint glUseProgram;
-        internal static GLDelegates.void_uint_uint_intN glGetProgramiv;
+        internal static readonly GLDelegates.uint_void glCreateProgram;
+        internal static readonly GLDelegates.void_uint_uint glAttachShader;
+        internal static readonly GLDelegates.void_uint glLinkProgram;
+        internal static readonly GLDelegates.void_uint_uint glDetachShader;
+        internal static readonly GLDelegates.void_uint glDeleteProgram;
+        internal static readonly GLDelegates.int_uint_string glGetAttribLocation;
+        internal static readonly GLDelegates.void_uint_uint_int_intN_intN_uintN_string glGetActiveUniform;
+        internal static readonly GLDelegates.void_uint_int_IntPtr_StringBuilder glGetProgramInfoLog;
+        internal static readonly GLDelegates.void_uint_int_floatN glGetUniformfv;
+        internal static readonly GLDelegates.void_uint_int_intN glGetUniformiv;
+        internal static readonly GLDelegates.void_uint glUseProgram;
+        internal static readonly GLDelegates.void_uint_uint_intN glGetProgramiv;
+        internal static GLDelegates.int_uint_string glGetUniformLocation;
         internal static GLDelegates.void_int_uint glUniform1ui;
         internal static GLDelegates.void_int_uint_uint glUniform2ui;
         internal static GLDelegates.void_int_uint_uint_uint glUniform3ui;
@@ -47,7 +49,6 @@ namespace CSharpGL
         internal static GLDelegates.void_int_int_bool_floatN glUniformMatrix2fv;
         internal static GLDelegates.void_int_int_bool_floatN glUniformMatrix3fv;
         internal static GLDelegates.void_int_int_bool_floatN glUniformMatrix4fv;
-        internal static GLDelegates.int_uint_string glGetUniformLocation;
         internal static GLDelegates.void_uint_int_stringN_uint glTransformFeedbackVaryings;
 
         static ShaderProgram()
@@ -59,6 +60,7 @@ namespace CSharpGL
             glDeleteProgram = GL.Instance.GetDelegateFor("glDeleteProgram", GLDelegates.typeof_void_uint) as GLDelegates.void_uint;
             glGetAttribLocation = GL.Instance.GetDelegateFor("glGetAttribLocation", GLDelegates.typeof_int_uint_string) as GLDelegates.int_uint_string;
             glGetActiveUniform = GL.Instance.GetDelegateFor("glGetActiveUniform", GLDelegates.typeof_void_uint_uint_int_intN_intN_uintN_string) as GLDelegates.void_uint_uint_int_intN_intN_uintN_string;
+            glGetProgramInfoLog = GL.Instance.GetDelegateFor("glGetProgramInfoLog", GLDelegates.typeof_void_uint_int_IntPtr_StringBuilder) as GLDelegates.void_uint_int_IntPtr_StringBuilder;
             glGetUniformfv = GL.Instance.GetDelegateFor("glGetUniformfv", GLDelegates.typeof_void_uint_int_floatN) as GLDelegates.void_uint_int_floatN;
             glGetUniformiv = GL.Instance.GetDelegateFor("glGetUniformiv", GLDelegates.typeof_void_uint_int_intN) as GLDelegates.void_uint_int_intN;
             glUseProgram = GL.Instance.GetDelegateFor("glUseProgram", GLDelegates.typeof_void_uint) as GLDelegates.void_uint;
