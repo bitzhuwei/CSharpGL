@@ -87,6 +87,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleInstancedRendering", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeferredShading", "Demos\DeferredShading\DeferredShading.csproj", "{47C23C81-A31B-4735-B228-E7A8EA340DE4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelEditor", "Demos\ModelEditor\ModelEditor.csproj", "{E7B1D271-7403-45B8-8AD3-AD254ED14307}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -253,6 +255,10 @@ Global
 		{47C23C81-A31B-4735-B228-E7A8EA340DE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{47C23C81-A31B-4735-B228-E7A8EA340DE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{47C23C81-A31B-4735-B228-E7A8EA340DE4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E7B1D271-7403-45B8-8AD3-AD254ED14307}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7B1D271-7403-45B8-8AD3-AD254ED14307}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7B1D271-7403-45B8-8AD3-AD254ED14307}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7B1D271-7403-45B8-8AD3-AD254ED14307}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -296,5 +302,6 @@ Global
 		{40ADAE9C-F3BA-4DCA-85B7-2AC59344048A} = {772765C9-9DD4-487B-8FEB-5EAACA9F955B}
 		{410308DE-F954-44D3-9350-2402A4A369AF} = {772765C9-9DD4-487B-8FEB-5EAACA9F955B}
 		{47C23C81-A31B-4735-B228-E7A8EA340DE4} = {772765C9-9DD4-487B-8FEB-5EAACA9F955B}
+		{E7B1D271-7403-45B8-8AD3-AD254ED14307} = {772765C9-9DD4-487B-8FEB-5EAACA9F955B}
 	EndGlobalSection
 EndGlobal
