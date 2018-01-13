@@ -18,10 +18,10 @@ namespace CSharpGL
         /// </summary>
         public ICamera Camera { get; set; }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public IGLCanvas Canvas { get; set; }
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public IGLCanvas Canvas { get; set; }
 
         /// <summary>
         /// 
@@ -59,11 +59,9 @@ namespace CSharpGL
         /// rendering, picking. 
         /// </summary>
         /// <param name="camera"></param>
-        /// <param name="canvas"></param>
-        public Scene(ICamera camera, IGLCanvas canvas)
+        public Scene(ICamera camera)
         {
             this.Camera = camera;
-            this.Canvas = canvas;
         }
     }
 }

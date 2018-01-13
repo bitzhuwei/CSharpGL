@@ -45,7 +45,7 @@ namespace SimpleObjFile
             PickedGeometry pickedGeometry = null;
             try
             {
-                pickedGeometry = this.pickingAction.Pick(x, y, true, true, false);
+                pickedGeometry = this.pickingAction.Pick(x, y, true, true, false, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
             }
             catch (Exception)
             { }
@@ -93,7 +93,8 @@ namespace SimpleObjFile
             var up = new vec3(0, 1, 0);
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
 
-            this.scene = new Scene(camera, this.winGLCanvas1);
+            this.scene = new Scene(camera)
+;
 
             var list = new ActionList();
             var transformAction = new TransformAction(scene);
@@ -136,7 +137,7 @@ namespace SimpleObjFile
             ActionList list = this.actionList;
             if (list != null)
             {
-                list.Act();
+                list.Act(new ActionParams(this.winGLCanvas1));
             }
         }
 

@@ -34,7 +34,7 @@ namespace CSharpGL
                     group.Children.Add(clock);
                 }
             }
-            var scene = new Scene(camera, canvas)
+            var scene = new Scene(camera)
             {
                 ClearColor = Color.Black.ToVec4(),
                 RootElement = group,
@@ -52,9 +52,9 @@ namespace CSharpGL
             this.fullname = canvas.GetType().FullName;
         }
 
-        public void Render(bool drawText, int height, double fps)
+        public void Render(bool drawText, int height, double fps, IGLCanvas canvas)
         {
-            this.actionList.Act();
+            this.actionList.Act(new ActionParams(canvas));
 
             FontBitmaps.DrawText(10,
                 10, Color.White, "Courier New",// "Courier New",

@@ -13,13 +13,13 @@ namespace CSharpGL
         /// <summary>
         /// Base type for rendering actions.
         /// </summary>
-        /// <param name="scene"></param>
         public DependentActionBase(Scene scene) : base(scene) { }
 
         /// <summary>
         /// 
         /// </summary>
-        public abstract void Act();
+        /// <param name="param"></param>
+        public abstract void Act(ActionParams param);
 
     }
 }

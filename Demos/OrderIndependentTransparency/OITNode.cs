@@ -156,7 +156,7 @@ namespace OrderIndependentTransparency
         public override void RenderBeforeChildren(RenderEventArgs arg)
         {
             {
-                int width = arg.Scene.Canvas.Width, height = arg.Scene.Canvas.Height;
+                int width = arg.Canvas.Width, height = arg.Canvas.Height;
                 if (width != this.canvasWidth || height != this.canvasHeight)
                 {
                     UpdateResources(width, height);

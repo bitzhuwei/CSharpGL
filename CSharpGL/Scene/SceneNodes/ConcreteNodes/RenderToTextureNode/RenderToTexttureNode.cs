@@ -86,7 +86,7 @@ namespace CSharpGL
                     GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT | GL.GL_STENCIL_BUFFER_BIT);
                 }
                 {
-                    var args = new RenderEventArgs(arg.Scene, this.Camera);
+                    var args = new RenderEventArgs(arg.Scene, arg.Canvas, this.Camera);
                     foreach (var item in this.Children)
                     {
                         RenderAction.Render(item, args);

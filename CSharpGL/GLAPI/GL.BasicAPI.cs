@@ -2079,9 +2079,9 @@ namespace CSharpGL
         /// <summary>
         /// This function sets the stencil buffer operation.
         /// </summary>
-        /// <param name="fail">Fail operation.</param>
-        /// <param name="zfail">Depth fail component.</param>
-        /// <param name="zpass">Depth pass component.</param>
+        /// <param name="fail">Stencil Test fail.</param>
+        /// <param name="zfail">Stencil Test pass, but Depth Test fail.</param>
+        /// <param name="zpass">Stencil Test pass, and Depth Test pass.</param>
         public abstract void StencilOp(uint fail, uint zfail, uint zpass);
 
         /// <summary>

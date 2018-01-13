@@ -31,7 +31,7 @@ namespace CSharpGL
             {
                 try
                 {
-                    this.assist.Render(this.RenderTrigger == RenderTrigger.TimerBased, this.Height, this.FPS);
+                    this.assist.Render(this.RenderTrigger == RenderTrigger.TimerBased, this.Height, this.FPS, this);
                 }
                 catch (Exception)
                 {

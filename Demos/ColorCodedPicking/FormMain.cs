@@ -46,7 +46,7 @@ namespace ColorCodedPicking
             this.textNode = new DirectTextNode() { Text = "Color Coded Picking" };
             var group = new GroupNode(this.teapot, ground, this.textNode);
 
-            this.scene = new Scene(camera, this.winGLCanvas1)
+            this.scene = new Scene(camera)
             {
                 RootElement = group,
             };
@@ -76,7 +76,7 @@ namespace ColorCodedPicking
             ActionList list = this.actionList;
             if (list != null)
             {
-                list.Act();
+                list.Act(new ActionParams(this.winGLCanvas1));
             }
             {
                 DirectTextNode node = this.textNode;

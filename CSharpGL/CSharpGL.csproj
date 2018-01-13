@@ -140,6 +140,7 @@
     <Compile Include="GLObjects\GLBuffers\IndependentBuffers\TransformFeedbackBuffer.cs" />
     <Compile Include="Scene\Actions\DependentActions\3DWorld\BillboardRenderAction.cs" />
     <Compile Include="Scene\Actions\DependentActions\3DWorld\BillboardSortAction.cs" />
+    <Compile Include="Scene\Actions\DependentActions\ActionParams.cs" />
     <Compile Include="Scene\Actions\DependentActions\GUI\GUILayoutAction.cs" />
     <Compile Include="Scene\Actions\DependentActions\GUI\GUIRenderAction.cs" />
     <Compile Include="Scene\Actions\DependentActions\GUI\IGUIRenderable.cs" />

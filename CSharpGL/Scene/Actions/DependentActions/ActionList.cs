@@ -13,11 +13,11 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        public void Act()
+        public void Act(ActionParams param)
         {
             for (int i = 0; i < this.Count; i++)
             {
-                this[i].Act();
+                this[i].Act(param);
             }
         }
     }

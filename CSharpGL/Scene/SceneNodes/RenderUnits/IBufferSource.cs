@@ -2,21 +2,20 @@
 namespace CSharpGL
 {
     /// <summary>
-    /// Data for CPU(model) -&gt; Data for GPU(opengl buffer)
-    /// <para>从模型的数据格式转换为<see cref="GLBuffer"/></para>，
-    /// <see cref="GLBuffer"/>则可用于控制GPU的渲染操作。
+    /// Provides <see cref="VertexBuffer"/>s and <see cref="IDrawCommand"/>s for GPU memory from data in CPU memory.
     /// </summary>
     public interface IBufferSource
     {
         /// <summary>
-        /// Gets vertex buffer of some vertex attribute specified with <paramref name="bufferName"/>.
-        /// <para>The vertex buffer is sliced into blocks of same size(except the last one when the remainder is not 0.) I recommend 1024*1024*4 as block size, which is the block size in OVITO.</para>
+        /// Gets vertex buffers of the vertex attribute specified with <paramref name="bufferName"/>.
+        /// <para>The vertex buffer is sliced into blocks of same size(except the last one when the remainder is not 0.) I recommend 1024*1024*4(bytes) as block size, which is the block size in OVITO.</para>
         /// </summary>
-        /// <param name="bufferName">CPU代码指定的buffer名字，用以区分各个用途的buffer。</param>
+        /// <param name="bufferName">user defined buffer name used to specify vertex attribute.</param>
         /// <returns></returns>
         IEnumerable<VertexBuffer> GetVertexAttributeBuffer(string bufferName);
 
         /// <summary>
+        /// Gets the <see cref="IDrawCommand"/> used to draw with vertex attribute buffers.
         /// </summary>
         /// <returns></returns>
         IEnumerable<IDrawCommand> GetDrawCommand();

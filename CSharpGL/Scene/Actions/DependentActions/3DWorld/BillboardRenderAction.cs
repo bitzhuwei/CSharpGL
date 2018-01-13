@@ -27,9 +27,10 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        public override void Act()
+        /// <param name="param"></param>
+        public override void Act(ActionParams param)
         {
-            var arg = new RenderEventArgs(this.Scene, this.Scene.Camera);
+            var arg = new RenderEventArgs(this.Scene, param.Canvas, this.Scene.Camera);
             foreach (var item in this.sortAction.BillboardList)
             {
                 item.RenderBeforeChildren(arg);

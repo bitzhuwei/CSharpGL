@@ -80,7 +80,7 @@ namespace ShadowMapping
         {
             if (!this.IsInitialized) { Initialize(); }
 
-            this.RotationAngle += this.RotateSpeed;
+            //this.RotationAngle += this.RotateSpeed;
 
             ICamera camera = arg.CameraStack.Peek();
             mat4 projection = camera.GetProjectionMatrix();
