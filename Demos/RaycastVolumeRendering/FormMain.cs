@@ -40,7 +40,8 @@ namespace RaycastVolumeRendering
             var up = new vec3(0, 1, 0);
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
 
-            this.scene = new Scene(camera, this.winGLCanvas1);
+            this.scene = new Scene(camera)
+;
             {
                 var manipulater = new ArcBallManipulater(GLMouseButtons.Right);
                 manipulater.Bind(camera, this.winGLCanvas1);
@@ -68,7 +69,7 @@ namespace RaycastVolumeRendering
             ActionList list = this.actionList;
             if (list != null)
             {
-                list.Act();
+                list.Act(new ActionParams(this.winGLCanvas1));
             }
         }
 

@@ -32,7 +32,8 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        public override void Act()
+        /// <param name="param"></param>
+        public override void Act(ActionParams param)
         {
             this.depthList.Clear();
             this.billboardList.Clear();

@@ -29,10 +29,11 @@ namespace CSharpGL
         /// <param name="pickTriangle"></param>
         /// <param name="pickQuad"></param>
         /// <param name="pickPolygon"></param>
+        /// <param name="width"></param>
+        /// <param name="height"></param>
         /// <returns></returns>
-        public PickedGeometry Pick(int x, int y, bool pickTriangle, bool pickQuad, bool pickPolygon)
+        public PickedGeometry Pick(int x, int y, bool pickTriangle, bool pickQuad, bool pickPolygon, int width, int height)
         {
-            int width = this.Scene.Canvas.Width, height = this.Scene.Canvas.Height;
             if (x < 0 || width <= x) { return null; }
             if (y < 0 || height <= y) { return null; }
 
@@ -44,7 +45,7 @@ namespace CSharpGL
 
             PickedGeometry pickedGeometry = null;
 
-            Framebuffer framebuffer = GetPickingFramebuffer();
+            Framebuffer framebuffer = GetPickingFramebuffer(width, height);
             framebuffer.Bind();
             {
                 const float one = 1.0f;
@@ -81,12 +82,14 @@ namespace CSharpGL
         /// <param name="x">Left Down is (0, 0)</param>
         /// <param name="y">Left Down is (0, 0)</param>
         /// <param name="geometryType"></param>
+        /// <param name="width"></param>
+        /// <param name="height"></param>
         /// <returns></returns>
-        public PickedGeometry Pick(int x, int y, GeometryType geometryType)
+        public PickedGeometry Pick(int x, int y, GeometryType geometryType, int width, int height)
         {
             PickedGeometry pickedGeometry = null;
 
-            Framebuffer framebuffer = GetPickingFramebuffer();
+            Framebuffer framebuffer = GetPickingFramebuffer(width, height);
             framebuffer.Bind();
             {
                 const float one = 1.0f;
@@ -132,19 +135,22 @@ namespace CSharpGL
             return pickedGeometry;
         }
 
-        private Framebuffer GetPickingFramebuffer()
+        private int width;
+        private int height;
+
+        private Framebuffer GetPickingFramebuffer(int width, int height)
         {
             Framebuffer framebuffer = this.pickingFramebuffer;
 
             if (framebuffer == null)
             {
-                this.pickingFramebuffer = CreatePickFramebuffer(this.Scene.Canvas.Width, this.Scene.Canvas.Height);
+                this.pickingFramebuffer = CreatePickFramebuffer(width, height);
             }
-            else if (framebuffer.Width != this.Scene.Canvas.Width
-                || framebuffer.Height != this.Scene.Canvas.Height)
+            else if (framebuffer.Width != this.width
+                || framebuffer.Height != this.height)
             {
                 framebuffer.Dispose();
-                this.pickingFramebuffer = CreatePickFramebuffer(this.Scene.Canvas.Width, this.Scene.Canvas.Height);
+                this.pickingFramebuffer = CreatePickFramebuffer(width, height);
             }
 
             return this.pickingFramebuffer;
@@ -166,6 +172,9 @@ namespace CSharpGL
             }
             framebuffer.CheckCompleteness();
             framebuffer.Unbind();
+
+            this.width = width;
+            this.height = height;
 
             return framebuffer;
         }

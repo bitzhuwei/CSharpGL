@@ -21,7 +21,8 @@ namespace CSharpGL
         /// <summary>
         /// Cast shadow.(Prepare shadow mapping texture)
         /// </summary>
-        public override void Act()
+        /// <param name="param"></param>
+        public override void Act(ActionParams param)
         {
             GL.Instance.ClearColor(1, 1, 1, 1);
             GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT | GL.GL_STENCIL_BUFFER_BIT);

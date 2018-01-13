@@ -21,7 +21,8 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        public override void Act()
+        /// <param name="param"></param>
+        public override void Act(ActionParams param)
         {
             //    var scissor = new int[4];
             //    var viewport = new int[4];
@@ -31,7 +32,7 @@ namespace CSharpGL
             var arg = new GUIRenderEventArgs(this.Scene, this.Scene.Camera);
             GUIRenderAction.Render(this.Scene.RootControl, arg);
 
-            int width = this.Scene.Canvas.Width, height = this.Scene.Canvas.Height;
+            int width = param.Canvas.Width, height = param.Canvas.Height;
             GL.Instance.Scissor(0, 0, width, height);
             GL.Instance.Viewport(0, 0, width, height);
         }

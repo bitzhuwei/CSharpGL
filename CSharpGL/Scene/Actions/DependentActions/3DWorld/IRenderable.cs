@@ -37,9 +37,13 @@ namespace CSharpGL
         /// <summary>
         /// Initializes a new instance of the <see cref="RenderEventArgs"/> class.
         /// </summary>
-        public RenderEventArgs(Scene scene, params ICamera[] cameras)
+        /// <param name="scene"></param>
+        /// <param name="canvas"></param>
+        /// <param name="cameras"></param>
+        public RenderEventArgs(Scene scene, IGLCanvas canvas, params ICamera[] cameras)
         {
             this.Scene = scene;
+            this.Canvas = canvas;
 
             var cameraStack = new Stack<ICamera>();
             foreach (var item in cameras)
@@ -90,5 +94,10 @@ namespace CSharpGL
         /// 
         /// </summary>
         public Scene Scene { get; private set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public IGLCanvas Canvas { get; private set; }
     }
 }

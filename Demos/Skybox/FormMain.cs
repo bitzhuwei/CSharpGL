@@ -44,7 +44,7 @@ namespace Skybox
 
             int x = e.X;
             int y = this.winGLCanvas1.Height - e.Y - 1;
-            PickedGeometry pickedGeometry = this.pickingAction.Pick(x, y, true, true, false);
+            PickedGeometry pickedGeometry = this.pickingAction.Pick(x, y, true, true, false, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
             if (pickedGeometry != null)
             {
                 switch (pickedGeometry.Type)
@@ -95,7 +95,8 @@ namespace Skybox
             this.skybox = SkyboxNode.Create(totalBmp); this.skybox.Scale *= 60;
             var group = new GroupNode(this.teapot, this.skybox);
 
-            this.scene = new Scene(camera, this.winGLCanvas1)
+            this.scene = new Scene(camera)
+
             {
                 RootElement = group,
             };
@@ -123,7 +124,7 @@ namespace Skybox
             ActionList list = this.actionList;
             if (list != null)
             {
-                list.Act();
+                list.Act(new ActionParams(this.winGLCanvas1));
             }
         }
 

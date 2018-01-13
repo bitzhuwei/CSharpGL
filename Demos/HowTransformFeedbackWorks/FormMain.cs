@@ -33,7 +33,8 @@ namespace HowTransformFeedbackWorks
             var up = new vec3(0, 1, 0);
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
 
-            this.scene = new Scene(camera, this.winGLCanvas1);
+            this.scene = new Scene(camera)
+;
             //this.scene.ClearColor = Color.Black.ToVec4();
             {
                 //var node = ParticleDemoNode.Create(10000);
@@ -60,7 +61,7 @@ namespace HowTransformFeedbackWorks
             ActionList list = this.actionList;
             if (list != null)
             {
-                list.Act();
+                list.Act(new ActionParams(this.winGLCanvas1));
             }
         }
 

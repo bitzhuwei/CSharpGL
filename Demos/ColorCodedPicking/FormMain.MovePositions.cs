@@ -33,7 +33,7 @@ namespace ColorCodedPicking
                     // move vertex
                     if (pickedGeometry != null)
                     {
-                        IGLCanvas canvas = this.scene.Canvas;
+                        IGLCanvas canvas = this.winGLCanvas1;
                         var viewport = new vec4(0, 0, canvas.Width, canvas.Height);
                         var lastWindowSpacePos = new vec3(e.X, this.winGLCanvas1.Height - e.Y - 1, pickedGeometry.PickedPosition.z);
                         mat4 projectionMatrix = this.scene.Camera.GetProjectionMatrix();
@@ -89,7 +89,7 @@ namespace ColorCodedPicking
             {
                 int x = e.X;
                 int y = this.winGLCanvas1.Height - e.Y - 1;
-                this.pickedGeometry = this.pickingAction.Pick(x, y, true, true, false);
+                this.pickedGeometry = this.pickingAction.Pick(x, y, true, true, false, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
 
                 if (this.pickedGeometry != null)
                 {
