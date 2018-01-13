@@ -60,8 +60,6 @@ namespace ModelEditor
 
             this.triangleTip = new LegacyTriangleNode();
             this.quadTip = new LegacyQuadNode();
-            this.chkRenderWireframe_CheckedChanged(this.chkRenderWireframe, EventArgs.Empty);
-            this.chkRenderBody_CheckedChanged(this.chkRenderBody, EventArgs.Empty);
 
             // uncomment these lines to enable manipualter of camera!
             //var manipulater = new FirstPerspectiveManipulater();
@@ -94,17 +92,6 @@ namespace ModelEditor
                 }
             }
         }
-
-        private void chkRenderWireframe_CheckedChanged(object sender, EventArgs e)
-        {
-            this.teapot.RenderWireframe = this.chkRenderWireframe.Checked;
-        }
-
-        private void chkRenderBody_CheckedChanged(object sender, EventArgs e)
-        {
-            this.teapot.RenderBody = this.chkRenderBody.Checked;
-        }
-
 
         enum OperationState
         {
