@@ -94,12 +94,12 @@ namespace ModelEditor
                 if (this.pickedGeometry != null)
                 {
                     var text = string.Format("picked: {0}", this.pickedGeometry.FromRenderer);
-                    this.toolStripStatusLabel1.Text = text;
+                    this.lblInfo.Text = text;
                 }
                 else
                 {
                     var text = string.Format("picked: nothing");
-                    this.toolStripStatusLabel1.Text = text;
+                    this.lblInfo.Text = text;
                 }
 
                 this.UpdateHightlight();
