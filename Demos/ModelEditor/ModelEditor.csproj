@@ -53,6 +53,7 @@
     <Compile Include="FormMain.MovePositions.cs">
       <SubType>Form</SubType>
     </Compile>
+    <None Include="readme.md" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormMain.resx">
