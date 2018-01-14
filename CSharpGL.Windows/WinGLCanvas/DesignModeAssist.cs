@@ -54,7 +54,7 @@ namespace CSharpGL
 
         public void Render(bool drawText, int height, double fps, IGLCanvas canvas)
         {
-            this.actionList.Act(new ActionParams(canvas));
+            this.actionList.Act(new ActionParams(Viewport.GetCurrent()));
 
             FontBitmaps.DrawText(10,
                 10, Color.White, "Courier New",// "Courier New",

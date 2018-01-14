@@ -8,13 +8,12 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace ColorCodedPicking
+namespace ModelEditor
 {
     public partial class FormMain : Form
     {
         private Scene scene;
         private TeapotNode teapot;
-        private DirectTextNode textNode;
         private ActionList actionList;
 
         private OperationState operationState = OperationState.PickingDraging;
@@ -43,8 +42,7 @@ namespace ColorCodedPicking
             this.teapot = TeapotNode.Create();
             teapot.Children.Add(new LegacyBoundingBoxNode(teapot.ModelSize));
             var ground = GroundNode.Create(); ground.Color = Color.Gray.ToVec4(); ground.Scale *= 10; ground.WorldPosition = new vec3(0, -3, 0);
-            this.textNode = new DirectTextNode() { Text = "Color Coded Picking" };
-            var group = new GroupNode(this.teapot, ground, this.textNode);
+            var group = new GroupNode(this.teapot, ground);
 
             this.scene = new Scene(camera)
             {
@@ -62,8 +60,6 @@ namespace ColorCodedPicking
 
             this.triangleTip = new LegacyTriangleNode();
             this.quadTip = new LegacyQuadNode();
-            this.chkRenderWireframe_CheckedChanged(this.chkRenderWireframe, EventArgs.Empty);
-            this.chkRenderBody_CheckedChanged(this.chkRenderBody, EventArgs.Empty);
 
             // uncomment these lines to enable manipualter of camera!
             //var manipulater = new FirstPerspectiveManipulater();
@@ -77,13 +73,6 @@ namespace ColorCodedPicking
             if (list != null)
             {
                 list.Act(new ActionParams(Viewport.GetCurrent()));
-            }
-            {
-                DirectTextNode node = this.textNode;
-                if (node != null)
-                {
-                    GL.Instance.DrawText(node.Position.X, node.Position.Y, node.TextColor, node.FontName, node.FontSize, node.Text);
-                }
             }
         }
 
@@ -103,17 +92,6 @@ namespace ColorCodedPicking
                 }
             }
         }
-
-        private void chkRenderWireframe_CheckedChanged(object sender, EventArgs e)
-        {
-            this.teapot.RenderWireframe = this.chkRenderWireframe.Checked;
-        }
-
-        private void chkRenderBody_CheckedChanged(object sender, EventArgs e)
-        {
-            this.teapot.RenderBody = this.chkRenderBody.Checked;
-        }
-
 
         enum OperationState
         {

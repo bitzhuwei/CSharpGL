@@ -10,18 +10,22 @@ namespace CSharpGL
     /// </summary>
     public class ActionParams
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        public IGLCanvas Canvas { get; set; }
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public IGLCanvas Canvas { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="canvas"></param>
-        public ActionParams(IGLCanvas canvas)
+        public Viewport Viewport { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public ActionParams(Viewport viewport)
         {
-            this.Canvas = canvas;
+            this.Viewport = viewport;
         }
 
         /// <summary>
@@ -30,7 +34,7 @@ namespace CSharpGL
         /// <returns></returns>
         public override string ToString()
         {
-            return string.Format("{0}", this.Canvas);
+            return string.Format("{0}", this.Viewport);
         }
     }
 }

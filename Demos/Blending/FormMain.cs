@@ -137,7 +137,7 @@ namespace Blending
             ActionList list = this.actionList;
             if (list != null)
             {
-                list.Act(new ActionParams(this.winGLCanvas1));
+                list.Act(new ActionParams(Viewport.GetCurrent()));
             }
         }
 

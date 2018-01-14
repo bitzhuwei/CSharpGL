@@ -41,7 +41,7 @@ namespace CSharpGL
             GL.Instance.ClearColor(clearColor.x, clearColor.y, clearColor.z, clearColor.w);
             GL.Instance.Clear(this.ClearMask);
 
-            var arg = new RenderEventArgs(this.Scene, param.Canvas, this.Scene.Camera);
+            var arg = new RenderEventArgs(this.Scene, param, this.Scene.Camera);
             RenderAction.Render(this.Scene.RootElement, arg);
 
             //GL.Instance.ClearColor(value[0], value[1], value[2], value[3]);

@@ -91,6 +91,7 @@
     <None Include="Scene\Manipulaters\readme.md" />
     <None Include="Scene\Actions\DependentActions\readme.md" />
     <None Include="GLCanvas\readme.md" />
+    <Compile Include="BasicDataStructures\Viewport.cs" />
     <Compile Include="GLAPI\GL.Enumerations\CubemapFace.cs" />
     <Compile Include="GLAPI\GL.Enumerations\StencilTest.cs" />
     <Compile Include="GLAPI\GL.PrintError.cs" />

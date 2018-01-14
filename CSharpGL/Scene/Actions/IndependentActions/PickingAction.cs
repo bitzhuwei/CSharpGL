@@ -135,9 +135,6 @@ namespace CSharpGL
             return pickedGeometry;
         }
 
-        private int width;
-        private int height;
-
         private Framebuffer GetPickingFramebuffer(int width, int height)
         {
             Framebuffer framebuffer = this.pickingFramebuffer;
@@ -146,8 +143,8 @@ namespace CSharpGL
             {
                 this.pickingFramebuffer = CreatePickFramebuffer(width, height);
             }
-            else if (framebuffer.Width != this.width
-                || framebuffer.Height != this.height)
+            else if (framebuffer.Width != width
+                || framebuffer.Height != height)
             {
                 framebuffer.Dispose();
                 this.pickingFramebuffer = CreatePickFramebuffer(width, height);
@@ -172,9 +169,6 @@ namespace CSharpGL
             }
             framebuffer.CheckCompleteness();
             framebuffer.Unbind();
-
-            this.width = width;
-            this.height = height;
 
             return framebuffer;
         }
