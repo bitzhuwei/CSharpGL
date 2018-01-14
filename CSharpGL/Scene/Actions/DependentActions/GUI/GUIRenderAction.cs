@@ -32,7 +32,7 @@ namespace CSharpGL
             var arg = new GUIRenderEventArgs(this.Scene, this.Scene.Camera);
             GUIRenderAction.Render(this.Scene.RootControl, arg);
 
-            int width = param.Canvas.Width, height = param.Canvas.Height;
+            int width = param.Viewport.width, height = param.Viewport.height;
             GL.Instance.Scissor(0, 0, width, height);
             GL.Instance.Viewport(0, 0, width, height);
         }
