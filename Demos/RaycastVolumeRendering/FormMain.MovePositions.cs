@@ -55,7 +55,6 @@ namespace RaycastVolumeRendering
         {
             if (lastMousePosition == e.Location) { return; }
 
-
             if (e.Button == System.Windows.Forms.MouseButtons.Right)
             {
                 //// operate camera
@@ -89,6 +88,8 @@ namespace RaycastVolumeRendering
             }
 
             this.lastMousePosition = e.Location;
+
+            this.winGLCanvas1.Invalidate();// redraw the scene.
         }
 
         private void glCanvas1_MouseUp(object sender, MouseEventArgs e)
@@ -105,15 +106,6 @@ namespace RaycastVolumeRendering
             }
 
             this.lastMousePosition = e.Location;
-        }
-
-        private Color GetColorAtMouse(int x, int y)
-        {
-            byte[] colors = new byte[4];
-            GL.Instance.ReadPixels(x, y, 1, 1, GL.GL_RGBA, GL.GL_UNSIGNED_BYTE, colors);
-            Color c = Color.FromArgb(colors[3], colors[0], colors[1], colors[2]);
-
-            return c;
         }
 
         private void UpdateHightlight(IList<vec3> newPositions)
