@@ -367,18 +367,18 @@ namespace CSharpGL
             VertexBuffer[] buffers = this.Node.PickingRenderUnit.PositionBuffers;
             int sum = (from item in buffers select item.Length).Sum();
             vertexIds = new uint[vertexCount] { (uint)(sum - 1), 0 };
-            var workItems = buffers.GetWorkItems(vertexIds);
+            IEnumerable<IndexesInBuffer> workItems = buffers.GetWorkItems(vertexIds);
             var positionList = new List<vec3>();
             foreach (var item in workItems)
             {
-                VertexBuffer buffer = buffers[item.Key];
+                VertexBuffer buffer = buffers[item.whichBuffer];
                 IntPtr pointer = buffer.MapBuffer(MapBufferAccess.ReadOnly);
                 unsafe
                 {
                     var array = (vec3*)pointer.ToPointer();
-                    foreach (var tuple in item)
+                    foreach (var indexInBuffer in item.indexesInBuffer)
                     {
-                        positionList.Add(array[tuple.indexInBuffer]);
+                        positionList.Add(array[indexInBuffer]);
                     }
                 }
                 buffer.UnmapBuffer();

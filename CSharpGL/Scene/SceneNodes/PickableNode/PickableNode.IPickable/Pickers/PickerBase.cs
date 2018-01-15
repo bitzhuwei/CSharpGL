@@ -64,18 +64,18 @@ namespace CSharpGL
         protected vec3[] FillPickedGeometrysPosition(uint[] positionIndexes)
         {
             VertexBuffer[] buffers = this.Node.PickingRenderUnit.PositionBuffers;
-            var workItems = buffers.GetWorkItems(positionIndexes);
+            IEnumerable<IndexesInBuffer> workItems = buffers.GetWorkItems(positionIndexes);
             var positions = new List<vec3>();
             foreach (var item in workItems)
             {
-                VertexBuffer buffer = buffers[item.Key];
+                VertexBuffer buffer = buffers[item.whichBuffer];
                 IntPtr pointer = buffer.MapBuffer(MapBufferAccess.ReadOnly);
                 unsafe
                 {
                     var array = (vec3*)pointer.ToPointer();
-                    foreach (var tuple in item)
+                    foreach (var indexInBuffer in item.indexesInBuffer)
                     {
-                        positions.Add(array[tuple.indexInBuffer]);
+                        positions.Add(array[indexInBuffer]);
                     }
                 }
                 buffer.UnmapBuffer();

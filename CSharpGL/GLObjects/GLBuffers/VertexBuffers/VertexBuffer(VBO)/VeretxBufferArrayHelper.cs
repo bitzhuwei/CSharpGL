@@ -16,7 +16,7 @@ namespace CSharpGL
         /// <param name="buffers"></param>
         /// <param name="indexes"></param>
         /// <returns></returns>
-        public static IEnumerable<IGrouping<int, IndexInBuffer>> GetWorkItems(this GLBuffer[] buffers, IEnumerable<uint> indexes)
+        public static IEnumerable<IndexesInBuffer> GetWorkItems(this GLBuffer[] buffers, IEnumerable<uint> indexes)
         {
             var counts = new uint[buffers.Length + 1];
             for (int i = 1; i < counts.Length; i++)
@@ -43,9 +43,9 @@ namespace CSharpGL
                 if (!dealt) { throw new ArgumentOutOfRangeException(); }
             }
 
-            var workItems = (from item in updateList
-                             group item by item.whichBuffer into g
-                             select g);//.ToList();
+            var workItems = from item in updateList
+                            group item by item.whichBuffer into g
+                            select new IndexesInBuffer(g.Key, (from index in g select index.indexInBuffer).ToArray());
 
             return workItems;
         }
@@ -54,7 +54,40 @@ namespace CSharpGL
     /// <summary>
     /// 
     /// </summary>
-    public class IndexInBuffer
+    public class IndexesInBuffer
+    {
+        /// <summary>
+        /// which buffer.
+        /// </summary>
+        public readonly int whichBuffer;
+
+        /// <summary>
+        /// indexes in 'whichBuffer'.
+        /// </summary>
+        public readonly uint[] indexesInBuffer;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="whichBuffer"></param>
+        /// <param name="indexesInBuffer"></param>
+        public IndexesInBuffer(int whichBuffer, uint[] indexesInBuffer)
+        {
+            this.whichBuffer = whichBuffer;
+            this.indexesInBuffer = indexesInBuffer;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+            return string.Format("{0}, {1}", this.whichBuffer, this.indexesInBuffer.Length);
+        }
+    }
+
+    class IndexInBuffer
     {
         /// <summary>
         /// which buffer.

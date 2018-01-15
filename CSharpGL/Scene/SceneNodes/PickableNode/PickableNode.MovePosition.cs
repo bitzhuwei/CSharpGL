@@ -29,20 +29,20 @@ namespace CSharpGL
         public vec3[] MovePositions(vec3 modelSpacePositionDiff, IEnumerable<uint> positionIndexes)
         {
             var buffers = this.PickingRenderUnit.PositionBuffers;
-            var workItems = buffers.GetWorkItems(positionIndexes);
+            IEnumerable<IndexesInBuffer> workItems = buffers.GetWorkItems(positionIndexes);
 
             var list = new List<vec3>();
             foreach (var item in workItems)
             {
-                VertexBuffer buffer = buffers[item.Key];
+                VertexBuffer buffer = buffers[item.whichBuffer];
                 IntPtr pointer = buffer.MapBuffer(MapBufferAccess.ReadWrite);
                 unsafe
                 {
                     var array = (vec3*)pointer.ToPointer();
-                    foreach (var tuple in item)
+                    foreach (var indexInBuffer in item.indexesInBuffer)
                     {
-                        array[tuple.indexInBuffer] = array[tuple.indexInBuffer] + modelSpacePositionDiff;
-                        list.Add(array[tuple.indexInBuffer]);
+                        array[indexInBuffer] = array[indexInBuffer] + modelSpacePositionDiff;
+                        list.Add(array[indexInBuffer]);
                     }
                 }
                 buffer.UnmapBuffer();
