@@ -61,7 +61,6 @@ namespace RaycastVolumeRendering
             if (this.backface2DTexture != null) { this.backface2DTexture.Dispose(); }
             if (this.framebuffer != null) { this.framebuffer.Dispose(); }
 
-            this.width = width; this.height = height;
             this.backface2DTexture = InitFace2DTexture(width, height);
             this.framebuffer = InitFramebuffer(width, height);
 
