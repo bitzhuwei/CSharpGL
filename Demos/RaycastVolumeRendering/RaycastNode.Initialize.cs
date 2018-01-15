@@ -85,21 +85,22 @@ namespace RaycastVolumeRendering
             using (var br = new BinaryReader(fs))
             {
                 int unReadCount = (int)fs.Length;
-                const int cacheSize = 1024 * 1024;
-                do
-                {
-                    int min = Math.Min(cacheSize, unReadCount);
-                    var cache = new byte[min];
-                    readCount = br.Read(cache, 0, min);
-                    if (readCount != min)
-                    { throw new Exception(); }
+                br.Read(data, 0, unReadCount);
+                //const int cacheSize = 1024 * 1024;
+                //do
+                //{
+                //    int min = Math.Min(cacheSize, unReadCount);
+                //    var cache = new byte[min];
+                //    readCount = br.Read(cache, 0, min);
+                //    if (readCount != min)
+                //    { throw new Exception(); }
 
-                    for (int i = 0; i < readCount; i++)
-                    {
-                        data[index++] = cache[i];
-                    }
-                    unReadCount -= readCount;
-                } while (readCount > 0);
+                //    for (int i = 0; i < readCount; i++)
+                //    {
+                //        data[index++] = cache[i];
+                //    }
+                //    unReadCount -= readCount;
+                //} while (readCount > 0);
             }
 
             return data;
