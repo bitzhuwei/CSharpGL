@@ -25,8 +25,8 @@ namespace RaycastVolumeRendering
             string folder = System.Windows.Forms.Application.StartupPath;
             this.transferFunc1DTexture = InitTFF1DTexture(System.IO.Path.Combine(folder, @"tff.dat"));
 
-            byte[] volumeData = GetVolumeData(System.IO.Path.Combine(folder, @"head256.raw"), 256, 256, 225);
-            this.volume3DTexture = initVol3DTex(volumeData, 256, 256, 225);
+            byte[] volumeData = GetVolumeData(System.IO.Path.Combine(folder, @"head256.raw"));
+            this.volume3DTexture = InitVolume3DTexture(volumeData, 256, 256, 225);
             {
                 // setting uniforms such as
                 // ScreenSize
@@ -76,15 +76,17 @@ namespace RaycastVolumeRendering
 
             return framebuffer;
         }
-        private byte[] GetVolumeData(string filename, int width, int height, int depth)
+
+        private byte[] GetVolumeData(string filename)
         {
-            var data = new byte[width * height * depth];
-            int index = 0;
-            int readCount = 0;
+            byte[] data;
+            //int index = 0;
+            //int readCount = 0;
             using (var fs = new FileStream(filename, FileMode.Open, FileAccess.Read))
             using (var br = new BinaryReader(fs))
             {
                 int unReadCount = (int)fs.Length;
+                data = new byte[unReadCount];
                 br.Read(data, 0, unReadCount);
                 //const int cacheSize = 1024 * 1024;
                 //do
@@ -106,7 +108,7 @@ namespace RaycastVolumeRendering
             return data;
         }
 
-        private Texture initVol3DTex(byte[] data, int width, int height, int depth)
+        private Texture InitVolume3DTexture(byte[] data, int width, int height, int depth)
         {
             var storage = new TexImage3D(TexImage3D.Target.Texture3D, GL.GL_INTENSITY, width, height, depth, GL.GL_LUMINANCE, GL.GL_UNSIGNED_BYTE, new ArrayDataProvider<byte>(data));
             var texture = new Texture(storage,
