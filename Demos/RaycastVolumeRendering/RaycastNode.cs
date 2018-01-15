@@ -71,14 +71,14 @@ namespace RaycastVolumeRendering
 
         public override void RenderBeforeChildren(RenderEventArgs arg)
         {
-            var viewport = new int[4]; GL.Instance.GetIntegerv((uint)GetTarget.Viewport, viewport);
+            Viewport viewport = arg.Param.Viewport;
 
-            if (this.width != viewport[2] || this.height != viewport[3])
+            if (this.width != viewport.width || this.height != viewport.height)
             {
-                Resize(viewport[2], viewport[3]);
+                this.Resize(viewport.width, viewport.height);
 
-                this.width = viewport[2];
-                this.height = viewport[3];
+                this.width = viewport.width;
+                this.height = viewport.height;
             }
             ICamera camera = arg.CameraStack.Peek();
             mat4 projection = camera.GetProjectionMatrix();
@@ -87,7 +87,7 @@ namespace RaycastVolumeRendering
             mat4 model = this.GetModelMatrix();
             mat4 mvp = projection * view * model;
             {
-                RenderMethod method = this.RenderUnit.Methods[0];
+                RenderMethod method = this.RenderUnit.Methods[0];// backface.
                 ShaderProgram program = method.Program;
                 program.SetUniform("MVP", mvp);
 
@@ -100,7 +100,7 @@ namespace RaycastVolumeRendering
                 this.framebuffer.Unbind(FramebufferTarget.Framebuffer);
             }
             {
-                RenderMethod method = this.RenderUnit.Methods[1];
+                RenderMethod method = this.RenderUnit.Methods[1];// raycasting.
                 ShaderProgram program = method.Program;
                 program.SetUniform("MVP", mvp);
 

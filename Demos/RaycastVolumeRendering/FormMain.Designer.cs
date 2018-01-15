@@ -34,15 +34,22 @@
             // 
             // winGLCanvas1
             // 
-            this.winGLCanvas1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.winGLCanvas1.AccumAlphaBits = ((byte)(0));
+            this.winGLCanvas1.AccumBits = ((byte)(0));
+            this.winGLCanvas1.AccumBlueBits = ((byte)(0));
+            this.winGLCanvas1.AccumGreenBits = ((byte)(0));
+            this.winGLCanvas1.AccumRedBits = ((byte)(0));
+            this.winGLCanvas1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.winGLCanvas1.Location = new System.Drawing.Point(12, 12);
             this.winGLCanvas1.Name = "winGLCanvas1";
-            this.winGLCanvas1.RenderTrigger = CSharpGL.RenderTrigger.TimerBased;
+            this.winGLCanvas1.RenderTrigger = CSharpGL.RenderTrigger.Manual;
             this.winGLCanvas1.Size = new System.Drawing.Size(961, 553);
+            this.winGLCanvas1.StencilBits = ((byte)(0));
             this.winGLCanvas1.TabIndex = 0;
             this.winGLCanvas1.TimerTriggerInterval = 40;
+            this.winGLCanvas1.UpdateContextVersion = true;
             // 
             // FormMain
             // 

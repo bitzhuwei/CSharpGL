@@ -16,44 +16,34 @@ namespace RaycastVolumeRendering
         private int height;
         private Texture volume3DTexture;
         private Framebuffer framebuffer;
-        private float g_stepSize = 0.001f;
+        //private float g_stepSize = 0.001f;
 
         protected override void DoInitialize()
         {
             base.DoInitialize();
 
-            var viewport = new int[4]; GL.Instance.GetIntegerv((uint)GetTarget.Viewport, viewport);
-            this.width = viewport[2];
-            this.height = viewport[3];
-
             string folder = System.Windows.Forms.Application.StartupPath;
             this.transferFunc1DTexture = InitTFF1DTexture(System.IO.Path.Combine(folder, @"tff.dat"));
 
-            byte[] volumeData = GetVolumeData(System.IO.Path.Combine(folder, @"head256.raw"), 256, 256, 225);
-            this.volume3DTexture = initVol3DTex(volumeData, 256, 256, 225);
-
-            this.Resize(width, height);
-        }
-
-        private void RaycastingSetupUniforms(int width, int height)
-        {
-            // setting uniforms such as
-            // ScreenSize
-            // StepSize
-            // TransferFunc
-            // ExitPoints i.e. the backface, the backface hold the ExitPoints of ray casting
-            // VolumeTex the texture that hold the volume data i.e. head256.raw
-            RenderMethod method = this.RenderUnit.Methods[1];
-            ShaderProgram program = method.Program;
-            program.SetUniform("ScreenSize", new vec2(width, height));
-            program.SetUniform("StepSize", g_stepSize);
-            program.SetUniform("TransferFunc", this.transferFunc1DTexture);
-            program.SetUniform("ExitPoints", this.backface2DTexture);
-            program.SetUniform("VolumeTex", this.volume3DTexture);
-            //var clearColor = new float[4];
-            //OpenGL.GetFloat(GetTarget.ColorClearValue, clearColor);
-            //this.raycastRenderer.glUniform("backgroundColor", clearColor.ToVec4());
-            program.SetUniform("backgroundColor", new vec4(0.4f, 0.8f, 1.0f, 1.0f));
+            byte[] volumeData = GetVolumeData(System.IO.Path.Combine(folder, @"head256.raw"));
+            this.volume3DTexture = InitVolume3DTexture(volumeData, 256, 256, 225);
+            {
+                // setting uniforms such as
+                // ScreenSize
+                // StepSize
+                // TransferFunc
+                // ExitPoints i.e. the backface, the backface hold the ExitPoints of ray casting
+                // VolumeTex the texture that hold the volume data i.e. head256.raw
+                RenderMethod method = this.RenderUnit.Methods[1];
+                ShaderProgram program = method.Program;
+                //program.SetUniform("StepSize", this.g_stepSize);
+                program.SetUniform("TransferFunc", this.transferFunc1DTexture);
+                program.SetUniform("VolumeTex", this.volume3DTexture);
+                //var clearColor = new float[4];
+                //OpenGL.GetFloat(GetTarget.ColorClearValue, clearColor);
+                //this.raycastRenderer.glUniform("backgroundColor", clearColor.ToVec4());
+                program.SetUniform("backgroundColor", new vec4(0.4f, 0.8f, 1.0f, 1.0f));
+            }
         }
 
         private void Resize(int width, int height)
@@ -61,18 +51,21 @@ namespace RaycastVolumeRendering
             if (this.backface2DTexture != null) { this.backface2DTexture.Dispose(); }
             if (this.framebuffer != null) { this.framebuffer.Dispose(); }
 
-            this.width = width; this.height = height;
             this.backface2DTexture = InitFace2DTexture(width, height);
-            this.framebuffer = InitFramebuffer(width, height);
+            this.framebuffer = InitFramebuffer(width, height, this.backface2DTexture);
 
-            this.RaycastingSetupUniforms(width, height);
+            {
+                RenderMethod method = this.RenderUnit.Methods[1];
+                ShaderProgram program = method.Program;
+                program.SetUniform("ScreenSize", new vec2(width, height));
+                program.SetUniform("ExitPoints", this.backface2DTexture);
+            }
         }
 
-        private Framebuffer InitFramebuffer(int width, int height)
+        private Framebuffer InitFramebuffer(int width, int height, Texture texture)
         {
             var framebuffer = new Framebuffer(width, height);
             framebuffer.Bind();
-            Texture texture = this.backface2DTexture;
             framebuffer.Attach(FramebufferTarget.Framebuffer, texture, 0u);
             {
                 var depthBuffer = new Renderbuffer(width, height, GL.GL_DEPTH_COMPONENT24);
@@ -83,36 +76,39 @@ namespace RaycastVolumeRendering
 
             return framebuffer;
         }
-        private byte[] GetVolumeData(string filename, int width, int height, int depth)
+
+        private byte[] GetVolumeData(string filename)
         {
-            var data = new byte[width * height * depth];
-            int index = 0;
-            int readCount = 0;
+            byte[] data;
+            //int index = 0;
+            //int readCount = 0;
             using (var fs = new FileStream(filename, FileMode.Open, FileAccess.Read))
             using (var br = new BinaryReader(fs))
             {
                 int unReadCount = (int)fs.Length;
-                const int cacheSize = 1024 * 1024;
-                do
-                {
-                    int min = Math.Min(cacheSize, unReadCount);
-                    var cache = new byte[min];
-                    readCount = br.Read(cache, 0, min);
-                    if (readCount != min)
-                    { throw new Exception(); }
+                data = new byte[unReadCount];
+                br.Read(data, 0, unReadCount);
+                //const int cacheSize = 1024 * 1024;
+                //do
+                //{
+                //    int min = Math.Min(cacheSize, unReadCount);
+                //    var cache = new byte[min];
+                //    readCount = br.Read(cache, 0, min);
+                //    if (readCount != min)
+                //    { throw new Exception(); }
 
-                    for (int i = 0; i < readCount; i++)
-                    {
-                        data[index++] = cache[i];
-                    }
-                    unReadCount -= readCount;
-                } while (readCount > 0);
+                //    for (int i = 0; i < readCount; i++)
+                //    {
+                //        data[index++] = cache[i];
+                //    }
+                //    unReadCount -= readCount;
+                //} while (readCount > 0);
             }
 
             return data;
         }
 
-        private Texture initVol3DTex(byte[] data, int width, int height, int depth)
+        private Texture InitVolume3DTexture(byte[] data, int width, int height, int depth)
         {
             var storage = new TexImage3D(TexImage3D.Target.Texture3D, GL.GL_INTENSITY, width, height, depth, GL.GL_LUMINANCE, GL.GL_UNSIGNED_BYTE, new ArrayDataProvider<byte>(data));
             var texture = new Texture(storage,

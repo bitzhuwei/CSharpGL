@@ -8,10 +8,10 @@ namespace RaycastVolumeRendering
 {
     public partial class RaycastNode
     {
-        private const string backfaceVert = @"#version 400
+        private const string backfaceVert = @"#version 150
 
-layout(location = 0) in vec3 position;
-layout(location = 1) in vec3 boundingBox;
+in vec3 position;
+in vec3 boundingBox;
 
 out vec3 passExitPoint;
 
@@ -24,10 +24,10 @@ void main()
     gl_Position = MVP * vec4(position, 1.0);
 }
 ";
-        private const string backfaceFrag = @"#version 400
+        private const string backfaceFrag = @"#version 150
 
 in vec3 passExitPoint;
-layout (location = 0) out vec4 FragColor;
+out vec4 FragColor;
 
 
 void main()

@@ -8,11 +8,11 @@ namespace RaycastVolumeRendering
 {
     public partial class RaycastNode
     {
-        private const string raycastingVert = @"#version 400
+        private const string raycastingVert = @"#version 150
 
-layout (location = 0) in vec3 position;
+in vec3 position;
 // have to use this variable!!!, or it will be very hard to debug for AMD video card
-layout (location = 1) in vec3 boundingBox;  
+in vec3 boundingBox;  
 
 out vec3 passEntryPoint;
 
@@ -24,7 +24,7 @@ void main()
     gl_Position = MVP * vec4(position, 1.0);
 }
 ";
-        private const string raycastingFrag = @"#version 400
+        private const string raycastingFrag = @"#version 150
 
 in vec3 passEntryPoint;
 
@@ -35,7 +35,8 @@ uniform sampler3D VolumeTex;
 uniform float     StepSize = 0.001f;
 uniform vec2      ScreenSize;
 uniform vec4      backgroundColor = vec4(0, 0, 0, 0);// value in glClearColor(value);
-layout (location = 0) out vec4 FragColor;
+
+out vec4 FragColor;
 
 void main()
 {

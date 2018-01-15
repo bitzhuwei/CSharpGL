@@ -28,9 +28,9 @@ namespace RaycastVolumeRendering
             this.winGLCanvas1.Resize += winGLCanvas1_Resize;
 
             // picking events
-            //this.winGLCanvas1.MouseDown += glCanvas1_MouseDown;
-            //this.winGLCanvas1.MouseMove += glCanvas1_MouseMove;
-            //this.winGLCanvas1.MouseUp += glCanvas1_MouseUp;
+            this.winGLCanvas1.MouseDown += glCanvas1_MouseDown;
+            this.winGLCanvas1.MouseMove += glCanvas1_MouseMove;
+            this.winGLCanvas1.MouseUp += glCanvas1_MouseUp;
         }
 
         private void FormMain_Load(object sender, EventArgs e)
