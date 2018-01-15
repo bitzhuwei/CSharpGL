@@ -16,7 +16,7 @@ namespace RaycastVolumeRendering
         private int height;
         private Texture volume3DTexture;
         private Framebuffer framebuffer;
-        private float g_stepSize = 0.001f;
+        //private float g_stepSize = 0.001f;
 
         protected override void DoInitialize()
         {
@@ -36,7 +36,7 @@ namespace RaycastVolumeRendering
                 // VolumeTex the texture that hold the volume data i.e. head256.raw
                 RenderMethod method = this.RenderUnit.Methods[1];
                 ShaderProgram program = method.Program;
-                program.SetUniform("StepSize", this.g_stepSize);
+                //program.SetUniform("StepSize", this.g_stepSize);
                 program.SetUniform("TransferFunc", this.transferFunc1DTexture);
                 program.SetUniform("VolumeTex", this.volume3DTexture);
                 //var clearColor = new float[4];
