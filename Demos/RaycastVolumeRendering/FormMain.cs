@@ -31,6 +31,16 @@ namespace RaycastVolumeRendering
             this.winGLCanvas1.MouseDown += glCanvas1_MouseDown;
             this.winGLCanvas1.MouseMove += glCanvas1_MouseMove;
             this.winGLCanvas1.MouseUp += glCanvas1_MouseUp;
+            this.winGLCanvas1.MouseWheel += winGLCanvas1_MouseWheel;
+        }
+
+        void winGLCanvas1_MouseWheel(object sender, MouseEventArgs e)
+        {
+            var scene = this.scene;
+            if (scene != null)
+            {
+                scene.Camera.MouseWheel(e.Delta);
+            }
         }
 
         private void FormMain_Load(object sender, EventArgs e)
