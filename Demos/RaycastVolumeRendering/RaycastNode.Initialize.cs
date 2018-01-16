@@ -110,14 +110,23 @@ namespace RaycastVolumeRendering
 
         private Texture InitVolume3DTexture(byte[] data, int width, int height, int depth)
         {
-            var storage = new TexImage3D(TexImage3D.Target.Texture3D, GL.GL_INTENSITY, width, height, depth, GL.GL_LUMINANCE, GL.GL_UNSIGNED_BYTE, new ArrayDataProvider<byte>(data));
-            var texture = new Texture(storage,
-                new TexParameteri(TexParameter.PropertyName.TextureWrapR, (int)GL.GL_REPEAT),
-                new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_REPEAT),
-                new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_REPEAT),
-                new TexParameteri(TexParameter.PropertyName.TextureMinFilter, (int)GL.GL_LINEAR),
-                new TexParameteri(TexParameter.PropertyName.TextureMagFilter, (int)GL.GL_LINEAR));
+            var storage = new TexImage3D(TexImage3D.Target.Texture3D, GL.GL_RED, width, height, depth, GL.GL_RED, GL.GL_UNSIGNED_BYTE, new ArrayDataProvider<byte>(data));
+            //var texture = new Texture(storage,
+            //    new TexParameteri(TexParameter.PropertyName.TextureWrapR, (int)GL.GL_REPEAT),
+            //    new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_REPEAT),
+            //    new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_REPEAT),
+            //    new TexParameteri(TexParameter.PropertyName.TextureMinFilter, (int)GL.GL_LINEAR),
+            //    new TexParameteri(TexParameter.PropertyName.TextureMagFilter, (int)GL.GL_LINEAR));
+            var texture = new Texture(storage, new MipmapBuilder(),
+                new TexParameteri(TexParameter.PropertyName.TextureWrapR, (int)GL.GL_CLAMP),
+                new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP),
+                new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_CLAMP),
+                new TexParameteri(TexParameter.PropertyName.TextureMinFilter, (int)GL.GL_LINEAR_MIPMAP_LINEAR),
+                new TexParameteri(TexParameter.PropertyName.TextureMagFilter, (int)GL.GL_LINEAR),
+                new TexParameteri(TexParameter.PropertyName.TextrueBaseLevel, 0),
+                new TexParameteri(TexParameter.PropertyName.TextureMaxLevel, 4));
             texture.Initialize();
+            texture.TextureUnitIndex = 2;
 
             return texture;
         }
@@ -132,6 +141,7 @@ namespace RaycastVolumeRendering
                 new TexParameteri(TexParameter.PropertyName.TextureMinFilter, (int)GL.GL_NEAREST),
                 new TexParameteri(TexParameter.PropertyName.TextureMagFilter, (int)GL.GL_NEAREST));
             texture.Initialize();
+            texture.TextureUnitIndex = 1;
 
             return texture;
         }
@@ -154,6 +164,8 @@ namespace RaycastVolumeRendering
                 new TexParameteri(TexParameter.PropertyName.TextureMinFilter, (int)GL.GL_NEAREST),
                 new TexParameteri(TexParameter.PropertyName.TextureMagFilter, (int)GL.GL_NEAREST));
             texture.Initialize();
+            texture.TextureUnitIndex = 0;
+
             return texture;
         }
     }

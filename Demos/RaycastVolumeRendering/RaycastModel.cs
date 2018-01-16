@@ -16,7 +16,7 @@ namespace RaycastVolumeRendering
         private IDrawCommand drawCmd = null;
 
 
-        // draw the six faces of the boundbox by drawwing triangles
+        // draw the six faces of the boundbox by drawwing quads
         // draw it contra-clockwise
         // front: 1 5 7 3
         // back:  0 2 6 4
@@ -49,19 +49,13 @@ namespace RaycastVolumeRendering
         };
 
         private static readonly uint[] indices =
-        {
-			1,5,7,
-			7,3,1,
-			0,2,6,
-			6,4,0,
-			0,1,3,
-			3,2,0,
-			7,5,4,
-			4,6,7,
-			2,3,7,
-			7,6,2,
-			1,0,4,
-			4,5,1,
+        { 
+            1, 5, 7, 3, // front
+            0, 2, 6, 4, // back
+            0, 1, 3, 2, // left
+            7, 5, 4, 6, // right
+            2, 3, 7, 6, // up
+            1, 0, 4, 5, // down
         };
 
         static RaycastModel()
@@ -140,7 +134,7 @@ namespace RaycastVolumeRendering
                 //    buffer.UnmapBuffer();
                 //}
                 IndexBuffer buffer = indices.GenIndexBuffer(BufferUsage.StaticDraw);
-                this.drawCmd = new DrawElementsCmd(buffer, DrawMode.Triangles);
+                this.drawCmd = new DrawElementsCmd(buffer, DrawMode.Quads);
             }
 
             yield return drawCmd;
