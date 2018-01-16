@@ -96,8 +96,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="3DTextureSlicing.classification.png" />
-    <Content Include="3DTextureSlicing.png" />
+    <Content Include="VolumeRendering.Slicing.classification.png" />
+    <Content Include="VolumeRendering.Slicing.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

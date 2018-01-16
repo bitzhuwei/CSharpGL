@@ -60,7 +60,7 @@
     <Compile Include="RaycastNode.raycasting.cs" />
     <Compile Include="RaycastNode.backface.cs" />
     <Compile Include="RaycastNode.cs" />
-    <Content Include="RaycastVolumeRendering.png" />
+    <Content Include="VolumeRendering.Raycast.png" />
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
