@@ -5,24 +5,13 @@ using System.Runtime.InteropServices;
 
 namespace CSharpGL
 {
-    //TODO: not tested yet.
     /// <summary>
     /// Render something using 'glMultiDrawElements'.
     /// </summary>
     [Browsable(true)]
     [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
-    public class MultiDrawElementsCmd : IDrawCommand//, IHasIndexBuffer
+    public class MultiDrawElementsCmd : IDrawCommand
     {
-        //#region IHasIndexBuffer 成员
-
-        //private IndexBuffer indexBuffer;
-        ///// <summary>
-        ///// 
-        ///// </summary>
-        //public IndexBuffer IndexBufferObject { get { return this.indexBuffer; } }
-
-        //#endregion
-
         /// <summary>
         /// 用哪种方式渲染各个顶点？（GL.GL_TRIANGLES etc.）
         /// </summary>
@@ -97,7 +86,6 @@ namespace CSharpGL
         /// <param name="controlMode">index buffer is accessable randomly or only by frame.</param>
         public void Draw(ControlMode controlMode)
         {
-            //GLBuffer.glBindBuffer(GL.GL_ELEMENT_ARRAY_BUFFER, indexBuffer.BufferId);
             GCHandle pinAll = GCHandle.Alloc(this.allIndices, GCHandleType.Pinned);
             var count = this.count;
             var indices = new IntPtr[count.Length];
@@ -119,7 +107,6 @@ namespace CSharpGL
             }
             pinIndices.Free();
             pinAll.Free();
-            //GLBuffer.glBindBuffer(GL.GL_ELEMENT_ARRAY_BUFFER, 0);
         }
 
         /// <summary>
