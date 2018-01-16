@@ -5,7 +5,7 @@ using System.Text;
 using CSharpGL;
 using System.Drawing;
 
-namespace _3DTextureSlicing
+namespace VolumeRendering.Slicing
 {
     partial class SlicesNode : ModernNode
     {

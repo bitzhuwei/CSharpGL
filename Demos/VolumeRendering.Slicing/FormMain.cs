@@ -8,7 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using CSharpGL;
 
-namespace _3DTextureSlicing
+namespace VolumeRendering.Slicing
 {
     public partial class FormMain : Form
     {

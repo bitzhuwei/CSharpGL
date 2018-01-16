@@ -5,7 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace _3DTextureSlicing
+namespace VolumeRendering.Slicing
 {
     class TransferFunctionLoader
     {

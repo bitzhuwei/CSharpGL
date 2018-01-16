@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using CSharpGL;
 
-namespace _3DTextureSlicing
+namespace VolumeRendering.Slicing
 {
     class SlicesModel : IBufferSource
     {

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace _3DTextureSlicing.Properties
+namespace VolumeRendering.Slicing.Properties
 {
 
 
