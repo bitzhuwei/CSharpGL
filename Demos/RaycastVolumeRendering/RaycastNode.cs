@@ -111,5 +111,24 @@ namespace RaycastVolumeRendering
         public override void RenderAfterChildren(RenderEventArgs arg)
         {
         }
+
+        int cycle = 1600;
+        public int Cycle
+        {
+            get
+            {
+                return cycle;
+            }
+            set
+            {
+                this.cycle = value;
+                if (this.IsInitialized)
+                {
+                    RenderMethod method = this.RenderUnit.Methods[1];// raycasting.
+                    ShaderProgram program = method.Program;
+                    program.SetUniform("cycle", value);
+                }
+            }
+        }
     }
 }

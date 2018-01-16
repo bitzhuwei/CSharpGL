@@ -35,6 +35,7 @@ uniform sampler3D VolumeTex;
 uniform float     StepSize = 0.001f;
 uniform vec2      ScreenSize;
 uniform vec4      backgroundColor = vec4(0, 0, 0, 0);// value in glClearColor(value);
+uniform int       cycle = 1600;
 
 out vec4 FragColor;
 
@@ -63,7 +64,7 @@ void main()
     float intensity;
     vec4 colorSample; // The src color 
  
-    for(int i = 0; i < 1600; i++)
+    for(int i = 0; i < cycle; i++)
     {
         // get scaler value in the volume data
         intensity =  texture(VolumeTex, voxelCoord).x;

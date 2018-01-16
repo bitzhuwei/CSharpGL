@@ -58,6 +58,7 @@ namespace RaycastVolumeRendering
                 var node = RaycastNode.Create();
                 node.BindManipulater(manipulater);
                 this.scene.RootElement = node;
+                (new FormProperyGrid(node)).Show();
             }
 
             var list = new ActionList();
