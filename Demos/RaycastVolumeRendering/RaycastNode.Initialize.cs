@@ -126,6 +126,7 @@ namespace RaycastVolumeRendering
                 new TexParameteri(TexParameter.PropertyName.TextrueBaseLevel, 0),
                 new TexParameteri(TexParameter.PropertyName.TextureMaxLevel, 4));
             texture.Initialize();
+            texture.TextureUnitIndex = 2;
 
             return texture;
         }
@@ -140,6 +141,7 @@ namespace RaycastVolumeRendering
                 new TexParameteri(TexParameter.PropertyName.TextureMinFilter, (int)GL.GL_NEAREST),
                 new TexParameteri(TexParameter.PropertyName.TextureMagFilter, (int)GL.GL_NEAREST));
             texture.Initialize();
+            texture.TextureUnitIndex = 1;
 
             return texture;
         }
@@ -162,6 +164,8 @@ namespace RaycastVolumeRendering
                 new TexParameteri(TexParameter.PropertyName.TextureMinFilter, (int)GL.GL_NEAREST),
                 new TexParameteri(TexParameter.PropertyName.TextureMagFilter, (int)GL.GL_NEAREST));
             texture.Initialize();
+            texture.TextureUnitIndex = 0;
+
             return texture;
         }
     }
