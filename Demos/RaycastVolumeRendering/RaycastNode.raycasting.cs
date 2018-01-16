@@ -63,39 +63,18 @@ void main()
     float intensity;
     vec4 colorSample; // The src color 
  
-    for(int i = 0; i < 1600; i++)
-    {
-        // get scaler value in the volume data
+   // get scaler value in the volume data
         intensity =  texture(VolumeTex, voxelCoord).x;
         // get mapped color from 1-D texture
         colorSample = texture(TransferFunc, intensity);
-        // modulate the value of colorSample.a
-        // front-to-back integration
-        if (colorSample.a > 0.0) {
-            // accomodate for variable sampling rates (base interval defined by mod_compositing.frag)
-            colorSample.a = 1.0 - pow(1.0 - colorSample.a, StepSize * 200.0f);
-            colorAccumulator += (1.0 - alphaAccumulator) * colorSample.rgb * colorSample.a;
-            alphaAccumulator += (1.0 - alphaAccumulator) * colorSample.a;
-        }
-        voxelCoord += deltaDirection;
-        lengthAccumulator += StepSize;
-        if (lengthAccumulator >= directionLength)
-        {    
-            colorAccumulator = colorAccumulator * alphaAccumulator 
-                + (1 - alphaAccumulator) * backgroundColor.rgb;
-            break;  // terminate if opacity > 1 or the ray is outside the volume
-        }    
-        else if (alphaAccumulator > 1.0)
-        {
-            alphaAccumulator = 1.0;
-            break;
-        }
+    if (colorSample.a > 0)
+    {
+        FragColor = colorSample;
     }
-    FragColor = vec4(colorAccumulator, alphaAccumulator);
-    // for test
-    // FragColor = vec4(passEntryPoint, 1.0);
-    // FragColor = vec4(exitPoint, 1.0);
-   
+    else
+    {
+        discard;
+    }
 }
 
 ";
