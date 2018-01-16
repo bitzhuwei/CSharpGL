@@ -1,12 +1,13 @@
 ﻿namespace CSharpGL
 {
+    // https://www.khronos.org/opengles/sdk/docs/man/xhtml/glCullFace.xml
     /// <summary>
-    /// https://www.khronos.org/opengles/sdk/docs/man/xhtml/glCullFace.xml
+    /// Cull front/back face?
     /// </summary>
     public class CullFaceState : EnableState
     {
         /// <summary>
-        ///
+        /// Cull front/back face?
         /// </summary>
         public CullFaceState()
             : base(GL.GL_CULL_FACE, true)
@@ -15,7 +16,7 @@
         }
 
         /// <summary>
-        ///
+        /// Cull front/back face?
         /// </summary>
         /// <param name="enableCapacity">Enable() or Disable() this capacity?</param>
         public CullFaceState(bool enableCapacity)
@@ -25,7 +26,7 @@
         }
 
         /// <summary>
-        ///
+        /// Cull front/back face?
         /// </summary>
         /// <param name="mode"></param>
         public CullFaceState(CullFaceMode mode)
@@ -35,7 +36,7 @@
         }
 
         /// <summary>
-        ///
+        /// Cull front/back face?
         /// </summary>
         /// <param name="mode"></param>
         /// <param name="enableCapacity">Enable() or Disable() this capacity?</param>
@@ -84,7 +85,7 @@
         private uint mode = GL.GL_BACK;
 
         /// <summary>
-        /// https://www.khronos.org/opengles/sdk/docs/man/xhtml/glCullFace.xml
+        /// Cull front/back face?
         /// </summary>
         public CullFaceMode Mode
         {
@@ -94,22 +95,22 @@
     }
 
     /// <summary>
-    /// Display front/back faces?
+    /// Cull front/back face?
     /// </summary>
     public enum CullFaceMode : uint
     {
         /// <summary>
-        /// Display front faces only.
+        /// Cull front face.
         /// </summary>
         Front = GL.GL_FRONT,
 
         /// <summary>
-        /// Display back faces only.
+        /// Cull back face.
         /// </summary>
         Back = GL.GL_BACK,
 
         /// <summary>
-        /// Display both front and back faces.
+        /// Cull both front and back face.
         /// </summary>
         FrontAndBack = GL.GL_FRONT_AND_BACK,
     }
