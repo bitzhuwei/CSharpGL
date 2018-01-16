@@ -6,7 +6,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace RaycastVolumeRendering
+namespace VolumeRendering.Raycast
 {
     public partial class RaycastNode
     {

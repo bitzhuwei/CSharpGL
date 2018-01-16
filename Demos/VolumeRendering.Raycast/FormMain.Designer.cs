@@ -1,4 +1,4 @@
-﻿namespace RaycastVolumeRendering
+﻿namespace VolumeRendering.Raycast
 {
     partial class FormMain
     {

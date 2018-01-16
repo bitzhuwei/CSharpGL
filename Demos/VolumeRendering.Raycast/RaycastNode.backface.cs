@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace RaycastVolumeRendering
+namespace VolumeRendering.Raycast
 {
     public partial class RaycastNode
     {

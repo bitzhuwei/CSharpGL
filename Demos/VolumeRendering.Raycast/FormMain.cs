@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace RaycastVolumeRendering
+namespace VolumeRendering.Raycast
 {
     public partial class FormMain : Form
     {

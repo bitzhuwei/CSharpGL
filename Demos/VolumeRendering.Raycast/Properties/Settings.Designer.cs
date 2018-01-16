@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RaycastVolumeRendering.Properties
+namespace VolumeRendering.Raycast.Properties
 {
 
 

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 
-namespace RaycastVolumeRendering
+namespace VolumeRendering.Raycast
 {
     internal class DragParam
     {
