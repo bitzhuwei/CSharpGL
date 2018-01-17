@@ -44,7 +44,7 @@ namespace Skybox
 
             int x = e.X;
             int y = this.winGLCanvas1.Height - e.Y - 1;
-            PickedGeometry pickedGeometry = this.pickingAction.Pick(x, y, true, true, false, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
+            PickedGeometry pickedGeometry = this.pickingAction.Pick(x, y, PickingGeometryTypes.Triangle | PickingGeometryTypes.Quad, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
             if (pickedGeometry != null)
             {
                 switch (pickedGeometry.Type)

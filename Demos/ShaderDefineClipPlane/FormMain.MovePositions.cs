@@ -8,15 +8,20 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace VolumeRendering.Raycast
+namespace ShaderDefineClipPlane
 {
     public partial class FormMain
     {
+        private PickingAction pickingAction;
+        private LegacyTriangleNode triangleTip;
+        private LegacyQuadNode quadTip;
+        private List<SceneNodeBase> tipList = new List<SceneNodeBase>();
+
         private PickedGeometry pickedGeometry;
         private DragParam dragParam;
         private Point lastMousePosition;
 
-        private void glCanvas1_MouseDown(object sender, MouseEventArgs e)
+        private void winGLCanvas1_MouseDown(object sender, MouseEventArgs e)
         {
             this.lastMousePosition = e.Location;
 
@@ -51,7 +56,7 @@ namespace VolumeRendering.Raycast
             }
         }
 
-        private void glCanvas1_MouseMove(object sender, MouseEventArgs e)
+        private void winGLCanvas1_MouseMove(object sender, MouseEventArgs e)
         {
             if (lastMousePosition == e.Location) { return; }
 
@@ -76,23 +81,44 @@ namespace VolumeRendering.Raycast
                           dragParam.pickedVertexIds);
 
                     this.UpdateHightlight(newPositions);
+                    this.UpdateClipPlane(newPositions[0], newPositions[1], newPositions[2]);
                 }
             }
             else
             {
                 int x = e.X;
                 int y = this.winGLCanvas1.Height - e.Y - 1;
-                this.pickedGeometry = this.pickingAction.Pick(x, y, PickingGeometryTypes.Triangle | PickingGeometryTypes.Quad, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
+                this.pickedGeometry = this.pickingAction.Pick(x, y, GeometryType.Triangle, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
+
+                if (this.pickedGeometry != null)
+                {
+                    var text = string.Format("picked: {0}", this.pickedGeometry.FromRenderer);
+                }
+                else
+                {
+                    var text = string.Format("picked: nothing");
+                }
 
                 this.UpdateHightlight();
             }
 
             this.lastMousePosition = e.Location;
-
-            this.winGLCanvas1.Invalidate();// redraw the scene.
         }
 
-        private void glCanvas1_MouseUp(object sender, MouseEventArgs e)
+        private void UpdateClipPlane(vec3 a, vec3 b, vec3 c)
+        {
+            vec3 ab = b - a, ac = c - a;
+            vec3 normal = ac.cross(ab);
+            float A = normal.x, B = normal.y, C = normal.z;
+            float D1 = -normal.dot(a);
+            float D2 = -normal.dot(b);
+            float D3 = -normal.dot(c);
+            float D = (D1 + D2 + D3) / 3.0f;
+
+            this.clippedCube.ClipPlane = new vec4(A, B, C, D);
+        }
+
+        private void winGLCanvas1_MouseUp(object sender, MouseEventArgs e)
         {
             if (e.Button == System.Windows.Forms.MouseButtons.Right)
             {
@@ -106,6 +132,15 @@ namespace VolumeRendering.Raycast
             }
 
             this.lastMousePosition = e.Location;
+        }
+
+        private Color GetColorAtMouse(int x, int y)
+        {
+            byte[] colors = new byte[4];
+            GL.Instance.ReadPixels(x, y, 1, 1, GL.GL_RGBA, GL.GL_UNSIGNED_BYTE, colors);
+            Color c = Color.FromArgb(colors[3], colors[0], colors[1], colors[2]);
+
+            return c;
         }
 
         private void UpdateHightlight(IList<vec3> newPositions)

@@ -45,7 +45,7 @@ namespace OrderIndependentTransparency
             PickedGeometry pickedGeometry = null;
             try
             {
-                pickedGeometry = this.pickingAction.Pick(x, y, true, true, false, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
+                pickedGeometry = this.pickingAction.Pick(x, y, PickingGeometryTypes.Triangle | PickingGeometryTypes.Quad, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
             }
             catch (Exception)
             { }

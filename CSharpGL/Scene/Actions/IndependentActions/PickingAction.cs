@@ -24,23 +24,30 @@ namespace CSharpGL
         /// <summary>
         /// Pick geometry at specified positon.
         /// </summary>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
-        /// <param name="pickTriangle"></param>
-        /// <param name="pickQuad"></param>
-        /// <param name="pickPolygon"></param>
+        /// <param name="x">Left Down is (0, 0)</param>
+        /// <param name="y">Left Down is (0, 0)</param>
+        /// <param name="geometryType"></param>
         /// <param name="width"></param>
         /// <param name="height"></param>
         /// <returns></returns>
-        public PickedGeometry Pick(int x, int y, bool pickTriangle, bool pickQuad, bool pickPolygon, int width, int height)
+        public PickedGeometry Pick(int x, int y, GeometryType geometryType, int width, int height)
+        {
+            return Pick(x, y, geometryType.ToFlags(), width, height);
+        }
+
+        /// <summary>
+        /// Pick geometry at specified positon.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="geometryTypes"></param>
+        /// <param name="width"></param>
+        /// <param name="height"></param>
+        /// <returns></returns>
+        public PickedGeometry Pick(int x, int y, PickingGeometryTypes geometryTypes, int width, int height)
         {
             if (x < 0 || width <= x) { return null; }
             if (y < 0 || height <= y) { return null; }
-
-            PickingGeometryTypes geometryTypes = 0;
-            if (pickTriangle) { geometryTypes |= PickingGeometryTypes.Triangle; }
-            if (pickQuad) { geometryTypes |= PickingGeometryTypes.Quad; }
-            if (pickPolygon) { geometryTypes |= PickingGeometryTypes.Polygon; }
             if (geometryTypes == 0) { return null; }
 
             PickedGeometry pickedGeometry = null;
@@ -57,7 +64,7 @@ namespace CSharpGL
 
                 uint stageVertexId = ColorCodedPicking.ReadStageVertexId(x, y);
 
-                pickedGeometry = Pick(stageVertexId, arg, this.Scene.RootElement);
+                pickedGeometry = SearchGeometry(stageVertexId, arg, this.Scene.RootElement);
 
                 if (pickedGeometry != null)
                 {
@@ -76,39 +83,7 @@ namespace CSharpGL
             return pickedGeometry;
         }
 
-        /// <summary>
-        /// Pick geometry at specified positon.
-        /// </summary>
-        /// <param name="x">Left Down is (0, 0)</param>
-        /// <param name="y">Left Down is (0, 0)</param>
-        /// <param name="geometryType"></param>
-        /// <param name="width"></param>
-        /// <param name="height"></param>
-        /// <returns></returns>
-        public PickedGeometry Pick(int x, int y, GeometryType geometryType, int width, int height)
-        {
-            PickedGeometry pickedGeometry = null;
-
-            Framebuffer framebuffer = GetPickingFramebuffer(width, height);
-            framebuffer.Bind();
-            {
-                const float one = 1.0f;
-                GL.Instance.ClearColor(one, one, one, one);
-                GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT | GL.GL_STENCIL_BUFFER_BIT);
-
-                var arg = new PickingEventArgs(this.Scene, x, y, geometryType.ToFlags());
-                this.RenderForPicking(this.Scene.RootElement, arg);
-
-                uint stageVertexId = ColorCodedPicking.ReadStageVertexId(x, y);
-
-                pickedGeometry = Pick(stageVertexId, arg, this.Scene.RootElement);
-            }
-            framebuffer.Unbind();
-
-            return pickedGeometry;
-        }
-
-        private PickedGeometry Pick(uint stageVertexId, PickingEventArgs arg, SceneNodeBase node)
+        private PickedGeometry SearchGeometry(uint stageVertexId, PickingEventArgs arg, SceneNodeBase node)
         {
             PickedGeometry pickedGeometry = null;
             if (node != null)
@@ -123,7 +98,7 @@ namespace CSharpGL
                 {
                     foreach (var item in node.Children)
                     {
-                        pickedGeometry = Pick(stageVertexId, arg, item);
+                        pickedGeometry = SearchGeometry(stageVertexId, arg, item);
                         if (pickedGeometry != null)
                         {
                             break;
