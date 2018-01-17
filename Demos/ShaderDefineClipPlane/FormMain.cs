@@ -14,6 +14,8 @@ namespace ShaderDefineClipPlane
     {
         private Scene scene;
         private ActionList actionList;
+        private ClippedCubeNode clippedCube;
+        private TransparentPlaneNode transparentPlane;
 
         public FormMain()
         {
@@ -26,7 +28,7 @@ namespace ShaderDefineClipPlane
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-            var rootElement = GetPropellerRTT();
+            var rootElement = GetRootElement();
 
             var position = new vec3(5, 3, 4) * 0.5f;
             var center = new vec3(0, 0, 0);
@@ -67,7 +69,7 @@ namespace ShaderDefineClipPlane
             }
         }
 
-        private SceneNodeBase GetPropellerRTT()
+        private SceneNodeBase GetRootElement()
         {
             string folder = System.Windows.Forms.Application.StartupPath;
             var bmp = new Bitmap(System.IO.Path.Combine(folder, @"Crate.bmp"));
@@ -82,7 +84,12 @@ namespace ShaderDefineClipPlane
             texture.TextureUnitIndex = 0;
             bmp.Dispose();
 
-            return ClippedCubeNode.Create(texture);
+            this.clippedCube = ClippedCubeNode.Create(texture);
+            this.transparentPlane = TransparentPlaneNode.Create();
+            transparentPlane.Scale = new vec3(1, 1, 1) * 3;
+            var group = new GroupNode(clippedCube, transparentPlane);
+
+            return group;
         }
 
         private void winGLCanvas1_OpenGLDraw(object sender, PaintEventArgs e)

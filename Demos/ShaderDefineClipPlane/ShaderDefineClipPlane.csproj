@@ -45,11 +45,15 @@
   <ItemGroup>
     <Compile Include="ClippedCubeNode.shaders.cs" />
     <Compile Include="ClippedCubeNode.cs" />
+    <Compile Include="DragParam.cs" />
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormMain.MovePositions.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
