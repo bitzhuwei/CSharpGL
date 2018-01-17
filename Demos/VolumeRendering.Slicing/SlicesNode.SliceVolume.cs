@@ -116,8 +116,6 @@ namespace VolumeRendering.Slicing
         /// </summary>
         private unsafe void SliceVolume(vec3 viewDir, int num_slices)
         {
-            vec3* vTextureSlices = (vec3*)this.vVertexBuffer.MapBuffer(MapBufferAccess.WriteOnly);
-
             //get the max and min distance of each vertex of the unit cube
             //in the viewing direction
             float max_dist = viewDir.dot(vertexList[0]);
@@ -195,6 +193,7 @@ namespace VolumeRendering.Slicing
             vec3[] intersection = new vec3[6];
             float[] dL = new float[12];
 
+            vec3* vTextureSlices = (vec3*)this.vVertexBuffer.MapBuffer(MapBufferAccess.WriteOnly);
             //loop through all slices
             for (int i = num_slices - 1; i >= 0; i--)
             {

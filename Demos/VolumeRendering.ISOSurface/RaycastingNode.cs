@@ -5,7 +5,7 @@ using System.Text;
 using CSharpGL;
 using System.Drawing;
 
-namespace GPURaycasting
+namespace VolumeRendering.ISOSurface
 {
     partial class RaycastingNode : ModernNode
     {

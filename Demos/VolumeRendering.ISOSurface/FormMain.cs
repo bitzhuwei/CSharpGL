@@ -8,7 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using CSharpGL;
 
-namespace GPURaycasting
+namespace VolumeRendering.ISOSurface
 {
     public partial class FormMain : Form
     {

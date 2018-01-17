@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace GPURaycasting.Properties
+namespace VolumeRendering.ISOSurface.Properties
 {
 
 

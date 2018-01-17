@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using CSharpGL;
 
-namespace GPURaycasting
+namespace VolumeRendering.ISOSurface
 {
     partial class RaycastingNode
     {

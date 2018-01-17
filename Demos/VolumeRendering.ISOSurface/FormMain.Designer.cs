@@ -1,4 +1,4 @@
-﻿namespace GPURaycasting
+﻿namespace VolumeRendering.ISOSurface
 {
     partial class FormMain
     {
