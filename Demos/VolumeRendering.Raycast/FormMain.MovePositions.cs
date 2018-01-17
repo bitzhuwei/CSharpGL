@@ -82,7 +82,7 @@ namespace VolumeRendering.Raycast
             {
                 int x = e.X;
                 int y = this.winGLCanvas1.Height - e.Y - 1;
-                this.pickedGeometry = this.pickingAction.Pick(x, y, true, true, false, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
+                this.pickedGeometry = this.pickingAction.Pick(x, y, PickingGeometryTypes.Triangle | PickingGeometryTypes.Quad, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
 
                 this.UpdateHightlight();
             }
