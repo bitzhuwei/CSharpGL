@@ -28,8 +28,6 @@ namespace ShaderDefineClipPlane
             this.winGLCanvas1.MouseMove += winGLCanvas1_MouseMove;
             this.winGLCanvas1.MouseUp += winGLCanvas1_MouseUp;
 
-            this.tipList.Add(this.triangleTip);
-            this.tipList.Add(this.quadTip);
         }
 
         private void FormMain_Load(object sender, EventArgs e)
@@ -52,6 +50,12 @@ namespace ShaderDefineClipPlane
             var renderAction = new RenderAction(scene);
             list.Add(renderAction);
             this.actionList = list;
+
+            this.pickingAction = new PickingAction(scene);
+            this.triangleTip = new LegacyTriangleNode();
+            this.quadTip = new LegacyQuadNode();
+            this.tipList.Add(this.triangleTip);
+            this.tipList.Add(this.quadTip);
 
             Match(this.trvScene, scene.RootElement);
             this.trvScene.ExpandAll();
