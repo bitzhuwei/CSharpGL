@@ -62,9 +62,9 @@ namespace ShaderDefineClipPlane
 
         #endregion
 
-        private const float xLength = 0.5f;
-        private const float yLength = 0.5f;
-        private const float zLength = 0.5f;
+        private const float xLength = 1.5f;
+        private const float yLength = 1.5f;
+        private const float zLength = 1.5f;
         /// <summary>
         /// four vertexes.
         /// </summary>

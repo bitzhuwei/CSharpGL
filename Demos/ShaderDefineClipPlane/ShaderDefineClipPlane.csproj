@@ -55,6 +55,7 @@
     <Compile Include="FormMain.MovePositions.cs">
       <SubType>Form</SubType>
     </Compile>
+    <None Include="readme.md" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TransparentPlaneModel.cs" />
@@ -100,6 +101,7 @@
     <Content Include="Crate.bmp">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="ShaderDefineClipPlane.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

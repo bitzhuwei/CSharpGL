@@ -34,7 +34,7 @@ namespace ShaderDefineClipPlane
         {
             var rootElement = GetRootElement();
 
-            var position = new vec3(5, 3, 4) * 0.5f;
+            var position = new vec3(-3, 3, 4) * 0.5f;
             var center = new vec3(0, 0, 0);
             var up = new vec3(0, 1, 0);
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
@@ -59,6 +59,10 @@ namespace ShaderDefineClipPlane
 
             Match(this.trvScene, scene.RootElement);
             this.trvScene.ExpandAll();
+
+            var manipulater = new FirstPerspectiveManipulater();
+            manipulater.BindingMouseButtons = GLMouseButtons.Right;
+            manipulater.Bind(camera, this.winGLCanvas1);
         }
 
         private void Match(TreeView treeView, SceneNodeBase nodeBase)
@@ -96,7 +100,7 @@ namespace ShaderDefineClipPlane
 
             this.clippedCube = ClippedCubeNode.Create(texture);
             this.transparentPlane = TransparentPlaneNode.Create();
-            transparentPlane.Scale = new vec3(1, 1, 1) * 3;
+            transparentPlane.Scale = new vec3(1, 1, 1);
             var group = new GroupNode(clippedCube, transparentPlane);
 
             return group;

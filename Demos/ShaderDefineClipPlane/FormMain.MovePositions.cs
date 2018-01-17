@@ -81,6 +81,7 @@ namespace ShaderDefineClipPlane
                           dragParam.pickedVertexIds);
 
                     this.UpdateHightlight(newPositions);
+                    this.UpdateClipPlane(newPositions[0], newPositions[1], newPositions[2]);
                 }
             }
             else
@@ -102,6 +103,19 @@ namespace ShaderDefineClipPlane
             }
 
             this.lastMousePosition = e.Location;
+        }
+
+        private void UpdateClipPlane(vec3 a, vec3 b, vec3 c)
+        {
+            vec3 ab = b - a, ac = c - a;
+            vec3 normal = ac.cross(ab);
+            float A = normal.x, B = normal.y, C = normal.z;
+            float D1 = -normal.dot(a);
+            float D2 = -normal.dot(b);
+            float D3 = -normal.dot(c);
+            float D = (D1 + D2 + D3) / 3.0f;
+
+            this.clippedCube.ClipPlane = new vec4(A, B, C, D);
         }
 
         private void winGLCanvas1_MouseUp(object sender, MouseEventArgs e)
