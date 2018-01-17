@@ -1,4 +1,4 @@
-﻿namespace FrontToBackPeeling
+﻿namespace VolumeRendering.Slicing
 {
     partial class FormMain
     {
