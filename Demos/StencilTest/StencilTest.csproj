@@ -52,7 +52,6 @@
     <Compile Include="Form1HowStencilWorks.Designer.cs">
       <DependentUpon>Form1HowStencilWorks.cs</DependentUpon>
     </Compile>
-    <Compile Include="HowStencilTestWorkNode.cs" />
     <Compile Include="OutlineCubeNode.cs" />
     <Compile Include="QuaterModel.cs" />
     <Compile Include="ClearStencilNode.cs" />
