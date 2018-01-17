@@ -8,14 +8,80 @@ namespace ShaderDefineClipPlane
 {
     partial class ClippedCubeNode : ModernNode
     {
+        private Texture texture;
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public static ClippedCubeNode Create(Texture texture)
+        {
+            var vs = new VertexShader(vertexCode);
+            var fs = new FragmentShader(fragmentCode);
+            var array = new ShaderArray(vs, fs);
+            var map = new AttributeMap();
+            map.Add("inPosition", TexturedCubeModel.strPosition);
+            map.Add("inUV", TexturedCubeModel.strUV);
+            var builder = new RenderMethodBuilder(array, map);
+            var model = new TexturedCubeModel();
+            var node = new ClippedCubeNode(model, builder);
+            node.texture = texture;
+            node.Initialize();
+            node.ModelSize = model.ModelSize;
+
+            return node;
+        }
+
+        private ClippedCubeNode(IBufferSource model, params RenderMethodBuilder[] builders)
+            : base(model, builders) { }
+
+        private vec4 clipPlane = new vec4(1, 1, 1, 0);
+
+        public vec4 ClipPlane
+        {
+            get { return clipPlane; }
+            set
+            {
+                clipPlane = value;
+                var method = this.RenderUnit.Methods[0]; // the only render unit in this node.
+                ShaderProgram program = method.Program;
+                program.SetUniform("clipPlane", value);
+            }
+        }
+        private bool keepGreater = true;
+
+        public bool KeepGreater
+        {
+            get { return keepGreater; }
+            set
+            {
+                keepGreater = value;
+                var method = this.RenderUnit.Methods[0]; // the only render unit in this node.
+                ShaderProgram program = method.Program;
+                program.SetUniform("keepGreater", value);
+            }
+        }
+
         public override void RenderBeforeChildren(RenderEventArgs arg)
         {
-            throw new NotImplementedException();
+            if (!this.IsInitialized) { this.Initialize(); }
+
+            ICamera camera = arg.CameraStack.Peek();
+            mat4 projection = camera.GetProjectionMatrix();
+            mat4 view = camera.GetViewMatrix();
+            mat4 model = this.GetModelMatrix();
+
+            var method = this.RenderUnit.Methods[0]; // the only render unit in this node.
+            ShaderProgram program = method.Program;
+            program.SetUniform("projectionMat", projection);
+            program.SetUniform("viewMat", view);
+            program.SetUniform("modelMat", model);
+            program.SetUniform("tex", this.texture);
+
+            method.Render();
         }
 
         public override void RenderAfterChildren(RenderEventArgs arg)
         {
-            throw new NotImplementedException();
         }
     }
 }

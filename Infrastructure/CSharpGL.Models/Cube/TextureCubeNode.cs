@@ -110,7 +110,7 @@ void main(void) {
         }
     }
 
-    class TexturedCubeModel : IBufferSource
+    public class TexturedCubeModel : IBufferSource
     {
         public vec3 ModelSize { get; private set; }
 

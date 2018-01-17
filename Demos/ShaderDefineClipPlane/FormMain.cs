@@ -22,7 +22,6 @@ namespace ShaderDefineClipPlane
             this.Load += FormMain_Load;
             this.winGLCanvas1.OpenGLDraw += winGLCanvas1_OpenGLDraw;
             this.winGLCanvas1.Resize += winGLCanvas1_Resize;
-            this.winGLCanvas1.MouseClick += winGLCanvas1_MouseClick;
         }
 
         private void FormMain_Load(object sender, EventArgs e)
@@ -70,7 +69,20 @@ namespace ShaderDefineClipPlane
 
         private SceneNodeBase GetPropellerRTT()
         {
-            throw new NotImplementedException();
+            string folder = System.Windows.Forms.Application.StartupPath;
+            var bmp = new Bitmap(System.IO.Path.Combine(folder, @"Crate.bmp"));
+            TexStorageBase storage = new TexImageBitmap(bmp);
+            var texture = new Texture(storage);
+            texture.BuiltInSampler.Add(new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP_TO_EDGE));
+            texture.BuiltInSampler.Add(new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_CLAMP_TO_EDGE));
+            texture.BuiltInSampler.Add(new TexParameteri(TexParameter.PropertyName.TextureWrapR, (int)GL.GL_CLAMP_TO_EDGE));
+            texture.BuiltInSampler.Add(new TexParameteri(TexParameter.PropertyName.TextureMinFilter, (int)GL.GL_LINEAR));
+            texture.BuiltInSampler.Add(new TexParameteri(TexParameter.PropertyName.TextureMagFilter, (int)GL.GL_LINEAR));
+            texture.Initialize();
+            texture.TextureUnitIndex = 0;
+            bmp.Dispose();
+
+            return ClippedCubeNode.Create(texture);
         }
 
         private void winGLCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
@@ -84,53 +96,15 @@ namespace ShaderDefineClipPlane
 
         void winGLCanvas1_Resize(object sender, EventArgs e)
         {
-            this.scene.Camera.AspectRatio = ((float)this.winGLCanvas1.Width) / ((float)this.winGLCanvas1.Height);
-        }
-
-        /// <summary>
-        /// click to pick and toggle the render wireframe state.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        void winGLCanvas1_MouseClick(object sender, MouseEventArgs e)
-        {
-            int x = e.X;
-            int y = this.winGLCanvas1.Height - e.Y - 1;
-            List<HitTarget> list = this.legacyPickingAction.Pick(x, y);
-            //foreach (var item in list)
-            //{
-            //    var parent = item.node.Parent;
-            //    if (parent != null)
-            //    {
-            //        var node = parent as IRenderable;
-            //        if (node != null)
-            //        {
-            //            node.RenderingEnabled = !node.RenderingEnabled;
-            //        }
-            //    }
-            //}
-
-            if (list.Count == 0)
+            if (this.scene != null)
             {
-                this.propGrid.SelectedObject = null;
+                this.scene.Camera.AspectRatio = ((float)this.winGLCanvas1.Width) / ((float)this.winGLCanvas1.Height);
             }
-            else if (list.Count == 1)
-            {
-                this.propGrid.SelectedObject = list[0].node;
-            }
-            else
-            {
-                this.propGrid.SelectedObjects = (from item in list select item.node).ToArray();
-            }
-
-            this.lblState.Text = string.Format("{0} objects selected.", list.Count);
         }
 
         private void trvScene_AfterSelect(object sender, TreeViewEventArgs e)
         {
             this.propGrid.SelectedObject = e.Node.Tag;
-
-            this.lblState.Text = string.Format("{0} objects selected.", 1);
         }
     }
 }
