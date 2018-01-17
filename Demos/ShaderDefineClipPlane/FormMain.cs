@@ -24,6 +24,12 @@ namespace ShaderDefineClipPlane
             this.Load += FormMain_Load;
             this.winGLCanvas1.OpenGLDraw += winGLCanvas1_OpenGLDraw;
             this.winGLCanvas1.Resize += winGLCanvas1_Resize;
+            this.winGLCanvas1.MouseDown += winGLCanvas1_MouseDown;
+            this.winGLCanvas1.MouseMove += winGLCanvas1_MouseMove;
+            this.winGLCanvas1.MouseUp += winGLCanvas1_MouseUp;
+
+            this.tipList.Add(this.triangleTip);
+            this.tipList.Add(this.quadTip);
         }
 
         private void FormMain_Load(object sender, EventArgs e)

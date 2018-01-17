@@ -15,12 +15,13 @@ namespace ShaderDefineClipPlane
         private PickingAction pickingAction;
         private LegacyTriangleNode triangleTip;
         private LegacyQuadNode quadTip;
+        private List<SceneNodeBase> tipList = new List<SceneNodeBase>();
 
         private PickedGeometry pickedGeometry;
         private DragParam dragParam;
         private Point lastMousePosition;
 
-        private void glCanvas1_MouseDown(object sender, MouseEventArgs e)
+        private void winGLCanvas1_MouseDown(object sender, MouseEventArgs e)
         {
             this.lastMousePosition = e.Location;
 
@@ -55,10 +56,9 @@ namespace ShaderDefineClipPlane
             }
         }
 
-        private void glCanvas1_MouseMove(object sender, MouseEventArgs e)
+        private void winGLCanvas1_MouseMove(object sender, MouseEventArgs e)
         {
             if (lastMousePosition == e.Location) { return; }
-
 
             if (e.Button == System.Windows.Forms.MouseButtons.Right)
             {
@@ -87,7 +87,16 @@ namespace ShaderDefineClipPlane
             {
                 int x = e.X;
                 int y = this.winGLCanvas1.Height - e.Y - 1;
-                this.pickedGeometry = this.pickingAction.Pick(x, y, PickingGeometryTypes.Triangle, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
+                this.pickedGeometry = this.pickingAction.Pick(x, y, GeometryType.Triangle, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
+
+                if (this.pickedGeometry != null)
+                {
+                    var text = string.Format("picked: {0}", this.pickedGeometry.FromRenderer);
+                }
+                else
+                {
+                    var text = string.Format("picked: nothing");
+                }
 
                 this.UpdateHightlight();
             }
@@ -95,7 +104,7 @@ namespace ShaderDefineClipPlane
             this.lastMousePosition = e.Location;
         }
 
-        private void glCanvas1_MouseUp(object sender, MouseEventArgs e)
+        private void winGLCanvas1_MouseUp(object sender, MouseEventArgs e)
         {
             if (e.Button == System.Windows.Forms.MouseButtons.Right)
             {
