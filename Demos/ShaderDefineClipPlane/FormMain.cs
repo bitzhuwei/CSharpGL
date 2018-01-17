@@ -14,7 +14,6 @@ namespace ShaderDefineClipPlane
     {
         private Scene scene;
         private ActionList actionList;
-        private LegacyPickingAction legacyPickingAction;
 
         public FormMain()
         {
@@ -28,10 +27,6 @@ namespace ShaderDefineClipPlane
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-            //var rootElement = GetLegacyPropellerLegacyFlabellum();
-            //var rootElement = GetLegacyPropellerFlabellum();
-            //var rootElement = GetPropellerLegacyFlabellum();
-            //var rootElement = GetPropellerFlabellum();
             var rootElement = GetPropellerRTT();
 
             var position = new vec3(5, 3, 4);
@@ -50,8 +45,6 @@ namespace ShaderDefineClipPlane
             var renderAction = new RenderAction(scene);
             list.Add(renderAction);
             this.actionList = list;
-
-            this.legacyPickingAction = new LegacyPickingAction(scene);
 
             Match(this.trvScene, scene.RootElement);
             this.trvScene.ExpandAll();
