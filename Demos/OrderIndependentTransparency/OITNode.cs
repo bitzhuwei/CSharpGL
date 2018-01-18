@@ -148,8 +148,6 @@ namespace OrderIndependentTransparency
             }
 
             {
-                this.depthTestState = new DepthTestState();
-                this.cullFaceState = new CullFaceState(CullFaceMode.Back);
             }
         }
 
