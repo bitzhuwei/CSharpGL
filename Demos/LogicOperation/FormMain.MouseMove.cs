@@ -34,9 +34,9 @@ namespace LogicOperation
 
             if (lastNode != currentNode)
             {
-                if (lastNode != null) { lastNode.DisplayOutline = false; }
+                if (lastNode != null) { lastNode.LogicOp = false; }
 
-                if (currentNode != null) { currentNode.DisplayOutline = true; }
+                if (currentNode != null) { currentNode.LogicOp = true; }
             }
 
             this.lastPickedNode = currentNode;

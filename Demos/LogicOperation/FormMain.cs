@@ -41,9 +41,6 @@ namespace LogicOperation
                 ClearColor = Color.SkyBlue.ToVec4(),
             };
 
-            Match(this.trvScene, scene.RootElement);
-            this.trvScene.ExpandAll();
-
             var tansformAction = new TransformAction(scene);
             var renderAction = new RenderAction(scene);
             var actionList = new ActionList();
@@ -54,41 +51,16 @@ namespace LogicOperation
 
             var manipulater = new FirstPerspectiveManipulater();
             manipulater.Bind(camera, this.winGLCanvas1);
-        }
 
-        private void Match(TreeView treeView, SceneNodeBase nodeBase)
-        {
-            treeView.Nodes.Clear();
-            var node = new TreeNode(nodeBase.ToString()) { Tag = nodeBase };
-            treeView.Nodes.Add(node);
-            Match(node, nodeBase);
-        }
-
-        private void Match(TreeNode node, SceneNodeBase nodeBase)
-        {
-            foreach (var item in nodeBase.Children)
+            foreach (var item in Enum.GetNames(typeof(LogicOperationCode)))
             {
-                var child = new TreeNode(item.ToString()) { Tag = item };
-                node.Nodes.Add(child);
-                Match(child, item);
+                this.cmbLogicOperation.Items.Add(item);
             }
         }
 
+
         private SceneNodeBase GetRootElement()
         {
-            // demo 1:
-            //return LogicOperationNode.Create();
-
-            // demo 2:
-            //var quaterNode = QuaterNode.Create();
-            //var bottleNode = KleinBottleNode.Create(new KleinBottleModel());
-            //bottleNode.Scale = new vec3(1, 1, 1) * 0.1f;
-            //var group = new HowLogicOperationWorkNode();
-            //group.Children.Add(quaterNode);
-            //group.Children.Add(bottleNode);
-            //return group;
-
-            // demo 3:
             string folder = System.Windows.Forms.Application.StartupPath;
             var bitmap = new Bitmap(System.IO.Path.Combine(folder, @"Lenna.png"));
             bitmap.RotateFlip(RotateFlipType.Rotate180FlipX);
@@ -115,36 +87,6 @@ namespace LogicOperation
             return group;
         }
 
-        void clearBuffer_On(object sender, EventArgs e)
-        {
-            GL.Instance.Clear(GL.GL_STENCIL_BUFFER_BIT);
-        }
-
-        //private SceneNodeBase GetRootElement()
-        //{
-        //    int width = 600, height = 400;
-        //    var innerCamera = new Camera(new vec3(0, 2, 5), new vec3(0, 0, 0), new vec3(0, 1, 0), CameraType.Perspecitive, width, height);
-        //    (innerCamera as IPerspectiveViewCamera).Far = 50;
-        //    IFramebufferProvider source = new DepthFramebufferProvider();
-        //    var rtt = new RTTRenderer(width, height, innerCamera, source);
-        //    {
-        //        var teapot = DepthTextureRenderer.Create();
-        //        rtt.Children.Add(teapot);
-        //        var ground = GroundRenderer.Create(); ground.Color = Color.Gray.ToVec4(); ground.Scale *= 10; ground.WorldPosition = new vec3(0, -3, 0);
-        //        rtt.Children.Add(ground);
-        //    }
-
-        //    var rectangle = RectangleRenderer.Create();
-        //    rectangle.TextureSource = rtt;
-
-        //    var group = new GroupRenderer();
-        //    group.Children.Add(rtt);// rtt must be before rectangle.
-        //    group.Children.Add(rectangle);
-        //    //group.WorldPosition = new vec3(3, 0.5f, 0);// this looks nice.
-
-        //    return group;
-        //}
-
         private void winGLCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
         {
             ActionList list = this.actionList;
@@ -159,11 +101,27 @@ namespace LogicOperation
             this.scene.Camera.AspectRatio = ((float)this.winGLCanvas1.Width) / ((float)this.winGLCanvas1.Height);
         }
 
-        private void trvScene_AfterSelect(object sender, TreeViewEventArgs e)
+        private void cmbLogicOperation_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.propGrid.SelectedObject = e.Node.Tag;
+            if (this.scene != null)
+            {
+                var op = (LogicOperationCode)Enum.Parse(typeof(LogicOperationCode), cmbLogicOperation.SelectedItem.ToString());
+                TraverseNodes(this.scene.RootElement, op);
+            }
+        }
 
-            this.lblState.Text = string.Format("{0} objects selected.", 1);
+        private void TraverseNodes(SceneNodeBase sceneNodeBase, LogicOperationCode op)
+        {
+            var node = sceneNodeBase as LogicOperationNode;
+            if (node != null)
+            {
+                node.SetOperation(op);
+            }
+
+            foreach (var item in sceneNodeBase.Children)
+            {
+                TraverseNodes(item, op);
+            }
         }
 
     }

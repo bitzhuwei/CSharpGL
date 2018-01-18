@@ -28,46 +28,33 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.trvScene = new System.Windows.Forms.TreeView();
-            this.propGrid = new System.Windows.Forms.PropertyGrid();
             this.winGLCanvas1 = new CSharpGL.WinGLCanvas();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.lblState = new System.Windows.Forms.ToolStripStatusLabel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cmbLogicOperation = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.winGLCanvas1)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // trvScene
-            // 
-            this.trvScene.Font = new System.Drawing.Font("宋体", 12F);
-            this.trvScene.Location = new System.Drawing.Point(12, 12);
-            this.trvScene.Name = "trvScene";
-            this.trvScene.Size = new System.Drawing.Size(332, 259);
-            this.trvScene.TabIndex = 1;
-            this.trvScene.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.trvScene_AfterSelect);
-            // 
-            // propGrid
-            // 
-            this.propGrid.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.propGrid.Location = new System.Drawing.Point(12, 277);
-            this.propGrid.Name = "propGrid";
-            this.propGrid.Size = new System.Drawing.Size(332, 308);
-            this.propGrid.TabIndex = 2;
-            // 
             // winGLCanvas1
             // 
+            this.winGLCanvas1.AccumAlphaBits = ((byte)(0));
+            this.winGLCanvas1.AccumBits = ((byte)(0));
+            this.winGLCanvas1.AccumBlueBits = ((byte)(0));
+            this.winGLCanvas1.AccumGreenBits = ((byte)(0));
+            this.winGLCanvas1.AccumRedBits = ((byte)(0));
             this.winGLCanvas1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.winGLCanvas1.Location = new System.Drawing.Point(350, 12);
+            this.winGLCanvas1.Location = new System.Drawing.Point(12, 38);
             this.winGLCanvas1.Name = "winGLCanvas1";
             this.winGLCanvas1.RenderTrigger = CSharpGL.RenderTrigger.TimerBased;
-            this.winGLCanvas1.Size = new System.Drawing.Size(777, 573);
+            this.winGLCanvas1.Size = new System.Drawing.Size(1115, 547);
+            this.winGLCanvas1.StencilBits = ((byte)(8));
             this.winGLCanvas1.TabIndex = 0;
             this.winGLCanvas1.TimerTriggerInterval = 40;
             this.winGLCanvas1.UpdateContextVersion = true;
-            this.winGLCanvas1.StencilBits = 8;
             // 
             // statusStrip1
             // 
@@ -85,17 +72,36 @@
             this.lblState.Size = new System.Drawing.Size(62, 17);
             this.lblState.Text = "state info";
             // 
-            // Form1HowStencilWorks
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 15);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(101, 12);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Logic Operation:";
+            // 
+            // cmbLogicOperation
+            // 
+            this.cmbLogicOperation.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbLogicOperation.FormattingEnabled = true;
+            this.cmbLogicOperation.Location = new System.Drawing.Point(119, 12);
+            this.cmbLogicOperation.Name = "cmbLogicOperation";
+            this.cmbLogicOperation.Size = new System.Drawing.Size(164, 20);
+            this.cmbLogicOperation.TabIndex = 5;
+            this.cmbLogicOperation.SelectedIndexChanged += new System.EventHandler(this.cmbLogicOperation_SelectedIndexChanged);
+            // 
+            // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1139, 610);
+            this.Controls.Add(this.cmbLogicOperation);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.statusStrip1);
-            this.Controls.Add(this.propGrid);
-            this.Controls.Add(this.trvScene);
             this.Controls.Add(this.winGLCanvas1);
-            this.Name = "Form1HowStencilWorks";
-            this.Text = "How Stencil Test Works - CSharpGL";
+            this.Name = "FormMain";
+            this.Text = "Logic Operation - CSharpGL";
             ((System.ComponentModel.ISupportInitialize)(this.winGLCanvas1)).EndInit();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
@@ -107,9 +113,9 @@
         #endregion
 
         private CSharpGL.WinGLCanvas winGLCanvas1;
-        private System.Windows.Forms.TreeView trvScene;
-        private System.Windows.Forms.PropertyGrid propGrid;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel lblState;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox cmbLogicOperation;
     }
 }
