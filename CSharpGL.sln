@@ -91,6 +91,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VolumeRendering.ISOSurface"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShaderDefineClipPlane", "Demos\ShaderDefineClipPlane\ShaderDefineClipPlane.csproj", "{15B779F5-5C5F-4EFB-A69E-F441C4F85C68}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogicOperation", "Demos\LogicOperation\LogicOperation.csproj", "{3B2ACB2F-BAE7-4BDB-8D11-A5E0ECBF0985}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -265,6 +267,10 @@ Global
 		{15B779F5-5C5F-4EFB-A69E-F441C4F85C68}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{15B779F5-5C5F-4EFB-A69E-F441C4F85C68}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{15B779F5-5C5F-4EFB-A69E-F441C4F85C68}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B2ACB2F-BAE7-4BDB-8D11-A5E0ECBF0985}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B2ACB2F-BAE7-4BDB-8D11-A5E0ECBF0985}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B2ACB2F-BAE7-4BDB-8D11-A5E0ECBF0985}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B2ACB2F-BAE7-4BDB-8D11-A5E0ECBF0985}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -310,5 +316,6 @@ Global
 		{2CA16683-8E1B-4463-B5B8-BCCDFB672407} = {772765C9-9DD4-487B-8FEB-5EAACA9F955B}
 		{2FFB62B9-2AFE-49FC-A2D5-96A97D369A2D} = {772765C9-9DD4-487B-8FEB-5EAACA9F955B}
 		{15B779F5-5C5F-4EFB-A69E-F441C4F85C68} = {772765C9-9DD4-487B-8FEB-5EAACA9F955B}
+		{3B2ACB2F-BAE7-4BDB-8D11-A5E0ECBF0985} = {772765C9-9DD4-487B-8FEB-5EAACA9F955B}
 	EndGlobalSection
 EndGlobal

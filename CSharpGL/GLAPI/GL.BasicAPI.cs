@@ -2058,7 +2058,7 @@ namespace CSharpGL
 
         /// <summary>
         /// This function sets the current stencil buffer function.
-        /// <para>Pass if (<paramref name="reference"/> &amp; <paramref name="mask"/>) <paramref name="func"/> (stencil &amp; <paramref name="mask"/>).</para>
+        /// <para>Pass stencil test if (<paramref name="reference"/> &amp; <paramref name="mask"/>) <paramref name="func"/> (stencil &amp; <paramref name="mask"/>).</para>
         /// </summary>
         /// <param name="func">The function type.</param>
         /// <param name="reference">The function reference.</param>
@@ -2078,6 +2078,8 @@ namespace CSharpGL
 
         /// <summary>
         /// This function sets the stencil buffer operation.
+        /// <para>Pipeline: ... - stencil test -&gt; depth test -&gt; ...</para>
+        /// <para>What to do if pass specified test.</para>
         /// </summary>
         /// <param name="fail">Stencil Test fail.</param>
         /// <param name="zfail">Stencil Test pass, but Depth Test fail.</param>
