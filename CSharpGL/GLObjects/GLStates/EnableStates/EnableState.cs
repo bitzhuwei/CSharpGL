@@ -23,24 +23,14 @@
         private bool originalEnableCapacity;
 
         /// <summary>
-        /// GL.Enable(capacity);
-        /// </summary>
-        /// <param name="capacity"></param>
-        public EnableState(uint capacity) : this(capacity, true) { }
-
-        /// <summary>
         /// GL.Enable(capacity); or GL.Disable(capacity);
         /// </summary>
         /// <param name="capacity"></param>
         /// <param name="enableCapacity">Enable() or Disable() this capacity?</param>
-        public EnableState(uint capacity, bool enableCapacity)
+        public EnableState(uint capacity, bool enableCapacity = true)
         {
-            this.Init(capacity, enableCapacity);
-        }
-
-        private void Init(uint capacity, bool enableCapacity)
-        {
-            this.Capacity = capacity; this.EnableCapacity = enableCapacity;
+            this.Capacity = capacity;
+            this.EnableCapacity = enableCapacity;
         }
 
         /// <summary>

@@ -17,8 +17,9 @@ namespace CSharpGL
         /// </summary>
         /// <param name="sourceFactor">Specifies how the red, green, blue, and alpha source blending factors are computedThe initial value is GL_ONE.</param>
         /// <param name="destFactor">Specifies how the red, green, blue, and alpha destination blending factors are computed. The initial value is GL_ZERO.</param>
-        public BlendState(BlendingSourceFactor sourceFactor, BlendingDestinationFactor destFactor)
-            : base(GL.GL_BLEND, true)
+        /// <param name="enableCapacity"></param>
+        public BlendState(BlendingSourceFactor sourceFactor, BlendingDestinationFactor destFactor, bool enableCapacity = true)
+            : base(GL.GL_BLEND, enableCapacity)
         {
             this.SourceFactor = sourceFactor;
             this.DestFactor = destFactor;

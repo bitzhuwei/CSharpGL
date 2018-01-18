@@ -8,15 +8,8 @@
         /// <summary>
         ///
         /// </summary>
-        public StencilTestState()
-            : base(GL.GL_STENCIL_TEST, true)
-        { }
-
-        /// <summary>
-        ///
-        /// </summary>
         /// <param name="enableCapacity">true for enable, false for disable</param>
-        public StencilTestState(bool enableCapacity)
+        public StencilTestState(bool enableCapacity = true)
             : base(GL.GL_STENCIL_TEST, enableCapacity)
         { }
 

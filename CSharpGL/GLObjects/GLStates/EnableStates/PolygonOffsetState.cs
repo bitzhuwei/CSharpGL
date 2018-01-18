@@ -8,15 +8,16 @@
         /// <summary>
         /// http://www.cnblogs.com/bitzhuwei/p/polygon-offset-for-stitching-andz-fighting.html
         /// </summary>
-        public PolygonOffsetState() : this(PolygonOffset.Fill, true) { }
+        public PolygonOffsetState() : this(PolygonOffset.Fill, true, true) { }
 
         /// <summary>
         /// http://www.cnblogs.com/bitzhuwei/p/polygon-offset-for-stitching-andz-fighting.html
         /// </summary>
         /// <param name="mode"></param>
         /// <param name="pullNear"></param>
-        public PolygonOffsetState(PolygonOffset mode, bool pullNear)
-            : base((uint)mode, true)
+        /// <param name="enableCapacity"></param>
+        public PolygonOffsetState(PolygonOffset mode, bool pullNear, bool enableCapacity = true)
+            : base((uint)mode, enableCapacity)
         {
             this.PullNear = pullNear;
         }

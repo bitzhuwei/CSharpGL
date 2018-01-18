@@ -11,9 +11,9 @@ namespace CSharpGL
         /// specify the alpha logic operation.
         /// </summary>
         /// <param name="opCode"></param>
-        /// <param name="enabled"></param>
-        public LogicOpState(LogicOperationCode opCode, bool enabled = true)
-            : base(GL.GL_COLOR_LOGIC_OP, enabled)
+        /// <param name="enableCapacity"></param>
+        public LogicOpState(LogicOperationCode opCode, bool enableCapacity = true)
+            : base(GL.GL_COLOR_LOGIC_OP, enableCapacity)
         {
             this.OpCode = opCode;
         }
@@ -90,7 +90,7 @@ namespace CSharpGL
         Invert = GL.GL_INVERT,
 
         /// <summary>
-        /// s & (^d).
+        /// s &amp; (^d).
         /// </summary>
         AndReverse = GL.GL_AND_REVERSE,
 
@@ -100,7 +100,7 @@ namespace CSharpGL
         OrReverse = GL.GL_OR_REVERSE,
 
         /// <summary>
-        /// s & d.
+        /// s &amp; d.
         /// </summary>
         And = GL.GL_AND,
 
@@ -110,7 +110,7 @@ namespace CSharpGL
         Or = GL.GL_OR,
 
         /// <summary>
-        /// ^(s & d).
+        /// ^(s &amp; d).
         /// </summary>
         NotAnd = GL.GL_NAND,
 
@@ -130,7 +130,7 @@ namespace CSharpGL
         EquIV = GL.GL_EQUIV,
 
         /// <summary>
-        /// (^s) & d.
+        /// (^s) &amp; d.
         /// </summary>
         AndInverted = GL.GL_AND_INVERTED,
 

@@ -9,44 +9,10 @@
         /// <summary>
         /// Cull front/back face?
         /// </summary>
-        public CullFaceState()
-            : base(GL.GL_CULL_FACE, true)
-        {
-            this.Init(CullFaceMode.Back);
-        }
-
-        /// <summary>
-        /// Cull front/back face?
-        /// </summary>
-        /// <param name="enableCapacity">Enable() or Disable() this capacity?</param>
-        public CullFaceState(bool enableCapacity)
-            : base(GL.GL_CULL_FACE, enableCapacity)
-        {
-            this.Init(CullFaceMode.Back);
-        }
-
-        /// <summary>
-        /// Cull front/back face?
-        /// </summary>
-        /// <param name="mode"></param>
-        public CullFaceState(CullFaceMode mode)
-            : base(GL.GL_CULL_FACE, true)
-        {
-            this.Init(mode);
-        }
-
-        /// <summary>
-        /// Cull front/back face?
-        /// </summary>
         /// <param name="mode"></param>
         /// <param name="enableCapacity">Enable() or Disable() this capacity?</param>
-        public CullFaceState(CullFaceMode mode, bool enableCapacity)
+        public CullFaceState(CullFaceMode mode, bool enableCapacity = true)
             : base(GL.GL_CULL_FACE, enableCapacity)
-        {
-            this.Init(mode);
-        }
-
-        private void Init(CullFaceMode mode)
         {
             this.Mode = mode;
         }

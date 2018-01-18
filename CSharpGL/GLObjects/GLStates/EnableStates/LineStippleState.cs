@@ -17,25 +17,9 @@ namespace CSharpGL
         /// </summary>
         /// <param name="factor">factor in 'void glLineStipple(int factor, ushort pattern);'.</param>
         /// <param name="pattern">pattern in 'void glLineStipple(int factor, ushort pattern);'.</param>
-        public LineStippleState(int factor, ushort pattern)
-            : base(GL.GL_LINE_STIPPLE, true)
-        {
-            this.Init(factor, pattern);
-        }
-
-        /// <summary>
-        /// Dashed line.
-        /// </summary>
-        /// <param name="factor"></param>
-        /// <param name="pattern"></param>
         /// <param name="enableCapacity">Enable() or Disable() this capacity?</param>
-        public LineStippleState(int factor, ushort pattern, bool enableCapacity)
+        public LineStippleState(int factor, ushort pattern, bool enableCapacity = true)
             : base(GL.GL_LINE_STIPPLE, enableCapacity)
-        {
-            this.Init(factor, pattern);
-        }
-
-        private void Init(int factor, ushort pattern)
         {
             this.Factor = factor;
             this.Pattern = pattern;

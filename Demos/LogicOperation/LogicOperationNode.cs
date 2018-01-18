@@ -75,16 +75,25 @@ void main(void) {
             this.ModelSize = model.ModelSize;
         }
 
-        LogicOpState state = new LogicOpState(LogicOperationCode.Invert);
+        LogicOpState state = new LogicOpState(LogicOperationCode.CopyInverted);
         /// <summary>
         /// Enable logic operation or not?
         /// </summary>
         [Browsable(false)]
-        public bool LogicOp { get; set; }
+        public bool LogicOp { get { return this.state.Enabled; } set { this.state.Enabled = value; } }
 
         public void SetOperation(LogicOperationCode op)
         {
             this.state.OpCode = op;
+        }
+
+        protected override void DoInitialize()
+        {
+            base.DoInitialize();
+
+            this.state.Enabled = false;
+            var method = this.RenderUnit.Methods[0]; // the only render unit in this node.
+            method.StateList.Add(this.state);
         }
 
         public override void RenderBeforeChildren(RenderEventArgs arg)
@@ -103,12 +112,7 @@ void main(void) {
             program.SetUniform(modelMatrix, model);
             program.SetUniform(tex, this.texture);
 
-            bool logicOp = this.LogicOp;
-            if (logicOp)
-            { this.state.On(); }
             method.Render();
-            if (logicOp)
-            { this.state.Off(); }
         }
 
         public override void RenderAfterChildren(RenderEventArgs arg)

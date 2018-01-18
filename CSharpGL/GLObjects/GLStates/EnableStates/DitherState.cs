@@ -8,15 +8,8 @@
         /// <summary>
         ///
         /// </summary>
-        public DitherState()
-            : base(GL.GL_DITHER, true)
-        { }
-
-        /// <summary>
-        ///
-        /// </summary>
         /// <param name="enableCapacity">true for enable, false for disable</param>
-        public DitherState(bool enableCapacity)
+        public DitherState(bool enableCapacity = true)
             : base(GL.GL_DITHER, enableCapacity)
         { }
 
