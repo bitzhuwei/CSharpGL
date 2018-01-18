@@ -53,6 +53,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="LogicOperationNode.cs" />
+    <None Include="readme.md" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormMain.resx">
@@ -103,6 +104,7 @@
     <Content Include="Lenna.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="LogicOperation.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
