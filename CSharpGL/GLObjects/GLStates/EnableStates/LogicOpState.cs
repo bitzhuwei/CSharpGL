@@ -8,22 +8,14 @@ namespace CSharpGL
     public class LogicOpState : EnableState
     {
         /// <summary>
-        /// specify the alpha test function.
+        /// specify the alpha logic operation.
         /// </summary>
-        public LogicOpState()
-            : this(AlphaTestFunction.Always, 0)// this is default values in OpenGL.
-        { }
-
-        /// <summary>
-        /// specify the alpha test function.
-        /// </summary>
-        /// <param name="alphaTestFunc"></param>
-        /// <param name="alphaTestReferenceValue"></param>
-        public LogicOpState(AlphaTestFunction alphaTestFunc, float alphaTestReferenceValue)
-            : base(GL.GL_ALPHA_TEST, true)
+        /// <param name="opCode"></param>
+        /// <param name="enabled"></param>
+        public LogicOpState(LogicOperationCode opCode, bool enabled = true)
+            : base(GL.GL_COLOR_LOGIC_OP, enabled)
         {
-            this.AlphaTestFunc = alphaTestFunc;
-            this.AlphaTestReferenceValue = alphaTestReferenceValue;
+            this.OpCode = opCode;
         }
 
         /// <summary>
@@ -33,13 +25,11 @@ namespace CSharpGL
         {
             if (this.EnableCapacity)
             {
-                return string.Format("glAlphaFunc({0} {1});",
-                    this.AlphaTestFunc, this.AlphaTestReferenceValue);
+                return string.Format("glLogicOp({0});", this.OpCode);
             }
             else
             {
-                return string.Format("Disabled glAlphaFunc({0} {1});",
-                    this.AlphaTestFunc, this.AlphaTestReferenceValue);
+                return string.Format("Disabled glLogicOp({0});", this.OpCode);
             }
         }
 
@@ -52,21 +42,16 @@ namespace CSharpGL
 
             if (this.enableCapacityWhenStateOn)
             {
-                GL.Instance.AlphaFunc((uint)this.AlphaTestFunc, this.AlphaTestReferenceValue);
+                GL.Instance.LogicOp((uint)this.OpCode);
             }
         }
 
         /// <summary>
-        /// Specifies the alpha comparison function. The initial value is GL_ALWAYS.
+        /// Specifies the operation code. The initial value is GL_COPY.
         /// </summary>
-        [Description("Specifies the alpha comparison function. The initial value is GL_ALWAYS.")]
-        public AlphaTestFunction AlphaTestFunc { get; set; }
+        [Description("Specifies the operation code. The initial value is GL_COPY.")]
+        public LogicOperationCode OpCode { get; set; }
 
-        /// <summary>
-        /// Specifies the reference value that incoming alpha values are compared to. This value is clamped to the range [0, 1], where 0 represents the lowest possible alpha value and 1 the highest possible value. The initial reference value is 0.
-        /// </summary>
-        [Description("Specifies the reference value that incoming alpha values are compared to. This value is clamped to the range [0, 1], where 0 represents the lowest possible alpha value and 1 the highest possible value. The initial reference value is 0.")]
-        public float AlphaTestReferenceValue { get; set; }
     }
 
     /// <summary>
