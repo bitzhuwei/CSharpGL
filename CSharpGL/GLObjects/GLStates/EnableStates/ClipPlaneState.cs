@@ -109,7 +109,7 @@ namespace CSharpGL
         /// </param>
         /// <param name="equation">Specifies the address of an array of four double-precision floating-point values. These values are interpreted as a plane equation.</param>
         /// <param name="enableCapacity">Enable() or Disable() this capacity?</param>
-        public ClipPlaneState(uint planeIndex, double[] equation, bool enableCapacity)
+        public ClipPlaneState(uint planeIndex, double[] equation, bool enableCapacity = true)
             : base(GL.GL_CLIP_PLANE0 + planeIndex, enableCapacity)
         {
             this.Init(planeIndex, equation);

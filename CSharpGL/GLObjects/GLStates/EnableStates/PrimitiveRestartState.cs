@@ -9,8 +9,9 @@
         ///
         /// </summary>
         /// <param name="indexElementType"></param>
-        public PrimitiveRestartState(IndexBufferElementType indexElementType)
-            : base(GL.GL_PRIMITIVE_RESTART, true)
+        /// <param name="enableCapacity"></param>
+        public PrimitiveRestartState(IndexBufferElementType indexElementType, bool enableCapacity = true)
+            : base(GL.GL_PRIMITIVE_RESTART, enableCapacity)
         {
             switch (indexElementType)
             {

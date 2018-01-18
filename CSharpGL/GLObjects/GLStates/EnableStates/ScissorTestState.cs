@@ -8,55 +8,15 @@
         /// <summary>
         ///
         /// </summary>
-        public ScissorTestState()
-            : base(GL.GL_SCISSOR_TEST, true)
-        {
-            this.Init();
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="enableCapacity">Enable() or Disable() this capacity?</param>
-        public ScissorTestState(bool enableCapacity)
-            : base(GL.GL_SCISSOR_TEST, enableCapacity)
-        {
-            this.Init();
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
-        /// <param name="width"></param>
-        /// <param name="height"></param>
-        public ScissorTestState(int x, int y, int width, int height)
-            : base(GL.GL_SCISSOR_TEST, true)
-        {
-            this.Init();
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
         /// <param name="x"></param>
         /// <param name="y"></param>
         /// <param name="width"></param>
         /// <param name="height"></param>
         /// <param name="enableCapacity">Enable() or Disable() this capacity?</param>
-        public ScissorTestState(int x, int y, int width, int height, bool enableCapacity)
+        public ScissorTestState(int x, int y, int width, int height, bool enableCapacity = true)
             : base(GL.GL_SCISSOR_TEST, enableCapacity)
         {
-            this.Init();
-        }
-
-        private void Init()
-        {
-            var viewport = new int[4];
-            GL.Instance.GetIntegerv((uint)GetTarget.Viewport, viewport);
-            this.X = viewport[0]; this.Y = viewport[1];
-            this.Width = viewport[2]; this.Height = viewport[3];
+            this.X = x; this.Y = y; this.Width = width; this.Height = height;
         }
 
         /// <summary>

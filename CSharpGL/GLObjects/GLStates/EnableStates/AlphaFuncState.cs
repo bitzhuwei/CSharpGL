@@ -19,8 +19,9 @@ namespace CSharpGL
         /// </summary>
         /// <param name="alphaTestFunc"></param>
         /// <param name="alphaTestReferenceValue"></param>
-        public AlphaFuncState(AlphaTestFunction alphaTestFunc, float alphaTestReferenceValue)
-            : base(GL.GL_ALPHA_TEST, true)
+        /// <param name="enableCapacity"></param>
+        public AlphaFuncState(AlphaTestFunction alphaTestFunc, float alphaTestReferenceValue, bool enableCapacity = true)
+            : base(GL.GL_ALPHA_TEST, enableCapacity)
         {
             this.AlphaTestFunc = alphaTestFunc;
             this.AlphaTestReferenceValue = alphaTestReferenceValue;

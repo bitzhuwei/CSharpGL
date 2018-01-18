@@ -8,15 +8,8 @@
         /// <summary>
         ///
         /// </summary>
-        public DepthTestState()
-            : base(GL.GL_DEPTH_TEST, true)
-        { }
-
-        /// <summary>
-        ///
-        /// </summary>
         /// <param name="enableCapacity">true for enable, false for disable</param>
-        public DepthTestState(bool enableCapacity)
+        public DepthTestState(bool enableCapacity = true)
             : base(GL.GL_DEPTH_TEST, enableCapacity)
         { }
 

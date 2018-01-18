@@ -8,15 +8,8 @@
         /// <summary>
         ///
         /// </summary>
-        public PointSmoothState()
-            : base(GL.GL_POINT_SMOOTH, true)
-        { }
-
-        /// <summary>
-        ///
-        /// </summary>
         /// <param name="enableCapacity">true for enable, false for disable</param>
-        public PointSmoothState(bool enableCapacity)
+        public PointSmoothState(bool enableCapacity = true)
             : base(GL.GL_POINT_SMOOTH, enableCapacity)
         { }
 
