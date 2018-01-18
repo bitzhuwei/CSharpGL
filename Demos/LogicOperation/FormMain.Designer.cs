@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.trvScene = new System.Windows.Forms.TreeView();
             this.propGrid = new System.Windows.Forms.PropertyGrid();
             this.winGLCanvas1 = new CSharpGL.WinGLCanvas();
@@ -66,6 +65,9 @@
             this.winGLCanvas1.RenderTrigger = CSharpGL.RenderTrigger.TimerBased;
             this.winGLCanvas1.Size = new System.Drawing.Size(777, 573);
             this.winGLCanvas1.TabIndex = 0;
+            this.winGLCanvas1.TimerTriggerInterval = 40;
+            this.winGLCanvas1.UpdateContextVersion = true;
+            this.winGLCanvas1.StencilBits = 8;
             // 
             // statusStrip1
             // 
@@ -83,7 +85,7 @@
             this.lblState.Size = new System.Drawing.Size(62, 17);
             this.lblState.Text = "state info";
             // 
-            // FormMain
+            // Form1HowStencilWorks
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -92,8 +94,8 @@
             this.Controls.Add(this.propGrid);
             this.Controls.Add(this.trvScene);
             this.Controls.Add(this.winGLCanvas1);
-            this.Name = "FormMain";
-            this.Text = "Blending - CSharpGL";
+            this.Name = "Form1HowStencilWorks";
+            this.Text = "How Stencil Test Works - CSharpGL";
             ((System.ComponentModel.ISupportInitialize)(this.winGLCanvas1)).EndInit();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();

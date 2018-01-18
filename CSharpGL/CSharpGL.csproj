@@ -114,6 +114,7 @@
     <Compile Include="GLObjects\GLBuffers\DrawCommands\IDrawCommand.cs" />
     <Compile Include="GLObjects\GLBuffers\DrawCommands\MultiDrawArraysCmd.cs" />
     <Compile Include="GLObjects\GLBuffers\VertexBuffers\VertexBuffer%28VBO%29\VeretxBufferArrayHelper.cs" />
+    <Compile Include="GLObjects\GLStates\EnableStates\LogicOpState.cs" />
     <Compile Include="GLObjects\GLStates\EnableStates\StencilTestState.cs" />
     <Compile Include="GLObjects\GLStates\StencilMaskState.cs" />
     <Compile Include="GLObjects\GLStates\StencilOpState.cs" />
