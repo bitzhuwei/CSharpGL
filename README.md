@@ -28,11 +28,12 @@ And now it also shows how to use CtrlImage, CtrlButton and CtrlLabel.
 ![ComputeShader.EdgeDetection](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/ComputeShader.EdgeDetection/ComputeShader.EdgeDetection.png?raw=true)
 ## ImageProcessing.GrayFilter
 ![ImageProcessing.GrayFilter](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/ImageProcessing.GrayFilter/ImageProcessing.GrayFilter.png?raw=true)
-## 3DTextureSlicing.
-![3DTextureSlicing](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/3DTextureSlicing/3DTextureSlicing.png?raw=true)
-![3DTextureSlicing.classification](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/3DTextureSlicing/3DTextureSlicing.classification.png?raw=true)
-## RaycastVolumeRendering.
-![RaycastVolumeRendering](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/RaycastVolumeRendering/RaycastVolumeRendering.png?raw=true)
+## VolumeRendering.Slicing.
+![VolumeRendering.Slicing](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/VolumeRendering.Slicing/VolumeRendering.Slicing.png?raw=true)
+![VolumeRendering.Slicing.classification](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/VolumeRendering.Slicing/VolumeRendering.Slicing.classification.png?raw=true)
+
+## VolumeRendering.Raycast.
+![VolumeRendering.Raycast](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/VolumeRendering.Raycast/VolumeRendering.Raycast.png?raw=true)
 ## OrderIndependentTransparency
 ![OrderIndependentTransparency](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/OrderIndependentTransparency/OrderIndependentTransparency.png?raw=true)
 ## SimpleNoise.Sun.

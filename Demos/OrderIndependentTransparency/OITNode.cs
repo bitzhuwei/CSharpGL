@@ -176,8 +176,8 @@ namespace OrderIndependentTransparency
                 this.headTexture.Unbind();
                 this.headClearBuffer.Unbind();
             }
+            uint imageUnit0 = 0, imageUnit1 = 1;
             {
-                uint imageUnit0 = 0, imageUnit1 = 1;
                 // Bind head-pointer image for read-write
                 glBindImageTexture(imageUnit0, this.headTexture.Id, 0, false, 0, GL.GL_READ_WRITE, GL.GL_R32UI);
                 // Bind linked-list buffer for write
@@ -204,7 +204,6 @@ namespace OrderIndependentTransparency
                 }
             }
             {
-                uint imageUnit0 = 0, imageUnit1 = 1;
                 glBindImageTexture(imageUnit1, 0, 0, false, 0, GL.GL_WRITE_ONLY, GL.GL_RGBA32UI);
                 glBindImageTexture(imageUnit0, 0, 0, false, 0, GL.GL_READ_WRITE, GL.GL_R32UI);
             }
