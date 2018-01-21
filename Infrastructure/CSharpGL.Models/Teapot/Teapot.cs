@@ -67,7 +67,7 @@ namespace CSharpGL
                 //AdjacentFace[] faces = Teapot.adjacentFaceData;
                 Face[] faces = Teapot.faceData;
                 IndexBuffer buffer = faces.GenIndexBuffer(IndexBufferElementType.UShort, BufferUsage.StaticDraw);
-                this.drawCmd = new DrawElementsCmd(buffer, DrawMode.TrianglesAdjacency);
+                this.drawCmd = new DrawElementsCmd(buffer, DrawMode.Triangles);
             }
 
             yield return this.drawCmd;
