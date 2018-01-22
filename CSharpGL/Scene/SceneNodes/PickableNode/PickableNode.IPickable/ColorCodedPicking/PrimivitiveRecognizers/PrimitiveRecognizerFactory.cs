@@ -4,6 +4,12 @@ namespace CSharpGL
 {
     internal static class PrimitiveRecognizerFactory
     {
+        // TODO: finish this method!
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="mode"></param>
+        /// <returns></returns>
         public static PrimitiveRecognizer Create(DrawMode mode)
         {
             PrimitiveRecognizer recognizer = null;
