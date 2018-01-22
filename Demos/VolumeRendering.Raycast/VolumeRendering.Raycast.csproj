@@ -7,8 +7,8 @@
     <ProjectGuid>{CF531203-CC19-45F5-8926-3B8A54601FB0}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>RaycastVolumeRendering</RootNamespace>
-    <AssemblyName>RaycastVolumeRendering</AssemblyName>
+    <RootNamespace>VolumeRendering.Raycast</RootNamespace>
+    <AssemblyName>VolumeRendering.Raycast</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -72,6 +72,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Content Include="head256.raw">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
