@@ -79,21 +79,7 @@ namespace CSharpGL
                 pickingVAOs[b] = new VertexArrayObject(allDrawCommands[b], pickProgram, vertexAttributeBuffers);
             }
 
-            var renderUnit = new IPickableRenderMethod(pickProgram, pickingVAOs, positionBuffers.ToArray(), this.states);
-
-            // RULE: Renderer takes uint.MaxValue, ushort.MaxValue or byte.MaxValue as PrimitiveRestartIndex. So take care this rule when designing a model's index buffer.
-            foreach (var cmd in allDrawCommands)
-            {
-                var ptr = cmd as IHasIndexBuffer;
-                if (ptr != null)
-                {
-                    GLState glState = new PrimitiveRestartState(ptr.IndexBufferObject.ElementType);
-                    renderUnit.StateList.Add(glState);
-                    break;
-                }
-            }
-
-            return renderUnit;
+            return new IPickableRenderMethod(pickProgram, pickingVAOs, positionBuffers.ToArray(), this.states);
         }
     }
 }

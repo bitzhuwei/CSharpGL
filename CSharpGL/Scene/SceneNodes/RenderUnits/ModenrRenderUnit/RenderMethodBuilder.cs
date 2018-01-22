@@ -89,21 +89,7 @@ namespace CSharpGL
                 vaos[c] = new VertexArrayObject(drawCmds[c], program, vertexShaderAttributes);
             }
 
-            var renderUnit = new RenderMethod(program, vaos, this.states);
-
-            // RULE: Renderer takes uint.MaxValue, ushort.MaxValue or byte.MaxValue as PrimitiveRestartIndex. So take care of this rule when designing a model's index buffer.
-            foreach (var cmd in drawCmds)
-            {
-                var ptr = cmd as IHasIndexBuffer;
-                if (ptr != null)
-                {
-                    GLState glState = new PrimitiveRestartState(ptr.IndexBufferObject.ElementType);
-                    renderUnit.StateList.Add(glState);
-                    break;
-                }
-            }
-
-            return renderUnit;
+            return new RenderMethod(program, vaos, this.states);
         }
     }
 }
