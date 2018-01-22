@@ -233,14 +233,11 @@ namespace CSharpGL
 
             PrimitiveRestartState glState = GetPrimitiveRestartState();
 
-            IndexBuffer buffer = drawCmd.IndexBufferObject;
-            IntPtr pointer = buffer.MapBuffer(MapBufferAccess.ReadOnly);
             List<RecognizedPrimitiveInfo> primitiveInfoList = null;
             if (glState == null)
-            { primitiveInfoList = recognizer.Recognize(lastVertexId, pointer, drawCmd); }
+            { primitiveInfoList = recognizer.Recognize(lastVertexId, drawCmd); }
             else
-            { primitiveInfoList = recognizer.Recognize(lastVertexId, pointer, drawCmd, glState.RestartIndex); }
-            buffer.UnmapBuffer();
+            { primitiveInfoList = recognizer.Recognize(lastVertexId, drawCmd, glState.RestartIndex); }
 
             return primitiveInfoList;
         }

@@ -5,9 +5,11 @@ namespace CSharpGL
 {
     internal class LineStripRecognizer : PrimitiveRecognizer
     {
-        protected override void RecognizeUInt(uint lastVertexId, IntPtr pointer, DrawElementsCmd cmd, List<RecognizedPrimitiveInfo> primitiveInfoList)
+        protected override void RecognizeUInt(uint lastVertexId, DrawElementsCmd cmd, List<RecognizedPrimitiveInfo> primitiveInfoList)
         {
-            int length = cmd.IndexBufferObject.Length;
+            IndexBuffer indexBuffer = cmd.IndexBufferObject;
+            int length = indexBuffer.Length;
+            IntPtr pointer = indexBuffer.MapBuffer(MapBufferAccess.ReadOnly);
             unsafe
             {
                 var array = (uint*)pointer.ToPointer();
@@ -22,11 +24,14 @@ namespace CSharpGL
                     }
                 }
             }
+            indexBuffer.UnmapBuffer();
         }
 
-        protected override void RecognizeUShort(uint lastVertexId, IntPtr pointer, DrawElementsCmd cmd, List<RecognizedPrimitiveInfo> primitiveInfoList)
+        protected override void RecognizeUShort(uint lastVertexId, DrawElementsCmd cmd, List<RecognizedPrimitiveInfo> primitiveInfoList)
         {
-            int length = cmd.IndexBufferObject.Length;
+            IndexBuffer indexBuffer = cmd.IndexBufferObject;
+            int length = indexBuffer.Length;
+            IntPtr pointer = indexBuffer.MapBuffer(MapBufferAccess.ReadOnly);
             unsafe
             {
                 var array = (ushort*)pointer.ToPointer();
@@ -41,11 +46,14 @@ namespace CSharpGL
                     }
                 }
             }
+            indexBuffer.UnmapBuffer();
         }
 
-        protected override void RecognizeByte(uint lastVertexId, IntPtr pointer, DrawElementsCmd cmd, List<RecognizedPrimitiveInfo> primitiveInfoList)
+        protected override void RecognizeByte(uint lastVertexId, DrawElementsCmd cmd, List<RecognizedPrimitiveInfo> primitiveInfoList)
         {
-            int length = cmd.IndexBufferObject.Length;
+            IndexBuffer indexBuffer = cmd.IndexBufferObject;
+            int length = indexBuffer.Length;
+            IntPtr pointer = indexBuffer.MapBuffer(MapBufferAccess.ReadOnly);
             unsafe
             {
                 var array = (byte*)pointer.ToPointer();
@@ -60,11 +68,14 @@ namespace CSharpGL
                     }
                 }
             }
+            indexBuffer.UnmapBuffer();
         }
 
-        protected override void RecognizeUInt(uint lastVertexId, IntPtr pointer, DrawElementsCmd cmd, List<RecognizedPrimitiveInfo> primitiveInfoList, uint primitiveRestartIndex)
+        protected override void RecognizeUInt(uint lastVertexId, DrawElementsCmd cmd, List<RecognizedPrimitiveInfo> primitiveInfoList, uint primitiveRestartIndex)
         {
-            int length = cmd.IndexBufferObject.Length;
+            IndexBuffer indexBuffer = cmd.IndexBufferObject;
+            int length = indexBuffer.Length;
+            IntPtr pointer = indexBuffer.MapBuffer(MapBufferAccess.ReadOnly);
             unsafe
             {
                 var array = (uint*)pointer.ToPointer();
@@ -88,11 +99,14 @@ namespace CSharpGL
                     }
                 }
             }
+            indexBuffer.UnmapBuffer();
         }
 
-        protected override void RecognizeUShort(uint lastVertexId, IntPtr pointer, DrawElementsCmd cmd, List<RecognizedPrimitiveInfo> primitiveInfoList, uint primitiveRestartIndex)
+        protected override void RecognizeUShort(uint lastVertexId, DrawElementsCmd cmd, List<RecognizedPrimitiveInfo> primitiveInfoList, uint primitiveRestartIndex)
         {
-            int length = cmd.IndexBufferObject.Length;
+            IndexBuffer indexBuffer = cmd.IndexBufferObject;
+            int length = indexBuffer.Length;
+            IntPtr pointer = indexBuffer.MapBuffer(MapBufferAccess.ReadOnly);
             unsafe
             {
                 var array = (ushort*)pointer.ToPointer();
@@ -116,11 +130,14 @@ namespace CSharpGL
                     }
                 }
             }
+            indexBuffer.UnmapBuffer();
         }
 
-        protected override void RecognizeByte(uint lastVertexId, IntPtr pointer, DrawElementsCmd cmd, List<RecognizedPrimitiveInfo> primitiveInfoList, uint primitiveRestartIndex)
+        protected override void RecognizeByte(uint lastVertexId, DrawElementsCmd cmd, List<RecognizedPrimitiveInfo> primitiveInfoList, uint primitiveRestartIndex)
         {
-            int length = cmd.IndexBufferObject.Length;
+            IndexBuffer indexBuffer = cmd.IndexBufferObject;
+            int length = indexBuffer.Length;
+            IntPtr pointer = indexBuffer.MapBuffer(MapBufferAccess.ReadOnly);
             unsafe
             {
                 var array = (byte*)pointer.ToPointer();
@@ -144,6 +161,7 @@ namespace CSharpGL
                     }
                 }
             }
+            indexBuffer.UnmapBuffer();
         }
     }
 }
