@@ -16,12 +16,10 @@ namespace CSharpGL
         /// </summary>
         /// <param name="node"></param>
         /// <param name="positionBuffer"></param>
-        /// <param name="drawCommand"></param>
-        public PickerBase(PickableNode node, VertexBuffer positionBuffer, IDrawCommand drawCommand)
+        public PickerBase(PickableNode node, VertexBuffer positionBuffer)
         {
             this.Node = node;
             this.PositionBuffer = positionBuffer;
-            this.DrawCommand = drawCommand;
         }
 
         /// <summary>
@@ -45,10 +43,6 @@ namespace CSharpGL
         /// </summary>
         public VertexBuffer PositionBuffer { get; set; }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public IDrawCommand DrawCommand { get; private set; }
 
         protected vec3[] FillPickedGeometrysPosition(uint firstIndex, int indexCount)
         {

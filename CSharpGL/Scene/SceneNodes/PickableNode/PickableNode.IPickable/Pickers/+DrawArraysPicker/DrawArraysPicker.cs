@@ -11,12 +11,21 @@ namespace CSharpGL
     partial class DrawArraysPicker : PickerBase
     {
         /// <summary>
+        /// 
+        /// </summary>
+        public DrawArraysCmd DrawCommand { get; private set; }
+
+        /// <summary>
         /// Get picked geometry from a <see cref="PickableNode"/> with <see cref="DrawArraysCmd"/> as index buffer.
         /// </summary>
         /// <param name="node"></param>
         /// <param name="positionBuffer"></param>
         /// <param name="drawCommand"></param>
-        public DrawArraysPicker(PickableNode node, VertexBuffer positionBuffer, IDrawCommand drawCommand) : base(node, positionBuffer, drawCommand) { }
+        public DrawArraysPicker(PickableNode node, VertexBuffer positionBuffer, DrawArraysCmd drawCommand)
+            : base(node, positionBuffer)
+        {
+            this.DrawCommand = drawCommand;
+        }
 
         /// <summary>
         /// 
