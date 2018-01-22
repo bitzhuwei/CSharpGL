@@ -87,6 +87,7 @@
     <None Include="GLCanvas\GLRenderContext\readme.md" />
     <Content Include="GLObjects\Texture\Storages\TexImages.FromBitmap\readme.md" />
     <Content Include="GLObjects\Texture\Storages\TexImages\readme.md" />
+    <Content Include="GLObjects\DrawCommands\readme.md" />
     <None Include="GLObjects\Texture\Storages\readme.md" />
     <None Include="Scene\Manipulaters\readme.md" />
     <None Include="Scene\Actions\DependentActions\readme.md" />
@@ -105,14 +106,14 @@
     <Compile Include="GLObjects\GLBuffers\Data2Buffer\GenIndexBuffer.UnmanagedArrayBase.cs" />
     <Compile Include="GLObjects\GLBuffers\Data2Buffer\GenIndexBuffers.T[].cs" />
     <Compile Include="GLObjects\GLBuffers\Data2Buffer\GenVertexBuffers.T[].cs" />
-    <None Include="GLObjects\GLBuffers\DrawCommands\MultiDrawElementsCmd.demo.cpp" />
-    <Compile Include="GLObjects\GLBuffers\DrawCommands\IHasIndexBuffer.cs" />
-    <Compile Include="GLObjects\GLBuffers\DrawCommands\MultiDrawElementsCmd.cs" />
+    <None Include="GLObjects\DrawCommands\MultiDrawElementsCmd.demo.cpp" />
+    <Compile Include="GLObjects\DrawCommands\IHasIndexBuffer.cs" />
+    <Compile Include="GLObjects\DrawCommands\MultiDrawElementsCmd.cs" />
     <Compile Include="GLObjects\GLBuffers\IndependentBuffers\TransformFeedbackBuffer.AsVertexBuffer.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="GLObjects\GLBuffers\DrawCommands\IDrawCommand.cs" />
-    <Compile Include="GLObjects\GLBuffers\DrawCommands\MultiDrawArraysCmd.cs" />
+    <Compile Include="GLObjects\DrawCommands\IDrawCommand.cs" />
+    <Compile Include="GLObjects\DrawCommands\MultiDrawArraysCmd.cs" />
     <Compile Include="GLObjects\GLBuffers\VertexBuffers\VertexBuffer%28VBO%29\VeretxBufferArrayHelper.cs" />
     <Compile Include="GLObjects\GLStates\EnableStates\LogicOpState.cs" />
     <Compile Include="GLObjects\GLStates\EnableStates\StencilTestState.cs" />
@@ -549,10 +550,10 @@
     <Compile Include="GLObjects\GLBuffers\VertexBuffers\IndexBuffer%28IBO%29\IndexBufferElementType.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="GLObjects\GLBuffers\DrawCommands\DrawElementsCmd.cs">
+    <Compile Include="GLObjects\DrawCommands\DrawElementsCmd.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="GLObjects\GLBuffers\DrawCommands\DrawArraysCmd.cs">
+    <Compile Include="GLObjects\DrawCommands\DrawArraysCmd.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="GLObjects\GLBuffers\VertexBuffers\VertexBuffer%28VBO%29\VBOConfig.cs">
