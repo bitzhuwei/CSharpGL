@@ -10,12 +10,12 @@ using CSharpGL;
 
 namespace StencilShadowVolume
 {
-    public partial class FormMain : Form
+    public partial class Form0SilhouetteDetection : Form
     {
         private Scene scene;
         private ActionList actionList;
 
-        public FormMain()
+        public Form0SilhouetteDetection()
         {
             InitializeComponent();
 
@@ -70,9 +70,7 @@ namespace StencilShadowVolume
 
         private SceneNodeBase GetTree()
         {
-            var group = new GroupNode();
-
-            return group;
+            return SilhouetteNode.Create();
         }
 
         private void winGLCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
@@ -97,6 +95,4 @@ namespace StencilShadowVolume
         }
     }
 
-
 }
-
