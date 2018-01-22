@@ -163,17 +163,17 @@ namespace CSharpGL
                 if (model.positions.Length < byte.MaxValue)
                 {
                     IndexBuffer buffer = GetBufferInBytes(length);
-                    this.drawCmd = new DrawElementsCmd(buffer, DrawMode.TriangleStrip);
+                    this.drawCmd = new DrawElementsCmd(buffer, DrawMode.TriangleStrip, byte.MaxValue);
                 }
                 else if (model.positions.Length < ushort.MaxValue)
                 {
                     IndexBuffer buffer = GetBufferInUShort(length);
-                    this.drawCmd = new DrawElementsCmd(buffer, DrawMode.TriangleStrip);
+                    this.drawCmd = new DrawElementsCmd(buffer, DrawMode.TriangleStrip, ushort.MaxValue);
                 }
                 else
                 {
                     IndexBuffer buffer = GetBufferInUInt(length);
-                    this.drawCmd = new DrawElementsCmd(buffer, DrawMode.TriangleStrip);
+                    this.drawCmd = new DrawElementsCmd(buffer, DrawMode.TriangleStrip, uint.MaxValue);
                 }
             }
 
