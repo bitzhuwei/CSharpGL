@@ -11,13 +11,13 @@ namespace CSharpGL
             unsafe
             {
                 var array = (byte*)pointer.ToPointer();
-                long nearestRestartIndex = -1;
+                //long nearestRestartIndex = -1;
                 uint i = 0;
-                for (i = i + 2; i < length; i++)
+                for (i = i + 2; i < length; i += 3)
                 {
                     var value = array[i];
-                    if (value == lastVertexId
-                        && (i - nearestRestartIndex) % 3 == 0)
+                    if (value == lastVertexId)
+                    //&& (i - nearestRestartIndex) % 3 == 0)
                     {
                         var item = new RecognizedPrimitiveInfo(i, array[i - 2], array[i - 1], lastVertexId);
                         primitiveInfoList.Add(item);
@@ -32,13 +32,13 @@ namespace CSharpGL
             unsafe
             {
                 var array = (ushort*)pointer.ToPointer();
-                long nearestRestartIndex = -1;
+                //long nearestRestartIndex = -1;
                 uint i = 0;
-                for (i = i + 2; i < length; i++)
+                for (i = i + 2; i < length; i += 3)
                 {
                     var value = array[i];
-                    if (value == lastVertexId
-                        && (i - nearestRestartIndex) % 3 == 0)
+                    if (value == lastVertexId)
+                    //&& (i - nearestRestartIndex) % 3 == 0)
                     {
                         var item = new RecognizedPrimitiveInfo(i, array[i - 2], array[i - 1], lastVertexId);
                         primitiveInfoList.Add(item);
@@ -53,13 +53,13 @@ namespace CSharpGL
             unsafe
             {
                 var array = (uint*)pointer.ToPointer();
-                long nearestRestartIndex = -1;
+                //long nearestRestartIndex = -1;
                 uint i = 0;
-                for (i = i + 2; i < length; i++)
+                for (i = i + 2; i < length; i += 3)
                 {
                     var value = array[i];
-                    if (value == lastVertexId
-                        && (i - nearestRestartIndex) % 3 == 0)
+                    if (value == lastVertexId)
+                    //&& (i - nearestRestartIndex) % 3 == 0)
                     {
                         var item = new RecognizedPrimitiveInfo(i, array[i - 2], array[i - 1], lastVertexId);
                         primitiveInfoList.Add(item);
