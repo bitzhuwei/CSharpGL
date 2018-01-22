@@ -6,6 +6,12 @@
     /// </summary>
     public class CullFaceState : EnableState
     {
+        // Activator needs a non-parameter constructor.
+        /// <summary>
+        /// Cull back face.
+        /// </summary>
+        public CullFaceState() : this(CullFaceMode.Back) { }
+
         /// <summary>
         /// Cull front/back face?
         /// </summary>

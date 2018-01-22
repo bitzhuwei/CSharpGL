@@ -40,6 +40,12 @@ namespace CSharpGL
         /// </summary>
         public EStencilOp AfterDepthTestPass { get; set; }
 
+        // Activator needs a non-parameter constructor.
+        /// <summary>
+        /// 
+        /// </summary>
+        public StencilOpState() : this(EStencilOp.Keep, EStencilOp.Keep, EStencilOp.Keep, EStencilOp.Keep, EStencilOp.Keep, EStencilOp.Keep) { }
+
         /// <summary>
         /// glStencilFunc
         /// </summary>
@@ -66,7 +72,7 @@ namespace CSharpGL
         /// </summary>
         public override string ToString()
         {
-            return string.Format("glStencilFunc({0}, {1}, {2}) - glStencilFunc({3}, {4}, {5})",
+            return string.Format("glStencilOp({0}, {1}, {2}) - glStencilOp({3}, {4}, {5})",
                 BeforeStencilTestFail, BeforeDepthTestFail, BeforeDepthTestPass,
                 AfterStencilTestFail, AfterDepthTestFail, AfterDepthTestPass
                 );

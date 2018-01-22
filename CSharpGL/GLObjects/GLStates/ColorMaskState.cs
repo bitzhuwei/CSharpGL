@@ -15,6 +15,8 @@
         /// </summary>
         public ColorMask OriginalMask { get; private set; }
 
+        // Activator needs a non-parameter constructor.
+        public ColorMaskState() : this(ColorMask.GetDefault()) { }
         /// <summary>
         /// Toggle of color mask.
         /// </summary>

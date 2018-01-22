@@ -5,11 +5,17 @@
     /// </summary>
     public class StencilTestState : EnableState
     {
+        // Activator needs a non-parameter constructor.
+        /// <summary>
+        /// 
+        /// </summary>
+        public StencilTestState() : this(true) { }
+
         /// <summary>
         ///
         /// </summary>
         /// <param name="enableCapacity">true for enable, false for disable</param>
-        public StencilTestState(bool enableCapacity = true)
+        public StencilTestState(bool enableCapacity)
             : base(GL.GL_STENCIL_TEST, enableCapacity)
         { }
 

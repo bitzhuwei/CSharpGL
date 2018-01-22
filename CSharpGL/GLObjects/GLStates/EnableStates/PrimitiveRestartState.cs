@@ -5,6 +5,15 @@
     /// </summary>
     public class PrimitiveRestartState : EnableState
     {
+        // Activator needs a non-parameter constructor.
+        /// <summary>
+        /// 
+        /// </summary>
+        public PrimitiveRestartState()
+            : base(GL.GL_PRIMITIVE_RESTART, false)
+        {
+            this.RestartIndex = uint.MaxValue;
+        }
         /// <summary>
         ///
         /// </summary>

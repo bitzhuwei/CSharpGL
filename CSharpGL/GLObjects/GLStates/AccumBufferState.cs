@@ -41,6 +41,7 @@ namespace CSharpGL
             set { clearAlphazValue = value; }
         }
 
+        // Activator needs a non-parameter constructor.
         /// <summary>
         ///
         /// </summary>

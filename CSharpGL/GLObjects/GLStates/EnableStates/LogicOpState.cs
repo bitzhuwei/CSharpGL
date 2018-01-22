@@ -7,6 +7,12 @@ namespace CSharpGL
     /// </summary>
     public class LogicOpState : EnableState
     {
+        // Activator needs a non-parameter constructor.
+        /// <summary>
+        /// specify the alpha logic operation.
+        /// </summary>
+        public LogicOpState() : this(LogicOperationCode.Copy, true) { }
+
         /// <summary>
         /// specify the alpha logic operation.
         /// </summary>

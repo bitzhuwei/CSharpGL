@@ -5,6 +5,7 @@
     /// </summary>
     public class PointSpriteState : GLState
     {
+        // Activator needs a non-parameter constructor.
         /// <summary>
         ///
         /// </summary>

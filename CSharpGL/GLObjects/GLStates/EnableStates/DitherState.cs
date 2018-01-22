@@ -5,11 +5,17 @@
     /// </summary>
     public class DitherState : EnableState
     {
+        // Activator needs a non-parameter constructor.
+        /// <summary>
+        /// 
+        /// </summary>
+        public DitherState() : this(true) { }
+
         /// <summary>
         ///
         /// </summary>
         /// <param name="enableCapacity">true for enable, false for disable</param>
-        public DitherState(bool enableCapacity = true)
+        public DitherState(bool enableCapacity)
             : base(GL.GL_DITHER, enableCapacity)
         { }
 

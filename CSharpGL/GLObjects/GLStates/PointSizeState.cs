@@ -39,6 +39,7 @@
         /// </summary>
         public float PointSize { get; set; }
 
+        // Activator needs a non-parameter constructor.
         /// <summary>
         ///
         /// </summary>

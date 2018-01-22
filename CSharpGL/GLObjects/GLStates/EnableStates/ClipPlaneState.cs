@@ -72,6 +72,7 @@ namespace CSharpGL
             }
         }
 
+        // Activator needs a non-parameter constructor.
         /// <summary>
         /// specify a plane against which all geometry is clipped.
         /// </summary>
