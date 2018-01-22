@@ -66,20 +66,18 @@ namespace StencilShadowVolume
             set { lightPosition = value; }
         }
 
-        private GLState polygonOffsetState = new PolygonOffsetLineState();
-        //private GLState polygonOffsetState = new PolygonOffsetFillState();
+        private PolygonOffsetState fillOffsetState = new PolygonOffsetFillState(pullNear: false);
         public override void RenderBeforeChildren(RenderEventArgs arg)
         {
             if (!this.IsInitialized) { this.Initialize(); }
 
-            //this.RotationAngle += 1f;
+            this.RotationAngle += 1f;
 
             ICamera camera = arg.CameraStack.Peek();
             mat4 projection = camera.GetProjectionMatrix();
             mat4 view = camera.GetViewMatrix();
             mat4 model = this.GetModelMatrix();
 
-            polygonOffsetState.On();
             if (this.RenderSilhouette)
             {
                 var method = this.RenderUnit.Methods[0]; // the only render unit in this node.
@@ -97,9 +95,10 @@ namespace StencilShadowVolume
                 ShaderProgram program = method.Program;
                 program.SetUniform("mvpMat", projection * view * model);
 
+                fillOffsetState.On();
                 method.Render(ControlMode.Random);
+                fillOffsetState.Off();
             }
-            polygonOffsetState.Off();
         }
 
         public override void RenderAfterChildren(RenderEventArgs arg)
