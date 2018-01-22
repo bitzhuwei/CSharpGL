@@ -20,7 +20,7 @@ namespace StencilShadowVolume
                 var array = new ShaderArray(vs, gs, fs);
                 var map = new AttributeMap();
                 map.Add("Position", AdjacentTeapot.strPosition);
-                silhouetteBuilder = new RenderMethodBuilder(array, map);
+                silhouetteBuilder = new RenderMethodBuilder(array, map, new LineWidthState(3));
             }
             {
                 var vs = new VertexShader(vertexCode);
@@ -58,7 +58,7 @@ namespace StencilShadowVolume
             get { return renderSilhouette; }
             set { renderSilhouette = value; }
         }
-        private vec3 lightPosition = new vec3(1, 1, 1) * 10;
+        private vec3 lightPosition = new vec3(0, 1, 0) * 10;
 
         public vec3 LightPosition
         {
@@ -66,10 +66,13 @@ namespace StencilShadowVolume
             set { lightPosition = value; }
         }
 
-        private GLState polygonOffsetState = new PolygonOffsetFillState();
+        private GLState polygonOffsetState = new PolygonOffsetLineState();
+        //private GLState polygonOffsetState = new PolygonOffsetFillState();
         public override void RenderBeforeChildren(RenderEventArgs arg)
         {
             if (!this.IsInitialized) { this.Initialize(); }
+
+            //this.RotationAngle += 1f;
 
             ICamera camera = arg.CameraStack.Peek();
             mat4 projection = camera.GetProjectionMatrix();

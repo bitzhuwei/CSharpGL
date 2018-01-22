@@ -48,6 +48,10 @@ namespace StencilShadowVolume
 
             Match(this.trvScene, scene.RootElement);
             this.trvScene.ExpandAll();
+
+            var manipulater = new FirstPerspectiveManipulater();
+            manipulater.Bind(camera, this.winGLCanvas1);
+
         }
 
         private void Match(TreeView treeView, SceneNodeBase nodeBase)
