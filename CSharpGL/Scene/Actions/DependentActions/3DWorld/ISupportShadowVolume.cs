@@ -29,6 +29,13 @@ namespace CSharpGL
         void ExtrudeShadow(ShadowVolumeEventArgs arg);
 
         /// <summary>
+        /// Render the node under the specified light.
+        /// </summary>
+        /// <param name="arg"></param>
+        /// <param name="light"></param>
+        void RenderUnderLight(RenderEventArgs arg, LightBase light);
+
+        /// <summary>
         /// Add ambient color effect at last.
         /// </summary>
         /// <param name="arg"></param>
