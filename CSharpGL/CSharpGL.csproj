@@ -107,7 +107,6 @@
     <Compile Include="GLObjects\GLBuffers\Data2Buffer\GenIndexBuffers.T[].cs" />
     <Compile Include="GLObjects\GLBuffers\Data2Buffer\GenVertexBuffers.T[].cs" />
     <None Include="GLObjects\DrawCommands\MultiDrawElementsCmd.demo.cpp" />
-    <Compile Include="GLObjects\DrawCommands\IHasIndexBuffer.cs" />
     <Compile Include="GLObjects\DrawCommands\MultiDrawElementsCmd.cs" />
     <Compile Include="GLObjects\GLBuffers\IndependentBuffers\TransformFeedbackBuffer.AsVertexBuffer.cs">
       <SubType>Code</SubType>

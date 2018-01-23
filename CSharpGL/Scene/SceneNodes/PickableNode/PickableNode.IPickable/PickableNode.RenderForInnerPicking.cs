@@ -59,16 +59,16 @@ namespace CSharpGL
             this.lineWidthState.On();
             this.pointSizeState.On();
 
-            PrimitiveRestartState restart = null;
-            var hasIndexBuffer = tmpCmd as IHasIndexBuffer;
-            if (hasIndexBuffer != null)
-            {
-                restart = this.GetPrimitiveRestartState(hasIndexBuffer.IndexBufferObject.ElementType);
-            }
-            if (restart != null)
-            {
-                restart.On();
-            }
+            //PrimitiveRestartState restart = null;
+            //var hasIndexBuffer = tmpCmd as IHasIndexBuffer;
+            //if (hasIndexBuffer != null)
+            //{
+            //    restart = this.GetPrimitiveRestartState(hasIndexBuffer.IndexBufferObject.ElementType);
+            //}
+            //if (restart != null)
+            //{
+            //    restart.On();
+            //}
             {
                 var pickable = this as IPickable;
                 uint baseId = pickable.PickingBaseId;
@@ -79,10 +79,10 @@ namespace CSharpGL
                     baseId += (uint)vao.VertexAttributes[0].Buffer.Length;
                 }
             }
-            if (restart != null)
-            {
-                restart.Off();
-            }
+            //if (restart != null)
+            //{
+            //    restart.Off();
+            //}
 
             this.pointSizeState.Off();
             this.lineWidthState.Off();
@@ -92,38 +92,38 @@ namespace CSharpGL
             program.Unbind();
         }
 
-        private PrimitiveRestartState ubyteRestartIndexState = null;
-        private PrimitiveRestartState ushortRestartIndexState = null;
-        private PrimitiveRestartState uintRestartIndexState = null;
+        //private PrimitiveRestartState ubyteRestartIndexState = null;
+        //private PrimitiveRestartState ushortRestartIndexState = null;
+        //private PrimitiveRestartState uintRestartIndexState = null;
 
-        private PrimitiveRestartState GetPrimitiveRestartState(IndexBufferElementType type)
-        {
-            PrimitiveRestartState result = null;
-            switch (type)
-            {
-                case IndexBufferElementType.UByte:
-                    if (this.ubyteRestartIndexState == null)
-                    { this.ubyteRestartIndexState = new PrimitiveRestartState(type); }
-                    result = this.ubyteRestartIndexState;
-                    break;
+        //private PrimitiveRestartState GetPrimitiveRestartState(IndexBufferElementType type)
+        //{
+        //    PrimitiveRestartState result = null;
+        //    switch (type)
+        //    {
+        //        case IndexBufferElementType.UByte:
+        //            if (this.ubyteRestartIndexState == null)
+        //            { this.ubyteRestartIndexState = new PrimitiveRestartState(type); }
+        //            result = this.ubyteRestartIndexState;
+        //            break;
 
-                case IndexBufferElementType.UShort:
-                    if (this.ushortRestartIndexState == null)
-                    { this.ushortRestartIndexState = new PrimitiveRestartState(type); }
-                    result = this.ushortRestartIndexState;
-                    break;
+        //        case IndexBufferElementType.UShort:
+        //            if (this.ushortRestartIndexState == null)
+        //            { this.ushortRestartIndexState = new PrimitiveRestartState(type); }
+        //            result = this.ushortRestartIndexState;
+        //            break;
 
-                case IndexBufferElementType.UInt:
-                    if (this.uintRestartIndexState == null)
-                    { this.uintRestartIndexState = new PrimitiveRestartState(type); }
-                    result = this.uintRestartIndexState;
-                    break;
+        //        case IndexBufferElementType.UInt:
+        //            if (this.uintRestartIndexState == null)
+        //            { this.uintRestartIndexState = new PrimitiveRestartState(type); }
+        //            result = this.uintRestartIndexState;
+        //            break;
 
-                default:
-                    throw new NotDealWithNewEnumItemException(typeof(IndexBufferElementType));
-            }
+        //        default:
+        //            throw new NotDealWithNewEnumItemException(typeof(IndexBufferElementType));
+        //    }
 
-            return result;
-        }
+        //    return result;
+        //}
     }
 }
