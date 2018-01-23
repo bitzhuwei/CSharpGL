@@ -50,13 +50,13 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sceneElement"></param>
+        /// <param name="sceneNodeBase"></param>
         /// <param name="arg"></param>
-        public static void Render(SceneNodeBase sceneElement, RenderEventArgs arg)
+        public static void Render(SceneNodeBase sceneNodeBase, RenderEventArgs arg)
         {
-            if (sceneElement != null)
+            if (sceneNodeBase != null)
             {
-                var node = sceneElement as IRenderable;
+                var node = sceneNodeBase as IRenderable;
                 ThreeFlags flags = (node != null) ? node.EnableRendering : ThreeFlags.None;
                 bool before = (node != null) && ((flags & ThreeFlags.BeforeChildren) == ThreeFlags.BeforeChildren);
                 bool children = (node == null) || ((flags & ThreeFlags.Children) == ThreeFlags.Children);
@@ -69,7 +69,7 @@ namespace CSharpGL
 
                 if (children)
                 {
-                    foreach (var item in sceneElement.Children)
+                    foreach (var item in sceneNodeBase.Children)
                     {
                         Render(item, arg);
                     }
