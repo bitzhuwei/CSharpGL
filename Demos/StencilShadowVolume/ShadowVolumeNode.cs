@@ -14,9 +14,9 @@ namespace StencilShadowVolume
             var model = new AdjacentTeapot();
             RenderMethodBuilder extrudVolumeBuilder, regularBuilder;
             {
-                var vs = new VertexShader(silhouetteVert);
-                var gs = new GeometryShader(silhouetteGeom);
-                var fs = new FragmentShader(silhouetteFrag);
+                var vs = new VertexShader(extrudeVert);
+                var gs = new GeometryShader(extrudeGeom);
+                var fs = new FragmentShader(extrudeFrag);
                 var array = new ShaderArray(vs, gs, fs);
                 var map = new AttributeMap();
                 map.Add("Position", AdjacentTeapot.strPosition);
