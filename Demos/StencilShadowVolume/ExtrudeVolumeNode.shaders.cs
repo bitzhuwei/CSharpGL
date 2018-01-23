@@ -7,7 +7,7 @@ namespace StencilShadowVolume
 {
     partial class ExtrudeVolumeNode
     {
-        private const string silhouetteVert = @"#version 330
+        private const string extrudeVert = @"#version 330
 
 in vec3 Position;                                             
 
@@ -19,7 +19,7 @@ void main()
 }
 ";
 
-        private const string silhouetteGeom = @"#version 330
+        private const string extrudeGeom = @"#version 330
 
 layout (triangles_adjacency) in;    // six vertices in
 layout (triangle_strip, max_vertices = 18) out; // 4 per quad * 3 triangle vertices + 6 for near/far caps
@@ -128,7 +128,7 @@ void main()
     }
 }
 ";
-        private const string silhouetteFrag = @"#version 330
+        private const string extrudeFrag = @"#version 330
 
 out vec4 FragColor;
 
