@@ -52,7 +52,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="sceneElement"></param>
         /// <param name="arg"></param>
-        public static void Render(SceneNodeBase sceneElement, RenderEventArgs arg)
+        static void Render(SceneNodeBase sceneElement, RenderEventArgs arg)
         {
             if (sceneElement != null)
             {

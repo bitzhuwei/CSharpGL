@@ -28,7 +28,7 @@ namespace CSharpGL
         public override void Act(ActionParams param)
         {
             var arg = new ShadowVolumeEventArgs();
-            Render(this.Scene.RootElement, arg);
+            Extrude(this.Scene.RootElement, arg);
         }
 
         /// <summary>
@@ -36,7 +36,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="sceneElement"></param>
         /// <param name="arg"></param>
-        public static void Render(SceneNodeBase sceneElement, ShadowVolumeEventArgs arg)
+        static void Extrude(SceneNodeBase sceneElement, ShadowVolumeEventArgs arg)
         {
             if (sceneElement != null)
             {
@@ -54,7 +54,7 @@ namespace CSharpGL
                 {
                     foreach (var item in sceneElement.Children)
                     {
-                        Render(item, arg);
+                        Extrude(item, arg);
                     }
                 }
             }

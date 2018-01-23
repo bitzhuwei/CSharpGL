@@ -142,6 +142,7 @@
     <Compile Include="GLObjects\GLBuffers\IndependentBuffers\TransformFeedbackBuffer.cs" />
     <Compile Include="Scene\Actions\DependentActions\3DWorld\BillboardRenderAction.cs" />
     <Compile Include="Scene\Actions\DependentActions\3DWorld\BillboardSortAction.cs" />
+    <Compile Include="Scene\Actions\DependentActions\3DWorld\ExtrudeShadowVolumeAction.cs" />
     <Compile Include="Scene\Actions\DependentActions\3DWorld\ISupportShadowVolume.cs" />
     <Compile Include="Scene\Actions\DependentActions\3DWorld\DepthRenderAction.cs" />
     <Compile Include="Scene\Actions\DependentActions\ActionParams.cs" />
