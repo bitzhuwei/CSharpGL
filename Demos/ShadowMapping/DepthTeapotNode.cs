@@ -9,7 +9,7 @@ namespace ShadowMapping
     /// <summary>
     /// render a teapot only with vertex shader.
     /// </summary>
-    class DepthTeapotNode : ModernNode, ISupportShadow
+    class DepthTeapotNode : ModernNode, ISupportShadowMapping
     {
         private const string inPosition = "inPosition";
         private const string mvpMatrix = "mvpMatrix";
