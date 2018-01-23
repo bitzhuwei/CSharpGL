@@ -89,7 +89,7 @@ namespace StencilTest
             //return group;
 
             // demo 3:
-            var clearStencilNode = ClearStencilNode.Create(); // this helps clear stencil buffer because glClear(GL_STENCIL_BUFFER_BIT); doesn't work.
+            var clearStencilNode = ClearStencilNode.Create(); // this helps clear stencil buffer because `glClear(GL_STENCIL_BUFFER_BIT);` doesn't work on my laptop.
             string folder = System.Windows.Forms.Application.StartupPath;
             var bitmap = new Bitmap(System.IO.Path.Combine(folder, @"Lenna.png"));
             bitmap.RotateFlip(RotateFlipType.Rotate180FlipX);
