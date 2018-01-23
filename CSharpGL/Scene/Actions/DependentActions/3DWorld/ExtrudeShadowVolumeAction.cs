@@ -8,24 +8,17 @@ using System.Text;
 namespace CSharpGL
 {
     /// <summary>
-    /// Render <see cref="ISupportShadowVolume"/> objects into depth buffer.
+    /// Extrude shadow volume and record occlusions by stencil operation.
     /// </summary>
-    public class DepthRenderAction : DependentActionBase
+    public class ExtrudeShadowVolumeAction : DependentActionBase
     {
         /// <summary>
-        /// 
-        /// </summary>
-        public uint ClearMask { get; set; }
-
-        /// <summary>
-        /// Render <see cref="ISupportShadowVolume"/> objects into depth buffer.
+        /// Extrude shadow volume and record occlusions by stencil operation.
         /// </summary>
         /// <param name="scene"></param>
-        /// <param name="clearMask"></param>
-        public DepthRenderAction(Scene scene, uint clearMask = GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT | GL.GL_STENCIL_BUFFER_BIT)
+        public ExtrudeShadowVolumeAction(Scene scene)
             : base(scene)
         {
-            this.ClearMask = clearMask;
         }
 
         /// <summary>
@@ -34,17 +27,8 @@ namespace CSharpGL
         /// <param name="param"></param>
         public override void Act(ActionParams param)
         {
-            //int[] value = null;
-            //value = new int[4];
-            //GL.Instance.GetIntegerv((uint)GetTarget.ColorClearValue, value);
-            vec4 clearColor = this.Scene.ClearColor;
-            GL.Instance.ClearColor(clearColor.x, clearColor.y, clearColor.z, clearColor.w);
-            GL.Instance.Clear(this.ClearMask);
-
-            var arg = new RenderEventArgs(this.Scene, param, this.Scene.Camera);
+            var arg = new ShadowVolumeEventArgs();
             Render(this.Scene.RootElement, arg);
-
-            //GL.Instance.ClearColor(value[0], value[1], value[2], value[3]);
         }
 
         /// <summary>
@@ -52,7 +36,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="sceneElement"></param>
         /// <param name="arg"></param>
-        public static void Render(SceneNodeBase sceneElement, RenderEventArgs arg)
+        public static void Render(SceneNodeBase sceneElement, ShadowVolumeEventArgs arg)
         {
             if (sceneElement != null)
             {
@@ -63,7 +47,7 @@ namespace CSharpGL
 
                 if (before)
                 {
-                    node.RenderToDepthBuffer(arg);
+                    node.ExtrudeShadow(arg);
                 }
 
                 if (children)

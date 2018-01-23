@@ -42,7 +42,7 @@ namespace CSharpGL
             GL.Instance.Clear(this.ClearMask);
 
             var arg = new RenderEventArgs(this.Scene, param, this.Scene.Camera);
-            RenderAction.Render(this.Scene.RootElement, arg);
+            Render(this.Scene.RootElement, arg);
 
             //GL.Instance.ClearColor(value[0], value[1], value[2], value[3]);
         }

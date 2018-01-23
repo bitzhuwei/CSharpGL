@@ -26,7 +26,7 @@ namespace CSharpGL
         /// Extrude shadow volume for stencil operation.
         /// </summary>
         /// <param name="arg"></param>
-        void ExtrudeShadow(ShdowVolumeEventArgs arg);
+        void ExtrudeShadow(ShadowVolumeEventArgs arg);
 
         /// <summary>
         /// Add ambient color effect at last.
@@ -38,12 +38,12 @@ namespace CSharpGL
     /// <summary>
     /// Render event argument.
     /// </summary>
-    public class ShdowVolumeEventArgs
+    public class ShadowVolumeEventArgs
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="RenderEventArgs"/> class.
         /// </summary>
-        public ShdowVolumeEventArgs()
+        public ShadowVolumeEventArgs()
         {
             this.ModelMatrixStack = new Stack<mat4>();
             this.ModelMatrixStack.Push(mat4.identity());
