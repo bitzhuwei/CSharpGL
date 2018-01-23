@@ -43,6 +43,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Form2ShadowVolume.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form2ShadowVolume.Designer.cs">
+      <DependentUpon>Form2ShadowVolume.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1ExtrudeVolume.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -67,6 +73,9 @@
     <Compile Include="ExtrudeVolumeNode.shaders.cs" />
     <Compile Include="SilhouetteNode.shaders.cs" />
     <Compile Include="SilhouetteNode.cs" />
+    <EmbeddedResource Include="Form2ShadowVolume.resx">
+      <DependentUpon>Form2ShadowVolume.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1ExtrudeVolume.resx">
       <DependentUpon>Form1ExtrudeVolume.cs</DependentUpon>
     </EmbeddedResource>
