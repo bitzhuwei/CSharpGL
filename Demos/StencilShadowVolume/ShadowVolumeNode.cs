@@ -23,8 +23,8 @@ namespace StencilShadowVolume
                 extrudVolumeBuilder = new RenderMethodBuilder(array, map, new PolygonModeState(PolygonMode.Line));
             }
             {
-                var vs = new VertexShader(vertexCode);
-                var fs = new FragmentShader(fragmentCode);
+                var vs = new VertexShader(underLightVert);
+                var fs = new FragmentShader(underLightFrag);
                 var array = new ShaderArray(vs, fs);
                 var map = new AttributeMap();
                 map.Add("inPosition", AdjacentTeapot.strPosition);
