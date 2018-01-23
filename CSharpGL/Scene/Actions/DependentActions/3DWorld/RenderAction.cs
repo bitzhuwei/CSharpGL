@@ -56,15 +56,15 @@ namespace CSharpGL
         {
             if (sceneElement != null)
             {
-                var renderable = sceneElement as IRenderable;
-                ThreeFlags flags = (renderable != null) ? renderable.EnableRendering : ThreeFlags.None;
-                bool before = (renderable != null) && ((flags & ThreeFlags.BeforeChildren) == ThreeFlags.BeforeChildren);
-                bool children = (renderable == null) || ((flags & ThreeFlags.Children) == ThreeFlags.Children);
-                bool after = (renderable != null) && ((flags & ThreeFlags.AfterChildren) == ThreeFlags.AfterChildren);
+                var node = sceneElement as IRenderable;
+                ThreeFlags flags = (node != null) ? node.EnableRendering : ThreeFlags.None;
+                bool before = (node != null) && ((flags & ThreeFlags.BeforeChildren) == ThreeFlags.BeforeChildren);
+                bool children = (node == null) || ((flags & ThreeFlags.Children) == ThreeFlags.Children);
+                bool after = (node != null) && ((flags & ThreeFlags.AfterChildren) == ThreeFlags.AfterChildren);
 
                 if (before)
                 {
-                    renderable.RenderBeforeChildren(arg);
+                    node.RenderBeforeChildren(arg);
                 }
 
                 if (children)
@@ -77,7 +77,7 @@ namespace CSharpGL
 
                 if (after)
                 {
-                    renderable.RenderAfterChildren(arg);
+                    node.RenderAfterChildren(arg);
                 }
             }
         }

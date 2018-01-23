@@ -56,14 +56,14 @@ namespace CSharpGL
         {
             if (sceneElement != null)
             {
-                var renderable = sceneElement as ISupportShadowVolume;
-                TwoFlags flags = (renderable != null) ? renderable.EnableShadowVolume : TwoFlags.None;
-                bool before = (renderable != null) && ((flags & TwoFlags.BeforeChildren) == TwoFlags.BeforeChildren);
-                bool children = (renderable == null) || ((flags & TwoFlags.Children) == TwoFlags.Children);
+                var node = sceneElement as ISupportShadowVolume;
+                TwoFlags flags = (node != null) ? node.EnableShadowVolume : TwoFlags.None;
+                bool before = (node != null) && ((flags & TwoFlags.BeforeChildren) == TwoFlags.BeforeChildren);
+                bool children = (node == null) || ((flags & TwoFlags.Children) == TwoFlags.Children);
 
                 if (before)
                 {
-                    renderable.RenderToDepthBuffer(arg);
+                    node.RenderToDepthBuffer(arg);
                 }
 
                 if (children)
