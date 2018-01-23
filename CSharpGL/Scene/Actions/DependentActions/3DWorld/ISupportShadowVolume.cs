@@ -36,50 +36,19 @@ namespace CSharpGL
     }
 
     /// <summary>
-    /// Render event argument.
     /// </summary>
     public class ShadowVolumeEventArgs
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="RenderEventArgs"/> class.
         /// </summary>
-        public ShadowVolumeEventArgs()
+        public ShadowVolumeEventArgs(LightBase light)
         {
-            this.ModelMatrixStack = new Stack<mat4>();
-            this.ModelMatrixStack.Push(mat4.identity());
-
-            //this.LightStack = new Stack<LightBase>();
+            this.Light = light;
         }
 
         /// <summary>
         /// 
         /// </summary>
-        internal Stack<mat4> ModelMatrixStack { get; private set; }
-        ///// <summary>
-        ///// 
-        ///// </summary>
-        ///// <returns></returns>
-        //public virtual mat4 GetViewMatrix()
-        //{
-        //    return this.Scene.Camera.GetViewMatrix();
-        //}
-
-        ///// <summary>
-        ///// 
-        ///// </summary>
-        ///// <returns></returns>
-        //public virtual mat4 GetProjectionMatrix()
-        //{
-        //    return this.Scene.Camera.GetProjectionMatrix();
-        ////}
-        ///// <summary>
-        ///// 
-        ///// </summary>
-        //internal Stack<LightBase> LightStack { get; private set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public LightBase CurrentLight { get; set; }
+        public LightBase Light { get; set; }
     }
 }

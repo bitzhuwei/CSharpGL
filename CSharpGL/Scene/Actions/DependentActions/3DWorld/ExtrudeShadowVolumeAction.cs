@@ -8,12 +8,12 @@ using System.Text;
 namespace CSharpGL
 {
     /// <summary>
-    /// Extrude shadow volume and record occlusions by stencil operation.
+    /// Extrude shadow volume, record occlusions by stencil operation, and light up nodes according to stencil test.
     /// </summary>
     public class ExtrudeShadowVolumeAction : DependentActionBase
     {
         /// <summary>
-        /// Extrude shadow volume and record occlusions by stencil operation.
+        /// Extrude shadow volume, record occlusions by stencil operation, and light up nodes according to stencil test.
         /// </summary>
         /// <param name="scene"></param>
         public ExtrudeShadowVolumeAction(Scene scene)
@@ -27,8 +27,13 @@ namespace CSharpGL
         /// <param name="param"></param>
         public override void Act(ActionParams param)
         {
-            var arg = new ShadowVolumeEventArgs();
-            Extrude(this.Scene.RootElement, arg);
+            foreach (var light in this.Scene.Lights)
+            {
+                var arg = new ShadowVolumeEventArgs(light);
+                Extrude(this.Scene.RootElement, arg);
+
+
+            }
         }
 
         /// <summary>
