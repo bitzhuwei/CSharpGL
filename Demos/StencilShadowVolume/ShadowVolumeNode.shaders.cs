@@ -164,7 +164,23 @@ void main(void) {
 }
 ";
 
-        private const string ambientVert = @"";
-        private const string ambientFrag = @"";
+        private const string ambientVert = @"#version 330
+
+in vec3 inPosition;
+
+uniform mat4 mvpMat;
+
+void main(void) {
+	gl_Position = mvpMat * vec4(inPosition, 1.0);
+}";
+        private const string ambientFrag = @"#version 330
+
+uniform vec3 ambientColor;
+
+out vec4 out_Color;
+
+void main(void) {
+	out_Color = vec4(ambientColor, 1.0);
+}";
     }
 }
