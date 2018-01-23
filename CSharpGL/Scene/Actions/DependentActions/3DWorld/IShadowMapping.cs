@@ -12,7 +12,7 @@ namespace CSharpGL
     public interface IShadowMapping
     {
         /// <summary>
-        /// Is casting shadow for this object enabled?
+        /// Is casting shadow for enabled this object?
         /// </summary>
         bool EnableShadowMapping { get; set; }
 

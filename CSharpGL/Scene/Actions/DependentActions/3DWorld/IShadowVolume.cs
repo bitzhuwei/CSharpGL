@@ -12,7 +12,7 @@ namespace CSharpGL
     public interface IShadowVolume
     {
         /// <summary>
-        /// Is casting shadow for this object enabled?
+        /// Is extruding shadow enabled for this object?
         /// </summary>
         bool EnableShadowVolume { get; set; }
 
