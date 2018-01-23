@@ -43,6 +43,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Form1ExtrudeVolume.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1ExtrudeVolume.Designer.cs">
+      <DependentUpon>Form1ExtrudeVolume.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form0SilhouetteDetection.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -57,8 +63,13 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ExtrudeVolumeNode.cs" />
+    <Compile Include="ExtrudeVolumeNode.shaders.cs" />
     <Compile Include="SilhouetteNode.shaders.cs" />
     <Compile Include="SilhouetteNode.cs" />
+    <EmbeddedResource Include="Form1ExtrudeVolume.resx">
+      <DependentUpon>Form1ExtrudeVolume.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form0SilhouetteDetection.resx">
       <DependentUpon>Form0SilhouetteDetection.cs</DependentUpon>
     </EmbeddedResource>
