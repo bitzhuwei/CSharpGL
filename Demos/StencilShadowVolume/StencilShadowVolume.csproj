@@ -43,6 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ShadowVolumeNode.cs" />
+    <Compile Include="ShadowVolumeNode.shaders.cs" />
     <Compile Include="Form2ShadowVolume.cs">
       <SubType>Form</SubType>
     </Compile>
