@@ -9,7 +9,7 @@ namespace CSharpGL
     /// <summary>
     /// Render a Ground(two triangles) with single color in modern opengl.
     /// </summary>
-    public class DepthGroundNode : PickableNode, IShadowMapping
+    public class DepthGroundNode : PickableNode, ISupportShadowMapping
     {
         private const string inPosition = "inPosition";
         private const string mvpMatrix = "mvpMatrix";

@@ -9,7 +9,7 @@ namespace ShadowMapping
     /// <summary>
     /// render a teapot with shadow.
     /// </summary>
-    public partial class ShadowMappingNode : PickableNode, IShadowMapping
+    public partial class ShadowMappingNode : PickableNode, ISupportShadow
     {
         private const string shadowVertexCode =
     @"#version 330

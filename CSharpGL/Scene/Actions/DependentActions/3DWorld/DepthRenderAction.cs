@@ -10,7 +10,7 @@ namespace CSharpGL
     /// <summary>
     /// Render <see cref="IRenderable"/> objects.
     /// </summary>
-    public class RenderAction : DependentActionBase
+    public class DepthRenderAction : DependentActionBase
     {
         /// <summary>
         /// 
@@ -22,7 +22,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="scene"></param>
         /// <param name="clearMask"></param>
-        public RenderAction(Scene scene, uint clearMask = GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT | GL.GL_STENCIL_BUFFER_BIT)
+        public DepthRenderAction(Scene scene, uint clearMask = GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT | GL.GL_STENCIL_BUFFER_BIT)
             : base(scene)
         {
             this.ClearMask = clearMask;
@@ -56,15 +56,14 @@ namespace CSharpGL
         {
             if (sceneElement != null)
             {
-                var renderable = sceneElement as IRenderable;
-                ThreeFlags flags = (renderable != null) ? renderable.EnableRendering : ThreeFlags.None;
-                bool before = (renderable != null) && ((flags & ThreeFlags.BeforeChildren) == ThreeFlags.BeforeChildren);
-                bool children = (renderable == null) || ((flags & ThreeFlags.Children) == ThreeFlags.Children);
-                bool after = (renderable != null) && ((flags & ThreeFlags.AfterChildren) == ThreeFlags.AfterChildren);
+                var renderable = sceneElement as ISupportShadowVolume;
+                TwoFlags flags = (renderable != null) ? renderable.EnableShadowVolume : TwoFlags.None;
+                bool before = (renderable != null) && ((flags & TwoFlags.BeforeChildren) == TwoFlags.BeforeChildren);
+                bool children = (renderable == null) || ((flags & TwoFlags.Children) == TwoFlags.Children);
 
                 if (before)
                 {
-                    renderable.RenderBeforeChildren(arg);
+                    renderable.RenderToDepthBuffer(arg);
                 }
 
                 if (children)
@@ -73,11 +72,6 @@ namespace CSharpGL
                     {
                         Render(item, arg);
                     }
-                }
-
-                if (after)
-                {
-                    renderable.RenderAfterChildren(arg);
                 }
             }
         }

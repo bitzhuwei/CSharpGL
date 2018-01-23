@@ -8,12 +8,12 @@ using System.Text;
 namespace CSharpGL
 {
     /// <summary>
-    /// Cast shaow mapping textures for <see cref="IShadowMapping"/>.
+    /// Cast shaow mapping textures for <see cref="ISupportShadowMapping"/>.
     /// </summary>
     public class ShadowMappingAction : DependentActionBase
     {
         /// <summary>
-        /// Cast shaow mapping textures for <see cref="IShadowMapping"/>.
+        /// Cast shaow mapping textures for <see cref="ISupportShadowMapping"/>.
         /// </summary>
         /// <param name="scene"></param>
         public ShadowMappingAction(Scene scene) : base(scene) { }
@@ -60,7 +60,7 @@ namespace CSharpGL
         {
             if (sceneElement != null)
             {
-                var renderable = sceneElement as IShadowMapping;
+                var renderable = sceneElement as ISupportShadowMapping;
                 if (renderable != null && renderable.EnableShadowMapping)
                 {
                     renderable.CastShadow(arg);

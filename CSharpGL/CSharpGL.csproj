@@ -142,7 +142,8 @@
     <Compile Include="GLObjects\GLBuffers\IndependentBuffers\TransformFeedbackBuffer.cs" />
     <Compile Include="Scene\Actions\DependentActions\3DWorld\BillboardRenderAction.cs" />
     <Compile Include="Scene\Actions\DependentActions\3DWorld\BillboardSortAction.cs" />
-    <Compile Include="Scene\Actions\DependentActions\3DWorld\IShadowVolume.cs" />
+    <Compile Include="Scene\Actions\DependentActions\3DWorld\ISupportShadowVolume.cs" />
+    <Compile Include="Scene\Actions\DependentActions\3DWorld\DepthRenderAction.cs" />
     <Compile Include="Scene\Actions\DependentActions\ActionParams.cs" />
     <Compile Include="Scene\Actions\DependentActions\GUI\GUILayoutAction.cs" />
     <Compile Include="Scene\Actions\DependentActions\GUI\GUIRenderAction.cs" />
@@ -370,7 +371,7 @@
     <Compile Include="Scene\Actions\ActionBase.cs" />
     <Compile Include="Scene\Actions\DependentActions\3DWorld\ShadowMappingAction.cs" />
     <Compile Include="Scene\Actions\IndependentActions\ILegacyPickable\ILegacyPickable.cs" />
-    <Compile Include="Scene\Actions\DependentActions\3DWorld\IShadowMapping.cs" />
+    <Compile Include="Scene\Actions\DependentActions\3DWorld\ISupportShadowMapping.cs" />
     <Compile Include="Scene\Actions\DependentActions\3DWorld\IWorldSpace.cs" />
     <Compile Include="Scene\Actions\IndependentActions\IPickable\IPickable.cs" />
     <Compile Include="Scene\Actions\IndependentActions\IPickable\IPickedGeometry.cs" />

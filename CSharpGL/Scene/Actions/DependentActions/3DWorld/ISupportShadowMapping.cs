@@ -6,32 +6,32 @@ using System.Drawing.Design;
 namespace CSharpGL
 {
     /// <summary>
-    /// Supports shadow volume.
+    /// Supports shadow mapping.
     /// </summary>
     [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
-    public interface IShadowVolume
+    public interface ISupportShadowMapping
     {
         /// <summary>
-        /// Is extruding shadow enabled for this object?
+        /// Is casting shadow for enabled this object?
         /// </summary>
-        bool EnableShadowVolume { get; set; }
+        bool EnableShadowMapping { get; set; }
 
         /// <summary>
         /// Cast shadow to specified texture in framebuffer, or Prepare for its children to cast shadow.
         /// </summary>
         /// <param name="arg"></param>
-        void ExtrudeShadow(ShdowVolumeEventArgs arg);
+        void CastShadow(ShdowMappingEventArgs arg);
     }
 
     /// <summary>
     /// Render event argument.
     /// </summary>
-    public class ShdowVolumeEventArgs
+    public class ShdowMappingEventArgs
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="RenderEventArgs"/> class.
         /// </summary>
-        public ShdowVolumeEventArgs()
+        public ShdowMappingEventArgs()
         {
             this.ModelMatrixStack = new Stack<mat4>();
             this.ModelMatrixStack.Push(mat4.identity());
