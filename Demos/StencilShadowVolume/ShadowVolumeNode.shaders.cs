@@ -151,25 +151,25 @@ void main()
         private const string underLightVert = @"#version 330
 
 in vec3 inPosition;
-in vec3 inColor;
+//in vec3 inColor;
 
 uniform mat4 mvpMat;
 
-out vec3 passColor;
+//out vec3 passColor;
 
 void main(void) {
 	gl_Position = mvpMat * vec4(inPosition, 1.0);
-    passColor = inColor;
+    //passColor = inColor;
 }
 ";
         private const string underLightFrag = @"#version 330
 
-in vec3 passColor;
+//in vec3 passColor;
 
 out vec4 out_Color;
 
 void main(void) {
-	out_Color = vec4(passColor, 1.0);
+	out_Color = vec4(1,0,0,1);//vec4(passColor+vec3(1,0,0), 1.0);
 }
 ";
 

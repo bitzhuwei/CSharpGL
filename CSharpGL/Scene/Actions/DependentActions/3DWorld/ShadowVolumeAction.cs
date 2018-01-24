@@ -24,13 +24,13 @@ namespace CSharpGL
                 var stencilTest = new StencilTestState(enableCapacity: true);
                 var depthClamp = new DepthClampState(enableCapacity: true);
                 var cullFace = new CullFaceState(CullFaceMode.Back, false);// CullFaceMode is useless here.
-                var blend = new BlendState(BlendingSourceFactor.One, BlendingDestinationFactor.One);
-                this.stateList = new GLStateList(stencilTest, depthClamp, cullFace, blend);
+                this.stateList = new GLStateList(stencilTest, depthClamp, cullFace);
             }
         }
 
         private readonly ColorMaskState colorMask = new ColorMaskState(false, false, false, false);
         private readonly DepthMaskState depthMask = new DepthMaskState(writable: false);
+        private readonly BlendState blend = new BlendState(BlendingSourceFactor.One, BlendingDestinationFactor.One);
         private readonly GLStateList stateList;
         private readonly ClearStencilNode clearStencilNode;
 
@@ -58,7 +58,8 @@ namespace CSharpGL
 
                 this.colorMask.Off();
             }
-            this.depthMask.On();
+
+            this.blend.On();
 
             this.stateList.On();
             foreach (var light in this.Scene.Lights)
@@ -66,6 +67,7 @@ namespace CSharpGL
                 // clear stencil buffer.
                 //GL.Instance.Clear(GL.GL_STENCIL_BUFFER_BIT); // this seems not working.
                 this.clearStencilNode.RenderBeforeChildren(null); // this helps clear stencil buffer because `glClear(GL_STENCIL_BUFFER_BIT);` doesn't work on my laptop.
+                this.depthMask.On();
                 this.colorMask.On();
                 {
                     GL.Instance.StencilFunc(GL.GL_ALWAYS, 0, 0xFF);
@@ -76,6 +78,7 @@ namespace CSharpGL
                     Extrude(this.Scene.RootElement, arg);
                 }
                 this.colorMask.Off();
+                this.depthMask.Off();
 
                 {
                     // Draw only if the corresponding stencil value is zero
@@ -93,7 +96,8 @@ namespace CSharpGL
                 var arg = new RenderEventArgs(this.Scene, param, this.Scene.Camera);
                 RenderAmbientColor(this.Scene.RootElement, arg);
             }
-            this.depthMask.Off();
+
+            this.blend.Off();
         }
 
         private void RenderAmbientColor(SceneNodeBase sceneNodeBase, RenderEventArgs arg)
