@@ -58,17 +58,11 @@ namespace StencilShadowVolume
             get { return renderSilhouette; }
             set { renderSilhouette = value; }
         }
-        private vec3 lightPosition = new vec3(0, 1, 0) * 10;
-
-        public vec3 LightPosition
-        {
-            get { return lightPosition; }
-            set { lightPosition = value; }
-        }
 
         private PolygonOffsetState fillOffsetState = new PolygonOffsetFillState(pullNear: false);
 
         private ThreeFlags enableRendering = ThreeFlags.BeforeChildren | ThreeFlags.Children | ThreeFlags.AfterChildren;
+        private PointLight light;
         /// <summary>
         /// Render before/after children? Render children? 
         /// RenderAction cares about this property. Other actions, maybe, maybe not, your choice.
@@ -96,7 +90,7 @@ namespace StencilShadowVolume
                 ShaderProgram program = method.Program;
                 program.SetUniform("gProjectionView", projection * view);
                 program.SetUniform("gWorld", model);
-                program.SetUniform("gLightPos", this.lightPosition);
+                program.SetUniform("gLightPos", this.light.Position);
 
                 method.Render(ControlMode.ByFrame);
             }
@@ -115,6 +109,11 @@ namespace StencilShadowVolume
 
         public void RenderAfterChildren(RenderEventArgs arg)
         {
+        }
+
+        internal void SetLight(PointLight light)
+        {
+            this.light = light;
         }
     }
 }
