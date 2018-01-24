@@ -20,18 +20,15 @@ namespace CSharpGL
             : base(scene)
         {
             this.clearStencilNode = ClearStencilNode.Create();
-            {
-                var stencilTest = new StencilTestState(enableCapacity: true);
-                var depthClamp = new DepthClampState(enableCapacity: true);
-                var cullFace = new CullFaceState(CullFaceMode.Back, false);// CullFaceMode is useless here.
-                this.stateList = new GLStateList(stencilTest, depthClamp, cullFace);
-            }
         }
 
+        private readonly StencilTestState stencilTest = new StencilTestState(enableCapacity: true);
+        private readonly CullFaceState cullFace = new CullFaceState(CullFaceMode.Back, false);// CullFaceMode is useless here.
         private readonly ColorMaskState colorMask = new ColorMaskState(false, false, false, false);
         private readonly DepthMaskState depthMask = new DepthMaskState(writable: false);
+        private readonly DepthClampState depthClamp = new DepthClampState(enableCapacity: true);
         private readonly BlendState blend = new BlendState(BlendingSourceFactor.One, BlendingDestinationFactor.One);
-        private readonly GLStateList stateList;
+        //private readonly GLStateList stateList;
         private readonly ClearStencilNode clearStencilNode;
 
         private static readonly GLDelegates.void_uint_uint_uint_uint glStencilOpSeparate;
@@ -51,34 +48,38 @@ namespace CSharpGL
             GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT | GL.GL_STENCIL_BUFFER_BIT);
 
             {
-                this.colorMask.On();
+                //this.colorMask.On();
 
+                //var arg = new RenderEventArgs(this.Scene, param, this.Scene.Camera);
+                //RenderDepthBuffer(this.Scene.RootElement, arg);
+                //this.colorMask.Off();
                 var arg = new RenderEventArgs(this.Scene, param, this.Scene.Camera);
-                RenderDepthBuffer(this.Scene.RootElement, arg);
-
-                this.colorMask.Off();
+                RenderAmbientColor(this.Scene.RootElement, arg);
             }
 
-            this.blend.On();
-
-            this.stateList.On();
+            this.stencilTest.On();
             foreach (var light in this.Scene.Lights)
             {
-                // clear stencil buffer.
-                //GL.Instance.Clear(GL.GL_STENCIL_BUFFER_BIT); // this seems not working.
-                this.clearStencilNode.RenderBeforeChildren(null); // this helps clear stencil buffer because `glClear(GL_STENCIL_BUFFER_BIT);` doesn't work on my laptop.
-                this.depthMask.On();
-                this.colorMask.On();
                 {
+                    // clear stencil buffer.
+                    //GL.Instance.Clear(GL.GL_STENCIL_BUFFER_BIT); // this seems not working.
+                    this.clearStencilNode.RenderBeforeChildren(null); // this helps clear stencil buffer because `glClear(GL_STENCIL_BUFFER_BIT);` doesn't work on my laptop.
+                    this.depthMask.On();
+                    this.colorMask.On();
+                    this.depthClamp.On();
+                    this.cullFace.On();
                     GL.Instance.StencilFunc(GL.GL_ALWAYS, 0, 0xFF);
                     glStencilOpSeparate(GL.GL_BACK, GL.GL_KEEP, GL.GL_INCR_WRAP, GL.GL_KEEP);
                     glStencilOpSeparate(GL.GL_FRONT, GL.GL_KEEP, GL.GL_DECR_WRAP, GL.GL_KEEP);
 
                     var arg = new ShadowVolumeEventArgs(this.Scene.Camera, light);
                     Extrude(this.Scene.RootElement, arg);
+
+                    this.cullFace.Off();
+                    this.depthClamp.Off();
+                    this.colorMask.Off();
+                    this.depthMask.Off();
                 }
-                this.colorMask.Off();
-                this.depthMask.Off();
 
                 {
                     // Draw only if the corresponding stencil value is zero
@@ -86,18 +87,24 @@ namespace CSharpGL
                     // prevent update to the stencil buffer
                     GL.Instance.StencilOp(GL.GL_KEEP, GL.GL_KEEP, GL.GL_KEEP);
 
+                    this.blend.On();
+
                     var arg = new RenderEventArgs(this.Scene, param, this.Scene.Camera);
                     RenderUnderLight(this.Scene.RootElement, arg, light);
+
+                    this.blend.Off();
                 }
             }
-            this.stateList.Off();
+            this.stencilTest.Off();
 
-            {
-                var arg = new RenderEventArgs(this.Scene, param, this.Scene.Camera);
-                RenderAmbientColor(this.Scene.RootElement, arg);
-            }
+            //{
+            //    this.blend.On();
+            //    //GL.Instance.Clear(GL.GL_DEPTH_BUFFER_BIT);
+            //    var arg = new RenderEventArgs(this.Scene, param, this.Scene.Camera);
+            //    RenderAmbientColor(this.Scene.RootElement, arg);
+            //    this.blend.Off();
+            //}
 
-            this.blend.Off();
         }
 
         private void RenderAmbientColor(SceneNodeBase sceneNodeBase, RenderEventArgs arg)

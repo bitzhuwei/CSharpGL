@@ -26,9 +26,10 @@ namespace StencilShadowVolume
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-            var rootElement = GetTree();
+            var light = new PointLight(new vec3(0, 0, 0));
+            var rootElement = GetTree(light);
 
-            var position = new vec3(5, 3, 4);
+            var position = new vec3(5, 3, 4) * 3;
             var center = new vec3(0, 0, 0);
             var up = new vec3(0, 1, 0);
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
@@ -37,13 +38,15 @@ namespace StencilShadowVolume
                 RootElement = rootElement,
                 ClearColor = Color.SkyBlue.ToVec4(),
             };
-            this.scene.Lights.Add(new PointLight(new vec3(0, 10, 0)));
+            this.scene.Lights.Add(light);
 
             var list = new ActionList();
             var transformAction = new TransformAction(scene);
             list.Add(transformAction);
             var shadowVolumeAction = new ShadowVolumeAction(scene);
             list.Add(shadowVolumeAction);
+            var renderAction = new RenderAction(scene, 0);
+            list.Add(renderAction);
             this.actionList = list;
 
             Match(this.trvScene, scene.RootElement);
@@ -72,7 +75,7 @@ namespace StencilShadowVolume
             }
         }
 
-        private SceneNodeBase GetTree()
+        private SceneNodeBase GetTree(PointLight light)
         {
             var node1 = ShadowVolumeNode.Create();
 
@@ -82,7 +85,10 @@ namespace StencilShadowVolume
             var node3 = ShadowVolumeNode.Create();
             node3.WorldPosition = new vec3(-1, -1, 0) * 3;
 
-            var group = new GroupNode(node1, node2, node3);
+            var lightPositionNode = LightPositionNode.Create();
+            lightPositionNode.SetLight(light);
+
+            var group = new GroupNode(node1, lightPositionNode);
 
             return group;
         }

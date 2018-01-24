@@ -62,7 +62,7 @@ namespace CSharpGL
         public Scene(ICamera camera)
         {
             this.Camera = camera;
-            this.AmbientColor = new vec3(0.1f, 0.1f, 0.7f);
+            //this.AmbientColor = new vec3(1, 0, 0);
         }
     }
 }

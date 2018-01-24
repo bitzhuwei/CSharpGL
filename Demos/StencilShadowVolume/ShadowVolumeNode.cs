@@ -15,7 +15,8 @@ namespace StencilShadowVolume
             RenderMethodBuilder depthBufferBuilder, extrudeBuilder, underLightBuilder, ambientColorBufer;
             {
                 var vs = new VertexShader(depthBufferVert);
-                var array = new ShaderArray(vs);
+                var fs = new FragmentShader(depthBufferFrag);
+                var array = new ShaderArray(vs, fs);
                 var map = new AttributeMap();
                 map.Add("inPosition", AdjacentTeapot.strPosition);
                 depthBufferBuilder = new RenderMethodBuilder(array, map);
@@ -35,7 +36,7 @@ namespace StencilShadowVolume
                 var array = new ShaderArray(vs, fs);
                 var map = new AttributeMap();
                 map.Add("inPosition", AdjacentTeapot.strPosition);
-                map.Add("inColor", AdjacentTeapot.strNormal);
+                map.Add("inColor", AdjacentTeapot.strColor);
                 underLightBuilder = new RenderMethodBuilder(array, map);
             }
             {
@@ -86,7 +87,7 @@ namespace StencilShadowVolume
 
             var method = this.RenderUnit.Methods[(int)MethodName.extrudeShadow];
             ShaderProgram program = method.Program;
-            program.SetUniform("gWVP", projection * view * model);
+            program.SetUniform("gProjectionView", projection * view);
             program.SetUniform("gWorld", model);
             program.SetUniform("gLightPos", arg.Light.Position);// TODO: This is how point light works. I need to deal with directional light, etc.
 
