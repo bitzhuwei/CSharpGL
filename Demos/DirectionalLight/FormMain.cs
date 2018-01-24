@@ -15,7 +15,7 @@ namespace DirectionalLight
         private Scene scene;
         private ActionList actionList;
         private DirectionalLightNode node;
-        private LightPostionNode lightNode;
+        private LightPositionNode lightNode;
 
         public FormMain()
         {
@@ -50,7 +50,7 @@ namespace DirectionalLight
                 this.node = DirectionalLightNode.Create(light, model, ObjVNF.strPosition, ObjVNF.strNormal, model.GetSize());
                 float max = node.ModelSize.max();
                 this.node.Scale *= 16.0f / max;
-                this.lightNode = LightPostionNode.Create();
+                this.lightNode = LightPositionNode.Create();
                 lightNode.SetLight(light);
                 lightNode.WorldPosition = new vec3(1, 1, 1) * 4;
                 var groupNode = new GroupNode(node, lightNode);
