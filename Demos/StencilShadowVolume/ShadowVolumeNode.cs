@@ -17,7 +17,7 @@ namespace StencilShadowVolume
                 var vs = new VertexShader(depthBufferVert);
                 var array = new ShaderArray(vs);
                 var map = new AttributeMap();
-                map.Add("Position", AdjacentTeapot.strPosition);
+                map.Add("inPosition", AdjacentTeapot.strPosition);
                 depthBufferBuilder = new RenderMethodBuilder(array, map);
             }
             {
@@ -85,23 +85,42 @@ namespace StencilShadowVolume
             mat4 view = camera.GetViewMatrix();
             mat4 model = this.GetModelMatrix();
 
-            var method = this.RenderUnit.Methods[0];
+            var method = this.RenderUnit.Methods[(int)MethodName.extrudeShadow];
             ShaderProgram program = method.Program;
             program.SetUniform("gWVP", projection * view * model);
             program.SetUniform("gWorld", model);
             program.SetUniform("gLightPos", arg.Light.Position);// TODO: This is how point light works. I need to deal with directional light, etc.
 
-            method.Render(ControlMode.ByFrame);
+            method.Render();
         }
 
         public void RenderUnderLight(RenderEventArgs arg, LightBase light)
         {
-            throw new NotImplementedException();
+            ICamera camera = arg.CameraStack.Peek();
+            mat4 projection = camera.GetProjectionMatrix();
+            mat4 view = camera.GetViewMatrix();
+            mat4 model = this.GetModelMatrix();
+
+            var method = this.RenderUnit.Methods[(int)MethodName.renderUnderLight];
+            ShaderProgram program = method.Program;
+            program.SetUniform("mvpMat", projection * view * model);
+
+            method.Render();
         }
 
         public void RenderAmbientColor(RenderEventArgs arg)
         {
-            throw new NotImplementedException();
+            ICamera camera = arg.CameraStack.Peek();
+            mat4 projection = camera.GetProjectionMatrix();
+            mat4 view = camera.GetViewMatrix();
+            mat4 model = this.GetModelMatrix();
+
+            var method = this.RenderUnit.Methods[(int)MethodName.renderAmbientColor];
+            ShaderProgram program = method.Program;
+            program.SetUniform("mvpMat", projection * view * model);
+            program.SetUniform("ambientColor", arg.Scene.AmbientColor);
+
+            method.Render();
         }
 
         #endregion

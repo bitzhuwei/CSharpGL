@@ -74,7 +74,17 @@ namespace StencilShadowVolume
 
         private SceneNodeBase GetTree()
         {
-            return ExtrudeVolumeNode.Create();
+            var node1 = ShadowVolumeNode.Create();
+
+            var node2 = ShadowVolumeNode.Create();
+            node2.WorldPosition = new vec3(1, -1, 0);
+
+            var node3 = ShadowVolumeNode.Create();
+            node3.WorldPosition = new vec3(-1, -1, 0);
+
+            var group = new GroupNode(node1, node2, node3);
+
+            return group;
         }
 
         private void winGLCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
