@@ -10,7 +10,7 @@ namespace PointLight
     /// <summary>
     /// Render a Cube with single color in modern opengl.
     /// </summary>
-    public class LightPostionNode : PickableNode, IRenderable
+    public class LightPositionNode : PickableNode, IRenderable
     {
         private const string inPosition = "inPosition";
         private const string projectionMatrix = "projectionMatrix";
@@ -48,7 +48,7 @@ void main(void) {
         /// Render propeller in modern opengl.
         /// </summary>
         /// <returns></returns>
-        public static LightPostionNode Create()
+        public static LightPositionNode Create()
         {
             var vs = new VertexShader(vertexCode);
             var fs = new FragmentShader(fragmentCode);
@@ -56,7 +56,7 @@ void main(void) {
             var map = new AttributeMap();
             map.Add(inPosition, CubeModel.strPosition);
             var builder = new RenderMethodBuilder(provider, map, new PolygonModeState(PolygonMode.Line), new LineWidthState(3));
-            var node = new LightPostionNode(new CubeModel(), CubeModel.strPosition, builder);
+            var node = new LightPositionNode(new CubeModel(), CubeModel.strPosition, builder);
             node.Initialize();
 
             return node;
@@ -65,7 +65,7 @@ void main(void) {
         /// <summary>
         /// Render propeller in legacy opengl.
         /// </summary>
-        private LightPostionNode(IBufferSource model, string positionNameInIBufferable, params RenderMethodBuilder[] builders)
+        private LightPositionNode(IBufferSource model, string positionNameInIBufferable, params RenderMethodBuilder[] builders)
             : base(model, positionNameInIBufferable, builders)
         {
             this.ModelSize = new vec3(1, 1, 1) * 0.3f;
