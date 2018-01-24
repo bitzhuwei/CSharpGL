@@ -66,7 +66,16 @@ namespace StencilShadowVolume
 
         public void RenderToDepthBuffer(RenderEventArgs arg)
         {
-            throw new NotImplementedException();
+            ICamera camera = arg.CameraStack.Peek();
+            mat4 projection = camera.GetProjectionMatrix();
+            mat4 view = camera.GetViewMatrix();
+            mat4 model = this.GetModelMatrix();
+
+            var method = this.RenderUnit.Methods[(int)MethodName.renderToDepthBuffer]; // the only render unit in this node.
+            ShaderProgram program = method.Program;
+            program.SetUniform("mvpMat", projection * view * model);
+
+            method.Render();
         }
 
         public void ExtrudeShadow(ShadowVolumeEventArgs arg)
