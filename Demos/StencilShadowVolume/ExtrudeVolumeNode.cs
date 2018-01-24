@@ -94,7 +94,7 @@ namespace StencilShadowVolume
             {
                 var method = this.RenderUnit.Methods[0];
                 ShaderProgram program = method.Program;
-                program.SetUniform("gWVP", projection * view * model);
+                program.SetUniform("gProjectionView", projection * view);
                 program.SetUniform("gWorld", model);
                 program.SetUniform("gLightPos", this.lightPosition);
 
