@@ -6,13 +6,20 @@ using System.Text;
 
 namespace StencilShadowVolume
 {
-    partial class ShadowVolumeNode : ModernNode, ISupportShadowVolume, IRenderable
+    partial class ShadowVolumeNode : ModernNode, ISupportShadowVolume
     {
 
         public static ShadowVolumeNode Create()
         {
             var model = new AdjacentTeapot();
-            RenderMethodBuilder extrudVolumeBuilder, regularBuilder;
+            RenderMethodBuilder depthBufferBuilder, extrudeBuilder, underLightBuilder, ambientColorBufer;
+            {
+                var vs = new VertexShader(depthBufferVert);
+                var array = new ShaderArray(vs);
+                var map = new AttributeMap();
+                map.Add("Position", AdjacentTeapot.strPosition);
+                depthBufferBuilder = new RenderMethodBuilder(array, map);
+            }
             {
                 var vs = new VertexShader(extrudeVert);
                 var gs = new GeometryShader(extrudeGeom);
@@ -20,7 +27,7 @@ namespace StencilShadowVolume
                 var array = new ShaderArray(vs, gs, fs);
                 var map = new AttributeMap();
                 map.Add("Position", AdjacentTeapot.strPosition);
-                extrudVolumeBuilder = new RenderMethodBuilder(array, map, new PolygonModeState(PolygonMode.Line));
+                extrudeBuilder = new RenderMethodBuilder(array, map);
             }
             {
                 var vs = new VertexShader(underLightVert);
@@ -28,11 +35,20 @@ namespace StencilShadowVolume
                 var array = new ShaderArray(vs, fs);
                 var map = new AttributeMap();
                 map.Add("inPosition", AdjacentTeapot.strPosition);
+                map.Add("inColor", AdjacentTeapot.strPosition);
+                underLightBuilder = new RenderMethodBuilder(array, map);
+            }
+            {
+                var vs = new VertexShader(ambientVert);
+                var fs = new FragmentShader(ambientFrag);
+                var array = new ShaderArray(vs, fs);
+                var map = new AttributeMap();
+                map.Add("inPosition", AdjacentTeapot.strPosition);
                 map.Add("inColor", AdjacentTeapot.strNormal);
-                regularBuilder = new RenderMethodBuilder(array, map);
+                ambientColorBufer = new RenderMethodBuilder(array, map);
             }
 
-            var node = new ShadowVolumeNode(model, extrudVolumeBuilder, regularBuilder);
+            var node = new ShadowVolumeNode(model, depthBufferBuilder, extrudeBuilder, underLightBuilder, ambientColorBufer);
             node.Initialize();
             node.ModelSize = model.GetModelSize();
 
@@ -43,72 +59,6 @@ namespace StencilShadowVolume
             : base(model, builders)
         { }
 
-        //private bool renderBody = true;
-
-        //public bool RenderBody
-        //{
-        //    get { return renderBody; }
-        //    set { renderBody = value; }
-        //}
-
-        //private bool renderSilhouette = true;
-
-        //public bool RenderSilhouette
-        //{
-        //    get { return renderSilhouette; }
-        //    set { renderSilhouette = value; }
-        //}
-
-        private PolygonOffsetState fillOffsetState = new PolygonOffsetFillState(pullNear: false);
-
-        private ThreeFlags enableRendering = ThreeFlags.BeforeChildren | ThreeFlags.Children | ThreeFlags.AfterChildren;
-        /// <summary>
-        /// Render before/after children? Render children? 
-        /// RenderAction cares about this property. Other actions, maybe, maybe not, your choice.
-        /// </summary>
-        public ThreeFlags EnableRendering
-        {
-            get { return this.enableRendering; }
-            set { this.enableRendering = value; }
-        }
-
-        public void RenderBeforeChildren(RenderEventArgs arg)
-        {
-            if (!this.IsInitialized) { this.Initialize(); }
-
-            //this.RotationAngle += 1f;
-
-            //ICamera camera = arg.CameraStack.Peek();
-            //mat4 projection = camera.GetProjectionMatrix();
-            //mat4 view = camera.GetViewMatrix();
-            //mat4 model = this.GetModelMatrix();
-
-            //if (this.RenderSilhouette)
-            //{
-            //    var method = this.RenderUnit.Methods[0]; // the only render unit in this node.
-            //    ShaderProgram program = method.Program;
-            //    program.SetUniform("gWVP", projection * view * model);
-            //    program.SetUniform("gWorld", model);
-            //    program.SetUniform("gLightPos", this.lightPosition);
-
-            //    method.Render(ControlMode.ByFrame);
-            //}
-
-            //if (this.RenderBody)
-            //{
-            //    var method = this.RenderUnit.Methods[1]; // the only render unit in this node.
-            //    ShaderProgram program = method.Program;
-            //    program.SetUniform("mvpMat", projection * view * model);
-
-            //    fillOffsetState.On();
-            //    method.Render(ControlMode.Random);
-            //    fillOffsetState.Off();
-            //}
-        }
-
-        public void RenderAfterChildren(RenderEventArgs arg)
-        {
-        }
 
         #region ISupportShadowVolume 成员
 
