@@ -33,17 +33,17 @@ namespace StencilShadowVolume
             var up = new vec3(0, 1, 0);
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
             this.scene = new Scene(camera)
-
             {
                 RootElement = rootElement,
                 ClearColor = Color.SkyBlue.ToVec4(),
             };
+            this.scene.Lights.Add(new PointLight(new vec3(0, 10, 0)));
 
             var list = new ActionList();
             var transformAction = new TransformAction(scene);
             list.Add(transformAction);
-            var renderAction = new RenderAction(scene);
-            list.Add(renderAction);
+            var shadowVolumeAction = new ShadowVolumeAction(scene);
+            list.Add(shadowVolumeAction);
             this.actionList = list;
 
             Match(this.trvScene, scene.RootElement);
@@ -76,13 +76,13 @@ namespace StencilShadowVolume
         {
             var node1 = ShadowVolumeNode.Create();
 
-            var node2 = ShadowVolumeNode.Create();
-            node2.WorldPosition = new vec3(1, -1, 0);
+            //var node2 = ShadowVolumeNode.Create();
+            //node2.WorldPosition = new vec3(1, -1, 0);
 
-            var node3 = ShadowVolumeNode.Create();
-            node3.WorldPosition = new vec3(-1, -1, 0);
+            //var node3 = ShadowVolumeNode.Create();
+            //node3.WorldPosition = new vec3(-1, -1, 0);
 
-            var group = new GroupNode(node1, node2, node3);
+            var group = new GroupNode(node1);
 
             return group;
         }
