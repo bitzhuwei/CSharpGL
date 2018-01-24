@@ -56,7 +56,7 @@ namespace CSharpGL
                     GL.Instance.StencilOpSeparate(GL.GL_BACK, GL.GL_KEEP, GL.GL_INCR_WRAP, GL.GL_KEEP);
                     GL.Instance.StencilOpSeparate(GL.GL_FRONT, GL.GL_KEEP, GL.GL_DECR_WRAP, GL.GL_KEEP);
 
-                    var arg = new ShadowVolumeEventArgs(light);
+                    var arg = new ShadowVolumeEventArgs(this.Scene.Camera, light);
                     Extrude(this.Scene.RootElement, arg);
                 }
                 {

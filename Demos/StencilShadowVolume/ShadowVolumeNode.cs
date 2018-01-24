@@ -80,7 +80,18 @@ namespace StencilShadowVolume
 
         public void ExtrudeShadow(ShadowVolumeEventArgs arg)
         {
-            throw new NotImplementedException();
+            ICamera camera = arg.Camera;
+            mat4 projection = camera.GetProjectionMatrix();
+            mat4 view = camera.GetViewMatrix();
+            mat4 model = this.GetModelMatrix();
+
+            var method = this.RenderUnit.Methods[0];
+            ShaderProgram program = method.Program;
+            program.SetUniform("gWVP", projection * view * model);
+            program.SetUniform("gWorld", model);
+            program.SetUniform("gLightPos", arg.Light.Position);// TODO: This is how point light works. I need to deal with directional light, etc.
+
+            method.Render(ControlMode.ByFrame);
         }
 
         public void RenderUnderLight(RenderEventArgs arg, LightBase light)

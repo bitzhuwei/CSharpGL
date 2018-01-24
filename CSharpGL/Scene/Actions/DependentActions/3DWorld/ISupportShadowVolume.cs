@@ -48,8 +48,9 @@ namespace CSharpGL
     {
         /// <summary>
         /// </summary>
-        public ShadowVolumeEventArgs(LightBase light)
+        public ShadowVolumeEventArgs(ICamera camera, LightBase light)
         {
+            this.Camera = camera;
             this.Light = light;
         }
 
@@ -57,5 +58,7 @@ namespace CSharpGL
         /// 
         /// </summary>
         public LightBase Light { get; set; }
+
+        public ICamera Camera { get; set; }
     }
 }
