@@ -92,7 +92,7 @@ namespace StencilShadowVolume
 
             if (this.RenderSilhouette)
             {
-                var method = this.RenderUnit.Methods[0]; // the only render unit in this node.
+                var method = this.RenderUnit.Methods[0];
                 ShaderProgram program = method.Program;
                 program.SetUniform("gWVP", projection * view * model);
                 program.SetUniform("gWorld", model);
@@ -103,7 +103,7 @@ namespace StencilShadowVolume
 
             if (this.RenderBody)
             {
-                var method = this.RenderUnit.Methods[1]; // the only render unit in this node.
+                var method = this.RenderUnit.Methods[1];
                 ShaderProgram program = method.Program;
                 program.SetUniform("mvpMat", projection * view * model);
 
