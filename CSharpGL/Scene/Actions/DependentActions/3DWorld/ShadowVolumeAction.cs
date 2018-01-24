@@ -29,18 +29,34 @@ namespace CSharpGL
             }
         }
 
+        private readonly ColorMaskState colorMask = new ColorMaskState(false, false, false, false);
         private readonly DepthMaskState depthMask = new DepthMaskState(writable: false);
         private readonly GLStateList stateList;
         private readonly ClearStencilNode clearStencilNode;
+
+        private static readonly GLDelegates.void_uint_uint_uint_uint glStencilOpSeparate;
+        static ShadowVolumeAction()
+        {
+            glStencilOpSeparate = GL.Instance.GetDelegateFor("glStencilOpSeparate", GLDelegates.typeof_void_uint_uint_uint_uint) as GLDelegates.void_uint_uint_uint_uint;
+        }
+
         /// <summary>
         /// 
         /// </summary>
         /// <param name="param"></param>
         public override void Act(ActionParams param)
         {
+            vec4 clearColor = this.Scene.ClearColor;
+            GL.Instance.ClearColor(clearColor.x, clearColor.y, clearColor.z, clearColor.w);
+            GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT | GL.GL_STENCIL_BUFFER_BIT);
+
             {
-                var arg = new RenderEventArgs(this.Scene, param);
+                this.colorMask.On();
+
+                var arg = new RenderEventArgs(this.Scene, param, this.Scene.Camera);
                 RenderDepthBuffer(this.Scene.RootElement, arg);
+
+                this.colorMask.Off();
             }
             this.depthMask.On();
 
@@ -50,32 +66,33 @@ namespace CSharpGL
                 // clear stencil buffer.
                 //GL.Instance.Clear(GL.GL_STENCIL_BUFFER_BIT); // this seems not working.
                 this.clearStencilNode.RenderBeforeChildren(null); // this helps clear stencil buffer because `glClear(GL_STENCIL_BUFFER_BIT);` doesn't work on my laptop.
-
+                this.colorMask.On();
                 {
                     GL.Instance.StencilFunc(GL.GL_ALWAYS, 0, 0xFF);
-                    GL.Instance.StencilOpSeparate(GL.GL_BACK, GL.GL_KEEP, GL.GL_INCR_WRAP, GL.GL_KEEP);
-                    GL.Instance.StencilOpSeparate(GL.GL_FRONT, GL.GL_KEEP, GL.GL_DECR_WRAP, GL.GL_KEEP);
+                    glStencilOpSeparate(GL.GL_BACK, GL.GL_KEEP, GL.GL_INCR_WRAP, GL.GL_KEEP);
+                    glStencilOpSeparate(GL.GL_FRONT, GL.GL_KEEP, GL.GL_DECR_WRAP, GL.GL_KEEP);
 
                     var arg = new ShadowVolumeEventArgs(this.Scene.Camera, light);
                     Extrude(this.Scene.RootElement, arg);
                 }
+                this.colorMask.Off();
+
                 {
                     // Draw only if the corresponding stencil value is zero
                     GL.Instance.StencilFunc(GL.GL_EQUAL, 0x0, 0xFF);
                     // prevent update to the stencil buffer
                     GL.Instance.StencilOp(GL.GL_KEEP, GL.GL_KEEP, GL.GL_KEEP);
 
-                    var arg = new RenderEventArgs(this.Scene, param);
+                    var arg = new RenderEventArgs(this.Scene, param, this.Scene.Camera);
                     RenderUnderLight(this.Scene.RootElement, arg, light);
                 }
             }
             this.stateList.Off();
 
             {
-                var arg = new RenderEventArgs(this.Scene, param);
+                var arg = new RenderEventArgs(this.Scene, param, this.Scene.Camera);
                 RenderAmbientColor(this.Scene.RootElement, arg);
             }
-
             this.depthMask.Off();
         }
 
