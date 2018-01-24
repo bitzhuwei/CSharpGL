@@ -28,7 +28,7 @@ namespace StencilShadowVolume
         {
             var rootElement = GetTree();
 
-            var position = new vec3(5, 3, 4);
+            var position = new vec3(5, 3, 4) * 3;
             var center = new vec3(0, 0, 0);
             var up = new vec3(0, 1, 0);
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
@@ -74,7 +74,17 @@ namespace StencilShadowVolume
 
         private SceneNodeBase GetTree()
         {
-            return SilhouetteNode.Create();
+            var light = new PointLight(new vec3());
+
+            var node = SilhouetteNode.Create();
+            node.SetLight(light);
+
+            var lightPositionNode = LightPositionNode.Create();
+            lightPositionNode.SetLight(light);
+
+            var group = new GroupNode(node, lightPositionNode);
+
+            return group;
         }
 
         private void winGLCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
