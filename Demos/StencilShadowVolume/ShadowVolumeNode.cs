@@ -44,7 +44,6 @@ namespace StencilShadowVolume
                 var array = new ShaderArray(vs, fs);
                 var map = new AttributeMap();
                 map.Add("inPosition", AdjacentTeapot.strPosition);
-                map.Add("inColor", AdjacentTeapot.strNormal);
                 ambientColorBufer = new RenderMethodBuilder(array, map);
             }
 

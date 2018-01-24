@@ -17,7 +17,6 @@ void main(void) {
 	gl_Position = mvpMat * vec4(inPosition, 1.0);
 }
 ";
-
         private const string extrudeVert = @"#version 330
 
 in vec3 Position;                                             
@@ -148,6 +147,7 @@ void main()
     FragColor = vec4(1, 1, 1, 1);
 }
 ";
+
         private const string underLightVert = @"#version 330
 
 in vec3 inPosition;

@@ -17,6 +17,9 @@
         }
 
         // Activator needs a non-parameter constructor.
+        /// <summary>
+        /// Toggle of depth mask.
+        /// </summary>
         public DepthMaskState() : this(true) { }
 
         /// <summary>

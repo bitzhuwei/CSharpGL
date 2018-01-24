@@ -137,6 +137,7 @@ void main()
     FragColor = vec4(1, 1, 1, 1);
 }
 ";
+
         private const string vertexCode = @"#version 330
 
 in vec3 inPosition;

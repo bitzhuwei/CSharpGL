@@ -51,6 +51,10 @@ namespace CSharpGL
             set { this.enableRendering = value; }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="arg"></param>
         public void RenderBeforeChildren(RenderEventArgs arg)
         {
             GL.Instance.ClearStencil(0x0);
@@ -69,6 +73,10 @@ namespace CSharpGL
             GL.Instance.DepthMask(true);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="arg"></param>
         public void RenderAfterChildren(RenderEventArgs arg)
         {
         }

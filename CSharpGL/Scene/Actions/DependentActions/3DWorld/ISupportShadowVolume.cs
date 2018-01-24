@@ -59,6 +59,9 @@ namespace CSharpGL
         /// </summary>
         public LightBase Light { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public ICamera Camera { get; set; }
     }
 }
