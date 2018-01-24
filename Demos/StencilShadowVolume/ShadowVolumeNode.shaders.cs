@@ -7,7 +7,16 @@ namespace StencilShadowVolume
 {
     partial class ShadowVolumeNode
     {
-        private const string depthBufferVert = @"";
+        private const string depthBufferVert = @"#version 330
+
+in vec3 inPosition;
+
+uniform mat4 mvpMat;
+
+void main(void) {
+	gl_Position = mvpMat * vec4(inPosition, 1.0);
+}
+";
 
         private const string extrudeVert = @"#version 330
 
@@ -172,7 +181,8 @@ uniform mat4 mvpMat;
 
 void main(void) {
 	gl_Position = mvpMat * vec4(inPosition, 1.0);
-}";
+}
+";
         private const string ambientFrag = @"#version 330
 
 uniform vec3 ambientColor;
@@ -181,6 +191,7 @@ out vec4 out_Color;
 
 void main(void) {
 	out_Color = vec4(ambientColor, 1.0);
-}";
+}
+";
     }
 }
