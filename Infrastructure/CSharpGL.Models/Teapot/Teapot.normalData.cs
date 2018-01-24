@@ -2,6 +2,17 @@
 {
     public partial class Teapot
     {
+        static Teapot()
+        {
+            var colors = new vec3[normalData.Length];
+            for (int i = 0; i < colors.Length; i++)
+            {
+                colors[i] = normalData[i].Abs();
+            }
+            colorData = colors;
+        }
+        internal static readonly vec3[] colorData;
+
         internal static readonly vec3[] normalData = new vec3[]
         {
 			new vec3(-0.9965981f, -0.07799086f, 0.02664215f),

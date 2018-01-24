@@ -38,7 +38,7 @@ namespace CSharpGL
             {
                 if (this.colorBuffer == null)
                 {
-                    this.colorBuffer = Teapot.normalData.GenVertexBuffer(VBOConfig.Vec3, BufferUsage.StaticDraw);
+                    this.colorBuffer = Teapot.colorData.GenVertexBuffer(VBOConfig.Vec3, BufferUsage.StaticDraw);
                 }
 
                 yield return this.colorBuffer;
