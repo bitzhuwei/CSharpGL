@@ -76,13 +76,13 @@ namespace StencilShadowVolume
         {
             var node1 = ShadowVolumeNode.Create();
 
-            //var node2 = ShadowVolumeNode.Create();
-            //node2.WorldPosition = new vec3(1, -1, 0);
+            var node2 = ShadowVolumeNode.Create();
+            node2.WorldPosition = new vec3(1, -1, 0) * 3;
 
-            //var node3 = ShadowVolumeNode.Create();
-            //node3.WorldPosition = new vec3(-1, -1, 0);
+            var node3 = ShadowVolumeNode.Create();
+            node3.WorldPosition = new vec3(-1, -1, 0) * 3;
 
-            var group = new GroupNode(node1);
+            var group = new GroupNode(node1, node2, node3);
 
             return group;
         }
