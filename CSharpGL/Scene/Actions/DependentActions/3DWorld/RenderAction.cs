@@ -37,9 +37,12 @@ namespace CSharpGL
             //int[] value = null;
             //value = new int[4];
             //GL.Instance.GetIntegerv((uint)GetTarget.ColorClearValue, value);
-            vec4 clearColor = this.Scene.ClearColor;
-            GL.Instance.ClearColor(clearColor.x, clearColor.y, clearColor.z, clearColor.w);
-            GL.Instance.Clear(this.ClearMask);
+            if (this.ClearMask != 0)
+            {
+                vec4 clearColor = this.Scene.ClearColor;
+                GL.Instance.ClearColor(clearColor.x, clearColor.y, clearColor.z, clearColor.w);
+                GL.Instance.Clear(this.ClearMask);
+            }
 
             var arg = new RenderEventArgs(this.Scene, param, this.Scene.Camera);
             Render(this.Scene.RootElement, arg);
