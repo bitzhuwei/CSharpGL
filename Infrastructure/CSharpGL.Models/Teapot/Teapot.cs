@@ -62,8 +62,8 @@ namespace CSharpGL
         {
             if (this.drawCmd == null)
             {
-                //var result = GenerateAdjacentFaces(Teapot.faceData);
-                //PirntAdjacentFaces(result);
+                var result = GenerateAdjacentFaces(Teapot.faceData);
+                PirntAdjacentFaces(result);
                 //AdjacentFace[] faces = Teapot.adjacentFaceData;
                 Face[] faces = Teapot.faceData;
                 IndexBuffer buffer = faces.GenIndexBuffer(IndexBufferElementType.UShort, BufferUsage.StaticDraw);
@@ -197,8 +197,16 @@ namespace CSharpGL
 
         public Edge(ushort v1, ushort v2)
         {
-            this.vertexId1 = v1;
-            this.vertexId2 = v2;
+            if (v1 <= v2)
+            {
+                this.vertexId1 = v1;
+                this.vertexId2 = v2;
+            }
+            else
+            {
+                this.vertexId1 = v2;
+                this.vertexId2 = v1;
+            }
         }
 
         public override string ToString()
