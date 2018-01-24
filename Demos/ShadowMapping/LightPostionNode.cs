@@ -10,7 +10,7 @@ namespace ShadowMapping
     /// <summary>
     /// Render a Cube with single color in modern opengl.
     /// </summary>
-    public class LightPostionNode : PickableNode
+    public class LightPostionNode : PickableNode, IRenderable
     {
         private const string inPosition = "inPosition";
         private const string projectionMatrix = "projectionMatrix";
@@ -78,7 +78,18 @@ void main(void) {
             this.Color = new vec4(1, 1, 1, 1);
         }
 
-        public override void RenderBeforeChildren(RenderEventArgs arg)
+        private ThreeFlags enableRendering = ThreeFlags.BeforeChildren | ThreeFlags.Children | ThreeFlags.AfterChildren;
+        /// <summary>
+        /// Render before/after children? Render children? 
+        /// RenderAction cares about this property. Other actions, maybe, maybe not, your choice.
+        /// </summary>
+        public ThreeFlags EnableRendering
+        {
+            get { return this.enableRendering; }
+            set { this.enableRendering = value; }
+        }
+
+        public void RenderBeforeChildren(RenderEventArgs arg)
         {
             if (!this.IsInitialized) { this.Initialize(); }
 
@@ -99,7 +110,7 @@ void main(void) {
             method.Render();
         }
 
-        public override void RenderAfterChildren(RenderEventArgs arg)
+        public void RenderAfterChildren(RenderEventArgs arg)
         {
         }
 

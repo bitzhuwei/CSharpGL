@@ -64,19 +64,7 @@ void main(void)
             this.ModelSize = model.GetModelSize();
         }
 
-        #region IRenderable 成员
-
         public float RotateSpeed { get; set; }
-
-        public override void RenderBeforeChildren(RenderEventArgs arg)
-        {
-        }
-
-        public override void RenderAfterChildren(RenderEventArgs arg)
-        {
-        }
-
-        #endregion
 
         #region IShadowMapping 成员
 

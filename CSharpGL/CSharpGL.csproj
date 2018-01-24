@@ -316,7 +316,6 @@
     <Compile Include="Scene\SceneNodes\ModernNode\ModernNode.cs" />
     <Compile Include="Scene\SceneNodes\ModernNode\ModernNode.IDisposable.cs" />
     <Compile Include="Scene\SceneNodes\ModernNode\ModernNode.DoInitialize.cs" />
-    <Compile Include="Scene\SceneNodes\ModernNode\ModernNode.IRenderable.cs" />
     <Compile Include="Scene\SceneNodes\ModernNode\ModernNode.Property.cs" />
     <Compile Include="Scene\SceneNodes\ModernNode\ModernNode.UniformArrays.cs" />
     <Compile Include="Scene\SceneNodes\ModernNode\ModernNode.Uniforms.cs" />

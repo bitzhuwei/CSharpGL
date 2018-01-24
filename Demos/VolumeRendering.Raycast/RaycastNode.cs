@@ -6,7 +6,7 @@ using System.Text;
 
 namespace VolumeRendering.Raycast
 {
-    public partial class RaycastNode : PickableNode
+    public partial class RaycastNode : PickableNode, IRenderable
     {
         /// <summary>
         /// 
@@ -69,7 +69,18 @@ namespace VolumeRendering.Raycast
             }
         }
 
-        public override void RenderBeforeChildren(RenderEventArgs arg)
+        private ThreeFlags enableRendering = ThreeFlags.BeforeChildren | ThreeFlags.Children | ThreeFlags.AfterChildren;
+        /// <summary>
+        /// Render before/after children? Render children? 
+        /// RenderAction cares about this property. Other actions, maybe, maybe not, your choice.
+        /// </summary>
+        public ThreeFlags EnableRendering
+        {
+            get { return this.enableRendering; }
+            set { this.enableRendering = value; }
+        }
+
+        public void RenderBeforeChildren(RenderEventArgs arg)
         {
             Viewport viewport = arg.Param.Viewport;
 
@@ -108,7 +119,7 @@ namespace VolumeRendering.Raycast
             }
         }
 
-        public override void RenderAfterChildren(RenderEventArgs arg)
+        public void RenderAfterChildren(RenderEventArgs arg)
         {
         }
 

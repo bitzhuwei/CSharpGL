@@ -3,7 +3,7 @@ using System.IO;
 
 namespace SimpleNoise.Sun
 {
-    partial class SimplexNoiseNode : PickableNode
+    partial class SimplexNoiseNode : PickableNode, IRenderable
     {
         public static SimplexNoiseNode Create()
         {

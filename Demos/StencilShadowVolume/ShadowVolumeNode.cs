@@ -6,7 +6,7 @@ using System.Text;
 
 namespace StencilShadowVolume
 {
-    partial class ShadowVolumeNode : ModernNode, ISupportShadowVolume
+    partial class ShadowVolumeNode : ModernNode, ISupportShadowVolume, IRenderable
     {
 
         public static ShadowVolumeNode Create()
@@ -60,7 +60,19 @@ namespace StencilShadowVolume
         //}
 
         private PolygonOffsetState fillOffsetState = new PolygonOffsetFillState(pullNear: false);
-        public override void RenderBeforeChildren(RenderEventArgs arg)
+
+        private ThreeFlags enableRendering = ThreeFlags.BeforeChildren | ThreeFlags.Children | ThreeFlags.AfterChildren;
+        /// <summary>
+        /// Render before/after children? Render children? 
+        /// RenderAction cares about this property. Other actions, maybe, maybe not, your choice.
+        /// </summary>
+        public ThreeFlags EnableRendering
+        {
+            get { return this.enableRendering; }
+            set { this.enableRendering = value; }
+        }
+
+        public void RenderBeforeChildren(RenderEventArgs arg)
         {
             if (!this.IsInitialized) { this.Initialize(); }
 
@@ -94,7 +106,7 @@ namespace StencilShadowVolume
             //}
         }
 
-        public override void RenderAfterChildren(RenderEventArgs arg)
+        public void RenderAfterChildren(RenderEventArgs arg)
         {
         }
 

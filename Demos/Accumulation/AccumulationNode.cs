@@ -6,7 +6,7 @@ using CSharpGL;
 
 namespace Accumulation
 {
-    partial class AccumulationNode : ModernNode
+    partial class AccumulationNode : ModernNode, IRenderable
     {
         public static AccumulationNode Create()
         {
@@ -34,7 +34,18 @@ namespace Accumulation
         {
         }
 
-        public override void RenderBeforeChildren(RenderEventArgs arg)
+        private ThreeFlags enableRendering = ThreeFlags.BeforeChildren | ThreeFlags.Children | ThreeFlags.AfterChildren;
+        /// <summary>
+        /// Render before/after children? Render children? 
+        /// RenderAction cares about this property. Other actions, maybe, maybe not, your choice.
+        /// </summary>
+        public ThreeFlags EnableRendering
+        {
+            get { return this.enableRendering; }
+            set { this.enableRendering = value; }
+        }
+
+        public void RenderBeforeChildren(RenderEventArgs arg)
         {
             ICamera camera = arg.CameraStack.Peek();
             mat4 projection = camera.GetProjectionMatrix();
@@ -69,7 +80,7 @@ namespace Accumulation
             GL.Instance.Accum(GL.GL_RETURN, 1.0f);
         }
 
-        public override void RenderAfterChildren(RenderEventArgs arg)
+        public void RenderAfterChildren(RenderEventArgs arg)
         {
         }
 

@@ -73,14 +73,6 @@ void main(void)
             this.Color = new vec4(1, 1, 1, 1);
         }
 
-        public override void RenderBeforeChildren(RenderEventArgs arg)
-        {
-        }
-
-        public override void RenderAfterChildren(RenderEventArgs arg)
-        {
-        }
-
         #region IShadowMapping 成员
 
         private bool enableShadowMapping = true;

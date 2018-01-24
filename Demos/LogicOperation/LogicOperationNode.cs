@@ -7,7 +7,7 @@ using System.ComponentModel;
 
 namespace LogicOperation
 {
-    partial class LogicOperationNode : PickableNode
+    partial class LogicOperationNode : PickableNode, IRenderable
     {
         private const string inPosition = "inPosition";
         private const string inUV = "inUV";
@@ -96,7 +96,18 @@ void main(void) {
             method.StateList.Add(this.state);
         }
 
-        public override void RenderBeforeChildren(RenderEventArgs arg)
+        private ThreeFlags enableRendering = ThreeFlags.BeforeChildren | ThreeFlags.Children | ThreeFlags.AfterChildren;
+        /// <summary>
+        /// Render before/after children? Render children? 
+        /// RenderAction cares about this property. Other actions, maybe, maybe not, your choice.
+        /// </summary>
+        public ThreeFlags EnableRendering
+        {
+            get { return this.enableRendering; }
+            set { this.enableRendering = value; }
+        }
+
+        public void RenderBeforeChildren(RenderEventArgs arg)
         {
             if (!this.IsInitialized) { this.Initialize(); }
 
@@ -115,7 +126,7 @@ void main(void) {
             method.Render();
         }
 
-        public override void RenderAfterChildren(RenderEventArgs arg)
+        public void RenderAfterChildren(RenderEventArgs arg)
         {
         }
 

@@ -8,7 +8,7 @@ namespace CSharpGL
     /// <summary>
     /// 
     /// </summary>
-    public partial class ObjVNFNode : PickableNode
+    public partial class ObjVNFNode : PickableNode, IRenderable
     {
         private const string inPosition = "position";
         private const string inNormal = "normal";
@@ -156,7 +156,18 @@ void main(void)
         /// </summary>
         public vec3 LightPosition { get; set; }
 
-        public override void RenderBeforeChildren(RenderEventArgs arg)
+        private ThreeFlags enableRendering = ThreeFlags.BeforeChildren | ThreeFlags.Children | ThreeFlags.AfterChildren;
+        /// <summary>
+        /// Render before/after children? Render children? 
+        /// RenderAction cares about this property. Other actions, maybe, maybe not, your choice.
+        /// </summary>
+        public ThreeFlags EnableRendering
+        {
+            get { return this.enableRendering; }
+            set { this.enableRendering = value; }
+        }
+
+        public void RenderBeforeChildren(RenderEventArgs arg)
         {
             if (!this.IsInitialized) { Initialize(); }
 
@@ -179,7 +190,7 @@ void main(void)
             method.Render();
         }
 
-        public override void RenderAfterChildren(RenderEventArgs arg)
+        public void RenderAfterChildren(RenderEventArgs arg)
         {
         }
     }

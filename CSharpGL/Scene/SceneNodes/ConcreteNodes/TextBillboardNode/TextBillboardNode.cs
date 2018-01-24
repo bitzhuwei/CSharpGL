@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -85,11 +86,28 @@ namespace CSharpGL
             program.SetUniform(textColor, this._color);
         }
 
+
+        #region IRenderable 成员
+
+        private ThreeFlags enableRendering = ThreeFlags.BeforeChildren | ThreeFlags.Children | ThreeFlags.AfterChildren;
+        /// <summary>
+        /// Render before/after children? Render children? 
+        /// RenderAction cares about this property. Other actions, maybe, maybe not, your choice.
+        /// </summary>
+        [Browsable(false)]
+        [Category("IRenderable")]
+        [Description("Render before/after children? Render children?")]
+        public ThreeFlags EnableRendering
+        {
+            get { return this.enableRendering; }
+            set { this.enableRendering = value; }
+        }
+
         /// <summary>
         /// 
         /// </summary>
         /// <param name="arg"></param>
-        public override void RenderBeforeChildren(RenderEventArgs arg)
+        public void RenderBeforeChildren(RenderEventArgs arg)
         {
             if (!this.IsInitialized) { Initialize(); }
 
@@ -114,9 +132,11 @@ namespace CSharpGL
         /// 
         /// </summary>
         /// <param name="arg"></param>
-        public override void RenderAfterChildren(RenderEventArgs arg)
+        public void RenderAfterChildren(RenderEventArgs arg)
         {
         }
+
+        #endregion
     }
 
 }

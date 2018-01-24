@@ -4,7 +4,7 @@ using System.IO;
 
 namespace ComputeShader.HelloComputeShader
 {
-    partial class SimpleComputeNode : ModernNode
+    partial class SimpleComputeNode : ModernNode, IRenderable
     {
         private Texture outputTexture;
 
@@ -112,7 +112,18 @@ namespace ComputeShader.HelloComputeShader
             base.DisposeUnmanagedResources();
         }
 
-        public override void RenderBeforeChildren(RenderEventArgs arg)
+        private ThreeFlags enableRendering = ThreeFlags.BeforeChildren | ThreeFlags.Children | ThreeFlags.AfterChildren;
+        /// <summary>
+        /// Render before/after children? Render children? 
+        /// RenderAction cares about this property. Other actions, maybe, maybe not, your choice.
+        /// </summary>
+        public ThreeFlags EnableRendering
+        {
+            get { return this.enableRendering; }
+            set { this.enableRendering = value; }
+        }
+
+        public void RenderBeforeChildren(RenderEventArgs arg)
         {
             // reset image
             {
@@ -149,7 +160,7 @@ namespace ComputeShader.HelloComputeShader
             }
         }
 
-        public override void RenderAfterChildren(RenderEventArgs arg)
+        public void RenderAfterChildren(RenderEventArgs arg)
         {
         }
     }
