@@ -19,6 +19,8 @@ namespace CSharpGL
         public const string strNormal = "normal";
         private VertexBuffer normalBuffer;
 
+        internal static readonly AdjacentFace[] adjacentFaceData;
+
         private IDrawCommand drawCmd;
 
         #region IBufferable 成员
@@ -62,8 +64,7 @@ namespace CSharpGL
         {
             if (this.drawCmd == null)
             {
-                AdjacentFace[] faces = Teapot.adjacentFaceData;
-                IndexBuffer buffer = faces.GenIndexBuffer(IndexBufferElementType.UShort, BufferUsage.StaticDraw);
+                IndexBuffer buffer = adjacentFaceData.GenIndexBuffer(IndexBufferElementType.UShort, BufferUsage.StaticDraw);
                 this.drawCmd = new DrawElementsCmd(buffer, DrawMode.TrianglesAdjacency);
             }
 
@@ -71,5 +72,10 @@ namespace CSharpGL
         }
 
         #endregion
+
+        static AdjacentTeapot()
+        {
+            adjacentFaceData = FaceHelper.CalculateAdjacentFaces(Teapot.faceData);
+        }
     }
 }
