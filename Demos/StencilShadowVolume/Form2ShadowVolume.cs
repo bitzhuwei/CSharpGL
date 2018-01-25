@@ -105,10 +105,9 @@ namespace StencilShadowVolume
             }
 
             {
-                var model = new AdjacentCubeModel();
+                var model = new AdjacentCubeModel(new vec3(40, 0.2f, 20));
                 var floor = ShadowVolumeNode.Create(model, AdjacentCubeModel.strPosition, AdjacentCubeModel.strColor, model.GetSize());
-                floor.Scale = new vec3(10, 0.2f, 10);
-                floor.WorldPosition = new vec3(0, -2, 0);
+                floor.WorldPosition = new vec3(0, -2.5f, 0);
                 group.Children.Add(floor);
             }
 

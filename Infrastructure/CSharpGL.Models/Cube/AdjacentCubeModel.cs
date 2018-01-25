@@ -39,6 +39,19 @@ namespace CSharpGL
             adjacentIndexes = FaceHelper.CalculateAdjacentFaces(indexes);
         }
 
+        private vec3[] instancePositions;
+        public AdjacentCubeModel() : this(new vec3(2, 2, 2)) { }
+        public AdjacentCubeModel(vec3 size)
+        {
+            size = size / 2;
+            var instancePositions = new vec3[positions.Length];
+            for (int i = 0; i < positions.Length; i++)
+            {
+                instancePositions[i] = positions[i] * size;
+            }
+            this.instancePositions = instancePositions;
+        }
+
         public const string strPosition = "position";
         private VertexBuffer positionBuffer;
         public const string strColor = "color";
@@ -54,7 +67,7 @@ namespace CSharpGL
             {
                 if (this.positionBuffer == null)
                 {
-                    this.positionBuffer = positions.GenVertexBuffer(VBOConfig.Vec3, BufferUsage.StaticDraw);
+                    this.positionBuffer = this.instancePositions.GenVertexBuffer(VBOConfig.Vec3, BufferUsage.StaticDraw);
                 }
 
                 yield return this.positionBuffer;

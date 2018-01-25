@@ -61,7 +61,8 @@ namespace StencilShadowVolume
 
         #region ISupportShadowVolume 成员
 
-        public TwoFlags EnableShadowVolume { get { return TwoFlags.BeforeChildren | TwoFlags.Children; } set { } }
+        private TwoFlags enableShadowVolume = TwoFlags.BeforeChildren | TwoFlags.Children;
+        public TwoFlags EnableShadowVolume { get { return this.enableShadowVolume; } set { this.enableShadowVolume = value; } }
 
         public void RenderToDepthBuffer(RenderEventArgs arg)
         {
@@ -76,6 +77,9 @@ namespace StencilShadowVolume
 
             method.Render();
         }
+
+        private bool enableExtrude = true;
+        public bool EnableExtrude { get { return this.enableExtrude; } set { this.enableExtrude = value; } }
 
         private PolygonOffsetState fillFarOffsetState = new PolygonOffsetFillState(pullNear: false);
         private PolygonOffsetState fillNearOffsetState = new PolygonOffsetFillState(pullNear: true);

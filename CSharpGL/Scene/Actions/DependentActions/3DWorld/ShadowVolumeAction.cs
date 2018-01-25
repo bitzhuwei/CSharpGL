@@ -171,7 +171,10 @@ namespace CSharpGL
 
                 if (before)
                 {
-                    node.ExtrudeShadow(arg);
+                    if (node.EnableExtrude)
+                    {
+                        node.ExtrudeShadow(arg);
+                    }
                 }
 
                 if (children)

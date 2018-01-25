@@ -76,7 +76,7 @@ namespace StencilShadowVolume
         {
             if (!this.IsInitialized) { this.Initialize(); }
 
-            this.RotationAngle += 1f;
+            //this.RotationAngle += 1f;
 
             ICamera camera = arg.CameraStack.Peek();
             mat4 projection = camera.GetProjectionMatrix();

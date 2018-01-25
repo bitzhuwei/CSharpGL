@@ -12,7 +12,7 @@ namespace CSharpGL
     public interface ISupportShadowVolume
     {
         /// <summary>
-        /// Is extruding shadow enabled for this object and its children?
+        /// Is shadow volume technique for this object and its children?
         /// </summary>
         TwoFlags EnableShadowVolume { get; set; }
 
@@ -21,6 +21,11 @@ namespace CSharpGL
         /// </summary>
         /// <param name="arg"></param>
         void RenderToDepthBuffer(RenderEventArgs arg);
+
+        /// <summary>
+        /// Is extruding shadow enabled for this object?
+        /// </summary>
+        bool EnableExtrude { get; set; }
 
         /// <summary>
         /// Extrude shadow volume for stencil operation.

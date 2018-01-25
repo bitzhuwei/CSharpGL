@@ -50,13 +50,14 @@ void main(void) {
         /// <returns></returns>
         public static LightPositionNode Create()
         {
+            var model = new Sphere(0.3f);
             var vs = new VertexShader(vertexCode);
             var fs = new FragmentShader(fragmentCode);
             var provider = new ShaderArray(vs, fs);
             var map = new AttributeMap();
-            map.Add(inPosition, CubeModel.strPosition);
-            var builder = new RenderMethodBuilder(provider, map, new PolygonModeState(PolygonMode.Line), new LineWidthState(3));
-            var node = new LightPositionNode(new CubeModel(), CubeModel.strPosition, builder);
+            map.Add(inPosition, Sphere.strPosition);
+            var builder = new RenderMethodBuilder(provider, map, new PolygonModeState(PolygonMode.Line));
+            var node = new LightPositionNode(model, Sphere.strPosition, builder);
             node.Initialize();
 
             return node;
@@ -98,8 +99,8 @@ void main(void) {
 
             if (this.AutoRotate)
             {
-                float delta = 1;
-                this.RotationAngle += delta * 31;
+                float delta = 30;
+                this.RotationAngle += delta;
                 var position = new vec3(
                     (float)Math.Cos(this.RotationAngle / 5 * Math.PI / 180.0),
                     (float)Math.Cos(this.RotationAngle / 50 * Math.PI / 180.0) + 1.2f,
