@@ -19,7 +19,7 @@ namespace StencilShadowVolume
                 var array = new ShaderArray(vs, gs, fs);
                 var map = new AttributeMap();
                 map.Add("Position", position);
-                extrudVolumeBuilder = new RenderMethodBuilder(array, map, new PolygonModeState(PolygonMode.Line));
+                extrudVolumeBuilder = new RenderMethodBuilder(array, map);//, new PolygonModeState(PolygonMode.Line));
             }
             {
                 var vs = new VertexShader(vertexCode);

@@ -24,14 +24,14 @@ namespace StencilShadowVolume
                 Application.Run(new Form1ExtrudeVolume(info));
                 Application.Run(new Form2ShadowVolume(info));
             }
-            {
-                IModelProvider provider = new AdjacentTeapotProvider();
-                var info = new ModelInfo(provider, AdjacentTeapot.strPosition, AdjacentTeapot.strColor, provider.Size);
-                //Application.Run(new FormAdjacentTriangles(info));
-                Application.Run(new Form0SilhouetteDetection(info));
-                Application.Run(new Form1ExtrudeVolume(info));
-                Application.Run(new Form2ShadowVolume(info));
-            }
+            //{
+            //    IModelProvider provider = new AdjacentTeapotProvider();
+            //    var info = new ModelInfo(provider, AdjacentTeapot.strPosition, AdjacentTeapot.strColor, provider.Size);
+            //    //Application.Run(new FormAdjacentTriangles(info));
+            //    Application.Run(new Form0SilhouetteDetection(info));
+            //    Application.Run(new Form1ExtrudeVolume(info));
+            //    Application.Run(new Form2ShadowVolume(info));
+            //}
         }
     }
 
