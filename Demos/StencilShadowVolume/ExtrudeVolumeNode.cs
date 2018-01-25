@@ -91,7 +91,9 @@ namespace StencilShadowVolume
                 program.SetUniform("gWorld", model);
                 program.SetUniform("gLightPos", this.light.Position);
 
+                fillOffsetState.On();
                 method.Render(ControlMode.ByFrame);
+                fillOffsetState.Off();
             }
 
             if (this.RenderBody)
@@ -100,9 +102,7 @@ namespace StencilShadowVolume
                 ShaderProgram program = method.Program;
                 program.SetUniform("mvpMat", projection * view * model);
 
-                fillOffsetState.On();
                 method.Render(ControlMode.Random);
-                fillOffsetState.Off();
             }
         }
 

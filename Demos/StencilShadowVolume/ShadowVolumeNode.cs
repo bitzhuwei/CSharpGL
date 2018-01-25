@@ -77,6 +77,8 @@ namespace StencilShadowVolume
             method.Render();
         }
 
+        private PolygonOffsetState fillFarOffsetState = new PolygonOffsetFillState(pullNear: false);
+        private PolygonOffsetState fillNearOffsetState = new PolygonOffsetFillState(pullNear: true);
         public void ExtrudeShadow(ShadowVolumeEventArgs arg)
         {
             ICamera camera = arg.Camera;
@@ -90,7 +92,9 @@ namespace StencilShadowVolume
             program.SetUniform("gWorld", model);
             program.SetUniform("gLightPos", arg.Light.Position);// TODO: This is how point light works. I need to deal with directional light, etc.
 
+            fillFarOffsetState.On();
             method.Render();
+            fillFarOffsetState.Off();
         }
 
         public void RenderUnderLight(RenderEventArgs arg, LightBase light)
@@ -104,7 +108,9 @@ namespace StencilShadowVolume
             ShaderProgram program = method.Program;
             program.SetUniform("mvpMat", projection * view * model);
 
+            //fillNearOffsetState.On();
             method.Render();
+            //fillNearOffsetState.Off();
         }
 
         public void RenderAmbientColor(RenderEventArgs arg)

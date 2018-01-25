@@ -77,18 +77,33 @@ namespace StencilShadowVolume
 
         private SceneNodeBase GetTree()
         {
+            var group = new GroupNode();
+
             var light = new PointLight(new vec3());
 
-            var node = ExtrudeVolumeNode.Create(this.modelInfo.modelProvider.Model,
-                this.modelInfo.position,
-                this.modelInfo.color,
-                this.modelInfo.size);
-            node.SetLight(light);
+            {
+                var node = ExtrudeVolumeNode.Create(this.modelInfo.modelProvider.Model,
+                    this.modelInfo.position,
+                    this.modelInfo.color,
+                    this.modelInfo.size);
+                node.SetLight(light);
+                group.Children.Add(node);
+            }
 
-            var lightPositionNode = LightPositionNode.Create();
-            lightPositionNode.SetLight(light);
+            {
+                var model = new AdjacentCubeModel();
+                var floor = ExtrudeVolumeNode.Create(model, AdjacentCubeModel.strPosition, AdjacentCubeModel.strColor, model.GetSize());
+                floor.SetLight(light);
+                floor.Scale = new vec3(10, 0.2f, 10);
+                floor.WorldPosition = new vec3(0, -2, 0);
+                group.Children.Add(floor);
+            }
 
-            var group = new GroupNode(node, lightPositionNode);
+            {
+                var lightPositionNode = LightPositionNode.Create();
+                lightPositionNode.SetLight(light);
+                group.Children.Add(lightPositionNode);
+            }
 
             return group;
         }
