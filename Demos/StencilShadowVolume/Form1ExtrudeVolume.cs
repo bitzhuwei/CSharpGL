@@ -14,10 +14,13 @@ namespace StencilShadowVolume
     {
         private Scene scene;
         private ActionList actionList;
+        private ModelInfo modelInfo;
 
-        public Form1ExtrudeVolume()
+        public Form1ExtrudeVolume(ModelInfo modelInfo)
         {
             InitializeComponent();
+
+            this.modelInfo = modelInfo;
 
             this.Load += FormMain_Load;
             this.winGLCanvas1.OpenGLDraw += winGLCanvas1_OpenGLDraw;
@@ -76,7 +79,10 @@ namespace StencilShadowVolume
         {
             var light = new PointLight(new vec3());
 
-            var node = ExtrudeVolumeNode.Create();
+            var node = ExtrudeVolumeNode.Create(this.modelInfo.modelProvider.Model,
+                this.modelInfo.position,
+                this.modelInfo.color,
+                this.modelInfo.size);
             node.SetLight(light);
 
             var lightPositionNode = LightPositionNode.Create();

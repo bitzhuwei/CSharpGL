@@ -9,9 +9,8 @@ namespace StencilShadowVolume
     partial class SilhouetteNode : ModernNode, IRenderable
     {
 
-        public static SilhouetteNode Create()
+        public static SilhouetteNode Create(IBufferSource model, string position, string color, vec3 size)
         {
-            var model = new AdjacentTeapot();
             RenderMethodBuilder silhouetteBuilder, regularBuilder;
             {
                 var vs = new VertexShader(silhouetteVert);
@@ -19,7 +18,7 @@ namespace StencilShadowVolume
                 var fs = new FragmentShader(silhouetteFrag);
                 var array = new ShaderArray(vs, gs, fs);
                 var map = new AttributeMap();
-                map.Add("Position", AdjacentTeapot.strPosition);
+                map.Add("Position", position);
                 silhouetteBuilder = new RenderMethodBuilder(array, map, new LineWidthState(3));
             }
             {
@@ -27,14 +26,14 @@ namespace StencilShadowVolume
                 var fs = new FragmentShader(fragmentCode);
                 var array = new ShaderArray(vs, fs);
                 var map = new AttributeMap();
-                map.Add("inPosition", AdjacentTeapot.strPosition);
-                map.Add("inColor", AdjacentTeapot.strNormal);
+                map.Add("inPosition", position);
+                map.Add("inColor", color);
                 regularBuilder = new RenderMethodBuilder(array, map);
             }
 
             var node = new SilhouetteNode(model, silhouetteBuilder, regularBuilder);
             node.Initialize();
-            node.ModelSize = model.GetModelSize();
+            node.ModelSize = size;
 
             return node;
         }

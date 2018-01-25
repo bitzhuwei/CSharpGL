@@ -9,16 +9,15 @@ namespace StencilShadowVolume
     partial class ShadowVolumeNode : ModernNode, ISupportShadowVolume
     {
 
-        public static ShadowVolumeNode Create()
+        public static ShadowVolumeNode Create(IBufferSource model, string position, string color, vec3 size)
         {
-            var model = new AdjacentTeapot();
             RenderMethodBuilder depthBufferBuilder, extrudeBuilder, underLightBuilder, ambientColorBufer;
             {
                 var vs = new VertexShader(depthBufferVert);
                 var fs = new FragmentShader(depthBufferFrag);
                 var array = new ShaderArray(vs, fs);
                 var map = new AttributeMap();
-                map.Add("inPosition", AdjacentTeapot.strPosition);
+                map.Add("inPosition", position);
                 depthBufferBuilder = new RenderMethodBuilder(array, map);
             }
             {
@@ -27,7 +26,7 @@ namespace StencilShadowVolume
                 var fs = new FragmentShader(extrudeFrag);
                 var array = new ShaderArray(vs, gs, fs);
                 var map = new AttributeMap();
-                map.Add("Position", AdjacentTeapot.strPosition);
+                map.Add("Position", position);
                 extrudeBuilder = new RenderMethodBuilder(array, map);
             }
             {
@@ -35,8 +34,8 @@ namespace StencilShadowVolume
                 var fs = new FragmentShader(underLightFrag);
                 var array = new ShaderArray(vs, fs);
                 var map = new AttributeMap();
-                map.Add("inPosition", AdjacentTeapot.strPosition);
-                map.Add("inColor", AdjacentTeapot.strColor);
+                map.Add("inPosition", position);
+                map.Add("inColor", color);
                 underLightBuilder = new RenderMethodBuilder(array, map);
             }
             {
@@ -44,13 +43,13 @@ namespace StencilShadowVolume
                 var fs = new FragmentShader(ambientFrag);
                 var array = new ShaderArray(vs, fs);
                 var map = new AttributeMap();
-                map.Add("inPosition", AdjacentTeapot.strPosition);
+                map.Add("inPosition", position);
                 ambientColorBufer = new RenderMethodBuilder(array, map);
             }
 
             var node = new ShadowVolumeNode(model, depthBufferBuilder, extrudeBuilder, underLightBuilder, ambientColorBufer);
             node.Initialize();
-            node.ModelSize = model.GetModelSize();
+            node.ModelSize = size;
 
             return node;
         }

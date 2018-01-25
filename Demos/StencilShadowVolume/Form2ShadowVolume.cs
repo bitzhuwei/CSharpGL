@@ -14,10 +14,13 @@ namespace StencilShadowVolume
     {
         private Scene scene;
         private ActionList actionList;
+        private ModelInfo modelInfo;
 
-        public Form2ShadowVolume()
+        public Form2ShadowVolume(ModelInfo modelInfo)
         {
             InitializeComponent();
+
+            this.modelInfo = modelInfo;
 
             this.Load += FormMain_Load;
             this.winGLCanvas1.OpenGLDraw += winGLCanvas1_OpenGLDraw;
@@ -77,12 +80,22 @@ namespace StencilShadowVolume
 
         private SceneNodeBase GetTree(PointLight light)
         {
-            var node1 = ShadowVolumeNode.Create();
+            var model = this.modelInfo.modelProvider.Model;
+            var node1 = ShadowVolumeNode.Create(model,
+                this.modelInfo.position,
+                this.modelInfo.color,
+                this.modelInfo.size);
 
-            var node2 = ShadowVolumeNode.Create();
+            var node2 = ShadowVolumeNode.Create(model,
+                this.modelInfo.position,
+                this.modelInfo.color,
+                this.modelInfo.size);
             node2.WorldPosition = new vec3(1, -1, 0) * 3;
 
-            var node3 = ShadowVolumeNode.Create();
+            var node3 = ShadowVolumeNode.Create(model,
+                this.modelInfo.position,
+                this.modelInfo.color,
+                this.modelInfo.size);
             node3.WorldPosition = new vec3(-1, -1, 0) * 3;
 
             var lightPositionNode = LightPositionNode.Create();

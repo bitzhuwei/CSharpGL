@@ -14,10 +14,13 @@ namespace StencilShadowVolume
     {
         private Scene scene;
         private ActionList actionList;
+        private ModelInfo modelInfo;
 
-        public FormAdjacentTriangles()
+        public FormAdjacentTriangles(ModelInfo modelInfo)
         {
             InitializeComponent();
+
+            this.modelInfo = modelInfo;
 
             this.Load += FormMain_Load;
             this.winGLCanvas1.OpenGLDraw += winGLCanvas1_OpenGLDraw;
@@ -74,8 +77,11 @@ namespace StencilShadowVolume
 
         private SceneNodeBase GetTree()
         {
-            var model = new AdjacentCubeModel();
-            return AjdacentTrianglesNode.Create(model, AdjacentCubeModel.strPosition, AdjacentCubeModel.strColor, model.GetSize());
+            return AjdacentTrianglesNode.Create(
+                this.modelInfo.modelProvider.Model,
+                this.modelInfo.position,
+                this.modelInfo.color,
+                this.modelInfo.size);
         }
 
         private void winGLCanvas1_OpenGLDraw(object sender, PaintEventArgs e)

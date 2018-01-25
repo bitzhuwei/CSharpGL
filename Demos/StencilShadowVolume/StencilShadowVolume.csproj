@@ -43,6 +43,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormAdjacentTriangles.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAdjacentTriangles.Designer.cs">
+      <DependentUpon>FormAdjacentTriangles.cs</DependentUpon>
+    </Compile>
     <Compile Include="LightPositionNode.cs" />
     <Compile Include="ShadowVolumeNode.cs" />
     <Compile Include="ShadowVolumeNode.shaders.cs" />
@@ -74,8 +80,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ExtrudeVolumeNode.cs" />
     <Compile Include="ExtrudeVolumeNode.shaders.cs" />
+    <Compile Include="AjdacentTrianglesNode.cs" />
+    <Compile Include="AjdacentTrianglesNode.shaders.cs" />
     <Compile Include="SilhouetteNode.shaders.cs" />
     <Compile Include="SilhouetteNode.cs" />
+    <EmbeddedResource Include="FormAdjacentTriangles.resx">
+      <DependentUpon>FormAdjacentTriangles.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form2ShadowVolume.resx">
       <DependentUpon>Form2ShadowVolume.cs</DependentUpon>
     </EmbeddedResource>
