@@ -8,11 +8,12 @@
     {
         private int[] originalPolygonMode = new int[1];
 
+        // Activator needs a non-parameter constructor.
         /// <summary>
         /// This function sets what defines a front face. Counter ClockWise by default.
         /// <para>作用是控制多边形的正面是如何决定的。在默认情况下，mode是GL_CCW。</para>
         /// </summary>
-        public FrontFaceState() : this(FrontFaceMode.CW) { }
+        public FrontFaceState() : this(FrontFaceMode.CCW) { }
 
         /// <summary>
         /// This function sets what defines a front face. Counter ClockWise by default.

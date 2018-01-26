@@ -5,12 +5,12 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 
-namespace DirectionalLight
+namespace StencilShadowVolume
 {
     /// <summary>
     /// Render a Cube with single color in modern opengl.
     /// </summary>
-    public class LightPostionNode : PickableNode
+    public class LightPositionNode : PickableNode, IRenderable
     {
         private const string inPosition = "inPosition";
         private const string projectionMatrix = "projectionMatrix";
@@ -42,21 +42,22 @@ void main(void) {
     out_Color = vec4(color, 1);
 }
 ";
-        private CSharpGL.DirectionalLight light;
+        private CSharpGL.PointLight light;
 
         /// <summary>
         /// Render propeller in modern opengl.
         /// </summary>
         /// <returns></returns>
-        public static LightPostionNode Create()
+        public static LightPositionNode Create()
         {
+            var model = new Sphere(0.3f);
             var vs = new VertexShader(vertexCode);
             var fs = new FragmentShader(fragmentCode);
             var provider = new ShaderArray(vs, fs);
             var map = new AttributeMap();
-            map.Add(inPosition, CubeModel.strPosition);
-            var builder = new RenderMethodBuilder(provider, map, new PolygonModeState(PolygonMode.Line), new LineWidthState(3));
-            var node = new LightPostionNode(new CubeModel(), CubeModel.strPosition, builder);
+            map.Add(inPosition, Sphere.strPosition);
+            var builder = new RenderMethodBuilder(provider, map, new PolygonModeState(PolygonMode.Line));
+            var node = new LightPositionNode(model, Sphere.strPosition, builder);
             node.Initialize();
 
             return node;
@@ -65,7 +66,7 @@ void main(void) {
         /// <summary>
         /// Render propeller in legacy opengl.
         /// </summary>
-        private LightPostionNode(IBufferSource model, string positionNameInIBufferable, params RenderMethodBuilder[] builders)
+        private LightPositionNode(IBufferSource model, string positionNameInIBufferable, params RenderMethodBuilder[] builders)
             : base(model, positionNameInIBufferable, builders)
         {
             this.ModelSize = new vec3(1, 1, 1) * 0.3f;
@@ -76,24 +77,35 @@ void main(void) {
         /// 
         /// </summary>
         public bool AutoRotate { get; set; }
+
+        private ThreeFlags enableRendering = ThreeFlags.BeforeChildren | ThreeFlags.Children | ThreeFlags.AfterChildren;
+        /// <summary>
+        /// Render before/after children? Render children? 
+        /// RenderAction cares about this property. Other actions, maybe, maybe not, your choice.
+        /// </summary>
+        public ThreeFlags EnableRendering
+        {
+            get { return this.enableRendering; }
+            set { this.enableRendering = value; }
+        }
+
         /// <summary>
         /// 
         /// </summary>
         /// <param name="arg"></param>
-        public override void RenderBeforeChildren(RenderEventArgs arg)
+        public void RenderBeforeChildren(RenderEventArgs arg)
         {
             if (!this.IsInitialized) { this.Initialize(); }
 
             if (this.AutoRotate)
             {
-                float delta = 1;
-                this.RotationAngle += delta * 31;
+                float delta = 30;
+                this.RotationAngle += delta;
                 var position = new vec3(
                     (float)Math.Cos(this.RotationAngle / 5 * Math.PI / 180.0),
-                    (float)Math.Cos(this.RotationAngle / 50 * Math.PI / 180.0),
-                    (float)Math.Sin(this.RotationAngle / 5 * Math.PI / 180.0)) * 9;
+                    (float)Math.Cos(this.RotationAngle / 50 * Math.PI / 180.0) + 1.2f,
+                    (float)Math.Sin(this.RotationAngle / 5 * Math.PI / 180.0)) * 6;
                 this.light.Position = position;
-                this.light.Direction = position;
                 this.WorldPosition = position;
             }
 
@@ -111,11 +123,11 @@ void main(void) {
             method.Render();
         }
 
-        public override void RenderAfterChildren(RenderEventArgs arg)
+        public void RenderAfterChildren(RenderEventArgs arg)
         {
         }
 
-        public void SetLight(CSharpGL.DirectionalLight light)
+        public void SetLight(CSharpGL.PointLight light)
         {
             this.light = light;
         }
@@ -172,22 +184,22 @@ void main(void) {
             /// four vertexes.
             /// </summary>
             private static readonly vec3[] positions = new vec3[]
-            {
-                new vec3(+xLength, +yLength, +zLength),//  0
-                new vec3(+xLength, -yLength, +zLength),//  1
-                new vec3(+xLength, +yLength, -zLength),//  2
-                new vec3(+xLength, -yLength, -zLength),//  3
-                new vec3(-xLength, -yLength, -zLength),//  4
-                new vec3(+xLength, -yLength, +zLength),//  5
-                new vec3(-xLength, -yLength, +zLength),//  6
-                new vec3(+xLength, +yLength, +zLength),//  7
-                new vec3(-xLength, +yLength, +zLength),//  8
-                new vec3(+xLength, +yLength, -zLength),//  9
-                new vec3(-xLength, +yLength, -zLength),// 10
-                new vec3(-xLength, -yLength, -zLength),// 11
-                new vec3(-xLength, +yLength, +zLength),// 12
-                new vec3(-xLength, -yLength, +zLength),// 13
-            };
+        {
+            new vec3(+xLength, +yLength, +zLength),//  0
+            new vec3(+xLength, -yLength, +zLength),//  1
+            new vec3(+xLength, +yLength, -zLength),//  2
+            new vec3(+xLength, -yLength, -zLength),//  3
+            new vec3(-xLength, -yLength, -zLength),//  4
+            new vec3(+xLength, -yLength, +zLength),//  5
+            new vec3(-xLength, -yLength, +zLength),//  6
+            new vec3(+xLength, +yLength, +zLength),//  7
+            new vec3(-xLength, +yLength, +zLength),//  8
+            new vec3(+xLength, +yLength, -zLength),//  9
+            new vec3(-xLength, +yLength, -zLength),// 10
+            new vec3(-xLength, -yLength, -zLength),// 11
+            new vec3(-xLength, +yLength, +zLength),// 12
+            new vec3(-xLength, -yLength, +zLength),// 13
+        };
         }
     }
 }

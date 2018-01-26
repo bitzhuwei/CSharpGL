@@ -7,6 +7,7 @@ namespace CSharpGL
     /// </summary>
     public class AlphaFuncState : EnableState
     {
+        // Activator needs a non-parameter constructor.
         /// <summary>
         /// specify the alpha test function.
         /// </summary>

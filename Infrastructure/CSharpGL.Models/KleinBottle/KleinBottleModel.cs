@@ -210,7 +210,7 @@ namespace CSharpGL
                     array[index++] = uint.MaxValue;// primitive restart index.
                 }
                 IndexBuffer buffer = array.GenIndexBuffer(BufferUsage.StaticDraw);
-                this.drawCmd = new DrawElementsCmd(buffer, DrawMode.LineStrip);
+                this.drawCmd = new DrawElementsCmd(buffer, DrawMode.LineStrip, uint.MaxValue);
             }
 
             yield return this.drawCmd;

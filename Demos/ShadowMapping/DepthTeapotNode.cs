@@ -9,7 +9,7 @@ namespace ShadowMapping
     /// <summary>
     /// render a teapot only with vertex shader.
     /// </summary>
-    class DepthTeapotNode : ModernNode, IShadowMapping
+    class DepthTeapotNode : ModernNode, ISupportShadowMapping
     {
         private const string inPosition = "inPosition";
         private const string mvpMatrix = "mvpMatrix";
@@ -64,19 +64,7 @@ void main(void)
             this.ModelSize = model.GetModelSize();
         }
 
-        #region IRenderable 成员
-
         public float RotateSpeed { get; set; }
-
-        public override void RenderBeforeChildren(RenderEventArgs arg)
-        {
-        }
-
-        public override void RenderAfterChildren(RenderEventArgs arg)
-        {
-        }
-
-        #endregion
 
         #region IShadowMapping 成员
 

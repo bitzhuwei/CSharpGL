@@ -7,6 +7,7 @@
     {
         private int[] originalPolygonMode = new int[2];
 
+        // Activator needs a non-parameter constructor.
         /// <summary>
         ///
         /// </summary>

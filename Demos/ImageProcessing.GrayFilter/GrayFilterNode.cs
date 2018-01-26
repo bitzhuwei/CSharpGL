@@ -7,7 +7,7 @@ using System.Drawing;
 
 namespace ImageProcessing.GrayFilter
 {
-    partial class GrayFilterNode : PickableNode
+    partial class GrayFilterNode : PickableNode, IRenderable
     {
         public static GrayFilterNode Create()
         {
@@ -63,7 +63,19 @@ namespace ImageProcessing.GrayFilter
             ShaderProgram program = method.Program;
             program.SetUniform("u_texture", texture);
         }
-        public override void RenderBeforeChildren(RenderEventArgs arg)
+
+        private ThreeFlags enableRendering = ThreeFlags.BeforeChildren | ThreeFlags.Children | ThreeFlags.AfterChildren;
+        /// <summary>
+        /// Render before/after children? Render children? 
+        /// RenderAction cares about this property. Other actions, maybe, maybe not, your choice.
+        /// </summary>
+        public ThreeFlags EnableRendering
+        {
+            get { return this.enableRendering; }
+            set { this.enableRendering = value; }
+        }
+
+        public void RenderBeforeChildren(RenderEventArgs arg)
         {
             ICamera camera = arg.CameraStack.Peek();
             mat4 projection = camera.GetProjectionMatrix();
@@ -77,7 +89,7 @@ namespace ImageProcessing.GrayFilter
             method.Render();
         }
 
-        public override void RenderAfterChildren(RenderEventArgs arg)
+        public void RenderAfterChildren(RenderEventArgs arg)
         {
         }
     }

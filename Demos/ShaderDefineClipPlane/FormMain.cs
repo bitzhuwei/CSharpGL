@@ -101,6 +101,7 @@ namespace ShaderDefineClipPlane
             this.clippedCube = ClippedCubeNode.Create(texture);
             this.transparentPlane = TransparentPlaneNode.Create();
             transparentPlane.Scale = new vec3(1, 1, 1);
+            transparentPlane.WorldPosition = new vec3(0, -0.1f, 0);
             var group = new GroupNode(clippedCube, transparentPlane);
 
             return group;
@@ -111,6 +112,10 @@ namespace ShaderDefineClipPlane
             ActionList list = this.actionList;
             if (list != null)
             {
+                vec4 clearColor = this.scene.ClearColor;
+                GL.Instance.ClearColor(clearColor.x, clearColor.y, clearColor.z, clearColor.w);
+                GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT | GL.GL_STENCIL_BUFFER_BIT);
+
                 list.Act(new ActionParams(Viewport.GetCurrent()));
             }
         }

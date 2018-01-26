@@ -7,6 +7,7 @@ namespace CSharpGL
     /// </summary>
     public class LineStippleState : EnableState
     {
+        // Activator needs a non-parameter constructor.
         /// <summary>
         /// Dashed line.
         /// </summary>

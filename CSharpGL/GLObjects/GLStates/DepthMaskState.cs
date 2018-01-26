@@ -5,7 +5,7 @@
     /// </summary>
     public class DepthMaskState : GLState
     {
-        private bool writable = false;
+        private bool writable = true;
 
         /// <summary>
         ///  Writable when this switch is turned on?
@@ -16,11 +16,17 @@
             set { writable = value; }
         }
 
+        // Activator needs a non-parameter constructor.
+        /// <summary>
+        /// Toggle of depth mask.
+        /// </summary>
+        public DepthMaskState() : this(true) { }
+
         /// <summary>
         /// Toggle of depth mask.
         /// </summary>
         /// <param name="writable">Writable when this switch is turned on?</param>
-        public DepthMaskState(bool writable = false)
+        public DepthMaskState(bool writable)
         {
             this.Writable = writable;
         }

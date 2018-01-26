@@ -5,11 +5,17 @@
     /// </summary>
     public class DepthTestState : EnableState
     {
+        // Activator needs a non-parameter constructor.
+        /// <summary>
+        /// 
+        /// </summary>
+        public DepthTestState() : this(true) { }
+
         /// <summary>
         ///
         /// </summary>
         /// <param name="enableCapacity">true for enable, false for disable</param>
-        public DepthTestState(bool enableCapacity = true)
+        public DepthTestState(bool enableCapacity)
             : base(GL.GL_DEPTH_TEST, enableCapacity)
         { }
 

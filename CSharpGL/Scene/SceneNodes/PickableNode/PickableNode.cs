@@ -12,10 +12,10 @@ namespace CSharpGL
         //private readonly IBufferSource model;
 
         /// <summary>
-        /// 支持"拾取"的渲染器
+        /// Scene node that supports 'Color-Coded-Picking'.
         /// </summary>
-        /// <param name="model">vertex shader种描述顶点位置信息的in变量的名字</param>
-        ///<param name="positionNameInIBufferSource"></param>
+        ///<param name="model">Only <see cref="DrawArraysCmd"/> and <see cref="DrawElementsCmd"/> are supported as <see cref="IDrawCommand"/>.</param>
+        /// <param name="positionNameInIBufferSource">The 'in' variable name which represents position buffer vertex shader.</param>
         ///<param name="builders"></param>
         public PickableNode(IBufferSource model, string positionNameInIBufferSource, params RenderMethodBuilder[] builders)
             : base(model, builders)

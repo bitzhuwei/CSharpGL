@@ -7,6 +7,7 @@
     {
         private int[] original = new int[4];
 
+        // Activator needs a non-parameter constructor.
         /// <summary>
         /// set and reset viewport using glViewport();
         /// </summary>

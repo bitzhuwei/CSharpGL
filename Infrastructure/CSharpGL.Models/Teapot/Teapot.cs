@@ -38,7 +38,7 @@ namespace CSharpGL
             {
                 if (this.colorBuffer == null)
                 {
-                    this.colorBuffer = Teapot.normalData.GenVertexBuffer(VBOConfig.Vec3, BufferUsage.StaticDraw);
+                    this.colorBuffer = Teapot.colorData.GenVertexBuffer(VBOConfig.Vec3, BufferUsage.StaticDraw);
                 }
 
                 yield return this.colorBuffer;
@@ -63,21 +63,16 @@ namespace CSharpGL
             if (this.drawCmd == null)
             {
                 Face[] faces = Teapot.faceData;
-                int length = faces.Length * 3;
-                var array = new ushort[length];
-                for (int i = 0; i < faces.Length; i++)
-                {
-                    array[i * 3 + 0] = (ushort)(faces[i].vertexId1 - 1);
-                    array[i * 3 + 1] = (ushort)(faces[i].vertexId2 - 1);
-                    array[i * 3 + 2] = (ushort)(faces[i].vertexId3 - 1);
-                }
-                IndexBuffer buffer = array.GenIndexBuffer(BufferUsage.StaticDraw);
+                IndexBuffer buffer = faces.GenIndexBuffer(IndexBufferElementType.UShort, BufferUsage.StaticDraw);
                 this.drawCmd = new DrawElementsCmd(buffer, DrawMode.Triangles);
             }
 
             yield return this.drawCmd;
         }
 
+
         #endregion
     }
+
+
 }

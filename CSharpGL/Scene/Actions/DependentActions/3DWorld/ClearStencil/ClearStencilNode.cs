@@ -1,16 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
-using CSharpGL;
 
-namespace StencilTest
+namespace CSharpGL
 {
     /// <summary>
-    /// Displays on quater of canvas.
+    /// this helps clear stencil buffer because `glClear(GL_STENCIL_BUFFER_BIT);` doesn't work on my laptop.
     /// </summary>
-    partial class ClearStencilNode : ModernNode
+    public partial class ClearStencilNode : ModernNode, IRenderable
     {
+        /// <summary>
+        /// this helps clear stencil buffer because `glClear(GL_STENCIL_BUFFER_BIT);` doesn't work on my laptop.
+        /// </summary>
+        /// <returns></returns>
         public static ClearStencilNode Create()
         {
             var model = new ClearStencilModel();
@@ -31,27 +35,27 @@ namespace StencilTest
         {
         }
 
-        private vec4 stencilColor = new vec4(0, 0, 0, 0);
-        public vec4 StencilColor
-        {
-            get { return this.stencilColor; }
-            set
-            {
-                this.stencilColor = value;
-                ModernRenderUnit renderUnit = this.RenderUnit;
-                if (renderUnit == null) { return; }
-                RenderMethod[] methods = renderUnit.Methods;
-                if (methods == null || methods.Length < 1) { return; }
-                RenderMethod method = methods[0];
-                if (method == null) { return; }
-                method.Render();
-                ShaderProgram program = method.Program;
-                if (program == null) { return; }
+        #region IRenderable 成员
 
-                program.SetUniform("color", this.stencilColor);
-            }
+        private ThreeFlags enableRendering = ThreeFlags.BeforeChildren | ThreeFlags.Children | ThreeFlags.AfterChildren;
+        /// <summary>
+        /// Render before/after children? Render children? 
+        /// RenderAction cares about this property. Other actions, maybe, maybe not, your choice.
+        /// </summary>
+        [Browsable(false)]
+        [Category("IRenderable")]
+        [Description("Render before/after children? Render children?")]
+        public ThreeFlags EnableRendering
+        {
+            get { return this.enableRendering; }
+            set { this.enableRendering = value; }
         }
-        public override void RenderBeforeChildren(RenderEventArgs arg)
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="arg"></param>
+        public void RenderBeforeChildren(RenderEventArgs arg)
         {
             GL.Instance.ClearStencil(0x0);
             GL.Instance.Clear(GL.GL_STENCIL_BUFFER_BIT); // this seems not working. I don't know why.(2017-12-13)
@@ -69,8 +73,14 @@ namespace StencilTest
             GL.Instance.DepthMask(true);
         }
 
-        public override void RenderAfterChildren(RenderEventArgs arg)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="arg"></param>
+        public void RenderAfterChildren(RenderEventArgs arg)
         {
         }
+
+        #endregion
     }
 }

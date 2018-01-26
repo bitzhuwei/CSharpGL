@@ -26,7 +26,7 @@ namespace CSharpGL
     /// <summary>
     /// Render flabellum in modern opengl.
     /// </summary>
-    public class FlabellumNode : ModernNode
+    public class FlabellumNode : ModernNode, IRenderable
     {
         private const string vertexCode =
             @"#version 150 core
@@ -85,7 +85,18 @@ void main(void) {
 
         #region IRenderable 成员
 
-        public override void RenderBeforeChildren(RenderEventArgs arg)
+        private ThreeFlags enableRendering = ThreeFlags.BeforeChildren | ThreeFlags.Children | ThreeFlags.AfterChildren;
+        /// <summary>
+        /// Render before/after children? Render children? 
+        /// RenderAction cares about this property. Other actions, maybe, maybe not, your choice.
+        /// </summary>
+        public ThreeFlags EnableRendering
+        {
+            get { return this.enableRendering; }
+            set { this.enableRendering = value; }
+        }
+
+        public void RenderBeforeChildren(RenderEventArgs arg)
         {
             if (!this.IsInitialized) { Initialize(); }
 
@@ -108,11 +119,11 @@ void main(void) {
             method.Render();
         }
 
-        #endregion
-
-        public override void RenderAfterChildren(RenderEventArgs arg)
+        public void RenderAfterChildren(RenderEventArgs arg)
         {
         }
+
+        #endregion
     }
 
     class Flabellum : IBufferSource

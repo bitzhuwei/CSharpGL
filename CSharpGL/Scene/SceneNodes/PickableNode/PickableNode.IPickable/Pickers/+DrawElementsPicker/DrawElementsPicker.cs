@@ -12,12 +12,21 @@ namespace CSharpGL
     partial class DrawElementsPicker : PickerBase
     {
         /// <summary>
+        /// 
+        /// </summary>
+        public DrawElementsCmd DrawCommand { get; private set; }
+
+        /// <summary>
         /// Get picked geometry from a <see cref="PickableNode"/> with <see cref="DrawArraysCmd"/> as index buffer.
         /// </summary>
         /// <param name="node"></param>
         /// <param name="positionBuffer"></param>
         /// <param name="drawCommand"></param>
-        public DrawElementsPicker(PickableNode node, VertexBuffer positionBuffer, IDrawCommand drawCommand) : base(node, positionBuffer, drawCommand) { }
+        public DrawElementsPicker(PickableNode node, VertexBuffer positionBuffer, DrawElementsCmd drawCommand)
+            : base(node, positionBuffer)
+        {
+            this.DrawCommand = drawCommand;
+        }
 
         /// <summary>
         /// 
@@ -216,25 +225,24 @@ namespace CSharpGL
         private List<RecognizedPrimitiveInfo> GetLastIndexIdList(PickingEventArgs arg, uint lastVertexId)
         {
             var drawCmd = this.DrawCommand;
+            DrawMode mode = drawCmd.Mode;
             PrimitiveRecognizer recognizer = PrimitiveRecognizerFactory.Create(
                 (arg.GeometryType.Contains(GeometryType.Point)
-                && drawCmd.Mode.ToGeometryType() == GeometryType.Line) ?
-                DrawMode.Points : drawCmd.Mode);
+                && mode.ToGeometryType() == GeometryType.Line) ?
+                DrawMode.Points : mode);
 
             PrimitiveRestartState glState = GetPrimitiveRestartState();
 
-            var buffer = (drawCmd as IHasIndexBuffer).IndexBufferObject;
-            IntPtr pointer = buffer.MapBuffer(MapBufferAccess.ReadOnly);
             List<RecognizedPrimitiveInfo> primitiveInfoList = null;
             if (glState == null)
-            { primitiveInfoList = recognizer.Recognize(lastVertexId, pointer, drawCmd as DrawElementsCmd); }
+            { primitiveInfoList = recognizer.Recognize(lastVertexId, drawCmd); }
             else
-            { primitiveInfoList = recognizer.Recognize(lastVertexId, pointer, drawCmd as DrawElementsCmd, glState.RestartIndex); }
-            buffer.UnmapBuffer();
+            { primitiveInfoList = recognizer.Recognize(lastVertexId, drawCmd, glState.RestartIndex); }
 
             return primitiveInfoList;
         }
 
+        // TODO: encapsulate primitive restart index state into DrawElementsState.
         private PrimitiveRestartState GetPrimitiveRestartState()
         {
             foreach (GLState item in this.Node.PickingRenderUnit.StateList)

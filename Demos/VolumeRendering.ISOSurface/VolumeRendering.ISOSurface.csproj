@@ -7,8 +7,8 @@
     <ProjectGuid>{2FFB62B9-2AFE-49FC-A2D5-96A97D369A2D}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>GPURaycasting</RootNamespace>
-    <AssemblyName>GPURaycasting</AssemblyName>
+    <RootNamespace>VolumeRendering.ISOSurface</RootNamespace>
+    <AssemblyName>VolumeRendering.ISOSurface</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -66,6 +66,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

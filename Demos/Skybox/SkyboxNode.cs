@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Skybox
 {
-    class SkyboxNode : PickableNode
+    class SkyboxNode : PickableNode, IRenderable
     {
         private const string inPosition = "inPosition";
         private const string mvpMatrix = "mvpMatrix";
@@ -131,7 +131,18 @@ void main()
             return result;
         }
 
-        public override void RenderBeforeChildren(CSharpGL.RenderEventArgs arg)
+        private ThreeFlags enableRendering = ThreeFlags.BeforeChildren | ThreeFlags.Children | ThreeFlags.AfterChildren;
+        /// <summary>
+        /// Render before/after children? Render children? 
+        /// RenderAction cares about this property. Other actions, maybe, maybe not, your choice.
+        /// </summary>
+        public ThreeFlags EnableRendering
+        {
+            get { return this.enableRendering; }
+            set { this.enableRendering = value; }
+        }
+
+        public void RenderBeforeChildren(CSharpGL.RenderEventArgs arg)
         {
             if (!this.IsInitialized) { this.Initialize(); }
 
@@ -148,7 +159,7 @@ void main()
             method.Render();
         }
 
-        public override void RenderAfterChildren(CSharpGL.RenderEventArgs arg)
+        public void RenderAfterChildren(CSharpGL.RenderEventArgs arg)
         {
         }
 

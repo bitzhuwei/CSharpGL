@@ -26,7 +26,7 @@ namespace CSharpGL
     /// <summary>
     /// Render propeller in modern opengl.
     /// </summary>
-    public class PropellerRenderer : ModernNode
+    public class PropellerRenderer : ModernNode, IRenderable
     {
 
         private const string vertexCode =
@@ -84,14 +84,26 @@ void main(void) {
             this.ModelSize = model.GetModelSize();
         }
 
-        #region IRenderable 成员
 
         /// <summary>
         /// 
         /// </summary>
         public float RotateSpeed { get; set; }
 
-        public override void RenderBeforeChildren(RenderEventArgs arg)
+        #region IRenderable 成员
+
+        private ThreeFlags enableRendering = ThreeFlags.BeforeChildren | ThreeFlags.Children | ThreeFlags.AfterChildren;
+        /// <summary>
+        /// Render before/after children? Render children? 
+        /// RenderAction cares about this property. Other actions, maybe, maybe not, your choice.
+        /// </summary>
+        public ThreeFlags EnableRendering
+        {
+            get { return this.enableRendering; }
+            set { this.enableRendering = value; }
+        }
+
+        public void RenderBeforeChildren(RenderEventArgs arg)
         {
             if (!this.IsInitialized) { Initialize(); }
 
@@ -116,11 +128,11 @@ void main(void) {
             method.Render();
         }
 
-        #endregion
-
-        public override void RenderAfterChildren(RenderEventArgs arg)
+        public void RenderAfterChildren(RenderEventArgs arg)
         {
         }
+
+        #endregion
     }
 
     class Propeller : IBufferSource

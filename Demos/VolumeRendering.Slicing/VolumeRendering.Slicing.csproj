@@ -7,8 +7,8 @@
     <ProjectGuid>{2CA16683-8E1B-4463-B5B8-BCCDFB672407}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>_3DTextureSlicing</RootNamespace>
-    <AssemblyName>3DTextureSlicing</AssemblyName>
+    <RootNamespace>VolumeRendering.Slicing</RootNamespace>
+    <AssemblyName>VolumeRendering.Slicing</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -69,6 +69,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

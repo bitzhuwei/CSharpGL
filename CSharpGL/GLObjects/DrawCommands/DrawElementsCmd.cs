@@ -9,9 +9,9 @@ namespace CSharpGL
     /// Wraps glDrawElements(uint mode, int count, uint type, IntPtr indices).
     /// </summary>
     [Editor(typeof(DrawElementsCmdEditor), typeof(UITypeEditor))]
-    public class DrawElementsCmd : IDrawCommand, IHasIndexBuffer
+    public class DrawElementsCmd : IDrawCommand//, IHasIndexBuffer
     {
-        #region IHasIndexBuffer
+        //#region IHasIndexBuffer
 
         private IndexBuffer indexBuffer;
         /// <summary>
@@ -19,17 +19,18 @@ namespace CSharpGL
         /// </summary>
         public IndexBuffer IndexBufferObject { get { return this.indexBuffer; } }
 
-        #endregion IHasIndexBuffer
+        //#endregion IHasIndexBuffer
 
         /// <summary>
         /// Wraps glDrawElements(uint mode, int count, uint type, IntPtr indices).
         /// </summary>
         /// <param name="indexBuffer"></param>
         /// <param name="mode"></param>
+        /// <param name="primitiveRestartIndex">usually uint.MaxValue, ushort.MaxValue or byte.MaxValue. 0 means not need to use `glPrimitiveRestartIndex`.</param>
         /// <param name="firstVertex">要渲染的第一个顶点的位置。<para>Index of first vertex to be rendered.</para></param>
         /// <param name="instanceCount">primCount in instanced rendering.</param>
         /// <param name="frameCount">How many frames are there?</param>
-        public DrawElementsCmd(IndexBuffer indexBuffer, DrawMode mode, int firstVertex = 0, int instanceCount = 1, int frameCount = 1)
+        public DrawElementsCmd(IndexBuffer indexBuffer, DrawMode mode, uint primitiveRestartIndex = 0, int firstVertex = 0, int instanceCount = 1, int frameCount = 1)
         //IndexBufferElementType elementType, int vertexCount, int byteLength, int instanceCount = 1, int frameCount = 1)
         //: base(mode, bufferId, 0, vertexCount, byteLength, instanceCount, frameCount)
         {
@@ -37,12 +38,19 @@ namespace CSharpGL
 
             this.indexBuffer = indexBuffer;
             this.Mode = mode;
+            this.PrimitiveRestartIndex = primitiveRestartIndex;
             this.FirstVertex = firstVertex;
             this.RenderingVertexCount = indexBuffer.Length;
 
             this.InstanceCount = instanceCount;
             this.FrameCount = frameCount;
         }
+
+        // RULE: CSharpGL takes uint.MaxValue, ushort.MaxValue or byte.MaxValue as PrimitiveRestartIndex. So take care of this rule when designing a model's index buffer.
+        /// <summary>
+        /// usually uint.MaxValue, ushort.MaxValue or byte.MaxValue. 0 means not need to use `glPrimitiveRestartIndex`.
+        /// </summary>
+        public uint PrimitiveRestartIndex { get; set; }
 
         ///// <summary>
         ///// type in GL.DrawElements(uint mode, int count, uint type, IntPtr indices);
@@ -103,6 +111,12 @@ namespace CSharpGL
             IndexBufferElementType elementType = indexBuffer.ElementType;
             IntPtr offset = GetOffset(elementType, this.FirstVertex);
 
+            uint rs = this.PrimitiveRestartIndex;
+            if (rs != 0)
+            {
+                GL.Instance.Enable(GL.GL_PRIMITIVE_RESTART);
+                glPrimitiveRestartIndex(rs);
+            }
             GLBuffer.glBindBuffer(GL.GL_ELEMENT_ARRAY_BUFFER, indexBuffer.BufferId);
             switch (controlMode)
             {
@@ -159,6 +173,10 @@ namespace CSharpGL
             }
 
             GLBuffer.glBindBuffer(GL.GL_ELEMENT_ARRAY_BUFFER, 0);
+            if (rs != 0)
+            {
+                GL.Instance.Disable(GL.GL_PRIMITIVE_RESTART);
+            }
         }
 
         private IntPtr GetOffset(IndexBufferElementType elementType, int firstIndex)
@@ -256,14 +274,17 @@ namespace CSharpGL
             return builder.ToString();
         }
 
+        private static GLDelegates.void_uint glPrimitiveRestartIndex;
         internal static readonly GLDelegates.void_uint_int_uint_IntPtr_int glDrawElementsInstanced;
         internal static readonly GLDelegates.void_uint_int_uint_IntPtr_int glDrawElementsBaseVertex;
         internal static readonly GLDelegates.void_uint_int_uint_IntPtr_int_int glDrawElementsInstancedBaseVertex;
         static DrawElementsCmd()
         {
+            glPrimitiveRestartIndex = GL.Instance.GetDelegateFor("glPrimitiveRestartIndex", GLDelegates.typeof_void_uint) as GLDelegates.void_uint;
             glDrawElementsInstanced = GL.Instance.GetDelegateFor("glDrawElementsInstanced", GLDelegates.typeof_void_uint_int_uint_IntPtr_int) as GLDelegates.void_uint_int_uint_IntPtr_int;
             glDrawElementsBaseVertex = GL.Instance.GetDelegateFor("glDrawElementsBaseVertex", GLDelegates.typeof_void_uint_int_uint_IntPtr_int) as GLDelegates.void_uint_int_uint_IntPtr_int;
             glDrawElementsInstancedBaseVertex = GL.Instance.GetDelegateFor("glDrawElementsInstancedBaseVertex", GLDelegates.typeof_void_uint_int_uint_IntPtr_int_int) as GLDelegates.void_uint_int_uint_IntPtr_int_int;
         }
+
     }
 }

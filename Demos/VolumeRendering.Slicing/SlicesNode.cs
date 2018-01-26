@@ -7,7 +7,7 @@ using System.Drawing;
 
 namespace VolumeRendering.Slicing
 {
-    partial class SlicesNode : ModernNode
+    partial class SlicesNode : ModernNode, IRenderable
     {
         public enum RenderMode { Default = 0, Classification = 1, };
 
@@ -86,7 +86,18 @@ namespace VolumeRendering.Slicing
             }
         }
 
-        public override void RenderBeforeChildren(RenderEventArgs arg)
+        private ThreeFlags enableRendering = ThreeFlags.BeforeChildren | ThreeFlags.Children | ThreeFlags.AfterChildren;
+        /// <summary>
+        /// Render before/after children? Render children? 
+        /// RenderAction cares about this property. Other actions, maybe, maybe not, your choice.
+        /// </summary>
+        public ThreeFlags EnableRendering
+        {
+            get { return this.enableRendering; }
+            set { this.enableRendering = value; }
+        }
+
+        public void RenderBeforeChildren(RenderEventArgs arg)
         {
             ICamera camera = arg.CameraStack.Peek();
             mat4 projection = camera.GetProjectionMatrix();
@@ -109,7 +120,7 @@ namespace VolumeRendering.Slicing
             method.Render();
         }
 
-        public override void RenderAfterChildren(RenderEventArgs arg)
+        public void RenderAfterChildren(RenderEventArgs arg)
         {
         }
     }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using CSharpGL;
 
-namespace StencilTest
+namespace CSharpGL
 {
     partial class ClearStencilNode
     {
@@ -24,11 +24,10 @@ void main(void) {
         private const string fragmentCode =
             @"#version 150 core
 
-uniform vec4 color = vec4(0, 0, 0, 0);
 out vec4 out_Color;
 
 void main(void) {
-    out_Color = color;
+    out_Color = vec4(0, 0, 0, 0);
 }
 ";
     }

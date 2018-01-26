@@ -122,7 +122,7 @@ namespace DeferredShading
                 var cmds = new IDrawCommand[buffers.Length];
                 for (int i = 0; i < buffers.Length; i++)
                 {
-                    cmds[i] = new DrawElementsCmd(buffers[i], DrawMode.QuadStrip);
+                    cmds[i] = new DrawElementsCmd(buffers[i], DrawMode.QuadStrip, uint.MaxValue);
                 }
                 this.drawCmds = cmds;
             }

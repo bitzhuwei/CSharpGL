@@ -38,8 +38,8 @@
             // 
             this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnOK.Font = new System.Drawing.Font("宋体", 12F);
-            this.btnOK.Location = new System.Drawing.Point(196, 344);
-            this.btnOK.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnOK.Location = new System.Drawing.Point(196, 345);
+            this.btnOK.Margin = new System.Windows.Forms.Padding(2);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(56, 23);
             this.btnOK.TabIndex = 3;
@@ -53,7 +53,7 @@
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Font = new System.Drawing.Font("宋体", 12F);
             this.btnCancel.Location = new System.Drawing.Point(256, 345);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(2);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(66, 23);
             this.btnCancel.TabIndex = 4;
@@ -70,7 +70,7 @@
             this.lstType.FormattingEnabled = true;
             this.lstType.ItemHeight = 19;
             this.lstType.Location = new System.Drawing.Point(9, 11);
-            this.lstType.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.lstType.Margin = new System.Windows.Forms.Padding(2);
             this.lstType.Name = "lstType";
             this.lstType.Size = new System.Drawing.Size(314, 327);
             this.lstType.TabIndex = 6;
@@ -81,7 +81,7 @@
             this.btnRefresh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnRefresh.Font = new System.Drawing.Font("宋体", 12F);
             this.btnRefresh.Location = new System.Drawing.Point(9, 345);
-            this.btnRefresh.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnRefresh.Margin = new System.Windows.Forms.Padding(2);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(82, 23);
             this.btnRefresh.TabIndex = 3;
@@ -100,7 +100,7 @@
             this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.btnCancel);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "FormSelectType";
             this.Text = "Select type derived from {0}";
             this.Load += new System.EventHandler(this.FormGLSwtichType_Load);

@@ -2492,6 +2492,16 @@ namespace CSharpGL
         [DllImport(Win32.opengl32, EntryPoint = "glStencilOp", SetLastError = true)]
         private static extern void glStencilOp(uint fail, uint zfail, uint zpass);
 
+        ///// <summary>
+        ///// set front and/or back stencil test actions.
+        ///// </summary>
+        ///// <param name="face">Specifies whether front and/or back stencil state is updated. Three symbolic constants are valid: GL_FRONT, GL_BACK, and GL_FRONT_AND_BACK.</param>
+        ///// <param name="fail">Fail operation.</param>
+        ///// <param name="zfail">Depth fail component.</param>
+        ///// <param name="zpass">Depth pass component.</param>
+        //[DllImport(Win32.opengl32, EntryPoint = "glStencilOpSeparate", SetLastError = true)]
+        //private static extern void glStencilOpSeparate(uint face, uint fail, uint zfail, uint zpass);
+
         /// <summary>
         /// This function sets the current texture coordinates.
         /// </summary>

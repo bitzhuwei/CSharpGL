@@ -7,6 +7,7 @@ namespace CSharpGL
     /// </summary>
     public class BlendState : EnableState
     {
+        // Activator needs a non-parameter constructor.
         /// <summary>
         /// specify pixel arithmetic.
         /// </summary>

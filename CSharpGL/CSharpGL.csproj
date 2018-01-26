@@ -87,6 +87,7 @@
     <None Include="GLCanvas\GLRenderContext\readme.md" />
     <Content Include="GLObjects\Texture\Storages\TexImages.FromBitmap\readme.md" />
     <Content Include="GLObjects\Texture\Storages\TexImages\readme.md" />
+    <Content Include="GLObjects\DrawCommands\readme.md" />
     <None Include="GLObjects\Texture\Storages\readme.md" />
     <None Include="Scene\Manipulaters\readme.md" />
     <None Include="Scene\Actions\DependentActions\readme.md" />
@@ -105,15 +106,15 @@
     <Compile Include="GLObjects\GLBuffers\Data2Buffer\GenIndexBuffer.UnmanagedArrayBase.cs" />
     <Compile Include="GLObjects\GLBuffers\Data2Buffer\GenIndexBuffers.T[].cs" />
     <Compile Include="GLObjects\GLBuffers\Data2Buffer\GenVertexBuffers.T[].cs" />
-    <None Include="GLObjects\GLBuffers\DrawCommands\MultiDrawElementsCmd.demo.cpp" />
-    <Compile Include="GLObjects\GLBuffers\DrawCommands\IHasIndexBuffer.cs" />
-    <Compile Include="GLObjects\GLBuffers\DrawCommands\MultiDrawElementsCmd.cs" />
+    <None Include="GLObjects\DrawCommands\MultiDrawElementsCmd.demo.cpp" />
+    <Compile Include="GLObjects\DrawCommands\MultiDrawElementsCmd.cs" />
     <Compile Include="GLObjects\GLBuffers\IndependentBuffers\TransformFeedbackBuffer.AsVertexBuffer.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="GLObjects\GLBuffers\DrawCommands\IDrawCommand.cs" />
-    <Compile Include="GLObjects\GLBuffers\DrawCommands\MultiDrawArraysCmd.cs" />
+    <Compile Include="GLObjects\DrawCommands\IDrawCommand.cs" />
+    <Compile Include="GLObjects\DrawCommands\MultiDrawArraysCmd.cs" />
     <Compile Include="GLObjects\GLBuffers\VertexBuffers\VertexBuffer%28VBO%29\VeretxBufferArrayHelper.cs" />
+    <Compile Include="GLObjects\GLStates\EnableStates\DepthClampState.cs" />
     <Compile Include="GLObjects\GLStates\EnableStates\LogicOpState.cs" />
     <Compile Include="GLObjects\GLStates\EnableStates\StencilTestState.cs" />
     <Compile Include="GLObjects\GLStates\StencilMaskState.cs" />
@@ -142,6 +143,11 @@
     <Compile Include="GLObjects\GLBuffers\IndependentBuffers\TransformFeedbackBuffer.cs" />
     <Compile Include="Scene\Actions\DependentActions\3DWorld\BillboardRenderAction.cs" />
     <Compile Include="Scene\Actions\DependentActions\3DWorld\BillboardSortAction.cs" />
+    <Compile Include="Scene\Actions\DependentActions\3DWorld\ClearStencil\ClearStencilModel.cs" />
+    <Compile Include="Scene\Actions\DependentActions\3DWorld\ClearStencil\ClearStencilNode.cs" />
+    <Compile Include="Scene\Actions\DependentActions\3DWorld\ClearStencil\ClearStencilNode.shader.cs" />
+    <Compile Include="Scene\Actions\DependentActions\3DWorld\ShadowVolumeAction.cs" />
+    <Compile Include="Scene\Actions\DependentActions\3DWorld\ISupportShadowVolume.cs" />
     <Compile Include="Scene\Actions\DependentActions\ActionParams.cs" />
     <Compile Include="Scene\Actions\DependentActions\GUI\GUILayoutAction.cs" />
     <Compile Include="Scene\Actions\DependentActions\GUI\GUIRenderAction.cs" />
@@ -310,7 +316,6 @@
     <Compile Include="Scene\SceneNodes\ModernNode\ModernNode.cs" />
     <Compile Include="Scene\SceneNodes\ModernNode\ModernNode.IDisposable.cs" />
     <Compile Include="Scene\SceneNodes\ModernNode\ModernNode.DoInitialize.cs" />
-    <Compile Include="Scene\SceneNodes\ModernNode\ModernNode.IRenderable.cs" />
     <Compile Include="Scene\SceneNodes\ModernNode\ModernNode.Property.cs" />
     <Compile Include="Scene\SceneNodes\ModernNode\ModernNode.UniformArrays.cs" />
     <Compile Include="Scene\SceneNodes\ModernNode\ModernNode.Uniforms.cs" />
@@ -369,7 +374,7 @@
     <Compile Include="Scene\Actions\ActionBase.cs" />
     <Compile Include="Scene\Actions\DependentActions\3DWorld\ShadowMappingAction.cs" />
     <Compile Include="Scene\Actions\IndependentActions\ILegacyPickable\ILegacyPickable.cs" />
-    <Compile Include="Scene\Actions\DependentActions\3DWorld\IShadowMapping.cs" />
+    <Compile Include="Scene\Actions\DependentActions\3DWorld\ISupportShadowMapping.cs" />
     <Compile Include="Scene\Actions\DependentActions\3DWorld\IWorldSpace.cs" />
     <Compile Include="Scene\Actions\IndependentActions\IPickable\IPickable.cs" />
     <Compile Include="Scene\Actions\IndependentActions\IPickable\IPickedGeometry.cs" />
@@ -549,10 +554,10 @@
     <Compile Include="GLObjects\GLBuffers\VertexBuffers\IndexBuffer%28IBO%29\IndexBufferElementType.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="GLObjects\GLBuffers\DrawCommands\DrawElementsCmd.cs">
+    <Compile Include="GLObjects\DrawCommands\DrawElementsCmd.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="GLObjects\GLBuffers\DrawCommands\DrawArraysCmd.cs">
+    <Compile Include="GLObjects\DrawCommands\DrawArraysCmd.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="GLObjects\GLBuffers\VertexBuffers\VertexBuffer%28VBO%29\VBOConfig.cs">

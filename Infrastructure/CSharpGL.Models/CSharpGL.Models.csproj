@@ -45,9 +45,15 @@
   <ItemGroup>
     <None Include="Amber\readme.md" />
     <Compile Include="Amber\AmberLoader.cs" />
+    <Compile Include="Cube\AdjacentCubeModel.cs" />
     <Compile Include="Cube\CubeModel.cs" />
     <Compile Include="Cube\TextureCubeNode.cs" />
     <Compile Include="Cube\CubeNode.cs" />
+    <Compile Include="Faces\AdjacentFace.cs" />
+    <Compile Include="Faces\FaceHelper.cs" />
+    <Compile Include="Faces\SharedFaces.cs" />
+    <Compile Include="Faces\Edge.cs" />
+    <Compile Include="Faces\Face.cs" />
     <Compile Include="Ground\GroundNode.cs" />
     <Compile Include="FormProperyGrid.cs">
       <SubType>Form</SubType>
@@ -83,8 +89,10 @@
     <Compile Include="SimpleObjFileFormat\ObjVNFParser.cs" />
     <Compile Include="Sphere\Sphere.cs" />
     <Compile Include="Sphere\SphereModel.cs" />
+    <Compile Include="Teapot\AdjacentTeapot.cs" />
     <Compile Include="Teapot\Teapot.cs" />
     <Compile Include="Teapot\Teapot.Faces.cs" />
+    <Compile Include="Teapot\Teapot.static.cs" />
     <Compile Include="Teapot\Teapot.normalData.cs" />
     <Compile Include="Teapot\Teapot.positionData.cs" />
     <Compile Include="Teapot\TeapotNode.cs">

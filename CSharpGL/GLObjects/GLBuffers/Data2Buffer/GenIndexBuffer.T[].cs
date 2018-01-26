@@ -142,7 +142,7 @@ namespace CSharpGL
         /// Generates a Index Buffer Object storing vertexes' indexes, which indicate the rendering order of each vertex.
         /// </summary>
         /// <param name="array"></param>
-        /// <param name="type"></param>
+        /// <param name="type">NOTE: It's easy to fill wrong type here.</param>
         /// <param name="usage"></param>
         /// <returns></returns>
         public static IndexBuffer GenIndexBuffer<T>(this T[] array, IndexBufferElementType type, BufferUsage usage) where T : struct

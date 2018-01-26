@@ -7,7 +7,7 @@ using System.Drawing;
 
 namespace ComputeShader.EdgeDetection
 {
-    partial class EdgeDetectNode : PickableNode
+    partial class EdgeDetectNode : PickableNode, IRenderable
     {
         private static readonly GLDelegates.void_uint glMemoryBarrier;
         private static readonly GLDelegates.void_uint_uint_int_bool_int_uint_uint glBindImageTexture;
@@ -116,7 +116,18 @@ namespace ComputeShader.EdgeDetection
 
         #region IRenderable 成员
 
-        public override void RenderBeforeChildren(RenderEventArgs arg)
+        private ThreeFlags enableRendering = ThreeFlags.BeforeChildren | ThreeFlags.Children | ThreeFlags.AfterChildren;
+        /// <summary>
+        /// Render before/after children? Render children? 
+        /// RenderAction cares about this property. Other actions, maybe, maybe not, your choice.
+        /// </summary>
+        public ThreeFlags EnableRendering
+        {
+            get { return this.enableRendering; }
+            set { this.enableRendering = value; }
+        }
+
+        public void RenderBeforeChildren(RenderEventArgs arg)
         {
             {
                 RenderMethod method = this.RenderUnit.Methods[0];
@@ -155,7 +166,7 @@ namespace ComputeShader.EdgeDetection
             }
         }
 
-        public override void RenderAfterChildren(RenderEventArgs arg)
+        public void RenderAfterChildren(RenderEventArgs arg)
         {
         }
 

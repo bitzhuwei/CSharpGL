@@ -7,9 +7,23 @@ namespace CSharpGL
     /// <summary>
     ///
     /// </summary>
-    [Editor(typeof(IListEditor<GLState>), typeof(UITypeEditor))]
-    public class GLStateList : List<GLState>, IGLState
+    [Editor(typeof(IListEditor<IGLState>), typeof(UITypeEditor))]
+    public class GLStateList : List<IGLState>, IGLState
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        public GLStateList() { }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="state"></param>
+        public GLStateList(params IGLState[] state)
+        {
+            this.AddRange(state);
+        }
+
         /// <summary>
         /// 
         /// </summary>

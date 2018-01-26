@@ -10,7 +10,7 @@ namespace SpotLight
     /// <summary>
     /// Render a Cube with single color in modern opengl.
     /// </summary>
-    public class LightPostionNode : PickableNode
+    public class LightPostionNode : PickableNode, IRenderable
     {
         private const string inPosition = "inPosition";
         private const string projectionMatrix = "projectionMatrix";
@@ -76,11 +76,23 @@ void main(void) {
         /// 
         /// </summary>
         public bool AutoRotate { get; set; }
+
+        private ThreeFlags enableRendering = ThreeFlags.BeforeChildren | ThreeFlags.Children | ThreeFlags.AfterChildren;
+        /// <summary>
+        /// Render before/after children? Render children? 
+        /// RenderAction cares about this property. Other actions, maybe, maybe not, your choice.
+        /// </summary>
+        public ThreeFlags EnableRendering
+        {
+            get { return this.enableRendering; }
+            set { this.enableRendering = value; }
+        }
+
         /// <summary>
         /// 
         /// </summary>
         /// <param name="arg"></param>
-        public override void RenderBeforeChildren(RenderEventArgs arg)
+        public void RenderBeforeChildren(RenderEventArgs arg)
         {
             if (!this.IsInitialized) { this.Initialize(); }
 
@@ -110,7 +122,7 @@ void main(void) {
             method.Render();
         }
 
-        public override void RenderAfterChildren(RenderEventArgs arg)
+        public void RenderAfterChildren(RenderEventArgs arg)
         {
         }
 

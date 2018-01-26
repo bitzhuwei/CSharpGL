@@ -115,7 +115,7 @@ namespace CSharpGL
             { throw new Exception(string.Format("index array[{0}] not same length with [recognized primitive1 index length{1}] + [1] + recognized primitive2 index length[{2}]", indexArray.Count, recognizedPrimitiveIndex0.VertexIds.Length, recognizedPrimitiveIndex1.VertexIds.Length)); }
 
             IndexBuffer buffer = indexArray.ToArray().GenIndexBuffer(BufferUsage.StaticDraw);
-            cmd = new DrawElementsCmd(buffer, drawMode, 0);
+            cmd = new DrawElementsCmd(buffer, drawMode, uint.MaxValue);// uint.MaxValue in glPrimitiveRestartIndex();
 
             //oneIndexBuffer = Buffer.Create(IndexElementType.UInt,
             //    recognizedPrimitiveIndex0.VertexIds.Length

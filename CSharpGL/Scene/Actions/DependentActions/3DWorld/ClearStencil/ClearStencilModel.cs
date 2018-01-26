@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using CSharpGL;
 
-namespace StencilTest
+namespace CSharpGL
 {
     /// <summary>
     /// Displays on quater of canvas.

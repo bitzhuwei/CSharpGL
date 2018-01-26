@@ -9,7 +9,7 @@ namespace ShadowMapping
     /// <summary>
     /// render a teapot with shadow.
     /// </summary>
-    public partial class ShadowMappingNode : PickableNode, IShadowMapping
+    public partial class ShadowMappingNode : PickableNode, ISupportShadowMapping, IRenderable
     {
         private const string inPosition = "position";
         private const string inNormal = "normal";
@@ -67,8 +67,6 @@ namespace ShadowMapping
             this.SpecularPower = 0.2f;
         }
 
-        #region IRenderable 成员
-
         public float RotateSpeed { get; set; }
 
         public vec3 Ambient { get; set; }
@@ -76,7 +74,20 @@ namespace ShadowMapping
         public vec3 Specular { get; set; }
         public float SpecularPower { get; set; }
 
-        public override void RenderBeforeChildren(RenderEventArgs arg)
+        #region IRenderable 成员
+
+        private ThreeFlags enableRendering = ThreeFlags.BeforeChildren | ThreeFlags.Children | ThreeFlags.AfterChildren;
+        /// <summary>
+        /// Render before/after children? Render children? 
+        /// RenderAction cares about this property. Other actions, maybe, maybe not, your choice.
+        /// </summary>
+        public ThreeFlags EnableRendering
+        {
+            get { return this.enableRendering; }
+            set { this.enableRendering = value; }
+        }
+
+        public void RenderBeforeChildren(RenderEventArgs arg)
         {
             if (!this.IsInitialized) { Initialize(); }
 
@@ -111,7 +122,7 @@ namespace ShadowMapping
             method.Render();
         }
 
-        public override void RenderAfterChildren(RenderEventArgs arg)
+        public void RenderAfterChildren(RenderEventArgs arg)
         {
         }
 

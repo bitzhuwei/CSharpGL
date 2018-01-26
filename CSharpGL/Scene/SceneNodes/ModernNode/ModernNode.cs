@@ -4,7 +4,7 @@ namespace CSharpGL
     /// <summary>
     /// Rendering something using GLSL shader and VBO(VAO).
     /// </summary>
-    public abstract partial class ModernNode : SceneNodeBase, IRenderable
+    public abstract partial class ModernNode : SceneNodeBase//, IRenderable
     {
         /// <summary>
         /// Rendering something using GLSL shader and VBO(VAO).

@@ -5,6 +5,12 @@
     /// </summary>
     public class ScissorTestState : EnableState
     {
+        // Activator needs a non-parameter constructor.
+        /// <summary>
+        /// 
+        /// </summary>
+        public ScissorTestState() : this(0, 0, 0, 0, false) { }
+
         /// <summary>
         ///
         /// </summary>

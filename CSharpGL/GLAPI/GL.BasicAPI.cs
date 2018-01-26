@@ -2086,6 +2086,16 @@ namespace CSharpGL
         /// <param name="zpass">Stencil Test pass, and Depth Test pass.</param>
         public abstract void StencilOp(uint fail, uint zfail, uint zpass);
 
+        ////void glStencilOpSeparate(GLenum face​, GLenum sfail​, GLenum dpfail​, GLenum dppass​);
+        ///// <summary>
+        ///// set front and/or back stencil test actions.
+        ///// </summary>
+        ///// <param name="face">Specifies whether front and/or back stencil state is updated. Three symbolic constants are valid: GL_FRONT, GL_BACK, and GL_FRONT_AND_BACK.</param>
+        ///// <param name="fail">Specifies the action to take when the stencil test fails. Eight symbolic constants are accepted: GL_KEEP, GL_ZERO, GL_REPLACE, GL_INCR, GL_INCR_WRAP, GL_DECR, GL_DECR_WRAP, and GL_INVERT. The initial value is GL_KEEP.</param>
+        ///// <param name="zfail">Specifies the stencil action when the stencil test passes, but the depth test fails. dpfail​ accepts the same symbolic constants as sfail​. The initial value is GL_KEEP.</param>
+        ///// <param name="zpass">Specifies the stencil action when both the stencil test and the depth test pass, or when the stencil test passes and either there is no depth buffer or depth testing is not enabled. dppass​ accepts the same symbolic constants as sfail​. The initial value is GL_KEEP.</param>
+        //public abstract void StencilOpSeparate(uint face, uint fail, uint zfail, uint zpass);
+
         /// <summary>
         /// This function sets the current texture coordinates.
         /// </summary>

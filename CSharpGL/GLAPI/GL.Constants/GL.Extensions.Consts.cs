@@ -1317,6 +1317,12 @@ namespace CSharpGL
         /////
         ///// </summary>
         //public const uint GL_PROGRAM_ERROR_POSITION = 0x864B;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public const uint GL_DEPTH_CLAMP = 0x864F;
+
         ///// <summary>
         /////
         ///// </summary>

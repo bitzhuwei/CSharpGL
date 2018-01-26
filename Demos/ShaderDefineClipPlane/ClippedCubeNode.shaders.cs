@@ -50,7 +50,10 @@ void main()
     }
     else
     {
-        discard;
+        if (int(gl_FragCoord.x - 0.5) % 2 == 1 && int(gl_FragCoord.y - 0.5) % 2 == 1) discard;
+        if (int(gl_FragCoord.x - 0.5) % 2 != 1 && int(gl_FragCoord.y - 0.5) % 2 != 1) discard;
+
+        outColor = texture(tex, passUV);
     }
 }
 ";

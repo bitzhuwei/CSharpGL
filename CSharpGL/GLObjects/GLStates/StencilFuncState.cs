@@ -39,6 +39,12 @@ namespace CSharpGL
         /// </summary>
         public uint AfterMask { get; private set; }
 
+        // Activator needs a non-parameter constructor.
+        /// <summary>
+        /// 
+        /// </summary>
+        public StencilFuncState() : this(EStencilFunc.Always, 0, uint.MaxValue, EStencilFunc.Always, 0, uint.MaxValue) { }
+
         /// <summary>
         /// glStencilFunc
         /// </summary>

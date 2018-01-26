@@ -6,7 +6,7 @@ using CSharpGL;
 
 namespace OrderIndependentTransparency
 {
-    public partial class OITNode : PickableNode
+    public partial class OITNode : PickableNode, IRenderable
     {
         private const string vPosition = "vPosition";
         private const string vNormal = "vNormal";
@@ -148,10 +148,23 @@ namespace OrderIndependentTransparency
             }
 
             {
+                this.depthTestState = new DepthTestState(false); // disable depth test.
+                this.cullFaceState = new CullFaceState(CullFaceMode.Back, false); // disable cull face.
             }
         }
 
-        public override void RenderBeforeChildren(RenderEventArgs arg)
+        private ThreeFlags enableRendering = ThreeFlags.BeforeChildren | ThreeFlags.Children | ThreeFlags.AfterChildren;
+        /// <summary>
+        /// Render before/after children? Render children? 
+        /// RenderAction cares about this property. Other actions, maybe, maybe not, your choice.
+        /// </summary>
+        public ThreeFlags EnableRendering
+        {
+            get { return this.enableRendering; }
+            set { this.enableRendering = value; }
+        }
+
+        public void RenderBeforeChildren(RenderEventArgs arg)
         {
             {
                 int width = arg.Param.Viewport.width, height = arg.Param.Viewport.height;
@@ -213,7 +226,7 @@ namespace OrderIndependentTransparency
             }
         }
 
-        public override void RenderAfterChildren(RenderEventArgs arg)
+        public void RenderAfterChildren(RenderEventArgs arg)
         {
         }
     }

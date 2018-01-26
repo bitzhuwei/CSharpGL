@@ -8,12 +8,12 @@ using System.Text;
 namespace CSharpGL
 {
     /// <summary>
-    /// Cast shaow mapping textures for <see cref="IShadowMapping"/>.
+    /// Cast shaow mapping textures for <see cref="ISupportShadowMapping"/>.
     /// </summary>
     public class ShadowMappingAction : DependentActionBase
     {
         /// <summary>
-        /// Cast shaow mapping textures for <see cref="IShadowMapping"/>.
+        /// Cast shaow mapping textures for <see cref="ISupportShadowMapping"/>.
         /// </summary>
         /// <param name="scene"></param>
         public ShadowMappingAction(Scene scene) : base(scene) { }
@@ -24,9 +24,6 @@ namespace CSharpGL
         /// <param name="param"></param>
         public override void Act(ActionParams param)
         {
-            GL.Instance.ClearColor(1, 1, 1, 1);
-            GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT | GL.GL_STENCIL_BUFFER_BIT);
-
             var arg = new ShdowMappingEventArgs();
             this.ShadowMapping(this.Scene.RootElement, arg);
         }
@@ -63,7 +60,7 @@ namespace CSharpGL
         {
             if (sceneElement != null)
             {
-                var renderable = sceneElement as IShadowMapping;
+                var renderable = sceneElement as ISupportShadowMapping;
                 if (renderable != null && renderable.EnableShadowMapping)
                 {
                     renderable.CastShadow(arg);
