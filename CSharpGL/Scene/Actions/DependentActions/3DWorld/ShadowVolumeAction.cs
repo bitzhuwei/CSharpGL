@@ -44,53 +44,56 @@ namespace CSharpGL
         /// <param name="param"></param>
         public override void Act(ActionParams param)
         {
-            {
-                //this.colorMask.On();
+            this.depthClamp.On();// for infinite back cap of shadow volumes.
 
-                //var arg = new RenderEventArgs(this.Scene, param, this.Scene.Camera);
-                //RenderDepthBuffer(this.Scene.RootElement, arg);
-                //this.colorMask.Off();
+            // Render depth info into depth buffer and ambient color into color buffer.
+            {
                 var arg = new RenderEventArgs(this.Scene, param, this.Scene.Camera);
                 RenderAmbientColor(this.Scene.RootElement, arg);
             }
 
-            this.stencilTest.On();
+            this.stencilTest.On(); // enable stencil test.
             foreach (var light in this.Scene.Lights)
             {
+                // Clear stencil buffer.
                 {
-                    // clear stencil buffer.
-                    {
-                        GL.Instance.Clear(GL.GL_STENCIL_BUFFER_BIT); // this seems not working.
-                        // do the same thing.
-                        this.depthTest.On();
-                        this.clearStencilNode.RenderBeforeChildren(null); // this helps clear stencil buffer because `glClear(GL_STENCIL_BUFFER_BIT);` doesn't work on my laptop.
-                        this.depthTest.Off();
-                    }
-                    this.depthMask.On();
-                    this.colorMask.On();
-                    this.depthClamp.On();
-                    this.cullFace.On();
-                    GL.Instance.StencilFunc(GL.GL_ALWAYS, 0, 0xFF);
+                    GL.Instance.Clear(GL.GL_STENCIL_BUFFER_BIT); // this seems not working.
+                    // do the same thing.
+                    this.depthTest.On(); // Disable depth test to make sure this node works for every stencil point.
+                    this.depthMask.On(); // Disable writing to depth buffer.
+                    this.clearStencilNode.RenderBeforeChildren(null); // this helps clear stencil buffer because `glClear(GL_STENCIL_BUFFER_BIT);` doesn't work on my laptop.
+                    this.depthMask.Off();
+                    this.depthTest.Off();
+                }
+                // Extrude shadow volume and save shadow info into stencil buffer.
+                {
+                    this.depthMask.On(); // Disable writing to depth buffer.
+                    this.colorMask.On(); // Disable writing to color buffer.
+                    this.cullFace.On();  // Disable culling face.
+                    GL.Instance.StencilFunc(GL.GL_ALWAYS, 0, 0xFF); // always pass stencil test.
+                    // If depth test fails for back face, increase value in stencil buffer.
                     glStencilOpSeparate(GL.GL_BACK, GL.GL_KEEP, GL.GL_INCR_WRAP, GL.GL_KEEP);
+                    // If depth test fails for front face, decrease value in stencil buffer.
                     glStencilOpSeparate(GL.GL_FRONT, GL.GL_KEEP, GL.GL_DECR_WRAP, GL.GL_KEEP);
 
+                    // Extrude shadow volume. And shadow info will be saved into stencil buffer automatically according to `glStencilOp...`.
                     var arg = new ShadowVolumeEventArgs(this.Scene.Camera, light);
                     Extrude(this.Scene.RootElement, arg);
 
                     this.cullFace.Off();
-                    this.depthClamp.Off();
                     this.colorMask.Off();
                     this.depthMask.Off();
                 }
-
+                // 
                 {
-                    // Draw only if the corresponding stencil value is zero
+                    // Draw only if the corresponding stencil value is zero.
                     GL.Instance.StencilFunc(GL.GL_EQUAL, 0x0, 0xFF);
-                    // prevent update to the stencil buffer
+                    // prevent updating to the stencil buffer.
                     GL.Instance.StencilOp(GL.GL_KEEP, GL.GL_KEEP, GL.GL_KEEP);
 
-                    this.blend.On();
+                    this.blend.On(); // add illuminated color to ambient color.
 
+                    // light the scene up.
                     var arg = new RenderEventArgs(this.Scene, param, this.Scene.Camera);
                     RenderUnderLight(this.Scene.RootElement, arg, light);
 
@@ -99,14 +102,7 @@ namespace CSharpGL
             }
             this.stencilTest.Off();
 
-            //{
-            //    this.blend.On();
-            //    //GL.Instance.Clear(GL.GL_DEPTH_BUFFER_BIT);
-            //    var arg = new RenderEventArgs(this.Scene, param, this.Scene.Camera);
-            //    RenderAmbientColor(this.Scene.RootElement, arg);
-            //    this.blend.Off();
-            //}
-
+            this.depthClamp.Off();
         }
 
         private void RenderAmbientColor(SceneNodeBase sceneNodeBase, RenderEventArgs arg)
