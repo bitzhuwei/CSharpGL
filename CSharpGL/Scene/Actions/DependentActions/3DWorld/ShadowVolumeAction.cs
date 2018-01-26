@@ -22,6 +22,7 @@ namespace CSharpGL
             this.clearStencilNode = ClearStencilNode.Create();
         }
 
+        private readonly DepthTestState depthTest = new DepthTestState(enableCapacity: false);
         private readonly StencilTestState stencilTest = new StencilTestState(enableCapacity: true);
         private readonly CullFaceState cullFace = new CullFaceState(CullFaceMode.Back, false);// CullFaceMode is useless here.
         private readonly ColorMaskState colorMask = new ColorMaskState(false, false, false, false);
@@ -62,8 +63,13 @@ namespace CSharpGL
             {
                 {
                     // clear stencil buffer.
-                    //GL.Instance.Clear(GL.GL_STENCIL_BUFFER_BIT); // this seems not working.
-                    this.clearStencilNode.RenderBeforeChildren(null); // this helps clear stencil buffer because `glClear(GL_STENCIL_BUFFER_BIT);` doesn't work on my laptop.
+                    {
+                        GL.Instance.Clear(GL.GL_STENCIL_BUFFER_BIT); // this seems not working.
+                        // do the same thing.
+                        this.depthTest.On();
+                        this.clearStencilNode.RenderBeforeChildren(null); // this helps clear stencil buffer because `glClear(GL_STENCIL_BUFFER_BIT);` doesn't work on my laptop.
+                        this.depthTest.Off();
+                    }
                     this.depthMask.On();
                     this.colorMask.On();
                     this.depthClamp.On();

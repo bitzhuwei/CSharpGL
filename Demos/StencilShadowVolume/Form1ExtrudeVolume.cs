@@ -91,7 +91,7 @@ namespace StencilShadowVolume
             }
 
             {
-                var model = new AdjacentCubeModel(new vec3(40, 0.2f, 20));
+                var model = new AdjacentCubeModel(new vec3(60, 1f, 40));
                 var floor = ExtrudeVolumeNode.Create(model, AdjacentCubeModel.strPosition, AdjacentCubeModel.strColor, model.GetSize());
                 floor.WorldPosition = new vec3(0, -2.5f, 0);
                 floor.SetLight(light);
