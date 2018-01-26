@@ -30,7 +30,6 @@ namespace StencilShadowVolume
         { }
 
         private ThreeFlags enableRendering = ThreeFlags.BeforeChildren | ThreeFlags.Children | ThreeFlags.AfterChildren;
-        private PointLight light;
         /// <summary>
         /// Render before/after children? Render children? 
         /// RenderAction cares about this property. Other actions, maybe, maybe not, your choice.

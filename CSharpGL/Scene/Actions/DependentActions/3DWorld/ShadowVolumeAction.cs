@@ -44,10 +44,6 @@ namespace CSharpGL
         /// <param name="param"></param>
         public override void Act(ActionParams param)
         {
-            vec4 clearColor = this.Scene.ClearColor;
-            GL.Instance.ClearColor(clearColor.x, clearColor.y, clearColor.z, clearColor.w);
-            GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT | GL.GL_STENCIL_BUFFER_BIT);
-
             {
                 //this.colorMask.On();
 
