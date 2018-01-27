@@ -107,6 +107,16 @@ namespace CSharpGL
                 }
             }
 
+            var list = new List<KeyValuePair<Edge, SharedFaces>>();
+            foreach (var item in result)
+            {
+                if (item.Value.face2 == faces.Length)
+                {
+                    list.Add(item);
+                }
+            }
+            // if list is not empty, the model is not a good one.
+
             return result;
         }
     }
