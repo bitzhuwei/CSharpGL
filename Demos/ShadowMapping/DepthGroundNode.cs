@@ -93,7 +93,7 @@ void main(void)
         {
             if (!this.IsInitialized) { this.Initialize(); }
 
-            LightBase light = arg.CurrentLight;
+            LightBase light = arg.Light;
             mat4 projection = light.GetProjectionMatrix();
             mat4 view = light.GetViewMatrix();
             mat4 model = this.GetModelMatrix();
@@ -103,6 +103,13 @@ void main(void)
             program.SetUniform(mvpMatrix, projection * view * model);
 
             method.Render();
+        }
+
+        private TwoFlags enableRenderUnderLight = TwoFlags.BeforeChildren | TwoFlags.Children;
+        public TwoFlags EnableRenderUnderLight { get { return this.enableRenderUnderLight; } set { this.enableRenderUnderLight = value; } }
+
+        public void RenderUnderLight(RenderEventArgs arg, LightBase light)
+        {
         }
 
         #endregion

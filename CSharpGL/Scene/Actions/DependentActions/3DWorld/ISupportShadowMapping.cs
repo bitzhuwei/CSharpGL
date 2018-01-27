@@ -26,6 +26,19 @@ namespace CSharpGL
         /// </summary>
         /// <param name="arg"></param>
         void CastShadow(ShadowMappingEventArgs arg);
+
+        /// <summary>
+        /// Is extruding shadow enabled for this object and its children?
+        /// </summary>
+        TwoFlags EnableRenderUnderLight { get; set; }
+
+        /// <summary>
+        /// Render the node under the specified light.
+        /// </summary>
+        /// <param name="arg"></param>
+        /// <param name="light"></param>
+        void RenderUnderLight(RenderEventArgs arg, LightBase light);
+
     }
 
     /// <summary>
@@ -36,8 +49,10 @@ namespace CSharpGL
         /// <summary>
         /// Initializes a new instance of the <see cref="RenderEventArgs"/> class.
         /// </summary>
-        public ShadowMappingEventArgs()
+        public ShadowMappingEventArgs(LightBase light)
         {
+            this.Light = light;
+
             this.ModelMatrixStack = new Stack<mat4>();
             this.ModelMatrixStack.Push(mat4.identity());
 
@@ -73,6 +88,6 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        public LightBase CurrentLight { get; set; }
+        public LightBase Light { get; set; }
     }
 }

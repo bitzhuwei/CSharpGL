@@ -9,7 +9,7 @@ namespace ShadowMapping
     /// <summary>
     /// render a teapot with shadow.
     /// </summary>
-    public partial class ShadowMappingNode : PickableNode, ISupportShadowMapping, IRenderable
+    public partial class ShadowMappingNode : PickableNode, ISupportShadowMapping
     {
         private const string inPosition = "position";
         private const string inNormal = "normal";
@@ -74,61 +74,6 @@ namespace ShadowMapping
         public vec3 Specular { get; set; }
         public float SpecularPower { get; set; }
 
-        #region IRenderable 成员
-
-        private ThreeFlags enableRendering = ThreeFlags.BeforeChildren | ThreeFlags.Children | ThreeFlags.AfterChildren;
-        /// <summary>
-        /// Render before/after children? Render children? 
-        /// RenderAction cares about this property. Other actions, maybe, maybe not, your choice.
-        /// </summary>
-        public ThreeFlags EnableRendering
-        {
-            get { return this.enableRendering; }
-            set { this.enableRendering = value; }
-        }
-
-        public void RenderBeforeChildren(RenderEventArgs arg)
-        {
-            if (!this.IsInitialized) { Initialize(); }
-
-            //this.RotationAngle += this.RotateSpeed;
-
-            ICamera camera = arg.CameraStack.Peek();
-            mat4 projection = camera.GetProjectionMatrix();
-            mat4 view = camera.GetViewMatrix();
-            mat4 model = this.GetModelMatrix();
-            List<LightBase> lights = arg.CurrentLights.Peek();
-            LightBase light = lights[0];// now we only use one light for testing.
-            mat4 lightBias = glm.translate(mat4.identity(), new vec3(1, 1, 1) * 0.5f);
-            lightBias = glm.scale(lightBias, new vec3(1, 1, 1) * 0.5f);
-            mat4 lightProjection = light.GetProjectionMatrix();
-            mat4 lightView = light.GetViewMatrix();
-
-            var method = this.RenderUnit.Methods[1];
-            ShaderProgram program = method.Program;
-            program.SetUniform(mvpMatrix, projection * view * model);
-            program.SetUniform(model_matrix, model);
-            program.SetUniform(view_matrix, view);
-            program.SetUniform(projection_matrix, projection);
-            program.SetUniform(shadow_matrix, lightBias * lightProjection * lightView);
-            program.SetUniform(depth_texture, light.BindingTexture);
-            program.SetUniform(light_position, new vec3(view * new vec4(light.Position, 1.0f)));
-            //program.SetUniform(light_position, light.Position);
-            program.SetUniform(material_ambient, this.Ambient);
-            program.SetUniform(material_diffuse, this.Diffuse);
-            program.SetUniform(material_specular, this.Specular);
-            program.SetUniform(material_specular_power, this.SpecularPower);
-
-            method.Render();
-        }
-
-        public void RenderAfterChildren(RenderEventArgs arg)
-        {
-        }
-
-        #endregion
-
-
         #region IShadowMapping 成员
 
         private TwoFlags enableShadowMapping = TwoFlags.BeforeChildren | TwoFlags.Children;
@@ -151,7 +96,7 @@ namespace ShadowMapping
 
             this.RotationAngle += this.RotateSpeed;
 
-            LightBase light = arg.CurrentLight;
+            LightBase light = arg.Light;
             mat4 projection = light.GetProjectionMatrix();
             mat4 view = light.GetViewMatrix();
             mat4 model = this.GetModelMatrix();
@@ -159,6 +104,42 @@ namespace ShadowMapping
             var method = this.RenderUnit.Methods[0];
             ShaderProgram program = method.Program;
             program.SetUniform(mvpMatrix, projection * view * model);
+
+            method.Render();
+        }
+
+        private TwoFlags enableRenderUnderLight = TwoFlags.BeforeChildren | TwoFlags.Children;
+        public TwoFlags EnableRenderUnderLight { get { return this.enableRenderUnderLight; } set { this.enableRenderUnderLight = value; } }
+
+        public void RenderUnderLight(RenderEventArgs arg, LightBase light)
+        {
+            if (!this.IsInitialized) { Initialize(); }
+
+            //this.RotationAngle += this.RotateSpeed;
+
+            ICamera camera = arg.CameraStack.Peek();
+            mat4 projection = camera.GetProjectionMatrix();
+            mat4 view = camera.GetViewMatrix();
+            mat4 model = this.GetModelMatrix();
+            mat4 lightBias = glm.translate(mat4.identity(), new vec3(1, 1, 1) * 0.5f);
+            lightBias = glm.scale(lightBias, new vec3(1, 1, 1) * 0.5f);
+            mat4 lightProjection = light.GetProjectionMatrix();
+            mat4 lightView = light.GetViewMatrix();
+
+            var method = this.RenderUnit.Methods[1];
+            ShaderProgram program = method.Program;
+            program.SetUniform(mvpMatrix, projection * view * model);
+            program.SetUniform(model_matrix, model);
+            program.SetUniform(view_matrix, view);
+            program.SetUniform(projection_matrix, projection);
+            program.SetUniform(shadow_matrix, lightBias * lightProjection * lightView);
+            program.SetUniform(depth_texture, light.BindingTexture);
+            program.SetUniform(light_position, new vec3(view * new vec4(light.Position, 1.0f)));
+            //program.SetUniform(light_position, light.Position);
+            program.SetUniform(material_ambient, this.Ambient);
+            program.SetUniform(material_diffuse, this.Diffuse);
+            program.SetUniform(material_specular, this.Specular);
+            program.SetUniform(material_specular_power, this.SpecularPower);
 
             method.Render();
         }

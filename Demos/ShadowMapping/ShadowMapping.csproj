@@ -46,7 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GroundModel.cs" />
-    <Compile Include="LightPostionNode.cs" />
+    <Compile Include="LightPositionNode.cs" />
     <Compile Include="DepthGroundNode.cs" />
     <Compile Include="ShadowMappingNode.shadowMapping.cs" />
     <Compile Include="ShadowMappingNode.depthTexture.cs" />

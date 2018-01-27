@@ -88,7 +88,7 @@ void main(void)
 
             this.RotationAngle += this.RotateSpeed;
 
-            LightBase light = arg.CurrentLight;
+            LightBase light = arg.Light;
             mat4 projection = light.GetProjectionMatrix();
             mat4 view = light.GetViewMatrix();
             mat4 model = this.GetModelMatrix();
@@ -98,6 +98,22 @@ void main(void)
             program.SetUniform(mvpMatrix, projection * view * model);
 
             method.Render();
+        }
+
+        private TwoFlags enableRenderUnderLight = TwoFlags.BeforeChildren | TwoFlags.Children;
+        /// <summary>
+        /// Is extruding shadow enabled for this object and its children?
+        /// </summary>
+        public TwoFlags EnableRenderUnderLight { get { return this.enableRenderUnderLight; } set { this.enableRenderUnderLight = value; } }
+
+        /// <summary>
+        /// Render the node under the specified light.
+        /// </summary>
+        /// <param name="arg"></param>
+        /// <param name="light"></param>
+        public void RenderUnderLight(RenderEventArgs arg, LightBase light)
+        {
+
         }
 
         #endregion

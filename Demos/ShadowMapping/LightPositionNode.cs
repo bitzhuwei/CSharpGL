@@ -10,7 +10,7 @@ namespace ShadowMapping
     /// <summary>
     /// Render a Cube with single color in modern opengl.
     /// </summary>
-    public class LightPostionNode : PickableNode, IRenderable
+    public class LightPositionNode : PickableNode, IRenderable
     {
         private const string inPosition = "inPosition";
         private const string projectionMatrix = "projectionMatrix";
@@ -33,50 +33,51 @@ void main(void) {
         private const string fragmentCode =
             @"#version 330 core
 
-uniform vec4 " + color + @";
+uniform vec3 " + color + @" = vec3(1, 1, 1);
 
-out vec4 out_Color;
+layout(location = 0) out vec4 out_Color;
+//out vec4 out_Color;
 
 void main(void) {
-    out_Color = color;
+    out_Color = vec4(color, 1);
 }
 ";
-        private SpotLight light;
-        /// <summary>
-        /// 
-        /// </summary>
-        public vec4 Color { get; set; }
+        private CSharpGL.SpotLight light;
 
         /// <summary>
         /// Render propeller in modern opengl.
         /// </summary>
         /// <returns></returns>
-        public static LightPostionNode Create()
+        public static LightPositionNode Create(float initAngle = 0)
         {
+            var model = new Sphere(0.3f);
             var vs = new VertexShader(vertexCode);
             var fs = new FragmentShader(fragmentCode);
             var provider = new ShaderArray(vs, fs);
             var map = new AttributeMap();
-            map.Add(inPosition, CubeModel.strPosition);
+            map.Add(inPosition, Sphere.strPosition);
             var builder = new RenderMethodBuilder(provider, map, new PolygonModeState(PolygonMode.Line));
-            var node = new LightPostionNode(new CubeModel(), CubeModel.strPosition, builder);
+            var node = new LightPositionNode(model, Sphere.strPosition, builder);
             node.Initialize();
+            node.RotationAngle = initAngle;
 
             return node;
         }
 
         /// <summary>
-        /// Render propeller in legacy opengl. 
+        /// Render propeller in legacy opengl.
         /// </summary>
-        /// <param name="model"></param>
-        /// <param name="positionNameInIBufferable"></param>
-        /// <param name="builders"></param>
-        private LightPostionNode(CubeModel model, string positionNameInIBufferable, params RenderMethodBuilder[] builders)
+        private LightPositionNode(IBufferSource model, string positionNameInIBufferable, params RenderMethodBuilder[] builders)
             : base(model, positionNameInIBufferable, builders)
         {
-            this.ModelSize = model.ModelSize;
-            this.Color = new vec4(1, 1, 1, 1);
+            this.ModelSize = new vec3(1, 1, 1) * 0.3f;
+            this.AutoRotate = true;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool AutoRotate { get; set; }
 
         private ThreeFlags enableRendering = ThreeFlags.BeforeChildren | ThreeFlags.Children | ThreeFlags.AfterChildren;
         /// <summary>
@@ -89,11 +90,25 @@ void main(void) {
             set { this.enableRendering = value; }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="arg"></param>
         public void RenderBeforeChildren(RenderEventArgs arg)
         {
             if (!this.IsInitialized) { this.Initialize(); }
 
-            this.light.Position = this.WorldPosition;
+            if (this.AutoRotate)
+            {
+                float delta = 6;
+                this.RotationAngle += delta;
+                var position = new vec3(
+                    (float)Math.Cos(this.RotationAngle * Math.PI / 180.0),
+                    (float)Math.Cos(this.RotationAngle / 10 * Math.PI / 180.0) + 2.2f,
+                    (float)Math.Sin(this.RotationAngle * Math.PI / 180.0)) * 10;
+                this.light.Position = position;
+                this.WorldPosition = position;
+            }
 
             ICamera camera = arg.CameraStack.Peek();
             mat4 projection = camera.GetProjectionMatrix();
@@ -105,7 +120,7 @@ void main(void) {
             program.SetUniform(projectionMatrix, projection);
             program.SetUniform(viewMatrix, view);
             program.SetUniform(modelMatrix, model);
-            program.SetUniform(color, this.Color);
+            program.SetUniform(color, this.light.Color);
 
             method.Render();
         }
@@ -114,9 +129,10 @@ void main(void) {
         {
         }
 
-        public void SetLight(SpotLight light)
+        public void SetLight(CSharpGL.SpotLight light)
         {
             this.light = light;
+
         }
 
         class CubeModel : IBufferSource
