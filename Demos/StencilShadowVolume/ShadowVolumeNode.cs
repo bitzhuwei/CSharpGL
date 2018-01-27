@@ -67,9 +67,6 @@ namespace StencilShadowVolume
         private TwoFlags enableExtrude = TwoFlags.BeforeChildren | TwoFlags.Children;
         public TwoFlags EnableExtrude { get { return this.enableExtrude; } set { this.enableExtrude = value; } }
 
-        private TwoFlags enableRenderUnderLight = TwoFlags.BeforeChildren | TwoFlags.Children;
-        public TwoFlags EnableRenderUnderLight { get { return this.enableRenderUnderLight; } set { this.enableRenderUnderLight = value; } }
-
         private PolygonOffsetState fillFarOffsetState = new PolygonOffsetFillState(pullNear: false);
         private PolygonOffsetState fillNearOffsetState = new PolygonOffsetFillState(pullNear: true);
         public void ExtrudeShadow(ShadowVolumeEventArgs arg)
@@ -89,6 +86,9 @@ namespace StencilShadowVolume
             method.Render();
             fillFarOffsetState.Off();
         }
+
+        private TwoFlags enableRenderUnderLight = TwoFlags.BeforeChildren | TwoFlags.Children;
+        public TwoFlags EnableRenderUnderLight { get { return this.enableRenderUnderLight; } set { this.enableRenderUnderLight = value; } }
 
         public void RenderUnderLight(RenderEventArgs arg, LightBase light)
         {
