@@ -105,6 +105,7 @@ namespace StencilShadowVolume
                     this.modelInfo.normal,
                     this.modelInfo.size);
                 node1.WorldPosition = new vec3(0, this.modelInfo.size.y / 2 + 0.2f, 0);
+                node1.DiffuseColor = new vec3(1, 1, 1);
                 group.Children.Add(node1);
 
                 //var node2 = ShadowVolumeNode.Create(model,

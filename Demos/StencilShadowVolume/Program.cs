@@ -32,7 +32,7 @@ namespace StencilShadowVolume
             {
                 IModelProvider provider = new AdjacentTriangleModelProvider(result.Mesh);
                 var info = new ModelInfo(provider, AdjacentTriangleModel.strPosition, AdjacentTriangleModel.strNormal, provider.Size);
-                Application.Run(new FormAdjacentTriangles(info));
+                //Application.Run(new FormAdjacentTriangles(info));
                 Application.Run(new Form0SilhouetteDetection(info));
                 Application.Run(new Form1ExtrudeVolume(info));
                 Application.Run(new Form2ShadowVolume(info));
