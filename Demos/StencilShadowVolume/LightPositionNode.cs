@@ -48,7 +48,7 @@ void main(void) {
         /// Render propeller in modern opengl.
         /// </summary>
         /// <returns></returns>
-        public static LightPositionNode Create()
+        public static LightPositionNode Create(float initAngle = 0)
         {
             var model = new Sphere(0.3f);
             var vs = new VertexShader(vertexCode);
@@ -59,6 +59,7 @@ void main(void) {
             var builder = new RenderMethodBuilder(provider, map, new PolygonModeState(PolygonMode.Line));
             var node = new LightPositionNode(model, Sphere.strPosition, builder);
             node.Initialize();
+            node.RotationAngle = initAngle;
 
             return node;
         }
