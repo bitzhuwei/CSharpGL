@@ -20,18 +20,18 @@ namespace CSharpGL
         /// Cast shadow to specified texture in framebuffer, or Prepare for its children to cast shadow.
         /// </summary>
         /// <param name="arg"></param>
-        void CastShadow(ShdowMappingEventArgs arg);
+        void CastShadow(ShadowMappingEventArgs arg);
     }
 
     /// <summary>
     /// Render event argument.
     /// </summary>
-    public class ShdowMappingEventArgs
+    public class ShadowMappingEventArgs
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="RenderEventArgs"/> class.
         /// </summary>
-        public ShdowMappingEventArgs()
+        public ShadowMappingEventArgs()
         {
             this.ModelMatrixStack = new Stack<mat4>();
             this.ModelMatrixStack.Push(mat4.identity());

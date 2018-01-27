@@ -24,11 +24,11 @@ namespace CSharpGL
         /// <param name="param"></param>
         public override void Act(ActionParams param)
         {
-            var arg = new ShdowMappingEventArgs();
+            var arg = new ShadowMappingEventArgs();
             this.ShadowMapping(this.Scene.RootElement, arg);
         }
 
-        private void ShadowMapping(SceneNodeBase sceneElement, ShdowMappingEventArgs arg)
+        private void ShadowMapping(SceneNodeBase sceneElement, ShadowMappingEventArgs arg)
         {
             if (sceneElement != null)
             {
@@ -56,7 +56,7 @@ namespace CSharpGL
             }
         }
 
-        private void CastShadow(SceneNodeBase sceneElement, ShdowMappingEventArgs arg)
+        private void CastShadow(SceneNodeBase sceneElement, ShadowMappingEventArgs arg)
         {
             if (sceneElement != null)
             {

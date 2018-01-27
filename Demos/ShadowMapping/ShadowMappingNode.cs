@@ -139,7 +139,7 @@ namespace ShadowMapping
             set { enableShadowMapping = value; }
         }
 
-        public void CastShadow(ShdowMappingEventArgs arg)
+        public void CastShadow(ShadowMappingEventArgs arg)
         {
             if (!this.IsInitialized) { this.Initialize(); }
 
