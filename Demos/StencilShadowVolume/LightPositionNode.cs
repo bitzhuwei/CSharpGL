@@ -100,12 +100,12 @@ void main(void) {
 
             if (this.AutoRotate)
             {
-                float delta = 30;
+                float delta = 6;
                 this.RotationAngle += delta;
                 var position = new vec3(
-                    (float)Math.Cos(this.RotationAngle / 5 * Math.PI / 180.0),
-                    (float)Math.Cos(this.RotationAngle / 50 * Math.PI / 180.0) + 2.2f,
-                    (float)Math.Sin(this.RotationAngle / 5 * Math.PI / 180.0)) * 10;
+                    (float)Math.Cos(this.RotationAngle * Math.PI / 180.0),
+                    (float)Math.Cos(this.RotationAngle / 10 * Math.PI / 180.0) + 2.2f,
+                    (float)Math.Sin(this.RotationAngle * Math.PI / 180.0)) * 10;
                 this.light.Position = position;
                 this.WorldPosition = position;
             }
@@ -120,6 +120,7 @@ void main(void) {
             program.SetUniform(projectionMatrix, projection);
             program.SetUniform(viewMatrix, view);
             program.SetUniform(modelMatrix, model);
+            program.SetUniform(color, this.light.Color);
 
             method.Render();
         }
@@ -131,6 +132,7 @@ void main(void) {
         public void SetLight(CSharpGL.PointLight light)
         {
             this.light = light;
+
         }
 
         class CubeModel : IBufferSource
