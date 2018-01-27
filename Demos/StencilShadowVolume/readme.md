@@ -1,2 +1,2 @@
 ﻿# StencilShadowVolume.
-![StencilShadowVolume](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/StencilShadowVolume/StencilShadowVolume.png?raw=true)
+![StencilShadowVolume](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/StencilShadowVolume/StencilShadowVolume.gif?raw=true)

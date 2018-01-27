@@ -6,7 +6,7 @@ Here are some of them.
 ## Shadow Mapping.
 ![Shadow Mapping](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/ShadowMapping/ShadowMapping.png?raw=true)
 ## Stencil Shadow Volume.
-![StencilShadowVolume](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/StencilShadowVolume/StencilShadowVolume.png?raw=true)
+![StencilShadowVolume](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/StencilShadowVolume/StencilShadowVolume.gif?raw=true)
 ## WorldSpace Billboard。
 ![WorldSpaceBillboard](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/WorldSpaceBillboard/WorldSpaceBillboard.png?raw=true)
 ## Picking.
