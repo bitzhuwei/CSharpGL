@@ -15,7 +15,7 @@ namespace CSharpGL
         /// <summary>
         /// Specifies whether render shadow volume or not.
         /// </summary>
-        public bool RenderShadowVolume { get; set; }
+        public bool DisplayShadowVolume { get; set; }
 
         /// <summary>
         /// Render depth buffer, extrude shadow volume, record occlusions by stencil operation, light up the scene according to stencil test and finally render the ambient color.
@@ -49,7 +49,7 @@ namespace CSharpGL
         /// <param name="param"></param>
         public override void Act(ActionParams param)
         {
-            bool renderShadowVolume = this.RenderShadowVolume;
+            bool displayShadowVolume = this.DisplayShadowVolume;
             this.depthClamp.On();// for infinite back cap of shadow volumes.
 
             // Render depth info into depth buffer and ambient color into color buffer.
@@ -74,7 +74,7 @@ namespace CSharpGL
                 // Extrude shadow volume and save shadow info into stencil buffer.
                 {
                     this.depthMask.On(); // Disable writing to depth buffer.
-                    if (!renderShadowVolume) { this.colorMask.On(); } // Disable writing to color buffer.
+                    if (!displayShadowVolume) { this.colorMask.On(); } // Disable writing to color buffer.
                     this.cullFace.On();  // Disable culling face.
                     GL.Instance.StencilFunc(GL.GL_ALWAYS, 0, 0xFF); // always pass stencil test.
                     // If depth test fails for back face, increase value in stencil buffer.
@@ -87,7 +87,7 @@ namespace CSharpGL
                     Extrude(this.Scene.RootElement, arg);
 
                     this.cullFace.Off();
-                    if (!renderShadowVolume) { this.colorMask.Off(); }
+                    if (!displayShadowVolume) { this.colorMask.Off(); }
                     this.depthMask.Off();
                 }
                 // 
