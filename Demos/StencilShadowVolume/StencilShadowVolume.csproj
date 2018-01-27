@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdjacentTriangleModel.cs" />
     <Compile Include="FormAdjacentTriangles.cs">
       <SubType>Form</SubType>
     </Compile>

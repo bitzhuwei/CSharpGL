@@ -19,7 +19,7 @@ namespace StencilShadowVolume
                 var array = new ShaderArray(vs, gs, fs);
                 var map = new AttributeMap();
                 map.Add("Position", position);
-                silhouetteBuilder = new RenderMethodBuilder(array, map, new LineWidthState(3));
+                silhouetteBuilder = new RenderMethodBuilder(array, map);
             }
             {
                 var vs = new VertexShader(vertexCode);

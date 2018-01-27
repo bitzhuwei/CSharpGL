@@ -93,7 +93,7 @@
             this.Controls.Add(this.trvScene);
             this.Controls.Add(this.winGLCanvas1);
             this.Name = "FormMain";
-            this.Text = "StencilShadowVolume - CSharpGL";
+            this.Text = "Extrude Volume - Stencil Shadow Volume - CSharpGL";
             ((System.ComponentModel.ISupportInitialize)(this.winGLCanvas1)).EndInit();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();

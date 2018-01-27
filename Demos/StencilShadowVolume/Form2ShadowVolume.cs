@@ -32,7 +32,7 @@ namespace StencilShadowVolume
             var light = new PointLight(new vec3(0, 0, 0));
             var rootElement = GetTree(light);
 
-            var position = new vec3(5, 3, 4) * 3;
+            var position = new vec3(5, 3, 4) * 3.3f;
             var center = new vec3(0, 0, 0);
             var up = new vec3(0, 1, 0);
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
@@ -89,27 +89,28 @@ namespace StencilShadowVolume
                 var model = this.modelInfo.modelProvider.Model;
                 var node1 = ShadowVolumeNode.Create(model,
                     this.modelInfo.position,
-                    this.modelInfo.color,
+                    this.modelInfo.normal,
                     this.modelInfo.size);
+                node1.WorldPosition = new vec3(0, this.modelInfo.size.y / 2 + 0.2f, 0);
                 group.Children.Add(node1);
 
-                var node2 = ShadowVolumeNode.Create(model,
-                    this.modelInfo.position,
-                    this.modelInfo.color,
-                    this.modelInfo.size);
-                node2.WorldPosition = new vec3(1, -1, 0) * 3;
+                //var node2 = ShadowVolumeNode.Create(model,
+                //    this.modelInfo.position,
+                //    this.modelInfo.color,
+                //    this.modelInfo.size);
+                //node2.WorldPosition = new vec3(1, -1, 0) * 3;
 
-                var node3 = ShadowVolumeNode.Create(model,
-                    this.modelInfo.position,
-                    this.modelInfo.color,
-                    this.modelInfo.size);
-                node3.WorldPosition = new vec3(-1, -1, 0) * 3;
+                //var node3 = ShadowVolumeNode.Create(model,
+                //    this.modelInfo.position,
+                //    this.modelInfo.color,
+                //    this.modelInfo.size);
+                //node3.WorldPosition = new vec3(-1, -1, 0) * 3;
             }
 
             {
-                var model = new AdjacentCubeModel(new vec3(60, 1f, 40));
-                var floor = ShadowVolumeNode.Create(model, AdjacentCubeModel.strPosition, AdjacentCubeModel.strColor, model.GetSize());
-                floor.WorldPosition = new vec3(0, -2.5f, 0);
+                var model = new AdjacentCubeModel(new vec3(100, 1, 100));
+                var floor = ShadowVolumeNode.Create(model, AdjacentCubeModel.strPosition, AdjacentCubeModel.strNormal, model.GetSize());
+                floor.WorldPosition = new vec3(0, -0.5f, 0);
                 group.Children.Add(floor);
             }
 

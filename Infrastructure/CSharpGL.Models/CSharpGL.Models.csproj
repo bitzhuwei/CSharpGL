@@ -122,6 +122,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="KleinBottle\以从零编写一个KleinBottle渲染器为例学习如何使用CSharpGL.md" />
+    <None Include="buddha.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="bunny.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="dragon.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="nanosuit.obj_">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

@@ -48,7 +48,7 @@
             // 
             // propGrid
             // 
-            this.propGrid.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.propGrid.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Left)));
             this.propGrid.Location = new System.Drawing.Point(12, 277);
             this.propGrid.Name = "propGrid";
@@ -62,8 +62,8 @@
             this.winGLCanvas1.AccumBlueBits = ((byte)(0));
             this.winGLCanvas1.AccumGreenBits = ((byte)(0));
             this.winGLCanvas1.AccumRedBits = ((byte)(0));
-            this.winGLCanvas1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.winGLCanvas1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.winGLCanvas1.Location = new System.Drawing.Point(350, 12);
             this.winGLCanvas1.Name = "winGLCanvas1";
@@ -100,7 +100,7 @@
             this.Controls.Add(this.trvScene);
             this.Controls.Add(this.winGLCanvas1);
             this.Name = "Form2ShadowVolume";
-            this.Text = "StencilShadowVolume - CSharpGL";
+            this.Text = "Under Point Light - Stencil Shadow Volume - CSharpGL";
             ((System.ComponentModel.ISupportInitialize)(this.winGLCanvas1)).EndInit();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();

@@ -9,7 +9,7 @@ namespace StencilShadowVolume
     partial class ShadowVolumeNode : ModernNode, ISupportShadowVolume
     {
 
-        public static ShadowVolumeNode Create(IBufferSource model, string position, string color, vec3 size)
+        public static ShadowVolumeNode Create(IBufferSource model, string position, string normal, vec3 size)
         {
             RenderMethodBuilder depthBufferBuilder, extrudeBuilder, underLightBuilder, ambientColorBufer;
             {
@@ -34,8 +34,8 @@ namespace StencilShadowVolume
                 var fs = new FragmentShader(underLightFrag);
                 var array = new ShaderArray(vs, fs);
                 var map = new AttributeMap();
-                map.Add("inPosition", position);
-                map.Add("inColor", color);
+                map.Add("vPosition", position);
+                map.Add("vNormal", normal);
                 underLightBuilder = new RenderMethodBuilder(array, map);
             }
             {
@@ -96,16 +96,40 @@ namespace StencilShadowVolume
             mat4 projection = camera.GetProjectionMatrix();
             mat4 view = camera.GetViewMatrix();
             mat4 model = this.GetModelMatrix();
+            mat4 normal = glm.transpose(glm.inverse(view * model));
 
             var method = this.RenderUnit.Methods[(int)MethodName.renderUnderLight];
             ShaderProgram program = method.Program;
-            program.SetUniform("mvpMat", projection * view * model);
+            program.SetUniform("projectionMatrix", projection);
+            program.SetUniform("viewMatrix", view);
+            program.SetUniform("modelMatrix", model);
+            program.SetUniform("normalMatrix", normal);
+            program.SetUniform("lightPosition", new vec3(view * new vec4(light.Position, 1.0f)));
+            program.SetUniform("lightColor", light.Color);
 
             //fillNearOffsetState.On();
             method.Render();
             //fillNearOffsetState.Off();
         }
 
+        private vec3 diffuseColor = new vec3(1, 0.8431f, 0);
+        public vec3 DiffuseColor
+        {
+            get
+            {
+                return diffuseColor;
+            }
+            set
+            {
+                this.diffuseColor = value;
+                if (this.RenderUnit != null)
+                {
+                    RenderMethod method = this.RenderUnit.Methods[(int)MethodName.renderUnderLight];
+                    ShaderProgram program = method.Program;
+                    program.SetUniform("diffuseColor", value);
+                }
+            }
+        }
         public void RenderAmbientColor(RenderEventArgs arg)
         {
             ICamera camera = arg.CameraStack.Peek();
