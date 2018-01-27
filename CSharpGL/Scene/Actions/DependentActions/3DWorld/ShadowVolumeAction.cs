@@ -113,21 +113,24 @@ namespace CSharpGL
 
         private void RenderAmbientColor(SceneNodeBase sceneNodeBase, RenderEventArgs arg)
         {
-            var node = sceneNodeBase as ISupportShadowVolume;
-            TwoFlags flags = (node != null) ? node.EnableShadowVolume : TwoFlags.None;
-            bool before = (node != null) && ((flags & TwoFlags.BeforeChildren) == TwoFlags.BeforeChildren);
-            bool children = (node == null) || ((flags & TwoFlags.Children) == TwoFlags.Children);
-
-            if (before)
+            if (sceneNodeBase != null)
             {
-                node.RenderAmbientColor(arg);
-            }
+                var node = sceneNodeBase as ISupportShadowVolume;
+                TwoFlags flags = (node != null) ? node.EnableShadowVolume : TwoFlags.None;
+                bool before = (node != null) && ((flags & TwoFlags.BeforeChildren) == TwoFlags.BeforeChildren);
+                bool children = (node == null) || ((flags & TwoFlags.Children) == TwoFlags.Children);
 
-            if (children)
-            {
-                foreach (var item in sceneNodeBase.Children)
+                if (before)
                 {
-                    RenderAmbientColor(item, arg);
+                    node.RenderAmbientColor(arg);
+                }
+
+                if (children)
+                {
+                    foreach (var item in sceneNodeBase.Children)
+                    {
+                        RenderAmbientColor(item, arg);
+                    }
                 }
             }
         }
@@ -139,66 +142,72 @@ namespace CSharpGL
         /// <param name="arg"></param>
         static void Extrude(SceneNodeBase sceneNodeBase, ShadowVolumeEventArgs arg)
         {
-            var node = sceneNodeBase as ISupportShadowVolume;
-            TwoFlags flags = (node != null) ? node.EnableShadowVolume : TwoFlags.None;
-            bool before = (node != null) && ((flags & TwoFlags.BeforeChildren) == TwoFlags.BeforeChildren);
-            bool children = (node == null) || ((flags & TwoFlags.Children) == TwoFlags.Children);
-
-            if (before)
+            if (sceneNodeBase != null)
             {
-                flags = node.EnableExtrude;
-                before = (flags & TwoFlags.BeforeChildren) == TwoFlags.BeforeChildren;
-            }
+                var node = sceneNodeBase as ISupportShadowVolume;
+                TwoFlags flags = (node != null) ? node.EnableShadowVolume : TwoFlags.None;
+                bool before = (node != null) && ((flags & TwoFlags.BeforeChildren) == TwoFlags.BeforeChildren);
+                bool children = (node == null) || ((flags & TwoFlags.Children) == TwoFlags.Children);
 
-            if (children)
-            {
-                flags = (node != null) ? node.EnableExtrude : TwoFlags.None;
-                children = (node == null) || ((flags & TwoFlags.Children) == TwoFlags.Children);
-            }
-
-            if (before)
-            {
-                node.ExtrudeShadow(arg);
-            }
-
-            if (children)
-            {
-                foreach (var item in sceneNodeBase.Children)
+                if (before)
                 {
-                    Extrude(item, arg);
+                    flags = node.EnableExtrude;
+                    before = (flags & TwoFlags.BeforeChildren) == TwoFlags.BeforeChildren;
+                }
+
+                if (children)
+                {
+                    flags = (node != null) ? node.EnableExtrude : TwoFlags.None;
+                    children = (node == null) || ((flags & TwoFlags.Children) == TwoFlags.Children);
+                }
+
+                if (before)
+                {
+                    node.ExtrudeShadow(arg);
+                }
+
+                if (children)
+                {
+                    foreach (var item in sceneNodeBase.Children)
+                    {
+                        Extrude(item, arg);
+                    }
                 }
             }
         }
 
         private void RenderUnderLight(SceneNodeBase sceneNodeBase, RenderEventArgs arg, LightBase light)
         {
-            var node = sceneNodeBase as ISupportShadowVolume;
-            TwoFlags flags = (node != null) ? node.EnableShadowVolume : TwoFlags.None;
-            bool before = (node != null) && ((flags & TwoFlags.BeforeChildren) == TwoFlags.BeforeChildren);
-            bool children = (node == null) || ((flags & TwoFlags.Children) == TwoFlags.Children);
-
-            if (before)
+            if (sceneNodeBase != null)
             {
-                flags = node.EnableRenderUnderLight;
-                before = (flags & TwoFlags.BeforeChildren) == TwoFlags.BeforeChildren;
-            }
+                var node = sceneNodeBase as ISupportShadowVolume;
+                TwoFlags flags = (node != null) ? node.EnableShadowVolume : TwoFlags.None;
+                bool before = (node != null) && ((flags & TwoFlags.BeforeChildren) == TwoFlags.BeforeChildren);
+                bool children = (node == null) || ((flags & TwoFlags.Children) == TwoFlags.Children);
 
-            if (children)
-            {
-                flags = (node != null) ? node.EnableRenderUnderLight : TwoFlags.None;
-                children = (node == null) || ((flags & TwoFlags.Children) == TwoFlags.Children);
-            }
-
-            if (before)
-            {
-                node.RenderUnderLight(arg, light);
-            }
-
-            if (children)
-            {
-                foreach (var item in sceneNodeBase.Children)
+                if (before)
                 {
-                    RenderUnderLight(item, arg, light);
+                    flags = node.EnableRenderUnderLight;
+                    before = (flags & TwoFlags.BeforeChildren) == TwoFlags.BeforeChildren;
+                }
+
+                if (children)
+                {
+                    flags = (node != null) ? node.EnableRenderUnderLight : TwoFlags.None;
+                    children = (node == null) || ((flags & TwoFlags.Children) == TwoFlags.Children);
+                }
+
+                if (before)
+                {
+                    node.RenderUnderLight(arg, light);
+                }
+
+                if (children)
+                {
+                    foreach (var item in sceneNodeBase.Children)
+                    {
+                        RenderUnderLight(item, arg, light);
+                    }
                 }
             }
         }

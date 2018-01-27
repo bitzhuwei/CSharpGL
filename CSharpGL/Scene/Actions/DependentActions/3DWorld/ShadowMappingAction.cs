@@ -56,19 +56,38 @@ namespace CSharpGL
             }
         }
 
-        private void CastShadow(SceneNodeBase sceneElement, ShadowMappingEventArgs arg)
+        private void CastShadow(SceneNodeBase sceneNodeBase, ShadowMappingEventArgs arg)
         {
-            if (sceneElement != null)
+            if (sceneNodeBase != null)
             {
-                var renderable = sceneElement as ISupportShadowMapping;
-                if (renderable != null && renderable.EnableShadowMapping)
+                var node = sceneNodeBase as ISupportShadowMapping;
+                TwoFlags flags = (node != null) ? node.EnableShadowMapping : TwoFlags.None;
+                bool before = (node != null) && ((flags & TwoFlags.BeforeChildren) == TwoFlags.BeforeChildren);
+                bool children = (node == null) || ((flags & TwoFlags.Children) == TwoFlags.Children);
+
+                if (before)
                 {
-                    renderable.CastShadow(arg);
+                    flags = node.EnableCastShadow;
+                    before = (flags & TwoFlags.BeforeChildren) == TwoFlags.BeforeChildren;
                 }
 
-                foreach (var item in sceneElement.Children)
+                if (children)
                 {
-                    CastShadow(item, arg);
+                    flags = (node != null) ? node.EnableCastShadow : TwoFlags.None;
+                    children = (node == null) || ((flags & TwoFlags.Children) == TwoFlags.Children);
+                }
+
+                if (before)
+                {
+                    node.CastShadow(arg);
+                }
+
+                if (children)
+                {
+                    foreach (var item in sceneNodeBase.Children)
+                    {
+                        CastShadow(item, arg);
+                    }
                 }
             }
         }

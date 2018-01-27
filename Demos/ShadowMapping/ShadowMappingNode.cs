@@ -131,12 +131,18 @@ namespace ShadowMapping
 
         #region IShadowMapping 成员
 
-        private bool enableShadowMapping = true;
-
-        public bool EnableShadowMapping
+        private TwoFlags enableShadowMapping = TwoFlags.BeforeChildren | TwoFlags.Children;
+        public TwoFlags EnableShadowMapping
         {
             get { return enableShadowMapping; }
             set { enableShadowMapping = value; }
+        }
+
+        private TwoFlags enableCastShadow = TwoFlags.BeforeChildren | TwoFlags.Children;
+        public TwoFlags EnableCastShadow
+        {
+            get { return enableCastShadow; }
+            set { enableCastShadow = value; }
         }
 
         public void CastShadow(ShadowMappingEventArgs arg)

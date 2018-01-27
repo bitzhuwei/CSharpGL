@@ -12,9 +12,14 @@ namespace CSharpGL
     public interface ISupportShadowMapping
     {
         /// <summary>
-        /// Is casting shadow for enabled this object?
+        /// Is shadow mapping enabled for this object and its children?
         /// </summary>
-        bool EnableShadowMapping { get; set; }
+        TwoFlags EnableShadowMapping { get; set; }
+
+        /// <summary>
+        /// Is casting shadow for enabled this object and its children?
+        /// </summary>
+        TwoFlags EnableCastShadow { get; set; }
 
         /// <summary>
         /// Cast shadow to specified texture in framebuffer, or Prepare for its children to cast shadow.
