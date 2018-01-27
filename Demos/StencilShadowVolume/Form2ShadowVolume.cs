@@ -52,6 +52,8 @@ namespace StencilShadowVolume
             list.Add(renderAction);
             this.actionList = list;
 
+            (new FormProperyGrid(shadowVolumeAction)).Show();
+
             Match(this.trvScene, scene.RootElement);
             this.trvScene.ExpandAll();
 

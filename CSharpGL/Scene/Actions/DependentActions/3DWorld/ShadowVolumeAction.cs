@@ -13,6 +13,11 @@ namespace CSharpGL
     public class ShadowVolumeAction : DependentActionBase
     {
         /// <summary>
+        /// Specifies whether render shadow volume or not.
+        /// </summary>
+        public bool RenderShadowVolume { get; set; }
+
+        /// <summary>
         /// Render depth buffer, extrude shadow volume, record occlusions by stencil operation, light up the scene according to stencil test and finally render the ambient color.
         /// </summary>
         /// <param name="scene"></param>
@@ -44,6 +49,7 @@ namespace CSharpGL
         /// <param name="param"></param>
         public override void Act(ActionParams param)
         {
+            bool renderShadowVolume = this.RenderShadowVolume;
             this.depthClamp.On();// for infinite back cap of shadow volumes.
 
             // Render depth info into depth buffer and ambient color into color buffer.
@@ -68,7 +74,7 @@ namespace CSharpGL
                 // Extrude shadow volume and save shadow info into stencil buffer.
                 {
                     this.depthMask.On(); // Disable writing to depth buffer.
-                    this.colorMask.On(); // Disable writing to color buffer.
+                    if (!renderShadowVolume) { this.colorMask.On(); } // Disable writing to color buffer.
                     this.cullFace.On();  // Disable culling face.
                     GL.Instance.StencilFunc(GL.GL_ALWAYS, 0, 0xFF); // always pass stencil test.
                     // If depth test fails for back face, increase value in stencil buffer.
@@ -81,7 +87,7 @@ namespace CSharpGL
                     Extrude(this.Scene.RootElement, arg);
 
                     this.cullFace.Off();
-                    this.colorMask.Off();
+                    if (!renderShadowVolume) { this.colorMask.Off(); }
                     this.depthMask.Off();
                 }
                 // 
@@ -107,48 +113,21 @@ namespace CSharpGL
 
         private void RenderAmbientColor(SceneNodeBase sceneNodeBase, RenderEventArgs arg)
         {
-            if (sceneNodeBase != null)
+            var node = sceneNodeBase as ISupportShadowVolume;
+            TwoFlags flags = (node != null) ? node.EnableShadowVolume : TwoFlags.None;
+            bool before = (node != null) && ((flags & TwoFlags.BeforeChildren) == TwoFlags.BeforeChildren);
+            bool children = (node == null) || ((flags & TwoFlags.Children) == TwoFlags.Children);
+
+            if (before)
             {
-                var node = sceneNodeBase as ISupportShadowVolume;
-                TwoFlags flags = (node != null) ? node.EnableShadowVolume : TwoFlags.None;
-                bool before = (node != null) && ((flags & TwoFlags.BeforeChildren) == TwoFlags.BeforeChildren);
-                bool children = (node == null) || ((flags & TwoFlags.Children) == TwoFlags.Children);
-
-                if (before)
-                {
-                    node.RenderAmbientColor(arg);
-                }
-
-                if (children)
-                {
-                    foreach (var item in sceneNodeBase.Children)
-                    {
-                        RenderAmbientColor(item, arg);
-                    }
-                }
+                node.RenderAmbientColor(arg);
             }
-        }
 
-        private void RenderUnderLight(SceneNodeBase sceneNodeBase, RenderEventArgs arg, LightBase light)
-        {
-            if (sceneNodeBase != null)
+            if (children)
             {
-                var node = sceneNodeBase as ISupportShadowVolume;
-                TwoFlags flags = (node != null) ? node.EnableShadowVolume : TwoFlags.None;
-                bool before = (node != null) && ((flags & TwoFlags.BeforeChildren) == TwoFlags.BeforeChildren);
-                bool children = (node == null) || ((flags & TwoFlags.Children) == TwoFlags.Children);
-
-                if (before)
+                foreach (var item in sceneNodeBase.Children)
                 {
-                    node.RenderUnderLight(arg, light);
-                }
-
-                if (children)
-                {
-                    foreach (var item in sceneNodeBase.Children)
-                    {
-                        RenderUnderLight(item, arg, light);
-                    }
+                    RenderAmbientColor(item, arg);
                 }
             }
         }
@@ -160,27 +139,66 @@ namespace CSharpGL
         /// <param name="arg"></param>
         static void Extrude(SceneNodeBase sceneNodeBase, ShadowVolumeEventArgs arg)
         {
-            if (sceneNodeBase != null)
+            var node = sceneNodeBase as ISupportShadowVolume;
+            TwoFlags flags = (node != null) ? node.EnableShadowVolume : TwoFlags.None;
+            bool before = (node != null) && ((flags & TwoFlags.BeforeChildren) == TwoFlags.BeforeChildren);
+            bool children = (node == null) || ((flags & TwoFlags.Children) == TwoFlags.Children);
+
+            if (before)
             {
-                var node = sceneNodeBase as ISupportShadowVolume;
-                TwoFlags flags = (node != null) ? node.EnableShadowVolume : TwoFlags.None;
-                bool before = (node != null) && ((flags & TwoFlags.BeforeChildren) == TwoFlags.BeforeChildren);
-                bool children = (node == null) || ((flags & TwoFlags.Children) == TwoFlags.Children);
+                flags = node.EnableExtrude;
+                before = (flags & TwoFlags.BeforeChildren) == TwoFlags.BeforeChildren;
+            }
 
-                if (before)
+            if (children)
+            {
+                flags = (node != null) ? node.EnableExtrude : TwoFlags.None;
+                children = (node == null) || ((flags & TwoFlags.Children) == TwoFlags.Children);
+            }
+
+            if (before)
+            {
+                node.ExtrudeShadow(arg);
+            }
+
+            if (children)
+            {
+                foreach (var item in sceneNodeBase.Children)
                 {
-                    if (node.EnableExtrude)
-                    {
-                        node.ExtrudeShadow(arg);
-                    }
+                    Extrude(item, arg);
                 }
+            }
+        }
 
-                if (children)
+        private void RenderUnderLight(SceneNodeBase sceneNodeBase, RenderEventArgs arg, LightBase light)
+        {
+            var node = sceneNodeBase as ISupportShadowVolume;
+            TwoFlags flags = (node != null) ? node.EnableShadowVolume : TwoFlags.None;
+            bool before = (node != null) && ((flags & TwoFlags.BeforeChildren) == TwoFlags.BeforeChildren);
+            bool children = (node == null) || ((flags & TwoFlags.Children) == TwoFlags.Children);
+
+            if (before)
+            {
+                flags = node.EnableRenderUnderLight;
+                before = (flags & TwoFlags.BeforeChildren) == TwoFlags.BeforeChildren;
+            }
+
+            if (children)
+            {
+                flags = (node != null) ? node.EnableRenderUnderLight : TwoFlags.None;
+                children = (node == null) || ((flags & TwoFlags.Children) == TwoFlags.Children);
+            }
+
+            if (before)
+            {
+                node.RenderUnderLight(arg, light);
+            }
+
+            if (children)
+            {
+                foreach (var item in sceneNodeBase.Children)
                 {
-                    foreach (var item in sceneNodeBase.Children)
-                    {
-                        Extrude(item, arg);
-                    }
+                    RenderUnderLight(item, arg, light);
                 }
             }
         }

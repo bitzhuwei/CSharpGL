@@ -23,15 +23,20 @@ namespace CSharpGL
         void RenderAmbientColor(RenderEventArgs arg);
 
         /// <summary>
-        /// Is extruding shadow enabled for this object?
+        /// Is extruding shadow enabled for this object and its children?
         /// </summary>
-        bool EnableExtrude { get; set; }
+        TwoFlags EnableExtrude { get; set; }
 
         /// <summary>
         /// Extrude shadow volume for stencil operation.
         /// </summary>
         /// <param name="arg"></param>
         void ExtrudeShadow(ShadowVolumeEventArgs arg);
+
+        /// <summary>
+        /// Is extruding shadow enabled for this object and its children?
+        /// </summary>
+        TwoFlags EnableRenderUnderLight { get; set; }
 
         /// <summary>
         /// Render the node under the specified light.

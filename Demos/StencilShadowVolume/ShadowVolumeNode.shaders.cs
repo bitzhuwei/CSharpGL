@@ -162,9 +162,6 @@ out vec4 FragColor;
 
 void main()
 {
-    if (int(gl_FragCoord.x - 0.5) % 2 == 1 && int(gl_FragCoord.y - 0.5) % 2 != 1) discard;
-    if (int(gl_FragCoord.x - 0.5) % 2 != 1 && int(gl_FragCoord.y - 0.5) % 2 == 1) discard;
-
     FragColor = vec4(1, 1, 1, 1);
 }
 ";

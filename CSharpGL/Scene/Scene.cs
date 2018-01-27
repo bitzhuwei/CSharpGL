@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
+using System.Drawing.Design;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -11,6 +13,7 @@ namespace CSharpGL
     /// camera, canvas, nodes.
     /// rendering, picking.
     /// </summary>
+    [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
     public partial class Scene
     {
         /// <summary>
