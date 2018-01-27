@@ -185,29 +185,5 @@ namespace CSharpGL
             }
         }
 
-        private void RenderDepthBuffer(SceneNodeBase sceneNodeBase, RenderEventArgs arg)
-        {
-            if (sceneNodeBase != null)
-            {
-                var node = sceneNodeBase as ISupportShadowVolume;
-                TwoFlags flags = (node != null) ? node.EnableShadowVolume : TwoFlags.None;
-                bool before = (node != null) && ((flags & TwoFlags.BeforeChildren) == TwoFlags.BeforeChildren);
-                bool children = (node == null) || ((flags & TwoFlags.Children) == TwoFlags.Children);
-
-                if (before)
-                {
-                    node.RenderToDepthBuffer(arg);
-                }
-
-                if (children)
-                {
-                    foreach (var item in sceneNodeBase.Children)
-                    {
-                        RenderDepthBuffer(item, arg);
-                    }
-                }
-            }
-        }
-
     }
 }

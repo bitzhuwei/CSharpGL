@@ -64,20 +64,6 @@ namespace StencilShadowVolume
         private TwoFlags enableShadowVolume = TwoFlags.BeforeChildren | TwoFlags.Children;
         public TwoFlags EnableShadowVolume { get { return this.enableShadowVolume; } set { this.enableShadowVolume = value; } }
 
-        public void RenderToDepthBuffer(RenderEventArgs arg)
-        {
-            ICamera camera = arg.CameraStack.Peek();
-            mat4 projection = camera.GetProjectionMatrix();
-            mat4 view = camera.GetViewMatrix();
-            mat4 model = this.GetModelMatrix();
-
-            var method = this.RenderUnit.Methods[(int)MethodName.renderToDepthBuffer]; // the only render unit in this node.
-            ShaderProgram program = method.Program;
-            program.SetUniform("mvpMat", projection * view * model);
-
-            method.Render();
-        }
-
         private bool enableExtrude = true;
         public bool EnableExtrude { get { return this.enableExtrude; } set { this.enableExtrude = value; } }
 

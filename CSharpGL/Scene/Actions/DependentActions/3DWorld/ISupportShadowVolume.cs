@@ -17,10 +17,10 @@ namespace CSharpGL
         TwoFlags EnableShadowVolume { get; set; }
 
         /// <summary>
-        /// Render node so that depth buffer is filled with valid data.
+        /// Add ambient color effect at last.
         /// </summary>
         /// <param name="arg"></param>
-        void RenderToDepthBuffer(RenderEventArgs arg);
+        void RenderAmbientColor(RenderEventArgs arg);
 
         /// <summary>
         /// Is extruding shadow enabled for this object?
@@ -40,11 +40,6 @@ namespace CSharpGL
         /// <param name="light"></param>
         void RenderUnderLight(RenderEventArgs arg, LightBase light);
 
-        /// <summary>
-        /// Add ambient color effect at last.
-        /// </summary>
-        /// <param name="arg"></param>
-        void RenderAmbientColor(RenderEventArgs arg);
     }
 
     /// <summary>
