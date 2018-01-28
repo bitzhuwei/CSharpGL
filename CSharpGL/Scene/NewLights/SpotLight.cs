@@ -16,7 +16,7 @@ namespace CSharpGL.NewLights
         public vec3 Target { get; set; }
 
         /// <summary>
-        /// 
+        /// Angle in degree.
         /// </summary>
         public float Angle { get; set; }
 
@@ -42,7 +42,7 @@ namespace CSharpGL.NewLights
         public SpotLight(vec3 position, vec3 target, float angle, float near = 0.1f, float far = 50.0f, Attenuation attenuation = null)
             : base(attenuation == null ? new Attenuation(1.0f, 0.0f, 0.0f) : attenuation)
         {
-            if (position == target) { throw new ArgumentException(); }
+            if ((position - target).length() < 0.001f) { throw new ArgumentException(); }
 
             this.Position = position;
             this.Target = target;
