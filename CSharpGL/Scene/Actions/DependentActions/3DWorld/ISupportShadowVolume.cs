@@ -17,15 +17,15 @@ namespace CSharpGL
         TwoFlags EnableShadowVolume { get; set; }
 
         /// <summary>
-        /// Render node so that depth buffer is filled with valid data.
+        /// Add ambient color effect at last.
         /// </summary>
         /// <param name="arg"></param>
-        void RenderToDepthBuffer(RenderEventArgs arg);
+        void RenderAmbientColor(RenderEventArgs arg);
 
         /// <summary>
-        /// Is extruding shadow enabled for this object?
+        /// Is extruding shadow enabled for this object and its children?
         /// </summary>
-        bool EnableExtrude { get; set; }
+        TwoFlags EnableExtrude { get; set; }
 
         /// <summary>
         /// Extrude shadow volume for stencil operation.
@@ -34,17 +34,17 @@ namespace CSharpGL
         void ExtrudeShadow(ShadowVolumeEventArgs arg);
 
         /// <summary>
+        /// Is extruding shadow enabled for this object and its children?
+        /// </summary>
+        TwoFlags EnableRenderUnderLight { get; set; }
+
+        /// <summary>
         /// Render the node under the specified light.
         /// </summary>
         /// <param name="arg"></param>
         /// <param name="light"></param>
         void RenderUnderLight(RenderEventArgs arg, LightBase light);
 
-        /// <summary>
-        /// Add ambient color effect at last.
-        /// </summary>
-        /// <param name="arg"></param>
-        void RenderAmbientColor(RenderEventArgs arg);
     }
 
     /// <summary>

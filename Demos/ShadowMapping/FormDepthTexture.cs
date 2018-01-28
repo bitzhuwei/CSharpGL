@@ -33,20 +33,26 @@ namespace ShadowMapping
             var up = new vec3(0, 1, 0);
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
             this.scene = new Scene(camera)
-
             {
                 RootElement = rootElement,
                 ClearColor = Color.SkyBlue.ToVec4(),
             };
+            {
+                // add lights.
+                var lightPosition = new vec3(0, 3, 5) * 2;
+                var localLight = new SpotLight(lightPosition, new vec3(0, 0, 0), 60, 1, 500) { Color = new vec3(1, 1, 1), };
+            }
 
             Match(this.trvScene, scene.RootElement);
             this.trvScene.ExpandAll();
 
             var tansformAction = new TransformAction(scene);
             var shadowMappingAction = new ShadowMappingAction(scene);
-            var renderAction = new RenderAction(scene);
+            //var renderAction = new RenderAction(scene);
             var actionList = new ActionList();
-            actionList.Add(tansformAction); actionList.Add(shadowMappingAction); actionList.Add(renderAction);
+            actionList.Add(tansformAction);
+            actionList.Add(shadowMappingAction);
+            //actionList.Add(renderAction);
             this.actionList = actionList;
         }
 
@@ -70,30 +76,32 @@ namespace ShadowMapping
 
         private SceneNodeBase GetRootElement()
         {
-            var lightPosition = new vec3(0, 3, 5) * 2;
-            var localLight = new SpotLight(lightPosition, new vec3(0, 0, 0), 60, 1, 500) { Color = new vec3(1, 1, 1), };
-            var lightContainer = new LightContainerNode(localLight);
+            //var lightPosition = new vec3(0, 3, 5) * 2;
+            //var localLight = new SpotLight(lightPosition, new vec3(0, 0, 0), 60, 1, 500) { Color = new vec3(1, 1, 1), };
+            //var lightContainer = new LightContainerNode(localLight);
+            var group = new GroupNode();
             {
                 {
                     var teapot = DepthTeapotNode.Create();
                     teapot.RotateSpeed = 1;
-                    lightContainer.Children.Add(teapot);
+                    group.Children.Add(teapot);
+                    //lightContainer.Children.Add(teapot);
                 }
                 {
                     var ground = DepthGroundNode.Create();
                     ground.Color = Color.Gray.ToVec4();
                     ground.Scale *= 30;
                     ground.WorldPosition = new vec3(0, -3, 0);
-                    lightContainer.Children.Add(ground);
+                    group.Children.Add(ground);
+                    //lightContainer.Children.Add(ground);
                 }
             }
 
-            var rectangle = RectangleNode.Create();
-            rectangle.TextureSource = localLight;
+            //var rectangle = RectangleNode.Create();
+            //rectangle.TextureSource = localLight;
 
-            var group = new GroupNode();
-            group.Children.Add(lightContainer);
-            group.Children.Add(rectangle);
+            //group.Children.Add(lightContainer);
+            //group.Children.Add(rectangle);
 
             return group;
         }

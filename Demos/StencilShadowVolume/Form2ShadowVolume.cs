@@ -29,10 +29,9 @@ namespace StencilShadowVolume
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-            var light = new PointLight(new vec3(0, 0, 0));
-            var rootElement = GetTree(light);
+            var rootElement = GetTree();
 
-            var position = new vec3(5, 3, 4) * 3;
+            var position = new vec3(5, 3, 4) * 3.3f;
             var center = new vec3(0, 0, 0);
             var up = new vec3(0, 1, 0);
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
@@ -41,7 +40,21 @@ namespace StencilShadowVolume
                 RootElement = rootElement,
                 ClearColor = Color.SkyBlue.ToVec4(),
             };
-            this.scene.Lights.Add(light);
+            {
+                // add lights.
+                var lights = new PointLight[] { 
+                    new PointLight(new vec3()) { Color = new vec3(1, 0, 0) }, 
+                    new PointLight(new vec3()) { Color = new vec3(0, 1, 0) }, 
+                    new PointLight(new vec3()) { Color = new vec3(0, 0, 1) }, 
+                };
+                for (int i = 0; i < lights.Length; i++)
+                {
+                    this.scene.Lights.Add(lights[i]);
+                    var node = LightPositionNode.Create(i * 360 / 3);
+                    node.SetLight(lights[i]);
+                    this.scene.RootElement.Children.Add(node);
+                }
+            }
 
             var list = new ActionList();
             var transformAction = new TransformAction(scene);
@@ -51,6 +64,8 @@ namespace StencilShadowVolume
             var renderAction = new RenderAction(scene);
             list.Add(renderAction);
             this.actionList = list;
+
+            (new FormProperyGrid(shadowVolumeAction)).Show();
 
             Match(this.trvScene, scene.RootElement);
             this.trvScene.ExpandAll();
@@ -78,7 +93,7 @@ namespace StencilShadowVolume
             }
         }
 
-        private SceneNodeBase GetTree(PointLight light)
+        private SceneNodeBase GetTree()
         {
             var group = new GroupNode();
 
@@ -87,34 +102,31 @@ namespace StencilShadowVolume
                 var model = this.modelInfo.modelProvider.Model;
                 var node1 = ShadowVolumeNode.Create(model,
                     this.modelInfo.position,
-                    this.modelInfo.color,
+                    this.modelInfo.normal,
                     this.modelInfo.size);
+                node1.WorldPosition = new vec3(0, this.modelInfo.size.y / 2 + 0.2f, 0);
+                node1.DiffuseColor = new vec3(1, 1, 1);
                 group.Children.Add(node1);
 
-                var node2 = ShadowVolumeNode.Create(model,
-                    this.modelInfo.position,
-                    this.modelInfo.color,
-                    this.modelInfo.size);
-                node2.WorldPosition = new vec3(1, -1, 0) * 3;
+                //var node2 = ShadowVolumeNode.Create(model,
+                //    this.modelInfo.position,
+                //    this.modelInfo.color,
+                //    this.modelInfo.size);
+                //node2.WorldPosition = new vec3(1, -1, 0) * 3;
 
-                var node3 = ShadowVolumeNode.Create(model,
-                    this.modelInfo.position,
-                    this.modelInfo.color,
-                    this.modelInfo.size);
-                node3.WorldPosition = new vec3(-1, -1, 0) * 3;
+                //var node3 = ShadowVolumeNode.Create(model,
+                //    this.modelInfo.position,
+                //    this.modelInfo.color,
+                //    this.modelInfo.size);
+                //node3.WorldPosition = new vec3(-1, -1, 0) * 3;
             }
 
             {
-                var model = new AdjacentCubeModel(new vec3(60, 1f, 40));
-                var floor = ShadowVolumeNode.Create(model, AdjacentCubeModel.strPosition, AdjacentCubeModel.strColor, model.GetSize());
-                floor.WorldPosition = new vec3(0, -2.5f, 0);
+                var model = new AdjacentCubeModel(new vec3(100, 1, 100));
+                var floor = ShadowVolumeNode.Create(model, AdjacentCubeModel.strPosition, AdjacentCubeModel.strNormal, model.GetSize());
+                floor.WorldPosition = new vec3(0, -0.5f, 0);
+                floor.DiffuseColor = new vec3(1, 1, 1) * 0.1f;
                 group.Children.Add(floor);
-            }
-
-            {
-                var lightPositionNode = LightPositionNode.Create();
-                lightPositionNode.SetLight(light);
-                group.Children.Add(lightPositionNode);
             }
 
             return group;

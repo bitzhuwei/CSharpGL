@@ -80,7 +80,7 @@ namespace StencilShadowVolume
             return AjdacentTrianglesNode.Create(
                 this.modelInfo.modelProvider.Model,
                 this.modelInfo.position,
-                this.modelInfo.color,
+                this.modelInfo.normal,
                 this.modelInfo.size);
         }
 

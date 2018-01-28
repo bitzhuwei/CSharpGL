@@ -15,7 +15,7 @@ namespace ShadowMapping
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormDepthTexture());
+            //Application.Run(new FormDepthTexture());
             Application.Run(new FormShadowMapping());
         }
     }

@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdjacentTriangleModel.cs" />
     <Compile Include="FormAdjacentTriangles.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -134,7 +135,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="StencilShadowVolume.png" />
+    <Content Include="StencilShadowVolume.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

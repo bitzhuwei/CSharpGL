@@ -35,11 +35,20 @@ namespace ShadowMapping
             var up = new vec3(0, 1, 0);
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
             this.scene = new Scene(camera)
-
             {
                 RootElement = rootElement,
                 ClearColor = Color.SkyBlue.ToVec4(),
             };
+            {
+                // add lights.
+                var lightPosition = new vec3(0, 3, 5) * 2;
+                var light = new SpotLight(lightPosition, new vec3(0, 0, 0), 60, 1, 500) { Color = new vec3(1, 0, 0), };
+                var node = LightPositionNode.Create();
+                node.SetLight(light);
+
+                this.scene.Lights.Add(light);
+                this.scene.RootElement.Children.Add(node);
+            }
 
             Match(this.trvScene, scene.RootElement);
             this.trvScene.ExpandAll();
@@ -50,6 +59,7 @@ namespace ShadowMapping
             var actionList = new ActionList();
             actionList.Add(tansformAction); actionList.Add(shadowMappingAction); actionList.Add(renderAction);
             this.actionList = actionList;
+            (new FormProperyGrid(shadowMappingAction)).Show();
 
             var manipulater = new FirstPerspectiveManipulater();
             manipulater.Bind(camera, this.winGLCanvas1);
@@ -76,42 +86,30 @@ namespace ShadowMapping
         private SceneNodeBase GetRootElement()
         {
             var group = new GroupNode();
-            var lightPosition = new vec3(0, 3, 5) * 2;
-            var localLight = new SpotLight(lightPosition, new vec3(0, 0, 0), 60, 1, 500) { Color = new vec3(1, 1, 1), };
             {
-                var lightContainer = new LightContainerNode(localLight);
-                {
-                    var model = new Teapot();
-                    var node = ShadowMappingNode.Create(model, Teapot.strPosition, Teapot.strNormal, model.GetModelSize());
-                    node.Diffuse = Color.Gold.ToVec3();
-                    node.RotateSpeed = 1;
-                    lightContainer.Children.Add(node);
-                }
-                {
-                    var model = new GroundModel();
-                    var node = ShadowMappingNode.Create(model, GroundModel.strPosition, GroundModel.strNormal, model.ModelSize);
-                    node.Diffuse = Color.AliceBlue.ToVec3();
-                    node.Scale *= 30;
-                    node.WorldPosition = new vec3(0, -3, 0);
-                    lightContainer.Children.Add(node);
-                }
-                group.Children.Add(lightContainer);
+                var model = new Teapot();
+                var node = ShadowMappingNode.Create(model, Teapot.strPosition, Teapot.strNormal, model.GetModelSize());
+                node.Diffuse = Color.Gold.ToVec3();
+                node.RotateSpeed = 1;
+                group.Children.Add(node);
             }
             {
-                var rectangle = RectangleNode.Create();
-                rectangle.TextureSource = localLight;
-                rectangle.RotationAngle = 45;
-                rectangle.WorldPosition = new vec3(5, 1, 5) * 3;
-                rectangle.Scale *= 4;
+                var model = new GroundModel();
+                var node = ShadowMappingNode.Create(model, GroundModel.strPosition, GroundModel.strNormal, model.ModelSize);
+                node.Diffuse = Color.AliceBlue.ToVec3();
+                node.Scale *= 100;
+                node.WorldPosition = new vec3(0, -3, 0);
+                group.Children.Add(node);
+            }
+            //{
+            //    var rectangle = RectangleNode.Create();
+            //    rectangle.TextureSource = localLight;
+            //    rectangle.RotationAngle = 45;
+            //    rectangle.WorldPosition = new vec3(5, 1, 5) * 3;
+            //    rectangle.Scale *= 4;
 
-                group.Children.Add(rectangle);
-            }
-            {
-                var cube = LightPostionNode.Create();
-                cube.WorldPosition = lightPosition;
-                cube.SetLight(localLight);
-                group.Children.Add(cube);
-            }
+            //    group.Children.Add(rectangle);
+            //}
             return group;
         }
 

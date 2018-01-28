@@ -12,27 +12,47 @@ namespace CSharpGL
     public interface ISupportShadowMapping
     {
         /// <summary>
-        /// Is casting shadow for enabled this object?
+        /// Is shadow mapping enabled for this object and its children?
         /// </summary>
-        bool EnableShadowMapping { get; set; }
+        TwoFlags EnableShadowMapping { get; set; }
+
+        /// <summary>
+        /// Is casting shadow for enabled this object and its children?
+        /// </summary>
+        TwoFlags EnableCastShadow { get; set; }
 
         /// <summary>
         /// Cast shadow to specified texture in framebuffer, or Prepare for its children to cast shadow.
         /// </summary>
         /// <param name="arg"></param>
-        void CastShadow(ShdowMappingEventArgs arg);
+        void CastShadow(ShadowMappingEventArgs arg);
+
+        /// <summary>
+        /// Is extruding shadow enabled for this object and its children?
+        /// </summary>
+        TwoFlags EnableRenderUnderLight { get; set; }
+
+        /// <summary>
+        /// Render the node under the specified light.
+        /// </summary>
+        /// <param name="arg"></param>
+        /// <param name="light"></param>
+        void RenderUnderLight(RenderEventArgs arg, LightBase light);
+
     }
 
     /// <summary>
     /// Render event argument.
     /// </summary>
-    public class ShdowMappingEventArgs
+    public class ShadowMappingEventArgs
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="RenderEventArgs"/> class.
         /// </summary>
-        public ShdowMappingEventArgs()
+        public ShadowMappingEventArgs(LightBase light)
         {
+            this.Light = light;
+
             this.ModelMatrixStack = new Stack<mat4>();
             this.ModelMatrixStack.Push(mat4.identity());
 
@@ -68,6 +88,6 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        public LightBase CurrentLight { get; set; }
+        public LightBase Light { get; set; }
     }
 }

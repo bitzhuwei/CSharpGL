@@ -9,7 +9,7 @@ namespace StencilShadowVolume
     partial class ShadowVolumeNode : ModernNode, ISupportShadowVolume
     {
 
-        public static ShadowVolumeNode Create(IBufferSource model, string position, string color, vec3 size)
+        public static ShadowVolumeNode Create(IBufferSource model, string position, string normal, vec3 size)
         {
             RenderMethodBuilder depthBufferBuilder, extrudeBuilder, underLightBuilder, ambientColorBufer;
             {
@@ -34,8 +34,8 @@ namespace StencilShadowVolume
                 var fs = new FragmentShader(underLightFrag);
                 var array = new ShaderArray(vs, fs);
                 var map = new AttributeMap();
-                map.Add("inPosition", position);
-                map.Add("inColor", color);
+                map.Add("vPosition", position);
+                map.Add("vNormal", normal);
                 underLightBuilder = new RenderMethodBuilder(array, map);
             }
             {
@@ -64,22 +64,8 @@ namespace StencilShadowVolume
         private TwoFlags enableShadowVolume = TwoFlags.BeforeChildren | TwoFlags.Children;
         public TwoFlags EnableShadowVolume { get { return this.enableShadowVolume; } set { this.enableShadowVolume = value; } }
 
-        public void RenderToDepthBuffer(RenderEventArgs arg)
-        {
-            ICamera camera = arg.CameraStack.Peek();
-            mat4 projection = camera.GetProjectionMatrix();
-            mat4 view = camera.GetViewMatrix();
-            mat4 model = this.GetModelMatrix();
-
-            var method = this.RenderUnit.Methods[(int)MethodName.renderToDepthBuffer]; // the only render unit in this node.
-            ShaderProgram program = method.Program;
-            program.SetUniform("mvpMat", projection * view * model);
-
-            method.Render();
-        }
-
-        private bool enableExtrude = true;
-        public bool EnableExtrude { get { return this.enableExtrude; } set { this.enableExtrude = value; } }
+        private TwoFlags enableExtrude = TwoFlags.BeforeChildren | TwoFlags.Children;
+        public TwoFlags EnableExtrude { get { return this.enableExtrude; } set { this.enableExtrude = value; } }
 
         private PolygonOffsetState fillFarOffsetState = new PolygonOffsetFillState(pullNear: false);
         private PolygonOffsetState fillNearOffsetState = new PolygonOffsetFillState(pullNear: true);
@@ -101,22 +87,49 @@ namespace StencilShadowVolume
             fillFarOffsetState.Off();
         }
 
+        private TwoFlags enableRenderUnderLight = TwoFlags.BeforeChildren | TwoFlags.Children;
+        public TwoFlags EnableRenderUnderLight { get { return this.enableRenderUnderLight; } set { this.enableRenderUnderLight = value; } }
+
         public void RenderUnderLight(RenderEventArgs arg, LightBase light)
         {
             ICamera camera = arg.CameraStack.Peek();
             mat4 projection = camera.GetProjectionMatrix();
             mat4 view = camera.GetViewMatrix();
             mat4 model = this.GetModelMatrix();
+            mat4 normal = glm.transpose(glm.inverse(view * model));
 
             var method = this.RenderUnit.Methods[(int)MethodName.renderUnderLight];
             ShaderProgram program = method.Program;
-            program.SetUniform("mvpMat", projection * view * model);
+            program.SetUniform("projectionMatrix", projection);
+            program.SetUniform("viewMatrix", view);
+            program.SetUniform("modelMatrix", model);
+            program.SetUniform("normalMatrix", normal);
+            program.SetUniform("lightPosition", new vec3(view * new vec4(light.Position, 1.0f)));
+            program.SetUniform("lightColor", light.Color);
 
             //fillNearOffsetState.On();
             method.Render();
             //fillNearOffsetState.Off();
         }
 
+        private vec3 diffuseColor = new vec3(1, 0.8431f, 0);
+        public vec3 DiffuseColor
+        {
+            get
+            {
+                return diffuseColor;
+            }
+            set
+            {
+                this.diffuseColor = value;
+                if (this.RenderUnit != null)
+                {
+                    RenderMethod method = this.RenderUnit.Methods[(int)MethodName.renderUnderLight];
+                    ShaderProgram program = method.Program;
+                    program.SetUniform("diffuseColor", value);
+                }
+            }
+        }
         public void RenderAmbientColor(RenderEventArgs arg)
         {
             ICamera camera = arg.CameraStack.Peek();
@@ -141,5 +154,6 @@ namespace StencilShadowVolume
             renderUnderLight = 2,
             renderAmbientColor = 3,
         }
+
     }
 }
