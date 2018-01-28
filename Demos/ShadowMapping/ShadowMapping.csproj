@@ -109,6 +109,10 @@
       <Project>{3798671c-d1a4-43aa-a4ae-edfef21cad34}</Project>
       <Name>CSharpGL.Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Infrastructure\CSharpGL.TestHelpers\CSharpGL.TestHelpers.csproj">
+      <Project>{2e22168c-14fb-4b53-bc21-2183a4a40955}</Project>
+      <Name>CSharpGL.TestHelpers</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="DepthTexture.png" />

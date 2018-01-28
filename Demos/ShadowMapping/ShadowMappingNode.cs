@@ -61,10 +61,10 @@ namespace ShadowMapping
         private ShadowMappingNode(IBufferSource model, string positionNameInIBufferSource, params RenderMethodBuilder[] builder)
             : base(model, positionNameInIBufferSource, builder)
         {
-            this.Ambient = new vec3(1, 1, 1) * 0.2f;
-            this.Diffuse = System.Drawing.Color.SkyBlue.ToVec3();
-            this.Specular = new vec3(1, 1, 1) * 0.1f;
-            this.SpecularPower = 0.2f;
+            //this.Ambient = new vec3(1, 1, 1) * 0.2f;
+            //this.Diffuse = System.Drawing.Color.SkyBlue.ToVec3();
+            //this.Specular = new vec3(1, 1, 1) * 0.1f;
+            //this.SpecularPower = 0.2f;
         }
 
         public float RotateSpeed { get; set; }
