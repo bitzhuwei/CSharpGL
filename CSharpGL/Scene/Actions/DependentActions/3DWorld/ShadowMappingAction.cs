@@ -45,9 +45,9 @@ namespace CSharpGL
                 // light up the scene with specified light.
                 {
                     var arg = new RenderEventArgs(this.Scene, param, this.Scene.Camera);
-                    this.blend.On();
+                    //this.blend.On();
                     RenderUnderLight(this.Scene.RootElement, arg, light);
-                    this.blend.Off();
+                    //this.blend.Off();
                 }
             }
         }
