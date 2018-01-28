@@ -29,7 +29,17 @@ namespace CSharpGL
             new vec3(1,1,1) * 0.5f,
             new vec3(0,1,0),
         };
-
+        private static readonly vec2[] uvs = new vec2[]
+        {
+            new vec2(1,0),
+            new vec2(1,1),
+            new vec2(0,1),
+            new vec2(0,0),
+            new vec2(1,0),
+            new vec2(1,1),
+            new vec2(0,1),
+            new vec2(0,0),
+        };
         private static readonly vec3[] normals = new vec3[]
         {
             new vec3(1,-1,-1).normalize(),
@@ -80,6 +90,8 @@ namespace CSharpGL
         private VertexBuffer positionBuffer;
         public const string strColor = "color";
         private VertexBuffer colorBuffer;
+        public const string strUV = "uv";
+        private VertexBuffer uvBuffer;
         public const string strNormal = "normal";
         private VertexBuffer normalBuffer;
 
@@ -106,6 +118,15 @@ namespace CSharpGL
                 }
 
                 yield return this.colorBuffer;
+            }
+            else if (strUV == bufferName)
+            {
+                if (this.uvBuffer == null)
+                {
+                    this.uvBuffer = uvs.GenVertexBuffer(VBOConfig.Vec2, BufferUsage.StaticDraw);
+                }
+
+                yield return this.uvBuffer;
             }
             else if (strNormal == bufferName)
             {
