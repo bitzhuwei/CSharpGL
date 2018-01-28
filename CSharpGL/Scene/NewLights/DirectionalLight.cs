@@ -6,12 +6,12 @@ using System.Text;
 namespace CSharpGL.NewLights
 {
     /// <summary>
-    /// 
+    /// Directional light.
     /// </summary>
     public class DirectionalLight : LightBase
     {
         /// <summary>
-        /// Direction towards light source.
+        /// Direction from light source to object.
         /// </summary>
         public vec3 Direction { get; set; }
 
@@ -19,7 +19,9 @@ namespace CSharpGL.NewLights
         /// 
         /// </summary>
         /// <param name="direction"></param>
-        public DirectionalLight(vec3 direction)
+        /// <param name="attenuation"></param>
+        public DirectionalLight(vec3 direction, Attenuation attenuation = null)
+            : base(attenuation == null ? new Attenuation(0.0f, 0.0f, 0.0f) : attenuation)
         {
             this.Direction = direction;
         }
