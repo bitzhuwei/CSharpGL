@@ -66,6 +66,7 @@ namespace CSharpGL
         public AdjacentCubeModel() : this(new vec3(2, 2, 2)) { }
         public AdjacentCubeModel(vec3 size)
         {
+            this.size = size;
             size = size / 2;
             {
                 var instancePositions = new vec3[positions.Length];
@@ -96,6 +97,7 @@ namespace CSharpGL
         private VertexBuffer normalBuffer;
 
         private IDrawCommand command;
+        private vec3 size;
 
         #region IBufferSource 成员
 
@@ -160,7 +162,7 @@ namespace CSharpGL
 
         public vec3 GetSize()
         {
-            return new vec3(2, 2, 2);
+            return this.size;
         }
     }
 }
