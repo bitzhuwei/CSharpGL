@@ -5,7 +5,7 @@ uniform sampler2D tex;
 uniform vec3 lightPos;
 uniform float shiness;
 uniform vec3 lightColor;
-uniform bool blinn;
+uniform bool blinn = true;
 const vec3 eyePos = vec3(0, 0, 0);
 
 in VS_OUT {
