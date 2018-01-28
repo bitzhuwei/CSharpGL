@@ -244,8 +244,6 @@
     <Compile Include="Scene\SceneNodes\ConcreteNodes\TextBillboardNode\TextBillboardNode.Text.cs" />
     <Compile Include="Scene\SceneNodes\ConcreteNodes\TextBillboardNode\TextBillboardNode.shaders.cs" />
     <Compile Include="Scene\SceneNodes\ConcreteNodes\TextBillboardNode\TextBillboardNode.cs" />
-    <Compile Include="Scene\SceneNodes\ConcreteNodes\LightContainerNode\ILocalLightContainer.cs" />
-    <Compile Include="Scene\SceneNodes\ConcreteNodes\LightContainerNode\LightContainerNode.cs" />
     <Compile Include="Scene\SceneNodes\ConcreteNodes\RenderToTextureNode\RenderToTexttureNode.cs" />
     <Compile Include="Scene\SceneNodes\CameraNode\CameraNode.cs" />
     <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.MovePosition.cs" />

@@ -22,6 +22,22 @@ namespace ShadowMapping
             this.Load += FormMain_Load;
             this.winGLCanvas1.OpenGLDraw += winGLCanvas1_OpenGLDraw;
             this.winGLCanvas1.Resize += winGLCanvas1_Resize;
+            this.winGLCanvas1.KeyPress += winGLCanvas1_KeyPress;
+        }
+
+        BlendFactorHelper helper = new BlendFactorHelper();
+        private ShadowMappingAction shadowMappingAction;
+        void winGLCanvas1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 'b')
+            {
+                BlendingSourceFactor source;
+                BlendingDestinationFactor dest;
+                helper.GetNext(out source, out dest);
+                this.shadowMappingAction.Blend.SourceFactor = source;
+                this.shadowMappingAction.Blend.DestFactor = dest;
+                this.lblState.Text = string.Format("s:{0}, d:{1}", source, dest);
+            }
         }
 
         private void FormMain_Load(object sender, EventArgs e)
@@ -41,20 +57,40 @@ namespace ShadowMapping
             };
             {
                 // add lights.
-                var lightPosition = new vec3(0, 3, 5) * 2;
-                var light = new SpotLight(lightPosition, new vec3(0, 0, 0), 60, 1, 500) { Color = new vec3(1, 0, 0), };
-                var node = LightPositionNode.Create();
-                node.SetLight(light);
+                {
+                    var lightPosition = new vec3(0, 3, 5) * 2;
+                    var light = new SpotLight(lightPosition, new vec3(0, 0, 0), 60, 1, 500) { Color = new vec3(1, 0, 0), };
+                    var node = LightPositionNode.Create();
+                    node.SetLight(light);
 
-                this.scene.Lights.Add(light);
-                this.scene.RootElement.Children.Add(node);
+                    this.scene.Lights.Add(light);
+                    this.scene.RootElement.Children.Add(node);
+                }
+                {
+                    var lightPosition = new vec3(0, 3, 5) * 2;
+                    var light = new SpotLight(lightPosition, new vec3(0, 0, 0), 60, 1, 500) { Color = new vec3(0, 1, 0), };
+                    var node = LightPositionNode.Create(120);
+                    node.SetLight(light);
+
+                    this.scene.Lights.Add(light);
+                    this.scene.RootElement.Children.Add(node);
+                }
+                {
+                    var lightPosition = new vec3(0, 3, 5) * 2;
+                    var light = new SpotLight(lightPosition, new vec3(0, 0, 0), 60, 1, 500) { Color = new vec3(0, 0, 1), };
+                    var node = LightPositionNode.Create(270);
+                    node.SetLight(light);
+
+                    this.scene.Lights.Add(light);
+                    this.scene.RootElement.Children.Add(node);
+                }
             }
 
             Match(this.trvScene, scene.RootElement);
             this.trvScene.ExpandAll();
 
             var tansformAction = new TransformAction(scene);
-            var shadowMappingAction = new ShadowMappingAction(scene);
+            this.shadowMappingAction = new ShadowMappingAction(scene);
             var renderAction = new RenderAction(scene);
             var actionList = new ActionList();
             actionList.Add(tansformAction); actionList.Add(shadowMappingAction); actionList.Add(renderAction);
@@ -89,54 +125,21 @@ namespace ShadowMapping
             {
                 var model = new Teapot();
                 var node = ShadowMappingNode.Create(model, Teapot.strPosition, Teapot.strNormal, model.GetModelSize());
-                node.Diffuse = Color.Gold.ToVec3();
+                node.Diffuse = new vec3(1, 1, 1);
                 node.RotateSpeed = 1;
                 group.Children.Add(node);
             }
             {
                 var model = new GroundModel();
                 var node = ShadowMappingNode.Create(model, GroundModel.strPosition, GroundModel.strNormal, model.ModelSize);
-                node.Diffuse = Color.AliceBlue.ToVec3();
-                node.Scale *= 100;
+                node.Diffuse = new vec3(1, 1, 1) * 0.5f;
+                node.Scale *= 50;
                 node.WorldPosition = new vec3(0, -3, 0);
                 group.Children.Add(node);
             }
-            //{
-            //    var rectangle = RectangleNode.Create();
-            //    rectangle.TextureSource = localLight;
-            //    rectangle.RotationAngle = 45;
-            //    rectangle.WorldPosition = new vec3(5, 1, 5) * 3;
-            //    rectangle.Scale *= 4;
 
-            //    group.Children.Add(rectangle);
-            //}
             return group;
         }
-
-        //private SceneNodeBase GetRootElement()
-        //{
-        //    int width = 600, height = 400;
-        //    var innerCamera = new Camera(new vec3(0, 2, 5), new vec3(0, 0, 0), new vec3(0, 1, 0), CameraType.Perspecitive, width, height);
-        //    (innerCamera as IPerspectiveViewCamera).Far = 50;
-        //    IFramebufferProvider source = new DepthFramebufferProvider();
-        //    var rtt = new RTTRenderer(width, height, innerCamera, source);
-        //    {
-        //        var teapot = DepthTextureRenderer.Create();
-        //        rtt.Children.Add(teapot);
-        //        var ground = GroundRenderer.Create(); ground.Color = Color.Gray.ToVec4(); ground.Scale *= 10; ground.WorldPosition = new vec3(0, -3, 0);
-        //        rtt.Children.Add(ground);
-        //    }
-
-        //    var rectangle = RectangleRenderer.Create();
-        //    rectangle.TextureSource = rtt;
-
-        //    var group = new GroupRenderer();
-        //    group.Children.Add(rtt);// rtt must be before rectangle.
-        //    group.Children.Add(rectangle);
-        //    //group.WorldPosition = new vec3(3, 0.5f, 0);// this looks nice.
-
-        //    return group;
-        //}
 
         private void winGLCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
         {
@@ -162,5 +165,6 @@ namespace ShadowMapping
 
             this.lblState.Text = string.Format("{0} objects selected.", 1);
         }
+
     }
 }

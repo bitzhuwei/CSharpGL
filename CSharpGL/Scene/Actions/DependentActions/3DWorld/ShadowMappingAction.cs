@@ -32,6 +32,8 @@ namespace CSharpGL
         /// <param name="param"></param>
         public override void Act(ActionParams param)
         {
+            // TODO: render ambient color.
+
             foreach (var light in this.Scene.Lights)
             {
                 // cast shadow from specified light.
@@ -45,9 +47,9 @@ namespace CSharpGL
                 // light up the scene with specified light.
                 {
                     var arg = new RenderEventArgs(this.Scene, param, this.Scene.Camera);
-                    //this.blend.On();
+                    this.blend.On();
                     RenderUnderLight(this.Scene.RootElement, arg, light);
-                    //this.blend.Off();
+                    this.blend.Off();
                 }
             }
         }
