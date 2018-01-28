@@ -63,7 +63,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="sceneNodeBase"></param>
         /// <param name="arg"></param>
-        public static void RenderBlinnPhong(SceneNodeBase sceneNodeBase, RenderEventArgs arg)
+        private static void RenderBlinnPhong(SceneNodeBase sceneNodeBase, RenderEventArgs arg)
         {
             if (sceneNodeBase != null)
             {

@@ -86,6 +86,7 @@ namespace CSharpGL
                     GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT | GL.GL_STENCIL_BUFFER_BIT);
                 }
                 {
+                    // TODO: maybe action should record only the root element instead of the scene.
                     var args = new RenderEventArgs(arg.Scene, arg.Param, this.Camera);
                     foreach (var item in this.Children)
                     {
