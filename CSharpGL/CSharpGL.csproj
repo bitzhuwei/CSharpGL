@@ -689,6 +689,11 @@
     <None Include="Scene\SceneNodes\ModernNode\readme.md" />
     <Content Include="Scene\SceneNodes\ConcreteNodes\readme.md" />
     <Content Include="Scene\SceneNodes\RenderUnits\readme.md" />
+    <None Include="Scene\Shaders\Blinn-Phong\BP-ViewSpace.frag" />
+    <None Include="Scene\Shaders\Blinn-Phong\BP-ViewSpace.vert" />
+    <None Include="Scene\Shaders\Blinn-Phong\BP-WorldSpace.frag" />
+    <None Include="Scene\Shaders\Blinn-Phong\BP-WorldSpace.vert" />
+    <None Include="Scene\Shaders\Blinn-Phong\readme.md" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="GLAPI\GL.Enumerations\DrawMode.png" />
