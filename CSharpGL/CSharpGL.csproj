@@ -240,6 +240,11 @@
     <Compile Include="Scene\GUI\Structs\GUIPoint.cs" />
     <Compile Include="Scene\GUI\Structs\GUISizeF.cs" />
     <Compile Include="Scene\GUI\Structs\GUISize.cs" />
+    <Compile Include="Scene\NewLights\Attenuation.cs" />
+    <Compile Include="Scene\NewLights\DirectionalLight.cs" />
+    <Compile Include="Scene\NewLights\LightBase.cs" />
+    <Compile Include="Scene\NewLights\PointLight.cs" />
+    <Compile Include="Scene\NewLights\SpotLight.cs" />
     <Compile Include="Scene\SceneNodes\ConcreteNodes\TextBillboardNode\TextBillboardNode.Size.cs" />
     <Compile Include="Scene\SceneNodes\ConcreteNodes\TextBillboardNode\TextBillboardNode.Text.cs" />
     <Compile Include="Scene\SceneNodes\ConcreteNodes\TextBillboardNode\TextBillboardNode.shaders.cs" />
@@ -403,6 +408,7 @@
     <None Include="Scene\Actions\IndependentActions\readme.md" />
     <None Include="Scene\GlyphMap\readme.md" />
     <None Include="Scene\Lights\readme.md" />
+    <None Include="Scene\NewLights\readme.md" />
     <None Include="Scene\readme.md" />
     <Compile Include="Scene\SceneNodes\SceneNodeBase.LagacyMatrix.cs" />
     <Compile Include="Scene\Actions\IndependentActions\LegacyPickingAction.cs" />
