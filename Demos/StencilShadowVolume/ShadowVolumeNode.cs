@@ -92,7 +92,7 @@ namespace StencilShadowVolume
 
         public void RenderUnderLight(RenderEventArgs arg, LightBase light)
         {
-            ICamera camera = arg.CameraStack.Peek();
+            ICamera camera = arg.Camera;
             mat4 projection = camera.GetProjectionMatrix();
             mat4 view = camera.GetViewMatrix();
             mat4 model = this.GetModelMatrix();
@@ -132,7 +132,7 @@ namespace StencilShadowVolume
         }
         public void RenderAmbientColor(RenderEventArgs arg)
         {
-            ICamera camera = arg.CameraStack.Peek();
+            ICamera camera = arg.Camera;
             mat4 projection = camera.GetProjectionMatrix();
             mat4 view = camera.GetViewMatrix();
             mat4 model = this.GetModelMatrix();

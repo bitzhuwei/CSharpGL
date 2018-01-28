@@ -39,20 +39,12 @@ namespace CSharpGL
         /// </summary>
         /// <param name="scene"></param>
         /// <param name="param"></param>
-        /// <param name="cameras"></param>
-        public RenderEventArgs(Scene scene, ActionParams param, params ICamera[] cameras)
+        /// <param name="camera"></param>
+        public RenderEventArgs(Scene scene, ActionParams param, ICamera camera)
         {
             this.Scene = scene;
             this.Param = param;
-
-            var cameraStack = new Stack<ICamera>();
-            foreach (var item in cameras)
-            {
-                cameraStack.Push(item);
-            }
-
-            this.CameraStack = cameraStack;
-            this.CurrentLights = new Stack<List<LightBase>>();
+            this.Camera = camera;
 
             this.ModelMatrixStack = new Stack<mat4>();
             this.ModelMatrixStack.Push(mat4.identity());
@@ -61,34 +53,12 @@ namespace CSharpGL
         /// <summary>
         /// The top ccamera is currently in use.
         /// </summary>
-        public Stack<ICamera> CameraStack { get; private set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public Stack<List<LightBase>> CurrentLights { get; private set; }
+        public ICamera Camera { get; private set; }
 
         /// <summary>
         /// 
         /// </summary>
         internal Stack<mat4> ModelMatrixStack { get; private set; }
-        ///// <summary>
-        ///// 
-        ///// </summary>
-        ///// <returns></returns>
-        //public virtual mat4 GetViewMatrix()
-        //{
-        //    return this.Scene.Camera.GetViewMatrix();
-        //}
-
-        ///// <summary>
-        ///// 
-        ///// </summary>
-        ///// <returns></returns>
-        //public virtual mat4 GetProjectionMatrix()
-        //{
-        //    return this.Scene.Camera.GetProjectionMatrix();
-        //}
 
         /// <summary>
         /// 
@@ -99,5 +69,6 @@ namespace CSharpGL
         /// 
         /// </summary>
         public ActionParams Param { get; private set; }
+
     }
 }

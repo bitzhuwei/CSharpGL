@@ -49,7 +49,7 @@ namespace DeferredShading
         {
             if (!this.IsInitialized) { this.Initialize(); }
 
-            var camera = arg.CameraStack.Peek();
+            var camera = arg.Camera;
             mat4 p = camera.GetProjectionMatrix();
             mat4 v = camera.GetViewMatrix();
             mat4 m = this.GetModelMatrix();

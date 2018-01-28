@@ -14,6 +14,9 @@ namespace CSharpGL
     {
         private readonly BlendState blend = new BlendState(BlendingSourceFactor.One, BlendingDestinationFactor.One);
 
+        /// <summary>
+        /// 
+        /// </summary>
         public BlendState Blend
         {
             get { return blend; }

@@ -91,7 +91,7 @@ namespace VolumeRendering.Raycast
                 this.width = viewport.width;
                 this.height = viewport.height;
             }
-            ICamera camera = arg.CameraStack.Peek();
+            ICamera camera = arg.Camera;
             mat4 projection = camera.GetProjectionMatrix();
             mat4 view = camera.GetViewMatrix();
             this.UpdateRotation();

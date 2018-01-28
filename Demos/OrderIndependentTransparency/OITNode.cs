@@ -197,7 +197,7 @@ namespace OrderIndependentTransparency
                 glBindImageTexture(imageUnit1, this.linkedListTexture.Id, 0, false, 0, GL.GL_WRITE_ONLY, GL.GL_RGBA32UI);
             }
             {
-                ICamera camera = arg.CameraStack.Peek();
+                ICamera camera = arg.Camera;
                 mat4 projection = camera.GetProjectionMatrix();
                 mat4 view = camera.GetViewMatrix();
                 mat4 model = this.GetModelMatrix();
