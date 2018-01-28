@@ -21,7 +21,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="arg"></param>
         /// <param name="ambient"></param>
-        void RenderAmbientColor(RendererBaseHelper arg, vec3 ambient);
+        void RenderAmbientColor(RenderEventArgs arg, vec3 ambient);
 
         /// <summary>
         /// Render something with Blinn-Phong shading model.

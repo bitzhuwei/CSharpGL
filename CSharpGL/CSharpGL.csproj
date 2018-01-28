@@ -147,6 +147,7 @@
     <Compile Include="Scene\Actions\DependentActions\3DWorld\ClearStencil\ClearStencilNode.cs" />
     <Compile Include="Scene\Actions\DependentActions\3DWorld\ClearStencil\ClearStencilNode.shader.cs" />
     <Compile Include="Scene\Actions\DependentActions\3DWorld\IBlinnPhong.cs" />
+    <Compile Include="Scene\Actions\DependentActions\3DWorld\BlinnPhongAction.cs" />
     <Compile Include="Scene\Actions\DependentActions\3DWorld\ShadowVolumeAction.cs" />
     <Compile Include="Scene\Actions\DependentActions\3DWorld\ISupportShadowVolume.cs" />
     <Compile Include="Scene\Actions\DependentActions\ActionParams.cs" />
