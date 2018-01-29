@@ -42,6 +42,7 @@ namespace CSharpGL.NewLights
             this.Attenuation = attenuation;
         }
 
+        //public abstract 
         /// <summary>
         /// 
         /// </summary>

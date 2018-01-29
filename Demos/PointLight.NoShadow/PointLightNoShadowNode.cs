@@ -77,7 +77,13 @@ namespace PointLight.NoShadow
             program.SetUniform("viewMat", view);
             program.SetUniform("modelMat", model);
             program.SetUniform("normalMat", glm.transpose(glm.inverse(model)));
-            program.SetUniform("diffuseColor", this.DiffuseColor);
+            program.SetUniform("light.position", light.Position);
+            program.SetUniform("light.diffuse", light.DiffuseIntensity);
+            program.SetUniform("light.specular", light.SpecularIntensity);
+            program.SetUniform("light.attenuation.constant", light.AmbientIntensity);
+            //TODO: not finished.
+            program.SetUniform("light.attenuation.linear", this.DiffuseColor);
+            program.SetUniform("light.attenuation.quadratic", this.DiffuseColor);
             program.SetUniform("lightPos", light.Position);
             program.SetUniform("shiness", this.Shiness);
             program.SetUniform("lightColor", light.Color);

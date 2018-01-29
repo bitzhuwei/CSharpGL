@@ -24,7 +24,12 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        public float DiffuseIntensity { get; set; }
+        public vec3 DiffuseIntensity { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public vec3 SpecularIntensity { get; set; }
 
         /// <summary>
         /// 

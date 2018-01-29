@@ -61,7 +61,7 @@ namespace NormalMapping
             {
                 var dirLight = new DirectionalLight(new vec3(1.0f, 0.0f, 0.0f));
                 dirLight.AmbientIntensity = 0.2f;
-                dirLight.DiffuseIntensity = 0.8f;
+                dirLight.DiffuseIntensity = new vec3(0.8f);
                 dirLight.Color = new vec3(1.0f, 1.0f, 1.0f);
                 program.SetUniform("gDirectionalLight.Base.Color", dirLight.Color);
                 program.SetUniform("gDirectionalLight.Base.AmbientIntensity", dirLight.AmbientIntensity);
