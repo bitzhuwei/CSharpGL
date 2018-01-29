@@ -9,21 +9,21 @@ namespace CSharpGL
     public interface IViewCamera
     {
         /// <summary>
-        /// Gets or sets the position.
+        /// Gets or sets the position of the camera in world space.
         /// </summary>
         /// <value>
         /// The position.
         /// </value>
-        [Description("The position of the camera"), Category("Camera")]
+        [Description("Gets or sets the position of the camera in world space."), Category("Camera")]
         vec3 Position { get; set; }
 
         /// <summary>
-        /// Gets or sets the target.
+        /// Gets or sets the target of the camera in world space.
         /// </summary>
         /// <value>
         /// The target.
         /// </value>
-        [Description("The target of the camera (the point it's looking at)"), Category("Camera")]
+        [Description("Gets or sets the target of the camera in world space."), Category("Camera")]
         vec3 Target { get; set; }
 
         /// <summary>
