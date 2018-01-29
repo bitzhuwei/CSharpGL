@@ -53,12 +53,11 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="rootNode"></param>
         /// <param name="param"></param>
         /// <param name="camera"></param>
         /// <param name="ambient"></param>
-        public ShadowVolumeAmbientEventArgs(SceneNodeBase rootNode, ActionParams param, ICamera camera, vec3 ambient)
-            : base(rootNode, param, camera)
+        public ShadowVolumeAmbientEventArgs(ActionParams param, ICamera camera, vec3 ambient)
+            : base(param, camera)
         {
             this.Ambient = ambient;
         }
@@ -77,12 +76,11 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="rootNode"></param>
         /// <param name="param"></param>
         /// <param name="camera"></param>
         /// <param name="light"></param>
-        public ShadowVolumeExtrudeEventArgs(SceneNodeBase rootNode, ActionParams param, ICamera camera, LightBase light)
-            : base(rootNode, param, camera)
+        public ShadowVolumeExtrudeEventArgs(ActionParams param, ICamera camera, LightBase light)
+            : base(param, camera)
         {
             this.Light = light;
         }
@@ -101,12 +99,11 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="rootNode"></param>
         /// <param name="param"></param>
         /// <param name="camera"></param>
         /// <param name="light"></param>
-        public ShadowVolumeUnderLightEventArgs(SceneNodeBase rootNode, ActionParams param, ICamera camera, LightBase light)
-            : base(rootNode, param, camera)
+        public ShadowVolumeUnderLightEventArgs(ActionParams param, ICamera camera, LightBase light)
+            : base(param, camera)
         {
             this.Light = light;
         }

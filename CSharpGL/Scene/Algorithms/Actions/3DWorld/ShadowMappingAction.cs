@@ -10,9 +10,10 @@ namespace CSharpGL
     /// <summary>
     /// Cast shaow mapping textures for <see cref="ISupportShadowMapping"/>.
     /// </summary>
-    public class ShadowMappingAction : DependentActionBase
+    public class ShadowMappingAction : ActionBase
     {
         private readonly BlendState blend = new BlendState(BlendingSourceFactor.One, BlendingDestinationFactor.One);
+        private Scene scene;
 
         /// <summary>
         /// 
@@ -27,7 +28,10 @@ namespace CSharpGL
         /// Cast shaow mapping textures for <see cref="ISupportShadowMapping"/>.
         /// </summary>
         /// <param name="scene"></param>
-        public ShadowMappingAction(Scene scene) : base(scene) { }
+        public ShadowMappingAction(Scene scene)
+        {
+            this.scene = scene;
+        }
 
         /// <summary>
         /// Cast shadow.(Prepare shadow mapping texture)
@@ -35,23 +39,24 @@ namespace CSharpGL
         /// <param name="param"></param>
         public override void Act(ActionParams param)
         {
+            Scene scene = this.scene;
             // TODO: render ambient color.
 
-            foreach (var light in this.Scene.Lights)
+            foreach (var light in scene.Lights)
             {
                 // cast shadow from specified light.
                 {
                     light.Begin();
                     var arg = new ShadowMappingEventArgs(light);
-                    CastShadow(this.Scene.RootNode, arg);
+                    CastShadow(scene.RootNode, arg);
                     light.End();
                 }
 
                 // light up the scene with specified light.
                 {
-                    var arg = new RenderEventArgs(this.Scene.RootNode, param, this.Scene.Camera);
+                    var arg = new RenderEventArgs(param, scene.Camera);
                     this.blend.On();
-                    RenderUnderLight(this.Scene.RootNode, arg, light);
+                    RenderUnderLight(scene.RootNode, arg, light);
                     this.blend.Off();
                 }
             }

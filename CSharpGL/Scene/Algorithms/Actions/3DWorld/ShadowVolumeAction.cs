@@ -10,8 +10,9 @@ namespace CSharpGL
     /// <summary>
     /// Render depth buffer, extrude shadow volume, record occlusions by stencil operation, light up the scene according to stencil test and finally render the ambient color.
     /// </summary>
-    public class ShadowVolumeAction : DependentActionBase
+    public class ShadowVolumeAction : ActionBase
     {
+        private Scene scene;
         /// <summary>
         /// Specifies whether render shadow volume or not.
         /// </summary>
@@ -22,8 +23,8 @@ namespace CSharpGL
         /// </summary>
         /// <param name="scene"></param>
         public ShadowVolumeAction(Scene scene)
-            : base(scene)
         {
+            this.scene = scene;
             this.clearStencilNode = ClearStencilNode.Create();
         }
 
@@ -49,17 +50,18 @@ namespace CSharpGL
         /// <param name="param"></param>
         public override void Act(ActionParams param)
         {
+            Scene scene = this.scene;
             bool displayShadowVolume = this.DisplayShadowVolume;
             this.depthClamp.On();// for infinite back cap of shadow volumes.
 
             // Render depth info into depth buffer and ambient color into color buffer.
             {
-                var arg = new ShadowVolumeAmbientEventArgs(this.Scene.RootNode, param, this.Scene.Camera, this.Scene.AmbientColor);
-                RenderAmbientColor(this.Scene.RootNode, arg);
+                var arg = new ShadowVolumeAmbientEventArgs(param, scene.Camera, scene.AmbientColor);
+                RenderAmbientColor(scene.RootNode, arg);
             }
 
             this.stencilTest.On(); // enable stencil test.
-            foreach (var light in this.Scene.Lights)
+            foreach (var light in scene.Lights)
             {
                 // Clear stencil buffer.
                 {
@@ -83,8 +85,8 @@ namespace CSharpGL
                     glStencilOpSeparate(GL.GL_FRONT, GL.GL_KEEP, GL.GL_DECR_WRAP, GL.GL_KEEP);
 
                     // Extrude shadow volume. And shadow info will be saved into stencil buffer automatically according to `glStencilOp...`.
-                    var arg = new ShadowVolumeExtrudeEventArgs(this.Scene.RootNode, param, this.Scene.Camera, light);
-                    Extrude(this.Scene.RootNode, arg);
+                    var arg = new ShadowVolumeExtrudeEventArgs(param, scene.Camera, light);
+                    Extrude(scene.RootNode, arg);
 
                     this.cullFace.Off();
                     if (!displayShadowVolume) { this.colorMask.Off(); }
@@ -100,8 +102,8 @@ namespace CSharpGL
                     this.blend.On(); // add illuminated color to ambient color.
 
                     // light the scene up.
-                    var arg = new ShadowVolumeUnderLightEventArgs(this.Scene.RootNode, param, this.Scene.Camera, light);
-                    RenderUnderLight(this.Scene.RootNode, arg);
+                    var arg = new ShadowVolumeUnderLightEventArgs(param, scene.Camera, light);
+                    RenderUnderLight(scene.RootNode, arg);
 
                     this.blend.Off();
                 }

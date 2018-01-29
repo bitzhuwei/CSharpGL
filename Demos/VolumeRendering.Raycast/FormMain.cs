@@ -15,7 +15,7 @@ namespace VolumeRendering.Raycast
         private Scene scene;
         private ActionList actionList;
 
-        private PickingAction pickingAction;
+        private Picking pickingAction;
         private LegacyTriangleNode triangleTip;
         private LegacyQuadNode quadTip;
 
@@ -68,7 +68,7 @@ namespace VolumeRendering.Raycast
             list.Add(renderAction);
             this.actionList = list;
 
-            this.pickingAction = new PickingAction(scene);
+            this.pickingAction = new Picking(scene);
 
             this.triangleTip = new LegacyTriangleNode();
             this.quadTip = new LegacyQuadNode();

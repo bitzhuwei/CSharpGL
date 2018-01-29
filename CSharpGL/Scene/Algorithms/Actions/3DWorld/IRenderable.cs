@@ -37,12 +37,10 @@ namespace CSharpGL
         /// <summary>
         /// Initializes a new instance of the <see cref="RenderEventArgs"/> class.
         /// </summary>
-        /// <param name="rootNode"></param>
         /// <param name="param"></param>
         /// <param name="camera"></param>
-        public RenderEventArgs(SceneNodeBase rootNode, ActionParams param, ICamera camera)
+        public RenderEventArgs(ActionParams param, ICamera camera)
         {
-            this.RootNode = rootNode;
             this.Param = param;
             this.Camera = camera;
 
@@ -59,15 +57,6 @@ namespace CSharpGL
         /// 
         /// </summary>
         internal Stack<mat4> ModelMatrixStack { get; private set; }
-
-        ///// <summary>
-        ///// 
-        ///// </summary>
-        //public Scene Scene { get; private set; }
-        /// <summary>
-        /// 
-        /// </summary>
-        public SceneNodeBase RootNode { get; private set; }
 
         /// <summary>
         /// 

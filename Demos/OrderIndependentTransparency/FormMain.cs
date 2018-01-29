@@ -16,7 +16,7 @@ namespace OrderIndependentTransparency
         private ActionList actionList;
         private LegacyTriangleNode triangleTip;
         private LegacyQuadNode quadTip;
-        private PickingAction pickingAction;
+        private Picking pickingAction;
 
         public FormMain()
         {
@@ -103,7 +103,7 @@ namespace OrderIndependentTransparency
             list.Add(renderAction);
             this.actionList = list;
 
-            this.pickingAction = new PickingAction(scene);
+            this.pickingAction = new Picking(scene);
 
             this.triangleTip = new LegacyTriangleNode();
             this.quadTip = new LegacyQuadNode();

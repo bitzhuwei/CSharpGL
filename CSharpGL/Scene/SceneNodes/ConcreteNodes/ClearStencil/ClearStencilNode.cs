@@ -22,7 +22,7 @@ namespace CSharpGL
             var fs = new FragmentShader(fragmentCode);
             var array = new ShaderArray(vs, fs);
             var map = new AttributeMap();
-            var builder = new RenderMethodBuilder(array, map);
+            var builder = new RenderMethodBuilder(array, map, new DepthMaskState(false), new ColorMaskState(false, false, false, false));
             var node = new ClearStencilNode(model, builder);
 
             node.Initialize();
@@ -63,14 +63,14 @@ namespace CSharpGL
             GL.Instance.StencilFunc(GL.GL_ALWAYS, 0, 0xFF);
             GL.Instance.StencilOp(GL.GL_REPLACE, GL.GL_REPLACE, GL.GL_REPLACE);
             GL.Instance.StencilMask(0xFF);
-            GL.Instance.DepthMask(false);
-            GL.Instance.ColorMask(false, false, false, false);
+            //GL.Instance.DepthMask(false);
+            //GL.Instance.ColorMask(false, false, false, false);
 
             RenderMethod method = this.RenderUnit.Methods[0];
             method.Render();
 
-            GL.Instance.ColorMask(true, true, true, true);
-            GL.Instance.DepthMask(true);
+            //GL.Instance.ColorMask(true, true, true, true);
+            //GL.Instance.DepthMask(true);
         }
 
         /// <summary>

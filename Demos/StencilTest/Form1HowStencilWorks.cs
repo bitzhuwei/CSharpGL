@@ -14,7 +14,7 @@ namespace StencilTest
     {
         Scene scene;
         private ActionList actionList;
-        private PickingAction pickingAction;
+        private Picking pickingAction;
 
         public Form1HowStencilWorks()
         {
@@ -50,7 +50,7 @@ namespace StencilTest
             actionList.Add(tansformAction); actionList.Add(renderAction);
             this.actionList = actionList;
 
-            this.pickingAction = new PickingAction(scene);
+            this.pickingAction = new Picking(scene);
 
             var manipulater = new FirstPerspectiveManipulater();
             manipulater.Bind(camera, this.winGLCanvas1);

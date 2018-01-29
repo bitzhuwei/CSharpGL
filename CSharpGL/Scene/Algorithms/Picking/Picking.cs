@@ -11,15 +11,20 @@ namespace CSharpGL
     /// <summary>
     /// 
     /// </summary>
-    public class PickingAction : ActionBase
+    public class Picking
     {
         private Framebuffer pickingFramebuffer;
 
         /// <summary>
         /// 
         /// </summary>
+        public Scene Scene { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         /// <param name="scene"></param>
-        public PickingAction(Scene scene) : base(scene) { }
+        public Picking(Scene scene) { this.Scene = scene; }
+
 
         /// <summary>
         /// Pick geometry at specified positon.

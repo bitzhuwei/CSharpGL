@@ -12,7 +12,7 @@ namespace ShaderDefineClipPlane
 {
     public partial class FormMain
     {
-        private PickingAction pickingAction;
+        private Picking pickingAction;
         private LegacyTriangleNode triangleTip;
         private LegacyQuadNode quadTip;
         private List<SceneNodeBase> tipList = new List<SceneNodeBase>();

@@ -6,15 +6,10 @@ using System.Text;
 namespace CSharpGL
 {
     /// <summary>
-    /// Base type for dependent actions.
+    /// Base type for rendering actions.
     /// </summary>
-    public abstract class DependentActionBase : ActionBase
+    public abstract class ActionBase
     {
-        /// <summary>
-        /// Base type for rendering actions.
-        /// </summary>
-        public DependentActionBase(Scene scene) : base(scene) { }
-
         /// <summary>
         /// 
         /// </summary>

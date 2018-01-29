@@ -10,8 +10,9 @@ namespace CSharpGL
     /// <summary>
     /// Render sorted billboards.
     /// </summary>
-    public class BillboardRenderAction : DependentActionBase
+    public class BillboardRenderAction : ActionBase
     {
+        private Scene scene;
         private BillboardSortAction sortAction;
         /// <summary>
         /// Render sorted billboards.
@@ -19,8 +20,8 @@ namespace CSharpGL
         /// <param name="scene"></param>
         /// <param name="sortAction"></param>
         public BillboardRenderAction(Scene scene, BillboardSortAction sortAction)
-            : base(scene)
         {
+            this.scene = scene;
             this.sortAction = sortAction;
         }
 
@@ -30,7 +31,7 @@ namespace CSharpGL
         /// <param name="param"></param>
         public override void Act(ActionParams param)
         {
-            var arg = new RenderEventArgs(this.Scene.RootNode, param, this.Scene.Camera);
+            var arg = new RenderEventArgs(param, this.scene.Camera);
             foreach (var item in this.sortAction.BillboardList)
             {
                 item.RenderBeforeChildren(arg);

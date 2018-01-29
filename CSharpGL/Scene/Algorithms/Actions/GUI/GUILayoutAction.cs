@@ -10,13 +10,17 @@ namespace CSharpGL
     /// <summary>
     /// Render <see cref="IRenderable"/> objects.
     /// </summary>
-    public class GUILayoutAction : DependentActionBase
+    public class GUILayoutAction : ActionBase
     {
+        private Scene scene;
         /// <summary>
         /// Render <see cref="IRenderable"/> objects.
         /// </summary>
         /// <param name="scene"></param>
-        public GUILayoutAction(Scene scene) : base(scene) { }
+        public GUILayoutAction(Scene scene)
+        {
+            this.scene = scene;
+        }
 
         /// <summary>
         /// 
@@ -24,7 +28,7 @@ namespace CSharpGL
         /// <param name="param"></param>
         public override void Act(ActionParams param)
         {
-            GLControl.Layout(this.Scene.RootControl);
+            GLControl.Layout(this.scene.RootControl);
         }
 
     }

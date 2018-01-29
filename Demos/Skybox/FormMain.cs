@@ -18,7 +18,7 @@ namespace Skybox
         private SkyboxNode skybox;
         private LegacyTriangleNode triangleTip;
         private LegacyQuadNode quadTip;
-        private PickingAction pickingAction;
+        private Picking pickingAction;
 
         public FormMain()
         {
@@ -111,7 +111,7 @@ namespace Skybox
             var manipulater = new FirstPerspectiveManipulater();
             manipulater.Bind(camera, this.winGLCanvas1);
 
-            this.pickingAction = new PickingAction(scene);
+            this.pickingAction = new Picking(scene);
 
             this.triangleTip = new LegacyTriangleNode();
             this.quadTip = new LegacyQuadNode();

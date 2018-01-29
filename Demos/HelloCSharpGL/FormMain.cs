@@ -14,7 +14,7 @@ namespace HelloCSharpGL
     {
         private Scene scene;
         private ActionList actionList;
-        private LegacyPickingAction legacyPickingAction;
+        private LegacyPicking legacyPickingAction;
 
         public FormMain()
         {
@@ -51,7 +51,7 @@ namespace HelloCSharpGL
             list.Add(renderAction);
             this.actionList = list;
 
-            this.legacyPickingAction = new LegacyPickingAction(scene);
+            this.legacyPickingAction = new LegacyPicking(scene);
 
             Match(this.trvScene, scene.RootNode);
             this.trvScene.ExpandAll();

@@ -10,13 +10,17 @@ namespace CSharpGL
     /// <summary>
     /// Render <see cref="GLControl"/> objects.
     /// </summary>
-    public class GUIRenderAction : DependentActionBase
+    public class GUIRenderAction : ActionBase
     {
+        private Scene scene;
         /// <summary>
         /// Render <see cref="IRenderable"/> objects.
         /// </summary>
         /// <param name="scene"></param>
-        public GUIRenderAction(Scene scene) : base(scene) { }
+        public GUIRenderAction(Scene scene)
+        {
+            this.scene = scene;
+        }
 
         /// <summary>
         /// 
@@ -29,8 +33,8 @@ namespace CSharpGL
             //    GL.Instance.GetIntegerv((uint)GetTarget.ScissorBox, scissor);
             //    GL.Instance.GetIntegerv((uint)GetTarget.Viewport, viewport);
 
-            var arg = new GUIRenderEventArgs(this.Scene, this.Scene.Camera);
-            GUIRenderAction.Render(this.Scene.RootControl, arg);
+            var arg = new GUIRenderEventArgs(this.scene, this.scene.Camera);
+            GUIRenderAction.Render(this.scene.RootControl, arg);
 
             int width = param.Viewport.width, height = param.Viewport.height;
             GL.Instance.Scissor(0, 0, width, height);

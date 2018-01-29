@@ -10,14 +10,18 @@ namespace CSharpGL
     /// <summary>
     /// 
     /// </summary>
-    public class LegacyPickingAction : ActionBase
+    public class LegacyPicking
     {
 
         /// <summary>
         /// 
         /// </summary>
+        public Scene Scene { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         /// <param name="scene"></param>
-        public LegacyPickingAction(Scene scene) : base(scene) { }
+        public LegacyPicking(Scene scene) { this.Scene = scene; }
 
         /// <summary>
         /// Pick <see cref="SceneNodeBase"/>s at specified positon.

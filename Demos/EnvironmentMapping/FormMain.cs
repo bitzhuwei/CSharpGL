@@ -18,7 +18,7 @@ namespace EnvironmentMapping
         private EnvironmentMappingNode environmentMappingNode;
         private LegacyTriangleNode triangleTip;
         private LegacyQuadNode quadTip;
-        private PickingAction pickingAction;
+        private Picking pickingAction;
 
         public FormMain()
         {
@@ -134,7 +134,7 @@ namespace EnvironmentMapping
                 var manipulater = new FirstPerspectiveManipulater();
                 manipulater.Bind(camera, this.winGLCanvas1);
 
-                this.pickingAction = new PickingAction(scene);
+                this.pickingAction = new Picking(scene);
 
                 this.triangleTip = new LegacyTriangleNode();
                 this.quadTip = new LegacyQuadNode();

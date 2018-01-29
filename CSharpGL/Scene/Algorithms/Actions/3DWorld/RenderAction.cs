@@ -10,15 +10,16 @@ namespace CSharpGL
     /// <summary>
     /// Render <see cref="IRenderable"/> objects.
     /// </summary>
-    public class BlinnPhongAction : DependentActionBase
+    public class RenderAction : ActionBase
     {
+        private Scene scene;
         /// <summary>
         /// Render <see cref="IRenderable"/> objects.
         /// </summary>
         /// <param name="scene"></param>
-        public BlinnPhongAction(Scene scene)
-            : base(scene)
+        public RenderAction(Scene scene)
         {
+            this.scene = scene;
         }
 
         /// <summary>
@@ -27,35 +28,9 @@ namespace CSharpGL
         /// <param name="param"></param>
         public override void Act(ActionParams param)
         {
-            var arg = new RenderEventArgs(this.Scene.RootNode, param, this.Scene.Camera);
-            RenderAmbientColor(this.Scene.RootNode, arg, this.Scene.AmbientColor);
-            RenderBlinnPhong(this.Scene.RootNode, arg);
-        }
-
-        private static void RenderAmbientColor(SceneNodeBase sceneNodeBase, RenderEventArgs arg, vec3 ambient)
-        {
-            if (sceneNodeBase != null)
-            {
-                var node = sceneNodeBase as IBlinnPhong;
-                ThreeFlags flags = (node != null) ? node.EnableRendering : ThreeFlags.None;
-                bool before = (node != null) && ((flags & ThreeFlags.BeforeChildren) == ThreeFlags.BeforeChildren);
-                bool children = (node == null) || ((flags & ThreeFlags.Children) == ThreeFlags.Children);
-                bool after = (node != null) && ((flags & ThreeFlags.AfterChildren) == ThreeFlags.AfterChildren);
-
-                if (before || after)
-                {
-                    node.RenderAmbientColor(arg, ambient);
-                }
-
-                if (children)
-                {
-                    foreach (var item in sceneNodeBase.Children)
-                    {
-                        RenderAmbientColor(item, arg, ambient);
-                    }
-                }
-
-            }
+            Scene scene = this.scene;
+            var arg = new RenderEventArgs(param, scene.Camera);
+            Render(scene.RootNode, arg);
         }
 
         /// <summary>
@@ -63,11 +38,11 @@ namespace CSharpGL
         /// </summary>
         /// <param name="sceneNodeBase"></param>
         /// <param name="arg"></param>
-        private static void RenderBlinnPhong(SceneNodeBase sceneNodeBase, RenderEventArgs arg)
+        public static void Render(SceneNodeBase sceneNodeBase, RenderEventArgs arg)
         {
             if (sceneNodeBase != null)
             {
-                var node = sceneNodeBase as IBlinnPhong;
+                var node = sceneNodeBase as IRenderable;
                 ThreeFlags flags = (node != null) ? node.EnableRendering : ThreeFlags.None;
                 bool before = (node != null) && ((flags & ThreeFlags.BeforeChildren) == ThreeFlags.BeforeChildren);
                 bool children = (node == null) || ((flags & ThreeFlags.Children) == ThreeFlags.Children);
@@ -82,7 +57,7 @@ namespace CSharpGL
                 {
                     foreach (var item in sceneNodeBase.Children)
                     {
-                        RenderBlinnPhong(item, arg);
+                        Render(item, arg);
                     }
                 }
 

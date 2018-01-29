@@ -51,7 +51,7 @@ namespace ShaderDefineClipPlane
             list.Add(renderAction);
             this.actionList = list;
 
-            this.pickingAction = new PickingAction(scene);
+            this.pickingAction = new Picking(scene);
             this.triangleTip = new LegacyTriangleNode();
             this.quadTip = new LegacyQuadNode();
             this.tipList.Add(this.triangleTip);

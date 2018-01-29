@@ -18,7 +18,7 @@ namespace ColorCodedPicking
         private ActionList actionList;
 
         private OperationState operationState = OperationState.PickingDraging;
-        private PickingAction pickingAction;
+        private Picking pickingAction;
         private LegacyTriangleNode triangleTip;
         private LegacyQuadNode quadTip;
 
@@ -58,7 +58,7 @@ namespace ColorCodedPicking
             list.Add(renderAction);
             this.actionList = list;
 
-            this.pickingAction = new PickingAction(scene);
+            this.pickingAction = new Picking(scene);
 
             this.triangleTip = new LegacyTriangleNode();
             this.quadTip = new LegacyQuadNode();
