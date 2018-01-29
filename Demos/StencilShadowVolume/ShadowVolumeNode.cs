@@ -64,6 +64,21 @@ namespace StencilShadowVolume
         private TwoFlags enableShadowVolume = TwoFlags.BeforeChildren | TwoFlags.Children;
         public TwoFlags EnableShadowVolume { get { return this.enableShadowVolume; } set { this.enableShadowVolume = value; } }
 
+        public void RenderAmbientColor(ShadowVolumeAmbientEventArgs arg)
+        {
+            ICamera camera = arg.Camera;
+            mat4 projection = camera.GetProjectionMatrix();
+            mat4 view = camera.GetViewMatrix();
+            mat4 model = this.GetModelMatrix();
+
+            var method = this.RenderUnit.Methods[(int)MethodName.renderAmbientColor];
+            ShaderProgram program = method.Program;
+            program.SetUniform("mvpMat", projection * view * model);
+            program.SetUniform("ambientColor", arg.Ambient);
+
+            method.Render();
+        }
+
         private TwoFlags enableExtrude = TwoFlags.BeforeChildren | TwoFlags.Children;
         public TwoFlags EnableExtrude { get { return this.enableExtrude; } set { this.enableExtrude = value; } }
 
@@ -90,7 +105,7 @@ namespace StencilShadowVolume
         private TwoFlags enableRenderUnderLight = TwoFlags.BeforeChildren | TwoFlags.Children;
         public TwoFlags EnableRenderUnderLight { get { return this.enableRenderUnderLight; } set { this.enableRenderUnderLight = value; } }
 
-        public void RenderUnderLight(RenderEventArgs arg, LightBase light)
+        public void RenderUnderLight(ShadowVolumeUnderLightEventArgs arg)
         {
             ICamera camera = arg.Camera;
             mat4 projection = camera.GetProjectionMatrix();
@@ -104,13 +119,15 @@ namespace StencilShadowVolume
             program.SetUniform("viewMatrix", view);
             program.SetUniform("modelMatrix", model);
             program.SetUniform("normalMatrix", normal);
-            program.SetUniform("lightPosition", new vec3(view * new vec4(light.Position, 1.0f)));
-            program.SetUniform("lightColor", light.Color);
+            program.SetUniform("lightPosition", new vec3(view * new vec4(arg.Light.Position, 1.0f)));
+            program.SetUniform("lightColor", arg.Light.Color);
 
             //fillNearOffsetState.On();
             method.Render();
             //fillNearOffsetState.Off();
         }
+
+        #endregion
 
         private vec3 diffuseColor = new vec3(1, 0.8431f, 0);
         public vec3 DiffuseColor
@@ -130,22 +147,6 @@ namespace StencilShadowVolume
                 }
             }
         }
-        public void RenderAmbientColor(ShadowVolumeAmbientEventArgs arg)
-        {
-            ICamera camera = arg.Camera;
-            mat4 projection = camera.GetProjectionMatrix();
-            mat4 view = camera.GetViewMatrix();
-            mat4 model = this.GetModelMatrix();
-
-            var method = this.RenderUnit.Methods[(int)MethodName.renderAmbientColor];
-            ShaderProgram program = method.Program;
-            program.SetUniform("mvpMat", projection * view * model);
-            program.SetUniform("ambientColor", arg.Ambient);
-
-            method.Render();
-        }
-
-        #endregion
 
         enum MethodName
         {

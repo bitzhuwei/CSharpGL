@@ -100,8 +100,8 @@ namespace CSharpGL
                     this.blend.On(); // add illuminated color to ambient color.
 
                     // light the scene up.
-                    var arg = new RenderEventArgs(this.Scene.RootNode, param, this.Scene.Camera);
-                    RenderUnderLight(this.Scene.RootNode, arg, light);
+                    var arg = new ShadowVolumeUnderLightEventArgs(this.Scene.RootNode, param, this.Scene.Camera, light);
+                    RenderUnderLight(this.Scene.RootNode, arg);
 
                     this.blend.Off();
                 }
@@ -176,7 +176,7 @@ namespace CSharpGL
             }
         }
 
-        private void RenderUnderLight(SceneNodeBase sceneNodeBase, RenderEventArgs arg, LightBase light)
+        private void RenderUnderLight(SceneNodeBase sceneNodeBase, ShadowVolumeUnderLightEventArgs arg)
         {
             if (sceneNodeBase != null)
             {
@@ -199,14 +199,14 @@ namespace CSharpGL
 
                 if (before)
                 {
-                    node.RenderUnderLight(arg, light);
+                    node.RenderUnderLight(arg);
                 }
 
                 if (children)
                 {
                     foreach (var item in sceneNodeBase.Children)
                     {
-                        RenderUnderLight(item, arg, light);
+                        RenderUnderLight(item, arg);
                     }
                 }
             }

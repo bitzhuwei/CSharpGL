@@ -42,8 +42,7 @@ namespace CSharpGL
         /// Render the node under the specified light.
         /// </summary>
         /// <param name="arg"></param>
-        /// <param name="light"></param>
-        void RenderUnderLight(RenderEventArgs arg, LightBase light);
+        void RenderUnderLight(ShadowVolumeUnderLightEventArgs arg);
 
     }
 
@@ -83,6 +82,30 @@ namespace CSharpGL
         /// <param name="camera"></param>
         /// <param name="light"></param>
         public ShadowVolumeExtrudeEventArgs(SceneNodeBase rootNode, ActionParams param, ICamera camera, LightBase light)
+            : base(rootNode, param, camera)
+        {
+            this.Light = light;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public LightBase Light { get; set; }
+
+    }
+
+    /// <summary>
+    /// </summary>
+    public class ShadowVolumeUnderLightEventArgs : RenderEventArgs
+    {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="rootNode"></param>
+        /// <param name="param"></param>
+        /// <param name="camera"></param>
+        /// <param name="light"></param>
+        public ShadowVolumeUnderLightEventArgs(SceneNodeBase rootNode, ActionParams param, ICamera camera, LightBase light)
             : base(rootNode, param, camera)
         {
             this.Light = light;
