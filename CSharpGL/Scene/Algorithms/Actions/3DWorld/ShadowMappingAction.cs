@@ -23,7 +23,6 @@ namespace CSharpGL
             get { return blend; }
         }
 
-
         /// <summary>
         /// Cast shaow mapping textures for <see cref="ISupportShadowMapping"/>.
         /// </summary>
