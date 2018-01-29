@@ -48,7 +48,7 @@ namespace ColorCodedPicking
 
             this.scene = new Scene(camera)
             {
-                RootElement = group,
+                RootNode = group,
             };
 
             var list = new ActionList();
@@ -99,7 +99,7 @@ namespace ColorCodedPicking
         {
             if (this.operationState == OperationState.Rotating)
             {
-                IWorldSpace node = this.scene.RootElement;
+                IWorldSpace node = this.scene.RootNode;
                 if (node != null)
                 {
                     node.RotationAngle += 1;

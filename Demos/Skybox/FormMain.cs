@@ -98,7 +98,7 @@ namespace Skybox
             this.scene = new Scene(camera)
 
             {
-                RootElement = group,
+                RootNode = group,
             };
 
             var list = new ActionList();
@@ -139,7 +139,7 @@ namespace Skybox
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            IWorldSpace node = this.scene.RootElement;
+            IWorldSpace node = this.scene.RootNode;
             if (node != null)
             {
                 node.RotationAngle += 1;

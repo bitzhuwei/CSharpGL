@@ -34,7 +34,7 @@ namespace ComputeShader.HelloComputeShader
 ;
             {
                 var node = SimpleComputeNode.Create();
-                this.scene.RootElement = node;
+                this.scene.RootNode = node;
                 this.propGrid.SelectedObject = node;
             }
             var list = new ActionList();

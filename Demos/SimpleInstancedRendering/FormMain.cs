@@ -32,7 +32,7 @@ namespace SimpleInstancedRendering
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
             this.scene = new Scene(camera)
 ;
-            this.scene.RootElement = SmallQuadNode.Create();
+            this.scene.RootNode = SmallQuadNode.Create();
 
             var list = new ActionList();
             var transformAction = new TransformAction(scene);

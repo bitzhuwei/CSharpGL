@@ -29,7 +29,7 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        public SceneNodeBase RootElement { get; set; }
+        public SceneNodeBase RootNode { get; set; }
 
         private List<LightBase> lights = new List<LightBase>();
         /// <summary>

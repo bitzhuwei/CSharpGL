@@ -40,7 +40,7 @@ namespace HelloCSharpGL
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
             this.scene = new Scene(camera)
             {
-                RootElement = rootElement,
+                RootNode = rootElement,
                 ClearColor = Color.SkyBlue.ToVec4(),
             };
 
@@ -53,7 +53,7 @@ namespace HelloCSharpGL
 
             this.legacyPickingAction = new LegacyPickingAction(scene);
 
-            Match(this.trvScene, scene.RootElement);
+            Match(this.trvScene, scene.RootNode);
             this.trvScene.ExpandAll();
         }
 

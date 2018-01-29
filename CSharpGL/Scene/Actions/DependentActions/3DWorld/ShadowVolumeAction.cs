@@ -54,8 +54,8 @@ namespace CSharpGL
 
             // Render depth info into depth buffer and ambient color into color buffer.
             {
-                var arg = new RenderEventArgs(this.Scene, param, this.Scene.Camera);
-                RenderAmbientColor(this.Scene.RootElement, arg);
+                var arg = new RenderEventArgs(this.Scene.RootNode, param, this.Scene.Camera);
+                RenderAmbientColor(this.Scene.RootNode, arg, this.Scene.AmbientColor);
             }
 
             this.stencilTest.On(); // enable stencil test.
@@ -84,7 +84,7 @@ namespace CSharpGL
 
                     // Extrude shadow volume. And shadow info will be saved into stencil buffer automatically according to `glStencilOp...`.
                     var arg = new ShadowVolumeEventArgs(this.Scene.Camera, light);
-                    Extrude(this.Scene.RootElement, arg);
+                    Extrude(this.Scene.RootNode, arg);
 
                     this.cullFace.Off();
                     if (!displayShadowVolume) { this.colorMask.Off(); }
@@ -100,8 +100,8 @@ namespace CSharpGL
                     this.blend.On(); // add illuminated color to ambient color.
 
                     // light the scene up.
-                    var arg = new RenderEventArgs(this.Scene, param, this.Scene.Camera);
-                    RenderUnderLight(this.Scene.RootElement, arg, light);
+                    var arg = new RenderEventArgs(this.Scene.RootNode, param, this.Scene.Camera);
+                    RenderUnderLight(this.Scene.RootNode, arg, light);
 
                     this.blend.Off();
                 }
@@ -111,7 +111,7 @@ namespace CSharpGL
             this.depthClamp.Off();
         }
 
-        private void RenderAmbientColor(SceneNodeBase sceneNodeBase, RenderEventArgs arg)
+        private void RenderAmbientColor(SceneNodeBase sceneNodeBase, RenderEventArgs arg, vec3 ambient)
         {
             if (sceneNodeBase != null)
             {
@@ -122,14 +122,14 @@ namespace CSharpGL
 
                 if (before)
                 {
-                    node.RenderAmbientColor(arg);
+                    node.RenderAmbientColor(arg, ambient);
                 }
 
                 if (children)
                 {
                     foreach (var item in sceneNodeBase.Children)
                     {
-                        RenderAmbientColor(item, arg);
+                        RenderAmbientColor(item, arg, ambient);
                     }
                 }
             }

@@ -45,7 +45,7 @@ namespace CSharpGL
             mat4 pickMatrix = glm.pickMatrix(new ivec2(x, y), new ivec2(deltaX, deltaY), new ivec4(viewport[0], viewport[1], viewport[2], viewport[3]));
             var arg = new LegacyPickingEventArgs(pickMatrix, this.Scene, x, y);
             uint currentName = 1;
-            this.RenderForPicking(this.Scene.RootElement, arg, ref currentName);
+            this.RenderForPicking(this.Scene.RootNode, arg, ref currentName);
             //	Flush commands.
             GL.Instance.Flush();
 

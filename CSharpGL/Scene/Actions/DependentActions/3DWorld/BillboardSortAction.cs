@@ -39,7 +39,7 @@ namespace CSharpGL
             this.billboardList.Clear();
 
             mat4 viewMatrix = this.Scene.Camera.GetViewMatrix();
-            this.Sort(this.Scene.RootElement, viewMatrix);
+            this.Sort(this.Scene.RootNode, viewMatrix);
         }
 
         private void Sort(SceneNodeBase sceneElement, mat4 viewMatrix)

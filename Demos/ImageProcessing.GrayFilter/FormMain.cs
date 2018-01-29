@@ -33,7 +33,7 @@ namespace ImageProcessing.GrayFilter
 ;
             {
                 var node = GrayFilterNode.Create();
-                this.scene.RootElement = node;
+                this.scene.RootNode = node;
             }
             var list = new ActionList();
             var transformAction = new TransformAction(scene);
@@ -72,7 +72,7 @@ namespace ImageProcessing.GrayFilter
                 {
                     string filename = this.openImageDlg.FileName;
                     var bitmap = new Bitmap(filename);
-                    var node = this.scene.RootElement as GrayFilterNode;
+                    var node = this.scene.RootNode as GrayFilterNode;
                     if (node != null)
                     {
                         node.UpdateTexture(bitmap);

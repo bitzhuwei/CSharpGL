@@ -52,7 +52,7 @@ namespace ShadowMapping
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
             this.scene = new Scene(camera)
             {
-                RootElement = rootElement,
+                RootNode = rootElement,
                 ClearColor = Color.SkyBlue.ToVec4(),
             };
             {
@@ -64,7 +64,7 @@ namespace ShadowMapping
                     node.SetLight(light);
 
                     this.scene.Lights.Add(light);
-                    this.scene.RootElement.Children.Add(node);
+                    this.scene.RootNode.Children.Add(node);
                 }
                 {
                     var lightPosition = new vec3(0, 3, 5) * 2;
@@ -73,7 +73,7 @@ namespace ShadowMapping
                     node.SetLight(light);
 
                     this.scene.Lights.Add(light);
-                    this.scene.RootElement.Children.Add(node);
+                    this.scene.RootNode.Children.Add(node);
                 }
                 {
                     var lightPosition = new vec3(0, 3, 5) * 2;
@@ -82,11 +82,11 @@ namespace ShadowMapping
                     node.SetLight(light);
 
                     this.scene.Lights.Add(light);
-                    this.scene.RootElement.Children.Add(node);
+                    this.scene.RootNode.Children.Add(node);
                 }
             }
 
-            Match(this.trvScene, scene.RootElement);
+            Match(this.trvScene, scene.RootNode);
             this.trvScene.ExpandAll();
 
             var tansformAction = new TransformAction(scene);

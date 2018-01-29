@@ -55,7 +55,7 @@ namespace RenderToTexture
 
             {
                 ClearColor = Color.SkyBlue.ToVec4(),
-                RootElement = group,
+                RootNode = group,
             };
 
             var list = new ActionList();

@@ -20,7 +20,8 @@ namespace CSharpGL
         /// Add ambient color effect at last.
         /// </summary>
         /// <param name="arg"></param>
-        void RenderAmbientColor(RenderEventArgs arg);
+        /// <param name="ambient"></param>
+        void RenderAmbientColor(RenderEventArgs arg, vec3 ambient);
 
         /// <summary>
         /// Is extruding shadow enabled for this object and its children?

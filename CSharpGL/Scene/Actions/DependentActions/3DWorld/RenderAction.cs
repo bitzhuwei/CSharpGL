@@ -27,8 +27,8 @@ namespace CSharpGL
         /// <param name="param"></param>
         public override void Act(ActionParams param)
         {
-            var arg = new RenderEventArgs(this.Scene, param, this.Scene.Camera);
-            Render(this.Scene.RootElement, arg);
+            var arg = new RenderEventArgs(this.Scene.RootNode, param, this.Scene.Camera);
+            Render(this.Scene.RootNode, arg);
         }
 
         /// <summary>

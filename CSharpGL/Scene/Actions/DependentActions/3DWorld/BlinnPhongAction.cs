@@ -27,9 +27,9 @@ namespace CSharpGL
         /// <param name="param"></param>
         public override void Act(ActionParams param)
         {
-            var arg = new RenderEventArgs(this.Scene, param, this.Scene.Camera);
-            RenderAmbientColor(this.Scene.RootElement, arg, this.Scene.AmbientColor);
-            RenderBlinnPhong(this.Scene.RootElement, arg);
+            var arg = new RenderEventArgs(this.Scene.RootNode, param, this.Scene.Camera);
+            RenderAmbientColor(this.Scene.RootNode, arg, this.Scene.AmbientColor);
+            RenderBlinnPhong(this.Scene.RootNode, arg);
         }
 
         private static void RenderAmbientColor(SceneNodeBase sceneNodeBase, RenderEventArgs arg, vec3 ambient)

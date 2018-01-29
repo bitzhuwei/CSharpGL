@@ -130,7 +130,7 @@ namespace StencilShadowVolume
                 }
             }
         }
-        public void RenderAmbientColor(RenderEventArgs arg)
+        public void RenderAmbientColor(RenderEventArgs arg, vec3 ambient)
         {
             ICamera camera = arg.Camera;
             mat4 projection = camera.GetProjectionMatrix();
@@ -140,7 +140,7 @@ namespace StencilShadowVolume
             var method = this.RenderUnit.Methods[(int)MethodName.renderAmbientColor];
             ShaderProgram program = method.Program;
             program.SetUniform("mvpMat", projection * view * model);
-            program.SetUniform("ambientColor", arg.Scene.AmbientColor);
+            program.SetUniform("ambientColor", ambient);
 
             method.Render();
         }

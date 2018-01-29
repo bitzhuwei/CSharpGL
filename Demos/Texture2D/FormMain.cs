@@ -52,7 +52,7 @@ namespace Texture2D
             this.scene = new Scene(camera)
 
             {
-                RootElement = rootElement,
+                RootNode = rootElement,
                 RootControl = rootControl,
                 ClearColor = Color.SkyBlue.ToVec4(),
             };
@@ -72,7 +72,7 @@ namespace Texture2D
 
             this.actionList = list;
 
-            Match(this.trvSceneObject, scene.RootElement);
+            Match(this.trvSceneObject, scene.RootNode);
             this.trvSceneObject.ExpandAll();
 
             Match(this.trvSceneGUI, scene.RootControl);

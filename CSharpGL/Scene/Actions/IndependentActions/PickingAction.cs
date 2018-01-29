@@ -60,11 +60,11 @@ namespace CSharpGL
                 GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT | GL.GL_STENCIL_BUFFER_BIT);
 
                 var arg = new PickingEventArgs(this.Scene, x, y, geometryTypes);
-                this.RenderForPicking(this.Scene.RootElement, arg);
+                this.RenderForPicking(this.Scene.RootNode, arg);
 
                 uint stageVertexId = ColorCodedPicking.ReadStageVertexId(x, y);
 
-                pickedGeometry = SearchGeometry(stageVertexId, arg, this.Scene.RootElement);
+                pickedGeometry = SearchGeometry(stageVertexId, arg, this.Scene.RootNode);
 
                 if (pickedGeometry != null)
                 {

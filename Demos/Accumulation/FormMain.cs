@@ -35,7 +35,7 @@ namespace Accumulation
             this.scene = new Scene(camera)
 
             {
-                RootElement = rootElement,
+                RootNode = rootElement,
                 ClearColor = Color.SkyBlue.ToVec4(),
             };
 
@@ -46,7 +46,7 @@ namespace Accumulation
             list.Add(renderAction);
             this.actionList = list;
 
-            Match(this.trvScene, scene.RootElement);
+            Match(this.trvScene, scene.RootNode);
             this.trvScene.ExpandAll();
         }
 

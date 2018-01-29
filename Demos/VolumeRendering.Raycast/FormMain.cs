@@ -57,7 +57,7 @@ namespace VolumeRendering.Raycast
                 manipulater.Bind(camera, this.winGLCanvas1);
                 var node = RaycastNode.Create();
                 node.BindManipulater(manipulater);
-                this.scene.RootElement = node;
+                this.scene.RootNode = node;
                 (new FormProperyGrid(node)).Show();
             }
 

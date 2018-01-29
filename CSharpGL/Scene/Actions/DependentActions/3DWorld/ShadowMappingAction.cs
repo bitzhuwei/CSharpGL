@@ -43,15 +43,15 @@ namespace CSharpGL
                 {
                     light.Begin();
                     var arg = new ShadowMappingEventArgs(light);
-                    CastShadow(this.Scene.RootElement, arg);
+                    CastShadow(this.Scene.RootNode, arg);
                     light.End();
                 }
 
                 // light up the scene with specified light.
                 {
-                    var arg = new RenderEventArgs(this.Scene, param, this.Scene.Camera);
+                    var arg = new RenderEventArgs(this.Scene.RootNode, param, this.Scene.Camera);
                     this.blend.On();
-                    RenderUnderLight(this.Scene.RootElement, arg, light);
+                    RenderUnderLight(this.Scene.RootNode, arg, light);
                     this.blend.Off();
                 }
             }

@@ -37,7 +37,7 @@ namespace CSharpGL
             var scene = new Scene(camera)
             {
                 ClearColor = Color.Black.ToVec4(),
-                RootElement = group,
+                RootNode = group,
             };
 
             this.scene = scene;

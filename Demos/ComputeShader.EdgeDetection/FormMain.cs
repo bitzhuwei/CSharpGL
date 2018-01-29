@@ -34,7 +34,7 @@ namespace ComputeShader.EdgeDetection
 ;
             {
                 this.edgeDetectNode = EdgeDetectNode.Create();
-                this.scene.RootElement = this.edgeDetectNode;
+                this.scene.RootNode = this.edgeDetectNode;
             }
             var list = new ActionList();
             var transformAction = new TransformAction(scene);

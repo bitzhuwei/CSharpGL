@@ -35,7 +35,7 @@ namespace SimpleNoise.Sun
             {
                 var node = SimplexNoiseNode.Create();
                 node.Children.Add(new LegacyBoundingBoxNode(node.ModelSize));
-                this.scene.RootElement = node;
+                this.scene.RootNode = node;
                 this.propGrid.SelectedObject = node;
             }
             var list = new ActionList();

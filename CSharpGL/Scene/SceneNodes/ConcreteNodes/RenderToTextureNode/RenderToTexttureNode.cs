@@ -87,7 +87,7 @@ namespace CSharpGL
                 }
                 {
                     // TODO: maybe action should record only the root element instead of the scene.
-                    var args = new RenderEventArgs(arg.Scene, arg.Param, this.Camera);
+                    var args = new RenderEventArgs(arg.RootNode, arg.Param, this.Camera);
                     foreach (var item in this.Children)
                     {
                         RenderAction.Render(item, args);

@@ -25,7 +25,7 @@ namespace CSharpGL
         public override void Act(ActionParams param)
         {
             var arg = new TransformEventArgs();
-            this.Render(this.Scene.RootElement, arg);
+            this.Render(this.Scene.RootNode, arg);
         }
 
         private void Render(SceneNodeBase sceneElement, TransformEventArgs arg)

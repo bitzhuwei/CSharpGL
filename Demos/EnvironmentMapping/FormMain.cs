@@ -121,7 +121,7 @@ namespace EnvironmentMapping
                 this.scene = new Scene(camera)
 
                 {
-                    RootElement = group,
+                    RootNode = group,
                 };
 
                 var list = new ActionList();

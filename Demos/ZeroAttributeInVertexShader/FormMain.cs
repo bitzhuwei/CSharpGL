@@ -35,7 +35,7 @@ namespace ZeroAttributeInVertexShader
 ;
             {
                 var node = ZeroAttributeNode.Create();
-                this.scene.RootElement = node;
+                this.scene.RootNode = node;
             }
 
             var list = new ActionList();
@@ -66,7 +66,7 @@ namespace ZeroAttributeInVertexShader
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            IWorldSpace node = this.scene.RootElement;
+            IWorldSpace node = this.scene.RootNode;
             if (node != null)
             {
                 node.RotationAngle += 1;

@@ -37,7 +37,7 @@ namespace StencilShadowVolume
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
             this.scene = new Scene(camera)
             {
-                RootElement = rootElement,
+                RootNode = rootElement,
                 ClearColor = Color.SkyBlue.ToVec4(),
             };
             {
@@ -52,7 +52,7 @@ namespace StencilShadowVolume
                     this.scene.Lights.Add(lights[i]);
                     var node = LightPositionNode.Create(i * 360 / 3);
                     node.SetLight(lights[i]);
-                    this.scene.RootElement.Children.Add(node);
+                    this.scene.RootNode.Children.Add(node);
                 }
             }
 
@@ -67,7 +67,7 @@ namespace StencilShadowVolume
 
             (new FormProperyGrid(shadowVolumeAction)).Show();
 
-            Match(this.trvScene, scene.RootElement);
+            Match(this.trvScene, scene.RootNode);
             this.trvScene.ExpandAll();
 
             var manipulater = new FirstPerspectiveManipulater();

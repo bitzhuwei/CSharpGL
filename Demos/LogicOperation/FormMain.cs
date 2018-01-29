@@ -37,7 +37,7 @@ namespace LogicOperation
             this.scene = new Scene(camera)
 
             {
-                RootElement = rootElement,
+                RootNode = rootElement,
                 ClearColor = Color.SkyBlue.ToVec4(),
             };
 
@@ -110,7 +110,7 @@ namespace LogicOperation
             if (this.scene != null)
             {
                 var op = (LogicOperationCode)Enum.Parse(typeof(LogicOperationCode), cmbLogicOperation.SelectedItem.ToString());
-                TraverseNodes(this.scene.RootElement, op);
+                TraverseNodes(this.scene.RootNode, op);
             }
         }
 

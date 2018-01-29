@@ -42,7 +42,7 @@ namespace HowTransformFeedbackWorks
                 var ground = GroundNode.Create();
                 ground.RenderUnit.Methods[0].StateList.Add(new PolygonModeState(PolygonMode.Line));
                 var group = new GroupNode(node, ground);
-                this.scene.RootElement = group;
+                this.scene.RootNode = group;
             }
 
             var list = new ActionList();

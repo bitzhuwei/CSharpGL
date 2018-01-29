@@ -35,7 +35,7 @@ namespace TerrainLoading
             this.scene = new Scene(camera)
 
             {
-                RootElement = rootElement,
+                RootNode = rootElement,
                 ClearColor = Color.SkyBlue.ToVec4(),
             };
 
@@ -90,7 +90,7 @@ namespace TerrainLoading
             {
                 string filename = openDlg.FileName;
                 Bitmap bmp = new Bitmap(filename);
-                var node = this.scene.RootElement as TerainNode;
+                var node = this.scene.RootNode as TerainNode;
                 node.UpdateHeightmap(bmp);
             }
         }

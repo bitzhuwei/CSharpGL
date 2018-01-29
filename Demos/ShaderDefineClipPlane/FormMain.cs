@@ -40,7 +40,7 @@ namespace ShaderDefineClipPlane
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
             this.scene = new Scene(camera)
             {
-                RootElement = rootElement,
+                RootNode = rootElement,
                 ClearColor = Color.SkyBlue.ToVec4(),
             };
 
@@ -57,7 +57,7 @@ namespace ShaderDefineClipPlane
             this.tipList.Add(this.triangleTip);
             this.tipList.Add(this.quadTip);
 
-            Match(this.trvScene, scene.RootElement);
+            Match(this.trvScene, scene.RootNode);
             this.trvScene.ExpandAll();
 
             var manipulater = new FirstPerspectiveManipulater();
