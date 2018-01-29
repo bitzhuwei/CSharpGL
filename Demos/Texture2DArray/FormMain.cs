@@ -42,14 +42,14 @@ namespace Texture2DArray
 
             var list = new ActionList();
 
-            var transformAction = new TransformAction(scene);
+            var transformAction = new TransformAction(scene.RootNode);
             list.Add(transformAction);
             var renderAction = new RenderAction(scene);
             list.Add(renderAction);
 
-            var guiLayoutAction = new GUILayoutAction(scene);
+            var guiLayoutAction = new GUILayoutAction(scene.RootControl);
             list.Add(guiLayoutAction);
-            var guiRenderAction = new GUIRenderAction(scene);
+            var guiRenderAction = new GUIRenderAction(scene.RootControl, scene.Camera);
             list.Add(guiRenderAction);
 
             this.actionList = list;

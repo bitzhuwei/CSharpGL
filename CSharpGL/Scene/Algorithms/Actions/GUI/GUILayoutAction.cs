@@ -8,18 +8,18 @@ using System.Text;
 namespace CSharpGL
 {
     /// <summary>
-    /// Render <see cref="IRenderable"/> objects.
+    /// Render <see cref="GLControl"/> objects.
     /// </summary>
     public class GUILayoutAction : ActionBase
     {
-        private Scene scene;
+        private GLControl rootControl;
         /// <summary>
-        /// Render <see cref="IRenderable"/> objects.
+        /// Render <see cref="GLControl"/> objects.
         /// </summary>
-        /// <param name="scene"></param>
-        public GUILayoutAction(Scene scene)
+        /// <param name="rootControl"></param>
+        public GUILayoutAction(GLControl rootControl)
         {
-            this.scene = scene;
+            this.rootControl = rootControl;
         }
 
         /// <summary>
@@ -28,7 +28,7 @@ namespace CSharpGL
         /// <param name="param"></param>
         public override void Act(ActionParams param)
         {
-            GLControl.Layout(this.scene.RootControl);
+            GLControl.Layout(this.rootControl);
         }
 
     }

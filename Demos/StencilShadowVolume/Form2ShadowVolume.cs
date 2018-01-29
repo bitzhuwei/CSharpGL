@@ -57,7 +57,7 @@ namespace StencilShadowVolume
             }
 
             var list = new ActionList();
-            var transformAction = new TransformAction(scene);
+            var transformAction = new TransformAction(scene.RootNode);
             list.Add(transformAction);
             var shadowVolumeAction = new ShadowVolumeAction(scene);
             list.Add(shadowVolumeAction);

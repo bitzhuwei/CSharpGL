@@ -12,14 +12,14 @@ namespace CSharpGL
     /// </summary>
     public class TransformAction : ActionBase
     {
-        private Scene scene;
+        private SceneNodeBase rootNode;
         /// <summary>
         /// Render <see cref="IWorldSpace"/> objects.
         /// </summary>
-        /// <param name="scene"></param>
-        public TransformAction(Scene scene)
+        /// <param name="rootNode"></param>
+        public TransformAction(SceneNodeBase rootNode)
         {
-            this.scene = scene;
+            this.rootNode = rootNode;
         }
 
         /// <summary>
@@ -29,7 +29,7 @@ namespace CSharpGL
         public override void Act(ActionParams param)
         {
             var arg = new TransformEventArgs();
-            this.Render(this.scene.RootNode, arg);
+            this.Render(this.rootNode, arg);
         }
 
         private void Render(SceneNodeBase sceneElement, TransformEventArgs arg)

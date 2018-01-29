@@ -40,13 +40,13 @@ namespace WorldSpaceBillboard
             };
 
             var list = new ActionList();
-            var transformAction = new TransformAction(scene);
+            var transformAction = new TransformAction(scene.RootNode);
             list.Add(transformAction);
             var billboardSortAction = new BillboardSortAction(scene);
             list.Add(billboardSortAction);
             var renderAction = new RenderAction(scene);
             list.Add(renderAction);
-            var billboardRenderAction = new BillboardRenderAction(scene, billboardSortAction);
+            var billboardRenderAction = new BillboardRenderAction(this.scene.Camera, billboardSortAction);
             list.Add(billboardRenderAction);
             this.actionList = list;
 

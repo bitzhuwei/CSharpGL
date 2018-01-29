@@ -89,7 +89,7 @@ namespace ShadowMapping
             Match(this.trvScene, scene.RootNode);
             this.trvScene.ExpandAll();
 
-            var tansformAction = new TransformAction(scene);
+            var tansformAction = new TransformAction(scene.RootNode);
             this.shadowMappingAction = new ShadowMappingAction(scene);
             var renderAction = new RenderAction(scene);
             var actionList = new ActionList();

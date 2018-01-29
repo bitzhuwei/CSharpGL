@@ -37,58 +37,12 @@ namespace CSharpGL
         /// <summary>
         /// Initializes a new instance of the <see cref="RenderEventArgs"/> class.
         /// </summary>
-        public GUIRenderEventArgs(Scene scene, params ICamera[] cameras)
+        public GUIRenderEventArgs(ICamera camera)
         {
-            this.Scene = scene;
-
-            var cameraStack = new Stack<ICamera>();
-            foreach (var item in cameras)
-            {
-                cameraStack.Push(item);
-            }
-
-            this.CameraStack = cameraStack;
-            this.CurrentLights = new Stack<List<LightBase>>();
-
-            this.ModelMatrixStack = new Stack<mat4>();
-            this.ModelMatrixStack.Push(mat4.identity());
+            this.Camera = camera;
         }
 
-        /// <summary>
-        /// The top ccamera is currently in use.
-        /// </summary>
-        public Stack<ICamera> CameraStack { get; private set; }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public Stack<List<LightBase>> CurrentLights { get; private set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        internal Stack<mat4> ModelMatrixStack { get; private set; }
-        ///// <summary>
-        ///// 
-        ///// </summary>
-        ///// <returns></returns>
-        //public virtual mat4 GetViewMatrix()
-        //{
-        //    return this.Scene.Camera.GetViewMatrix();
-        //}
-
-        ///// <summary>
-        ///// 
-        ///// </summary>
-        ///// <returns></returns>
-        //public virtual mat4 GetProjectionMatrix()
-        //{
-        //    return this.Scene.Camera.GetProjectionMatrix();
-        //}
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public Scene Scene { get; private set; }
+        public ICamera Camera { get; set; }
     }
 }

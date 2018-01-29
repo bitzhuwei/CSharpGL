@@ -8,18 +8,25 @@ using System.Text;
 namespace CSharpGL
 {
     /// <summary>
-    /// Render <see cref="IRenderable"/> objects.
+    /// Render nodes using Blinn-Phong shading model.
     /// </summary>
     public class BlinnPhongAction : ActionBase
     {
-        private Scene scene;
+        private SceneNodeBase rootNode;
+        private ICamera camera;
+        private vec3 ambient;
+
         /// <summary>
-        /// Render <see cref="IRenderable"/> objects.
+        /// Render nodes using Blinn-Phong shading model.
         /// </summary>
-        /// <param name="scene"></param>
-        public BlinnPhongAction(Scene scene)
+        /// <param name="rootNode"></param>
+        /// <param name="camera"></param>
+        /// <param name="ambient"></param>
+        public BlinnPhongAction(SceneNodeBase rootNode, ICamera camera, vec3 ambient)
         {
-            this.scene = scene;
+            this.rootNode = rootNode;
+            this.camera = camera;
+            this.ambient = ambient;
         }
 
         /// <summary>
@@ -28,10 +35,9 @@ namespace CSharpGL
         /// <param name="param"></param>
         public override void Act(ActionParams param)
         {
-            Scene scene = this.scene;
-            var arg = new RenderEventArgs(param, scene.Camera);
-            RenderAmbientColor(scene.RootNode, arg, scene.AmbientColor);
-            RenderBlinnPhong(scene.RootNode, arg);
+            var arg = new RenderEventArgs(param, this.camera);
+            RenderAmbientColor(this.rootNode, arg, this.ambient);
+            RenderBlinnPhong(this.rootNode, arg);
         }
 
         private static void RenderAmbientColor(SceneNodeBase sceneNodeBase, RenderEventArgs arg, vec3 ambient)

@@ -12,16 +12,17 @@ namespace CSharpGL
     /// </summary>
     public class BillboardRenderAction : ActionBase
     {
-        private Scene scene;
+        private ICamera camera;
         private BillboardSortAction sortAction;
+
         /// <summary>
         /// Render sorted billboards.
         /// </summary>
-        /// <param name="scene"></param>
+        /// <param name="camera"></param>
         /// <param name="sortAction"></param>
-        public BillboardRenderAction(Scene scene, BillboardSortAction sortAction)
+        public BillboardRenderAction(ICamera camera, BillboardSortAction sortAction)
         {
-            this.scene = scene;
+            this.camera = camera;
             this.sortAction = sortAction;
         }
 
@@ -31,7 +32,7 @@ namespace CSharpGL
         /// <param name="param"></param>
         public override void Act(ActionParams param)
         {
-            var arg = new RenderEventArgs(param, this.scene.Camera);
+            var arg = new RenderEventArgs(param, this.camera);
             foreach (var item in this.sortAction.BillboardList)
             {
                 item.RenderBeforeChildren(arg);

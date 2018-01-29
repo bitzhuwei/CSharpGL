@@ -41,7 +41,7 @@ namespace LogicOperation
                 ClearColor = Color.SkyBlue.ToVec4(),
             };
 
-            var tansformAction = new TransformAction(scene);
+            var tansformAction = new TransformAction(scene.RootNode);
             var renderAction = new RenderAction(scene);
             var actionList = new ActionList();
             actionList.Add(tansformAction); actionList.Add(renderAction);

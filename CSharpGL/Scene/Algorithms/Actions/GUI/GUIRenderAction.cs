@@ -12,14 +12,17 @@ namespace CSharpGL
     /// </summary>
     public class GUIRenderAction : ActionBase
     {
-        private Scene scene;
+        private GLControl rootControl;
+        private ICamera camera;
         /// <summary>
-        /// Render <see cref="IRenderable"/> objects.
+        /// Render <see cref="GLControl"/> objects.
         /// </summary>
-        /// <param name="scene"></param>
-        public GUIRenderAction(Scene scene)
+        /// <param name="rootControl"></param>
+        /// <param name="camera"></param>
+        public GUIRenderAction(GLControl rootControl, ICamera camera)
         {
-            this.scene = scene;
+            this.rootControl = rootControl;
+            this.camera = camera;
         }
 
         /// <summary>
@@ -28,15 +31,16 @@ namespace CSharpGL
         /// <param name="param"></param>
         public override void Act(ActionParams param)
         {
+            int width = param.Viewport.width, height = param.Viewport.height;
             //    var scissor = new int[4];
             //    var viewport = new int[4];
             //    GL.Instance.GetIntegerv((uint)GetTarget.ScissorBox, scissor);
             //    GL.Instance.GetIntegerv((uint)GetTarget.Viewport, viewport);
 
-            var arg = new GUIRenderEventArgs(this.scene, this.scene.Camera);
-            GUIRenderAction.Render(this.scene.RootControl, arg);
+            var arg = new GUIRenderEventArgs(this.camera);
+            GUIRenderAction.Render(this.rootControl, arg);
 
-            int width = param.Viewport.width, height = param.Viewport.height;
+            // Reset viewport.
             GL.Instance.Scissor(0, 0, width, height);
             GL.Instance.Viewport(0, 0, width, height);
         }
