@@ -38,14 +38,14 @@ namespace CSharpGL
             //    GL.Instance.GetIntegerv((uint)GetTarget.Viewport, viewport);
 
             var arg = new GUIRenderEventArgs(param);
-            GUIRenderAction.Render(this.rootControl, arg);
+            RenderGUI(this.rootControl, arg);
 
             // Reset viewport.
             GL.Instance.Scissor(0, 0, width, height);
             GL.Instance.Viewport(0, 0, width, height);
         }
 
-        private static void Render(GLControl control, GUIRenderEventArgs arg)
+        private static void RenderGUI(GLControl control, GUIRenderEventArgs arg)
         {
             if (control != null)
             {
@@ -64,7 +64,7 @@ namespace CSharpGL
                 {
                     foreach (var item in control.Children)
                     {
-                        GUIRenderAction.Render(item, arg);
+                        RenderGUI(item, arg);
                     }
                 }
 
