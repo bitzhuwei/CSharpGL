@@ -26,13 +26,15 @@ namespace CSharpGL
         /// Render something with Blinn-Phong shading model.
         /// </summary>
         /// <param name="arg"></param>
-        void RenderBeforeChildren(RenderEventArgs arg);
+        /// <param name="light"></param>
+        void RenderBeforeChildren(RenderEventArgs arg, LightBase light);
 
         /// <summary>
         /// Render something with Blinn-Phong shading model.
         /// </summary>
         /// <param name="arg"></param>
-        void RenderAfterChildren(RenderEventArgs arg);
+        /// <param name="light"></param>
+        void RenderAfterChildren(RenderEventArgs arg, LightBase light);
     }
 
     /// <summary>

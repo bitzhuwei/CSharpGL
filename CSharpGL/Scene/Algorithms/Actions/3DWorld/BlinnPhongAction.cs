@@ -12,9 +12,16 @@ namespace CSharpGL
     /// </summary>
     public class BlinnPhongAction : ActionBase
     {
-        private SceneNodeBase rootNode;
-        private ICamera camera;
-        private vec3 ambient;
+        private Scene scene;
+        private readonly BlendState blend = new BlendState(BlendingSourceFactor.One, BlendingDestinationFactor.One);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public BlendState Blend
+        {
+            get { return blend; }
+        }
 
         /// <summary>
         /// Render nodes using Blinn-Phong shading model.
@@ -22,11 +29,9 @@ namespace CSharpGL
         /// <param name="rootNode"></param>
         /// <param name="camera"></param>
         /// <param name="ambient"></param>
-        public BlinnPhongAction(SceneNodeBase rootNode, ICamera camera, vec3 ambient)
+        public BlinnPhongAction(Scene scene)
         {
-            this.rootNode = rootNode;
-            this.camera = camera;
-            this.ambient = ambient;
+            this.scene = scene;
         }
 
         /// <summary>
@@ -36,13 +41,17 @@ namespace CSharpGL
         public override void Act(ActionParams param)
         {
             {
-                var arg = new BlinnPhongAmbientEventArgs(param, this.camera, this.ambient);
-                RenderAmbientColor(this.rootNode, arg);
+                var arg = new BlinnPhongAmbientEventArgs(param, this.scene.Camera, this.scene.AmbientColor);
+                RenderAmbientColor(this.scene.RootNode, arg);
             }
+
+            this.blend.On();
+            foreach (var light in this.scene.Lights)
             {
-                var arg = new RenderEventArgs(param, this.camera);
-                RenderBlinnPhong(this.rootNode, arg);
+                var arg = new RenderEventArgs(param, this.scene.Camera);
+                RenderBlinnPhong(this.scene.RootNode, arg, light);
             }
+            this.blend.Off();
         }
 
         private static void RenderAmbientColor(SceneNodeBase sceneNodeBase, BlinnPhongAmbientEventArgs arg)
@@ -76,7 +85,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="sceneNodeBase"></param>
         /// <param name="arg"></param>
-        private static void RenderBlinnPhong(SceneNodeBase sceneNodeBase, RenderEventArgs arg)
+        private static void RenderBlinnPhong(SceneNodeBase sceneNodeBase, RenderEventArgs arg, LightBase light)
         {
             if (sceneNodeBase != null)
             {
@@ -88,20 +97,20 @@ namespace CSharpGL
 
                 if (before)
                 {
-                    node.RenderBeforeChildren(arg);
+                    node.RenderBeforeChildren(arg, light);
                 }
 
                 if (children)
                 {
                     foreach (var item in sceneNodeBase.Children)
                     {
-                        RenderBlinnPhong(item, arg);
+                        RenderBlinnPhong(item, arg, light);
                     }
                 }
 
                 if (after)
                 {
-                    node.RenderAfterChildren(arg);
+                    node.RenderAfterChildren(arg, light);
                 }
             }
         }
