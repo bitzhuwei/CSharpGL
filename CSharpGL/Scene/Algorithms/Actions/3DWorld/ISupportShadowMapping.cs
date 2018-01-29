@@ -25,7 +25,7 @@ namespace CSharpGL
         /// Cast shadow to specified texture in framebuffer, or Prepare for its children to cast shadow.
         /// </summary>
         /// <param name="arg"></param>
-        void CastShadow(ShadowMappingEventArgs arg);
+        void CastShadow(ShadowMappingCastShadowEventArgs arg);
 
         /// <summary>
         /// Is extruding shadow enabled for this object and its children?
@@ -44,46 +44,15 @@ namespace CSharpGL
     /// <summary>
     /// Render event argument.
     /// </summary>
-    public class ShadowMappingEventArgs
+    public class ShadowMappingCastShadowEventArgs
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="RenderEventArgs"/> class.
+        /// Initializes a new instance of the <see cref="ShadowMappingCastShadowEventArgs"/> class.
         /// </summary>
-        public ShadowMappingEventArgs(LightBase light)
+        public ShadowMappingCastShadowEventArgs(LightBase light)
         {
             this.Light = light;
-
-            this.ModelMatrixStack = new Stack<mat4>();
-            this.ModelMatrixStack.Push(mat4.identity());
-
-            //this.LightStack = new Stack<LightBase>();
         }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        internal Stack<mat4> ModelMatrixStack { get; private set; }
-        ///// <summary>
-        ///// 
-        ///// </summary>
-        ///// <returns></returns>
-        //public virtual mat4 GetViewMatrix()
-        //{
-        //    return this.Scene.Camera.GetViewMatrix();
-        //}
-
-        ///// <summary>
-        ///// 
-        ///// </summary>
-        ///// <returns></returns>
-        //public virtual mat4 GetProjectionMatrix()
-        //{
-        //    return this.Scene.Camera.GetProjectionMatrix();
-        ////}
-        ///// <summary>
-        ///// 
-        ///// </summary>
-        //internal Stack<LightBase> LightStack { get; private set; }
 
         /// <summary>
         /// 

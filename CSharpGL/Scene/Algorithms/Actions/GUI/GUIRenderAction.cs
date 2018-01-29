@@ -37,7 +37,7 @@ namespace CSharpGL
             //    GL.Instance.GetIntegerv((uint)GetTarget.ScissorBox, scissor);
             //    GL.Instance.GetIntegerv((uint)GetTarget.Viewport, viewport);
 
-            var arg = new GUIRenderEventArgs(this.camera);
+            var arg = new GUIRenderEventArgs(param);
             GUIRenderAction.Render(this.rootControl, arg);
 
             // Reset viewport.

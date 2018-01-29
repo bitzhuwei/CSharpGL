@@ -42,7 +42,7 @@ namespace WorldSpaceBillboard
             var list = new ActionList();
             var transformAction = new TransformAction(scene.RootNode);
             list.Add(transformAction);
-            var billboardSortAction = new BillboardSortAction(scene);
+            var billboardSortAction = new BillboardSortAction(scene.RootNode, scene.Camera);
             list.Add(billboardSortAction);
             var renderAction = new RenderAction(scene);
             list.Add(renderAction);

@@ -90,7 +90,7 @@ namespace ShadowMapping
             set { enableCastShadow = value; }
         }
 
-        public void CastShadow(ShadowMappingEventArgs arg)
+        public void CastShadow(ShadowMappingCastShadowEventArgs arg)
         {
             if (!this.IsInitialized) { this.Initialize(); }
 

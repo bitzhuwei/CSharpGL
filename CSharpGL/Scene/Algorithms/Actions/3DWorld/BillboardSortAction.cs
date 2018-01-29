@@ -14,7 +14,9 @@ namespace CSharpGL
     {
         private List<float> depthList = new List<float>();
         private List<TextBillboardNode> billboardList = new List<TextBillboardNode>();
-        private Scene scene;
+
+        private SceneNodeBase rootNode;
+        private ICamera camera;
 
         /// <summary>
         /// Sorted billboard list.
@@ -27,10 +29,12 @@ namespace CSharpGL
         /// <summary>
         /// Sort billboards in depth order.
         /// </summary>
-        /// <param name="scene"></param>
-        public BillboardSortAction(Scene scene)
+        /// <param name="rootNode"></param>
+        /// <param name="camera"></param>
+        public BillboardSortAction(SceneNodeBase rootNode, ICamera camera)
         {
-            this.scene = scene;
+            this.rootNode = rootNode;
+            this.camera = camera;
         }
 
         /// <summary>
@@ -42,8 +46,8 @@ namespace CSharpGL
             this.depthList.Clear();
             this.billboardList.Clear();
 
-            mat4 viewMatrix = this.scene.Camera.GetViewMatrix();
-            this.Sort(this.scene.RootNode, viewMatrix);
+            mat4 viewMatrix = this.camera.GetViewMatrix();
+            this.Sort(this.rootNode, viewMatrix);
         }
 
         private void Sort(SceneNodeBase sceneElement, mat4 viewMatrix)

@@ -47,7 +47,7 @@ namespace CSharpGL
                 // cast shadow from specified light.
                 {
                     light.Begin();
-                    var arg = new ShadowMappingEventArgs(light);
+                    var arg = new ShadowMappingCastShadowEventArgs(light);
                     CastShadow(scene.RootNode, arg);
                     light.End();
                 }
@@ -62,7 +62,7 @@ namespace CSharpGL
             }
         }
 
-        private void CastShadow(SceneNodeBase sceneNodeBase, ShadowMappingEventArgs arg)
+        private void CastShadow(SceneNodeBase sceneNodeBase, ShadowMappingCastShadowEventArgs arg)
         {
             if (sceneNodeBase != null)
             {

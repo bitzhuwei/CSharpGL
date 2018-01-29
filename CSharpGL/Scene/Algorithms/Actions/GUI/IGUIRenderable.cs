@@ -35,14 +35,25 @@ namespace CSharpGL
     public class GUIRenderEventArgs
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="RenderEventArgs"/> class.
+        /// 
         /// </summary>
-        public GUIRenderEventArgs(ICamera camera)
+        public ActionParams Param { get; private set; }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GUIRenderEventArgs"/> class.
+        /// </summary>
+        public GUIRenderEventArgs(ActionParams param)
         {
-            this.Camera = camera;
+            this.Param = param;
         }
 
-
-        public ICamera Camera { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+            return string.Format("{0}", this.Param);
+        }
     }
 }

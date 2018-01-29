@@ -35,12 +35,17 @@ namespace CSharpGL
         /// <param name="param"></param>
         public override void Act(ActionParams param)
         {
-            var arg = new RenderEventArgs(param, this.camera);
-            RenderAmbientColor(this.rootNode, arg, this.ambient);
-            RenderBlinnPhong(this.rootNode, arg);
+            {
+                var arg = new BlinnPhongAmbientEventArgs(param, this.camera, this.ambient);
+                RenderAmbientColor(this.rootNode, arg);
+            }
+            {
+                var arg = new RenderEventArgs(param, this.camera);
+                RenderBlinnPhong(this.rootNode, arg);
+            }
         }
 
-        private static void RenderAmbientColor(SceneNodeBase sceneNodeBase, RenderEventArgs arg, vec3 ambient)
+        private static void RenderAmbientColor(SceneNodeBase sceneNodeBase, BlinnPhongAmbientEventArgs arg)
         {
             if (sceneNodeBase != null)
             {
@@ -52,14 +57,14 @@ namespace CSharpGL
 
                 if (before || after)
                 {
-                    node.RenderAmbientColor(arg, ambient);
+                    node.RenderAmbientColor(arg);
                 }
 
                 if (children)
                 {
                     foreach (var item in sceneNodeBase.Children)
                     {
-                        RenderAmbientColor(item, arg, ambient);
+                        RenderAmbientColor(item, arg);
                     }
                 }
 

@@ -178,7 +178,7 @@ namespace CSharpGL
             }
         }
 
-        private void RenderUnderLight(SceneNodeBase sceneNodeBase, ShadowVolumeUnderLightEventArgs arg)
+        private static void RenderUnderLight(SceneNodeBase sceneNodeBase, ShadowVolumeUnderLightEventArgs arg)
         {
             if (sceneNodeBase != null)
             {
