@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CSharpGL.NewLights
+namespace CSharpGL
 {
     /// <summary>
     /// Base type of all lights.
@@ -19,7 +19,12 @@ namespace CSharpGL.NewLights
         /// <summary>
         /// Diffuse intensity.
         /// </summary>
-        public float Diffuse { get; set; }
+        public vec3 Diffuse { get; set; }
+
+        /// <summary>
+        /// Specular intensity.
+        /// </summary>
+        public vec3 Specular { get; set; }
 
         /// <summary>
         /// Light's position.
@@ -41,6 +46,20 @@ namespace CSharpGL.NewLights
 
             this.Attenuation = attenuation;
         }
+
+        // TODO: rewrite this.
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public virtual mat4 GetProjectionMatrix() { throw new NotImplementedException(); }
+
+        // TODO: rewrite this.
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public virtual mat4 GetViewMatrix() { throw new NotImplementedException(); }
 
         //public abstract 
         /// <summary>

@@ -111,7 +111,7 @@ namespace ShadowMapping
         private TwoFlags enableRenderUnderLight = TwoFlags.BeforeChildren | TwoFlags.Children;
         public TwoFlags EnableRenderUnderLight { get { return this.enableRenderUnderLight; } set { this.enableRenderUnderLight = value; } }
 
-        public void RenderUnderLight(RenderEventArgs arg, LightBase light)
+        public void RenderUnderLight(ShadowMappingUnderLightEventArgs arg)
         {
             if (!this.IsInitialized) { Initialize(); }
 
@@ -123,6 +123,7 @@ namespace ShadowMapping
             mat4 model = this.GetModelMatrix();
             mat4 lightBias = glm.translate(mat4.identity(), new vec3(1, 1, 1) * 0.5f);
             lightBias = glm.scale(lightBias, new vec3(1, 1, 1) * 0.5f);
+            LightBase light = arg.Light;
             mat4 lightProjection = light.GetProjectionMatrix();
             mat4 lightView = light.GetViewMatrix();
 
@@ -133,7 +134,7 @@ namespace ShadowMapping
             program.SetUniform(view_matrix, view);
             program.SetUniform(projection_matrix, projection);
             program.SetUniform(shadow_matrix, lightBias * lightProjection * lightView);
-            program.SetUniform(depth_texture, light.BindingTexture);
+            program.SetUniform(depth_texture, arg.ShadowMap);
             program.SetUniform(light_position, new vec3(view * new vec4(light.Position, 1.0f)));
             //program.SetUniform(light_position, light.Position);
             program.SetUniform("lightColor", light.Color);

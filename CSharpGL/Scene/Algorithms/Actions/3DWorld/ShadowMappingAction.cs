@@ -13,6 +13,8 @@ namespace CSharpGL
     public class ShadowMappingAction : ActionBase
     {
         private readonly BlendState blend = new BlendState(BlendingSourceFactor.One, BlendingDestinationFactor.One);
+        private LightEquipment lightEquipment = new LightEquipment();
+
         private Scene scene;
 
         /// <summary>
@@ -45,17 +47,17 @@ namespace CSharpGL
             {
                 // cast shadow from specified light.
                 {
-                    light.Begin();
+                    this.lightEquipment.Begin();
                     var arg = new ShadowMappingCastShadowEventArgs(light);
                     CastShadow(scene.RootNode, arg);
-                    light.End();
+                    this.lightEquipment.End();
                 }
 
                 // light up the scene with specified light.
                 {
-                    var arg = new RenderEventArgs(param, scene.Camera);
+                    var arg = new ShadowMappingUnderLightEventArgs(param, scene.Camera, this.lightEquipment.ShadowMap, light);
                     this.blend.On();
-                    RenderUnderLight(scene.RootNode, arg, light);
+                    RenderUnderLight(this.scene.RootNode, arg);
                     this.blend.Off();
                 }
             }
@@ -97,7 +99,7 @@ namespace CSharpGL
             }
         }
 
-        private void RenderUnderLight(SceneNodeBase sceneNodeBase, RenderEventArgs arg, LightBase light)
+        private void RenderUnderLight(SceneNodeBase sceneNodeBase, ShadowMappingUnderLightEventArgs arg)
         {
             if (sceneNodeBase != null)
             {
@@ -120,14 +122,14 @@ namespace CSharpGL
 
                 if (before)
                 {
-                    node.RenderUnderLight(arg, light);
+                    node.RenderUnderLight(arg);
                 }
 
                 if (children)
                 {
                     foreach (var item in sceneNodeBase.Children)
                     {
-                        RenderUnderLight(item, arg, light);
+                        RenderUnderLight(item, arg);
                     }
                 }
             }

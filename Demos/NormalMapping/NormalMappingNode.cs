@@ -60,12 +60,11 @@ namespace NormalMapping
             ShaderProgram program = method.Program;
             {
                 var dirLight = new DirectionalLight(new vec3(1.0f, 0.0f, 0.0f));
-                dirLight.AmbientIntensity = 0.2f;
-                dirLight.DiffuseIntensity = new vec3(0.8f);
+                dirLight.Diffuse = new vec3(0.8f);
                 dirLight.Color = new vec3(1.0f, 1.0f, 1.0f);
                 program.SetUniform("gDirectionalLight.Base.Color", dirLight.Color);
-                program.SetUniform("gDirectionalLight.Base.AmbientIntensity", dirLight.AmbientIntensity);
-                program.SetUniform("gDirectionalLight.Base.DiffuseIntensity", dirLight.DiffuseIntensity);
+                program.SetUniform("gDirectionalLight.Base.AmbientIntensity", 0.2f);
+                program.SetUniform("gDirectionalLight.Base.DiffuseIntensity", 0.8f);
                 program.SetUniform("gDirectionalLight.Direction", dirLight.Direction.normalize());
 
                 this.m_dirLight = dirLight;

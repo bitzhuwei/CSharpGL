@@ -111,7 +111,7 @@ void main(void)
         /// </summary>
         /// <param name="arg"></param>
         /// <param name="light"></param>
-        public void RenderUnderLight(RenderEventArgs arg, LightBase light)
+        public void RenderUnderLight(ShadowMappingUnderLightEventArgs arg)
         {
 
         }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CSharpGL.NewLights
+namespace CSharpGL
 {
     /// <summary>
     /// Point light.

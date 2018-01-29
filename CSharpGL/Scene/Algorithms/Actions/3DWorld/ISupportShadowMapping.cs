@@ -36,8 +36,7 @@ namespace CSharpGL
         /// Render the node under the specified light.
         /// </summary>
         /// <param name="arg"></param>
-        /// <param name="light"></param>
-        void RenderUnderLight(RenderEventArgs arg, LightBase light);
+        void RenderUnderLight(ShadowMappingUnderLightEventArgs arg);
 
     }
 
@@ -58,5 +57,32 @@ namespace CSharpGL
         /// 
         /// </summary>
         public LightBase Light { get; set; }
+    }
+
+    /// <summary>
+    /// Render event argument.
+    /// </summary>
+    public class ShadowMappingUnderLightEventArgs : RenderEventArgs
+    {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ShadowMappingUnderLightEventArgs"/> class.
+        /// </summary>
+        public ShadowMappingUnderLightEventArgs(ActionParams param, ICamera camera, Texture shadowMap, LightBase light)
+            : base(param, camera)
+        {
+            this.ShadowMap = shadowMap;
+            this.Light = light;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public Texture ShadowMap { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public LightBase Light { get; set; }
+
     }
 }

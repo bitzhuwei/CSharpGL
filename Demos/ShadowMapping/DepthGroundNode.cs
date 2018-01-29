@@ -108,7 +108,7 @@ void main(void)
         private TwoFlags enableRenderUnderLight = TwoFlags.BeforeChildren | TwoFlags.Children;
         public TwoFlags EnableRenderUnderLight { get { return this.enableRenderUnderLight; } set { this.enableRenderUnderLight = value; } }
 
-        public void RenderUnderLight(RenderEventArgs arg, LightBase light)
+        public void RenderUnderLight(ShadowMappingUnderLightEventArgs arg)
         {
         }
 

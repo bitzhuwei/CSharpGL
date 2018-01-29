@@ -26,9 +26,7 @@ namespace CSharpGL
         /// <summary>
         /// Render nodes using Blinn-Phong shading model.
         /// </summary>
-        /// <param name="rootNode"></param>
-        /// <param name="camera"></param>
-        /// <param name="ambient"></param>
+        /// <param name="scene"></param>
         public BlinnPhongAction(Scene scene)
         {
             this.scene = scene;
@@ -85,6 +83,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="sceneNodeBase"></param>
         /// <param name="arg"></param>
+        /// <param name="light"></param>
         private static void RenderBlinnPhong(SceneNodeBase sceneNodeBase, RenderEventArgs arg, LightBase light)
         {
             if (sceneNodeBase != null)
