@@ -8,7 +8,7 @@ namespace CSharpGL
     /// <summary>
     /// Directional light.
     /// </summary>
-    public class DirectionalLight : LightBase
+    public sealed class DirectionalLight : LightBase
     {
         /// <summary>
         /// Direction from light source to object.
@@ -26,5 +26,15 @@ namespace CSharpGL
             this.Direction = direction;
         }
 
+
+        public override mat4 GetProjectionMatrix()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override mat4 GetViewMatrix()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

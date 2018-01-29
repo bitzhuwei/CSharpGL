@@ -8,7 +8,7 @@ namespace CSharpGL
     /// <summary>
     /// Spot light.
     /// </summary>
-    public class SpotLight : LightBase
+    public sealed class SpotLight : LightBase
     {
         /// <summary>
         /// 
@@ -51,5 +51,15 @@ namespace CSharpGL
             this.Far = far;
         }
 
+
+        public override mat4 GetProjectionMatrix()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override mat4 GetViewMatrix()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

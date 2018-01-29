@@ -8,7 +8,7 @@ namespace CSharpGL
     /// <summary>
     /// Point light.
     /// </summary>
-    public class PointLight : LightBase
+    public sealed class PointLight : LightBase
     {
 
         /// <summary>
@@ -20,6 +20,16 @@ namespace CSharpGL
             : base(attenuation == null ? new Attenuation(1.0f, 0.0f, 0.0f) : attenuation)
         {
             this.Position = position;
+        }
+
+        public override mat4 GetProjectionMatrix()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override mat4 GetViewMatrix()
+        {
+            throw new NotImplementedException();
         }
     }
 }

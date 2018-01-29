@@ -6,7 +6,7 @@ using System.Text;
 namespace CSharpGL
 {
     /// <summary>
-    /// Base type of all lights.
+    /// Base type of directional light, point light and spot light.
     /// </summary>
     public abstract class LightBase
     {
@@ -47,19 +47,17 @@ namespace CSharpGL
             this.Attenuation = attenuation;
         }
 
-        // TODO: rewrite this.
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        public virtual mat4 GetProjectionMatrix() { throw new NotImplementedException(); }
+        public abstract mat4 GetProjectionMatrix();
 
-        // TODO: rewrite this.
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        public virtual mat4 GetViewMatrix() { throw new NotImplementedException(); }
+        public abstract mat4 GetViewMatrix();
 
         //public abstract 
         /// <summary>
