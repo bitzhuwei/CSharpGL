@@ -54,8 +54,8 @@ namespace CSharpGL
 
             // Render depth info into depth buffer and ambient color into color buffer.
             {
-                var arg = new RenderEventArgs(this.Scene.RootNode, param, this.Scene.Camera);
-                RenderAmbientColor(this.Scene.RootNode, arg, this.Scene.AmbientColor);
+                var arg = new ShadowVolumeAmbientEventArgs(this.Scene.RootNode, param, this.Scene.Camera, this.Scene.AmbientColor);
+                RenderAmbientColor(this.Scene.RootNode, arg);
             }
 
             this.stencilTest.On(); // enable stencil test.
@@ -83,7 +83,7 @@ namespace CSharpGL
                     glStencilOpSeparate(GL.GL_FRONT, GL.GL_KEEP, GL.GL_DECR_WRAP, GL.GL_KEEP);
 
                     // Extrude shadow volume. And shadow info will be saved into stencil buffer automatically according to `glStencilOp...`.
-                    var arg = new ShadowVolumeEventArgs(this.Scene.Camera, light);
+                    var arg = new ShadowVolumeExtrudeEventArgs(this.Scene.RootNode, param, this.Scene.Camera, light);
                     Extrude(this.Scene.RootNode, arg);
 
                     this.cullFace.Off();
@@ -111,7 +111,7 @@ namespace CSharpGL
             this.depthClamp.Off();
         }
 
-        private void RenderAmbientColor(SceneNodeBase sceneNodeBase, RenderEventArgs arg, vec3 ambient)
+        private void RenderAmbientColor(SceneNodeBase sceneNodeBase, ShadowVolumeAmbientEventArgs arg)
         {
             if (sceneNodeBase != null)
             {
@@ -122,14 +122,14 @@ namespace CSharpGL
 
                 if (before)
                 {
-                    node.RenderAmbientColor(arg, ambient);
+                    node.RenderAmbientColor(arg);
                 }
 
                 if (children)
                 {
                     foreach (var item in sceneNodeBase.Children)
                     {
-                        RenderAmbientColor(item, arg, ambient);
+                        RenderAmbientColor(item, arg);
                     }
                 }
             }
@@ -140,7 +140,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="sceneNodeBase"></param>
         /// <param name="arg"></param>
-        static void Extrude(SceneNodeBase sceneNodeBase, ShadowVolumeEventArgs arg)
+        static void Extrude(SceneNodeBase sceneNodeBase, ShadowVolumeExtrudeEventArgs arg)
         {
             if (sceneNodeBase != null)
             {

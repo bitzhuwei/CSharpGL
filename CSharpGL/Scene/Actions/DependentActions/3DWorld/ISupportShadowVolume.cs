@@ -20,8 +20,7 @@ namespace CSharpGL
         /// Add ambient color effect at last.
         /// </summary>
         /// <param name="arg"></param>
-        /// <param name="ambient"></param>
-        void RenderAmbientColor(RenderEventArgs arg, vec3 ambient);
+        void RenderAmbientColor(ShadowVolumeAmbientEventArgs arg);
 
         /// <summary>
         /// Is extruding shadow enabled for this object and its children?
@@ -32,7 +31,7 @@ namespace CSharpGL
         /// Extrude shadow volume for stencil operation.
         /// </summary>
         /// <param name="arg"></param>
-        void ExtrudeShadow(ShadowVolumeEventArgs arg);
+        void ExtrudeShadow(ShadowVolumeExtrudeEventArgs arg);
 
         /// <summary>
         /// Is extruding shadow enabled for this object and its children?
@@ -50,13 +49,42 @@ namespace CSharpGL
 
     /// <summary>
     /// </summary>
-    public class ShadowVolumeEventArgs
+    public class ShadowVolumeAmbientEventArgs : RenderEventArgs
     {
         /// <summary>
+        /// 
         /// </summary>
-        public ShadowVolumeEventArgs(ICamera camera, LightBase light)
+        /// <param name="rootNode"></param>
+        /// <param name="param"></param>
+        /// <param name="camera"></param>
+        /// <param name="ambient"></param>
+        public ShadowVolumeAmbientEventArgs(SceneNodeBase rootNode, ActionParams param, ICamera camera, vec3 ambient)
+            : base(rootNode, param, camera)
         {
-            this.Camera = camera;
+            this.Ambient = ambient;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public vec3 Ambient { get; private set; }
+
+    }
+
+    /// <summary>
+    /// </summary>
+    public class ShadowVolumeExtrudeEventArgs : RenderEventArgs
+    {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="rootNode"></param>
+        /// <param name="param"></param>
+        /// <param name="camera"></param>
+        /// <param name="light"></param>
+        public ShadowVolumeExtrudeEventArgs(SceneNodeBase rootNode, ActionParams param, ICamera camera, LightBase light)
+            : base(rootNode, param, camera)
+        {
             this.Light = light;
         }
 
@@ -65,9 +93,5 @@ namespace CSharpGL
         /// </summary>
         public LightBase Light { get; set; }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public ICamera Camera { get; set; }
     }
 }

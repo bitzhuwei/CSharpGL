@@ -69,7 +69,7 @@ namespace StencilShadowVolume
 
         private PolygonOffsetState fillFarOffsetState = new PolygonOffsetFillState(pullNear: false);
         private PolygonOffsetState fillNearOffsetState = new PolygonOffsetFillState(pullNear: true);
-        public void ExtrudeShadow(ShadowVolumeEventArgs arg)
+        public void ExtrudeShadow(ShadowVolumeExtrudeEventArgs arg)
         {
             ICamera camera = arg.Camera;
             mat4 projection = camera.GetProjectionMatrix();
@@ -130,7 +130,7 @@ namespace StencilShadowVolume
                 }
             }
         }
-        public void RenderAmbientColor(RenderEventArgs arg, vec3 ambient)
+        public void RenderAmbientColor(ShadowVolumeAmbientEventArgs arg)
         {
             ICamera camera = arg.Camera;
             mat4 projection = camera.GetProjectionMatrix();
@@ -140,7 +140,7 @@ namespace StencilShadowVolume
             var method = this.RenderUnit.Methods[(int)MethodName.renderAmbientColor];
             ShaderProgram program = method.Program;
             program.SetUniform("mvpMat", projection * view * model);
-            program.SetUniform("ambientColor", ambient);
+            program.SetUniform("ambientColor", arg.Ambient);
 
             method.Render();
         }
