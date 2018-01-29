@@ -47,7 +47,6 @@ namespace PointLight.NoShadow
         #region IBlinnPhong 成员
 
         private ThreeFlags enableRendering = ThreeFlags.BeforeChildren | ThreeFlags.Children;
-        private Texture texture;
         public ThreeFlags EnableRendering { get { return this.enableRendering; } set { this.enableRendering = value; } }
 
         public void RenderAmbientColor(BlinnPhongAmbientEventArgs arg)
