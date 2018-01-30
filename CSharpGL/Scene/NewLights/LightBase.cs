@@ -51,22 +51,10 @@ namespace CSharpGL
         /// 
         /// </summary>
         /// <returns></returns>
-        public abstract mat4 GetProjectionMatrix();
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        public abstract mat4 GetViewMatrix();
-
-        //public abstract 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
         public override string ToString()
         {
             return string.Format("Color:{0}, Pos:{1}", this.Color, this.Position);
         }
+
     }
 }

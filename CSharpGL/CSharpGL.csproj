@@ -144,6 +144,7 @@
     <Compile Include="Scene\Algorithms\Actions\3DWorld\BillboardRenderAction.cs" />
     <Compile Include="Scene\Algorithms\Actions\3DWorld\BillboardSortAction.cs" />
     <Compile Include="Scene\Algorithms\Actions\3DWorld\LightEquipment.cs" />
+    <Compile Include="Scene\NewLights\__LightToMatrixHelper.cs" />
     <Compile Include="Scene\SceneNodes\ConcreteNodes\ClearStencil\ClearStencilModel.cs" />
     <Compile Include="Scene\SceneNodes\ConcreteNodes\ClearStencil\ClearStencilNode.cs" />
     <Compile Include="Scene\SceneNodes\ConcreteNodes\ClearStencil\ClearStencilNode.shader.cs" />
