@@ -39,8 +39,8 @@ namespace Lighting.NoShadow
         private NoShadowNode(IBufferSource model, params RenderMethodBuilder[] builders)
             : base(model, builders)
         {
-            this.DiffuseColor = new vec3(1, 1, 1);
-            this.Shiness = 8;
+            this.Color = new vec3(1, 1, 1);
+            this.Shiness = 32;
             this.BlinnPhong = true;
         }
 
@@ -82,8 +82,8 @@ namespace Lighting.NoShadow
             // light info.
             light.SetUniforms(program);
             // material.
-            program.SetUniform("material.diffuse", this.DiffuseColor);
-            program.SetUniform("material.specular", this.DiffuseColor);
+            program.SetUniform("material.diffuse", this.Color);
+            program.SetUniform("material.specular", this.Color);
             program.SetUniform("material.shiness", this.Shiness);
             // eye pos.
             program.SetUniform("eyePos", camera.Position); // camera's position in world space.
@@ -99,7 +99,7 @@ namespace Lighting.NoShadow
 
         #endregion
 
-        public vec3 DiffuseColor { get; set; }
+        public vec3 Color { get; set; }
 
         public float Shiness { get; set; }
 
