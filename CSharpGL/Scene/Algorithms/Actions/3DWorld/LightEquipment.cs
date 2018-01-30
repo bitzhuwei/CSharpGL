@@ -10,7 +10,7 @@ namespace CSharpGL
     /// <summary>
     /// 
     /// </summary>
-    public class LightEquipment
+    public class LightEquipment : ITextureSource
     {
         private readonly IFramebufferProvider framebufferProvider = new DepthFramebufferProvider();
         private readonly PolygonOffsetFillState state = new PolygonOffsetFillState(false);// TODO: other offsets also needed?
@@ -55,9 +55,16 @@ namespace CSharpGL
             framebuffer.Unbind();
         }
 
+        #region ITextureSource 成员
+
         /// <summary>
         /// The texture that records shadow caused by some light.
         /// </summary>
-        public Texture ShadowMap { get { return this.framebufferProvider.BindingTexture; } }
+        public Texture BindingTexture
+        {
+            get { return this.framebufferProvider.BindingTexture; }
+        }
+
+        #endregion
     }
 }

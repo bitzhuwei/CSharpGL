@@ -48,13 +48,11 @@ namespace Lighting.ShadowMapping
                     this.scene.RootNode.Children.Add(node);
                 }
             }
+
             var list = new ActionList();
-            var transformAction = new TransformAction(scene.RootNode);
-            list.Add(transformAction);
-            var shadowMappingAction = new ShadowMappingAction(scene);
-            list.Add(shadowMappingAction);
-            var renderAction = new RenderAction(scene);
-            list.Add(renderAction);
+            list.Add(new TransformAction(scene.RootNode));
+            list.Add(new ShadowMappingAction(scene));
+            list.Add(new RenderAction(scene));
             this.actionList = list;
 
             Match(this.trvScene, scene.RootNode);
@@ -62,6 +60,7 @@ namespace Lighting.ShadowMapping
 
             var manipulater = new FirstPerspectiveManipulater();
             manipulater.Bind(camera, this.winGLCanvas1);
+
         }
 
         private void Match(TreeView treeView, SceneNodeBase nodeBase)

@@ -16,6 +16,11 @@ namespace CSharpGL
         private readonly BlendState blend = new BlendState(BlendingSourceFactor.One, BlendingDestinationFactor.One);
         private LightEquipment lightEquipment = new LightEquipment();
 
+        public LightEquipment LightEquipment
+        {
+            get { return lightEquipment; }
+        }
+
         private Scene scene;
 
         /// <summary>
@@ -63,7 +68,7 @@ namespace CSharpGL
 
                 // light up the scene with specified light.
                 {
-                    var arg = new ShadowMappingUnderLightEventArgs(param, scene.Camera, this.lightEquipment.ShadowMap, light);
+                    var arg = new ShadowMappingUnderLightEventArgs(param, scene.Camera, this.lightEquipment.BindingTexture, light);
                     this.blend.On();
                     RenderUnderLight(this.scene.RootNode, arg);
                     this.blend.Off();
