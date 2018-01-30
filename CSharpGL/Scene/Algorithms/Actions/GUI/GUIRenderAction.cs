@@ -13,16 +13,15 @@ namespace CSharpGL
     public class GUIRenderAction : ActionBase
     {
         private GLControl rootControl;
-        private ICamera camera;
+
         /// <summary>
         /// Render <see cref="GLControl"/> objects.
         /// </summary>
         /// <param name="rootControl"></param>
         /// <param name="camera"></param>
-        public GUIRenderAction(GLControl rootControl, ICamera camera)
+        public GUIRenderAction(GLControl rootControl)
         {
             this.rootControl = rootControl;
-            this.camera = camera;
         }
 
         /// <summary>
