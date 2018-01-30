@@ -57,13 +57,13 @@ namespace ShadowMapping
             };
             {
                 // add lights.
+                double radian = 60.0 / 180.0 * Math.PI;
                 {
                     var lightPosition = new vec3(0, 3, 5) * 2;
                     //var light = new SpotLight(lightPosition, new vec3(0, 0, 0), 60, 1, 500) { Color = new vec3(1, 0, 0), };
-                    var light = new SpotLight(lightPosition, new vec3(), (float)Math.Cos(60)) { Diffuse = new vec3(1, 0, 0), Specular = new vec3(1, 0, 0) };
+                    var light = new SpotLight(lightPosition, new vec3(), (float)Math.Cos(radian)) { Diffuse = new vec3(1, 0, 0), Specular = new vec3(1, 0, 0) };
                     //var light = new SpotLight(lightPosition, new vec3(), (float)Math.Cos(60)) { Diffuse = new vec3(1, 1, 1), Specular = new vec3(1, 1, 1) };
-                    var node = LightPositionNode.Create();
-                    node.SetLight(light);
+                    var node = LightPositionNode.Create(light);
 
                     this.scene.Lights.Add(light);
                     this.scene.RootNode.Children.Add(node);
@@ -71,9 +71,8 @@ namespace ShadowMapping
                 {
                     var lightPosition = new vec3(0, 3, 5) * 2;
                     //var light = new SpotLight(lightPosition, new vec3(0, 0, 0), 60, 1, 500) { Color = new vec3(0, 1, 0), };
-                    var light = new SpotLight(lightPosition, new vec3(), (float)Math.Cos(60)) { Diffuse = new vec3(0, 1, 0), Specular = new vec3(0, 1, 0) };
-                    var node = LightPositionNode.Create(120);
-                    node.SetLight(light);
+                    var light = new SpotLight(lightPosition, new vec3(), (float)Math.Cos(radian)) { Diffuse = new vec3(0, 1, 0), Specular = new vec3(0, 1, 0) };
+                    var node = LightPositionNode.Create(light, 120);
 
                     this.scene.Lights.Add(light);
                     this.scene.RootNode.Children.Add(node);
@@ -81,9 +80,8 @@ namespace ShadowMapping
                 {
                     var lightPosition = new vec3(0, 3, 5) * 2;
                     //var light = new SpotLight(lightPosition, new vec3(0, 0, 0), 60, 1, 500) { Color = new vec3(0, 0, 1), };
-                    var light = new SpotLight(lightPosition, new vec3(), (float)Math.Cos(60)) { Diffuse = new vec3(0, 0, 1), Specular = new vec3(0, 0, 1) };
-                    var node = LightPositionNode.Create(240);
-                    node.SetLight(light);
+                    var light = new SpotLight(lightPosition, new vec3(), (float)Math.Cos(radian)) { Diffuse = new vec3(0, 0, 1), Specular = new vec3(0, 0, 1) };
+                    var node = LightPositionNode.Create(light, 240);
 
                     this.scene.Lights.Add(light);
                     this.scene.RootNode.Children.Add(node);
@@ -129,15 +127,15 @@ namespace ShadowMapping
             {
                 var model = new Teapot();
                 var node = ShadowMappingNode.Create(model, Teapot.strPosition, Teapot.strNormal, model.GetModelSize());
-                node.Diffuse = Color.Gold.ToVec3();
+                node.Color = Color.Gold.ToVec3();
                 node.RotateSpeed = 1;
                 group.Children.Add(node);
             }
             {
                 var model = new GroundModel();
                 var node = ShadowMappingNode.Create(model, GroundModel.strPosition, GroundModel.strNormal, model.ModelSize);
-                node.Diffuse = Color.White.ToVec3();
-                node.Scale *= 50;
+                node.Color = Color.White.ToVec3();
+                node.Scale *= 100;
                 node.WorldPosition = new vec3(0, -3, 0);
                 group.Children.Add(node);
             }

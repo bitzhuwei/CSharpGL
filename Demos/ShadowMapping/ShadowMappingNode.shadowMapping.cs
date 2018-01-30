@@ -11,75 +11,183 @@ namespace ShadowMapping
     /// </summary>
     public partial class ShadowMappingNode
     {
-        private const string lightVertexCode =
-    @"#version 330
+        private const string blinnPhongVert = @"// Blinn-Phong-WorldSpace.vert
+#version 150
 
-uniform mat4 " + mvpMatrix + @";
-uniform mat4 " + model_matrix + @";
-uniform mat4 " + view_matrix + @";
-uniform mat4 " + projection_matrix + @";
+in vec3 inPosition;
+in vec3 inNormal;
 
-uniform mat4 " + shadow_matrix + @";
-
-in vec3 " + inPosition + @";
-in vec3 " + inNormal + @";
-
-out VS_FS_INTERFACE
-{
-	vec4 shadow_coord;
-	vec3 world_coord;
-	vec3 eye_coord;
+// Declare an interface block.
+out VS_OUT {
+    vec3 position;
 	vec3 normal;
-} vertex;
+    vec4 shadow_coord;
+} vs_out;
 
-void main(void)
-{
-	gl_Position = mvpMatrix * vec4(inPosition, 1.0);
+uniform mat4 mvpMat;
+uniform mat4 modelMat;
+uniform mat4 normalMat; // transpose(inverse(modelMat));
+uniform mat4 shadow_matrix;
 
-	vec4 world_pos = model_matrix * vec4(inPosition, 1.0);
-	vec4 eye_pos = view_matrix * world_pos;
-	vec4 clip_pos = projection_matrix * eye_pos;
-	
-	vertex.world_coord = world_pos.xyz;
-	vertex.eye_coord = eye_pos.xyz;
-	vertex.shadow_coord = shadow_matrix * world_pos;
-	vertex.normal = normalize(vec3(view_matrix * model_matrix * vec4(inNormal, 0)));
+void main() {
+    gl_Position = mvpMat * vec4(inPosition, 1.0);
+    vec4 worldPos = modelMat * vec4(inPosition, 1.0);
+	vs_out.position = worldPos.xyz;
+	vs_out.normal = (normalMat * vec4(inNormal, 0)).xyz;
+    vs_out.shadow_coord = shadow_matrix * worldPos;
 }
 ";
-        private const string lightFragmentCode =
-            @"#version 330
+        private const string blinnPhongFrag = @"// Blinn-Phong-WorldSpace.frag
+#version 150
 
-uniform sampler2DShadow " + depth_texture + @";
-uniform vec3 " + light_position + @";
-uniform vec3 lightColor;
-uniform vec3 " + material_ambient + @";
-uniform vec3 " + material_diffuse + @";
-uniform vec3 " + material_specular + @";
-uniform float " + material_specular_power + @";
+struct Light {
+    vec3 position;   // for directional light, meaningless.
+    vec3 diffuse;
+    vec3 specular;
+    float constant;  // Attenuation.constant.
+    float linear;    // Attenuation.linear.
+    float quadratic; // Attenuation.quadratic.
+	// direction from outer space to light source.
+	vec3 direction;  // for point light, meaningless.
+	// Note: We assume that spot light's angle ranges from 0 to 180 degrees.
+	float cutOff;    // for spot light, cutOff. for others, meaningless.
+};
 
-out vec4 color;
+struct Material {
+    vec3 diffuse;
+    vec3 specular;
+    float shiness;
+};
 
-in VS_FS_INTERFACE
-{
-	vec4 shadow_coord;
-	vec3 world_coord;
-	vec3 eye_coord;
+uniform Light light;
+uniform int lightUpRoutine; // 0: point light; 1: directional light; 2: spot light.
+
+uniform Material material;
+
+uniform sampler2DShadow depth_texture;
+
+uniform vec3 eyePos;
+
+uniform bool blinn = true;
+
+in VS_OUT {
+    vec3 position;
 	vec3 normal;
-} fragment;
+    vec4 shadow_coord;
+} fs_in;
 
-void main(void)
-{
-	vec3 N = normalize(fragment.normal);
-	vec3 L = normalize(light_position - fragment.eye_coord);
-	vec3 R = reflect(L, N);
-	vec3 E = normalize(fragment.eye_coord);
-	float NdotL = dot(N, L);
-	float EdotR = dot(E, R);
-	float diffuse = max(NdotL, 0.0);
-	float specular = max(pow(EdotR, material_specular_power), 0.0);
-	float f = textureProj(depth_texture, fragment.shadow_coord);
+void PointLightUp(Light light, out float diffuse, out float specular) {
+    vec3 Distance = light.position - fs_in.position;
+	vec3 lightDir = normalize(Distance);
+	vec3 normal = normalize(fs_in.normal); 
+	float distance = length(Distance);
+	float attenuation = 1.0 / (light.constant + light.linear * distance + light.quadratic * distance * distance);
 	
-	color = vec4(lightColor * (material_ambient + f * (material_diffuse * diffuse + material_specular * specular)), 1.0);
+	// Diffuse color
+    diffuse = max(dot(lightDir, normal), 0) * attenuation;
+
+	// Specular color
+	vec3 eyeDir = normalize(eyePos - fs_in.position);
+	float spec;
+	if (blinn) {
+	    vec3 halfwayDir = normalize(lightDir + eyeDir);
+		spec = pow(max(dot(normal, halfwayDir), 0.0), material.shiness);
+	}
+	else {
+	    vec3 reflectDir = reflect(-lightDir, normal);
+		spec = pow(max(dot(eyeDir, reflectDir), 0.0), material.shiness);
+	}
+    specular = spec * attenuation;
+}
+
+void DirectionalLightUp(Light light, out float diffuse, out float specular) {
+	vec3 lightDir = normalize(light.direction);
+	vec3 normal = normalize(fs_in.normal); 
+	
+	// Diffuse color
+    diffuse = max(dot(lightDir, normal), 0);
+
+	// Specular color
+	vec3 eyeDir = normalize(eyePos - fs_in.position);
+	float spec;
+	if (blinn) {
+	    vec3 halfwayDir = normalize(lightDir + eyeDir);
+		spec = pow(max(dot(normal, halfwayDir), 0.0), material.shiness);
+	}
+	else {
+	    vec3 reflectDir = reflect(-lightDir, normal);
+		spec = pow(max(dot(eyeDir, reflectDir), 0.0), material.shiness);
+	}
+    specular = spec;
+}
+
+// Note: We assume that spot light's angle ranges from 0 to 180 degrees.
+void SpotLightUp(Light light, out float diffuse, out float specular) {
+    vec3 Distance = light.position - fs_in.position;
+	vec3 lightDir = normalize(Distance);
+	vec3 centerDir = normalize(light.direction);
+	float c = dot(lightDir, centerDir);// cut off at this point.
+	if (c < 0 // current point is behind the spot light.
+	    || 2 * c * c - 1 < light.cutOff) { // current point is outside of the cut off edge. 
+		diffuse = 0; specular = 0;
+	}
+	else {
+		vec3 normal = normalize(fs_in.normal); 
+		float distance = length(Distance);
+		float attenuation = 1.0 / (light.constant + light.linear * distance + light.quadratic * distance * distance);
+	
+		// Diffuse color
+		diffuse = max(dot(lightDir, normal), 0) * attenuation;
+
+		// Specular color
+		vec3 eyeDir = normalize(eyePos - fs_in.position);
+		float spec;
+		if (blinn) {
+			vec3 halfwayDir = normalize(lightDir + eyeDir);
+			spec = pow(max(dot(normal, halfwayDir), 0.0), material.shiness);
+		}
+		else {
+			vec3 reflectDir = reflect(-lightDir, normal);
+			spec = pow(max(dot(eyeDir, reflectDir), 0.0), material.shiness);
+		}
+		specular = spec * attenuation;
+	}
+}
+
+
+out vec4 fragColor;
+
+void main() {
+    float diffuse = 0;
+    float specular = 0;
+	if (lightUpRoutine == 0) { PointLightUp(light, diffuse, specular); }
+	else if (lightUpRoutine == 1) { DirectionalLightUp(light, diffuse, specular); }
+	else if (lightUpRoutine == 2) { SpotLightUp(light, diffuse, specular); }
+    else { diffuse = 0; specular = 0; }
+	float f = textureProj(depth_texture, fs_in.shadow_coord);
+	fragColor = vec4(f * diffuse * light.diffuse * material.diffuse + f * specular * light.specular * material.specular, 1.0);
+}
+";
+
+        private const string ambientVert = @"#version 150
+
+in vec3 inPosition;
+
+uniform mat4 mvpMat;
+
+void main() {
+    gl_Position = mvpMat * vec4(inPosition, 1.0);
+}
+";
+
+        private const string ambientFrag = @"#version 150
+
+uniform vec3 ambientColor;
+
+out vec4 fragColor;
+
+void main() {
+	fragColor = vec4(ambientColor, 1.0);
 }
 ";
 

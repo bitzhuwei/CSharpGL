@@ -691,10 +691,6 @@
     <None Include="Scene\Shaders\Blinn-Phong\BP-ViewSpace.vert" />
     <None Include="Scene\Shaders\Blinn-Phong\BP-WorldSpace.frag" />
     <None Include="Scene\Shaders\Blinn-Phong\BP-WorldSpace.vert" />
-    <None Include="Scene\Shaders\Blinn-Phong\PointLight\NoShadow\BP-ViewSpace.frag" />
-    <None Include="Scene\Shaders\Blinn-Phong\PointLight\NoShadow\BP-ViewSpace.vert" />
-    <None Include="Scene\Shaders\Blinn-Phong\PointLight\NoShadow\BP-WorldSpace.frag" />
-    <None Include="Scene\Shaders\Blinn-Phong\PointLight\NoShadow\BP-WorldSpace.vert" />
     <None Include="Scene\Shaders\Blinn-Phong\readme.md" />
     <None Include="Scene\Shaders\Blinn-Phong\Uniform\BP-WorldSpace.frag" />
     <None Include="Scene\Shaders\Blinn-Phong\Uniform\BP-WorldSpace.vert" />
@@ -705,16 +701,7 @@
     <Content Include="GLObjects\GLBuffers\readme.md" />
     <Content Include="GLObjects\GLBuffers\VertexBuffers\readme.md" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Scene\Shaders\Blinn-Phong\DirectionalLight\NoShadow\" />
-    <Folder Include="Scene\Shaders\Blinn-Phong\DirectionalLight\ShadowMapping\" />
-    <Folder Include="Scene\Shaders\Blinn-Phong\DirectionalLight\ShadowVolume\" />
-    <Folder Include="Scene\Shaders\Blinn-Phong\PointLight\ShadowMapping\" />
-    <Folder Include="Scene\Shaders\Blinn-Phong\PointLight\ShadowVolume\" />
-    <Folder Include="Scene\Shaders\Blinn-Phong\SpotLight\NoShadow\" />
-    <Folder Include="Scene\Shaders\Blinn-Phong\SpotLight\ShadowMapping\" />
-    <Folder Include="Scene\Shaders\Blinn-Phong\SpotLight\ShadowVolume\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

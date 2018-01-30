@@ -52,13 +52,13 @@ struct Material {
 };
 
 uniform Light light;
+uniform int lightUpRoutine; // 0: point light; 1: directional light; 2: spot light.
 
 uniform Material material;
 
 uniform vec3 eyePos;
 
 uniform bool blinn = true;
-uniform int lightUpRoutine; // 0: point light; 1: directional light; 2: spot light.
 
 in VS_OUT {
     vec3 position;

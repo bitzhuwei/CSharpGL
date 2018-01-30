@@ -67,6 +67,7 @@
     <Compile Include="KleinBottle\KleinBottleModel.cs" />
     <Compile Include="KleinBottle\KleinBottleNode.shaders.cs" />
     <Compile Include="KleinBottle\KleinBottleNode.cs" />
+    <Compile Include="LightPositionNode.cs" />
     <Compile Include="Propeller\FlabellumNode.cs" />
     <Compile Include="Propeller\LegacyFlabellumNode.cs" />
     <Compile Include="Propeller\LegacyPropellerNode.cs" />

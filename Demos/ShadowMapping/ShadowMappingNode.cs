@@ -11,19 +11,6 @@ namespace ShadowMapping
     /// </summary>
     public partial class ShadowMappingNode : PickableNode, ISupportShadowMapping
     {
-        private const string inPosition = "inPosition";
-        private const string inNormal = "inNormal";
-        private const string mvpMatrix = "mvpMatrix";
-        private const string model_matrix = "model_matrix";
-        private const string view_matrix = "view_matrix";
-        private const string projection_matrix = "projection_matrix";
-        private const string shadow_matrix = "shadow_matrix";
-        private const string depth_texture = "depth_texture";
-        private const string light_position = "light_position";
-        private const string material_ambient = "material_ambient";
-        private const string material_diffuse = "material_diffuse";
-        private const string material_specular = "material_specular";
-        private const string material_specular_power = "material_specular_power";
         /// <summary>
         /// Render teapot to framebuffer in modern opengl.
         /// </summary>
@@ -34,24 +21,32 @@ namespace ShadowMapping
         /// <returns></returns>
         public static ShadowMappingNode Create(IBufferSource model, string position, string normal, vec3 size)
         {
-            RenderMethodBuilder shadowBuilder, lightBuilder;
+            RenderMethodBuilder ambientBuilder, shadowBuilder, lightBuilder;
+            {
+                var vs = new VertexShader(ambientVert);
+                var fs = new FragmentShader(ambientFrag);
+                var array = new ShaderArray(vs, fs);
+                var map = new AttributeMap();
+                map.Add("inPosition", position);
+                ambientBuilder = new RenderMethodBuilder(array, map);
+            }
             {
                 var vs = new VertexShader(shadowVertexCode);
                 var provider = new ShaderArray(vs);
                 var map = new AttributeMap();
-                map.Add(inPosition, position);
+                map.Add("inPosition", position);
                 shadowBuilder = new RenderMethodBuilder(provider, map);
             }
             {
-                var vs = new VertexShader(lightVertexCode);
-                var fs = new FragmentShader(lightFragmentCode);
+                var vs = new VertexShader(blinnPhongVert);
+                var fs = new FragmentShader(blinnPhongFrag);
                 var provider = new ShaderArray(vs, fs);
                 var map = new AttributeMap();
-                map.Add(inPosition, position);
-                map.Add(inNormal, normal);
+                map.Add("inPosition", position);
+                map.Add("inNormal", normal);
                 lightBuilder = new RenderMethodBuilder(provider, map);
             }
-            var node = new ShadowMappingNode(model, position, shadowBuilder, lightBuilder);
+            var node = new ShadowMappingNode(model, position, ambientBuilder, shadowBuilder, lightBuilder);
             node.ModelSize = size;
             node.Initialize();
 
@@ -67,12 +62,6 @@ namespace ShadowMapping
             //this.SpecularPower = 0.2f;
         }
 
-        public float RotateSpeed { get; set; }
-
-        public vec3 Ambient { get; set; }
-        public vec3 Diffuse { get; set; }
-        public vec3 Specular { get; set; }
-        public float SpecularPower { get; set; }
 
         #region IShadowMapping 成员
 
@@ -81,6 +70,21 @@ namespace ShadowMapping
         {
             get { return enableShadowMapping; }
             set { enableShadowMapping = value; }
+        }
+
+        public void RenderAmbientColor(ShadowMappingAmbientEventArgs arg)
+        {
+            ICamera camera = arg.Camera;
+            mat4 projection = camera.GetProjectionMatrix();
+            mat4 view = camera.GetViewMatrix();
+            mat4 model = this.GetModelMatrix();
+
+            var method = this.RenderUnit.Methods[(int)MethodName.ambient];
+            ShaderProgram program = method.Program;
+            program.SetUniform("mvpMat", projection * view * model);
+            program.SetUniform("ambientColor", arg.Ambient);
+
+            method.Render();
         }
 
         private TwoFlags enableCastShadow = TwoFlags.BeforeChildren | TwoFlags.Children;
@@ -101,9 +105,9 @@ namespace ShadowMapping
             mat4 view = light.GetViewMatrix();
             mat4 model = this.GetModelMatrix();
 
-            var method = this.RenderUnit.Methods[0];
+            var method = this.RenderUnit.Methods[(int)MethodName.castShadow];
             ShaderProgram program = method.Program;
-            program.SetUniform(mvpMatrix, projection * view * model);
+            program.SetUniform("mvpMatrix", projection * view * model);
 
             method.Render();
         }
@@ -127,25 +131,47 @@ namespace ShadowMapping
             mat4 lightProjection = light.GetProjectionMatrix();
             mat4 lightView = light.GetViewMatrix();
 
-            var method = this.RenderUnit.Methods[1];
+            var method = this.RenderUnit.Methods[(int)MethodName.renderUnderLight];
             ShaderProgram program = method.Program;
-            program.SetUniform(mvpMatrix, projection * view * model);
-            program.SetUniform(model_matrix, model);
-            program.SetUniform(view_matrix, view);
-            program.SetUniform(projection_matrix, projection);
-            program.SetUniform(shadow_matrix, lightBias * lightProjection * lightView);
-            program.SetUniform(depth_texture, arg.ShadowMap);
-            program.SetUniform(light_position, new vec3(view * new vec4(light.Position, 1.0f)));
-            //program.SetUniform(light_position, light.Position);
-            program.SetUniform("lightColor", light.Diffuse);
-            program.SetUniform(material_ambient, this.Ambient);
-            program.SetUniform(material_diffuse, this.Diffuse);
-            program.SetUniform(material_specular, this.Specular);
-            program.SetUniform(material_specular_power, this.SpecularPower);
+            // matrix.
+            program.SetUniform("mvpMat", projection * view * model);
+            //program.SetUniform("projectionMat", projection);
+            //program.SetUniform("viewMat", view);
+            program.SetUniform("modelMat", model);
+            program.SetUniform("normalMat", glm.transpose(glm.inverse(model)));
+            program.SetUniform("shadow_matrix", lightBias * lightProjection * lightView);
+            // light info.
+            light.SetUniforms(program);
+            // material.
+            program.SetUniform("material.diffuse", this.Color);
+            program.SetUniform("material.specular", this.Color);
+            program.SetUniform("material.shiness", this.Shiness);
+            program.SetUniform("depth_texture", arg.ShadowMap);
+            // eye pos.
+            program.SetUniform("eyePos", camera.Position); // camera's position in world space.
+            // use blinn phong or not?
+            program.SetUniform("blinn", this.BlinnPhong);
 
             method.Render();
         }
 
         #endregion
+
+
+        public float RotateSpeed { get; set; }
+
+        public vec3 Color { get; set; }
+
+        public float Shiness { get; set; }
+
+        public bool BlinnPhong { get; set; }
+
+        enum MethodName
+        {
+            ambient = 0,
+            castShadow = 1,
+            renderUnderLight = 2,
+        }
+
     }
 }

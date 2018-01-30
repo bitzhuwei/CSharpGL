@@ -17,6 +17,12 @@ namespace CSharpGL
         TwoFlags EnableShadowMapping { get; set; }
 
         /// <summary>
+        /// Add ambient color effect at last.
+        /// </summary>
+        /// <param name="arg"></param>
+        void RenderAmbientColor(ShadowMappingAmbientEventArgs arg);
+
+        /// <summary>
         /// Is casting shadow for enabled this object and its children?
         /// </summary>
         TwoFlags EnableCastShadow { get; set; }
@@ -37,6 +43,30 @@ namespace CSharpGL
         /// </summary>
         /// <param name="arg"></param>
         void RenderUnderLight(ShadowMappingUnderLightEventArgs arg);
+
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public class ShadowMappingAmbientEventArgs : RenderEventArgs
+    {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="param"></param>
+        /// <param name="camera"></param>
+        /// <param name="ambient"></param>
+        public ShadowMappingAmbientEventArgs(ActionParams param, ICamera camera, vec3 ambient)
+            : base(param, camera)
+        {
+            this.Ambient = ambient;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public vec3 Ambient { get; private set; }
 
     }
 

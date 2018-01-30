@@ -5,7 +5,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 
-namespace Lighting.NoShadow
+namespace CSharpGL
 {
     /// <summary>
     /// Displays and updates light's position.

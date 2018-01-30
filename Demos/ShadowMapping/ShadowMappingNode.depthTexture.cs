@@ -14,9 +14,9 @@ namespace ShadowMapping
         private const string shadowVertexCode =
     @"#version 330
 
-uniform mat4 " + mvpMatrix + @";
+uniform mat4 mvpMatrix;
 
-in vec3 " + inPosition + @";
+in vec3 inPosition;
 
 void main(void)
 {

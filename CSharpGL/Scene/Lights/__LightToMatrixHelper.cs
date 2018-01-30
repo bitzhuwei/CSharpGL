@@ -53,7 +53,7 @@ namespace CSharpGL
             const float aspectRatio = 1.0f;
 
             // TODO: how to get a precise projection?
-            mat4 projection = glm.perspective((float)angle, aspectRatio, 1f, 500);
+            mat4 projection = glm.perspective((float)angle, aspectRatio, 0.1f, 500);
 
             return projection;
         }

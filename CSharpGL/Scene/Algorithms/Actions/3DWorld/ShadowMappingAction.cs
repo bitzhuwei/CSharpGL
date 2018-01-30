@@ -42,7 +42,11 @@ namespace CSharpGL
         public override void Act(ActionParams param)
         {
             Scene scene = this.scene;
-            // TODO: render ambient color.
+            // Render ambient color.
+            {
+                var arg = new ShadowMappingAmbientEventArgs(param, scene.Camera, scene.AmbientColor);
+                RenderAmbientColor(scene.RootNode, arg);
+            }
 
             foreach (var light in scene.Lights)
             {
@@ -63,6 +67,30 @@ namespace CSharpGL
                     this.blend.On();
                     RenderUnderLight(this.scene.RootNode, arg);
                     this.blend.Off();
+                }
+            }
+        }
+
+        private void RenderAmbientColor(SceneNodeBase sceneNodeBase, ShadowMappingAmbientEventArgs arg)
+        {
+            if (sceneNodeBase != null)
+            {
+                var node = sceneNodeBase as ISupportShadowMapping;
+                TwoFlags flags = (node != null) ? node.EnableShadowMapping : TwoFlags.None;
+                bool before = (node != null) && ((flags & TwoFlags.BeforeChildren) == TwoFlags.BeforeChildren);
+                bool children = (node == null) || ((flags & TwoFlags.Children) == TwoFlags.Children);
+
+                if (before)
+                {
+                    node.RenderAmbientColor(arg);
+                }
+
+                if (children)
+                {
+                    foreach (var item in sceneNodeBase.Children)
+                    {
+                        RenderAmbientColor(item, arg);
+                    }
                 }
             }
         }
