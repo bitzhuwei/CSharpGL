@@ -32,40 +32,19 @@ namespace PointLight.NoShadow
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
             this.scene = new Scene(camera);
             this.scene.RootNode = GetRootNode();
-            // add lights.
             {
-                var lightList = new List<CSharpGL.PointLight>();
-                {
-                    var light = new CSharpGL.PointLight(new vec3(3, 3, 3), new Attenuation(2, 0, 0));
-                    light.Diffuse = new vec3(1, 0, 0);
-                    light.Specular = new vec3(1, 0, 0);
-                    lightList.Add(light);
-                }
-                {
-                    var light = new CSharpGL.PointLight(new vec3(3, 3, 3), new Attenuation(2, 0, 0));
-                    light.Diffuse = new vec3(0, 1, 0);
-                    light.Specular = new vec3(0, 1, 0);
-                    lightList.Add(light);
-                }
-                {
-                    var light = new CSharpGL.PointLight(new vec3(3, 3, 3), new Attenuation(2, 0, 0));
-                    light.Diffuse = new vec3(0, 0, 1);
-                    light.Specular = new vec3(0, 0, 1);
-                    lightList.Add(light);
-                }
-                float angle = 0;
-                foreach (var light in lightList)
-                {
-                    this.scene.Lights.Add(light);
-                    var node = LightPositionNode.Create(light, angle);
-                    angle += 360.0f / lightList.Count;
-                    this.scene.RootNode.Children.Add(node);
-                }
+                var light = new CSharpGL.PointLight(new vec3(3, 3, 3));
+                this.scene.Lights.Add(light);
+                var node = LightPositionNode.Create();
+                node.SetLight(light);
+                this.scene.RootNode.Children.Add(node);
             }
+
             var list = new ActionList();
             var transformAction = new TransformAction(scene.RootNode);
             list.Add(transformAction);
             var blinnPhongAction = new BlinnPhongAction(scene);
+            list.Add(blinnPhongAction);
             var renderAction = new RenderAction(scene);
             list.Add(renderAction);
             this.actionList = list;
@@ -113,8 +92,7 @@ namespace PointLight.NoShadow
                     ObjVNFMesh mesh = result.Mesh;
                     var model = new ObjVNF(mesh);
                     var node = PointLightNoShadowNode.Create(model, ObjVNF.strPosition, ObjVNF.strNormal, model.GetSize());
-                    node.WorldPosition = new vec3(0, i * 5, 0);
-                    node.Name = filename;
+                    node.WorldPosition = new vec3(0, i * 3, 0);
                     group.Children.Add(node);
                 }
             }

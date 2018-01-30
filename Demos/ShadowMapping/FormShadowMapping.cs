@@ -59,8 +59,7 @@ namespace ShadowMapping
                 // add lights.
                 {
                     var lightPosition = new vec3(0, 3, 5) * 2;
-                    //var light = new SpotLight(lightPosition, new vec3(0, 0, 0), 60, 1, 500) { Color = new vec3(1, 0, 0), };
-                    var light = new SpotLight(lightPosition, lightPosition, (float)Math.Cos(60)) { Diffuse = new vec3(1, 0, 0), Specular = new vec3(1, 0, 0) };
+                    var light = new SpotLight(lightPosition, new vec3(0, 0, 0), 60, 1, 500) { Color = new vec3(1, 0, 0), };
                     var node = LightPositionNode.Create();
                     node.SetLight(light);
 
@@ -69,8 +68,7 @@ namespace ShadowMapping
                 }
                 {
                     var lightPosition = new vec3(0, 3, 5) * 2;
-                    //var light = new SpotLight(lightPosition, new vec3(0, 0, 0), 60, 1, 500) { Color = new vec3(0, 1, 0), };
-                    var light = new SpotLight(lightPosition, lightPosition, (float)Math.Cos(60)) { Diffuse = new vec3(0, 1, 0), Specular = new vec3(0, 1, 0) };
+                    var light = new SpotLight(lightPosition, new vec3(0, 0, 0), 60, 1, 500) { Color = new vec3(0, 1, 0), };
                     var node = LightPositionNode.Create(120);
                     node.SetLight(light);
 
@@ -79,9 +77,8 @@ namespace ShadowMapping
                 }
                 {
                     var lightPosition = new vec3(0, 3, 5) * 2;
-                    //var light = new SpotLight(lightPosition, new vec3(0, 0, 0), 60, 1, 500) { Color = new vec3(0, 0, 1), };
-                    var light = new SpotLight(lightPosition, lightPosition, (float)Math.Cos(60)) { Diffuse = new vec3(0, 0, 1), Specular = new vec3(0, 0, 1) };
-                    var node = LightPositionNode.Create(240);
+                    var light = new SpotLight(lightPosition, new vec3(0, 0, 0), 60, 1, 500) { Color = new vec3(0, 0, 1), };
+                    var node = LightPositionNode.Create(270);
                     node.SetLight(light);
 
                     this.scene.Lights.Add(light);

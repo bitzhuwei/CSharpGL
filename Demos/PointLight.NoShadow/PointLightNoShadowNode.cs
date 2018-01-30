@@ -73,22 +73,22 @@ namespace PointLight.NoShadow
 
             RenderMethod method = this.RenderUnit.Methods[1];
             ShaderProgram program = method.Program;
-            // matrix.
-            program.SetUniform("mvpMat", projection * view * model);
-            //program.SetUniform("projectionMat", projection);
-            //program.SetUniform("viewMat", view);
+            program.SetUniform("projectionMat", projection);
+            program.SetUniform("viewMat", view);
             program.SetUniform("modelMat", model);
             program.SetUniform("normalMat", glm.transpose(glm.inverse(model)));
-            // light info.
-            light.SetUniforms(program);
-            // material.
-            program.SetUniform("material.diffuse", this.DiffuseColor);
-            program.SetUniform("material.specular", this.DiffuseColor);
-            program.SetUniform("material.shiness", this.Shiness);
-            // eye pos.
-            program.SetUniform("eyePos", camera.Position); // camera's position in world space.
-            // use blinn phong or not?
+            program.SetUniform("light.position", light.Position);
+            program.SetUniform("light.diffuse", light.Diffuse);
+            program.SetUniform("light.specular", light.Specular);
+            program.SetUniform("light.attenuation.constant", light.Attenuation.Constant);
+            //TODO: not finished.
+            program.SetUniform("light.attenuation.linear", light.Attenuation.Linear);
+            program.SetUniform("light.attenuation.quadratic", light.Attenuation.Exp);
+            program.SetUniform("lightPos", light.Position);
+            program.SetUniform("shiness", this.Shiness);
+            program.SetUniform("lightColor", light.Color);
             program.SetUniform("blinn", this.BlinnPhong);
+            program.SetUniform("eyePos", camera.Position); // camera's position in world space.
 
             method.Render();
         }
