@@ -66,6 +66,7 @@ namespace PointLight.NoShadow
             var transformAction = new TransformAction(scene.RootNode);
             list.Add(transformAction);
             var blinnPhongAction = new BlinnPhongAction(scene);
+            list.Add(blinnPhongAction);
             var renderAction = new RenderAction(scene);
             list.Add(renderAction);
             this.actionList = list;
