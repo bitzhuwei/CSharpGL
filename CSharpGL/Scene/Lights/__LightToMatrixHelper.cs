@@ -49,7 +49,7 @@ namespace CSharpGL
 
         private static mat4 GetProjectionMatrix(this SpotLight light)
         {
-            var angle = Math.Acos(light.CutOff) / 2.0; // in radians
+            var angle = Math.Acos(light.CutOff) * 2; // in radians
             const float aspectRatio = 1.0f;
 
             // TODO: how to get a precise projection?
