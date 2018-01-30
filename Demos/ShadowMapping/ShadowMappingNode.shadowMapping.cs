@@ -14,13 +14,14 @@ namespace ShadowMapping
         private const string lightVertexCode =
     @"#version 330
 
+uniform mat4 " + mvpMatrix + @";
 uniform mat4 " + model_matrix + @";
 uniform mat4 " + view_matrix + @";
 uniform mat4 " + projection_matrix + @";
 
 uniform mat4 " + shadow_matrix + @";
 
-in vec4 " + inPosition + @";
+in vec3 " + inPosition + @";
 in vec3 " + inNormal + @";
 
 out VS_FS_INTERFACE
@@ -33,16 +34,16 @@ out VS_FS_INTERFACE
 
 void main(void)
 {
-	vec4 world_pos = model_matrix * position;
+	gl_Position = mvpMatrix * vec4(inPosition, 1.0);
+
+	vec4 world_pos = model_matrix * vec4(inPosition, 1.0);
 	vec4 eye_pos = view_matrix * world_pos;
 	vec4 clip_pos = projection_matrix * eye_pos;
 	
 	vertex.world_coord = world_pos.xyz;
 	vertex.eye_coord = eye_pos.xyz;
 	vertex.shadow_coord = shadow_matrix * world_pos;
-	vertex.normal = normalize(mat3(view_matrix * model_matrix) * normal);
-	
-	gl_Position = clip_pos;
+	vertex.normal = normalize(vec3(view_matrix * model_matrix * vec4(inNormal, 0)));
 }
 ";
         private const string lightFragmentCode =

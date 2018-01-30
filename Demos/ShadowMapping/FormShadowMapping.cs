@@ -60,34 +60,34 @@ namespace ShadowMapping
                 {
                     var lightPosition = new vec3(0, 3, 5) * 2;
                     //var light = new SpotLight(lightPosition, new vec3(0, 0, 0), 60, 1, 500) { Color = new vec3(1, 0, 0), };
-                    //var light = new SpotLight(lightPosition, new vec3(), (float)Math.Cos(60)) { Diffuse = new vec3(1, 0, 0), Specular = new vec3(1, 0, 0) };
-                    var light = new SpotLight(lightPosition, new vec3(), (float)Math.Cos(60)) { Diffuse = new vec3(1, 1, 1), Specular = new vec3(1, 1, 1) };
+                    var light = new SpotLight(lightPosition, new vec3(), (float)Math.Cos(60)) { Diffuse = new vec3(1, 0, 0), Specular = new vec3(1, 0, 0) };
+                    //var light = new SpotLight(lightPosition, new vec3(), (float)Math.Cos(60)) { Diffuse = new vec3(1, 1, 1), Specular = new vec3(1, 1, 1) };
                     var node = LightPositionNode.Create();
                     node.SetLight(light);
 
                     this.scene.Lights.Add(light);
                     this.scene.RootNode.Children.Add(node);
                 }
-                //{
-                //    var lightPosition = new vec3(0, 3, 5) * 2;
-                //    //var light = new SpotLight(lightPosition, new vec3(0, 0, 0), 60, 1, 500) { Color = new vec3(0, 1, 0), };
-                //    var light = new SpotLight(lightPosition, new vec3(), (float)Math.Cos(60)) { Diffuse = new vec3(0, 1, 0), Specular = new vec3(0, 1, 0) };
-                //    var node = LightPositionNode.Create(120);
-                //    node.SetLight(light);
+                {
+                    var lightPosition = new vec3(0, 3, 5) * 2;
+                    //var light = new SpotLight(lightPosition, new vec3(0, 0, 0), 60, 1, 500) { Color = new vec3(0, 1, 0), };
+                    var light = new SpotLight(lightPosition, new vec3(), (float)Math.Cos(60)) { Diffuse = new vec3(0, 1, 0), Specular = new vec3(0, 1, 0) };
+                    var node = LightPositionNode.Create(120);
+                    node.SetLight(light);
 
-                //    this.scene.Lights.Add(light);
-                //    this.scene.RootNode.Children.Add(node);
-                //}
-                //{
-                //    var lightPosition = new vec3(0, 3, 5) * 2;
-                //    //var light = new SpotLight(lightPosition, new vec3(0, 0, 0), 60, 1, 500) { Color = new vec3(0, 0, 1), };
-                //    var light = new SpotLight(lightPosition, new vec3(), (float)Math.Cos(60)) { Diffuse = new vec3(0, 0, 1), Specular = new vec3(0, 0, 1) };
-                //    var node = LightPositionNode.Create(240);
-                //    node.SetLight(light);
+                    this.scene.Lights.Add(light);
+                    this.scene.RootNode.Children.Add(node);
+                }
+                {
+                    var lightPosition = new vec3(0, 3, 5) * 2;
+                    //var light = new SpotLight(lightPosition, new vec3(0, 0, 0), 60, 1, 500) { Color = new vec3(0, 0, 1), };
+                    var light = new SpotLight(lightPosition, new vec3(), (float)Math.Cos(60)) { Diffuse = new vec3(0, 0, 1), Specular = new vec3(0, 0, 1) };
+                    var node = LightPositionNode.Create(240);
+                    node.SetLight(light);
 
-                //    this.scene.Lights.Add(light);
-                //    this.scene.RootNode.Children.Add(node);
-                //}
+                    this.scene.Lights.Add(light);
+                    this.scene.RootNode.Children.Add(node);
+                }
             }
 
             Match(this.trvScene, scene.RootNode);
@@ -136,7 +136,7 @@ namespace ShadowMapping
             {
                 var model = new GroundModel();
                 var node = ShadowMappingNode.Create(model, GroundModel.strPosition, GroundModel.strNormal, model.ModelSize);
-                node.Diffuse = new vec3(1, 1, 1) * 0.5f;
+                node.Diffuse = Color.White.ToVec3();
                 node.Scale *= 50;
                 node.WorldPosition = new vec3(0, -3, 0);
                 group.Children.Add(node);

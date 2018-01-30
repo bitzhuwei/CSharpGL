@@ -11,8 +11,8 @@ namespace ShadowMapping
     /// </summary>
     public partial class ShadowMappingNode : PickableNode, ISupportShadowMapping
     {
-        private const string inPosition = "position";
-        private const string inNormal = "normal";
+        private const string inPosition = "inPosition";
+        private const string inNormal = "inNormal";
         private const string mvpMatrix = "mvpMatrix";
         private const string model_matrix = "model_matrix";
         private const string view_matrix = "view_matrix";
