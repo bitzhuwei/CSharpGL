@@ -12,7 +12,7 @@ namespace ShadowMapping
     public partial class ShadowMappingNode
     {
         private const string shadowVertexCode =
-    @"#version 330
+    @"#version 150
 
 uniform mat4 mvpMatrix;
 
@@ -25,7 +25,7 @@ void main(void)
 ";
         // this fragment shader is not needed.
         //        private const string shadowFragmentCode =
-        //            @"#version 330 core
+        //            @"#version 150
         //
         //out float fragmentdepth;
         //
