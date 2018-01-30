@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace PointLight.NoShadow
+namespace Lighting.NoShadow
 {
-    partial class PointLightNoShadowNode
+    partial class NoShadowNode
     {
         private const string blinnPhongVert = @"// Blinn-Phong-WorldSpace.vert
 #version 150

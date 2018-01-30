@@ -5,7 +5,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 
-namespace PointLight.NoShadow
+namespace Lighting.NoShadow
 {
     /// <summary>
     /// Render a Cube with single color in modern opengl.

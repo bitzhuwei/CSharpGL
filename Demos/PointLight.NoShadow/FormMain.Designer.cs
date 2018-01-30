@@ -1,4 +1,4 @@
-﻿namespace PointLight.NoShadow
+﻿namespace Lighting.NoShadow
 {
     partial class FormMain
     {
@@ -41,8 +41,8 @@
             this.winGLCanvas1.AccumBlueBits = ((byte)(0));
             this.winGLCanvas1.AccumGreenBits = ((byte)(0));
             this.winGLCanvas1.AccumRedBits = ((byte)(0));
-            this.winGLCanvas1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.winGLCanvas1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.winGLCanvas1.Location = new System.Drawing.Point(301, 12);
             this.winGLCanvas1.Name = "winGLCanvas1";
@@ -55,7 +55,7 @@
             // 
             // propGrid
             // 
-            this.propGrid.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.propGrid.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Left)));
             this.propGrid.Location = new System.Drawing.Point(12, 277);
             this.propGrid.Name = "propGrid";
@@ -80,7 +80,7 @@
             this.Controls.Add(this.trvScene);
             this.Controls.Add(this.winGLCanvas1);
             this.Name = "FormMain";
-            this.Text = "Point Light - CSharpGL";
+            this.Text = "Lighting - No Shadow - CSharpGL";
             ((System.ComponentModel.ISupportInitialize)(this.winGLCanvas1)).EndInit();
             this.ResumeLayout(false);
 

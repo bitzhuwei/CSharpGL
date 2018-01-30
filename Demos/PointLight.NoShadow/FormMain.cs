@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace PointLight.NoShadow
+namespace Lighting.NoShadow
 {
     public partial class FormMain : Form
     {
@@ -113,7 +113,7 @@ namespace PointLight.NoShadow
                 {
                     ObjVNFMesh mesh = result.Mesh;
                     var model = new ObjVNF(mesh);
-                    var node = PointLightNoShadowNode.Create(model, ObjVNF.strPosition, ObjVNF.strNormal, model.GetSize());
+                    var node = NoShadowNode.Create(model, ObjVNF.strPosition, ObjVNF.strNormal, model.GetSize());
                     node.WorldPosition = new vec3(0, i * 5, 0);
                     node.Name = filename;
                     group.Children.Add(node);

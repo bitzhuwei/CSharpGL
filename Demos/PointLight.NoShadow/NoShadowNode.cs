@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using CSharpGL;
 
-namespace PointLight.NoShadow
+namespace Lighting.NoShadow
 {
-    partial class PointLightNoShadowNode : ModernNode, IBlinnPhong
+    partial class NoShadowNode : ModernNode, IBlinnPhong
     {
-        public static PointLightNoShadowNode Create(IBufferSource model, string position, string normal, vec3 size)
+        public static NoShadowNode Create(IBufferSource model, string position, string normal, vec3 size)
         {
             RenderMethodBuilder ambientBuilder, blinnPhongBuilder;
             {
@@ -29,14 +29,14 @@ namespace PointLight.NoShadow
                 blinnPhongBuilder = new RenderMethodBuilder(array, map);
             }
 
-            var node = new PointLightNoShadowNode(model, ambientBuilder, blinnPhongBuilder);
+            var node = new NoShadowNode(model, ambientBuilder, blinnPhongBuilder);
             node.Initialize();
             node.ModelSize = size;
 
             return node;
         }
 
-        private PointLightNoShadowNode(IBufferSource model, params RenderMethodBuilder[] builders)
+        private NoShadowNode(IBufferSource model, params RenderMethodBuilder[] builders)
             : base(model, builders)
         {
             this.DiffuseColor = new vec3(1, 1, 1);

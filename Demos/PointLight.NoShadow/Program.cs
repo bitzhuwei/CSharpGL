@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace PointLight.NoShadow
+namespace Lighting.NoShadow
 {
     static class Program
     {
