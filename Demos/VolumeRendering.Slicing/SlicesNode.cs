@@ -99,7 +99,7 @@ namespace VolumeRendering.Slicing
 
         public void RenderBeforeChildren(RenderEventArgs arg)
         {
-            ICamera camera = arg.CameraStack.Peek();
+            ICamera camera = arg.Camera;
             mat4 projection = camera.GetProjectionMatrix();
             mat4 view = camera.GetViewMatrix();
             mat4 model = this.GetModelMatrix();

@@ -40,24 +40,24 @@ namespace ShaderDefineClipPlane
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
             this.scene = new Scene(camera)
             {
-                RootElement = rootElement,
+                RootNode = rootElement,
                 ClearColor = Color.SkyBlue.ToVec4(),
             };
 
             var list = new ActionList();
-            var transformAction = new TransformAction(scene);
+            var transformAction = new TransformAction(scene.RootNode);
             list.Add(transformAction);
             var renderAction = new RenderAction(scene);
             list.Add(renderAction);
             this.actionList = list;
 
-            this.pickingAction = new PickingAction(scene);
+            this.pickingAction = new Picking(scene);
             this.triangleTip = new LegacyTriangleNode();
             this.quadTip = new LegacyQuadNode();
             this.tipList.Add(this.triangleTip);
             this.tipList.Add(this.quadTip);
 
-            Match(this.trvScene, scene.RootElement);
+            Match(this.trvScene, scene.RootNode);
             this.trvScene.ExpandAll();
 
             var manipulater = new FirstPerspectiveManipulater();

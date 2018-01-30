@@ -82,7 +82,7 @@ void main(void)
             set { enableCastShadow = value; }
         }
 
-        public void CastShadow(ShadowMappingEventArgs arg)
+        public void CastShadow(ShadowMappingCastShadowEventArgs arg)
         {
             if (!this.IsInitialized) { this.Initialize(); }
 
@@ -111,7 +111,7 @@ void main(void)
         /// </summary>
         /// <param name="arg"></param>
         /// <param name="light"></param>
-        public void RenderUnderLight(RenderEventArgs arg, LightBase light)
+        public void RenderUnderLight(ShadowMappingUnderLightEventArgs arg)
         {
 
         }

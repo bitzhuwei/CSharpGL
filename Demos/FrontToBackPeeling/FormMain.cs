@@ -35,18 +35,18 @@ namespace FrontToBackPeeling
             this.scene = new Scene(camera)
 
             {
-                RootElement = rootElement,
+                RootNode = rootElement,
                 ClearColor = Color.SkyBlue.ToVec4(),
             };
 
             var list = new ActionList();
-            var transformAction = new TransformAction(scene);
+            var transformAction = new TransformAction(scene.RootNode);
             list.Add(transformAction);
             var renderAction = new RenderAction(scene);
             list.Add(renderAction);
             this.actionList = list;
 
-            Match(this.trvScene, scene.RootElement);
+            Match(this.trvScene, scene.RootNode);
             this.trvScene.ExpandAll();
 
             var manipulater = new FirstPerspectiveManipulater();
@@ -105,7 +105,7 @@ namespace FrontToBackPeeling
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            IWorldSpace node = this.scene.RootElement;
+            IWorldSpace node = this.scene.RootNode;
             if (node != null)
             {
                 node.RotationAngle += 1.3f;

@@ -14,7 +14,7 @@ namespace HelloCSharpGL
     {
         private Scene scene;
         private ActionList actionList;
-        private LegacyPickingAction legacyPickingAction;
+        private LegacyPicking legacyPickingAction;
 
         public FormMain()
         {
@@ -40,20 +40,20 @@ namespace HelloCSharpGL
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
             this.scene = new Scene(camera)
             {
-                RootElement = rootElement,
+                RootNode = rootElement,
                 ClearColor = Color.SkyBlue.ToVec4(),
             };
 
             var list = new ActionList();
-            var transformAction = new TransformAction(scene);
+            var transformAction = new TransformAction(scene.RootNode);
             list.Add(transformAction);
             var renderAction = new RenderAction(scene);
             list.Add(renderAction);
             this.actionList = list;
 
-            this.legacyPickingAction = new LegacyPickingAction(scene);
+            this.legacyPickingAction = new LegacyPicking(scene);
 
-            Match(this.trvScene, scene.RootElement);
+            Match(this.trvScene, scene.RootNode);
             this.trvScene.ExpandAll();
         }
 

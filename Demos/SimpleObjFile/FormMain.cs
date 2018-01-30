@@ -16,7 +16,7 @@ namespace SimpleObjFile
         private ActionList actionList;
         private LegacyTriangleNode triangleTip;
         private LegacyQuadNode quadTip;
-        private PickingAction pickingAction;
+        private Picking pickingAction;
 
         public FormMain()
         {
@@ -97,13 +97,13 @@ namespace SimpleObjFile
 ;
 
             var list = new ActionList();
-            var transformAction = new TransformAction(scene);
+            var transformAction = new TransformAction(scene.RootNode);
             list.Add(transformAction);
             var renderAction = new RenderAction(scene);
             list.Add(renderAction);
             this.actionList = list;
 
-            this.pickingAction = new PickingAction(scene);
+            this.pickingAction = new Picking(scene);
 
             this.triangleTip = new LegacyTriangleNode();
             this.quadTip = new LegacyQuadNode();
@@ -126,8 +126,8 @@ namespace SimpleObjFile
                 float max = node.ModelSize.max();
                 node.Scale *= 7.0f / max;
                 node.WorldPosition = new vec3(0, 0, 0);
-                var rootElement = this.scene.RootElement;
-                this.scene.RootElement = node;
+                var rootElement = this.scene.RootNode;
+                this.scene.RootNode = node;
                 if (rootElement != null) { rootElement.Dispose(); }
             }
         }
@@ -168,8 +168,8 @@ namespace SimpleObjFile
                     float max = node.ModelSize.max();
                     node.Scale *= 16.0f / max;
                     node.WorldPosition = new vec3(0, 0, 0);
-                    var rootElement = this.scene.RootElement;
-                    this.scene.RootElement = node;
+                    var rootElement = this.scene.RootNode;
+                    this.scene.RootNode = node;
                     if (rootElement != null) { rootElement.Dispose(); }
                 }
             }
@@ -192,7 +192,7 @@ namespace SimpleObjFile
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            IWorldSpace node = this.scene.RootElement;
+            IWorldSpace node = this.scene.RootNode;
             if (node != null)
             {
                 node.RotationAngle += 1;

@@ -54,12 +54,12 @@ namespace PointLight
                 lightNode.SetLight(light);
                 lightNode.WorldPosition = new vec3(1, 1, 1) * 4;
                 var groupNode = new GroupNode(node, lightNode);
-                this.scene.RootElement = groupNode;
+                this.scene.RootNode = groupNode;
                 (new FormProperyGrid(groupNode)).Show();
             }
 
             var list = new ActionList();
-            var transformAction = new TransformAction(scene);
+            var transformAction = new TransformAction(scene.RootNode);
             list.Add(transformAction);
             var renderAction = new RenderAction(scene);
             list.Add(renderAction);

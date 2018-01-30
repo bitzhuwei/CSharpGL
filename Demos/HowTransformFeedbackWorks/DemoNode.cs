@@ -117,7 +117,7 @@ namespace HowTransformFeedbackWorks
             {
                 RenderMethod method = this.RenderUnit.Methods[(currentIndex + 1) % 2 + 2];
                 ShaderProgram program = method.Program;
-                ICamera camera = arg.CameraStack.Peek();
+                ICamera camera = arg.Camera;
                 mat4 projection = camera.GetProjectionMatrix();
                 mat4 view = camera.GetViewMatrix();
                 mat4 model = this.GetModelMatrix();

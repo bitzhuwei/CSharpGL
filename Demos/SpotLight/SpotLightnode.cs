@@ -78,7 +78,7 @@ namespace SpotLight
         {
             RenderMethod method = this.RenderUnit.Methods[0];
             ShaderProgram program = method.Program;
-            ICamera camera = arg.CameraStack.Peek();
+            ICamera camera = arg.Camera;
             mat4 projection = camera.GetProjectionMatrix();
             mat4 view = camera.GetViewMatrix();
             mat4 model = this.GetModelMatrix();
@@ -88,7 +88,7 @@ namespace SpotLight
             program.SetUniform(modelMatrix, model);
             program.SetUniform(normalMatrix, normal);
             program.SetUniform(lightPosition, new vec3(view * new vec4(light.Position, 1.0f)));
-            program.SetUniform(lightColor, this.light.Color);
+            program.SetUniform(lightColor, this.light.Diffuse);
             program.SetUniform(spotDirection, new vec3(view * new vec4(-light.Position, 0.0f)));
 
             method.Render();

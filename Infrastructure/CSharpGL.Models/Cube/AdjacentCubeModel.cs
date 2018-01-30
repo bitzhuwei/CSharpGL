@@ -29,7 +29,17 @@ namespace CSharpGL
             new vec3(1,1,1) * 0.5f,
             new vec3(0,1,0),
         };
-
+        //private static readonly vec2[] uvs = new vec2[]
+        //{
+        //    new vec2(1,0),
+        //    new vec2(1,1),
+        //    new vec2(0,1),
+        //    new vec2(0,0),
+        //    new vec2(1,0),
+        //    new vec2(1,1),
+        //    new vec2(0,1),
+        //    new vec2(0,0),
+        //};
         private static readonly vec3[] normals = new vec3[]
         {
             new vec3(1,-1,-1).normalize(),
@@ -56,6 +66,7 @@ namespace CSharpGL
         public AdjacentCubeModel() : this(new vec3(2, 2, 2)) { }
         public AdjacentCubeModel(vec3 size)
         {
+            this.size = size;
             size = size / 2;
             {
                 var instancePositions = new vec3[positions.Length];
@@ -80,10 +91,13 @@ namespace CSharpGL
         private VertexBuffer positionBuffer;
         public const string strColor = "color";
         private VertexBuffer colorBuffer;
+        //public const string strUV = "uv";
+        //private VertexBuffer uvBuffer;
         public const string strNormal = "normal";
         private VertexBuffer normalBuffer;
 
         private IDrawCommand command;
+        private vec3 size;
 
         #region IBufferSource 成员
 
@@ -107,6 +121,15 @@ namespace CSharpGL
 
                 yield return this.colorBuffer;
             }
+            //else if (strUV == bufferName)
+            //{
+            //    if (this.uvBuffer == null)
+            //    {
+            //        this.uvBuffer = uvs.GenVertexBuffer(VBOConfig.Vec2, BufferUsage.StaticDraw);
+            //    }
+
+            //    yield return this.uvBuffer;
+            //}
             else if (strNormal == bufferName)
             {
                 if (this.normalBuffer == null)
@@ -139,7 +162,7 @@ namespace CSharpGL
 
         public vec3 GetSize()
         {
-            return new vec3(2, 2, 2);
+            return this.size;
         }
     }
 }

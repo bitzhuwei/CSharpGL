@@ -1,2 +1,2 @@
-﻿# ImageProcessing.GrayFilter
-![ImageProcessing.GrayFilter](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/ImageProcessing.GrayFilter/ImageProcessing.GrayFilter.png?raw=true)
+﻿# Lighting.NoShadow.
+![Lighting.NoShadow](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/Lighting.NoShadow/Lighting.NoShadow.png?raw=true)

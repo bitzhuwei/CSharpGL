@@ -36,12 +36,12 @@ namespace SimpleParticleSystem
             this.scene = new Scene(camera)
 
             {
-                RootElement = rootElement,
+                RootNode = rootElement,
                 ClearColor = Color.SkyBlue.ToVec4(),
             };
 
             var list = new ActionList();
-            var transformAction = new TransformAction(scene);
+            var transformAction = new TransformAction(scene.RootNode);
             list.Add(transformAction);
             var renderAction = new RenderAction(scene);
             list.Add(renderAction);

@@ -18,7 +18,7 @@ namespace Skybox
         private SkyboxNode skybox;
         private LegacyTriangleNode triangleTip;
         private LegacyQuadNode quadTip;
-        private PickingAction pickingAction;
+        private Picking pickingAction;
 
         public FormMain()
         {
@@ -98,11 +98,11 @@ namespace Skybox
             this.scene = new Scene(camera)
 
             {
-                RootElement = group,
+                RootNode = group,
             };
 
             var list = new ActionList();
-            var transformAction = new TransformAction(scene);
+            var transformAction = new TransformAction(scene.RootNode);
             list.Add(transformAction);
             var renderAction = new RenderAction(scene);
             list.Add(renderAction);
@@ -111,7 +111,7 @@ namespace Skybox
             var manipulater = new FirstPerspectiveManipulater();
             manipulater.Bind(camera, this.winGLCanvas1);
 
-            this.pickingAction = new PickingAction(scene);
+            this.pickingAction = new Picking(scene);
 
             this.triangleTip = new LegacyTriangleNode();
             this.quadTip = new LegacyQuadNode();
@@ -139,7 +139,7 @@ namespace Skybox
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            IWorldSpace node = this.scene.RootElement;
+            IWorldSpace node = this.scene.RootNode;
             if (node != null)
             {
                 node.RotationAngle += 1;

@@ -37,27 +37,27 @@ namespace StencilShadowVolume
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
             this.scene = new Scene(camera)
             {
-                RootElement = rootElement,
+                RootNode = rootElement,
                 ClearColor = Color.SkyBlue.ToVec4(),
             };
             {
                 // add lights.
                 var lights = new PointLight[] { 
-                    new PointLight(new vec3()) { Color = new vec3(1, 0, 0) }, 
-                    new PointLight(new vec3()) { Color = new vec3(0, 1, 0) }, 
-                    new PointLight(new vec3()) { Color = new vec3(0, 0, 1) }, 
+                    new PointLight(new vec3()) { Diffuse = new vec3(1, 0, 0), Specular = new vec3(1, 0, 0) }, 
+                    new PointLight(new vec3()) { Diffuse = new vec3(0, 1, 0), Specular = new vec3(0, 1, 0) }, 
+                    new PointLight(new vec3()) { Diffuse = new vec3(0, 0, 1), Specular = new vec3(0, 0, 1) }, 
                 };
                 for (int i = 0; i < lights.Length; i++)
                 {
                     this.scene.Lights.Add(lights[i]);
                     var node = LightPositionNode.Create(i * 360 / 3);
                     node.SetLight(lights[i]);
-                    this.scene.RootElement.Children.Add(node);
+                    this.scene.RootNode.Children.Add(node);
                 }
             }
 
             var list = new ActionList();
-            var transformAction = new TransformAction(scene);
+            var transformAction = new TransformAction(scene.RootNode);
             list.Add(transformAction);
             var shadowVolumeAction = new ShadowVolumeAction(scene);
             list.Add(shadowVolumeAction);
@@ -67,7 +67,7 @@ namespace StencilShadowVolume
 
             (new FormProperyGrid(shadowVolumeAction)).Show();
 
-            Match(this.trvScene, scene.RootElement);
+            Match(this.trvScene, scene.RootNode);
             this.trvScene.ExpandAll();
 
             var manipulater = new FirstPerspectiveManipulater();

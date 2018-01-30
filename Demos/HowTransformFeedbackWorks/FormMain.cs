@@ -42,11 +42,11 @@ namespace HowTransformFeedbackWorks
                 var ground = GroundNode.Create();
                 ground.RenderUnit.Methods[0].StateList.Add(new PolygonModeState(PolygonMode.Line));
                 var group = new GroupNode(node, ground);
-                this.scene.RootElement = group;
+                this.scene.RootNode = group;
             }
 
             var list = new ActionList();
-            var transformAction = new TransformAction(scene);
+            var transformAction = new TransformAction(scene.RootNode);
             list.Add(transformAction);
             var renderAction = new RenderAction(scene);
             list.Add(renderAction);

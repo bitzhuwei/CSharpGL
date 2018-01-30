@@ -34,9 +34,9 @@ namespace DeferredShading
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
             this.scene = new Scene(camera)
 ;
-            this.scene.RootElement = GetRootElement();
+            this.scene.RootNode = GetRootElement();
             var list = new ActionList();
-            var transformAction = new TransformAction(scene);
+            var transformAction = new TransformAction(scene.RootNode);
             list.Add(transformAction);
             var renderAction = new RenderAction(scene);
             list.Add(renderAction);
@@ -94,11 +94,11 @@ namespace DeferredShading
         {
             if (this.chkDeferredShading.Checked)
             {
-                this.scene.RootElement = this.deferredShadingNode;
+                this.scene.RootNode = this.deferredShadingNode;
             }
             else
             {
-                this.scene.RootElement = this.regularNode;
+                this.scene.RootNode = this.regularNode;
             }
         }
 

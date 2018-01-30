@@ -110,7 +110,7 @@ void main(void) {
                 this.WorldPosition = position;
             }
 
-            ICamera camera = arg.CameraStack.Peek();
+            ICamera camera = arg.Camera;
             mat4 projection = camera.GetProjectionMatrix();
             mat4 view = camera.GetViewMatrix();
             mat4 model = this.GetModelMatrix();
@@ -120,7 +120,7 @@ void main(void) {
             program.SetUniform(projectionMatrix, projection);
             program.SetUniform(viewMatrix, view);
             program.SetUniform(modelMatrix, model);
-            program.SetUniform(color, this.light.Color);
+            program.SetUniform(color, this.light.Diffuse);
 
             method.Render();
         }

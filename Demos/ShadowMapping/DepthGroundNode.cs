@@ -89,7 +89,7 @@ void main(void)
             set { enableCastShadow = value; }
         }
 
-        public void CastShadow(ShadowMappingEventArgs arg)
+        public void CastShadow(ShadowMappingCastShadowEventArgs arg)
         {
             if (!this.IsInitialized) { this.Initialize(); }
 
@@ -108,7 +108,7 @@ void main(void)
         private TwoFlags enableRenderUnderLight = TwoFlags.BeforeChildren | TwoFlags.Children;
         public TwoFlags EnableRenderUnderLight { get { return this.enableRenderUnderLight; } set { this.enableRenderUnderLight = value; } }
 
-        public void RenderUnderLight(RenderEventArgs arg, LightBase light)
+        public void RenderUnderLight(ShadowMappingUnderLightEventArgs arg)
         {
         }
 

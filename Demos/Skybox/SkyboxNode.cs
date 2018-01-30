@@ -146,7 +146,7 @@ void main()
         {
             if (!this.IsInitialized) { this.Initialize(); }
 
-            ICamera camera = arg.CameraStack.Peek();
+            ICamera camera = arg.Camera;
             mat4 projectionMatrix = camera.GetProjectionMatrix();
             mat4 viewMatrix = camera.GetViewMatrix();
             mat4 modelMatrix = this.GetModelMatrix();

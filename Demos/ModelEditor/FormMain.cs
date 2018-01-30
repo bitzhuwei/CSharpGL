@@ -17,7 +17,7 @@ namespace ModelEditor
         private ActionList actionList;
 
         private OperationState operationState = OperationState.PickingDraging;
-        private PickingAction pickingAction;
+        private Picking pickingAction;
         private LegacyTriangleNode triangleTip;
         private LegacyQuadNode quadTip;
 
@@ -46,17 +46,17 @@ namespace ModelEditor
 
             this.scene = new Scene(camera)
             {
-                RootElement = group,
+                RootNode = group,
             };
 
             var list = new ActionList();
-            var transformAction = new TransformAction(scene);
+            var transformAction = new TransformAction(scene.RootNode);
             list.Add(transformAction);
             var renderAction = new RenderAction(scene);
             list.Add(renderAction);
             this.actionList = list;
 
-            this.pickingAction = new PickingAction(scene);
+            this.pickingAction = new Picking(scene);
 
             this.triangleTip = new LegacyTriangleNode();
             this.quadTip = new LegacyQuadNode();
@@ -89,7 +89,7 @@ namespace ModelEditor
         {
             if (this.operationState == OperationState.Rotating)
             {
-                IWorldSpace node = this.scene.RootElement;
+                IWorldSpace node = this.scene.RootNode;
                 if (node != null)
                 {
                     node.RotationAngle += 1;

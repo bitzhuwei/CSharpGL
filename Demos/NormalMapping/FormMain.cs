@@ -39,11 +39,11 @@ namespace NormalMapping
                 float max = node.ModelSize.max();
                 node.Scale *= 16.0f / max;
                 this.rootNode = node;
-                this.scene.RootElement = node;
+                this.scene.RootNode = node;
             }
 
             var list = new ActionList();
-            var transformAction = new TransformAction(scene);
+            var transformAction = new TransformAction(scene.RootNode);
             list.Add(transformAction);
             var renderAction = new RenderAction(scene);
             list.Add(renderAction);

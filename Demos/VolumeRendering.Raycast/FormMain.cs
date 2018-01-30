@@ -15,7 +15,7 @@ namespace VolumeRendering.Raycast
         private Scene scene;
         private ActionList actionList;
 
-        private PickingAction pickingAction;
+        private Picking pickingAction;
         private LegacyTriangleNode triangleTip;
         private LegacyQuadNode quadTip;
 
@@ -57,18 +57,18 @@ namespace VolumeRendering.Raycast
                 manipulater.Bind(camera, this.winGLCanvas1);
                 var node = RaycastNode.Create();
                 node.BindManipulater(manipulater);
-                this.scene.RootElement = node;
+                this.scene.RootNode = node;
                 (new FormProperyGrid(node)).Show();
             }
 
             var list = new ActionList();
-            var transformAction = new TransformAction(scene);
+            var transformAction = new TransformAction(scene.RootNode);
             list.Add(transformAction);
             var renderAction = new RenderAction(scene);
             list.Add(renderAction);
             this.actionList = list;
 
-            this.pickingAction = new PickingAction(scene);
+            this.pickingAction = new Picking(scene);
 
             this.triangleTip = new LegacyTriangleNode();
             this.quadTip = new LegacyQuadNode();

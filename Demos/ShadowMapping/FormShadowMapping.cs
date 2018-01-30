@@ -52,44 +52,47 @@ namespace ShadowMapping
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
             this.scene = new Scene(camera)
             {
-                RootElement = rootElement,
+                RootNode = rootElement,
                 ClearColor = Color.SkyBlue.ToVec4(),
             };
             {
                 // add lights.
                 {
                     var lightPosition = new vec3(0, 3, 5) * 2;
-                    var light = new SpotLight(lightPosition, new vec3(0, 0, 0), 60, 1, 500) { Color = new vec3(1, 0, 0), };
+                    //var light = new SpotLight(lightPosition, new vec3(0, 0, 0), 60, 1, 500) { Color = new vec3(1, 0, 0), };
+                    var light = new SpotLight(lightPosition, lightPosition, (float)Math.Cos(60)) { Diffuse = new vec3(1, 0, 0), Specular = new vec3(1, 0, 0) };
                     var node = LightPositionNode.Create();
                     node.SetLight(light);
 
                     this.scene.Lights.Add(light);
-                    this.scene.RootElement.Children.Add(node);
+                    this.scene.RootNode.Children.Add(node);
                 }
                 {
                     var lightPosition = new vec3(0, 3, 5) * 2;
-                    var light = new SpotLight(lightPosition, new vec3(0, 0, 0), 60, 1, 500) { Color = new vec3(0, 1, 0), };
+                    //var light = new SpotLight(lightPosition, new vec3(0, 0, 0), 60, 1, 500) { Color = new vec3(0, 1, 0), };
+                    var light = new SpotLight(lightPosition, lightPosition, (float)Math.Cos(60)) { Diffuse = new vec3(0, 1, 0), Specular = new vec3(0, 1, 0) };
                     var node = LightPositionNode.Create(120);
                     node.SetLight(light);
 
                     this.scene.Lights.Add(light);
-                    this.scene.RootElement.Children.Add(node);
+                    this.scene.RootNode.Children.Add(node);
                 }
                 {
                     var lightPosition = new vec3(0, 3, 5) * 2;
-                    var light = new SpotLight(lightPosition, new vec3(0, 0, 0), 60, 1, 500) { Color = new vec3(0, 0, 1), };
-                    var node = LightPositionNode.Create(270);
+                    //var light = new SpotLight(lightPosition, new vec3(0, 0, 0), 60, 1, 500) { Color = new vec3(0, 0, 1), };
+                    var light = new SpotLight(lightPosition, lightPosition, (float)Math.Cos(60)) { Diffuse = new vec3(0, 0, 1), Specular = new vec3(0, 0, 1) };
+                    var node = LightPositionNode.Create(240);
                     node.SetLight(light);
 
                     this.scene.Lights.Add(light);
-                    this.scene.RootElement.Children.Add(node);
+                    this.scene.RootNode.Children.Add(node);
                 }
             }
 
-            Match(this.trvScene, scene.RootElement);
+            Match(this.trvScene, scene.RootNode);
             this.trvScene.ExpandAll();
 
-            var tansformAction = new TransformAction(scene);
+            var tansformAction = new TransformAction(scene.RootNode);
             this.shadowMappingAction = new ShadowMappingAction(scene);
             var renderAction = new RenderAction(scene);
             var actionList = new ActionList();

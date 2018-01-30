@@ -14,7 +14,7 @@ namespace StencilTest
     {
         Scene scene;
         private ActionList actionList;
-        private PickingAction pickingAction;
+        private Picking pickingAction;
 
         public Form1HowStencilWorks()
         {
@@ -37,20 +37,20 @@ namespace StencilTest
             this.scene = new Scene(camera)
 
             {
-                RootElement = rootElement,
+                RootNode = rootElement,
                 ClearColor = Color.SkyBlue.ToVec4(),
             };
 
-            Match(this.trvScene, scene.RootElement);
+            Match(this.trvScene, scene.RootNode);
             this.trvScene.ExpandAll();
 
-            var tansformAction = new TransformAction(scene);
+            var tansformAction = new TransformAction(scene.RootNode);
             var renderAction = new RenderAction(scene);
             var actionList = new ActionList();
             actionList.Add(tansformAction); actionList.Add(renderAction);
             this.actionList = actionList;
 
-            this.pickingAction = new PickingAction(scene);
+            this.pickingAction = new Picking(scene);
 
             var manipulater = new FirstPerspectiveManipulater();
             manipulater.Bind(camera, this.winGLCanvas1);

@@ -60,12 +60,11 @@ namespace NormalMapping
             ShaderProgram program = method.Program;
             {
                 var dirLight = new DirectionalLight(new vec3(1.0f, 0.0f, 0.0f));
-                dirLight.AmbientIntensity = 0.2f;
-                dirLight.DiffuseIntensity = 0.8f;
-                dirLight.Color = new vec3(1.0f, 1.0f, 1.0f);
-                program.SetUniform("gDirectionalLight.Base.Color", dirLight.Color);
-                program.SetUniform("gDirectionalLight.Base.AmbientIntensity", dirLight.AmbientIntensity);
-                program.SetUniform("gDirectionalLight.Base.DiffuseIntensity", dirLight.DiffuseIntensity);
+                dirLight.Diffuse = new vec3(0.8f);
+                dirLight.Specular = new vec3(0.8f);
+                program.SetUniform("gDirectionalLight.Base.Color", dirLight.Diffuse);
+                program.SetUniform("gDirectionalLight.Base.AmbientIntensity", 0.2f);
+                program.SetUniform("gDirectionalLight.Base.DiffuseIntensity", 0.8f);
                 program.SetUniform("gDirectionalLight.Direction", dirLight.Direction.normalize());
 
                 this.m_dirLight = dirLight;
@@ -133,7 +132,7 @@ namespace NormalMapping
 
         public void RenderBeforeChildren(RenderEventArgs arg)
         {
-            ICamera camera = arg.CameraStack.Peek();
+            ICamera camera = arg.Camera;
             mat4 projection = camera.GetProjectionMatrix();
             mat4 view = camera.GetViewMatrix();
             mat4 model = this.GetModelMatrix();

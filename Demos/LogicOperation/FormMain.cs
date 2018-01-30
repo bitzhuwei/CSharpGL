@@ -14,7 +14,7 @@ namespace LogicOperation
     {
         Scene scene;
         private ActionList actionList;
-        private PickingAction pickingAction;
+        private Picking pickingAction;
 
         public FormMain()
         {
@@ -37,17 +37,17 @@ namespace LogicOperation
             this.scene = new Scene(camera)
 
             {
-                RootElement = rootElement,
+                RootNode = rootElement,
                 ClearColor = Color.SkyBlue.ToVec4(),
             };
 
-            var tansformAction = new TransformAction(scene);
+            var tansformAction = new TransformAction(scene.RootNode);
             var renderAction = new RenderAction(scene);
             var actionList = new ActionList();
             actionList.Add(tansformAction); actionList.Add(renderAction);
             this.actionList = actionList;
 
-            this.pickingAction = new PickingAction(scene);
+            this.pickingAction = new Picking(scene);
 
             var manipulater = new FirstPerspectiveManipulater();
             manipulater.Bind(camera, this.winGLCanvas1);
@@ -110,7 +110,7 @@ namespace LogicOperation
             if (this.scene != null)
             {
                 var op = (LogicOperationCode)Enum.Parse(typeof(LogicOperationCode), cmbLogicOperation.SelectedItem.ToString());
-                TraverseNodes(this.scene.RootElement, op);
+                TraverseNodes(this.scene.RootNode, op);
             }
         }
 

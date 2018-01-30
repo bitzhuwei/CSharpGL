@@ -34,11 +34,11 @@ namespace ComputeShader.HelloComputeShader
 ;
             {
                 var node = SimpleComputeNode.Create();
-                this.scene.RootElement = node;
+                this.scene.RootNode = node;
                 this.propGrid.SelectedObject = node;
             }
             var list = new ActionList();
-            var transformAction = new TransformAction(scene);
+            var transformAction = new TransformAction(scene.RootNode);
             list.Add(transformAction);
             var renderAction = new RenderAction(scene);
             list.Add(renderAction);

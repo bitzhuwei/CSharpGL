@@ -34,19 +34,19 @@ namespace ShadowMapping
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
             this.scene = new Scene(camera)
             {
-                RootElement = rootElement,
+                RootNode = rootElement,
                 ClearColor = Color.SkyBlue.ToVec4(),
             };
             {
                 // add lights.
                 var lightPosition = new vec3(0, 3, 5) * 2;
-                var localLight = new SpotLight(lightPosition, new vec3(0, 0, 0), 60, 1, 500) { Color = new vec3(1, 1, 1), };
+                //var localLight = new SpotLight(lightPosition, new vec3(0, 0, 0), 60, 1, 500) { Color = new vec3(1, 1, 1), };
             }
 
-            Match(this.trvScene, scene.RootElement);
+            Match(this.trvScene, scene.RootNode);
             this.trvScene.ExpandAll();
 
-            var tansformAction = new TransformAction(scene);
+            var tansformAction = new TransformAction(scene.RootNode);
             var shadowMappingAction = new ShadowMappingAction(scene);
             //var renderAction = new RenderAction(scene);
             var actionList = new ActionList();

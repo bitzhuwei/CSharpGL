@@ -35,12 +35,12 @@ namespace TerrainLoading
             this.scene = new Scene(camera)
 
             {
-                RootElement = rootElement,
+                RootNode = rootElement,
                 ClearColor = Color.SkyBlue.ToVec4(),
             };
 
             var list = new ActionList();
-            var transformAction = new TransformAction(scene);
+            var transformAction = new TransformAction(scene.RootNode);
             list.Add(transformAction);
             var renderAction = new RenderAction(scene);
             list.Add(renderAction);
@@ -90,7 +90,7 @@ namespace TerrainLoading
             {
                 string filename = openDlg.FileName;
                 Bitmap bmp = new Bitmap(filename);
-                var node = this.scene.RootElement as TerainNode;
+                var node = this.scene.RootNode as TerainNode;
                 node.UpdateHeightmap(bmp);
             }
         }

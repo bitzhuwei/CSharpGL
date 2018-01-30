@@ -19,7 +19,7 @@ namespace CSharpGL
         {
             GL.Instance.MatrixMode(GL.GL_PROJECTION);
             GL.Instance.PushMatrix();
-            ICamera camera = arg.CameraStack.Peek();
+            ICamera camera = arg.Camera;
             mat4 projection = camera.GetProjectionMatrix();
             mat4 view = camera.GetViewMatrix();
             GL.Instance.LoadIdentity();

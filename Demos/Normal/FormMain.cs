@@ -48,11 +48,11 @@ namespace Normal
                 var node = NormalNode.Create(model, ObjVNF.strPosition, ObjVNF.strNormal, model.GetSize());
                 float max = node.ModelSize.max();
                 node.Scale *= 16.0f / max;
-                this.scene.RootElement = node;
+                this.scene.RootNode = node;
             }
 
             var list = new ActionList();
-            var transformAction = new TransformAction(scene);
+            var transformAction = new TransformAction(scene.RootNode);
             list.Add(transformAction);
             var renderAction = new RenderAction(scene);
             list.Add(renderAction);
@@ -82,7 +82,7 @@ namespace Normal
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            IWorldSpace node = this.scene.RootElement;
+            IWorldSpace node = this.scene.RootNode;
             if (node != null)
             {
                 node.RotationAngle += 1;
@@ -99,7 +99,7 @@ namespace Normal
             if (this.colorDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 Color color = this.colorDialog1.Color;
-                var node = this.scene.RootElement as NormalNode;
+                var node = this.scene.RootNode as NormalNode;
                 if (node != null)
                 {
                     node.DiffuseColor = color.ToVec3();
@@ -113,7 +113,7 @@ namespace Normal
             if (this.colorDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 Color color = this.colorDialog1.Color;
-                var node = this.scene.RootElement as NormalNode;
+                var node = this.scene.RootNode as NormalNode;
                 if (node != null)
                 {
                     node.VertexColor = color.ToVec3();
@@ -127,7 +127,7 @@ namespace Normal
             if (this.colorDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 Color color = this.colorDialog1.Color;
-                var node = this.scene.RootElement as NormalNode;
+                var node = this.scene.RootNode as NormalNode;
                 if (node != null)
                 {
                     node.PointerColor = color.ToVec3();
@@ -138,7 +138,7 @@ namespace Normal
 
         private void chkRenderModel_CheckedChanged(object sender, EventArgs e)
         {
-            var node = this.scene.RootElement as NormalNode;
+            var node = this.scene.RootNode as NormalNode;
             if (node != null)
             {
                 node.RenderModel = this.chkRenderModel.Checked;
@@ -147,7 +147,7 @@ namespace Normal
 
         private void chkRenderNormal_CheckedChanged(object sender, EventArgs e)
         {
-            var node = this.scene.RootElement as NormalNode;
+            var node = this.scene.RootNode as NormalNode;
             if (node != null)
             {
                 node.RenderNormal = this.chkRenderNormal.Checked;
@@ -174,8 +174,8 @@ namespace Normal
                     node.Scale *= 16.0f / max;
                     node.WorldPosition = new vec3(0, 0, 0);
 
-                    var rootElement = this.scene.RootElement;
-                    this.scene.RootElement = node;
+                    var rootElement = this.scene.RootNode;
+                    this.scene.RootNode = node;
                     if (rootElement != null) { rootElement.Dispose(); }
                 }
             }
