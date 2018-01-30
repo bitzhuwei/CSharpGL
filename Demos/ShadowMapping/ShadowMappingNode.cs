@@ -98,7 +98,7 @@ namespace ShadowMapping
         {
             if (!this.IsInitialized) { this.Initialize(); }
 
-            this.RotationAngle += this.RotateSpeed;
+            //this.RotationAngle += this.RotateSpeed;
 
             LightBase light = arg.Light;
             mat4 projection = light.GetProjectionMatrix();

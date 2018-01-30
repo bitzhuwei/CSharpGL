@@ -57,31 +57,30 @@ namespace ShadowMapping
             };
             {
                 // add lights.
-                double radian = 60.0 / 180.0 * Math.PI;
+                var list = new List<LightBase>();
+                double radian = 120.0 / 180.0 * Math.PI;
                 {
-                    var lightPosition = new vec3(0, 3, 5) * 2;
-                    //var light = new SpotLight(lightPosition, new vec3(0, 0, 0), 60, 1, 500) { Color = new vec3(1, 0, 0), };
-                    var light = new SpotLight(lightPosition, new vec3(), (float)Math.Cos(radian)) { Diffuse = new vec3(1, 0, 0), Specular = new vec3(1, 0, 0) };
-                    //var light = new SpotLight(lightPosition, new vec3(), (float)Math.Cos(60)) { Diffuse = new vec3(1, 1, 1), Specular = new vec3(1, 1, 1) };
-                    var node = LightPositionNode.Create(light);
-
-                    this.scene.Lights.Add(light);
-                    this.scene.RootNode.Children.Add(node);
+                    var light = new CSharpGL.SpotLight(new vec3(3, 3, 3), new vec3(), (float)Math.Cos(radian), new Attenuation(2, 0, 0));
+                    light.Diffuse = new vec3(1, 0, 0);
+                    light.Specular = new vec3(1, 0, 0);
+                    list.Add(light);
                 }
                 {
-                    var lightPosition = new vec3(0, 3, 5) * 2;
-                    //var light = new SpotLight(lightPosition, new vec3(0, 0, 0), 60, 1, 500) { Color = new vec3(0, 1, 0), };
-                    var light = new SpotLight(lightPosition, new vec3(), (float)Math.Cos(radian)) { Diffuse = new vec3(0, 1, 0), Specular = new vec3(0, 1, 0) };
-                    var node = LightPositionNode.Create(light, 120);
-
-                    this.scene.Lights.Add(light);
-                    this.scene.RootNode.Children.Add(node);
+                    var light = new CSharpGL.SpotLight(new vec3(3, 3, 3), new vec3(), (float)Math.Cos(radian), new Attenuation(2, 0, 0));
+                    light.Diffuse = new vec3(0, 1, 0);
+                    light.Specular = new vec3(0, 1, 0);
+                    list.Add(light);
                 }
                 {
-                    var lightPosition = new vec3(0, 3, 5) * 2;
-                    //var light = new SpotLight(lightPosition, new vec3(0, 0, 0), 60, 1, 500) { Color = new vec3(0, 0, 1), };
-                    var light = new SpotLight(lightPosition, new vec3(), (float)Math.Cos(radian)) { Diffuse = new vec3(0, 0, 1), Specular = new vec3(0, 0, 1) };
-                    var node = LightPositionNode.Create(light, 240);
+                    var light = new CSharpGL.SpotLight(new vec3(3, 3, 3), new vec3(), (float)Math.Cos(radian), new Attenuation(2, 0, 0));
+                    light.Diffuse = new vec3(0, 0, 1);
+                    light.Specular = new vec3(0, 0, 1);
+                    list.Add(light);
+                }
+                for (int i = 0; i < list.Count; i++)
+                {
+                    var light = list[i];
+                    var node = LightPositionNode.Create(light, i * 360.0f / list.Count);
 
                     this.scene.Lights.Add(light);
                     this.scene.RootNode.Children.Add(node);

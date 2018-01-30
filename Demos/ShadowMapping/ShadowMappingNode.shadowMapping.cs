@@ -164,7 +164,8 @@ void main() {
 	else if (lightUpRoutine == 1) { DirectionalLightUp(light, diffuse, specular); }
 	else if (lightUpRoutine == 2) { SpotLightUp(light, diffuse, specular); }
     else { diffuse = 0; specular = 0; }
-	float f = textureProj(depth_texture, fs_in.shadow_coord);
+	//float f = textureProj(depth_texture, fs_in.shadow_coord);
+    float f = 1;
 	fragColor = vec4(f * diffuse * light.diffuse * material.diffuse + f * specular * light.specular * material.specular, 1.0);
 }
 ";
