@@ -129,10 +129,19 @@ namespace Lighting.ShadowMapping
             program.SetUniform("eyePos", camera.Position); // camera's position in world space.
             // use blinn phong or not?
             program.SetUniform("blinn", this.BlinnPhong);
+            program.SetUniform("useShadow", this.UseShadow);
 
             method.Render();
         }
 
         #endregion
+
+        private bool useShadow = true;
+
+        public bool UseShadow
+        {
+            get { return useShadow; }
+            set { useShadow = value; }
+        }
     }
 }

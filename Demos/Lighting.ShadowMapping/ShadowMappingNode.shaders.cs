@@ -195,6 +195,8 @@ void SpotLightUp(Light light, out float diffuse, out float specular) {
 	}
 }
 
+uniform bool useShadow = true;
+
 
 out vec4 fragColor;
 
@@ -205,8 +207,10 @@ void main() {
 	else if (lightUpRoutine == 1) { DirectionalLightUp(light, diffuse, specular); }
 	else if (lightUpRoutine == 2) { SpotLightUp(light, diffuse, specular); }
     else { diffuse = 0; specular = 0; }
-    float f = textureProj(depth_texture, fs_in.shadow_coord);
-    //float f = 1;
+    float f = 1;
+    if (useShadow) {
+        f = textureProj(depth_texture, fs_in.shadow_coord);
+    }
 	fragColor = vec4(f * diffuse * light.diffuse * material.diffuse + f * specular * light.specular * material.specular, 1.0);
 }
 ";
