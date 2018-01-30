@@ -10,7 +10,7 @@ namespace Lighting.ShadowMapping
     {
         public static ShadowMappingNode Create(IBufferSource model, string position, string normal, vec3 size)
         {
-            RenderMethodBuilder ambientBuilder, blinnPhongBuilder;
+            RenderMethodBuilder ambientBuilder, shadowBuilder, blinnPhongBuilder;
             {
                 var vs = new VertexShader(ambientVert);
                 var fs = new FragmentShader(ambientFrag);
@@ -18,6 +18,13 @@ namespace Lighting.ShadowMapping
                 var map = new AttributeMap();
                 map.Add("inPosition", position);
                 ambientBuilder = new RenderMethodBuilder(array, map);
+            }
+            {
+                var vs = new VertexShader(shadowVert);
+                var array = new ShaderArray(vs);
+                var map = new AttributeMap();
+                map.Add("inPosition", position);
+                shadowBuilder = new RenderMethodBuilder(array, map);
             }
             {
                 var vs = new VertexShader(blinnPhongVert);
@@ -29,7 +36,7 @@ namespace Lighting.ShadowMapping
                 blinnPhongBuilder = new RenderMethodBuilder(array, map);
             }
 
-            var node = new ShadowMappingNode(model, ambientBuilder, blinnPhongBuilder);
+            var node = new ShadowMappingNode(model, ambientBuilder, shadowBuilder, blinnPhongBuilder);
             node.Initialize();
             node.ModelSize = size;
 
@@ -71,7 +78,7 @@ namespace Lighting.ShadowMapping
             mat4 view = camera.GetViewMatrix();
             mat4 model = this.GetModelMatrix();
 
-            RenderMethod method = this.RenderUnit.Methods[1];
+            RenderMethod method = this.RenderUnit.Methods[2];
             ShaderProgram program = method.Program;
             // matrix.
             program.SetUniform("mvpMat", projection * view * model);

@@ -29,7 +29,7 @@ void main() {
 }
 ";
 
-        private const string shadowVertexCode =
+        private const string shadowVert =
     @"#version 150
 
 uniform mat4 mvpMatrix;
