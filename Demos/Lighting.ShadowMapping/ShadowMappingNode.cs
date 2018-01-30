@@ -6,7 +6,7 @@ using CSharpGL;
 
 namespace Lighting.ShadowMapping
 {
-    partial class ShadowMappingNode : ModernNode, IBlinnPhong
+    partial class ShadowMappingNode : ModernNode, ISupportShadowMapping
     {
         public static ShadowMappingNode Create(IBufferSource model, string position, string normal, vec3 size)
         {
@@ -58,6 +58,32 @@ namespace Lighting.ShadowMapping
 
         public void RenderAmbientColor(BlinnPhongAmbientEventArgs arg)
         {
+
+        }
+
+        public void RenderBeforeChildren(RenderEventArgs arg, LightBase light)
+        {
+        }
+
+        public void RenderAfterChildren(RenderEventArgs arg, LightBase light)
+        {
+        }
+
+        #endregion
+
+        public vec3 Color { get; set; }
+
+        public float Shiness { get; set; }
+
+        public bool BlinnPhong { get; set; }
+
+        #region ISupportShadowMapping 成员
+
+        private TwoFlags enableShadowMapping = TwoFlags.BeforeChildren | TwoFlags.Children;
+        public TwoFlags EnableShadowMapping { get { return this.enableShadowMapping; } set { this.enableShadowMapping = value; } }
+
+        public void RenderAmbientColor(ShadowMappingAmbientEventArgs arg)
+        {
             ICamera camera = arg.Camera;
             mat4 projection = camera.GetProjectionMatrix();
             mat4 view = camera.GetViewMatrix();
@@ -71,7 +97,27 @@ namespace Lighting.ShadowMapping
             method.Render();
         }
 
-        public void RenderBeforeChildren(RenderEventArgs arg, LightBase light)
+        private TwoFlags enableCastShadow = TwoFlags.BeforeChildren | TwoFlags.Children;
+        public TwoFlags EnableCastShadow { get { return this.enableCastShadow; } set { this.enableCastShadow = value; } }
+
+        public void CastShadow(ShadowMappingCastShadowEventArgs arg)
+        {
+            LightBase light = arg.Light;
+            mat4 projection = light.GetProjectionMatrix();
+            mat4 view = light.GetViewMatrix();
+            mat4 model = this.GetModelMatrix();
+
+            var method = this.RenderUnit.Methods[1];
+            ShaderProgram program = method.Program;
+            program.SetUniform("mvpMatrix", projection * view * model);
+
+            method.Render();
+        }
+
+        private TwoFlags enableRenderUnderLight = TwoFlags.BeforeChildren | TwoFlags.Children;
+        public TwoFlags EnableRenderUnderLight { get { return this.enableRenderUnderLight; } set { this.enableRenderUnderLight = value; } }
+
+        public void RenderUnderLight(ShadowMappingUnderLightEventArgs arg)
         {
             ICamera camera = arg.Camera;
             mat4 projection = camera.GetProjectionMatrix();
@@ -87,7 +133,7 @@ namespace Lighting.ShadowMapping
             program.SetUniform("modelMat", model);
             program.SetUniform("normalMat", glm.transpose(glm.inverse(model)));
             // light info.
-            light.SetUniforms(program);
+            arg.Light.SetUniforms(program);
             // material.
             program.SetUniform("material.diffuse", this.Color);
             program.SetUniform("material.specular", this.Color);
@@ -100,16 +146,6 @@ namespace Lighting.ShadowMapping
             method.Render();
         }
 
-        public void RenderAfterChildren(RenderEventArgs arg, LightBase light)
-        {
-        }
-
         #endregion
-
-        public vec3 Color { get; set; }
-
-        public float Shiness { get; set; }
-
-        public bool BlinnPhong { get; set; }
     }
 }
