@@ -144,8 +144,8 @@
     <Compile Include="Scene\Algorithms\Actions\3DWorld\BillboardRenderAction.cs" />
     <Compile Include="Scene\Algorithms\Actions\3DWorld\BillboardSortAction.cs" />
     <Compile Include="Scene\Algorithms\Actions\3DWorld\LightEquipment.cs" />
-    <Compile Include="Scene\NewLights\__LightSetUniformsHelper.cs" />
-    <Compile Include="Scene\NewLights\__LightToMatrixHelper.cs" />
+    <Compile Include="Scene\Lights\__LightSetUniformsHelper.cs" />
+    <Compile Include="Scene\Lights\__LightToMatrixHelper.cs" />
     <Compile Include="Scene\SceneNodes\ConcreteNodes\ClearStencil\ClearStencilModel.cs" />
     <Compile Include="Scene\SceneNodes\ConcreteNodes\ClearStencil\ClearStencilNode.cs" />
     <Compile Include="Scene\SceneNodes\ConcreteNodes\ClearStencil\ClearStencilNode.shader.cs" />
@@ -243,11 +243,11 @@
     <Compile Include="Scene\GUI\Structs\GUIPoint.cs" />
     <Compile Include="Scene\GUI\Structs\GUISizeF.cs" />
     <Compile Include="Scene\GUI\Structs\GUISize.cs" />
-    <Compile Include="Scene\NewLights\Attenuation.cs" />
-    <Compile Include="Scene\NewLights\DirectionalLight.cs" />
-    <Compile Include="Scene\NewLights\LightBase.cs" />
-    <Compile Include="Scene\NewLights\PointLight.cs" />
-    <Compile Include="Scene\NewLights\SpotLight.cs" />
+    <Compile Include="Scene\Lights\Attenuation.cs" />
+    <Compile Include="Scene\Lights\DirectionalLight.cs" />
+    <Compile Include="Scene\Lights\LightBase.cs" />
+    <Compile Include="Scene\Lights\PointLight.cs" />
+    <Compile Include="Scene\Lights\SpotLight.cs" />
     <Compile Include="Scene\SceneNodes\ConcreteNodes\TextBillboardNode\TextBillboardNode.Size.cs" />
     <Compile Include="Scene\SceneNodes\ConcreteNodes\TextBillboardNode\TextBillboardNode.Text.cs" />
     <Compile Include="Scene\SceneNodes\ConcreteNodes\TextBillboardNode\TextBillboardNode.shaders.cs" />
@@ -406,7 +406,7 @@
     <Content Include="BasicDataStructures\PropertyGrid\UITypeEditors\readme.md" />
     <None Include="Scene\Algorithms\Picking\readme.md" />
     <None Include="Scene\GlyphMap\readme.md" />
-    <None Include="Scene\NewLights\readme.md" />
+    <None Include="Scene\Lights\readme.md" />
     <None Include="Scene\readme.md" />
     <Compile Include="Scene\SceneNodes\SceneNodeBase.LagacyMatrix.cs" />
     <Compile Include="Scene\Algorithms\Picking\LegacyPicking.cs" />

@@ -6,51 +6,21 @@ using System.Text;
 namespace CSharpGL
 {
     /// <summary>
-    /// 
+    /// Point light.
     /// </summary>
-    public class PointLight : LightBase
+    public sealed class PointLight : LightBase
     {
 
-        private Attenuation attenuation = new Attenuation(1.0f, 0.0f, 0.0f);
         /// <summary>
-        /// 
+        /// Point light.
         /// </summary>
-        public Attenuation Attenuation
+        /// <param name="position">light's position.</param>
+        /// <param name="attenuation"></param>
+        public PointLight(vec3 position, Attenuation attenuation = null)
+            : base(attenuation == null ? new Attenuation(1.0f, 0.0f, 0.0f) : attenuation)
         {
-            get { return attenuation; }
-            set { attenuation = value; }
+            this.Position = position;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="position"></param>
-        public PointLight(vec3 position)
-        {
-            this.WorldPosition = position;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public vec3 WorldPosition { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        public override mat4 GetProjectionMatrix()
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        public override mat4 GetViewMatrix()
-        {
-            throw new NotImplementedException();
-        }
     }
 }
