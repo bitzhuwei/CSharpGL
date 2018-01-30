@@ -18,12 +18,12 @@ namespace StencilShadowVolume
             Application.SetCompatibleTextRenderingDefault(false);
 
             string filename = string.Empty;
-            //if (args == null || args.Length < 1) { filename = "dragon.obj"; }
-            //if (args == null || args.Length < 1) { filename = "buddha.obj"; }
+            //if (args == null || args.Length < 1) { filename = "dragon.obj_"; }
+            //if (args == null || args.Length < 1) { filename = "buddha.obj_"; }
             if (args == null || args.Length < 1)
             {
                 string folder = System.Windows.Forms.Application.StartupPath;
-                filename = System.IO.Path.Combine(folder, "bunny.obj");
+                filename = System.IO.Path.Combine(folder, "bunny.obj_");
             }
 
             var parser = new ObjVNFParser(true);

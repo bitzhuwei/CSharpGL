@@ -85,7 +85,7 @@ namespace Lighting.NoShadow
         private SceneNodeBase GetRootNode()
         {
             var group = new GroupNode();
-            var filenames = new string[] { "floor.obj", "bunny.obj", };
+            var filenames = new string[] { "floor.obj_", "bunny.obj_", };
             for (int i = 0; i < filenames.Length; i++)
             {
                 string folder = System.Windows.Forms.Application.StartupPath;
