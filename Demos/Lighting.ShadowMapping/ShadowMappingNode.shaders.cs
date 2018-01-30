@@ -55,6 +55,7 @@ void main(void)
 
         private const string blinnPhongVert = @"// Blinn-Phong-WorldSpace.vert
 #version 150
+
 in vec3 inPosition;
 in vec3 inNormal;
 
@@ -62,17 +63,20 @@ in vec3 inNormal;
 out VS_OUT {
     vec3 position;
 	vec3 normal;
+    vec4 shadow_coord;
 } vs_out;
 
 uniform mat4 mvpMat;
 uniform mat4 modelMat;
 uniform mat4 normalMat; // transpose(inverse(modelMat));
+uniform mat4 shadow_matrix;
 
 void main() {
     gl_Position = mvpMat * vec4(inPosition, 1.0);
     vec4 worldPos = modelMat * vec4(inPosition, 1.0);
 	vs_out.position = worldPos.xyz;
 	vs_out.normal = (normalMat * vec4(inNormal, 0)).xyz;
+    vs_out.shadow_coord = shadow_matrix * worldPos;
 }
 ";
         private const string blinnPhongFrag = @"// Blinn-Phong-WorldSpace.frag
@@ -101,6 +105,8 @@ uniform Light light;
 uniform int lightUpRoutine; // 0: point light; 1: directional light; 2: spot light.
 
 uniform Material material;
+
+uniform sampler2DShadow depth_texture;
 
 uniform vec3 eyePos;
 
@@ -199,8 +205,9 @@ void main() {
 	else if (lightUpRoutine == 1) { DirectionalLightUp(light, diffuse, specular); }
 	else if (lightUpRoutine == 2) { SpotLightUp(light, diffuse, specular); }
     else { diffuse = 0; specular = 0; }
-
-	fragColor = vec4(diffuse * light.diffuse * material.diffuse + specular * light.specular * material.specular, 1.0);
+    //float f = textureProj(depth_texture, fs_in.shadow_coord);
+    float f = 1;
+	fragColor = vec4(f * diffuse * light.diffuse * material.diffuse + f * specular * light.specular * material.specular, 1.0);
 }
 ";
 
