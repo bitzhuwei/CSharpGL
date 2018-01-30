@@ -42,9 +42,9 @@ void main(void) {
     out_Color = vec4(color, 1);
 }
 ";
-        private CSharpGL.LightBase light;
+        private CSharpGL.PointLight light;
 
-        public CSharpGL.LightBase Light
+        public CSharpGL.PointLight Light
         {
             get { return light; }
             set { light = value; }
@@ -114,15 +114,6 @@ void main(void) {
                     (float)Math.Cos(this.RotationAngle / 5 * Math.PI / 180.0) + 1.2f,
                     (float)Math.Sin(this.RotationAngle * Math.PI / 180.0)) * 6;
                 this.light.Position = position;
-                if (this.light is DirectionalLight)
-                {
-                    (this.light as DirectionalLight).Direction = position;
-                }
-                else if (this.light is SpotLight)
-                {
-                    (this.light as SpotLight).Direction = position;
-                }
-
                 this.WorldPosition = position;
             }
 

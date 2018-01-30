@@ -11,14 +11,14 @@ namespace CSharpGL
     public sealed class DirectionalLight : LightBase
     {
         /// <summary>
-        /// Direction to the light's position.
+        /// Direction from light source to object.
         /// </summary>
         public vec3 Direction { get; set; }
 
         /// <summary>
         /// Directional light.
         /// </summary>
-        /// <param name="direction">Direction to the light's position.</param>
+        /// <param name="direction">Direction to the light's position</param>
         public DirectionalLight(vec3 direction)
             : base(null)
         {
