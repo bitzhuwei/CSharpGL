@@ -1,13 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing.Design;
 using System.Linq;
 using System.Text;
 
 namespace CSharpGL
 {
     /// <summary>
-    /// 
+    /// Attenuation of light.
+    /// <para>光源的衰减参数。</para>
     /// </summary>
+    [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
     public class Attenuation
     {
         /// <summary>

@@ -6,41 +6,24 @@ using System.Text;
 namespace CSharpGL
 {
     /// <summary>
-    /// 
+    /// Directional light.
     /// </summary>
-    public class DirectionalLight : LightBase
+    public sealed class DirectionalLight : LightBase
     {
         /// <summary>
-        /// Direction towards light source.
+        /// Direction to the light's position.
         /// </summary>
         public vec3 Direction { get; set; }
 
         /// <summary>
-        /// 
+        /// Directional light.
         /// </summary>
-        /// <param name="direction"></param>
+        /// <param name="direction">Direction to the light's position.</param>
         public DirectionalLight(vec3 direction)
+            : base(null)
         {
             this.Direction = direction;
         }
 
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        public override mat4 GetProjectionMatrix()
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        public override mat4 GetViewMatrix()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

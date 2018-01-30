@@ -12,8 +12,14 @@ namespace CSharpGL
     /// </summary>
     public class ShadowMappingAction : ActionBase
     {
+        private readonly ColorMaskState colorMask = new ColorMaskState(false, false, false, false);
         private readonly BlendState blend = new BlendState(BlendingSourceFactor.One, BlendingDestinationFactor.One);
         private LightEquipment lightEquipment = new LightEquipment();
+
+        public LightEquipment LightEquipment
+        {
+            get { return lightEquipment; }
+        }
 
         private Scene scene;
 
@@ -41,24 +47,55 @@ namespace CSharpGL
         public override void Act(ActionParams param)
         {
             Scene scene = this.scene;
-            // TODO: render ambient color.
+            // Render ambient color.
+            {
+                var arg = new ShadowMappingAmbientEventArgs(param, scene.Camera, scene.AmbientColor);
+                RenderAmbientColor(scene.RootNode, arg);
+            }
 
             foreach (var light in scene.Lights)
             {
                 // cast shadow from specified light.
                 {
-                    this.lightEquipment.Begin();
+                    this.lightEquipment.Begin(param.Viewport);
+
                     var arg = new ShadowMappingCastShadowEventArgs(light);
+                    //this.colorMask.On();
                     CastShadow(scene.RootNode, arg);
+                    //this.colorMask.Off();
                     this.lightEquipment.End();
                 }
 
                 // light up the scene with specified light.
                 {
-                    var arg = new ShadowMappingUnderLightEventArgs(param, scene.Camera, this.lightEquipment.ShadowMap, light);
+                    var arg = new ShadowMappingUnderLightEventArgs(param, scene.Camera, this.lightEquipment.BindingTexture, light);
                     this.blend.On();
                     RenderUnderLight(this.scene.RootNode, arg);
                     this.blend.Off();
+                }
+            }
+        }
+
+        private void RenderAmbientColor(SceneNodeBase sceneNodeBase, ShadowMappingAmbientEventArgs arg)
+        {
+            if (sceneNodeBase != null)
+            {
+                var node = sceneNodeBase as ISupportShadowMapping;
+                TwoFlags flags = (node != null) ? node.EnableShadowMapping : TwoFlags.None;
+                bool before = (node != null) && ((flags & TwoFlags.BeforeChildren) == TwoFlags.BeforeChildren);
+                bool children = (node == null) || ((flags & TwoFlags.Children) == TwoFlags.Children);
+
+                if (before)
+                {
+                    node.RenderAmbientColor(arg);
+                }
+
+                if (children)
+                {
+                    foreach (var item in sceneNodeBase.Children)
+                    {
+                        RenderAmbientColor(item, arg);
+                    }
                 }
             }
         }

@@ -49,7 +49,7 @@ namespace Texture2DArray
 
             var guiLayoutAction = new GUILayoutAction(scene.RootControl);
             list.Add(guiLayoutAction);
-            var guiRenderAction = new GUIRenderAction(scene.RootControl, scene.Camera);
+            var guiRenderAction = new GUIRenderAction(scene.RootControl);
             list.Add(guiRenderAction);
 
             this.actionList = list;

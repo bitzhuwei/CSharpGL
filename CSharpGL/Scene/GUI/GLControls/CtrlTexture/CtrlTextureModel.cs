@@ -8,7 +8,7 @@ namespace CSharpGL
     /// <summary>
     /// Renders a <see cref="GLControl"/>.
     /// </summary>
-    class CtrlImageModel : IBufferSource
+    class CtrlTextureModel : IBufferSource
     {
         private static readonly vec2[] positions = new vec2[] { new vec2(1, 1), new vec2(-1, 1), new vec2(-1, -1), new vec2(1, -1), };
         private static readonly vec2[] uvs = new vec2[] { new vec2(1, 1), new vec2(0, 1), new vec2(0, 0), new vec2(1, 0), };

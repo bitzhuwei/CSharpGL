@@ -67,6 +67,7 @@
     <Compile Include="KleinBottle\KleinBottleModel.cs" />
     <Compile Include="KleinBottle\KleinBottleNode.shaders.cs" />
     <Compile Include="KleinBottle\KleinBottleNode.cs" />
+    <Compile Include="LightPositionNode.cs" />
     <Compile Include="Propeller\FlabellumNode.cs" />
     <Compile Include="Propeller\LegacyFlabellumNode.cs" />
     <Compile Include="Propeller\LegacyPropellerNode.cs" />
@@ -123,16 +124,16 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="KleinBottle\以从零编写一个KleinBottle渲染器为例学习如何使用CSharpGL.md" />
-    <None Include="buddha.obj">
+    <None Include="buddha.obj_">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="bunny.obj">
+    <None Include="bunny.obj_">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="dragon.obj">
+    <None Include="dragon.obj_">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="floor.obj">
+    <None Include="floor.obj_">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="nanosuit.obj_">

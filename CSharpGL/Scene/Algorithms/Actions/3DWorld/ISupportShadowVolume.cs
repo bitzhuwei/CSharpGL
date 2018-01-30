@@ -47,6 +47,7 @@ namespace CSharpGL
     }
 
     /// <summary>
+    /// 
     /// </summary>
     public class ShadowVolumeAmbientEventArgs : RenderEventArgs
     {
@@ -70,6 +71,7 @@ namespace CSharpGL
     }
 
     /// <summary>
+    /// 
     /// </summary>
     public class ShadowVolumeExtrudeEventArgs : RenderEventArgs
     {

@@ -49,7 +49,6 @@
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="LightPositionNode.cs" />
     <Compile Include="NoShadowNode.shaders.cs" />
     <Compile Include="NoShadowNode.cs" />
     <Compile Include="Program.cs" />

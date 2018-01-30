@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
-using System.IO;
 using System.Linq;
 using System.Text;
 
@@ -10,24 +8,49 @@ namespace CSharpGL
     /// <summary>
     /// 
     /// </summary>
-    public class LightEquipment : ITextureSource
+    public abstract class LightBase : ITextureSource
     {
+        private vec3 color = new vec3(1, 1, 1);
+        /// <summary>
+        /// 
+        /// </summary>
+        public vec3 Color { get { return this.color; } set { this.color = value; } }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public float AmbientIntensity { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public vec3 DiffuseIntensity { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public vec3 SpecularIntensity { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public vec3 Position { get; set; }
+
         private readonly IFramebufferProvider framebufferProvider = new DepthFramebufferProvider();
         private readonly PolygonOffsetFillState state = new PolygonOffsetFillState(false);// TODO: other offsets also needed?
-        //private readonly int[] viewport = new int[4];
-        private int width;
-        private int height;
+        private readonly int[] viewport = new int[4];
 
         /// <summary>
         /// bind framebuffer, setup viewport, polygon-offset and so on.
         /// </summary>
-        public void Begin(Viewport viewport)
+        public void Begin()
         {
-            this.width = viewport.width; this.height = viewport.height;
-            var framebuffer = this.framebufferProvider.GetFramebuffer(this.width, this.height);
+            GL.Instance.GetIntegerv((uint)GetTarget.Viewport, viewport);
+            int width = viewport[2], height = viewport[3];
+            var framebuffer = this.framebufferProvider.GetFramebuffer(width, height);
 
             framebuffer.Bind();
-            GL.Instance.Viewport(0, 0, this.width, this.height);
+            GL.Instance.Viewport(0, 0, width, height);
             this.state.On();
             {
                 GL.Instance.ClearColor(1.0f, 1.0f, 1.0f, 1.0f);// white color means farest position.
@@ -47,18 +70,30 @@ namespace CSharpGL
         /// </summary>
         public void End()
         {
-            int width = this.width, height = this.height;
+            int width = viewport[2], height = viewport[3];
             var framebuffer = this.framebufferProvider.GetFramebuffer(width, height);
 
             this.state.Off();
-            GL.Instance.Viewport(0, 0, width, height);// recover viewport.
+            GL.Instance.Viewport(viewport[0], viewport[1], viewport[2], viewport[3]);// recover viewport.
             framebuffer.Unbind();
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public abstract mat4 GetProjectionMatrix();
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public abstract mat4 GetViewMatrix();
 
         #region ITextureSource 成员
 
         /// <summary>
-        /// The texture that records shadow caused by some light.
+        /// 
         /// </summary>
         public Texture BindingTexture
         {

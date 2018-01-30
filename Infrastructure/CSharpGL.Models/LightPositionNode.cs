@@ -5,10 +5,10 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 
-namespace ShadowMapping
+namespace CSharpGL
 {
     /// <summary>
-    /// Render a Cube with single color in modern opengl.
+    /// Displays and updates light's position.
     /// </summary>
     public class LightPositionNode : PickableNode, IRenderable
     {
@@ -42,15 +42,23 @@ void main(void) {
     out_Color = vec4(color, 1);
 }
 ";
-        private CSharpGL.SpotLight light;
+        private CSharpGL.LightBase light;
+
+        public CSharpGL.LightBase Light
+        {
+            get { return light; }
+            set { light = value; }
+        }
 
         /// <summary>
-        /// Render propeller in modern opengl.
+        /// Creates a <see cref="LightPositionNode"/> which displays and updates light's position.
         /// </summary>
+        /// <param name="light"></param>
+        /// <param name="initAngle"></param>
         /// <returns></returns>
-        public static LightPositionNode Create(float initAngle = 0)
+        public static LightPositionNode Create(CSharpGL.LightBase light, float initAngle = 0)
         {
-            var model = new Sphere(0.3f);
+            var model = new Sphere(0.3f, 2, 3);
             var vs = new VertexShader(vertexCode);
             var fs = new FragmentShader(fragmentCode);
             var provider = new ShaderArray(vs, fs);
@@ -59,6 +67,7 @@ void main(void) {
             var builder = new RenderMethodBuilder(provider, map, new PolygonModeState(PolygonMode.Line));
             var node = new LightPositionNode(model, Sphere.strPosition, builder);
             node.Initialize();
+            node.light = light;
             node.RotationAngle = initAngle;
 
             return node;
@@ -104,9 +113,18 @@ void main(void) {
                 this.RotationAngle += delta;
                 var position = new vec3(
                     (float)Math.Cos(this.RotationAngle * Math.PI / 180.0),
-                    (float)Math.Cos(this.RotationAngle / 10 * Math.PI / 180.0) + 1.2f,
-                    (float)Math.Sin(this.RotationAngle * Math.PI / 180.0)) * 10;
+                    (float)Math.Cos(this.RotationAngle / 5 * Math.PI / 180.0) + 2.2f,
+                    (float)Math.Sin(this.RotationAngle * Math.PI / 180.0)) * 8;
                 this.light.Position = position;
+                if (this.light is DirectionalLight)
+                {
+                    (this.light as DirectionalLight).Direction = position;
+                }
+                else if (this.light is SpotLight)
+                {
+                    //(this.light as SpotLight).Target = position;
+                }
+
                 this.WorldPosition = position;
             }
 
@@ -127,12 +145,6 @@ void main(void) {
 
         public void RenderAfterChildren(RenderEventArgs arg)
         {
-        }
-
-        public void SetLight(CSharpGL.SpotLight light)
-        {
-            this.light = light;
-
         }
 
         class CubeModel : IBufferSource

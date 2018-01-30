@@ -8,14 +8,28 @@ namespace CSharpGL
     /// <summary>
     /// 
     /// </summary>
-    public static class __LightToMatrixHelper
+    public class DirectionalLight : LightBase
     {
         /// <summary>
+        /// Direction towards light source.
+        /// </summary>
+        public vec3 Direction { get; set; }
+
+        /// <summary>
         /// 
         /// </summary>
-        /// <param name="light"></param>
+        /// <param name="direction"></param>
+        public DirectionalLight(vec3 direction)
+        {
+            this.Direction = direction;
+        }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <returns></returns>
-        public static mat4 GetProjectionMatrix(this LightBase light)
+        public override mat4 GetProjectionMatrix()
         {
             throw new NotImplementedException();
         }
@@ -23,12 +37,10 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="light"></param>
         /// <returns></returns>
-        public static mat4 GetViewMatrix(this LightBase light)
+        public override mat4 GetViewMatrix()
         {
             throw new NotImplementedException();
         }
-
     }
 }

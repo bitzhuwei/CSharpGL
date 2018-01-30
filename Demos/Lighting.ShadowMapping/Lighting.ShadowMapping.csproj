@@ -4,15 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{784AAA8A-8910-4930-9021-F9F8A234C952}</ProjectGuid>
+    <ProjectGuid>{B1BE2F9C-0C5A-4F6E-A236-52A695620C46}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ShadowMapping</RootNamespace>
-    <AssemblyName>ShadowMapping</AssemblyName>
+    <RootNamespace>Lighting.ShadowMapping</RootNamespace>
+    <AssemblyName>Lighting.ShadowMapping</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -45,20 +43,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GroundModel.cs" />
-    <Compile Include="ShadowMappingNode.shadowMapping.cs" />
-    <Compile Include="ShadowMappingNode.depthTexture.cs" />
-    <Compile Include="ShadowMappingNode.cs" />
-    <Compile Include="FormShadowMapping.cs">
+    <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormShadowMapping.Designer.cs">
-      <DependentUpon>FormShadowMapping.cs</DependentUpon>
+    <Compile Include="FormMain.Designer.cs">
+      <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="ShadowMappingNode.cs" />
+    <Compile Include="ShadowMappingNode.shaders.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="FormShadowMapping.resx">
-      <DependentUpon>FormShadowMapping.cs</DependentUpon>
+    <EmbeddedResource Include="FormMain.resx">
+      <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -68,7 +64,6 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -80,9 +75,6 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <None Include="readme.md" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\CSharpGL.Windows\CSharpGL.Windows.csproj">
@@ -97,14 +89,9 @@
       <Project>{3798671c-d1a4-43aa-a4ae-edfef21cad34}</Project>
       <Name>CSharpGL.Models</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Infrastructure\CSharpGL.TestHelpers\CSharpGL.TestHelpers.csproj">
-      <Project>{2e22168c-14fb-4b53-bc21-2183a4a40955}</Project>
-      <Name>CSharpGL.TestHelpers</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DepthTexture.png" />
-    <Content Include="ShadowMapping.png" />
+    <Content Include="Lighting.ShadowMapping.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

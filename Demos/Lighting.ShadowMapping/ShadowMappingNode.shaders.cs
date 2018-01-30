@@ -3,12 +3,59 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Lighting.NoShadow
+namespace Lighting.ShadowMapping
 {
-    partial class NoShadowNode
+    partial class ShadowMappingNode
     {
+        private const string ambientVert = @"#version 150
+
+in vec3 inPosition;
+
+uniform mat4 mvpMat;
+
+void main() {
+    gl_Position = mvpMat * vec4(inPosition, 1.0);
+}
+";
+
+        private const string ambientFrag = @"#version 150
+
+uniform vec3 ambientColor;
+
+out vec4 fragColor;
+
+void main() {
+	fragColor = vec4(ambientColor, 1.0);
+}
+";
+
+        private const string shadowVert =
+    @"#version 150
+
+uniform mat4 mvpMatrix;
+
+in vec3 inPosition;
+
+void main(void)
+{
+	gl_Position = mvpMatrix * vec4(inPosition, 1.0);
+}
+";
+        // this fragment shader is not needed.
+        //        private const string shadowFragmentCode =
+        //            @"#version 150
+        //
+        //out float fragmentdepth;
+        //
+        //void main(void) {
+        //    fragmentdepth = gl_FragCoord.z;
+        //
+        //}
+        //";
+
         private const string blinnPhongVert = @"// Blinn-Phong-WorldSpace.vert
 #version 150
+
 in vec3 inPosition;
 in vec3 inNormal;
 
@@ -16,17 +63,20 @@ in vec3 inNormal;
 out VS_OUT {
     vec3 position;
 	vec3 normal;
+    vec4 shadow_coord;
 } vs_out;
 
 uniform mat4 mvpMat;
 uniform mat4 modelMat;
 uniform mat4 normalMat; // transpose(inverse(modelMat));
+uniform mat4 shadow_matrix;
 
 void main() {
     gl_Position = mvpMat * vec4(inPosition, 1.0);
     vec4 worldPos = modelMat * vec4(inPosition, 1.0);
 	vs_out.position = worldPos.xyz;
 	vs_out.normal = (normalMat * vec4(inNormal, 0)).xyz;
+    vs_out.shadow_coord = shadow_matrix * worldPos;
 }
 ";
         private const string blinnPhongFrag = @"// Blinn-Phong-WorldSpace.frag
@@ -52,17 +102,20 @@ struct Material {
 };
 
 uniform Light light;
+uniform int lightUpRoutine; // 0: point light; 1: directional light; 2: spot light.
 
 uniform Material material;
+
+uniform sampler2DShadow depth_texture;
 
 uniform vec3 eyePos;
 
 uniform bool blinn = true;
-uniform int lightUpRoutine; // 0: point light; 1: directional light; 2: spot light.
 
 in VS_OUT {
     vec3 position;
 	vec3 normal;
+    vec4 shadow_coord;
 } fs_in;
 
 void PointLightUp(Light light, out float diffuse, out float specular) {
@@ -77,15 +130,19 @@ void PointLightUp(Light light, out float diffuse, out float specular) {
 
 	// Specular color
 	vec3 eyeDir = normalize(eyePos - fs_in.position);
-	float spec;
-	if (blinn) {
-	    vec3 halfwayDir = normalize(lightDir + eyeDir);
-		spec = pow(max(dot(normal, halfwayDir), 0.0), material.shiness);
-	}
-	else {
-	    vec3 reflectDir = reflect(-lightDir, normal);
-		spec = pow(max(dot(eyeDir, reflectDir), 0.0), material.shiness);
-	}
+	float spec = 0;
+    if (blinn) {
+        if (diffuse > 0) {
+            vec3 halfwayDir = normalize(lightDir + eyeDir);
+    	    spec = pow(max(dot(normal, halfwayDir), 0.0), material.shiness);
+        }
+    }
+    else {
+        if (diffuse > 0) {
+  			vec3 reflectDir = reflect(-lightDir, normal);
+   			spec = pow(max(dot(eyeDir, reflectDir), 0.0), material.shiness);
+        }
+    }
     specular = spec * attenuation;
 }
 
@@ -98,15 +155,19 @@ void DirectionalLightUp(Light light, out float diffuse, out float specular) {
 
 	// Specular color
 	vec3 eyeDir = normalize(eyePos - fs_in.position);
-	float spec;
-	if (blinn) {
-	    vec3 halfwayDir = normalize(lightDir + eyeDir);
-		spec = pow(max(dot(normal, halfwayDir), 0.0), material.shiness);
-	}
-	else {
-	    vec3 reflectDir = reflect(-lightDir, normal);
-		spec = pow(max(dot(eyeDir, reflectDir), 0.0), material.shiness);
-	}
+	float spec = 0;
+    if (blinn) {
+        if (diffuse > 0) {
+            vec3 halfwayDir = normalize(lightDir + eyeDir);
+    	    spec = pow(max(dot(normal, halfwayDir), 0.0), material.shiness);
+        }
+    }
+    else {
+        if (diffuse > 0) {
+  			vec3 reflectDir = reflect(-lightDir, normal);
+   			spec = pow(max(dot(eyeDir, reflectDir), 0.0), material.shiness);
+        }
+    }
     specular = spec;
 }
 
@@ -116,8 +177,7 @@ void SpotLightUp(Light light, out float diffuse, out float specular) {
 	vec3 lightDir = normalize(Distance);
 	vec3 centerDir = normalize(light.direction);
 	float c = dot(lightDir, centerDir);// cut off at this point.
-	if (c < 0 // current point is behind the spot light.
-	    || 2 * c * c - 1 < light.cutOff) { // current point is outside of the cut off edge. 
+	if (c < light.cutOff) { // current point is outside of the cut off edge. 
 		diffuse = 0; specular = 0;
 	}
 	else {
@@ -130,18 +190,24 @@ void SpotLightUp(Light light, out float diffuse, out float specular) {
 
 		// Specular color
 		vec3 eyeDir = normalize(eyePos - fs_in.position);
-		float spec;
+		float spec = 0;
 		if (blinn) {
-			vec3 halfwayDir = normalize(lightDir + eyeDir);
-			spec = pow(max(dot(normal, halfwayDir), 0.0), material.shiness);
+            if (diffuse > 0) {
+			    vec3 halfwayDir = normalize(lightDir + eyeDir);
+			    spec = pow(max(dot(normal, halfwayDir), 0.0), material.shiness);
+            }
 		}
 		else {
-			vec3 reflectDir = reflect(-lightDir, normal);
-			spec = pow(max(dot(eyeDir, reflectDir), 0.0), material.shiness);
+            if (diffuse > 0) {
+    			vec3 reflectDir = reflect(-lightDir, normal);
+    			spec = pow(max(dot(eyeDir, reflectDir), 0.0), material.shiness);
+            }
 		}
 		specular = spec * attenuation;
 	}
 }
+
+uniform bool useShadow = true;
 
 
 out vec4 fragColor;
@@ -153,31 +219,13 @@ void main() {
 	else if (lightUpRoutine == 1) { DirectionalLightUp(light, diffuse, specular); }
 	else if (lightUpRoutine == 2) { SpotLightUp(light, diffuse, specular); }
     else { diffuse = 0; specular = 0; }
-
-	fragColor = vec4(diffuse * light.diffuse * material.diffuse + specular * light.specular * material.specular, 1.0);
+    float f = 1;
+    if (useShadow) {
+        f = textureProj(depth_texture, fs_in.shadow_coord);
+    }
+	fragColor = vec4(f * diffuse * light.diffuse * material.diffuse + f * specular * light.specular * material.specular, 1.0);
 }
 ";
 
-        private const string ambientVert = @"#version 150
-
-in vec3 inPosition;
-
-uniform mat4 mvpMat;
-
-void main() {
-    gl_Position = mvpMat * vec4(inPosition, 1.0);
-}
-";
-
-        private const string ambientFrag = @"#version 150
-
-uniform vec3 ambientColor;
-
-out vec4 fragColor;
-
-void main() {
-	fragColor = vec4(ambientColor, 1.0);
-}
-";
     }
 }

@@ -45,7 +45,8 @@ namespace SpotLight
             }
             else
             {
-                var light = new CSharpGL.SpotLight(new vec3(1, 1, 1), new vec3(), 60);
+                double radian = 120.0 / 180.0 * Math.PI / 2.0;
+                var light = new CSharpGL.SpotLight(new vec3(1, 1, 1), new vec3(), (float)Math.Cos(radian));
                 var model = new ObjVNF(result.Mesh);
                 this.node = SpotLightNode.Create(light, model, ObjVNF.strPosition, ObjVNF.strNormal, model.GetSize());
                 float max = node.ModelSize.max();
