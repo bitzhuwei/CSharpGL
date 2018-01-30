@@ -8,7 +8,7 @@ using System.Text;
 namespace Lighting.NoShadow
 {
     /// <summary>
-    /// Render a Cube with single color in modern opengl.
+    /// Displays and updates light's position.
     /// </summary>
     public class LightPositionNode : PickableNode, IRenderable
     {
@@ -51,10 +51,12 @@ void main(void) {
         }
 
         /// <summary>
-        /// Render propeller in modern opengl.
+        /// Creates a <see cref="LightPositionNode"/> which displays and updates light's position.
         /// </summary>
+        /// <param name="light"></param>
+        /// <param name="initAngle"></param>
         /// <returns></returns>
-        public static LightPositionNode Create(CSharpGL.PointLight light, float initAngle = 0)
+        public static LightPositionNode Create(CSharpGL.LightBase light, float initAngle = 0)
         {
             var model = new Sphere(0.3f, 2, 3);
             var vs = new VertexShader(vertexCode);

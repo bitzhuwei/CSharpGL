@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CSharpGL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
@@ -15,7 +16,86 @@ namespace Lighting.NoShadow
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormMain());
+            Application.Run(new FormMain(GetPointLights(), "Lighting - No Shadow - Point Lights - CSharpGL"));
+            Application.Run(new FormMain(GetDirctionalLights(), "Lighting - No Shadow - Directional Lights - CSharpGL"));
+            Application.Run(new FormMain(GetSpotLights(), "Lighting - No Shadow - Spot Lights - CSharpGL"));
         }
+
+
+        private static List<LightBase> GetSpotLights()
+        {
+            var list = new List<LightBase>();
+            {
+                var light = new CSharpGL.SpotLight(new vec3(3, 3, 3), new vec3(3, 3, 3), (float)Math.Cos(60), new Attenuation(2, 0, 0));
+                light.Diffuse = new vec3(1, 0, 0);
+                light.Specular = new vec3(1, 0, 0);
+                list.Add(light);
+            }
+            {
+                var light = new CSharpGL.SpotLight(new vec3(3, 3, 3), new vec3(3, 3, 3), (float)Math.Cos(60), new Attenuation(2, 0, 0));
+                light.Diffuse = new vec3(0, 1, 0);
+                light.Specular = new vec3(0, 1, 0);
+                list.Add(light);
+            }
+            {
+                var light = new CSharpGL.SpotLight(new vec3(3, 3, 3), new vec3(3, 3, 3), (float)Math.Cos(60), new Attenuation(2, 0, 0));
+                light.Diffuse = new vec3(0, 0, 1);
+                light.Specular = new vec3(0, 0, 1);
+                list.Add(light);
+            }
+
+            return list;
+        }
+
+        private static List<LightBase> GetDirctionalLights()
+        {
+            var list = new List<LightBase>();
+            {
+                var light = new CSharpGL.DirectionalLight(new vec3(3, 3, 3));
+                light.Diffuse = new vec3(1, 0, 0);
+                light.Specular = new vec3(1, 0, 0);
+                list.Add(light);
+            }
+            {
+                var light = new CSharpGL.DirectionalLight(new vec3(3, 3, 3));
+                light.Diffuse = new vec3(0, 1, 0);
+                light.Specular = new vec3(0, 1, 0);
+                list.Add(light);
+            }
+            {
+                var light = new CSharpGL.DirectionalLight(new vec3(3, 3, 3));
+                light.Diffuse = new vec3(0, 0, 1);
+                light.Specular = new vec3(0, 0, 1);
+                list.Add(light);
+            }
+
+            return list;
+        }
+
+        private static List<LightBase> GetPointLights()
+        {
+            var list = new List<LightBase>();
+            {
+                var light = new CSharpGL.PointLight(new vec3(3, 3, 3), new Attenuation(2, 0, 0));
+                light.Diffuse = new vec3(1, 0, 0);
+                light.Specular = new vec3(1, 0, 0);
+                list.Add(light);
+            }
+            {
+                var light = new CSharpGL.PointLight(new vec3(3, 3, 3), new Attenuation(2, 0, 0));
+                light.Diffuse = new vec3(0, 1, 0);
+                light.Specular = new vec3(0, 1, 0);
+                list.Add(light);
+            }
+            {
+                var light = new CSharpGL.PointLight(new vec3(3, 3, 3), new Attenuation(2, 0, 0));
+                light.Diffuse = new vec3(0, 0, 1);
+                light.Specular = new vec3(0, 0, 1);
+                list.Add(light);
+            }
+
+            return list;
+        }
+
     }
 }

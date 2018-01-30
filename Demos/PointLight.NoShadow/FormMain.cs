@@ -14,10 +14,14 @@ namespace Lighting.NoShadow
     {
         private Scene scene;
         private ActionList actionList;
+        private List<LightBase> lights;
 
-        public FormMain()
+        public FormMain(List<LightBase> lights, string text)
         {
             InitializeComponent();
+
+            this.lights = lights;
+            this.Text = text;
 
             this.Load += FormMain_Load;
             this.winGLCanvas1.OpenGLDraw += winGLCanvas1_OpenGLDraw;
@@ -34,25 +38,7 @@ namespace Lighting.NoShadow
             this.scene.RootNode = GetRootNode();
             // add lights.
             {
-                var lightList = new List<CSharpGL.PointLight>();
-                {
-                    var light = new CSharpGL.PointLight(new vec3(3, 3, 3), new Attenuation(2, 0, 0));
-                    light.Diffuse = new vec3(1, 0, 0);
-                    light.Specular = new vec3(1, 0, 0);
-                    lightList.Add(light);
-                }
-                {
-                    var light = new CSharpGL.PointLight(new vec3(3, 3, 3), new Attenuation(2, 0, 0));
-                    light.Diffuse = new vec3(0, 1, 0);
-                    light.Specular = new vec3(0, 1, 0);
-                    lightList.Add(light);
-                }
-                {
-                    var light = new CSharpGL.PointLight(new vec3(3, 3, 3), new Attenuation(2, 0, 0));
-                    light.Diffuse = new vec3(0, 0, 1);
-                    light.Specular = new vec3(0, 0, 1);
-                    lightList.Add(light);
-                }
+                var lightList = this.lights;
                 float angle = 0;
                 foreach (var light in lightList)
                 {
