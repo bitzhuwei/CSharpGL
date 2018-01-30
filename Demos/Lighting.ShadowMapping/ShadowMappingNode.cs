@@ -6,9 +6,9 @@ using CSharpGL;
 
 namespace Lighting.ShadowMapping
 {
-    partial class NoShadowNode : ModernNode, IBlinnPhong
+    partial class ShadowMappingNode : ModernNode, IBlinnPhong
     {
-        public static NoShadowNode Create(IBufferSource model, string position, string normal, vec3 size)
+        public static ShadowMappingNode Create(IBufferSource model, string position, string normal, vec3 size)
         {
             RenderMethodBuilder ambientBuilder, blinnPhongBuilder;
             {
@@ -29,14 +29,14 @@ namespace Lighting.ShadowMapping
                 blinnPhongBuilder = new RenderMethodBuilder(array, map);
             }
 
-            var node = new NoShadowNode(model, ambientBuilder, blinnPhongBuilder);
+            var node = new ShadowMappingNode(model, ambientBuilder, blinnPhongBuilder);
             node.Initialize();
             node.ModelSize = size;
 
             return node;
         }
 
-        private NoShadowNode(IBufferSource model, params RenderMethodBuilder[] builders)
+        private ShadowMappingNode(IBufferSource model, params RenderMethodBuilder[] builders)
             : base(model, builders)
         {
             this.Color = new vec3(1, 1, 1);

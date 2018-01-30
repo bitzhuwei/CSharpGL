@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Lighting.ShadowMapping
 {
-    partial class NoShadowNode
+    partial class ShadowMappingNode
     {
         private const string ambientVert = @"#version 150
 

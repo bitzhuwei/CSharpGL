@@ -100,7 +100,7 @@ namespace Lighting.ShadowMapping
                 {
                     ObjVNFMesh mesh = result.Mesh;
                     var model = new ObjVNF(mesh);
-                    var node = NoShadowNode.Create(model, ObjVNF.strPosition, ObjVNF.strNormal, model.GetSize());
+                    var node = ShadowMappingNode.Create(model, ObjVNF.strPosition, ObjVNF.strNormal, model.GetSize());
                     node.WorldPosition = new vec3(0, i * 5, 0);
                     node.Name = filename;
                     group.Children.Add(node);
