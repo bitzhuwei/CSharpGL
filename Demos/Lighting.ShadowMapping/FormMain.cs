@@ -51,8 +51,6 @@ namespace Lighting.ShadowMapping
             var list = new ActionList();
             var transformAction = new TransformAction(scene.RootNode);
             list.Add(transformAction);
-            //var blinnPhongAction = new BlinnPhongAction(scene);
-            //list.Add(blinnPhongAction);
             var shadowMappingAction = new ShadowMappingAction(scene);
             list.Add(shadowMappingAction);
             var renderAction = new RenderAction(scene);

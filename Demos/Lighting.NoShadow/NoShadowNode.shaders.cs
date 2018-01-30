@@ -65,6 +65,7 @@ struct Light {
 	// direction from outer space to light source.
 	vec3 direction;  // for point light, meaningless.
 	// Note: We assume that spot light's angle ranges from 0 to 180 degrees.
+    // cutOff = Cos(angle). angle ranges in [0, 90].
 	float cutOff;    // for spot light, cutOff. for others, meaningless.
 };
 
@@ -139,8 +140,7 @@ void SpotLightUp(Light light, out float diffuse, out float specular) {
 	vec3 lightDir = normalize(Distance);
 	vec3 centerDir = normalize(light.direction);
 	float c = dot(lightDir, centerDir);// cut off at this point.
-	if (c < 0 // current point is behind the spot light.
-	    || 2 * c * c - 1 < light.cutOff) { // current point is outside of the cut off edge. 
+	if (c < light.cutOff) { // current point is outside of the cut off edge. 
 		diffuse = 0; specular = 0;
 	}
 	else {

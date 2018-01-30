@@ -51,26 +51,6 @@ namespace Lighting.ShadowMapping
             this.BlinnPhong = true;
         }
 
-        #region IBlinnPhong 成员
-
-        private ThreeFlags enableRendering = ThreeFlags.BeforeChildren | ThreeFlags.Children;
-        public ThreeFlags EnableRendering { get { return this.enableRendering; } set { this.enableRendering = value; } }
-
-        public void RenderAmbientColor(BlinnPhongAmbientEventArgs arg)
-        {
-
-        }
-
-        public void RenderBeforeChildren(RenderEventArgs arg, LightBase light)
-        {
-        }
-
-        public void RenderAfterChildren(RenderEventArgs arg, LightBase light)
-        {
-        }
-
-        #endregion
-
         public vec3 Color { get; set; }
 
         public float Shiness { get; set; }
@@ -123,6 +103,11 @@ namespace Lighting.ShadowMapping
             mat4 projection = camera.GetProjectionMatrix();
             mat4 view = camera.GetViewMatrix();
             mat4 model = this.GetModelMatrix();
+            mat4 lightBias = glm.translate(mat4.identity(), new vec3(1, 1, 1) * 0.5f);
+            lightBias = glm.scale(lightBias, new vec3(1, 1, 1) * 0.5f);
+            LightBase light = arg.Light;
+            mat4 lightProjection = light.GetProjectionMatrix();
+            mat4 lightView = light.GetViewMatrix();
 
             RenderMethod method = this.RenderUnit.Methods[2];
             ShaderProgram program = method.Program;
@@ -132,12 +117,14 @@ namespace Lighting.ShadowMapping
             //program.SetUniform("viewMat", view);
             program.SetUniform("modelMat", model);
             program.SetUniform("normalMat", glm.transpose(glm.inverse(model)));
+            program.SetUniform("shadow_matrix", lightBias * lightProjection * lightView);
             // light info.
-            arg.Light.SetUniforms(program);
+            light.SetUniforms(program);
             // material.
             program.SetUniform("material.diffuse", this.Color);
             program.SetUniform("material.specular", this.Color);
             program.SetUniform("material.shiness", this.Shiness);
+            program.SetUniform("depth_texture", arg.ShadowMap);
             // eye pos.
             program.SetUniform("eyePos", camera.Position); // camera's position in world space.
             // use blinn phong or not?

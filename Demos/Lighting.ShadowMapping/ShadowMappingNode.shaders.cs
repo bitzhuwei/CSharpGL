@@ -115,6 +115,7 @@ uniform bool blinn = true;
 in VS_OUT {
     vec3 position;
 	vec3 normal;
+    vec4 shadow_coord;
 } fs_in;
 
 void PointLightUp(Light light, out float diffuse, out float specular) {
@@ -168,8 +169,7 @@ void SpotLightUp(Light light, out float diffuse, out float specular) {
 	vec3 lightDir = normalize(Distance);
 	vec3 centerDir = normalize(light.direction);
 	float c = dot(lightDir, centerDir);// cut off at this point.
-	if (c < 0 // current point is behind the spot light.
-	    || 2 * c * c - 1 < light.cutOff) { // current point is outside of the cut off edge. 
+	if (c < light.cutOff) { // current point is outside of the cut off edge. 
 		diffuse = 0; specular = 0;
 	}
 	else {
@@ -205,8 +205,8 @@ void main() {
 	else if (lightUpRoutine == 1) { DirectionalLightUp(light, diffuse, specular); }
 	else if (lightUpRoutine == 2) { SpotLightUp(light, diffuse, specular); }
     else { diffuse = 0; specular = 0; }
-    //float f = textureProj(depth_texture, fs_in.shadow_coord);
-    float f = 1;
+    float f = textureProj(depth_texture, fs_in.shadow_coord);
+    //float f = 1;
 	fragColor = vec4(f * diffuse * light.diffuse * material.diffuse + f * specular * light.specular * material.specular, 1.0);
 }
 ";
