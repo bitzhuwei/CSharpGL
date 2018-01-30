@@ -101,15 +101,19 @@ void PointLightUp(Light light, out float diffuse, out float specular) {
 
 	// Specular color
 	vec3 eyeDir = normalize(eyePos - fs_in.position);
-	float spec;
-	if (blinn) {
-	    vec3 halfwayDir = normalize(lightDir + eyeDir);
-		spec = pow(max(dot(normal, halfwayDir), 0.0), material.shiness);
-	}
-	else {
-	    vec3 reflectDir = reflect(-lightDir, normal);
-		spec = pow(max(dot(eyeDir, reflectDir), 0.0), material.shiness);
-	}
+	float spec = 0;
+    if (blinn) {
+        if (diffuse > 0) {
+            vec3 halfwayDir = normalize(lightDir + eyeDir);
+    	    spec = pow(max(dot(normal, halfwayDir), 0.0), material.shiness);
+        }
+    }
+    else {
+        if (diffuse > 0) {
+  			vec3 reflectDir = reflect(-lightDir, normal);
+   			spec = pow(max(dot(eyeDir, reflectDir), 0.0), material.shiness);
+        }
+    }
     specular = spec * attenuation;
 }
 
@@ -122,15 +126,19 @@ void DirectionalLightUp(Light light, out float diffuse, out float specular) {
 
 	// Specular color
 	vec3 eyeDir = normalize(eyePos - fs_in.position);
-	float spec;
-	if (blinn) {
-	    vec3 halfwayDir = normalize(lightDir + eyeDir);
-		spec = pow(max(dot(normal, halfwayDir), 0.0), material.shiness);
-	}
-	else {
-	    vec3 reflectDir = reflect(-lightDir, normal);
-		spec = pow(max(dot(eyeDir, reflectDir), 0.0), material.shiness);
-	}
+	float spec = 0;
+    if (blinn) {
+        if (diffuse > 0) {
+            vec3 halfwayDir = normalize(lightDir + eyeDir);
+    	    spec = pow(max(dot(normal, halfwayDir), 0.0), material.shiness);
+        }
+    }
+    else {
+        if (diffuse > 0) {
+  			vec3 reflectDir = reflect(-lightDir, normal);
+   			spec = pow(max(dot(eyeDir, reflectDir), 0.0), material.shiness);
+        }
+    }
     specular = spec;
 }
 
@@ -153,14 +161,18 @@ void SpotLightUp(Light light, out float diffuse, out float specular) {
 
 		// Specular color
 		vec3 eyeDir = normalize(eyePos - fs_in.position);
-		float spec;
+		float spec = 0;
 		if (blinn) {
-			vec3 halfwayDir = normalize(lightDir + eyeDir);
-			spec = pow(max(dot(normal, halfwayDir), 0.0), material.shiness);
+            if (diffuse > 0) {
+			    vec3 halfwayDir = normalize(lightDir + eyeDir);
+			    spec = pow(max(dot(normal, halfwayDir), 0.0), material.shiness);
+            }
 		}
 		else {
-			vec3 reflectDir = reflect(-lightDir, normal);
-			spec = pow(max(dot(eyeDir, reflectDir), 0.0), material.shiness);
+            if (diffuse > 0) {
+    			vec3 reflectDir = reflect(-lightDir, normal);
+    			spec = pow(max(dot(eyeDir, reflectDir), 0.0), material.shiness);
+            }
 		}
 		specular = spec * attenuation;
 	}
