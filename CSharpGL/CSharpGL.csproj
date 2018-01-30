@@ -144,6 +144,7 @@
     <Compile Include="Scene\Algorithms\Actions\3DWorld\BillboardRenderAction.cs" />
     <Compile Include="Scene\Algorithms\Actions\3DWorld\BillboardSortAction.cs" />
     <Compile Include="Scene\Algorithms\Actions\3DWorld\LightEquipment.cs" />
+    <Compile Include="Scene\NewLights\__LightSetUniformsHelper.cs" />
     <Compile Include="Scene\NewLights\__LightToMatrixHelper.cs" />
     <Compile Include="Scene\SceneNodes\ConcreteNodes\ClearStencil\ClearStencilModel.cs" />
     <Compile Include="Scene\SceneNodes\ConcreteNodes\ClearStencil\ClearStencilNode.cs" />
@@ -695,6 +696,8 @@
     <None Include="Scene\Shaders\Blinn-Phong\PointLight\NoShadow\BP-WorldSpace.frag" />
     <None Include="Scene\Shaders\Blinn-Phong\PointLight\NoShadow\BP-WorldSpace.vert" />
     <None Include="Scene\Shaders\Blinn-Phong\readme.md" />
+    <None Include="Scene\Shaders\Blinn-Phong\Uniform\BP-WorldSpace.frag" />
+    <None Include="Scene\Shaders\Blinn-Phong\Uniform\BP-WorldSpace.vert" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="GLAPI\GL.Enumerations\DrawMode.png" />
