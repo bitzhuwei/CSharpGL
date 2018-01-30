@@ -7,8 +7,31 @@ namespace Lighting.NoShadow
 {
     partial class NoShadowNode
     {
+        private const string ambientVert = @"#version 150
+
+in vec3 inPosition;
+
+uniform mat4 mvpMat;
+
+void main() {
+    gl_Position = mvpMat * vec4(inPosition, 1.0);
+}
+";
+
+        private const string ambientFrag = @"#version 150
+
+uniform vec3 ambientColor;
+
+out vec4 fragColor;
+
+void main() {
+	fragColor = vec4(ambientColor, 1.0);
+}
+";
+
         private const string blinnPhongVert = @"// Blinn-Phong-WorldSpace.vert
 #version 150
+
 in vec3 inPosition;
 in vec3 inNormal;
 
@@ -158,26 +181,5 @@ void main() {
 }
 ";
 
-        private const string ambientVert = @"#version 150
-
-in vec3 inPosition;
-
-uniform mat4 mvpMat;
-
-void main() {
-    gl_Position = mvpMat * vec4(inPosition, 1.0);
-}
-";
-
-        private const string ambientFrag = @"#version 150
-
-uniform vec3 ambientColor;
-
-out vec4 fragColor;
-
-void main() {
-	fragColor = vec4(ambientColor, 1.0);
-}
-";
     }
 }
