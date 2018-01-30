@@ -95,7 +95,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogicOperation", "Demos\Log
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StencilShadowVolume", "Demos\StencilShadowVolume\StencilShadowVolume.csproj", "{FB09427D-737F-4FAE-B141-FB273BA467E4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lighting.NoShadow", "Demos\PointLight.NoShadow\Lighting.NoShadow.csproj", "{705D832E-9586-4467-BEC1-57BA60F23F0D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lighting.NoShadow", "Demos\Lighting.NoShadow\Lighting.NoShadow.csproj", "{705D832E-9586-4467-BEC1-57BA60F23F0D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
