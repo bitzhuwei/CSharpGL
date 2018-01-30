@@ -12,6 +12,7 @@ namespace CSharpGL
     /// </summary>
     public class ShadowMappingAction : ActionBase
     {
+        private readonly ColorMaskState colorMask = new ColorMaskState(false, false, false, false);
         private readonly BlendState blend = new BlendState(BlendingSourceFactor.One, BlendingDestinationFactor.One);
         private LightEquipment lightEquipment = new LightEquipment();
 
@@ -47,9 +48,12 @@ namespace CSharpGL
             {
                 // cast shadow from specified light.
                 {
-                    this.lightEquipment.Begin();
+                    this.lightEquipment.Begin(param.Viewport);
+
                     var arg = new ShadowMappingCastShadowEventArgs(light);
+                    //this.colorMask.On();
                     CastShadow(scene.RootNode, arg);
+                    //this.colorMask.Off();
                     this.lightEquipment.End();
                 }
 

@@ -11,9 +11,9 @@ namespace CSharpGL
     public sealed class SpotLight : LightBase
     {
         /// <summary>
-        /// Direction to the light's position.
+        /// Where this spot light looks at.
         /// </summary>
-        public vec3 Direction { get; set; }
+        public vec3 Target { get; set; }
 
         /// <summary>
         /// Cos(angle).
@@ -24,14 +24,14 @@ namespace CSharpGL
         /// 
         /// </summary>
         /// <param name="position">light's position.</param>
-        /// <param name="direction">Direction to the light's position.</param>
+        /// <param name="target">Where this spot light looks at.</param>
         /// <param name="cutOff">Cos(angle)</param>
         /// <param name="attenuation"></param>
-        public SpotLight(vec3 position, vec3 direction, float cutOff, Attenuation attenuation = null)
+        public SpotLight(vec3 position, vec3 target, float cutOff, Attenuation attenuation = null)
             : base(attenuation == null ? new Attenuation(1.0f, 0.0f, 0.0f) : attenuation)
         {
             this.Position = position;
-            this.Direction = direction;
+            this.Target = target;
             this.CutOff = cutOff;
         }
 

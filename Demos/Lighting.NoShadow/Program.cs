@@ -26,19 +26,19 @@ namespace Lighting.NoShadow
         {
             var list = new List<LightBase>();
             {
-                var light = new CSharpGL.SpotLight(new vec3(3, 3, 3), new vec3(3, 3, 3), (float)Math.Cos(60), new Attenuation(2, 0, 0));
+                var light = new CSharpGL.SpotLight(new vec3(3, 3, 3), new vec3(), (float)Math.Cos(60), new Attenuation(2, 0, 0));
                 light.Diffuse = new vec3(1, 0, 0);
                 light.Specular = new vec3(1, 0, 0);
                 list.Add(light);
             }
             {
-                var light = new CSharpGL.SpotLight(new vec3(3, 3, 3), new vec3(3, 3, 3), (float)Math.Cos(60), new Attenuation(2, 0, 0));
+                var light = new CSharpGL.SpotLight(new vec3(3, 3, 3), new vec3(), (float)Math.Cos(60), new Attenuation(2, 0, 0));
                 light.Diffuse = new vec3(0, 1, 0);
                 light.Specular = new vec3(0, 1, 0);
                 list.Add(light);
             }
             {
-                var light = new CSharpGL.SpotLight(new vec3(3, 3, 3), new vec3(3, 3, 3), (float)Math.Cos(60), new Attenuation(2, 0, 0));
+                var light = new CSharpGL.SpotLight(new vec3(3, 3, 3), new vec3(), (float)Math.Cos(60), new Attenuation(2, 0, 0));
                 light.Diffuse = new vec3(0, 0, 1);
                 light.Specular = new vec3(0, 0, 1);
                 list.Add(light);

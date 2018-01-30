@@ -77,7 +77,7 @@ namespace CSharpGL
             program.SetUniform("light.constant", light.Attenuation.Constant);
             program.SetUniform("light.linear", light.Attenuation.Linear);
             program.SetUniform("light.quadratic", light.Attenuation.Exp);
-            program.SetUniform("light.direction", light.Direction);
+            program.SetUniform("light.direction", light.Position - light.Target);
             program.SetUniform("light.cutOff", light.CutOff);
 
             // 0: point light; 1: directional light; 2: spot light.

@@ -50,7 +50,7 @@ void main(void) {
         /// <returns></returns>
         public static LightPositionNode Create(float initAngle = 0)
         {
-            var model = new Sphere(0.3f);
+            var model = new Sphere(0.6f, 2, 3);
             var vs = new VertexShader(vertexCode);
             var fs = new FragmentShader(fragmentCode);
             var provider = new ShaderArray(vs, fs);

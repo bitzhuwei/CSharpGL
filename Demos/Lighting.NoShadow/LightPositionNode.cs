@@ -122,7 +122,7 @@ void main(void) {
                 }
                 else if (this.light is SpotLight)
                 {
-                    (this.light as SpotLight).Direction = position;
+                    //(this.light as SpotLight).Target = position;
                 }
 
                 this.WorldPosition = position;
