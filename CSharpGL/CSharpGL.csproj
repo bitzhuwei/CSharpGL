@@ -144,6 +144,9 @@
     <Compile Include="Scene\Algorithms\Actions\3DWorld\BillboardRenderAction.cs" />
     <Compile Include="Scene\Algorithms\Actions\3DWorld\BillboardSortAction.cs" />
     <Compile Include="Scene\Algorithms\Actions\3DWorld\LightEquipment.cs" />
+    <Compile Include="Scene\GUI\GLControls\CtrlTexture\CtrlTexture.cs" />
+    <Compile Include="Scene\GUI\GLControls\CtrlTexture\CtrlTexture.shaders.cs" />
+    <Compile Include="Scene\GUI\GLControls\CtrlTexture\CtrlTextureModel.cs" />
     <Compile Include="Scene\Lights\__LightSetUniformsHelper.cs" />
     <Compile Include="Scene\Lights\__LightToMatrixHelper.cs" />
     <Compile Include="Scene\SceneNodes\ConcreteNodes\ClearStencil\ClearStencilModel.cs" />
