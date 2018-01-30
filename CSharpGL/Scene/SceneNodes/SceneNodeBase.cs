@@ -23,12 +23,26 @@ namespace CSharpGL
         private static int idCounter = 0;
 
         /// <summary>
+        /// 为便于调试而设置的Name值，没有应用意义。(for debugging purpose only.)
+        /// </summary>
+        [Category(strSceneNodeBase)]
+        [Description("为便于调试而设置的Name值，没有应用意义。(for debugging purpose only.)")]
+        public string Name { get; set; }
+
+        /// <summary>
         ///
         /// </summary>
         /// <returns></returns>
         public override string ToString()
         {
-            return string.Format("[{0}]: [{1}]", this.Id, this.GetType().Name);
+            if (string.IsNullOrEmpty(Name))
+            {
+                return string.Format("[{0}]: [{1}]", this.Id, this.GetType().Name);
+            }
+            else
+            {
+                return string.Format("[{0}]: [{1}][{2}]", this.Id, this.Name, this.GetType().Name);
+            }
         }
 
         /// <summary>
