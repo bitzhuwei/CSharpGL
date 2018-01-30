@@ -88,7 +88,8 @@ namespace Lighting.NoShadow
             var filenames = new string[] { "floor.obj", "bunny.obj", };
             for (int i = 0; i < filenames.Length; i++)
             {
-                string filename = filenames[i];
+                string folder = System.Windows.Forms.Application.StartupPath;
+                string filename = System.IO.Path.Combine(folder, filenames[i]);
                 var parser = new ObjVNFParser(true);
                 ObjVNFResult result = parser.Parse(filename);
                 if (result.Error != null)

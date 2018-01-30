@@ -20,7 +20,11 @@ namespace StencilShadowVolume
             string filename = string.Empty;
             //if (args == null || args.Length < 1) { filename = "dragon.obj"; }
             //if (args == null || args.Length < 1) { filename = "buddha.obj"; }
-            if (args == null || args.Length < 1) { filename = "bunny.obj"; }
+            if (args == null || args.Length < 1)
+            {
+                string folder = System.Windows.Forms.Application.StartupPath;
+                filename = System.IO.Path.Combine(folder, "bunny.obj");
+            }
 
             var parser = new ObjVNFParser(true);
             ObjVNFResult result = parser.Parse(filename);
