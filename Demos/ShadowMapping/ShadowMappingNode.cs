@@ -137,7 +137,7 @@ namespace ShadowMapping
             program.SetUniform(depth_texture, arg.ShadowMap);
             program.SetUniform(light_position, new vec3(view * new vec4(light.Position, 1.0f)));
             //program.SetUniform(light_position, light.Position);
-            program.SetUniform("lightColor", light.Color);
+            program.SetUniform("lightColor", light.Diffuse);
             program.SetUniform(material_ambient, this.Ambient);
             program.SetUniform(material_diffuse, this.Diffuse);
             program.SetUniform(material_specular, this.Specular);

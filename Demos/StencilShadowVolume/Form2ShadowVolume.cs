@@ -43,9 +43,9 @@ namespace StencilShadowVolume
             {
                 // add lights.
                 var lights = new PointLight[] { 
-                    new PointLight(new vec3()) { Color = new vec3(1, 0, 0) }, 
-                    new PointLight(new vec3()) { Color = new vec3(0, 1, 0) }, 
-                    new PointLight(new vec3()) { Color = new vec3(0, 0, 1) }, 
+                    new PointLight(new vec3()) { Diffuse = new vec3(1, 0, 0), Specular = new vec3(1, 0, 0) }, 
+                    new PointLight(new vec3()) { Diffuse = new vec3(0, 1, 0), Specular = new vec3(0, 1, 0) }, 
+                    new PointLight(new vec3()) { Diffuse = new vec3(0, 0, 1), Specular = new vec3(0, 0, 1) }, 
                 };
                 for (int i = 0; i < lights.Length; i++)
                 {

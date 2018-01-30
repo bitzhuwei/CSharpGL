@@ -16,25 +16,14 @@ namespace CSharpGL
         public vec3 Direction { get; set; }
 
         /// <summary>
-        /// 
+        /// Directional light.
         /// </summary>
-        /// <param name="direction"></param>
-        /// <param name="attenuation"></param>
-        public DirectionalLight(vec3 direction, Attenuation attenuation = null)
-            : base(attenuation == null ? new Attenuation(0.0f, 0.0f, 0.0f) : attenuation)
+        /// <param name="direction">Direction to the light's position</param>
+        public DirectionalLight(vec3 direction)
+            : base(null)
         {
             this.Direction = direction;
         }
 
-
-        public override mat4 GetProjectionMatrix()
-        {
-            throw new NotImplementedException();
-        }
-
-        public override mat4 GetViewMatrix()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

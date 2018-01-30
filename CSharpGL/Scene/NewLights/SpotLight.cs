@@ -11,55 +11,29 @@ namespace CSharpGL
     public sealed class SpotLight : LightBase
     {
         /// <summary>
-        /// 
+        /// Direction to the light's position.
         /// </summary>
-        public vec3 Target { get; set; }
+        public vec3 Direction { get; set; }
 
         /// <summary>
-        /// Angle in degree.
+        /// Cos(angle).
         /// </summary>
-        public float Angle { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public float Near { get; set; }
+        public float CutOff { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public float Far { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="position"></param>
-        /// <param name="target"></param>
-        /// <param name="angle">in degree.</param>
-        /// <param name="near"></param>
-        /// <param name="far"></param>
+        /// <param name="position">light's position.</param>
+        /// <param name="direction">Direction to the light's position.</param>
+        /// <param name="cutOff">Cos(angle)</param>
         /// <param name="attenuation"></param>
-        public SpotLight(vec3 position, vec3 target, float angle, float near = 0.1f, float far = 50.0f, Attenuation attenuation = null)
+        public SpotLight(vec3 position, vec3 direction, float cutOff, Attenuation attenuation = null)
             : base(attenuation == null ? new Attenuation(1.0f, 0.0f, 0.0f) : attenuation)
         {
-            if ((position - target).length() < 0.001f) { throw new ArgumentException(); }
-
             this.Position = position;
-            this.Target = target;
-            this.Angle = angle;
-            this.Near = near;
-            this.Far = far;
+            this.Direction = direction;
+            this.CutOff = cutOff;
         }
 
-
-        public override mat4 GetProjectionMatrix()
-        {
-            throw new NotImplementedException();
-        }
-
-        public override mat4 GetViewMatrix()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

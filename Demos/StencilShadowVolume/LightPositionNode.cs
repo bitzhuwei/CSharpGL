@@ -120,7 +120,7 @@ void main(void) {
             program.SetUniform(projectionMatrix, projection);
             program.SetUniform(viewMatrix, view);
             program.SetUniform(modelMatrix, model);
-            program.SetUniform(color, this.light.Color);
+            program.SetUniform(color, this.light.Diffuse);
 
             method.Render();
         }

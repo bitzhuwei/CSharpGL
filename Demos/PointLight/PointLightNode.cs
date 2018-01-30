@@ -87,7 +87,7 @@ namespace PointLight
             program.SetUniform(modelMatrix, model);
             program.SetUniform(normalMatrix, normal);
             program.SetUniform(lightPosition, new vec3(view * new vec4(this.light.Position, 1.0f)));
-            program.SetUniform(lightColor, this.light.Color);
+            program.SetUniform(lightColor, this.light.Diffuse);
 
             method.Render();
         }

@@ -120,7 +120,7 @@ namespace StencilShadowVolume
             program.SetUniform("modelMatrix", model);
             program.SetUniform("normalMatrix", normal);
             program.SetUniform("lightPosition", new vec3(view * new vec4(arg.Light.Position, 1.0f)));
-            program.SetUniform("lightColor", arg.Light.Color);
+            program.SetUniform("lightColor", arg.Light.Diffuse);
 
             //fillNearOffsetState.On();
             method.Render();

@@ -44,13 +44,19 @@ void main(void) {
 ";
         private CSharpGL.PointLight light;
 
+        public CSharpGL.PointLight Light
+        {
+            get { return light; }
+            set { light = value; }
+        }
+
         /// <summary>
         /// Render propeller in modern opengl.
         /// </summary>
         /// <returns></returns>
-        public static LightPositionNode Create(float initAngle = 0)
+        public static LightPositionNode Create(CSharpGL.PointLight light, float initAngle = 0)
         {
-            var model = new Sphere(0.3f);
+            var model = new Sphere(0.3f, 2, 3);
             var vs = new VertexShader(vertexCode);
             var fs = new FragmentShader(fragmentCode);
             var provider = new ShaderArray(vs, fs);
@@ -59,6 +65,7 @@ void main(void) {
             var builder = new RenderMethodBuilder(provider, map, new PolygonModeState(PolygonMode.Line));
             var node = new LightPositionNode(model, Sphere.strPosition, builder);
             node.Initialize();
+            node.light = light;
             node.RotationAngle = initAngle;
 
             return node;
@@ -120,19 +127,13 @@ void main(void) {
             program.SetUniform(projectionMatrix, projection);
             program.SetUniform(viewMatrix, view);
             program.SetUniform(modelMatrix, model);
-            program.SetUniform(color, this.light.Color);
+            program.SetUniform(color, this.light.Diffuse);
 
             method.Render();
         }
 
         public void RenderAfterChildren(RenderEventArgs arg)
         {
-        }
-
-        public void SetLight(CSharpGL.PointLight light)
-        {
-            this.light = light;
-
         }
 
         class CubeModel : IBufferSource
