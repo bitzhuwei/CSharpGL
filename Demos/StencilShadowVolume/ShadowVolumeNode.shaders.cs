@@ -173,7 +173,7 @@ void main()
 in vec3 vPosition;
 in vec3 vNormal;
 
-uniform mat4 projectionMatrix;
+uniform mat4 mvpMat;
 uniform mat4 viewMatrix;
 uniform mat4 modelMatrix;
 uniform mat4 normalMatrix;
@@ -183,7 +183,7 @@ out vec3 passNormal; // normal in eye space.
 
 void main(void)
 {
-    gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(vPosition, 1.0f);
+	gl_Position = mvpMat * vec4(vPosition, 1.0);
 
     passPosition = (viewMatrix * modelMatrix * vec4(vPosition, 1.0f)).xyz;
     passNormal = (normalMatrix * vec4(vNormal, 0)).xyz;

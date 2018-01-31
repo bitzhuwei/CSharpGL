@@ -107,7 +107,7 @@ namespace StencilShadowVolume
 
             var method = this.RenderUnit.Methods[(int)MethodName.renderUnderLight];
             ShaderProgram program = method.Program;
-            program.SetUniform("projectionMatrix", projection);
+            program.SetUniform("mvpMat", projection * view * model);
             program.SetUniform("viewMatrix", view);
             program.SetUniform("modelMatrix", model);
             program.SetUniform("normalMatrix", normal);
