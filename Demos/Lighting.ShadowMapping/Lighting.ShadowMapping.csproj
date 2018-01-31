@@ -92,6 +92,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Lighting.ShadowMapping.DirectionalLights.png" />
+    <Content Include="Lighting.ShadowMapping.PointLights.png" />
     <Content Include="Lighting.ShadowMapping.SpotLights.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

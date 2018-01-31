@@ -10,6 +10,12 @@ namespace CSharpGL
     /// </summary>
     public static class __LightSetUniformsHelper
     {
+        // lightUpRoutine:
+        // 0: PointLight;  1: DirectionalLight; 
+        // 2: SpotLight;
+        // 3: XSpotLight;  4: NXSpotLight;
+        // 5: YSpotLight;  6: NYSpotLight;
+        // 7: ZSpotLight;  8: NZSpotLight;
         /// <summary>
         /// 
         /// </summary>
@@ -17,9 +23,9 @@ namespace CSharpGL
         /// <param name="program"></param>
         public static void SetUniforms(this LightBase light, ShaderProgram program)
         {
-            if (light is PointLight)
+            if (light is TSpotLight)
             {
-                SetUniforms(light as PointLight, program);
+                SetUniforms(light as TSpotLight, program);
             }
             else if (light is DirectionalLight)
             {
@@ -35,7 +41,7 @@ namespace CSharpGL
             }
         }
 
-        private static void SetUniforms(this PointLight light, ShaderProgram program)
+        private static void SetUniforms(this TSpotLight light, ShaderProgram program)
         {
             program.SetUniform("light.position", light.Position);
             program.SetUniform("light.diffuse", light.Diffuse);
@@ -43,11 +49,10 @@ namespace CSharpGL
             program.SetUniform("light.constant", light.Attenuation.Constant);
             program.SetUniform("light.linear", light.Attenuation.Linear);
             program.SetUniform("light.quadratic", light.Attenuation.Exp);
-            //program.SetUniform("light.direction", new vec3());// for point light, meaningless.
-            //program.SetUniform("light.cutOff", 0.0f);// for point light, meanlingless.
+            program.SetUniform("light.direction", light.Direction.ToVec3());
+            //program.SetUniform("light.cutOff", light.CutOff);
 
-            // 0: point light; 1: directional light; 2: spot light.
-            const int lightUpRoutine = 0;
+            int lightUpRoutine = (int)light.Direction;
             program.SetUniform("lightUpRoutine", lightUpRoutine);
 
         }
@@ -63,7 +68,6 @@ namespace CSharpGL
             program.SetUniform("light.direction", light.Direction);
             //program.SetUniform("light.cutOff", 0.0f);// for directional light, meanlingless.
 
-            // 0: point light; 1: directional light; 2: spot light.
             const int lightUpRoutine = 1;
             program.SetUniform("lightUpRoutine", lightUpRoutine);
 
@@ -80,7 +84,6 @@ namespace CSharpGL
             program.SetUniform("light.direction", light.Position - light.Target);
             program.SetUniform("light.cutOff", light.CutOff);
 
-            // 0: point light; 1: directional light; 2: spot light.
             const int lightUpRoutine = 2;
             program.SetUniform("lightUpRoutine", lightUpRoutine);
 

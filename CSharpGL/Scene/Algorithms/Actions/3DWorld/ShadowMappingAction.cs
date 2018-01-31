@@ -55,24 +55,50 @@ namespace CSharpGL
 
             foreach (var light in scene.Lights)
             {
-                // cast shadow from specified light.
+                if (light is SpotLight || light is DirectionalLight)
                 {
-                    this.lightEquipment.Begin(param.Viewport);
-
-                    var arg = new ShadowMappingCastShadowEventArgs(light);
-                    //this.colorMask.On();
-                    CastShadow(scene.RootNode, arg);
-                    //this.colorMask.Off();
-                    this.lightEquipment.End();
+                    LightTheScene(light, scene, param);
                 }
-
-                // light up the scene with specified light.
+                else if (light is PointLight)
                 {
-                    var arg = new ShadowMappingUnderLightEventArgs(param, scene.Camera, this.lightEquipment.BindingTexture, light);
-                    this.blend.On();
-                    RenderUnderLight(this.scene.RootNode, arg);
-                    this.blend.Off();
+                    var xLight = new TSpotLight(light.Position, TSpotLightDirection.X, light.Attenuation) { Diffuse = light.Diffuse, Specular = light.Specular, };
+                    var nxLight = new TSpotLight(light.Position, TSpotLightDirection.NX, light.Attenuation) { Diffuse = light.Diffuse, Specular = light.Specular, };
+                    var yLight = new TSpotLight(light.Position, TSpotLightDirection.Y, light.Attenuation) { Diffuse = light.Diffuse, Specular = light.Specular, };
+                    var nyLight = new TSpotLight(light.Position, TSpotLightDirection.NY, light.Attenuation) { Diffuse = light.Diffuse, Specular = light.Specular, };
+                    var zLight = new TSpotLight(light.Position, TSpotLightDirection.Z, light.Attenuation) { Diffuse = light.Diffuse, Specular = light.Specular, };
+                    var nzLight = new TSpotLight(light.Position, TSpotLightDirection.NZ, light.Attenuation) { Diffuse = light.Diffuse, Specular = light.Specular, };
+                    var lights = new TSpotLight[] { xLight, nxLight, yLight, nyLight, zLight, nzLight };
+                    foreach (var item in lights)
+                    {
+                        LightTheScene(item, scene, param);
+                    }
                 }
+                else
+                {
+                    throw new Exception(string.Format("Unexpected light type:{0}", light.GetType().FullName));
+                }
+            }
+        }
+
+        private void LightTheScene(LightBase light, Scene scene, ActionParams param)
+        {
+            // cast shadow from specified light.
+            {
+                this.lightEquipment.Begin(param.Viewport);
+
+                var arg = new ShadowMappingCastShadowEventArgs(light);
+                //this.colorMask.On();
+                CastShadow(scene.RootNode, arg);
+                //this.colorMask.Off();
+                this.lightEquipment.End();
+            }
+
+            // light up the scene with specified light.
+            {
+                var arg = new ShadowMappingUnderLightEventArgs(param, scene.Camera, this.lightEquipment.BindingTexture, light);
+                this.blend.On();
+                RenderUnderLight(this.scene.RootNode, arg);
+                this.blend.Off();
             }
         }
 

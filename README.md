@@ -3,8 +3,10 @@
 It abstracts concepts(buffer, shader, state, matrix, vector, texture, canvas, scene, camera, light, picking, text, GUI ...) from OpenGL API and common requirements.  
 More than 30 simple demonstration projects show how to use CSharpGL. And there will be more.  
 Here are some of them.
-## Shadow Mapping.
-![Shadow Mapping](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/Lighting.ShadowMapping/Lighting.ShadowMapping.DirectionalLights.png?raw=true)
+# Blinn-Phong.ShadowMapping.
+![Lighting.ShadowMapping.PointLights](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/Lighting.ShadowMapping/Lighting.ShadowMapping.PointLights.png?raw=true)
+![Lighting.ShadowMapping.SpotLights](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/Lighting.ShadowMapping/Lighting.ShadowMapping.SpotLights.png?raw=true)
+![Lighting.ShadowMapping.DirectionalLights](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/Lighting.ShadowMapping/Lighting.ShadowMapping.DirectionalLights.png?raw=true)
 ## Stencil Shadow Volume.
 ![StencilShadowVolume](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/StencilShadowVolume/StencilShadowVolume.gif?raw=true)
 ## WorldSpace Billboard.
