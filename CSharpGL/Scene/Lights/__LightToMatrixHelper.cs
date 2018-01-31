@@ -105,11 +105,7 @@ namespace CSharpGL
 
         private static mat4 GetViewMatrix(this SpotLight light)
         {
-            vec3 up = new vec3(0, 1, 0);
-            //if(light.Direction.dot(up) < 0.01f)
-            {
-                //up = 
-            }
+            vec3 up = light.Position.cross(light.Target);
             mat4 view = glm.lookAt(light.Position, light.Target, up);
 
             return view;

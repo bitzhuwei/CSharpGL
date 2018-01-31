@@ -16,8 +16,8 @@ namespace Lighting.ShadowMapping
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new FormMain(GetPointLights(), "Lighting - Shadow Mapping - Point Lights - CSharpGL"));
-            Application.Run(new FormMain(GetDirctionalLights(), "Lighting - Shadow Mapping - Directional Lights - CSharpGL"));
+            Application.Run(new FormMain(GetPointLights(), "Lighting - Shadow Mapping - Point Lights - CSharpGL"));
+            //Application.Run(new FormMain(GetDirctionalLights(), "Lighting - Shadow Mapping - Directional Lights - CSharpGL"));
             //Application.Run(new FormMain(GetSpotLights(), "Lighting - Shadow Mapping - Spot Lights - CSharpGL"));
         }
 
@@ -82,18 +82,18 @@ namespace Lighting.ShadowMapping
                 light.Specular = new vec3(1, 0, 0);
                 list.Add(light);
             }
-            {
-                var light = new CSharpGL.PointLight(new vec3(3, 3, 3), new Attenuation(2, 0, 0));
-                light.Diffuse = new vec3(0, 1, 0);
-                light.Specular = new vec3(0, 1, 0);
-                list.Add(light);
-            }
-            {
-                var light = new CSharpGL.PointLight(new vec3(3, 3, 3), new Attenuation(2, 0, 0));
-                light.Diffuse = new vec3(0, 0, 1);
-                light.Specular = new vec3(0, 0, 1);
-                list.Add(light);
-            }
+            //{
+            //    var light = new CSharpGL.PointLight(new vec3(3, 3, 3), new Attenuation(2, 0, 0));
+            //    light.Diffuse = new vec3(0, 1, 0);
+            //    light.Specular = new vec3(0, 1, 0);
+            //    list.Add(light);
+            //}
+            //{
+            //    var light = new CSharpGL.PointLight(new vec3(3, 3, 3), new Attenuation(2, 0, 0));
+            //    light.Diffuse = new vec3(0, 0, 1);
+            //    light.Specular = new vec3(0, 0, 1);
+            //    list.Add(light);
+            //}
 
             return list;
         }
