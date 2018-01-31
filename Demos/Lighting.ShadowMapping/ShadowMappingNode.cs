@@ -97,14 +97,13 @@ namespace Lighting.ShadowMapping
         private TwoFlags enableRenderUnderLight = TwoFlags.BeforeChildren | TwoFlags.Children;
         public TwoFlags EnableRenderUnderLight { get { return this.enableRenderUnderLight; } set { this.enableRenderUnderLight = value; } }
 
+        private static readonly mat4 lightBias = glm.scale(glm.translate(mat4.identity(), new vec3(1, 1, 1) * 0.5f), new vec3(1, 1, 1) * 0.5f);
         public void RenderUnderLight(ShadowMappingUnderLightEventArgs arg)
         {
             ICamera camera = arg.Camera;
             mat4 projection = camera.GetProjectionMatrix();
             mat4 view = camera.GetViewMatrix();
             mat4 model = this.GetModelMatrix();
-            mat4 lightBias = glm.translate(mat4.identity(), new vec3(1, 1, 1) * 0.5f);
-            lightBias = glm.scale(lightBias, new vec3(1, 1, 1) * 0.5f);
             LightBase light = arg.Light;
             mat4 lightProjection = light.GetProjectionMatrix();
             mat4 lightView = light.GetViewMatrix();
