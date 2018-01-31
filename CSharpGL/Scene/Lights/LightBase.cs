@@ -13,6 +13,7 @@ namespace CSharpGL
     [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
     public abstract class LightBase
     {
+
         //private vec3 color = new vec3(1, 1, 1);
         ///// <summary>
         ///// Light's color.

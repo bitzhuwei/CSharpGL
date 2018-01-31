@@ -15,12 +15,13 @@ namespace CSharpGL
         /// </summary>
         public vec3 Direction { get; set; }
 
+        private static readonly Attenuation useless = new Attenuation(1, 0, 0);
         /// <summary>
         /// Directional light.
         /// </summary>
         /// <param name="direction">Direction to the light's position.</param>
         public DirectionalLight(vec3 direction)
-            : base(null)
+            : base(useless)
         {
             this.Direction = direction;
         }
