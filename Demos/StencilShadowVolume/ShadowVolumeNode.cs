@@ -11,14 +11,14 @@ namespace StencilShadowVolume
 
         public static ShadowVolumeNode Create(IBufferSource model, string position, string normal, vec3 size)
         {
-            RenderMethodBuilder depthBufferBuilder, extrudeBuilder, underLightBuilder, ambientColorBufer;
+            RenderMethodBuilder ambientBuilder, extrudeBuilder, underLightBuilder;
             {
-                var vs = new VertexShader(depthBufferVert);
-                var fs = new FragmentShader(depthBufferFrag);
+                var vs = new VertexShader(ambientVert);
+                var fs = new FragmentShader(ambientFrag);
                 var array = new ShaderArray(vs, fs);
                 var map = new AttributeMap();
                 map.Add("inPosition", position);
-                depthBufferBuilder = new RenderMethodBuilder(array, map);
+                ambientBuilder = new RenderMethodBuilder(array, map);
             }
             {
                 var vs = new VertexShader(extrudeVert);
@@ -38,16 +38,8 @@ namespace StencilShadowVolume
                 map.Add("vNormal", normal);
                 underLightBuilder = new RenderMethodBuilder(array, map);
             }
-            {
-                var vs = new VertexShader(ambientVert);
-                var fs = new FragmentShader(ambientFrag);
-                var array = new ShaderArray(vs, fs);
-                var map = new AttributeMap();
-                map.Add("inPosition", position);
-                ambientColorBufer = new RenderMethodBuilder(array, map);
-            }
 
-            var node = new ShadowVolumeNode(model, depthBufferBuilder, extrudeBuilder, underLightBuilder, ambientColorBufer);
+            var node = new ShadowVolumeNode(model, ambientBuilder, extrudeBuilder, underLightBuilder);
             node.Initialize();
             node.ModelSize = size;
 
@@ -150,10 +142,9 @@ namespace StencilShadowVolume
 
         enum MethodName
         {
-            renderToDepthBuffer = 0,
-            extrudeShadow = 1,
-            renderUnderLight = 2,
-            renderAmbientColor = 3,
+            renderAmbientColor,
+            extrudeShadow,
+            renderUnderLight,
         }
 
     }
