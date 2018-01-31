@@ -4,7 +4,7 @@ It abstracts concepts(buffer, shader, state, matrix, vector, texture, canvas, sc
 More than 30 simple demonstration projects show how to use CSharpGL. And there will be more.  
 Here are some of them.
 ## Shadow Mapping.
-![Shadow Mapping](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/Lighting.ShadowMapping/Lighting.ShadowMapping.png?raw=true)
+![Shadow Mapping](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/Lighting.ShadowMapping/Lighting.ShadowMapping.SpotLights.png?raw=true)
 ## Stencil Shadow Volume.
 ![StencilShadowVolume](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/StencilShadowVolume/StencilShadowVolume.gif?raw=true)
 ## WorldSpace Billboard.
