@@ -11,14 +11,14 @@ namespace StencilShadowVolume
 
         public static ShadowVolumeNode Create(IBufferSource model, string position, string normal, vec3 size)
         {
-            RenderMethodBuilder depthBufferBuilder, extrudeBuilder, underLightBuilder, ambientColorBufer;
+            RenderMethodBuilder ambientColorBuilder, extrudeBuilder, underLightBuilder;
             {
-                var vs = new VertexShader(depthBufferVert);
-                var fs = new FragmentShader(depthBufferFrag);
+                var vs = new VertexShader(ambientVert);
+                var fs = new FragmentShader(ambientFrag);
                 var array = new ShaderArray(vs, fs);
                 var map = new AttributeMap();
                 map.Add("inPosition", position);
-                depthBufferBuilder = new RenderMethodBuilder(array, map);
+                ambientColorBuilder = new RenderMethodBuilder(array, map);
             }
             {
                 var vs = new VertexShader(extrudeVert);
@@ -38,16 +38,8 @@ namespace StencilShadowVolume
                 map.Add("vNormal", normal);
                 underLightBuilder = new RenderMethodBuilder(array, map);
             }
-            {
-                var vs = new VertexShader(ambientVert);
-                var fs = new FragmentShader(ambientFrag);
-                var array = new ShaderArray(vs, fs);
-                var map = new AttributeMap();
-                map.Add("inPosition", position);
-                ambientColorBufer = new RenderMethodBuilder(array, map);
-            }
 
-            var node = new ShadowVolumeNode(model, depthBufferBuilder, extrudeBuilder, underLightBuilder, ambientColorBufer);
+            var node = new ShadowVolumeNode(model, ambientColorBuilder, extrudeBuilder, underLightBuilder);
             node.Initialize();
             node.ModelSize = size;
 
@@ -115,7 +107,8 @@ namespace StencilShadowVolume
 
             var method = this.RenderUnit.Methods[(int)MethodName.renderUnderLight];
             ShaderProgram program = method.Program;
-            program.SetUniform("projectionMatrix", projection);
+            program.SetUniform("mvpMat", projection * view * model);
+            //program.SetUniform("projectionMatrix", projection);
             program.SetUniform("viewMatrix", view);
             program.SetUniform("modelMatrix", model);
             program.SetUniform("normalMatrix", normal);
@@ -150,10 +143,9 @@ namespace StencilShadowVolume
 
         enum MethodName
         {
-            renderToDepthBuffer = 0,
-            extrudeShadow = 1,
-            renderUnderLight = 2,
-            renderAmbientColor = 3,
+            renderAmbientColor,
+            extrudeShadow,
+            renderUnderLight,
         }
 
     }
