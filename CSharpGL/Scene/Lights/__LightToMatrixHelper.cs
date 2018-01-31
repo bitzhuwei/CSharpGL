@@ -43,8 +43,14 @@ namespace CSharpGL
 
         private static mat4 GetProjectionMatrix(this DirectionalLight light)
         {
-
-            throw new NotImplementedException();
+            // TODO: try this one.
+            //var viewport = new int[4];
+            //GL.Instance.GetIntegerv(GL.GL_VIEWPORT, viewport);
+            //int width = viewport[2], height = viewport[3];
+            //mat4 projection = glm.ortho(-width / 2.0f, width / 2.0f, -height / 2.0f, height / 2.0f);
+            const int length = 10;
+            mat4 projection = glm.ortho(-length, length, -length, length, -length, 0);//length * length);
+            return projection;
         }
 
         private static mat4 GetProjectionMatrix(this SpotLight light)
@@ -91,8 +97,10 @@ namespace CSharpGL
 
         private static mat4 GetViewMatrix(this DirectionalLight light)
         {
-
-            throw new NotImplementedException();
+            // TODO: try this one.
+            vec3 up = new vec3(0, 1, 0);
+            mat4 view = glm.lookAt(new vec3(), -(light.Direction.normalize()), up);
+            return view;
         }
 
         private static mat4 GetViewMatrix(this SpotLight light)
