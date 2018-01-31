@@ -16,9 +16,9 @@ namespace Lighting.ShadowMapping
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new FormMain(GetPointLights(), "Lighting - Shadow Mapping - Point Lights - CSharpGL"));
+            Application.Run(new FormMain(GetPointLights(), "Lighting - Shadow Mapping - Point Lights - CSharpGL"));
             Application.Run(new FormMain(GetDirctionalLights(), "Lighting - Shadow Mapping - Directional Lights - CSharpGL"));
-            //Application.Run(new FormMain(GetSpotLights(), "Lighting - Shadow Mapping - Spot Lights - CSharpGL"));
+            Application.Run(new FormMain(GetSpotLights(), "Lighting - Shadow Mapping - Spot Lights - CSharpGL"));
         }
 
 
