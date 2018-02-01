@@ -100,8 +100,7 @@ namespace StencilShadowVolume
             }
 
             {
-                var lightPositionNode = LightPositionNode.Create();
-                lightPositionNode.SetLight(light);
+                var lightPositionNode = LightPositionNode.Create(light);
                 group.Children.Add(lightPositionNode);
             }
 
