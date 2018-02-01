@@ -31,13 +31,13 @@ void main(void) {
 
         private const string extrudeVert = @"#version 330
 
-in vec3 Position;                                             
+in vec3 inPosition;                                             
 
 out vec3 PosL;
                                                                                     
 void main()                                                                         
 {                                                                                   
-    PosL = Position;
+    PosL = inPosition;
 }
 ";
 

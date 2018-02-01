@@ -26,7 +26,7 @@ namespace Lighting.ShadowVolume
                 var fs = new FragmentShader(extrudeFrag);
                 var array = new ShaderArray(vs, gs, fs);
                 var map = new AttributeMap();
-                map.Add("Position", position);
+                map.Add("inPosition", position);
                 extrudeBuilder = new RenderMethodBuilder(array, map);
             }
             {
