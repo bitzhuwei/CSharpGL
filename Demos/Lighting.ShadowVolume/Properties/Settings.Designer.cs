@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace StencilShadowVolume.Properties
+namespace Lighting.ShadowVolume.Properties
 {
 
 

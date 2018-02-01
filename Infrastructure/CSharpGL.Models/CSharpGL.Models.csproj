@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Amber\readme.md" />
+    <Compile Include="AdjacentTriangleModel.cs" />
     <Compile Include="Amber\AmberLoader.cs" />
     <Compile Include="Cube\AdjacentCubeModel.cs" />
     <Compile Include="Cube\TexturedCubeModel.cs" />

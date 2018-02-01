@@ -35,6 +35,8 @@ namespace CSharpGL
         private readonly DepthMaskState depthMask = new DepthMaskState(writable: false);
         private readonly DepthClampState depthClamp = new DepthClampState(enableCapacity: true);
         private readonly BlendState blend = new BlendState(BlendingSourceFactor.One, BlendingDestinationFactor.One);
+        private readonly PolygonModeState polygonMode = new PolygonModeState(PolygonMode.Line);
+        private readonly LineStippleState lineSipple = new LineStippleState();
         //private readonly GLStateList stateList;
         private readonly ClearStencilNode clearStencilNode;
 
@@ -77,6 +79,7 @@ namespace CSharpGL
                 {
                     this.depthMask.On(); // Disable writing to depth buffer.
                     if (!displayShadowVolume) { this.colorMask.On(); } // Disable writing to color buffer.
+                    else { this.polygonMode.On(); this.lineSipple.On(); }
                     this.cullFace.On();  // Disable culling face.
                     GL.Instance.StencilFunc(GL.GL_ALWAYS, 0, 0xFF); // always pass stencil test.
                     // If depth test fails for back face, increase value in stencil buffer.
@@ -90,6 +93,7 @@ namespace CSharpGL
 
                     this.cullFace.Off();
                     if (!displayShadowVolume) { this.colorMask.Off(); }
+                    else { this.polygonMode.Off(); this.lineSipple.Off(); }
                     this.depthMask.Off();
                 }
                 // 

@@ -7,7 +7,8 @@ namespace StencilShadowVolume
 {
     partial class ShadowVolumeNode
     {
-        private const string depthBufferVert = @"#version 330
+
+        private const string ambientVert = @"#version 330
 
 in vec3 inPosition;
 
@@ -17,25 +18,26 @@ void main(void) {
 	gl_Position = mvpMat * vec4(inPosition, 1.0);
 }
 ";
+        private const string ambientFrag = @"#version 330
 
-        private const string depthBufferFrag = @"#version 330
+uniform vec3 ambientColor;
 
-out vec4 color;
+out vec4 out_Color;
 
 void main(void) {
-   discard;
+	out_Color = vec4(ambientColor, 0.1);
 }
 ";
 
         private const string extrudeVert = @"#version 330
 
-in vec3 Position;                                             
+in vec3 inPosition;                                             
 
 out vec3 PosL;
                                                                                     
 void main()                                                                         
 {                                                                                   
-    PosL = Position;
+    PosL = inPosition;
 }
 ";
 
@@ -166,82 +168,138 @@ void main()
 }
 ";
 
-        private const string underLightVert = @"#version 330
-
-in vec3 vPosition;
-in vec3 vNormal;
-
-uniform mat4 projectionMatrix;
-uniform mat4 viewMatrix;
-uniform mat4 modelMatrix;
-uniform mat4 normalMatrix;
-
-out vec3 passPosition; // position in eye space.
-out vec3 passNormal; // normal in eye space.
-
-void main(void)
-{
-    gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(vPosition, 1.0f);
-
-    passPosition = (viewMatrix * modelMatrix * vec4(vPosition, 1.0f)).xyz;
-    passNormal = (normalMatrix * vec4(vNormal, 0)).xyz;
-}
-";
-        private const string underLightFrag = @"#version 330
-
-uniform float shiness = 6;
-uniform float strength = 1;
-uniform vec3 diffuseColor = vec3(1, 0.8431, 0);
-uniform vec3 lightPosition = vec3(0, 0, 0); // light's position in eye space.
-uniform vec3 lightColor;
-uniform float constantAttenuation = 0.5;
-uniform float linearAttenuation = 0.0001;
-uniform float quadraticAttenuation = 0.0001;
-
-in vec3 passPosition;
-in vec3 passNormal;
-
-out vec4 vFragColor;
-
-void main(void)
-{
-    vec3 normal = normalize(passNormal);
-    vec3 L = lightPosition - passPosition;
-    float diffuse = max(0, dot(normalize(L), normal));
-    float distance = length(L);
-    float attenuationAmount = 1.0 / (constantAttenuation + linearAttenuation * distance + quadraticAttenuation * distance * distance);
-	diffuse *= attenuationAmount;
-
-    float specular = 0;
-    if (diffuse > 0)
-    {
-        vec3 halfVector = normalize(L + vec3(0, 0, 1));// vec3(0, 0, 1) is camera's direction.
-        specular = max(0, dot(halfVector, normal));
-        specular = pow(specular, shiness) * strength;
-    }
-	
-    vFragColor = vec4((diffuse * diffuseColor + specular) * lightColor, 1);
-}
-";
-
-        private const string ambientVert = @"#version 330
+        private const string blinnPhongVert = @"// Blinn-Phong-WorldSpace.vert
+#version 150
 
 in vec3 inPosition;
+in vec3 inNormal;
+
+// Declare an interface block.
+out VS_OUT {
+    vec3 position;
+	vec3 normal;
+} vs_out;
 
 uniform mat4 mvpMat;
+uniform mat4 modelMat;
+uniform mat4 normalMat; // transpose(inverse(modelMat));
 
-void main(void) {
-	gl_Position = mvpMat * vec4(inPosition, 1.0);
+void main() {
+    gl_Position = mvpMat * vec4(inPosition, 1.0);
+    vec4 worldPos = modelMat * vec4(inPosition, 1.0);
+	vs_out.position = worldPos.xyz;
+	vs_out.normal = (normalMat * vec4(inNormal, 0)).xyz;
 }
 ";
-        private const string ambientFrag = @"#version 330
+        private const string blinnPhongFrag = @"// Blinn-Phong-WorldSpace.frag
+#version 150
 
-uniform vec3 ambientColor;
+struct Light {
+    vec3 position;   // for directional light, meaningless.
+    vec3 diffuse;
+    vec3 specular;
+    float constant;  // Attenuation.constant.
+    float linear;    // Attenuation.linear.
+    float quadratic; // Attenuation.quadratic.
+	// direction from outer space to light source.
+	vec3 direction;  // for point light, meaningless.
+	// Note: We assume that spot light's angle ranges from 0 to 180 degrees.
+    // cutOff = Cos(angle). angle ranges in [0, 90].
+	float cutOff;    // for spot light, cutOff. for others, meaningless.
+};
 
-out vec4 out_Color;
+struct Material {
+    vec3 diffuse;
+    vec3 specular;
+    float shiness;
+};
 
-void main(void) {
-	out_Color = vec4(ambientColor, 0.1);
+uniform Light light;
+uniform int lightUpRoutine; // 0: point light; 1: directional light; 2: spot light.
+
+uniform Material material;
+
+uniform vec3 eyePos;
+
+uniform bool blinn = true;
+
+in VS_OUT {
+    vec3 position;
+	vec3 normal;
+} fs_in;
+
+void LightUp(vec3 lightDir, vec3 normal, vec3 ePos, vec3 vPos, float shiness, out float diffuse, out float specular) {
+    // Diffuse factor
+    diffuse = max(dot(lightDir, normal), 0);
+
+    // Specular factor
+    vec3 eyeDir = normalize(ePos - vPos);
+    specular = 0;
+    if (blinn) {
+        if (diffuse > 0) {
+            vec3 halfwayDir = normalize(lightDir + eyeDir);
+            specular = pow(max(dot(normal, halfwayDir), 0.0), shiness);
+        }
+    }
+    else {
+        if (diffuse > 0) {
+            vec3 reflectDir = reflect(-lightDir, normal);
+            specular = pow(max(dot(eyeDir, reflectDir), 0.0), shiness);
+        }
+    }
+}
+
+void PointLightUp(Light light, out float diffuse, out float specular) {
+    vec3 Distance = light.position - fs_in.position;
+    vec3 lightDir = normalize(Distance);
+    vec3 normal = normalize(fs_in.normal); 
+    float distance = length(Distance);
+    float attenuation = 1.0 / (light.constant + light.linear * distance + light.quadratic * distance * distance);
+    
+    LightUp(lightDir, normal, eyePos, fs_in.position, material.shiness, diffuse, specular);
+    
+    diffuse = diffuse * attenuation;
+    specular = specular * attenuation;
+}
+
+void DirectionalLightUp(Light light, out float diffuse, out float specular) {
+    vec3 lightDir = normalize(light.direction);
+    vec3 normal = normalize(fs_in.normal); 
+    LightUp(lightDir, normal, eyePos, fs_in.position, material.shiness, diffuse, specular);
+}
+
+// Note: We assume that spot light's angle ranges from 0 to 180 degrees.
+void SpotLightUp(Light light, out float diffuse, out float specular) {
+    vec3 Distance = light.position - fs_in.position;
+    vec3 lightDir = normalize(Distance);
+    vec3 centerDir = normalize(light.direction);
+    float c = dot(lightDir, centerDir);// cut off at this point.
+    if (c < light.cutOff) { // current point is outside of the cut off edge. 
+        diffuse = 0; specular = 0;
+    }
+    else {
+        vec3 normal = normalize(fs_in.normal); 
+        float distance = length(Distance);
+        float attenuation = 1.0 / (light.constant + light.linear * distance + light.quadratic * distance * distance);
+
+        LightUp(lightDir, normal, eyePos, fs_in.position, material.shiness, diffuse, specular);
+    
+        diffuse = diffuse * attenuation;
+        specular = specular * attenuation;
+    }
+}
+
+out vec4 fragColor;
+
+void main() {
+    float diffuse = 0;
+    float specular = 0;
+	if (lightUpRoutine == 0) { PointLightUp(light, diffuse, specular); }
+	else if (lightUpRoutine == 1) { DirectionalLightUp(light, diffuse, specular); }
+	else if (lightUpRoutine == 2) { SpotLightUp(light, diffuse, specular); }
+    else { diffuse = 0; specular = 0; }
+
+	fragColor = vec4(diffuse * light.diffuse * material.diffuse + specular * light.specular * material.specular, 1.0);
 }
 ";
     }

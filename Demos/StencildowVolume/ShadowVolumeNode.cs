@@ -1,16 +1,17 @@
-﻿using System;
+﻿using CSharpGL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using CSharpGL;
 
-namespace Lighting.ShadowMapping
+namespace StencilShadowVolume
 {
-    partial class ShadowMappingNode : ModernNode, ISupportShadowMapping
+    partial class ShadowVolumeNode : ModernNode, ISupportShadowVolume
     {
-        public static ShadowMappingNode Create(IBufferSource model, string position, string normal, vec3 size)
+
+        public static ShadowVolumeNode Create(IBufferSource model, string position, string normal, vec3 size)
         {
-            RenderMethodBuilder ambientBuilder, shadowBuilder, blinnPhongBuilder;
+            RenderMethodBuilder ambientBuilder, extrudeBuilder, underLightBuilder;
             {
                 var vs = new VertexShader(ambientVert);
                 var fs = new FragmentShader(ambientFrag);
@@ -20,11 +21,13 @@ namespace Lighting.ShadowMapping
                 ambientBuilder = new RenderMethodBuilder(array, map);
             }
             {
-                var vs = new VertexShader(shadowVert);
-                var array = new ShaderArray(vs);
+                var vs = new VertexShader(extrudeVert);
+                var gs = new GeometryShader(extrudeGeom);
+                var fs = new FragmentShader(extrudeFrag);
+                var array = new ShaderArray(vs, gs, fs);
                 var map = new AttributeMap();
                 map.Add("inPosition", position);
-                shadowBuilder = new RenderMethodBuilder(array, map);
+                extrudeBuilder = new RenderMethodBuilder(array, map);
             }
             {
                 var vs = new VertexShader(blinnPhongVert);
@@ -33,17 +36,17 @@ namespace Lighting.ShadowMapping
                 var map = new AttributeMap();
                 map.Add("inPosition", position);
                 map.Add("inNormal", normal);
-                blinnPhongBuilder = new RenderMethodBuilder(array, map);
+                underLightBuilder = new RenderMethodBuilder(array, map);
             }
 
-            var node = new ShadowMappingNode(model, ambientBuilder, shadowBuilder, blinnPhongBuilder);
+            var node = new ShadowVolumeNode(model, ambientBuilder, extrudeBuilder, underLightBuilder);
             node.Initialize();
             node.ModelSize = size;
 
             return node;
         }
 
-        private ShadowMappingNode(IBufferSource model, params RenderMethodBuilder[] builders)
+        private ShadowVolumeNode(IBufferSource model, params RenderMethodBuilder[] builders)
             : base(model, builders)
         {
             this.Color = new vec3(1, 1, 1);
@@ -51,25 +54,20 @@ namespace Lighting.ShadowMapping
             this.BlinnPhong = true;
         }
 
-        public vec3 Color { get; set; }
 
-        public float Shiness { get; set; }
+        #region ISupportShadowVolume 成员
 
-        public bool BlinnPhong { get; set; }
+        private TwoFlags enableShadowVolume = TwoFlags.BeforeChildren | TwoFlags.Children;
+        public TwoFlags EnableShadowVolume { get { return this.enableShadowVolume; } set { this.enableShadowVolume = value; } }
 
-        #region ISupportShadowMapping 成员
-
-        private TwoFlags enableShadowMapping = TwoFlags.BeforeChildren | TwoFlags.Children;
-        public TwoFlags EnableShadowMapping { get { return this.enableShadowMapping; } set { this.enableShadowMapping = value; } }
-
-        public void RenderAmbientColor(ShadowMappingAmbientEventArgs arg)
+        public void RenderAmbientColor(ShadowVolumeAmbientEventArgs arg)
         {
             ICamera camera = arg.Camera;
             mat4 projection = camera.GetProjectionMatrix();
             mat4 view = camera.GetViewMatrix();
             mat4 model = this.GetModelMatrix();
 
-            RenderMethod method = this.RenderUnit.Methods[0];
+            var method = this.RenderUnit.Methods[(int)MethodName.renderAmbientColor];
             ShaderProgram program = method.Program;
             program.SetUniform("mvpMat", projection * view * model);
             program.SetUniform("ambientColor", arg.Ambient);
@@ -77,38 +75,40 @@ namespace Lighting.ShadowMapping
             method.Render();
         }
 
-        private TwoFlags enableCastShadow = TwoFlags.BeforeChildren | TwoFlags.Children;
-        public TwoFlags EnableCastShadow { get { return this.enableCastShadow; } set { this.enableCastShadow = value; } }
+        private TwoFlags enableExtrude = TwoFlags.BeforeChildren | TwoFlags.Children;
+        public TwoFlags EnableExtrude { get { return this.enableExtrude; } set { this.enableExtrude = value; } }
 
-        public void CastShadow(ShadowMappingCastShadowEventArgs arg)
-        {
-            LightBase light = arg.Light;
-            mat4 projection = light.GetProjectionMatrix();
-            mat4 view = light.GetViewMatrix();
-            mat4 model = this.GetModelMatrix();
-
-            var method = this.RenderUnit.Methods[1];
-            ShaderProgram program = method.Program;
-            program.SetUniform("mvpMatrix", projection * view * model);
-
-            method.Render();
-        }
-
-        private TwoFlags enableRenderUnderLight = TwoFlags.BeforeChildren | TwoFlags.Children;
-        public TwoFlags EnableRenderUnderLight { get { return this.enableRenderUnderLight; } set { this.enableRenderUnderLight = value; } }
-
-        private static readonly mat4 lightBias = glm.scale(glm.translate(mat4.identity(), new vec3(1, 1, 1) * 0.5f), new vec3(1, 1, 1) * 0.5f);
-        public void RenderUnderLight(ShadowMappingUnderLightEventArgs arg)
+        private PolygonOffsetState fillFarOffsetState = new PolygonOffsetFillState(pullNear: false);
+        private PolygonOffsetState fillNearOffsetState = new PolygonOffsetFillState(pullNear: true);
+        public void ExtrudeShadow(ShadowVolumeExtrudeEventArgs arg)
         {
             ICamera camera = arg.Camera;
             mat4 projection = camera.GetProjectionMatrix();
             mat4 view = camera.GetViewMatrix();
             mat4 model = this.GetModelMatrix();
-            LightBase light = arg.Light;
-            mat4 lightProjection = light.GetProjectionMatrix();
-            mat4 lightView = light.GetViewMatrix();
 
-            RenderMethod method = this.RenderUnit.Methods[2];
+            var method = this.RenderUnit.Methods[(int)MethodName.extrudeShadow];
+            ShaderProgram program = method.Program;
+            program.SetUniform("gProjectionView", projection * view);
+            program.SetUniform("gWorld", model);
+            program.SetUniform("gLightPos", arg.Light.Position);// TODO: This is how point light works. I need to deal with directional light, etc.
+
+            fillFarOffsetState.On();
+            method.Render();
+            fillFarOffsetState.Off();
+        }
+
+        private TwoFlags enableRenderUnderLight = TwoFlags.BeforeChildren | TwoFlags.Children;
+        public TwoFlags EnableRenderUnderLight { get { return this.enableRenderUnderLight; } set { this.enableRenderUnderLight = value; } }
+
+        public void RenderUnderLight(ShadowVolumeUnderLightEventArgs arg)
+        {
+            ICamera camera = arg.Camera;
+            mat4 projection = camera.GetProjectionMatrix();
+            mat4 view = camera.GetViewMatrix();
+            mat4 model = this.GetModelMatrix();
+
+            var method = this.RenderUnit.Methods[(int)MethodName.renderUnderLight];
             ShaderProgram program = method.Program;
             // matrix.
             program.SetUniform("mvpMat", projection * view * model);
@@ -116,31 +116,36 @@ namespace Lighting.ShadowMapping
             //program.SetUniform("viewMat", view);
             program.SetUniform("modelMat", model);
             program.SetUniform("normalMat", glm.transpose(glm.inverse(model)));
-            program.SetUniform("shadow_matrix", lightBias * lightProjection * lightView);
             // light info.
-            light.SetBlinnPhongUniforms(program);
+            arg.Light.SetUniforms(program);
             // material.
             program.SetUniform("material.diffuse", this.Color);
             program.SetUniform("material.specular", this.Color);
             program.SetUniform("material.shiness", this.Shiness);
-            program.SetUniform("depth_texture", arg.ShadowMap);
             // eye pos.
             program.SetUniform("eyePos", camera.Position); // camera's position in world space.
             // use blinn phong or not?
             program.SetUniform("blinn", this.BlinnPhong);
-            program.SetUniform("useShadow", this.UseShadow);
 
+            //fillNearOffsetState.On();
             method.Render();
+            //fillNearOffsetState.Off();
         }
 
         #endregion
 
-        private bool useShadow = true;
+        public vec3 Color { get; set; }
 
-        public bool UseShadow
+        public float Shiness { get; set; }
+
+        public bool BlinnPhong { get; set; }
+
+        enum MethodName
         {
-            get { return useShadow; }
-            set { useShadow = value; }
+            renderAmbientColor,
+            extrudeShadow,
+            renderUnderLight,
         }
+
     }
 }

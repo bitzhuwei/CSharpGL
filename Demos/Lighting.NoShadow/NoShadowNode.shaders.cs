@@ -89,95 +89,66 @@ in VS_OUT {
 	vec3 normal;
 } fs_in;
 
-void PointLightUp(Light light, out float diffuse, out float specular) {
-    vec3 Distance = light.position - fs_in.position;
-	vec3 lightDir = normalize(Distance);
-	vec3 normal = normalize(fs_in.normal); 
-	float distance = length(Distance);
-	float attenuation = 1.0 / (light.constant + light.linear * distance + light.quadratic * distance * distance);
-	
-	// Diffuse color
-    diffuse = max(dot(lightDir, normal), 0) * attenuation;
+void LightUp(vec3 lightDir, vec3 normal, vec3 ePos, vec3 vPos, float shiness, out float diffuse, out float specular) {
+    // Diffuse factor
+    diffuse = max(dot(lightDir, normal), 0);
 
-	// Specular color
-	vec3 eyeDir = normalize(eyePos - fs_in.position);
-	float spec = 0;
+    // Specular factor
+    vec3 eyeDir = normalize(ePos - vPos);
+    specular = 0;
     if (blinn) {
         if (diffuse > 0) {
             vec3 halfwayDir = normalize(lightDir + eyeDir);
-    	    spec = pow(max(dot(normal, halfwayDir), 0.0), material.shiness);
+            specular = pow(max(dot(normal, halfwayDir), 0.0), shiness);
         }
     }
     else {
         if (diffuse > 0) {
-  			vec3 reflectDir = reflect(-lightDir, normal);
-   			spec = pow(max(dot(eyeDir, reflectDir), 0.0), material.shiness);
+            vec3 reflectDir = reflect(-lightDir, normal);
+            specular = pow(max(dot(eyeDir, reflectDir), 0.0), shiness);
         }
     }
-    specular = spec * attenuation;
+}
+
+void PointLightUp(Light light, out float diffuse, out float specular) {
+    vec3 Distance = light.position - fs_in.position;
+    vec3 lightDir = normalize(Distance);
+    vec3 normal = normalize(fs_in.normal); 
+    float distance = length(Distance);
+    float attenuation = 1.0 / (light.constant + light.linear * distance + light.quadratic * distance * distance);
+    
+    LightUp(lightDir, normal, eyePos, fs_in.position, material.shiness, diffuse, specular);
+    
+    diffuse = diffuse * attenuation;
+    specular = specular * attenuation;
 }
 
 void DirectionalLightUp(Light light, out float diffuse, out float specular) {
-	vec3 lightDir = normalize(light.direction);
-	vec3 normal = normalize(fs_in.normal); 
-	
-	// Diffuse color
-    diffuse = max(dot(lightDir, normal), 0);
-
-	// Specular color
-	vec3 eyeDir = normalize(eyePos - fs_in.position);
-	float spec = 0;
-    if (blinn) {
-        if (diffuse > 0) {
-            vec3 halfwayDir = normalize(lightDir + eyeDir);
-    	    spec = pow(max(dot(normal, halfwayDir), 0.0), material.shiness);
-        }
-    }
-    else {
-        if (diffuse > 0) {
-  			vec3 reflectDir = reflect(-lightDir, normal);
-   			spec = pow(max(dot(eyeDir, reflectDir), 0.0), material.shiness);
-        }
-    }
-    specular = spec;
+    vec3 lightDir = normalize(light.direction);
+    vec3 normal = normalize(fs_in.normal); 
+    LightUp(lightDir, normal, eyePos, fs_in.position, material.shiness, diffuse, specular);
 }
 
 // Note: We assume that spot light's angle ranges from 0 to 180 degrees.
 void SpotLightUp(Light light, out float diffuse, out float specular) {
     vec3 Distance = light.position - fs_in.position;
-	vec3 lightDir = normalize(Distance);
-	vec3 centerDir = normalize(light.direction);
-	float c = dot(lightDir, centerDir);// cut off at this point.
-	if (c < light.cutOff) { // current point is outside of the cut off edge. 
-		diffuse = 0; specular = 0;
-	}
-	else {
-		vec3 normal = normalize(fs_in.normal); 
-		float distance = length(Distance);
-		float attenuation = 1.0 / (light.constant + light.linear * distance + light.quadratic * distance * distance);
-	
-		// Diffuse color
-		diffuse = max(dot(lightDir, normal), 0) * attenuation;
+    vec3 lightDir = normalize(Distance);
+    vec3 centerDir = normalize(light.direction);
+    float c = dot(lightDir, centerDir);// cut off at this point.
+    if (c < light.cutOff) { // current point is outside of the cut off edge. 
+        diffuse = 0; specular = 0;
+    }
+    else {
+        vec3 normal = normalize(fs_in.normal); 
+        float distance = length(Distance);
+        float attenuation = 1.0 / (light.constant + light.linear * distance + light.quadratic * distance * distance);
 
-		// Specular color
-		vec3 eyeDir = normalize(eyePos - fs_in.position);
-		float spec = 0;
-		if (blinn) {
-            if (diffuse > 0) {
-			    vec3 halfwayDir = normalize(lightDir + eyeDir);
-			    spec = pow(max(dot(normal, halfwayDir), 0.0), material.shiness);
-            }
-		}
-		else {
-            if (diffuse > 0) {
-    			vec3 reflectDir = reflect(-lightDir, normal);
-    			spec = pow(max(dot(eyeDir, reflectDir), 0.0), material.shiness);
-            }
-		}
-		specular = spec * attenuation;
-	}
+        LightUp(lightDir, normal, eyePos, fs_in.position, material.shiness, diffuse, specular);
+    
+        diffuse = diffuse * attenuation;
+        specular = specular * attenuation;
+    }
 }
-
 
 out vec4 fragColor;
 
