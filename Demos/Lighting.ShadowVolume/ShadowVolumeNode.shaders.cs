@@ -48,7 +48,8 @@ layout (triangle_strip, max_vertices = 18) out; // 4 per quad * 3 triangle verti
 
 in vec3 PosL[]; // an array of 6 vertices (triangle with adjacency)
 
-uniform vec3 gLightPos;
+uniform bool farAway = false; // light's position is infinitly far away.
+uniform vec3 gLightPos; // if farAway is true, gLightPos means direction to light source; otherwise, it means light's position.
 uniform mat4 gProjectionView;
 uniform mat4 gWorld;
 
@@ -58,7 +59,9 @@ float EPSILON = 0.0001;
 void EmitQuad(vec3 StartVertex, vec3 EndVertex)
 {    
     // Vertex #1: the starting vertex (just a tiny bit below the original edge)
-    vec3 LightDir = normalize(StartVertex - gLightPos);   
+    vec3 LightDir;
+    if (farAway) { LightDir = -gLightPos; }
+    else { LightDir = normalize(StartVertex - gLightPos); }
     gl_Position = gProjectionView * vec4((StartVertex + LightDir * EPSILON), 1.0);
     EmitVertex();
  
@@ -67,7 +70,8 @@ void EmitQuad(vec3 StartVertex, vec3 EndVertex)
     EmitVertex();
     
     // Vertex #3: the ending vertex (just a tiny bit below the original edge)
-    LightDir = normalize(EndVertex - gLightPos);
+    if (farAway) { LightDir = -gLightPos; }
+    else { LightDir = normalize(EndVertex - gLightPos); }
     gl_Position = gProjectionView * vec4((EndVertex + LightDir * EPSILON), 1.0);
     EmitVertex();
     
@@ -96,7 +100,9 @@ void main()
     vec3 e6 = worldPos[5] - worldPos[0];
 
     vec3 Normal = normalize(cross(e1,e2));
-    vec3 LightDir = normalize(gLightPos - worldPos[0]);
+    vec3 LightDir;
+    if (farAway) { LightDir = gLightPos; }
+    else { LightDir = normalize(gLightPos - worldPos[0]); }
 
     // Handle only light facing triangles
     if (dot(Normal, LightDir) > 0) {
@@ -110,7 +116,8 @@ void main()
         }
 
         Normal = cross(e4,e5);
-        LightDir = gLightPos - worldPos[2];
+        if (farAway) { LightDir = gLightPos; }
+        else { LightDir = normalize(gLightPos - worldPos[2]); }
 
         if (dot(Normal, LightDir) <= 0) {
             vec3 StartVertex = worldPos[2];
@@ -119,7 +126,8 @@ void main()
         }
 
         Normal = cross(e2,e6);
-        LightDir = gLightPos - worldPos[4];
+        if (farAway) { LightDir = gLightPos; }
+        else { LightDir = normalize(gLightPos - worldPos[4]); }
 
         if (dot(Normal, LightDir) <= 0) {
             vec3 StartVertex = worldPos[4];
@@ -128,29 +136,35 @@ void main()
         }
 
         // render the front cap
-        LightDir = (normalize(worldPos[0] - gLightPos));
+        if (farAway) { LightDir = -gLightPos; }
+        else { LightDir = (normalize(worldPos[0] - gLightPos)); }
         gl_Position = gProjectionView * vec4((worldPos[0] + LightDir * EPSILON), 1.0);
         EmitVertex();
 
-        LightDir = (normalize(worldPos[2] - gLightPos));
+        if (farAway) { LightDir = -gLightPos; }
+        else { LightDir = (normalize(worldPos[2] - gLightPos)); }
         gl_Position = gProjectionView * vec4((worldPos[2] + LightDir * EPSILON), 1.0);
         EmitVertex();
 
-        LightDir = (normalize(worldPos[4] - gLightPos));
+        if (farAway) { LightDir = -gLightPos; }
+        else { LightDir = (normalize(worldPos[4] - gLightPos)); }
         gl_Position = gProjectionView * vec4((worldPos[4] + LightDir * EPSILON), 1.0);
         EmitVertex();
         EndPrimitive();
  
         // render the back cap
-        LightDir = worldPos[0] - gLightPos;
+        if (farAway) { LightDir = -gLightPos; }
+        else { LightDir = worldPos[0] - gLightPos; }
         gl_Position = gProjectionView * vec4(LightDir, 0.0);
         EmitVertex();
 
-        LightDir = worldPos[4] - gLightPos;
+        if (farAway) { LightDir = -gLightPos; }
+        else { LightDir = worldPos[4] - gLightPos; }
         gl_Position = gProjectionView * vec4(LightDir, 0.0);
         EmitVertex();
 
-        LightDir = worldPos[2] - gLightPos;
+        if (farAway) { LightDir = -gLightPos; }
+        else { LightDir = worldPos[2] - gLightPos; }
         gl_Position = gProjectionView * vec4(LightDir, 0.0);
         EmitVertex();
 

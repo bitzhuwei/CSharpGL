@@ -80,7 +80,7 @@ namespace Lighting.NoShadow
             program.SetUniform("modelMat", model);
             program.SetUniform("normalMat", glm.transpose(glm.inverse(model)));
             // light info.
-            light.SetUniforms(program);
+            light.SetBlinnPhongUniforms(program);
             // material.
             program.SetUniform("material.diffuse", this.Color);
             program.SetUniform("material.specular", this.Color);

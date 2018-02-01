@@ -21,7 +21,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="light"></param>
         /// <param name="program"></param>
-        public static void SetUniforms(this LightBase light, ShaderProgram program)
+        public static void SetBlinnPhongUniforms(this LightBase light, ShaderProgram program)
         {
             if (light is PointLight)
             {

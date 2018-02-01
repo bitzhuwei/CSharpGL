@@ -91,7 +91,17 @@ namespace Lighting.ShadowVolume
             ShaderProgram program = method.Program;
             program.SetUniform("gProjectionView", projection * view);
             program.SetUniform("gWorld", model);
-            program.SetUniform("gLightPos", arg.Light.Position);// TODO: This is how point light works. I need to deal with directional light, etc.
+            if (arg.Light is DirectionalLight)
+            {
+                var light = arg.Light as DirectionalLight;
+                program.SetUniform("gLightPos", light.Direction);
+                program.SetUniform("farAway", true);
+            }
+            else
+            {
+                program.SetUniform("gLightPos", arg.Light.Position);// TODO: This is how point light works. I need to deal with directional light, etc.
+                program.SetUniform("farAway", false);
+            }
 
             fillFarOffsetState.On();
             method.Render();
@@ -117,7 +127,7 @@ namespace Lighting.ShadowVolume
             program.SetUniform("modelMat", model);
             program.SetUniform("normalMat", glm.transpose(glm.inverse(model)));
             // light info.
-            arg.Light.SetUniforms(program);
+            arg.Light.SetBlinnPhongUniforms(program);
             // material.
             program.SetUniform("material.diffuse", this.Color);
             program.SetUniform("material.specular", this.Color);

@@ -118,7 +118,7 @@ namespace Lighting.ShadowMapping
             program.SetUniform("normalMat", glm.transpose(glm.inverse(model)));
             program.SetUniform("shadow_matrix", lightBias * lightProjection * lightView);
             // light info.
-            light.SetUniforms(program);
+            light.SetBlinnPhongUniforms(program);
             // material.
             program.SetUniform("material.diffuse", this.Color);
             program.SetUniform("material.specular", this.Color);
