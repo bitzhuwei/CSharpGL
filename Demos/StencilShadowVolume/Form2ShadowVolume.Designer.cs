@@ -1,4 +1,4 @@
-﻿namespace StencilShadowVolume
+﻿namespace Lighting.ShadowVolume
 {
     partial class Form2ShadowVolume
     {

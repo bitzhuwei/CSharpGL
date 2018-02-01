@@ -91,7 +91,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShaderDefineClipPlane", "De
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogicOperation", "Demos\LogicOperation\LogicOperation.csproj", "{3B2ACB2F-BAE7-4BDB-8D11-A5E0ECBF0985}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StencilShadowVolume", "Demos\StencilShadowVolume\StencilShadowVolume.csproj", "{FB09427D-737F-4FAE-B141-FB273BA467E4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lighting.ShadowVolume", "Demos\StencilShadowVolume\Lighting.ShadowVolume.csproj", "{FB09427D-737F-4FAE-B141-FB273BA467E4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lighting.NoShadow", "Demos\Lighting.NoShadow\Lighting.NoShadow.csproj", "{705D832E-9586-4467-BEC1-57BA60F23F0D}"
 EndProject
