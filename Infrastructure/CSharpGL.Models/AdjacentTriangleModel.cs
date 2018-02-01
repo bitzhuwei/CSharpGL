@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace StencilShadowVolume
+namespace CSharpGL
 {
-    class AdjacentTriangleModel : IBufferSource
+    public class AdjacentTriangleModel : IBufferSource
     {
         private ObjVNFMesh mesh;
 

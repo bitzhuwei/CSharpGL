@@ -39,9 +39,86 @@ namespace StencilShadowVolume
                 //Application.Run(new FormAdjacentTriangles(info));
                 //Application.Run(new Form0SilhouetteDetection(info));
                 //Application.Run(new Form1ExtrudeVolume(info));
-                Application.Run(new Form2ShadowVolume(info));
+                Application.Run(new Form2ShadowVolume(GetPointLights()));
             }
         }
+
+        private static List<LightBase> GetSpotLights()
+        {
+            var list = new List<LightBase>();
+            double radian = 120.0 / 180.0 * Math.PI / 2.0;
+            {
+                var light = new CSharpGL.SpotLight(new vec3(3, 3, 3), new vec3(), (float)Math.Cos(radian), new Attenuation(2, 0, 0));
+                light.Diffuse = new vec3(1, 0, 0);
+                light.Specular = new vec3(1, 0, 0);
+                list.Add(light);
+            }
+            {
+                var light = new CSharpGL.SpotLight(new vec3(3, 3, 3), new vec3(), (float)Math.Cos(radian), new Attenuation(2, 0, 0));
+                light.Diffuse = new vec3(0, 1, 0);
+                light.Specular = new vec3(0, 1, 0);
+                list.Add(light);
+            }
+            {
+                var light = new CSharpGL.SpotLight(new vec3(3, 3, 3), new vec3(), (float)Math.Cos(radian), new Attenuation(2, 0, 0));
+                light.Diffuse = new vec3(0, 0, 1);
+                light.Specular = new vec3(0, 0, 1);
+                list.Add(light);
+            }
+
+            return list;
+        }
+
+        private static List<LightBase> GetDirctionalLights()
+        {
+            var list = new List<LightBase>();
+            {
+                var light = new CSharpGL.DirectionalLight(new vec3(3, 3, 3));
+                light.Diffuse = new vec3(1, 0, 0);
+                light.Specular = new vec3(1, 0, 0);
+                list.Add(light);
+            }
+            {
+                var light = new CSharpGL.DirectionalLight(new vec3(3, 3, 3));
+                light.Diffuse = new vec3(0, 1, 0);
+                light.Specular = new vec3(0, 1, 0);
+                list.Add(light);
+            }
+            {
+                var light = new CSharpGL.DirectionalLight(new vec3(3, 3, 3));
+                light.Diffuse = new vec3(0, 0, 1);
+                light.Specular = new vec3(0, 0, 1);
+                list.Add(light);
+            }
+
+            return list;
+        }
+
+        private static List<LightBase> GetPointLights()
+        {
+            var list = new List<LightBase>();
+            {
+                var light = new CSharpGL.PointLight(new vec3(3, 3, 3), new Attenuation(2, 0, 0));
+                light.Diffuse = new vec3(1, 0, 0);
+                light.Specular = new vec3(1, 0, 0);
+                list.Add(light);
+            }
+            {
+                var light = new CSharpGL.PointLight(new vec3(3, 3, 3), new Attenuation(2, 0, 0));
+                light.Diffuse = new vec3(0, 1, 0);
+                light.Specular = new vec3(0, 1, 0);
+                list.Add(light);
+            }
+            {
+                var light = new CSharpGL.PointLight(new vec3(3, 3, 3), new Attenuation(2, 0, 0));
+                light.Diffuse = new vec3(0, 0, 1);
+                light.Specular = new vec3(0, 0, 1);
+                list.Add(light);
+            }
+
+            return list;
+        }
+
     }
 
     public class AdjacentTriangleModelProvider : IModelProvider

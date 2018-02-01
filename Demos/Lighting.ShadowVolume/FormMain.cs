@@ -100,7 +100,7 @@ namespace Lighting.ShadowVolume
                 else
                 {
                     ObjVNFMesh mesh = result.Mesh;
-                    var model = new ObjVNF(mesh);
+                    var model = new AdjacentTriangleModel(mesh);
                     var node = ShadowVolumeNode.Create(model, ObjVNF.strPosition, ObjVNF.strNormal, model.GetSize());
                     node.WorldPosition = new vec3(0, i * 5, 0);
                     node.Name = filename;
