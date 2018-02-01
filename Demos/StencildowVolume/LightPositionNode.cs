@@ -5,7 +5,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 
-namespace Lighting.ShadowVolume
+namespace StencilShadowVolume
 {
     /// <summary>
     /// Render a Cube with single color in modern opengl.

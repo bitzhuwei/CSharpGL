@@ -8,15 +8,15 @@ using System.Text;
 using System.Windows.Forms;
 using CSharpGL;
 
-namespace Lighting.ShadowVolume
+namespace StencilShadowVolume
 {
-    public partial class FormAdjacentTriangles : Form
+    public partial class Form2ShadowVolume : Form
     {
         private Scene scene;
         private ActionList actionList;
         private ModelInfo modelInfo;
 
-        public FormAdjacentTriangles(ModelInfo modelInfo)
+        public Form2ShadowVolume(ModelInfo modelInfo)
         {
             InitializeComponent();
 
@@ -31,23 +31,40 @@ namespace Lighting.ShadowVolume
         {
             var rootElement = GetTree();
 
-            var position = new vec3(5, 3, 4) * 3;
+            var position = new vec3(5, 3, 4) * 3.3f;
             var center = new vec3(0, 0, 0);
             var up = new vec3(0, 1, 0);
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
             this.scene = new Scene(camera)
-
             {
                 RootNode = rootElement,
                 ClearColor = Color.SkyBlue.ToVec4(),
             };
+            {
+                // add lights.
+                var lights = new PointLight[] { 
+                    new PointLight(new vec3()) { Diffuse = new vec3(1, 0, 0), Specular = new vec3(1, 0, 0) }, 
+                    new PointLight(new vec3()) { Diffuse = new vec3(0, 1, 0), Specular = new vec3(0, 1, 0) }, 
+                    new PointLight(new vec3()) { Diffuse = new vec3(0, 0, 1), Specular = new vec3(0, 0, 1) }, 
+                };
+                for (int i = 0; i < lights.Length; i++)
+                {
+                    this.scene.Lights.Add(lights[i]);
+                    var node = LightPositionNode.Create(lights[i], i * 360 / 3);
+                    this.scene.RootNode.Children.Add(node);
+                }
+            }
 
             var list = new ActionList();
             var transformAction = new TransformAction(scene.RootNode);
             list.Add(transformAction);
+            var shadowVolumeAction = new ShadowVolumeAction(scene);
+            list.Add(shadowVolumeAction);
             var renderAction = new RenderAction(scene);
             list.Add(renderAction);
             this.actionList = list;
+
+            (new FormProperyGrid(shadowVolumeAction)).Show();
 
             Match(this.trvScene, scene.RootNode);
             this.trvScene.ExpandAll();
@@ -77,11 +94,41 @@ namespace Lighting.ShadowVolume
 
         private SceneNodeBase GetTree()
         {
-            return AjdacentTrianglesNode.Create(
-                this.modelInfo.modelProvider.Model,
-                this.modelInfo.position,
-                this.modelInfo.normal,
-                this.modelInfo.size);
+            var group = new GroupNode();
+
+            {
+                //
+                var model = this.modelInfo.modelProvider.Model;
+                var node1 = ShadowVolumeNode.Create(model,
+                    this.modelInfo.position,
+                    this.modelInfo.normal,
+                    this.modelInfo.size);
+                node1.WorldPosition = new vec3(0, this.modelInfo.size.y / 2 + 0.2f, 0);
+                node1.Color = new vec3(1, 1, 1);
+                group.Children.Add(node1);
+
+                //var node2 = ShadowVolumeNode.Create(model,
+                //    this.modelInfo.position,
+                //    this.modelInfo.color,
+                //    this.modelInfo.size);
+                //node2.WorldPosition = new vec3(1, -1, 0) * 3;
+
+                //var node3 = ShadowVolumeNode.Create(model,
+                //    this.modelInfo.position,
+                //    this.modelInfo.color,
+                //    this.modelInfo.size);
+                //node3.WorldPosition = new vec3(-1, -1, 0) * 3;
+            }
+
+            {
+                var model = new AdjacentCubeModel(new vec3(100, 1, 100));
+                var floor = ShadowVolumeNode.Create(model, AdjacentCubeModel.strPosition, AdjacentCubeModel.strNormal, model.GetSize());
+                floor.WorldPosition = new vec3(0, -0.5f, 0);
+                floor.Color = new vec3(1, 1, 1) * 0.1f;
+                group.Children.Add(floor);
+            }
+
+            return group;
         }
 
         private void winGLCanvas1_OpenGLDraw(object sender, PaintEventArgs e)

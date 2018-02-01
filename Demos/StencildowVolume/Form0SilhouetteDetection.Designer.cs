@@ -1,6 +1,6 @@
-﻿namespace Lighting.ShadowVolume
+﻿namespace StencilShadowVolume
 {
-    partial class FormAdjacentTriangles
+    partial class Form0SilhouetteDetection
     {
         /// <summary>
         /// Required designer variable.
@@ -93,7 +93,7 @@
             this.Controls.Add(this.trvScene);
             this.Controls.Add(this.winGLCanvas1);
             this.Name = "FormMain";
-            this.Text = "Lighting.ShadowVolume - CSharpGL";
+            this.Text = "Silhouette Detection - Stencil Shadow Volume - CSharpGL";
             ((System.ComponentModel.ISupportInitialize)(this.winGLCanvas1)).EndInit();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();

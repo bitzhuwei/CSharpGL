@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{445EB4DA-9988-44C1-A0B4-DD6241AEF300}</ProjectGuid>
+    <ProjectGuid>{FB09427D-737F-4FAE-B141-FB273BA467E4}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Lighting.ShadowMapping</RootNamespace>
-    <AssemblyName>Lighting.ShadowMapping</AssemblyName>
+    <RootNamespace>Lighting.ShadowVolume</RootNamespace>
+    <AssemblyName>Lighting.ShadowVolume</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -43,16 +43,59 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdjacentTriangleModel.cs" />
+    <Compile Include="FormAdjacentTriangles.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAdjacentTriangles.Designer.cs">
+      <DependentUpon>FormAdjacentTriangles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ShadowVolumeNode.cs" />
+    <Compile Include="ShadowVolumeNode.shaders.cs" />
+    <Compile Include="Form2ShadowVolume.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form2ShadowVolume.Designer.cs">
+      <DependentUpon>Form2ShadowVolume.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form1ExtrudeVolume.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1ExtrudeVolume.Designer.cs">
+      <DependentUpon>Form1ExtrudeVolume.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form0SilhouetteDetection.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form0SilhouetteDetection.Designer.cs">
+      <DependentUpon>Form0SilhouetteDetection.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="ShadowVolumeNode.cs" />
-    <Compile Include="ShadowVolumeNode.shaders.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ExtrudeVolumeNode.cs" />
+    <Compile Include="ExtrudeVolumeNode.shaders.cs" />
+    <Compile Include="AjdacentTrianglesNode.cs" />
+    <Compile Include="AjdacentTrianglesNode.shaders.cs" />
+    <Compile Include="SilhouetteNode.shaders.cs" />
+    <Compile Include="SilhouetteNode.cs" />
+    <EmbeddedResource Include="FormAdjacentTriangles.resx">
+      <DependentUpon>FormAdjacentTriangles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form2ShadowVolume.resx">
+      <DependentUpon>Form2ShadowVolume.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form1ExtrudeVolume.resx">
+      <DependentUpon>Form1ExtrudeVolume.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form0SilhouetteDetection.resx">
+      <DependentUpon>Form0SilhouetteDetection.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
@@ -64,6 +107,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -91,9 +135,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Lighting.ShadowVolume.DirectionalLights.png" />
-    <Content Include="Lighting.ShadowVolume.PointLights.png" />
-    <Content Include="Lighting.ShadowVolume.SpotLights.png" />
+    <Content Include="StencilShadowVolume.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -8,7 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using CSharpGL;
 
-namespace Lighting.ShadowVolume
+namespace StencilShadowVolume
 {
     public partial class Form1ExtrudeVolume : Form
     {

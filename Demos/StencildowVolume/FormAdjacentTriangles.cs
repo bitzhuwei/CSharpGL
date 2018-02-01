@@ -1,5 +1,4 @@
-﻿using CSharpGL;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,21 +6,21 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using CSharpGL;
 
-namespace Lighting.ShadowVolume
+namespace StencilShadowVolume
 {
-    public partial class FormMain : Form
+    public partial class FormAdjacentTriangles : Form
     {
         private Scene scene;
         private ActionList actionList;
-        private List<LightBase> lights;
+        private ModelInfo modelInfo;
 
-        public FormMain(List<LightBase> lights, string text)
+        public FormAdjacentTriangles(ModelInfo modelInfo)
         {
             InitializeComponent();
 
-            this.lights = lights;
-            this.Text = text;
+            this.modelInfo = modelInfo;
 
             this.Load += FormMain_Load;
             this.winGLCanvas1.OpenGLDraw += winGLCanvas1_OpenGLDraw;
@@ -30,31 +29,24 @@ namespace Lighting.ShadowVolume
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-            var position = new vec3(1, 0.6f, 1) * 16;
+            var rootElement = GetTree();
+
+            var position = new vec3(5, 3, 4) * 3;
             var center = new vec3(0, 0, 0);
             var up = new vec3(0, 1, 0);
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
-            this.scene = new Scene(camera);
-            this.scene.RootNode = GetRootNode();
-            // add lights.
+            this.scene = new Scene(camera)
+
             {
-                var lightList = this.lights;
-                float angle = 0;
-                foreach (var light in lightList)
-                {
-                    this.scene.Lights.Add(light);
-                    var node = LightPositionNode.Create(light, angle);
-                    angle += 360.0f / lightList.Count;
-                    this.scene.RootNode.Children.Add(node);
-                }
-            }
+                RootNode = rootElement,
+                ClearColor = Color.SkyBlue.ToVec4(),
+            };
 
             var list = new ActionList();
-            list.Add(new TransformAction(scene.RootNode));
-            var action = (new ShadowVolumeAction(scene));
-            list.Add(action);
-            (new FormProperyGrid(action)).Show();
-            list.Add(new RenderAction(scene));
+            var transformAction = new TransformAction(scene.RootNode);
+            list.Add(transformAction);
+            var renderAction = new RenderAction(scene);
+            list.Add(renderAction);
             this.actionList = list;
 
             Match(this.trvScene, scene.RootNode);
@@ -83,32 +75,13 @@ namespace Lighting.ShadowVolume
             }
         }
 
-        private SceneNodeBase GetRootNode()
+        private SceneNodeBase GetTree()
         {
-            var group = new GroupNode();
-            var filenames = new string[] { "floor.obj_", "bunny.obj_", };
-            for (int i = 0; i < filenames.Length; i++)
-            {
-                string folder = System.Windows.Forms.Application.StartupPath;
-                string filename = System.IO.Path.Combine(folder, filenames[i]);
-                var parser = new ObjVNFParser(true);
-                ObjVNFResult result = parser.Parse(filename);
-                if (result.Error != null)
-                {
-                    MessageBox.Show(result.Error.ToString());
-                }
-                else
-                {
-                    ObjVNFMesh mesh = result.Mesh;
-                    var model = new ObjVNF(mesh);
-                    var node = ShadowVolumeNode.Create(model, ObjVNF.strPosition, ObjVNF.strNormal, model.GetSize());
-                    node.WorldPosition = new vec3(0, i * 5, 0);
-                    node.Name = filename;
-                    group.Children.Add(node);
-                }
-            }
-
-            return group;
+            return AjdacentTrianglesNode.Create(
+                this.modelInfo.modelProvider.Model,
+                this.modelInfo.position,
+                this.modelInfo.normal,
+                this.modelInfo.size);
         }
 
         private void winGLCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
@@ -129,10 +102,12 @@ namespace Lighting.ShadowVolume
             this.scene.Camera.AspectRatio = ((float)this.winGLCanvas1.Width) / ((float)this.winGLCanvas1.Height);
         }
 
-
         private void trvScene_AfterSelect(object sender, TreeViewEventArgs e)
         {
             this.propGrid.SelectedObject = e.Node.Tag;
+
+            this.lblState.Text = string.Format("{0} objects selected.", 1);
         }
     }
+
 }

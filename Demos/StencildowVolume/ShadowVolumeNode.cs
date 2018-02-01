@@ -1,10 +1,10 @@
-﻿using System;
+﻿using CSharpGL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using CSharpGL;
 
-namespace Lighting.ShadowVolume
+namespace StencilShadowVolume
 {
     partial class ShadowVolumeNode : ModernNode, ISupportShadowVolume
     {
@@ -148,5 +148,4 @@ namespace Lighting.ShadowVolume
         }
 
     }
-
 }
