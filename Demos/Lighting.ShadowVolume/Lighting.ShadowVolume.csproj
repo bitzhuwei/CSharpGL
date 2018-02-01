@@ -94,6 +94,7 @@
     <Content Include="Lighting.ShadowVolume.DirectionalLights.png" />
     <Content Include="Lighting.ShadowVolume.PointLights.png" />
     <Content Include="Lighting.ShadowVolume.SpotLights.png" />
+    <Content Include="StencilShadowVolume.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
