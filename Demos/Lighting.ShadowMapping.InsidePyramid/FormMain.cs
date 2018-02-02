@@ -68,8 +68,15 @@ namespace Lighting.ShadowMapping.InsidePyramid
         {
             var group = new GroupNode();
 
-            var node = PyramidNode.Create();
-            group.Children.Add(node);
+            {
+                var node = PyramideNode.Create();
+                group.Children.Add(node);
+            }
+            {
+                var triangleModel = new TriangleModel();
+                var node = TriangleNode.Create();
+                group.Children.Add(node);
+            }
 
             return group;
         }

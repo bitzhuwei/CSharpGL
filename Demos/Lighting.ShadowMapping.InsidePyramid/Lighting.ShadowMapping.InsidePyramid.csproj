@@ -51,9 +51,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TriangleNode.cs" />
+    <Compile Include="TriangleNode.shaders.cs" />
+    <Compile Include="TriangleModel.cs" />
     <Compile Include="PyramidModel.cs" />
-    <Compile Include="PyramidNode.shaders.cs" />
-    <Compile Include="PyramidNode.cs" />
+    <Compile Include="PyramideNode.shaders.cs" />
+    <Compile Include="PyramideNode.cs" />
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>

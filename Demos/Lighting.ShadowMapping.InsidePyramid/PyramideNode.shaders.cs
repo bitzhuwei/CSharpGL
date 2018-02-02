@@ -6,7 +6,7 @@ using CSharpGL;
 
 namespace Lighting.ShadowMapping.InsidePyramid
 {
-    partial class PyramidNode
+    partial class PyramideNode
     {
         private const string regularVert = @"#version 150
 

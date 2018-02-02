@@ -6,29 +6,29 @@ using CSharpGL;
 
 namespace Lighting.ShadowMapping.InsidePyramid
 {
-    partial class PyramidNode : PickableNode, IRenderable
+    partial class TriangleNode : PickableNode, IRenderable
     {
         private PolygonModeState polygonMode = new PolygonModeState(PolygonMode.Line);
-        public static PyramidNode Create()
+
+        public static TriangleNode Create()
         {
-            var model = new PyramidModel();
+            var model = new TriangleModel();
             var vs = new VertexShader(regularVert);
             var fs = new FragmentShader(regularFrag);
             var array = new ShaderArray(vs, fs);
             var map = new AttributeMap();
-            map.Add("inPosition", PyramidModel.strPosition);
+            map.Add("inPosition", TriangleModel.strPosition);
+            map.Add("inColor", TriangleModel.strColor);
             var builder = new RenderMethodBuilder(array, map);
-            var node = new PyramidNode(model, PyramidModel.strPosition, builder);
+            var node = new TriangleNode(model, TriangleModel.strPosition, builder);
             node.Initialize();
-            node.ModelSize = model.size;
 
             return node;
         }
 
-        private PyramidNode(IBufferSource model, string positionNameInIBufferSource, params RenderMethodBuilder[] builders)
+        private TriangleNode(IBufferSource model, string positionNameInIBufferSource, params RenderMethodBuilder[] builders)
             : base(model, positionNameInIBufferSource, builders)
         {
-            this.Color = new vec3(1, 1, 1);
         }
 
         #region IRenderable 成员
@@ -45,7 +45,6 @@ namespace Lighting.ShadowMapping.InsidePyramid
             RenderMethod method = this.RenderUnit.Methods[0];
             ShaderProgram program = method.Program;
             program.SetUniform("mvpMat", projection * view * model);
-            program.SetUniform("color", this.Color);
 
             this.polygonMode.On();
             method.Render();
@@ -58,6 +57,5 @@ namespace Lighting.ShadowMapping.InsidePyramid
 
         #endregion
 
-        public vec3 Color { get; set; }
     }
 }
