@@ -64,6 +64,7 @@
       <DependentUpon>FormProperyGrid.cs</DependentUpon>
     </Compile>
     <Compile Include="HighlightPick\LegacyQuadNode.cs" />
+    <Compile Include="HighlightPick\LegacyPointNode.cs" />
     <Compile Include="HighlightPick\LegacyTriangleNode.cs" />
     <Compile Include="KleinBottle\KleinBottleModel.cs" />
     <Compile Include="KleinBottle\KleinBottleNode.shaders.cs" />

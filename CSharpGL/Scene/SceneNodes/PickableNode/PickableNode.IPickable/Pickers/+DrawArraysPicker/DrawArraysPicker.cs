@@ -107,7 +107,7 @@ namespace CSharpGL
         {
             var vertexIds = new uint[] { searcher.Search(arg, lastVertexId, this), };
             vec3[] positions = FillPickedGeometrysPosition(vertexIds);
-            var pickedGeometry = new PickedGeometry(GeometryType.Line, positions, vertexIds, stageVertexId, this.Node);
+            var pickedGeometry = new PickedGeometry(GeometryType.Point, positions, vertexIds, stageVertexId, this.Node);
 
             return pickedGeometry;
         }

@@ -73,12 +73,16 @@ namespace CSharpGL
     /// <summary>
     /// Render event argument.
     /// </summary>
-    public class ShadowMappingCastShadowEventArgs
+    public class ShadowMappingCastShadowEventArgs : RenderEventArgs
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ShadowMappingCastShadowEventArgs"/> class.
         /// </summary>
-        public ShadowMappingCastShadowEventArgs(LightBase light)
+        /// <param name="param"></param>
+        /// <param name="camera"></param>
+        /// <param name="light"></param>
+        public ShadowMappingCastShadowEventArgs(ActionParams param, ICamera camera, LightBase light)
+            : base(param, camera)
         {
             this.Light = light;
         }
