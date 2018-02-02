@@ -86,7 +86,7 @@ namespace CSharpGL
             {
                 this.lightEquipment.Begin(param.Viewport);
 
-                var arg = new ShadowMappingCastShadowEventArgs(light);
+                var arg = new ShadowMappingCastShadowEventArgs(param, scene.Camera, light);
                 //this.colorMask.On();
                 CastShadow(scene.RootNode, arg);
                 //this.colorMask.Off();
