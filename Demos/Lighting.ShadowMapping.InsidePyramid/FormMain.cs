@@ -14,6 +14,8 @@ namespace Lighting.ShadowMapping.InsidePyramid
     {
         private Scene scene;
         private ActionList actionList;
+        private Picking pickingAction;
+        private LegacyPointNode pointTip;
 
         public FormMain()
         {
@@ -22,6 +24,10 @@ namespace Lighting.ShadowMapping.InsidePyramid
             this.Load += FormMain_Load;
             this.winGLCanvas1.OpenGLDraw += winGLCanvas1_OpenGLDraw;
             this.winGLCanvas1.Resize += winGLCanvas1_Resize;
+
+            this.winGLCanvas1.MouseDown += glCanvas1_MouseDown;
+            this.winGLCanvas1.MouseMove += glCanvas1_MouseMove;
+            this.winGLCanvas1.MouseUp += glCanvas1_MouseUp;
         }
 
         private void FormMain_Load(object sender, EventArgs e)
@@ -38,10 +44,14 @@ namespace Lighting.ShadowMapping.InsidePyramid
             list.Add(new RenderAction(scene));
             this.actionList = list;
 
+            this.pickingAction = new Picking(scene);
+            this.pointTip = new LegacyPointNode();
+
             Match(this.trvScene, scene.RootNode);
             this.trvScene.ExpandAll();
 
             var manipulater = new FirstPerspectiveManipulater();
+            manipulater.BindingMouseButtons = GLMouseButtons.Right;
             manipulater.Bind(camera, this.winGLCanvas1);
 
         }
