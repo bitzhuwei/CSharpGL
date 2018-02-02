@@ -8,7 +8,7 @@ namespace Lighting.ShadowMapping.InsidePyramid
 {
     partial class PyramidNode : PickableNode, IRenderable
     {
-
+        private PolygonModeState polygonMode = new PolygonModeState(PolygonMode.Line);
         public static PyramidNode Create()
         {
             var model = new PyramidModel();
@@ -17,7 +17,7 @@ namespace Lighting.ShadowMapping.InsidePyramid
             var array = new ShaderArray(vs, fs);
             var map = new AttributeMap();
             map.Add("inPosition", PyramidModel.strPosition);
-            var builder = new RenderMethodBuilder(array, map, new PolygonModeState(PolygonMode.Line));
+            var builder = new RenderMethodBuilder(array, map);
             var node = new PyramidNode(model, PyramidModel.strPosition, builder);
             node.Initialize();
             node.ModelSize = model.size;
@@ -47,7 +47,9 @@ namespace Lighting.ShadowMapping.InsidePyramid
             program.SetUniform("mvpMat", projection * view * model);
             program.SetUniform("color", this.Color);
 
+            this.polygonMode.On();
             method.Render();
+            this.polygonMode.Off();
         }
 
         public void RenderAfterChildren(RenderEventArgs arg)
