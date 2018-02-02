@@ -9,9 +9,16 @@ namespace Lighting.ShadowMapping.InsidePyramid
     class PyramidModel : IBufferSource
     {
         public readonly vec3 size = new vec3(2, 1, 2);
-        private static readonly vec3[] positions = new vec3[] { new vec3(0, 0, 0), new vec3(1, -1, 1), new vec3(1, -1, -1), new vec3(-1, -1, -1), new vec3(-1, -1, 1) };
+        private static readonly vec3[] positions = new vec3[] { new vec3(0, 0, 0), new vec3(1, -1, 1), new vec3(1, -1, -1), new vec3(-1, -1, -1), new vec3(-1, -1, 1), new vec3(0, -1, 0) };
 
-        private static readonly byte[] indexes = new byte[] { 0, 1, 0, 2, 0, 3, 0, 4, 1, 2, 2, 3, 3, 4, 4, 1, 1, 3, 2, 4, };
+        ///// <summary>
+        ///// indexes in GL_LINES
+        ///// </summary>
+        //private static readonly byte[] indexes = new byte[] { 0, 1, 0, 2, 0, 3, 0, 4, 1, 2, 2, 3, 3, 4, 4, 1, 1, 3, 2, 4, };
+        /// <summary>
+        /// indexes in GL_TRIANGLES
+        /// </summary>
+        private static readonly byte[] indexes = new byte[] { 0, 1, 2, 0, 2, 3, 0, 3, 4, 0, 4, 1, 1, 1, 5, 2, 2, 5, 3, 3, 5, 4, 4, 5, 1 };
 
         public const string strPosition = "position";
         private VertexBuffer positionBuffer;
@@ -42,7 +49,7 @@ namespace Lighting.ShadowMapping.InsidePyramid
             if (this.command == null)
             {
                 var indexBuffer = indexes.GenIndexBuffer(BufferUsage.StaticDraw);
-                this.command = new DrawElementsCmd(indexBuffer, DrawMode.Lines);
+                this.command = new DrawElementsCmd(indexBuffer, DrawMode.Triangles);
             }
 
             yield return this.command;

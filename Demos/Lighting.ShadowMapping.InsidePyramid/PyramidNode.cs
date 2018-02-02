@@ -17,7 +17,7 @@ namespace Lighting.ShadowMapping.InsidePyramid
             var array = new ShaderArray(vs, fs);
             var map = new AttributeMap();
             map.Add("inPosition", PyramidModel.strPosition);
-            var builder = new RenderMethodBuilder(array, map);
+            var builder = new RenderMethodBuilder(array, map, new PolygonModeState(PolygonMode.Line));
             var node = new PyramidNode(model, PyramidModel.strPosition, builder);
             node.Initialize();
             node.ModelSize = model.size;
