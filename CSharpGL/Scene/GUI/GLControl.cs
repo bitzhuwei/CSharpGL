@@ -9,7 +9,7 @@ namespace CSharpGL
     /// <summary>
     /// Control(widget) in OpenGL window.
     /// </summary>
-    public abstract partial class GLControl : IGUIRenderable, IDisposable
+    public abstract partial class GLControl : IGUIRenderable//, IDisposable
     {
         internal GLControl parent;
         /// <summary>

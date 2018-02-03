@@ -145,6 +145,12 @@
     <Compile Include="Scene\Algorithms\Actions\3DWorld\BillboardSortAction.cs" />
     <Compile Include="Scene\Algorithms\Actions\3DWorld\LightEquipment.cs" />
     <Compile Include="Scene\Algorithms\Actions\GUI\IGUIRenderable.cs" />
+    <Compile Include="Scene\GUI\GLControl.cs" />
+    <Compile Include="Scene\GUI\GLControl.IGUIRenderable.cs" />
+    <Compile Include="Scene\GUI\GLControl.Properties.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Scene\GUI\GLControlChildren.cs" />
     <Compile Include="Scene\GUI\Structs\GUIAnchorStyles.cs" />
     <Compile Include="Scene\GUI\Structs\GUIPoint.cs" />
     <Compile Include="Scene\GUI\Structs\GUIPointF.cs" />
