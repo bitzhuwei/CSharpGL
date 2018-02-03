@@ -8,6 +8,14 @@ namespace CSharpGL
 {
     public partial class GLControl
     {
+        //private static readonly GUIAnchorStyles noneAnchor = GUIAnchorStyles.None;
+        private static readonly GUIAnchorStyles leftAnchor = GUIAnchorStyles.Left;
+        private static readonly GUIAnchorStyles rightAnchor = GUIAnchorStyles.Right;
+        private static readonly GUIAnchorStyles bottomAnchor = GUIAnchorStyles.Bottom;
+        private static readonly GUIAnchorStyles topAnchor = GUIAnchorStyles.Top;
+        private static readonly GUIAnchorStyles leftRightAnchor = GUIAnchorStyles.Left | GUIAnchorStyles.Right;
+        private static readonly GUIAnchorStyles bottomTopAnchor = GUIAnchorStyles.Bottom | GUIAnchorStyles.Top;
+
         /// <summary>
         /// 获取或设置控件绑定到的容器的边缘并确定控件如何随其父级一起调整大小。
         /// </summary>
@@ -20,28 +28,15 @@ namespace CSharpGL
         //[Category(strGLControl)]
         //public GUIPadding Margin { get; set; }
 
-        private int x;
         /// <summary>
-        /// 相对于Parent左下角的位置(Left Down location)
+        /// distance to parent's left border.
         /// </summary>
-        [Category(strGLControl)]
-        [Description("相对于Parent左下角的位置(Left Down location)")]
-        public int X
-        {
-            get { return x; }
-            set { x = value; }
-        }
-        private int y;
+        private int left;
+
         /// <summary>
-        /// 相对于Parent左下角的位置(Left Down location)
+        /// distance to parent's bottom border.
         /// </summary>
-        [Category(strGLControl)]
-        [Description("相对于Parent左下角的位置(Left Down location)")]
-        public int Y
-        {
-            get { return y; }
-            set { y = value; }
-        }
+        private int bottom;
 
         /// <summary>
         /// 相对于Parent左下角的位置(Left Down location)
@@ -50,8 +45,8 @@ namespace CSharpGL
         [Description("相对于Parent左下角的位置(Left Down location)")]
         public GUIPoint Location
         {
-            get { return new GUIPoint(x, y); }
-            set { this.x = value.X; this.y = value.Y; }
+            get { return new GUIPoint(left, bottom); }
+            set { this.X = value.X; this.Y = value.Y; }
         }
 
         /// <summary>
@@ -62,64 +57,26 @@ namespace CSharpGL
         public GUISize Size
         {
             get { return new GUISize(width, height); }
-            set { this.width = value.Width; this.height = value.Height; }
+            set { this.Width = value.Width; this.Height = value.Height; }
         }
 
-        private int width;
         /// <summary>
-        /// Width of this control.
+        /// distance to parent's right border.
         /// </summary>
-        [Category(strGLControl)]
-        [Description("Width of this control.")]
-        public int Width
-        {
-            get { return width; }
-            set { width = value; }
-        }
-
-        private int height;
+        protected int right;
         /// <summary>
-        /// Height of this control.
+        /// distance to parent's top border.
         /// </summary>
-        [Category(strGLControl)]
-        [Description("Height of this control.")]
-        public int Height
-        {
-            get { return height; }
-            set { height = value; }
-        }
+        protected int top;
 
+        /// <summary>
+        /// 
+        /// </summary>
         protected int absLeft;
-        protected int absBottom;
-
-
-        internal GLControl parent;
         /// <summary>
-        /// Parent control.
+        /// 
         /// </summary>
-        [Category(strGLControl)]
-        [Description("Parent control. This node inherits parent's layout properties.")]
-        public GLControl Parent
-        {
-            get { return this.parent; }
-            set
-            {
-                GLControl old = this.parent;
-                if (old != value)
-                {
-                    this.parent = value;
-
-                    if (value == null) // parent != null
-                    {
-                        old.Children.Remove(this);
-                    }
-                    else // value != null && parent == null
-                    {
-                        value.Children.Add(this);
-                    }
-                }
-            }
-        }
+        protected int absBottom;
 
         /// <summary>
         /// 

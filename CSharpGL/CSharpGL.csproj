@@ -145,6 +145,12 @@
     <Compile Include="Scene\Algorithms\Actions\3DWorld\BillboardSortAction.cs" />
     <Compile Include="Scene\Algorithms\Actions\3DWorld\LightEquipment.cs" />
     <Compile Include="Scene\Algorithms\Actions\GUI\IGUIRenderable.cs" />
+    <Compile Include="Scene\GUI\GLControl.Height.cs" />
+    <Compile Include="Scene\GUI\GLControl.Parent.cs" />
+    <Compile Include="Scene\GUI\GLControl.Y.cs" />
+    <Compile Include="Scene\GUI\GLControl.X.cs" />
+    <Compile Include="Scene\GUI\GLControl.Width.cs" />
+    <Compile Include="Scene\GUI\GLControl.states.cs" />
     <Compile Include="Scene\GUI\GLControl.cs" />
     <Compile Include="Scene\GUI\GLControl.IGUIRenderable.cs" />
     <Compile Include="Scene\GUI\GLControl.Properties.cs">
