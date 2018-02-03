@@ -11,53 +11,6 @@ namespace CSharpGL
     /// </summary>
     public abstract partial class GLControl : IGUIRenderable//, IDisposable
     {
-        internal GLControl parent;
-        /// <summary>
-        /// Parent control.
-        /// </summary>
-        [Category(strGLControl)]
-        [Description("Parent control. This node inherits parent's layout properties.")]
-        public GLControl Parent
-        {
-            get { return this.parent; }
-            set
-            {
-                GLControl old = this.parent;
-                if (old != value)
-                {
-                    this.parent = value;
-
-                    if (value == null) // parent != null
-                    {
-                        old.Children.Remove(this);
-                    }
-                    else // value != null && parent == null
-                    {
-                        value.Children.Add(this);
-                    }
-                }
-            }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        [Category(strGLControl)]
-        [Description("Children Nodes. Inherits this node's IWorldSpace properties.")]
-        public GLControlChildren Children { get; private set; }
-
-        private const string strGLControl = "GLControl";
-
-        /// <summary>
-        /// 为便于调试而设置的ID值，没有应用意义。
-        /// <para>for debugging purpose only.</para>
-        /// </summary>
-        [Category(strGLControl)]
-        [Description("为便于调试而设置的ID值，没有应用意义。(for debugging purpose only.)")]
-        public int Id { get; private set; }
-
-        private static int idCounter = 0;
-
         /// <summary>
         ///
         /// </summary>
