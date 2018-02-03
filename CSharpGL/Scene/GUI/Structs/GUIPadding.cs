@@ -304,7 +304,19 @@ namespace CSharpGL
         /// <returns></returns>
         public override int GetHashCode()
         {
-            return this.Left ^ RotateLeftHelper.RotateLeft(this.Top, 8) ^ RotateLeftHelper.RotateLeft(this.Right, 16) ^ RotateLeftHelper.RotateLeft(this.Bottom, 24);
+            return this.Left ^ RotateLeft(this.Top, 8) ^ RotateLeft(this.Right, 16) ^ RotateLeft(this.Bottom, 24);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="nBits"></param>
+        /// <returns></returns>
+        private static int RotateLeft(int value, int nBits)
+        {
+            nBits %= 32;
+            return value << nBits | value >> 32 - nBits;
         }
 
         /// <summary>

@@ -144,9 +144,12 @@
     <Compile Include="Scene\Algorithms\Actions\3DWorld\BillboardRenderAction.cs" />
     <Compile Include="Scene\Algorithms\Actions\3DWorld\BillboardSortAction.cs" />
     <Compile Include="Scene\Algorithms\Actions\3DWorld\LightEquipment.cs" />
-    <Compile Include="Scene\GUI\GLControls\CtrlTexture\CtrlTexture.cs" />
-    <Compile Include="Scene\GUI\GLControls\CtrlTexture\CtrlTexture.shaders.cs" />
-    <Compile Include="Scene\GUI\GLControls\CtrlTexture\CtrlTextureModel.cs" />
+    <Compile Include="Scene\Algorithms\Actions\GUI\IGUIRenderable.cs" />
+    <Compile Include="Scene\GUI\Structs\GUIAnchorStyles.cs" />
+    <Compile Include="Scene\GUI\Structs\GUIPoint.cs" />
+    <Compile Include="Scene\GUI\Structs\GUIPointF.cs" />
+    <Compile Include="Scene\GUI\Structs\GUISize.cs" />
+    <Compile Include="Scene\GUI\Structs\GUISizeF.cs" />
     <Compile Include="Scene\Lights\TSpotLight.cs" />
     <Compile Include="Scene\Lights\__LightSetUniformsHelper.cs" />
     <Compile Include="Scene\Lights\__LightToMatrixHelper.cs" />
@@ -158,9 +161,6 @@
     <Compile Include="Scene\Algorithms\Actions\3DWorld\ShadowVolumeAction.cs" />
     <Compile Include="Scene\Algorithms\Actions\3DWorld\ISupportShadowVolume.cs" />
     <Compile Include="Scene\Algorithms\Actions\ActionParams.cs" />
-    <Compile Include="Scene\Algorithms\Actions\GUI\GUILayoutAction.cs" />
-    <Compile Include="Scene\Algorithms\Actions\GUI\GUIRenderAction.cs" />
-    <Compile Include="Scene\Algorithms\Actions\GUI\IGUIRenderable.cs" />
     <Compile Include="BasicDataStructures\Events\GLEventHandler`1.cs" />
     <Compile Include="Scene\GlyphMap\ChunkBase.cs" />
     <Compile Include="Scene\GlyphMap\CharDumper.cs" />
@@ -171,18 +171,6 @@
     <Compile Include="BasicDataStructures\Events\GLKeyEventArgs.cs" />
     <Compile Include="BasicDataStructures\Events\GLMouseEventArgs.cs" />
     <Compile Include="BasicDataStructures\Events\GLEventArgs.cs" />
-    <Compile Include="Scene\GUI\GLControl.Events.cs" />
-    <Compile Include="Scene\GUI\GLControl.Layout.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Scene\GUI\GLControls\CtrlButton\CtrlButton.Text.cs" />
-    <Compile Include="Scene\GUI\GLControls\CtrlButton\CtrlButton.cs" />
-    <Compile Include="Scene\GUI\GLControls\CtrlButton\CtrlButtonModel.cs" />
-    <Compile Include="Scene\GUI\GLControls\CtrlButton\CtrlButton.shaders.cs" />
-    <Compile Include="Scene\GUI\GLControls\CtrlImage\CtrlImage.shaders.cs" />
-    <Compile Include="Scene\GUI\GLControls\CtrlImage\CtrlImage.cs" />
-    <Compile Include="Scene\GUI\GLControl.cs" />
-    <Compile Include="Scene\GUI\GLControls\CtrlImage\CtrlImageModel.cs" />
     <Compile Include="Scene\Manipulaters\CameraManipulaters\FirstPerspectiveManipulater.cs" />
     <Compile Include="Scene\Manipulaters\CameraManipulaters\SatelliteManipulater.cs" />
     <Compile Include="Scene\Manipulaters\IKeyboardHandler.cs" />
@@ -233,20 +221,8 @@
     <Compile Include="GLObjects\Texture\Storages\TexStorages\TexStorage1D.cs" />
     <Compile Include="GLObjects\Texture\Texture.cs" />
     <Compile Include="Scene\Algorithms\Actions\ActionList.cs" />
-    <Compile Include="Scene\GUI\GLControl.IGUIRenderable.cs" />
-    <Compile Include="Scene\GUI\GLControl.IDisposable.cs" />
-    <Compile Include="Scene\GUI\GLControls\CtrlLabel\CtrlLabel.Text.cs" />
-    <Compile Include="Scene\GUI\GLControls\CtrlLabel\CtrlLabel.cs" />
-    <Compile Include="Scene\GUI\GLControls\CtrlLabel\CtrlLabel.shaders.cs" />
     <Compile Include="Scene\GlyphMap\GlyphsModel.cs" />
     <Compile Include="Scene\GlyphMap\QuadStruct.cs" />
-    <Compile Include="Scene\GUI\GLControls\CtrlRoot\CtrlRoot.cs" />
-    <Compile Include="Scene\GUI\GLControlChildren.cs" />
-    <Compile Include="Scene\GUI\Structs\GUIAnchorStyles.cs" />
-    <Compile Include="Scene\GUI\Structs\GUIPointF.cs" />
-    <Compile Include="Scene\GUI\Structs\GUIPoint.cs" />
-    <Compile Include="Scene\GUI\Structs\GUISizeF.cs" />
-    <Compile Include="Scene\GUI\Structs\GUISize.cs" />
     <Compile Include="Scene\Lights\Attenuation.cs" />
     <Compile Include="Scene\Lights\DirectionalLight.cs" />
     <Compile Include="Scene\Lights\LightBase.cs" />

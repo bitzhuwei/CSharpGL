@@ -37,10 +37,10 @@ namespace CSharpGL
         /// </summary>
         public List<LightBase> Lights { get { return this.lights; } }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public GLControl RootControl { get; set; }
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public GLControl RootControl { get; set; }
 
         private vec4 clearColor = Color.SkyBlue.ToVec4();
         /// <summary>
