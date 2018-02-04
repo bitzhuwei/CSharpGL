@@ -75,7 +75,7 @@ namespace Texture2D
             Match(this.trvSceneObject, scene.RootNode);
             this.trvSceneObject.ExpandAll();
 
-            //Match(this.trvSceneGUI, scene.RootControl);
+            Match(this.trvSceneGUI, scene.RootControl);
             this.trvSceneGUI.ExpandAll();
         }
 
@@ -146,23 +146,23 @@ namespace Texture2D
             return group;
         }
 
-        //private void Match(TreeView treeView, GLControl nodeBase)
-        //{
-        //    treeView.Nodes.Clear();
-        //    var node = new TreeNode(nodeBase.ToString()) { Tag = nodeBase };
-        //    treeView.Nodes.Add(node);
-        //    Match(node, nodeBase);
-        //}
+        private void Match(TreeView treeView, GLControl nodeBase)
+        {
+            treeView.Nodes.Clear();
+            var node = new TreeNode(nodeBase.ToString()) { Tag = nodeBase };
+            treeView.Nodes.Add(node);
+            Match(node, nodeBase);
+        }
 
-        //private void Match(TreeNode node, GLControl nodeBase)
-        //{
-        //    foreach (var item in nodeBase.Children)
-        //    {
-        //        var child = new TreeNode(item.ToString()) { Tag = item };
-        //        node.Nodes.Add(child);
-        //        Match(child, item);
-        //    }
-        //}
+        private void Match(TreeNode node, GLControl nodeBase)
+        {
+            foreach (var item in nodeBase.Children)
+            {
+                var child = new TreeNode(item.ToString()) { Tag = item };
+                node.Nodes.Add(child);
+                Match(child, item);
+            }
+        }
 
         private void Match(TreeView treeView, SceneNodeBase nodeBase)
         {
