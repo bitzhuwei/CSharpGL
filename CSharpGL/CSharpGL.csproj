@@ -89,8 +89,8 @@
     <Content Include="GLObjects\Texture\Storages\TexImages\readme.md" />
     <Content Include="GLObjects\DrawCommands\readme.md" />
     <None Include="GLObjects\Texture\Storages\readme.md" />
+    <None Include="Scene\Algorithms\Actions\readme.md" />
     <None Include="Scene\Manipulaters\readme.md" />
-    <None Include="Scene\Algorithms\Actions\3DWorld\readme.md" />
     <None Include="GLCanvas\readme.md" />
     <Compile Include="BasicDataStructures\Viewport.cs" />
     <Compile Include="GLAPI\GL.Enumerations\CubemapFace.cs" />
@@ -695,13 +695,6 @@
     <None Include="Scene\SceneNodes\ModernNode\readme.md" />
     <Content Include="Scene\SceneNodes\ConcreteNodes\readme.md" />
     <Content Include="Scene\SceneNodes\RenderUnits\readme.md" />
-    <None Include="Scene\Shaders\Blinn-Phong\BP-ViewSpace.frag" />
-    <None Include="Scene\Shaders\Blinn-Phong\BP-ViewSpace.vert" />
-    <None Include="Scene\Shaders\Blinn-Phong\BP-WorldSpace.frag" />
-    <None Include="Scene\Shaders\Blinn-Phong\BP-WorldSpace.vert" />
-    <None Include="Scene\Shaders\Blinn-Phong\readme.md" />
-    <None Include="Scene\Shaders\Blinn-Phong\Uniform\BP-WorldSpace.frag" />
-    <None Include="Scene\Shaders\Blinn-Phong\Uniform\BP-WorldSpace.vert" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="GLAPI\GL.Enumerations\DrawMode.png" />
@@ -709,9 +702,7 @@
     <Content Include="GLObjects\GLBuffers\readme.md" />
     <Content Include="GLObjects\GLBuffers\VertexBuffers\readme.md" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Scene\GUI.old\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
