@@ -12,15 +12,6 @@ namespace CSharpGL
     public abstract partial class GLControl : IGUIRenderable//, IDisposable
     {
         /// <summary>
-        ///
-        /// </summary>
-        /// <returns></returns>
-        public override string ToString()
-        {
-            return string.Format("[{0}]: [{1}]", this.Id, this.GetType().Name);
-        }
-
-        /// <summary>
         /// 用OpenGL初始化和渲染一个模型。
         /// <para>Initialize and render something with OpenGL.</para>
         /// </summary>
@@ -31,6 +22,15 @@ namespace CSharpGL
             this.Children = new GLControlChildren(this);
 
             this.Anchor = anchor;
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+            return string.Format("[{0}]: [{1}]", this.Id, this.GetType().Name);
         }
 
     }
