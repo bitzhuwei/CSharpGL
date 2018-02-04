@@ -90,7 +90,8 @@ namespace CSharpGL
             item.parent = this.parent;
             children.Add(item);
 
-            GLControl.LayoutAfterAddChild(this.parent, item);
+            GLControl.LayoutAfterAddChild(item, this.parent);
+            GLControl.UpdateAbsLocation(item, this.parent);
         }
 
         /// <summary>
@@ -108,7 +109,10 @@ namespace CSharpGL
             foreach (var item in items)
             {
                 if (item != null)
-                { GLControl.LayoutAfterAddChild(this.parent, item); }
+                {
+                    GLControl.LayoutAfterAddChild(item, this.parent);
+                    GLControl.UpdateAbsLocation(item, this.parent);
+                }
             }
         }
 

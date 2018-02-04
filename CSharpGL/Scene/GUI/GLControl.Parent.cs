@@ -32,18 +32,19 @@ namespace CSharpGL
                     {
                         value.Children.children.Add(this);
 
-                        GLControl.LayoutAfterAddChild(value, this);
+                        GLControl.LayoutAfterAddChild(this, value);
+                        GLControl.UpdateAbsLocation(this, value);
                     }
                 }
             }
         }
 
-        internal static void LayoutAfterAddChild(GLControl parent, GLControl control)
+        internal static void LayoutAfterAddChild(GLControl control, GLControl parent)
         {
             GUIAnchorStyles anchor = control.Anchor;
             if ((anchor & leftRightAnchor) == leftRightAnchor)
             {
-                control.width = parent.width - control.left - control.right;
+                control.Width = parent.width - control.left - control.right;
             }
             else if ((anchor & leftAnchor) == leftAnchor)
             {

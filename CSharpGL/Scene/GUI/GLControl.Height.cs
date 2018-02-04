@@ -16,12 +16,12 @@ namespace CSharpGL
         [Description("Height of this control.")]
         public int Height
         {
-            get { return height; }
+            get { return this.height; }
             set
             {
-                if (height != value)
+                if (this.height != value)
                 {
-                    height = value;
+                    this.height = value;
 
                     GLControl.LayoutAfterHeightChanged(this, this.Children);
                 }
@@ -44,6 +44,7 @@ namespace CSharpGL
                 else if ((anchor & topAnchor) == topAnchor)
                 {
                     control.bottom = parent.height - control.top - control.height;
+                    control.absBottom = parent.absBottom + control.bottom;
                 }
                 else // if ((anchor & noneAnchor) == noneAnchor)
                 {
@@ -51,6 +52,7 @@ namespace CSharpGL
                     int halfDiff = diff / 2;
                     int OtherHalfDiff = diff - halfDiff;
                     control.bottom += halfDiff;
+                    control.absBottom = parent.absBottom + control.bottom;
                     control.top += OtherHalfDiff;
                 }
             }

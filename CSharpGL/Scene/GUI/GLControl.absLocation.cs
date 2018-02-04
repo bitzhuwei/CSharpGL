@@ -10,17 +10,20 @@ namespace CSharpGL
     {
 
         /// <summary>
-        /// 
+        /// Update absolution location for <paramref name="control"/> and its children.
         /// </summary>
-        public void UpdateAbsLocation()
+        /// <param name="control"></param>
+        /// <param name="parent"><paramref name="control"/>'s parent.</param>
+        internal static void UpdateAbsLocation(GLControl control, GLControl parent)
         {
-            GLControl parent = this;
-            foreach (var control in parent.Children)
             {
                 control.absLeft = parent.absLeft + control.left;
                 control.absBottom = parent.absBottom + control.bottom;
+            }
 
-                control.UpdateAbsLocation();
+            foreach (var child in control.Children)
+            {
+                UpdateAbsLocation(child, control);
             }
         }
     }

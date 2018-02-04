@@ -24,6 +24,7 @@ namespace CSharpGL
                     GLControl parent = this.parent;
                     if (parent != null)
                     {
+                        this.absBottom = parent.absBottom + this.bottom;
                         GLControl.LayoutAfterYChanged(parent, this);
                     }
                 }
@@ -33,19 +34,11 @@ namespace CSharpGL
         private static void LayoutAfterYChanged(GLControl parent, GLControl control)
         {
             GUIAnchorStyles anchor = control.Anchor;
-            if ((anchor & bottomTopAnchor) == bottomTopAnchor)
+            if ((anchor & topAnchor) == topAnchor)
             {
                 control.Height = parent.height - control.bottom - control.top;
             }
-            else if ((anchor & bottomAnchor) == bottomAnchor)
-            {
-                control.top = parent.height - control.bottom - control.height;
-            }
-            else if ((anchor & topAnchor) == topAnchor)
-            {
-                control.bottom = parent.height - control.height - control.top;
-            }
-            else // if ((anchor & noneAnchor) == noneAnchor)
+            else
             {
                 control.top = parent.height - control.bottom - control.height;
             }

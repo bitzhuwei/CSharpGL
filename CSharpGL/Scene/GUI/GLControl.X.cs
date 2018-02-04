@@ -24,6 +24,7 @@ namespace CSharpGL
                     GLControl parent = this.parent;
                     if (parent != null)
                     {
+                        this.absLeft = parent.absLeft + this.left;
                         GLControl.LayoutAfterXChanged(parent, this);
                     }
                 }
@@ -33,19 +34,11 @@ namespace CSharpGL
         private static void LayoutAfterXChanged(GLControl parent, GLControl control)
         {
             GUIAnchorStyles anchor = control.Anchor;
-            if ((anchor & leftRightAnchor) == leftRightAnchor)
+            if ((anchor & rightAnchor) == rightAnchor)
             {
                 control.Width = parent.width - control.left - control.right;
             }
-            else if ((anchor & leftAnchor) == leftAnchor)
-            {
-                control.right = parent.width - control.left - control.width;
-            }
-            else if ((anchor & rightAnchor) == rightAnchor)
-            {
-                control.left = parent.width - control.width - control.right;
-            }
-            else // if ((anchor & noneAnchor) == noneAnchor)
+            else
             {
                 control.right = parent.width - control.left - control.width;
             }

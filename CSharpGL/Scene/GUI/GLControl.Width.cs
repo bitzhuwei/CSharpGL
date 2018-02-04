@@ -46,6 +46,7 @@ namespace CSharpGL
                 else if ((anchor & rightAnchor) == rightAnchor)
                 {
                     control.left = parent.width - control.right - control.width;
+                    control.absLeft = parent.absLeft + control.left;
                 }
                 else // if ((anchor & noneAnchor) == noneAnchor)
                 {
@@ -53,6 +54,7 @@ namespace CSharpGL
                     int halfDiff = diff / 2;
                     int OtherHalfDiff = diff - halfDiff;
                     control.left += halfDiff;
+                    control.absLeft = parent.absLeft + control.left;
                     control.right += OtherHalfDiff;
                 }
             }
