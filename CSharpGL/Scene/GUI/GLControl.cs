@@ -9,63 +9,58 @@ namespace CSharpGL
     /// <summary>
     /// Control(widget) in OpenGL window.
     /// </summary>
-    public abstract partial class GLControl : IGUIRenderable, IDisposable
+    public abstract partial class GLControl : IGUIRenderable//, IDisposable
     {
-        internal GLControl parent;
-        /// <summary>
-        /// Parent control.
-        /// </summary>
-        [Category(strGLControl)]
-        [Description("Parent control. This node inherits parent's layout properties.")]
-        public GLControl Parent
-        {
-            get { return this.parent; }
-            set
-            {
-                GLControl old = this.parent;
-                if (old != value)
-                {
-                    this.parent = value;
-
-                    if (value == null) // parent != null
-                    {
-                        old.Children.Remove(this);
-                    }
-                    else // value != null && parent == null
-                    {
-                        value.Children.Add(this);
-                    }
-                }
-            }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        [Category(strGLControl)]
-        [Description("Children Nodes. Inherits this node's IWorldSpace properties.")]
-        public GLControlChildren Children { get; private set; }
-
         private const string strGLControl = "GLControl";
-
-        /// <summary>
-        /// 为便于调试而设置的ID值，没有应用意义。
-        /// <para>for debugging purpose only.</para>
-        /// </summary>
-        [Category(strGLControl)]
-        [Description("为便于调试而设置的ID值，没有应用意义。(for debugging purpose only.)")]
-        public int Id { get; private set; }
-
         private static int idCounter = 0;
 
         /// <summary>
-        ///
+        /// distance to parent's left border.
         /// </summary>
-        /// <returns></returns>
-        public override string ToString()
-        {
-            return string.Format("[{0}]: [{1}]", this.Id, this.GetType().Name);
-        }
+        private int left;
+
+        /// <summary>
+        /// this control's width.
+        /// </summary>
+        private int width;
+
+        /// <summary>
+        /// distance to parent's bottom border.
+        /// </summary>
+        private int bottom;
+
+        /// <summary>
+        /// distance to parent's right border.
+        /// </summary>
+        protected int right;
+
+        /// <summary>
+        /// distance to parent's top border.
+        /// </summary>
+        protected int top;
+
+        /// <summary>
+        /// this control's height.
+        /// </summary>
+        private int height;
+
+        /// <summary>
+        /// distance to root control's left border.
+        /// </summary>
+        protected int absLeft;
+
+        /// <summary>
+        /// distance to root control's bottom border.
+        /// </summary>
+        protected int absBottom;
+
+        //private static readonly GUIAnchorStyles noneAnchor = GUIAnchorStyles.None;
+        private static readonly GUIAnchorStyles leftAnchor = GUIAnchorStyles.Left;
+        private static readonly GUIAnchorStyles rightAnchor = GUIAnchorStyles.Right;
+        private static readonly GUIAnchorStyles bottomAnchor = GUIAnchorStyles.Bottom;
+        private static readonly GUIAnchorStyles topAnchor = GUIAnchorStyles.Top;
+        private static readonly GUIAnchorStyles leftRightAnchor = GUIAnchorStyles.Left | GUIAnchorStyles.Right;
+        private static readonly GUIAnchorStyles bottomTopAnchor = GUIAnchorStyles.Bottom | GUIAnchorStyles.Top;
 
         /// <summary>
         /// 用OpenGL初始化和渲染一个模型。
@@ -79,5 +74,15 @@ namespace CSharpGL
 
             this.Anchor = anchor;
         }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+            return string.Format("[{0}]: [{1}]", this.Id, this.GetType().Name);
+        }
+
     }
 }

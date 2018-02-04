@@ -39,17 +39,17 @@ namespace CSharpGL
         public int Delta { get; private set; }
 
         /// <summary>
-        /// 一个 ivec2，包含鼠标的 x 和 y 坐标（以像素为单位，以(left, bottom)为0）。相对<see cref="CtrlRoot"/>而言。
+        /// 一个 ivec2，包含鼠标的 x 和 y 坐标（以像素为单位，以(left, bottom)为0）。
         /// </summary>
         public ivec2 Location { get { return new ivec2(X, Y); } }
 
         /// <summary>
-        /// 鼠标单击的 x 坐标（以像素为单位，以left为0）。相对<see cref="CtrlRoot"/>而言。
+        /// 鼠标单击的 x 坐标（以像素为单位，以left为0）。
         /// </summary>
         public int X { get; private set; }
 
         /// <summary>
-        /// 鼠标单击的 y 坐标（以像素为单位，以bottom为0）。相对<see cref="CtrlRoot"/>而言。
+        /// 鼠标单击的 y 坐标（以像素为单位，以bottom为0）。
         /// </summary>
         public int Y { get; private set; }
     }

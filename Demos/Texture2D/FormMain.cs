@@ -65,8 +65,8 @@ namespace Texture2D
             var renderAction = new RenderAction(scene);
             list.Add(renderAction);
 
-            var guiLayoutAction = new GUILayoutAction(scene.RootControl);
-            list.Add(guiLayoutAction);
+            //var guiLayoutAction = new GUILayoutAction(scene.RootControl);
+            //list.Add(guiLayoutAction);
             var guiRenderAction = new GUIRenderAction(scene.RootControl);
             list.Add(guiRenderAction);
 

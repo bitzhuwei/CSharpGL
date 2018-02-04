@@ -34,7 +34,6 @@ namespace Texture2DArray
             var up = new vec3(0, 1, 0);
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
             this.scene = new Scene(camera)
-
             {
                 RootNode = rootElement,
                 ClearColor = Color.SkyBlue.ToVec4(),
@@ -47,38 +46,9 @@ namespace Texture2DArray
             var renderAction = new RenderAction(scene);
             list.Add(renderAction);
 
-            var guiLayoutAction = new GUILayoutAction(scene.RootControl);
-            list.Add(guiLayoutAction);
-            var guiRenderAction = new GUIRenderAction(scene.RootControl);
-            list.Add(guiRenderAction);
-
             this.actionList = list;
 
             MessageBox.Show("Press 'n' to switch texture indexes!");
-        }
-
-        private WinCtrlRoot GetRootControl()
-        {
-            var root = new WinCtrlRoot(this.winGLCanvas1.Width, this.winGLCanvas1.Height);
-
-            string folder = System.Windows.Forms.Application.StartupPath;
-            var bitmap = new Bitmap(System.IO.Path.Combine(folder, @"particle.png"));
-            {
-                var control = new CtrlImage(bitmap, false);
-                control.Location = new GUIPoint(10, 10);
-                control.Width = 100; control.Height = 50;
-                bitmap.Dispose();
-                root.Children.Add(control);
-            }
-            {
-                var control = new CtrlButton() { Anchor = GUIAnchorStyles.Left | GUIAnchorStyles.Bottom };
-                control.Location = new GUIPoint(10, 70);
-                control.Width = 100; control.Height = 50;
-                root.Children.Add(control);
-                control.Focused = true;
-            }
-
-            return root;
         }
 
         private SceneNodeBase GetRootElement()
