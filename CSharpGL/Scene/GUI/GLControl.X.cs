@@ -24,13 +24,13 @@ namespace CSharpGL
                     GLControl parent = this.parent;
                     if (parent != null)
                     {
-                        this.LayoutThisHorizontal(parent, this);
+                        GLControl.LayoutAfterXChanged(parent, this);
                     }
                 }
             }
         }
 
-        private void LayoutThisHorizontal(GLControl parent, GLControl control)
+        private static void LayoutAfterXChanged(GLControl parent, GLControl control)
         {
             GUIAnchorStyles anchor = control.Anchor;
             if ((anchor & leftRightAnchor) == leftRightAnchor)

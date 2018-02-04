@@ -150,7 +150,6 @@
     <Compile Include="Scene\GUI\GLControl.Y.cs" />
     <Compile Include="Scene\GUI\GLControl.X.cs" />
     <Compile Include="Scene\GUI\GLControl.Width.cs" />
-    <Compile Include="Scene\GUI\GLControl.states.cs" />
     <Compile Include="Scene\GUI\GLControl.cs" />
     <Compile Include="Scene\GUI\GLControl.IGUIRenderable.cs" />
     <Compile Include="Scene\GUI\GLControl.Properties.cs">

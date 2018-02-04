@@ -23,12 +23,12 @@ namespace CSharpGL
                 {
                     width = value;
 
-                    LayoutChildrenHorizontal(this, this.Children);
+                    GLControl.LayoutAfterWidthChanged(this, this.Children);
                 }
             }
         }
 
-        private void LayoutChildrenHorizontal(GLControl parent, GLControlChildren glControlChildren)
+        private static void LayoutAfterWidthChanged(GLControl parent, GLControlChildren glControlChildren)
         {
             foreach (var control in glControlChildren)
             {
@@ -37,7 +37,7 @@ namespace CSharpGL
                 GUIAnchorStyles anchor = control.Anchor;
                 if ((anchor & leftRightAnchor) == leftRightAnchor)
                 {
-                    control.Width = parent.width - control.left - control.right;
+                    control.width = parent.width - control.left - control.right;
                 }
                 else if ((anchor & leftAnchor) == leftAnchor)
                 {

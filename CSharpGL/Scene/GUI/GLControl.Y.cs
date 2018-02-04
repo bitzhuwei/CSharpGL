@@ -24,13 +24,13 @@ namespace CSharpGL
                     GLControl parent = this.parent;
                     if (parent != null)
                     {
-                        this.LayoutThisVertical(parent, this);
+                        GLControl.LayoutAfterYChanged(parent, this);
                     }
                 }
             }
         }
 
-        private void LayoutThisVertical(GLControl parent, GLControl control)
+        private static void LayoutAfterYChanged(GLControl parent, GLControl control)
         {
             GUIAnchorStyles anchor = control.Anchor;
             if ((anchor & bottomTopAnchor) == bottomTopAnchor)

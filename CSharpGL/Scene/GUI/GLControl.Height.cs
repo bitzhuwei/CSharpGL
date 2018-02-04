@@ -23,12 +23,12 @@ namespace CSharpGL
                 {
                     height = value;
 
-                    LayoutChildrenVertical(this, this.Children);
+                    GLControl.LayoutAfterHeightChanged(this, this.Children);
                 }
             }
         }
 
-        private void LayoutChildrenVertical(GLControl parent, GLControlChildren glControlChildren)
+        private static void LayoutAfterHeightChanged(GLControl parent, GLControlChildren glControlChildren)
         {
             foreach (var control in glControlChildren)
             {

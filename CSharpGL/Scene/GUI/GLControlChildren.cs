@@ -12,7 +12,7 @@ namespace CSharpGL
     [Editor(typeof(IListEditor<GLControl>), typeof(UITypeEditor))]
     public class GLControlChildren : IList<GLControl>
     {
-        private List<GLControl> list = new List<GLControl>();
+        internal readonly List<GLControl> children = new List<GLControl>();
 
         /// <summary>
         /// parent of this list's items.
@@ -37,7 +37,7 @@ namespace CSharpGL
         /// <returns>如果在整个 System.Collections.Generic.List&lt;T&gt; 中找到 item 的第一个匹配项，则为该项的从零开始的索引；否则为-1。</returns>
         public int IndexOf(GLControl item)
         {
-            return list.IndexOf(item);
+            return children.IndexOf(item);
         }
 
         /// <summary>
@@ -48,7 +48,7 @@ namespace CSharpGL
         public void Insert(int index, GLControl item)
         {
             item.parent = this.parent;
-            list.Insert(index, item);
+            children.Insert(index, item);
         }
 
         /// <summary>
@@ -57,9 +57,9 @@ namespace CSharpGL
         /// <param name="index">要移除的元素的从零开始的索引。</param>
         public void RemoveAt(int index)
         {
-            GLControl obj = list[index];
-            this.list.RemoveAt(index);
-            obj.parent = null;
+            GLControl obj = children[index];
+            this.children.RemoveAt(index);
+            if (obj != null) { obj.parent = null; }
         }
 
         /// <summary>
@@ -71,11 +71,11 @@ namespace CSharpGL
         {
             get
             {
-                return list[index];
+                return children[index];
             }
             set
             {
-                list[index] = value;
+                children[index] = value;
             }
         }
 
@@ -85,8 +85,12 @@ namespace CSharpGL
         /// <param name="item">要添加到 System.Collections.Generic.List&lt;T&gt; 的末尾处的对象。对于引用类型，该值可以为 null。</param>
         public void Add(GLControl item)
         {
+            if (item == null) { return; }
+
             item.parent = this.parent;
-            list.Add(item);
+            children.Add(item);
+
+            GLControl.LayoutAfterAddChild(this.parent, item);
         }
 
         /// <summary>
@@ -97,9 +101,15 @@ namespace CSharpGL
         {
             foreach (var item in items)
             {
-                item.parent = this.parent;
+                if (item != null)
+                { item.parent = this.parent; children.Add(item); }
             }
-            list.AddRange(items);
+
+            foreach (var item in items)
+            {
+                if (item != null)
+                { GLControl.LayoutAfterAddChild(this.parent, item); }
+            }
         }
 
         /// <summary>
@@ -107,8 +117,8 @@ namespace CSharpGL
         /// </summary>
         public void Clear()
         {
-            GLControl[] array = this.list.ToArray();
-            this.list.Clear();
+            GLControl[] array = this.children.ToArray();
+            this.children.Clear();
 
             foreach (var item in array)
             {
@@ -123,7 +133,7 @@ namespace CSharpGL
         /// <returns>如果在 System.Collections.Generic.List&lt;T&gt; 中找到 item，则为 true，否则为 false。</returns>
         public bool Contains(GLControl item)
         {
-            return list.Contains(item);
+            return children.Contains(item);
         }
 
         /// <summary>
@@ -133,7 +143,7 @@ namespace CSharpGL
         /// <param name="arrayIndex">array 中从零开始的索引，从此处开始复制。</param>
         public void CopyTo(GLControl[] array, int arrayIndex)
         {
-            list.CopyTo(array, arrayIndex);
+            children.CopyTo(array, arrayIndex);
         }
 
         /// <summary>
@@ -141,7 +151,7 @@ namespace CSharpGL
         /// </summary>
         public int Count
         {
-            get { return list.Count; }
+            get { return children.Count; }
         }
 
         /// <summary>
@@ -149,7 +159,7 @@ namespace CSharpGL
         /// </summary>
         public bool IsReadOnly
         {
-            get { return ((ICollection<GLControl>)(this.list)).IsReadOnly; }
+            get { return ((ICollection<GLControl>)(this.children)).IsReadOnly; }
         }
 
         /// <summary>
@@ -159,10 +169,10 @@ namespace CSharpGL
         /// <returns>如果成功移除 item，则为 true；否则为 false。如果在 System.Collections.Generic.List&lt;T&gt; 中没有找到item，该方法也会返回 false。</returns>
         public bool Remove(GLControl item)
         {
-            bool result = list.Remove(item);
+            bool result = children.Remove(item);
             if (result)
             {
-                item.parent = null;
+                if (item != null) { item.parent = null; }
             }
 
             return result;
@@ -174,7 +184,7 @@ namespace CSharpGL
         /// <returns>用于 System.Collections.Generic.List&lt;T&gt; 的 System.Collections.Generic.List&lt;T&gt;.Enumerator。</returns>
         public IEnumerator<GLControl> GetEnumerator()
         {
-            return list.GetEnumerator();
+            return children.GetEnumerator();
         }
 
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
@@ -188,7 +198,7 @@ namespace CSharpGL
         /// <returns></returns>
         public override string ToString()
         {
-            return string.Format("Count: {0}", this.list.Count);
+            return string.Format("Count: {0}", this.children.Count);
         }
     }
 

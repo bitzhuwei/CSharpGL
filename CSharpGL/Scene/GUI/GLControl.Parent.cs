@@ -30,9 +30,36 @@ namespace CSharpGL
                     }
                     else // value != null && parent == null
                     {
-                        value.Children.Add(this);
+                        value.Children.children.Add(this);
+
+                        GLControl.LayoutAfterAddChild(value, this);
                     }
                 }
+            }
+        }
+
+        internal static void LayoutAfterAddChild(GLControl parent, GLControl control)
+        {
+            GUIAnchorStyles anchor = control.Anchor;
+            if ((anchor & leftRightAnchor) == leftRightAnchor)
+            {
+                control.width = parent.width - control.left - control.right;
+            }
+            else if ((anchor & leftAnchor) == leftAnchor)
+            {
+                control.right = parent.width - control.left - control.width;
+            }
+            else if ((anchor & rightAnchor) == rightAnchor)
+            {
+                control.left = parent.width - control.width - control.right;
+            }
+            else // if ((anchor & noneAnchor) == nonAnchor)
+            {
+                int diff = parent.width - control.left - control.width - control.right;
+                int halfDiff = diff / 2;
+                int otherHalfDiff = diff - halfDiff;
+                control.left += halfDiff;
+                control.right += otherHalfDiff;
             }
         }
 
