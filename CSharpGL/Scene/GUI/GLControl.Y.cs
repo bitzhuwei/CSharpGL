@@ -47,8 +47,7 @@ namespace CSharpGL
             }
             else // if ((anchor & noneAnchor) == noneAnchor)
             {
-                int diff = parent.height - control.bottom - control.height - control.top;
-                control.Height += diff;
+                control.top = parent.height - control.bottom - control.height;
             }
         }
 
