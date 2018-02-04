@@ -35,7 +35,7 @@ namespace CSharpGL
                 GUIAnchorStyles anchor = control.Anchor;
                 if ((anchor & bottomTopAnchor) == bottomTopAnchor)
                 {
-                    control.height = parent.height - control.bottom - control.top;
+                    control.Height = parent.height - control.bottom - control.top;
                 }
                 else if ((anchor & bottomAnchor) == bottomAnchor)
                 {

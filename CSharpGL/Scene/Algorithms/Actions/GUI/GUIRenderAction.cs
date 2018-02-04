@@ -18,7 +18,6 @@ namespace CSharpGL
         /// Render <see cref="GLControl"/> objects.
         /// </summary>
         /// <param name="rootControl"></param>
-        /// <param name="camera"></param>
         public GUIRenderAction(GLControl rootControl)
         {
             this.rootControl = rootControl;

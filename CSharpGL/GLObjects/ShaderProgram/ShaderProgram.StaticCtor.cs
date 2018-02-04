@@ -50,9 +50,9 @@ namespace CSharpGL
         private static GLDelegates.void_int_int_bool_floatN glUniformMatrix3fv;
         private static GLDelegates.void_int_int_bool_floatN glUniformMatrix4fv;
         private static GLDelegates.void_uint_int_stringN_uint glTransformFeedbackVaryings;
-        private static GLDelegates.int_uint_uint_string glGetSubroutineUniformLocation;
-        private static GLDelegates.uint_uint_uint_string glGetSubroutineIndex;
-        private static GLDelegates.void_uint_int_uintN glUniformSubroutinesuiv;
+        //private static GLDelegates.int_uint_uint_string glGetSubroutineUniformLocation;
+        //private static GLDelegates.uint_uint_uint_string glGetSubroutineIndex;
+        //private static GLDelegates.void_uint_int_uintN glUniformSubroutinesuiv;
 
         static ShaderProgram()
         {

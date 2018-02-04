@@ -35,7 +35,7 @@ namespace CSharpGL
             GUIAnchorStyles anchor = control.Anchor;
             if ((anchor & leftRightAnchor) == leftRightAnchor)
             {
-                control.width = parent.width - control.left - control.right;
+                control.Width = parent.width - control.left - control.right;
             }
             else if ((anchor & leftAnchor) == leftAnchor)
             {
@@ -49,7 +49,7 @@ namespace CSharpGL
             else // if ((anchor & noneAnchor) == noneAnchor)
             {
                 int diff = parent.width - control.left - control.width - control.right;
-                control.width += diff;
+                control.Width += diff;
             }
         }
 

@@ -28,7 +28,11 @@ namespace CSharpGL
         /// <param name="param"></param>
         public override void Act(ActionParams param)
         {
-            GLControl.Layout(this.rootControl);
+            GLControl root = this.rootControl;
+            if (root != null)
+            {
+                root.UpdateAbsLocation();
+            }
         }
 
     }

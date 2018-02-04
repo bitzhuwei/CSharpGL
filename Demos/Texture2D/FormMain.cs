@@ -43,7 +43,7 @@ namespace Texture2D
         private void FormMain_Load(object sender, EventArgs e)
         {
             SceneNodeBase rootElement = GetRootElement();
-            //WinCtrlRoot rootControl = GetRootControl();
+            WinCtrlRoot rootControl = GetRootControl();
 
             var position = new vec3(1, 0, 4);
             var center = new vec3(0, 0, 0);
@@ -53,10 +53,10 @@ namespace Texture2D
 
             {
                 RootNode = rootElement,
-                //RootControl = rootControl,
+                RootControl = rootControl,
                 ClearColor = Color.SkyBlue.ToVec4(),
             };
-            //rootControl.Bind(this.winGLCanvas1);
+            rootControl.Bind(this.winGLCanvas1);
 
             var list = new ActionList();
 
@@ -65,10 +65,10 @@ namespace Texture2D
             var renderAction = new RenderAction(scene);
             list.Add(renderAction);
 
-            //var guiLayoutAction = new GUILayoutAction(scene.RootControl);
-            //list.Add(guiLayoutAction);
-            //var guiRenderAction = new GUIRenderAction(scene.RootControl);
-            //list.Add(guiRenderAction);
+            var guiLayoutAction = new GUILayoutAction(scene.RootControl);
+            list.Add(guiLayoutAction);
+            var guiRenderAction = new GUIRenderAction(scene.RootControl);
+            list.Add(guiRenderAction);
 
             this.actionList = list;
 
@@ -79,42 +79,42 @@ namespace Texture2D
             this.trvSceneGUI.ExpandAll();
         }
 
-        //private WinCtrlRoot GetRootControl()
-        //{
-        //    var root = new WinCtrlRoot(this.winGLCanvas1.Width, this.winGLCanvas1.Height);
+        private WinCtrlRoot GetRootControl()
+        {
+            var root = new WinCtrlRoot(this.winGLCanvas1.Width, this.winGLCanvas1.Height);
 
-        //    string folder = System.Windows.Forms.Application.StartupPath;
-        //    var bitmap = new Bitmap(System.IO.Path.Combine(folder, @"particle.png"));
-        //    {
-        //        var control = new CtrlImage(bitmap, false) { Anchor = GUIAnchorStyles.Left | GUIAnchorStyles.Bottom };
-        //        control.Location = new GUIPoint(10, 10);
-        //        control.Width = 100; control.Height = 50;
-        //        bitmap.Dispose();
-        //        control.MouseUp += control_MouseUp;
-        //        root.Children.Add(control);
-        //    }
-        //    {
-        //        var control = new CtrlButton() { Anchor = GUIAnchorStyles.Left | GUIAnchorStyles.Bottom };
-        //        control.Location = new GUIPoint(10, 70);
-        //        control.Width = 100; control.Height = 50;
-        //        control.Focused = true;
-        //        control.MouseUp += control_MouseUp;
-        //        root.Children.Add(control);
-        //    }
-        //    {
-        //        var control = new CtrlLabel(100) { Anchor = GUIAnchorStyles.Left | GUIAnchorStyles.Bottom };
-        //        control.Location = new GUIPoint(10, 130);
-        //        control.Width = 100; control.Height = 30;
-        //        control.Text = "Hello CSharpGL!";
-        //        control.RenderBackground = true;
-        //        control.BackgroundColor = new vec4(1, 0, 0, 1);
-        //        control.MouseUp += control_MouseUp;
+            string folder = System.Windows.Forms.Application.StartupPath;
+            var bitmap = new Bitmap(System.IO.Path.Combine(folder, @"particle.png"));
+            {
+                var control = new CtrlImage(bitmap, false) { Anchor = GUIAnchorStyles.Left | GUIAnchorStyles.Bottom };
+                control.Location = new GUIPoint(10, 10);
+                control.Width = 100; control.Height = 50;
+                bitmap.Dispose();
+                control.MouseUp += control_MouseUp;
+                root.Children.Add(control);
+            }
+            {
+                var control = new CtrlButton() { Anchor = GUIAnchorStyles.Left | GUIAnchorStyles.Bottom };
+                control.Location = new GUIPoint(10, 70);
+                control.Width = 100; control.Height = 50;
+                control.Focused = true;
+                control.MouseUp += control_MouseUp;
+                root.Children.Add(control);
+            }
+            {
+                var control = new CtrlLabel(100) { Anchor = GUIAnchorStyles.Left | GUIAnchorStyles.Bottom };
+                control.Location = new GUIPoint(10, 130);
+                control.Width = 100; control.Height = 30;
+                control.Text = "Hello CSharpGL!";
+                control.RenderBackground = true;
+                control.BackgroundColor = new vec4(1, 0, 0, 1);
+                control.MouseUp += control_MouseUp;
 
-        //        root.Children.Add(control);
-        //    }
+                root.Children.Add(control);
+            }
 
-        //    return root;
-        //}
+            return root;
+        }
 
         void control_MouseUp(object sender, GLMouseEventArgs e)
         {

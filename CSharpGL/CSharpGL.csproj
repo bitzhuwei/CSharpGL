@@ -144,7 +144,10 @@
     <Compile Include="Scene\Algorithms\Actions\3DWorld\BillboardRenderAction.cs" />
     <Compile Include="Scene\Algorithms\Actions\3DWorld\BillboardSortAction.cs" />
     <Compile Include="Scene\Algorithms\Actions\3DWorld\LightEquipment.cs" />
+    <Compile Include="Scene\Algorithms\Actions\GUI\GUILayoutAction.cs" />
+    <Compile Include="Scene\Algorithms\Actions\GUI\GUIRenderAction.cs" />
     <Compile Include="Scene\Algorithms\Actions\GUI\IGUIRenderable.cs" />
+    <Compile Include="Scene\GUI\GLControl.absLocation.cs" />
     <Compile Include="Scene\GUI\GLControl.Events.cs" />
     <Compile Include="Scene\GUI\GLControl.Height.cs" />
     <Compile Include="Scene\GUI\GLControl.Parent.cs" />
@@ -157,6 +160,20 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Scene\GUI\GLControlChildren.cs" />
+    <Compile Include="Scene\GUI\GLControls\CtrlButton\CtrlButton.cs" />
+    <Compile Include="Scene\GUI\GLControls\CtrlButton\CtrlButton.shaders.cs" />
+    <Compile Include="Scene\GUI\GLControls\CtrlButton\CtrlButton.Text.cs" />
+    <Compile Include="Scene\GUI\GLControls\CtrlButton\CtrlButtonModel.cs" />
+    <Compile Include="Scene\GUI\GLControls\CtrlImage\CtrlImage.cs" />
+    <Compile Include="Scene\GUI\GLControls\CtrlImage\CtrlImage.shaders.cs" />
+    <Compile Include="Scene\GUI\GLControls\CtrlImage\CtrlImageModel.cs" />
+    <Compile Include="Scene\GUI\GLControls\CtrlLabel\CtrlLabel.cs" />
+    <Compile Include="Scene\GUI\GLControls\CtrlLabel\CtrlLabel.shaders.cs" />
+    <Compile Include="Scene\GUI\GLControls\CtrlLabel\CtrlLabel.Text.cs" />
+    <Compile Include="Scene\GUI\GLControls\CtrlRoot\CtrlRoot.cs" />
+    <Compile Include="Scene\GUI\GLControls\CtrlTexture\CtrlTexture.cs" />
+    <Compile Include="Scene\GUI\GLControls\CtrlTexture\CtrlTexture.shaders.cs" />
+    <Compile Include="Scene\GUI\GLControls\CtrlTexture\CtrlTextureModel.cs" />
     <Compile Include="Scene\GUI\Structs\GUIAnchorStyles.cs" />
     <Compile Include="Scene\GUI\Structs\GUIPoint.cs" />
     <Compile Include="Scene\GUI\Structs\GUIPointF.cs" />
