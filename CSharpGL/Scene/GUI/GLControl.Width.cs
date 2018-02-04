@@ -8,7 +8,6 @@ namespace CSharpGL
 {
     public partial class GLControl
     {
-        private int width;
         /// <summary>
         /// Width of this control.
         /// </summary>
