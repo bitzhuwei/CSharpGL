@@ -144,7 +144,6 @@
     <Compile Include="Scene\Algorithms\Actions\3DWorld\BillboardRenderAction.cs" />
     <Compile Include="Scene\Algorithms\Actions\3DWorld\BillboardSortAction.cs" />
     <Compile Include="Scene\Algorithms\Actions\3DWorld\LightEquipment.cs" />
-    <Compile Include="Scene\Algorithms\Actions\GUI\GUILayoutAction.cs" />
     <Compile Include="Scene\Algorithms\Actions\GUI\GUIRenderAction.cs" />
     <Compile Include="Scene\Algorithms\Actions\GUI\IGUIRenderable.cs" />
     <Compile Include="Scene\GUI\GLControl.absLocation.cs" />
