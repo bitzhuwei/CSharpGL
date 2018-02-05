@@ -113,13 +113,13 @@ namespace FrontToBackPeeling
                     {
                         this.query.EndQuery(QueryTarget.SamplesPassed);
                     }
+                    GL.Instance.Disable(GL.GL_BLEND);
                     this.resources.framebuffers[currId].Unbind();
 
                     this.resources.colorBlenderFramebuffer.Bind();
                     GL.Instance.DrawBuffer(GL.GL_COLOR_ATTACHMENT0);
                     //this.depthTestState.Off();
                     this.DrawFullScreenQuad(arg, QuadNode.RenderMode.Blend, this.resources.colorAttachments[currId]);
-                    GL.Instance.Disable(GL.GL_BLEND);
                     this.resources.colorBlenderFramebuffer.Unbind();
 
                     if (bUseOQ)
