@@ -231,30 +231,23 @@ namespace CSharpGL
                 && mode.ToGeometryType() == GeometryType.Line) ?
                 DrawMode.Points : mode);
 
-            PrimitiveRestartSwitch glState = GetPrimitiveRestartState();
-
-            List<RecognizedPrimitiveInfo> primitiveInfoList = null;
-            if (glState == null)
-            { primitiveInfoList = recognizer.Recognize(lastVertexId, drawCmd); }
-            else
-            { primitiveInfoList = recognizer.Recognize(lastVertexId, drawCmd, glState.RestartIndex); }
-
+            List<RecognizedPrimitiveInfo> primitiveInfoList = recognizer.Recognize(lastVertexId, drawCmd);
             return primitiveInfoList;
         }
 
-        // TODO: encapsulate primitive restart index switch into DrawElementsState.
-        private PrimitiveRestartSwitch GetPrimitiveRestartState()
-        {
-            foreach (GLSwitch item in this.Node.PickingRenderUnit.SwitchList)
-            {
-                var target = item as PrimitiveRestartSwitch;
-                if (target != null)
-                {
-                    return target;
-                }
-            }
+        //// TODO: encapsulate primitive restart index switch into DrawElementsState.
+        //private PrimitiveRestartSwitch GetPrimitiveRestartState()
+        //{
+        //    foreach (GLSwitch item in this.Node.PickingRenderMethod.SwitchList)
+        //    {
+        //        var target = item as PrimitiveRestartSwitch;
+        //        if (target != null)
+        //        {
+        //            return target;
+        //        }
+        //    }
 
-            return null;
-        }
+        //    return null;
+        //}
     }
 }

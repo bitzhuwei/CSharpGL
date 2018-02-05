@@ -21,7 +21,7 @@ namespace CSharpGL
         /// </summary>
         [Category(strPickableRenderer)]
         [Description("Takes care of rendering for picking.")]
-        public IPickableRenderMethod PickingRenderUnit { get; private set; }
+        public IPickableRenderMethod PickingRenderMethod { get; private set; }
 
         /// <summary>
         /// index buffer is accessable randomly or only by frame.

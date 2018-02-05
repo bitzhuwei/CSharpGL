@@ -12,9 +12,9 @@ namespace CSharpGL
         {
             base.DoInitialize();
 
-            IPickableRenderMethod renderUnit = this.pickingRenderUnitBuilder.ToRenderMethod(this.RenderUnit.Model);
+            IPickableRenderMethod renderMethod = this.pickingRenderMethodBuilder.ToRenderMethod(this.RenderUnit.Model);
             var pickerList = new List<PickerBase>();
-            foreach (var vao in renderUnit.VertexArrayObjects)
+            foreach (var vao in renderMethod.VertexArrayObjects)
             {
                 IDrawCommand cmd = vao.DrawCommand;
                 if (cmd is DrawArraysCmd)
@@ -38,7 +38,7 @@ namespace CSharpGL
             }
             this.picker = pickerList.ToArray();
 
-            this.PickingRenderUnit = renderUnit;
+            this.PickingRenderMethod = renderMethod;
         }
     }
 }

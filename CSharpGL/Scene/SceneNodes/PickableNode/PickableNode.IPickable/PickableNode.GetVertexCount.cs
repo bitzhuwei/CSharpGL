@@ -13,7 +13,7 @@ namespace CSharpGL
         {
             uint vertexCount = 0;
 
-            VertexBuffer[] positionBuffers = this.PickingRenderUnit.PositionBuffers;
+            VertexBuffer[] positionBuffers = this.PickingRenderMethod.PositionBuffers;
             foreach (var positionBuffer in positionBuffers)
             {
                 if (positionBuffer != null)

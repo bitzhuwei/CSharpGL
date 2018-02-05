@@ -57,7 +57,7 @@ namespace CSharpGL
 
         protected vec3[] FillPickedGeometrysPosition(uint[] positionIndexes)
         {
-            VertexBuffer[] buffers = this.Node.PickingRenderUnit.PositionBuffers;
+            VertexBuffer[] buffers = this.Node.PickingRenderMethod.PositionBuffers;
             IEnumerable<IndexesInBuffer> workItems = buffers.GetWorkItems(positionIndexes);
             var positions = new List<vec3>();
             foreach (var item in workItems)

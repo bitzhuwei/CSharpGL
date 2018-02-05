@@ -44,7 +44,7 @@ namespace CSharpGL
 
             this.polygonModeState.Mode = arg.GeometryType.GetPolygonMode();
 
-            ShaderProgram program = this.PickingRenderUnit.Program;
+            ShaderProgram program = this.PickingRenderMethod.Program;
 
             // 绑定shader
             program.Bind();
@@ -72,7 +72,7 @@ namespace CSharpGL
             {
                 var pickable = this as IPickable;
                 uint baseId = pickable.PickingBaseId;
-                foreach (var vao in this.PickingRenderUnit.VertexArrayObjects)
+                foreach (var vao in this.PickingRenderMethod.VertexArrayObjects)
                 {
                     program.glUniform("pickingBaseId", (int)(baseId));
                     vao.Draw(controlMode, tmpCmd);

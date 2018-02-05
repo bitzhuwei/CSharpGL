@@ -76,14 +76,18 @@ namespace CSharpGL
 
         private void NoPrimitiveRestartIndex(List<RecognizedPrimitiveInfo> primitiveInfoList)
         {
-            PrimitiveRestartSwitch glState = GetPrimitiveRestartState();
-            if (glState != null)
+            uint pri = this.DrawCommand.PrimitiveRestartIndex;
+            if (pri == byte.MaxValue || pri == ushort.MaxValue || pri == uint.MaxValue)
             {
                 foreach (RecognizedPrimitiveInfo info in primitiveInfoList)
                 {
                     foreach (uint vertexId in info.VertexIds)
                     {
-                        if (vertexId == glState.RestartIndex) { throw new Exception(); }
+                        if (vertexId == pri)
+                        {
+                            throw new Exception(string.Format(
+                                "Picking algorithm got PrimitiveRestartIndex([{0}]) as the index of vertex!", pri));
+                        }
                     }
                 }
             }
