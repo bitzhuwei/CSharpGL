@@ -3,13 +3,13 @@
     /// <summary>
     ///
     /// </summary>
-    public class ScissorTestState : EnableState
+    public class ScissorTestSwitch : EnableSwitch
     {
         // Activator needs a non-parameter constructor.
         /// <summary>
         /// 
         /// </summary>
-        public ScissorTestState() : this(0, 0, 0, 0, false) { }
+        public ScissorTestSwitch() : this(0, 0, 0, 0, false) { }
 
         /// <summary>
         ///
@@ -19,7 +19,7 @@
         /// <param name="width"></param>
         /// <param name="height"></param>
         /// <param name="enableCapacity">Enable() or Disable() this capacity?</param>
-        public ScissorTestState(int x, int y, int width, int height, bool enableCapacity = true)
+        public ScissorTestSwitch(int x, int y, int width, int height, bool enableCapacity = true)
             : base(GL.GL_SCISSOR_TEST, enableCapacity)
         {
             this.X = x; this.Y = y; this.Width = width; this.Height = height;

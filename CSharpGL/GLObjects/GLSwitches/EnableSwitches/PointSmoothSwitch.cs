@@ -3,19 +3,19 @@
     /// <summary>
     ///
     /// </summary>
-    public class PointSmoothState : EnableState
+    public class PointSmoothSwitch : EnableSwitch
     {
         // Activator needs a non-parameter constructor.
         /// <summary>
         /// 
         /// </summary>
-        public PointSmoothState() : this(true) { }
+        public PointSmoothSwitch() : this(true) { }
 
         /// <summary>
         ///
         /// </summary>
         /// <param name="enableCapacity">true for enable, false for disable</param>
-        public PointSmoothState(bool enableCapacity)
+        public PointSmoothSwitch(bool enableCapacity)
             : base(GL.GL_POINT_SMOOTH, enableCapacity)
         { }
 

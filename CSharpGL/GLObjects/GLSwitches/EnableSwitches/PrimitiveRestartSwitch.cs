@@ -3,13 +3,13 @@
     /// <summary>
     ///
     /// </summary>
-    public class PrimitiveRestartState : EnableState
+    public class PrimitiveRestartSwitch : EnableSwitch
     {
         // Activator needs a non-parameter constructor.
         /// <summary>
         /// 
         /// </summary>
-        public PrimitiveRestartState()
+        public PrimitiveRestartSwitch()
             : base(GL.GL_PRIMITIVE_RESTART, false)
         {
             this.RestartIndex = uint.MaxValue;
@@ -19,7 +19,7 @@
         /// </summary>
         /// <param name="indexElementType"></param>
         /// <param name="enableCapacity"></param>
-        public PrimitiveRestartState(IndexBufferElementType indexElementType, bool enableCapacity = true)
+        public PrimitiveRestartSwitch(IndexBufferElementType indexElementType, bool enableCapacity = true)
             : base(GL.GL_PRIMITIVE_RESTART, enableCapacity)
         {
             switch (indexElementType)

@@ -5,7 +5,7 @@ namespace CSharpGL
     /// <summary>
     /// specify the alpha test function.
     /// </summary>
-    public class AlphaFuncSwitch : EnableState
+    public class AlphaFuncSwitch : EnableSwitch
     {
         // Activator needs a non-parameter constructor.
         /// <summary>

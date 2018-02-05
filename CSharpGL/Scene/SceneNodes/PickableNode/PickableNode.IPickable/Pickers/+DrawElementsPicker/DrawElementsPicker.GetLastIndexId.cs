@@ -76,7 +76,7 @@ namespace CSharpGL
 
         private void NoPrimitiveRestartIndex(List<RecognizedPrimitiveInfo> primitiveInfoList)
         {
-            PrimitiveRestartState glState = GetPrimitiveRestartState();
+            PrimitiveRestartSwitch glState = GetPrimitiveRestartState();
             if (glState != null)
             {
                 foreach (RecognizedPrimitiveInfo info in primitiveInfoList)

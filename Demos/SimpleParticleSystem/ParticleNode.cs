@@ -12,7 +12,7 @@ namespace SimpleParticleSystem
         public static ParticleNode Create()
         {
             var blend = new BlendSwitch(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.OneMinusSourceAlpha);
-            var depthTest = new DepthTestState(false);
+            var depthTest = new DepthTestSwitch(false);
             RenderMethodBuilder defaultBuilder, textureBuilder;
             {
                 var vs = new VertexShader(vert);

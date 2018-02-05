@@ -60,7 +60,7 @@ namespace FrontToBackPeeling
 
         public bool ShowDepthPeeling { get; set; }
 
-        private DepthTestState depthTestState = new DepthTestState(true);
+        private DepthTestSwitch depthTestState = new DepthTestSwitch(true);
 
         private const int NUM_PASSES = 6;
         private bool bUseOQ = false;

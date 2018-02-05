@@ -3,7 +3,7 @@
     /// <summary>
     ///
     /// </summary>
-    public class DepthClampSwitch : EnableState
+    public class DepthClampSwitch : EnableSwitch
     {
         // Activator needs a non-parameter constructor.
         /// <summary>

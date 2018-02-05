@@ -98,7 +98,7 @@ void main(void) {
         public bool RenderBody { get; set; }
 
         private PolygonModeState polygonMode = new PolygonModeState(PolygonMode.Line);
-        private GLState polygonOffsetState = new PolygonOffsetFillState();
+        private GLState polygonOffsetState = new PolygonOffsetFillSwitch();
 
         /// <summary>
         /// for debugging.

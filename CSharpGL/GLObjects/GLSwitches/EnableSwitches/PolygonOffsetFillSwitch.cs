@@ -3,13 +3,13 @@
     /// <summary>
     /// http://www.cnblogs.com/bitzhuwei/p/polygon-offset-for-stitching-andz-fighting.html
     /// </summary>
-    public class PolygonOffsetFillState : PolygonOffsetState
+    public class PolygonOffsetFillSwitch : PolygonOffsetSwitch
     {
         // Activator needs a non-parameter constructor.
         /// <summary>
         /// http://www.cnblogs.com/bitzhuwei/p/polygon-offset-for-stitching-andz-fighting.html
         /// </summary>
-        public PolygonOffsetFillState()
+        public PolygonOffsetFillSwitch()
             : base(PolygonOffset.Fill, true)
         { }
 
@@ -17,7 +17,7 @@
         /// http://www.cnblogs.com/bitzhuwei/p/polygon-offset-for-stitching-andz-fighting.html
         /// </summary>
         /// <param name="pullNear"></param>
-        public PolygonOffsetFillState(bool pullNear)
+        public PolygonOffsetFillSwitch(bool pullNear)
             : base(PolygonOffset.Fill, pullNear)
         { }
     }

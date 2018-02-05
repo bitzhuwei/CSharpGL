@@ -5,20 +5,20 @@ namespace CSharpGL
     /// <summary>
     /// specify the logic operation.
     /// </summary>
-    public class LogicOpState : EnableState
+    public class LogicOpSwitch : EnableSwitch
     {
         // Activator needs a non-parameter constructor.
         /// <summary>
         /// specify the alpha logic operation.
         /// </summary>
-        public LogicOpState() : this(LogicOperationCode.Copy, true) { }
+        public LogicOpSwitch() : this(LogicOperationCode.Copy, true) { }
 
         /// <summary>
         /// specify the alpha logic operation.
         /// </summary>
         /// <param name="opCode"></param>
         /// <param name="enableCapacity"></param>
-        public LogicOpState(LogicOperationCode opCode, bool enableCapacity = true)
+        public LogicOpSwitch(LogicOperationCode opCode, bool enableCapacity = true)
             : base(GL.GL_COLOR_LOGIC_OP, enableCapacity)
         {
             this.OpCode = opCode;

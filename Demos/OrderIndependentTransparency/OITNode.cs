@@ -62,7 +62,7 @@ namespace OrderIndependentTransparency
         private PixelUnpackBuffer headClearBuffer;
         private AtomicCounterBuffer atomicCounterBuffer;
         private Texture linkedListTexture;
-        private DepthTestState depthTestState;
+        private DepthTestSwitch depthTestState;
         private CullFaceSwitch cullFaceState;
 
         private void UpdateResources(int width, int height)
@@ -148,7 +148,7 @@ namespace OrderIndependentTransparency
             }
 
             {
-                this.depthTestState = new DepthTestState(false); // disable depth test.
+                this.depthTestState = new DepthTestSwitch(false); // disable depth test.
                 this.cullFaceState = new CullFaceSwitch(CullFaceMode.Back, false); // disable cull face.
             }
         }

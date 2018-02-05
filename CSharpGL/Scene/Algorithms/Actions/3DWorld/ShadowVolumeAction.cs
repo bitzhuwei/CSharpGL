@@ -28,15 +28,15 @@ namespace CSharpGL
             this.clearStencilNode = ClearStencilNode.Create();
         }
 
-        private readonly DepthTestState depthTest = new DepthTestState(enableCapacity: false);
-        private readonly StencilTestState stencilTest = new StencilTestState(enableCapacity: true);
+        private readonly DepthTestSwitch depthTest = new DepthTestSwitch(enableCapacity: false);
+        private readonly StencilTestSwitch stencilTest = new StencilTestSwitch(enableCapacity: true);
         private readonly CullFaceSwitch cullFace = new CullFaceSwitch(CullFaceMode.Back, false);// CullFaceMode is useless here.
         private readonly ColorMaskState colorMask = new ColorMaskState(false, false, false, false);
         private readonly DepthMaskState depthMask = new DepthMaskState(writable: false);
         private readonly DepthClampSwitch depthClamp = new DepthClampSwitch(enableCapacity: true);
         private readonly BlendSwitch blend = new BlendSwitch(BlendingSourceFactor.One, BlendingDestinationFactor.One);
         private readonly PolygonModeState polygonMode = new PolygonModeState(PolygonMode.Line);
-        private readonly LineStippleState lineSipple = new LineStippleState();
+        private readonly LineStippleSwitch lineSipple = new LineStippleSwitch();
         //private readonly GLStateList stateList;
         private readonly ClearStencilNode clearStencilNode;
 

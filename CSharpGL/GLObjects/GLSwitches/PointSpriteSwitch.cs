@@ -3,17 +3,17 @@
     /// <summary>
     ///
     /// </summary>
-    public class PointSpriteState : GLState
+    public class PointSpriteSwitch : GLState
     {
         // Activator needs a non-parameter constructor.
         /// <summary>
         ///
         /// </summary>
-        public PointSpriteState()
+        public PointSpriteSwitch()
         {
             this.StateList = new GLStateList();
-            this.StateList.Add(new PointSmoothState());
-            this.StateList.Add(new DepthTestState());
+            this.StateList.Add(new PointSmoothSwitch());
+            this.StateList.Add(new DepthTestSwitch());
             this.StateList.Add(new BlendSwitch(
                 BlendingSourceFactor.SourceAlpha,
                 BlendingDestinationFactor.OneMinusSourceAlpha));

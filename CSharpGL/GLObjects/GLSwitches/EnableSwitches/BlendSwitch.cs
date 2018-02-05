@@ -5,7 +5,7 @@ namespace CSharpGL
     /// <summary>
     /// specify pixel arithmetic.
     /// </summary>
-    public class BlendSwitch : EnableState
+    public class BlendSwitch : EnableSwitch
     {
         // Activator needs a non-parameter constructor.
         /// <summary>

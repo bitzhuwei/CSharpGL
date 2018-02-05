@@ -60,7 +60,7 @@ namespace CSharpGL
             //set { this.enableRendering = value; }
         }
 
-        private PolygonOffsetFillState state = new PolygonOffsetFillState();
+        private PolygonOffsetFillSwitch state = new PolygonOffsetFillSwitch();
 
         /// <summary>
         /// 

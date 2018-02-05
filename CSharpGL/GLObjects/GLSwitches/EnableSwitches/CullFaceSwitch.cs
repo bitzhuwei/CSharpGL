@@ -4,7 +4,7 @@
     /// <summary>
     /// Cull front/back face?
     /// </summary>
-    public class CullFaceSwitch : EnableState
+    public class CullFaceSwitch : EnableSwitch
     {
         // Activator needs a non-parameter constructor.
         /// <summary>

@@ -3,12 +3,12 @@
     /// <summary>
     /// http://www.cnblogs.com/bitzhuwei/p/polygon-offset-for-stitching-andz-fighting.html
     /// </summary>
-    public abstract class PolygonOffsetState : EnableState
+    public abstract class PolygonOffsetSwitch : EnableSwitch
     {
         /// <summary>
         /// http://www.cnblogs.com/bitzhuwei/p/polygon-offset-for-stitching-andz-fighting.html
         /// </summary>
-        public PolygonOffsetState() : this(PolygonOffset.Fill, true, true) { }
+        public PolygonOffsetSwitch() : this(PolygonOffset.Fill, true, true) { }
 
         /// <summary>
         /// http://www.cnblogs.com/bitzhuwei/p/polygon-offset-for-stitching-andz-fighting.html
@@ -16,7 +16,7 @@
         /// <param name="mode"></param>
         /// <param name="pullNear"></param>
         /// <param name="enableCapacity"></param>
-        public PolygonOffsetState(PolygonOffset mode, bool pullNear, bool enableCapacity = true)
+        public PolygonOffsetSwitch(PolygonOffset mode, bool pullNear, bool enableCapacity = true)
             : base((uint)mode, enableCapacity)
         {
             this.PullNear = pullNear;

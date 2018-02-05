@@ -75,7 +75,7 @@ void main(void) {
             this.ModelSize = model.ModelSize;
         }
 
-        LogicOpState state = new LogicOpState(LogicOperationCode.CopyInverted);
+        LogicOpSwitch state = new LogicOpSwitch(LogicOperationCode.CopyInverted);
         /// <summary>
         /// Enable logic operation or not?
         /// </summary>

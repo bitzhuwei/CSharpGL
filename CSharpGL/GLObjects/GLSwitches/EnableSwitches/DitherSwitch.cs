@@ -3,19 +3,19 @@
     /// <summary>
     ///
     /// </summary>
-    public class DitherState : EnableState
+    public class DitherSwitch : EnableSwitch
     {
         // Activator needs a non-parameter constructor.
         /// <summary>
         /// 
         /// </summary>
-        public DitherState() : this(true) { }
+        public DitherSwitch() : this(true) { }
 
         /// <summary>
         ///
         /// </summary>
         /// <param name="enableCapacity">true for enable, false for disable</param>
-        public DitherState(bool enableCapacity)
+        public DitherSwitch(bool enableCapacity)
             : base(GL.GL_DITHER, enableCapacity)
         { }
 

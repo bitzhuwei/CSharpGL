@@ -5,13 +5,13 @@ namespace CSharpGL
     /// <summary>
     /// Dashed line.
     /// </summary>
-    public class LineStippleState : EnableState
+    public class LineStippleSwitch : EnableSwitch
     {
         // Activator needs a non-parameter constructor.
         /// <summary>
         /// Dashed line.
         /// </summary>
-        public LineStippleState() : this(1, 0x0F0F) { }
+        public LineStippleSwitch() : this(1, 0x0F0F) { }
 
         /// <summary>
         /// Dashed line.
@@ -19,7 +19,7 @@ namespace CSharpGL
         /// <param name="factor">factor in 'void glLineStipple(int factor, ushort pattern);'.</param>
         /// <param name="pattern">pattern in 'void glLineStipple(int factor, ushort pattern);'.</param>
         /// <param name="enableCapacity">Enable() or Disable() this capacity?</param>
-        public LineStippleState(int factor, ushort pattern, bool enableCapacity = true)
+        public LineStippleSwitch(int factor, ushort pattern, bool enableCapacity = true)
             : base(GL.GL_LINE_STIPPLE, enableCapacity)
         {
             this.Factor = factor;

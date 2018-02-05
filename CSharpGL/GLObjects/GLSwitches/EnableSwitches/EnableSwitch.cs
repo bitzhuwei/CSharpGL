@@ -3,7 +3,7 @@
     /// <summary>
     /// GL.Enable(cap); or GL.Disable(cap);
     /// </summary>
-    public abstract class EnableState : GLState
+    public abstract class EnableSwitch : GLState
     {
         /// <summary>
         ///
@@ -27,7 +27,7 @@
         /// </summary>
         /// <param name="capacity"></param>
         /// <param name="enableCapacity">Enable() or Disable() this capacity?</param>
-        public EnableState(uint capacity, bool enableCapacity = true)
+        public EnableSwitch(uint capacity, bool enableCapacity = true)
         {
             this.Capacity = capacity;
             this.EnableCapacity = enableCapacity;

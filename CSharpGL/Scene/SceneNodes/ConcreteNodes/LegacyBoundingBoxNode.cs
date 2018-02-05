@@ -81,7 +81,7 @@ namespace CSharpGL
         }
 
         private GLState polygonModeState = new PolygonModeState(PolygonMode.Line);
-        private GLState polygonOffsetState = new PolygonOffsetFillState();
+        private GLState polygonOffsetState = new PolygonOffsetFillSwitch();
         /// <summary>
         /// 
         /// </summary>

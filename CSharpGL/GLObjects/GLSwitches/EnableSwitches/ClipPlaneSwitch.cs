@@ -8,7 +8,7 @@ namespace CSharpGL
     /// specify a plane against which all geometry is clipped.
     /// <para>you can't use glClipPlane and vertex programs together.</para>
     /// </summary>
-    public class ClipPlaneSwitch : EnableState
+    public class ClipPlaneSwitch : EnableSwitch
     {
         private static readonly double[] defaultEquation = new double[4] { 0, 1, 0, 0, };
         private static int maxClipPlanes;
