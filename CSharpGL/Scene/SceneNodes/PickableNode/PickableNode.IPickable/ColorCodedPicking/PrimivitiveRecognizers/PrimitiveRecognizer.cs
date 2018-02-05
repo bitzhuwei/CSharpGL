@@ -14,23 +14,33 @@ namespace CSharpGL
         public List<RecognizedPrimitiveInfo> Recognize(
          uint lastVertexId, DrawElementsCmd cmd)
         {
-            var lastIndexIdList = new List<RecognizedPrimitiveInfo>();
-            switch (cmd.IndexBufferObject.ElementType)
+            List<RecognizedPrimitiveInfo> lastIndexIdList;
+
+            uint pri = cmd.PrimitiveRestartIndex;
+            if (pri == byte.MaxValue || pri == ushort.MaxValue || pri == uint.MaxValue)
             {
-                case IndexBufferElementType.UByte:
-                    RecognizeByte(lastVertexId, cmd, lastIndexIdList);
-                    break;
+                lastIndexIdList = Recognize(lastVertexId, cmd, pri);
+            }
+            else
+            {
+                lastIndexIdList = new List<RecognizedPrimitiveInfo>();
+                switch (cmd.IndexBufferObject.ElementType)
+                {
+                    case IndexBufferElementType.UByte:
+                        RecognizeByte(lastVertexId, cmd, lastIndexIdList);
+                        break;
 
-                case IndexBufferElementType.UShort:
-                    RecognizeUShort(lastVertexId, cmd, lastIndexIdList);
-                    break;
+                    case IndexBufferElementType.UShort:
+                        RecognizeUShort(lastVertexId, cmd, lastIndexIdList);
+                        break;
 
-                case IndexBufferElementType.UInt:
-                    RecognizeUInt(lastVertexId, cmd, lastIndexIdList);
-                    break;
+                    case IndexBufferElementType.UInt:
+                        RecognizeUInt(lastVertexId, cmd, lastIndexIdList);
+                        break;
 
-                default:
-                    throw new NotDealWithNewEnumItemException(typeof(IndexBufferElementType));
+                    default:
+                        throw new NotDealWithNewEnumItemException(typeof(IndexBufferElementType));
+                }
             }
 
             return lastIndexIdList;
@@ -50,7 +60,7 @@ namespace CSharpGL
         /// <param name="cmd"></param>
         /// <param name="primitiveRestartIndex"></param>
         /// <returns></returns>
-        public List<RecognizedPrimitiveInfo> Recognize(
+        protected List<RecognizedPrimitiveInfo> Recognize(
             uint lastVertexId, DrawElementsCmd cmd, uint primitiveRestartIndex)
         {
             var lastIndexIdList = new List<RecognizedPrimitiveInfo>();
