@@ -8,7 +8,7 @@ namespace CSharpGL
     {
         // data structure for rendering.
         //private readonly RenderMethodBuilder[] builders;
-        private readonly IPickableRenderMethodBuilder pickingRenderUnitBuilder;
+        private readonly IPickableRenderMethodBuilder pickingRenderMethodBuilder;
         //private readonly IBufferSource model;
 
         /// <summary>
@@ -20,8 +20,8 @@ namespace CSharpGL
         public PickableNode(IBufferSource model, string positionNameInIBufferSource, params RenderMethodBuilder[] builders)
             : base(model, builders)
         {
-            var pickProgramProvider = PickingShaderHelper.GetPickingShaderProgramProvider();
-            this.pickingRenderUnitBuilder = new IPickableRenderMethodBuilder(pickProgramProvider, positionNameInIBufferSource);
+            var pickingProgramProvider = PickingShaderHelper.GetPickingShaderProgramProvider();
+            this.pickingRenderMethodBuilder = new IPickableRenderMethodBuilder(pickingProgramProvider, positionNameInIBufferSource);
         }
     }
 }

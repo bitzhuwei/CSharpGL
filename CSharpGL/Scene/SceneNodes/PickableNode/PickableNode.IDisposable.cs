@@ -9,7 +9,7 @@
         {
             base.DisposeUnmanagedResources();
 
-            this.PickingRenderUnit.Dispose();
+            this.PickingRenderMethod.Dispose();
         }
     }
 }
