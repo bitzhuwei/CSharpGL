@@ -7,8 +7,6 @@
 int g_numPasses = 4;
 
 GLuint g_quadDisplayList;
-GLuint g_vboId;
-GLuint g_eboId;
 
 float g_opacity = 0.6;
 unsigned g_numGeoPasses = 0;
