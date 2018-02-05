@@ -179,8 +179,8 @@ void MakeFullScreenQuad()
 }
 
 GLuint FBOs[2];
-GLuint depthTextures[2];
 GLuint colorTextures[2];
+GLuint depthTextures[2];
 GLuint blenderFBO;
 GLuint blenderTexture;
 
