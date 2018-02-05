@@ -76,7 +76,7 @@ namespace CSharpGL
             Texture2D = GL.GL_TEXTURE_2D,
 
             /// <summary>
-            /// 
+            /// GL_TEXTURE_RECTANGLE不支持mipmap, uv范围不是[0,1],而是[0,w]和[0,h]
             /// </summary>
             TextureRectangle = GL.GL_TEXTURE_RECTANGLE,
         }

@@ -31,6 +31,7 @@ namespace CSharpGL
             var builder = new RenderMethodBuilder(provider, map, blendState);
             var node = new TextBillboardNode(width, height, new GlyphsModel(capacity), builder, glyphServer);
             node.Initialize();
+            node.blend = blendState;
 
             return node;
         }
@@ -90,6 +91,13 @@ namespace CSharpGL
         #region IRenderable 成员
 
         private ThreeFlags enableRendering = ThreeFlags.BeforeChildren | ThreeFlags.Children | ThreeFlags.AfterChildren;
+        private BlendState blend;
+
+        public BlendState Blend
+        {
+            get { return blend; }
+            set { blend = value; }
+        }
         /// <summary>
         /// Render before/after children? Render children? 
         /// RenderAction cares about this property. Other actions, maybe, maybe not, your choice.
@@ -137,6 +145,7 @@ namespace CSharpGL
         }
 
         #endregion
+
     }
 
 }
