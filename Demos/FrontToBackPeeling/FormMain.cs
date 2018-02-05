@@ -108,7 +108,7 @@ namespace FrontToBackPeeling
             IWorldSpace node = this.scene.RootNode;
             if (node != null)
             {
-                //node.RotationAngle += 1.3f;
+                node.RotationAngle += 1.3f;
             }
         }
     }

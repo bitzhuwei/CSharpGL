@@ -97,8 +97,8 @@ namespace FrontToBackPeeling
                     this.resources.framebuffers[currId].Bind();
                     //GL.Instance.DrawBuffer(GL.GL_COLOR_ATTACHMENT0);
                     //GL.Instance.ClearColor(0, 0, 0, 0);
-                    //GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
-                    GL.Instance.Clear(GL.GL_DEPTH_BUFFER_BIT);
+                    GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
+                    //GL.Instance.Clear(GL.GL_DEPTH_BUFFER_BIT);
                     //this.depthTestState.Off();
                     //GL.Instance.Disable(GL.GL_BLEND);
                     GL.Instance.Enable(GL.GL_BLEND);
