@@ -13,7 +13,7 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        protected GLState[] states;
+        protected GLSwitch[] states;
         /// <summary>
         /// 
         /// </summary>
@@ -29,7 +29,7 @@ namespace CSharpGL
         /// <param name="programProvider"></param>
         /// <param name="positionNameInIBufferSource"></param>
         /// <param name="states"></param>
-        public IPickableRenderMethodBuilder(IShaderProgramProvider programProvider, string positionNameInIBufferSource, params GLState[] states)
+        public IPickableRenderMethodBuilder(IShaderProgramProvider programProvider, string positionNameInIBufferSource, params GLSwitch[] states)
         {
             this.programProvider = programProvider;
             this.positionNameInIBufferSource = positionNameInIBufferSource;

@@ -7,19 +7,19 @@ namespace CSharpGL
     /// <summary>
     ///
     /// </summary>
-    [Editor(typeof(IListEditor<IGLState>), typeof(UITypeEditor))]
-    public class GLStateList : List<IGLState>, IGLState
+    [Editor(typeof(IListEditor<IGLSwitch>), typeof(UITypeEditor))]
+    public class GLSwitchList : List<IGLSwitch>, IGLSwitch
     {
         /// <summary>
         /// 
         /// </summary>
-        public GLStateList() { }
+        public GLSwitchList() { }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="state"></param>
-        public GLStateList(params IGLState[] state)
+        public GLSwitchList(params IGLSwitch[] state)
         {
             this.AddRange(state);
         }

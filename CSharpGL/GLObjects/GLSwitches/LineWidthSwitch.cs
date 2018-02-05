@@ -3,7 +3,7 @@
     /// <summary>
     ///
     /// </summary>
-    public class LineWidthState : GLState
+    public class LineWidthSwitch : GLSwitch
     {
         /// <summary>
         /// 
@@ -15,7 +15,7 @@
         /// </summary>
         public static readonly float max;
 
-        static LineWidthState()
+        static LineWidthSwitch()
         {
             float[] lineWidthRange = new float[2];
             GL.Instance.GetFloatv((uint)GetTarget.LineWidthRange, lineWidthRange);
@@ -43,13 +43,13 @@
         /// <summary>
         ///
         /// </summary>
-        public LineWidthState() : this(1.0f) { }
+        public LineWidthSwitch() : this(1.0f) { }
 
         /// <summary>
         ///
         /// </summary>
         /// <param name="lineWidth"></param>
-        public LineWidthState(float lineWidth)
+        public LineWidthSwitch(float lineWidth)
         {
             this.LineWidth = lineWidth;
             this.MinLineWidth = min;

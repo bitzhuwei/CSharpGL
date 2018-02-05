@@ -7,7 +7,7 @@ namespace CSharpGL
     ///
     /// </summary>
     [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
-    public abstract class GLState : IGLState
+    public abstract class GLSwitch : IGLSwitch
     {
         private bool inUse = false;
 
@@ -19,7 +19,7 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        public GLState()
+        public GLSwitch()
         {
             this.Enabled = true;
         }

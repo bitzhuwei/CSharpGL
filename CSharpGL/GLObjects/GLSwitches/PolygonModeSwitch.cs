@@ -3,7 +3,7 @@
     /// <summary>
     ///
     /// </summary>
-    public class PolygonModeState : GLState
+    public class PolygonModeSwitch : GLSwitch
     {
         private int[] originalPolygonMode = new int[2];
 
@@ -11,13 +11,13 @@
         /// <summary>
         ///
         /// </summary>
-        public PolygonModeState() : this(PolygonMode.Fill) { }
+        public PolygonModeSwitch() : this(PolygonMode.Fill) { }
 
         /// <summary>
         ///
         /// </summary>
         /// <param name="mode"></param>
-        public PolygonModeState(PolygonMode mode)
+        public PolygonModeSwitch(PolygonMode mode)
         {
             this.Mode = mode;
         }

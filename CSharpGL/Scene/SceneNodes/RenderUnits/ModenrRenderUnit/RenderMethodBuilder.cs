@@ -13,7 +13,7 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        protected GLState[] states;
+        protected GLSwitch[] states;
         /// <summary>
         /// 
         /// </summary>
@@ -29,7 +29,7 @@ namespace CSharpGL
         /// <param name="programProvider"></param>
         /// <param name="map"></param>
         /// <param name="states"></param>
-        public RenderMethodBuilder(IShaderProgramProvider programProvider, AttributeMap map, params GLState[] states)
+        public RenderMethodBuilder(IShaderProgramProvider programProvider, AttributeMap map, params GLSwitch[] states)
         {
             this.programProvider = programProvider;
             this.map = map;

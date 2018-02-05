@@ -55,7 +55,7 @@ void main(void) {
             var provider = new ShaderArray(vs, fs);
             var map = new AttributeMap();
             map.Add(inPosition, CubeModel.strPosition);
-            var builder = new RenderMethodBuilder(provider, map, new PolygonModeState(PolygonMode.Line), new LineWidthState(3));
+            var builder = new RenderMethodBuilder(provider, map, new PolygonModeSwitch(PolygonMode.Line), new LineWidthSwitch(3));
             var node = new LightPostionNode(new CubeModel(), CubeModel.strPosition, builder);
             node.Initialize();
 

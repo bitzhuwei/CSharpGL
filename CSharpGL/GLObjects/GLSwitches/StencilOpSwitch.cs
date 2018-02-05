@@ -8,7 +8,7 @@ namespace CSharpGL
     /// <summary>
     /// glStencilFunc
     /// </summary>
-    public class StencilOpState : GLState
+    public class StencilOpSwitch : GLSwitch
     {
         /// <summary>
         /// Specifies the action to take when the stencil test fails.
@@ -44,7 +44,7 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        public StencilOpState() : this(EStencilOp.Keep, EStencilOp.Keep, EStencilOp.Keep, EStencilOp.Keep, EStencilOp.Keep, EStencilOp.Keep) { }
+        public StencilOpSwitch() : this(EStencilOp.Keep, EStencilOp.Keep, EStencilOp.Keep, EStencilOp.Keep, EStencilOp.Keep, EStencilOp.Keep) { }
 
         /// <summary>
         /// glStencilFunc
@@ -55,7 +55,7 @@ namespace CSharpGL
         /// <param name="afterStencilTestFail"></param>
         /// <param name="afterDepthTestFail"></param>
         /// <param name="afterDepthTestPass"></param>
-        public StencilOpState(EStencilOp beforeStencilTestFail, EStencilOp beforeDepthTestFail, EStencilOp beforeDepthTestPass,
+        public StencilOpSwitch(EStencilOp beforeStencilTestFail, EStencilOp beforeDepthTestFail, EStencilOp beforeDepthTestPass,
             EStencilOp afterStencilTestFail, EStencilOp afterDepthTestFail, EStencilOp afterDepthTestPass)
         {
             this.BeforeStencilTestFail = beforeStencilTestFail;

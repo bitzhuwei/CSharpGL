@@ -5,7 +5,7 @@ namespace CSharpGL
     /// <summary>
     ///
     /// </summary>
-    public class AccumBufferState : GLState
+    public class AccumBufferSwitch : GLSwitch
     {
         private vec3 clearValue = new vec3(0, 0, 0);
 
@@ -45,14 +45,14 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        public AccumBufferState() { }
+        public AccumBufferSwitch() { }
 
         /// <summary>
         ///
         /// </summary>
         /// <param name="clearColor"></param>
         /// <param name="clearAlphazValue">Ranges between [0, 1.0].</param>
-        public AccumBufferState(Color clearColor, float clearAlphazValue)
+        public AccumBufferSwitch(Color clearColor, float clearAlphazValue)
         {
             this.ClearValue = clearColor;
             this.clearAlphazValue = clearAlphazValue;

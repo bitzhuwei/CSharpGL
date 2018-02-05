@@ -3,7 +3,7 @@
     /// <summary>
     /// GL.Enable(cap); or GL.Disable(cap);
     /// </summary>
-    public abstract class EnableSwitch : GLState
+    public abstract class EnableSwitch : GLSwitch
     {
         /// <summary>
         ///

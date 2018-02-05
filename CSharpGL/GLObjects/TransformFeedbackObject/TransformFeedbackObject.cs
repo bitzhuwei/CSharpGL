@@ -252,7 +252,7 @@ namespace CSharpGL
         /// <param name="program"></param>
         /// <param name="vaos"></param>
         /// <param name="stateList"></param>
-        public void Draw(ShaderProgram program, VertexArrayObject[] vaos, GLStateList stateList = null)
+        public void Draw(ShaderProgram program, VertexArrayObject[] vaos, GLSwitchList stateList = null)
         {
             // 绑定shader
             program.Bind();

@@ -5,7 +5,7 @@ namespace CSharpGL
     /// <summary>
     ///
     /// </summary>
-    public class ClearColorState : GLState
+    public class ClearColorSwitch : GLSwitch
     {
         private vec3 clearColor = new vec3();
 
@@ -44,14 +44,14 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        public ClearColorState() : this(Color.Black) { }
+        public ClearColorSwitch() : this(Color.Black) { }
 
         /// <summary>
         ///
         /// </summary>
         /// <param name="clearColor"></param>
         /// <param name="alpha">Ranges between [0, 1.0].</param>
-        public ClearColorState(Color clearColor, float alpha = 1.0f)
+        public ClearColorSwitch(Color clearColor, float alpha = 1.0f)
         {
             this.ClearColor = clearColor;
             this.alpha = alpha;

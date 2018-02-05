@@ -23,7 +23,7 @@ namespace CSharpGL
             var map = new AttributeMap();
             map.Add(inPosition, CtrlButtonModel.position);
             map.Add(inColor, CtrlButtonModel.color);
-            var methodBuilder = new RenderMethodBuilder(codes, map, new PolygonModeState(PolygonMode.Fill), new LineWidthState(2));
+            var methodBuilder = new RenderMethodBuilder(codes, map, new PolygonModeSwitch(PolygonMode.Fill), new LineWidthSwitch(2));
             this.RenderUnit = new ModernRenderUnit(model, methodBuilder);
 
             this.Initialize();

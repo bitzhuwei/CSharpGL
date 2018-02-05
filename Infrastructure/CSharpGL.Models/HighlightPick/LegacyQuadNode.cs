@@ -97,10 +97,10 @@ namespace CSharpGL
             set { this.enableRendering = value; }
         }
 
-        private GLState polygonOffsetState = new PolygonOffsetFillSwitch();
-        private PolygonModeState polygonModeState = new PolygonModeState(PolygonMode.Line);
-        private LineWidthState lineWidthState = new LineWidthState(5.0f);
-        private PointSizeState pointSizeState = new PointSizeState(5.0f);
+        private GLSwitch polygonOffsetState = new PolygonOffsetFillSwitch();
+        private PolygonModeSwitch polygonModeState = new PolygonModeSwitch(PolygonMode.Line);
+        private LineWidthSwitch lineWidthState = new LineWidthSwitch(5.0f);
+        private PointSizeSwitch pointSizeState = new PointSizeSwitch(5.0f);
         /// <summary>
         /// 
         /// </summary>

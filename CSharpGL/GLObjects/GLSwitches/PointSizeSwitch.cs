@@ -3,7 +3,7 @@
     /// <summary>
     ///
     /// </summary>
-    public class PointSizeState : GLState
+    public class PointSizeSwitch : GLSwitch
     {
         /// <summary>
         /// 
@@ -15,7 +15,7 @@
         /// </summary>
         public static readonly float max;
 
-        static PointSizeState()
+        static PointSizeSwitch()
         {
             float[] pointSizeRange = new float[2];
             GL.Instance.GetFloatv((uint)GetTarget.PointSizeRange, pointSizeRange);
@@ -43,13 +43,13 @@
         /// <summary>
         ///
         /// </summary>
-        public PointSizeState() : this(1.0f) { }
+        public PointSizeSwitch() : this(1.0f) { }
 
         /// <summary>
         ///
         /// </summary>
         /// <param name="pointSize"></param>
-        public PointSizeState(float pointSize)
+        public PointSizeSwitch(float pointSize)
         {
             this.PointSize = pointSize;
             this.MinPointSize = min;

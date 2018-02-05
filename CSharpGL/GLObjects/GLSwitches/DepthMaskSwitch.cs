@@ -3,7 +3,7 @@
     /// <summary>
     /// Toggle of depth mask.
     /// </summary>
-    public class DepthMaskState : GLState
+    public class DepthMaskSwitch : GLSwitch
     {
         private bool writable = true;
 
@@ -20,13 +20,13 @@
         /// <summary>
         /// Toggle of depth mask.
         /// </summary>
-        public DepthMaskState() : this(true) { }
+        public DepthMaskSwitch() : this(true) { }
 
         /// <summary>
         /// Toggle of depth mask.
         /// </summary>
         /// <param name="writable">Writable when this switch is turned on?</param>
-        public DepthMaskState(bool writable)
+        public DepthMaskSwitch(bool writable)
         {
             this.Writable = writable;
         }

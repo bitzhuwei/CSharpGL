@@ -91,7 +91,7 @@ namespace BasicTessellationShader
                     cmd.Mode = DrawMode.Patches;
                 }
 
-                var polygonModeState = new PolygonModeState(CSharpGL.PolygonMode.Fill);
+                var polygonModeState = new PolygonModeSwitch(CSharpGL.PolygonMode.Fill);
                 method.StateList.Add(polygonModeState);
                 this.PolygonMode = polygonModeState;
             }
@@ -146,6 +146,6 @@ namespace BasicTessellationShader
         {
         }
 
-        public PolygonModeState PolygonMode { get; set; }
+        public PolygonModeSwitch PolygonMode { get; set; }
     }
 }

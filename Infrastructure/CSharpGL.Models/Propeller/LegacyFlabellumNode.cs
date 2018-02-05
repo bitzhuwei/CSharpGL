@@ -108,7 +108,7 @@ namespace CSharpGL
             this.PopProjectionViewMatrix();
         }
 
-        private PolygonModeState polygonModeState = new PolygonModeState(PolygonMode.Line);
+        private PolygonModeSwitch polygonModeState = new PolygonModeSwitch(PolygonMode.Line);
 
         private void DoRender(vec3 lineColor)
         {

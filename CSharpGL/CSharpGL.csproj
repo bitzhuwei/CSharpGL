@@ -138,7 +138,7 @@
     <Compile Include="GLObjects\GLSwitches\EnableSwitches\StencilTestSwitch.cs" />
     <Compile Include="GLObjects\GLSwitches\FrontFaceSwitch.cs" />
     <Compile Include="GLObjects\GLSwitches\GLSwitch.cs" />
-    <Compile Include="GLObjects\GLSwitches\GLStateList.cs" />
+    <Compile Include="GLObjects\GLSwitches\GLSwitchList.cs" />
     <Compile Include="GLObjects\GLSwitches\IGLSwitch.cs" />
     <Compile Include="GLObjects\GLSwitches\LineWidthSwitch.cs" />
     <Compile Include="GLObjects\GLSwitches\PointSizeSwitch.cs" />

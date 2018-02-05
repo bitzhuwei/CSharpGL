@@ -16,7 +16,7 @@ namespace CSharpGL
             var map = new AttributeMap();
             map.Add("in_Position", KleinBottleModel.strPosition);
             map.Add("in_TexCoord", KleinBottleModel.strTexCoord);
-            var builder = new RenderMethodBuilder(provider, map, new LineWidthState(3));
+            var builder = new RenderMethodBuilder(provider, map, new LineWidthSwitch(3));
             var node = new KleinBottleNode(model, KleinBottleModel.strPosition, builder);
             node.ModelSize = model.Size;
             node.Initialize();

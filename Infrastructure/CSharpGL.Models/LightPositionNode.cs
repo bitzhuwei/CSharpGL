@@ -64,7 +64,7 @@ void main(void) {
             var provider = new ShaderArray(vs, fs);
             var map = new AttributeMap();
             map.Add(inPosition, Sphere.strPosition);
-            var builder = new RenderMethodBuilder(provider, map, new PolygonModeState(PolygonMode.Line));
+            var builder = new RenderMethodBuilder(provider, map, new PolygonModeSwitch(PolygonMode.Line));
             var node = new LightPositionNode(model, Sphere.strPosition, builder);
             node.Initialize();
             node.light = light;

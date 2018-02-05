@@ -7,8 +7,8 @@ namespace CSharpGL
     /// <summary>
     ///
     /// </summary>
-    [Editor(typeof(IListEditor<GLState>), typeof(UITypeEditor))]
-    public interface IGLState
+    [Editor(typeof(IListEditor<GLSwitch>), typeof(UITypeEditor))]
+    public interface IGLSwitch
     {
         /// <summary>
         /// 

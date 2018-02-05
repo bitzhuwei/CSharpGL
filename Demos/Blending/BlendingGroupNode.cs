@@ -12,7 +12,7 @@ namespace Blending
     class BlendingGroupNode : SceneNodeBase, IRenderable
     {
         private BlendSwitch blending;
-        private DepthMaskState depthMask = new DepthMaskState(false);
+        private DepthMaskSwitch depthMask = new DepthMaskSwitch(false);
 
         /// <summary>
         /// 

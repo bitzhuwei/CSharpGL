@@ -7,13 +7,13 @@ namespace CSharpGL
     {
         private readonly List<vec3> secondPosition = new List<vec3>();
         private readonly List<vec3> secondColor = new List<vec3>();
-        private readonly LineWidthState secondLineWidthState = new LineWidthState(1);
+        private readonly LineWidthSwitch secondLineWidthState = new LineWidthSwitch(1);
         private readonly List<vec3> minutePosition = new List<vec3>();
         private readonly List<vec3> minuteColor = new List<vec3>();
-        private readonly LineWidthState minuteLineWidthState = new LineWidthState(3);
+        private readonly LineWidthSwitch minuteLineWidthState = new LineWidthSwitch(3);
         private readonly List<vec3> hourPosition = new List<vec3>();
         private readonly List<vec3> hourColor = new List<vec3>();
-        private readonly LineWidthState hourLineWidthState = new LineWidthState(8);
+        private readonly LineWidthSwitch hourLineWidthState = new LineWidthSwitch(8);
 
         public ClockPinNode()
         {

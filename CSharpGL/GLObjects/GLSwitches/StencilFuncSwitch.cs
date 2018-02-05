@@ -8,7 +8,7 @@ namespace CSharpGL
     /// <summary>
     /// glStencilFunc
     /// </summary>
-    public class StencilFuncState : GLState
+    public class StencilFuncSwitch : GLSwitch
     {
         /// <summary>
         /// before sending drawing command to GPU.
@@ -43,7 +43,7 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        public StencilFuncState() : this(EStencilFunc.Always, 0, uint.MaxValue, EStencilFunc.Always, 0, uint.MaxValue) { }
+        public StencilFuncSwitch() : this(EStencilFunc.Always, 0, uint.MaxValue, EStencilFunc.Always, 0, uint.MaxValue) { }
 
         /// <summary>
         /// glStencilFunc
@@ -54,7 +54,7 @@ namespace CSharpGL
         /// <param name="afterFunc"></param>
         /// <param name="afterReference"></param>
         /// <param name="afterMask"></param>
-        public StencilFuncState(EStencilFunc beforeFunc, int beforeReference, uint beforeMask,
+        public StencilFuncSwitch(EStencilFunc beforeFunc, int beforeReference, uint beforeMask,
             EStencilFunc afterFunc, int afterReference, uint afterMask)
         {
             this.BeforeFunc = beforeFunc;

@@ -8,7 +8,7 @@ namespace CSharpGL
     /// <summary>
     /// Define operation when this state is on\off.
     /// </summary>
-    public class UserDefineState : GLState
+    public class UserDefineSwitch : GLSwitch
     {
         /// <summary>
         /// Operation when this state is turned on.

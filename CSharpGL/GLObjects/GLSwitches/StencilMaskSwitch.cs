@@ -8,7 +8,7 @@ namespace CSharpGL
     /// <summary>
     /// glStencilMask
     /// </summary>
-    public class StencilMaskState : GLState
+    public class StencilMaskSwitch : GLSwitch
     {
         /// <summary>
         /// before sending drawing command to GPU.
@@ -24,14 +24,14 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        public StencilMaskState() : this(uint.MaxValue, uint.MaxValue) { }
+        public StencilMaskSwitch() : this(uint.MaxValue, uint.MaxValue) { }
 
         /// <summary>
         /// glStencilMask
         /// </summary>
         /// <param name="beforeMask"></param>
         /// <param name="afterMask"></param>
-        public StencilMaskState(uint beforeMask, uint afterMask)
+        public StencilMaskSwitch(uint beforeMask, uint afterMask)
         {
             this.BeforeMask = beforeMask;
             this.AfterMask = afterMask;

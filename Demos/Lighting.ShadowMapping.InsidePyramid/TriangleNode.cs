@@ -8,7 +8,7 @@ namespace Lighting.ShadowMapping.InsidePyramid
 {
     partial class TriangleNode : PickableNode, IRenderable
     {
-        private PolygonModeState polygonMode = new PolygonModeState(PolygonMode.Line);
+        private PolygonModeSwitch polygonMode = new PolygonModeSwitch(PolygonMode.Line);
 
         public static TriangleNode Create()
         {

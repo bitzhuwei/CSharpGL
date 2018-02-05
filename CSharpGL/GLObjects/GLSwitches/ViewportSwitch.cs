@@ -3,7 +3,7 @@
     /// <summary>
     /// set and reset viewport using glViewport();
     /// </summary>
-    public class ViewportState : GLState
+    public class ViewportSwitch : GLSwitch
     {
         private int[] original = new int[4];
 
@@ -11,7 +11,7 @@
         /// <summary>
         /// set and reset viewport using glViewport();
         /// </summary>
-        public ViewportState()
+        public ViewportSwitch()
         {
             var viewport = new int[4];
             GL.Instance.GetIntegerv((uint)GetTarget.Viewport, viewport);
@@ -26,7 +26,7 @@
         /// <param name="y"></param>
         /// <param name="width"></param>
         /// <param name="height"></param>
-        public ViewportState(int x, int y, int width, int height)
+        public ViewportSwitch(int x, int y, int width, int height)
         {
             this.Init(x, y, width, height);
         }
@@ -35,7 +35,7 @@
         /// set and reset viewport using glViewport();
         /// </summary>
         /// <param name="viewport"></param>
-        public ViewportState(int[] viewport)
+        public ViewportSwitch(int[] viewport)
         {
             this.Init(viewport[0], viewport[1], viewport[2], viewport[3]);
         }
