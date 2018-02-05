@@ -43,6 +43,7 @@ namespace WorldSpaceBillboard
             var transformAction = new TransformAction(scene.RootNode);
             list.Add(transformAction);
             var billboardSortAction = new BillboardSortAction(scene.RootNode, scene.Camera);
+            (new FormProperyGrid(billboardSortAction)).Show();
             list.Add(billboardSortAction);
             var renderAction = new RenderAction(scene);
             list.Add(renderAction);
@@ -56,6 +57,42 @@ namespace WorldSpaceBillboard
             var manipulater = new FirstPerspectiveManipulater();
             manipulater.StepLength = 0.1f;
             manipulater.Bind(camera, this.winGLCanvas1);
+
+            BlendingSourceFactor s; BlendingDestinationFactor d;
+            helper.GetNext(out s, out d);
+            ss = s; dd = d;
+            this.winGLCanvas1.KeyPress += winGLCanvas1_KeyPress;
+        }
+
+        private BlendingSourceFactor ss;
+        private BlendingDestinationFactor dd;
+        private BlendFactorHelper helper = new BlendFactorHelper();
+        void winGLCanvas1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 'b')
+            {
+                BlendingSourceFactor s; BlendingDestinationFactor d;
+                helper.GetNext(out s, out d);
+                if (ss == s && dd == d) { MessageBox.Show("Round up"); }
+
+                SetupBlending(this.scene.RootNode, s, d);
+                this.lblState.Text = string.Format("s:{0}, d:{1}", s, d);
+            }
+        }
+
+        private void SetupBlending(SceneNodeBase sceneNodeBase, BlendingSourceFactor s, BlendingDestinationFactor d)
+        {
+            var node = sceneNodeBase as TextBillboardNode;
+            if (node != null)
+            {
+                node.Blend.SourceFactor = s;
+                node.Blend.DestFactor = d;
+            }
+
+            foreach (var item in sceneNodeBase.Children)
+            {
+                SetupBlending(item, s, d);
+            }
         }
 
         private void Match(TreeView treeView, SceneNodeBase nodeBase)

@@ -27,12 +27,19 @@ namespace CSharpGL
         }
 
         /// <summary>
+        /// How <see cref="billboardList"/> stores nodes?(from far nodes to near nodes?)
+        /// </summary>
+        public bool Far2Near { get; set; }
+
+        /// <summary>
         /// Sort billboards in depth order.
         /// </summary>
         /// <param name="rootNode"></param>
         /// <param name="camera"></param>
         public BillboardSortAction(SceneNodeBase rootNode, ICamera camera)
         {
+            this.Far2Near = true;
+
             this.rootNode = rootNode;
             this.camera = camera;
         }
@@ -48,6 +55,12 @@ namespace CSharpGL
 
             mat4 viewMatrix = this.camera.GetViewMatrix();
             this.Sort(this.rootNode, viewMatrix);
+
+            if (!this.Far2Near)
+            {
+                this.depthList.Reverse();
+                this.billboardList.Reverse();
+            }
         }
 
         private void Sort(SceneNodeBase sceneElement, mat4 viewMatrix)
