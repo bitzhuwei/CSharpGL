@@ -3,19 +3,19 @@
     /// <summary>
     ///
     /// </summary>
-    public class DepthClampState : EnableState
+    public class DepthClampSwitch : EnableState
     {
         // Activator needs a non-parameter constructor.
         /// <summary>
         /// 
         /// </summary>
-        public DepthClampState() : this(true) { }
+        public DepthClampSwitch() : this(true) { }
 
         /// <summary>
         ///
         /// </summary>
         /// <param name="enableCapacity">true for enable, false for disable</param>
-        public DepthClampState(bool enableCapacity)
+        public DepthClampSwitch(bool enableCapacity)
             : base(GL.GL_DEPTH_CLAMP, enableCapacity)
         { }
 

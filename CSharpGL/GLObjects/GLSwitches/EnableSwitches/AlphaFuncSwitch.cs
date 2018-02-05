@@ -5,13 +5,13 @@ namespace CSharpGL
     /// <summary>
     /// specify the alpha test function.
     /// </summary>
-    public class AlphaFuncState : EnableState
+    public class AlphaFuncSwitch : EnableState
     {
         // Activator needs a non-parameter constructor.
         /// <summary>
         /// specify the alpha test function.
         /// </summary>
-        public AlphaFuncState()
+        public AlphaFuncSwitch()
             : this(AlphaTestFunction.Always, 0)// this is default values in OpenGL.
         { }
 
@@ -21,7 +21,7 @@ namespace CSharpGL
         /// <param name="alphaTestFunc"></param>
         /// <param name="alphaTestReferenceValue"></param>
         /// <param name="enableCapacity"></param>
-        public AlphaFuncState(AlphaTestFunction alphaTestFunc, float alphaTestReferenceValue, bool enableCapacity = true)
+        public AlphaFuncSwitch(AlphaTestFunction alphaTestFunc, float alphaTestReferenceValue, bool enableCapacity = true)
             : base(GL.GL_ALPHA_TEST, enableCapacity)
         {
             this.AlphaTestFunc = alphaTestFunc;

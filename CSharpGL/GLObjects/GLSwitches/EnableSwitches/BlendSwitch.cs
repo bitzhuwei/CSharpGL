@@ -5,13 +5,13 @@ namespace CSharpGL
     /// <summary>
     /// specify pixel arithmetic.
     /// </summary>
-    public class BlendState : EnableState
+    public class BlendSwitch : EnableState
     {
         // Activator needs a non-parameter constructor.
         /// <summary>
         /// specify pixel arithmetic.
         /// </summary>
-        public BlendState() : this(BlendingSourceFactor.One, BlendingDestinationFactor.Zero) { }
+        public BlendSwitch() : this(BlendingSourceFactor.One, BlendingDestinationFactor.Zero) { }
 
         /// <summary>
         /// specify pixel arithmetic.
@@ -19,7 +19,7 @@ namespace CSharpGL
         /// <param name="sourceFactor">Specifies how the red, green, blue, and alpha source blending factors are computedThe initial value is GL_ONE.</param>
         /// <param name="destFactor">Specifies how the red, green, blue, and alpha destination blending factors are computed. The initial value is GL_ZERO.</param>
         /// <param name="enableCapacity"></param>
-        public BlendState(BlendingSourceFactor sourceFactor, BlendingDestinationFactor destFactor, bool enableCapacity = true)
+        public BlendSwitch(BlendingSourceFactor sourceFactor, BlendingDestinationFactor destFactor, bool enableCapacity = true)
             : base(GL.GL_BLEND, enableCapacity)
         {
             this.SourceFactor = sourceFactor;

@@ -23,7 +23,7 @@ namespace VolumeRendering.Raycast
                 var map = new AttributeMap();
                 map.Add("position", RaycastModel.strposition);
                 map.Add("boundingBox", RaycastModel.strcolor);
-                backfaceBuilder = new RenderMethodBuilder(provider, map, new CullFaceState(CullFaceMode.Front, true));
+                backfaceBuilder = new RenderMethodBuilder(provider, map, new CullFaceSwitch(CullFaceMode.Front, true));
             }
             {
                 var vs = new VertexShader(raycastingVert);
@@ -32,7 +32,7 @@ namespace VolumeRendering.Raycast
                 var map = new AttributeMap();
                 map.Add("position", RaycastModel.strposition);
                 map.Add("boundingBox", RaycastModel.strcolor);
-                raycastingBuilder = new RenderMethodBuilder(provider, map, new CullFaceState(CullFaceMode.Back, true));
+                raycastingBuilder = new RenderMethodBuilder(provider, map, new CullFaceSwitch(CullFaceMode.Back, true));
             }
 
             var node = new RaycastNode(model, RaycastModel.strposition, backfaceBuilder, raycastingBuilder);

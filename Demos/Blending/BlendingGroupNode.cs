@@ -11,7 +11,7 @@ namespace Blending
     /// </summary>
     class BlendingGroupNode : SceneNodeBase, IRenderable
     {
-        private BlendState blending;
+        private BlendSwitch blending;
         private DepthMaskState depthMask = new DepthMaskState(false);
 
         /// <summary>
@@ -21,7 +21,7 @@ namespace Blending
         /// <param name="dest"></param>
         public BlendingGroupNode(BlendingSourceFactor source, BlendingDestinationFactor dest)
         {
-            this.blending = new BlendState(source, dest);
+            this.blending = new BlendSwitch(source, dest);
         }
 
         #region IRenderable 成员

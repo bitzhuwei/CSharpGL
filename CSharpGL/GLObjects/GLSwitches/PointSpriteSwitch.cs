@@ -14,7 +14,7 @@
             this.StateList = new GLStateList();
             this.StateList.Add(new PointSmoothState());
             this.StateList.Add(new DepthTestState());
-            this.StateList.Add(new BlendState(
+            this.StateList.Add(new BlendSwitch(
                 BlendingSourceFactor.SourceAlpha,
                 BlendingDestinationFactor.OneMinusSourceAlpha));
         }

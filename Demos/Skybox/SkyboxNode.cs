@@ -54,7 +54,7 @@ void main()
             var provider = new ShaderArray(vs, fs);
             var map = new AttributeMap();
             map.Add(inPosition, Skybox.strPosition);
-            var builder = new RenderMethodBuilder(provider, map, new CullFaceState(CullFaceMode.Front));
+            var builder = new RenderMethodBuilder(provider, map, new CullFaceSwitch(CullFaceMode.Front));
             var model = new Skybox();
             var node = new SkyboxNode(model, Skybox.strPosition, totalBmp, builder);
             node.Initialize();

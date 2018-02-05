@@ -4,20 +4,20 @@
     /// <summary>
     /// Cull front/back face?
     /// </summary>
-    public class CullFaceState : EnableState
+    public class CullFaceSwitch : EnableState
     {
         // Activator needs a non-parameter constructor.
         /// <summary>
         /// Cull back face.
         /// </summary>
-        public CullFaceState() : this(CullFaceMode.Back) { }
+        public CullFaceSwitch() : this(CullFaceMode.Back) { }
 
         /// <summary>
         /// Cull front/back face?
         /// </summary>
         /// <param name="mode"></param>
         /// <param name="enableCapacity">Enable() or Disable() this capacity?</param>
-        public CullFaceState(CullFaceMode mode, bool enableCapacity = true)
+        public CullFaceSwitch(CullFaceMode mode, bool enableCapacity = true)
             : base(GL.GL_CULL_FACE, enableCapacity)
         {
             this.Mode = mode;

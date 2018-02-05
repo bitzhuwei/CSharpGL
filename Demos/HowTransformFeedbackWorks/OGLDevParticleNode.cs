@@ -33,7 +33,7 @@ namespace HowTransformFeedbackWorks
                 renderProvider = new ShaderArray(vs, gs, fs);
             }
             RenderMethodBuilder updateBuilder, updateBuilder2, renderBuilder, renderBuilder2;
-            var blend = new BlendState(BlendingSourceFactor.One, BlendingDestinationFactor.One);
+            var blend = new BlendSwitch(BlendingSourceFactor.One, BlendingDestinationFactor.One);
             {
                 var map = new AttributeMap();
                 map.Add(inPosition, OGLDevParticleModel.inPosition);
