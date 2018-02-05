@@ -33,20 +33,20 @@ namespace CSharpGL
         /// </summary>
         [Category(strRenderMethod)]
         [Description("OpenGL toggles.")]
-        public GLStateList StateList { get; private set; }
+        public GLSwitchList SwitchList { get; private set; }
 
         /// <summary>
         /// A smallest unit that can render somthing.
         /// </summary>
         /// <param name="program"></param>
         /// <param name="vaos"></param>
-        /// <param name="states"></param>
-        public RenderMethod(ShaderProgram program, VertexArrayObject[] vaos, params GLState[] states)
+        /// <param name="switches"></param>
+        public RenderMethod(ShaderProgram program, VertexArrayObject[] vaos, params GLSwitch[] switches)
         {
             this.Program = program;
             this.VertexArrayObjects = vaos;
-            this.StateList = new GLStateList();
-            this.StateList.AddRange(states);
+            this.SwitchList = new GLSwitchList();
+            this.SwitchList.AddRange(switches);
         }
 
         /// <summary>
@@ -75,13 +75,13 @@ namespace CSharpGL
         public void Render(ControlMode controlMode, TransformFeedbackObject transformFeedbackObj)
         {
             ShaderProgram program = this.Program;
-            GLStateList stateList = this.StateList;
+            GLSwitchList switchList = this.SwitchList;
 
             // 绑定shader
             program.Bind();
             program.PushUniforms(); // push new uniform values to GPU side.
 
-            stateList.On();
+            switchList.On();
 
             if (transformFeedbackObj != null)
             {
@@ -102,7 +102,7 @@ namespace CSharpGL
                 }
             }
 
-            stateList.Off();
+            switchList.Off();
 
             // 解绑shader
             program.Unbind();

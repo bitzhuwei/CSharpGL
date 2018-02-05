@@ -4,9 +4,9 @@ namespace CSharpGL
 {
     public partial class PickableNode
     {
-        private PolygonModeState polygonModeState = new PolygonModeState(PolygonMode.Fill);
-        private LineWidthState lineWidthState = new LineWidthState(LineWidthState.max);
-        private PointSizeState pointSizeState = new PointSizeState(PointSizeState.max);
+        private PolygonModeSwitch polygonModeState = new PolygonModeSwitch(PolygonMode.Fill);
+        private LineWidthSwitch lineWidthState = new LineWidthSwitch(LineWidthSwitch.max);
+        private PointSizeSwitch pointSizeState = new PointSizeSwitch(PointSizeSwitch.max);
 
         /// <summary>
         /// uniform mat4 VMP; (in shader)

@@ -28,16 +28,15 @@ namespace CSharpGL
             this.clearStencilNode = ClearStencilNode.Create();
         }
 
-        private readonly DepthTestState depthTest = new DepthTestState(enableCapacity: false);
-        private readonly StencilTestState stencilTest = new StencilTestState(enableCapacity: true);
-        private readonly CullFaceState cullFace = new CullFaceState(CullFaceMode.Back, false);// CullFaceMode is useless here.
-        private readonly ColorMaskState colorMask = new ColorMaskState(false, false, false, false);
-        private readonly DepthMaskState depthMask = new DepthMaskState(writable: false);
-        private readonly DepthClampState depthClamp = new DepthClampState(enableCapacity: true);
-        private readonly BlendState blend = new BlendState(BlendingSourceFactor.One, BlendingDestinationFactor.One);
-        private readonly PolygonModeState polygonMode = new PolygonModeState(PolygonMode.Line);
-        private readonly LineStippleState lineSipple = new LineStippleState();
-        //private readonly GLStateList stateList;
+        private readonly DepthTestSwitch depthTest = new DepthTestSwitch(enableCapacity: false);
+        private readonly StencilTestSwitch stencilTest = new StencilTestSwitch(enableCapacity: true);
+        private readonly CullFaceSwitch cullFace = new CullFaceSwitch(CullFaceMode.Back, false);// CullFaceMode is useless here.
+        private readonly ColorMaskSwitch colorMask = new ColorMaskSwitch(false, false, false, false);
+        private readonly DepthMaskSwitch depthMask = new DepthMaskSwitch(writable: false);
+        private readonly DepthClampSwitch depthClamp = new DepthClampSwitch(enableCapacity: true);
+        private readonly BlendSwitch blend = new BlendSwitch(BlendingSourceFactor.One, BlendingDestinationFactor.One);
+        private readonly PolygonModeSwitch polygonMode = new PolygonModeSwitch(PolygonMode.Line);
+        private readonly LineStippleSwitch lineSipple = new LineStippleSwitch();
         private readonly ClearStencilNode clearStencilNode;
 
         private static readonly GLDelegates.void_uint_uint_uint_uint glStencilOpSeparate;

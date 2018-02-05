@@ -22,7 +22,7 @@ namespace CSharpGL
             var fs = new FragmentShader(fragmentCode);
             var array = new ShaderArray(vs, fs);
             var map = new AttributeMap();
-            var builder = new RenderMethodBuilder(array, map, new DepthMaskState(false), new ColorMaskState(false, false, false, false));
+            var builder = new RenderMethodBuilder(array, map, new DepthMaskSwitch(false), new ColorMaskSwitch(false, false, false, false));
             var node = new ClearStencilNode(model, builder);
 
             node.Initialize();

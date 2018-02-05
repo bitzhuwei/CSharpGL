@@ -46,8 +46,8 @@ namespace CSharpGL
             set { this.enableRendering = value; }
         }
 
-        private GLState polygonOffsetState = new PolygonOffsetFillState();
-        private PointSizeState pointSizeState = new PointSizeState(5.0f);
+        private GLSwitch polygonOffsetState = new PolygonOffsetFillSwitch();
+        private PointSizeSwitch pointSizeState = new PointSizeSwitch(5.0f);
         /// <summary>
         /// 
         /// </summary>

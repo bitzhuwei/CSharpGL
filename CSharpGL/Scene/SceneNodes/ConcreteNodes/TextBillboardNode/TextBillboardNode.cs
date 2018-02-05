@@ -27,7 +27,7 @@ namespace CSharpGL
             var map = new AttributeMap();
             map.Add(inPosition, GlyphsModel.position);
             map.Add(inSTR, GlyphsModel.STR);
-            var blendState = new BlendState(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.OneMinusSourceAlpha);
+            var blendState = new BlendSwitch(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.OneMinusSourceAlpha);
             var builder = new RenderMethodBuilder(provider, map, blendState);
             var node = new TextBillboardNode(width, height, new GlyphsModel(capacity), builder, glyphServer);
             node.Initialize();
@@ -91,9 +91,9 @@ namespace CSharpGL
         #region IRenderable 成员
 
         private ThreeFlags enableRendering = ThreeFlags.BeforeChildren | ThreeFlags.Children | ThreeFlags.AfterChildren;
-        private BlendState blend;
+        private BlendSwitch blend;
 
-        public BlendState Blend
+        public BlendSwitch Blend
         {
             get { return blend; }
             set { blend = value; }

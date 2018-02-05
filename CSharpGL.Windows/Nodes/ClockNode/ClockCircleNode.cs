@@ -7,7 +7,7 @@ namespace CSharpGL
     {
         private readonly List<vec3> circlePosition = new List<vec3>();
         private readonly List<vec3> circleColor = new List<vec3>();
-        private readonly LineWidthState circleLineWidthState = new LineWidthState(8);
+        private readonly LineWidthSwitch circleLineWidthState = new LineWidthSwitch(8);
 
         public ClockCircleNode()
         {

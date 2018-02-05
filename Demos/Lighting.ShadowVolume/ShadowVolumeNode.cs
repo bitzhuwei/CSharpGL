@@ -78,8 +78,8 @@ namespace Lighting.ShadowVolume
         private TwoFlags enableExtrude = TwoFlags.BeforeChildren | TwoFlags.Children;
         public TwoFlags EnableExtrude { get { return this.enableExtrude; } set { this.enableExtrude = value; } }
 
-        private PolygonOffsetState fillFarOffsetState = new PolygonOffsetFillState(pullNear: false);
-        private PolygonOffsetState fillNearOffsetState = new PolygonOffsetFillState(pullNear: true);
+        private PolygonOffsetSwitch fillFarOffsetState = new PolygonOffsetFillSwitch(pullNear: false);
+        private PolygonOffsetSwitch fillNearOffsetState = new PolygonOffsetFillSwitch(pullNear: true);
         public void ExtrudeShadow(ShadowVolumeExtrudeEventArgs arg)
         {
             ICamera camera = arg.Camera;

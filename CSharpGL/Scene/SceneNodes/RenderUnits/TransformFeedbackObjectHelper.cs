@@ -25,7 +25,7 @@ namespace CSharpGL
                 throw new ArgumentNullException();
             }
 
-            transformFeedbackObj.Draw(unit.Program, unit.VertexArrayObjects, unit.StateList);
+            transformFeedbackObj.Draw(unit.Program, unit.VertexArrayObjects, unit.SwitchList);
         }
     }
 }

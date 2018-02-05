@@ -23,7 +23,7 @@ namespace TerrainLoading
                 var fs = new FragmentShader(frag);
                 var provider = new ShaderArray(vs, fs);
                 var map = new AttributeMap();
-                defaultBuilder = new RenderMethodBuilder(provider, map, new PolygonModeState(PolygonMode.Line));
+                defaultBuilder = new RenderMethodBuilder(provider, map, new PolygonModeSwitch(PolygonMode.Line));
             }
 
             var node = new TerainNode(model, defaultBuilder);

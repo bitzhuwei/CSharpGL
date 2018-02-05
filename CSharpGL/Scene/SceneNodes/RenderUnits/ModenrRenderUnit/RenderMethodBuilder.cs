@@ -13,7 +13,7 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        protected GLState[] states;
+        protected GLSwitch[] switches;
         /// <summary>
         /// 
         /// </summary>
@@ -28,12 +28,12 @@ namespace CSharpGL
         /// </summary>
         /// <param name="programProvider"></param>
         /// <param name="map"></param>
-        /// <param name="states"></param>
-        public RenderMethodBuilder(IShaderProgramProvider programProvider, AttributeMap map, params GLState[] states)
+        /// <param name="switches"></param>
+        public RenderMethodBuilder(IShaderProgramProvider programProvider, AttributeMap map, params GLSwitch[] switches)
         {
             this.programProvider = programProvider;
             this.map = map;
-            this.states = states;
+            this.switches = switches;
         }
 
         /// <summary>
@@ -89,7 +89,7 @@ namespace CSharpGL
                 vaos[c] = new VertexArrayObject(drawCmds[c], program, vertexShaderAttributes);
             }
 
-            return new RenderMethod(program, vaos, this.states);
+            return new RenderMethod(program, vaos, this.switches);
         }
     }
 }
