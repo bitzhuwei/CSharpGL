@@ -93,11 +93,14 @@ namespace CSharpGL
         private ThreeFlags enableRendering = ThreeFlags.BeforeChildren | ThreeFlags.Children | ThreeFlags.AfterChildren;
         private BlendSwitch blend;
 
+        /// <summary>
+        /// 
+        /// </summary>
         public BlendSwitch Blend
         {
             get { return blend; }
-            set { blend = value; }
         }
+
         /// <summary>
         /// Render before/after children? Render children? 
         /// RenderAction cares about this property. Other actions, maybe, maybe not, your choice.
