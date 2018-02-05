@@ -18,10 +18,10 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="state"></param>
-        public GLSwitchList(params IGLSwitch[] state)
+        /// <param name="items"></param>
+        public GLSwitchList(params IGLSwitch[] items)
         {
-            this.AddRange(state);
+            this.AddRange(items);
         }
 
         /// <summary>

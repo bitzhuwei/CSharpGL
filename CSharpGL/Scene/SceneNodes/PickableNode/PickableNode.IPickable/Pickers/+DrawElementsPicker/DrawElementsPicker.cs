@@ -242,10 +242,10 @@ namespace CSharpGL
             return primitiveInfoList;
         }
 
-        // TODO: encapsulate primitive restart index state into DrawElementsState.
+        // TODO: encapsulate primitive restart index switch into DrawElementsState.
         private PrimitiveRestartSwitch GetPrimitiveRestartState()
         {
-            foreach (GLSwitch item in this.Node.PickingRenderUnit.StateList)
+            foreach (GLSwitch item in this.Node.PickingRenderUnit.SwitchList)
             {
                 var target = item as PrimitiveRestartSwitch;
                 if (target != null)

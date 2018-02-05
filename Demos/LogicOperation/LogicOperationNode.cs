@@ -75,25 +75,25 @@ void main(void) {
             this.ModelSize = model.ModelSize;
         }
 
-        LogicOpSwitch state = new LogicOpSwitch(LogicOperationCode.CopyInverted);
+        LogicOpSwitch logicOp = new LogicOpSwitch(LogicOperationCode.CopyInverted);
         /// <summary>
         /// Enable logic operation or not?
         /// </summary>
         [Browsable(false)]
-        public bool LogicOp { get { return this.state.Enabled; } set { this.state.Enabled = value; } }
+        public bool LogicOp { get { return this.logicOp.Enabled; } set { this.logicOp.Enabled = value; } }
 
         public void SetOperation(LogicOperationCode op)
         {
-            this.state.OpCode = op;
+            this.logicOp.OpCode = op;
         }
 
         protected override void DoInitialize()
         {
             base.DoInitialize();
 
-            this.state.Enabled = false;
+            this.logicOp.Enabled = false;
             var method = this.RenderUnit.Methods[0]; // the only render unit in this node.
-            method.StateList.Add(this.state);
+            method.SwitchList.Add(this.logicOp);
         }
 
         private ThreeFlags enableRendering = ThreeFlags.BeforeChildren | ThreeFlags.Children | ThreeFlags.AfterChildren;

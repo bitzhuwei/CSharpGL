@@ -251,14 +251,14 @@ namespace CSharpGL
         /// </summary>
         /// <param name="program"></param>
         /// <param name="vaos"></param>
-        /// <param name="stateList"></param>
-        public void Draw(ShaderProgram program, VertexArrayObject[] vaos, GLSwitchList stateList = null)
+        /// <param name="switchList"></param>
+        public void Draw(ShaderProgram program, VertexArrayObject[] vaos, GLSwitchList switchList = null)
         {
             // 绑定shader
             program.Bind();
             program.PushUniforms(); // push new uniform values to GPU side.
 
-            if (stateList != null) { stateList.On(); }
+            if (switchList != null) { switchList.On(); }
 
             this.Bind();
             foreach (var vao in vaos)
@@ -272,7 +272,7 @@ namespace CSharpGL
             }
             this.Unbind();
 
-            if (stateList != null) { stateList.Off(); }
+            if (switchList != null) { switchList.Off(); }
 
             // 解绑shader
             program.Unbind();

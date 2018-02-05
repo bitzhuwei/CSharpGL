@@ -6,17 +6,17 @@ using System.Text;
 namespace CSharpGL
 {
     /// <summary>
-    /// Define operation when this state is on\off.
+    /// Define operation when this switch is on\off.
     /// </summary>
     public class UserDefineSwitch : GLSwitch
     {
         /// <summary>
-        /// Operation when this state is turned on.
+        /// Operation when this switch is turned on.
         /// </summary>
         public event EventHandler TurnOn;
 
         /// <summary>
-        /// Operation when this state is turned off.
+        /// Operation when this switch is turned off.
         /// </summary>
         public event EventHandler TurnOff;
 

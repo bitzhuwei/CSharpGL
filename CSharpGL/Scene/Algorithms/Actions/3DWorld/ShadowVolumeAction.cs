@@ -37,7 +37,6 @@ namespace CSharpGL
         private readonly BlendSwitch blend = new BlendSwitch(BlendingSourceFactor.One, BlendingDestinationFactor.One);
         private readonly PolygonModeSwitch polygonMode = new PolygonModeSwitch(PolygonMode.Line);
         private readonly LineStippleSwitch lineSipple = new LineStippleSwitch();
-        //private readonly GLStateList stateList;
         private readonly ClearStencilNode clearStencilNode;
 
         private static readonly GLDelegates.void_uint_uint_uint_uint glStencilOpSeparate;

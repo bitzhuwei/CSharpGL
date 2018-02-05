@@ -92,7 +92,7 @@ namespace BasicTessellationShader
                 }
 
                 var polygonModeState = new PolygonModeSwitch(CSharpGL.PolygonMode.Fill);
-                method.StateList.Add(polygonModeState);
+                method.SwitchList.Add(polygonModeState);
                 this.PolygonMode = polygonModeState;
             }
         }

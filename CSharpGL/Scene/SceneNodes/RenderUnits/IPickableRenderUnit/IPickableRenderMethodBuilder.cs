@@ -13,7 +13,7 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        protected GLSwitch[] states;
+        protected GLSwitch[] switches;
         /// <summary>
         /// 
         /// </summary>
@@ -28,12 +28,12 @@ namespace CSharpGL
         /// </summary>
         /// <param name="programProvider"></param>
         /// <param name="positionNameInIBufferSource"></param>
-        /// <param name="states"></param>
-        public IPickableRenderMethodBuilder(IShaderProgramProvider programProvider, string positionNameInIBufferSource, params GLSwitch[] states)
+        /// <param name="switches"></param>
+        public IPickableRenderMethodBuilder(IShaderProgramProvider programProvider, string positionNameInIBufferSource, params GLSwitch[] switches)
         {
             this.programProvider = programProvider;
             this.positionNameInIBufferSource = positionNameInIBufferSource;
-            this.states = states;
+            this.switches = switches;
         }
 
         /// <summary>
@@ -79,7 +79,7 @@ namespace CSharpGL
                 pickingVAOs[b] = new VertexArrayObject(allDrawCommands[b], pickProgram, vertexAttributeBuffers);
             }
 
-            return new IPickableRenderMethod(pickProgram, pickingVAOs, positionBuffers.ToArray(), this.states);
+            return new IPickableRenderMethod(pickProgram, pickingVAOs, positionBuffers.ToArray(), this.switches);
         }
     }
 }

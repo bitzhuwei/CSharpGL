@@ -13,7 +13,7 @@ namespace CSharpGL
     public class LightEquipment : ITextureSource
     {
         private readonly IFramebufferProvider framebufferProvider = new DepthFramebufferProvider();
-        private readonly PolygonOffsetFillSwitch state = new PolygonOffsetFillSwitch(false);// TODO: other offsets also needed?
+        private readonly PolygonOffsetFillSwitch polygonFillOffset = new PolygonOffsetFillSwitch(false);// TODO: other offsets also needed?
         //private readonly int[] viewport = new int[4];
         private int width;
         private int height;
@@ -28,7 +28,7 @@ namespace CSharpGL
 
             framebuffer.Bind();
             GL.Instance.Viewport(0, 0, this.width, this.height);
-            this.state.On();
+            this.polygonFillOffset.On();
             {
                 GL.Instance.ClearColor(1.0f, 1.0f, 1.0f, 1.0f);// white color means farest position.
                 GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT | GL.GL_STENCIL_BUFFER_BIT);
@@ -50,7 +50,7 @@ namespace CSharpGL
             int width = this.width, height = this.height;
             var framebuffer = this.framebufferProvider.GetFramebuffer(width, height);
 
-            this.state.Off();
+            this.polygonFillOffset.Off();
             GL.Instance.Viewport(0, 0, width, height);// recover viewport.
             framebuffer.Unbind();
         }

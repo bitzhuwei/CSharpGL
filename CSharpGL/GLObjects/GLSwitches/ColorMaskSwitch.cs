@@ -151,7 +151,7 @@
         }
 
         /// <summary>
-        /// Get mask of current state.
+        /// Get current color mask.
         /// </summary>
         /// <returns></returns>
         public static ColorMask GetCurrent()

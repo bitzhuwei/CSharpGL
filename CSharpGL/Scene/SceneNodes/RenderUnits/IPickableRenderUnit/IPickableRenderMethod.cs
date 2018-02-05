@@ -28,9 +28,9 @@ namespace CSharpGL
         /// <param name="program"></param>
         /// <param name="vao"></param>
         /// <param name="positionBuffers"></param>
-        /// <param name="states"></param>
-        public IPickableRenderMethod(ShaderProgram program, VertexArrayObject[] vao, VertexBuffer[] positionBuffers, params GLSwitch[] states)
-            : base(program, vao, states)
+        /// <param name="switches"></param>
+        public IPickableRenderMethod(ShaderProgram program, VertexArrayObject[] vao, VertexBuffer[] positionBuffers, params GLSwitch[] switches)
+            : base(program, vao, switches)
         {
             this.PositionBuffers = positionBuffers;
         }
