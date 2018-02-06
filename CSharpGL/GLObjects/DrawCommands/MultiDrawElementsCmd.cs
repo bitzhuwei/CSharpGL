@@ -83,8 +83,8 @@ namespace CSharpGL
 
         /// <summary>
         /// </summary>
-        /// <param name="controlMode">index buffer is accessable randomly or only by frame.</param>
-        public void Draw(IndexAccessMode controlMode)
+        /// <param name="indexAccessMode">index buffer is accessable randomly or only by frame.</param>
+        public void Draw(IndexAccessMode indexAccessMode)
         {
             GCHandle pinAll = GCHandle.Alloc(this.allIndices, GCHandleType.Pinned);
             var count = this.count;

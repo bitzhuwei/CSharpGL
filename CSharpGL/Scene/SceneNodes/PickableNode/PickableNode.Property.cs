@@ -28,6 +28,6 @@ namespace CSharpGL
         /// </summary>
         [Category(strPickableRenderer)]
         [Description("index buffer is accessable randomly or only by frame.")]
-        public IndexAccessMode ControlMode { get; set; }
+        public IndexAccessMode AccessMode { get; set; }
     }
 }
