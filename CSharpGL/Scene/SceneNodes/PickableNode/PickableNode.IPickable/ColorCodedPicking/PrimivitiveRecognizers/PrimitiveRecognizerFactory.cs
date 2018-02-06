@@ -54,6 +54,7 @@ namespace CSharpGL
                     break;
 
                 case DrawMode.TrianglesAdjacency:
+                    recognizer = new TrianglesAdjacencyRecognizer();
                     break;
 
                 case DrawMode.Patches:
