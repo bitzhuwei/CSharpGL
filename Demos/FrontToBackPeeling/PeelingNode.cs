@@ -90,7 +90,7 @@ namespace FrontToBackPeeling
 
                 int numLayers = (NUM_PASSES - 1) * 2;
                 // for each pass
-                for (int layer = 0; bUseOQ || layer < numLayers; layer++)
+                for (int layer = 1; bUseOQ || layer < numLayers; layer++)
                 {
                     int currId = layer % 2;
                     int prevId = 1 - currId;
