@@ -289,6 +289,7 @@
     <Compile Include="Scene\SceneNodes\ConcreteNodes\TextBillboardNode\TextBillboardNode.cs" />
     <Compile Include="Scene\SceneNodes\ConcreteNodes\RenderToTextureNode\RenderToTexttureNode.cs" />
     <Compile Include="Scene\SceneNodes\CameraNode\CameraNode.cs" />
+    <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\ColorCodedPicking\PrimivitiveRecognizers\TrianglesAdjacencyRecognizer.cs" />
     <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.MovePosition.cs" />
     <Compile Include="Scene\SceneNodes\RenderUnits\IPickableRenderUnit\IPickableRenderUnit.cs" />
     <Compile Include="Scene\SceneNodes\RenderUnits\ModenrRenderUnit\ModernRenderUnit.cs" />
