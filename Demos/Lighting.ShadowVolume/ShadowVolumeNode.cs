@@ -99,7 +99,7 @@ namespace Lighting.ShadowVolume
             }
             else
             {
-                program.SetUniform("gLightPos", arg.Light.Position);// TODO: This is how point light works. I need to deal with directional light, etc.
+                program.SetUniform("gLightPos", arg.Light.Position);
                 program.SetUniform("farAway", false);
             }
 
