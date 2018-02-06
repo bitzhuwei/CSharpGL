@@ -19,12 +19,12 @@ namespace FrontToBackPeeling
         public readonly int width;
         public readonly int height;
 
-        public readonly Framebuffer[] framebuffers = new Framebuffer[2];
-        public readonly Texture[] colorAttachments = new Texture[2];
-        public readonly Texture[] depthAttachments = new Texture[2];
+        public readonly Framebuffer[] FBOs = new Framebuffer[2];
+        public readonly Texture[] colorTextures = new Texture[2];
+        public readonly Texture[] depthTextures = new Texture[2];
 
-        public readonly Framebuffer colorBlenderFramebuffer;
-        public readonly Texture colorBlenderColorAttachment;
+        public readonly Framebuffer blenderFBO;
+        public readonly Texture blenderColorTexture;
 
         public PeelingResource(int width, int height)
         {
@@ -33,7 +33,7 @@ namespace FrontToBackPeeling
 
             for (int i = 0; i < 2; i++)
             {
-                var depthStorage = new TexImage2D(TexImage2D.Target.TextureRectangle, GL.GL_DEPTH_COMPONENT32, width, height, GL.GL_DEPTH_COMPONENT, GL.GL_FLOAT);
+                var depthStorage = new TexImage2D(TexImage2D.Target.TextureRectangle, GL.GL_DEPTH_COMPONENT32F, width, height, GL.GL_DEPTH_COMPONENT, GL.GL_FLOAT);
                 var depthTexture = new Texture(depthStorage,
                     new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP),
                     new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_CLAMP),
@@ -60,9 +60,9 @@ namespace FrontToBackPeeling
                 framebuffer.CheckCompleteness();
                 framebuffer.Unbind();
 
-                this.framebuffers[i] = framebuffer;
-                this.colorAttachments[i] = colorTexture;
-                this.depthAttachments[i] = depthTexture;
+                this.FBOs[i] = framebuffer;
+                this.colorTextures[i] = colorTexture;
+                this.depthTextures[i] = depthTexture;
             }
 
             {
@@ -78,26 +78,26 @@ namespace FrontToBackPeeling
                 var framebuffer = new Framebuffer(width, height);
                 framebuffer.Bind();
 
-                framebuffer.Attach(FramebufferTarget.Framebuffer, this.depthAttachments[0], AttachmentLocation.Depth);
+                framebuffer.Attach(FramebufferTarget.Framebuffer, this.depthTextures[0], AttachmentLocation.Depth);
                 framebuffer.Attach(FramebufferTarget.Framebuffer, colorTexture, 0u);
 
                 framebuffer.CheckCompleteness();
                 framebuffer.Unbind();
 
-                this.colorBlenderFramebuffer = framebuffer;
-                this.colorBlenderColorAttachment = colorTexture;
+                this.blenderFBO = framebuffer;
+                this.blenderColorTexture = colorTexture;
             }
         }
 
         internal void Dispose()
         {
-            foreach (var item in this.framebuffers)
+            foreach (var item in this.FBOs)
             {
                 item.Dispose();
             }
 
             {
-                this.colorBlenderFramebuffer.Dispose();
+                this.blenderFBO.Dispose();
             }
         }
     }

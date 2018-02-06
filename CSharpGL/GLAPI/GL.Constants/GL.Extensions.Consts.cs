@@ -3114,35 +3114,35 @@ namespace CSharpGL
         /// </summary>
         public const uint GL_CLIENT_MAPPED_BUFFER_BARRIER_BIT = 0x00004000;
 
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_TEXTURE_CUBE_MAP_SEAMLESS = 0x884F;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_TEXTURE_CUBE_MAP_SEAMLESS = 0x884F;
 
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_HALF_FLOAT = 0x140B;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_DEPTH_STENCIL = 0x84F9;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_FLOAT_32_UNSIGNED_INT_24_8_REV = 0x8DAD;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_DEPTH32F_STENCIL8 = 0x8CAD;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_RGB10_A2UI = 0x906F;
         ///// <summary>
         /////
         ///// </summary>
-        //public const uint GL_HALF_FLOAT = 0x140B;
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_DEPTH_STENCIL = 0x84F9;
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_FLOAT_32_UNSIGNED_INT_24_8_REV = 0x8DAD;
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_DEPTH32F_STENCIL8 = 0x8CAD;
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_RGB10_A2UI = 0x906F;
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_DEPTH_COMPONENT32F = 0x8CAC;
+        public const uint GL_DEPTH_COMPONENT32F = 0x8CAC;
         /// <summary>
         ///
         /// </summary>

@@ -33,7 +33,7 @@ namespace FrontToBackPeeling
             }
         }
 
-        public static QuadNode Create()
+        public static QuadNode Create(Scene scene)
         {
             RenderMethodBuilder blendBuilder, finalBuilder;
             {
@@ -45,7 +45,7 @@ namespace FrontToBackPeeling
                 blendBuilder = new RenderMethodBuilder(provider, map);
             }
             {
-                var vs = new VertexShader(Shaders.blendVert);// reuse blend vertex shader.
+                var vs = new VertexShader(Shaders.finalVert);// reuse blend vertex shader.
                 var fs = new FragmentShader(Shaders.finalFrag);
                 var provider = new ShaderArray(vs, fs);
                 var map = new AttributeMap();
@@ -56,6 +56,7 @@ namespace FrontToBackPeeling
             var model = new QuadModel();
             var node = new QuadNode(model, blendBuilder, finalBuilder);
             node.Initialize();
+            node.scene = scene;
 
             return node;
         }
@@ -67,6 +68,7 @@ namespace FrontToBackPeeling
         }
 
         private ThreeFlags enableRendering = ThreeFlags.BeforeChildren | ThreeFlags.Children | ThreeFlags.AfterChildren;
+        private Scene scene;
         /// <summary>
         /// Render before/after children? Render children? 
         /// RenderAction cares about this property. Other actions, maybe, maybe not, your choice.
@@ -85,7 +87,11 @@ namespace FrontToBackPeeling
             //mat4 model = this.GetModelMatrix();
 
             RenderMethod method = this.RenderUnit.Methods[(int)this.Mode];
-            //ShaderProgram program = method.Program;
+            if (this.Mode == RenderMode.Final)
+            {
+                ShaderProgram program = method.Program;
+                program.SetUniform("vBackgroundColor", this.scene.ClearColor);
+            }
 
             method.Render();
         }

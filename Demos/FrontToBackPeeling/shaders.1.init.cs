@@ -8,7 +8,7 @@ namespace FrontToBackPeeling
 {
     public static partial class Shaders
     {
-        public const string cube_shaderVert = @"#version 330 core
+        public const string initVert = @"#version 330 core
   
 layout(location = 0) in vec3 vVertex; //object space vertex position
 
@@ -21,7 +21,7 @@ void main()
 	gl_Position = MVP*vec4(vVertex.xyz,1);
 }
 ";
-        public const string cube_shaderFrag = @"#version 330 core
+        public const string initFrag = @"#version 330 core
 
 layout(location = 0) out vec4 vFragColor; //output fragment colour
 
@@ -29,8 +29,7 @@ uniform vec4 vColor;	//colour uniform
 
 void main()
 {
-	//just set the vColor uniform as the fragment colour
-   vFragColor = vColor;
+    vFragColor = vec4(vColor.rgb * vColor.a, 1.0 - vColor.a);
 }
 ";
 

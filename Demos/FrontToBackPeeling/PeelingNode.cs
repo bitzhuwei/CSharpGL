@@ -12,8 +12,16 @@ namespace FrontToBackPeeling
         private int height;
         private GroupNode cubeNodeGroup;
         private QuadNode fullscreenQuad;
+        private DepthMaskSwitch depthMask = new DepthMaskSwitch(false);
+        private const int NUM_PASSES = 6;
+        private bool bUseOQ = false;
 
-        public PeelingNode()
+        public bool ShowDepthPeeling { get; set; }
+
+        private static readonly GLDelegates.void_uint glBlendEquation;
+        private static readonly GLDelegates.void_uint_uint_uint_uint glBlendFuncSeparate;
+
+        public PeelingNode(Scene scene)
         {
             this.ShowDepthPeeling = true;
 
@@ -44,7 +52,7 @@ namespace FrontToBackPeeling
                 this.cubeNodeGroup = groupNode;
             }
             {
-                var quad = QuadNode.Create();
+                var quad = QuadNode.Create(scene);
                 this.fullscreenQuad = quad;
             }
         }
@@ -57,15 +65,6 @@ namespace FrontToBackPeeling
         #region IRenderable 成员
 
         public ThreeFlags EnableRendering { get { return ThreeFlags.BeforeChildren; } set { } }
-
-        public bool ShowDepthPeeling { get; set; }
-
-        private DepthTestSwitch depthTestState = new DepthTestSwitch(true);
-
-        private const int NUM_PASSES = 6;
-        private bool bUseOQ = false;
-        private static readonly GLDelegates.void_uint glBlendEquation;
-        private static readonly GLDelegates.void_uint_uint_uint_uint glBlendFuncSeparate;
 
         public void RenderBeforeChildren(RenderEventArgs arg)
         {
@@ -81,46 +80,51 @@ namespace FrontToBackPeeling
 
             if (this.ShowDepthPeeling)
             {
-                this.resources.colorBlenderFramebuffer.Bind();
-                //GL.Instance.DrawBuffer(GL.GL_COLOR_ATTACHMENT0);
-                GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
-                //this.depthTestState.On();
-                this.DrawScene(arg, CubeNode.RenderMode.Cube, null);
-                this.resources.colorBlenderFramebuffer.Unbind();
+                {
+                    glBlendEquation(GL.GL_FUNC_ADD);
+                    glBlendFuncSeparate(GL.GL_SRC_ALPHA, GL.GL_ONE_MINUS_SRC_ALPHA, GL.GL_ONE, GL.GL_ONE);
+                }
+                // init.
+                {
+                    this.resources.blenderFBO.Bind();
+                    GL.Instance.ClearColor(0, 0, 0, 1);
+                    GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
+                    this.DrawScene(arg, CubeNode.RenderMode.Cube, null);
+                    this.resources.blenderFBO.Unbind();
+                }
 
                 int numLayers = (NUM_PASSES - 1) * 2;
                 // for each pass
-                for (int layer = 0; bUseOQ || layer < numLayers; layer++)
+                for (int layer = 1; bUseOQ || layer < numLayers; layer++)
                 {
                     int currId = layer % 2;
                     int prevId = 1 - currId;
-                    this.resources.framebuffers[currId].Bind();
-                    //GL.Instance.DrawBuffer(GL.GL_COLOR_ATTACHMENT0);
-                    //GL.Instance.ClearColor(0, 0, 0, 0);
-                    GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
-                    //GL.Instance.Clear(GL.GL_DEPTH_BUFFER_BIT);
-                    //this.depthTestState.Off();
-                    //GL.Instance.Disable(GL.GL_BLEND);
-                    GL.Instance.Enable(GL.GL_BLEND);
-                    glBlendEquation(GL.GL_FUNC_ADD);
-                    glBlendFuncSeparate(GL.GL_SRC_ALPHA, GL.GL_ONE_MINUS_SRC_ALPHA, GL.GL_ONE, GL.GL_ONE);
-                    if (bUseOQ)
+                    // peel.
                     {
-                        this.query.BeginQuery(QueryTarget.SamplesPassed);
+                        this.resources.FBOs[currId].Bind();
+                        GL.Instance.ClearColor(0, 0, 0, 1);
+                        GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
+                        this.depthMask.On();
+                        GL.Instance.Enable(GL.GL_BLEND);
+                        if (bUseOQ)
+                        {
+                            this.query.BeginQuery(QueryTarget.SamplesPassed);
+                        }
+                        this.DrawScene(arg, CubeNode.RenderMode.FrontPeel, this.resources.depthTextures[prevId]);
+                        if (bUseOQ)
+                        {
+                            this.query.EndQuery(QueryTarget.SamplesPassed);
+                        }
+                        GL.Instance.Disable(GL.GL_BLEND);
+                        this.depthMask.Off();
+                        this.resources.FBOs[currId].Unbind();
                     }
-                    this.DrawScene(arg, CubeNode.RenderMode.FrontPeel, this.resources.depthAttachments[prevId]);
-                    if (bUseOQ)
+                    // blend.
                     {
-                        this.query.EndQuery(QueryTarget.SamplesPassed);
+                        this.resources.blenderFBO.Bind();
+                        this.DrawFullScreenQuad(arg, QuadNode.RenderMode.Blend, this.resources.colorTextures[currId]);
+                        this.resources.blenderFBO.Unbind();
                     }
-                    GL.Instance.Disable(GL.GL_BLEND);
-                    this.resources.framebuffers[currId].Unbind();
-
-                    this.resources.colorBlenderFramebuffer.Bind();
-                    GL.Instance.DrawBuffer(GL.GL_COLOR_ATTACHMENT0);
-                    //this.depthTestState.Off();
-                    this.DrawFullScreenQuad(arg, QuadNode.RenderMode.Blend, this.resources.colorAttachments[currId]);
-                    this.resources.colorBlenderFramebuffer.Unbind();
 
                     if (bUseOQ)
                     {
@@ -128,11 +132,8 @@ namespace FrontToBackPeeling
                         if (sampleCount == 0) { break; }
                     }
                 }
-
-                //GL.Instance.DrawBuffer(GL.GL_BACK_RIGHT);
-                //GL.Instance.Disable(GL.GL_DEPTH_TEST);
-                //GL.Instance.Disable(GL.GL_BLEND);
-                this.DrawFullScreenQuad(arg, QuadNode.RenderMode.Final, this.resources.colorBlenderColorAttachment);
+                // final.
+                this.DrawFullScreenQuad(arg, QuadNode.RenderMode.Final, this.resources.blenderColorTexture);
             }
             else
             {

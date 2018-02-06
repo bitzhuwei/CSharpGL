@@ -7,6 +7,7 @@ namespace CSharpGL
     {
         /// <summary>
         /// 识别出以<paramref name="lastVertexId"/>结尾的图元。
+        /// <para>Recognize the primitive whose indexes end with <paramref name="lastVertexId"/>.</para>
         /// </summary>
         /// <param name="lastVertexId"></param>
         /// <param name="cmd"></param>

@@ -15,6 +15,8 @@ namespace CSharpGL
         private ICamera camera;
         private BillboardSortAction sortAction;
 
+        private readonly DepthMaskSwitch depthMask = new DepthMaskSwitch(false);
+
         /// <summary>
         /// Render sorted billboards.
         /// </summary>
@@ -32,11 +34,14 @@ namespace CSharpGL
         /// <param name="param"></param>
         public override void Act(ActionParams param)
         {
+            var depthMask = this.depthMask;
+            depthMask.On();
             var arg = new RenderEventArgs(param, this.camera);
             foreach (var item in this.sortAction.BillboardList)
             {
                 item.RenderBeforeChildren(arg);
             }
+            depthMask.Off();
         }
     }
 }
