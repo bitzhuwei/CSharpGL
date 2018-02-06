@@ -96,8 +96,12 @@ namespace CSharpGL
                     {
                         nearestRestartIndex = i;
                     }
-                    else if (value == lastVertexId
+                    else if (
+                        array[i + 1] != primitiveRestartIndex
+                        && value == lastVertexId
+                        && array[i - 1] != primitiveRestartIndex
                         && array[i - 2] != primitiveRestartIndex
+                        && array[i - 3] != primitiveRestartIndex
                         && array[i - 4] != primitiveRestartIndex
                         && (i - nearestRestartIndex) % 6 == 0)
                     {
@@ -128,8 +132,11 @@ namespace CSharpGL
                     {
                         nearestRestartIndex = i;
                     }
-                    else if (value == lastVertexId
+                    else if (array[i + 1] != primitiveRestartIndex
+                        && value == lastVertexId
+                        && array[i - 1] != primitiveRestartIndex
                         && array[i - 2] != primitiveRestartIndex
+                        && array[i - 3] != primitiveRestartIndex
                         && array[i - 4] != primitiveRestartIndex
                         && (i - nearestRestartIndex) % 6 == 0)
                     {
@@ -160,8 +167,11 @@ namespace CSharpGL
                     {
                         nearestRestartIndex = i;
                     }
-                    else if (value == lastVertexId
+                    else if (array[i + 1] != primitiveRestartIndex
+                        && value == lastVertexId
+                        && array[i - 1] != primitiveRestartIndex
                         && array[i - 2] != primitiveRestartIndex
+                        && array[i - 3] != primitiveRestartIndex
                         && array[i - 4] != primitiveRestartIndex
                         && (i - nearestRestartIndex) % 6 == 0)
                     {
