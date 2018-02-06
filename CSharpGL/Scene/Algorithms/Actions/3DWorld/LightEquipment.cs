@@ -13,8 +13,7 @@ namespace CSharpGL
     public class LightEquipment : ITextureSource
     {
         private readonly IFramebufferProvider framebufferProvider = new DepthFramebufferProvider();
-        private readonly PolygonOffsetFillSwitch polygonFillOffset = new PolygonOffsetFillSwitch(false);// TODO: other offsets also needed?
-        //private readonly int[] viewport = new int[4];
+        private readonly PolygonOffsetFillSwitch polygonFillOffset = new PolygonOffsetFillSwitch(false);
         private int width;
         private int height;
 
