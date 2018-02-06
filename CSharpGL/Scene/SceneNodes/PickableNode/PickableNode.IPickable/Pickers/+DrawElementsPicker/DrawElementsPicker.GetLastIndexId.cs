@@ -32,6 +32,7 @@ namespace CSharpGL
 #if DEBUG
             NoPrimitiveRestartIndex(primitiveInfoList);
 #endif
+            DrawMode singlePrimitiveMode = this.DrawCommand.Mode.ToSinglePrimitiveMode();
             for (int left = 0; left < primitiveInfoList.Count - 1; left++)
             {
                 for (int right = left + 1; right < primitiveInfoList.Count; right++)
@@ -39,7 +40,7 @@ namespace CSharpGL
                     DrawElementsCmd twoPrimitivesIndexBuffer;
                     uint leftLastIndex, rightLastIndex;
                     AssembleIndexBuffer(
-                        primitiveInfoList[left], primitiveInfoList[right], this.DrawCommand.Mode,
+                        primitiveInfoList[left], primitiveInfoList[right], singlePrimitiveMode,
                         out twoPrimitivesIndexBuffer, out leftLastIndex, out rightLastIndex);
                     uint pickedIndex = Pick(arg, twoPrimitivesIndexBuffer);
                     if (pickedIndex == rightLastIndex)
@@ -98,19 +99,19 @@ namespace CSharpGL
         /// </summary>
         /// <param name="recognizedPrimitiveIndex0"></param>
         /// <param name="recognizedPrimitiveIndex1"></param>
-        /// <param name="drawMode"></param>
+        /// <param name="singlePrimitiveMode"></param>
         /// <param name="cmd"></param>
         /// <param name="lastIndex0"></param>
         /// <param name="lastIndex1"></param>
         private void AssembleIndexBuffer(
             RecognizedPrimitiveInfo recognizedPrimitiveIndex0,
             RecognizedPrimitiveInfo recognizedPrimitiveIndex1,
-            DrawMode drawMode,
+            DrawMode singlePrimitiveMode,
             out DrawElementsCmd cmd,
             out uint lastIndex0, out uint lastIndex1)
         {
             List<uint> indexArray = ArrangeIndexes(
-                recognizedPrimitiveIndex0, recognizedPrimitiveIndex1, drawMode,
+                recognizedPrimitiveIndex0, recognizedPrimitiveIndex1,
                 out lastIndex0, out lastIndex1);
             if (indexArray.Count !=
                 recognizedPrimitiveIndex0.VertexIds.Length
@@ -119,13 +120,13 @@ namespace CSharpGL
             { throw new Exception(string.Format("index array[{0}] not same length with [recognized primitive1 index length{1}] + [1] + recognized primitive2 index length[{2}]", indexArray.Count, recognizedPrimitiveIndex0.VertexIds.Length, recognizedPrimitiveIndex1.VertexIds.Length)); }
 
             IndexBuffer buffer = indexArray.ToArray().GenIndexBuffer(BufferUsage.StaticDraw);
-            cmd = new DrawElementsCmd(buffer, drawMode, uint.MaxValue);// uint.MaxValue in glPrimitiveRestartIndex();
+            cmd = new DrawElementsCmd(buffer, singlePrimitiveMode, uint.MaxValue);// uint.MaxValue in glPrimitiveRestartIndex();
 
             //oneIndexBuffer = Buffer.Create(IndexElementType.UInt,
             //    recognizedPrimitiveIndex0.VertexIds.Length
             //    + 1
             //    + recognizedPrimitiveIndex1.VertexIds.Length,
-            //    drawMode, BufferUsage.StaticDraw);
+            //    singlePrimitiveMode, BufferUsage.StaticDraw);
             //unsafe
             //{
             //    var array = (uint*)oneIndexBuffer.MapBuffer(MapBufferAccess.WriteOnly);
@@ -149,7 +150,6 @@ namespace CSharpGL
         private List<uint> ArrangeIndexes(
             RecognizedPrimitiveInfo recognizedPrimitiveIndex0,
             RecognizedPrimitiveInfo recognizedPrimitiveIndex1,
-            DrawMode drawMode,
             out uint lastIndex0, out uint lastIndex1)
         {
             var sameIndexList = new List<uint>();

@@ -74,8 +74,8 @@ namespace CSharpGL
 
         /// <summary>
         /// </summary>
-        /// <param name="controlMode">index buffer is accessable randomly or only by frame.</param>
-        public void Draw(ControlMode controlMode)
+        /// <param name="indexAccessMode">index buffer is accessable randomly or only by frame.</param>
+        public void Draw(IndexAccessMode indexAccessMode)
         {
             uint mode = (uint)this.Mode;
 
@@ -84,9 +84,9 @@ namespace CSharpGL
             int frameCount = this.FrameCount;
             if (frameCount < 1) { throw new Exception("error: frameCount is less than 1."); }
 
-            switch (controlMode)
+            switch (indexAccessMode)
             {
-                case ControlMode.ByFrame:
+                case IndexAccessMode.ByFrame:
                     int vertexCount = this.VertexCount;
                     if (instanceCount == 1)
                     {
@@ -113,7 +113,7 @@ namespace CSharpGL
                         }
                     }
                     break;
-                case ControlMode.Random:
+                case IndexAccessMode.Random:
                     if (instanceCount == 1)
                     {
                         GL.Instance.DrawArrays(mode, this.FirstVertex, this.RenderingVertexCount);
@@ -124,7 +124,7 @@ namespace CSharpGL
                     }
                     break;
                 default:
-                    throw new NotDealWithNewEnumItemException(typeof(ControlMode));
+                    throw new NotDealWithNewEnumItemException(typeof(IndexAccessMode));
             }
 
         }

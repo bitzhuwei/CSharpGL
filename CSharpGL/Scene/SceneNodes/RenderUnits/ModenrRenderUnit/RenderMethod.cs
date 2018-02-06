@@ -55,24 +55,24 @@ namespace CSharpGL
         /// <param name="transformFeedbackObj"></param>
         public void Render(TransformFeedbackObject transformFeedbackObj)
         {
-            this.Render(ControlMode.ByFrame, transformFeedbackObj);
+            this.Render(IndexAccessMode.ByFrame, transformFeedbackObj);
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="controlMode">index buffer is accessable randomly or only by frame.</param>
-        public void Render(ControlMode controlMode = ControlMode.ByFrame)
+        /// <param name="indexAccessMode">index buffer is accessable randomly or only by frame.</param>
+        public void Render(IndexAccessMode indexAccessMode = IndexAccessMode.ByFrame)
         {
-            this.Render(controlMode, null);
+            this.Render(indexAccessMode, null);
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="controlMode">index buffer is accessable randomly or only by frame.</param>
+        /// <param name="indexAccessMode">index buffer is accessable randomly or only by frame.</param>
         /// <param name="transformFeedbackObj"></param>
-        public void Render(ControlMode controlMode, TransformFeedbackObject transformFeedbackObj)
+        public void Render(IndexAccessMode indexAccessMode, TransformFeedbackObject transformFeedbackObj)
         {
             ShaderProgram program = this.Program;
             GLSwitchList switchList = this.SwitchList;
@@ -89,7 +89,7 @@ namespace CSharpGL
                 foreach (var vao in this.VertexArrayObjects)
                 {
                     transformFeedbackObj.Begin(vao.DrawCommand.Mode);
-                    vao.Draw(controlMode);
+                    vao.Draw(indexAccessMode);
                     transformFeedbackObj.End();
                 }
                 transformFeedbackObj.Unbind();
@@ -98,7 +98,7 @@ namespace CSharpGL
             {
                 foreach (var vao in this.VertexArrayObjects)
                 {
-                    vao.Draw(controlMode);
+                    vao.Draw(indexAccessMode);
                 }
             }
 

@@ -14,10 +14,8 @@ Here are some of them.
 ## Picking.
 Get to know how CSharpGL\OpenGL implements picking and draging with modern OpenGL!
 ![Color Coded Picking](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/ColorCodedPicking/ColorCodedPicking.png?raw=true)
-## Texture2D.
-This shows how 2D texture works.
-And now it also shows how to use CtrlImage, CtrlButton and CtrlLabel.
-![Texture2D](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/Texture2D/Texture2D.gif?raw=true)
+## Front To Back Peeling.
+![FrontToBackPeeling](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/FrontToBackPeeling/FrontToBackPeeling.png?raw=true)
 # Environment Mapping.
 ### Reflection.
 ![Reflection](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/EnvironmentMapping/Reflection.png?raw=true)

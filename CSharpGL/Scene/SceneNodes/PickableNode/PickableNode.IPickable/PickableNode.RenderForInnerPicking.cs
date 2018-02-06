@@ -13,9 +13,9 @@ namespace CSharpGL
         /// select a primitive geometry(point, line, triangle, quad, polygon) from points/lines/triangles/quads/polygons in this node.
         /// </summary>
         /// <param name="arg"></param>
-        /// <param name="controlMode"></param>
+        /// <param name="indexAccessMode"></param>
         /// <param name="drawCmd">indicates the primitive to pick a line from.</param>
-        internal void Render4InnerPicking(PickingEventArgs arg, ControlMode controlMode, IDrawCommand drawCmd)
+        internal void Render4InnerPicking(PickingEventArgs arg, IndexAccessMode indexAccessMode, IDrawCommand drawCmd)
         {
             // record clear color
             var originalClearColor = new float[4];
@@ -29,7 +29,7 @@ namespace CSharpGL
             // restore clear color
             GL.Instance.ClearColor(originalClearColor[0], originalClearColor[1], originalClearColor[2], originalClearColor[3]);
 
-            this.RenderForPicking(arg, controlMode, drawCmd);
+            this.RenderForPicking(arg, indexAccessMode, drawCmd);
 
             GL.Instance.Flush();
 
@@ -38,7 +38,7 @@ namespace CSharpGL
             //    e.CanvasRect.Width, e.CanvasRect.Height, filename);
         }
 
-        private void RenderForPicking(PickingEventArgs arg, ControlMode controlMode, IDrawCommand tmpCmd)
+        private void RenderForPicking(PickingEventArgs arg, IndexAccessMode indexAccessMode, IDrawCommand tmpCmd)
         {
             if (!this.IsInitialized) { this.Initialize(); }
 
@@ -75,7 +75,7 @@ namespace CSharpGL
                 foreach (var vao in this.PickingRenderMethod.VertexArrayObjects)
                 {
                     program.glUniform("pickingBaseId", (int)(baseId));
-                    vao.Draw(controlMode, tmpCmd);
+                    vao.Draw(indexAccessMode, tmpCmd);
                     baseId += (uint)vao.VertexAttributes[0].Buffer.Length;
                 }
             }

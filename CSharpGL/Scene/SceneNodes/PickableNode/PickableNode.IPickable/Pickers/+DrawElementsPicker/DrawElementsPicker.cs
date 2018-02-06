@@ -207,7 +207,7 @@ namespace CSharpGL
         /// <returns></returns>
         private uint Pick(PickingEventArgs arg, DrawElementsCmd twoPrimitivesIndexBuffer)
         {
-            this.Node.Render4InnerPicking(arg, ControlMode.ByFrame, twoPrimitivesIndexBuffer);
+            this.Node.Render4InnerPicking(arg, IndexAccessMode.ByFrame, twoPrimitivesIndexBuffer);
 
             uint pickedIndex = ColorCodedPicking.ReadStageVertexId(arg.X, arg.Y);
 
@@ -235,19 +235,5 @@ namespace CSharpGL
             return primitiveInfoList;
         }
 
-        //// TODO: encapsulate primitive restart index switch into DrawElementsState.
-        //private PrimitiveRestartSwitch GetPrimitiveRestartState()
-        //{
-        //    foreach (GLSwitch item in this.Node.PickingRenderMethod.SwitchList)
-        //    {
-        //        var target = item as PrimitiveRestartSwitch;
-        //        if (target != null)
-        //        {
-        //            return target;
-        //        }
-        //    }
-
-        //    return null;
-        //}
     }
 }

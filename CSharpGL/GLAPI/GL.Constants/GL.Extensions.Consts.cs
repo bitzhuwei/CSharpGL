@@ -3139,9 +3139,9 @@ namespace CSharpGL
         ///
         /// </summary>
         public const uint GL_RGB10_A2UI = 0x906F;
-        ///// <summary>
-        /////
-        ///// </summary>
+        /// <summary>
+        ///
+        /// </summary>
         public const uint GL_DEPTH_COMPONENT32F = 0x8CAC;
         /// <summary>
         ///

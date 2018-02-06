@@ -61,25 +61,37 @@ void main(void) {
         /// Render a teapot in modern opengl.
         /// </summary>
         /// <returns></returns>
-        public static TeapotNode Create()
+        public static TeapotNode Create(bool adjacent = false)
         {
+            IBufferSource model; vec3 size;
+            if (adjacent)
+            {
+                var m = new AdjacentTeapot(); size = m.GetModelSize(); model = m;
+            }
+            else
+            {
+                var m = new Teapot(); size = m.GetModelSize(); model = m;
+            }
+            string position = adjacent ? AdjacentTeapot.strPosition : Teapot.strPosition;
+            string color = adjacent ? AdjacentTeapot.strColor : Teapot.strColor;
+
             var vs = new VertexShader(vertexCode);
             var fs = new FragmentShader(fragmentCode);
             var provider = new ShaderArray(vs, fs);
             var map = new AttributeMap();
-            map.Add(inPosition, Teapot.strPosition);
-            map.Add(inColor, Teapot.strColor);
+            map.Add(inPosition, position);
+            map.Add(inColor, color);
             var builder = new RenderMethodBuilder(provider, map);
-            var node = new TeapotNode(new Teapot(), Teapot.strPosition, builder);
+            var node = new TeapotNode(model, position, builder);
             node.Initialize();
+            node.ModelSize = size;
 
             return node;
         }
 
-        private TeapotNode(Teapot model, string positionNameInIBufferable, params RenderMethodBuilder[] builders)
+        private TeapotNode(IBufferSource model, string positionNameInIBufferable, params RenderMethodBuilder[] builders)
             : base(model, positionNameInIBufferable, builders)
         {
-            this.ModelSize = model.GetModelSize();
             this.RenderWireframe = true;
             this.RenderBody = true;
         }
