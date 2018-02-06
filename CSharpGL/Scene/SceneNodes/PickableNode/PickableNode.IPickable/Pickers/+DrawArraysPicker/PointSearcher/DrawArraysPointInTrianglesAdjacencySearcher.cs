@@ -24,7 +24,7 @@ namespace CSharpGL
                 buffer.UnmapBuffer();
             }
             var cmd = new DrawElementsCmd(buffer, DrawMode.Points);
-            picker.Node.Render4InnerPicking(arg, ControlMode.ByFrame, cmd);
+            picker.Node.Render4InnerPicking(arg, IndexAccessMode.ByFrame, cmd);
             uint id = ColorCodedPicking.ReadStageVertexId(arg.X, arg.Y);
 
             buffer.Dispose();

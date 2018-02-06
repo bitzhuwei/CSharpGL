@@ -98,7 +98,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="controlMode">index buffer is accessable randomly or only by frame.</param>
         /// <param name="temporaryIndexBuffer">render by a temporary index buffer</param>
-        public void Draw(ControlMode controlMode, IDrawCommand temporaryIndexBuffer = null)
+        public void Draw(IndexAccessMode controlMode, IDrawCommand temporaryIndexBuffer = null)
         {
             this.Bind();
 

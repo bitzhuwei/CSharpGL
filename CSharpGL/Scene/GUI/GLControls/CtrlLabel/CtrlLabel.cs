@@ -78,7 +78,7 @@ namespace CSharpGL
 
             ModernRenderUnit unit = this.RenderUnit;
             RenderMethod method = unit.Methods[0];
-            method.Render(ControlMode.Random);
+            method.Render(IndexAccessMode.Random);
         }
     }
 }

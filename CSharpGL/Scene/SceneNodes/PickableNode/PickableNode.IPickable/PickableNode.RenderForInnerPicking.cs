@@ -15,7 +15,7 @@ namespace CSharpGL
         /// <param name="arg"></param>
         /// <param name="controlMode"></param>
         /// <param name="drawCmd">indicates the primitive to pick a line from.</param>
-        internal void Render4InnerPicking(PickingEventArgs arg, ControlMode controlMode, IDrawCommand drawCmd)
+        internal void Render4InnerPicking(PickingEventArgs arg, IndexAccessMode controlMode, IDrawCommand drawCmd)
         {
             // record clear color
             var originalClearColor = new float[4];
@@ -38,7 +38,7 @@ namespace CSharpGL
             //    e.CanvasRect.Width, e.CanvasRect.Height, filename);
         }
 
-        private void RenderForPicking(PickingEventArgs arg, ControlMode controlMode, IDrawCommand tmpCmd)
+        private void RenderForPicking(PickingEventArgs arg, IndexAccessMode controlMode, IDrawCommand tmpCmd)
         {
             if (!this.IsInitialized) { this.Initialize(); }
 

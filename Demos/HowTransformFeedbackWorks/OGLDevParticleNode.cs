@@ -136,7 +136,7 @@ namespace HowTransformFeedbackWorks
                 program.SetUniform("dt", dt);
                 program.SetUniform("bounce", bounce);
                 program.SetUniform("seed", random.Next());
-                method.Render(ControlMode.ByFrame, tf); // update buffers and record output to tf's binding.
+                method.Render(IndexAccessMode.ByFrame, tf); // update buffers and record output to tf's binding.
 
                 GL.Instance.Disable(GL.GL_RASTERIZER_DISCARD);
             }

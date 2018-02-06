@@ -98,7 +98,7 @@ namespace CSharpGL
         ///
         /// </summary>
         /// <param name="controlMode">index buffer is accessable randomly or only by frame.</param>
-        public void Draw(ControlMode controlMode)
+        public void Draw(IndexAccessMode controlMode)
         {
             int instanceCount = this.InstanceCount;
             if (instanceCount < 1) { throw new Exception("error: instanceCount is less than 1."); }
@@ -120,7 +120,7 @@ namespace CSharpGL
             GLBuffer.glBindBuffer(GL.GL_ELEMENT_ARRAY_BUFFER, indexBuffer.BufferId);
             switch (controlMode)
             {
-                case ControlMode.ByFrame:
+                case IndexAccessMode.ByFrame:
                     if (instanceCount == 1)
                     {
                         if (frameCount == 1)
@@ -144,7 +144,7 @@ namespace CSharpGL
                         }
                     }
                     break;
-                case ControlMode.Random:
+                case IndexAccessMode.Random:
                     if (instanceCount == 1)
                     {
                         if (frameCount == 1)
@@ -169,7 +169,7 @@ namespace CSharpGL
                     }
                     break;
                 default:
-                    throw new NotDealWithNewEnumItemException(typeof(ControlMode));
+                    throw new NotDealWithNewEnumItemException(typeof(IndexAccessMode));
             }
 
             GLBuffer.glBindBuffer(GL.GL_ELEMENT_ARRAY_BUFFER, 0);

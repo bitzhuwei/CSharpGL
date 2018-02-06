@@ -66,7 +66,7 @@ namespace Transparency.Blending
             program.SetUniform("backgroundColor", background);
 
             // TODO: rename ControlMode to AccessMode.
-            method.Render(ControlMode.Random);
+            method.Render(IndexAccessMode.Random);
         }
 
         public void RenderAfterChildren(RenderEventArgs arg)

@@ -55,14 +55,14 @@ namespace CSharpGL
         /// <param name="transformFeedbackObj"></param>
         public void Render(TransformFeedbackObject transformFeedbackObj)
         {
-            this.Render(ControlMode.ByFrame, transformFeedbackObj);
+            this.Render(IndexAccessMode.ByFrame, transformFeedbackObj);
         }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="controlMode">index buffer is accessable randomly or only by frame.</param>
-        public void Render(ControlMode controlMode = ControlMode.ByFrame)
+        public void Render(IndexAccessMode controlMode = IndexAccessMode.ByFrame)
         {
             this.Render(controlMode, null);
         }
@@ -72,7 +72,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="controlMode">index buffer is accessable randomly or only by frame.</param>
         /// <param name="transformFeedbackObj"></param>
-        public void Render(ControlMode controlMode, TransformFeedbackObject transformFeedbackObj)
+        public void Render(IndexAccessMode controlMode, TransformFeedbackObject transformFeedbackObj)
         {
             ShaderProgram program = this.Program;
             GLSwitchList switchList = this.SwitchList;
