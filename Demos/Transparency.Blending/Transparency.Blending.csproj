@@ -54,9 +54,6 @@
     <Compile Include="RectGlassModel.cs" />
     <Compile Include="RectGlassNode.shaders.cs" />
     <Compile Include="RectGlassNode.cs" />
-    <EmbeddedResource Include="FormMain.resx">
-      <DependentUpon>FormMain.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

@@ -27,7 +27,7 @@ uniform vec4 backgroundColor;
 out vec4 outColor;
 
 void main() {
-    outColor = color + (1 - color.a) * backgroundColor;
+    outColor = color;// + (1 - color.a) * backgroundColor;
 }
 ";
 

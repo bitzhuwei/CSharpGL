@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.trvScene = new System.Windows.Forms.TreeView();
             this.propGrid = new System.Windows.Forms.PropertyGrid();
             this.winGLCanvas1 = new CSharpGL.WinGLCanvas();
@@ -49,7 +48,7 @@
             // 
             // propGrid
             // 
-            this.propGrid.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.propGrid.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.propGrid.Location = new System.Drawing.Point(12, 277);
             this.propGrid.Name = "propGrid";
@@ -58,14 +57,22 @@
             // 
             // winGLCanvas1
             // 
-            this.winGLCanvas1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.winGLCanvas1.AccumAlphaBits = ((byte)(0));
+            this.winGLCanvas1.AccumBits = ((byte)(0));
+            this.winGLCanvas1.AccumBlueBits = ((byte)(0));
+            this.winGLCanvas1.AccumGreenBits = ((byte)(0));
+            this.winGLCanvas1.AccumRedBits = ((byte)(0));
+            this.winGLCanvas1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.winGLCanvas1.Location = new System.Drawing.Point(350, 12);
             this.winGLCanvas1.Name = "winGLCanvas1";
             this.winGLCanvas1.RenderTrigger = CSharpGL.RenderTrigger.TimerBased;
             this.winGLCanvas1.Size = new System.Drawing.Size(777, 573);
+            this.winGLCanvas1.StencilBits = ((byte)(0));
             this.winGLCanvas1.TabIndex = 0;
+            this.winGLCanvas1.TimerTriggerInterval = 40;
+            this.winGLCanvas1.UpdateContextVersion = true;
             // 
             // statusStrip1
             // 
@@ -80,8 +87,9 @@
             // lblState
             // 
             this.lblState.Name = "lblState";
-            this.lblState.Size = new System.Drawing.Size(62, 17);
-            this.lblState.Text = "state info";
+            this.lblState.Size = new System.Drawing.Size(226, 17);
+            this.lblState.Text = "select glBlendFunc(sf, df); parameters";
+            this.lblState.Click += new System.EventHandler(this.lblState_Click);
             // 
             // FormMain
             // 

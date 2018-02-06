@@ -8,7 +8,7 @@ namespace Transparency.Blending
 {
     partial class RectGlassNode : ModernNode, IRenderable
     {
-        public static RectGlassNode Create(int width, int height)
+        public static RectGlassNode Create(float width, float height)
         {
             var model = new RectGlassModel(width, height);
             var vs = new VertexShader(vert);
@@ -17,7 +17,8 @@ namespace Transparency.Blending
             var map = new AttributeMap();
             map.Add("inPosition", RectGlassModel.strPosition);
             var blend = new BlendSwitch(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.OneMinusSourceAlpha);
-            var builder = new RenderMethodBuilder(array, map, blend);
+            var depthMask = new DepthMaskSwitch(false);
+            var builder = new RenderMethodBuilder(array, map, blend, depthMask);
             var node = new RectGlassNode(model, builder);
             node.Blend = blend;
             node.ModelSize = new vec3(width, height, 0);

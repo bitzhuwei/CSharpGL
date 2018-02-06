@@ -47,6 +47,44 @@ namespace Transparency.Blending
 
             Match(this.trvScene, scene.RootNode);
             this.trvScene.ExpandAll();
+            var m = new FirstPerspectiveManipulater();
+            m.Bind(camera, this.winGLCanvas1);
+
+            BlendingSourceFactor sf; BlendingDestinationFactor df;
+            helper.GetNext(out sf, out df);
+            initialSF = sf; initialDF = df;
+            this.winGLCanvas1.KeyPress += winGLCanvas1_KeyPress;
+        }
+
+        private BlendingSourceFactor initialSF;
+        private BlendingDestinationFactor initialDF;
+        private BlendFactorHelper helper = new BlendFactorHelper();
+        void winGLCanvas1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 'b')
+            {
+                BlendingSourceFactor sf; BlendingDestinationFactor df;
+                helper.GetNext(out sf, out df);
+                if (initialSF == sf && initialDF == df) { MessageBox.Show("Round up"); }
+
+                SetupBlending(this.scene.RootNode, sf, df);
+                this.lblState.Text = string.Format("sf:{0}, df:{1}", sf, df);
+            }
+        }
+
+        private void SetupBlending(SceneNodeBase sceneNodeBase, BlendingSourceFactor sf, BlendingDestinationFactor df)
+        {
+            var node = sceneNodeBase as RectGlassNode;
+            if (node != null)
+            {
+                node.Blend.SourceFactor = sf;
+                node.Blend.DestFactor = df;
+            }
+
+            foreach (var item in sceneNodeBase.Children)
+            {
+                SetupBlending(item, sf, df);
+            }
         }
 
         private void Match(TreeView treeView, SceneNodeBase nodeBase)
@@ -70,14 +108,26 @@ namespace Transparency.Blending
         private SceneNodeBase GetTree()
         {
             var group = new GroupNode();
+            //{
+            //    var cube = CubeNode.Create();
+            //    cube.Color = new vec4(0, 1, 0, 0.3f);
+            //    group.Children.Add(cube);
+            //}
+            const float alpha = 0.5f;
             {
                 var glass = RectGlassNode.Create(4, 3);
+                glass.WorldPosition = new vec3(-1, 0, 0);
+                glass.Color = new vec4(0, 1, 0, alpha);
+                glass.Name = "Green Glass";
                 group.Children.Add(glass);
             }
-            //{
-            //    var teapot = TeapotNode.Create();
-            //    group.Children.Add(teapot);
-            //}
+            {
+                var glass = RectGlassNode.Create(4, 3);
+                glass.WorldPosition = new vec3(1, 0, 1);
+                glass.Color = new vec4(1, 0, 0, alpha);
+                glass.Name = "Red Glass";
+                group.Children.Add(glass);
+            }
 
             return group;
         }
@@ -105,6 +155,18 @@ namespace Transparency.Blending
             this.propGrid.SelectedObject = e.Node.Tag;
 
             this.lblState.Text = string.Format("{0} objects selected.", 1);
+        }
+
+        private void lblState_Click(object sender, EventArgs e)
+        {
+            var frm = new FormBlendFunc();
+            if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                var sf = frm.SelectedSourceFactor;
+                var df = frm.SelectedDestinationFactor;
+                SetupBlending(this.scene.RootNode, sf, df);
+                this.lblState.Text = string.Format("sf:{0}, df:{1}", sf, df);
+            }
         }
     }
 }
