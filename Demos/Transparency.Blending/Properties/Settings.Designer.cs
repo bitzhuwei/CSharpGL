@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Transparency.Transparency.Blending.Properties
+namespace Transparency.Blending.Properties
 {
 
 

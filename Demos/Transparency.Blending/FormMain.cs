@@ -28,12 +28,11 @@ namespace Transparency.Blending
         {
             var rootElement = GetTree();
 
-            var position = new vec3(5, 3, 4);
+            var position = new vec3(1, 1, 4);
             var center = new vec3(0, 0, 0);
             var up = new vec3(0, 1, 0);
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
             this.scene = new Scene(camera)
-
             {
                 RootNode = rootElement,
                 ClearColor = Color.SkyBlue.ToVec4(),
@@ -71,6 +70,14 @@ namespace Transparency.Blending
         private SceneNodeBase GetTree()
         {
             var group = new GroupNode();
+            {
+                var glass = RectGlassNode.Create(4, 3);
+                group.Children.Add(glass);
+            }
+            //{
+            //    var teapot = TeapotNode.Create();
+            //    group.Children.Add(teapot);
+            //}
 
             return group;
         }
