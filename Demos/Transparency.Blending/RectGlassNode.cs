@@ -57,6 +57,12 @@ namespace Transparency.Blending
             ShaderProgram program = method.Program;
             program.SetUniform("mvpMat", projection * view * model);
             program.SetUniform("color", this.Color);
+            //var clearColor = new int[4];
+            //GL.Instance.GetIntegerv((uint)GetTarget.ColorClearValue, clearColor);
+            var clearColor = new float[4];
+            GL.Instance.GetFloatv((uint)GetTarget.ColorClearValue, clearColor);
+            var background = new vec4(clearColor[0], clearColor[1], clearColor[2], clearColor[3]);
+            program.SetUniform("backgroundColor", background);
 
             // TODO: rename ControlMode to AccessMode.
             method.Render(ControlMode.Random);
