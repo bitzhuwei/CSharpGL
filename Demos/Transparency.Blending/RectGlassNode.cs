@@ -65,7 +65,6 @@ namespace Transparency.Blending
             var background = new vec4(clearColor[0], clearColor[1], clearColor[2], clearColor[3]);
             program.SetUniform("backgroundColor", background);
 
-            // TODO: rename ControlMode to AccessMode.
             method.Render(IndexAccessMode.Random);
         }
 
