@@ -24,6 +24,7 @@ namespace CSharpGL
             this.Mode = mode;
             this.FirstVertex = firstVertex;
             this.VertexCount = vertexCount;
+            this.RenderingVertexCount = vertexCount;
             this.InstanceCount = instanceCount;
             this.FrameCount = frameCount;
         }
