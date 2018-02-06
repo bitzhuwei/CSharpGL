@@ -39,13 +39,13 @@ namespace CSharpGL
                 var array = (ushort*)pointer.ToPointer();
                 //long nearestRestartIndex = -1;
                 uint i = 0;
-                for (i = i + 2; i < length; i += 3)
+                for (i = i + 4; i < length; i += 6)
                 {
                     var value = array[i];
                     if (value == lastVertexId)
                     //&& (i - nearestRestartIndex) % 3 == 0)
                     {
-                        var item = new RecognizedPrimitiveInfo(i, array[i - 2], array[i - 1], lastVertexId);
+                        var item = new RecognizedPrimitiveInfo(i, array[i - 4], array[i - 2], lastVertexId);
                         primitiveInfoList.Add(item);
                     }
                 }
@@ -63,13 +63,13 @@ namespace CSharpGL
                 var array = (uint*)pointer.ToPointer();
                 //long nearestRestartIndex = -1;
                 uint i = 0;
-                for (i = i + 2; i < length; i += 3)
+                for (i = i + 4; i < length; i += 6)
                 {
                     var value = array[i];
                     if (value == lastVertexId)
                     //&& (i - nearestRestartIndex) % 3 == 0)
                     {
-                        var item = new RecognizedPrimitiveInfo(i, array[i - 2], array[i - 1], lastVertexId);
+                        var item = new RecognizedPrimitiveInfo(i, array[i - 4], array[i - 2], lastVertexId);
                         primitiveInfoList.Add(item);
                     }
                 }
