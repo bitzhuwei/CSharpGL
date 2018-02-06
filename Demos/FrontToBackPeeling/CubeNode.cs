@@ -56,16 +56,16 @@ namespace FrontToBackPeeling
         {
             RenderMethodBuilder blendBuilder, finalBuilder;
             {
-                var vs = new VertexShader(Shaders.cube_shaderVert);
-                var fs = new FragmentShader(Shaders.cube_shaderFrag);
+                var vs = new VertexShader(Shaders.initVert);
+                var fs = new FragmentShader(Shaders.initFrag);
                 var provider = new ShaderArray(vs, fs);
                 var map = new AttributeMap();
                 map.Add("vVertex", CubeModel.positions);
                 blendBuilder = new RenderMethodBuilder(provider, map);
             }
             {
-                var vs = new VertexShader(Shaders.front_peelVert);// reuse blend vertex shader.
-                var fs = new FragmentShader(Shaders.front_peelFrag);
+                var vs = new VertexShader(Shaders.peelVert);// reuse blend vertex shader.
+                var fs = new FragmentShader(Shaders.peelFrag);
                 var provider = new ShaderArray(vs, fs);
                 var map = new AttributeMap();
                 map.Add("vVertex", CubeModel.positions);
