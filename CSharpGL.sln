@@ -101,8 +101,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lighting.ShadowMapping.Insi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Transparency.Blending", "Demos\Transparency.Blending\Transparency.Blending.csproj", "{299CD1FF-2722-4B89-A178-092604436A2F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DrawModeExperiment", "Demos\DrawModeExperiment\DrawModeExperiment.csproj", "{1FD292F6-45DF-4F70-9028-3CB06D84DE47}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -297,10 +295,6 @@ Global
 		{299CD1FF-2722-4B89-A178-092604436A2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{299CD1FF-2722-4B89-A178-092604436A2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{299CD1FF-2722-4B89-A178-092604436A2F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1FD292F6-45DF-4F70-9028-3CB06D84DE47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1FD292F6-45DF-4F70-9028-3CB06D84DE47}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1FD292F6-45DF-4F70-9028-3CB06D84DE47}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1FD292F6-45DF-4F70-9028-3CB06D84DE47}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -351,6 +345,5 @@ Global
 		{445EB4DA-9988-44C1-A0B4-DD6241AEF300} = {772765C9-9DD4-487B-8FEB-5EAACA9F955B}
 		{7B1FA78C-5A30-4C93-AB99-752BBC9A8430} = {772765C9-9DD4-487B-8FEB-5EAACA9F955B}
 		{299CD1FF-2722-4B89-A178-092604436A2F} = {772765C9-9DD4-487B-8FEB-5EAACA9F955B}
-		{1FD292F6-45DF-4F70-9028-3CB06D84DE47} = {772765C9-9DD4-487B-8FEB-5EAACA9F955B}
 	EndGlobalSection
 EndGlobal
