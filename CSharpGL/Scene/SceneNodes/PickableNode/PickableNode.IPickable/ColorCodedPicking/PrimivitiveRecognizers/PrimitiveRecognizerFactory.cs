@@ -36,6 +36,7 @@ namespace CSharpGL
                     break;
 
                 case DrawMode.LinesAdjacency:
+                    recognizer = new LinesAdjacencyRecognizer();
                     break;
 
                 case DrawMode.TriangleStrip:
