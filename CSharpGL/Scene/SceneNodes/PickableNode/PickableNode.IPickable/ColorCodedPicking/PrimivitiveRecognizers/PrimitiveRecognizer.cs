@@ -15,28 +15,28 @@ namespace CSharpGL
         public List<RecognizedPrimitiveInfo> Recognize(
          uint flatColorVertexId, DrawElementsCmd cmd)
         {
-            List<RecognizedPrimitiveInfo> lastIndexIdList;
+            List<RecognizedPrimitiveInfo> primitiveInfoList;
 
             uint pri = cmd.PrimitiveRestartIndex;
             if (pri == byte.MaxValue || pri == ushort.MaxValue || pri == uint.MaxValue)
             {
-                lastIndexIdList = Recognize(flatColorVertexId, cmd, pri);
+                primitiveInfoList = Recognize(flatColorVertexId, cmd, pri);
             }
             else
             {
-                lastIndexIdList = new List<RecognizedPrimitiveInfo>();
+                primitiveInfoList = new List<RecognizedPrimitiveInfo>();
                 switch (cmd.IndexBufferObject.ElementType)
                 {
                     case IndexBufferElementType.UByte:
-                        RecognizeByte(flatColorVertexId, cmd, lastIndexIdList);
+                        RecognizeByte(flatColorVertexId, cmd, primitiveInfoList);
                         break;
 
                     case IndexBufferElementType.UShort:
-                        RecognizeUShort(flatColorVertexId, cmd, lastIndexIdList);
+                        RecognizeUShort(flatColorVertexId, cmd, primitiveInfoList);
                         break;
 
                     case IndexBufferElementType.UInt:
-                        RecognizeUInt(flatColorVertexId, cmd, lastIndexIdList);
+                        RecognizeUInt(flatColorVertexId, cmd, primitiveInfoList);
                         break;
 
                     default:
@@ -44,7 +44,7 @@ namespace CSharpGL
                 }
             }
 
-            return lastIndexIdList;
+            return primitiveInfoList;
         }
 
         protected abstract void RecognizeUInt(uint flatColorVertexId, DrawElementsCmd cmd, List<RecognizedPrimitiveInfo> primitiveInfoList);
@@ -64,21 +64,21 @@ namespace CSharpGL
         protected List<RecognizedPrimitiveInfo> Recognize(
             uint flatColorVertexId, DrawElementsCmd cmd, uint primitiveRestartIndex)
         {
-            var lastIndexIdList = new List<RecognizedPrimitiveInfo>();
+            var primitiveInfoList = new List<RecognizedPrimitiveInfo>();
             if (flatColorVertexId != primitiveRestartIndex)
             {
                 switch (cmd.IndexBufferObject.ElementType)
                 {
                     case IndexBufferElementType.UByte:
-                        RecognizeByte(flatColorVertexId, cmd, lastIndexIdList, primitiveRestartIndex);
+                        RecognizeByte(flatColorVertexId, cmd, primitiveInfoList, primitiveRestartIndex);
                         break;
 
                     case IndexBufferElementType.UShort:
-                        RecognizeUShort(flatColorVertexId, cmd, lastIndexIdList, primitiveRestartIndex);
+                        RecognizeUShort(flatColorVertexId, cmd, primitiveInfoList, primitiveRestartIndex);
                         break;
 
                     case IndexBufferElementType.UInt:
-                        RecognizeUInt(flatColorVertexId, cmd, lastIndexIdList, primitiveRestartIndex);
+                        RecognizeUInt(flatColorVertexId, cmd, primitiveInfoList, primitiveRestartIndex);
                         break;
 
                     default:
@@ -86,7 +86,7 @@ namespace CSharpGL
                 }
             }
 
-            return lastIndexIdList;
+            return primitiveInfoList;
         }
 
         protected abstract void RecognizeUInt(uint flatColorVertexId, DrawElementsCmd cmd, List<RecognizedPrimitiveInfo> primitiveInfoList, uint primitiveRestartIndex);

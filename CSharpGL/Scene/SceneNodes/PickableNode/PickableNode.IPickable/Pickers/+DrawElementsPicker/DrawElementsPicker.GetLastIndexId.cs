@@ -15,7 +15,7 @@ namespace CSharpGL
         /// <param name="arg"></param>
         /// <param name="primitiveInfoList"></param>
         /// <returns></returns>
-        private RecognizedPrimitiveInfo GetLastIndexId(
+        private RecognizedPrimitiveInfo FindThePickedOne(
             PickingEventArgs arg,
             List<RecognizedPrimitiveInfo> primitiveInfoList)
         {

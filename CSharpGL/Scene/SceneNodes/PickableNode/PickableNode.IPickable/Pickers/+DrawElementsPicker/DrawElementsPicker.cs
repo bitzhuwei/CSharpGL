@@ -45,12 +45,12 @@ namespace CSharpGL
 
             PickableNode node = this.Node;
 
-            // Find lastIndexId
-            RecognizedPrimitiveInfo lastIndexId = this.GetLastIndexIdOfPickedGeometry(arg, flatColorVertexId);
-            if (lastIndexId == null)
+            // Find primitiveInfo
+            RecognizedPrimitiveInfo primitiveInfo = this.GetPrimitiveInfoOfPickedGeometry(arg, flatColorVertexId);
+            if (primitiveInfo == null)
             {
                 Debug.WriteLine(string.Format(
-                    "Got flatColorVertexId[{0}] but no lastIndexId! Params are [{1}] [{2}]",
+                    "Got flatColorVertexId[{0}] but no primitiveInfo! Params are [{1}] [{2}]",
                     flatColorVertexId, arg, stageVertexId));
                 { return null; }
             }
@@ -63,7 +63,7 @@ namespace CSharpGL
             {
                 // 获取pickedGeometry
                 if (typeOfMode == GeometryType.Point)
-                { return PickWhateverItIs(arg, stageVertexId, lastIndexId, typeOfMode); }
+                { return PickWhateverItIs(arg, stageVertexId, primitiveInfo, typeOfMode); }
                 else if (typeOfMode == GeometryType.Line)
                 {
                     if (this.OnPrimitiveTest(flatColorVertexId, drawMode))
@@ -75,7 +75,7 @@ namespace CSharpGL
                 {
                     DrawElementsPointSearcher searcher = GetPointSearcher(drawMode);
                     if (searcher != null)// line is from triangle, quad or polygon
-                    { return SearchPoint(arg, stageVertexId, flatColorVertexId, lastIndexId, searcher); }
+                    { return SearchPoint(arg, stageVertexId, flatColorVertexId, primitiveInfo, searcher); }
                     else
                     { throw new Exception(string.Format("Lack of searcher for [{0}]", drawMode)); }
                 }
@@ -86,12 +86,12 @@ namespace CSharpGL
                 if (typeOfMode == GeometryType.Point) // want a line when rendering GL_POINTS
                 { return null; }
                 if (typeOfMode == GeometryType.Line)
-                { return PickWhateverItIs(arg, stageVertexId, lastIndexId, typeOfMode); }
+                { return PickWhateverItIs(arg, stageVertexId, primitiveInfo, typeOfMode); }
                 else
                 {
                     DrawElementsLineSearcher searcher = GetLineSearcher(drawMode);
                     if (searcher != null)// line is from triangle, quad or polygon
-                    { return SearchLine(arg, stageVertexId, lastIndexId, searcher); }
+                    { return SearchLine(arg, stageVertexId, primitiveInfo, searcher); }
                     else
                     { throw new Exception(string.Format("Lack of searcher for [{0}]", drawMode)); }
                 }
@@ -99,7 +99,7 @@ namespace CSharpGL
             else
             {
                 if (geometryType.Contains(typeOfMode)) // I want what it is
-                { return PickWhateverItIs(arg, stageVertexId, lastIndexId, typeOfMode); }
+                { return PickWhateverItIs(arg, stageVertexId, primitiveInfo, typeOfMode); }
                 else
                 { return null; }
                 //{ throw new Exception(string.Format("Lack of searcher for [{0}]", mode)); }
@@ -186,17 +186,17 @@ namespace CSharpGL
         /// <param name="arg"></param>
         /// <param name="flatColorVertexId"></param>
         /// <returns></returns>
-        private RecognizedPrimitiveInfo GetLastIndexIdOfPickedGeometry(
+        private RecognizedPrimitiveInfo GetPrimitiveInfoOfPickedGeometry(
             PickingEventArgs arg,
             uint flatColorVertexId)
         {
-            List<RecognizedPrimitiveInfo> primitiveInfoList = GetLastIndexIdList(arg, flatColorVertexId);
+            List<RecognizedPrimitiveInfo> primitiveInfoList = GetPossiblePrimitives(arg, flatColorVertexId);
 
             if (primitiveInfoList.Count == 0) { return null; }
 
-            RecognizedPrimitiveInfo lastIndexId = GetLastIndexId(arg, primitiveInfoList);
+            RecognizedPrimitiveInfo primitiveInfo = FindThePickedOne(arg, primitiveInfoList);
 
-            return lastIndexId;
+            return primitiveInfo;
         }
 
         /// <summary>
@@ -222,7 +222,7 @@ namespace CSharpGL
         /// <param name="arg"></param>
         /// <param name="flatColorVertexId"></param>
         /// <returns></returns>
-        private List<RecognizedPrimitiveInfo> GetLastIndexIdList(PickingEventArgs arg, uint flatColorVertexId)
+        private List<RecognizedPrimitiveInfo> GetPossiblePrimitives(PickingEventArgs arg, uint flatColorVertexId)
         {
             var drawCmd = this.DrawCommand;
             DrawMode mode = drawCmd.Mode;
