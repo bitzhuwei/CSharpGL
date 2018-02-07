@@ -156,14 +156,27 @@
         /// </summary>
         SourceAlphaSaturate = GL.GL_SRC_ALPHA_SATURATE,
     }
-	
-	public enum BlendEquationMode : uint
-	{
-		Add = GL.GL_FUNC_ADD,
-		Subtract = GL.GL_FUNC_SUBTRACT, 
-		ReverseSubtract = GL.GL_FUNC_REVERSE_SUBTRACT, 
-		Min = GL.GL_MIN, 
-		Max = GL.GL_MAX,
-	}
-	
+
+    /// <summary>
+    /// Blending equation mode.
+    /// </summary>
+    public enum BlendEquationMode : uint
+    {
+        /// <summary>
+        /// </summary>
+        Add = GL.GL_FUNC_ADD,
+        /// <summary>
+        /// </summary>
+        Subtract = GL.GL_FUNC_SUBTRACT,
+        /// <summary>
+        /// </summary>
+        ReverseSubtract = GL.GL_FUNC_REVERSE_SUBTRACT,
+        /// <summary>
+        /// </summary>
+        Min = GL.GL_MIN,
+        /// <summary>
+        /// </summary>
+        Max = GL.GL_MAX,
+    }
+
 }

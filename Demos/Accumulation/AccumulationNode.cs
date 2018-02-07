@@ -19,7 +19,7 @@ namespace Accumulation
                 var map = new AttributeMap();
                 map.Add("inPosition", Sphere.strPosition);
                 map.Add("inColor", Sphere.strColor);
-                var blend = new BlendSwitch(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.OneMinusSourceAlpha);
+                var blend = new BlendFuncSwitch(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.OneMinusSourceAlpha);
                 renderBuilder = new RenderMethodBuilder(provider, map);
             }
             var node = new AccumulationNode(model, renderBuilder);

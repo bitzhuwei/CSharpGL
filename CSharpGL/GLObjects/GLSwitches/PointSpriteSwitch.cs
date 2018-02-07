@@ -14,7 +14,7 @@
             this.StateList = new GLSwitchList();
             this.StateList.Add(new PointSmoothSwitch());
             this.StateList.Add(new DepthTestSwitch());
-            this.StateList.Add(new BlendSwitch(
+            this.StateList.Add(new BlendFuncSwitch(
                 BlendingSourceFactor.SourceAlpha,
                 BlendingDestinationFactor.OneMinusSourceAlpha));
         }

@@ -93,6 +93,7 @@
     <None Include="Scene\Manipulaters\readme.md" />
     <None Include="GLCanvas\readme.md" />
     <Compile Include="BasicDataStructures\Viewport.cs" />
+    <Compile Include="GLAPI\GL.Enumerations\Blend.cs" />
     <Compile Include="GLAPI\GL.Enumerations\CubemapFace.cs" />
     <Compile Include="GLAPI\GL.Enumerations\StencilTest.cs" />
     <Compile Include="GLAPI\GL.PrintError.cs" />
@@ -119,8 +120,10 @@
     <Compile Include="GLObjects\GLSwitches\ColorMaskSwitch.cs" />
     <Compile Include="GLObjects\GLSwitches\DepthMaskSwitch.cs" />
     <Compile Include="GLObjects\GLSwitches\EnableSwitches\AlphaFuncSwitch.cs" />
-    <Compile Include="GLObjects\GLSwitches\EnableSwitches\BlendSeparateSwitch.cs" />
-    <Compile Include="GLObjects\GLSwitches\EnableSwitches\BlendSwitch.cs" />
+    <Compile Include="GLObjects\GLSwitches\EnableSwitches\BlendEquationSeprateSwitch.cs" />
+    <Compile Include="GLObjects\GLSwitches\EnableSwitches\BlendEquationSwitch.cs" />
+    <Compile Include="GLObjects\GLSwitches\EnableSwitches\BlendFuncSeparateSwitch.cs" />
+    <Compile Include="GLObjects\GLSwitches\EnableSwitches\BlendFuncSwitch.cs" />
     <Compile Include="GLObjects\GLSwitches\EnableSwitches\ClipPlaneSwitch.cs" />
     <Compile Include="GLObjects\GLSwitches\EnableSwitches\CullFaceSwitch.cs" />
     <Compile Include="GLObjects\GLSwitches\EnableSwitches\DepthClampSwitch.cs" />
@@ -470,7 +473,6 @@
     </Compile>
     <Compile Include="BasicDataStructures\Utilities\StructHelper.cs" />
     <None Include="GLAPI\readme.md" />
-    <Compile Include="GLAPI\GL.Enumerations\BlendFunc.cs" />
     <Compile Include="GLAPI\GL.Enumerations\Buffer.cs" />
     <Compile Include="GLAPI\GL.Enumerations\DrawMode.cs" />
     <Compile Include="GLAPI\GL.Enumerations\ErrorCode.cs" />

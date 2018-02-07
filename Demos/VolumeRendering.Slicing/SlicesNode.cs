@@ -31,7 +31,7 @@ namespace VolumeRendering.Slicing
                 var provider = new ShaderArray(vs, fs);
                 var map = new AttributeMap();
                 map.Add("vVertex", SlicesModel.position);
-                defaultBuilder = new RenderMethodBuilder(provider, map, new BlendSwitch(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.OneMinusSourceAlpha));
+                defaultBuilder = new RenderMethodBuilder(provider, map, new BlendFuncSwitch(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.OneMinusSourceAlpha));
             }
             {
                 var vs = new VertexShader(classificationVert);
@@ -39,7 +39,7 @@ namespace VolumeRendering.Slicing
                 var provider = new ShaderArray(vs, fs);
                 var map = new AttributeMap();
                 map.Add("vVertex", SlicesModel.position);
-                classificationBuilder = new RenderMethodBuilder(provider, map, new BlendSwitch(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.OneMinusSourceAlpha));
+                classificationBuilder = new RenderMethodBuilder(provider, map, new BlendFuncSwitch(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.OneMinusSourceAlpha));
             }
 
             var node = new SlicesNode(model, defaultBuilder, classificationBuilder);

@@ -24,8 +24,8 @@ namespace CSharpGL
         /// </summary>
         /// <param name="sourceFactor">Specifies how the red, green and blue source blending factors are computedThe initial value is GL_ONE.</param>
         /// <param name="destFactor">Specifies how the red, green and blue alpha destination blending factors are computed. The initial value is GL_ZERO.</param>
-        /// <param name="sourceFactor">Specifies how the alpha source blending factors are computedThe initial value is GL_ONE.</param>
-        /// <param name="destFactor">Specifies how the alpha destination blending factors are computed. The initial value is GL_ZERO.</param>
+        /// <param name="sourceAlphaFactor">Specifies how the alpha source blending factors are computedThe initial value is GL_ONE.</param>
+        /// <param name="destAlphaFactor">Specifies how the alpha destination blending factors are computed. The initial value is GL_ZERO.</param>
         /// <param name="enableCapacity"></param>
         public BlendFuncSeparateSwitch(BlendingSourceFactor sourceFactor, BlendingDestinationFactor destFactor, BlendingSourceFactor sourceAlphaFactor, BlendingDestinationFactor destAlphaFactor, bool enableCapacity = true)
             : base(GL.GL_BLEND, enableCapacity)

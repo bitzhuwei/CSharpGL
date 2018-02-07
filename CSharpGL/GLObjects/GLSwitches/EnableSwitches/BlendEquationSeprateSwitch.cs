@@ -22,7 +22,8 @@ namespace CSharpGL
         /// <summary>
         /// set the RGBA blend equation.
         /// </summary>
-        /// <param name="rgbMode">set the RGBA blend equation.</param>
+        /// <param name="rgbMode">set the RGB blend equation.</param>
+        /// <param name="alphaMode">set the Alpha blend equation.</param>
         /// <param name="enableCapacity"></param>
         public BlendEquationSeprateSwitch(BlendEquationMode rgbMode, BlendEquationMode alphaMode, bool enableCapacity = true)
             : base(GL.GL_BLEND, enableCapacity)
