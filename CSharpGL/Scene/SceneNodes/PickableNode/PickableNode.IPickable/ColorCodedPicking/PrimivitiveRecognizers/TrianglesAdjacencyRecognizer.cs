@@ -90,14 +90,13 @@ namespace CSharpGL
                     {
                         nearestRestartIndex = i;
                     }
-                    else if (
-                        array[i + 1] != primitiveRestartIndex
-                        && value == lastVertexId
-                        && array[i - 1] != primitiveRestartIndex
-                        && array[i - 2] != primitiveRestartIndex
-                        && array[i - 3] != primitiveRestartIndex
-                        && array[i - 4] != primitiveRestartIndex
-                        && (i - 4 - nearestRestartIndex) % 6 == 0)
+                    else if (((i - 4 - nearestRestartIndex) % 6 == 0)
+                        && (value == lastVertexId)
+                        && (array[i + 1] != primitiveRestartIndex)
+                        && (array[i - 1] != primitiveRestartIndex)
+                        && (array[i - 2] != primitiveRestartIndex)
+                        && (array[i - 3] != primitiveRestartIndex)
+                        && (array[i - 4] != primitiveRestartIndex))
                     {
                         var item = new RecognizedPrimitiveInfo(i, array[i - 4], array[i - 2], lastVertexId);
                         primitiveInfoList.Add(item);
@@ -126,13 +125,13 @@ namespace CSharpGL
                     {
                         nearestRestartIndex = i;
                     }
-                    else if (array[i + 1] != primitiveRestartIndex
-                        && value == lastVertexId
-                        && array[i - 1] != primitiveRestartIndex
-                        && array[i - 2] != primitiveRestartIndex
-                        && array[i - 3] != primitiveRestartIndex
-                        && array[i - 4] != primitiveRestartIndex
-                        && (i - 4 - nearestRestartIndex) % 6 == 0)
+                    else if (((i - 4 - nearestRestartIndex) % 6 == 0)
+                        && (value == lastVertexId)
+                        && (array[i + 1] != primitiveRestartIndex)
+                        && (array[i - 1] != primitiveRestartIndex)
+                        && (array[i - 2] != primitiveRestartIndex)
+                        && (array[i - 3] != primitiveRestartIndex)
+                        && (array[i - 4] != primitiveRestartIndex))
                     {
                         var item = new RecognizedPrimitiveInfo(i, array[i - 4], array[i - 2], lastVertexId);
                         primitiveInfoList.Add(item);
@@ -161,13 +160,13 @@ namespace CSharpGL
                     {
                         nearestRestartIndex = i;
                     }
-                    else if (array[i + 1] != primitiveRestartIndex
-                        && value == lastVertexId
-                        && array[i - 1] != primitiveRestartIndex
-                        && array[i - 2] != primitiveRestartIndex
-                        && array[i - 3] != primitiveRestartIndex
-                        && array[i - 4] != primitiveRestartIndex
-                        && (i - 4 - nearestRestartIndex) % 6 == 0)
+                    else if (((i - 4 - nearestRestartIndex) % 6 == 0)
+                        && (value == lastVertexId)
+                        && (array[i + 1] != primitiveRestartIndex)
+                        && (array[i - 1] != primitiveRestartIndex)
+                        && (array[i - 2] != primitiveRestartIndex)
+                        && (array[i - 3] != primitiveRestartIndex)
+                        && (array[i - 4] != primitiveRestartIndex))
                     {
                         var item = new RecognizedPrimitiveInfo(i, array[i - 4], array[i - 2], lastVertexId);
                         primitiveInfoList.Add(item);
