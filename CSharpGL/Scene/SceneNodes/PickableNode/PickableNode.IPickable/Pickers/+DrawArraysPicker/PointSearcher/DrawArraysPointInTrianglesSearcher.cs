@@ -8,19 +8,19 @@ namespace CSharpGL
         /// 在三角形图元中拾取指定位置的Point
         /// </summary>
         /// <param name="arg">渲染参数</param>
-        /// <param name="lastVertexId">三角形图元的最后一个顶点</param>
+        /// <param name="flatColorVertexId">三角形图元的最后一个顶点</param>
         /// <param name="picker">目标Renderer</param>
         /// <returns></returns>
-        internal override uint Search(PickingEventArgs arg, uint lastVertexId, DrawArraysPicker picker)
+        internal override uint Search(PickingEventArgs arg, uint flatColorVertexId, DrawArraysPicker picker)
         {
             // 创建临时索引
             IndexBuffer buffer = GLBuffer.Create(IndexBufferElementType.UInt, 3, BufferUsage.StaticDraw);
             unsafe
             {
                 var array = (uint*)buffer.MapBuffer(MapBufferAccess.WriteOnly);
-                array[0] = lastVertexId - 0;
-                array[1] = lastVertexId - 1;
-                array[2] = lastVertexId - 2;
+                array[0] = flatColorVertexId - 0;
+                array[1] = flatColorVertexId - 1;
+                array[2] = flatColorVertexId - 2;
                 buffer.UnmapBuffer();
             }
             var cmd = new DrawElementsCmd(buffer, DrawMode.Points);
@@ -32,7 +32,7 @@ namespace CSharpGL
             buffer.Dispose();
 
             // 对比临时索引，找到那个Line
-            if (lastVertexId - 2 <= id && id <= lastVertexId - 0)
+            if (flatColorVertexId - 2 <= id && id <= flatColorVertexId - 0)
             { return id; }
             else
             { throw new Exception("This should not happen!"); }

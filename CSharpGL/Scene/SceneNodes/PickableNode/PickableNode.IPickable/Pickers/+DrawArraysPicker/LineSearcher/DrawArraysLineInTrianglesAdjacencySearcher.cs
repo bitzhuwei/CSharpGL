@@ -6,19 +6,19 @@
         ///
         /// </summary>
         /// <param name="arg"></param>
-        /// <param name="lastVertexId"></param>
+        /// <param name="flatColorVertexId"></param>
         /// <param name="picker"></param>
         /// <returns></returns>
         internal override uint[] Search(PickingEventArgs arg,
-            uint lastVertexId, DrawArraysPicker picker)
+            uint flatColorVertexId, DrawArraysPicker picker)
         {
             IndexBuffer buffer = GLBuffer.Create(IndexBufferElementType.UInt, 6, BufferUsage.StaticDraw);
             unsafe
             {
                 var array = (uint*)buffer.MapBuffer(MapBufferAccess.WriteOnly);
-                array[0] = lastVertexId - 2; array[1] = lastVertexId - 0;
-                array[2] = lastVertexId - 4; array[3] = lastVertexId - 2;
-                array[4] = lastVertexId - 0; array[5] = lastVertexId - 4;
+                array[0] = flatColorVertexId - 2; array[1] = flatColorVertexId - 0;
+                array[2] = flatColorVertexId - 4; array[3] = flatColorVertexId - 2;
+                array[4] = flatColorVertexId - 0; array[5] = flatColorVertexId - 4;
                 buffer.UnmapBuffer();
             }
             var cmd = new DrawElementsCmd(buffer, DrawMode.Lines);
@@ -27,7 +27,7 @@
 
             buffer.Dispose();
 
-            if (id + 4 == lastVertexId)
+            if (id + 4 == flatColorVertexId)
             { return new uint[] { id + 4, id, }; }
             else
             { return new uint[] { id - 2, id, }; }

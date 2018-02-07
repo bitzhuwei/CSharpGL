@@ -6,10 +6,10 @@
         ///
         /// </summary>
         /// <param name="arg"></param>
-        /// <param name="lastVertexId"></param>
+        /// <param name="flatColorVertexId"></param>
         /// <param name="picker"></param>
         /// <returns></returns>
-        internal override uint[] Search(PickingEventArgs arg, uint lastVertexId, DrawArraysPicker picker)
+        internal override uint[] Search(PickingEventArgs arg, uint flatColorVertexId, DrawArraysPicker picker)
         {
             var cmd = picker.DrawCommand as DrawArraysCmd;
             // when the temp index buffer could be long, it's no longer needed.

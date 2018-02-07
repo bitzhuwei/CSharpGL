@@ -13,12 +13,12 @@ namespace CSharpGL
     public class BlinnPhongAction : ActionBase
     {
         private Scene scene;
-        private readonly BlendSwitch blend = new BlendSwitch(BlendingSourceFactor.One, BlendingDestinationFactor.One);
+        private readonly BlendFuncSwitch blend = new BlendFuncSwitch(BlendingSourceFactor.One, BlendingDestinationFactor.One);
 
         /// <summary>
         /// 
         /// </summary>
-        public BlendSwitch Blend
+        public BlendFuncSwitch Blend
         {
             get { return blend; }
         }

@@ -13,7 +13,7 @@ namespace CSharpGL
     public class ShadowMappingAction : ActionBase
     {
         private readonly ColorMaskSwitch colorMask = new ColorMaskSwitch(false, false, false, false);
-        private readonly BlendSwitch blend = new BlendSwitch(BlendingSourceFactor.One, BlendingDestinationFactor.One);
+        private readonly BlendFuncSwitch blend = new BlendFuncSwitch(BlendingSourceFactor.One, BlendingDestinationFactor.One);
         private LightEquipment lightEquipment = new LightEquipment();
 
         //public LightEquipment LightEquipment
@@ -26,7 +26,7 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        public BlendSwitch Blend
+        public BlendFuncSwitch Blend
         {
             get { return blend; }
         }

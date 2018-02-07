@@ -8,20 +8,20 @@ namespace CSharpGL
         ///
         /// </summary>
         /// <param name="arg"></param>
-        /// <param name="lastVertexId"></param>
+        /// <param name="flatColorVertexId"></param>
         /// <param name="picker"></param>
         /// <returns></returns>
         internal override uint Search(PickingEventArgs arg,
-            uint lastVertexId, DrawArraysPicker picker)
+            uint flatColorVertexId, DrawArraysPicker picker)
         {
             IndexBuffer buffer = GLBuffer.Create(IndexBufferElementType.UInt, 4, BufferUsage.StaticDraw);
             unsafe
             {
                 var array = (uint*)buffer.MapBuffer(MapBufferAccess.WriteOnly);
-                array[0] = lastVertexId - 0;
-                array[1] = lastVertexId - 1;
-                array[2] = lastVertexId - 2;
-                array[3] = lastVertexId - 3;
+                array[0] = flatColorVertexId - 0;
+                array[1] = flatColorVertexId - 1;
+                array[2] = flatColorVertexId - 2;
+                array[3] = flatColorVertexId - 3;
                 buffer.UnmapBuffer();
             }
             var cmd = new DrawElementsCmd(buffer, DrawMode.Points);
@@ -30,7 +30,7 @@ namespace CSharpGL
 
             buffer.Dispose();
 
-            if (lastVertexId - 3 <= id && id <= lastVertexId - 0)
+            if (flatColorVertexId - 3 <= id && id <= flatColorVertexId - 0)
             { return id; }
             else
             { throw new Exception("This should not happen!"); }

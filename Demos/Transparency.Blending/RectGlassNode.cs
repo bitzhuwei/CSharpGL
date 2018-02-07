@@ -16,7 +16,7 @@ namespace Transparency.Blending
             var array = new ShaderArray(vs, fs);
             var map = new AttributeMap();
             map.Add("inPosition", RectGlassModel.strPosition);
-            var blend = new BlendSwitch(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.OneMinusSourceAlpha);
+            var blend = new BlendFuncSwitch(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.OneMinusSourceAlpha);
             var depthMask = new DepthMaskSwitch(false);
             var builder = new RenderMethodBuilder(array, map, blend, depthMask);
             var node = new RectGlassNode(model, builder);
@@ -33,7 +33,7 @@ namespace Transparency.Blending
             this.Color = new vec4(1, 0, 0, 0.2f);
         }
 
-        public BlendSwitch Blend { get; private set; }
+        public BlendFuncSwitch Blend { get; private set; }
 
         public vec4 Color { get; set; }
 

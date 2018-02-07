@@ -8,14 +8,14 @@ namespace CSharpGL
     partial class DrawElementsPicker
     {
         /// <summary>
-        /// 在所有可能的图元（lastVertexId匹配）中，
+        /// 在所有可能的图元（flatColorVertexId匹配）中，
         /// 逐个测试，找到最接近摄像机的那个图元，
         /// 返回此图元的最后一个索引在<see cref="IndexBuffer"/>中的索引（位置）。
         /// </summary>
         /// <param name="arg"></param>
         /// <param name="primitiveInfoList"></param>
         /// <returns></returns>
-        private RecognizedPrimitiveInfo GetLastIndexId(
+        private RecognizedPrimitiveInfo FindThePickedOne(
             PickingEventArgs arg,
             List<RecognizedPrimitiveInfo> primitiveInfoList)
         {
@@ -143,7 +143,6 @@ namespace CSharpGL
         /// </summary>
         /// <param name="recognizedPrimitiveIndex0"></param>
         /// <param name="recognizedPrimitiveIndex1"></param>
-        /// <param name="drawMode"></param>
         /// <param name="lastIndex0"></param>
         /// <param name="lastIndex1"></param>
         /// <returns></returns>

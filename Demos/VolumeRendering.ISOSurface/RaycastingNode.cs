@@ -30,7 +30,7 @@ namespace VolumeRendering.ISOSurface
                 var provider = new ShaderArray(vs, fs);
                 var map = new AttributeMap();
                 map.Add("vVertex", RaycastingModel.position);
-                defaultBuilder = new RenderMethodBuilder(provider, map, new BlendSwitch(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.OneMinusSourceAlpha));
+                defaultBuilder = new RenderMethodBuilder(provider, map, new BlendFuncSwitch(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.OneMinusSourceAlpha));
             }
             {
                 var vs = new VertexShader(isourfaceVert);
@@ -38,7 +38,7 @@ namespace VolumeRendering.ISOSurface
                 var provider = new ShaderArray(vs, fs);
                 var map = new AttributeMap();
                 map.Add("vVertex", RaycastingModel.position);
-                isosurfaceBuilder = new RenderMethodBuilder(provider, map, new BlendSwitch(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.OneMinusSourceAlpha));
+                isosurfaceBuilder = new RenderMethodBuilder(provider, map, new BlendFuncSwitch(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.OneMinusSourceAlpha));
             }
 
             var node = new RaycastingNode(model, defaultBuilder, isosurfaceBuilder);

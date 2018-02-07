@@ -5,7 +5,7 @@ namespace CSharpGL
 {
     internal class LinesRecognizer : PrimitiveRecognizer
     {
-        protected override void RecognizeUInt(uint lastVertexId, DrawElementsCmd cmd, List<RecognizedPrimitiveInfo> primitiveInfoList)
+        protected override void RecognizeUInt(uint flatColorVertexId, DrawElementsCmd cmd, List<RecognizedPrimitiveInfo> primitiveInfoList)
         {
             IndexBuffer indexBuffer = cmd.IndexBufferObject;
             int length = indexBuffer.Length;
@@ -14,13 +14,12 @@ namespace CSharpGL
             {
                 var array = (uint*)pointer.ToPointer();
                 uint i = 0;
-                for (i = i + 1; i < length; i++)
+                for (i = i + 1; i < length; i += 2)
                 {
                     var value = array[i];
-                    if (value == lastVertexId
-                        && (i - 1) % 2 == 0)
+                    if (value == flatColorVertexId)
                     {
-                        var item = new RecognizedPrimitiveInfo(i, array[i - 1], lastVertexId);
+                        var item = new RecognizedPrimitiveInfo(i, array[i - 1], flatColorVertexId);
                         primitiveInfoList.Add(item);
                     }
                 }
@@ -28,7 +27,7 @@ namespace CSharpGL
             indexBuffer.UnmapBuffer();
         }
 
-        protected override void RecognizeUShort(uint lastVertexId, DrawElementsCmd cmd, List<RecognizedPrimitiveInfo> primitiveInfoList)
+        protected override void RecognizeUShort(uint flatColorVertexId, DrawElementsCmd cmd, List<RecognizedPrimitiveInfo> primitiveInfoList)
         {
             IndexBuffer indexBuffer = cmd.IndexBufferObject;
             int length = indexBuffer.Length;
@@ -37,13 +36,12 @@ namespace CSharpGL
             {
                 var array = (ushort*)pointer.ToPointer();
                 uint i = 0;
-                for (i = i + 1; i < length; i++)
+                for (i = i + 1; i < length; i += 2)
                 {
                     var value = array[i];
-                    if (value == lastVertexId
-                        && (i - 1) % 2 == 0)
+                    if (value == flatColorVertexId)
                     {
-                        var item = new RecognizedPrimitiveInfo(i, array[i - 1], lastVertexId);
+                        var item = new RecognizedPrimitiveInfo(i, array[i - 1], flatColorVertexId);
                         primitiveInfoList.Add(item);
                     }
                 }
@@ -51,7 +49,7 @@ namespace CSharpGL
             indexBuffer.UnmapBuffer();
         }
 
-        protected override void RecognizeByte(uint lastVertexId, DrawElementsCmd cmd, List<RecognizedPrimitiveInfo> primitiveInfoList)
+        protected override void RecognizeByte(uint flatColorVertexId, DrawElementsCmd cmd, List<RecognizedPrimitiveInfo> primitiveInfoList)
         {
             IndexBuffer indexBuffer = cmd.IndexBufferObject;
             int length = indexBuffer.Length;
@@ -60,13 +58,12 @@ namespace CSharpGL
             {
                 var array = (byte*)pointer.ToPointer();
                 uint i = 0;
-                for (i = i + 1; i < length; i++)
+                for (i = i + 1; i < length; i += 2)
                 {
                     var value = array[i];
-                    if (value == lastVertexId
-                        && (i - 1) % 2 == 0)
+                    if (value == flatColorVertexId)
                     {
-                        var item = new RecognizedPrimitiveInfo(i, array[i - 1], lastVertexId);
+                        var item = new RecognizedPrimitiveInfo(i, array[i - 1], flatColorVertexId);
                         primitiveInfoList.Add(item);
                     }
                 }
@@ -74,7 +71,7 @@ namespace CSharpGL
             indexBuffer.UnmapBuffer();
         }
 
-        protected override void RecognizeUInt(uint lastVertexId, DrawElementsCmd cmd, List<RecognizedPrimitiveInfo> primitiveInfoList, uint primitiveRestartIndex)
+        protected override void RecognizeUInt(uint flatColorVertexId, DrawElementsCmd cmd, List<RecognizedPrimitiveInfo> primitiveInfoList, uint primitiveRestartIndex)
         {
             IndexBuffer indexBuffer = cmd.IndexBufferObject;
             int length = indexBuffer.Length;
@@ -93,11 +90,11 @@ namespace CSharpGL
                     {
                         nearestRestartIndex = i;
                     }
-                    else if (value == lastVertexId
-                        && array[i - 1] != primitiveRestartIndex
-                        && (i - 1 - nearestRestartIndex) % 2 == 0)
+                    else if (((i - 1 - nearestRestartIndex) % 2 == 0)
+                        && (value == flatColorVertexId)
+                        && (array[i - 1] != primitiveRestartIndex))
                     {
-                        var item = new RecognizedPrimitiveInfo(i, array[i - 1], lastVertexId);
+                        var item = new RecognizedPrimitiveInfo(i, array[i - 1], flatColorVertexId);
                         primitiveInfoList.Add(item);
                     }
                 }
@@ -105,7 +102,7 @@ namespace CSharpGL
             indexBuffer.UnmapBuffer();
         }
 
-        protected override void RecognizeUShort(uint lastVertexId, DrawElementsCmd cmd, List<RecognizedPrimitiveInfo> primitiveInfoList, uint primitiveRestartIndex)
+        protected override void RecognizeUShort(uint flatColorVertexId, DrawElementsCmd cmd, List<RecognizedPrimitiveInfo> primitiveInfoList, uint primitiveRestartIndex)
         {
             IndexBuffer indexBuffer = cmd.IndexBufferObject;
             int length = indexBuffer.Length;
@@ -124,11 +121,11 @@ namespace CSharpGL
                     {
                         nearestRestartIndex = i;
                     }
-                    else if (value == lastVertexId
-                        && array[i - 1] != primitiveRestartIndex
-                        && (i - 1 - nearestRestartIndex) % 2 == 0)
+                    else if (((i - 1 - nearestRestartIndex) % 2 == 0)
+                        && (value == flatColorVertexId)
+                        && (array[i - 1] != primitiveRestartIndex))
                     {
-                        var item = new RecognizedPrimitiveInfo(i, array[i - 1], lastVertexId);
+                        var item = new RecognizedPrimitiveInfo(i, array[i - 1], flatColorVertexId);
                         primitiveInfoList.Add(item);
                     }
                 }
@@ -136,7 +133,7 @@ namespace CSharpGL
             indexBuffer.UnmapBuffer();
         }
 
-        protected override void RecognizeByte(uint lastVertexId, DrawElementsCmd cmd, List<RecognizedPrimitiveInfo> primitiveInfoList, uint primitiveRestartIndex)
+        protected override void RecognizeByte(uint flatColorVertexId, DrawElementsCmd cmd, List<RecognizedPrimitiveInfo> primitiveInfoList, uint primitiveRestartIndex)
         {
             IndexBuffer indexBuffer = cmd.IndexBufferObject;
             int length = indexBuffer.Length;
@@ -155,11 +152,11 @@ namespace CSharpGL
                     {
                         nearestRestartIndex = i;
                     }
-                    else if (value == lastVertexId
-                        && array[i - 1] != primitiveRestartIndex
-                        && (i - 1 - nearestRestartIndex) % 2 == 0)
+                    else if (((i - 1 - nearestRestartIndex) % 2 == 0)
+                        && (value == flatColorVertexId)
+                        && (array[i - 1] != primitiveRestartIndex))
                     {
-                        var item = new RecognizedPrimitiveInfo(i, array[i - 1], lastVertexId);
+                        var item = new RecognizedPrimitiveInfo(i, array[i - 1], flatColorVertexId);
                         primitiveInfoList.Add(item);
                     }
                 }
