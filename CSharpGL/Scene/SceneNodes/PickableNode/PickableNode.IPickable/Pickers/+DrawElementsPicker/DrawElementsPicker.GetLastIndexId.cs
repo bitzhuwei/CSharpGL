@@ -143,7 +143,6 @@ namespace CSharpGL
         /// </summary>
         /// <param name="recognizedPrimitiveIndex0"></param>
         /// <param name="recognizedPrimitiveIndex1"></param>
-        /// <param name="drawMode"></param>
         /// <param name="lastIndex0"></param>
         /// <param name="lastIndex1"></param>
         /// <returns></returns>
