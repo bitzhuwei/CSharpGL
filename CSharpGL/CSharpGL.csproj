@@ -119,6 +119,7 @@
     <Compile Include="GLObjects\GLSwitches\ColorMaskSwitch.cs" />
     <Compile Include="GLObjects\GLSwitches\DepthMaskSwitch.cs" />
     <Compile Include="GLObjects\GLSwitches\EnableSwitches\AlphaFuncSwitch.cs" />
+    <Compile Include="GLObjects\GLSwitches\EnableSwitches\BlendSeparateSwitch.cs" />
     <Compile Include="GLObjects\GLSwitches\EnableSwitches\BlendSwitch.cs" />
     <Compile Include="GLObjects\GLSwitches\EnableSwitches\ClipPlaneSwitch.cs" />
     <Compile Include="GLObjects\GLSwitches\EnableSwitches\CullFaceSwitch.cs" />
