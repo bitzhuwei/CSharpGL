@@ -8,7 +8,7 @@ namespace CSharpGL
     partial class DrawElementsPicker
     {
         /// <summary>
-        /// 在所有可能的图元（lastVertexId匹配）中，
+        /// 在所有可能的图元（flatColorVertexId匹配）中，
         /// 逐个测试，找到最接近摄像机的那个图元，
         /// 返回此图元的最后一个索引在<see cref="IndexBuffer"/>中的索引（位置）。
         /// </summary>

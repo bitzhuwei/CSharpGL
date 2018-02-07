@@ -40,18 +40,18 @@ namespace CSharpGL
         public override PickedGeometry GetPickedGeometry(PickingEventArgs arg, uint stageVertexId, uint baseId)
         {
             if (stageVertexId < baseId) { return null; }
-            uint lastVertexId = stageVertexId - baseId;
-            if (this.PositionBuffer.Length <= lastVertexId) { return null; }
+            uint flatColorVertexId = stageVertexId - baseId;
+            if (this.PositionBuffer.Length <= flatColorVertexId) { return null; }
 
             PickableNode node = this.Node;
 
             // Find lastIndexId
-            RecognizedPrimitiveInfo lastIndexId = this.GetLastIndexIdOfPickedGeometry(arg, lastVertexId);
+            RecognizedPrimitiveInfo lastIndexId = this.GetLastIndexIdOfPickedGeometry(arg, flatColorVertexId);
             if (lastIndexId == null)
             {
                 Debug.WriteLine(string.Format(
-                    "Got lastVertexId[{0}] but no lastIndexId! Params are [{1}] [{2}]",
-                    lastVertexId, arg, stageVertexId));
+                    "Got flatColorVertexId[{0}] but no lastIndexId! Params are [{1}] [{2}]",
+                    flatColorVertexId, arg, stageVertexId));
                 { return null; }
             }
 
@@ -66,8 +66,8 @@ namespace CSharpGL
                 { return PickWhateverItIs(arg, stageVertexId, lastIndexId, typeOfMode); }
                 else if (typeOfMode == GeometryType.Line)
                 {
-                    if (this.OnPrimitiveTest(lastVertexId, drawMode))
-                    { return PickPoint(arg, stageVertexId, lastVertexId); }
+                    if (this.OnPrimitiveTest(flatColorVertexId, drawMode))
+                    { return PickPoint(arg, stageVertexId, flatColorVertexId); }
                     else
                     { return null; }
                 }
@@ -75,7 +75,7 @@ namespace CSharpGL
                 {
                     DrawElementsPointSearcher searcher = GetPointSearcher(drawMode);
                     if (searcher != null)// line is from triangle, quad or polygon
-                    { return SearchPoint(arg, stageVertexId, lastVertexId, lastIndexId, searcher); }
+                    { return SearchPoint(arg, stageVertexId, flatColorVertexId, lastIndexId, searcher); }
                     else
                     { throw new Exception(string.Format("Lack of searcher for [{0}]", drawMode)); }
                 }
@@ -111,11 +111,11 @@ namespace CSharpGL
         /// </summary>
         /// <param name="arg"></param>
         /// <param name="stageVertexId"></param>
-        /// <param name="lastVertexId"></param>
+        /// <param name="flatColorVertexId"></param>
         /// <param name="primitiveInfo"></param>
         /// <param name="searcher"></param>
         /// <returns></returns>
-        private PickedGeometry SearchPoint(PickingEventArgs arg, uint stageVertexId, uint lastVertexId, RecognizedPrimitiveInfo primitiveInfo, DrawElementsPointSearcher searcher)
+        private PickedGeometry SearchPoint(PickingEventArgs arg, uint stageVertexId, uint flatColorVertexId, RecognizedPrimitiveInfo primitiveInfo, DrawElementsPointSearcher searcher)
         {
             var vertexIds = new uint[] { searcher.Search(arg, primitiveInfo, this), };
             vec3[] positions = FillPickedGeometrysPosition(vertexIds);
@@ -163,17 +163,17 @@ namespace CSharpGL
         /// So keep it like this.
         /// Also, why would someone use glDrawElements() when rendering GL_POINTS?
         /// </summary>
-        /// <param name="lastVertexId"></param>
+        /// <param name="flatColorVertexId"></param>
         /// <param name="mode"></param>
         /// <returns></returns>
-        private bool OnPrimitiveTest(uint lastVertexId, DrawMode mode)
+        private bool OnPrimitiveTest(uint flatColorVertexId, DrawMode mode)
         {
             return true;
         }
 
-        private PickedGeometry PickPoint(PickingEventArgs arg, uint stageVertexId, uint lastVertexId)
+        private PickedGeometry PickPoint(PickingEventArgs arg, uint stageVertexId, uint flatColorVertexId)
         {
-            var vertexIds = new uint[] { lastVertexId, };
+            var vertexIds = new uint[] { flatColorVertexId, };
             vec3[] positions = FillPickedGeometrysPosition(vertexIds);
             var pickedGeometry = new PickedGeometry(GeometryType.Point, positions, vertexIds, stageVertexId, this.Node);
 
@@ -184,13 +184,13 @@ namespace CSharpGL
         ///
         /// </summary>
         /// <param name="arg"></param>
-        /// <param name="lastVertexId"></param>
+        /// <param name="flatColorVertexId"></param>
         /// <returns></returns>
         private RecognizedPrimitiveInfo GetLastIndexIdOfPickedGeometry(
             PickingEventArgs arg,
-            uint lastVertexId)
+            uint flatColorVertexId)
         {
-            List<RecognizedPrimitiveInfo> primitiveInfoList = GetLastIndexIdList(arg, lastVertexId);
+            List<RecognizedPrimitiveInfo> primitiveInfoList = GetLastIndexIdList(arg, flatColorVertexId);
 
             if (primitiveInfoList.Count == 0) { return null; }
 
@@ -215,14 +215,14 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 遍历以<paramref name="lastVertexId"/>为最后一个顶点的图元，
+        /// 遍历以<paramref name="flatColorVertexId"/>为最后一个顶点的图元，
         /// 瞄准每个图元的索引（例如1个三角形有3个索引）中的最后一个索引，
         /// 将此索引在<see cref="IndexBuffer"/>中的索引（位置）收集起来。
         /// </summary>
         /// <param name="arg"></param>
-        /// <param name="lastVertexId"></param>
+        /// <param name="flatColorVertexId"></param>
         /// <returns></returns>
-        private List<RecognizedPrimitiveInfo> GetLastIndexIdList(PickingEventArgs arg, uint lastVertexId)
+        private List<RecognizedPrimitiveInfo> GetLastIndexIdList(PickingEventArgs arg, uint flatColorVertexId)
         {
             var drawCmd = this.DrawCommand;
             DrawMode mode = drawCmd.Mode;
@@ -231,7 +231,7 @@ namespace CSharpGL
                 && mode.ToGeometryType() == GeometryType.Line) ?
                 DrawMode.Points : mode);
 
-            List<RecognizedPrimitiveInfo> primitiveInfoList = recognizer.Recognize(lastVertexId, drawCmd);
+            List<RecognizedPrimitiveInfo> primitiveInfoList = recognizer.Recognize(flatColorVertexId, drawCmd);
             return primitiveInfoList;
         }
 
