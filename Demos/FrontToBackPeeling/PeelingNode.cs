@@ -92,7 +92,7 @@ namespace FrontToBackPeeling
                     this.resources.blenderFBO.Bind();
                     GL.Instance.ClearColor(0, 0, 0, 1);
                     GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
-                    this.DrawScene(arg, CubeNode.RenderMode.Cube, null);
+                    this.DrawScene(arg, CubeNode.RenderMode.Init, null);
                     this.resources.blenderFBO.Unbind();
                 }
 
@@ -114,7 +114,7 @@ namespace FrontToBackPeeling
                         {
                             this.query.BeginQuery(QueryTarget.SamplesPassed);
                         }
-                        this.DrawScene(arg, CubeNode.RenderMode.FrontPeel, this.resources.depthTextures[prevId]);
+                        this.DrawScene(arg, CubeNode.RenderMode.Peel, this.resources.depthTextures[prevId]);
                         if (bUseOQ)
                         {
                             this.query.EndQuery(QueryTarget.SamplesPassed);
@@ -143,7 +143,7 @@ namespace FrontToBackPeeling
             else
             {
                 //GL.Instance.Enable(GL.GL_DEPTH_TEST);
-                this.DrawScene(arg, CubeNode.RenderMode.Cube, null);
+                this.DrawScene(arg, CubeNode.RenderMode.Init, null);
             }
         }
 
