@@ -29,7 +29,7 @@ namespace CSharpGL
             : base(GL.GL_BLEND, enableCapacity)
         {
             this.RGBMode = rgbMode;
-
+            this.AlphaMode = alphaMode;
         }
 
         /// <summary>
