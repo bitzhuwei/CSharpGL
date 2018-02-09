@@ -24,6 +24,32 @@ namespace CSharpGL
         /// </summary>
         public BlendSwitch() : this(BlendEquationMode.Add, BlendEquationMode.Add, BlendSrcFactor.One, BlendDestFactor.Zero, BlendSrcFactor.One, BlendDestFactor.Zero) { }
 
+
+        /// <summary>
+        /// specify pixel arithmetic for RGB and alpha components separately.
+        /// </summary>
+        /// <param name="rgbMode">set the RGB blend equation.</param>
+        /// <param name="alphaMode">set the Alpha blend equation.</param>
+        /// <param name="srcFactor">Specifies how the red, green, blue and alpha source blending factors are computed. The initial value is GL_ONE.</param>
+        /// <param name="destFactor">Specifies how the red, green blue and alpha destination blending factors are computed. The initial value is GL_ZERO.</param>
+        /// <param name="enableCapacity"></param>
+        public BlendSwitch(BlendEquationMode rgbMode, BlendEquationMode alphaMode, BlendSrcFactor srcFactor, BlendDestFactor destFactor, bool enableCapacity = true)
+            : this(rgbMode, alphaMode, srcFactor, destFactor, srcFactor, destFactor, enableCapacity)
+        { }
+
+        /// <summary>
+        /// specify pixel arithmetic for RGB and alpha components separately.
+        /// </summary>
+        /// <param name="mode">set the blend equation.</param>
+        /// <param name="rgbSrcFactor">Specifies how the red, green and blue source blending factors are computedThe initial value is GL_ONE.</param>
+        /// <param name="rgbDestFactor">Specifies how the red, green and blue destination blending factors are computed. The initial value is GL_ZERO.</param>
+        /// <param name="alphaSrcFactor">Specifies how the alpha source blending factors are computed. The initial value is GL_ONE.</param>
+        /// <param name="alphaDestFactor">Specifies how the alpha destination blending factors are computed. The initial value is GL_ZERO.</param>
+        /// <param name="enableCapacity"></param>
+        public BlendSwitch(BlendEquationMode mode, BlendSrcFactor rgbSrcFactor, BlendDestFactor rgbDestFactor, BlendSrcFactor alphaSrcFactor, BlendDestFactor alphaDestFactor, bool enableCapacity = true)
+            : this(mode, mode, rgbSrcFactor, rgbDestFactor, alphaSrcFactor, alphaDestFactor, enableCapacity)
+        { }
+
         /// <summary>
         /// specify pixel arithmetic for RGB and alpha components separately.
         /// </summary>
