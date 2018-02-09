@@ -63,7 +63,7 @@ namespace FrontToBackPeeling
             glBlendFuncSeparate = GL.Instance.GetDelegateFor("glBlendFuncSeparate", GLDelegates.typeof_void_uint_uint_uint_uint) as GLDelegates.void_uint_uint_uint_uint;
         }
 
-        private BlendSwitch blend = new BlendSwitch(BlendEquationMode.Add, BlendSrcFactor.SourceAlpha, BlendDestFactor.OneMinusSourceAlpha, BlendSrcFactor.One, BlendDestFactor.One);
+        private BlendSwitch blend = new BlendSwitch(BlendEquationMode.Add, BlendSrcFactor.SrcAlpha, BlendDestFactor.OneMinusSrcAlpha, BlendSrcFactor.One, BlendDestFactor.One);
 
         #region IRenderable 成员
 

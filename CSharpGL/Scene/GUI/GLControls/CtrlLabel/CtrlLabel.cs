@@ -38,7 +38,7 @@ namespace CSharpGL
             var map = new AttributeMap();
             map.Add(inPosition, GlyphsModel.position);
             map.Add(inSTR, GlyphsModel.STR);
-            var blend = new BlendFuncSwitch(BlendSrcFactor.SourceAlpha, BlendDestFactor.OneMinusSourceAlpha);
+            var blend = new BlendFuncSwitch(BlendSrcFactor.SrcAlpha, BlendDestFactor.OneMinusSrcAlpha);
             var methodBuilder = new RenderMethodBuilder(codes, map, blend);
             this.RenderUnit = new ModernRenderUnit(model, methodBuilder);
 

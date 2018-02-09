@@ -27,7 +27,7 @@ namespace CSharpGL
             var map = new AttributeMap();
             map.Add(inPosition, CtrlTextureModel.position);
             map.Add(inUV, CtrlTextureModel.uv);
-            var methodBuilder = new RenderMethodBuilder(codes, map, new BlendFuncSwitch(BlendSrcFactor.SourceAlpha, BlendDestFactor.OneMinusSourceAlpha));
+            var methodBuilder = new RenderMethodBuilder(codes, map, new BlendFuncSwitch(BlendSrcFactor.SrcAlpha, BlendDestFactor.OneMinusSrcAlpha));
             this.RenderUnit = new ModernRenderUnit(model, methodBuilder);
             this.textureSource = textureSource;
 
