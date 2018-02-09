@@ -63,8 +63,8 @@ namespace FrontToBackPeeling
             glBlendFuncSeparate = GL.Instance.GetDelegateFor("glBlendFuncSeparate", GLDelegates.typeof_void_uint_uint_uint_uint) as GLDelegates.void_uint_uint_uint_uint;
         }
 
-        private BlendEquationSwitch blendEquation = new BlendEquationSwitch(BlendEquationMode.Add);
-        private BlendFuncSeparateSwitch blendFunc = new BlendFuncSeparateSwitch(BlendSrcFactor.SourceAlpha, BlendDestFactor.OneMinusSourceAlpha, BlendSrcFactor.One, BlendDestFactor.One);
+        private BlendSwitch blend = new BlendSwitch(BlendEquationMode.Add, BlendSrcFactor.SourceAlpha, BlendDestFactor.OneMinusSourceAlpha, BlendSrcFactor.One, BlendDestFactor.One);
+
         #region IRenderable 成员
 
         public ThreeFlags EnableRendering { get { return ThreeFlags.BeforeChildren; } set { } }
@@ -109,8 +109,7 @@ namespace FrontToBackPeeling
                         GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
                         this.depthMask.On();
                         //GL.Instance.Enable(GL.GL_BLEND);
-                        this.blendEquation.On();
-                        this.blendFunc.On();
+                        this.blend.On();
                         if (bUseOQ)
                         {
                             this.query.BeginQuery(QueryTarget.SamplesPassed);
@@ -121,8 +120,7 @@ namespace FrontToBackPeeling
                             this.query.EndQuery(QueryTarget.SamplesPassed);
                         }
                         //GL.Instance.Disable(GL.GL_BLEND);
-                        this.blendEquation.Off();
-                        this.blendFunc.Off();
+                        this.blend.Off();
                         this.depthMask.Off();
                         this.resources.FBOs[currId].Unbind();
                     }
