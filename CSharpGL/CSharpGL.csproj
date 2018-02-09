@@ -122,6 +122,7 @@
     <Compile Include="GLObjects\GLSwitches\EnableSwitches\AlphaFuncSwitch.cs" />
     <Compile Include="GLObjects\GLSwitches\EnableSwitches\BlendEquationSeprateSwitch.cs" />
     <Compile Include="GLObjects\GLSwitches\EnableSwitches\BlendEquationSwitch.cs" />
+    <Compile Include="GLObjects\GLSwitches\EnableSwitches\BlendSwitch.cs" />
     <Compile Include="GLObjects\GLSwitches\EnableSwitches\BlendFuncSeparateSwitch.cs" />
     <Compile Include="GLObjects\GLSwitches\EnableSwitches\BlendFuncSwitch.cs" />
     <Compile Include="GLObjects\GLSwitches\EnableSwitches\ClipPlaneSwitch.cs" />
