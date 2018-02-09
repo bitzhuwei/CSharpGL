@@ -61,7 +61,6 @@ void RenderFrontToBackPeeling()
 	// ---------------------------------------------------------------------
 
 	glBindFramebuffer(GL_FRAMEBUFFER, blenderFBO);
-	glDrawBuffer(drawBufferIndexes[0]);
 
 	glClearColor(0, 0, 0, 1);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -85,7 +84,6 @@ void RenderFrontToBackPeeling()
 		int prevId = 1 - currId;
 
 		glBindFramebuffer(GL_FRAMEBUFFER, FBOs[currId]);
-		glDrawBuffer(drawBufferIndexes[0]);
 
 		glClearColor(0, 0, 0, 0);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
