@@ -3,7 +3,7 @@
     /// <summary>
     /// BlendingDestinationFactor
     /// </summary>
-    public enum BlendingDestinationFactor : uint
+    public enum BlendDestFactor : uint
     {
         /// <summary>
         /// The initial value is GL_ZERO
@@ -79,7 +79,7 @@
     /// <summary>
     /// The blending source factor.
     /// </summary>
-    public enum BlendingSourceFactor : uint
+    public enum BlendSrcFactor : uint
     {
         /// <summary>
         /// The initial value is GL_ONE

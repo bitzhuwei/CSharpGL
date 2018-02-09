@@ -64,7 +64,7 @@ namespace FrontToBackPeeling
         }
 
         private BlendEquationSwitch blendEquation = new BlendEquationSwitch(BlendEquationMode.Add);
-        private BlendFuncSeparateSwitch blendFunc = new BlendFuncSeparateSwitch(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.OneMinusSourceAlpha, BlendingSourceFactor.One, BlendingDestinationFactor.One);
+        private BlendFuncSeparateSwitch blendFunc = new BlendFuncSeparateSwitch(BlendSrcFactor.SourceAlpha, BlendDestFactor.OneMinusSourceAlpha, BlendSrcFactor.One, BlendDestFactor.One);
         #region IRenderable 成员
 
         public ThreeFlags EnableRendering { get { return ThreeFlags.BeforeChildren; } set { } }

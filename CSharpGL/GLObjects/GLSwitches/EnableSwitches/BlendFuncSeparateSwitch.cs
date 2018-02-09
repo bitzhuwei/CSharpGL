@@ -17,7 +17,7 @@ namespace CSharpGL
         /// <summary>
         /// specify pixel arithmetic for RGB and alpha components separately.
         /// </summary>
-        public BlendFuncSeparateSwitch() : this(BlendingSourceFactor.One, BlendingDestinationFactor.Zero, BlendingSourceFactor.One, BlendingDestinationFactor.Zero) { }
+        public BlendFuncSeparateSwitch() : this(BlendSrcFactor.One, BlendDestFactor.Zero, BlendSrcFactor.One, BlendDestFactor.Zero) { }
 
         /// <summary>
         /// specify pixel arithmetic for RGB and alpha components separately.
@@ -27,7 +27,7 @@ namespace CSharpGL
         /// <param name="sourceAlphaFactor">Specifies how the alpha source blending factors are computedThe initial value is GL_ONE.</param>
         /// <param name="destAlphaFactor">Specifies how the alpha destination blending factors are computed. The initial value is GL_ZERO.</param>
         /// <param name="enableCapacity"></param>
-        public BlendFuncSeparateSwitch(BlendingSourceFactor sourceFactor, BlendingDestinationFactor destFactor, BlendingSourceFactor sourceAlphaFactor, BlendingDestinationFactor destAlphaFactor, bool enableCapacity = true)
+        public BlendFuncSeparateSwitch(BlendSrcFactor sourceFactor, BlendDestFactor destFactor, BlendSrcFactor sourceAlphaFactor, BlendDestFactor destAlphaFactor, bool enableCapacity = true)
             : base(GL.GL_BLEND, enableCapacity)
         {
             this.SourceFactor = sourceFactor;
@@ -72,25 +72,25 @@ namespace CSharpGL
         /// Specifies how the red, green, blue, and alpha source blending factors are computed. The initial value is GL_ONE.
         /// </summary>
         [Description("Specifies how the red, green and blue source blending factors are computed. The initial value is GL_ONE.")]
-        public BlendingSourceFactor SourceFactor { get; set; }
+        public BlendSrcFactor SourceFactor { get; set; }
 
         /// <summary>
         /// Specifies how the red, green, blue, and alpha source blending factors are computed. The initial value is GL_ONE.
         /// </summary>
         [Description("Specifies how the alpha source blending factors are computed. The initial value is GL_ONE.")]
-        public BlendingSourceFactor SourceAlphaFactor { get; set; }
+        public BlendSrcFactor SourceAlphaFactor { get; set; }
 
         /// <summary>
         /// Specifies how the red, green, blue, and alpha destination blending factors are computed. The initial value is GL_ZERO.
         /// </summary>
         [Description("Specifies how the red, green and blue destination blending factors are computed. The initial value is GL_ZERO.")]
-        public BlendingDestinationFactor DestFactor { get; set; }
+        public BlendDestFactor DestFactor { get; set; }
 
         /// <summary>
         /// Specifies how the red, green, blue, and alpha destination blending factors are computed. The initial value is GL_ZERO.
         /// </summary>
         [Description("Specifies how the alpha destination blending factors are computed. The initial value is GL_ZERO.")]
-        public BlendingDestinationFactor DestAlphaFactor { get; set; }
+        public BlendDestFactor DestAlphaFactor { get; set; }
 
     }
 }

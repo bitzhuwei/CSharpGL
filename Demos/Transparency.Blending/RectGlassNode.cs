@@ -16,7 +16,7 @@ namespace Transparency.Blending
             var array = new ShaderArray(vs, fs);
             var map = new AttributeMap();
             map.Add("inPosition", RectGlassModel.strPosition);
-            var blend = new BlendFuncSwitch(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.OneMinusSourceAlpha);
+            var blend = new BlendFuncSwitch(BlendSrcFactor.SourceAlpha, BlendDestFactor.OneMinusSourceAlpha);
             var depthMask = new DepthMaskSwitch(false);
             var builder = new RenderMethodBuilder(array, map, blend, depthMask);
             var node = new RectGlassNode(model, builder);

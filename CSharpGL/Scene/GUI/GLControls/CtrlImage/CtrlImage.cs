@@ -26,7 +26,7 @@ namespace CSharpGL
             var map = new AttributeMap();
             map.Add(inPosition, CtrlImageModel.position);
             map.Add(inUV, CtrlImageModel.uv);
-            var methodBuilder = new RenderMethodBuilder(codes, map, new BlendFuncSwitch(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.OneMinusSourceAlpha));
+            var methodBuilder = new RenderMethodBuilder(codes, map, new BlendFuncSwitch(BlendSrcFactor.SourceAlpha, BlendDestFactor.OneMinusSourceAlpha));
             this.RenderUnit = new ModernRenderUnit(model, methodBuilder);
 
             this.bitmap = bitmap;

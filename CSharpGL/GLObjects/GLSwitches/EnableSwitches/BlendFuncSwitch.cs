@@ -11,7 +11,7 @@ namespace CSharpGL
         /// <summary>
         /// specify pixel arithmetic.
         /// </summary>
-        public BlendFuncSwitch() : this(BlendingSourceFactor.One, BlendingDestinationFactor.Zero) { }
+        public BlendFuncSwitch() : this(BlendSrcFactor.One, BlendDestFactor.Zero) { }
 
         /// <summary>
         /// specify pixel arithmetic.
@@ -19,7 +19,7 @@ namespace CSharpGL
         /// <param name="sourceFactor">Specifies how the red, green, blue, and alpha source blending factors are computedThe initial value is GL_ONE.</param>
         /// <param name="destFactor">Specifies how the red, green, blue, and alpha destination blending factors are computed. The initial value is GL_ZERO.</param>
         /// <param name="enableCapacity"></param>
-        public BlendFuncSwitch(BlendingSourceFactor sourceFactor, BlendingDestinationFactor destFactor, bool enableCapacity = true)
+        public BlendFuncSwitch(BlendSrcFactor sourceFactor, BlendDestFactor destFactor, bool enableCapacity = true)
             : base(GL.GL_BLEND, enableCapacity)
         {
             this.SourceFactor = sourceFactor;
@@ -60,13 +60,13 @@ namespace CSharpGL
         /// Specifies how the red, green, blue, and alpha source blending factors are computed. The initial value is GL_ONE.
         /// </summary>
         [Description("Specifies how the red, green, blue, and alpha source blending factors are computed. The initial value is GL_ONE.")]
-        public BlendingSourceFactor SourceFactor { get; set; }
+        public BlendSrcFactor SourceFactor { get; set; }
 
         /// <summary>
         /// Specifies how the red, green, blue, and alpha destination blending factors are computed. The initial value is GL_ZERO.
         /// </summary>
         [Description("Specifies how the red, green, blue, and alpha destination blending factors are computed. The initial value is GL_ZERO.")]
-        public BlendingDestinationFactor DestFactor { get; set; }
+        public BlendDestFactor DestFactor { get; set; }
 
     }
 }
