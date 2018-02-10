@@ -24,13 +24,13 @@ Peeling result for the 5th time(1.layers[5].0.peel-textures[1]):
 ![FrontToBackPeeling.peel](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/FrontToBackPeeling/how/1.layers[5].0.peel-textures[1].png?raw=true)  
 Blending result for the 5th time(1.layers[5].1.blend-blenderTexture):  
 ![FrontToBackPeeling.blend](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/FrontToBackPeeling/how/1.layers[5].1.blend-blenderTexture.png?raw=true)  
-Peeling result for the 6th time(1.layers[6].0.peel-textures[1]):  
-![FrontToBackPeeling.peel](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/FrontToBackPeeling/how/1.layers[6].0.peel-textures[1].png?raw=true)  
+Peeling result for the 6th time(1.layers[6].0.peel-textures[0]):  
+![FrontToBackPeeling.peel](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/FrontToBackPeeling/how/1.layers[6].0.peel-textures[0].png?raw=true)  
 Blending result for the 6th time(1.layers[6].1.blend-blenderTexture):  
 ![FrontToBackPeeling.blend](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/FrontToBackPeeling/how/1.layers[6].1.blend-blenderTexture.png?raw=true)  
-Peeling result for the 6th time(1.layers[7].0.peel-textures[0]):  
-![FrontToBackPeeling.peel](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/FrontToBackPeeling/how/1.layers[7].0.peel-textures[0].png?raw=true)  
-Blending result for the 6th time(1.layers[7].1.blend-blenderTexture):  
+Peeling result for the 7th time(1.layers[7].0.peel-textures[1]):  
+![FrontToBackPeeling.peel](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/FrontToBackPeeling/how/1.layers[7].0.peel-textures[1].png?raw=true)  
+Blending result for the 7th time(1.layers[7].1.blend-blenderTexture):  
 ![FrontToBackPeeling.blend](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/FrontToBackPeeling/how/1.layers[7].1.blend-blenderTexture.png?raw=true)  
 Final blending result(2.final-blenderTexture):  
 ![FrontToBackPeeling.final](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/FrontToBackPeeling/how/2.final-blenderTexture.png?raw=true)  
