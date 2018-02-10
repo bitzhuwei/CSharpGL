@@ -40,6 +40,34 @@ namespace TraverseAllDemos
                 Console.WriteLine(ex);
             }
         }
+
+        // memo: clip images.
+        //static void Main(string[] args)
+        //{
+        //    string self = typeof(Program).Assembly.Location;
+        //    string folder = System.AppDomain.CurrentDomain.SetupInformation.ApplicationBase;
+        //    var dirInfo = new System.IO.DirectoryInfo(folder);
+
+        //    string[] filenames = (from item in System.IO.Directory.GetFiles(dirInfo.FullName, "*.jpg", System.IO.SearchOption.AllDirectories)
+        //                          orderby item
+        //                          select item).ToArray();
+        //    int width = 777, height = 573;
+        //    foreach (var item in filenames)
+        //    {
+        //        var bmp = new Bitmap(item);
+        //        var result = new Bitmap(width, height);
+        //        using (var g = Graphics.FromImage(result))
+        //        {
+        //            g.DrawImage(bmp, new Rectangle(0, 0, width, height), new Rectangle(1133 - width, 613 - height, width, height), GraphicsUnit.Pixel);
+        //        }
+        //        bmp.Dispose();
+        //        result.Save(item);
+        //        result.Dispose();
+        //    }
+
+        //    Console.WriteLine("All done!");
+        //}
+
         // memo: merge 2 pictures into 1.
         //static void Main(string[] args)
         //{

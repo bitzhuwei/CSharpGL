@@ -18,16 +18,6 @@ namespace FrontToBackPeeling
         private DepthTestSwitch depthTest = new DepthTestSwitch(enableCapacity: false);
         private BlendSwitch blend = new BlendSwitch(BlendEquationMode.Add, BlendSrcFactor.DstAlpha, BlendDestFactor.One, BlendSrcFactor.Zero, BlendDestFactor.OneMinusSrcAlpha);
 
-        private bool dumpImages = true;
-        /// <summary>
-        /// Dump images once.
-        /// </summary>
-        public bool DumpImages
-        {
-            get { return dumpImages; }
-            set { dumpImages = value; }
-        }
-
         private bool showDepthPeeling = true;
         /// <summary>
         /// 
@@ -74,6 +64,13 @@ namespace FrontToBackPeeling
             }
         }
 
+        private int maxStep = 1 + ((NUM_PASSES - 1) * 2 - 1) * 2;
+        private int renderStep = 1 + ((NUM_PASSES - 1) * 2 - 1) * 2;
+        public int RenderStep
+        {
+            get { return renderStep; }
+            set { renderStep = value; }
+        }
 
         #region IRenderable 成员
 
@@ -91,20 +88,25 @@ namespace FrontToBackPeeling
                 this.height = viewport[3];
             }
 
-            var dumpImages = this.DumpImages;
+            int currentStep = 0;
+            Texture targetTexture = null;
+            this.resources.blenderFBO.Bind();
+            GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
+            this.resources.blenderFBO.Unbind();
+            targetTexture = this.resources.blenderColorTexture;
+
             if (this.ShowDepthPeeling)
             {
                 // init.
+                if (currentStep <= this.renderStep)
                 {
+                    currentStep++;
                     this.resources.blenderFBO.Bind();
                     GL.Instance.ClearColor(0, 0, 0, 1);
                     GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
                     this.DrawScene(arg, CubeNode.RenderMode.Init, null);
                     this.resources.blenderFBO.Unbind();
-                    if (dumpImages)
-                    {
-                        this.resources.blenderColorTexture.GetImage(this.width, this.height).Save(string.Format("0.init-blenderTexture.png"));
-                    }
+                    targetTexture = this.resources.blenderColorTexture;
                 }
 
                 int numLayers = (NUM_PASSES - 1) * 2;
@@ -114,7 +116,9 @@ namespace FrontToBackPeeling
                     int currId = layer % 2;
                     int prevId = 1 - currId;
                     // peel.
+                    if (currentStep <= this.renderStep)
                     {
+                        currentStep++;
                         this.resources.FBOs[currId].Bind();
                         GL.Instance.ClearColor(0, 0, 0, 0);
                         GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
@@ -122,24 +126,20 @@ namespace FrontToBackPeeling
                         this.DrawScene(arg, CubeNode.RenderMode.Peel, this.resources.depthTextures[prevId]);
                         if (bUseOQ) { this.query.EndQuery(QueryTarget.SamplesPassed); }
                         this.resources.FBOs[currId].Unbind();
-                        if (dumpImages)
-                        {
-                            this.resources.colorTextures[currId].GetImage(this.width, this.height).Save(string.Format("1.layers[{0}].0.peel-textures[{1}].png", layer, currId));
-                        }
+                        targetTexture = this.resources.colorTextures[currId];
                     }
                     // blend.
+                    if (currentStep <= this.renderStep)
                     {
+                        currentStep++;
                         this.resources.blenderFBO.Bind();
                         this.depthTest.On();
                         this.blend.On();
-                        this.DrawFullScreenQuad(arg, QuadNode.RenderMode.Blend, this.resources.colorTextures[currId]);
+                        this.DrawFullScreenQuad(arg, QuadNode.RenderMode.Blend, this.resources.colorTextures[currId], false);
                         this.blend.Off();
                         this.depthTest.Off();
                         this.resources.blenderFBO.Unbind();
-                        if (dumpImages)
-                        {
-                            this.resources.blenderColorTexture.GetImage(this.width, this.height).Save(string.Format("1.layers[{0}].1.blend-blenderTexture.png", layer));
-                        }
+                        targetTexture = this.resources.blenderColorTexture;
                     }
 
                     if (bUseOQ)
@@ -149,18 +149,12 @@ namespace FrontToBackPeeling
                     }
                 }
                 // final.
-                this.DrawFullScreenQuad(arg, QuadNode.RenderMode.Final, this.resources.blenderColorTexture);
-                if (dumpImages)
-                {
-                    this.resources.blenderColorTexture.GetImage(this.width, this.height).Save(string.Format("2.final-blenderTexture.png"));
-                }
+                this.DrawFullScreenQuad(arg, QuadNode.RenderMode.Final, targetTexture, this.renderStep >= maxStep);
             }
             else
             {
                 this.DrawScene(arg, CubeNode.RenderMode.Init, null);
             }
-
-            this.DumpImages = false;
         }
 
         private void Resize(int width, int height)
@@ -183,13 +177,15 @@ namespace FrontToBackPeeling
             }
         }
 
-        private void DrawFullScreenQuad(RenderEventArgs arg, QuadNode.RenderMode renderMode, Texture tempTexture)
+        private void DrawFullScreenQuad(RenderEventArgs arg, QuadNode.RenderMode renderMode, Texture tempTexture, bool useBackground)
         {
             this.fullscreenQuad.Mode = renderMode;
             if (tempTexture != null)
             {
                 this.fullscreenQuad.TempTexture = tempTexture;
             }
+
+            this.fullscreenQuad.UseBackground = useBackground;
             this.fullscreenQuad.RenderBeforeChildren(arg);
         }
 

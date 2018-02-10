@@ -36,7 +36,6 @@ namespace FrontToBackPeeling
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-
             var position = new vec3(5, 3, 4) * 1f;
             var center = new vec3(0, 0, 0);
             var up = new vec3(0, 1, 0);
@@ -57,9 +56,9 @@ namespace FrontToBackPeeling
             Match(this.trvScene, scene.RootNode);
             this.trvScene.ExpandAll();
 
-            var manipulater = new FirstPerspectiveManipulater();
-            manipulater.StepLength = 0.1f;
-            manipulater.Bind(camera, this.winGLCanvas1);
+            //var manipulater = new FirstPerspectiveManipulater();
+            //manipulater.StepLength = 0.1f;
+            //manipulater.Bind(camera, this.winGLCanvas1);
         }
 
         private void Match(TreeView treeView, SceneNodeBase nodeBase)
