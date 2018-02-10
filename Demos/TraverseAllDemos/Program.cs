@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 
@@ -39,6 +40,24 @@ namespace TraverseAllDemos
                 Console.WriteLine(ex);
             }
         }
+        // memo: merge 2 pictures into 1.
+        //static void Main(string[] args)
+        //{
+        //    if (args.Length < 2) { Console.WriteLine("Please type in two pictures' filenames!"); }
+        //    string left = args[0], right = args[1];
+        //    var leftBmp = new Bitmap(left);
+        //    var rightBmp = new Bitmap(right);
+        //    int width = leftBmp.Width + rightBmp.Width;
+        //    int height = leftBmp.Height >= rightBmp.Height ? leftBmp.Height : rightBmp.Height;
+        //    var result = new Bitmap(width, height);
+        //    using (var g = Graphics.FromImage(result))
+        //    {
+        //        g.DrawImage(leftBmp, new Point());
+        //        g.DrawImage(rightBmp, new Point(leftBmp.Width, 0));
+        //    }
+
+        //    result.Save(string.Format("{0}+{1}.png", left, right));
+        //}
 
         // memo: rename "*State.cs" to "*Switch.cs".
         //static void Main(string[] args)
