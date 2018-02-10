@@ -15,7 +15,7 @@ Here are some of them.
 Get to know how CSharpGL\OpenGL implements picking and draging with modern OpenGL!
 ![Color Coded Picking](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/ColorCodedPicking/ColorCodedPicking.png?raw=true)
 ## Front To Back Peeling.
-![FrontToBackPeeling](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/FrontToBackPeeling/FrontToBackPeeling.png?raw=true)
+![FrontToBackPeeling](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/FrontToBackPeeling/FrontToBackPeeling.gif?raw=true)
 # Environment Mapping.
 ### Reflection.
 ![Reflection](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/EnvironmentMapping/Reflection.png?raw=true)
