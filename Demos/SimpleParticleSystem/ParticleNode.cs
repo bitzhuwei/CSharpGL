@@ -11,7 +11,7 @@ namespace SimpleParticleSystem
     {
         public static ParticleNode Create()
         {
-            var blend = new BlendFuncSwitch(BlendingSourceFactor.SourceAlpha, BlendingDestinationFactor.OneMinusSourceAlpha);
+            var blend = new BlendFuncSwitch(BlendSrcFactor.SrcAlpha, BlendDestFactor.OneMinusSrcAlpha);
             var depthTest = new DepthTestSwitch(false);
             RenderMethodBuilder defaultBuilder, textureBuilder;
             {

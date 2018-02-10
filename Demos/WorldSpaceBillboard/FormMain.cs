@@ -58,20 +58,20 @@ namespace WorldSpaceBillboard
             manipulater.StepLength = 0.1f;
             manipulater.Bind(camera, this.winGLCanvas1);
 
-            BlendingSourceFactor s; BlendingDestinationFactor d;
+            BlendSrcFactor s; BlendDestFactor d;
             helper.GetNext(out s, out d);
             ss = s; dd = d;
             this.winGLCanvas1.KeyPress += winGLCanvas1_KeyPress;
         }
 
-        private BlendingSourceFactor ss;
-        private BlendingDestinationFactor dd;
+        private BlendSrcFactor ss;
+        private BlendDestFactor dd;
         private BlendFactorHelper helper = new BlendFactorHelper();
         void winGLCanvas1_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == 'b')
             {
-                BlendingSourceFactor s; BlendingDestinationFactor d;
+                BlendSrcFactor s; BlendDestFactor d;
                 helper.GetNext(out s, out d);
                 if (ss == s && dd == d) { MessageBox.Show("Round up"); }
 
@@ -80,7 +80,7 @@ namespace WorldSpaceBillboard
             }
         }
 
-        private void SetupBlending(SceneNodeBase sceneNodeBase, BlendingSourceFactor s, BlendingDestinationFactor d)
+        private void SetupBlending(SceneNodeBase sceneNodeBase, BlendSrcFactor s, BlendDestFactor d)
         {
             var node = sceneNodeBase as TextBillboardNode;
             if (node != null)

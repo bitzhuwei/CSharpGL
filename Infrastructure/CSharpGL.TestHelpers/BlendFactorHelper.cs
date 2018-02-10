@@ -7,33 +7,33 @@ namespace CSharpGL
         private int currentSource;
         private int currentDest;
 
-        private static BlendingSourceFactor[] sourceFactors;
-        private static BlendingDestinationFactor[] destFactors;
+        private static BlendSrcFactor[] sourceFactors;
+        private static BlendDestFactor[] destFactors;
 
         static BlendFactorHelper()
         {
             {
-                Array sources = Enum.GetValues(typeof(BlendingSourceFactor));
-                sourceFactors = new BlendingSourceFactor[sources.Length];
+                Array sources = Enum.GetValues(typeof(BlendSrcFactor));
+                sourceFactors = new BlendSrcFactor[sources.Length];
                 int i = 0;
                 foreach (var item in sources)
                 {
-                    sourceFactors[i++] = (BlendingSourceFactor)item;
+                    sourceFactors[i++] = (BlendSrcFactor)item;
                 }
             }
 
             {
-                Array dests = Enum.GetValues(typeof(BlendingDestinationFactor));
-                destFactors = new BlendingDestinationFactor[dests.Length];
+                Array dests = Enum.GetValues(typeof(BlendDestFactor));
+                destFactors = new BlendDestFactor[dests.Length];
                 int i = 0;
                 foreach (var item in dests)
                 {
-                    destFactors[i++] = (BlendingDestinationFactor)item;
+                    destFactors[i++] = (BlendDestFactor)item;
                 }
             }
         }
 
-        public void GetNext(out BlendingSourceFactor source, out BlendingDestinationFactor dest)
+        public void GetNext(out BlendSrcFactor source, out BlendDestFactor dest)
         {
             source = sourceFactors[currentSource];
             dest = destFactors[currentDest];

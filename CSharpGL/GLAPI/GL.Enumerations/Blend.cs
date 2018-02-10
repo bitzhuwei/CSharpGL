@@ -3,7 +3,7 @@
     /// <summary>
     /// BlendingDestinationFactor
     /// </summary>
-    public enum BlendingDestinationFactor : uint
+    public enum BlendDestFactor : uint
     {
         /// <summary>
         /// The initial value is GL_ZERO
@@ -18,42 +18,42 @@
         /// <summary>
         ///
         /// </summary>
-        SourceColor = GL.GL_SRC_COLOR,
+        SrcColor = GL.GL_SRC_COLOR,
 
         /// <summary>
         ///
         /// </summary>
-        OneMinusSourceColor = GL.GL_ONE_MINUS_SRC_COLOR,
+        OneMinusSrcColor = GL.GL_ONE_MINUS_SRC_COLOR,
 
         /// <summary>
         ///
         /// </summary>
-        DestinationColor = GL.GL_DST_COLOR,
+        DstColor = GL.GL_DST_COLOR,
 
         /// <summary>
         ///
         /// </summary>
-        OneMinusDestinationColor = GL.GL_ONE_MINUS_DST_COLOR,
+        OneMinusDstColor = GL.GL_ONE_MINUS_DST_COLOR,
 
         /// <summary>
         ///
         /// </summary>
-        SourceAlpha = GL.GL_SRC_ALPHA,
+        SrcAlpha = GL.GL_SRC_ALPHA,
 
         /// <summary>
         ///
         /// </summary>
-        OneMinusSourceAlpha = GL.GL_ONE_MINUS_SRC_ALPHA,
+        OneMinusSrcAlpha = GL.GL_ONE_MINUS_SRC_ALPHA,
 
         /// <summary>
         ///
         /// </summary>
-        DestinationAlpha = GL.GL_DST_ALPHA,
+        DstAlpha = GL.GL_DST_ALPHA,
 
         /// <summary>
         ///
         /// </summary>
-        OneMinusDestinationAlpha = GL.GL_ONE_MINUS_DST_ALPHA,
+        OneMinusDstAlpha = GL.GL_ONE_MINUS_DST_ALPHA,
 
         /// <summary>
         ///
@@ -79,7 +79,7 @@
     /// <summary>
     /// The blending source factor.
     /// </summary>
-    public enum BlendingSourceFactor : uint
+    public enum BlendSrcFactor : uint
     {
         /// <summary>
         /// The initial value is GL_ONE
@@ -94,42 +94,42 @@
         /// <summary>
         ///
         /// </summary>
-        SourceColor = GL.GL_SRC_COLOR,
+        SrcColor = GL.GL_SRC_COLOR,
 
         /// <summary>
         ///
         /// </summary>
-        OneMinusSourceColor = GL.GL_ONE_MINUS_SRC_COLOR,
+        OneMinusSrcColor = GL.GL_ONE_MINUS_SRC_COLOR,
 
         /// <summary>
         ///
         /// </summary>
-        DestinationColor = GL.GL_DST_COLOR,
+        DstColor = GL.GL_DST_COLOR,
 
         /// <summary>
         ///
         /// </summary>
-        OneMinusDestinationColor = GL.GL_ONE_MINUS_DST_COLOR,
+        OneMinusDstColor = GL.GL_ONE_MINUS_DST_COLOR,
 
         /// <summary>
         ///
         /// </summary>
-        SourceAlpha = GL.GL_SRC_ALPHA,
+        SrcAlpha = GL.GL_SRC_ALPHA,
 
         /// <summary>
         ///
         /// </summary>
-        OneMinusSourceAlpha = GL.GL_ONE_MINUS_SRC_ALPHA,
+        OneMinusSrcAlpha = GL.GL_ONE_MINUS_SRC_ALPHA,
 
         /// <summary>
         ///
         /// </summary>
-        DestinationAlpha = GL.GL_DST_ALPHA,
+        DstAlpha = GL.GL_DST_ALPHA,
 
         /// <summary>
         ///
         /// </summary>
-        OneMinusDestinationAlpha = GL.GL_ONE_MINUS_DST_ALPHA,
+        OneMinusDstAlpha = GL.GL_ONE_MINUS_DST_ALPHA,
 
         /// <summary>
         ///
@@ -154,7 +154,7 @@
         /// <summary>
         ///
         /// </summary>
-        SourceAlphaSaturate = GL.GL_SRC_ALPHA_SATURATE,
+        SrcAlphaSaturate = GL.GL_SRC_ALPHA_SATURATE,
     }
 
     /// <summary>

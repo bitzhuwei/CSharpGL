@@ -19,7 +19,7 @@ namespace Blending
         /// </summary>
         /// <param name="source"></param>
         /// <param name="dest"></param>
-        public BlendingGroupNode(BlendingSourceFactor source, BlendingDestinationFactor dest)
+        public BlendingGroupNode(BlendSrcFactor source, BlendDestFactor dest)
         {
             this.blending = new BlendFuncSwitch(source, dest);
         }

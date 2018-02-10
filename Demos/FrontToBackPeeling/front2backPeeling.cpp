@@ -61,7 +61,6 @@ void RenderFrontToBackPeeling()
 	// ---------------------------------------------------------------------
 
 	glBindFramebuffer(GL_FRAMEBUFFER, blenderFBO);
-	glDrawBuffer(drawBufferIndexes[0]);
 
 	glClearColor(0, 0, 0, 1);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -85,7 +84,6 @@ void RenderFrontToBackPeeling()
 		int prevId = 1 - currId;
 
 		glBindFramebuffer(GL_FRAMEBUFFER, FBOs[currId]);
-		glDrawBuffer(drawBufferIndexes[0]);
 
 		glClearColor(0, 0, 0, 0);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -206,22 +204,18 @@ void InitFrontPeelingRenderTargets(int width, int height)
 		glTexParameteri(TextureRect, GL_TEXTURE_WRAP_T, GL_CLAMP);
 		glTexParameteri(TextureRect, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 		glTexParameteri(TextureRect, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-		glTexImage2D(TextureRect, 0, GL_DEPTH_COMPONENT32F_NV,
-			width, width, 0, GL_DEPTH_COMPONENT, GL_FLOAT, NULL);
+		glTexImage2D(TextureRect, 0, GL_DEPTH_COMPONENT32F_NV, width, width, 0, GL_DEPTH_COMPONENT, GL_FLOAT, NULL);
 
 		glBindTexture(TextureRect, colorTextures[i]);
 		glTexParameteri(TextureRect, GL_TEXTURE_WRAP_S, GL_CLAMP);
 		glTexParameteri(TextureRect, GL_TEXTURE_WRAP_T, GL_CLAMP);
 		glTexParameteri(TextureRect, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 		glTexParameteri(TextureRect, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-		glTexImage2D(TextureRect, 0, GL_RGBA, width, width,
-			0, GL_RGBA, GL_FLOAT, 0);
+		glTexImage2D(TextureRect, 0, GL_RGBA, width, width, 0, GL_RGBA, GL_FLOAT, 0);
 
 		glBindFramebuffer(GL_FRAMEBUFFER, FBOs[i]);
-		glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT,
-			TextureRect, depthTextures[i], 0);
-		glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,
-			TextureRect, colorTextures[i], 0);
+		glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, TextureRect, depthTextures[i], 0);
+		glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, TextureRect, colorTextures[i], 0);
 	}
 
 	// init front blender fbo.
@@ -231,15 +225,12 @@ void InitFrontPeelingRenderTargets(int width, int height)
 	glTexParameteri(TextureRect, GL_TEXTURE_WRAP_T, GL_CLAMP);
 	glTexParameteri(TextureRect, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 	glTexParameteri(TextureRect, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-	glTexImage2D(TextureRect, 0, GL_RGBA, width, width,
-		0, GL_RGBA, GL_FLOAT, 0);
+	glTexImage2D(TextureRect, 0, GL_RGBA, width, width, 0, GL_RGBA, GL_FLOAT, 0);
 
 	glGenFramebuffers(1, &blenderFBO);
 	glBindFramebuffer(GL_FRAMEBUFFER, blenderFBO);
-	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT,
-		TextureRect, depthTextures[0], 0);
-	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,
-		TextureRect, blenderTexture, 0);
+	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, TextureRect, depthTextures[0], 0);
+	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, TextureRect, blenderTexture, 0);
 	CHECK_GL_ERRORS;
 }
 

@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -93,6 +94,22 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="how\0.init-blenderTexture.png" />
+    <Content Include="how\1.layers[1].0.peel-textures[1].png" />
+    <Content Include="how\1.layers[1].1.blend-blenderTexture.png" />
+    <Content Include="how\1.layers[2].0.peel-textures[0].png" />
+    <Content Include="how\1.layers[2].1.blend-blenderTexture.png" />
+    <Content Include="how\1.layers[3].0.peel-textures[1].png" />
+    <Content Include="how\1.layers[3].1.blend-blenderTexture.png" />
+    <Content Include="how\1.layers[4].0.peel-textures[0].png" />
+    <Content Include="how\1.layers[4].1.blend-blenderTexture.png" />
+    <Content Include="how\1.layers[5].0.peel-textures[1].png" />
+    <Content Include="how\1.layers[5].1.blend-blenderTexture.png" />
+    <Content Include="how\1.layers[6].0.peel-textures[0].png" />
+    <Content Include="how\1.layers[6].1.blend-blenderTexture.png" />
+    <Content Include="how\1.layers[7].0.peel-textures[1].png" />
+    <Content Include="how\1.layers[7].1.blend-blenderTexture.png" />
+    <Content Include="how\2.final-blenderTexture.png" />
     <Content Include="FrontToBackPeeling.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

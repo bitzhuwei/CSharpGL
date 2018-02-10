@@ -122,6 +122,7 @@
     <Compile Include="GLObjects\GLSwitches\EnableSwitches\AlphaFuncSwitch.cs" />
     <Compile Include="GLObjects\GLSwitches\EnableSwitches\BlendEquationSeprateSwitch.cs" />
     <Compile Include="GLObjects\GLSwitches\EnableSwitches\BlendEquationSwitch.cs" />
+    <Compile Include="GLObjects\GLSwitches\EnableSwitches\BlendSwitch.cs" />
     <Compile Include="GLObjects\GLSwitches\EnableSwitches\BlendFuncSeparateSwitch.cs" />
     <Compile Include="GLObjects\GLSwitches\EnableSwitches\BlendFuncSwitch.cs" />
     <Compile Include="GLObjects\GLSwitches\EnableSwitches\ClipPlaneSwitch.cs" />
@@ -169,6 +170,7 @@
     <Compile Include="GLObjects\Texture\Storages\TexImages\TexImageDataProvider\DataProviders\LeveledDataProviders\ArrayDataProvider`1.cs" />
     <Compile Include="GLObjects\Texture\Storages\TexImages\TexImageDataProvider\DataProviders\LeveledDataProviders\LeveledDataProvider.cs" />
     <None Include="GLObjects\Texture\Storages\TexStorages\readme.md" />
+    <Compile Include="GLObjects\Texture\Texture.GetImage.cs" />
     <Compile Include="GLObjects\TransformFeedbackObject\TransformFeedbackObject.IDisposable.cs" />
     <Compile Include="GLObjects\TransformFeedbackObject\TransformFeedbackObject.StaticCtor.cs" />
     <Compile Include="GLObjects\TransformFeedbackObject\TransformFeedbackObject.cs" />

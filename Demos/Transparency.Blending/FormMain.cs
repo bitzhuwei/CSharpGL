@@ -50,20 +50,20 @@ namespace Transparency.Blending
             var m = new FirstPerspectiveManipulater();
             m.Bind(camera, this.winGLCanvas1);
 
-            BlendingSourceFactor sf; BlendingDestinationFactor df;
+            BlendSrcFactor sf; BlendDestFactor df;
             helper.GetNext(out sf, out df);
             initialSF = sf; initialDF = df;
             this.winGLCanvas1.KeyPress += winGLCanvas1_KeyPress;
         }
 
-        private BlendingSourceFactor initialSF;
-        private BlendingDestinationFactor initialDF;
+        private BlendSrcFactor initialSF;
+        private BlendDestFactor initialDF;
         private BlendFactorHelper helper = new BlendFactorHelper();
         void winGLCanvas1_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == 'b')
             {
-                BlendingSourceFactor sf; BlendingDestinationFactor df;
+                BlendSrcFactor sf; BlendDestFactor df;
                 helper.GetNext(out sf, out df);
                 if (initialSF == sf && initialDF == df) { MessageBox.Show("Round up"); }
 
@@ -72,7 +72,7 @@ namespace Transparency.Blending
             }
         }
 
-        private void SetupBlending(SceneNodeBase sceneNodeBase, BlendingSourceFactor sf, BlendingDestinationFactor df)
+        private void SetupBlending(SceneNodeBase sceneNodeBase, BlendSrcFactor sf, BlendDestFactor df)
         {
             var node = sceneNodeBase as RectGlassNode;
             if (node != null)

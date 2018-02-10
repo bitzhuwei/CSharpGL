@@ -26,10 +26,16 @@ namespace FrontToBackPeeling
             set
             {
                 this.tempTexture = value;
-
-                RenderMethod method = this.RenderUnit.Methods[(int)RenderMode.Blend];
-                ShaderProgram program = method.Program;
-                program.SetUniform("tempTexture", value);
+                {
+                    RenderMethod method = this.RenderUnit.Methods[(int)RenderMode.Blend];
+                    ShaderProgram program = method.Program;
+                    program.SetUniform("tempTexture", value);
+                }
+                {
+                    RenderMethod method = this.RenderUnit.Methods[(int)RenderMode.Final];
+                    ShaderProgram program = method.Program;
+                    program.SetUniform("colorTexture", value);
+                }
             }
         }
 

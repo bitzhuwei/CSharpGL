@@ -8,7 +8,7 @@ namespace FrontToBackPeeling
 {
     class CubeNode : ModernNode, IRenderable
     {
-        public enum RenderMode { Cube = 0, FrontPeel = 1 };
+        public enum RenderMode { Init = 0, Peel = 1 };
 
         /// <summary>
         /// 
@@ -46,7 +46,7 @@ namespace FrontToBackPeeling
             {
                 this.depthTexture = value;
 
-                RenderMethod method = this.RenderUnit.Methods[(int)RenderMode.FrontPeel];
+                RenderMethod method = this.RenderUnit.Methods[(int)RenderMode.Peel];
                 ShaderProgram program = method.Program;
                 program.SetUniform("depthTexture", value);
             }
@@ -54,14 +54,14 @@ namespace FrontToBackPeeling
 
         public static CubeNode Create()
         {
-            RenderMethodBuilder blendBuilder, finalBuilder;
+            RenderMethodBuilder initBuilder, peelBuilder;
             {
                 var vs = new VertexShader(Shaders.initVert);
                 var fs = new FragmentShader(Shaders.initFrag);
                 var provider = new ShaderArray(vs, fs);
                 var map = new AttributeMap();
                 map.Add("vVertex", CubeModel.positions);
-                blendBuilder = new RenderMethodBuilder(provider, map);
+                initBuilder = new RenderMethodBuilder(provider, map);
             }
             {
                 var vs = new VertexShader(Shaders.peelVert);// reuse blend vertex shader.
@@ -69,11 +69,11 @@ namespace FrontToBackPeeling
                 var provider = new ShaderArray(vs, fs);
                 var map = new AttributeMap();
                 map.Add("vVertex", CubeModel.positions);
-                finalBuilder = new RenderMethodBuilder(provider, map);
+                peelBuilder = new RenderMethodBuilder(provider, map);
             }
 
             var model = new CubeModel();
-            var node = new CubeNode(model, blendBuilder, finalBuilder);
+            var node = new CubeNode(model, initBuilder, peelBuilder);
             node.Initialize();
 
             return node;
