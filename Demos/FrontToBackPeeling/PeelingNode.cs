@@ -99,7 +99,7 @@ namespace FrontToBackPeeling
                 // init.
                 {
                     this.resources.blenderFBO.Bind();
-                    GL.Instance.ClearColor(0, 0, 0, 1);
+                    //GL.Instance.ClearColor(0, 0, 0, 1);
                     GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
                     this.DrawScene(arg, CubeNode.RenderMode.Init, null);
                     this.resources.blenderFBO.Unbind();

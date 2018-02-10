@@ -52,7 +52,6 @@
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="PeelingNode.GetImage.cs" />
     <Compile Include="PeelingNode.Framebuffers.cs" />
     <Compile Include="PeelingNode.cs" />
     <Compile Include="Program.cs" />
