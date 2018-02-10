@@ -28,7 +28,8 @@ namespace FrontToBackPeeling
             this.query = new Query();
 
             {
-                var colors = new vec4[] { new vec4(1, 0, 0, 0.5f), new vec4(0, 1, 0, 0.5f), new vec4(0, 0, 1, 0.5f) };
+                const float alpha = 0.3f;
+                var colors = new vec4[] { new vec4(1, 0, 0, alpha), new vec4(0, 1, 0, alpha), new vec4(0, 0, 1, alpha) };
 
                 var groupNode = new GroupNode();
                 for (int k = -1; k < 2; k++)
@@ -65,6 +66,14 @@ namespace FrontToBackPeeling
 
         private BlendSwitch blend = new BlendSwitch(BlendEquationMode.Add, BlendSrcFactor.SrcAlpha, BlendDestFactor.OneMinusSrcAlpha, BlendSrcFactor.One, BlendDestFactor.One);
 
+        private bool dumpImages = true;
+
+        public bool DumpImages
+        {
+            get { return dumpImages; }
+            set { dumpImages = value; }
+        }
+
         #region IRenderable 成员
 
         public ThreeFlags EnableRendering { get { return ThreeFlags.BeforeChildren; } set { } }
@@ -94,6 +103,10 @@ namespace FrontToBackPeeling
                     GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
                     this.DrawScene(arg, CubeNode.RenderMode.Init, null);
                     this.resources.blenderFBO.Unbind();
+                    if (this.DumpImages)
+                    {
+                        GetImage(this.resources.blenderColorTexture).Save(string.Format("0.init-blenderTexture.png"));
+                    }
                 }
 
                 int numLayers = (NUM_PASSES - 1) * 2;
@@ -123,12 +136,20 @@ namespace FrontToBackPeeling
                         this.blend.Off();
                         this.depthMask.Off();
                         this.resources.FBOs[currId].Unbind();
+                        if (this.DumpImages)
+                        {
+                            GetImage(this.resources.colorTextures[currId]).Save(string.Format("1.layers[{0}].0.peel-textures[{1}].png", layer, currId));
+                        }
                     }
                     // blend.
                     {
                         this.resources.blenderFBO.Bind();
                         this.DrawFullScreenQuad(arg, QuadNode.RenderMode.Blend, this.resources.colorTextures[currId]);
                         this.resources.blenderFBO.Unbind();
+                        if (this.DumpImages)
+                        {
+                            GetImage(this.resources.blenderColorTexture).Save(string.Format("1.layers[{0}].1.blend-blenderTexture.png", layer));
+                        }
                     }
 
                     if (bUseOQ)
@@ -139,12 +160,18 @@ namespace FrontToBackPeeling
                 }
                 // final.
                 this.DrawFullScreenQuad(arg, QuadNode.RenderMode.Final, this.resources.blenderColorTexture);
+                if (this.DumpImages)
+                {
+                    GetImage(this.resources.blenderColorTexture).Save(string.Format("2.final-blenderTexture.png"));
+                }
             }
             else
             {
                 //GL.Instance.Enable(GL.GL_DEPTH_TEST);
                 this.DrawScene(arg, CubeNode.RenderMode.Init, null);
             }
+
+            this.DumpImages = false;
         }
 
         private void Resize(int width, int height)
