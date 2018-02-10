@@ -10,9 +10,7 @@ namespace FrontToBackPeeling
     {
         private int width;
         private int height;
-        private GroupNode cubeNodeGroup;
         private QuadNode fullscreenQuad;
-        private DepthMaskSwitch depthMask = new DepthMaskSwitch(writable: false);
         private DepthTestSwitch depthTest = new DepthTestSwitch(enableCapacity: false);
         private const int NUM_PASSES = 5;
         private bool bUseOQ = false;
@@ -32,7 +30,6 @@ namespace FrontToBackPeeling
                 const float alpha = 0.3f;
                 var colors = new vec4[] { new vec4(1, 0, 0, alpha), new vec4(0, 1, 0, alpha), new vec4(0, 0, 1, alpha) };
 
-                var groupNode = new GroupNode();
                 for (int k = -1; k < 2; k++)
                 {
                     for (int j = -1; j < 2; j++)
@@ -45,13 +42,10 @@ namespace FrontToBackPeeling
                             cubeNode.WorldPosition = worldPosition;
                             cubeNode.Color = colors[index++];
 
-                            groupNode.Children.Add(cubeNode);
+                            this.Children.Add(cubeNode);
                         }
                     }
                 }
-                this.Children.Add(groupNode);
-
-                this.cubeNodeGroup = groupNode;
             }
             {
                 var quad = QuadNode.Create(scene);
@@ -195,7 +189,7 @@ namespace FrontToBackPeeling
 
         private void DrawScene(RenderEventArgs arg, CubeNode.RenderMode renderMode, Texture texture)
         {
-            foreach (var item in this.cubeNodeGroup.Children)
+            foreach (var item in this.Children)
             {
                 var node = item as CubeNode;
                 node.Mode = renderMode;
