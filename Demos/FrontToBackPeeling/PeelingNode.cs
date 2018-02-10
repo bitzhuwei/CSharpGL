@@ -105,7 +105,8 @@ namespace FrontToBackPeeling
                     this.resources.blenderFBO.Unbind();
                     if (this.DumpImages)
                     {
-                        GetImage(this.resources.blenderColorTexture).Save(string.Format("0.init-blenderTexture.png"));
+                        //GetImage(this.resources.blenderColorTexture).Save(string.Format("0.init-blenderTexture.png"));
+                        this.resources.blenderColorTexture.GetImage(this.width, this.height).Save(string.Format("0.init-blenderTexture.png"));
                     }
                 }
 
@@ -138,7 +139,7 @@ namespace FrontToBackPeeling
                         this.resources.FBOs[currId].Unbind();
                         if (this.DumpImages)
                         {
-                            GetImage(this.resources.colorTextures[currId]).Save(string.Format("1.layers[{0}].0.peel-textures[{1}].png", layer, currId));
+                            this.resources.colorTextures[currId].GetImage(this.width, this.height).Save(string.Format("1.layers[{0}].0.peel-textures[{1}].png", layer, currId));
                         }
                     }
                     // blend.
@@ -148,7 +149,7 @@ namespace FrontToBackPeeling
                         this.resources.blenderFBO.Unbind();
                         if (this.DumpImages)
                         {
-                            GetImage(this.resources.blenderColorTexture).Save(string.Format("1.layers[{0}].1.blend-blenderTexture.png", layer));
+                            this.resources.blenderColorTexture.GetImage(this.width, this.height).Save(string.Format("1.layers[{0}].1.blend-blenderTexture.png", layer));
                         }
                     }
 
@@ -162,7 +163,7 @@ namespace FrontToBackPeeling
                 this.DrawFullScreenQuad(arg, QuadNode.RenderMode.Final, this.resources.blenderColorTexture);
                 if (this.DumpImages)
                 {
-                    GetImage(this.resources.blenderColorTexture).Save(string.Format("2.final-blenderTexture.png"));
+                    this.resources.blenderColorTexture.GetImage(this.width, this.height).Save(string.Format("2.final-blenderTexture.png"));
                 }
             }
             else
