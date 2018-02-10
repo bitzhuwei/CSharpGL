@@ -2,6 +2,8 @@
 ## The final result.
 ![FrontToBackPeeling](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/FrontToBackPeeling/FrontToBackPeeling.png?raw=true)  
 ## How front to back peeling works?
+![FrontToBackPeeling.gif](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/FrontToBackPeeling/how/left-blended.gif?raw=true)
+![FrontToBackPeeling.gif](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/FrontToBackPeeling/how/right-peeling.gif?raw=true)
 After initialization(0.init-blenderTexture):  
 ![FrontToBackPeeling.init](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/FrontToBackPeeling/how/0.init-blenderTexture.png?raw=true)  
 Peeling result for the 1st time(1.layers[1].0.peel-textures[1]):  

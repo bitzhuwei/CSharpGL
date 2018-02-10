@@ -60,6 +60,8 @@
     <Compile Include="shaders.3.blend.cs" />
     <Compile Include="shaders.1.init.cs" />
     <Content Include="front2backPeeling.cpp" />
+    <Content Include="how\left-blended.gif" />
+    <Content Include="how\right-peeling.gif" />
     <None Include="readme.md" />
     <Compile Include="shaders.2.peel.cs" />
     <Compile Include="shaders.4.final.cs" />
