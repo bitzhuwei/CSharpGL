@@ -12,8 +12,9 @@ namespace FrontToBackPeeling
         private int height;
         private GroupNode cubeNodeGroup;
         private QuadNode fullscreenQuad;
-        private DepthMaskSwitch depthMask = new DepthMaskSwitch(false);
-        private const int NUM_PASSES = 6;
+        private DepthMaskSwitch depthMask = new DepthMaskSwitch(writable: false);
+        private DepthTestSwitch depthTest = new DepthTestSwitch(enableCapacity: false);
+        private const int NUM_PASSES = 5;
         private bool bUseOQ = false;
 
         public bool ShowDepthPeeling { get; set; }
@@ -64,10 +65,14 @@ namespace FrontToBackPeeling
             glBlendFuncSeparate = GL.Instance.GetDelegateFor("glBlendFuncSeparate", GLDelegates.typeof_void_uint_uint_uint_uint) as GLDelegates.void_uint_uint_uint_uint;
         }
 
-        private BlendSwitch blend = new BlendSwitch(BlendEquationMode.Add, BlendSrcFactor.SrcAlpha, BlendDestFactor.OneMinusSrcAlpha, BlendSrcFactor.One, BlendDestFactor.One);
+        private BlendSwitch blend = new BlendSwitch(BlendEquationMode.Add, BlendSrcFactor.DstAlpha, BlendDestFactor.One, BlendSrcFactor.Zero, BlendDestFactor.OneMinusSrcAlpha);
+        //private BlendSwitch blend = new BlendSwitch(BlendEquationMode.Add, BlendSrcFactor.SrcAlpha, BlendDestFactor.OneMinusSrcAlpha, BlendSrcFactor.One, BlendDestFactor.One);
 
         private bool dumpImages = true;
 
+        /// <summary>
+        /// Dump images once.
+        /// </summary>
         public bool DumpImages
         {
             get { return dumpImages; }
@@ -92,6 +97,8 @@ namespace FrontToBackPeeling
 
             if (this.ShowDepthPeeling)
             {
+                //var clearColor = new float[4];
+                //GL.Instance.GetFloatv((uint)GetTarget.ColorClearValue, clearColor);
                 {
                     //glBlendEquation(GL.GL_FUNC_ADD);
                     //glBlendFuncSeparate(GL.GL_SRC_ALPHA, GL.GL_ONE_MINUS_SRC_ALPHA, GL.GL_ONE, GL.GL_ONE);
@@ -119,11 +126,11 @@ namespace FrontToBackPeeling
                     // peel.
                     {
                         this.resources.FBOs[currId].Bind();
-                        GL.Instance.ClearColor(0, 0, 0, 1);
+                        GL.Instance.ClearColor(0, 0, 0, 0);
                         GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
-                        this.depthMask.On();
+                        //this.depthMask.On();
                         //GL.Instance.Enable(GL.GL_BLEND);
-                        this.blend.On();
+                        //this.blend.On();
                         if (bUseOQ)
                         {
                             this.query.BeginQuery(QueryTarget.SamplesPassed);
@@ -134,8 +141,8 @@ namespace FrontToBackPeeling
                             this.query.EndQuery(QueryTarget.SamplesPassed);
                         }
                         //GL.Instance.Disable(GL.GL_BLEND);
-                        this.blend.Off();
-                        this.depthMask.Off();
+                        //this.blend.Off();
+                        //this.depthMask.Off();
                         this.resources.FBOs[currId].Unbind();
                         if (this.DumpImages)
                         {
@@ -145,7 +152,11 @@ namespace FrontToBackPeeling
                     // blend.
                     {
                         this.resources.blenderFBO.Bind();
+                        this.depthTest.On();
+                        this.blend.On();
                         this.DrawFullScreenQuad(arg, QuadNode.RenderMode.Blend, this.resources.colorTextures[currId]);
+                        this.blend.Off();
+                        this.depthTest.Off();
                         this.resources.blenderFBO.Unbind();
                         if (this.DumpImages)
                         {
@@ -160,6 +171,7 @@ namespace FrontToBackPeeling
                     }
                 }
                 // final.
+                //GL.Instance.ClearColor(clearColor[0], clearColor[1], clearColor[2], clearColor[3]);
                 this.DrawFullScreenQuad(arg, QuadNode.RenderMode.Final, this.resources.blenderColorTexture);
                 if (this.DumpImages)
                 {

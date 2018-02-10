@@ -14,6 +14,7 @@ namespace FrontToBackPeeling
     {
         private Scene scene;
         private ActionList actionList;
+        private PeelingNode peelingNode;
 
         public FormMain()
         {
@@ -22,6 +23,15 @@ namespace FrontToBackPeeling
             this.Load += FormMain_Load;
             this.winGLCanvas1.OpenGLDraw += winGLCanvas1_OpenGLDraw;
             this.winGLCanvas1.Resize += winGLCanvas1_Resize;
+            this.winGLCanvas1.KeyPress += winGLCanvas1_KeyPress;
+        }
+
+        void winGLCanvas1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 't')
+            {
+                this.timer1.Enabled = !this.timer1.Enabled;
+            }
         }
 
         private void FormMain_Load(object sender, EventArgs e)
@@ -72,8 +82,8 @@ namespace FrontToBackPeeling
 
         private SceneNodeBase GetTree(Scene scene)
         {
-            var node = new PeelingNode(scene);
-            return node;
+            this.peelingNode = new PeelingNode(scene);
+            return this.peelingNode;
         }
 
         private void winGLCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
