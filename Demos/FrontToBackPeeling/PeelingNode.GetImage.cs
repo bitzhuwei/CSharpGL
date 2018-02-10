@@ -31,11 +31,15 @@ namespace FrontToBackPeeling
                 var data = bmp.LockBits(new Rectangle(0, 0, this.width, this.height), System.Drawing.Imaging.ImageLockMode.ReadWrite, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
                 var floatArray = (byte*)data.Scan0;
                 int index = 0;
+                float min = array[0], max = array[0];
                 for (int w = 0; w < this.width; w++)
                 {
                     for (int h = 0; h < this.height; h++)
                     {
                         var value = array[index++];
+                        if (value < min) { min = value; }
+                        if (max < value) { max = value; }
+
                         floatArray[index++] = (byte)(value * 255);
                     }
                 }
