@@ -16,6 +16,22 @@ namespace FrontToBackPeeling
         public RenderMode Mode { get; set; }
 
 
+        private bool useBackground = true;
+
+        public bool UseBackground
+        {
+            get { return useBackground; }
+            set
+            {
+                useBackground = value;
+                {
+                    RenderMethod method = this.RenderUnit.Methods[(int)RenderMode.Final];
+                    ShaderProgram program = method.Program;
+                    program.SetUniform("useBackground", value);
+                }
+            }
+        }
+
         private Texture tempTexture;
         /// <summary>
         /// 
