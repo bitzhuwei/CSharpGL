@@ -6,14 +6,6 @@ using CSharpGL;
 
 namespace FrontToBackPeeling
 {
-    partial class PeelingNode
-    {
-        private PeelingResource resources;
-        private Query query;
-
-
-    }
-
     class PeelingResource
     {
         public readonly int width;

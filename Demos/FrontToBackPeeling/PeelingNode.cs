@@ -10,29 +10,47 @@ namespace FrontToBackPeeling
     {
         private int width;
         private int height;
-        private GroupNode cubeNodeGroup;
-        private QuadNode fullscreenQuad;
-        private DepthMaskSwitch depthMask = new DepthMaskSwitch(writable: false);
-        private DepthTestSwitch depthTest = new DepthTestSwitch(enableCapacity: false);
-        private const int NUM_PASSES = 5;
+        private PeelingResource resources;
+        private Query query;
         private bool bUseOQ = false;
+        private QuadNode fullscreenQuad;
+        private const int NUM_PASSES = 5;
+        private DepthTestSwitch depthTest = new DepthTestSwitch(enableCapacity: false);
+        private BlendSwitch blend = new BlendSwitch(BlendEquationMode.Add, BlendSrcFactor.DstAlpha, BlendDestFactor.One, BlendSrcFactor.Zero, BlendDestFactor.OneMinusSrcAlpha);
 
-        public bool ShowDepthPeeling { get; set; }
+        private bool dumpImages = true;
+        /// <summary>
+        /// Dump images once.
+        /// </summary>
+        public bool DumpImages
+        {
+            get { return dumpImages; }
+            set { dumpImages = value; }
+        }
+
+        private bool showDepthPeeling = true;
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool ShowDepthPeeling { get { return this.showDepthPeeling; } set { this.showDepthPeeling = value; } }
 
         private static readonly GLDelegates.void_uint glBlendEquation;
         private static readonly GLDelegates.void_uint_uint_uint_uint glBlendFuncSeparate;
 
+        static PeelingNode()
+        {
+            glBlendEquation = GL.Instance.GetDelegateFor("glBlendEquation", GLDelegates.typeof_void_uint) as GLDelegates.void_uint;
+            glBlendFuncSeparate = GL.Instance.GetDelegateFor("glBlendFuncSeparate", GLDelegates.typeof_void_uint_uint_uint_uint) as GLDelegates.void_uint_uint_uint_uint;
+        }
+
         public PeelingNode(Scene scene)
         {
-            this.ShowDepthPeeling = true;
-
             this.query = new Query();
 
             {
                 const float alpha = 0.3f;
                 var colors = new vec4[] { new vec4(1, 0, 0, alpha), new vec4(0, 1, 0, alpha), new vec4(0, 0, 1, alpha) };
 
-                var groupNode = new GroupNode();
                 for (int k = -1; k < 2; k++)
                 {
                     for (int j = -1; j < 2; j++)
@@ -45,13 +63,10 @@ namespace FrontToBackPeeling
                             cubeNode.WorldPosition = worldPosition;
                             cubeNode.Color = colors[index++];
 
-                            groupNode.Children.Add(cubeNode);
+                            this.Children.Add(cubeNode);
                         }
                     }
                 }
-                this.Children.Add(groupNode);
-
-                this.cubeNodeGroup = groupNode;
             }
             {
                 var quad = QuadNode.Create(scene);
@@ -59,25 +74,6 @@ namespace FrontToBackPeeling
             }
         }
 
-        static PeelingNode()
-        {
-            glBlendEquation = GL.Instance.GetDelegateFor("glBlendEquation", GLDelegates.typeof_void_uint) as GLDelegates.void_uint;
-            glBlendFuncSeparate = GL.Instance.GetDelegateFor("glBlendFuncSeparate", GLDelegates.typeof_void_uint_uint_uint_uint) as GLDelegates.void_uint_uint_uint_uint;
-        }
-
-        private BlendSwitch blend = new BlendSwitch(BlendEquationMode.Add, BlendSrcFactor.DstAlpha, BlendDestFactor.One, BlendSrcFactor.Zero, BlendDestFactor.OneMinusSrcAlpha);
-        //private BlendSwitch blend = new BlendSwitch(BlendEquationMode.Add, BlendSrcFactor.SrcAlpha, BlendDestFactor.OneMinusSrcAlpha, BlendSrcFactor.One, BlendDestFactor.One);
-
-        private bool dumpImages = true;
-
-        /// <summary>
-        /// Dump images once.
-        /// </summary>
-        public bool DumpImages
-        {
-            get { return dumpImages; }
-            set { dumpImages = value; }
-        }
 
         #region IRenderable 成员
 
@@ -95,14 +91,9 @@ namespace FrontToBackPeeling
                 this.height = viewport[3];
             }
 
+            var dumpImages = this.DumpImages;
             if (this.ShowDepthPeeling)
             {
-                //var clearColor = new float[4];
-                //GL.Instance.GetFloatv((uint)GetTarget.ColorClearValue, clearColor);
-                {
-                    //glBlendEquation(GL.GL_FUNC_ADD);
-                    //glBlendFuncSeparate(GL.GL_SRC_ALPHA, GL.GL_ONE_MINUS_SRC_ALPHA, GL.GL_ONE, GL.GL_ONE);
-                }
                 // init.
                 {
                     this.resources.blenderFBO.Bind();
@@ -110,9 +101,8 @@ namespace FrontToBackPeeling
                     GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
                     this.DrawScene(arg, CubeNode.RenderMode.Init, null);
                     this.resources.blenderFBO.Unbind();
-                    if (this.DumpImages)
+                    if (dumpImages)
                     {
-                        //GetImage(this.resources.blenderColorTexture).Save(string.Format("0.init-blenderTexture.png"));
                         this.resources.blenderColorTexture.GetImage(this.width, this.height).Save(string.Format("0.init-blenderTexture.png"));
                     }
                 }
@@ -128,23 +118,11 @@ namespace FrontToBackPeeling
                         this.resources.FBOs[currId].Bind();
                         GL.Instance.ClearColor(0, 0, 0, 0);
                         GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
-                        //this.depthMask.On();
-                        //GL.Instance.Enable(GL.GL_BLEND);
-                        //this.blend.On();
-                        if (bUseOQ)
-                        {
-                            this.query.BeginQuery(QueryTarget.SamplesPassed);
-                        }
+                        if (bUseOQ) { this.query.BeginQuery(QueryTarget.SamplesPassed); }
                         this.DrawScene(arg, CubeNode.RenderMode.Peel, this.resources.depthTextures[prevId]);
-                        if (bUseOQ)
-                        {
-                            this.query.EndQuery(QueryTarget.SamplesPassed);
-                        }
-                        //GL.Instance.Disable(GL.GL_BLEND);
-                        //this.blend.Off();
-                        //this.depthMask.Off();
+                        if (bUseOQ) { this.query.EndQuery(QueryTarget.SamplesPassed); }
                         this.resources.FBOs[currId].Unbind();
-                        if (this.DumpImages)
+                        if (dumpImages)
                         {
                             this.resources.colorTextures[currId].GetImage(this.width, this.height).Save(string.Format("1.layers[{0}].0.peel-textures[{1}].png", layer, currId));
                         }
@@ -158,7 +136,7 @@ namespace FrontToBackPeeling
                         this.blend.Off();
                         this.depthTest.Off();
                         this.resources.blenderFBO.Unbind();
-                        if (this.DumpImages)
+                        if (dumpImages)
                         {
                             this.resources.blenderColorTexture.GetImage(this.width, this.height).Save(string.Format("1.layers[{0}].1.blend-blenderTexture.png", layer));
                         }
@@ -171,16 +149,14 @@ namespace FrontToBackPeeling
                     }
                 }
                 // final.
-                //GL.Instance.ClearColor(clearColor[0], clearColor[1], clearColor[2], clearColor[3]);
                 this.DrawFullScreenQuad(arg, QuadNode.RenderMode.Final, this.resources.blenderColorTexture);
-                if (this.DumpImages)
+                if (dumpImages)
                 {
                     this.resources.blenderColorTexture.GetImage(this.width, this.height).Save(string.Format("2.final-blenderTexture.png"));
                 }
             }
             else
             {
-                //GL.Instance.Enable(GL.GL_DEPTH_TEST);
                 this.DrawScene(arg, CubeNode.RenderMode.Init, null);
             }
 
@@ -195,7 +171,7 @@ namespace FrontToBackPeeling
 
         private void DrawScene(RenderEventArgs arg, CubeNode.RenderMode renderMode, Texture texture)
         {
-            foreach (var item in this.cubeNodeGroup.Children)
+            foreach (var item in this.Children)
             {
                 var node = item as CubeNode;
                 node.Mode = renderMode;
