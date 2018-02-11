@@ -33,12 +33,12 @@ namespace FrontToBackPeeling
             glBlendFuncSeparate = GL.Instance.GetDelegateFor("glBlendFuncSeparate", GLDelegates.typeof_void_uint_uint_uint_uint) as GLDelegates.void_uint_uint_uint_uint;
         }
 
-        public PeelingNode(Scene scene, params SceneNodeBase[] children)
+        public PeelingNode(params SceneNodeBase[] children)
         {
             this.query = new Query();
             this.Children.AddRange(children);
             {
-                var quad = QuadNode.Create(scene);
+                var quad = QuadNode.Create();
                 this.fullscreenQuad = quad;
             }
         }
@@ -83,6 +83,10 @@ namespace FrontToBackPeeling
 
             if (this.ShowDepthPeeling)
             {
+                // remember clear color.
+                var clearColor = new float[4];
+                GL.Instance.GetFloatv((uint)GetTarget.ColorClearValue, clearColor);
+
                 // init.
                 if (currentStep <= totalStep)
                 {
@@ -134,6 +138,9 @@ namespace FrontToBackPeeling
                         if (sampleCount == 0) { break; }
                     }
                 }
+
+                // restore clear color.
+                GL.Instance.ClearColor(clearColor[0], clearColor[1], clearColor[2], clearColor[3]);
                 // final.
                 this.DrawFullScreenQuad(arg, QuadNode.RenderMode.Final, targetTexture, this.renderStep >= maxStep);
             }

@@ -103,7 +103,7 @@ namespace FrontToBackPeeling
                     }
                 }
             }
-            this.peelingNode = new PeelingNode(scene, children.ToArray());
+            this.peelingNode = new PeelingNode(children.ToArray());
 
             return this.peelingNode;
         }
