@@ -12,9 +12,9 @@ namespace FrontToBackPeeling
         private int height;
         private PeelingResource resources;
         private Query query;
-        private bool bUseOQ = false;
+        private bool bUseOQ = true;
         private QuadNode fullscreenQuad;
-        private const int NUM_PASSES = 5;
+        private const int NUM_PASSES = 16;
         private DepthTestSwitch depthTest = new DepthTestSwitch(enableCapacity: false);
         private BlendSwitch blend = new BlendSwitch(BlendEquationMode.Add, BlendSrcFactor.DstAlpha, BlendDestFactor.One, BlendSrcFactor.Zero, BlendDestFactor.OneMinusSrcAlpha);
 
