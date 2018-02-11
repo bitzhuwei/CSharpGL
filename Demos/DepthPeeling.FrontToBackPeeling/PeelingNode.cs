@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using CSharpGL;
 
-namespace FrontToBackPeeling
+namespace DepthPeeling.FrontToBackPeeling
 {
     partial class PeelingNode : SceneNodeBase, IRenderable
     {
@@ -12,9 +12,9 @@ namespace FrontToBackPeeling
         private int height;
         private PeelingResource resources;
         private Query query;
-        private bool bUseOQ = false;
+        private bool bUseOQ = true;
         private QuadNode fullscreenQuad;
-        private const int NUM_PASSES = 5;
+        private const int NUM_PASSES = 16;
         private DepthTestSwitch depthTest = new DepthTestSwitch(enableCapacity: false);
         private BlendSwitch blend = new BlendSwitch(BlendEquationMode.Add, BlendSrcFactor.DstAlpha, BlendDestFactor.One, BlendSrcFactor.Zero, BlendDestFactor.OneMinusSrcAlpha);
 
@@ -33,39 +33,25 @@ namespace FrontToBackPeeling
             glBlendFuncSeparate = GL.Instance.GetDelegateFor("glBlendFuncSeparate", GLDelegates.typeof_void_uint_uint_uint_uint) as GLDelegates.void_uint_uint_uint_uint;
         }
 
-        public PeelingNode(Scene scene)
+        public PeelingNode(params SceneNodeBase[] children)
         {
             this.query = new Query();
-
+            this.Children.AddRange(children);
             {
-                const float alpha = 0.3f;
-                var colors = new vec4[] { new vec4(1, 0, 0, alpha), new vec4(0, 1, 0, alpha), new vec4(0, 0, 1, alpha) };
-
-                for (int k = -1; k < 2; k++)
-                {
-                    for (int j = -1; j < 2; j++)
-                    {
-                        int index = 0;
-                        for (int i = -1; i < 2; i++)
-                        {
-                            vec3 worldPosition = new vec3(i * 2, j * 2, k * 2);
-                            var cubeNode = CubeNode.Create();
-                            cubeNode.WorldPosition = worldPosition;
-                            cubeNode.Color = colors[index++];
-
-                            this.Children.Add(cubeNode);
-                        }
-                    }
-                }
-            }
-            {
-                var quad = QuadNode.Create(scene);
+                var quad = QuadNode.Create();
                 this.fullscreenQuad = quad;
             }
         }
 
-        private int maxStep = 1 + ((NUM_PASSES - 1) * 2 - 1) * 2;
+        /// <summary>
+        /// max step needed to render everything.
+        /// </summary>
+        private const int maxStep = 1 + ((NUM_PASSES - 1) * 2 - 1) * 2;
+
         private int renderStep = 1 + ((NUM_PASSES - 1) * 2 - 1) * 2;
+        /// <summary>
+        /// How many steps will be performed?
+        /// </summary>
         public int RenderStep
         {
             get { return renderStep; }
@@ -88,7 +74,7 @@ namespace FrontToBackPeeling
                 this.height = viewport[3];
             }
 
-            int currentStep = 0;
+            int currentStep = 0, totalStep = this.RenderStep;
             Texture targetTexture = null;
             this.resources.blenderFBO.Bind();
             GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
@@ -97,8 +83,12 @@ namespace FrontToBackPeeling
 
             if (this.ShowDepthPeeling)
             {
+                // remember clear color.
+                var clearColor = new float[4];
+                GL.Instance.GetFloatv((uint)GetTarget.ColorClearValue, clearColor);
+
                 // init.
-                if (currentStep <= this.renderStep)
+                if (currentStep <= totalStep)
                 {
                     currentStep++;
                     this.resources.blenderFBO.Bind();
@@ -116,7 +106,7 @@ namespace FrontToBackPeeling
                     int currId = layer % 2;
                     int prevId = 1 - currId;
                     // peel.
-                    if (currentStep <= this.renderStep)
+                    if (currentStep <= totalStep)
                     {
                         currentStep++;
                         this.resources.FBOs[currId].Bind();
@@ -129,7 +119,7 @@ namespace FrontToBackPeeling
                         targetTexture = this.resources.colorTextures[currId];
                     }
                     // blend.
-                    if (currentStep <= this.renderStep)
+                    if (currentStep <= totalStep)
                     {
                         currentStep++;
                         this.resources.blenderFBO.Bind();
@@ -144,10 +134,13 @@ namespace FrontToBackPeeling
 
                     if (bUseOQ)
                     {
-                        var sampleCount = this.query.SampleCount();
+                        int sampleCount = this.query.SampleCount();
                         if (sampleCount == 0) { break; }
                     }
                 }
+
+                // restore clear color.
+                GL.Instance.ClearColor(clearColor[0], clearColor[1], clearColor[2], clearColor[3]);
                 // final.
                 this.DrawFullScreenQuad(arg, QuadNode.RenderMode.Final, targetTexture, this.renderStep >= maxStep);
             }
@@ -179,13 +172,12 @@ namespace FrontToBackPeeling
 
         private void DrawFullScreenQuad(RenderEventArgs arg, QuadNode.RenderMode renderMode, Texture tempTexture, bool useBackground)
         {
-            this.fullscreenQuad.Mode = renderMode;
-            if (tempTexture != null)
-            {
-                this.fullscreenQuad.TempTexture = tempTexture;
-            }
+            if (tempTexture == null) { throw new Exception(); }
 
+            this.fullscreenQuad.TempTexture = tempTexture;
+            this.fullscreenQuad.Mode = renderMode;
             this.fullscreenQuad.UseBackground = useBackground;
+
             this.fullscreenQuad.RenderBeforeChildren(arg);
         }
 

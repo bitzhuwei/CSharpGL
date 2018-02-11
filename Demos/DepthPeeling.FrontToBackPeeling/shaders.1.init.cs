@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using CSharpGL;
 
-namespace FrontToBackPeeling
+namespace DepthPeeling.FrontToBackPeeling
 {
     public static partial class Shaders
     {

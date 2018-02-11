@@ -8,7 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using CSharpGL;
 
-namespace FrontToBackPeeling
+namespace DepthPeeling.FrontToBackPeeling
 {
     public partial class FormMain : Form
     {
@@ -56,6 +56,7 @@ namespace FrontToBackPeeling
             Match(this.trvScene, scene.RootNode);
             this.trvScene.ExpandAll();
 
+            // Note: uncomment this to enable camera movement.
             //var manipulater = new FirstPerspectiveManipulater();
             //manipulater.StepLength = 0.1f;
             //manipulater.Bind(camera, this.winGLCanvas1);
@@ -81,7 +82,31 @@ namespace FrontToBackPeeling
 
         private SceneNodeBase GetTree(Scene scene)
         {
-            this.peelingNode = new PeelingNode(scene);
+            var children = new List<SceneNodeBase>();
+            {
+                const float alpha = 0.2f;
+                var colors = new vec4[] { new vec4(1, 0, 0, alpha), new vec4(0, 1, 0, alpha), new vec4(0, 0, 1, alpha) };
+
+                for (int k = -1; k < 2; k++)
+                {
+                    for (int j = -1; j < 2; j++)
+                    {
+                        int index = 0;
+                        for (int i = -1; i < 2; i++)
+                        {
+                            vec3 worldPosition = new vec3(i * 2, j * 2, k * 2);
+                            var cubeNode = CubeNode.Create();
+                            cubeNode.WorldPosition = worldPosition;
+                            cubeNode.Color = colors[index++];
+                            cubeNode.Name = string.Format("{0},{1},{2}:{3}", k, j, i, cubeNode.Color);
+
+                            children.Add(cubeNode);
+                        }
+                    }
+                }
+            }
+            this.peelingNode = new PeelingNode(children.ToArray());
+
             return this.peelingNode;
         }
 
@@ -103,8 +128,27 @@ namespace FrontToBackPeeling
             this.scene.Camera.AspectRatio = ((float)this.winGLCanvas1.Width) / ((float)this.winGLCanvas1.Height);
         }
 
+        private CubeNode lastSelected;
+
         private void trvScene_AfterSelect(object sender, TreeViewEventArgs e)
         {
+            if (lastSelected != null)
+            {
+                vec4 color = lastSelected.Color;
+                float alpha = color.w;
+                lastSelected.Color = new vec4(color.x, color.y, color.z, alpha / 3.0f);
+                lastSelected = null;
+            }
+
+            var cube = e.Node.Tag as CubeNode;
+            if (cube != null)
+            {
+                vec4 color = cube.Color;
+                float alpha = color.w;
+                cube.Color = new vec4(color.x, color.y, color.z, alpha * 3.0f);
+                this.lastSelected = cube;
+            }
+
             this.propGrid.SelectedObject = e.Node.Tag;
 
             this.lblState.Text = string.Format("{0} objects selected.", 1);

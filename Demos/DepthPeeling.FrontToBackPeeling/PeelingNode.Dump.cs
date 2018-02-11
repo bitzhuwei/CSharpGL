@@ -5,7 +5,7 @@
 //using CSharpGL;
 //using System.Drawing;
 
-//namespace FrontToBackPeeling
+//namespace DepthPeeling.FrontToBackPeeling
 //{
 //    partial class PeelingNode : SceneNodeBase, IRenderable
 //    {

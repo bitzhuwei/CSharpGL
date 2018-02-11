@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using CSharpGL;
 
-namespace FrontToBackPeeling
+namespace DepthPeeling.FrontToBackPeeling
 {
     class QuadNode : ModernNode, IRenderable
     {
@@ -55,7 +55,7 @@ namespace FrontToBackPeeling
             }
         }
 
-        public static QuadNode Create(Scene scene)
+        public static QuadNode Create()
         {
             RenderMethodBuilder blendBuilder, finalBuilder;
             {
@@ -78,7 +78,6 @@ namespace FrontToBackPeeling
             var model = new QuadModel();
             var node = new QuadNode(model, blendBuilder, finalBuilder);
             node.Initialize();
-            node.scene = scene;
 
             return node;
         }
@@ -90,7 +89,6 @@ namespace FrontToBackPeeling
         }
 
         private ThreeFlags enableRendering = ThreeFlags.BeforeChildren | ThreeFlags.Children | ThreeFlags.AfterChildren;
-        private Scene scene;
         /// <summary>
         /// Render before/after children? Render children? 
         /// RenderAction cares about this property. Other actions, maybe, maybe not, your choice.
@@ -112,7 +110,10 @@ namespace FrontToBackPeeling
             if (this.Mode == RenderMode.Final)
             {
                 ShaderProgram program = method.Program;
-                program.SetUniform("vBackgroundColor", this.scene.ClearColor);
+                var clearColor = new float[4];
+                GL.Instance.GetFloatv((uint)GetTarget.ColorClearValue, clearColor);
+                var value = new vec4(clearColor[0], clearColor[1], clearColor[2], clearColor[3]);
+                program.SetUniform("vBackgroundColor", value);
             }
 
             method.Render();
@@ -121,5 +122,6 @@ namespace FrontToBackPeeling
         public void RenderAfterChildren(RenderEventArgs arg)
         {
         }
+
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace FrontToBackPeeling
+﻿namespace DepthPeeling.FrontToBackPeeling
 {
     partial class FormMain
     {
