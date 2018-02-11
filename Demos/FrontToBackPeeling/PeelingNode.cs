@@ -144,7 +144,7 @@ namespace FrontToBackPeeling
 
                     if (bUseOQ)
                     {
-                        var sampleCount = this.query.SampleCount();
+                        int sampleCount = this.query.SampleCount();
                         if (sampleCount == 0) { break; }
                     }
                 }
