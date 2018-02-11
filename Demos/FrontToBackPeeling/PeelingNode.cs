@@ -33,31 +33,10 @@ namespace FrontToBackPeeling
             glBlendFuncSeparate = GL.Instance.GetDelegateFor("glBlendFuncSeparate", GLDelegates.typeof_void_uint_uint_uint_uint) as GLDelegates.void_uint_uint_uint_uint;
         }
 
-        public PeelingNode(Scene scene)
+        public PeelingNode(Scene scene, params SceneNodeBase[] children)
         {
             this.query = new Query();
-
-            {
-                const float alpha = 0.3f;
-                var colors = new vec4[] { new vec4(1, 0, 0, alpha), new vec4(0, 1, 0, alpha), new vec4(0, 0, 1, alpha) };
-
-                for (int k = -1; k < 2; k++)
-                {
-                    for (int j = -1; j < 2; j++)
-                    {
-                        int index = 0;
-                        for (int i = -1; i < 2; i++)
-                        {
-                            vec3 worldPosition = new vec3(i * 2, j * 2, k * 2);
-                            var cubeNode = CubeNode.Create();
-                            cubeNode.WorldPosition = worldPosition;
-                            cubeNode.Color = colors[index++];
-
-                            this.Children.Add(cubeNode);
-                        }
-                    }
-                }
-            }
+            this.Children.AddRange(children);
             {
                 var quad = QuadNode.Create(scene);
                 this.fullscreenQuad = quad;

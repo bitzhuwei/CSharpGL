@@ -81,7 +81,30 @@ namespace FrontToBackPeeling
 
         private SceneNodeBase GetTree(Scene scene)
         {
-            this.peelingNode = new PeelingNode(scene);
+            var children = new List<SceneNodeBase>();
+            {
+                const float alpha = 0.3f;
+                var colors = new vec4[] { new vec4(1, 0, 0, alpha), new vec4(0, 1, 0, alpha), new vec4(0, 0, 1, alpha) };
+
+                for (int k = -1; k < 2; k++)
+                {
+                    for (int j = -1; j < 2; j++)
+                    {
+                        int index = 0;
+                        for (int i = -1; i < 2; i++)
+                        {
+                            vec3 worldPosition = new vec3(i * 2, j * 2, k * 2);
+                            var cubeNode = CubeNode.Create();
+                            cubeNode.WorldPosition = worldPosition;
+                            cubeNode.Color = colors[index++];
+
+                            children.Add(cubeNode);
+                        }
+                    }
+                }
+            }
+            this.peelingNode = new PeelingNode(scene, children.ToArray());
+
             return this.peelingNode;
         }
 
