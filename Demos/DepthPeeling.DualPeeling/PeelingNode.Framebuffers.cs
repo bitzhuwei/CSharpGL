@@ -65,8 +65,9 @@ namespace DepthPeeling.DualPeeling
             // depthTextures.
             for (int i = 0; i < 2; i++)
             {
-                var depthStorage = new TexImage2D(TexImage2D.Target.TextureRectangle, GL.GL_DEPTH_COMPONENT32F, width, height, GL.GL_DEPTH_COMPONENT, GL.GL_FLOAT);
+                // TODO: is GL_FLOAT_RG32_NV same with GL_RG32F ?
                 //var depthStorage = new TexImage2D(TexImage2D.Target.TextureRectangle, GL_FLOAT_RG32_NV, width, height, GL.GL_RGB, GL.GL_FLOAT);
+                var depthStorage = new TexImage2D(TexImage2D.Target.TextureRectangle, GL.GL_RG32F, width, height, GL.GL_RGB, GL.GL_FLOAT);
                 var depthTexture = new Texture(depthStorage,
                     new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP),
                     new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_CLAMP),
