@@ -64,8 +64,15 @@ namespace FrontToBackPeeling
             }
         }
 
-        private int maxStep = 1 + ((NUM_PASSES - 1) * 2 - 1) * 2;
+        /// <summary>
+        /// max step needed to render everything.
+        /// </summary>
+        private const int maxStep = 1 + ((NUM_PASSES - 1) * 2 - 1) * 2;
+
         private int renderStep = 1 + ((NUM_PASSES - 1) * 2 - 1) * 2;
+        /// <summary>
+        /// How many steps will be performed?
+        /// </summary>
         public int RenderStep
         {
             get { return renderStep; }
@@ -88,7 +95,7 @@ namespace FrontToBackPeeling
                 this.height = viewport[3];
             }
 
-            int currentStep = 0;
+            int currentStep = 0, totalStep = this.RenderStep;
             Texture targetTexture = null;
             this.resources.blenderFBO.Bind();
             GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
@@ -98,7 +105,7 @@ namespace FrontToBackPeeling
             if (this.ShowDepthPeeling)
             {
                 // init.
-                if (currentStep <= this.renderStep)
+                if (currentStep <= totalStep)
                 {
                     currentStep++;
                     this.resources.blenderFBO.Bind();
@@ -116,7 +123,7 @@ namespace FrontToBackPeeling
                     int currId = layer % 2;
                     int prevId = 1 - currId;
                     // peel.
-                    if (currentStep <= this.renderStep)
+                    if (currentStep <= totalStep)
                     {
                         currentStep++;
                         this.resources.FBOs[currId].Bind();
@@ -129,7 +136,7 @@ namespace FrontToBackPeeling
                         targetTexture = this.resources.colorTextures[currId];
                     }
                     // blend.
-                    if (currentStep <= this.renderStep)
+                    if (currentStep <= totalStep)
                     {
                         currentStep++;
                         this.resources.blenderFBO.Bind();
