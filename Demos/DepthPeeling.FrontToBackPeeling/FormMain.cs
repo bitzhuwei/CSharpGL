@@ -8,7 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using CSharpGL;
 
-namespace FrontToBackPeeling
+namespace DepthPeeling.FrontToBackPeeling
 {
     public partial class FormMain : Form
     {
