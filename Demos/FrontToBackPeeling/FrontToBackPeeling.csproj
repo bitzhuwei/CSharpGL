@@ -95,6 +95,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="FrontToBackPeeling.gif" />
     <Content Include="FrontToBackPeeling.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
