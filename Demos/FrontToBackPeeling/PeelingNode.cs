@@ -172,13 +172,12 @@ namespace FrontToBackPeeling
 
         private void DrawFullScreenQuad(RenderEventArgs arg, QuadNode.RenderMode renderMode, Texture tempTexture, bool useBackground)
         {
-            this.fullscreenQuad.Mode = renderMode;
-            if (tempTexture != null)
-            {
-                this.fullscreenQuad.TempTexture = tempTexture;
-            }
+            if (tempTexture == null) { throw new Exception(); }
 
+            this.fullscreenQuad.TempTexture = tempTexture;
+            this.fullscreenQuad.Mode = renderMode;
             this.fullscreenQuad.UseBackground = useBackground;
+
             this.fullscreenQuad.RenderBeforeChildren(arg);
         }
 
