@@ -12,23 +12,6 @@
 //
 // Copyright (c) NVIDIA Corporation. All rights reserved.
 //--------------------------------------------------------------------------------------
-
-#pragma warning( disable : 4996 )
-
-#include <nvModel.h>
-#include <nvShaderUtils.h>
-#include <nvSDKPath.h>
-#include "GLSLProgramObject.h"
-#include "Timer.h"
-#include "OSD.h"
-#include <GL/glew.h>
-#include <GL/glut.h>
-#include <iostream>
-#include <sstream>
-#include <fstream>
-#include <string>
-#include <time.h>
-
 #define FOVY 30.0
 #define ZNEAR 0.0001
 #define ZFAR 10.0
@@ -39,7 +22,6 @@ int g_numPasses = 4;
 int g_imageWidth = 1024;
 int g_imageHeight = 768;
 
-nv::Model *g_model;
 GLuint g_quadDisplayList;
 GLuint g_vboId;
 GLuint g_eboId;
@@ -52,13 +34,12 @@ GLuint g_queryId;
 
 static nv::SDKPath sdkPath;
 
-GLSLProgramObject g_shaderDualInit;
-GLSLProgramObject g_shaderDualPeel;
-GLSLProgramObject g_shaderDualBlend;
-GLSLProgramObject g_shaderDualFinal;
+GLSLProgramObject initProgram;
+GLSLProgramObject peelProgram;
+GLSLProgramObject blendProgram;
+GLSLProgramObject finalProgram;
 
 float g_opacity = 0.6;
-char g_mode = DUAL_PEELING_MODE;
 unsigned g_numGeoPasses = 0;
 
 float g_white[3] = { 1.0, 1.0, 1.0 };
@@ -192,33 +173,33 @@ void BuildShaders()
 {
 	printf("\nloading shaders...\n");
 
-	g_shaderDualInit.attachVertexShader(SHADER_PATH "dual_peeling_init_vertex.glsl");
-	g_shaderDualInit.attachFragmentShader(SHADER_PATH "dual_peeling_init_fragment.glsl");
-	g_shaderDualInit.link();
+	initProgram.attachVertexShader(SHADER_PATH "dual_peeling_init_vertex.glsl");
+	initProgram.attachFragmentShader(SHADER_PATH "dual_peeling_init_fragment.glsl");
+	initProgram.link();
 
-	g_shaderDualPeel.attachVertexShader(SHADER_PATH "shade_vertex.glsl");
-	g_shaderDualPeel.attachVertexShader(SHADER_PATH "dual_peeling_peel_vertex.glsl");
-	g_shaderDualPeel.attachFragmentShader(SHADER_PATH "shade_fragment.glsl");
-	g_shaderDualPeel.attachFragmentShader(SHADER_PATH "dual_peeling_peel_fragment.glsl");
-	g_shaderDualPeel.link();
+	peelProgram.attachVertexShader(SHADER_PATH "shade_vertex.glsl");
+	peelProgram.attachVertexShader(SHADER_PATH "dual_peeling_peel_vertex.glsl");
+	peelProgram.attachFragmentShader(SHADER_PATH "shade_fragment.glsl");
+	peelProgram.attachFragmentShader(SHADER_PATH "dual_peeling_peel_fragment.glsl");
+	peelProgram.link();
 
-	g_shaderDualBlend.attachVertexShader(SHADER_PATH "dual_peeling_blend_vertex.glsl");
-	g_shaderDualBlend.attachFragmentShader(SHADER_PATH "dual_peeling_blend_fragment.glsl");
-	g_shaderDualBlend.link();
+	blendProgram.attachVertexShader(SHADER_PATH "dual_peeling_blend_vertex.glsl");
+	blendProgram.attachFragmentShader(SHADER_PATH "dual_peeling_blend_fragment.glsl");
+	blendProgram.link();
 
-	g_shaderDualFinal.attachVertexShader(SHADER_PATH "dual_peeling_final_vertex.glsl");
-	g_shaderDualFinal.attachFragmentShader(SHADER_PATH "dual_peeling_final_fragment.glsl");
-	g_shaderDualFinal.link();
+	finalProgram.attachVertexShader(SHADER_PATH "dual_peeling_final_vertex.glsl");
+	finalProgram.attachFragmentShader(SHADER_PATH "dual_peeling_final_fragment.glsl");
+	finalProgram.link();
 
 }
 
 //--------------------------------------------------------------------------
 void DestroyShaders()
 {
-	g_shaderDualInit.destroy();
-	g_shaderDualPeel.destroy();
-	g_shaderDualBlend.destroy();
-	g_shaderDualFinal.destroy();
+	initProgram.destroy();
+	peelProgram.destroy();
+	blendProgram.destroy();
+	finalProgram.destroy();
 
 }
 
@@ -257,9 +238,9 @@ void RenderDualPeeling()
 	glClear(GL_COLOR_BUFFER_BIT);
 	glBlendEquationEXT(GL_MAX_EXT);
 
-	g_shaderDualInit.bind();
+	initProgram.bind();
 	DrawModel();
-	g_shaderDualInit.unbind();
+	initProgram.unbind();
 
 	CHECK_GL_ERRORS;
 
@@ -297,12 +278,12 @@ void RenderDualPeeling()
 		glDrawBuffers(3, &g_drawBuffers[bufId + 0]);
 		glBlendEquationEXT(GL_MAX_EXT);
 
-		g_shaderDualPeel.bind();
-		g_shaderDualPeel.bindTextureRECT("DepthBlenderTex", g_dualDepthTexId[prevId], 0);
-		g_shaderDualPeel.bindTextureRECT("FrontBlenderTex", g_dualFrontBlenderTexId[prevId], 1);
-		g_shaderDualPeel.setUniform("Alpha", (float*)&g_opacity, 1);
+		peelProgram.bind();
+		peelProgram.bindTextureRECT("DepthBlenderTex", g_dualDepthTexId[prevId], 0);
+		peelProgram.bindTextureRECT("FrontBlenderTex", g_dualFrontBlenderTexId[prevId], 1);
+		peelProgram.setUniform("Alpha", (float*)&g_opacity, 1);
 		DrawModel();
-		g_shaderDualPeel.unbind();
+		peelProgram.unbind();
 
 		CHECK_GL_ERRORS;
 
@@ -316,10 +297,10 @@ void RenderDualPeeling()
 			glBeginQuery(GL_SAMPLES_PASSED_ARB, g_queryId);
 		}
 
-		g_shaderDualBlend.bind();
-		g_shaderDualBlend.bindTextureRECT("TempTex", g_dualBackTempTexId[currId], 0);
+		blendProgram.bind();
+		blendProgram.bindTextureRECT("TempTex", g_dualBackTempTexId[currId], 0);
 		glCallList(g_quadDisplayList);
-		g_shaderDualBlend.unbind();
+		blendProgram.unbind();
 
 		CHECK_GL_ERRORS;
 
@@ -342,12 +323,12 @@ void RenderDualPeeling()
 	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
 	glDrawBuffer(GL_BACK);
 
-	g_shaderDualFinal.bind();
-	g_shaderDualFinal.bindTextureRECT("DepthBlenderTex", g_dualDepthTexId[currId], 0);
-	g_shaderDualFinal.bindTextureRECT("FrontBlenderTex", g_dualFrontBlenderTexId[currId], 1);
-	g_shaderDualFinal.bindTextureRECT("BackBlenderTex", g_dualBackBlenderTexId, 2);
+	finalProgram.bind();
+	finalProgram.bindTextureRECT("DepthBlenderTex", g_dualDepthTexId[currId], 0);
+	finalProgram.bindTextureRECT("FrontBlenderTex", g_dualFrontBlenderTexId[currId], 1);
+	finalProgram.bindTextureRECT("BackBlenderTex", g_dualBackBlenderTexId, 2);
 	glCallList(g_quadDisplayList);
-	g_shaderDualFinal.unbind();
+	finalProgram.unbind();
 
 	CHECK_GL_ERRORS;
 }
