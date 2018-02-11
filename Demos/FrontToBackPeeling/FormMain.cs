@@ -56,6 +56,7 @@ namespace FrontToBackPeeling
             Match(this.trvScene, scene.RootNode);
             this.trvScene.ExpandAll();
 
+            // Note: uncomment this to enable camera movement.
             //var manipulater = new FirstPerspectiveManipulater();
             //manipulater.StepLength = 0.1f;
             //manipulater.Bind(camera, this.winGLCanvas1);
