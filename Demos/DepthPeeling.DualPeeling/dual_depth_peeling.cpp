@@ -71,24 +71,21 @@ void InitDualPeelingRenderTargets()
 		glTexParameteri(GL_TEXTURE_RECTANGLE, GL_TEXTURE_WRAP_T, GL_CLAMP);
 		glTexParameteri(GL_TEXTURE_RECTANGLE, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 		glTexParameteri(GL_TEXTURE_RECTANGLE, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-		glTexImage2D(GL_TEXTURE_RECTANGLE, 0, GL_FLOAT_RG32_NV, g_imageWidth, g_imageHeight,
-			0, GL_RGB, GL_FLOAT, 0);
+		glTexImage2D(GL_TEXTURE_RECTANGLE, 0, GL_FLOAT_RG32_NV, g_imageWidth, g_imageHeight, 0, GL_RGB, GL_FLOAT, 0);
 
 		glBindTexture(GL_TEXTURE_RECTANGLE, frontBlenderTextures[i]);
 		glTexParameteri(GL_TEXTURE_RECTANGLE, GL_TEXTURE_WRAP_S, GL_CLAMP);
 		glTexParameteri(GL_TEXTURE_RECTANGLE, GL_TEXTURE_WRAP_T, GL_CLAMP);
 		glTexParameteri(GL_TEXTURE_RECTANGLE, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 		glTexParameteri(GL_TEXTURE_RECTANGLE, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-		glTexImage2D(GL_TEXTURE_RECTANGLE, 0, GL_RGBA, g_imageWidth, g_imageHeight,
-			0, GL_RGBA, GL_FLOAT, 0);
+		glTexImage2D(GL_TEXTURE_RECTANGLE, 0, GL_RGBA, g_imageWidth, g_imageHeight, 0, GL_RGBA, GL_FLOAT, 0);
 
 		glBindTexture(GL_TEXTURE_RECTANGLE, backTmpTextures[i]);
 		glTexParameteri(GL_TEXTURE_RECTANGLE, GL_TEXTURE_WRAP_S, GL_CLAMP);
 		glTexParameteri(GL_TEXTURE_RECTANGLE, GL_TEXTURE_WRAP_T, GL_CLAMP);
 		glTexParameteri(GL_TEXTURE_RECTANGLE, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 		glTexParameteri(GL_TEXTURE_RECTANGLE, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-		glTexImage2D(GL_TEXTURE_RECTANGLE, 0, GL_RGBA, g_imageWidth, g_imageHeight,
-			0, GL_RGBA, GL_FLOAT, 0);
+		glTexImage2D(GL_TEXTURE_RECTANGLE, 0, GL_RGBA, g_imageWidth, g_imageHeight, 0, GL_RGBA, GL_FLOAT, 0);
 	}
 
 	glGenTextures(1, &backBlenderTexture);
@@ -97,34 +94,25 @@ void InitDualPeelingRenderTargets()
 	glTexParameteri(GL_TEXTURE_RECTANGLE, GL_TEXTURE_WRAP_T, GL_CLAMP);
 	glTexParameteri(GL_TEXTURE_RECTANGLE, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_RECTANGLE, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-	glTexImage2D(GL_TEXTURE_RECTANGLE, 0, GL_RGB, g_imageWidth, g_imageHeight,
-		0, GL_RGB, GL_FLOAT, 0);
+	glTexImage2D(GL_TEXTURE_RECTANGLE, 0, GL_RGB, g_imageWidth, g_imageHeight, 0, GL_RGB, GL_FLOAT, 0);
 
 	glGenFramebuffers(1, &backBlenderFBO);
 	glBindFramebuffer(GL_FRAMEBUFFER, backBlenderFBO);
-	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,
-		GL_TEXTURE_RECTANGLE, backBlenderTexture, 0);
+	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_RECTANGLE, backBlenderTexture, 0);
 
 	glBindFramebuffer(GL_FRAMEBUFFER, peelingSingleFBO);
 
 	int j = 0;
-	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,
-		GL_TEXTURE_RECTANGLE, depthTextures[j], 0);
-	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT1,
-		GL_TEXTURE_RECTANGLE, frontBlenderTextures[j], 0);
-	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT2,
-		GL_TEXTURE_RECTANGLE, backTmpTextures[j], 0);
+	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_RECTANGLE, depthTextures[j], 0);
+	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT1, GL_TEXTURE_RECTANGLE, frontBlenderTextures[j], 0);
+	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT2, GL_TEXTURE_RECTANGLE, backTmpTextures[j], 0);
 
 	j = 1;
-	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT3,
-		GL_TEXTURE_RECTANGLE, depthTextures[j], 0);
-	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT4,
-		GL_TEXTURE_RECTANGLE, frontBlenderTextures[j], 0);
-	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT5,
-		GL_TEXTURE_RECTANGLE, backTmpTextures[j], 0);
+	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT3, GL_TEXTURE_RECTANGLE, depthTextures[j], 0);
+	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT4, GL_TEXTURE_RECTANGLE, frontBlenderTextures[j], 0);
+	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT5, GL_TEXTURE_RECTANGLE, backTmpTextures[j], 0);
 
-	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT6,
-		GL_TEXTURE_RECTANGLE, backBlenderTexture, 0);
+	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT6, GL_TEXTURE_RECTANGLE, backBlenderTexture, 0);
 
 	CHECK_GL_ERRORS;
 }
