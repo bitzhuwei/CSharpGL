@@ -96,8 +96,9 @@ namespace DepthPeeling.DualPeeling
                     GL.Instance.ClearColor(-MAX_DEPTH, -MAX_DEPTH, 0, 0);
                     GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT);
                     glBlendEquation(GL.GL_MAX); //this.blendMax.On();
-                    this.DrawScene(arg, CubeNode.RenderMode.Init, null);
+                    this.DrawScene(arg, CubeNode.RenderMode.Init, null, null);
                 }
+                uint currId = 0;
                 {
                     // 2. Dual Depth Peeling + Blending
                     // Since we cannot blend the back colors in the geometry passes,
@@ -108,7 +109,6 @@ namespace DepthPeeling.DualPeeling
                     GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT);
 
                     const uint g_numPasses = 4;
-                    uint currId = 0;
 
                     for (uint pass = 1; bUseOQ || pass < g_numPasses; pass++)
                     {
@@ -131,44 +131,30 @@ namespace DepthPeeling.DualPeeling
                         fbo.SetDrawBuffers(GL.GL_COLOR_ATTACHMENT0 + bufId + 0, GL.GL_COLOR_ATTACHMENT0 + bufId + 1, GL.GL_COLOR_ATTACHMENT0 + bufId + 2);
                         glBlendEquation(GL.GL_MAX);
 
+                        this.DrawScene(arg, CubeNode.RenderMode.Init, this.resources.depthTextures[prevId], this.resources.frontBlenderTextures[prevId]);
+
                         // TODO: not finished yet.
-                        //peelProgram.bind();
-                        //peelProgram.bindTextureRECT("DepthBlenderTex", depthTextures[prevId], 0);
-                        //peelProgram.bindTextureRECT("FrontBlenderTex", frontBlenderTextures[prevId], 1);
-                        //peelProgram.setUniform("Alpha", (float*)&g_opacity, 1);
-                        //DrawModel();
-                        //peelProgram.unbind();
+                        // Full screen pass to alpha-blend the back color
+                        fbo.SetDrawBuffer(GL.GL_COLOR_ATTACHMENT0 + 6);
+
+                        glBlendEquation(GL.GL_FUNC_ADD);
+                        GL.Instance.BlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE_MINUS_SRC_ALPHA);
+
+                        if (bUseOQ)
+                        {
+                            this.query.BeginQuery(QueryTarget.SamplesPassed);
+                        }
+
+                        this.DrawFullScreenQuad(arg, QuadNode.RenderMode.Blend, this.resources.backTmpTextures[currId]);
 
                         //CHECK_GL_ERRORS;
 
-                        //// Full screen pass to alpha-blend the back color
-                        //glDrawBuffer(g_drawBuffers[6]);
-
-                        //glBlendEquation(GL_FUNC_ADD);
-                        //glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-                        //if (bUseOQ)
-                        //{
-                        //    glBeginQuery(GL_SAMPLES_PASSED, g_queryId);
-                        //}
-
-                        //blendProgram.bind();
-                        //blendProgram.bindTextureRECT("TempTex", backTmpTextures[currId], 0);
-                        //glCallList(g_quadDisplayList);
-                        //blendProgram.unbind();
-
-                        //CHECK_GL_ERRORS;
-
-                        //if (bUseOQ)
-                        //{
-                        //    glEndQuery(GL_SAMPLES_PASSED);
-                        //    GLuint sample_count;
-                        //    glGetQueryObjectuiv(g_queryId, GL_QUERY_RESULT, &sample_count);
-                        //    if (sample_count == 0)
-                        //    {
-                        //        break;
-                        //    }
-                        //}
+                        if (bUseOQ)
+                        {
+                            this.query.EndQuery(QueryTarget.SamplesPassed);
+                            int sampleCount = this.query.SampleCount();
+                            if (sampleCount == 0) { break; }
+                        }
                     }
                 }
 
@@ -179,14 +165,19 @@ namespace DepthPeeling.DualPeeling
 
                 {
                     // 3. Final Pass
-
+                    fbo.Unbind();
+                    //glDrawBuffer(GL_BACK);
+                    this.DrawFullScreenQuad(arg, QuadNode.RenderMode.Final,
+                        this.resources.depthTextures[currId],
+                        this.resources.frontBlenderTextures[currId],
+                        this.resources.backBlenderTexture);
                 }
                 // restore clear color.
                 GL.Instance.ClearColor(clearColor[0], clearColor[1], clearColor[2], clearColor[3]);
             }
             else
             {
-                this.DrawScene(arg, CubeNode.RenderMode.Init, null);
+                this.DrawScene(arg, CubeNode.RenderMode.Init, null, null);
             }
         }
 
@@ -196,27 +187,44 @@ namespace DepthPeeling.DualPeeling
             this.resources = new PeelingResource(width, height);
         }
 
-        private void DrawScene(RenderEventArgs arg, CubeNode.RenderMode renderMode, Texture texture)
+        private void DrawScene(RenderEventArgs arg, CubeNode.RenderMode renderMode)
         {
             foreach (var item in this.Children)
             {
                 var node = item as CubeNode;
                 node.Mode = renderMode;
-                if (texture != null)
-                {
-                    node.DepthTexture = texture;
-                }
+
                 node.RenderBeforeChildren(arg);
             }
         }
 
-        private void DrawFullScreenQuad(RenderEventArgs arg, QuadNode.RenderMode renderMode, Texture tempTexture, bool useBackground)
+        private void DrawScene(RenderEventArgs arg, CubeNode.RenderMode renderMode, Texture depthTexture, Texture frontBlenderTexture)
         {
-            if (tempTexture == null) { throw new Exception(); }
+            foreach (var item in this.Children)
+            {
+                var node = item as CubeNode;
+                node.Mode = renderMode;
+                node.DepthTexture = depthTexture;
+                node.FrontBlenderTexture = frontBlenderTexture;
 
-            this.fullscreenQuad.TempTexture = tempTexture;
+                node.RenderBeforeChildren(arg);
+            }
+        }
+
+        private void DrawFullScreenQuad(RenderEventArgs arg, QuadNode.RenderMode renderMode, Texture depthTex, Texture frontBlenderTex, Texture backBlenderTex)
+        {
             this.fullscreenQuad.Mode = renderMode;
-            this.fullscreenQuad.UseBackground = useBackground;
+            this.fullscreenQuad.DepthTexture = depthTex;
+            this.fullscreenQuad.FrontBlenderTexture = frontBlenderTex;
+            this.fullscreenQuad.BackBlenderTexture = backBlenderTex;
+
+            this.fullscreenQuad.RenderBeforeChildren(arg);
+        }
+
+        private void DrawFullScreenQuad(RenderEventArgs arg, QuadNode.RenderMode renderMode, Texture tempTexture)
+        {
+            this.fullscreenQuad.Mode = renderMode;
+            this.fullscreenQuad.TempTexture = tempTexture;
 
             this.fullscreenQuad.RenderBeforeChildren(arg);
         }

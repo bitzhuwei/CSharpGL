@@ -15,23 +15,6 @@ namespace DepthPeeling.DualPeeling
         /// </summary>
         public RenderMode Mode { get; set; }
 
-
-        private bool useBackground = true;
-
-        public bool UseBackground
-        {
-            get { return useBackground; }
-            set
-            {
-                useBackground = value;
-                {
-                    RenderMethod method = this.RenderUnit.Methods[(int)RenderMode.Final];
-                    ShaderProgram program = method.Program;
-                    program.SetUniform("useBackground", value);
-                }
-            }
-        }
-
         private Texture tempTexture;
         /// <summary>
         /// 
@@ -47,10 +30,58 @@ namespace DepthPeeling.DualPeeling
                     ShaderProgram program = method.Program;
                     program.SetUniform("tempTexture", value);
                 }
+            }
+        }
+
+        private Texture frontBlenderTexture;
+        /// <summary>
+        /// 
+        /// </summary>
+        public Texture FrontBlenderTexture
+        {
+            get { return this.frontBlenderTexture; }
+            set
+            {
+                this.frontBlenderTexture = value;
                 {
                     RenderMethod method = this.RenderUnit.Methods[(int)RenderMode.Final];
                     ShaderProgram program = method.Program;
-                    program.SetUniform("colorTexture", value);
+                    program.SetUniform("FrontBlenderTex", value);
+                }
+            }
+        }
+
+        private Texture backBlenderTexture;
+        /// <summary>
+        /// 
+        /// </summary>
+        public Texture BackBlenderTexture
+        {
+            get { return this.backBlenderTexture; }
+            set
+            {
+                this.backBlenderTexture = value;
+                {
+                    RenderMethod method = this.RenderUnit.Methods[(int)RenderMode.Final];
+                    ShaderProgram program = method.Program;
+                    program.SetUniform("BackBlenderTex", value);
+                }
+            }
+        }
+        private Texture depthTexture;
+        /// <summary>
+        /// 
+        /// </summary>
+        public Texture DepthTexture
+        {
+            get { return this.depthTexture; }
+            set
+            {
+                this.depthTexture = value;
+                {
+                    RenderMethod method = this.RenderUnit.Methods[(int)RenderMode.Final];
+                    ShaderProgram program = method.Program;
+                    program.SetUniform("DepthBlenderTex", value);
                 }
             }
         }

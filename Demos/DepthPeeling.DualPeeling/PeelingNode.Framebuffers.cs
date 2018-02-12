@@ -35,6 +35,8 @@ namespace DepthPeeling.DualPeeling
             this.width = width;
             this.height = height;
 
+            uint nextUnit = 0;
+
             // backBlenderTexture.
             {
                 var colorStorage = new TexImage2D(TexImage2D.Target.TextureRectangle, GL.GL_RGB, width, height, GL.GL_RGB, GL.GL_FLOAT);
@@ -45,6 +47,7 @@ namespace DepthPeeling.DualPeeling
                     new TexParameteri(TexParameter.PropertyName.TextureMinFilter, (int)GL.GL_NEAREST)
                     );
                 colorTexture.Initialize();
+                colorTexture.TextureUnitIndex = nextUnit++;
                 this.backBlenderTexture = colorTexture;
             }
             // backBlenderFBO.
@@ -75,6 +78,7 @@ namespace DepthPeeling.DualPeeling
                     new TexParameteri(TexParameter.PropertyName.TextureMinFilter, (int)GL.GL_NEAREST)
                     );
                 depthTexture.Initialize();
+                depthTexture.TextureUnitIndex = nextUnit++;
                 this.depthTextures[i] = depthTexture;
             }
             // frontBlenderTextures.
@@ -88,6 +92,7 @@ namespace DepthPeeling.DualPeeling
                     new TexParameteri(TexParameter.PropertyName.TextureMinFilter, (int)GL.GL_NEAREST)
                     );
                 colorTexture.Initialize();
+                colorTexture.TextureUnitIndex = nextUnit++;
                 this.frontBlenderTextures[i] = colorTexture;
             }
             // backTmpTextures.
@@ -101,6 +106,7 @@ namespace DepthPeeling.DualPeeling
                     new TexParameteri(TexParameter.PropertyName.TextureMinFilter, (int)GL.GL_NEAREST)
                     );
                 colorTexture.Initialize();
+                colorTexture.TextureUnitIndex = nextUnit++;
                 this.backTmpTextures[i] = colorTexture;
             }
             // peelingSingleFBO.

@@ -48,7 +48,24 @@ namespace DepthPeeling.DualPeeling
 
                 RenderMethod method = this.RenderUnit.Methods[(int)RenderMode.Peel];
                 ShaderProgram program = method.Program;
-                program.SetUniform("depthTexture", value);
+                program.SetUniform("DepthBlenderTex", value);
+            }
+        }
+
+        private Texture frontBlenderTexture;
+        /// <summary>
+        /// 
+        /// </summary>
+        public Texture FrontBlenderTexture
+        {
+            get { return this.frontBlenderTexture; }
+            set
+            {
+                this.frontBlenderTexture = value;
+
+                RenderMethod method = this.RenderUnit.Methods[(int)RenderMode.Peel];
+                ShaderProgram program = method.Program;
+                program.SetUniform("FrontBlenderTex", frontBlenderTexture);
             }
         }
 
