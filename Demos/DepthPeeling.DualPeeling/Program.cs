@@ -13,9 +13,10 @@ namespace DepthPeeling.DualPeeling
         [STAThread]
         static void Main()
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormMain());
+            MessageBox.Show("This demo is not finished yet.");
+            //Application.EnableVisualStyles();
+            //Application.SetCompatibleTextRenderingDefault(false);
+            //Application.Run(new FormMain());
         }
     }
 }
