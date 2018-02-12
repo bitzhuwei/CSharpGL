@@ -47,6 +47,13 @@ namespace DepthPeeling.DualPeeling
             set { renderStep = value; }
         }
 
+        private bool dump = true;
+        public bool Dump
+        {
+            get { return dump; }
+            set { dump = value; }
+        }
+
         #region IRenderable 成员
 
         public ThreeFlags EnableRendering { get { return ThreeFlags.BeforeChildren; } set { } }
@@ -83,6 +90,8 @@ namespace DepthPeeling.DualPeeling
                 Framebuffer fbo = this.resources.peelingSingleFBO;
                 fbo.Bind();
 
+                bool dump = this.Dump;
+
                 {
                     // 1. Initialize Min-Max Depth Buffer
                     // Render targets 1 and 2 store the front and back colors
@@ -91,12 +100,27 @@ namespace DepthPeeling.DualPeeling
                     fbo.SetDrawBuffers(GL.GL_COLOR_ATTACHMENT0 + 1, GL.GL_COLOR_ATTACHMENT0 + 2);
                     GL.Instance.ClearColor(0, 0, 0, 0);
                     GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT);
+                    if (dump)
+                    {
+                        var image = this.resources.frontBlenderTextures[0].GetImage(width, height);
+                        image.Save(string.Format("0.init.0.frontBlenders[0].png"));
+                    }
                     // Render target 0 stores (-minDepth, maxDepth, alphaMultiplier)
                     fbo.SetDrawBuffer(GL.GL_COLOR_ATTACHMENT0);
                     GL.Instance.ClearColor(-MAX_DEPTH, -MAX_DEPTH, 0, 0);
                     GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT);
+                    if (dump)
+                    {
+                        var image = this.resources.depthTextures[0].GetImage(width, height);
+                        image.Save(string.Format("0.init.1.depths[0].png"));
+                    }
                     glBlendEquation(GL.GL_MAX); //this.blendMax.On();
                     this.DrawScene(arg, CubeNode.RenderMode.Init);
+                    if (dump)
+                    {
+                        var image = this.resources.depthTextures[0].GetImage(width, height);
+                        image.Save(string.Format("0.init.2.depths[0].png"));
+                    }
                 }
                 uint currId = 0;
                 {
@@ -107,6 +131,11 @@ namespace DepthPeeling.DualPeeling
                     fbo.SetDrawBuffer(GL.GL_COLOR_ATTACHMENT0 + 6);
                     GL.Instance.ClearColor(clearColor[0], clearColor[1], clearColor[2], 0);
                     GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT);
+                    if (dump)
+                    {
+                        var image = this.resources.backBlenderTexture.GetImage(width, height);
+                        image.Save(string.Format("0.init.2.backBlender.png"));
+                    }
 
                     const uint g_numPasses = 4;
 
@@ -132,6 +161,21 @@ namespace DepthPeeling.DualPeeling
                         glBlendEquation(GL.GL_MAX);
 
                         this.DrawScene(arg, CubeNode.RenderMode.Init, this.resources.depthTextures[prevId], this.resources.frontBlenderTextures[prevId]);
+                        if (dump)
+                        {
+                            var image = this.resources.depthTextures[bufId / 3].GetImage(width, height);
+                            image.Save(string.Format("1.[{0}].1.depths[{1}].png", pass, bufId / 3));
+                        }
+                        if (dump)
+                        {
+                            var image = this.resources.frontBlenderTextures[bufId / 3].GetImage(width, height);
+                            image.Save(string.Format("1.[{0}].2.frontBlenders[{1}].png", pass, bufId / 3));
+                        }
+                        if (dump)
+                        {
+                            var image = this.resources.backTmpTextures[bufId / 3].GetImage(width, height);
+                            image.Save(string.Format("1.[{0}].3.backTmps[{1}].png", pass, bufId / 3));
+                        }
 
                         // TODO: not finished yet.
                         // Full screen pass to alpha-blend the back color
@@ -146,6 +190,11 @@ namespace DepthPeeling.DualPeeling
                         }
 
                         this.DrawFullScreenQuad(arg, QuadNode.RenderMode.Blend, this.resources.backTmpTextures[currId]);
+                        if (dump)
+                        {
+                            var image = this.resources.backBlenderTexture.GetImage(width, height);
+                            image.Save(string.Format("1.[{0}].4.backBlender.png", pass));
+                        }
 
                         //CHECK_GL_ERRORS;
 
@@ -171,6 +220,9 @@ namespace DepthPeeling.DualPeeling
                         this.resources.frontBlenderTextures[currId],
                         this.resources.backBlenderTexture);
                 }
+
+                this.Dump = false;
+
                 // restore clear color.
                 GL.Instance.ClearColor(clearColor[0], clearColor[1], clearColor[2], clearColor[3]);
             }
