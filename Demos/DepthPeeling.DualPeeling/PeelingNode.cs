@@ -96,7 +96,7 @@ namespace DepthPeeling.DualPeeling
                     GL.Instance.ClearColor(-MAX_DEPTH, -MAX_DEPTH, 0, 0);
                     GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT);
                     glBlendEquation(GL.GL_MAX); //this.blendMax.On();
-                    this.DrawScene(arg, CubeNode.RenderMode.Init, null, null);
+                    this.DrawScene(arg, CubeNode.RenderMode.Init);
                 }
                 uint currId = 0;
                 {
@@ -165,7 +165,6 @@ namespace DepthPeeling.DualPeeling
 
                 {
                     // 3. Final Pass
-                    fbo.Unbind();
                     //glDrawBuffer(GL_BACK);
                     this.DrawFullScreenQuad(arg, QuadNode.RenderMode.Final,
                         this.resources.depthTextures[currId],
@@ -177,7 +176,7 @@ namespace DepthPeeling.DualPeeling
             }
             else
             {
-                this.DrawScene(arg, CubeNode.RenderMode.Init, null, null);
+                this.DrawScene(arg, CubeNode.RenderMode.Init);
             }
         }
 
