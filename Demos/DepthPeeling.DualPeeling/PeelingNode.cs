@@ -12,11 +12,12 @@ namespace DepthPeeling.DualPeeling
         private int height;
         private PeelingResource resources;
         private Query query;
-        private bool bUseOQ = true;
+        private bool bUseOQ = false;
         private QuadNode fullscreenQuad;
         private const int NUM_PASSES = 16;
         private DepthTestSwitch depthTest = new DepthTestSwitch(enableCapacity: false);
-        private BlendSwitch blend = new BlendSwitch(BlendEquationMode.Add, BlendSrcFactor.DstAlpha, BlendDestFactor.One, BlendSrcFactor.Zero, BlendDestFactor.OneMinusSrcAlpha);
+        private BlendSwitch blend = new BlendSwitch(BlendEquationMode.Add, BlendSrcFactor.SrcAlpha, BlendDestFactor.OneMinusSrcAlpha);
+        private BlendSwitch blendMax = new BlendSwitch(BlendEquationMode.Max, BlendSrcFactor.SrcAlpha, BlendDestFactor.OneMinusSrcAlpha);
 
         private bool showDepthPeeling = true;
         /// <summary>
@@ -25,22 +26,10 @@ namespace DepthPeeling.DualPeeling
         public bool ShowDepthPeeling { get { return this.showDepthPeeling; } set { this.showDepthPeeling = value; } }
 
         private static readonly GLDelegates.void_uint glBlendEquation;
-        private static readonly GLDelegates.void_uint_uint_uint_uint glBlendFuncSeparate;
 
         static PeelingNode()
         {
             glBlendEquation = GL.Instance.GetDelegateFor("glBlendEquation", GLDelegates.typeof_void_uint) as GLDelegates.void_uint;
-            glBlendFuncSeparate = GL.Instance.GetDelegateFor("glBlendFuncSeparate", GLDelegates.typeof_void_uint_uint_uint_uint) as GLDelegates.void_uint_uint_uint_uint;
-        }
-
-        public PeelingNode(params SceneNodeBase[] children)
-        {
-            this.query = new Query();
-            this.Children.AddRange(children);
-            {
-                var quad = QuadNode.Create();
-                this.fullscreenQuad = quad;
-            }
         }
 
         /// <summary>
@@ -62,6 +51,7 @@ namespace DepthPeeling.DualPeeling
 
         public ThreeFlags EnableRendering { get { return ThreeFlags.BeforeChildren; } set { } }
 
+        private const float MAX_DEPTH = 1.0f;
         public void RenderBeforeChildren(RenderEventArgs arg)
         {
             var viewport = new int[4]; GL.Instance.GetIntegerv((uint)GetTarget.Viewport, viewport);
@@ -83,6 +73,116 @@ namespace DepthPeeling.DualPeeling
 
             if (this.ShowDepthPeeling)
             {
+                // remember clear color.
+                var clearColor = new float[4];
+                GL.Instance.GetFloatv((uint)GetTarget.ColorClearValue, clearColor);
+
+                this.depthTest.On();
+                GL.Instance.Enable(GL.GL_BLEND);//this.blend.On();
+
+                Framebuffer fbo = this.resources.peelingSingleFBO;
+                fbo.Bind();
+
+                {
+                    // 1. Initialize Min-Max Depth Buffer
+                    // Render targets 1 and 2 store the front and back colors
+                    // Clear to 0.0 and use MAX blending to filter written color
+                    // At most one front color and one back color can be written every pass
+                    fbo.SetDrawBuffers(GL.GL_COLOR_ATTACHMENT0 + 1, GL.GL_COLOR_ATTACHMENT0 + 2);
+                    GL.Instance.ClearColor(0, 0, 0, 0);
+                    GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT);
+                    // Render target 0 stores (-minDepth, maxDepth, alphaMultiplier)
+                    fbo.SetDrawBuffer(GL.GL_COLOR_ATTACHMENT0);
+                    GL.Instance.ClearColor(-MAX_DEPTH, -MAX_DEPTH, 0, 0);
+                    GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT);
+                    glBlendEquation(GL.GL_MAX); //this.blendMax.On();
+                    this.DrawScene(arg, CubeNode.RenderMode.Init, null);
+                }
+                {
+                    // 2. Dual Depth Peeling + Blending
+                    // Since we cannot blend the back colors in the geometry passes,
+                    // we use another render target to do the alpha blending
+                    //glBindFramebuffer(GL_FRAMEBUFFER, backBlenderFBO);
+                    fbo.SetDrawBuffer(GL.GL_COLOR_ATTACHMENT0 + 6);
+                    GL.Instance.ClearColor(clearColor[0], clearColor[1], clearColor[2], 0);
+                    GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT);
+
+                    const uint g_numPasses = 4;
+                    uint currId = 0;
+
+                    for (uint pass = 1; bUseOQ || pass < g_numPasses; pass++)
+                    {
+                        currId = pass % 2;
+                        uint prevId = 1 - currId;
+                        uint bufId = currId * 3;
+
+                        //glBindFramebuffer(GL_FRAMEBUFFER, g_dualPeelingFboId[currId]);
+                        fbo.SetDrawBuffers(GL.GL_COLOR_ATTACHMENT0 + bufId + 1, GL.GL_COLOR_ATTACHMENT0 + bufId + 2);
+                        GL.Instance.ClearColor(0, 0, 0, 0);
+                        GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT);
+
+                        fbo.SetDrawBuffer(GL.GL_COLOR_ATTACHMENT0 + bufId);
+                        GL.Instance.ClearColor(-MAX_DEPTH, -MAX_DEPTH, 0, 0);
+                        GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT);
+
+                        // Render target 0: RG32F MAX blending
+                        // Render target 1: RGBA MAX blending
+                        // Render target 2: RGBA MAX blending
+                        fbo.SetDrawBuffers(GL.GL_COLOR_ATTACHMENT0 + bufId + 0, GL.GL_COLOR_ATTACHMENT0 + bufId + 1, GL.GL_COLOR_ATTACHMENT0 + bufId + 2);
+                        glBlendEquation(GL.GL_MAX);
+
+                        // TODO: not finished yet.
+                        //peelProgram.bind();
+                        //peelProgram.bindTextureRECT("DepthBlenderTex", depthTextures[prevId], 0);
+                        //peelProgram.bindTextureRECT("FrontBlenderTex", frontBlenderTextures[prevId], 1);
+                        //peelProgram.setUniform("Alpha", (float*)&g_opacity, 1);
+                        //DrawModel();
+                        //peelProgram.unbind();
+
+                        //CHECK_GL_ERRORS;
+
+                        //// Full screen pass to alpha-blend the back color
+                        //glDrawBuffer(g_drawBuffers[6]);
+
+                        //glBlendEquation(GL_FUNC_ADD);
+                        //glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+                        //if (bUseOQ)
+                        //{
+                        //    glBeginQuery(GL_SAMPLES_PASSED, g_queryId);
+                        //}
+
+                        //blendProgram.bind();
+                        //blendProgram.bindTextureRECT("TempTex", backTmpTextures[currId], 0);
+                        //glCallList(g_quadDisplayList);
+                        //blendProgram.unbind();
+
+                        //CHECK_GL_ERRORS;
+
+                        //if (bUseOQ)
+                        //{
+                        //    glEndQuery(GL_SAMPLES_PASSED);
+                        //    GLuint sample_count;
+                        //    glGetQueryObjectuiv(g_queryId, GL_QUERY_RESULT, &sample_count);
+                        //    if (sample_count == 0)
+                        //    {
+                        //        break;
+                        //    }
+                        //}
+                    }
+                }
+
+                fbo.Unbind();
+
+                GL.Instance.Disable(GL.GL_BLEND);//this.blend.Off();
+                this.depthTest.Off();
+
+                {
+                    // 3. Final Pass
+
+                }
+                // restore clear color.
+                GL.Instance.ClearColor(clearColor[0], clearColor[1], clearColor[2], clearColor[3]);
             }
             else
             {

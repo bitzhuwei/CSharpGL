@@ -51,6 +51,7 @@
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="PeelingNode.ctor.cs" />
     <Compile Include="PeelingNode.cs" />
     <Compile Include="PeelingNode.Framebuffers.cs" />
     <Compile Include="Program.cs" />
