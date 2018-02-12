@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using CSharpGL;
 
-namespace DepthPeeling.FrontToBackPeeling
+namespace DepthPeeling.DualPeeling
 {
     public static partial class Shaders
     {
@@ -28,6 +28,7 @@ void main()
 {
 	//return the intermediate blending result
 	vFragColor = texture(tempTexture, gl_FragCoord.xy); 
+
     // for occlusion query.
     if (vFragColor.a == 0) discard;
 }

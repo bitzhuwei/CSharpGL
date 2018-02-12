@@ -4,7 +4,7 @@ using System.Drawing.Design;
 namespace CSharpGL
 {
     /// <summary>
-    /// Rendering something using GLSL shader and VBO(VAO).
+    /// Rendering something using multiple GLSL shader programs and VBO(VAO).
     /// </summary>
     [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
     public partial class ModernRenderUnit : IDisposable
@@ -29,7 +29,7 @@ namespace CSharpGL
 
 
         /// <summary>
-        /// Rendering something using GLSL shader and VBO(VAO).
+        /// Rendering something using multiple GLSL shader programs and VBO(VAO).
         /// </summary>
         /// <param name="model">model data that can be transfermed into OpenGL Buffer's pointer.</param>
         ///<param name="builders">OpenGL switches.</param>
