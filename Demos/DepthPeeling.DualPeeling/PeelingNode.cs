@@ -74,80 +74,20 @@ namespace DepthPeeling.DualPeeling
                 this.height = viewport[3];
             }
 
-            //int currentStep = 0, totalStep = this.RenderStep;
-            //Texture targetTexture = null;
-            //this.resources.blenderFBO.Bind();
-            //GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
-            //this.resources.blenderFBO.Unbind();
-            //targetTexture = this.resources.blenderColorTexture;
+            int currentStep = 0, totalStep = this.RenderStep;
+            Texture targetTexture = null;
+            this.resources.backBlenderFBO.Bind();
+            GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
+            this.resources.backBlenderFBO.Unbind();
+            targetTexture = this.resources.backBlenderTexture;
 
-            //if (this.ShowDepthPeeling)
-            //{
-            //    // remember clear color.
-            //    var clearColor = new float[4];
-            //    GL.Instance.GetFloatv((uint)GetTarget.ColorClearValue, clearColor);
-
-            //    // init.
-            //    if (currentStep <= totalStep)
-            //    {
-            //        currentStep++;
-            //        this.resources.blenderFBO.Bind();
-            //        GL.Instance.ClearColor(0, 0, 0, 1);
-            //        GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
-            //        this.DrawScene(arg, CubeNode.RenderMode.Init, null);
-            //        this.resources.blenderFBO.Unbind();
-            //        targetTexture = this.resources.blenderColorTexture;
-            //    }
-
-            //    int numLayers = (NUM_PASSES - 1) * 2;
-            //    // for each pass
-            //    for (int layer = 1; bUseOQ || layer < numLayers; layer++)
-            //    {
-            //        int currId = layer % 2;
-            //        int prevId = 1 - currId;
-            //        // peel.
-            //        if (currentStep <= totalStep)
-            //        {
-            //            currentStep++;
-            //            this.resources.FBOs[currId].Bind();
-            //            GL.Instance.ClearColor(0, 0, 0, 0);
-            //            GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
-            //            if (bUseOQ) { this.query.BeginQuery(QueryTarget.SamplesPassed); }
-            //            this.DrawScene(arg, CubeNode.RenderMode.Peel, this.resources.depthTextures[prevId]);
-            //            if (bUseOQ) { this.query.EndQuery(QueryTarget.SamplesPassed); }
-            //            this.resources.FBOs[currId].Unbind();
-            //            targetTexture = this.resources.colorTextures[currId];
-            //        }
-            //        // blend.
-            //        if (currentStep <= totalStep)
-            //        {
-            //            currentStep++;
-            //            this.resources.blenderFBO.Bind();
-            //            this.depthTest.On();
-            //            this.blend.On();
-            //            this.DrawFullScreenQuad(arg, QuadNode.RenderMode.Blend, this.resources.colorTextures[currId], false);
-            //            this.blend.Off();
-            //            this.depthTest.Off();
-            //            this.resources.blenderFBO.Unbind();
-            //            targetTexture = this.resources.blenderColorTexture;
-            //        }
-
-            //        if (bUseOQ)
-            //        {
-            //            int sampleCount = this.query.SampleCount();
-            //            if (sampleCount == 0) { break; }
-            //        }
-            //    }
-
-            //    // restore clear color.
-            //    GL.Instance.ClearColor(clearColor[0], clearColor[1], clearColor[2], clearColor[3]);
-            //    // final.
-            //    this.DrawFullScreenQuad(arg, QuadNode.RenderMode.Final, targetTexture, this.renderStep >= maxStep);
-            //}
-            //else
-            //{
-            //    this.DrawScene(arg, CubeNode.RenderMode.Init, null);
-            //}
+            if (this.ShowDepthPeeling)
+            {
+            }
+            else
+            {
+                this.DrawScene(arg, CubeNode.RenderMode.Init, null);
+            }
         }
 
         private void Resize(int width, int height)
