@@ -64,12 +64,12 @@ namespace DepthPeeling.DualPeeling
                 this.height = viewport[3];
             }
 
-            int currentStep = 0, totalStep = this.RenderStep;
-            Texture targetTexture = null;
-            this.resources.backBlenderFBO.Bind();
-            GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
-            this.resources.backBlenderFBO.Unbind();
-            targetTexture = this.resources.backBlenderTexture;
+            //int currentStep = 0, totalStep = this.RenderStep;
+            //Texture targetTexture = null;
+            //this.resources.backBlenderFBO.Bind();
+            //GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
+            //this.resources.backBlenderFBO.Unbind();
+            //targetTexture = this.resources.backBlenderTexture;
 
             if (this.ShowDepthPeeling)
             {
