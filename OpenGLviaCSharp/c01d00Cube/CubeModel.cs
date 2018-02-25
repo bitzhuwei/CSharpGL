@@ -36,7 +36,7 @@ namespace c01d00Cube
             new vec3(-halfLength, -halfLength, -halfLength), // 7
         };
 
-        private uint[] indexes = new uint[]
+        private static readonly uint[] indexes = new uint[]
         {
             0, 2 ,1,  1, 2, 3,
             0, 1, 5,  0, 5, 4,
