@@ -109,7 +109,7 @@ namespace HowTransformFeedbackWorks
                 RenderMethod method = this.RenderUnit.Methods[currentIndex];
                 ShaderProgram program = method.Program;
                 //program.SetUniform("xxx", value);
-                method.Render(IndexAccessMode.ByFrame, tf); // update buffers and record output to tf's binding.
+                method.Render(tf); // update buffers and record output to tf's binding.
 
                 GL.Instance.Disable(GL.GL_RASTERIZER_DISCARD);
             }

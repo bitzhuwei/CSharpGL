@@ -31,12 +31,12 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        ByFrame,
+        Random,
 
         /// <summary>
         /// 
         /// </summary>
-        Random,
+        ByFrame,
 
     }
 }
