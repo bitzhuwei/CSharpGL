@@ -17,44 +17,50 @@ namespace CSharpGL
 
         void ISupportInitialize.EndInit()
         {
-            int width = this.Width, height = this.Height;
+            try
+            {
+                int width = this.Width, height = this.Height;
 
-            if (this.designMode)
-            {
-                this.assist.Resize(width, height);
-            }
-            else
-            {
-                this.KeyPress += WinGLCanvas_KeyPress;
-                this.MouseDown += WinGLCanvas_MouseDown;
-                this.MouseMove += WinGLCanvas_MouseMove;
-                this.MouseUp += WinGLCanvas_MouseUp;
-                this.MouseWheel += WinGLCanvas_MouseWheel;
-                this.KeyDown += WinGLCanvas_KeyDown;
-                this.KeyUp += WinGLCanvas_KeyUp;
-            }
+                if (this.designMode)
+                {
+                    this.assist.Resize(width, height);
+                }
+                else
+                {
+                    this.KeyPress += WinGLCanvas_KeyPress;
+                    this.MouseDown += WinGLCanvas_MouseDown;
+                    this.MouseMove += WinGLCanvas_MouseMove;
+                    this.MouseUp += WinGLCanvas_MouseUp;
+                    this.MouseWheel += WinGLCanvas_MouseWheel;
+                    this.KeyDown += WinGLCanvas_KeyDown;
+                    this.KeyUp += WinGLCanvas_KeyUp;
+                }
 
-            // Create the render context.
-            ContextGenerationParams parameters = null;
-            if (this.designMode)
-            {
-                parameters = new ContextGenerationParams();
-                parameters.UpdateContextVersion = false;
-            }
-            else
-            {
-                parameters = this.parameters;
-            }
-            var renderContext = new WinGLRenderContext(width, height, parameters);
-            renderContext.MakeCurrent();
-            this.renderContext = renderContext;
+                // Create the render context.
+                ContextGenerationParams parameters = null;
+                if (this.designMode)
+                {
+                    parameters = new ContextGenerationParams();
+                    parameters.UpdateContextVersion = false;
+                }
+                else
+                {
+                    parameters = this.parameters;
+                }
+                var renderContext = new WinGLRenderContext(width, height, parameters);
+                renderContext.MakeCurrent();
+                this.renderContext = renderContext;
 
-            // Set the most basic OpenGL styles.
-            GL.Instance.ShadeModel(GL.GL_SMOOTH);
-            GL.Instance.ClearDepth(1.0f);
-            GL.Instance.Enable(GL.GL_DEPTH_TEST);// depth test is disabled by default.
-            GL.Instance.DepthFunc(GL.GL_LEQUAL);
-            GL.Instance.Hint(GL.GL_PERSPECTIVE_CORRECTION_HINT, GL.GL_NICEST);
+                // Set the most basic OpenGL styles.
+                GL.Instance.ShadeModel(GL.GL_SMOOTH);
+                GL.Instance.ClearDepth(1.0f);
+                GL.Instance.Enable(GL.GL_DEPTH_TEST);// depth test is disabled by default.
+                GL.Instance.DepthFunc(GL.GL_LEQUAL);
+                GL.Instance.Hint(GL.GL_PERSPECTIVE_CORRECTION_HINT, GL.GL_NICEST);
+            }
+            catch (Exception)
+            {
+            }
         }
 
         #endregion ISupportInitialize 成员
