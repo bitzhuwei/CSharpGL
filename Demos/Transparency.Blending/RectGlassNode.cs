@@ -65,7 +65,7 @@ namespace Transparency.Blending
             var background = new vec4(clearColor[0], clearColor[1], clearColor[2], clearColor[3]);
             program.SetUniform("backgroundColor", background);
 
-            method.Render(IndexAccessMode.Random);
+            method.Render();
         }
 
         public void RenderAfterChildren(RenderEventArgs arg)
