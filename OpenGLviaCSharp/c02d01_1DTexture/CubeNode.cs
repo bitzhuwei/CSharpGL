@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using CSharpGL;
 
-namespace c02d002DTexture
+namespace c02d01_1DTexture
 {
     partial class CubeNode : ModernNode, IRenderable
     {
@@ -19,7 +19,6 @@ namespace c02d002DTexture
             // which vertex buffer maps to which attribute in shader.
             var map = new AttributeMap();
             map.Add("inPosition", CubeModel.strPosition);
-            map.Add("inTexCoord", CubeModel.strTexCoord);
             // build a render method.
             var builder = new RenderMethodBuilder(array, map);
             // create node.

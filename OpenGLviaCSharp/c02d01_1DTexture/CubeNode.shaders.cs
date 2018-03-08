@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using CSharpGL;
 
-namespace c02d002DTexture
+namespace c02d01_1DTexture
 {
     partial class CubeNode
     {
@@ -12,16 +12,15 @@ namespace c02d002DTexture
 #version 150
 
 in vec3 inPosition;
-in vec2 inTexCoord;
 
 uniform mat4 mvpMatrix;
 
-out vec2 passTexCoord;
+out vec3 passPos;
 
 void main() {
     gl_Position = mvpMatrix * vec4(inPosition, 1.0); 
 
-    passTexCoord = inTexCoord;
+    passPos = inPosition;
 }
 ";
 
@@ -29,14 +28,15 @@ void main() {
 #version 150
 
 //uniform vec4 color = vec4(1, 0, 0, 1); // default: red color.
-uniform sampler2D tex;
+uniform sampler1D tex;
 
-in vec2 passTexCoord;
+in vec3 passPos;
 
 out vec4 outColor;
 
 void main() {
     //outColor = color;
+    float passTexCoord = (sqrt(passPos.x * passPos.x + passPos.y * passPos.y + passPos.z * passPos.z) - 0.5) / (sqrt(0.5 * 0.5 * 3) - 0.5);
     outColor = texture(tex, passTexCoord);
 }
 ";

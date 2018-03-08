@@ -26,7 +26,7 @@ namespace c02d002DTexture
         public const string strPosition = "position";
         private VertexBuffer positionBuffer;
 
-        public const string strUV = "uv";
+        public const string strTexCoord = "texCoord";
         private VertexBuffer uvBuffer;
 
         private IDrawCommand drawCmd;
@@ -44,7 +44,7 @@ namespace c02d002DTexture
 
                 yield return this.positionBuffer;
             }
-            else if (bufferName == strUV)
+            else if (bufferName == strTexCoord)
             {
                 if (this.uvBuffer == null)
                 {
