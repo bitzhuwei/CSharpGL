@@ -8,7 +8,7 @@ namespace c02d02_MultipleTextures
 {
     partial class CubeNode : ModernNode, IRenderable
     {
-        public static CubeNode Create(Texture texture)
+        public static CubeNode Create(Texture texture0, Texture texture1, Texture texture2)
         {
             // vertex buffer and index buffer.
             var model = new CubeModel();
@@ -24,17 +24,21 @@ namespace c02d02_MultipleTextures
             var builder = new RenderMethodBuilder(array, map);
             // create node.
             var node = new CubeNode(model, builder);
-            node.SetTexture(texture);
+            node.SetTextures(texture0, texture1, texture2);
             // initialize node.
             node.Initialize();
 
             return node;
         }
 
-        private Texture texture;
-        private void SetTexture(Texture texture)
+        private Texture texture0;
+        private Texture texture1;
+        private Texture texture2;
+        private void SetTextures(Texture texture0, Texture texture1, Texture texture2)
         {
-            this.texture = texture;
+            this.texture0 = texture0;
+            this.texture1 = texture1;
+            this.texture2 = texture2;
         }
 
         private CubeNode(IBufferSource model, params RenderMethodBuilder[] builders)
@@ -71,7 +75,9 @@ namespace c02d02_MultipleTextures
             ShaderProgram program = method.Program;
             //set value for 'uniform mat4 mvpMatrix'; in shader.
             program.SetUniform("mvpMatrix", mvpMatrix);
-            program.SetUniform("tex", this.texture);
+            program.SetUniform("texture0", this.texture0);
+            program.SetUniform("texture1", this.texture1);
+            program.SetUniform("texture2", this.texture2);
             // render the cube model via OpenGL.
             method.Render();
         }
