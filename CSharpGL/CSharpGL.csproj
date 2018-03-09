@@ -589,7 +589,7 @@
     <Compile Include="GLObjects\GLBuffers\IndependentBuffers\UniformBuffer.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="GLObjects\GLBuffers\VertexArrayObject.cs">
+    <Compile Include="GLObjects\VertexArrayObject.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="GLObjects\GLBuffers\VertexBuffers\IndexBuffer%28IBO%29\IndexBuffer.cs">

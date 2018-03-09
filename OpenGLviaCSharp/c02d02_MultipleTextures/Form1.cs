@@ -37,8 +37,8 @@ namespace c02d02_MultipleTextures
             Texture texture0, texture1, texture2;
             GetTextures(out texture0, out texture1, out texture2);
             texture0.TextureUnitIndex = 0;
-            texture1.TextureUnitIndex = 1;
-            texture2.TextureUnitIndex = 2;
+            //texture1.TextureUnitIndex = 1;
+            texture2.TextureUnitIndex = 0;
             this.cubeNode = CubeNode.Create(texture0, texture1, texture2);
             var scene = new Scene(camera);
             scene.RootNode = cubeNode;

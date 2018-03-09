@@ -76,7 +76,7 @@ namespace c02d02_MultipleTextures
             //set value for 'uniform mat4 mvpMatrix'; in shader.
             program.SetUniform("mvpMatrix", mvpMatrix);
             program.SetUniform("texture0", this.texture0);
-            program.SetUniform("texture1", this.texture1);
+            //program.SetUniform("texture1", this.texture1);
             program.SetUniform("texture2", this.texture2);
             // render the cube model via OpenGL.
             method.Render();

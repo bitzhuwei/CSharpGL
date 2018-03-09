@@ -43,11 +43,12 @@ out vec4 outColor;
 void main() {
     //outColor = color;
     vec4 c0 = texture(texture0, passTexCoord);
-    vec4 c1 = texture(texture1, passTexCoord);
+    //vec4 c1 = texture(texture1, passTexCoord);
     float passTexCoord = (sqrt(passPos.x * passPos.x + passPos.y * passPos.y + passPos.z * passPos.z) - 0.5) / (sqrt(0.5 * 0.5 * 3) - 0.5);
     vec4 c2 = texture(texture2, passTexCoord);
 
-    outColor = vec4((c0 + c1 + c2).xyz / 3, 1);
+    //outColor = vec4((c0 + c1 + c2).xyz / 3, 1);
+    outColor = vec4((c0 + c2).xyz / 2, 1);
 }
 ";
     }
