@@ -36,9 +36,9 @@ namespace c02d02_MultipleTextures
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
             Texture texture0, texture1, texture2;
             GetTextures(out texture0, out texture1, out texture2);
-            texture0.TextureUnitIndex = 0;
-            //texture1.TextureUnitIndex = 1;
-            texture2.TextureUnitIndex = 0;
+            texture0.TextureUnitIndex = 0;// glActiveTexture(GL_TEXTURE0 + 0); glBindTexture(GL_TEXTURE_2D, texture0.TextureId);
+            texture1.TextureUnitIndex = 0;// glActiveTexture(GL_TEXTURE0 + 0); glBindTexture(GL_TEXTURE_1D, texture1.TextureId);
+            texture2.TextureUnitIndex = 1;// glActiveTexture(GL_TEXTURE0 + 1); glBindTexture(GL_TEXTURE_2D, texture2.TextureId);
             this.cubeNode = CubeNode.Create(texture0, texture1, texture2);
             var scene = new Scene(camera);
             scene.RootNode = cubeNode;
@@ -75,20 +75,6 @@ namespace c02d02_MultipleTextures
             }
             {
                 string folder = System.Windows.Forms.Application.StartupPath;
-                var bmp = new Bitmap(System.IO.Path.Combine(folder, @"nuclear.png"));
-                TexStorageBase storage = new TexImageBitmap(bmp);
-                var texture = new Texture(storage,
-                    new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP_TO_EDGE),
-                    new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_CLAMP_TO_EDGE),
-                    new TexParameteri(TexParameter.PropertyName.TextureWrapR, (int)GL.GL_CLAMP_TO_EDGE),
-                    new TexParameteri(TexParameter.PropertyName.TextureMinFilter, (int)GL.GL_LINEAR),
-                    new TexParameteri(TexParameter.PropertyName.TextureMagFilter, (int)GL.GL_LINEAR));
-                texture.Initialize();
-                bmp.Dispose();
-                texture1 = texture;
-            }
-            {
-                string folder = System.Windows.Forms.Application.StartupPath;
                 var bmp = new Bitmap(System.IO.Path.Combine(folder, "Rainbow.png"));
                 TexStorageBase storage = new TexImage1D(GL.GL_RGBA, bmp.Width, GL.GL_BGRA, GL.GL_UNSIGNED_BYTE, new ImageDataProvider(bmp));
                 var texture = new Texture(storage,
@@ -100,6 +86,20 @@ namespace c02d02_MultipleTextures
                 texture.Initialize();
                 bmp.Dispose();
 
+                texture1 = texture;
+            }
+            {
+                string folder = System.Windows.Forms.Application.StartupPath;
+                var bmp = new Bitmap(System.IO.Path.Combine(folder, @"nuclear.png"));
+                TexStorageBase storage = new TexImageBitmap(bmp);
+                var texture = new Texture(storage,
+                    new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP_TO_EDGE),
+                    new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_CLAMP_TO_EDGE),
+                    new TexParameteri(TexParameter.PropertyName.TextureWrapR, (int)GL.GL_CLAMP_TO_EDGE),
+                    new TexParameteri(TexParameter.PropertyName.TextureMinFilter, (int)GL.GL_LINEAR),
+                    new TexParameteri(TexParameter.PropertyName.TextureMagFilter, (int)GL.GL_LINEAR));
+                texture.Initialize();
+                bmp.Dispose();
                 texture2 = texture;
             }
         }
