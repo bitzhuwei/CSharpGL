@@ -115,6 +115,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "c02d01_1DTexture", "OpenGLv
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "c02d02_MultipleTextures", "OpenGLviaCSharp\c02d02_MultipleTextures\c02d02_MultipleTextures.csproj", "{9EA16241-B81B-4976-8EC8-3FB336948458}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "c02d03_MultipleRenderMethods", "OpenGLviaCSharp\c02d03_MultipleRenderMethods\c02d03_MultipleRenderMethods.csproj", "{5BBFA656-D402-470E-9EEF-DB250D73CA46}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -333,6 +335,10 @@ Global
 		{9EA16241-B81B-4976-8EC8-3FB336948458}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9EA16241-B81B-4976-8EC8-3FB336948458}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9EA16241-B81B-4976-8EC8-3FB336948458}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5BBFA656-D402-470E-9EEF-DB250D73CA46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5BBFA656-D402-470E-9EEF-DB250D73CA46}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5BBFA656-D402-470E-9EEF-DB250D73CA46}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5BBFA656-D402-470E-9EEF-DB250D73CA46}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -389,5 +395,6 @@ Global
 		{D6667DB4-EE58-4EDF-8FB0-EA355760660E} = {7CF86F60-2BAC-4F60-AF1C-869737385E1B}
 		{FD373BB0-53CC-4DC2-BD4B-34CB8FF02744} = {7CF86F60-2BAC-4F60-AF1C-869737385E1B}
 		{9EA16241-B81B-4976-8EC8-3FB336948458} = {7CF86F60-2BAC-4F60-AF1C-869737385E1B}
+		{5BBFA656-D402-470E-9EEF-DB250D73CA46} = {7CF86F60-2BAC-4F60-AF1C-869737385E1B}
 	EndGlobalSection
 EndGlobal
