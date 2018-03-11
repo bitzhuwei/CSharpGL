@@ -27,7 +27,7 @@ namespace CSharpGL
         /// indicates whether the control is in design mode.
         /// </summary>
         protected readonly bool designMode;
-        private readonly DesignModeAssist assist;
+        //private readonly DesignModeAssist assist;
 
         //private EventHandler mouseEnter;
         //private EventHandler mouseLeave;
@@ -53,7 +53,7 @@ namespace CSharpGL
 
             if (this.designMode)
             {
-                this.assist = new DesignModeAssist(this);
+                //this.assist = new DesignModeAssist(this);
                 ////this.mouseEnter = GLCanvas_MouseEnter;
                 //this.mouseEnter = (x, y) => ShowCursor(0);// hide system's cursor.
                 //this.mouseLeave = (x, y) => ShowCursor(1);// show system's cursor.

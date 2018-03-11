@@ -29,13 +29,13 @@ namespace CSharpGL
 
             if (this.designMode)
             {
-                try
-                {
-                    this.assist.Render(this.RenderTrigger == RenderTrigger.TimerBased, this.Height, this.FPS, this);
-                }
-                catch (Exception)
-                {
-                }
+                //try
+                //{
+                //    this.assist.Render(this.RenderTrigger == RenderTrigger.TimerBased, this.Height, this.FPS, this);
+                //}
+                //catch (Exception)
+                //{
+                //}
             }
             else
             {
@@ -101,7 +101,7 @@ namespace CSharpGL
 
                     if (this.designMode)
                     {
-                        this.assist.Resize(width, height);
+                        //this.assist.Resize(width, height);
                     }
 
                     this.Invalidate();

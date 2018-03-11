@@ -23,7 +23,7 @@ namespace CSharpGL
 
                 if (this.designMode)
                 {
-                    this.assist.Resize(width, height);
+                    //this.assist.Resize(width, height);
                 }
                 else
                 {
