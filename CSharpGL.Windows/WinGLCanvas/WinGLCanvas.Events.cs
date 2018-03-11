@@ -8,6 +8,7 @@ namespace CSharpGL
 {
     public partial class WinGLCanvas
     {
+        private static readonly vec4 clearColor = Color.SkyBlue.ToVec4();
         /// <summary>
         ///
         /// </summary>
@@ -29,13 +30,16 @@ namespace CSharpGL
 
             if (this.designMode)
             {
-                //try
-                //{
-                //    this.assist.Render(this.RenderTrigger == RenderTrigger.TimerBased, this.Height, this.FPS, this);
-                //}
-                //catch (Exception)
-                //{
-                //}
+                try
+                {
+                    GL.Instance.ClearColor(clearColor.x, clearColor.y, clearColor.z, clearColor.w);
+                    GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT | GL.GL_STENCIL_BUFFER_BIT);
+
+                    //this.assist.Render(this.RenderTrigger == RenderTrigger.TimerBased, this.Height, this.FPS, this);
+                }
+                catch (Exception)
+                {
+                }
             }
             else
             {
