@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using CSharpGL;
 
-namespace c01d00Cube
+namespace c01d00_Cube
 {
     partial class CubeNode
     {

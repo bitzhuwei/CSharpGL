@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using CSharpGL;
 
-namespace c01d01PropertyGrid
+namespace c01d01_PropertyGrid
 {
     partial class CubeNode : ModernNode, IRenderable
     {

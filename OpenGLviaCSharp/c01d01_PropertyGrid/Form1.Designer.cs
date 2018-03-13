@@ -1,4 +1,4 @@
-﻿namespace c01d01PropertyGrid
+﻿namespace c01d01_PropertyGrid
 {
     partial class Form1
     {
