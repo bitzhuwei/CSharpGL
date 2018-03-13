@@ -1,4 +1,4 @@
-﻿namespace c01d00Cube
+﻿namespace c01d00_Cube
 {
     partial class Form1
     {

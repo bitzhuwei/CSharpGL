@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace c01d00Cube
+namespace c01d00_Cube
 {
     public partial class Form1 : Form
     {

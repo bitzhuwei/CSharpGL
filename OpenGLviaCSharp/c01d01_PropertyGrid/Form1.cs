@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace c01d01PropertyGrid
+namespace c01d01_PropertyGrid
 {
     public partial class Form1 : Form
     {

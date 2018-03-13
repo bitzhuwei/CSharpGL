@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace c01d00Cube
+namespace c01d00_Cube
 {
     static class Program
     {

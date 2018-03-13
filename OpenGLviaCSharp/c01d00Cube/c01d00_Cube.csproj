@@ -7,8 +7,8 @@
     <ProjectGuid>{F333EAC4-8D85-4BB9-BEBC-6B1A9CC21805}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>c01d00Cube</RootNamespace>
-    <AssemblyName>c01d00Cube</AssemblyName>
+    <RootNamespace>c01d00_Cube</RootNamespace>
+    <AssemblyName>c01d00_Cube</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -65,6 +65,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

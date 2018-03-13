@@ -7,8 +7,8 @@
     <ProjectGuid>{95DAD513-458C-4297-9AA0-79A5245CA486}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>c01d01PropertyGrid</RootNamespace>
-    <AssemblyName>c01d01PropertyGrid</AssemblyName>
+    <RootNamespace>c01d01_PropertyGrid</RootNamespace>
+    <AssemblyName>c01d01_PropertyGrid</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -65,6 +65,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

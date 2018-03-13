@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace c02d002DTexture
+namespace c01d01_PropertyGrid
 {
     static class Program
     {

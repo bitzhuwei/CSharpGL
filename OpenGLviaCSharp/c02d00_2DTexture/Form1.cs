@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace c02d002DTexture
+namespace c02d00_2DTexture
 {
     public partial class Form1 : Form
     {

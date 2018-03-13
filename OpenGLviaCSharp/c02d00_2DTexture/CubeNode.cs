@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using CSharpGL;
 
-namespace c02d002DTexture
+namespace c02d00_2DTexture
 {
     partial class CubeNode : ModernNode, IRenderable
     {

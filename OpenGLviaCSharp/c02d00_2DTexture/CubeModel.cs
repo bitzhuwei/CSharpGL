@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using CSharpGL;
 
-namespace c02d002DTexture
+namespace c02d00_2DTexture
 {
     /// <summary>
     ///        Y
@@ -115,35 +115,12 @@ namespace c02d002DTexture
         /// </summary>
         private static readonly vec2[] uvs = new vec2[]
         {
-            new vec2(0, 0),//  0
-            new vec2(1, 0),//  1
-            new vec2(1, 1),//  2
-            new vec2(0, 1),//  3
-
-            new vec2(0, 0),//  4
-            new vec2(1, 0),//  5
-            new vec2(1, 1),//  6
-            new vec2(0, 1),//  7
-            
-            new vec2(0, 0),//  8
-            new vec2(1, 0),//  9
-            new vec2(1, 1),// 10
-            new vec2(0, 1),// 11
-            
-            new vec2(0, 0),// 12
-            new vec2(1, 0),// 13
-            new vec2(1, 1),// 14
-            new vec2(0, 1),// 15
-            
-            new vec2(0, 0),// 16
-            new vec2(1, 0),// 17
-            new vec2(1, 1),// 18
-            new vec2(0, 1),// 19
-            
-            new vec2(0, 0),// 20
-            new vec2(1, 0),// 21
-            new vec2(1, 1),// 22
-            new vec2(0, 1),// 23
+            new vec2(0, 0), new vec2(1, 0), new vec2(1, 1), new vec2(0, 1),
+            new vec2(0, 0), new vec2(1, 0), new vec2(1, 1), new vec2(0, 1),
+            new vec2(0, 0), new vec2(1, 0), new vec2(1, 1), new vec2(0, 1),
+            new vec2(0, 0), new vec2(1, 0), new vec2(1, 1), new vec2(0, 1),
+            new vec2(0, 0), new vec2(1, 0), new vec2(1, 1), new vec2(0, 1),
+            new vec2(0, 0), new vec2(1, 0), new vec2(1, 1), new vec2(0, 1),
         };
     }
 }
