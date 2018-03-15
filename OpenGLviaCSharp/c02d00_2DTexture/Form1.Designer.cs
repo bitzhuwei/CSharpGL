@@ -63,7 +63,7 @@
             this.ClientSize = new System.Drawing.Size(604, 462);
             this.Controls.Add(this.winGLCanvas1);
             this.Name = "Form1";
-            this.Text = "c02d00 - 2D Texture - CSharpGL";
+            this.Text = "2D Texture - CSharpGL";
             ((System.ComponentModel.ISupportInitialize)(this.winGLCanvas1)).EndInit();
             this.ResumeLayout(false);
 
