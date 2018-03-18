@@ -25,9 +25,16 @@ void main() {
 
 uniform vec4 color = vec4(1, 1, 1, 1); // default: red color.
 
+uniform bool halfTransparent = false;
+
 out vec4 outColor;
 
 void main() {
+    if (halfTransparent) {
+        if (int(gl_FragCoord.x - 0.5) % 2 == 1 && int(gl_FragCoord.y - 0.5) % 2 == 1) discard;
+        if (int(gl_FragCoord.x - 0.5) % 2 != 1 && int(gl_FragCoord.y - 0.5) % 2 != 1) discard;
+    }
+
     outColor = color;
 }
 ";

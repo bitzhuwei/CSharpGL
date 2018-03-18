@@ -20,7 +20,7 @@ namespace c03d00_ModelSpace
             var map = new AttributeMap();
             map.Add("inPosition", CubeModel.strPosition);
             // build a render method.
-            var builder = new RenderMethodBuilder(array, map, new PolygonModeSwitch(PolygonMode.Line), new LineWidthSwitch(9));
+            var builder = new RenderMethodBuilder(array, map);
             // create node.
             var node = new CubeNode(model, builder);
             // initialize node.
@@ -28,6 +28,9 @@ namespace c03d00_ModelSpace
 
             return node;
         }
+
+        PolygonModeSwitch polygonModeSwitch = new PolygonModeSwitch(PolygonMode.Line);
+        LineWidthSwitch lineWidthSwitch = new LineWidthSwitch(9);
 
         private CubeNode(IBufferSource model, params RenderMethodBuilder[] builders)
             : base(model, builders)
@@ -63,8 +66,22 @@ namespace c03d00_ModelSpace
             ShaderProgram program = method.Program;
             //set value for 'uniform mat4 mvpMatrix'; in shader.
             program.SetUniform("mvpMatrix", mvpMatrix);
-            // render the cube model via OpenGL.
-            method.Render();
+
+            {
+                program.SetUniform("halfTransparent", true);
+                // render the cube model via OpenGL.
+                method.Render();
+            }
+            {
+
+                program.SetUniform("halfTransparent", false);
+                this.polygonModeSwitch.On();
+                this.lineWidthSwitch.On();
+                // render the cube model via OpenGL.
+                method.Render();
+                this.lineWidthSwitch.Off();
+                this.polygonModeSwitch.Off();
+            }
         }
 
         public void RenderAfterChildren(RenderEventArgs arg)
