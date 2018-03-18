@@ -58,11 +58,16 @@ namespace c03d00_ModelSpace
             var rootNode = new GroupNode();
             {
                 var axisNode = AxisNode.Create();
+                axisNode.Scale = new vec3(1, 1, 1) * 2;
                 rootNode.Children.Add(axisNode);
             }
             {
                 var cubeNode = CubeNode.Create();
                 rootNode.Children.Add(cubeNode);
+            }
+            {
+                var groundNode = GroundNode.Create();
+                rootNode.Children.Add(groundNode);
             }
 
             return rootNode;
