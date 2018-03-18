@@ -63,7 +63,7 @@
             this.ClientSize = new System.Drawing.Size(604, 462);
             this.Controls.Add(this.winGLCanvas1);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Cube - CSharpGL";
             ((System.ComponentModel.ISupportInitialize)(this.winGLCanvas1)).EndInit();
             this.ResumeLayout(false);
 

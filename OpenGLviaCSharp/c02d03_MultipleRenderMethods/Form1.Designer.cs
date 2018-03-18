@@ -43,8 +43,8 @@
             this.winGLCanvas1.AccumBlueBits = ((byte)(0));
             this.winGLCanvas1.AccumGreenBits = ((byte)(0));
             this.winGLCanvas1.AccumRedBits = ((byte)(0));
-            this.winGLCanvas1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.winGLCanvas1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.winGLCanvas1.Location = new System.Drawing.Point(0, 37);
             this.winGLCanvas1.Name = "winGLCanvas1";
@@ -93,7 +93,7 @@
             this.Controls.Add(this.rdoSingleColor);
             this.Controls.Add(this.winGLCanvas1);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Multiple Render Methods - CSharpGL";
             ((System.ComponentModel.ISupportInitialize)(this.winGLCanvas1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

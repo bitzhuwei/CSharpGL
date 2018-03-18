@@ -1,4 +1,4 @@
-﻿namespace c02d01_1DTexture
+﻿namespace c03d00_ModelSpace
 {
     partial class Form1
     {
@@ -63,7 +63,7 @@
             this.ClientSize = new System.Drawing.Size(604, 462);
             this.Controls.Add(this.winGLCanvas1);
             this.Name = "Form1";
-            this.Text = "1D Texture - CSharpGL";
+            this.Text = "Model Space - CSharpGL";
             ((System.ComponentModel.ISupportInitialize)(this.winGLCanvas1)).EndInit();
             this.ResumeLayout(false);
 
