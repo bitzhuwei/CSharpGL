@@ -14,7 +14,7 @@ namespace c03d00_ModelSpace
     {
         private Scene scene;
         private ActionList actionList;
-        private CubeNode cubeNode;
+        private SceneNodeBase rootNode;
 
         public Form1()
         {
@@ -34,10 +34,11 @@ namespace c03d00_ModelSpace
             var center = new vec3(0, 0, 0);
             var up = new vec3(0, 1, 0);
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
-            this.cubeNode = CubeNode.Create();
             var scene = new Scene(camera);
-            scene.RootNode = cubeNode;
+            var rootNode = GetRootNode();
+            scene.RootNode = rootNode;
             this.scene = scene;
+            this.rootNode = rootNode;
 
             var list = new ActionList();
             var transformAction = new TransformAction(scene.RootNode);
@@ -50,6 +51,21 @@ namespace c03d00_ModelSpace
             //var manipulater = new FirstPerspectiveManipulater();
             //manipulater.BindingMouseButtons = System.Windows.Forms.MouseButtons.Right;
             //manipulater.Bind(camera, this.winGLCanvas1);
+        }
+
+        private SceneNodeBase GetRootNode()
+        {
+            var rootNode = new GroupNode();
+            {
+                var axisNode = AxisNode.Create();
+                rootNode.Children.Add(axisNode);
+            }
+            {
+                var cubeNode = CubeNode.Create();
+                rootNode.Children.Add(cubeNode);
+            }
+
+            return rootNode;
         }
 
         private void winGLCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
@@ -73,8 +89,8 @@ namespace c03d00_ModelSpace
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            this.cubeNode.RotationAxis = new vec3(0, 1, 0);
-            this.cubeNode.RotationAngle += 7f;
+            this.rootNode.RotationAxis = new vec3(0, 1, 0);
+            this.rootNode.RotationAngle += 7f;
         }
     }
 }

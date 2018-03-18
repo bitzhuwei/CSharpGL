@@ -43,14 +43,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AxisModel.cs" />
     <Compile Include="CubeModel.cs">
       <SubType>
       </SubType>
     </Compile>
+    <Compile Include="AxisNode.cs" />
     <Compile Include="CubeNode.cs">
       <SubType>
       </SubType>
     </Compile>
+    <Compile Include="AxisNode.shaders.cs" />
     <Compile Include="CubeNode.shaders.cs">
       <SubType>
       </SubType>
