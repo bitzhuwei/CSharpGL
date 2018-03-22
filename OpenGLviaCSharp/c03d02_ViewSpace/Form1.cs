@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace c03d00_ModelSpace
+namespace c03d02_ViewSpace
 {
     public partial class Form1 : Form
     {
@@ -30,7 +30,7 @@ namespace c03d00_ModelSpace
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-            var position = new vec3(5, 3, 4) * 0.5f;
+            var position = new vec3(5, 3, 4);
             var center = new vec3(0, 0, 0);
             var up = new vec3(0, 1, 0);
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
@@ -61,14 +61,19 @@ namespace c03d00_ModelSpace
                 axisNode.Scale = new vec3(1, 1, 1) * 2;
                 rootNode.Children.Add(axisNode);
             }
+            for (int i = 0; i < 3; i++)
             {
-                var cubeNode = CubeNode.Create();
-                rootNode.Children.Add(cubeNode);
+                for (int j = 0; j < 3; j++)
+                {
+                    var cubeNode = CubeNode.Create();
+                    cubeNode.WorldPosition = new vec3(i - 1, 0, j - 1) * 2;
+                    rootNode.Children.Add(cubeNode);
+                }
             }
-            //{
-            //    var groundNode = GroundNode.Create();
-            //    rootNode.Children.Add(groundNode);
-            //}
+            {
+                var groundNode = GroundNode.Create();
+                rootNode.Children.Add(groundNode);
+            }
 
             return rootNode;
         }
