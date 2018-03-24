@@ -64,6 +64,7 @@ namespace c03d02_ViewSpace
 			21, 15, 12,  21, 12, 18,
 			22, 19, 7,  22, 7, 10,
         };
+        static readonly uint[] indexes;
 
         public const string strPosition = "position";
         private VertexBuffer positionBuffer;
@@ -72,23 +73,25 @@ namespace c03d02_ViewSpace
 
         static CameraModel()
         {
+            const int segments = 60;
+            const float radius = 0.5f;
             {
                 float shotLength = 1;
                 var circle = new List<vec3>();
-                for (int i = 0; i < 360; i++)
+                for (int i = 0; i < segments; i++)
                 {
                     circle.Add(new vec3(
-                        (float)Math.Cos(Math.PI * (double)i / 180.0),
-                        (float)Math.Sin(Math.PI * (double)i / 180.0),
+                        (float)Math.Cos(2.0 * Math.PI * (double)i / (double)segments) * radius,
+                        (float)Math.Sin(2.0 * Math.PI * (double)i / (double)segments) * radius,
                         0));
                 }
                 var circle2 = new List<vec3>();
-                for (int i = 0; i < 360; i++)
+                for (int i = 0; i < segments; i++)
                 {
                     circle2.Add(new vec3(
-                        (float)Math.Cos(Math.PI * (double)i / 180.0),
-                        (float)Math.Sin(Math.PI * (double)i / 180.0),
-                        shotLength));
+                        (float)Math.Cos(2.0 * Math.PI * (double)i / (double)segments) * radius,
+                        (float)Math.Sin(2.0 * Math.PI * (double)i / (double)segments) * radius,
+                        -shotLength));
                 }
                 var list = new List<vec3>();
                 foreach (var item in cubePostions) { list.Add(item); }
@@ -97,7 +100,21 @@ namespace c03d02_ViewSpace
                 CameraModel.positions = list.ToArray();
             }
             {
+                uint firstCircleIndex = (uint)cubePostions.Length;
+                var indexes = new List<uint>();
+                foreach (var item in cubeIndexes) { indexes.Add(item); }
+                for (uint i = 0; i < segments; i++)
+                {
+                    indexes.Add(i + firstCircleIndex);
+                    indexes.Add(segments + i + firstCircleIndex);
+                    indexes.Add(i + 1 + firstCircleIndex);
 
+                    indexes.Add(segments + i + firstCircleIndex);
+                    indexes.Add(i + 1 + firstCircleIndex);
+                    indexes.Add(segments + i + 1 + firstCircleIndex);
+                }
+
+                CameraModel.indexes = indexes.ToArray();
             }
         }
 
@@ -109,7 +126,7 @@ namespace c03d02_ViewSpace
             {
                 if (this.positionBuffer == null)
                 {
-                    this.positionBuffer = cubePostions.GenVertexBuffer(VBOConfig.Vec3, BufferUsage.StaticDraw);
+                    this.positionBuffer = positions.GenVertexBuffer(VBOConfig.Vec3, BufferUsage.StaticDraw);
                 }
 
                 yield return this.positionBuffer;
@@ -124,7 +141,7 @@ namespace c03d02_ViewSpace
         {
             if (this.drawCommand == null)
             {
-                IndexBuffer indexBuffer = cubeIndexes.GenIndexBuffer(BufferUsage.StaticDraw);
+                IndexBuffer indexBuffer = indexes.GenIndexBuffer(BufferUsage.StaticDraw);
                 this.drawCommand = new DrawElementsCmd(indexBuffer, DrawMode.Triangles);
             }
 

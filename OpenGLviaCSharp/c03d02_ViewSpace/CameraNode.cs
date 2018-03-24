@@ -30,7 +30,7 @@ namespace c03d02_ViewSpace
         }
 
         PolygonModeSwitch polygonModeSwitch = new PolygonModeSwitch(PolygonMode.Line);
-        LineWidthSwitch lineWidthSwitch = new LineWidthSwitch(9);
+        LineWidthSwitch lineWidthSwitch = new LineWidthSwitch(2);
 
         private CameraNode(IBufferSource model, params RenderMethodBuilder[] builders)
             : base(model, builders)
