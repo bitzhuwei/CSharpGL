@@ -46,6 +46,7 @@
     <Compile Include="AxisModel.cs" />
     <Compile Include="AxisNode.cs" />
     <Compile Include="AxisNode.shaders.cs" />
+    <Compile Include="CameraModel.cs" />
     <Compile Include="CubeModel.cs" />
     <Compile Include="CubeNode.cs" />
     <Compile Include="CubeNode.shaders.cs" />
