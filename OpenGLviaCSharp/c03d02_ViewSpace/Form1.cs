@@ -61,14 +61,9 @@ namespace c03d02_ViewSpace
                 axisNode.Scale = new vec3(1, 1, 1) * 2;
                 rootNode.Children.Add(axisNode);
             }
-            for (int i = 0; i < 3; i++)
             {
-                for (int j = 0; j < 3; j++)
-                {
-                    var cubeNode = CubeNode.Create();
-                    cubeNode.WorldPosition = new vec3(i - 1, 0, j - 1) * 2;
-                    rootNode.Children.Add(cubeNode);
-                }
+                var cameraNode = CameraNode.Create();
+                rootNode.Children.Add(cameraNode);
             }
             {
                 var groundNode = GroundNode.Create();
