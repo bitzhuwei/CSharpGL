@@ -23,9 +23,9 @@ namespace c03d02_ViewSpace
     /// </summary>
     class CameraModel : IBufferSource
     {
-        private const float halfWidth = 1f;
-        private const float halfHeight = 0.68f;
-        private const float halfDepth = 0.68f * 0.68f;
+        private const float halfWidth = 0.9f;
+        private const float halfHeight = 0.9f * 0.68f;
+        private const float halfDepth = 0.9f * 0.68f * 0.68f;
         private static readonly vec3[] cubePostions = new vec3[]
         {
             new vec3(+halfWidth, +halfHeight, +halfDepth), // 0 0
@@ -57,12 +57,12 @@ namespace c03d02_ViewSpace
 
         private static readonly uint[] cubeIndexes = new uint[]
         {
-			0, 6, 9,  0, 9, 3,
-			1, 4, 16,  1, 16, 13,
-			2, 14, 20,  2, 20, 8,
-			23, 11, 5,  23, 5, 17,
-			21, 15, 12,  21, 12, 18,
-			22, 19, 7,  22, 7, 10,
+			0, 6, 9, 3,
+            1, 4, 16, 13,
+            2, 14, 20, 8,
+            21, 15, 12, 18,
+            22, 19, 7, 10,
+            23, 11, 5, 17,
         };
         static readonly uint[] indexes;
 
@@ -73,20 +73,20 @@ namespace c03d02_ViewSpace
 
         static CameraModel()
         {
-            const int segments = 60;
+            const int segments = 30;
             const float radius = 0.5f;
             {
                 float shotLength = 1;
                 var circle = new List<vec3>();
-                for (int i = 0; i < segments; i++)
+                for (int i = 0; i < segments + 1; i++)
                 {
                     circle.Add(new vec3(
                         (float)Math.Cos(2.0 * Math.PI * (double)i / (double)segments) * radius,
                         (float)Math.Sin(2.0 * Math.PI * (double)i / (double)segments) * radius,
-                        0));
+                        -halfDepth));
                 }
                 var circle2 = new List<vec3>();
-                for (int i = 0; i < segments; i++)
+                for (int i = 0; i < segments + 1; i++)
                 {
                     circle2.Add(new vec3(
                         (float)Math.Cos(2.0 * Math.PI * (double)i / (double)segments) * radius,
@@ -96,7 +96,7 @@ namespace c03d02_ViewSpace
                 var list = new List<vec3>();
                 foreach (var item in cubePostions) { list.Add(item); }
                 list.AddRange(circle); list.AddRange(circle2);
-                list.Add(new vec3(0, 0, shotLength));
+                //list.Add(new vec3(0, 0, shotLength));
                 CameraModel.positions = list.ToArray();
             }
             {
@@ -106,12 +106,9 @@ namespace c03d02_ViewSpace
                 for (uint i = 0; i < segments; i++)
                 {
                     indexes.Add(i + firstCircleIndex);
-                    indexes.Add(segments + i + firstCircleIndex);
+                    indexes.Add(segments + 1 + i + firstCircleIndex);
+                    indexes.Add(segments + 1 + i + 1 + firstCircleIndex);
                     indexes.Add(i + 1 + firstCircleIndex);
-
-                    indexes.Add(segments + i + firstCircleIndex);
-                    indexes.Add(i + 1 + firstCircleIndex);
-                    indexes.Add(segments + i + 1 + firstCircleIndex);
                 }
 
                 CameraModel.indexes = indexes.ToArray();
@@ -142,7 +139,7 @@ namespace c03d02_ViewSpace
             if (this.drawCommand == null)
             {
                 IndexBuffer indexBuffer = indexes.GenIndexBuffer(BufferUsage.StaticDraw);
-                this.drawCommand = new DrawElementsCmd(indexBuffer, DrawMode.Triangles);
+                this.drawCommand = new DrawElementsCmd(indexBuffer, DrawMode.Quads);
             }
 
             yield return this.drawCommand;
