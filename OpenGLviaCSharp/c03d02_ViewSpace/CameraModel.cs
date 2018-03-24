@@ -96,7 +96,9 @@ namespace c03d02_ViewSpace
                 var list = new List<vec3>();
                 foreach (var item in cubePostions) { list.Add(item); }
                 list.AddRange(circle); list.AddRange(circle2);
-                //list.Add(new vec3(0, 0, shotLength));
+
+                list.Add(new vec3(0, 0, -shotLength));
+
                 CameraModel.positions = list.ToArray();
             }
             {
@@ -110,7 +112,13 @@ namespace c03d02_ViewSpace
                     indexes.Add(segments + 1 + i + 1 + firstCircleIndex);
                     indexes.Add(i + 1 + firstCircleIndex);
                 }
-
+                for (uint i = 0; i < segments; i++)
+                {
+                    indexes.Add(segments + 1 + i + firstCircleIndex);
+                    indexes.Add(segments + 1 + i + 1 + firstCircleIndex);
+                    indexes.Add(segments + 1 + segments + 1 + firstCircleIndex);
+                    indexes.Add(segments + 1 + segments + 1 + firstCircleIndex);
+                }
                 CameraModel.indexes = indexes.ToArray();
             }
         }
