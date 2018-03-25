@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using CSharpGL;
 
-namespace c03d02_ViewSpace
+namespace c03d03_Perspective
 {
     /// <summary>
     ///     Y
@@ -17,34 +17,38 @@ namespace c03d02_ViewSpace
     ///  /
     /// Z
     /// </summary>
-    class AxisModel : IBufferSource
+    class GroundModel : IBufferSource
     {
-        private const float halfLength = 0.5f;
-        private static readonly vec3[] positions = new vec3[]
-        {
-            new vec3(0, 0, 0), // 0
-            new vec3(+halfLength, 0, 0), // 1
-            new vec3(0, 0, 0), // 2
-            new vec3(0, +halfLength, 0), // 3
-            new vec3(0, 0, 0), // 4
-            new vec3(0, 0, +halfLength), // 5
-        };
+        private readonly vec3[] positions;
 
-        private static readonly vec3[] colors = new vec3[]
+        public GroundModel(int length)
         {
-            new vec3(1, 0, 0), // 0
-            new vec3(1, 0, 0), // 1
-            new vec3(0, 1, 0), // 2
-            new vec3(0, 1, 0), // 3
-            new vec3(0, 0, 1), // 4
-            new vec3(0, 0, 1), // 5
-        };
+            if (length <= 0) { throw new ArgumentException(); }
+
+            {
+                var positions = new vec3[(length + 1) * 2 * 2];
+                int index = 0;
+                float halfLength = length / 2.0f;
+                for (int i = 0; i < length + 1; i++)
+                {
+                    var a = new vec3(halfLength, 0, i - halfLength);
+                    var b = new vec3(-halfLength, 0, i - halfLength);
+                    positions[index++] = a; positions[index++] = b;
+                }
+                for (int i = 0; i < length + 1; i++)
+                {
+                    var a = new vec3(i - halfLength, 0, halfLength);
+                    var b = new vec3(i - halfLength, 0, -halfLength);
+                    positions[index++] = a; positions[index++] = b;
+                }
+
+                positions.Move2Center();
+                this.positions = positions;
+            }
+        }
 
         public const string strPosition = "position";
         private VertexBuffer positionBuffer;
-
-        public const string strColor = "color";
-        private VertexBuffer colorBuffer;
 
         private IDrawCommand drawCommand;
 
@@ -61,15 +65,6 @@ namespace c03d02_ViewSpace
                 }
 
                 yield return this.positionBuffer;
-            }
-            else if (strColor == bufferName)
-            {
-                if (this.colorBuffer == null)
-                {
-                    this.colorBuffer = colors.GenVertexBuffer(VBOConfig.Vec3, BufferUsage.StaticDraw);
-                }
-
-                yield return this.colorBuffer;
             }
             else
             {
