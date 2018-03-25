@@ -7,43 +7,52 @@ using CSharpGL;
 namespace c03d03_Perspective
 {
     /// <summary>
-    ///           Y
-    ///           |
-    ///        5__|________1
-    ///       /|  |       /|
-    ///      / |  |      / |
-    ///     4--+--+-----0  |
-    ///     |  7__| _ _ |_ 3
-    ///     |  /  |_____|__/_______ X
-    ///     | /   /     | /
-    ///     |/___/______|/
-    ///     6   /       2
-    ///        /
-    ///       Z
-    /// </summary>
+    ///        Y
+    ///        |
+    ///        5___________4
+    ///       /|          /|
+    ///      / |         / |
+    ///     1--+--------0  |
+    ///     |  6_ _ _ _ |_ 7____ X
+    ///     |  /        |  /
+    ///     | /         | /
+    ///     |/__________|/
+    ///     2           3
+    ///    /
+    ///   Z
     class PerspectiveModel : IBufferSource
     {
-        private const float nearHalfLength = 0.5f;
-        private const float farHalfLength = 1.5f;
-        private const float depth = -2;
-        private static readonly vec3[] positions = new vec3[]
-        {
-            new vec3(+nearHalfLength, +nearHalfLength, 0),     // 0
-            new vec3(+farHalfLength, +farHalfLength, depth), // 1
-            new vec3(+nearHalfLength, -nearHalfLength, 0),     // 2
-            new vec3(+farHalfLength, -farHalfLength, depth), // 3
-            new vec3(-nearHalfLength, +nearHalfLength, 0),     // 4
-            new vec3(-farHalfLength, +farHalfLength, depth), // 5
-            new vec3(-nearHalfLength, -nearHalfLength, 0),     // 6
-            new vec3(-farHalfLength, -farHalfLength, depth), // 7
-        };
 
-        private static readonly uint[] indexes = new uint[] { 0, 1, 2, 3, 6, 7, 4, 5, 0, 1, };
+        private readonly vec3[] positions;
+        private static readonly uint[] indexes = new uint[] { 0, 4, 1, 5, 2, 6, 3, 7, 0, 4, };
 
         public const string strPosition = "position";
         private VertexBuffer positionBuffer;
 
         private IDrawCommand drawCommand;
+
+        public PerspectiveModel(float fovy, float aspect, float zNear, float zFar)
+        {
+            var positions = new List<vec3>();
+            float tangent = (float)Math.Tan(fovy / 2.0f);
+            {
+                float height = zNear * tangent;
+                float width = height * aspect;
+                positions.Add(new vec3(width / 2.0f, height / 2.0f, -zNear));
+                positions.Add(new vec3(-width / 2.0f, height / 2.0f, -zNear));
+                positions.Add(new vec3(-width / 2.0f, -height / 2.0f, -zNear));
+                positions.Add(new vec3(width / 2.0f, -height / 2.0f, -zNear));
+            }
+            {
+                float height = zFar * tangent;
+                float width = height * aspect;
+                positions.Add(new vec3(width / 2.0f, height / 2.0f, -zFar));
+                positions.Add(new vec3(-width / 2.0f, height / 2.0f, -zFar));
+                positions.Add(new vec3(-width / 2.0f, -height / 2.0f, -zFar));
+                positions.Add(new vec3(width / 2.0f, -height / 2.0f, -zFar));
+            }
+            this.positions = positions.ToArray();
+        }
 
         #region IBufferSource 成员
 

@@ -53,7 +53,7 @@
             // 
             // timer1
             // 
-            this.timer1.Enabled = true;
+            this.timer1.Enabled = false;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // Form1
@@ -63,7 +63,7 @@
             this.ClientSize = new System.Drawing.Size(604, 462);
             this.Controls.Add(this.winGLCanvas1);
             this.Name = "Form1";
-            this.Text = "View Space - CSharpGL";
+            this.Text = "Perspective Frustum Projection - CSharpGL";
             ((System.ComponentModel.ISupportInitialize)(this.winGLCanvas1)).EndInit();
             this.ResumeLayout(false);
 

@@ -47,10 +47,10 @@ namespace c03d03_Perspective
             list.Add(renderAction);
             this.actionList = list;
 
-            //// uncomment these lines to enable manipualter of camera!
-            //var manipulater = new FirstPerspectiveManipulater();
-            //manipulater.BindingMouseButtons = System.Windows.Forms.MouseButtons.Right;
-            //manipulater.Bind(camera, this.winGLCanvas1);
+            // Enable manipualter of camera!
+            var manipulater = new FirstPerspectiveManipulater();
+            manipulater.BindingMouseButtons = GLMouseButtons.Right;
+            manipulater.Bind(camera, this.winGLCanvas1);
         }
 
         private SceneNodeBase GetRootNode()
@@ -58,11 +58,12 @@ namespace c03d03_Perspective
             var rootNode = new GroupNode();
             {
                 var axisNode = AxisNode.Create();
-                axisNode.Scale = new vec3(1, 1, 1) * 2;
+                axisNode.Scale = new vec3(1, 1, 1) * 0.2f;
                 rootNode.Children.Add(axisNode);
             }
             {
                 var cameraNode = CameraNode.Create();
+                cameraNode.Scale = new vec3(1, 1, 1) * 0.2f;
                 rootNode.Children.Add(cameraNode);
             }
             {

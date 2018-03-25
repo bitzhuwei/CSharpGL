@@ -11,7 +11,7 @@ namespace c03d03_Perspective
         public static PerspectiveNode Create()
         {
             // vertex buffer and index buffer.
-            var model = new PerspectiveModel();
+            var model = new PerspectiveModel((float)(60.0 * Math.PI / 180.0), 1, 0.5f, 10);
             // vertex shader and fragment shader.
             var vs = new VertexShader(vertexCode);
             var fs = new FragmentShader(fragmnetCode);
@@ -30,7 +30,7 @@ namespace c03d03_Perspective
         }
 
         PolygonModeSwitch polygonModeSwitch = new PolygonModeSwitch(PolygonMode.Line);
-        LineWidthSwitch lineWidthSwitch = new LineWidthSwitch(9);
+        LineWidthSwitch lineWidthSwitch = new LineWidthSwitch(2);
 
         private PerspectiveNode(IBufferSource model, params RenderMethodBuilder[] builders)
             : base(model, builders)
