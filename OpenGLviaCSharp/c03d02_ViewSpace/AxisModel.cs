@@ -19,7 +19,7 @@ namespace c03d02_ViewSpace
     /// </summary>
     class AxisModel : IBufferSource
     {
-        private const float halfLength = 0.5f;
+        private const float halfLength = 1.5f;
         private static readonly vec3[] positions = new vec3[]
         {
             new vec3(0, 0, 0), // 0

@@ -66,8 +66,12 @@ namespace c03d02_ViewSpace
                 rootNode.Children.Add(cameraNode);
             }
             {
+                //var cameraOutlineNode = CameraOutlineNode.Create();
+                //rootNode.Children.Add(cameraOutlineNode);
+            }
+            {
                 var groundNode = GroundNode.Create();
-                rootNode.Children.Add(groundNode);
+                //rootNode.Children.Add(groundNode);
             }
 
             return rootNode;
@@ -95,7 +99,7 @@ namespace c03d02_ViewSpace
         private void timer1_Tick(object sender, EventArgs e)
         {
             this.rootNode.RotationAxis = new vec3(0, 1, 0);
-            this.rootNode.RotationAngle += 7f;
+            this.rootNode.RotationAngle += 1f;
         }
     }
 }

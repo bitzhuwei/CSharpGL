@@ -6,31 +6,33 @@ using CSharpGL;
 
 namespace c03d02_ViewSpace
 {
-    partial class AxisNode : ModernNode, IRenderable
+    partial class CameraOutlineNode : ModernNode, IRenderable
     {
-        public static AxisNode Create()
+        public static CameraOutlineNode Create()
         {
             // vertex buffer and index buffer.
-            var model = new AxisModel();
+            var model = new CameraOutlineModel();
             // vertex shader and fragment shader.
             var vs = new VertexShader(vertexCode);
             var fs = new FragmentShader(fragmnetCode);
             var array = new ShaderArray(vs, fs);
             // which vertex buffer maps to which attribute in shader.
             var map = new AttributeMap();
-            map.Add("inPosition", AxisModel.strPosition);
-            map.Add("inColor", AxisModel.strColor);
+            map.Add("inPosition", CameraOutlineModel.strPosition);
             // build a render method.
-            var builder = new RenderMethodBuilder(array, map, new LineWidthSwitch(5));
+            var builder = new RenderMethodBuilder(array, map);
             // create node.
-            var node = new AxisNode(model, builder);
+            var node = new CameraOutlineNode(model, builder);
             // initialize node.
             node.Initialize();
 
             return node;
         }
 
-        private AxisNode(IBufferSource model, params RenderMethodBuilder[] builders)
+        PolygonModeSwitch polygonModeSwitch = new PolygonModeSwitch(PolygonMode.Line);
+        LineWidthSwitch lineWidthSwitch = new LineWidthSwitch(2);
+
+        private CameraOutlineNode(IBufferSource model, params RenderMethodBuilder[] builders)
             : base(model, builders)
         {
         }
@@ -64,8 +66,16 @@ namespace c03d02_ViewSpace
             ShaderProgram program = method.Program;
             //set value for 'uniform mat4 mvpMatrix'; in shader.
             program.SetUniform("mvpMatrix", mvpMatrix);
-            // render the cube model via OpenGL.
-            method.Render();
+            {
+
+                program.SetUniform("halfTransparent", false);
+                this.polygonModeSwitch.On();
+                this.lineWidthSwitch.On();
+                // render the cube model via OpenGL.
+                method.Render();
+                this.lineWidthSwitch.Off();
+                this.polygonModeSwitch.Off();
+            }
         }
 
         public void RenderAfterChildren(RenderEventArgs arg)

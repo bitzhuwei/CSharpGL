@@ -21,48 +21,29 @@ namespace c03d02_ViewSpace
     ///    /
     ///   Z
     /// </summary>
-    class CameraModel : IBufferSource
+    class CameraOutlineModel : IBufferSource
     {
         private const float halfWidth = 0.8f;
         private const float halfHeight = halfWidth * 0.68f;
         private const float halfDepth = halfHeight * 0.68f;
         private static readonly vec3[] cubePostions = new vec3[]
         {
-            new vec3(+halfWidth, +halfHeight, +halfDepth), // 0 0
-            new vec3(+halfWidth, +halfHeight, +halfDepth), // 0 1
-            new vec3(+halfWidth, +halfHeight, +halfDepth), // 0 2
-            new vec3(+halfWidth, +halfHeight, -halfDepth), // 1 3
-            new vec3(+halfWidth, +halfHeight, -halfDepth), // 1 4
-            new vec3(+halfWidth, +halfHeight, -halfDepth), // 1 5
-            new vec3(+halfWidth, -halfHeight, +halfDepth), // 2 6
-            new vec3(+halfWidth, -halfHeight, +halfDepth), // 2 7
-            new vec3(+halfWidth, -halfHeight, +halfDepth), // 2 8
-            new vec3(+halfWidth, -halfHeight, -halfDepth), // 3 9
-            new vec3(+halfWidth, -halfHeight, -halfDepth), // 3 10
-            new vec3(+halfWidth, -halfHeight, -halfDepth), // 3 11
-            new vec3(-halfWidth, +halfHeight, +halfDepth), // 4 12
-            new vec3(-halfWidth, +halfHeight, +halfDepth), // 4 13
-            new vec3(-halfWidth, +halfHeight, +halfDepth), // 4 14
-            new vec3(-halfWidth, +halfHeight, -halfDepth), // 5 15
-            new vec3(-halfWidth, +halfHeight, -halfDepth), // 5 16
-            new vec3(-halfWidth, +halfHeight, -halfDepth), // 5 17
-            new vec3(-halfWidth, -halfHeight, +halfDepth), // 6 18
-            new vec3(-halfWidth, -halfHeight, +halfDepth), // 6 19
-            new vec3(-halfWidth, -halfHeight, +halfDepth), // 6 20
-            new vec3(-halfWidth, -halfHeight, -halfDepth), // 7 21
-            new vec3(-halfWidth, -halfHeight, -halfDepth), // 7 22
-            new vec3(-halfWidth, -halfHeight, -halfDepth), // 7 23
+            new vec3(+halfWidth, +halfHeight, +halfDepth), // 0
+            new vec3(+halfWidth, +halfHeight, -halfDepth), // 1
+            new vec3(+halfWidth, -halfHeight, +halfDepth), // 2
+            new vec3(+halfWidth, -halfHeight, -halfDepth), // 3
+            new vec3(-halfWidth, +halfHeight, +halfDepth), // 4
+            new vec3(-halfWidth, +halfHeight, -halfDepth), // 5
+            new vec3(-halfWidth, -halfHeight, +halfDepth), // 6
+            new vec3(-halfWidth, -halfHeight, -halfDepth), // 7
         };
         static readonly vec3[] positions;
 
         private static readonly uint[] cubeIndexes = new uint[]
         {
-			0, 6, 9, 3,
-            1, 4, 16, 13,
-            2, 14, 20, 8,
-            21, 15, 12, 18,
-            22, 19, 7, 10,
-            23, 11, 5, 17,
+            0, 4,  2, 6,  3, 7,  1, 5, 
+            0, 2,  1, 3,  5, 7,  4, 6, 
+            0, 1,  4, 5,  6, 7,  2, 3,
         };
         static readonly uint[] indexes;
 
@@ -71,14 +52,14 @@ namespace c03d02_ViewSpace
 
         private IDrawCommand drawCommand;
 
-        static CameraModel()
+        static CameraOutlineModel()
         {
             const int segments = 30;
             const float radius = 0.45f;
             {
-                float shotLength = 1;
+                float shotLength = 2;
                 var circle = new List<vec3>();
-                for (int i = 0; i < segments + 1; i++)
+                for (int i = 0; i < segments; i++)
                 {
                     circle.Add(new vec3(
                         (float)Math.Cos(2.0 * Math.PI * (double)i / (double)segments) * radius,
@@ -86,7 +67,7 @@ namespace c03d02_ViewSpace
                         -halfDepth));
                 }
                 var circle2 = new List<vec3>();
-                for (int i = 0; i < segments + 1; i++)
+                for (int i = 0; i < segments; i++)
                 {
                     circle2.Add(new vec3(
                         (float)Math.Cos(2.0 * Math.PI * (double)i / (double)segments) * radius,
@@ -97,29 +78,31 @@ namespace c03d02_ViewSpace
                 foreach (var item in cubePostions) { list.Add(item); }
                 list.AddRange(circle); list.AddRange(circle2);
 
-                list.Add(new vec3(0, 0, -shotLength));
-
-                CameraModel.positions = list.ToArray();
+                CameraOutlineModel.positions = list.ToArray();
             }
             {
                 uint firstCircleIndex = (uint)cubePostions.Length;
                 var indexes = new List<uint>();
                 foreach (var item in cubeIndexes) { indexes.Add(item); }
-                for (uint i = 0; i < segments; i++)
+                for (uint i = 0; i < segments - 1; i++)
                 {
                     indexes.Add(i + firstCircleIndex);
-                    indexes.Add(segments + 1 + i + firstCircleIndex);
-                    indexes.Add(segments + 1 + i + 1 + firstCircleIndex);
                     indexes.Add(i + 1 + firstCircleIndex);
                 }
-                for (uint i = 0; i < segments; i++)
                 {
-                    indexes.Add(segments + 1 + i + firstCircleIndex);
-                    indexes.Add(segments + 1 + i + 1 + firstCircleIndex);
-                    indexes.Add(segments + 1 + segments + 1 + firstCircleIndex);
-                    indexes.Add(segments + 1 + segments + 1 + firstCircleIndex);
+                    indexes.Add(segments - 1 + firstCircleIndex);
+                    indexes.Add(0 + firstCircleIndex);
                 }
-                CameraModel.indexes = indexes.ToArray();
+                for (uint i = 0; i < segments - 1; i++)
+                {
+                    indexes.Add(segments + i + firstCircleIndex);
+                    indexes.Add(segments + i + 1 + firstCircleIndex);
+                }
+                {
+                    indexes.Add(segments + segments - 1 + firstCircleIndex);
+                    indexes.Add(segments + 0 + firstCircleIndex);
+                }
+                CameraOutlineModel.indexes = indexes.ToArray();
             }
         }
 
@@ -147,7 +130,7 @@ namespace c03d02_ViewSpace
             if (this.drawCommand == null)
             {
                 IndexBuffer indexBuffer = indexes.GenIndexBuffer(BufferUsage.StaticDraw);
-                this.drawCommand = new DrawElementsCmd(indexBuffer, DrawMode.Quads);
+                this.drawCommand = new DrawElementsCmd(indexBuffer, DrawMode.Lines);
             }
 
             yield return this.drawCommand;

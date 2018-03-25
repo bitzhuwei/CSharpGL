@@ -6,13 +6,12 @@ using CSharpGL;
 
 namespace c03d02_ViewSpace
 {
-    partial class GroundNode
+    partial class CameraOutlineNode
     {
         private const string vertexCode = @"
 #version 150
 
 in vec3 inPosition;
-in vec3 inColor;
 
 uniform mat4 mvpMatrix;
 
@@ -24,12 +23,19 @@ void main() {
         private const string fragmnetCode = @"
 #version 150
 
-uniform vec3 color = vec3(1.0, 0.843, 0);
+uniform vec4 color = vec4(1, 1, 1, 1); // default: red color.
+
+uniform bool halfTransparent = false;
 
 out vec4 outColor;
 
 void main() {
-    outColor = vec4(color, 1.0);
+    if (halfTransparent) {
+        if (int(gl_FragCoord.x - 0.5) % 2 == 1 && int(gl_FragCoord.y - 0.5) % 2 == 1) discard;
+        if (int(gl_FragCoord.x - 0.5) % 2 != 1 && int(gl_FragCoord.y - 0.5) % 2 != 1) discard;
+    }
+
+    outColor = color;
 }
 ";
     }
