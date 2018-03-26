@@ -6,7 +6,7 @@ using CSharpGL;
 
 namespace c03d04_Ortho
 {
-    partial class PerspectiveNode
+    partial class OrthoNode
     {
         private const string vertexCode = @"
 #version 150

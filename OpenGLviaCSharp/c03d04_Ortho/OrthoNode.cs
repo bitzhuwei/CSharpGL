@@ -6,23 +6,23 @@ using CSharpGL;
 
 namespace c03d04_Ortho
 {
-    partial class PerspectiveNode : ModernNode, IRenderable
+    partial class OrthoNode : ModernNode, IRenderable
     {
-        public static PerspectiveNode Create()
+        public static OrthoNode Create()
         {
             // vertex buffer and index buffer.
-            var model = new PerspectiveModel((float)(60.0 * Math.PI / 180.0), 1, 0.5f, 10);
+            var model = new OrthoModel(-1, 1, -1, 1, 0.5f, 5f);
             // vertex shader and fragment shader.
             var vs = new VertexShader(vertexCode);
             var fs = new FragmentShader(fragmnetCode);
             var array = new ShaderArray(vs, fs);
             // which vertex buffer maps to which attribute in shader.
             var map = new AttributeMap();
-            map.Add("inPosition", PerspectiveModel.strPosition);
+            map.Add("inPosition", OrthoModel.strPosition);
             // build a render method.
             var builder = new RenderMethodBuilder(array, map);
             // create node.
-            var node = new PerspectiveNode(model, builder);
+            var node = new OrthoNode(model, builder);
             // initialize node.
             node.Initialize();
 
@@ -32,7 +32,7 @@ namespace c03d04_Ortho
         PolygonModeSwitch polygonModeSwitch = new PolygonModeSwitch(PolygonMode.Line);
         LineWidthSwitch lineWidthSwitch = new LineWidthSwitch(2);
 
-        private PerspectiveNode(IBufferSource model, params RenderMethodBuilder[] builders)
+        private OrthoNode(IBufferSource model, params RenderMethodBuilder[] builders)
             : base(model, builders)
         {
         }

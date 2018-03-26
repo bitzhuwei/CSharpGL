@@ -64,9 +64,9 @@
     <Compile Include="GroundModel.cs" />
     <Compile Include="GroundNode.cs" />
     <Compile Include="GroundNode.shaders.cs" />
-    <Compile Include="PerspectiveModel.cs" />
-    <Compile Include="PerspectiveNode.cs" />
-    <Compile Include="PerspectiveNode.shaders.cs" />
+    <Compile Include="OrthoModel.cs" />
+    <Compile Include="OrthoNode.cs" />
+    <Compile Include="OrthoNode.shaders.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">

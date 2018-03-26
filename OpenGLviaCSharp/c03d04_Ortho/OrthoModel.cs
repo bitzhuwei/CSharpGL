@@ -20,7 +20,7 @@ namespace c03d04_Ortho
     ///     2           3
     ///    /
     ///   Z
-    class PerspectiveModel : IBufferSource
+    class OrthoModel : IBufferSource
     {
 
         private readonly vec3[] positions;
@@ -31,25 +31,20 @@ namespace c03d04_Ortho
 
         private IDrawCommand drawCommand;
 
-        public PerspectiveModel(float fovy, float aspect, float zNear, float zFar)
+        public OrthoModel(float left, float right, float bottom, float top, float zNear, float zFar)
         {
             var positions = new List<vec3>();
-            float tangent = (float)Math.Tan(fovy / 2.0f);
             {
-                float height = zNear * tangent;
-                float width = height * aspect;
-                positions.Add(new vec3(width / 2.0f, height / 2.0f, -zNear));
-                positions.Add(new vec3(-width / 2.0f, height / 2.0f, -zNear));
-                positions.Add(new vec3(-width / 2.0f, -height / 2.0f, -zNear));
-                positions.Add(new vec3(width / 2.0f, -height / 2.0f, -zNear));
+                positions.Add(new vec3(right, top, -zNear));
+                positions.Add(new vec3(left, top, -zNear));
+                positions.Add(new vec3(left, bottom, -zNear));
+                positions.Add(new vec3(right, bottom, -zNear));
             }
             {
-                float height = zFar * tangent;
-                float width = height * aspect;
-                positions.Add(new vec3(width / 2.0f, height / 2.0f, -zFar));
-                positions.Add(new vec3(-width / 2.0f, height / 2.0f, -zFar));
-                positions.Add(new vec3(-width / 2.0f, -height / 2.0f, -zFar));
-                positions.Add(new vec3(width / 2.0f, -height / 2.0f, -zFar));
+                positions.Add(new vec3(right, top, -zFar));
+                positions.Add(new vec3(left, top, -zFar));
+                positions.Add(new vec3(left, bottom, -zFar));
+                positions.Add(new vec3(right, bottom, -zFar));
             }
             this.positions = positions.ToArray();
         }
