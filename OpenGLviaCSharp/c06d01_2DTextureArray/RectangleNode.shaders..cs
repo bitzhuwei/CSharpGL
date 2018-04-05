@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace c06d00_TextureArray
+namespace c06d01_2DTextureArray
 {
     partial class RectangleNode
     {

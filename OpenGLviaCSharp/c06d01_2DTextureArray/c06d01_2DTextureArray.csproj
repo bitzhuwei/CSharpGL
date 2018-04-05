@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5113F6D6-60AF-42CF-BBB5-94994BABCF68}</ProjectGuid>
+    <ProjectGuid>{87445725-5A36-4CBE-8B88-67A2905C22D2}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>c06d00_TextureArray</RootNamespace>
-    <AssemblyName>c06d00_TextureArray</AssemblyName>
+    <RootNamespace>c06d01_2DTextureArray</RootNamespace>
+    <AssemblyName>c06d01_2DTextureArray</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -53,8 +53,8 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RectangleModel.cs" />
-    <Compile Include="RectangleNode.shaders..cs" />
     <Compile Include="RectangleNode.cs" />
+    <Compile Include="RectangleNode.shaders..cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -75,16 +75,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\CSharpGL.Windows\CSharpGL.Windows.csproj">
-      <Project>{704921fb-e30a-4c8a-bc73-f343ab2eb690}</Project>
-      <Name>CSharpGL.Windows</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\CSharpGL\CSharpGL.csproj">
-      <Project>{a03cffff-433c-4a6e-8bd1-3a60ef9817a5}</Project>
-      <Name>CSharpGL</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="index0.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -94,6 +84,20 @@
     <Content Include="index2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="index3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="index4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\CSharpGL.Windows\CSharpGL.Windows.csproj">
+      <Project>{704921fb-e30a-4c8a-bc73-f343ab2eb690}</Project>
+      <Name>CSharpGL.Windows</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\CSharpGL\CSharpGL.csproj">
+      <Project>{a03cffff-433c-4a6e-8bd1-3a60ef9817a5}</Project>
+      <Name>CSharpGL</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

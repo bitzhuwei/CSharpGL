@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace c06d00_TextureArray
+namespace c06d01_2DTextureArray
 {
     public partial class Form1 : Form
     {
@@ -56,11 +56,11 @@ namespace c06d00_TextureArray
         private SceneNodeBase GetRootNode()
         {
             var rootNode = new GroupNode();
-            var filenames = new string[] { "index2.png", "index1.png", "index0.png " };
+            var filenames = new string[] { "index4.png", "index3.png", "index2.png", "index1.png", "index0.png " };
             for (int i = 0; i < filenames.Length; i++)
             {
                 var bmp = new Bitmap(filenames[i]);
-                bmp.RotateFlip(RotateFlipType.Rotate180FlipX);
+                //bmp.RotateFlip(RotateFlipType.Rotate180FlipX);
                 var texture = new Texture(new TexImageBitmap(bmp),
                     new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP_TO_EDGE),
                     new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_CLAMP_TO_EDGE),
@@ -71,7 +71,7 @@ namespace c06d00_TextureArray
                 float scale = (float)bmp.Width / (float)bmp.Height;
                 bmp.Dispose();
                 var node = RectangleNode.Create(texture);
-                node.WorldPosition = new vec3(0, 0, i - -filenames.Length / 2.0f);
+                node.WorldPosition = new vec3(0, 0, i - filenames.Length / 2.0f);
                 node.Scale = new vec3(scale, 1, 1);
                 rootNode.Children.Add(node);
             }
