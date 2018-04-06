@@ -14,7 +14,6 @@ namespace c02d04_CubeMapTexture
     {
         private Scene scene;
         private ActionList actionList;
-        private CubeNode cubeNode;
 
         public Form1()
         {
@@ -30,14 +29,12 @@ namespace c02d04_CubeMapTexture
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-            var position = new vec3(5, 3, 4) * 0.3f;
+            var position = new vec3(5, 3, 4) * 0.5f;
             var center = new vec3(0, 0, 0);
             var up = new vec3(0, 1, 0);
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
-            Texture texture = GetTexture();
-            this.cubeNode = CubeNode.Create(texture);
             var scene = new Scene(camera);
-            scene.RootNode = cubeNode;
+            scene.RootNode = GetTree();
             this.scene = scene;
 
             var list = new ActionList();
@@ -51,6 +48,117 @@ namespace c02d04_CubeMapTexture
             //var manipulater = new FirstPerspectiveManipulater();
             //manipulater.BindingMouseButtons = System.Windows.Forms.MouseButtons.Right;
             //manipulater.Bind(camera, this.winGLCanvas1);
+        }
+
+        private SceneNodeBase GetTree()
+        {
+            var children = new List<SceneNodeBase>();
+            {
+                var bitmap = new Bitmap(@"cubemaps_skybox.png");
+                Texture cubemapTexture = GetCubemapTexture(bitmap);
+                bitmap.Dispose();
+                var cubeMapNode = CubeMapNode.Create(new CubeModel(), CubeModel.strPosition, cubemapTexture);
+                children.Add(cubeMapNode);
+            }
+            //{
+            //    var bitmap = new Bitmap(@"cubemaps_skybox2.png");
+            //    Texture cubemapTexture = GetCubemapTexture(bitmap);
+            //    bitmap.Dispose();
+            //    var cubeMapNode = CubeMapNode.Create(new CubeModel(), CubeModel.strPosition, cubemapTexture);
+            //    cubeMapNode.Scale = new vec3(1, 1, 1) * 0.999f;
+            //    children.Add(cubeMapNode);
+            //}
+            {
+                var bitmap = new Bitmap(@"cube_skybox.png");
+                Texture cubemapTexture = GetCubemapTexture(bitmap);
+                bitmap.Dispose();
+                var cubeMapNode = CubeMapNode.Create(new CubeModel(), CubeModel.strPosition, cubemapTexture);
+                var polygonModeSwitch = new PolygonModeSwitch(PolygonMode.Line);
+                var lineWidthSwitch = new LineWidthSwitch(1);
+                cubeMapNode.RenderUnit.Methods[0].SwitchList.Add(polygonModeSwitch);
+                cubeMapNode.RenderUnit.Methods[0].SwitchList.Add(lineWidthSwitch);
+                cubeMapNode.RenderUnit.Methods[1].SwitchList.Add(polygonModeSwitch);
+                cubeMapNode.RenderUnit.Methods[1].SwitchList.Add(lineWidthSwitch);
+                children.Add(cubeMapNode);
+            }
+            {
+                var bitmap = new Bitmap(@"cube_skybox.png");
+                Texture cubemapTexture = GetCubemapTexture(bitmap);
+                bitmap.Dispose();
+                var cubeMapNode = CubeMapNode.Create(new GroundModel(length: 4), CubeModel.strPosition, cubemapTexture);
+                var polygonModeSwitch = new PolygonModeSwitch(PolygonMode.Line);
+                var lineWidthSwitch = new LineWidthSwitch(1);
+                cubeMapNode.RenderUnit.Methods[0].SwitchList.Add(polygonModeSwitch);
+                cubeMapNode.RenderUnit.Methods[0].SwitchList.Add(lineWidthSwitch);
+                cubeMapNode.RenderUnit.Methods[1].SwitchList.Add(polygonModeSwitch);
+                cubeMapNode.RenderUnit.Methods[1].SwitchList.Add(lineWidthSwitch);
+                children.Add(cubeMapNode);
+            }
+            var peelingNode = new PeelingNode(children.ToArray());
+
+            return peelingNode;
+        }
+
+        private Texture GetCubemapTexture(Bitmap totalBmp)
+        {
+            var dataProvider = GetCubemapDataProvider(totalBmp);
+            TexStorageBase storage = new CubemapTexImage2D(GL.GL_RGBA, totalBmp.Width / 4, totalBmp.Height / 3, GL.GL_BGRA, GL.GL_UNSIGNED_BYTE, dataProvider);
+            var texture = new Texture(storage,
+                new TexParameteri(TexParameter.PropertyName.TextureMagFilter, (int)GL.GL_LINEAR),
+                new TexParameteri(TexParameter.PropertyName.TextureMinFilter, (int)GL.GL_LINEAR),
+                new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP_TO_EDGE),
+                new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_CLAMP_TO_EDGE),
+                new TexParameteri(TexParameter.PropertyName.TextureWrapR, (int)GL.GL_CLAMP_TO_EDGE));
+            texture.Initialize();
+
+            return texture;
+        }
+
+        private CubemapDataProvider GetCubemapDataProvider(Bitmap totalBmp)
+        {
+            int width = totalBmp.Width / 4, height = totalBmp.Height / 3;
+            var top = new Bitmap(width, height);
+            using (var g = Graphics.FromImage(top))
+            {
+                g.DrawImage(totalBmp, new Rectangle(0, 0, width, height), new Rectangle(width, 0, width, height), GraphicsUnit.Pixel);
+            }
+            var left = new Bitmap(width, height);
+            using (var g = Graphics.FromImage(left))
+            {
+                g.DrawImage(totalBmp, new Rectangle(0, 0, width, height), new Rectangle(0, height, width, height), GraphicsUnit.Pixel);
+            }
+            var front = new Bitmap(width, height);
+            using (var g = Graphics.FromImage(front))
+            {
+                g.DrawImage(totalBmp, new Rectangle(0, 0, width, height), new Rectangle(width, height, width, height), GraphicsUnit.Pixel);
+            }
+            var right = new Bitmap(width, height);
+            using (var g = Graphics.FromImage(right))
+            {
+                g.DrawImage(totalBmp, new Rectangle(0, 0, width, height), new Rectangle(width * 2, height, width, height), GraphicsUnit.Pixel);
+            }
+            var back = new Bitmap(width, height);
+            using (var g = Graphics.FromImage(back))
+            {
+                g.DrawImage(totalBmp, new Rectangle(0, 0, width, height), new Rectangle(width * 3, height, width, height), GraphicsUnit.Pixel);
+            }
+            var bottom = new Bitmap(width, height);
+            using (var g = Graphics.FromImage(bottom))
+            {
+                g.DrawImage(totalBmp, new Rectangle(0, 0, width, height), new Rectangle(width, height * 2, width, height), GraphicsUnit.Pixel);
+            }
+
+            var flip = RotateFlipType.Rotate180FlipY;
+            right.RotateFlip(flip); left.RotateFlip(flip);
+            top.RotateFlip(flip); bottom.RotateFlip(RotateFlipType.Rotate180FlipX);
+            back.RotateFlip(flip); front.RotateFlip(flip);
+#if DEBUG
+            right.Save("right.png"); left.Save("left.png");
+            top.Save("top.png"); bottom.Save("bottom.png");
+            back.Save("back.png"); front.Save("front.png");
+#endif
+            var result = new CubemapDataProvider(right, left, top, bottom, back, front);
+            return result;
         }
 
         private Texture GetTexture()
@@ -91,8 +199,12 @@ namespace c02d04_CubeMapTexture
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            this.cubeNode.RotationAxis = new vec3(0, 1, 0);
-            this.cubeNode.RotationAngle += 1.3f;
+            var node = this.scene.RootNode;
+            if (node != null)
+            {
+                node.RotationAxis = new vec3(0, 1, 0);
+                node.RotationAngle += 1.3f;
+            }
         }
     }
 }

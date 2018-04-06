@@ -4,36 +4,15 @@ using System.Linq;
 using System.Text;
 using CSharpGL;
 
-namespace DepthPeeling.FrontToBackPeeling
+namespace c02d04_CubeMapTexture
 {
-    class CubeNode : ModernNode, IRenderable
+    class CubeMapNode : ModernNode, IRenderable
     {
-        public enum RenderMode { Init = 0, Peel = 1 };
 
         /// <summary>
         /// 
         /// </summary>
         public RenderMode Mode { get; set; }
-
-        private vec4 vColor;
-        /// <summary>
-        /// 
-        /// </summary>
-        public vec4 Color
-        {
-            get { return vColor; }
-            set
-            {
-                this.vColor = value;
-
-                for (int i = 0; i < this.RenderUnit.Methods.Length; i++)
-                {
-                    RenderMethod method = this.RenderUnit.Methods[i];
-                    ShaderProgram program = method.Program;
-                    program.SetUniform("vColor", value);
-                }
-            }
-        }
 
         private Texture depthTexture;
         /// <summary>
@@ -52,7 +31,26 @@ namespace DepthPeeling.FrontToBackPeeling
             }
         }
 
-        public static CubeNode Create(IBufferSource model, string positionNameInIBufferSource)
+        private float alpha = 0.21f;
+        public float Alpha
+        {
+            get { return this.alpha; }
+            set
+            {
+                this.alpha = value;
+                {
+                    RenderMethod method = this.RenderUnit.Methods[(int)RenderMode.Init];
+                    ShaderProgram program = method.Program;
+                    program.SetUniform("alpha", value);
+                }
+                {
+                    RenderMethod method = this.RenderUnit.Methods[(int)RenderMode.Peel];
+                    ShaderProgram program = method.Program;
+                    program.SetUniform("alpha", value);
+                }
+            }
+        }
+        public static CubeMapNode Create(IBufferSource model, string positionNameInIBufferSource, Texture cubemapTexture)
         {
             RenderMethodBuilder initBuilder, peelBuilder;
             {
@@ -72,13 +70,20 @@ namespace DepthPeeling.FrontToBackPeeling
                 peelBuilder = new RenderMethodBuilder(provider, map);
             }
 
-            var node = new CubeNode(model, initBuilder, peelBuilder);
+            var node = new CubeMapNode(model, initBuilder, peelBuilder);
+            node.SetTexture(cubemapTexture);
             node.Initialize();
 
             return node;
         }
 
-        private CubeNode(IBufferSource model, params RenderMethodBuilder[] builders)
+        private Texture cubemapTexture;
+        private void SetTexture(Texture cubemapTexture)
+        {
+            this.cubemapTexture = cubemapTexture;
+        }
+
+        private CubeMapNode(IBufferSource model, params RenderMethodBuilder[] builders)
             : base(model, builders)
         {
         }
@@ -104,6 +109,7 @@ namespace DepthPeeling.FrontToBackPeeling
             RenderMethod method = this.RenderUnit.Methods[(int)this.Mode];
             ShaderProgram program = method.Program;
             program.SetUniform("MVP", projection * view * model);
+            program.SetUniform("tex", this.cubemapTexture);
 
             method.Render();
         }

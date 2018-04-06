@@ -9,33 +9,54 @@ namespace c02d04_CubeMapTexture
     /// <summary>
     ///        Y
     ///        |
-    ///        |___________
+    ///        5___________1
     ///       /|          /|
     ///      / |         / |
-    ///     /--+--------/  |
-    ///     |  |_ _ _ _ |_ |____ X
+    ///     4--+--------0  |
+    ///     |  7_ _ _ _ |_ 3____ X
     ///     |  /        |  /
     ///     | /         | /
     ///     |/__________|/
-    ///     /           
+    ///     6           2
     ///    /
     ///   Z
     /// </summary>
     class CubeModel : IBufferSource
     {
+        private const float halfLength = 1f;
+        private static readonly vec3[] positions = new vec3[]
+        {
+            new vec3(+halfLength, +halfLength, +halfLength), // 0
+            new vec3(+halfLength, +halfLength, -halfLength), // 1
+            new vec3(+halfLength, -halfLength, +halfLength), // 2
+            new vec3(+halfLength, -halfLength, -halfLength), // 3 
+            new vec3(-halfLength, +halfLength, +halfLength), // 4 
+            new vec3(-halfLength, +halfLength, -halfLength), // 5
+            new vec3(-halfLength, -halfLength, +halfLength), // 6
+            new vec3(-halfLength, -halfLength, -halfLength), // 7
+        };
+
+        private static readonly uint[] indexes = new uint[]
+        {
+            0, 2, 3, 1,
+            0, 1, 5, 4,
+            0, 4, 6, 2,
+            7, 6, 4, 5,
+            7, 5, 1, 3,
+            7, 3, 2, 6,
+        };
+
         public const string strPosition = "position";
         private VertexBuffer positionBuffer;
 
-        public const string strTexCoord = "texCoord";
-        private VertexBuffer uvBuffer;
+        private IDrawCommand drawCommand;
 
-        private IDrawCommand drawCmd;
 
-        #region IBufferable 成员
+        #region IBufferSource 成员
 
         public IEnumerable<VertexBuffer> GetVertexAttributeBuffer(string bufferName)
         {
-            if (bufferName == strPosition)
+            if (strPosition == bufferName) // requiring position buffer.
             {
                 if (this.positionBuffer == null)
                 {
@@ -44,83 +65,23 @@ namespace c02d04_CubeMapTexture
 
                 yield return this.positionBuffer;
             }
-            else if (bufferName == strTexCoord)
-            {
-                if (this.uvBuffer == null)
-                {
-                    this.uvBuffer = uvs.GenVertexBuffer(VBOConfig.Vec2, BufferUsage.StaticDraw);
-                }
-
-                yield return this.uvBuffer;
-            }
             else
             {
-                throw new ArgumentException();
+                throw new ArgumentException("bufferName");
             }
         }
 
         public IEnumerable<IDrawCommand> GetDrawCommand()
         {
-            if (this.drawCmd == null)
+            if (this.drawCommand == null)
             {
-                this.drawCmd = new DrawArraysCmd(DrawMode.Quads, 0, positions.Length);
+                IndexBuffer indexBuffer = indexes.GenIndexBuffer(BufferUsage.StaticDraw);
+                this.drawCommand = new DrawElementsCmd(indexBuffer, DrawMode.Quads);
             }
 
-            yield return this.drawCmd;
+            yield return this.drawCommand;
         }
 
         #endregion
-
-        private const float xLength = 0.5f;
-        private const float yLength = 0.5f;
-        private const float zLength = 0.5f;
-        /// <summary>
-        /// six quads' vertexes.
-        /// </summary>
-        private static readonly vec3[] positions = new vec3[]
-        {
-            new vec3(-xLength, -yLength, +zLength),//  0
-            new vec3(+xLength, -yLength, +zLength),//  1
-            new vec3(+xLength, +yLength, +zLength),//  2
-            new vec3(-xLength, +yLength, +zLength),//  3
-
-            new vec3(+xLength, -yLength, +zLength),//  4
-            new vec3(+xLength, -yLength, -zLength),//  5
-            new vec3(+xLength, +yLength, -zLength),//  6
-            new vec3(+xLength, +yLength, +zLength),//  7
-            
-            new vec3(-xLength, +yLength, +zLength),//  8
-            new vec3(+xLength, +yLength, +zLength),//  9
-            new vec3(+xLength, +yLength, -zLength),// 10
-            new vec3(-xLength, +yLength, -zLength),// 11
-            
-            new vec3(+xLength, -yLength, -zLength),// 12
-            new vec3(-xLength, -yLength, -zLength),// 13
-            new vec3(-xLength, +yLength, -zLength),// 14
-            new vec3(+xLength, +yLength, -zLength),// 15
-            
-            new vec3(-xLength, -yLength, -zLength),// 16
-            new vec3(-xLength, -yLength, +zLength),// 17
-            new vec3(-xLength, +yLength, +zLength),// 18
-            new vec3(-xLength, +yLength, -zLength),// 19
-            
-            new vec3(+xLength, -yLength, -zLength),// 20
-            new vec3(+xLength, -yLength, +zLength),// 21
-            new vec3(-xLength, -yLength, +zLength),// 22
-            new vec3(-xLength, -yLength, -zLength),// 23
-        };
-
-        /// <summary>
-        /// six quads' uvs.
-        /// </summary>
-        private static readonly vec2[] uvs = new vec2[]
-        {
-            new vec2(0, 0), new vec2(1, 0), new vec2(1, 1), new vec2(0, 1),
-            new vec2(0, 0), new vec2(1, 0), new vec2(1, 1), new vec2(0, 1),
-            new vec2(0, 0), new vec2(1, 0), new vec2(1, 1), new vec2(0, 1),
-            new vec2(0, 0), new vec2(1, 0), new vec2(1, 1), new vec2(0, 1),
-            new vec2(0, 0), new vec2(1, 0), new vec2(1, 1), new vec2(0, 1),
-            new vec2(0, 0), new vec2(1, 0), new vec2(1, 1), new vec2(0, 1),
-        };
     }
 }

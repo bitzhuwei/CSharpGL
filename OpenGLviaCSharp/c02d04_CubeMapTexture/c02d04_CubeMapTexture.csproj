@@ -43,17 +43,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AxisModel.cs" />
+    <Compile Include="RenderMode.cs" />
     <Compile Include="CubeModel.cs" />
-    <Compile Include="CubeNode.cs" />
-    <Compile Include="CubeNode.shaders.cs" />
+    <Compile Include="CubeMapNode.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="GroundModel.cs" />
+    <Compile Include="PeelingNode.cs" />
+    <Compile Include="PeelingNode.Framebuffers.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QuadModel.cs" />
+    <Compile Include="QuadNode.cs" />
+    <Compile Include="shaders.1.init.cs" />
+    <Compile Include="shaders.2.peel.cs" />
+    <Compile Include="shaders.3.blend.cs" />
+    <Compile Include="shaders.4.final.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -88,6 +98,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Crate.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="cubemaps_skybox.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="cubemaps_skybox2.png" />
+    <Content Include="cube_skybox.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
