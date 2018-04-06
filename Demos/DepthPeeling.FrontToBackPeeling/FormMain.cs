@@ -95,7 +95,7 @@ namespace DepthPeeling.FrontToBackPeeling
                         for (int i = -1; i < 2; i++)
                         {
                             vec3 worldPosition = new vec3(i * 2, j * 2, k * 2);
-                            var cubeNode = CubeNode.Create();
+                            var cubeNode = CubeNode.Create(new CubeModel(), CubeModel.positions);
                             cubeNode.WorldPosition = worldPosition;
                             cubeNode.Color = colors[index++];
                             cubeNode.Name = string.Format("{0},{1},{2}:{3}", k, j, i, cubeNode.Color);
