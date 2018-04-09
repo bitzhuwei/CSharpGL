@@ -43,20 +43,12 @@ namespace CSharpGL
         {
             this.Param = param;
             this.Camera = camera;
-
-            this.ModelMatrixStack = new Stack<mat4>();
-            this.ModelMatrixStack.Push(mat4.identity());
         }
 
         /// <summary>
         /// The top ccamera is currently in use.
         /// </summary>
-        public ICamera Camera { get; private set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        internal Stack<mat4> ModelMatrixStack { get; private set; }
+        public ICamera Camera { get; set; }
 
         /// <summary>
         /// 
