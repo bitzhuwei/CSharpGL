@@ -54,11 +54,6 @@ namespace CSharpGL
             var framebuffer = new Framebuffer(width, height);
             framebuffer.Bind();
             {
-                var renderbuffer = new Renderbuffer(width, height, GL.GL_RGBA);
-                uint colorAttachmentLocation = 0;
-                framebuffer.Attach(FramebufferTarget.Framebuffer, renderbuffer, colorAttachmentLocation);// 0
-            }
-            {
                 var texture = new Texture(new TexImageBitmap(width, height),
                     new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_REPEAT),
                     new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_REPEAT),
@@ -66,14 +61,14 @@ namespace CSharpGL
                     new TexParameteri(TexParameter.PropertyName.TextureMinFilter, (int)GL.GL_LINEAR),
                     new TexParameteri(TexParameter.PropertyName.TextureMagFilter, (int)GL.GL_LINEAR));
                 texture.Initialize();
-                framebuffer.Attach(FramebufferTarget.Framebuffer, texture, 1u);// 1
+                framebuffer.Attach(FramebufferTarget.Framebuffer, texture, 0u);// 1
                 this.BindingTexture = texture;
             }
             {
                 var renderbuffer = new Renderbuffer(width, height, GL.GL_DEPTH_COMPONENT24);
                 framebuffer.Attach(FramebufferTarget.Framebuffer, renderbuffer, AttachmentLocation.Depth);// special
             }
-            framebuffer.SetDrawBuffer(GL.GL_COLOR_ATTACHMENT0 + 1);// as in 1 in framebuffer.Attach(FramebufferTarget.Framebuffer, texture, 1u);// 1
+            //framebuffer.SetDrawBuffer(GL.GL_COLOR_ATTACHMENT0 + 1);// as in 1 in framebuffer.Attach(FramebufferTarget.Framebuffer, texture, 1u);// 1
             framebuffer.CheckCompleteness();
             framebuffer.Unbind();
 
