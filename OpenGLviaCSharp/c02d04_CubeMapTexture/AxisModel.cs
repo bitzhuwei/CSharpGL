@@ -51,7 +51,7 @@ namespace c02d04_CubeMapTexture
 
         #region IBufferSource 成员
 
-        public IEnumerable<VertexBuffer> GetVertexAttributeBuffer(string bufferName)
+        public IEnumerable<VertexBuffer> GetVertexProperty(string bufferName)
         {
             if (strPosition == bufferName) // requiring position buffer.
             {
