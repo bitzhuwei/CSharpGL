@@ -22,7 +22,7 @@ namespace TerrainLoading
                 var vs = new VertexShader(vert);
                 var fs = new FragmentShader(frag);
                 var provider = new ShaderArray(vs, fs);
-                var map = new PropertyMap();
+                var map = new AttributeMap();
                 defaultBuilder = new RenderMethodBuilder(provider, map, new PolygonModeSwitch(PolygonMode.Line));
             }
 

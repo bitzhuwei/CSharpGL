@@ -15,7 +15,7 @@ namespace c06d01_2DTextureArray
             var vertexShader = new VertexShader(vert);
             var fragmentShader = new FragmentShader(frag);
             var programProvider = new ShaderArray(vertexShader, fragmentShader);
-            var map = new PropertyMap();
+            var map = new AttributeMap();
             map.Add("inPosition", RectangleModel.strPositoin);
             map.Add("inUV", RectangleModel.strUV);
             var builder = new RenderMethodBuilder(programProvider, map, new BlendSwitch(BlendEquationMode.Add, BlendSrcFactor.SrcAlpha, BlendDestFactor.OneMinusSrcAlpha));

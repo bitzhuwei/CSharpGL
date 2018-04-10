@@ -35,24 +35,24 @@ namespace HowTransformFeedbackWorks
             RenderMethodBuilder updateBuilder, updateBuilder2, renderBuilder, renderBuilder2;
             var blend = new BlendFuncSwitch(BlendSrcFactor.One, BlendDestFactor.One);
             {
-                var map = new PropertyMap();
+                var map = new AttributeMap();
                 map.Add(inPosition, OGLDevParticleModel.inPosition);
                 map.Add(inVelocity, OGLDevParticleModel.inVelocity);
                 updateBuilder = new RenderMethodBuilder(updateProvider, map);
             }
             {
-                var map = new PropertyMap();
+                var map = new AttributeMap();
                 map.Add(inPosition, OGLDevParticleModel.inPosition2);
                 map.Add(inVelocity, OGLDevParticleModel.inVelocity2);
                 updateBuilder2 = new RenderMethodBuilder(updateProvider, map);
             }
             {
-                var map = new PropertyMap();
+                var map = new AttributeMap();
                 map.Add(vposition, OGLDevParticleModel.inPosition);
                 renderBuilder = new RenderMethodBuilder(renderProvider, map, blend);
             }
             {
-                var map = new PropertyMap();
+                var map = new AttributeMap();
                 map.Add(vposition, OGLDevParticleModel.inPosition2);
                 renderBuilder2 = new RenderMethodBuilder(renderProvider, map, blend);
             }

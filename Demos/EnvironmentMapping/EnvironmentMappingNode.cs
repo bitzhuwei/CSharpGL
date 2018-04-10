@@ -83,7 +83,7 @@ void main()
                 var vs = new VertexShader(vertexCode);
                 var fs = new FragmentShader(reflectFragmentCode);
                 var provider = new ShaderArray(vs, fs);
-                var map = new PropertyMap();
+                var map = new AttributeMap();
                 map.Add(inPosition, position);
                 map.Add(inNormal, normal);
                 reflectBuilder = new RenderMethodBuilder(provider, map);
@@ -92,7 +92,7 @@ void main()
                 var vs = new VertexShader(vertexCode);
                 var fs = new FragmentShader(refractFragmentCode);
                 var provider = new ShaderArray(vs, fs);
-                var map = new PropertyMap();
+                var map = new AttributeMap();
                 map.Add(inPosition, position);
                 map.Add(inNormal, normal);
                 refractBuilder = new RenderMethodBuilder(provider, map);
