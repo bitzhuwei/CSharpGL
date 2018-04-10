@@ -12,7 +12,7 @@ namespace CSharpGL
     /// <para>Relations between vertex attribute buffers and 'in' variables in GLSL vertex shader.</para>
     /// <para>This relation map connects <see cref="IBufferSource"/> to <see cref="ModernNode"/>.</para>
     /// </summary>
-    public class AttributeMap : IEnumerable<AttributeMap.NamePair>
+    public class PropertyMap : IEnumerable<PropertyMap.NamePair>
     {
         private List<string> namesInShader = new List<string>();
         private List<string> namesInIBufferSource = new List<string>();
@@ -23,7 +23,7 @@ namespace CSharpGL
         /// <para>Relations between vertex attribute buffers and 'in' variables in GLSL vertex shader.</para>
         /// <para>This relation map connects <see cref="IBufferSource"/> to <see cref="ModernNode"/>.</para>
         /// </summary>
-        public AttributeMap() { }
+        public PropertyMap() { }
 
         /// <summary>
         /// 持有从<see cref="IBufferSource"/>到GLSL中in变量名的对应关系。
@@ -33,7 +33,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="nameInShader">'vPos' in vertex shader(in vec3 vPos;)</param>
         /// <param name="nameInIBufferSource">user defined identifier for a buffer.</param>
-        public AttributeMap(string nameInShader, string nameInIBufferSource)
+        public PropertyMap(string nameInShader, string nameInIBufferSource)
         {
             this.Add(nameInShader, nameInIBufferSource);
         }
@@ -46,7 +46,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="nameInShader">'vPos' in vertex shader(in vec3 vPos;)</param>
         /// <param name="nameInIBufferSource">user defined identifier for a buffer.</param>
-        public AttributeMap(string[] nameInShader, string[] nameInIBufferSource)
+        public PropertyMap(string[] nameInShader, string[] nameInIBufferSource)
         {
             if (nameInShader == null || nameInIBufferSource == null
                 || nameInShader.Length != nameInIBufferSource.Length)

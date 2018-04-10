@@ -27,10 +27,10 @@ namespace HowTransformFeedbackWorks
                 var vs = new VertexShader(updateVert);
                 var feedbackVaryings = new string[] { outPosition, outVelocity };
                 updateProvider = new ShaderArray(feedbackVaryings, ShaderProgram.BufferMode.Separate, vs);
-                var map = new AttributeMap();
+                var map = new PropertyMap();
                 map.Add(inPosition, DemoModel.inPosition);
                 map.Add(inVelocity, DemoModel.inVelocity);
-                var map2 = new AttributeMap();
+                var map2 = new PropertyMap();
                 map2.Add(inPosition, DemoModel.inPosition2);
                 map2.Add(inVelocity, DemoModel.inVelocity2);
                 updateBuilder = new RenderMethodBuilder(updateProvider, map);
@@ -43,10 +43,10 @@ namespace HowTransformFeedbackWorks
                 var vs = new VertexShader(renderVert);
                 var fs = new FragmentShader(renderFrag);
                 renderProvider = new ShaderArray(vs, fs);
-                var map = new AttributeMap();
+                var map = new PropertyMap();
                 map.Add(inPosition, DemoModel.inPosition);
                 map.Add(inVelocity, DemoModel.inVelocity);
-                var map2 = new AttributeMap();
+                var map2 = new PropertyMap();
                 map2.Add(inPosition, DemoModel.inPosition2);
                 map2.Add(inVelocity, DemoModel.inVelocity2);
                 renderBuilder = new RenderMethodBuilder(renderProvider, map);

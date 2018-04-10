@@ -13,7 +13,7 @@ namespace CSharpGL
             var vs = new VertexShader(vertexShaderCode);
             var fs = new FragmentShader(fragmentShaderCode);
             var provider = new ShaderArray(vs, fs);
-            var map = new AttributeMap();
+            var map = new PropertyMap();
             map.Add("in_Position", KleinBottleModel.strPosition);
             map.Add("in_TexCoord", KleinBottleModel.strTexCoord);
             var builder = new RenderMethodBuilder(provider, map, new LineWidthSwitch(3));

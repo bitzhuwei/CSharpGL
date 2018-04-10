@@ -67,7 +67,7 @@ void main(void) {
             var vs = new VertexShader(vertexCode);
             var fs = new FragmentShader(fragmentCode);
             var provider = new ShaderArray(vs, fs);
-            var map = new AttributeMap();
+            var map = new PropertyMap();
             map.Add("inPosition", Propeller.strPosition);
             map.Add("inColor", Propeller.strColor);
             var model = new Propeller();

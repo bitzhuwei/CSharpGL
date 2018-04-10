@@ -20,7 +20,7 @@ namespace VolumeRendering.Raycast
                 var vs = new VertexShader(backfaceVert);
                 var fs = new FragmentShader(backfaceFrag);
                 var provider = new ShaderArray(vs, fs);
-                var map = new AttributeMap();
+                var map = new PropertyMap();
                 map.Add("position", RaycastModel.strposition);
                 map.Add("boundingBox", RaycastModel.strcolor);
                 backfaceBuilder = new RenderMethodBuilder(provider, map, new CullFaceSwitch(CullFaceMode.Front, true));
@@ -29,7 +29,7 @@ namespace VolumeRendering.Raycast
                 var vs = new VertexShader(raycastingVert);
                 var fs = new FragmentShader(raycastingFrag);
                 var provider = new ShaderArray(vs, fs);
-                var map = new AttributeMap();
+                var map = new PropertyMap();
                 map.Add("position", RaycastModel.strposition);
                 map.Add("boundingBox", RaycastModel.strcolor);
                 raycastingBuilder = new RenderMethodBuilder(provider, map, new CullFaceSwitch(CullFaceMode.Back, true));

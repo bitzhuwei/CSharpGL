@@ -98,7 +98,7 @@ void main(void)
                 var vs = new VertexShader(vertexCode);
                 var fs = new FragmentShader(fragmentCode);
                 var provider = new ShaderArray(vs, fs);
-                var map = new AttributeMap();
+                var map = new PropertyMap();
                 map.Add(inPosition, Teapot.strPosition);
                 map.Add(inNormal, Teapot.strNormal);
                 builder = new RenderMethodBuilder(provider, map);

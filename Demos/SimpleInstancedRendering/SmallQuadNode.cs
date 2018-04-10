@@ -39,7 +39,7 @@ void main()
             var vs = new VertexShader(vertexCode);
             var fs = new FragmentShader(fragmentCode);
             var array = new ShaderArray(vs, fs);
-            var map = new AttributeMap();
+            var map = new PropertyMap();
             map.Add("aPos", SmallQuadModel.strPosition);
             map.Add("aColor", SmallQuadModel.strColor);
             var builder = new RenderMethodBuilder(array, map);

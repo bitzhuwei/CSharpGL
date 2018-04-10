@@ -15,7 +15,7 @@ namespace Texture2DArray
             var vs = new VertexShader(vertexCode);
             var fs = new FragmentShader(fragmentCode);
             var provider = new ShaderArray(vs, fs);
-            var map = new AttributeMap();
+            var map = new PropertyMap();
             map.Add(inPosition, LayeredRectangleModel.strPosition);
             map.Add(inUV, LayeredRectangleModel.strUV);
             var builder = new RenderMethodBuilder(provider, map, new BlendFuncSwitch(BlendSrcFactor.SrcAlpha, BlendDestFactor.OneMinusSrcAlpha));

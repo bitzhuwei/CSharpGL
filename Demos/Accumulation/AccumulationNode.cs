@@ -16,7 +16,7 @@ namespace Accumulation
                 var vs = new VertexShader(renderVert);
                 var fs = new FragmentShader(renderFrag);
                 var provider = new ShaderArray(vs, fs);
-                var map = new AttributeMap();
+                var map = new PropertyMap();
                 map.Add("inPosition", Sphere.strPosition);
                 map.Add("inColor", Sphere.strColor);
                 var blend = new BlendFuncSwitch(BlendSrcFactor.SrcAlpha, BlendDestFactor.OneMinusSrcAlpha);

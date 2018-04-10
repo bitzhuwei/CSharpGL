@@ -16,7 +16,7 @@ namespace Lighting.ShadowVolume
                 var vs = new VertexShader(ambientVert);
                 var fs = new FragmentShader(ambientFrag);
                 var array = new ShaderArray(vs, fs);
-                var map = new AttributeMap();
+                var map = new PropertyMap();
                 map.Add("inPosition", position);
                 ambientBuilder = new RenderMethodBuilder(array, map);
             }
@@ -25,7 +25,7 @@ namespace Lighting.ShadowVolume
                 var gs = new GeometryShader(extrudeGeom);
                 var fs = new FragmentShader(extrudeFrag);
                 var array = new ShaderArray(vs, gs, fs);
-                var map = new AttributeMap();
+                var map = new PropertyMap();
                 map.Add("inPosition", position);
                 extrudeBuilder = new RenderMethodBuilder(array, map);
             }
@@ -33,7 +33,7 @@ namespace Lighting.ShadowVolume
                 var vs = new VertexShader(blinnPhongVert);
                 var fs = new FragmentShader(blinnPhongFrag);
                 var array = new ShaderArray(vs, fs);
-                var map = new AttributeMap();
+                var map = new PropertyMap();
                 map.Add("inPosition", position);
                 map.Add("inNormal", normal);
                 underLightBuilder = new RenderMethodBuilder(array, map);

@@ -17,7 +17,7 @@ namespace c03d00_ModelSpace
             var fs = new FragmentShader(fragmnetCode);
             var array = new ShaderArray(vs, fs);
             // which vertex buffer maps to which attribute in shader.
-            var map = new AttributeMap();
+            var map = new PropertyMap();
             map.Add("inPosition", AxisModel.strPosition);
             map.Add("inColor", AxisModel.strColor);
             // build a render method.

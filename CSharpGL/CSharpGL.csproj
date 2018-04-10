@@ -303,7 +303,7 @@
     <Compile Include="Scene\SceneNodes\RenderUnits\IShaderProgramProvider.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Scene\SceneNodes\RenderUnits\AttributeMap.cs" />
+    <Compile Include="Scene\SceneNodes\RenderUnits\PropertyMap.cs" />
     <Compile Include="Scene\SceneNodes\RenderUnits\IBufferSource.cs" />
     <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\ColorCodedPicking\ColorCodedPicking.cs" />
     <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\ColorCodedPicking\GeometryTypeHelper.cs" />

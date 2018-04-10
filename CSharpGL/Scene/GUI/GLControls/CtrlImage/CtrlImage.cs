@@ -23,7 +23,7 @@ namespace CSharpGL
             var vs = new VertexShader(vert);
             var fs = new FragmentShader(frag);
             var codes = new ShaderArray(vs, fs);
-            var map = new AttributeMap();
+            var map = new PropertyMap();
             map.Add(inPosition, CtrlImageModel.position);
             map.Add(inUV, CtrlImageModel.uv);
             var methodBuilder = new RenderMethodBuilder(codes, map, new BlendFuncSwitch(BlendSrcFactor.SrcAlpha, BlendDestFactor.OneMinusSrcAlpha));

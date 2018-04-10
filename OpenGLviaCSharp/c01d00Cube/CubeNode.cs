@@ -17,7 +17,7 @@ namespace c01d00_Cube
             var fs = new FragmentShader(fragmnetCode);
             var array = new ShaderArray(vs, fs);
             // which vertex buffer maps to which attribute in shader.
-            var map = new AttributeMap();
+            var map = new PropertyMap();
             map.Add("inPosition", CubeModel.strPosition);
             // build a render method.
             var builder = new RenderMethodBuilder(array, map);

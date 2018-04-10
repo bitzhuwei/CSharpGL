@@ -93,7 +93,7 @@ namespace DepthPeeling.DualPeeling
                 var vs = new VertexShader(Shaders.blendVert);
                 var fs = new FragmentShader(Shaders.blendFrag);
                 var provider = new ShaderArray(vs, fs);
-                var map = new AttributeMap();
+                var map = new PropertyMap();
                 map.Add("vVertex", QuadModel.positions);
                 blendBuilder = new RenderMethodBuilder(provider, map);
             }
@@ -101,7 +101,7 @@ namespace DepthPeeling.DualPeeling
                 var vs = new VertexShader(Shaders.finalVert);// reuse blend vertex shader.
                 var fs = new FragmentShader(Shaders.finalFrag);
                 var provider = new ShaderArray(vs, fs);
-                var map = new AttributeMap();
+                var map = new PropertyMap();
                 map.Add("vVertex", QuadModel.positions);
                 finalBuilder = new RenderMethodBuilder(provider, map);
             }

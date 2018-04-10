@@ -27,13 +27,13 @@ namespace ComputeShader.HelloComputeShader
             RenderMethodBuilder reset, compute, render;
             {
                 var cs = new CSharpGL.ComputeShader(resetCompute);
-                var map = new AttributeMap();
+                var map = new PropertyMap();
                 var provider = new ShaderArray(cs);
                 reset = new RenderMethodBuilder(provider, map);
             }
             {
                 var cs = new CSharpGL.ComputeShader(computeShader);
-                var map = new AttributeMap();
+                var map = new PropertyMap();
                 var provider = new ShaderArray(cs);
                 compute = new RenderMethodBuilder(provider, map);
             }
@@ -41,7 +41,7 @@ namespace ComputeShader.HelloComputeShader
                 var vs = new VertexShader(renderVert);
                 var fs = new FragmentShader(renderFrag);
                 var provider = new ShaderArray(vs, fs);
-                var map = new AttributeMap();
+                var map = new PropertyMap();
                 map.Add("position", SimpleCompute.strPosition);
                 render = new RenderMethodBuilder(provider, map);
             }

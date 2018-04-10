@@ -42,7 +42,7 @@ namespace DirectionalLight
             var vs = new VertexShader(directionalLightVert);
             var fs = new FragmentShader(directionalLightFrag);
             var provider = new ShaderArray(vs, fs);
-            var map = new AttributeMap();
+            var map = new PropertyMap();
             map.Add(vPosition, position);
             map.Add(vNormal, normal);
             var builder = new RenderMethodBuilder(provider, map);

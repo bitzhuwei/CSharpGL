@@ -14,7 +14,7 @@ namespace Transparency.Blending
             var vs = new VertexShader(vert);
             var fs = new FragmentShader(frag);
             var array = new ShaderArray(vs, fs);
-            var map = new AttributeMap();
+            var map = new PropertyMap();
             map.Add("inPosition", RectGlassModel.strPosition);
             var blend = new BlendFuncSwitch(BlendSrcFactor.SrcAlpha, BlendDestFactor.OneMinusSrcAlpha);
             var depthMask = new DepthMaskSwitch(false);

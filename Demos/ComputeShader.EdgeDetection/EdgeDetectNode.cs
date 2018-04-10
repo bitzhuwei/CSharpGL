@@ -31,14 +31,14 @@ namespace ComputeShader.EdgeDetection
             {
                 var cs = new CSharpGL.ComputeShader(computeShader);
                 var provider = new ShaderArray(cs);
-                var map = new AttributeMap();
+                var map = new PropertyMap();
                 compute = new RenderMethodBuilder(provider, map);
             }
             {
                 var vs = new VertexShader(vertexCode);
                 var fs = new FragmentShader(fragmentCode);
                 var provider = new ShaderArray(vs, fs);
-                var map = new AttributeMap();
+                var map = new PropertyMap();
                 map.Add(inPosition, RectangleModel.strPosition);
                 map.Add(inUV, RectangleModel.strUV);
                 render = new RenderMethodBuilder(provider, map);

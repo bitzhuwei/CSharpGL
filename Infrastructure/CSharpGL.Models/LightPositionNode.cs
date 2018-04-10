@@ -62,7 +62,7 @@ void main(void) {
             var vs = new VertexShader(vertexCode);
             var fs = new FragmentShader(fragmentCode);
             var provider = new ShaderArray(vs, fs);
-            var map = new AttributeMap();
+            var map = new PropertyMap();
             map.Add(inPosition, Sphere.strPosition);
             var builder = new RenderMethodBuilder(provider, map, new PolygonModeSwitch(PolygonMode.Line));
             var node = new LightPositionNode(model, Sphere.strPosition, builder);

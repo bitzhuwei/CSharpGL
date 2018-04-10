@@ -27,7 +27,7 @@ namespace c02d03_MultipleRenderMethods
                 var fs = new FragmentShader(singleColorFrag);
                 var array = new ShaderArray(vs, fs);
                 // which vertex buffer maps to which attribute in shader.
-                var map = new AttributeMap();
+                var map = new PropertyMap();
                 map.Add("inPosition", CubeModel.strPosition);
                 // build a render method.
                 var polygonModeSwitch = new PolygonModeSwitch(PolygonMode.Line);
@@ -40,7 +40,7 @@ namespace c02d03_MultipleRenderMethods
                 var fs = new FragmentShader(multiTextureFrag);
                 var array = new ShaderArray(vs, fs);
                 // which vertex buffer maps to which attribute in shader.
-                var map = new AttributeMap();
+                var map = new PropertyMap();
                 map.Add("inPosition", CubeModel.strPosition);
                 map.Add("inTexCoord", CubeModel.strTexCoord);
                 // build a render method.

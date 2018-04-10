@@ -13,7 +13,7 @@ namespace SimpleNoise.Sun
                 var vs = new VertexShader(renderVert);
                 var fs = new FragmentShader(renderFrag);
                 var provider = new ShaderArray(vs, fs);
-                var map = new AttributeMap();
+                var map = new PropertyMap();
                 map.Add("in_Position", Sphere.strPosition);
                 renderBuilder = new RenderMethodBuilder(provider, map);
             }

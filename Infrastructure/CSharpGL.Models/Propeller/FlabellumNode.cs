@@ -66,7 +66,7 @@ void main(void) {
             var vs = new VertexShader(vertexCode);
             var fs = new FragmentShader(fragmentCode);
             var provider = new ShaderArray(vs, fs);
-            var map = new AttributeMap();
+            var map = new PropertyMap();
             map.Add("inPosition", Flabellum.strPosition);
             map.Add("inColor", Flabellum.strColor);
             var model = new Flabellum();

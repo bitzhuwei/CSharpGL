@@ -28,7 +28,7 @@ namespace VolumeRendering.ISOSurface
                 var vs = new VertexShader(defaultVert);
                 var fs = new FragmentShader(defaultFrag);
                 var provider = new ShaderArray(vs, fs);
-                var map = new AttributeMap();
+                var map = new PropertyMap();
                 map.Add("vVertex", RaycastingModel.position);
                 defaultBuilder = new RenderMethodBuilder(provider, map, new BlendFuncSwitch(BlendSrcFactor.SrcAlpha, BlendDestFactor.OneMinusSrcAlpha));
             }
@@ -36,7 +36,7 @@ namespace VolumeRendering.ISOSurface
                 var vs = new VertexShader(isourfaceVert);
                 var fs = new FragmentShader(isosurfaceFrag);
                 var provider = new ShaderArray(vs, fs);
-                var map = new AttributeMap();
+                var map = new PropertyMap();
                 map.Add("vVertex", RaycastingModel.position);
                 isosurfaceBuilder = new RenderMethodBuilder(provider, map, new BlendFuncSwitch(BlendSrcFactor.SrcAlpha, BlendDestFactor.OneMinusSrcAlpha));
             }

@@ -14,7 +14,7 @@ namespace DeferredShading
         public static FullScreenNode Create(ITextureSource textureSource)
         {
             var model = new FullScreenModel();
-            var map = new AttributeMap();
+            var map = new PropertyMap();
             var vs = new VertexShader(secondPassVert);
             var fs = new FragmentShader(secondPassFrag);
             var array = new ShaderArray(vs, fs);

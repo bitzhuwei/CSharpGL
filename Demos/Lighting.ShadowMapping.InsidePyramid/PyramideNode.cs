@@ -16,7 +16,7 @@ namespace Lighting.ShadowMapping.InsidePyramid
             var vs = new VertexShader(regularVert);
             var fs = new FragmentShader(regularFrag);
             var array = new ShaderArray(vs, fs);
-            var map = new AttributeMap();
+            var map = new PropertyMap();
             map.Add("inPosition", PyramidModel.strPosition);
             var builder = new RenderMethodBuilder(array, map);
             var node = new PyramideNode(pyramideModel, builder);
