@@ -15,7 +15,7 @@ namespace Lighting.NoShadow
                 var vs = new VertexShader(ambientVert);
                 var fs = new FragmentShader(ambientFrag);
                 var array = new ShaderArray(vs, fs);
-                var map = new PropertyMap();
+                var map = new AttributeMap();
                 map.Add("inPosition", position);
                 ambientBuilder = new RenderMethodBuilder(array, map);
             }
@@ -23,7 +23,7 @@ namespace Lighting.NoShadow
                 var vs = new VertexShader(blinnPhongVert);
                 var fs = new FragmentShader(blinnPhongFrag);
                 var array = new ShaderArray(vs, fs);
-                var map = new PropertyMap();
+                var map = new AttributeMap();
                 map.Add("inPosition", position);
                 map.Add("inNormal", normal);
                 blinnPhongBuilder = new RenderMethodBuilder(array, map);

@@ -21,7 +21,7 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        protected PropertyMap map;
+        protected AttributeMap map;
 
         /// <summary>
         /// A smallest unit that can render somthing.
@@ -29,7 +29,7 @@ namespace CSharpGL
         /// <param name="programProvider"></param>
         /// <param name="map"></param>
         /// <param name="switches"></param>
-        public RenderMethodBuilder(IShaderProgramProvider programProvider, PropertyMap map, params GLSwitch[] switches)
+        public RenderMethodBuilder(IShaderProgramProvider programProvider, AttributeMap map, params GLSwitch[] switches)
         {
             this.programProvider = programProvider;
             this.map = map;
@@ -52,11 +52,11 @@ namespace CSharpGL
             var allNames = new string[attrCount];
             int blockCount = 0; // how many blocks an attribute is divided into?
             int index = 0;
-            foreach (PropertyMap.NamePair item in this.map)
+            foreach (AttributeMap.NamePair item in this.map)
             {
                 blockCount = 0;
                 allBlocks[index] = new List<VertexBuffer>();
-                foreach (var buffer in model.GetVertexProperty(item.NameInIBufferSource))
+                foreach (var buffer in model.GetVertexAttribute(item.NameInIBufferSource))
                 {
                     if (buffer == null) { throw new Exception(string.Format("[{0}] returns null buffer pointer!", model)); }
                     allBlocks[index].Add(buffer);

@@ -24,7 +24,7 @@ namespace CSharpGL
             var vs = new VertexShader(vertexCode);// this vertex shader has no vertex attributes.
             var fs = new FragmentShader(fragmentCode);
             var provider = new ShaderArray(vs, fs);
-            var map = new PropertyMap();
+            var map = new AttributeMap();
             map.Add(inPosition, GlyphsModel.position);
             map.Add(inSTR, GlyphsModel.STR);
             var blendState = new BlendFuncSwitch(BlendSrcFactor.SrcAlpha, BlendDestFactor.OneMinusSrcAlpha);
@@ -73,8 +73,8 @@ namespace CSharpGL
             base.DoInitialize();
 
             // make sure textModel only returns once.
-            this.positionBuffer = (from item in this.textModel.GetVertexProperty(GlyphsModel.position) select item).First();
-            this.strBuffer = (from item in this.textModel.GetVertexProperty(GlyphsModel.STR) select item).First();
+            this.positionBuffer = (from item in this.textModel.GetVertexAttribute(GlyphsModel.position) select item).First();
+            this.strBuffer = (from item in this.textModel.GetVertexAttribute(GlyphsModel.STR) select item).First();
             this.drawCmd = (from item in this.textModel.GetDrawCommand() select item).First() as DrawArraysCmd;
 
             GlyphServer server = this.glyphServer;

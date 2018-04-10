@@ -59,7 +59,7 @@ void main(void) {
             var vs = new VertexShader(vertexCode);
             var fs = new FragmentShader(fragmentCode);
             var provider = new ShaderArray(vs, fs);
-            var map = new PropertyMap();
+            var map = new AttributeMap();
             map.Add(inPosition, TexturedCubeModel.strPosition);
             map.Add(inUV, TexturedCubeModel.strUV);
             var builder = new RenderMethodBuilder(provider, map);

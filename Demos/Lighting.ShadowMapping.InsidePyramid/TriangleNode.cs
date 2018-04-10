@@ -16,7 +16,7 @@ namespace Lighting.ShadowMapping.InsidePyramid
             var vs = new VertexShader(regularVert);
             var fs = new FragmentShader(regularFrag);
             var array = new ShaderArray(vs, fs);
-            var map = new PropertyMap();
+            var map = new AttributeMap();
             map.Add("inPosition", TriangleModel.strPosition);
             map.Add("inColor", TriangleModel.strColor);
             var builder = new RenderMethodBuilder(array, map);

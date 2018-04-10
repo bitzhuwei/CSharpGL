@@ -66,7 +66,7 @@ void main(void) {
             var vs = new VertexShader(vertexCode);
             var fs = new FragmentShader(fragmentCode);
             var provider = new ShaderArray(vs, fs);
-            var map = new PropertyMap();
+            var map = new AttributeMap();
             map.Add("inPosition", Flabellum.strPosition);
             map.Add("inColor", Flabellum.strColor);
             var model = new Flabellum();
@@ -187,7 +187,7 @@ void main(void) {
 
         #region IBufferable 成员
 
-        public IEnumerable<VertexBuffer> GetVertexProperty(string bufferName)
+        public IEnumerable<VertexBuffer> GetVertexAttribute(string bufferName)
         {
             if (bufferName == strPosition)
             {

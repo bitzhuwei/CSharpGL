@@ -12,7 +12,7 @@ namespace DeferredShading
 
         #region IBufferSource 成员
 
-        public IEnumerable<VertexBuffer> GetVertexProperty(string bufferName)
+        public IEnumerable<VertexBuffer> GetVertexAttribute(string bufferName)
         {
             // no vertex attribute needed.
             throw new ArgumentException();

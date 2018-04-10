@@ -65,7 +65,7 @@ namespace VolumeRendering.Raycast
                 boundingBox[i] = boundingBox[i] - 0.5f;
             }
         }
-        public IEnumerable<VertexBuffer> GetVertexProperty(string bufferName)
+        public IEnumerable<VertexBuffer> GetVertexAttribute(string bufferName)
         {
             if (bufferName == strposition)
             {

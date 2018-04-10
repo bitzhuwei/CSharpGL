@@ -33,7 +33,7 @@ namespace c02d00_2DTexture
 
         #region IBufferable 成员
 
-        public IEnumerable<VertexBuffer> GetVertexProperty(string bufferName)
+        public IEnumerable<VertexBuffer> GetVertexAttribute(string bufferName)
         {
             if (bufferName == strPosition)
             {

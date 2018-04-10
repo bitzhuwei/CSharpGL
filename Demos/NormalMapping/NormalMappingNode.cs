@@ -15,7 +15,7 @@ namespace NormalMapping
             var vs = new VertexShader(vertexCode);
             var fs = new FragmentShader(fragmentCode);
             var array = new ShaderArray(vs, fs);
-            var map = new PropertyMap();
+            var map = new AttributeMap();
             map.Add("Position", NormalMappingModel.strPosition);
             map.Add("TexCoord", NormalMappingModel.strTexCoord);
             map.Add("Normal", NormalMappingModel.strNormal);

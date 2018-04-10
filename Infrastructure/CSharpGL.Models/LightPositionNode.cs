@@ -62,7 +62,7 @@ void main(void) {
             var vs = new VertexShader(vertexCode);
             var fs = new FragmentShader(fragmentCode);
             var provider = new ShaderArray(vs, fs);
-            var map = new PropertyMap();
+            var map = new AttributeMap();
             map.Add(inPosition, Sphere.strPosition);
             var builder = new RenderMethodBuilder(provider, map, new PolygonModeSwitch(PolygonMode.Line));
             var node = new LightPositionNode(model, Sphere.strPosition, builder);
@@ -163,7 +163,7 @@ void main(void) {
 
             #region IBufferable 成员
 
-            public IEnumerable<VertexBuffer> GetVertexProperty(string bufferName)
+            public IEnumerable<VertexBuffer> GetVertexAttribute(string bufferName)
             {
                 if (bufferName == strPosition)
                 {

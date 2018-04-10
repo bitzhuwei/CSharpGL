@@ -43,7 +43,7 @@ namespace SpotLight
             var vs = new VertexShader(spotLightVert);
             var fs = new FragmentShader(spotLightFrag);
             var provider = new ShaderArray(vs, fs);
-            var map = new PropertyMap();
+            var map = new AttributeMap();
             map.Add(vPosition, position);
             map.Add(vNormal, normal);
             var builder = new RenderMethodBuilder(provider, map);

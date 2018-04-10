@@ -18,14 +18,14 @@ namespace SimpleParticleSystem
                 var vs = new VertexShader(vert);
                 var fs = new FragmentShader(frag);
                 var provider = new ShaderArray(vs, fs);
-                var map = new PropertyMap();
+                var map = new AttributeMap();
                 defaultBuilder = new RenderMethodBuilder(provider, map, blend, depthTest);
             }
             {
                 var vs = new VertexShader(vert);
                 var fs = new FragmentShader(texturedFrag);
                 var provider = new ShaderArray(vs, fs);
-                var map = new PropertyMap();
+                var map = new AttributeMap();
                 textureBuilder = new RenderMethodBuilder(provider, map, blend, depthTest);
             }
 

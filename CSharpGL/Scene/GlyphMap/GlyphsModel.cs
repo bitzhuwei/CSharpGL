@@ -39,7 +39,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="bufferName"></param>
         /// <returns></returns>
-        public IEnumerable<VertexBuffer> GetVertexProperty(string bufferName)
+        public IEnumerable<VertexBuffer> GetVertexAttribute(string bufferName)
         {
             if (bufferName == position)
             {

@@ -21,7 +21,7 @@ namespace BasicTessellationShader
             var te = new TessEvaluationShader(renderTese);
             var fs = new FragmentShader(renderFrag);
             var provider = new ShaderArray(vs, tc, te, fs);
-            var map = new PropertyMap();
+            var map = new AttributeMap();
             map.Add("Position_VS_in", ObjVNF.strPosition);
             map.Add("TexCoord_VS_in", ObjVNF.strTexCoord);
             map.Add("Normal_VS_in", ObjVNF.strNormal);

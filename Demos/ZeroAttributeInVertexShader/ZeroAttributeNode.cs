@@ -13,7 +13,7 @@ namespace ZeroAttributeInVertexShader
             var vs = new VertexShader(vertexShader);// not attribute in vertex shader.
             var fs = new FragmentShader(fragmentShader);
             var provider = new ShaderArray(vs, fs);
-            var map = new PropertyMap();// no items in this map.
+            var map = new AttributeMap();// no items in this map.
             var builder = new RenderMethodBuilder(provider, map, new PointSpriteSwitch());
             var model = new ZeroAttributeModel(DrawMode.TriangleStrip, 0, 4);
             var node = new ZeroAttributeNode(model, builder);

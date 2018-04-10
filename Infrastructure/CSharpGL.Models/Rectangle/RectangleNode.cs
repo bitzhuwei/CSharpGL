@@ -85,7 +85,7 @@ void main(void) {
             var vs = new VertexShader(vertexCode);
             var fs = new FragmentShader(fragmentCode);
             var provider = new ShaderArray(vs, fs);
-            var map = new PropertyMap();
+            var map = new AttributeMap();
             map.Add(inPosition, RectangleModel.strPosition);
             map.Add(inUV, RectangleModel.strUV);
             var builder = new RenderMethodBuilder(provider, map);
@@ -165,7 +165,7 @@ void main(void) {
 
         #region IBufferable 成员
 
-        public IEnumerable<VertexBuffer> GetVertexProperty(string bufferName)
+        public IEnumerable<VertexBuffer> GetVertexAttribute(string bufferName)
         {
             if (bufferName == strPosition)
             {

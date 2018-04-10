@@ -57,7 +57,7 @@ namespace c02d04_CubeMapTexture
                 var vs = new VertexShader(Shaders.initVert);
                 var fs = new FragmentShader(Shaders.initFrag);
                 var provider = new ShaderArray(vs, fs);
-                var map = new PropertyMap();
+                var map = new AttributeMap();
                 map.Add("vVertex", positionNameInIBufferSource);
                 initBuilder = new RenderMethodBuilder(provider, map);
             }
@@ -65,7 +65,7 @@ namespace c02d04_CubeMapTexture
                 var vs = new VertexShader(Shaders.peelVert);// reuse blend vertex shader.
                 var fs = new FragmentShader(Shaders.peelFrag);
                 var provider = new ShaderArray(vs, fs);
-                var map = new PropertyMap();
+                var map = new AttributeMap();
                 map.Add("vVertex", positionNameInIBufferSource);
                 peelBuilder = new RenderMethodBuilder(provider, map);
             }

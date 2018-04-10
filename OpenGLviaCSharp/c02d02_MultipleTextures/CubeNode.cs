@@ -17,7 +17,7 @@ namespace c02d02_MultipleTextures
             var fs = new FragmentShader(fragmnetCode);
             var array = new ShaderArray(vs, fs);
             // which vertex buffer maps to which attribute in shader.
-            var map = new PropertyMap();
+            var map = new AttributeMap();
             map.Add("inPosition", CubeModel.strPosition);
             map.Add("inTexCoord", CubeModel.strTexCoord);
             // build a render method.

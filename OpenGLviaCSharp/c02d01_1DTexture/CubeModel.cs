@@ -54,7 +54,7 @@ namespace c02d01_1DTexture
 
         #region IBufferSource 成员
 
-        public IEnumerable<VertexBuffer> GetVertexProperty(string bufferName)
+        public IEnumerable<VertexBuffer> GetVertexAttribute(string bufferName)
         {
             if (strPosition == bufferName) // requiring position buffer.
             {

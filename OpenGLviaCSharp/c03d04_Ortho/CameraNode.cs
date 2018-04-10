@@ -17,7 +17,7 @@ namespace c03d04_Ortho
             var fs = new FragmentShader(fragmnetCode);
             var array = new ShaderArray(vs, fs);
             // which vertex buffer maps to which attribute in shader.
-            var map = new PropertyMap();
+            var map = new AttributeMap();
             map.Add("inPosition", CameraModel.strPosition);
             // build a render method.
             var builder = new RenderMethodBuilder(array, map);

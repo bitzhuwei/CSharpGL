@@ -53,7 +53,7 @@ namespace ZeroAttributeInVertexShader
         /// <param name="bufferName"></param>
         /// <param name="varNameInShader"></param>
         /// <returns></returns>
-        public IEnumerable<VertexBuffer> GetVertexProperty(string bufferName)
+        public IEnumerable<VertexBuffer> GetVertexAttribute(string bufferName)
         {
             throw new Exception("No vertex attribute buffer for this model!");
         }

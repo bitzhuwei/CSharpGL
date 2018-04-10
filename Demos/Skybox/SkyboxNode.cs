@@ -52,7 +52,7 @@ void main()
             var vs = new VertexShader(vertexCode);
             var fs = new FragmentShader(fragmentCode);
             var provider = new ShaderArray(vs, fs);
-            var map = new PropertyMap();
+            var map = new AttributeMap();
             map.Add(inPosition, Skybox.strPosition);
             var builder = new RenderMethodBuilder(provider, map, new CullFaceSwitch(CullFaceMode.Front));
             var model = new Skybox();
@@ -180,7 +180,7 @@ void main()
 
             #region IBufferable 成员
 
-            public IEnumerable<VertexBuffer> GetVertexProperty(string bufferName)
+            public IEnumerable<VertexBuffer> GetVertexAttribute(string bufferName)
             {
                 if (bufferName == strPosition)
                 {

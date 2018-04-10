@@ -15,7 +15,7 @@ namespace ImageProcessing.GrayFilter
             var vs = new VertexShader(renderVert);
             var fs = new FragmentShader(renderFrag);
             var provider = new ShaderArray(vs, fs);
-            var map = new PropertyMap();
+            var map = new AttributeMap();
             map.Add("a_vertex", GrayFilterModel.position);
             map.Add("a_texCoord", GrayFilterModel.texCoord);
             var builder = new RenderMethodBuilder(provider, map);
@@ -117,7 +117,7 @@ namespace ImageProcessing.GrayFilter
 
         #region IBufferSource 成员
 
-        public IEnumerable<VertexBuffer> GetVertexProperty(string bufferName)
+        public IEnumerable<VertexBuffer> GetVertexAttribute(string bufferName)
         {
             if (bufferName == position)
             {

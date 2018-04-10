@@ -42,7 +42,7 @@ namespace PointLight
             var vs = new VertexShader(pointLightVert);
             var fs = new FragmentShader(pointLightFrag);
             var provider = new ShaderArray(vs, fs);
-            var map = new PropertyMap();
+            var map = new AttributeMap();
             map.Add(vPosition, position);
             map.Add(vNormal, normal);
             var builder = new RenderMethodBuilder(provider, map);

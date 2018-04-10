@@ -38,7 +38,7 @@ namespace Normal
                 var vs = new VertexShader(vertexShader);
                 var fs = new FragmentShader(fragmentShader);
                 var provider = new ShaderArray(vs, fs);
-                var map = new PropertyMap();
+                var map = new AttributeMap();
                 map.Add(vPosition, position);
                 map.Add(vNormal, normal);
                 builders[0] = new RenderMethodBuilder(provider, map);
@@ -49,7 +49,7 @@ namespace Normal
                 var gs = new GeometryShader(normalGeometry);
                 var fs = new FragmentShader(normalFragment);
                 var provider = new ShaderArray(vs, gs, fs);
-                var map = new PropertyMap();
+                var map = new AttributeMap();
                 map.Add(vPosition, position);
                 map.Add(vNormal, normal);
                 builders[1] = new RenderMethodBuilder(provider, map);

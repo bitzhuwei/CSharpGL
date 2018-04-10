@@ -15,7 +15,7 @@ namespace CSharpGL
 
         #region IBufferSource 成员
 
-        public IEnumerable<VertexBuffer> GetVertexProperty(string bufferName)
+        public IEnumerable<VertexBuffer> GetVertexAttribute(string bufferName)
         {
             throw new Exception("vertex buffer is not needed.");
         }

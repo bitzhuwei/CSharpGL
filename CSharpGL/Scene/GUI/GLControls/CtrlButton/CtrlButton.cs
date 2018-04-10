@@ -20,7 +20,7 @@ namespace CSharpGL
             var vs = new VertexShader(vert);
             var fs = new FragmentShader(frag);
             var codes = new ShaderArray(vs, fs);
-            var map = new PropertyMap();
+            var map = new AttributeMap();
             map.Add(inPosition, CtrlButtonModel.position);
             map.Add(inColor, CtrlButtonModel.color);
             var methodBuilder = new RenderMethodBuilder(codes, map, new PolygonModeSwitch(PolygonMode.Fill), new LineWidthSwitch(2));
