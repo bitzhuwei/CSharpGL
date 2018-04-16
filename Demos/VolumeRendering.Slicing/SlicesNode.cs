@@ -58,7 +58,7 @@ namespace VolumeRendering.Slicing
             base.DoInitialize();
 
             // make sure model only returns once.
-            this.vVertexBuffer = (from item in this.RenderUnit.Model.GetVertexAttributeBuffer(SlicesModel.position) select item).First();
+            this.vVertexBuffer = (from item in this.RenderUnit.Model.GetVertexAttribute(SlicesModel.position) select item).First();
 
             var bmp = new Bitmap(1, 1);
             var bmpG = Graphics.FromImage(bmp);

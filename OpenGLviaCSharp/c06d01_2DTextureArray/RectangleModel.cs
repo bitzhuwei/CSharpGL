@@ -26,7 +26,7 @@ namespace c06d01_2DTextureArray
 
         #region IBufferSource 成员
 
-        public IEnumerable<VertexBuffer> GetVertexAttributeBuffer(string bufferName)
+        public IEnumerable<VertexBuffer> GetVertexAttribute(string bufferName)
         {
             if (strPositoin == bufferName)
             {

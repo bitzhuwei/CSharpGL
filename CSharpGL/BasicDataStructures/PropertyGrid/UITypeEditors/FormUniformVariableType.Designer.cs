@@ -32,7 +32,7 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.lstType = new System.Windows.Forms.ListBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtVarNameInShader = new System.Windows.Forms.TextBox();
+            this.txtUniformVariableName = new System.Windows.Forms.TextBox();
             this.btnRefresh = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -61,7 +61,7 @@
             // 
             // lstType
             // 
-            this.lstType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.lstType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Left)));
             this.lstType.Font = new System.Drawing.Font("宋体", 14F);
             this.lstType.FormattingEnabled = true;
@@ -79,16 +79,16 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(215, 15);
             this.label2.TabIndex = 5;
-            this.label2.Text = "Var Name in Vertex Shader:";
+            this.label2.Text = "uniform variable name:";
             // 
             // txtVarNameInShader
             // 
-            this.txtVarNameInShader.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtUniformVariableName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtVarNameInShader.Location = new System.Drawing.Point(12, 406);
-            this.txtVarNameInShader.Name = "txtVarNameInShader";
-            this.txtVarNameInShader.Size = new System.Drawing.Size(418, 25);
-            this.txtVarNameInShader.TabIndex = 7;
+            this.txtUniformVariableName.Location = new System.Drawing.Point(12, 406);
+            this.txtUniformVariableName.Name = "txtUniformVariableName";
+            this.txtUniformVariableName.Size = new System.Drawing.Size(418, 25);
+            this.txtUniformVariableName.TabIndex = 7;
             // 
             // btnRefresh
             // 
@@ -109,7 +109,7 @@
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(442, 472);
             this.Controls.Add(this.btnRefresh);
-            this.Controls.Add(this.txtVarNameInShader);
+            this.Controls.Add(this.txtUniformVariableName);
             this.Controls.Add(this.lstType);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnOK);
@@ -128,7 +128,7 @@
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.ListBox lstType;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtVarNameInShader;
+        private System.Windows.Forms.TextBox txtUniformVariableName;
         private System.Windows.Forms.Button btnRefresh;
     }
 }

@@ -49,7 +49,7 @@ namespace CSharpGL
             // init vertex attribute buffer objects.
             var positionBuffers = new List<VertexBuffer>(); // position attribute is divided into blocks.
             // we only care about the position attribute.
-            foreach (var buffer in model.GetVertexAttributeBuffer(this.positionNameInIBufferSource))
+            foreach (var buffer in model.GetVertexAttribute(this.positionNameInIBufferSource))
             {
                 if (buffer == null) { throw new Exception(string.Format("[{0}] returns null buffer pointer!", model)); }
                 positionBuffers.Add(buffer);

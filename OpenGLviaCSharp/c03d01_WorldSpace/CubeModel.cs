@@ -54,7 +54,7 @@ namespace c03d01_WorldSpace
 
         #region IBufferSource 成员
 
-        public IEnumerable<VertexBuffer> GetVertexAttributeBuffer(string bufferName)
+        public IEnumerable<VertexBuffer> GetVertexAttribute(string bufferName)
         {
             if (strPosition == bufferName) // requiring position buffer.
             {

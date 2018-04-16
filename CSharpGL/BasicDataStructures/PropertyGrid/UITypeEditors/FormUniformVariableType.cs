@@ -62,14 +62,14 @@ namespace CSharpGL
                 MessageBox.Show("Please select a type first!");
                 return;
             }
-            if (string.IsNullOrEmpty(this.txtVarNameInShader.Text.Trim()))
+            if (string.IsNullOrEmpty(this.txtUniformVariableName.Text.Trim()))
             {
                 MessageBox.Show("Please type in the variable name in Vertex Shader!");
                 return;
             }
 
             this.SelectedType = this.lstType.SelectedItem as Type;
-            this.VarNameInShader = this.txtVarNameInShader.Text;
+            this.VarNameInShader = this.txtUniformVariableName.Text;
 
             this.DialogResult = System.Windows.Forms.DialogResult.OK;
         }

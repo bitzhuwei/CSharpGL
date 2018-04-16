@@ -50,7 +50,7 @@ namespace CSharpGL
 
         private IDrawCommand drawCmd;
 
-        public IEnumerable<VertexBuffer> GetVertexAttributeBuffer(string bufferName)
+        public IEnumerable<VertexBuffer> GetVertexAttribute(string bufferName)
         {
             if (bufferName == strPosition)
             {

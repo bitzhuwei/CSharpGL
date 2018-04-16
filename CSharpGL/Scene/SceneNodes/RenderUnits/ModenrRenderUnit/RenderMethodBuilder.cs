@@ -56,7 +56,7 @@ namespace CSharpGL
             {
                 blockCount = 0;
                 allBlocks[index] = new List<VertexBuffer>();
-                foreach (var buffer in model.GetVertexAttributeBuffer(item.NameInIBufferSource))
+                foreach (var buffer in model.GetVertexAttribute(item.NameInIBufferSource))
                 {
                     if (buffer == null) { throw new Exception(string.Format("[{0}] returns null buffer pointer!", model)); }
                     allBlocks[index].Add(buffer);

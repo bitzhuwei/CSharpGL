@@ -19,7 +19,7 @@ namespace ComputeShader.HelloComputeShader
         private VertexBuffer positionBuffer = null;
         private IDrawCommand drawCmd;
 
-        public IEnumerable<VertexBuffer> GetVertexAttributeBuffer(string bufferName)
+        public IEnumerable<VertexBuffer> GetVertexAttribute(string bufferName)
         {
             if (bufferName == strPosition)
             {

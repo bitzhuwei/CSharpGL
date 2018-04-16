@@ -73,8 +73,8 @@ namespace CSharpGL
             base.DoInitialize();
 
             // make sure textModel only returns once.
-            this.positionBuffer = (from item in this.textModel.GetVertexAttributeBuffer(GlyphsModel.position) select item).First();
-            this.strBuffer = (from item in this.textModel.GetVertexAttributeBuffer(GlyphsModel.STR) select item).First();
+            this.positionBuffer = (from item in this.textModel.GetVertexAttribute(GlyphsModel.position) select item).First();
+            this.strBuffer = (from item in this.textModel.GetVertexAttribute(GlyphsModel.STR) select item).First();
             this.drawCmd = (from item in this.textModel.GetDrawCommand() select item).First() as DrawArraysCmd;
 
             GlyphServer server = this.glyphServer;
