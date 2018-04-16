@@ -84,7 +84,7 @@ namespace c07d00_ShadowMapping
         private SceneNodeBase GetRootNode()
         {
             var group = new GroupNode();
-            var filenames = new string[] { "floor.obj_", "bunny.obj_", };
+            var filenames = new string[] { "floor.obj_", "dragon.obj_", };
             var colors = new Color[] { Color.Green, Color.White, };
             for (int i = 0; i < filenames.Length; i++)
             {
