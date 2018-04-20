@@ -15,6 +15,8 @@ namespace c07d00_ShadowMapping
         private Scene scene;
         private ActionList actionList;
         private List<LightBase> lights;
+        private ShadowMappingAction shadowMappingAction;
+        private DepthRectNode rect;
 
         public FormMain(List<LightBase> lights, string text)
         {
@@ -26,6 +28,15 @@ namespace c07d00_ShadowMapping
             this.Load += FormMain_Load;
             this.winGLCanvas1.OpenGLDraw += winGLCanvas1_OpenGLDraw;
             this.winGLCanvas1.Resize += winGLCanvas1_Resize;
+            this.winGLCanvas1.KeyPress += winGLCanvas1_KeyPress;
+        }
+
+        void winGLCanvas1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 's')
+            {
+                this.rect.TextureSource = this.shadowMappingAction.LightEquipment;
+            }
         }
 
         private void FormMain_Load(object sender, EventArgs e)
@@ -51,7 +62,9 @@ namespace c07d00_ShadowMapping
 
             var list = new ActionList();
             list.Add(new TransformAction(scene.RootNode));
-            list.Add(new ShadowMappingAction(scene));
+            var shadowMappingAction = new ShadowMappingAction(scene);
+            list.Add(shadowMappingAction);
+            this.shadowMappingAction = shadowMappingAction;
             list.Add(new RenderAction(scene));
             this.actionList = list;
 
@@ -106,6 +119,13 @@ namespace c07d00_ShadowMapping
                     node.Name = filename;
                     group.Children.Add(node);
                 }
+            }
+            {
+                var rect = DepthRectNode.Create();
+                rect.Scale = new vec3(1, 1, 1) * 50;
+                rect.WorldPosition = new vec3(1, 1, 1) * 27;
+                group.Children.Add(rect);
+                this.rect = rect;
             }
 
             return group;

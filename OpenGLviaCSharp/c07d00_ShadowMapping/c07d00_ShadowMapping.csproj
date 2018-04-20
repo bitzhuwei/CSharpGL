@@ -54,6 +54,7 @@
       </SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="DepthRectNode.cs" />
     <Compile Include="ShadowMappingNode.cs" />
     <Compile Include="ShadowMappingNode.shaders.cs" />
     <EmbeddedResource Include="FormMain.resx">
