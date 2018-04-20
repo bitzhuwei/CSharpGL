@@ -16,10 +16,10 @@ namespace CSharpGL
         private readonly BlendFuncSwitch blend = new BlendFuncSwitch(BlendSrcFactor.One, BlendDestFactor.One);
         private LightEquipment lightEquipment = new LightEquipment();
 
-        //public LightEquipment LightEquipment
-        //{
-        //    get { return lightEquipment; }
-        //}
+        public LightEquipment LightEquipment
+        {
+            get { return lightEquipment; }
+        }
 
         private Scene scene;
 

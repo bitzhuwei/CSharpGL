@@ -58,7 +58,7 @@ void main(void) {
         /// <returns></returns>
         public static LightPositionNode Create(CSharpGL.LightBase light, float initAngle = 0)
         {
-            var model = new Sphere(0.3f, 2, 3);
+            var model = new Sphere(1f, 10, 15);
             var vs = new VertexShader(vertexCode);
             var fs = new FragmentShader(fragmentCode);
             var provider = new ShaderArray(vs, fs);
@@ -126,6 +126,19 @@ void main(void) {
                 }
 
                 this.WorldPosition = position;
+            }
+            else
+            {
+                vec3 position = this.WorldPosition;
+                this.light.Position = position;
+                if (this.light is DirectionalLight)
+                {
+                    (this.light as DirectionalLight).Direction = position;
+                }
+                else if (this.light is SpotLight)
+                {
+                    //(this.light as SpotLight).Target = position;
+                }
             }
 
             ICamera camera = arg.Camera;
