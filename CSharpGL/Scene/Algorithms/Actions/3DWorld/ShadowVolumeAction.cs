@@ -78,7 +78,10 @@ namespace CSharpGL
                 {
                     this.depthMask.On(); // Disable writing to depth buffer.
                     if (!displayShadowVolume) { this.colorMask.On(); } // Disable writing to color buffer.
-                    else { this.polygonMode.On(); this.lineSipple.On(); }
+                    else
+                    {
+                        //this.polygonMode.On(); this.lineSipple.On(); 
+                    }
                     this.cullFace.On();  // Disable culling face.
                     GL.Instance.StencilFunc(GL.GL_ALWAYS, 0, 0xFF); // always pass stencil test.
                     // If depth test fails for back face, increase value in stencil buffer.
@@ -92,7 +95,10 @@ namespace CSharpGL
 
                     this.cullFace.Off();
                     if (!displayShadowVolume) { this.colorMask.Off(); }
-                    else { this.polygonMode.Off(); this.lineSipple.Off(); }
+                    else
+                    {
+                        //this.polygonMode.Off(); this.lineSipple.Off();
+                    }
                     this.depthMask.Off();
                 }
                 // 
