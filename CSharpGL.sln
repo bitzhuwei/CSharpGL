@@ -137,6 +137,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "c07d00_ShadowMapping", "Ope
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "c07d01_ShadowVolume.Outline", "OpenGLviaCSharp\c07d01_ShadowVolume.Outline\c07d01_ShadowVolume.Outline.csproj", "{372E8B22-7314-4911-8C04-29CBFF79A4BF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MergePictures", "Infrastructure\MergePictures\MergePictures.csproj", "{19DEE214-B9C3-4EB0-8A1E-21E7DB21B018}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -399,6 +401,10 @@ Global
 		{372E8B22-7314-4911-8C04-29CBFF79A4BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{372E8B22-7314-4911-8C04-29CBFF79A4BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{372E8B22-7314-4911-8C04-29CBFF79A4BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19DEE214-B9C3-4EB0-8A1E-21E7DB21B018}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19DEE214-B9C3-4EB0-8A1E-21E7DB21B018}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19DEE214-B9C3-4EB0-8A1E-21E7DB21B018}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19DEE214-B9C3-4EB0-8A1E-21E7DB21B018}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -466,5 +472,6 @@ Global
 		{5113F6D6-60AF-42CF-BBB5-94994BABCF68} = {7CF86F60-2BAC-4F60-AF1C-869737385E1B}
 		{0BD063F0-5C30-49B7-B215-46C51151EB2C} = {7CF86F60-2BAC-4F60-AF1C-869737385E1B}
 		{372E8B22-7314-4911-8C04-29CBFF79A4BF} = {7CF86F60-2BAC-4F60-AF1C-869737385E1B}
+		{19DEE214-B9C3-4EB0-8A1E-21E7DB21B018} = {E800BE67-00FE-4C05-9F0F-640DC7134E7D}
 	EndGlobalSection
 EndGlobal
