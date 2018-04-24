@@ -55,27 +55,42 @@ uniform mat4 gWorld;
 
 float EPSILON = 0.0001;
 
+out GS_FS {
+    vec3 position;
+    vec3 normal;
+} vertexOut;
+
 // Emit a quad using a triangle strip
 void EmitQuad(vec3 StartVertex, vec3 EndVertex)
 {    
-    // Vertex #1: the starting vertex (just a tiny bit below the original edge)
     vec3 LightDir;
     if (farAway) { LightDir = -gLightPos; }
     else { LightDir = normalize(StartVertex - gLightPos); }
+
+    // Vertex #1: the starting vertex (just a tiny bit below the original edge)
+    vertexOut.position = StartVertex;
+    vertexOut.normal = -cross((EndVertex - StartVertex), LightDir);
     gl_Position = gProjectionView * vec4((StartVertex + LightDir * EPSILON), 1.0);
     EmitVertex();
  
     // Vertex #2: the starting vertex projected to infinity
+    vertexOut.position = StartVertex;
+    vertexOut.normal = -cross((EndVertex - StartVertex), LightDir);
     gl_Position = gProjectionView * vec4(LightDir, 0.0);
     EmitVertex();
     
-    // Vertex #3: the ending vertex (just a tiny bit below the original edge)
     if (farAway) { LightDir = -gLightPos; }
     else { LightDir = normalize(EndVertex - gLightPos); }
+
+    // Vertex #3: the ending vertex (just a tiny bit below the original edge)
+    vertexOut.position = EndVertex;
+    vertexOut.normal = -cross((EndVertex - StartVertex), LightDir);
     gl_Position = gProjectionView * vec4((EndVertex + LightDir * EPSILON), 1.0);
     EmitVertex();
     
     // Vertex #4: the ending vertex projected to infinity
+    vertexOut.position = EndVertex;
+    vertexOut.normal = -cross((EndVertex - StartVertex), LightDir);
     gl_Position = gProjectionView * vec4(LightDir , 0.0);
     EmitVertex();
 
@@ -174,11 +189,68 @@ void main()
 ";
         private const string extrudeFrag = @"#version 330
 
-out vec4 FragColor;
+struct Light {
+    vec3 position;   // for directional light, meaningless.
+    vec3 diffuse;
+    vec3 specular;
+    float constant;  // Attenuation.constant.
+    float linear;    // Attenuation.linear.
+    float quadratic; // Attenuation.quadratic.
+	// direction from outer space to light source.
+	vec3 direction;  // for point light, meaningless.
+	// Note: We assume that spot light's angle ranges from 0 to 180 degrees.
+    // cutOff = Cos(angle). angle ranges in [0, 90].
+	float cutOff;    // for spot light, cutOff. for others, meaningless.
+};
 
-void main()
-{
-    FragColor = vec4(1, 1, 1, 1);
+struct Material {
+    vec3 diffuse;
+    vec3 specular;
+    float shiness;
+};
+
+uniform Light light;
+uniform int lightUpRoutine; // 0: point light; 1: directional light; 2: spot light.
+
+uniform Material material;
+
+uniform vec3 eyePos;
+
+in GS_FS {
+    vec3 position;
+    vec3 normal;
+} fs_in;
+
+void LightUp(vec3 lightDir, vec3 normal, vec3 ePos, vec3 vPos, float shiness, out float diffuse, out float specular) {
+    // Diffuse factor
+    diffuse = max(dot(lightDir, normal), 0);
+
+    // Specular factor
+    vec3 eyeDir = normalize(ePos - vPos);
+    specular = 0;
+    if (diffuse > 0) {
+        vec3 halfwayDir = normalize(lightDir + eyeDir);
+        specular = pow(max(dot(normal, halfwayDir), 0.0), shiness);
+    }
+}
+
+void DirectionalLightUp(Light light, out float diffuse, out float specular) {
+    vec3 lightDir = normalize(light.direction);
+    vec3 normal = normalize(fs_in.normal); 
+    LightUp(lightDir, normal, eyePos, fs_in.position, material.shiness, diffuse, specular);
+}
+
+out vec4 fragColor;
+
+void main() {
+    if (int(gl_FragCoord.x - 0.5) % 2 == 1 && int(gl_FragCoord.y - 0.5) % 2 != 1) discard;
+    if (int(gl_FragCoord.x - 0.5) % 2 != 1 && int(gl_FragCoord.y - 0.5) % 2 == 1) discard;
+
+    float diffuse = 0;
+    float specular = 0;
+    DirectionalLightUp(light, diffuse, specular);
+
+	fragColor = vec4(diffuse * light.diffuse * material.diffuse + specular * light.specular * material.specular, 1.0);
 }
 ";
 

@@ -78,6 +78,12 @@ namespace Lighting.ShadowVolume
         private TwoFlags enableExtrude = TwoFlags.BeforeChildren | TwoFlags.Children;
         public TwoFlags EnableExtrude { get { return this.enableExtrude; } set { this.enableExtrude = value; } }
 
+        private DirectionalLight directionalLight = new DirectionalLight(new vec3(1, 1, 1));
+
+        public DirectionalLight DirectionalLight
+        {
+            get { return directionalLight; }
+        }
         private PolygonOffsetSwitch fillFarOffsetState = new PolygonOffsetFillSwitch(pullNear: false);
         private PolygonOffsetSwitch fillNearOffsetState = new PolygonOffsetFillSwitch(pullNear: true);
         public void ExtrudeShadow(ShadowVolumeExtrudeEventArgs arg)
@@ -102,6 +108,13 @@ namespace Lighting.ShadowVolume
                 program.SetUniform("gLightPos", arg.Light.Position);
                 program.SetUniform("farAway", false);
             }
+
+            // light info.
+            directionalLight.SetBlinnPhongUniforms(program);
+            // material.
+            program.SetUniform("material.diffuse", new vec3(1, 0, 0));//this.Color);
+            program.SetUniform("material.specular", new vec3(1, 0, 0));//this.Color);
+            program.SetUniform("material.shiness", this.Shiness);
 
             fillFarOffsetState.On();
             method.Render();
