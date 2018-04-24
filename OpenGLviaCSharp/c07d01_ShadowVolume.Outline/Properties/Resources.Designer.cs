@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace c07d01_ShadowMappingSurface.Properties
+namespace c07d01_ShadowVolume.Outline.Properties
 {
 
 
@@ -44,7 +44,7 @@ namespace c07d01_ShadowMappingSurface.Properties
             {
                 if ((resourceMan == null))
                 {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("c07d01_ShadowMappingSurface.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("c07d01_ShadowVolume.Outline.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A4CF225E-5FB4-4946-BDB1-84CB860E4088}</ProjectGuid>
+    <ProjectGuid>{372E8B22-7314-4911-8C04-29CBFF79A4BF}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>c07d01_ShadowMappingSurface</RootNamespace>
-    <AssemblyName>c07d01_ShadowMappingSurface</AssemblyName>
+    <RootNamespace>c07d01_ShadowVolume.Outline</RootNamespace>
+    <AssemblyName>c07d01_ShadowVolume.Outline</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -54,8 +54,11 @@
       </SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ShadowMappingNode.cs" />
-    <Compile Include="ShadowMappingNode.shaders.cs" />
+    <Compile Include="ShadowVolumeNode.cs">
+      <SubType>
+      </SubType>
+    </Compile>
+    <Compile Include="ShadowVolumeNode.shaders.cs" />
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
