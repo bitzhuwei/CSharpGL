@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace c07d01_ShadowMappingSurface
+namespace Lighting.ShadowVolume
 {
     static class Program
     {
@@ -16,11 +16,10 @@ namespace c07d01_ShadowMappingSurface
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new FormMain(GetPointLights(), "Lighting - Shadow Mapping - Point Lights - CSharpGL"));
-            //Application.Run(new FormMain(GetDirctionalLights(), "Lighting - Shadow Mapping - Directional Lights - CSharpGL"));
-            Application.Run(new FormMain(GetSpotLights(), "Lighting - Shadow Mapping - Spot Lights - CSharpGL"));
+            //Application.Run(new FormMain(GetPointLights(), "Lighting - Shadow Volume - Point Lights - CSharpGL"));
+            //Application.Run(new FormMain(GetDirctionalLights(), "Lighting - Shadow Volume - Directional Lights - CSharpGL"));
+            Application.Run(new FormMain(GetSpotLights(), "Lighting - Shadow Volume - Spot Lights - CSharpGL"));
         }
-
 
         private static List<LightBase> GetSpotLights()
         {

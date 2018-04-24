@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace c07d01_ShadowMappingSurface
+namespace Lighting.ShadowVolume
 {
     public partial class FormMain : Form
     {
@@ -51,7 +51,9 @@ namespace c07d01_ShadowMappingSurface
 
             var list = new ActionList();
             list.Add(new TransformAction(scene.RootNode));
-            list.Add(new ShadowMappingAction(scene));
+            var action = (new BlinnPhongAction(scene));
+            list.Add(action);
+            (new FormProperyGrid(action)).Show();
             list.Add(new RenderAction(scene));
             this.actionList = list;
 
@@ -84,8 +86,8 @@ namespace c07d01_ShadowMappingSurface
         private SceneNodeBase GetRootNode()
         {
             var group = new GroupNode();
-            var filenames = new string[] { "floor.obj_", "dragon.obj_", };
-            var colors = new Color[] { Color.Green, Color.White, };
+            var filenames = new string[] { "floor.obj_", "dragon.obj_", "cube.obj_", };
+            var colors = new Color[] { Color.Green, Color.White, Color.White, };
             for (int i = 0; i < filenames.Length; i++)
             {
                 string folder = System.Windows.Forms.Application.StartupPath;
@@ -99,10 +101,10 @@ namespace c07d01_ShadowMappingSurface
                 else
                 {
                     ObjVNFMesh mesh = result.Mesh;
-                    var model = new ObjVNF(mesh);
-                    var node = ShadowMappingNode.Create(model, ObjVNF.strPosition, ObjVNF.strNormal, model.GetSize());
-                    node.WorldPosition = new vec3(0, i * 5, 0);
+                    var model = new AdjacentTriangleModel(mesh);
+                    var node = ShadowVolumeNode.Create(model, ObjVNF.strPosition, ObjVNF.strNormal, model.GetSize());
                     node.Color = colors[i].ToVec3();
+                    node.WorldPosition = new vec3(0, i * 5, 0);
                     node.Name = filename;
                     group.Children.Add(node);
                 }

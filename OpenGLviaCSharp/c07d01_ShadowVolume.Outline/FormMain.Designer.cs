@@ -1,4 +1,4 @@
-﻿namespace c07d01_ShadowMappingSurface
+﻿namespace Lighting.ShadowVolume
 {
     partial class FormMain
     {

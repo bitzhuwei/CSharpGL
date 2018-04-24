@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace c07d01_ShadowMappingSurface.Properties
+namespace c07d01_ShadowVolume.Outline.Properties
 {
 
 

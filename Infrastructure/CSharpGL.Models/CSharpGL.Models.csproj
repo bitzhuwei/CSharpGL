@@ -132,6 +132,9 @@
     <None Include="bunny.obj_">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="cube.obj_">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="dragon.obj_">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
