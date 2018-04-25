@@ -56,7 +56,7 @@ uniform mat4 gWorld;
 float EPSILON = 0.0001;
 
 // Emit a line using a triangle strip
-void EmitQuad(vec3 StartVertex, vec3 EndVertex)
+void EmitOutline(vec3 StartVertex, vec3 EndVertex)
 {    
     gl_Position = gProjectionView * vec4(StartVertex, 1.0);
     EmitVertex();
@@ -97,7 +97,7 @@ void main()
         if (dot(Normal, LightDir) <= 0) {
             vec3 StartVertex = worldPos[0];
             vec3 EndVertex = worldPos[2];
-            EmitQuad(StartVertex, EndVertex);
+            EmitOutline(StartVertex, EndVertex);
         }
 
         Normal = cross(e4,e5);
@@ -107,7 +107,7 @@ void main()
         if (dot(Normal, LightDir) <= 0) {
             vec3 StartVertex = worldPos[2];
             vec3 EndVertex = worldPos[4];
-            EmitQuad(StartVertex, EndVertex);
+            EmitOutline(StartVertex, EndVertex);
         }
 
         Normal = cross(e2,e6);
@@ -117,7 +117,7 @@ void main()
         if (dot(Normal, LightDir) <= 0) {
             vec3 StartVertex = worldPos[4];
             vec3 EndVertex = worldPos[0];
-            EmitQuad(StartVertex, EndVertex);
+            EmitOutline(StartVertex, EndVertex);
         }
     }
 }
