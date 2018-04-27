@@ -41,6 +41,25 @@ namespace CSharpGL
             }
         }
 
+        private vec3 rotationCenter;
+        /// <summary>
+        /// Rotation occurs based on which position?
+        /// </summary>
+        [Category(strSceneNodeBase)]
+        [Description("Rotation occurs based on which position?")]
+        public vec3 RotationCenter
+        {
+            get { return this.rotationCenter; }
+            set
+            {
+                if (this.rotationCenter != value)
+                {
+                    this.rotationCenter = value;
+                    this.worldSpacePropertyUpdated = true;
+                }
+            }
+        }
+
         private float rotationAngle;
         /// <summary>
         /// Rotation angle in degrees in world space relative to parent node.
@@ -49,18 +68,18 @@ namespace CSharpGL
         [Description("Rotation angle in degrees in world space relative to parent node.")]
         public float RotationAngle
         {
-            get { return rotationAngle; }
+            get { return this.rotationAngle; }
             set
             {
-                if (rotationAngle != value)
+                if (this.rotationAngle != value)
                 {
-                    rotationAngle = value;
-                    worldSpacePropertyUpdated = true;
+                    this.rotationAngle = value;
+                    this.worldSpacePropertyUpdated = true;
                 }
             }
         }
 
-        private vec3 _rotationAxis = new vec3(0, 1, 0);
+        private vec3 rotationAxis = new vec3(0, 1, 0);
         /// <summary>
         /// Rotation axis in world space relative to parent node.
         /// </summary>
@@ -68,18 +87,37 @@ namespace CSharpGL
         [Description("Rotation axis in world space relative to parent node.")]
         public vec3 RotationAxis
         {
-            get { return _rotationAxis; }
+            get { return this.rotationAxis; }
             set
             {
-                if (_rotationAxis != value)
+                if (this.rotationAxis != value)
                 {
-                    _rotationAxis = value;
-                    worldSpacePropertyUpdated = true;
+                    this.rotationAxis = value;
+                    this.worldSpacePropertyUpdated = true;
                 }
             }
         }
 
-        private vec3 _scale = new vec3(1, 1, 1);
+        private vec3 scaleCenter;
+        /// <summary>
+        /// Scale occurs based on which position?
+        /// </summary>
+        [Category(strSceneNodeBase)]
+        [Description("Scale occurs based on which position?")]
+        public vec3 ScaleCenter
+        {
+            get { return this.scaleCenter; }
+            set
+            {
+                if (this.scaleCenter != value)
+                {
+                    this.scaleCenter = value;
+                    this.worldSpacePropertyUpdated = true;
+                }
+            }
+        }
+
+        private vec3 scale = new vec3(1, 1, 1);
         /// <summary>
         /// Scale in world space relative to parent node.
         /// </summary>
@@ -87,13 +125,13 @@ namespace CSharpGL
         [Description("Scale in world space relative to parent node.")]
         public vec3 Scale
         {
-            get { return _scale; }
+            get { return this.scale; }
             set
             {
-                if (_scale != value)
+                if (this.scale != value)
                 {
-                    _scale = value;
-                    worldSpacePropertyUpdated = true;
+                    this.scale = value;
+                    this.worldSpacePropertyUpdated = true;
                 }
             }
         }
@@ -138,8 +176,12 @@ namespace CSharpGL
             if (this.worldSpacePropertyUpdated)
             {
                 mat4 matrix = glm.translate(mat4.identity(), this.WorldPosition);
+                matrix = glm.translate(matrix, this.ScaleCenter);
                 matrix = glm.scale(matrix, this.Scale);
+                matrix = glm.translate(matrix, -this.ScaleCenter);
+                matrix = glm.translate(matrix, this.RotationCenter);
                 matrix = glm.rotate(matrix, this.RotationAngle, this.RotationAxis);
+                matrix = glm.translate(matrix, -this.RotationCenter);
                 this.thisModelMatrix = matrix;
                 this.worldSpacePropertyUpdated = false;
 

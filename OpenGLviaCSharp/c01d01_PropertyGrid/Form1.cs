@@ -97,7 +97,7 @@ namespace c01d01_PropertyGrid
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            this.cubeNode.RotationAxis = new vec3(0, 1, 0);
+            //this.cubeNode.RotationAxis = new vec3(0, 1, 0);
             this.cubeNode.RotationAngle += 7f;
         }
     }
