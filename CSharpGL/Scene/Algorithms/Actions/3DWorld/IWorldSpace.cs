@@ -17,6 +17,11 @@ namespace CSharpGL
         vec3 WorldPosition { get; set; }
 
         /// <summary>
+        /// Rotation occurs based on which position?
+        /// </summary>
+        vec3 RotationCenter { get; set; }
+
+        /// <summary>
         /// Rotation angle in degree.
         /// </summary>
         float RotationAngle { get; set; }
@@ -25,6 +30,11 @@ namespace CSharpGL
         /// Rotation axis.
         /// </summary>
         vec3 RotationAxis { get; set; }
+
+        /// <summary>
+        /// Scale occurs based on which position?
+        /// </summary>
+        vec3 ScaleCenter { get; set; }
 
         /// <summary>
         /// Scale factor.
