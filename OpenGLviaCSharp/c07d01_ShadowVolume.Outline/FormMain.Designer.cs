@@ -80,7 +80,7 @@
             this.Controls.Add(this.trvScene);
             this.Controls.Add(this.winGLCanvas1);
             this.Name = "FormMain";
-            this.Text = "Lighting - Shadow Mapping - CSharpGL";
+            this.Text = "c07d01_ShadowVolume.Outline - CSharpGL";
             ((System.ComponentModel.ISupportInitialize)(this.winGLCanvas1)).EndInit();
             this.ResumeLayout(false);
 
