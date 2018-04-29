@@ -1,4 +1,4 @@
-﻿namespace c07d02_ShadowVolume.StencilTest
+﻿namespace c08d00_gl_VertexID
 {
     partial class FormMain
     {
@@ -80,7 +80,7 @@
             this.Controls.Add(this.trvScene);
             this.Controls.Add(this.winGLCanvas1);
             this.Name = "FormMain";
-            this.Text = "c07d02_ShadowVolume.StencilTest - CSharpGL";
+            this.Text = "c08d00_gl_VertexID - CSharpGL";
             ((System.ComponentModel.ISupportInitialize)(this.winGLCanvas1)).EndInit();
             this.ResumeLayout(false);
 
