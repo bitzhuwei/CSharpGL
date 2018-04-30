@@ -29,7 +29,7 @@ namespace StencilTest
             OutlineCubeNode currentNode = null;
             if (pickedGeometry != null)
             {
-                currentNode = pickedGeometry.FromRenderer as OutlineCubeNode;
+                currentNode = pickedGeometry.FromObject as OutlineCubeNode;
             }
 
             if (lastNode != currentNode)

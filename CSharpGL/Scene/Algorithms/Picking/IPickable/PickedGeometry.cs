@@ -47,7 +47,7 @@ namespace CSharpGL
         /// <summary>
         /// The node that this picked primitive belongs to.
         /// </summary>
-        public virtual IPickable FromRenderer { get; set; }
+        public virtual IPickable FromObject { get; set; }
 
         //public PickedGeometry() { }
         /// <summary>
@@ -65,7 +65,7 @@ namespace CSharpGL
             this.Positions = positions;
             this.VertexIds = vertexIds;
             this.StageVertexId = stageVertexId;
-            this.FromRenderer = fromRenderer;
+            this.FromObject = fromRenderer;
         }
 
         /// <summary>
@@ -170,7 +170,7 @@ namespace CSharpGL
 
             builder.AppendFormat("Stage Vertex ID: {0}", this.StageVertexId);
             builder.AppendLine();
-            builder.AppendFormat("From: {0}", this.FromRenderer);
+            builder.AppendFormat("From: {0}", this.FromObject);
             builder.AppendLine();
 
             if (!string.IsNullOrEmpty(this.ErrorInfo))

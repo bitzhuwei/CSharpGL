@@ -57,7 +57,7 @@ namespace EnvironmentMapping
                         triangleTip.Vertex0 = pickedGeometry.Positions[0];
                         triangleTip.Vertex1 = pickedGeometry.Positions[1];
                         triangleTip.Vertex2 = pickedGeometry.Positions[2];
-                        triangleTip.Parent = pickedGeometry.FromRenderer as SceneNodeBase;
+                        triangleTip.Parent = pickedGeometry.FromObject as SceneNodeBase;
                         quadTip.Parent = null;
                         break;
                     case GeometryType.Quad:
@@ -65,7 +65,7 @@ namespace EnvironmentMapping
                         quadTip.Vertex1 = pickedGeometry.Positions[1];
                         quadTip.Vertex2 = pickedGeometry.Positions[2];
                         quadTip.Vertex3 = pickedGeometry.Positions[3];
-                        quadTip.Parent = pickedGeometry.FromRenderer as SceneNodeBase;
+                        quadTip.Parent = pickedGeometry.FromObject as SceneNodeBase;
                         triangleTip.Parent = null;
                         break;
                     case GeometryType.Polygon:

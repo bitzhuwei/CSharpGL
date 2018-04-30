@@ -41,7 +41,7 @@ namespace ShaderDefineClipPlane
                     var lastWindowSpacePos = new vec3(e.X, this.winGLCanvas1.Height - e.Y - 1, pickedGeometry.PickedPosition.z);
                     mat4 projectionMatrix = this.scene.Camera.GetProjectionMatrix();
                     mat4 viewMatrix = this.scene.Camera.GetViewMatrix();
-                    mat4 modelMatrix = (pickedGeometry.FromRenderer as PickableNode).GetModelMatrix();
+                    mat4 modelMatrix = (pickedGeometry.FromObject as PickableNode).GetModelMatrix();
                     var lastModelSpacePos = glm.unProject(lastWindowSpacePos, viewMatrix * modelMatrix, projectionMatrix, viewport);
 
                     var dragParam = new DragParam(
@@ -71,7 +71,7 @@ namespace ShaderDefineClipPlane
                 DragParam dragParam = this.dragParam;
                 if (dragParam != null && this.pickedGeometry != null)
                 {
-                    var node = this.pickedGeometry.FromRenderer as PickableNode;
+                    var node = this.pickedGeometry.FromObject as PickableNode;
                     var currentWindowSpacePos = new vec3(e.X, this.winGLCanvas1.Height - e.Y - 1, this.pickedGeometry.PickedPosition.z);
                     var currentModelSpacePos = glm.unProject(currentWindowSpacePos, dragParam.viewMatrix * node.GetModelMatrix(), dragParam.projectionMatrix, dragParam.viewport);
                     var modelSpacePositionDiff = currentModelSpacePos - dragParam.lastModelSpacePos;
@@ -92,7 +92,7 @@ namespace ShaderDefineClipPlane
 
                 if (this.pickedGeometry != null)
                 {
-                    var text = string.Format("picked: {0}", this.pickedGeometry.FromRenderer);
+                    var text = string.Format("picked: {0}", this.pickedGeometry.FromObject);
                 }
                 else
                 {
@@ -184,7 +184,7 @@ namespace ShaderDefineClipPlane
                         triangleTip.Vertex0 = picked.Positions[0];
                         triangleTip.Vertex1 = picked.Positions[1];
                         triangleTip.Vertex2 = picked.Positions[2];
-                        triangleTip.Parent = picked.FromRenderer as SceneNodeBase;
+                        triangleTip.Parent = picked.FromObject as SceneNodeBase;
                         quadTip.Parent = null;
                         break;
                     case GeometryType.Quad:
@@ -192,7 +192,7 @@ namespace ShaderDefineClipPlane
                         quadTip.Vertex1 = picked.Positions[1];
                         quadTip.Vertex2 = picked.Positions[2];
                         quadTip.Vertex3 = picked.Positions[3];
-                        quadTip.Parent = picked.FromRenderer as SceneNodeBase;
+                        quadTip.Parent = picked.FromObject as SceneNodeBase;
                         triangleTip.Parent = null;
                         break;
                     case GeometryType.Polygon:

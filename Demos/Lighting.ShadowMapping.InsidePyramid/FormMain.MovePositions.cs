@@ -36,7 +36,7 @@ namespace Lighting.ShadowMapping.InsidePyramid
                     var lastWindowSpacePos = new vec3(e.X, this.winGLCanvas1.Height - e.Y - 1, pickedGeometry.PickedPosition.z);
                     mat4 projectionMatrix = this.scene.Camera.GetProjectionMatrix();
                     mat4 viewMatrix = this.scene.Camera.GetViewMatrix();
-                    mat4 modelMatrix = (pickedGeometry.FromRenderer as PickableNode).GetModelMatrix();
+                    mat4 modelMatrix = (pickedGeometry.FromObject as PickableNode).GetModelMatrix();
                     var lastModelSpacePos = glm.unProject(lastWindowSpacePos, viewMatrix * modelMatrix, projectionMatrix, viewport);
 
                     var dragParam = new DragParam(
@@ -67,7 +67,7 @@ namespace Lighting.ShadowMapping.InsidePyramid
                 DragParam dragParam = this.dragParam;
                 if (dragParam != null && this.pickedGeometry != null)
                 {
-                    var node = this.pickedGeometry.FromRenderer as PickableNode;
+                    var node = this.pickedGeometry.FromObject as PickableNode;
                     var currentWindowSpacePos = new vec3(e.X, this.winGLCanvas1.Height - e.Y - 1, this.pickedGeometry.PickedPosition.z);
                     var currentModelSpacePos = glm.unProject(currentWindowSpacePos, dragParam.viewMatrix * node.GetModelMatrix(), dragParam.projectionMatrix, dragParam.viewport);
                     var modelSpacePositionDiff = currentModelSpacePos - dragParam.lastModelSpacePos;
@@ -149,7 +149,7 @@ namespace Lighting.ShadowMapping.InsidePyramid
                 {
                     case GeometryType.Point:
                         pointTip.Vertex = picked.Positions[0];
-                        pointTip.Parent = picked.FromRenderer as SceneNodeBase;
+                        pointTip.Parent = picked.FromObject as SceneNodeBase;
                         break;
                     case GeometryType.Line:
                         throw new NotImplementedException();
