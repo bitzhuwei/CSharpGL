@@ -22,9 +22,9 @@
         uint[] VertexIds { get; set; }
 
         /// <summary>
-        /// The scene's element from which this <see cref="IPickedGeometry"/>'s instance is picked.
+        /// Node of the scene from which this <see cref="IPickedGeometry"/>'s instance is picked.
         /// </summary>
-        IPickable FromRenderer { get; set; }
+        IPickable FromObject { get; set; }
 
         /// <summary>
         /// The last vertex's id that constructs the picked primitive.

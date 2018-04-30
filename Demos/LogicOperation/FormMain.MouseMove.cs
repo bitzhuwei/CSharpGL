@@ -29,7 +29,7 @@ namespace LogicOperation
             LogicOperationNode currentNode = null;
             if (pickedGeometry != null)
             {
-                currentNode = pickedGeometry.FromRenderer as LogicOperationNode;
+                currentNode = pickedGeometry.FromObject as LogicOperationNode;
             }
 
             if (lastNode != currentNode)
