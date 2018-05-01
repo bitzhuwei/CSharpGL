@@ -164,11 +164,28 @@ namespace CSharpGL
             return builder.ToString();
         }
 
+        /// <summary>
+        /// Getx pixel data from <paramref name="stageVertexId"/>.
+        /// </summary>
+        /// <param name="stageVertexId"></param>
+        /// <returns></returns>
+        private static Pixel FromStageVertexId(uint stageVertexId)
+        {
+            byte r = (byte)(stageVertexId & 0xFF);
+            byte g = (byte)((stageVertexId >> 8) & 0xFF);
+            byte b = (byte)((stageVertexId >> 16) & 0xFF);
+            byte a = (byte)((stageVertexId >> 24) & 0xFF);
+
+            return new Pixel(r, g, b, a);
+        }
+
         private StringBuilder BasicInfo()
         {
             StringBuilder builder = new StringBuilder();
 
             builder.AppendFormat("Stage Vertex ID: {0}", this.StageVertexId);
+            builder.AppendLine();
+            builder.AppendFormat("Color: vec4({0})", FromStageVertexId(this.StageVertexId));
             builder.AppendLine();
             builder.AppendFormat("From: {0}", this.FromObject);
             builder.AppendLine();

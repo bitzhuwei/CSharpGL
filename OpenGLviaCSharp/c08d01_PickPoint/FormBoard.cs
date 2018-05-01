@@ -18,6 +18,8 @@ namespace c08d01_PickPoint
 
         public void SetText(string text)
         {
+            if (this.IsDisposed) { return; }
+
             this.textBox1.Text = text;
         }
     }
