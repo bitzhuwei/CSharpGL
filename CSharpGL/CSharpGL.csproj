@@ -101,6 +101,7 @@
     <Compile Include="GLAPI\GL.DrawText.cs" />
     <Compile Include="GLCanvas\GLRenderContext\ContextGenerationParams.cs" />
     <Compile Include="GLCanvas\RenderTrigger.cs" />
+    <Compile Include="GLObjects\DrawCommands\DrawArraysInstancedCmd.cs" />
     <Compile Include="GLObjects\Framebuffer\FramebufferTarget.cs" />
     <Compile Include="GLObjects\Framebuffer\Framebuffer.Attach.Renderbuffer.cs" />
     <Compile Include="GLObjects\Framebuffer\Framebuffer.Attach.Texture.cs" />
