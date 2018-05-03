@@ -14,21 +14,21 @@ namespace CSharpGL
         private const string strDrawArraysInstancedCmd = "DrawArraysInstancedCmd";
 
         /// <summary>
-        /// Wraps glDrawArrays(uint mode, int first, int count).
+        /// Wraps void glDrawArraysInstanced(uint mode​, int first​, int count​, int primcount​);
         /// </summary>
         /// <param name="mode">用哪种方式渲染各个顶点？（GL.GL_TRIANGLES etc.）</param>
         /// <param name="firstVertex">要渲染的第一个顶点的位置。<para>Index of first vertex to be rendered.</para></param>
         /// <param name="vertexCount">要渲染多少个元素？<para>How many vertexes to be rendered?</para></param>
         /// <param name="instanceCount">primCount in instanced rendering.</param>
-        /// <param name="frameCount">How many frames are there?</param>
-        public DrawArraysInstancedCmd(DrawMode mode, int firstVertex, int vertexCount, int instanceCount, int frameCount = 1)
+        public DrawArraysInstancedCmd(DrawMode mode, int firstVertex, int vertexCount, int instanceCount)
         {
+            if (instanceCount < 1) { throw new Exception("error: instanceCount is less than 1."); }
+
             this.Mode = mode;
             this.FirstVertex = firstVertex;
             this.VertexCount = vertexCount;
             this.RenderingVertexCount = vertexCount;
             this.InstanceCount = instanceCount;
-            this.FrameCount = frameCount;
         }
 
         /// <summary>
@@ -43,12 +43,6 @@ namespace CSharpGL
         /// </summary>
         [Category(strDrawArraysInstancedCmd)]
         public int InstanceCount { get; private set; }
-
-        /// <summary>
-        /// How many frames are there?
-        /// </summary>
-        [Category(strDrawArraysInstancedCmd)]
-        public int FrameCount { get; set; }
 
         /// <summary>
         /// Gets or sets index of current frame.
@@ -85,31 +79,11 @@ namespace CSharpGL
             uint mode = (uint)this.Mode;
 
             int instanceCount = this.InstanceCount;
-            if (instanceCount < 1) { throw new Exception("error: instanceCount is less than 1."); }
-            int frameCount = this.FrameCount;
-            if (frameCount < 1) { throw new Exception("error: frameCount is less than 1."); }
 
-            switch (indexAccessMode)
-            {
-                case IndexAccessMode.ByFrame:
-                    int vertexCount = this.VertexCount;
-                    if (frameCount == 1)
-                    {
-                        glDrawArraysInstanced(mode, 0, this.VertexCount, instanceCount);
-                    }
-                    else
-                    {
-                        int vertexCountPerFrame = vertexCount / frameCount;
-                        glDrawArraysInstanced(mode, this.CurrentFrame * vertexCountPerFrame, vertexCountPerFrame, instanceCount);
-                    }
-                    break;
-                case IndexAccessMode.Random:
-                    glDrawArraysInstanced(mode, this.FirstVertex, this.RenderingVertexCount, instanceCount);
-                    break;
-                default:
-                    throw new NotDealWithNewEnumItemException(typeof(IndexAccessMode));
-            }
-
+            int first = this.FirstVertex;
+            int count = this.VertexCount;
+            int primcount = this.InstanceCount;
+            glDrawArraysInstanced(mode, first, count, primcount);
         }
 
         #endregion IDrawCommand
@@ -120,31 +94,7 @@ namespace CSharpGL
         /// <returns></returns>
         public override string ToString()
         {
-            int primCount = this.InstanceCount;
-            if (primCount < 1) { return string.Format("error: primCount is less than 1."); }
-            int frameCount = this.FrameCount;
-            if (FrameCount < 1) { return string.Format("error: frameCount is less than 1."); }
-
-            var builder = new System.Text.StringBuilder();
-
-            var mode = this.Mode;
-            int vertexCount = this.VertexCount;
-
-            builder.AppendLine("ControlMode.ByFrame:");
-            if (frameCount == 1)
-            {
-                builder.AppendLine(string.Format("glDrawArraysInstanced(mode: {0}, first: {1}, count: {2}, primCount: {3});", mode, 0, vertexCount, primCount));
-            }
-            else
-            {
-                int vertexCountPerFrame = vertexCount / frameCount;
-                builder.AppendLine(string.Format("glDrawArraysInstanced(mode: {0}, first = currentFrame * vertexCountPerFrame: {1} = {2} * {3}, count = vertexCountPerFrame: {4}, primCount: {5});", mode, this.CurrentFrame * vertexCountPerFrame, this.CurrentFrame, vertexCountPerFrame, vertexCountPerFrame, primCount));
-            }
-
-            builder.AppendLine("ControlMode.Random:");
-            builder.AppendLine(string.Format("glDrawArraysInstanced(mode: {0}, first: {1}, count: {2}, primCount: {3});", mode, this.FirstVertex, this.RenderingVertexCount, this.InstanceCount));
-
-            return builder.ToString();
+            return string.Format("glDrawArraysInstanced(mode: {0}, first: {1}, count: {2}, primCount: {3});", this.Mode, this.FirstVertex, this.VertexCount, this.InstanceCount);
         }
 
         /// <summary>
