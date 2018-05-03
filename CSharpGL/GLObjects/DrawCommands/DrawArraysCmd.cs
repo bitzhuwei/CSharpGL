@@ -15,21 +15,31 @@ namespace CSharpGL
         /// Wraps glDrawArrays(uint mode, int first, int count).
         /// </summary>
         /// <param name="mode">用哪种方式渲染各个顶点？（GL.GL_TRIANGLES etc.）</param>
+        /// <param name="maxVertexCount">一共有多少个元素？<para>How many vertexes in total?</para></param>
+        public DrawArraysCmd(DrawMode mode, int maxVertexCount)
+            : this(mode, maxVertexCount, 0, maxVertexCount)
+        { }
+
+        /// <summary>
+        /// Wraps glDrawArrays(uint mode, int first, int count).
+        /// </summary>
+        /// <param name="mode">用哪种方式渲染各个顶点？（GL.GL_TRIANGLES etc.）</param>
+        /// <param name="maxVertexCount">一共有多少个元素？<para>How many vertexes in total?</para></param>
         /// <param name="firstVertex">要渲染的第一个顶点的位置。<para>Index of first vertex to be rendered.</para></param>
         /// <param name="vertexCount">要渲染多少个元素？<para>How many vertexes to be rendered?</para></param>
-        public DrawArraysCmd(DrawMode mode, int firstVertex, int vertexCount)
+        public DrawArraysCmd(DrawMode mode, int maxVertexCount, int firstVertex, int vertexCount)
         {
             this.Mode = mode;
+            this.MaxVertexCount = maxVertexCount;
             this.FirstVertex = firstVertex;
             this.VertexCount = vertexCount;
-            this.RenderingVertexCount = vertexCount;
         }
 
         /// <summary>
         /// 此VBO含有多少个元素？
         /// <para>How many elements in thie buffer?</para>
         /// </summary>
-        public int VertexCount { get; private set; }
+        public int MaxVertexCount { get; private set; }
 
         /// <summary>
         /// 要渲染的第一个顶点的位置。<para>Index of first vertex to be rendered.</para>
@@ -41,7 +51,7 @@ namespace CSharpGL
         /// 要渲染多少个元素？<para>How many vertexes to be rendered?</para>
         /// </summary>
         [Category("ControlMode.Random")]
-        public int RenderingVertexCount { get; set; }
+        public int VertexCount { get; set; }
 
         #region IDrawCommand
 
@@ -56,21 +66,9 @@ namespace CSharpGL
         public void Draw(IndexAccessMode indexAccessMode)
         {
             uint mode = (uint)this.Mode;
-
-            switch (indexAccessMode)
-            {
-                case IndexAccessMode.ByFrame:
-                    const int first = 0;
-                    int count = this.VertexCount;
-                    GL.Instance.DrawArrays(mode, first, count);
-                    break;
-                case IndexAccessMode.Random:
-                    GL.Instance.DrawArrays(mode, this.FirstVertex, this.RenderingVertexCount);
-                    break;
-                default:
-                    throw new NotDealWithNewEnumItemException(typeof(IndexAccessMode));
-            }
-
+            int first = this.FirstVertex;
+            int count = this.VertexCount;
+            GL.Instance.DrawArrays(mode, first, count);
         }
 
         #endregion IDrawCommand
@@ -84,13 +82,13 @@ namespace CSharpGL
             var builder = new System.Text.StringBuilder();
 
             var mode = this.Mode;
-            int vertexCount = this.VertexCount;
+            int vertexCount = this.MaxVertexCount;
 
             builder.AppendLine("ControlMode.ByFrame:");
             builder.AppendLine(string.Format("glDrawArrays(mode: {0}, first: {1}, count: {2});", mode, 0, vertexCount));
 
             builder.AppendLine("ControlMode.Random:");
-            builder.AppendLine(string.Format("glDrawArrays(mode: {0}, first: {1}, count: {2});", mode, this.FirstVertex, this.RenderingVertexCount));
+            builder.AppendLine(string.Format("glDrawArrays(mode: {0}, first: {1}, count: {2});", mode, this.FirstVertex, this.VertexCount));
 
             return builder.ToString();
         }
