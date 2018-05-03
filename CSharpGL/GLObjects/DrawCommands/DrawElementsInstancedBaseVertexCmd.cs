@@ -9,7 +9,7 @@ namespace CSharpGL
     /// Wraps glDrawElements(uint mode, int count, uint type, IntPtr indices).
     /// </summary>
     [Editor(typeof(DrawElementsCmdEditor), typeof(UITypeEditor))]
-    public class DrawElementsCmd : IDrawCommand//, IHasIndexBuffer
+    public class DrawElementsInstancedBaseVertexCmd : IDrawCommand//, IHasIndexBuffer
     {
         //#region IHasIndexBuffer
 
@@ -28,7 +28,9 @@ namespace CSharpGL
         /// <param name="mode"></param>
         /// <param name="primitiveRestartIndex">usually uint.MaxValue, ushort.MaxValue or byte.MaxValue. 0 means not need to use `glPrimitiveRestartIndex`.</param>
         /// <param name="firstVertex">要渲染的第一个顶点的位置。<para>Index of first vertex to be rendered.</para></param>
-        public DrawElementsCmd(IndexBuffer indexBuffer, DrawMode mode, uint primitiveRestartIndex = 0, int firstVertex = 0)
+        /// <param name="instanceCount">primCount in instanced rendering.</param>
+        /// <param name="frameCount">How many frames are there?</param>
+        public DrawElementsInstancedBaseVertexCmd(IndexBuffer indexBuffer, DrawMode mode, uint primitiveRestartIndex = 0, int firstVertex = 0, int instanceCount = 1, int frameCount = 1)
         //IndexBufferElementType elementType, int vertexCount, int byteLength, int instanceCount = 1, int frameCount = 1)
         //: base(mode, bufferId, 0, vertexCount, byteLength, instanceCount, frameCount)
         {
@@ -39,6 +41,9 @@ namespace CSharpGL
             this.PrimitiveRestartIndex = primitiveRestartIndex;
             this.FirstVertex = firstVertex;
             this.RenderingVertexCount = indexBuffer.Length;
+
+            this.InstanceCount = instanceCount;
+            this.FrameCount = frameCount;
         }
 
         // RULE: CSharpGL takes uint.MaxValue, ushort.MaxValue or byte.MaxValue as PrimitiveRestartIndex. So take care of this rule when designing a model's index buffer.
@@ -71,6 +76,17 @@ namespace CSharpGL
         [Category("ControlMode.Random")]
         public int RenderingVertexCount { get; set; }
 
+        /// <summary>
+        /// primCount in instanced rendering.
+        /// </summary>
+        public int InstanceCount { get; private set; }
+
+        /// <summary>
+        /// How many frames are there?
+        /// </summary>
+        [Category("ControlMode.ByFrame")]
+        public int FrameCount { get; set; }
+
         #region IDrawCommand
 
         /// <summary>
@@ -84,6 +100,11 @@ namespace CSharpGL
         /// <param name="indexAccessMode">index buffer is accessable randomly or only by frame.</param>
         public void Draw(IndexAccessMode indexAccessMode)
         {
+            int instanceCount = this.InstanceCount;
+            if (instanceCount < 1) { throw new Exception("error: instanceCount is less than 1."); }
+            int frameCount = this.FrameCount;
+            if (frameCount < 1) { throw new Exception("error: frameCount is less than 1."); }
+
             uint mode = (uint)this.Mode;
             IndexBuffer indexBuffer = this.indexBuffer;
             int vertexCount = indexBuffer.Length;
@@ -100,10 +121,10 @@ namespace CSharpGL
             switch (indexAccessMode)
             {
                 case IndexAccessMode.ByFrame:
-                    GL.Instance.DrawElements(mode, vertexCount, (uint)elementType, offset);
+                    glDrawElementsInstancedBaseVertex(mode, vertexCount, (uint)elementType, offset, instanceCount, this.CurrentFrame * vertexCount);
                     break;
                 case IndexAccessMode.Random:
-                    GL.Instance.DrawElements(mode, this.RenderingVertexCount, (uint)elementType, offset);
+                    glDrawElementsInstancedBaseVertex(mode, this.RenderingVertexCount, (uint)elementType, offset, instanceCount, this.CurrentFrame * vertexCount);
                     break;
                 default:
                     throw new NotDealWithNewEnumItemException(typeof(IndexAccessMode));
@@ -147,6 +168,11 @@ namespace CSharpGL
         /// <returns></returns>
         public override string ToString()
         {
+            int primCount = this.InstanceCount;
+            if (primCount < 1) { return string.Format("error: primCount is less than 1."); }
+            int frameCount = this.FrameCount;
+            if (frameCount < 1) { return string.Format("error: frameCount is less than 1."); }
+
             var mode = this.Mode;
             IndexBuffer indexBuffer = this.indexBuffer;
             int vertexCount = indexBuffer.Length;
@@ -156,18 +182,62 @@ namespace CSharpGL
             var builder = new System.Text.StringBuilder();
 
             builder.AppendLine("ControlMode.ByFrame:");
-            builder.AppendLine(string.Format("glDrawElements(mode: {0}, vertexCount: {1}, type: {2}, offset: {3});", mode, vertexCount, elementType, offset));
+            if (primCount == 1)
+            {
+                if (frameCount == 1)
+                {
+                    builder.AppendLine(string.Format("glDrawElements(mode: {0}, vertexCount: {1}, type: {2}, offset: {3});", mode, vertexCount, elementType, offset));
+                }
+                else
+                {
+                    builder.AppendLine(string.Format("glDrawElementsBaseVertex(mode: {0}, vertexCount: {1}, type: {2}, offset: {3}, baseVertex = currentFrame * vertexCount: {4} = {5} * {6});", mode, vertexCount, elementType, offset, this.CurrentFrame * vertexCount, this.CurrentFrame, vertexCount));
+                }
+            }
+            else
+            {
+                if (frameCount == 1)
+                {
+                    builder.AppendLine(string.Format("glDrawElementsInstanced(mode: {0}, vertexCount: {1}, type: {2}, offset: {3}, primCount: {4});", mode, vertexCount, elementType, offset, primCount));
+                }
+                else
+                {
+                    builder.AppendLine(string.Format("glDrawElementsInstancedBaseVertex(mode: {0}, vertexCount: {1}, type: {2}, offset: {3}, primCount: {4}, baseVertex = currentFrame * vertexCount: {5} = {6} * {7});", mode, vertexCount, elementType, offset, primCount, this.CurrentFrame * vertexCount, this.CurrentFrame, vertexCount));
+                }
+            }
 
             builder.AppendLine("ControlMode.Random:");
-            builder.AppendLine(string.Format("glDrawElements(mode: {0}, vertexCount: {1}, type: {2}, offset: {3});", mode, this.RenderingVertexCount, elementType, offset));
+            if (primCount == 1)
+            {
+                if (frameCount == 1)
+                {
+                    builder.AppendLine(string.Format("glDrawElements(mode: {0}, vertexCount: {1}, type: {2}, offset: {3});", mode, this.RenderingVertexCount, elementType, offset));
+                }
+                else
+                {
+                    builder.AppendLine(string.Format("glDrawElementsBaseVertex(mode: {0}, vertexCount: {1}, type: {2}, offset: {3}, baseVertex = currentFrame * vertexCount: {4} = {5} * {6});", mode, this.RenderingVertexCount, elementType, offset, this.CurrentFrame * vertexCount, this.CurrentFrame, vertexCount));
+                }
+            }
+            else
+            {
+                if (frameCount == 1)
+                {
+                    builder.AppendLine(string.Format("glDrawElementsInstanced(mode: {0}, vertexCount: {1}, type: {2}, offset: {3}, primCount: {4});", mode, this.RenderingVertexCount, elementType, offset, primCount));
+                }
+                else
+                {
+                    builder.AppendLine(string.Format("glDrawElementsInstancedBaseVertex(mode: {0}, vertexCount: {1}, type: {2}, offset: {3}, primCount: {4}, baseVertex = currentFrame * vertexCount: {5} = {6} * {7});", mode, this.RenderingVertexCount, elementType, offset, primCount, this.CurrentFrame * vertexCount, this.CurrentFrame, vertexCount));
+                }
+            }
 
             return builder.ToString();
         }
 
         private static GLDelegates.void_uint glPrimitiveRestartIndex;
-        static DrawElementsCmd()
+        internal static readonly GLDelegates.void_uint_int_uint_IntPtr_int_int glDrawElementsInstancedBaseVertex;
+        static DrawElementsInstancedBaseVertexCmd()
         {
             glPrimitiveRestartIndex = GL.Instance.GetDelegateFor("glPrimitiveRestartIndex", GLDelegates.typeof_void_uint) as GLDelegates.void_uint;
+            glDrawElementsInstancedBaseVertex = GL.Instance.GetDelegateFor("glDrawElementsInstancedBaseVertex", GLDelegates.typeof_void_uint_int_uint_IntPtr_int_int) as GLDelegates.void_uint_int_uint_IntPtr_int_int;
         }
 
     }
