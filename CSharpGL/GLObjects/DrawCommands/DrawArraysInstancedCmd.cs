@@ -6,7 +6,7 @@ namespace CSharpGL
 {
     // 没有显式索引时的渲染方法。
     /// <summary>
-    /// Wraps glDrawArrays(uint mode, int first, int count).
+    /// Wraps void glDrawArraysInstanced(uint mode​, int first​, int count​, int primcount​);
     /// </summary>
     [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
     public class DrawArraysInstancedCmd : IDrawCommand
@@ -17,17 +17,28 @@ namespace CSharpGL
         /// Wraps void glDrawArraysInstanced(uint mode​, int first​, int count​, int primcount​);
         /// </summary>
         /// <param name="mode">用哪种方式渲染各个顶点？（GL.GL_TRIANGLES etc.）</param>
+        /// <param name="maxVertexCount">一共有多少个元素？<para>How many vertexes in total?</para></param>
+        /// <param name="instanceCount">primCount in instanced rendering.</param>
+        public DrawArraysInstancedCmd(DrawMode mode, int maxVertexCount, int instanceCount)
+            : this(mode, maxVertexCount, 0, maxVertexCount, instanceCount)
+        { }
+
+        /// <summary>
+        /// Wraps void glDrawArraysInstanced(uint mode​, int first​, int count​, int primcount​);
+        /// </summary>
+        /// <param name="mode">用哪种方式渲染各个顶点？（GL.GL_TRIANGLES etc.）</param>
+        /// <param name="maxVertexCount">一共有多少个元素？<para>How many vertexes in total?</para></param>
         /// <param name="firstVertex">要渲染的第一个顶点的位置。<para>Index of first vertex to be rendered.</para></param>
         /// <param name="vertexCount">要渲染多少个元素？<para>How many vertexes to be rendered?</para></param>
         /// <param name="instanceCount">primCount in instanced rendering.</param>
-        public DrawArraysInstancedCmd(DrawMode mode, int firstVertex, int vertexCount, int instanceCount)
+        public DrawArraysInstancedCmd(DrawMode mode, int maxVertexCount, int firstVertex, int vertexCount, int instanceCount)
         {
             if (instanceCount < 1) { throw new Exception("error: instanceCount is less than 1."); }
 
             this.Mode = mode;
+            this.MaxVertexCount = maxVertexCount;
             this.FirstVertex = firstVertex;
             this.VertexCount = vertexCount;
-            this.RenderingVertexCount = vertexCount;
             this.InstanceCount = instanceCount;
         }
 
@@ -36,20 +47,13 @@ namespace CSharpGL
         /// <para>How many elements in thie buffer?</para>
         /// </summary>
         [Category(strDrawArraysInstancedCmd)]
-        public int VertexCount { get; private set; }
+        public int MaxVertexCount { get; private set; }
 
         /// <summary>
         /// primCount in instanced rendering.
         /// </summary>
         [Category(strDrawArraysInstancedCmd)]
         public int InstanceCount { get; private set; }
-
-        /// <summary>
-        /// Gets or sets index of current frame.
-        /// </summary>
-        [Category(strDrawArraysInstancedCmd)]
-        public int CurrentFrame { get; set; }
-
 
         /// <summary>
         /// 要渲染的第一个顶点的位置。<para>Index of first vertex to be rendered.</para>
@@ -61,7 +65,7 @@ namespace CSharpGL
         /// 要渲染多少个元素？<para>How many vertexes to be rendered?</para>
         /// </summary>
         [Category(strDrawArraysInstancedCmd)]
-        public int RenderingVertexCount { get; set; }
+        public int VertexCount { get; set; }
 
         #region IDrawCommand
 
@@ -81,7 +85,7 @@ namespace CSharpGL
             int instanceCount = this.InstanceCount;
 
             int first = this.FirstVertex;
-            int count = this.VertexCount;
+            int count = this.MaxVertexCount;
             int primcount = this.InstanceCount;
             glDrawArraysInstanced(mode, first, count, primcount);
         }
@@ -94,7 +98,7 @@ namespace CSharpGL
         /// <returns></returns>
         public override string ToString()
         {
-            return string.Format("glDrawArraysInstanced(mode: {0}, first: {1}, count: {2}, primCount: {3});", this.Mode, this.FirstVertex, this.VertexCount, this.InstanceCount);
+            return string.Format("glDrawArraysInstanced(mode: {0}, first: {1}, count: {2}, primCount: {3});", this.Mode, this.FirstVertex, this.MaxVertexCount, this.InstanceCount);
         }
 
         /// <summary>
