@@ -92,7 +92,7 @@ namespace HowTransformFeedbackWorks
         {
             if (this.drawCmd == null)
             {
-                this.drawCmd = new DrawArraysCmd(DrawMode.Points, 0, positions.Length);
+                this.drawCmd = new DrawArraysCmd(DrawMode.Points, positions.Length);
             }
 
             yield return this.drawCmd;

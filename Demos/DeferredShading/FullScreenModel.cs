@@ -22,7 +22,7 @@ namespace DeferredShading
         {
             if (this.drawCmd == null)
             {
-                this.drawCmd = new DrawArraysCmd(DrawMode.Quads, 0, 4);
+                this.drawCmd = new DrawArraysCmd(DrawMode.Quads, 4);
             }
 
             yield return this.drawCmd;

@@ -15,7 +15,7 @@ namespace ZeroAttributeInVertexShader
             var provider = new ShaderArray(vs, fs);
             var map = new AttributeMap();// no items in this map.
             var builder = new RenderMethodBuilder(provider, map, new PointSpriteSwitch());
-            var model = new ZeroAttributeModel(DrawMode.TriangleStrip, 0, 4);
+            var model = new ZeroAttributeModel(DrawMode.TriangleStrip, 4);
             var node = new ZeroAttributeNode(model, builder);
             node.ModelSize = new vec3(2.05f, 2.05f, 0.01f);
             node.Initialize();

@@ -173,7 +173,7 @@ namespace CSharpGL
             if (this.drawCmd == null)
             {
                 int vertexCount = positions.Length;
-                this.drawCmd = new DrawArraysCmd(DrawMode.Lines, 0, vertexCount);
+                this.drawCmd = new DrawArraysCmd(DrawMode.Lines, vertexCount);
             }
 
             yield return this.drawCmd;

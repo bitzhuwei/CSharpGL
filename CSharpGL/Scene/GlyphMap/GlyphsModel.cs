@@ -73,7 +73,7 @@ namespace CSharpGL
         {
             if (this.drawCmd == null)
             {
-                var drawCmd = new DrawArraysCmd(DrawMode.Quads, 0, this.Capacity * 4);
+                var drawCmd = new DrawArraysCmd(DrawMode.Quads, this.Capacity * 4);
                 // note: use IDrawCommand.Draw(ControlMode.Random) to enable this property.
                 drawCmd.VertexCount = 0;
                 this.drawCmd = drawCmd;

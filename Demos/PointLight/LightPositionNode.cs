@@ -168,7 +168,7 @@ void main(void) {
             {
                 if (this.drawCmd == null)
                 {
-                    this.drawCmd = new DrawArraysCmd(DrawMode.TriangleStrip, 0, positions.Length);
+                    this.drawCmd = new DrawArraysCmd(DrawMode.TriangleStrip, positions.Length);
                 }
 
                 yield return this.drawCmd;

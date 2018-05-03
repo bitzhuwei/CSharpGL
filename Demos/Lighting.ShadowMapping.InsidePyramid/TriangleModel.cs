@@ -51,9 +51,8 @@ namespace Lighting.ShadowMapping.InsidePyramid
         {
             if (this.command == null)
             {
-                const int firstVertex = 0;
-                const int vertexCount = 3;
-                this.command = new DrawArraysCmd(DrawMode.Triangles, firstVertex, vertexCount);
+                int vertexCount = positions.Length;
+                this.command = new DrawArraysCmd(DrawMode.Triangles, vertexCount);
             }
 
             yield return this.command;

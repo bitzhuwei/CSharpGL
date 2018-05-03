@@ -18,11 +18,6 @@ namespace ZeroAttributeInVertexShader
         public DrawMode Mode { get; private set; }
 
         /// <summary>
-        /// 要渲染的第一个顶点的位置。<para>Index of first vertex to be rendered.</para>
-        /// </summary>
-        public int FirstVertex { get; private set; }
-
-        /// <summary>
         /// 要渲染多少个元素？<para>How many vertexes to be rendered?</para>
         /// </summary>
         public int VertexCount { get; private set; }
@@ -31,12 +26,10 @@ namespace ZeroAttributeInVertexShader
         /// Bufferable model with zero vertex attribute.
         /// </summary>
         /// <param name="mode">渲染模式。</param>
-        /// <param name="firstVertex">要渲染的第一个顶点的位置。<para>Index of first vertex to be rendered.</para></param>
         /// <param name="vertexCount">要渲染多少个元素？<para>How many vertexes to be rendered?</para></param>
-        public ZeroAttributeModel(DrawMode mode, int firstVertex, int vertexCount)
+        public ZeroAttributeModel(DrawMode mode, int vertexCount)
         {
             this.Mode = mode;
-            this.FirstVertex = firstVertex;
             this.VertexCount = vertexCount;
         }
 
@@ -59,8 +52,7 @@ namespace ZeroAttributeInVertexShader
         {
             if (this.drawCmd == null)
             {
-                var buffer = new DrawArraysCmd(this.Mode, this.FirstVertex, this.VertexCount);
-                this.drawCmd = buffer;
+                this.drawCmd = new DrawArraysCmd(this.Mode, this.VertexCount);
             }
 
             yield return this.drawCmd;

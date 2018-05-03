@@ -56,7 +56,7 @@ namespace c06d00_TextureArray
         {
             if (this.drawCommand == null)
             {
-                this.drawCommand = new DrawArraysCmd(DrawMode.QuadStrip, 0, 4);
+                this.drawCommand = new DrawArraysCmd(DrawMode.QuadStrip, 4);
             }
 
             yield return this.drawCommand;

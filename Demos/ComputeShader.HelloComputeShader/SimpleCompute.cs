@@ -52,7 +52,7 @@ namespace ComputeShader.HelloComputeShader
         {
             if (drawCmd == null)
             {
-                drawCmd = new DrawArraysCmd(DrawMode.TriangleFan, 0, vertsData.Length);
+                drawCmd = new DrawArraysCmd(DrawMode.TriangleFan, vertsData.Length);
             }
 
             yield return drawCmd;

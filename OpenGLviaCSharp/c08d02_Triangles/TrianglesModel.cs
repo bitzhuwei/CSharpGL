@@ -94,7 +94,7 @@ namespace c08d02_Triangles
         {
             if (this.drawCmd == null)
             {
-                this.drawCmd = new DrawArraysCmd(DrawMode.Triangles, 0, this.positions.Length);
+                this.drawCmd = new DrawArraysCmd(DrawMode.Triangles, this.positions.Length);
             }
 
             yield return this.drawCmd;

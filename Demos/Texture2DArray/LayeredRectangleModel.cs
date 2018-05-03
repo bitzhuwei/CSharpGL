@@ -72,7 +72,7 @@ namespace Texture2DArray
         {
             if (this.drawCmd == null)
             {
-                this.drawCmd = new DrawArraysCmd(DrawMode.Quads, 0, positions.Length);
+                this.drawCmd = new DrawArraysCmd(DrawMode.Quads, positions.Length);
             }
 
             yield return this.drawCmd;

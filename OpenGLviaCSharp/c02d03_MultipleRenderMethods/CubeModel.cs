@@ -63,7 +63,7 @@ namespace c02d03_MultipleRenderMethods
         {
             if (this.drawCmd == null)
             {
-                this.drawCmd = new DrawArraysCmd(DrawMode.Quads, 0, positions.Length);
+                this.drawCmd = new DrawArraysCmd(DrawMode.Quads, positions.Length);
             }
 
             yield return this.drawCmd;

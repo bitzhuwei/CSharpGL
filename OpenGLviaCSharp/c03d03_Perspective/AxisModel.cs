@@ -81,7 +81,7 @@ namespace c03d03_Perspective
         {
             if (this.drawCommand == null)
             {
-                this.drawCommand = new DrawArraysCmd(DrawMode.Lines, 0, positions.Length);
+                this.drawCommand = new DrawArraysCmd(DrawMode.Lines, positions.Length);
             }
 
             yield return this.drawCommand;

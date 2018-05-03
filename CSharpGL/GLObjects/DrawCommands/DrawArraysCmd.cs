@@ -11,6 +11,7 @@ namespace CSharpGL
     [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
     public class DrawArraysCmd : IDrawCommand
     {
+        private const string strDrawArraysCmd = "DrawArraysCmd";
         /// <summary>
         /// Wraps glDrawArrays(uint mode, int first, int count).
         /// </summary>
@@ -39,18 +40,19 @@ namespace CSharpGL
         /// 此VBO含有多少个元素？
         /// <para>How many elements in thie buffer?</para>
         /// </summary>
+        [Category(strDrawArraysCmd)]
         public int MaxVertexCount { get; private set; }
 
         /// <summary>
         /// 要渲染的第一个顶点的位置。<para>Index of first vertex to be rendered.</para>
         /// </summary>
-        [Category("ControlMode.Random")]
+        [Category(strDrawArraysCmd)]
         public int FirstVertex { get; set; }
 
         /// <summary>
         /// 要渲染多少个元素？<para>How many vertexes to be rendered?</para>
         /// </summary>
-        [Category("ControlMode.Random")]
+        [Category(strDrawArraysCmd)]
         public int VertexCount { get; set; }
 
         #region IDrawCommand
@@ -58,6 +60,7 @@ namespace CSharpGL
         /// <summary>
         /// 用哪种方式渲染各个顶点？（GL.GL_TRIANGLES etc.）
         /// </summary>
+        [Category(strDrawArraysCmd)]
         public DrawMode Mode { get; set; }
 
         /// <summary>
@@ -84,11 +87,7 @@ namespace CSharpGL
             var mode = this.Mode;
             int vertexCount = this.MaxVertexCount;
 
-            builder.AppendLine("ControlMode.ByFrame:");
-            builder.AppendLine(string.Format("glDrawArrays(mode: {0}, first: {1}, count: {2});", mode, 0, vertexCount));
-
-            builder.AppendLine("ControlMode.Random:");
-            builder.AppendLine(string.Format("glDrawArrays(mode: {0}, first: {1}, count: {2});", mode, this.FirstVertex, this.VertexCount));
+            builder.AppendFormat("glDrawArrays(mode: {0}, first: {1}, count: {2});", mode, 0, vertexCount);
 
             return builder.ToString();
         }

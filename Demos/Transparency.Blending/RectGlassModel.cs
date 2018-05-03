@@ -49,7 +49,7 @@ namespace Transparency.Blending
         {
             if (this.command == null)
             {
-                this.command = new DrawArraysCmd(DrawMode.Quads, 0, 4);
+                this.command = new DrawArraysCmd(DrawMode.Quads, 4);
             }
 
             yield return this.command;
