@@ -40,7 +40,7 @@ namespace CSharpGL
         /// <param name="indexBuffer"></param>
         /// <param name="mode"></param>
         /// <param name="firstVertex">要渲染的第一个顶点的位置。<para>Index of first vertex to be rendered.</para></param>
-        /// <param name="vertexCount"></param>
+        /// <param name="vertexCount">要渲染多少个顶点？<para>How many vertexes to be rendered?</para></param>
         /// <param name="primitiveRestartIndex">usually uint.MaxValue, ushort.MaxValue or byte.MaxValue. 0 means not need to use `glPrimitiveRestartIndex`.</param>
         public DrawElementsCmd(IndexBuffer indexBuffer, DrawMode mode, int firstVertex, int vertexCount, uint primitiveRestartIndex = 0)
         {
@@ -67,7 +67,7 @@ namespace CSharpGL
         public int FirstVertex { get; set; }
 
         /// <summary>
-        /// 要渲染多少个元素？<para>How many vertexes to be rendered?</para>
+        /// 要渲染多少个顶点？<para>How many vertexes to be rendered?</para>
         /// </summary>
         [Category(strDrawElementsCmd)]
         public int VertexCount { get; set; }
@@ -137,17 +137,12 @@ namespace CSharpGL
         /// <returns></returns>
         public override string ToString()
         {
-            var mode = this.Mode;
             IndexBuffer indexBuffer = this.indexBuffer;
             int vertexCount = indexBuffer.Length;
             IndexBufferElementType elementType = indexBuffer.ElementType;
             IntPtr offset = GetOffset(elementType, this.FirstVertex);
 
-            var builder = new System.Text.StringBuilder();
-
-            builder.AppendFormat("glDrawElements(mode: {0}, vertexCount: {1}, type: {2}, offset: {3});", mode, this.VertexCount, elementType, offset);
-
-            return builder.ToString();
+            return string.Format("glDrawElements(mode: {0}, vertexCount: {1}, type: {2}, offset: {3});", this.Mode, this.VertexCount, elementType, offset);
         }
 
         private static GLDelegates.void_uint glPrimitiveRestartIndex;
