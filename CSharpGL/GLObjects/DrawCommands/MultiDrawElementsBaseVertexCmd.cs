@@ -10,7 +10,7 @@ namespace CSharpGL
     /// </summary>
     [Browsable(true)]
     [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
-    public class MultiDrawElementsCmd : IDrawCommand
+    public class MultiDrawElementsBaseVertexCmd : IDrawCommand
     {
         /// <summary>
         /// 用哪种方式渲染各个顶点？（GL.GL_TRIANGLES etc.）
@@ -20,6 +20,7 @@ namespace CSharpGL
         private int[] count;
         private Array allIndices;
         private IndexBufferElementType type;
+        private int[] baseVertex;
 
         /// <summary>
         /// 
@@ -28,8 +29,8 @@ namespace CSharpGL
         /// <param name="count"></param>
         /// <param name="allIndices"></param>
         /// <param name="baseVertex"></param>
-        public MultiDrawElementsCmd(DrawMode mode, int[] count, uint[] allIndices, int[] baseVertex = null)
-            : this(mode, count, IndexBufferElementType.UInt)
+        public MultiDrawElementsBaseVertexCmd(DrawMode mode, int[] count, uint[] allIndices, int[] baseVertex = null)
+            : this(mode, count, IndexBufferElementType.UInt, baseVertex)
         {
             if (allIndices == null || count == null) { throw new System.ArgumentNullException(); }
 
@@ -43,8 +44,8 @@ namespace CSharpGL
         /// <param name="count"></param>
         /// <param name="allIndices"></param>
         /// <param name="baseVertex"></param>
-        public MultiDrawElementsCmd(DrawMode mode, int[] count, ushort[] allIndices, int[] baseVertex = null)
-            : this(mode, count, IndexBufferElementType.UShort)
+        public MultiDrawElementsBaseVertexCmd(DrawMode mode, int[] count, ushort[] allIndices, int[] baseVertex = null)
+            : this(mode, count, IndexBufferElementType.UShort, baseVertex)
         {
             if (allIndices == null || count == null) { throw new System.ArgumentNullException(); }
 
@@ -57,8 +58,8 @@ namespace CSharpGL
         /// <param name="count"></param>
         /// <param name="allIndices"></param>
         /// <param name="baseVertex"></param>
-        public MultiDrawElementsCmd(DrawMode mode, int[] count, byte[] allIndices, int[] baseVertex = null)
-            : this(mode, count, IndexBufferElementType.UByte)
+        public MultiDrawElementsBaseVertexCmd(DrawMode mode, int[] count, byte[] allIndices, int[] baseVertex = null)
+            : this(mode, count, IndexBufferElementType.UByte, baseVertex)
         {
             if (allIndices == null || count == null) { throw new System.ArgumentNullException(); }
 
@@ -71,11 +72,15 @@ namespace CSharpGL
         /// <param name="mode"></param>
         /// <param name="count"></param>
         /// <param name="type">type of indices' element.</param>
-        private MultiDrawElementsCmd(DrawMode mode, int[] count, IndexBufferElementType type)
+        /// <param name="baseVertex"></param>
+        private MultiDrawElementsBaseVertexCmd(DrawMode mode, int[] count, IndexBufferElementType type, int[] baseVertex = null)
         {
+            if (this.baseVertex == null) { throw new ArgumentNullException("baseVertex"); }
+
             this.Mode = mode;
             this.count = count;
             this.type = type;
+            this.baseVertex = baseVertex;
         }
 
         /// <summary>
@@ -94,18 +99,18 @@ namespace CSharpGL
             }
             GCHandle pinIndices = GCHandle.Alloc(indices, GCHandleType.Pinned);
             IntPtr header = pinIndices.AddrOfPinnedObject();
-            glMultiDrawElements((uint)this.Mode, this.count, (uint)this.type, header, this.count.Length);
+            glMultiDrawElementsBaseVertex((uint)this.Mode, this.count, (uint)this.type, header, this.count.Length, this.baseVertex);
             pinIndices.Free();
             pinAll.Free();
         }
 
         /// <summary>
-        /// void glMultiDrawElements(GLenum mode​, const GLsizei * count​, GLenum type​, const GLvoid * const * indices​, GLsizei drawcount​);
+        /// void glMultiDrawElementsBaseVertex(uint mode​, int[] count​, uint type​, uint[][] indices​, int drawcount​, int[] basevertex​);
         /// </summary>
-        private static readonly GLDelegates.void_uint_intN_uint_IntPtr_int glMultiDrawElements;
-        static MultiDrawElementsCmd()
+        private static readonly GLDelegates.void_uint_intN_uint_IntPtr_int_intN glMultiDrawElementsBaseVertex;
+        static MultiDrawElementsBaseVertexCmd()
         {
-            glMultiDrawElements = GL.Instance.GetDelegateFor("glMultiDrawElements", GLDelegates.typeof_void_uint_intN_uint_IntPtr_int) as GLDelegates.void_uint_intN_uint_IntPtr_int;
+            glMultiDrawElementsBaseVertex = GL.Instance.GetDelegateFor("glMultiDrawElementsBaseVertex", GLDelegates.typeof_void_uint_intN_uint_IntPtr_int_intN) as GLDelegates.void_uint_intN_uint_IntPtr_int_intN;
         }
 
     }

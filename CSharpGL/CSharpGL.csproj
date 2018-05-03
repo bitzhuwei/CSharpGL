@@ -105,6 +105,7 @@
     <Compile Include="GLObjects\DrawCommands\DrawElementsBaseVertexCmd.cs" />
     <Compile Include="GLObjects\DrawCommands\DrawElementsInstancedBaseVertexCmd.cs" />
     <Compile Include="GLObjects\DrawCommands\DrawElementsInstancedCmd.cs" />
+    <Compile Include="GLObjects\DrawCommands\MultiDrawElementsBaseVertexCmd.cs" />
     <Compile Include="GLObjects\Framebuffer\FramebufferTarget.cs" />
     <Compile Include="GLObjects\Framebuffer\Framebuffer.Attach.Renderbuffer.cs" />
     <Compile Include="GLObjects\Framebuffer\Framebuffer.Attach.Texture.cs" />
