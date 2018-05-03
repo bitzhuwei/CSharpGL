@@ -50,12 +50,6 @@ namespace CSharpGL
         public int MaxVertexCount { get; private set; }
 
         /// <summary>
-        /// primCount in instanced rendering.
-        /// </summary>
-        [Category(strDrawArraysInstancedCmd)]
-        public int InstanceCount { get; private set; }
-
-        /// <summary>
         /// 要渲染的第一个顶点的位置。<para>Index of first vertex to be rendered.</para>
         /// </summary>
         [Category(strDrawArraysInstancedCmd)]
@@ -66,6 +60,12 @@ namespace CSharpGL
         /// </summary>
         [Category(strDrawArraysInstancedCmd)]
         public int VertexCount { get; set; }
+
+        /// <summary>
+        /// primCount in instanced rendering.
+        /// </summary>
+        [Category(strDrawArraysInstancedCmd)]
+        public int InstanceCount { get; private set; }
 
         #region IDrawCommand
 
