@@ -11,6 +11,8 @@ namespace CSharpGL
     [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
     public class DrawArraysInstancedCmd : IDrawCommand
     {
+        private const string strDrawArraysInstancedCmd = "DrawArraysInstancedCmd";
+
         /// <summary>
         /// Wraps glDrawArrays(uint mode, int first, int count).
         /// </summary>
@@ -33,36 +35,38 @@ namespace CSharpGL
         /// 此VBO含有多少个元素？
         /// <para>How many elements in thie buffer?</para>
         /// </summary>
+        [Category(strDrawArraysInstancedCmd)]
         public int VertexCount { get; private set; }
 
         /// <summary>
         /// primCount in instanced rendering.
         /// </summary>
+        [Category(strDrawArraysInstancedCmd)]
         public int InstanceCount { get; private set; }
 
         /// <summary>
         /// How many frames are there?
         /// </summary>
-        [Category("ControlMode.ByFrame")]
+        [Category(strDrawArraysInstancedCmd)]
         public int FrameCount { get; set; }
 
         /// <summary>
         /// Gets or sets index of current frame.
         /// </summary>
-        [Category("ControlMode.ByFrame")]
+        [Category(strDrawArraysInstancedCmd)]
         public int CurrentFrame { get; set; }
 
 
         /// <summary>
         /// 要渲染的第一个顶点的位置。<para>Index of first vertex to be rendered.</para>
         /// </summary>
-        [Category("ControlMode.Random")]
+        [Category(strDrawArraysInstancedCmd)]
         public int FirstVertex { get; set; }
 
         /// <summary>
         /// 要渲染多少个元素？<para>How many vertexes to be rendered?</para>
         /// </summary>
-        [Category("ControlMode.Random")]
+        [Category(strDrawArraysInstancedCmd)]
         public int RenderingVertexCount { get; set; }
 
         #region IDrawCommand
@@ -70,6 +74,7 @@ namespace CSharpGL
         /// <summary>
         /// 用哪种方式渲染各个顶点？（GL.GL_TRIANGLES etc.）
         /// </summary>
+        [Category(strDrawArraysInstancedCmd)]
         public DrawMode Mode { get; set; }
 
         /// <summary>
