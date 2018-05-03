@@ -11,12 +11,15 @@ namespace CSharpGL
     [Editor(typeof(DrawElementsCmdEditor), typeof(UITypeEditor))]
     public class DrawElementsCmd : IDrawCommand//, IHasIndexBuffer
     {
+        private const string strDrawElementsCmd = "DrawElementsCmd";
+
         //#region IHasIndexBuffer
 
         private IndexBuffer indexBuffer;
         /// <summary>
         /// 
         /// </summary>
+        [Category(strDrawElementsCmd)]
         public IndexBuffer IndexBufferObject { get { return this.indexBuffer; } }
 
         //#endregion IHasIndexBuffer
@@ -27,48 +30,46 @@ namespace CSharpGL
         /// <param name="indexBuffer"></param>
         /// <param name="mode"></param>
         /// <param name="primitiveRestartIndex">usually uint.MaxValue, ushort.MaxValue or byte.MaxValue. 0 means not need to use `glPrimitiveRestartIndex`.</param>
+        public DrawElementsCmd(IndexBuffer indexBuffer, DrawMode mode, uint primitiveRestartIndex = 0)
+            : this(indexBuffer, mode, 0, indexBuffer.Length, primitiveRestartIndex)
+        { }
+
+        /// <summary>
+        /// Wraps glDrawElements(uint mode, int count, uint type, IntPtr indices).
+        /// </summary>
+        /// <param name="indexBuffer"></param>
+        /// <param name="mode"></param>
         /// <param name="firstVertex">要渲染的第一个顶点的位置。<para>Index of first vertex to be rendered.</para></param>
-        public DrawElementsCmd(IndexBuffer indexBuffer, DrawMode mode, uint primitiveRestartIndex = 0, int firstVertex = 0)
-        //IndexBufferElementType elementType, int vertexCount, int byteLength, int instanceCount = 1, int frameCount = 1)
-        //: base(mode, bufferId, 0, vertexCount, byteLength, instanceCount, frameCount)
+        /// <param name="vertexCount"></param>
+        /// <param name="primitiveRestartIndex">usually uint.MaxValue, ushort.MaxValue or byte.MaxValue. 0 means not need to use `glPrimitiveRestartIndex`.</param>
+        public DrawElementsCmd(IndexBuffer indexBuffer, DrawMode mode, int firstVertex, int vertexCount, uint primitiveRestartIndex = 0)
         {
             if (indexBuffer == null) { throw new ArgumentNullException("indexBuffer"); }
 
             this.indexBuffer = indexBuffer;
             this.Mode = mode;
-            this.PrimitiveRestartIndex = primitiveRestartIndex;
             this.FirstVertex = firstVertex;
-            this.RenderingVertexCount = indexBuffer.Length;
+            this.RenderingVertexCount = vertexCount;
+            this.PrimitiveRestartIndex = primitiveRestartIndex;
         }
 
         // RULE: CSharpGL takes uint.MaxValue, ushort.MaxValue or byte.MaxValue as PrimitiveRestartIndex. So take care of this rule when designing a model's index buffer.
         /// <summary>
         /// usually uint.MaxValue, ushort.MaxValue or byte.MaxValue. 0 means not need to use `glPrimitiveRestartIndex`.
         /// </summary>
+        [Category(strDrawElementsCmd)]
         public uint PrimitiveRestartIndex { get; set; }
-
-        ///// <summary>
-        ///// type in GL.DrawElements(uint mode, int count, uint type, IntPtr indices);
-        ///// </summary>
-        //public IndexBufferElementType ElementType { get; private set; }
-
-        /// <summary>
-        /// Gets or sets index of current frame.
-        /// </summary>
-        [Category("ControlMode.ByFrame")]
-        public int CurrentFrame { get; set; }
-
 
         /// <summary>
         /// 要渲染的第一个顶点的位置。<para>Index of first vertex to be rendered.</para>
         /// </summary>
-        [Category("ControlMode.Random")]
+        [Category(strDrawElementsCmd)]
         public int FirstVertex { get; set; }
 
         /// <summary>
         /// 要渲染多少个元素？<para>How many vertexes to be rendered?</para>
         /// </summary>
-        [Category("ControlMode.Random")]
+        [Category(strDrawElementsCmd)]
         public int RenderingVertexCount { get; set; }
 
         #region IDrawCommand
@@ -76,6 +77,7 @@ namespace CSharpGL
         /// <summary>
         /// 用哪种方式渲染各个顶点？（GL.GL_TRIANGLES etc.）
         /// </summary>
+        [Category(strDrawElementsCmd)]
         public DrawMode Mode { get; set; }
 
         /// <summary>
