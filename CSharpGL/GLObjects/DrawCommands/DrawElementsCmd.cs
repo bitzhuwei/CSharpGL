@@ -49,7 +49,7 @@ namespace CSharpGL
             this.indexBuffer = indexBuffer;
             this.Mode = mode;
             this.FirstVertex = firstVertex;
-            this.RenderingVertexCount = vertexCount;
+            this.VertexCount = vertexCount;
             this.PrimitiveRestartIndex = primitiveRestartIndex;
         }
 
@@ -70,7 +70,7 @@ namespace CSharpGL
         /// 要渲染多少个元素？<para>How many vertexes to be rendered?</para>
         /// </summary>
         [Category(strDrawElementsCmd)]
-        public int RenderingVertexCount { get; set; }
+        public int VertexCount { get; set; }
 
         #region IDrawCommand
 
@@ -88,7 +88,6 @@ namespace CSharpGL
         {
             uint mode = (uint)this.Mode;
             IndexBuffer indexBuffer = this.indexBuffer;
-            int vertexCount = indexBuffer.Length;
             IndexBufferElementType elementType = indexBuffer.ElementType;
             IntPtr offset = GetOffset(elementType, this.FirstVertex);
 
@@ -99,18 +98,7 @@ namespace CSharpGL
                 glPrimitiveRestartIndex(rs);
             }
             GLBuffer.glBindBuffer(GL.GL_ELEMENT_ARRAY_BUFFER, indexBuffer.BufferId);
-            switch (indexAccessMode)
-            {
-                case IndexAccessMode.ByFrame:
-                    GL.Instance.DrawElements(mode, vertexCount, (uint)elementType, offset);
-                    break;
-                case IndexAccessMode.Random:
-                    GL.Instance.DrawElements(mode, this.RenderingVertexCount, (uint)elementType, offset);
-                    break;
-                default:
-                    throw new NotDealWithNewEnumItemException(typeof(IndexAccessMode));
-            }
-
+            GL.Instance.DrawElements(mode, this.VertexCount, (uint)elementType, offset);
             GLBuffer.glBindBuffer(GL.GL_ELEMENT_ARRAY_BUFFER, 0);
             if (rs != 0)
             {
@@ -157,11 +145,7 @@ namespace CSharpGL
 
             var builder = new System.Text.StringBuilder();
 
-            builder.AppendLine("ControlMode.ByFrame:");
-            builder.AppendLine(string.Format("glDrawElements(mode: {0}, vertexCount: {1}, type: {2}, offset: {3});", mode, vertexCount, elementType, offset));
-
-            builder.AppendLine("ControlMode.Random:");
-            builder.AppendLine(string.Format("glDrawElements(mode: {0}, vertexCount: {1}, type: {2}, offset: {3});", mode, this.RenderingVertexCount, elementType, offset));
+            builder.AppendFormat("glDrawElements(mode: {0}, vertexCount: {1}, type: {2}, offset: {3});", mode, this.VertexCount, elementType, offset);
 
             return builder.ToString();
         }
