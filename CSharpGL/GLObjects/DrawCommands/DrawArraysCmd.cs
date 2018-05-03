@@ -17,14 +17,12 @@ namespace CSharpGL
         /// <param name="mode">用哪种方式渲染各个顶点？（GL.GL_TRIANGLES etc.）</param>
         /// <param name="firstVertex">要渲染的第一个顶点的位置。<para>Index of first vertex to be rendered.</para></param>
         /// <param name="vertexCount">要渲染多少个元素？<para>How many vertexes to be rendered?</para></param>
-        /// <param name="frameCount">How many frames are there?</param>
-        public DrawArraysCmd(DrawMode mode, int firstVertex, int vertexCount, int frameCount = 1)
+        public DrawArraysCmd(DrawMode mode, int firstVertex, int vertexCount)
         {
             this.Mode = mode;
             this.FirstVertex = firstVertex;
             this.VertexCount = vertexCount;
             this.RenderingVertexCount = vertexCount;
-            this.FrameCount = frameCount;
         }
 
         /// <summary>
@@ -32,19 +30,6 @@ namespace CSharpGL
         /// <para>How many elements in thie buffer?</para>
         /// </summary>
         public int VertexCount { get; private set; }
-
-        /// <summary>
-        /// How many frames are there?
-        /// </summary>
-        [Category("ControlMode.ByFrame")]
-        public int FrameCount { get; set; }
-
-        /// <summary>
-        /// Gets or sets index of current frame.
-        /// </summary>
-        [Category("ControlMode.ByFrame")]
-        public int CurrentFrame { get; set; }
-
 
         /// <summary>
         /// 要渲染的第一个顶点的位置。<para>Index of first vertex to be rendered.</para>
@@ -72,22 +57,12 @@ namespace CSharpGL
         {
             uint mode = (uint)this.Mode;
 
-            int frameCount = this.FrameCount;
-            if (frameCount < 1) { throw new Exception("error: frameCount is less than 1."); }
-
             switch (indexAccessMode)
             {
                 case IndexAccessMode.ByFrame:
-                    int vertexCount = this.VertexCount;
-                    if (frameCount == 1)
-                    {
-                        GL.Instance.DrawArrays(mode, 0, vertexCount);
-                    }
-                    else
-                    {
-                        int vertexCountPerFrame = vertexCount / frameCount;
-                        GL.Instance.DrawArrays(mode, this.CurrentFrame * vertexCountPerFrame, vertexCountPerFrame);
-                    }
+                    const int first = 0;
+                    int count = this.VertexCount;
+                    GL.Instance.DrawArrays(mode, first, count);
                     break;
                 case IndexAccessMode.Random:
                     GL.Instance.DrawArrays(mode, this.FirstVertex, this.RenderingVertexCount);
@@ -106,24 +81,13 @@ namespace CSharpGL
         /// <returns></returns>
         public override string ToString()
         {
-            int frameCount = this.FrameCount;
-            if (frameCount < 1) { throw new Exception("error: frameCount is less than 1."); }
-
             var builder = new System.Text.StringBuilder();
 
             var mode = this.Mode;
             int vertexCount = this.VertexCount;
 
             builder.AppendLine("ControlMode.ByFrame:");
-            if (frameCount == 1)
-            {
-                builder.AppendLine(string.Format("glDrawArrays(mode: {0}, first: {1}, count: {2});", mode, 0, vertexCount));
-            }
-            else
-            {
-                int vertexCountPerFrame = vertexCount / frameCount;
-                builder.AppendLine(string.Format("glDrawArrays(mode: {0}, first = currentFrame * vertexCountPerFrame: {1} = {2} * {3}, count = vertexCountPerFrame: {4});", mode, this.CurrentFrame * vertexCountPerFrame, this.CurrentFrame, vertexCountPerFrame, vertexCountPerFrame));
-            }
+            builder.AppendLine(string.Format("glDrawArrays(mode: {0}, first: {1}, count: {2});", mode, 0, vertexCount));
 
             builder.AppendLine("ControlMode.Random:");
             builder.AppendLine(string.Format("glDrawArrays(mode: {0}, first: {1}, count: {2});", mode, this.FirstVertex, this.RenderingVertexCount));

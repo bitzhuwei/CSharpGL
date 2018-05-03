@@ -52,7 +52,7 @@ namespace SimpleInstancedRendering
             if (this.drawCmd == null)
             {
                 int instanceCount = 100;// render 100 instances.
-                this.drawCmd = new DrawArraysCmd(DrawMode.Triangles, 0, 6, instanceCount);
+                this.drawCmd = new DrawArraysInstancedCmd(DrawMode.Triangles, 0, 6, instanceCount);
             }
 
             yield return this.drawCmd;

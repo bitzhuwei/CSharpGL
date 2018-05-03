@@ -20,7 +20,7 @@ namespace c03d00_ModelSpace
     class GroundModel : IBufferSource
     {
         private readonly vec3[] positions;
-        private readonly vec3[] colors;
+        //private readonly vec3[] colors;
 
         public GroundModel(int length)
         {

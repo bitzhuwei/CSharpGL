@@ -20,7 +20,7 @@ namespace c02d04_CubeMapTexture
     class GroundModel : IBufferSource
     {
         private readonly vec3[] positions;
-        private readonly vec3[] colors;
+        //private readonly vec3[] colors;
 
         public GroundModel(int length)
         {
