@@ -163,7 +163,7 @@ namespace CSharpGL
             if (this.drawCmd == null)
             {
                 int uCount = GetUCount(interval);
-                DrawArraysCmd buffer = new DrawArraysCmd(DrawMode.Points, 0, uCount);
+                DrawArraysCmd buffer = new DrawArraysCmd(DrawMode.Points, uCount);
                 this.drawCmd = buffer;
             }
 

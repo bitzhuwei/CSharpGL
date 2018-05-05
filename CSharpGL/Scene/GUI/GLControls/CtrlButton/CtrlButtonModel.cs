@@ -100,7 +100,7 @@ namespace CSharpGL
         {
             if (this.drawCmd == null)
             {
-                this.drawCmd = new DrawArraysCmd(DrawMode.QuadStrip, 0, positions.Length);
+                this.drawCmd = new DrawArraysCmd(DrawMode.QuadStrip, positions.Length);
             }
 
             yield return this.drawCmd;

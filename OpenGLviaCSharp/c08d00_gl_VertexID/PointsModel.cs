@@ -87,7 +87,7 @@ namespace c08d00_gl_VertexID
         {
             if (this.drawCmd == null)
             {
-                this.drawCmd = new DrawArraysCmd(DrawMode.Points, 0, this.positions.Length);
+                this.drawCmd = new DrawArraysCmd(DrawMode.Points, this.positions.Length);
             }
 
             yield return this.drawCmd;

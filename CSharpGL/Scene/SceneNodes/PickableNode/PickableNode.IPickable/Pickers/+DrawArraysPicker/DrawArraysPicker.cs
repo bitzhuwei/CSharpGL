@@ -228,7 +228,7 @@ namespace CSharpGL
             var drawCmd = this.DrawCommand as DrawArraysCmd;
             int first = drawCmd.FirstVertex;
             if (first < 0) { return false; }
-            int vertexCount = drawCmd.RenderingVertexCount;
+            int vertexCount = drawCmd.VertexCount;
             if (vertexCount <= 0) { return false; }
             int last = first + vertexCount - 1;
             switch (mode)

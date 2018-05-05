@@ -40,7 +40,7 @@ namespace VolumeRendering.Slicing
         {
             if (this.drawCmd == null)
             {
-                this.drawCmd = new DrawArraysCmd(DrawMode.Triangles, 0, this.vTextureSlices.Length);
+                this.drawCmd = new DrawArraysCmd(DrawMode.Triangles, this.vTextureSlices.Length);
             }
 
             yield return this.drawCmd;

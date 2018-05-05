@@ -20,7 +20,6 @@ namespace CSharpGL
         private int[] count;
         private Array allIndices;
         private IndexBufferElementType type;
-        private int[] baseVertex;
 
         /// <summary>
         /// 
@@ -30,7 +29,7 @@ namespace CSharpGL
         /// <param name="allIndices"></param>
         /// <param name="baseVertex"></param>
         public MultiDrawElementsCmd(DrawMode mode, int[] count, uint[] allIndices, int[] baseVertex = null)
-            : this(mode, count, IndexBufferElementType.UInt, baseVertex)
+            : this(mode, count, IndexBufferElementType.UInt)
         {
             if (allIndices == null || count == null) { throw new System.ArgumentNullException(); }
 
@@ -45,7 +44,7 @@ namespace CSharpGL
         /// <param name="allIndices"></param>
         /// <param name="baseVertex"></param>
         public MultiDrawElementsCmd(DrawMode mode, int[] count, ushort[] allIndices, int[] baseVertex = null)
-            : this(mode, count, IndexBufferElementType.UShort, baseVertex)
+            : this(mode, count, IndexBufferElementType.UShort)
         {
             if (allIndices == null || count == null) { throw new System.ArgumentNullException(); }
 
@@ -59,7 +58,7 @@ namespace CSharpGL
         /// <param name="allIndices"></param>
         /// <param name="baseVertex"></param>
         public MultiDrawElementsCmd(DrawMode mode, int[] count, byte[] allIndices, int[] baseVertex = null)
-            : this(mode, count, IndexBufferElementType.UByte, baseVertex)
+            : this(mode, count, IndexBufferElementType.UByte)
         {
             if (allIndices == null || count == null) { throw new System.ArgumentNullException(); }
 
@@ -72,13 +71,11 @@ namespace CSharpGL
         /// <param name="mode"></param>
         /// <param name="count"></param>
         /// <param name="type">type of indices' element.</param>
-        /// <param name="baseVertex"></param>
-        private MultiDrawElementsCmd(DrawMode mode, int[] count, IndexBufferElementType type, int[] baseVertex = null)
+        private MultiDrawElementsCmd(DrawMode mode, int[] count, IndexBufferElementType type)
         {
             this.Mode = mode;
             this.count = count;
             this.type = type;
-            this.baseVertex = baseVertex;
         }
 
         /// <summary>
@@ -97,14 +94,7 @@ namespace CSharpGL
             }
             GCHandle pinIndices = GCHandle.Alloc(indices, GCHandleType.Pinned);
             IntPtr header = pinIndices.AddrOfPinnedObject();
-            if (this.baseVertex == null)
-            {
-                glMultiDrawElements((uint)this.Mode, this.count, (uint)this.type, header, this.count.Length);
-            }
-            else
-            {
-                glMultiDrawElementsBaseVertex((uint)this.Mode, this.count, (uint)this.type, header, this.count.Length, this.baseVertex);
-            }
+            glMultiDrawElements((uint)this.Mode, this.count, (uint)this.type, header, this.count.Length);
             pinIndices.Free();
             pinAll.Free();
         }
@@ -113,14 +103,9 @@ namespace CSharpGL
         /// void glMultiDrawElements(GLenum mode​, const GLsizei * count​, GLenum type​, const GLvoid * const * indices​, GLsizei drawcount​);
         /// </summary>
         private static readonly GLDelegates.void_uint_intN_uint_IntPtr_int glMultiDrawElements;
-        /// <summary>
-        /// void glMultiDrawElementsBaseVertex(uint mode​, int[] count​, uint type​, uint[][] indices​, int drawcount​, int[] basevertex​);
-        /// </summary>
-        private static readonly GLDelegates.void_uint_intN_uint_IntPtr_int_intN glMultiDrawElementsBaseVertex;
         static MultiDrawElementsCmd()
         {
             glMultiDrawElements = GL.Instance.GetDelegateFor("glMultiDrawElements", GLDelegates.typeof_void_uint_intN_uint_IntPtr_int) as GLDelegates.void_uint_intN_uint_IntPtr_int;
-            glMultiDrawElementsBaseVertex = GL.Instance.GetDelegateFor("glMultiDrawElementsBaseVertex", GLDelegates.typeof_void_uint_intN_uint_IntPtr_int_intN) as GLDelegates.void_uint_intN_uint_IntPtr_int_intN;
         }
 
     }

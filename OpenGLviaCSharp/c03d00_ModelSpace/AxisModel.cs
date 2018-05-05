@@ -81,7 +81,7 @@ namespace c03d00_ModelSpace
         {
             if (this.drawCommand == null)
             {
-                this.drawCommand = new DrawArraysCmd(DrawMode.Lines, 0, positions.Length);
+                this.drawCommand = new DrawArraysCmd(DrawMode.Lines, positions.Length);
             }
 
             yield return this.drawCommand;

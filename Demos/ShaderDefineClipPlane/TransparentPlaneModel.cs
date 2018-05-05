@@ -54,7 +54,7 @@ namespace ShaderDefineClipPlane
         {
             if (this.drawCmd == null)
             {
-                this.drawCmd = new DrawArraysCmd(DrawMode.Triangles, 0, positions.Length);
+                this.drawCmd = new DrawArraysCmd(DrawMode.Triangles, positions.Length);
             }
 
             yield return this.drawCmd;
