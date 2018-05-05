@@ -25,7 +25,6 @@ namespace c08d04_DrawModes
             this.winGLCanvas1.OpenGLDraw += winGLCanvas1_OpenGLDraw;
             this.winGLCanvas1.Resize += winGLCanvas1_Resize;
             this.winGLCanvas1.MouseMove += winGLCanvas1_MouseMove;
-
             {
                 string[] modes = Enum.GetNames(typeof(CSharpGL.DrawMode));
                 foreach (var mode in modes)
@@ -123,6 +122,30 @@ namespace c08d04_DrawModes
         private void cmbDrawMode_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.drawModeNode.DrawMode = (CSharpGL.DrawMode)Enum.Parse(typeof(CSharpGL.DrawMode), this.cmbDrawMode.SelectedItem.ToString());
+        }
+
+        private void rdoSmooth_CheckedChanged(object sender, EventArgs e)
+        {
+            if (this.rdoSmooth.Checked)
+            {
+                this.drawModeNode.Method = DrawModesNode.EMethod.Smooth;
+            }
+            else
+            {
+                this.drawModeNode.Method = DrawModesNode.EMethod.Flat;
+            }
+        }
+
+        private void rdoFlat_CheckedChanged(object sender, EventArgs e)
+        {
+            if (this.rdoFlat.Checked)
+            {
+                this.drawModeNode.Method = DrawModesNode.EMethod.Flat;
+            }
+            else
+            {
+                this.drawModeNode.Method = DrawModesNode.EMethod.Smooth;
+            }
         }
     }
 }

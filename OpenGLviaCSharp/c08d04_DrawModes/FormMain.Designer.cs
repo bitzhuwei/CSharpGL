@@ -32,6 +32,8 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.cmbDrawMode = new System.Windows.Forms.ComboBox();
+            this.rdoSmooth = new System.Windows.Forms.RadioButton();
+            this.rdoFlat = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.winGLCanvas1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -57,11 +59,11 @@
             // textBox1
             // 
             this.textBox1.Font = new System.Drawing.Font("宋体", 18F);
-            this.textBox1.Location = new System.Drawing.Point(12, 45);
+            this.textBox1.Location = new System.Drawing.Point(12, 74);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(335, 520);
+            this.textBox1.Size = new System.Drawing.Size(335, 491);
             this.textBox1.TabIndex = 1;
             // 
             // label1
@@ -85,11 +87,39 @@
             this.cmbDrawMode.TabIndex = 3;
             this.cmbDrawMode.SelectedIndexChanged += new System.EventHandler(this.cmbDrawMode_SelectedIndexChanged);
             // 
+            // rdoSmooth
+            // 
+            this.rdoSmooth.AutoSize = true;
+            this.rdoSmooth.Checked = true;
+            this.rdoSmooth.Font = new System.Drawing.Font("宋体", 14F);
+            this.rdoSmooth.Location = new System.Drawing.Point(12, 45);
+            this.rdoSmooth.Name = "rdoSmooth";
+            this.rdoSmooth.Size = new System.Drawing.Size(87, 23);
+            this.rdoSmooth.TabIndex = 4;
+            this.rdoSmooth.TabStop = true;
+            this.rdoSmooth.Text = "smooth";
+            this.rdoSmooth.UseVisualStyleBackColor = true;
+            this.rdoSmooth.CheckedChanged += new System.EventHandler(this.rdoSmooth_CheckedChanged);
+            // 
+            // rdoFlat
+            // 
+            this.rdoFlat.AutoSize = true;
+            this.rdoFlat.Font = new System.Drawing.Font("宋体", 14F);
+            this.rdoFlat.Location = new System.Drawing.Point(105, 45);
+            this.rdoFlat.Name = "rdoFlat";
+            this.rdoFlat.Size = new System.Drawing.Size(67, 23);
+            this.rdoFlat.TabIndex = 4;
+            this.rdoFlat.Text = "flat";
+            this.rdoFlat.UseVisualStyleBackColor = true;
+            this.rdoFlat.CheckedChanged += new System.EventHandler(this.rdoFlat_CheckedChanged);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(985, 577);
+            this.Controls.Add(this.rdoFlat);
+            this.Controls.Add(this.rdoSmooth);
             this.Controls.Add(this.cmbDrawMode);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox1);
@@ -108,5 +138,7 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cmbDrawMode;
+        private System.Windows.Forms.RadioButton rdoSmooth;
+        private System.Windows.Forms.RadioButton rdoFlat;
     }
 }
