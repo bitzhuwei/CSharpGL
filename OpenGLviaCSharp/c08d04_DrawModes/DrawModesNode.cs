@@ -39,9 +39,9 @@ namespace c08d04_DrawModes
                 var map = new AttributeMap();
                 map.Add("inPosition", position);
                 map.Add("inColor", color);
-                var pointSizeSwitch = new PointSizeSwitch(7);
+                //var pointSizeSwitch = new PointSizeSwitch(7);
                 var lineWidthSwitch = new LineWidthSwitch(7);
-                builder = new RenderMethodBuilder(array, map, pointSizeSwitch, lineWidthSwitch);
+                builder = new RenderMethodBuilder(array, map, lineWidthSwitch);
             }
 
             var node = new DrawModesNode(model, position, builder);
@@ -71,6 +71,7 @@ namespace c08d04_DrawModes
             var method = this.RenderUnit.Methods[0];
             ShaderProgram program = method.Program;
             program.SetUniform("mvpMatrix", projection * view * model);
+            GL.Instance.Enable(GL.GL_PROGRAM_POINT_SIZE);
             method.Render();
         }
 

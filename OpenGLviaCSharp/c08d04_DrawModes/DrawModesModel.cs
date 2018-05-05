@@ -19,16 +19,24 @@ namespace c08d04_DrawModes
 
         public DrawModesModel()
         {
-            const int count = 14;
+            const int count = 12;
             {
                 var positions = new vec3[count];
+                // layout in circle.
                 for (int w = 0; w < count; w++)
                 {
                     positions[w] = new vec3(
-                        (float)(Math.Cos((float)w / (count + 1) * Math.PI * 2)),
-                        (float)(Math.Sin((float)w / (count + 1) * Math.PI * 2)),
+                        (float)(Math.Cos((float)w / (count) * Math.PI * 2)),
+                        (float)(Math.Sin((float)w / (count) * Math.PI * 2)),
                         0) * 3;
                 }
+                // layout in rectangles.
+                //var random = new Random();
+                //for (int w = 0; w < count / 2; w++)
+                //{
+                //    positions[w * 2 + 0] = new vec3(w, 0 - (float)random.NextDouble(), 0);
+                //    positions[w * 2 + 1] = new vec3(w, 1 + (float)random.NextDouble(), 0);
+                //}
                 BoundingBox box = positions.Move2Center();
                 this.size = box.MaxPosition - box.MinPosition;
                 this.positions = positions;
