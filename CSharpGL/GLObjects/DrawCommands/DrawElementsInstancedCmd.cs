@@ -155,12 +155,12 @@ namespace CSharpGL
         /// <returns></returns>
         public override string ToString()
         {
-            var mode = this.Mode;
+            var mode = this.CurrentMode;
             IndexBuffer indexBuffer = this.indexBuffer;
             IndexBufferElementType elementType = indexBuffer.ElementType;
             IntPtr offset = GetOffset(elementType, this.FirstVertex);
 
-            return string.Format("glDrawElementsInstanced(mode: {0}, vertexCount: {1}, type: {2}, offset: {3}, primCount: {4});", this.CurrentMode, this.VertexCount, elementType, offset, this.InstanceCount);
+            return string.Format("glDrawElementsInstanced(mode: {0}, vertexCount: {1}, type: {2}, offset: {3}, primCount: {4});", mode, this.VertexCount, elementType, offset, this.InstanceCount);
         }
 
         private static GLDelegates.void_uint glPrimitiveRestartIndex;

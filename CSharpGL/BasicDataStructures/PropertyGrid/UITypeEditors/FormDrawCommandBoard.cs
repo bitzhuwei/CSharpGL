@@ -51,7 +51,7 @@ namespace CSharpGL
             foreach (object item in this.cmbDrawMode.Items)
             {
                 index++;
-                if ((DrawMode)item == drawCmdController.DrawCmd.Mode)
+                if ((DrawMode)item == drawCmdController.DrawCmd.CurrentMode)
                 {
                     this.cmbDrawMode.SelectedIndex = index;
                     break;

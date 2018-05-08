@@ -88,7 +88,7 @@ namespace CSharpGL
                 transformFeedbackObj.Bind();
                 foreach (var vao in this.VertexArrayObjects)
                 {
-                    transformFeedbackObj.Begin(vao.DrawCommand.Mode);
+                    transformFeedbackObj.Begin(vao.DrawCommand.CurrentMode);
                     vao.Draw(indexAccessMode);
                     transformFeedbackObj.End();
                 }

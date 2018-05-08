@@ -103,7 +103,7 @@ namespace CSharpGL
         /// <param name="indexAccessMode">index buffer is accessable randomly or only by frame.</param>
         public void Draw(IndexAccessMode indexAccessMode)
         {
-            uint mode = (uint)this.Mode;
+            uint mode = (uint)this.CurrentMode;
             IndexBuffer indexBuffer = this.indexBuffer;
             IndexBufferElementType elementType = indexBuffer.ElementType;
             IntPtr offset = GetOffset(elementType, this.FirstVertex);
@@ -154,7 +154,7 @@ namespace CSharpGL
         /// <returns></returns>
         public override string ToString()
         {
-            uint mode = (uint)this.Mode;
+            uint mode = (uint)this.CurrentMode;
             IndexBuffer indexBuffer = this.indexBuffer;
             IndexBufferElementType elementType = indexBuffer.ElementType;
             IntPtr offset = GetOffset(elementType, this.FirstVertex);

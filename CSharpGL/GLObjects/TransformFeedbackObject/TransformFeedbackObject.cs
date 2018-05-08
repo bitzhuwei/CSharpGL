@@ -263,7 +263,7 @@ namespace CSharpGL
             this.Bind();
             foreach (var vao in vaos)
             {
-                DrawMode mode = vao.DrawCommand.Mode;
+                DrawMode mode = vao.DrawCommand.CurrentMode;
                 this.Begin(mode);
                 vao.Bind();
                 this.Draw(mode);
