@@ -96,19 +96,18 @@ namespace CSharpGL
         /// 执行一次渲染的过程。
         /// <para>Execute rendering command.</para>
         /// </summary>
-        /// <param name="indexAccessMode">index buffer is accessable randomly or only by frame.</param>
         /// <param name="temporaryIndexBuffer">render by a temporary index buffer</param>
-        public void Draw(IndexAccessMode indexAccessMode, IDrawCommand temporaryIndexBuffer = null)
+        public void Draw(IDrawCommand temporaryIndexBuffer = null)
         {
             this.Bind();
 
             if (temporaryIndexBuffer != null)
             {
-                temporaryIndexBuffer.Draw(indexAccessMode);
+                temporaryIndexBuffer.Draw();
             }
             else
             {
-                this.DrawCommand.Draw(indexAccessMode);
+                this.DrawCommand.Draw();
             }
 
             this.Unbind();

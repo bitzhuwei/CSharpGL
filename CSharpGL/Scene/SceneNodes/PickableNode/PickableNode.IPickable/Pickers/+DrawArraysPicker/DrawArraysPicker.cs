@@ -46,7 +46,7 @@ namespace CSharpGL
 
             if ((pickingType & PickingGeometryTypes.Point) == PickingGeometryTypes.Point)
             {
-                DrawMode mode = this.DrawCommand.Mode;
+                DrawMode mode = this.DrawCommand.CurrentMode;
                 GeometryType typeOfMode = mode.ToGeometryType();
                 if (typeOfMode == GeometryType.Point)
                 { return PickWhateverItIs(arg, stageVertexId, flatColorVertexId, mode, typeOfMode); }
@@ -68,7 +68,7 @@ namespace CSharpGL
             }
             else if ((pickingType & PickingGeometryTypes.Line) == PickingGeometryTypes.Line)
             {
-                DrawMode mode = this.DrawCommand.Mode;
+                DrawMode mode = this.DrawCommand.CurrentMode;
                 GeometryType typeOfMode = mode.ToGeometryType();
                 if (pickingType.Contains(typeOfMode))
                 { return PickWhateverItIs(arg, stageVertexId, flatColorVertexId, mode, typeOfMode); }
@@ -85,7 +85,7 @@ namespace CSharpGL
             }
             else
             {
-                DrawMode mode = this.DrawCommand.Mode;
+                DrawMode mode = this.DrawCommand.CurrentMode;
                 GeometryType typeOfMode = mode.ToGeometryType();
                 if (pickingType.Contains(typeOfMode)) // I want what it is
                 { return PickWhateverItIs(arg, stageVertexId, flatColorVertexId, mode, typeOfMode); }

@@ -32,7 +32,7 @@ namespace CSharpGL
 #if DEBUG
             NoPrimitiveRestartIndex(primitiveInfoList);
 #endif
-            DrawMode singlePrimitiveMode = this.DrawCommand.Mode.ToSinglePrimitiveMode();
+            DrawMode singlePrimitiveMode = this.DrawCommand.CurrentMode.ToSinglePrimitiveMode();
             for (int left = 0; left < primitiveInfoList.Count - 1; left++)
             {
                 for (int right = left + 1; right < primitiveInfoList.Count; right++)

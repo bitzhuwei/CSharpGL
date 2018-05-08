@@ -48,6 +48,7 @@ namespace CSharpGL
 
             this.indexBuffer = indexBuffer;
             this.Mode = mode;
+            this.CurrentMode = mode;
             this.FirstVertex = firstVertex;
             this.VertexCount = vertexCount;
             this.PrimitiveRestartIndex = primitiveRestartIndex;
@@ -78,15 +79,20 @@ namespace CSharpGL
         /// 用哪种方式渲染各个顶点？（GL.GL_TRIANGLES etc.）
         /// </summary>
         [Category(strDrawElementsCmd)]
-        public DrawMode Mode { get; set; }
+        public DrawMode Mode { get; private set; }
+
+        /// <summary>
+        /// 用哪种方式渲染各个顶点？（GL.GL_TRIANGLES etc.）
+        /// </summary>
+        [Category(strDrawElementsCmd)]
+        public DrawMode CurrentMode { get; set; }
 
         /// <summary>
         ///
         /// </summary>
-        /// <param name="indexAccessMode">index buffer is accessable randomly or only by frame.</param>
-        public void Draw(IndexAccessMode indexAccessMode)
+        public void Draw()
         {
-            uint mode = (uint)this.Mode;
+            uint mode = (uint)this.CurrentMode;
             IndexBuffer indexBuffer = this.indexBuffer;
             IndexBufferElementType elementType = indexBuffer.ElementType;
             IntPtr offset = GetOffset(elementType, this.FirstVertex);
@@ -142,7 +148,7 @@ namespace CSharpGL
             IndexBufferElementType elementType = indexBuffer.ElementType;
             IntPtr offset = GetOffset(elementType, this.FirstVertex);
 
-            return string.Format("glDrawElements(mode: {0}, vertexCount: {1}, type: {2}, offset: {3});", this.Mode, this.VertexCount, elementType, offset);
+            return string.Format("glDrawElements(mode: {0}, vertexCount: {1}, type: {2}, offset: {3});", this.CurrentMode, this.VertexCount, elementType, offset);
         }
 
         private static GLDelegates.void_uint glPrimitiveRestartIndex;

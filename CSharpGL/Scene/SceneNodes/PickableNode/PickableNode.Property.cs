@@ -23,11 +23,5 @@ namespace CSharpGL
         [Description("Takes care of rendering for picking.")]
         public IPickableRenderMethod PickingRenderMethod { get; private set; }
 
-        /// <summary>
-        /// index buffer is accessable randomly or only by frame.
-        /// </summary>
-        [Category(strPickableRenderer)]
-        [Description("index buffer is accessable randomly or only by frame.")]
-        public IndexAccessMode AccessMode { get; set; }
     }
 }

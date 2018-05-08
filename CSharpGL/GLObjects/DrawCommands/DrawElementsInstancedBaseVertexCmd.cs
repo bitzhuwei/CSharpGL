@@ -53,6 +53,7 @@ namespace CSharpGL
 
             this.indexBuffer = indexBuffer;
             this.Mode = mode;
+            this.CurrentMode = mode;
             this.FrameVertexCount = frameVertexCount;
             this.FirstVertex = firstVertex;
             this.InstanceCount = instanceCount;
@@ -97,16 +98,21 @@ namespace CSharpGL
         /// 用哪种方式渲染各个顶点？（GL.GL_TRIANGLES etc.）
         /// </summary>
         [Category(strDrawElementsInstancedBaseVertexCmd)]
-        public DrawMode Mode { get; set; }
+        public DrawMode Mode { get; private set; }
+
+        /// <summary>
+        /// 用哪种方式渲染各个顶点？（GL.GL_TRIANGLES etc.）
+        /// </summary>
+        [Category(strDrawElementsInstancedBaseVertexCmd)]
+        public DrawMode CurrentMode { get; set; }
 
         /// <summary>
         ///
         /// </summary>
-        /// <param name="indexAccessMode">index buffer is accessable randomly or only by frame.</param>
-        public void Draw(IndexAccessMode indexAccessMode)
+        public void Draw()
         {
             int instanceCount = this.InstanceCount;
-            uint mode = (uint)this.Mode;
+            uint mode = (uint)this.CurrentMode;
             IndexBuffer indexBuffer = this.indexBuffer;
             IndexBufferElementType elementType = indexBuffer.ElementType;
             IntPtr offset = GetOffset(elementType, this.FirstVertex);
@@ -158,11 +164,11 @@ namespace CSharpGL
         public override string ToString()
         {
             int instanceCount = this.InstanceCount;
-            uint mode = (uint)this.Mode;
+            uint mode = (uint)this.CurrentMode;
             IndexBufferElementType elementType = indexBuffer.ElementType;
             IntPtr offset = GetOffset(elementType, this.FirstVertex);
 
-            return string.Format("glDrawElementsInstancedBaseVertex(mode: {0}, frameVertexCount: {1}, type: {2}, offset: {3}, instanceCount: {4}, baseVertex: {5});", this.Mode, this.FrameVertexCount, elementType, offset, instanceCount, this.BaseVertex);
+            return string.Format("glDrawElementsInstancedBaseVertex(mode: {0}, frameVertexCount: {1}, type: {2}, offset: {3}, instanceCount: {4}, baseVertex: {5});", mode, this.FrameVertexCount, elementType, offset, instanceCount, this.BaseVertex);
         }
 
         private static GLDelegates.void_uint glPrimitiveRestartIndex;

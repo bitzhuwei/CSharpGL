@@ -36,6 +36,7 @@ namespace CSharpGL
             if (instanceCount < 1) { throw new Exception("error: instanceCount is less than 1."); }
 
             this.Mode = mode;
+            this.CurrentMode = mode;
             this.MaxVertexCount = maxVertexCount;
             this.FirstVertex = firstVertex;
             this.VertexCount = vertexCount;
@@ -73,14 +74,19 @@ namespace CSharpGL
         /// 用哪种方式渲染各个顶点？（GL.GL_TRIANGLES etc.）
         /// </summary>
         [Category(strDrawArraysInstancedCmd)]
-        public DrawMode Mode { get; set; }
+        public DrawMode Mode { get; private set; }
+
+        /// <summary>
+        /// 用哪种方式渲染各个顶点？（GL.GL_TRIANGLES etc.）
+        /// </summary>
+        [Category(strDrawArraysInstancedCmd)]
+        public DrawMode CurrentMode { get; set; }
 
         /// <summary>
         /// </summary>
-        /// <param name="indexAccessMode">index buffer is accessable randomly or only by frame.</param>
-        public void Draw(IndexAccessMode indexAccessMode)
+        public void Draw()
         {
-            uint mode = (uint)this.Mode;
+            uint mode = (uint)this.CurrentMode;
 
             int instanceCount = this.InstanceCount;
 
@@ -98,7 +104,7 @@ namespace CSharpGL
         /// <returns></returns>
         public override string ToString()
         {
-            return string.Format("glDrawArraysInstanced(mode: {0}, first: {1}, count: {2}, primCount: {3});", this.Mode, this.FirstVertex, this.MaxVertexCount, this.InstanceCount);
+            return string.Format("glDrawArraysInstanced(mode: {0}, first: {1}, count: {2}, primCount: {3});", this.CurrentMode, this.FirstVertex, this.MaxVertexCount, this.InstanceCount);
         }
 
         /// <summary>

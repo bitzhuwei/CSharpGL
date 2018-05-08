@@ -18,7 +18,7 @@ namespace CSharpGL
             // when the temp index buffer could be long, it's no longer needed.
             // what a great OpenGL API design!
             var drawCmd = new DrawArraysCmd(DrawMode.Points, cmd.MaxVertexCount, cmd.FirstVertex, cmd.VertexCount);
-            picker.Node.Render4InnerPicking(arg, IndexAccessMode.ByFrame, drawCmd);
+            picker.Node.Render4InnerPicking(arg, drawCmd);
             uint id = ColorCodedPicking.ReadStageVertexId(arg.X, arg.Y);
 
             if (cmd.FirstVertex <= id && id < cmd.FirstVertex + cmd.VertexCount)

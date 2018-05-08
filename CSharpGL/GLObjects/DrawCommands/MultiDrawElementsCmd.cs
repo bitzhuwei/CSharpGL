@@ -12,10 +12,18 @@ namespace CSharpGL
     [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
     public class MultiDrawElementsCmd : IDrawCommand
     {
+        private const string strMultiDrawElementsCmd = "MultiDrawElementsCmd";
         /// <summary>
         /// 用哪种方式渲染各个顶点？（GL.GL_TRIANGLES etc.）
         /// </summary>
-        public DrawMode Mode { get; set; }
+        [Category(strMultiDrawElementsCmd)]
+        public DrawMode Mode { get; private set; }
+
+        /// <summary>
+        /// 用哪种方式渲染各个顶点？（GL.GL_TRIANGLES etc.）
+        /// </summary>
+        [Category(strMultiDrawElementsCmd)]
+        public DrawMode CurrentMode { get; set; }
 
         private int[] count;
         private Array allIndices;
@@ -74,14 +82,14 @@ namespace CSharpGL
         private MultiDrawElementsCmd(DrawMode mode, int[] count, IndexBufferElementType type)
         {
             this.Mode = mode;
+            this.CurrentMode = mode;
             this.count = count;
             this.type = type;
         }
 
         /// <summary>
         /// </summary>
-        /// <param name="indexAccessMode">index buffer is accessable randomly or only by frame.</param>
-        public void Draw(IndexAccessMode indexAccessMode)
+        public void Draw()
         {
             GCHandle pinAll = GCHandle.Alloc(this.allIndices, GCHandleType.Pinned);
             var count = this.count;
@@ -94,7 +102,7 @@ namespace CSharpGL
             }
             GCHandle pinIndices = GCHandle.Alloc(indices, GCHandleType.Pinned);
             IntPtr header = pinIndices.AddrOfPinnedObject();
-            glMultiDrawElements((uint)this.Mode, this.count, (uint)this.type, header, this.count.Length);
+            glMultiDrawElements((uint)this.CurrentMode, this.count, (uint)this.type, header, this.count.Length);
             pinIndices.Free();
             pinAll.Free();
         }

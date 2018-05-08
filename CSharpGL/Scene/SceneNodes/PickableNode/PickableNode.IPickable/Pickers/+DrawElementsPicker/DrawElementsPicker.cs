@@ -56,7 +56,7 @@ namespace CSharpGL
             }
 
             PickingGeometryTypes geometryType = arg.GeometryType;
-            DrawMode drawMode = this.DrawCommand.Mode;
+            DrawMode drawMode = this.DrawCommand.CurrentMode;
             GeometryType typeOfMode = drawMode.ToGeometryType();
 
             if ((geometryType & PickingGeometryTypes.Point) == PickingGeometryTypes.Point)
@@ -207,7 +207,7 @@ namespace CSharpGL
         /// <returns></returns>
         private uint Pick(PickingEventArgs arg, DrawElementsCmd twoPrimitivesIndexBuffer)
         {
-            this.Node.Render4InnerPicking(arg, IndexAccessMode.ByFrame, twoPrimitivesIndexBuffer);
+            this.Node.Render4InnerPicking(arg, twoPrimitivesIndexBuffer);
 
             uint pickedIndex = ColorCodedPicking.ReadStageVertexId(arg.X, arg.Y);
 
@@ -225,7 +225,7 @@ namespace CSharpGL
         private List<RecognizedPrimitiveInfo> GetPossiblePrimitives(PickingEventArgs arg, uint flatColorVertexId)
         {
             var drawCmd = this.DrawCommand;
-            DrawMode mode = drawCmd.Mode;
+            DrawMode mode = drawCmd.CurrentMode;
             PrimitiveRecognizer recognizer = PrimitiveRecognizerFactory.Create(
                 (arg.GeometryType.Contains(GeometryType.Point)
                 && mode.ToGeometryType() == GeometryType.Line) ?

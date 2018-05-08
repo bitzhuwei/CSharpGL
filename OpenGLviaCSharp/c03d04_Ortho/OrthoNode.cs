@@ -14,7 +14,7 @@ namespace c03d04_Ortho
             var model = new OrthoModel(-1, 1, -1, 1, 0.5f, 5f);
             // vertex shader and fragment shader.
             var vs = new VertexShader(vertexCode);
-            var fs = new FragmentShader(fragmnetCode);
+            var fs = new FragmentShader(fragmentCode);
             var array = new ShaderArray(vs, fs);
             // which vertex buffer maps to which attribute in shader.
             var map = new AttributeMap();

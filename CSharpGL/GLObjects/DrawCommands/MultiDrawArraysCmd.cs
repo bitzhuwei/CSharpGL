@@ -10,15 +10,17 @@ namespace CSharpGL
     [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
     public class MultiDrawArraysCmd : IDrawCommand
     {
-
+        private const string strMultiDrawArraysCmd = "MultiDrawArraysCmd";
         /// <summary>
         /// 
         /// </summary>
+        [Category(strMultiDrawArraysCmd)]
         public int[] First { get; private set; }
 
         /// <summary>
         /// 
         /// </summary>
+        [Category(strMultiDrawArraysCmd)]
         public int[] Count { get; private set; }
 
         /// <summary>
@@ -33,6 +35,7 @@ namespace CSharpGL
             if (first.Length != count.Length) { throw new System.ArgumentException(); }
 
             this.Mode = mode;
+            this.CurrentMode = mode;
             this.First = first;
             this.Count = count;
         }
@@ -42,16 +45,22 @@ namespace CSharpGL
         /// <summary>
         /// 用哪种方式渲染各个顶点？（GL.GL_TRIANGLES etc.）
         /// </summary>
-        public DrawMode Mode { get; set; }
+        [Category(strMultiDrawArraysCmd)]
+        public DrawMode Mode { get; private set; }
+
+        /// <summary>
+        /// 用哪种方式渲染各个顶点？（GL.GL_TRIANGLES etc.）
+        /// </summary>
+        [Category(strMultiDrawArraysCmd)]
+        public DrawMode CurrentMode { get; set; }
 
         /// <summary>
         /// 执行此VBO的渲染操作。
         /// <para>Render using this VBO.</para>
         /// </summary>
-        /// <param name="indexAccessMode">index buffer is accessable randomly or only by frame.</param>
-        public void Draw(IndexAccessMode indexAccessMode)
+        public void Draw()
         {
-            GL.Instance.MultiDrawArrays((uint)this.Mode, this.First, this.Count, this.First.Length);
+            GL.Instance.MultiDrawArrays((uint)this.CurrentMode, this.First, this.Count, this.First.Length);
         }
 
         #endregion IDrawCommand
