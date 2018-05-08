@@ -21,7 +21,7 @@ void main() {
 }
 ";
 
-        private const string fragmnetCode = @"
+        private const string fragmentCode = @"
 #version 150
 
 uniform vec3 color = vec3(1.0, 0.843, 0);

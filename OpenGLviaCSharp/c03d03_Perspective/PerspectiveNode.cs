@@ -14,7 +14,7 @@ namespace c03d03_Perspective
             var model = new PerspectiveModel((float)(60.0 * Math.PI / 180.0), 1, 0.5f, 10);
             // vertex shader and fragment shader.
             var vs = new VertexShader(vertexCode);
-            var fs = new FragmentShader(fragmnetCode);
+            var fs = new FragmentShader(fragmentCode);
             var array = new ShaderArray(vs, fs);
             // which vertex buffer maps to which attribute in shader.
             var map = new AttributeMap();

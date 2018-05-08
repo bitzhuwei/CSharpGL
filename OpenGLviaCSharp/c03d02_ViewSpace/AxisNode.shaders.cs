@@ -25,7 +25,7 @@ void main() {
 }
 ";
 
-        private const string fragmnetCode = @"
+        private const string fragmentCode = @"
 #version 150
 
 in vec3 passColor;

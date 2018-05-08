@@ -27,7 +27,7 @@ void main() {
 }
 ";
 
-        private const string fragmnetCode = @"
+        private const string fragmentCode = @"
 #version 150
 
 uniform sampler2D texture0;

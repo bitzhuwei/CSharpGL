@@ -14,7 +14,7 @@ namespace c02d00_2DTexture
             var model = new CubeModel();
             // vertex shader and fragment shader.
             var vs = new VertexShader(vertexCode);
-            var fs = new FragmentShader(fragmnetCode);
+            var fs = new FragmentShader(fragmentCode);
             var array = new ShaderArray(vs, fs);
             // which vertex buffer maps to which attribute in shader.
             var map = new AttributeMap();

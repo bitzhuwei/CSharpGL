@@ -20,7 +20,7 @@ void main() {
 }
 ";
 
-        private const string fragmnetCode = @"
+        private const string fragmentCode = @"
 #version 150
 
 uniform vec4 color = vec4(1, 0, 0, 1); // default: red color.

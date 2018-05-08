@@ -14,7 +14,7 @@ namespace c03d02_ViewSpace
             var model = new GroundModel(12);
             // vertex shader and fragment shader.
             var vs = new VertexShader(vertexCode);
-            var fs = new FragmentShader(fragmnetCode);
+            var fs = new FragmentShader(fragmentCode);
             var array = new ShaderArray(vs, fs);
             // which vertex buffer maps to which attribute in shader.
             var map = new AttributeMap();
