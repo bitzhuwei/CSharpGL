@@ -88,7 +88,7 @@ namespace BasicTessellationShader
                 foreach (var vao in method.VertexArrayObjects)
                 {
                     IDrawCommand cmd = vao.DrawCommand;
-                    cmd.Mode = DrawMode.Patches;
+                    cmd.CurrentMode = DrawMode.Patches;
                 }
 
                 var polygonModeState = new PolygonModeSwitch(CSharpGL.PolygonMode.Fill);

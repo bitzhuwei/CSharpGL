@@ -49,6 +49,7 @@ namespace CSharpGL
 
             this.indexBuffer = indexBuffer;
             this.Mode = mode;
+            this.CurrentMode = mode;
             this.FirstVertex = firstVertex;
             this.VertexCount = vertexCount;
             this.InstanceCount = instanceCount;
@@ -86,7 +87,13 @@ namespace CSharpGL
         /// 用哪种方式渲染各个顶点？（GL.GL_TRIANGLES etc.）
         /// </summary>
         [Category(strDrawElementsInstancedCmd)]
-        public DrawMode Mode { get; set; }
+        public DrawMode Mode { get; private set; }
+
+        /// <summary>
+        /// 用哪种方式渲染各个顶点？（GL.GL_TRIANGLES etc.）
+        /// </summary>
+        [Category(strDrawElementsInstancedCmd)]
+        public DrawMode CurrentMode { get; set; }
 
         /// <summary>
         ///
@@ -96,7 +103,7 @@ namespace CSharpGL
         {
             int instanceCount = this.InstanceCount;
 
-            uint mode = (uint)this.Mode;
+            uint mode = (uint)this.CurrentMode;
             IndexBuffer indexBuffer = this.indexBuffer;
             int vertexCount = indexBuffer.Length;
             IndexBufferElementType elementType = indexBuffer.ElementType;
@@ -153,7 +160,7 @@ namespace CSharpGL
             IndexBufferElementType elementType = indexBuffer.ElementType;
             IntPtr offset = GetOffset(elementType, this.FirstVertex);
 
-            return string.Format("glDrawElementsInstanced(mode: {0}, vertexCount: {1}, type: {2}, offset: {3}, primCount: {4});", this.Mode, this.VertexCount, elementType, offset, this.InstanceCount);
+            return string.Format("glDrawElementsInstanced(mode: {0}, vertexCount: {1}, type: {2}, offset: {3}, primCount: {4});", this.CurrentMode, this.VertexCount, elementType, offset, this.InstanceCount);
         }
 
         private static GLDelegates.void_uint glPrimitiveRestartIndex;

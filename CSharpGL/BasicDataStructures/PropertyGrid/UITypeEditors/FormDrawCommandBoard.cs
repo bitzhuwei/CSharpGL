@@ -131,7 +131,7 @@ namespace CSharpGL
 
         private void cmbDrawMode_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.controller.DrawCmd.Mode = ((DrawMode)this.cmbDrawMode.SelectedItem);
+            this.controller.DrawCmd.CurrentMode = ((DrawMode)this.cmbDrawMode.SelectedItem);
         }
     }
 

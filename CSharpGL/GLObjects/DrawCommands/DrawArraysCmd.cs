@@ -31,6 +31,7 @@ namespace CSharpGL
         public DrawArraysCmd(DrawMode mode, int maxVertexCount, int firstVertex, int vertexCount)
         {
             this.Mode = mode;
+            this.CurrentMode = mode;
             this.MaxVertexCount = maxVertexCount;
             this.FirstVertex = firstVertex;
             this.VertexCount = vertexCount;
@@ -61,14 +62,20 @@ namespace CSharpGL
         /// 用哪种方式渲染各个顶点？（GL.GL_TRIANGLES etc.）
         /// </summary>
         [Category(strDrawArraysCmd)]
-        public DrawMode Mode { get; set; }
+        public DrawMode Mode { get; private set; }
+
+        /// <summary>
+        /// 用哪种方式渲染各个顶点？（GL.GL_TRIANGLES etc.）
+        /// </summary>
+        [Category(strDrawArraysCmd)]
+        public DrawMode CurrentMode { get; set; }
 
         /// <summary>
         /// </summary>
         /// <param name="indexAccessMode">index buffer is accessable randomly or only by frame.</param>
         public void Draw(IndexAccessMode indexAccessMode)
         {
-            uint mode = (uint)this.Mode;
+            uint mode = (uint)this.CurrentMode;
             int first = this.FirstVertex;
             int count = this.VertexCount;
             GL.Instance.DrawArrays(mode, first, count);
@@ -82,14 +89,11 @@ namespace CSharpGL
         /// <returns></returns>
         public override string ToString()
         {
-            var builder = new System.Text.StringBuilder();
-
-            var mode = this.Mode;
+            var mode = this.CurrentMode;
+            int first = this.FirstVertex;
             int vertexCount = this.MaxVertexCount;
 
-            builder.AppendFormat("glDrawArrays(mode: {0}, first: {1}, count: {2});", mode, 0, vertexCount);
-
-            return builder.ToString();
+            return string.Format("glDrawArrays(mode: {0}, first: {1}, count: {2});", mode, first, vertexCount);
         }
     }
 }

@@ -19,7 +19,7 @@ namespace c08d04_DrawModes
                 var method = this.RenderUnit.Methods[0];
                 foreach (var vao in method.VertexArrayObjects)
                 {
-                    return vao.DrawCommand.Mode;
+                    return vao.DrawCommand.CurrentMode;
                 }
 
                 return CSharpGL.DrawMode.Patches;
@@ -29,7 +29,7 @@ namespace c08d04_DrawModes
                 var method = this.RenderUnit.Methods[0];
                 foreach (var vao in method.VertexArrayObjects)
                 {
-                    vao.DrawCommand.Mode = value;
+                    vao.DrawCommand.CurrentMode = value;
                 }
             }
         }
