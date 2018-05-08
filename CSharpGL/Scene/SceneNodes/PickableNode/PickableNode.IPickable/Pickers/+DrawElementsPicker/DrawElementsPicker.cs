@@ -207,7 +207,7 @@ namespace CSharpGL
         /// <returns></returns>
         private uint Pick(PickingEventArgs arg, DrawElementsCmd twoPrimitivesIndexBuffer)
         {
-            this.Node.Render4InnerPicking(arg, IndexAccessMode.ByFrame, twoPrimitivesIndexBuffer);
+            this.Node.Render4InnerPicking(arg, twoPrimitivesIndexBuffer);
 
             uint pickedIndex = ColorCodedPicking.ReadStageVertexId(arg.X, arg.Y);
 

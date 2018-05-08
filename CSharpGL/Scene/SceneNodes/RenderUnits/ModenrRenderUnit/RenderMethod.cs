@@ -52,27 +52,18 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="indexAccessMode">index buffer is accessable randomly or only by frame.</param>
+        public void Render()
+        {
+            this.Render(null);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="indexAccessMode">index buffer is accessable randomly or only by frame.</param>
         /// <param name="transformFeedbackObj"></param>
         public void Render(TransformFeedbackObject transformFeedbackObj)
-        {
-            this.Render(IndexAccessMode.Random, transformFeedbackObj);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="indexAccessMode">index buffer is accessable randomly or only by frame.</param>
-        public void Render(IndexAccessMode indexAccessMode = IndexAccessMode.Random)
-        {
-            this.Render(indexAccessMode, null);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="indexAccessMode">index buffer is accessable randomly or only by frame.</param>
-        /// <param name="transformFeedbackObj"></param>
-        public void Render(IndexAccessMode indexAccessMode, TransformFeedbackObject transformFeedbackObj)
         {
             ShaderProgram program = this.Program;
             GLSwitchList switchList = this.SwitchList;
@@ -89,7 +80,7 @@ namespace CSharpGL
                 foreach (var vao in this.VertexArrayObjects)
                 {
                     transformFeedbackObj.Begin(vao.DrawCommand.CurrentMode);
-                    vao.Draw(indexAccessMode);
+                    vao.Draw();
                     transformFeedbackObj.End();
                 }
                 transformFeedbackObj.Unbind();
@@ -98,7 +89,7 @@ namespace CSharpGL
             {
                 foreach (var vao in this.VertexArrayObjects)
                 {
-                    vao.Draw(indexAccessMode);
+                    vao.Draw();
                 }
             }
 

@@ -23,25 +23,8 @@ namespace CSharpGL
         /// 执行渲染操作。
         /// <para>Render.</para>
         /// </summary>
-        /// <param name="indexAccessMode">index buffer is accessable randomly or only by frame.</param>
-        void Draw(IndexAccessMode indexAccessMode);
+        void Draw();
 
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    public enum IndexAccessMode
-    {
-        /// <summary>
-        /// 
-        /// </summary>
-        Random,
-
-        /// <summary>
-        /// 
-        /// </summary>
-        ByFrame,
-
-    }
 }

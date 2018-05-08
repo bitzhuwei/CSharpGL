@@ -98,8 +98,7 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        /// <param name="indexAccessMode">index buffer is accessable randomly or only by frame.</param>
-        public void Draw(IndexAccessMode indexAccessMode)
+        public void Draw()
         {
             int instanceCount = this.InstanceCount;
 

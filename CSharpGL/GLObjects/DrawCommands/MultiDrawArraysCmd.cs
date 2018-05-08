@@ -58,8 +58,7 @@ namespace CSharpGL
         /// 执行此VBO的渲染操作。
         /// <para>Render using this VBO.</para>
         /// </summary>
-        /// <param name="indexAccessMode">index buffer is accessable randomly or only by frame.</param>
-        public void Draw(IndexAccessMode indexAccessMode)
+        public void Draw()
         {
             GL.Instance.MultiDrawArrays((uint)this.CurrentMode, this.First, this.Count, this.First.Length);
         }
