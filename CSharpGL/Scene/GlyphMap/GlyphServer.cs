@@ -105,9 +105,7 @@ namespace CSharpGL
             if (charset == null || charset.Count() == 0) { return new GlyphServer(); ; }
 
             List<ChunkBase> chunkList = GetChunkList(font, charset);
-            GlyphServer server = InitGlyphServer(maxTextureWidth, maxTextureHeight, maxTextureCount, chunkList);
-
-            return server;
+            return Create(maxTextureWidth, maxTextureHeight, maxTextureCount, chunkList);
         }
 
         /// <summary>
@@ -136,12 +134,10 @@ namespace CSharpGL
             if (charset == null || charset.Count() == 0) { return new GlyphServer(); }
 
             List<ChunkBase> chunkList = GetChunkList(font, charset);
-            GlyphServer server = InitGlyphServer(maxTextureWidth, maxTextureHeight, maxTextureCount, chunkList);
-
-            return server;
+            return Create(maxTextureWidth, maxTextureHeight, maxTextureCount, chunkList);
         }
 
-        private static GlyphServer InitGlyphServer(int maxTextureWidth, int maxTextureHeight, int maxTextureCount, List<ChunkBase> chunkList)
+        private static GlyphServer Create(int maxTextureWidth, int maxTextureHeight, int maxTextureCount, List<ChunkBase> chunkList)
         {
             var context = new PagesContext(maxTextureWidth, maxTextureHeight, maxTextureCount);
             foreach (var item in chunkList)
