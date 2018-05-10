@@ -1,0 +1,11 @@
+﻿<Points> ::= <PRList><IndexList><Points><PRList>
+<PRList> ::= <PR> <PRList> | null;
+<IndexList> ::= number <IndexList> | null;
+
+<Lines> ::= <PRList><IndexList><Points><PRList>
+<PRList> ::= "PR" <PRList> | null;
+<IndexList> ::= number number <IndexList> | null;
+
+<LineStrip> ::= <PRList><IndexList><Points><PRList>
+<PRList> ::= "PR" <PRList> | null;
+<IndexList> ::= number number <IndexList> | number <IndexList> | null;
