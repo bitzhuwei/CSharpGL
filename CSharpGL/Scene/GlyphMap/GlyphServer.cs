@@ -102,11 +102,10 @@ namespace CSharpGL
         /// <returns></returns>
         public static GlyphServer Create(Font font, IEnumerable<char> charset, int maxTextureWidth, int maxTextureHeight, int maxTextureCount)
         {
-            var server = new GlyphServer();
-            if (charset == null || charset.Count() == 0) { return server; }
+            if (charset == null || charset.Count() == 0) { return new GlyphServer(); ; }
 
             List<ChunkBase> chunkList = GetChunkList(font, charset);
-            Create(maxTextureWidth, maxTextureHeight, maxTextureCount, server, chunkList);
+            GlyphServer server = InitGlyphServer(maxTextureWidth, maxTextureHeight, maxTextureCount, chunkList);
 
             return server;
         }
@@ -134,16 +133,15 @@ namespace CSharpGL
         /// <returns></returns>
         public static GlyphServer Create(Font font, IEnumerable<string> charset, int maxTextureWidth, int maxTextureHeight, int maxTextureCount)
         {
-            var server = new GlyphServer();
-            if (charset == null || charset.Count() == 0) { return server; }
+            if (charset == null || charset.Count() == 0) { return new GlyphServer(); }
 
             List<ChunkBase> chunkList = GetChunkList(font, charset);
-            Create(maxTextureWidth, maxTextureHeight, maxTextureCount, server, chunkList);
+            GlyphServer server = InitGlyphServer(maxTextureWidth, maxTextureHeight, maxTextureCount, chunkList);
 
             return server;
         }
 
-        private static void Create(int maxTextureWidth, int maxTextureHeight, int maxTextureCount, GlyphServer server, List<ChunkBase> chunkList)
+        private static GlyphServer InitGlyphServer(int maxTextureWidth, int maxTextureHeight, int maxTextureCount, List<ChunkBase> chunkList)
         {
             var context = new PagesContext(maxTextureWidth, maxTextureHeight, maxTextureCount);
             foreach (var item in chunkList)
@@ -154,9 +152,12 @@ namespace CSharpGL
             Bitmap[] bitmaps = GenerateBitmaps(chunkList, context);
             PrintChunks(chunkList, context, bitmaps);
 
-            FillDictionary(chunkList, context, server.dictionary, bitmaps[0].Width, bitmaps[0].Height);
+            Dictionary<string, GlyphInfo> dictionary = GetDictionary(chunkList, bitmaps[0].Width, bitmaps[0].Height);
 
             Texture texture = GenerateTexture(bitmaps);
+
+            var server = new GlyphServer();
+            server.dictionary = dictionary;
             server.GlyphTexture = texture;
             server.TextureWidth = bitmaps[0].Width;
             server.TextureHeight = bitmaps[0].Height;
@@ -168,6 +169,8 @@ namespace CSharpGL
             {
                 item.Dispose();
             }
+
+            return server;
         }
 
         /// <summary>
@@ -218,8 +221,9 @@ namespace CSharpGL
             //}
         }
 
-        private static void FillDictionary(List<ChunkBase> chunkList, PagesContext context, Dictionary<string, GlyphInfo> dictionary, int pageWidth, int pageHeight)
+        private static Dictionary<string, GlyphInfo> GetDictionary(List<ChunkBase> chunkList, int pageWidth, int pageHeight)
         {
+            var dictionary = new Dictionary<string, GlyphInfo>();
             foreach (var chunk in chunkList)
             {
                 string characters = chunk.Text;
@@ -231,6 +235,8 @@ namespace CSharpGL
                     new vec2(x0 / pageWidth, y0 / pageHeight), new vec2(x1 / pageWidth, y1 / pageHeight), textureIndex);
                 dictionary.Add(characters, glyphInfo);
             }
+
+            return dictionary;
         }
 
         private static Texture GenerateTexture(Bitmap[] bitmaps)
