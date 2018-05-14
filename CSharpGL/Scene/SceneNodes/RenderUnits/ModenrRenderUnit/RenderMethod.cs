@@ -52,7 +52,6 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="indexAccessMode">index buffer is accessable randomly or only by frame.</param>
         public void Render()
         {
             this.Render(null);
@@ -61,7 +60,6 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="indexAccessMode">index buffer is accessable randomly or only by frame.</param>
         /// <param name="transformFeedbackObj"></param>
         public void Render(TransformFeedbackObject transformFeedbackObj)
         {

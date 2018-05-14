@@ -66,7 +66,7 @@ namespace CSharpGL
                             //{
                             //    builder.Append(c);
                             //}
-                            var font = new Font("Arial", 32, GraphicsUnit.Pixel);
+                            var font = new Font("Arial", 64, GraphicsUnit.Pixel);
                             string charSet = builder.ToString();
                             server = GlyphServer.Create(font, charSet, 1024, 1024, 1000);
                             font.Dispose();
@@ -102,13 +102,10 @@ namespace CSharpGL
         /// <returns></returns>
         public static GlyphServer Create(Font font, IEnumerable<char> charset, int maxTextureWidth, int maxTextureHeight, int maxTextureCount)
         {
-            var server = new GlyphServer();
-            if (charset == null || charset.Count() == 0) { return server; }
+            if (charset == null || charset.Count() == 0) { return new GlyphServer(); ; }
 
             List<ChunkBase> chunkList = GetChunkList(font, charset);
-            Create(maxTextureWidth, maxTextureHeight, maxTextureCount, server, chunkList);
-
-            return server;
+            return Create(chunkList, maxTextureWidth, maxTextureHeight, maxTextureCount);
         }
 
         /// <summary>
@@ -134,16 +131,13 @@ namespace CSharpGL
         /// <returns></returns>
         public static GlyphServer Create(Font font, IEnumerable<string> charset, int maxTextureWidth, int maxTextureHeight, int maxTextureCount)
         {
-            var server = new GlyphServer();
-            if (charset == null || charset.Count() == 0) { return server; }
+            if (charset == null || charset.Count() == 0) { return new GlyphServer(); }
 
             List<ChunkBase> chunkList = GetChunkList(font, charset);
-            Create(maxTextureWidth, maxTextureHeight, maxTextureCount, server, chunkList);
-
-            return server;
+            return Create(chunkList, maxTextureWidth, maxTextureHeight, maxTextureCount);
         }
 
-        private static void Create(int maxTextureWidth, int maxTextureHeight, int maxTextureCount, GlyphServer server, List<ChunkBase> chunkList)
+        private static GlyphServer Create(List<ChunkBase> chunkList, int maxTextureWidth, int maxTextureHeight, int maxTextureCount)
         {
             var context = new PagesContext(maxTextureWidth, maxTextureHeight, maxTextureCount);
             foreach (var item in chunkList)
@@ -151,12 +145,15 @@ namespace CSharpGL
                 item.Put(context);
             }
 
-            Bitmap[] bitmaps = GenerateBitmaps(chunkList, context);
+            Bitmap[] bitmaps = GenerateBitmaps(chunkList, context.PageList.Count);
             PrintChunks(chunkList, context, bitmaps);
 
-            FillDictionary(chunkList, context, server.dictionary, bitmaps[0].Width, bitmaps[0].Height);
+            Dictionary<string, GlyphInfo> dictionary = GetDictionary(chunkList, bitmaps[0].Width, bitmaps[0].Height);
 
             Texture texture = GenerateTexture(bitmaps);
+
+            var server = new GlyphServer();
+            server.dictionary = dictionary;
             server.GlyphTexture = texture;
             server.TextureWidth = bitmaps[0].Width;
             server.TextureHeight = bitmaps[0].Height;
@@ -168,6 +165,8 @@ namespace CSharpGL
             {
                 item.Dispose();
             }
+
+            return server;
         }
 
         /// <summary>
@@ -218,8 +217,9 @@ namespace CSharpGL
             //}
         }
 
-        private static void FillDictionary(List<ChunkBase> chunkList, PagesContext context, Dictionary<string, GlyphInfo> dictionary, int pageWidth, int pageHeight)
+        private static Dictionary<string, GlyphInfo> GetDictionary(List<ChunkBase> chunkList, int pageWidth, int pageHeight)
         {
+            var dictionary = new Dictionary<string, GlyphInfo>();
             foreach (var chunk in chunkList)
             {
                 string characters = chunk.Text;
@@ -231,6 +231,8 @@ namespace CSharpGL
                     new vec2(x0 / pageWidth, y0 / pageHeight), new vec2(x1 / pageWidth, y1 / pageHeight), textureIndex);
                 dictionary.Add(characters, glyphInfo);
             }
+
+            return dictionary;
         }
 
         private static Texture GenerateTexture(Bitmap[] bitmaps)
@@ -275,6 +277,8 @@ namespace CSharpGL
                             (bigSize.Width - chunk.Size.Width) / 2, 0,
                             chunk.Size.Width, chunk.Size.Height),
                         GraphicsUnit.Pixel);
+                    //graphics.DrawRectangle(Pens.Red, chunk.LeftTop.X, chunk.LeftTop.Y, chunk.Size.Width - 1, chunk.Size.Height - 1);
+                    //graphics.DrawRectangle(Pens.Red, 0, 0, bitmaps[index].Width - 1, bitmaps[index].Height - 1);
                 }
             }
 
@@ -282,10 +286,9 @@ namespace CSharpGL
             bmp.Dispose();
         }
 
-        private static Bitmap[] GenerateBitmaps(List<ChunkBase> chunkList, PagesContext context)
+        private static Bitmap[] GenerateBitmaps(List<ChunkBase> chunkList, int pageCount)
         {
-            List<Page> list = context.PageList;
-            var bitmaps = new Bitmap[list.Count];
+            var bitmaps = new Bitmap[pageCount];
             if (chunkList.Count == 0) { return bitmaps; }
 
             //var sizes = new SizeF[bitmaps.Length];
@@ -295,7 +298,7 @@ namespace CSharpGL
             {
                 ChunkBase chunk = chunkList[i];
                 int index = chunk.PageIndex;
-                if (index >= list.Count) // this happens when chunks overflows of max pages.
+                if (index >= bitmaps.Length) // this happens when chunks overflows of max pages.
                 {
                     continue;
                 }
@@ -313,10 +316,11 @@ namespace CSharpGL
                 if (maxHeight < heights[i]) { maxHeight = heights[i]; }
             }
 
+            int w = (int)Math.Ceiling(maxWidth);
+            int h = (int)Math.Ceiling(maxHeight);
             for (int i = 0; i < bitmaps.Length; i++)
             {
-                var bmp = new Bitmap((int)Math.Ceiling(maxWidth), (int)Math.Ceiling(maxHeight));
-                bitmaps[i] = bmp;
+                bitmaps[i] = new Bitmap(w, h);
             }
 
             return bitmaps;
