@@ -29,7 +29,10 @@ namespace CSharpGL
                 {
                     this._width = value;
 
-                    this._height = (int)(value * this.heightByWidth);
+                    if (value != 0.0f)
+                    {
+                        this._height = (int)(value * this.heightByWidth);
+                    }
 
                     ModernRenderUnit unit = this.RenderUnit;
                     if (unit == null) { return; }
@@ -56,7 +59,11 @@ namespace CSharpGL
                 if (this._height != value)
                 {
                     this._height = value;
-                    this._width = (int)(value * this.widthByHeight);
+
+                    if (value != 0.0f)
+                    {
+                        this._width = (int)(value * this.widthByHeight);
+                    }
 
                     ModernRenderUnit unit = this.RenderUnit;
                     if (unit == null) { return; }
