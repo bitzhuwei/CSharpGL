@@ -149,6 +149,14 @@ namespace CSharpGL
 
         #endregion
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+            return string.Format("{0}", this.Text);
+        }
     }
 
 }

@@ -182,7 +182,27 @@ namespace WorldSpaceBillboard
             {
                 node.RotationAngle += 1.3f;
             }
+
+            UpdateText(this.trvScene.Nodes[0]);
         }
+
+        private void UpdateText(TreeNode treeNode)
+        {
+            var node = treeNode.Tag as TextBillboardNode;
+            if (node != null)
+            {
+                if (node.Text != treeNode.Text)
+                {
+                    treeNode.Text = node.Text;
+                }
+            }
+
+            foreach (var item in treeNode.Nodes)
+            {
+                UpdateText(item as TreeNode);
+            }
+        }
+
     }
 
 }

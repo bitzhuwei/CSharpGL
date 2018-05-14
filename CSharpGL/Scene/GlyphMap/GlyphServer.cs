@@ -262,7 +262,7 @@ namespace CSharpGL
                 int index = chunk.PageIndex;
                 if (index >= bitmaps.Length) { continue; }
 
-                string bigStr = "丨" + chunk.Text + "丨x丨";
+                string bigStr = "丨" + chunk.Text + "丨";
                 SizeF bigSize = g.MeasureString(bigStr, chunk.TheFont);
                 var bigBmp = new Bitmap((int)Math.Ceiling(bigSize.Width), (int)Math.Ceiling(bigSize.Height));
                 using (var bigGraphics = Graphics.FromImage(bigBmp))
@@ -277,8 +277,8 @@ namespace CSharpGL
                             (bigSize.Width - chunk.Size.Width) / 2, 0,
                             chunk.Size.Width, chunk.Size.Height),
                         GraphicsUnit.Pixel);
-                    graphics.DrawRectangle(Pens.Red, chunk.LeftTop.X, chunk.LeftTop.Y, chunk.Size.Width - 1, chunk.Size.Height - 1);
-                    graphics.DrawRectangle(Pens.Red, 0, 0, bitmaps[index].Width - 1, bitmaps[index].Height - 1);
+                    //graphics.DrawRectangle(Pens.Red, chunk.LeftTop.X, chunk.LeftTop.Y, chunk.Size.Width - 1, chunk.Size.Height - 1);
+                    //graphics.DrawRectangle(Pens.Red, 0, 0, bitmaps[index].Width - 1, bitmaps[index].Height - 1);
                 }
             }
 
