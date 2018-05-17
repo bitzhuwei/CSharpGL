@@ -68,54 +68,82 @@ namespace CSharpGL
 
         void winCanvas_KeyUp(object sender, System.Windows.Forms.KeyEventArgs e)
         {
-            GLKeyEventArgs args = e.Translate();
-            foreach (var item in this.Children)
+            if (this.currentControl != null)
             {
-                item.InvokeEvent(EventType.KeyUp, args);
+                GLKeyEventArgs args = e.Translate();
+                this.currentControl.InvokeEvent(EventType.KeyUp, args);
             }
         }
 
         void winCanvas_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
         {
-            GLKeyEventArgs args = e.Translate();
-            foreach (var item in this.Children)
+            if (this.currentControl != null)
             {
-                item.InvokeEvent(EventType.KeyDown, args);
+                GLKeyEventArgs args = e.Translate();
+                this.currentControl.InvokeEvent(EventType.KeyDown, args);
             }
         }
 
-        private GLControl mouseDownControl;
+        private GLControl currentControl;
 
         void winCanvas_MouseUp(object sender, System.Windows.Forms.MouseEventArgs e)
         {
-            GLMouseEventArgs args = e.Translate();
-            if (this.mouseDownControl != null)
+            if (this.currentControl != null)
             {
-                this.mouseDownControl.InvokeEvent(EventType.MouseUp, args);
-                this.mouseDownControl = null;
+                GLMouseEventArgs args = e.Translate();
+                this.currentControl.InvokeEvent(EventType.MouseUp, args);
             }
         }
 
         void winCanvas_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
         {
-            GLMouseEventArgs args = e.Translate();
-            foreach (var item in this.Children)
+            int x = e.X, y = this.BindingCanvas.Height - e.Y - 1;
+            GLControl control = GetControlAt(x, y, this);
+            this.currentControl = control;
+            if (control != null)
             {
-                int x = e.X, y = this.BindingCanvas.Height - e.Y;
-                if (item.ContainsPoint(x, y))
+                GLMouseEventArgs args = e.Translate();
+                control.InvokeEvent(EventType.MouseDown, args);
+            }
+        }
+
+        /// <summary>
+        /// Get the control at specified position.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="control"></param>
+        /// <returns></returns>
+        private GLControl GetControlAt(int x, int y, GLControl control)
+        {
+            GLControl result = null;
+            if (control.ContainsPoint(x, y))
+            {
+                if (control.AcceptPicking)
                 {
-                    this.mouseDownControl = item;
-                    item.InvokeEvent(EventType.MouseDown, args);
+                    result = control;
+                }
+
+                foreach (var item in control.Children)
+                {
+                    GLControl child = GetControlAt(x, y, item);
+                    if (child != null)
+                    {
+                        result = child;
+                        break;
+                    }
                 }
             }
+
+            return result;
         }
 
         void winCanvas_MouseMove(object sender, System.Windows.Forms.MouseEventArgs e)
         {
-            GLMouseEventArgs args = e.Translate();
-            foreach (var item in this.Children)
+            if (this.currentControl != null)
             {
-                item.InvokeEvent(EventType.MouseMove, args);
+                GLMouseEventArgs args = e.Translate();
+                this.currentControl.InvokeEvent(EventType.MouseMove, args);
             }
         }
 

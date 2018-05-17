@@ -71,6 +71,7 @@ namespace CSharpGL
             var label = new CtrlLabel(100, GUIAnchorStyles.None);
             //label.RenderBackground = true; // for debug purpose.
             label.Initialize();
+            label.AcceptPicking = false;
             this.label = label;
 
             this.Children.Add(label);

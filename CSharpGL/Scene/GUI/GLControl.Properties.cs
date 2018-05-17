@@ -51,5 +51,17 @@ namespace CSharpGL
         [Description("为便于调试而设置的ID值，没有应用意义。(for debugging purpose only.)")]
         public int Id { get; private set; }
 
+        private bool acceptPicking = true;
+
+        /// <summary>
+        /// Accept mouse down event.
+        /// </summary>
+        [Category(strGLControl)]
+        [Description("Accept mouse down event.")]
+        public bool AcceptPicking
+        {
+            get { return acceptPicking; }
+            set { acceptPicking = value; }
+        }
     }
 }
