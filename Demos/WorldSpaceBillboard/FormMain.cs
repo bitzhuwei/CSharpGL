@@ -22,6 +22,13 @@ namespace WorldSpaceBillboard
             this.Load += FormMain_Load;
             this.winGLCanvas1.OpenGLDraw += winGLCanvas1_OpenGLDraw;
             this.winGLCanvas1.Resize += winGLCanvas1_Resize;
+
+            Application.Idle += Application_Idle;
+        }
+
+        void Application_Idle(object sender, EventArgs e)
+        {
+            this.UpdateText(this.trvScene.Nodes[0]);
         }
 
         private void FormMain_Load(object sender, EventArgs e)

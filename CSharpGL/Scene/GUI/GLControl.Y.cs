@@ -24,10 +24,20 @@ namespace CSharpGL
                     GLControl parent = this.parent;
                     if (parent != null)
                     {
-                        this.absBottom = parent.absBottom + this.bottom;
                         GLControl.LayoutAfterYChanged(parent, this);
+                        GLControl.UpdateAbsBottom(this, parent);
                     }
                 }
+            }
+        }
+
+        private static void UpdateAbsBottom(GLControl control, GLControl parent)
+        {
+            control.absBottom = parent.absBottom + control.bottom;
+
+            foreach (var item in control.Children)
+            {
+                UpdateAbsBottom(item, control);
             }
         }
 

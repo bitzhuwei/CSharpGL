@@ -24,10 +24,20 @@ namespace CSharpGL
                     GLControl parent = this.parent;
                     if (parent != null)
                     {
-                        this.absLeft = parent.absLeft + this.left;
                         GLControl.LayoutAfterXChanged(parent, this);
+                        GLControl.UpdateAbsLeft(this, parent);
                     }
                 }
+            }
+        }
+
+        private static void UpdateAbsLeft(GLControl control, GLControl parent)
+        {
+            control.absLeft = parent.absLeft + control.left;
+
+            foreach (var item in control.Children)
+            {
+                UpdateAbsLeft(item, control);
             }
         }
 

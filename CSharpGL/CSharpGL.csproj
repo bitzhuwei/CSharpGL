@@ -209,6 +209,8 @@
     <Compile Include="Scene\GUI\GLControls\CtrlLabel\CtrlLabel.cs" />
     <Compile Include="Scene\GUI\GLControls\CtrlLabel\CtrlLabel.shaders.cs" />
     <Compile Include="Scene\GUI\GLControls\CtrlLabel\CtrlLabel.Text.cs" />
+    <Compile Include="Scene\GUI\GLControls\CtrlRoot\EventManager.cs" />
+    <Compile Include="Scene\GUI\GLControls\CtrlRoot\CtrlRoot.EventManager.cs" />
     <Compile Include="Scene\GUI\GLControls\CtrlRoot\CtrlRoot.cs" />
     <Compile Include="Scene\GUI\GLControls\CtrlTexture\CtrlTexture.cs" />
     <Compile Include="Scene\GUI\GLControls\CtrlTexture\CtrlTexture.shaders.cs" />

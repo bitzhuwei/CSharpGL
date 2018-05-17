@@ -54,9 +54,16 @@ namespace CSharpGL
 
             this.drawCmd.VertexCount = text.Length * 4; // each alphabet needs 4 vertexes.
 
-            this.widthByHeight = totalWidth / totalHeight;
-            this.heightByWidth = totalHeight / totalWidth;
-            this.Width = (int)(this.Height * this.widthByHeight);// auto size means auto width.
+            if (totalWidth != 0.0f && totalHeight != 0.0f)
+            {
+                this.widthByHeight = totalWidth / totalHeight;
+                this.heightByWidth = totalHeight / totalWidth;
+                this.Width = (int)(this.Height * this.widthByHeight);// auto size means auto width.
+            }
+            else
+            {
+                this.Width = 0;
+            }
         }
 
         /// <summary>

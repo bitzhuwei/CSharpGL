@@ -9,7 +9,7 @@ namespace CSharpGL
     /// <summary>
     /// Root control in control tree.
     /// </summary>
-    public abstract class CtrlRoot : GLControl
+    public abstract partial class CtrlRoot : GLControl
     {
         /// <summary>
         /// 
