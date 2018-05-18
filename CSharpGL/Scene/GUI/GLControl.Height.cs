@@ -44,6 +44,10 @@ namespace CSharpGL
                 {
                     control.bottom = parent.height - control.top - control.height;
                     control.absBottom = parent.absBottom + control.bottom;
+                    foreach (var item in control.Children)
+                    {
+                        UpdateAbsBottom(control, item);
+                    }
                 }
                 else // if ((anchor & noneAnchor) == noneAnchor)
                 {
@@ -53,6 +57,10 @@ namespace CSharpGL
                     control.bottom += halfDiff;
                     control.absBottom = parent.absBottom + control.bottom;
                     control.top += OtherHalfDiff;
+                    foreach (var item in control.Children)
+                    {
+                        UpdateAbsBottom(control, item);
+                    }
                 }
             }
         }

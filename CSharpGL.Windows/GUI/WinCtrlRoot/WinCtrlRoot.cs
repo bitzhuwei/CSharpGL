@@ -11,7 +11,7 @@ namespace CSharpGL
     public class WinCtrlRoot : CtrlRoot
     {
         /// <summary>
-        /// Gwts binding canvas.
+        /// Gets binding canvas.
         /// </summary>
         public WinGLCanvas BindingCanvas { get; private set; }
 

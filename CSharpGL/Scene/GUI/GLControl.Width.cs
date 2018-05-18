@@ -15,12 +15,17 @@ namespace CSharpGL
         [Description("Width of this control.")]
         public int Width
         {
-            get { return width; }
+            get { return this.width; }
             set
             {
-                if (width != value)
+                if (this.width != value)
                 {
-                    width = value;
+                    this.width = value;
+                    GLControl parent = this.parent;
+                    if (parent != null)
+                    {
+                        this.right = parent.width - this.left - value;
+                    }
 
                     GLControl.LayoutAfterWidthChanged(this, this.Children);
                 }
@@ -46,6 +51,10 @@ namespace CSharpGL
                 {
                     control.left = parent.width - control.right - control.width;
                     control.absLeft = parent.absLeft + control.left;
+                    foreach (var item in control.Children)
+                    {
+                        UpdateAbsLeft(control, item);
+                    }
                 }
                 else // if ((anchor & noneAnchor) == noneAnchor)
                 {
@@ -55,6 +64,10 @@ namespace CSharpGL
                     control.left += halfDiff;
                     control.absLeft = parent.absLeft + control.left;
                     control.right += OtherHalfDiff;
+                    foreach (var item in control.Children)
+                    {
+                        UpdateAbsLeft(control, item);
+                    }
                 }
             }
         }

@@ -76,8 +76,8 @@ namespace CSharpGL
 
             this.Children.Add(label);
 
-            label.Text = "Button";
             label.TextChanged += label_TextChanged;
+            label.Text = "Button";
         }
 
         void label_TextChanged(object sender, EventArgs e)
