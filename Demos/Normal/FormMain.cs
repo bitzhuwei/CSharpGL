@@ -35,7 +35,7 @@ namespace Normal
 ;
 
             string folder = System.Windows.Forms.Application.StartupPath;
-            string objFilename = System.IO.Path.Combine(folder, "nanosuit.obj_");
+            string objFilename = System.IO.Path.Combine(folder + @"\..\..\..\..\Infrastructure\CSharpGL.Model", "nanosuit.obj_");
             var parser = new ObjVNFParser(true);
             ObjVNFResult result = parser.Parse(objFilename);
             if (result.Error != null)
