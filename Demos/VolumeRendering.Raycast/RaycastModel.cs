@@ -8,8 +8,8 @@ namespace VolumeRendering.Raycast
 {
     internal class RaycastModel : IBufferSource
     {
-        public const string strposition = "position";
-        public const string strcolor = "color";
+        public const string strPosition = "position";
+        public const string strColor = "color";
         private VertexBuffer positionBuffer;
         private VertexBuffer colorBuffer;
 
@@ -67,7 +67,7 @@ namespace VolumeRendering.Raycast
         }
         public IEnumerable<VertexBuffer> GetVertexAttribute(string bufferName)
         {
-            if (bufferName == strposition)
+            if (bufferName == strPosition)
             {
                 if (this.positionBuffer == null)
                 {
@@ -89,7 +89,7 @@ namespace VolumeRendering.Raycast
                 }
                 yield return this.positionBuffer;
             }
-            else if (bufferName == strcolor)
+            else if (bufferName == strColor)
             {
                 if (this.colorBuffer == null)
                 {
