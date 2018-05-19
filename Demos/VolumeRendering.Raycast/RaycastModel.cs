@@ -6,7 +6,10 @@ using System.Text;
 
 namespace VolumeRendering.Raycast
 {
-    internal class RaycastModel : IBufferSource
+    /// <summary>
+    /// model for raycast rendering.
+    /// </summary>
+    internal class BoundingBoxModel : IBufferSource
     {
         public const string strPosition = "position";
         public const string strColor = "color";
@@ -24,7 +27,7 @@ namespace VolumeRendering.Raycast
         // right: 7 5 4 6
         // up:    2 3 7 6
         // down:  1 0 4 5
-        private static readonly float[] boundingBox =
+        private static readonly float[] positions =
         {
 			0.0f, 0.0f, 0.0f,
 			0.0f, 0.0f, 1.0f,
@@ -36,7 +39,7 @@ namespace VolumeRendering.Raycast
 			1.0f, 1.0f, 1.0f,
         };
 
-        private static readonly float[] boundingBoxColor =
+        private static readonly float[] colors =
         {
 			0.0f, 0.0f, 0.0f,
 			0.0f, 0.0f, 1.0f,
@@ -48,7 +51,7 @@ namespace VolumeRendering.Raycast
 			1.0f, 1.0f, 1.0f,
         };
 
-        private static readonly uint[] indices =
+        private static readonly uint[] indexes =
         { 
             1, 5, 7, 3, // front
             0, 2, 6, 4, // back
@@ -58,11 +61,11 @@ namespace VolumeRendering.Raycast
             1, 0, 4, 5, // down
         };
 
-        static RaycastModel()
+        static BoundingBoxModel()
         {
-            for (int i = 0; i < boundingBox.Length; i++)
+            for (int i = 0; i < positions.Length; i++)
             {
-                boundingBox[i] = boundingBox[i] - 0.5f;
+                positions[i] = positions[i] - 0.5f;
             }
         }
         public IEnumerable<VertexBuffer> GetVertexAttribute(string bufferName)
@@ -85,7 +88,7 @@ namespace VolumeRendering.Raycast
                     //}
 
                     //this.positionBuffer = buffer;
-                    this.positionBuffer = boundingBox.GenVertexBuffer(VBOConfig.Vec3, BufferUsage.StaticDraw);
+                    this.positionBuffer = positions.GenVertexBuffer(VBOConfig.Vec3, BufferUsage.StaticDraw);
                 }
                 yield return this.positionBuffer;
             }
@@ -107,7 +110,7 @@ namespace VolumeRendering.Raycast
                     //}
 
                     //this.colorBuffer = buffer;
-                    this.colorBuffer = boundingBoxColor.GenVertexBuffer(VBOConfig.Vec3, BufferUsage.StaticDraw);
+                    this.colorBuffer = colors.GenVertexBuffer(VBOConfig.Vec3, BufferUsage.StaticDraw);
                 }
                 yield return this.colorBuffer;
             }
@@ -133,7 +136,7 @@ namespace VolumeRendering.Raycast
                 //    }
                 //    buffer.UnmapBuffer();
                 //}
-                IndexBuffer buffer = indices.GenIndexBuffer(BufferUsage.StaticDraw);
+                IndexBuffer buffer = indexes.GenIndexBuffer(BufferUsage.StaticDraw);
                 this.drawCmd = new DrawElementsCmd(buffer, DrawMode.Quads);
             }
 
