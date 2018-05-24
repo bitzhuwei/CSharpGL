@@ -70,6 +70,118 @@ namespace c02d00_2DTexture
             return texture;
         }
 
+        private SceneNodeBase GetRootNode()
+        {
+            const float distance = 1;
+            Texture texture = GetTexture();
+            var groupNode = new GroupNode();
+            var diff = new vec3(0, 0, 0);
+            A(distance, texture, groupNode, diff);
+            diff = new vec3(4, 0, 0);
+            ____(distance, texture, groupNode, diff);
+            diff = new vec3(0, 3, 0);
+            L(distance, texture, groupNode, diff);
+            diff = new vec3(4, 3, 0);
+            O(distance, texture, groupNode, diff);
+            return groupNode;
+        }
+
+        private void O(float distance, Texture texture, GroupNode groupNode, vec3 diff)
+        {
+            {
+                cubeNode = CubeNode.Create(texture);
+                cubeNode.WorldPosition = new vec3(distance * 0.5f, 0, 0) + diff;
+                groupNode.Children.Add(cubeNode);
+            }
+            {
+                cubeNode = CubeNode.Create(texture);
+                cubeNode.WorldPosition = new vec3(-distance * 0.5f, 0, 0) + diff;
+                groupNode.Children.Add(cubeNode);
+            }
+            {
+                cubeNode = CubeNode.Create(texture);
+                cubeNode.WorldPosition = new vec3(distance * 0.5f, distance, 0) + diff;
+                groupNode.Children.Add(cubeNode);
+            }
+            {
+                cubeNode = CubeNode.Create(texture);
+                cubeNode.WorldPosition = new vec3(-distance * 0.5f, distance, 0) + diff;
+                groupNode.Children.Add(cubeNode);
+            }
+        }
+
+        private void L(float distance, Texture texture, GroupNode groupNode, vec3 diff)
+        {
+            {
+                cubeNode = CubeNode.Create(texture);
+                cubeNode.WorldPosition = new vec3(distance, 0, 0) + diff;
+                groupNode.Children.Add(cubeNode);
+            }
+            {
+                cubeNode = CubeNode.Create(texture);
+                cubeNode.WorldPosition = new vec3(0, 0, 0) + diff;
+                groupNode.Children.Add(cubeNode);
+            }
+            {
+                cubeNode = CubeNode.Create(texture);
+                cubeNode.WorldPosition = new vec3(-distance, 0, 0) + diff;
+                groupNode.Children.Add(cubeNode);
+            }
+            {
+                cubeNode = CubeNode.Create(texture);
+                cubeNode.WorldPosition = new vec3(distance, distance, 0) + diff;
+                groupNode.Children.Add(cubeNode);
+            }
+        }
+
+        private void ____(float distance, Texture texture, GroupNode groupNode, vec3 diff)
+        {
+            {
+                cubeNode = CubeNode.Create(texture);
+                cubeNode.WorldPosition = new vec3(distance * 1.5f, 0, 0) + diff;
+                groupNode.Children.Add(cubeNode);
+            }
+            {
+                cubeNode = CubeNode.Create(texture);
+                cubeNode.WorldPosition = new vec3(distance * 0.5f, 0, 0) + diff;
+                groupNode.Children.Add(cubeNode);
+            }
+            {
+                cubeNode = CubeNode.Create(texture);
+                cubeNode.WorldPosition = new vec3(-distance * 0.5f, 0, 0) + diff;
+                groupNode.Children.Add(cubeNode);
+            }
+            {
+                cubeNode = CubeNode.Create(texture);
+                cubeNode.WorldPosition = new vec3(-distance * 1.5f, 0, 0) + diff;
+                groupNode.Children.Add(cubeNode);
+            }
+        }
+
+        private void A(float distance, Texture texture, GroupNode groupNode, vec3 diff)
+        {
+            {
+                cubeNode = CubeNode.Create(texture);
+                cubeNode.WorldPosition = new vec3(distance, 0, 0) + diff;
+                groupNode.Children.Add(cubeNode);
+            }
+            {
+                cubeNode = CubeNode.Create(texture);
+                cubeNode.WorldPosition = new vec3(0, 0, 0) + diff;
+                groupNode.Children.Add(cubeNode);
+            }
+            {
+                cubeNode = CubeNode.Create(texture);
+                cubeNode.WorldPosition = new vec3(-distance, 0, 0) + diff;
+                groupNode.Children.Add(cubeNode);
+            }
+            {
+                cubeNode = CubeNode.Create(texture);
+                cubeNode.WorldPosition = new vec3(0, distance, 0) + diff;
+                groupNode.Children.Add(cubeNode);
+            }
+        }
+
         private void winGLCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
         {
             ActionList list = this.actionList;
