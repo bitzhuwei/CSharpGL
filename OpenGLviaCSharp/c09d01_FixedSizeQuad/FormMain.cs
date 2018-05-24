@@ -13,7 +13,6 @@ namespace c09d01_FixedSizeQuad
     public partial class FormMain : Form
     {
         private Scene scene;
-        private FixedSizeQuadNode triangleNode;
         private ActionList actionList;
         private Picking pickingAction;
 

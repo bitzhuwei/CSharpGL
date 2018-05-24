@@ -14,15 +14,15 @@ namespace VolumeRendering.Raycast
         /// <returns></returns>
         public static RaycastNode Create()
         {
-            var model = new RaycastModel();
+            var model = new BoundingBoxModel();
             RenderMethodBuilder backfaceBuilder, raycastingBuilder;
             {
                 var vs = new VertexShader(backfaceVert);
                 var fs = new FragmentShader(backfaceFrag);
                 var provider = new ShaderArray(vs, fs);
                 var map = new AttributeMap();
-                map.Add("position", RaycastModel.strposition);
-                map.Add("boundingBox", RaycastModel.strcolor);
+                map.Add("position", BoundingBoxModel.strPosition);
+                map.Add("boundingBox", BoundingBoxModel.strColor);
                 backfaceBuilder = new RenderMethodBuilder(provider, map, new CullFaceSwitch(CullFaceMode.Front, true));
             }
             {
@@ -30,12 +30,12 @@ namespace VolumeRendering.Raycast
                 var fs = new FragmentShader(raycastingFrag);
                 var provider = new ShaderArray(vs, fs);
                 var map = new AttributeMap();
-                map.Add("position", RaycastModel.strposition);
-                map.Add("boundingBox", RaycastModel.strcolor);
+                map.Add("position", BoundingBoxModel.strPosition);
+                map.Add("boundingBox", BoundingBoxModel.strColor);
                 raycastingBuilder = new RenderMethodBuilder(provider, map, new CullFaceSwitch(CullFaceMode.Back, true));
             }
 
-            var node = new RaycastNode(model, RaycastModel.strposition, backfaceBuilder, raycastingBuilder);
+            var node = new RaycastNode(model, BoundingBoxModel.strPosition, backfaceBuilder, raycastingBuilder);
             node.Initialize();
 
             return node;

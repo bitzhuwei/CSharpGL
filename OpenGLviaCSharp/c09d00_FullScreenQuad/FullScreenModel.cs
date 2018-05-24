@@ -24,12 +24,6 @@ namespace c09d00_FullScreenQuad
             new vec2(1, 0),
         };
 
-        private vec3 size;
-        public vec3 GetSize()
-        {
-            return this.size;
-        }
-
         public const string strPosition = "position";
         private VertexBuffer positionBuffer;
         public const string strUV = "color";

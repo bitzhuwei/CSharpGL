@@ -113,9 +113,7 @@
   <ItemGroup>
     <Content Include="Cube\CubeNode.jpg" />
     <Content Include="Cube\TextureCubeNode.jpg" />
-    <Content Include="KleinBottle\KleinBottle.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Content Include="KleinBottle\KleinBottle.png" />
     <Content Include="Propeller\Propeller+4Flabellum.png" />
     <Content Include="Teapot\Teapot.png" />
   </ItemGroup>
@@ -131,17 +129,11 @@
     <None Include="cube.obj_" />
     <None Include="dragon.obj_" />
     <None Include="floor.obj_" />
-    <None Include="nanosuit.obj_">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <None Include="nanosuit.obj_" />
     <None Include="readme.md" />
     <None Include="SimpleObjFileFormat\readme.md" />
-    <None Include="TrefoilKnotModel\TrefoilKnot.frag">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="TrefoilKnotModel\TrefoilKnot.vert">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <None Include="TrefoilKnotModel\TrefoilKnot.frag" />
+    <None Include="TrefoilKnotModel\TrefoilKnot.vert" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

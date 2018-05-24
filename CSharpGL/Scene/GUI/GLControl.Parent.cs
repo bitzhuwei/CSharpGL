@@ -22,15 +22,16 @@ namespace CSharpGL
                 GLControl old = this.parent;
                 if (old != value)
                 {
-                    this.parent = value;
+                    this.parent = value; // this records the parent.
 
-                    if (value == null) // parent != null
+                    if (old != null)
                     {
-                        old.Children.Remove(this);
+                        old.Children.Remove(this); // bye, old parent.
                     }
-                    else // value != null && parent == null
+                    
+                    if (value != null)
                     {
-                        value.Children.children.Add(this);
+                        value.Children.children.Add(this); // parent records this.
 
                         GLControl.LayoutAfterAddChild(this, value);
                         GLControl.UpdateAbsLocation(this, value);
@@ -61,6 +62,27 @@ namespace CSharpGL
                 int otherHalfDiff = diff - halfDiff;
                 control.left += halfDiff;
                 control.right += otherHalfDiff;
+            }
+            
+            if ((anchor & bottomTopAnchor) == bottomTopAnchor)
+            {
+                control.Height = parent.height - control.bottom - control.top;
+            }
+            else if ((anchor & bottomAnchor) == bottomAnchor)
+            {
+                control.top = parent.height - control.bottom - control.height;
+            }
+            else if ((anchor & topAnchor) == topAnchor)
+            {
+                control.bottom = parent.height - control.height - control.top;
+            }
+            else // if ((anchor & noneAnchor) == nonAnchor)
+            {
+                int diff = parent.height - control.bottom - control.height - control.top;
+                int halfDiff = diff / 2;
+                int otherHalfDiff = diff - halfDiff;
+                control.bottom += halfDiff;
+                control.top += otherHalfDiff;
             }
         }
 
