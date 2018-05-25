@@ -56,6 +56,9 @@ namespace c01d01_PropertyGrid
 
             Match(this.trvScene, scene.RootNode);
             this.trvScene.ExpandAll();
+            
+            // display cube node property at first.
+            this.propertyGrid1.SelectedObject = this.CubeNode;
         }
 
         private void Match(TreeView treeView, SceneNodeBase nodeBase)

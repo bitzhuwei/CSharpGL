@@ -35,6 +35,7 @@ namespace c01d00_Cube
             var up = new vec3(0, 1, 0);
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
             this.cubeNode = CubeNode.Create();
+            this.cubeNode.Scale = new vec3(3f, 0.2f, 2.5f);
             var scene = new Scene(camera);
             scene.RootNode = cubeNode;
             this.scene = scene;
