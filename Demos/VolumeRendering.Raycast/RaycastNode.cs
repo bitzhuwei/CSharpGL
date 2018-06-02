@@ -46,29 +46,6 @@ namespace VolumeRendering.Raycast
         {
         }
 
-        private ArcBallManipulater manipulater;
-
-        public void BindManipulater(ArcBallManipulater manipulater)
-        {
-            this.manipulater = manipulater;
-        }
-
-        private void UpdateRotation()
-        {
-            var manipulater = this.manipulater;
-            if (manipulater != null)
-            {
-                mat4 model = this.manipulater.GetRotationMatrix();
-                Quaternion quaternion = model.ToQuaternion();
-                float angleDegree;
-                vec3 axis;
-                quaternion.Parse(out angleDegree, out axis);
-
-                this.RotationAngle = angleDegree;
-                this.RotationAxis = axis;
-            }
-        }
-
         private ThreeFlags enableRendering = ThreeFlags.BeforeChildren | ThreeFlags.Children | ThreeFlags.AfterChildren;
         /// <summary>
         /// Render before/after children? Render children? 
@@ -94,7 +71,6 @@ namespace VolumeRendering.Raycast
             ICamera camera = arg.Camera;
             mat4 projection = camera.GetProjectionMatrix();
             mat4 view = camera.GetViewMatrix();
-            this.UpdateRotation();
             mat4 model = this.GetModelMatrix();
             mat4 mvp = projection * view * model;
             {

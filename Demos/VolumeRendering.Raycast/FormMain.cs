@@ -55,8 +55,8 @@ namespace VolumeRendering.Raycast
             {
                 var manipulater = new ArcBallManipulater(GLMouseButtons.Right);
                 manipulater.Bind(camera, this.winGLCanvas1);
+                manipulater.Rotated += manipulater_Rotated;
                 var node = RaycastNode.Create();
-                node.BindManipulater(manipulater);
                 this.scene.RootNode = node;
                 (new FormProperyGrid(node)).Show();
             }
@@ -73,6 +73,13 @@ namespace VolumeRendering.Raycast
             this.triangleTip = new LegacyTriangleNode();
             this.quadTip = new LegacyQuadNode();
 
+        }
+
+        void manipulater_Rotated(object sender, ArcBallManipulater.Rotation e)
+        {
+            SceneNodeBase node = this.scene.RootNode;
+            node.RotationAngle = e.angleInDegree;
+            node.RotationAxis = e.axis;
         }
 
         private void winGLCanvas1_OpenGLDraw(object sender, PaintEventArgs e)

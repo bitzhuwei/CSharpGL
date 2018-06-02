@@ -55,30 +55,30 @@ namespace VolumeRendering.Raycast
         {
             if (lastMousePosition == e.Location) { return; }
 
-            if (e.Button == System.Windows.Forms.MouseButtons.Right)
-            {
-                //// operate camera
-                //rotator.MouseMove(e.X, e.Y);
-            }
-            else if (e.Button == System.Windows.Forms.MouseButtons.Left)
-            {
-                // move vertex
-                DragParam dragParam = this.dragParam;
-                if (dragParam != null && this.pickedGeometry != null)
-                {
-                    var node = this.pickedGeometry.FromObject as PickableNode;
-                    var currentWindowSpacePos = new vec3(e.X, this.winGLCanvas1.Height - e.Y - 1, this.pickedGeometry.PickedPosition.z);
-                    var currentModelSpacePos = glm.unProject(currentWindowSpacePos, dragParam.viewMatrix * node.GetModelMatrix(), dragParam.projectionMatrix, dragParam.viewport);
-                    var modelSpacePositionDiff = currentModelSpacePos - dragParam.lastModelSpacePos;
-                    dragParam.lastModelSpacePos = currentModelSpacePos;
-                    IList<vec3> newPositions = node.MovePositions(
-                          modelSpacePositionDiff,
-                          dragParam.pickedVertexIds);
+            //if (e.Button == System.Windows.Forms.MouseButtons.Right)
+            //{
+            //    //// operate camera
+            //    //rotator.MouseMove(e.X, e.Y);
+            //}
+            //else if (e.Button == System.Windows.Forms.MouseButtons.Left)
+            //{
+            //    // move vertex
+            //    DragParam dragParam = this.dragParam;
+            //    if (dragParam != null && this.pickedGeometry != null)
+            //    {
+            //        var node = this.pickedGeometry.FromObject as PickableNode;
+            //        var currentWindowSpacePos = new vec3(e.X, this.winGLCanvas1.Height - e.Y - 1, this.pickedGeometry.PickedPosition.z);
+            //        var currentModelSpacePos = glm.unProject(currentWindowSpacePos, dragParam.viewMatrix * node.GetModelMatrix(), dragParam.projectionMatrix, dragParam.viewport);
+            //        var modelSpacePositionDiff = currentModelSpacePos - dragParam.lastModelSpacePos;
+            //        dragParam.lastModelSpacePos = currentModelSpacePos;
+            //        IList<vec3> newPositions = node.MovePositions(
+            //              modelSpacePositionDiff,
+            //              dragParam.pickedVertexIds);
 
-                    this.UpdateHightlight(newPositions);
-                }
-            }
-            else
+            //        this.UpdateHightlight(newPositions);
+            //    }
+            //}
+            //else
             {
                 int x = e.X;
                 int y = this.winGLCanvas1.Height - e.Y - 1;
@@ -89,7 +89,7 @@ namespace VolumeRendering.Raycast
 
             this.lastMousePosition = e.Location;
 
-            this.winGLCanvas1.Invalidate();// redraw the scene.
+            //this.winGLCanvas1.Invalidate();// redraw the scene.
         }
 
         private void glCanvas1_MouseUp(object sender, MouseEventArgs e)

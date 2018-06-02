@@ -37,6 +37,11 @@ namespace CSharpGL
         }
 
         /// <summary>
+        /// Occurs when this is bound to a canvas and rotated.
+        /// </summary>
+        public event EventHandler<Rotation> Rotated;
+
+        /// <summary>
         /// Rotate model using arc-ball method.
         /// </summary>
         /// <param name="bindingMouseButtons"></param>
@@ -133,7 +138,17 @@ namespace CSharpGL
                     _startPosition = _endPosition;
 
                     mat4 newRotation = glm.rotate(angle, _normalVector);
-                    this.totalRotation = newRotation * totalRotation;
+                    this.totalRotation = newRotation * this.totalRotation;
+
+                    var rotated = this.Rotated;
+                    if (rotated != null)
+                    {
+                        Quaternion quaternion = this.totalRotation.ToQuaternion();
+                        float angleInDegree;
+                        vec3 axis;
+                        quaternion.Parse(out angleInDegree, out axis);
+                        rotated(this, new Rotation(axis, angleInDegree));
+                    }
                 }
 
                 IGLCanvas canvas = this.canvas;
@@ -225,6 +240,41 @@ namespace CSharpGL
                 if (camera.UpVector != this.up) { return false; }
 
                 return true;
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public class Rotation : EventArgs
+        {
+            /// <summary>
+            /// 
+            /// </summary>
+            public readonly vec3 axis;
+            /// <summary>
+            /// 
+            /// </summary>
+            public readonly float angleInDegree;
+
+            /// <summary>
+            /// 
+            /// </summary>
+            /// <param name="axis"></param>
+            /// <param name="angleInDegree"></param>
+            public Rotation(vec3 axis, float angleInDegree)
+            {
+                this.axis = axis;
+                this.angleInDegree = angleInDegree;
+            }
+
+            /// <summary>
+            /// 
+            /// </summary>
+            /// <returns></returns>
+            public override string ToString()
+            {
+                return string.Format("axis:{0}, angle:{1}°", this.axis, this.angleInDegree);
             }
         }
     }

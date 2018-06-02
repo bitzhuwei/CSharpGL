@@ -38,9 +38,19 @@ namespace c11d00_Arcball
             list.Add(new RenderAction(scene));
             this.actionList = list;
 
-            var manipulater = new FirstPerspectiveManipulater();
-            manipulater.Bind(camera, this.winGLCanvas1);
+            //var manipulater = new FirstPerspectiveManipulater();
+            //manipulater.Bind(camera, this.winGLCanvas1);
 
+            var manipulater = new ArcBallManipulater(GLMouseButtons.Left);
+            manipulater.Bind(camera, this.winGLCanvas1);
+            manipulater.Rotated += manipulater_Rotated;
+        }
+
+        void manipulater_Rotated(object sender, ArcBallManipulater.Rotation e)
+        {
+            SceneNodeBase node = this.scene.RootNode;
+            node.RotationAngle = e.angleInDegree;
+            node.RotationAxis = e.axis;
         }
 
         private SceneNodeBase GetRootNode()
@@ -48,35 +58,6 @@ namespace c11d00_Arcball
             TeapotNode node = TeapotNode.Create();
             return node;
         }
-        //private SceneNodeBase GetRootNode()
-        //{
-        //    var group = new GroupNode();
-        //    var filenames = new string[] { "floor.obj_", "cube.obj_", };
-        //    var colors = new Color[] { Color.Green, Color.White, };
-        //    for (int i = 0; i < filenames.Length; i++)
-        //    {
-        //        string folder = System.Windows.Forms.Application.StartupPath;
-        //        string filename = System.IO.Path.Combine(folder + @"\..\..\..\..\Infrastructure\CSharpGL.Model", filenames[i]);
-        //        var parser = new ObjVNFParser(true);
-        //        ObjVNFResult result = parser.Parse(filename);
-        //        if (result.Error != null)
-        //        {
-        //            MessageBox.Show(result.Error.ToString());
-        //        }
-        //        else
-        //        {
-        //            ObjVNFMesh mesh = result.Mesh;
-        //            var model = new AdjacentTriangleModel(mesh);
-        //            var node = PointsNode.Create(model, ObjVNF.strPosition, ObjVNF.strNormal, model.GetSize());
-        //            node.Color = colors[i].ToVec3();
-        //            node.WorldPosition = new vec3(0, i * 5, 0);
-        //            node.Name = filename;
-        //            group.Children.Add(node);
-        //        }
-        //    }
-
-        //    return group;
-        //}
 
         private void winGLCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
         {
@@ -95,5 +76,7 @@ namespace c11d00_Arcball
         {
             this.scene.Camera.AspectRatio = ((float)this.winGLCanvas1.Width) / ((float)this.winGLCanvas1.Height);
         }
+
+
     }
 }
