@@ -55,8 +55,10 @@
     <Compile Include="FormModel.Designer.cs">
       <DependentUpon>FormModel.cs</DependentUpon>
     </Compile>
-    <Compile Include="HalfSphereNode.cs" />
-    <Compile Include="HalfSphereNode.shaders.cs" />
+    <Compile Include="TexturedNode.cs" />
+    <Compile Include="NoShadowNode.cs" />
+    <Compile Include="TexturedNode.shaders.cs" />
+    <Compile Include="NoShadowNode.shaders.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormArcball.resx">
@@ -97,6 +99,11 @@
       <Project>{3798671c-d1a4-43aa-a4ae-edfef21cad34}</Project>
       <Name>CSharpGL.Models</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Canvas.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

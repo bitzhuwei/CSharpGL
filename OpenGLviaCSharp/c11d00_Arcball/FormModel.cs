@@ -22,6 +22,12 @@ namespace c11d00_Arcball
             this.Load += FormMain_Load;
             this.winGLCanvas1.OpenGLDraw += winGLCanvas1_OpenGLDraw;
             this.winGLCanvas1.Resize += winGLCanvas1_Resize;
+            this.winGLCanvas1.MouseWheel += winGLCanvas1_MouseWheel;
+        }
+
+        void winGLCanvas1_MouseWheel(object sender, MouseEventArgs e)
+        {
+            this.scene.Camera.MouseWheel(e.Delta);
         }
 
         private void FormMain_Load(object sender, EventArgs e)
@@ -44,6 +50,8 @@ namespace c11d00_Arcball
             var manipulater = new ArcBallManipulater(GLMouseButtons.Left);
             manipulater.Bind(camera, this.winGLCanvas1);
             manipulater.Rotated += manipulater_Rotated;
+
+            (new FormArcball()).Show();
         }
 
         void manipulater_Rotated(object sender, ArcBallManipulater.Rotation e)
@@ -56,7 +64,7 @@ namespace c11d00_Arcball
         private SceneNodeBase GetRootNode()
         {
             TeapotNode node = TeapotNode.Create();
-            (new FormProperyGrid(node)).Show();
+            //(new FormProperyGrid(node)).Show();
             return node;
         }
 
