@@ -55,9 +55,7 @@
     <Compile Include="FormModel.Designer.cs">
       <DependentUpon>FormModel.cs</DependentUpon>
     </Compile>
-    <Compile Include="TexturedNode.cs" />
     <Compile Include="NoShadowNode.cs" />
-    <Compile Include="TexturedNode.shaders.cs" />
     <Compile Include="NoShadowNode.shaders.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

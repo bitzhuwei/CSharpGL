@@ -15,8 +15,8 @@ namespace c11d00_Arcball
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormArcball());
-            //Application.Run(new FormModel());
+            //Application.Run(new FormArcball());
+            Application.Run(new FormModel());
         }
     }
 }

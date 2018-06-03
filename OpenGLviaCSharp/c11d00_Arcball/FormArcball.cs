@@ -32,20 +32,20 @@ namespace c11d00_Arcball
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-            var position = new vec3(5, 3, 4);
+            var position = new vec3(3, 5, 4);
             var center = new vec3(0, 0, 0);
             var up = new vec3(0, 1, 0);
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
             this.scene = new Scene(camera);
             this.scene.ClearColor = new vec4(0, 0, 0, 1);
-            var light = new DirectionalLight(new vec3(-4, 5, 3));
+            var light = new DirectionalLight(new vec3(4, 5, 3));
             light.Specular = new vec3(0);
             this.scene.Lights.Add(light);
             this.scene.RootNode = GetRootNode();
 
             var list = new ActionList();
             list.Add(new TransformAction(scene.RootNode));
-            //list.Add(new RenderAction(scene));
+            list.Add(new RenderAction(scene));
             list.Add(new BlinnPhongAction(scene));
             this.actionList = list;
 
@@ -70,13 +70,28 @@ namespace c11d00_Arcball
             {
                 var model = new HalfSphere(3, 40, 40);
                 var node = NoShadowNode.Create(model, HalfSphere.strPosition, HalfSphere.strNormal, model.Size);
-                group.Children.Add(node);
+                var list = node.RenderUnit.Methods[0].SwitchList;
+                var list1 = node.RenderUnit.Methods[1].SwitchList;
+                var polygonModeSwitch = new PolygonModeSwitch(PolygonMode.Line);
+                var offsetSwitch = new PolygonOffsetFillSwitch();
+                list.Add(polygonModeSwitch);
+                list1.Add(polygonModeSwitch);
+                var cmd = node.RenderUnit.Methods[0].VertexArrayObjects[0].DrawCommand as DrawElementsCmd;
+                cmd.VertexCount = cmd.VertexCount / 2; group.Children.Add(node);
             }
+            //{
+            //    var model = new RectangleModel();
+            //    Texture texture = GetTexture();
+            //    var node = TexturedNode.Create(model, RectangleModel.strPosition, RectangleModel.strNormal, RectangleModel.strUV, texture, model.ModelSize);
+            //    node.Scale = new vec3(1, 1, 1) * 6;
+            //    node.RotationAxis = new vec3(-1, 0, 0);
+            //    node.RotationAngle = 90;
+
+            //    group.Children.Add(node);
+            //}
             {
-                var model = new RectangleModel();
-                //var node = NoShadowNode.Create(model, RectangleModel.strPosition, RectangleModel.strNormal, model.ModelSize);
-                Texture texture = GetTexture();
-                var node = TexturedNode.Create(model, RectangleModel.strPosition, RectangleModel.strNormal, RectangleModel.strUV, texture, model.ModelSize);
+                var node = RectangleNode.Create();
+                node.TextureSource = new BitmapTextureSource("Canvas.png");
                 node.Scale = new vec3(1, 1, 1) * 6;
                 node.RotationAxis = new vec3(-1, 0, 0);
                 node.RotationAngle = 90;
