@@ -14,10 +14,13 @@ namespace c11d00_Arcball
     {
         private Scene scene;
         private ActionList actionList;
+        private ICamera modelCamera;
 
-        public FormArcball()
+        public FormArcball(ICamera camera)
         {
             InitializeComponent();
+
+            this.modelCamera = camera;
 
             this.Load += FormMain_Load;
             this.winGLCanvas1.OpenGLDraw += winGLCanvas1_OpenGLDraw;
@@ -41,7 +44,7 @@ namespace c11d00_Arcball
             var light = new DirectionalLight(new vec3(4, 5, 3));
             light.Specular = new vec3(0);
             this.scene.Lights.Add(light);
-            this.scene.RootNode = GetRootNode();
+            this.scene.RootNode = GetRootNode(this.modelCamera);
 
             var list = new ActionList();
             list.Add(new TransformAction(scene.RootNode));
@@ -64,9 +67,29 @@ namespace c11d00_Arcball
             node.RotationAxis = e.axis;
         }
 
-        private SceneNodeBase GetRootNode()
+        private SceneNodeBase GetRootNode(ICamera modelCamera)
         {
             var group = new GroupNode();
+            RenderToTexttureNode rtt;
+            {
+                int width = this.winGLCanvas1.Width, height = this.winGLCanvas1.Height;
+                rtt = new RenderToTexttureNode(width, height, modelCamera, new ColoredFramebufferProvider());
+                rtt.BackgroundColor = Color.SkyBlue;
+                {
+                    var teapot = TeapotNode.Create();
+                    rtt.Children.Add(teapot);// rendered to framebuffer, then to texture.
+                }
+                group.Children.Add(rtt);
+            }
+            {
+                var rectangle = RectangleNode.Create();
+                //var rectangle = new LegacyRectangleRenderer();//LegacyRectangleRenderer dosen't work in rendering-to-texture.
+                rectangle.TextureSource = rtt;
+                rectangle.Scale = new vec3(1, 1, 1) * 6;
+                rectangle.RotationAxis = new vec3(-1, 0, 0);
+                rectangle.RotationAngle = 90;
+                group.Children.Add(rectangle);
+            }
             {
                 var model = new HalfSphere(3, 40, 40);
                 var node = NoShadowNode.Create(model, HalfSphere.strPosition, HalfSphere.strNormal, model.Size);
@@ -77,45 +100,28 @@ namespace c11d00_Arcball
                 list.Add(polygonModeSwitch);
                 list1.Add(polygonModeSwitch);
                 var cmd = node.RenderUnit.Methods[0].VertexArrayObjects[0].DrawCommand as DrawElementsCmd;
-                cmd.VertexCount = cmd.VertexCount / 2; group.Children.Add(node);
-            }
-            //{
-            //    var model = new RectangleModel();
-            //    Texture texture = GetTexture();
-            //    var node = TexturedNode.Create(model, RectangleModel.strPosition, RectangleModel.strNormal, RectangleModel.strUV, texture, model.ModelSize);
-            //    node.Scale = new vec3(1, 1, 1) * 6;
-            //    node.RotationAxis = new vec3(-1, 0, 0);
-            //    node.RotationAngle = 90;
-
-            //    group.Children.Add(node);
-            //}
-            {
-                var node = RectangleNode.Create();
-                node.TextureSource = new BitmapTextureSource("Canvas.png");
-                node.Scale = new vec3(1, 1, 1) * 6;
-                node.RotationAxis = new vec3(-1, 0, 0);
-                node.RotationAngle = 90;
+                cmd.VertexCount = cmd.VertexCount / 2;
                 group.Children.Add(node);
             }
             return group;
         }
 
-        private Texture GetTexture()
-        {
-            string folder = System.Windows.Forms.Application.StartupPath;
-            var bmp = new Bitmap(System.IO.Path.Combine(folder, @"Canvas.png"));
-            TexStorageBase storage = new TexImageBitmap(bmp);
-            var texture = new Texture(storage,
-                new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP_TO_EDGE),
-                new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_CLAMP_TO_EDGE),
-                new TexParameteri(TexParameter.PropertyName.TextureWrapR, (int)GL.GL_CLAMP_TO_EDGE),
-                new TexParameteri(TexParameter.PropertyName.TextureMinFilter, (int)GL.GL_LINEAR),
-                new TexParameteri(TexParameter.PropertyName.TextureMagFilter, (int)GL.GL_LINEAR));
-            texture.Initialize();
-            bmp.Dispose();
+        //private Texture GetTexture()
+        //{
+        //    string folder = System.Windows.Forms.Application.StartupPath;
+        //    var bmp = new Bitmap(System.IO.Path.Combine(folder, @"Canvas.png"));
+        //    TexStorageBase storage = new TexImageBitmap(bmp);
+        //    var texture = new Texture(storage,
+        //        new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP_TO_EDGE),
+        //        new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_CLAMP_TO_EDGE),
+        //        new TexParameteri(TexParameter.PropertyName.TextureWrapR, (int)GL.GL_CLAMP_TO_EDGE),
+        //        new TexParameteri(TexParameter.PropertyName.TextureMinFilter, (int)GL.GL_LINEAR),
+        //        new TexParameteri(TexParameter.PropertyName.TextureMagFilter, (int)GL.GL_LINEAR));
+        //    texture.Initialize();
+        //    bmp.Dispose();
 
-            return texture;
-        }
+        //    return texture;
+        //}
 
         private void winGLCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
         {

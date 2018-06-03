@@ -51,7 +51,7 @@ namespace c11d00_Arcball
             manipulater.Bind(camera, this.winGLCanvas1);
             manipulater.Rotated += manipulater_Rotated;
 
-            (new FormArcball()).Show();
+            (new FormArcball(camera)).Show();
         }
 
         void manipulater_Rotated(object sender, ArcBallManipulater.Rotation e)
