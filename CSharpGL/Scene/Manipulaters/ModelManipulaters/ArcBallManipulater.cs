@@ -21,10 +21,10 @@ namespace CSharpGL
 
         private bool mouseDownFlag;
         private GLMouseButtons lastBindingMouseButtons;
-        private GLEventHandler<GLMouseEventArgs> mouseDownEvent;
-        private GLEventHandler<GLMouseEventArgs> mouseMoveEvent;
-        private GLEventHandler<GLMouseEventArgs> mouseUpEvent;
-        private GLEventHandler<GLMouseEventArgs> mouseWheelEvent;
+        private readonly GLEventHandler<GLMouseEventArgs> mouseDownEvent;
+        private readonly GLEventHandler<GLMouseEventArgs> mouseMoveEvent;
+        private readonly GLEventHandler<GLMouseEventArgs> mouseUpEvent;
+        private readonly GLEventHandler<GLMouseEventArgs> mouseWheelEvent;
         private mat4 totalRotation = mat4.identity();
         private bool isBinded = false;
 
@@ -36,6 +36,18 @@ namespace CSharpGL
             get { return isBinded; }
         }
 
+        /// <summary>
+        /// Occurs when this is bound to a canvas and mouse is down.
+        /// </summary>
+        public event GLEventHandler<GLMouseEventArgs> MouseDown;
+        /// <summary>
+        /// Occurs when this is bound to a canvas and mouse is moved.
+        /// </summary>
+        public event GLEventHandler<GLMouseEventArgs> MouseMove;
+        /// <summary>
+        /// Occurs when this is bound to a canvas and mouse is up.
+        /// </summary>
+        public event GLEventHandler<GLMouseEventArgs> MouseUp;
         /// <summary>
         /// Occurs when this is bound to a canvas and rotated.
         /// </summary>
@@ -113,6 +125,14 @@ namespace CSharpGL
                 this._startPosition = GetArcBallPosition(e.X, e.Y);
 
                 mouseDownFlag = true;
+
+                {
+                    var mouseDown = this.MouseDown;
+                    if (mouseDown != null)
+                    {
+                        mouseDown(this, e);
+                    }
+                }
             }
         }
 
@@ -140,14 +160,24 @@ namespace CSharpGL
                     mat4 newRotation = glm.rotate(angle, _normalVector);
                     this.totalRotation = newRotation * this.totalRotation;
 
-                    var rotated = this.Rotated;
-                    if (rotated != null)
+
                     {
-                        Quaternion quaternion = this.totalRotation.ToQuaternion();
-                        float angleInDegree;
-                        vec3 axis;
-                        quaternion.Parse(out angleInDegree, out axis);
-                        rotated(this, new Rotation(axis, angleInDegree));
+                        var rotated = this.Rotated;
+                        if (rotated != null)
+                        {
+                            Quaternion quaternion = this.totalRotation.ToQuaternion();
+                            float angleInDegree;
+                            vec3 axis;
+                            quaternion.Parse(out angleInDegree, out axis);
+                            rotated(this, new Rotation(axis, angleInDegree));
+                        }
+                    }
+                    {
+                        var mouseMove = this.MouseMove;
+                        if (mouseMove != null)
+                        {
+                            mouseMove(this, e);
+                        }
                     }
                 }
 
@@ -164,6 +194,14 @@ namespace CSharpGL
             if ((e.Button & this.lastBindingMouseButtons) != GLMouseButtons.None)
             {
                 mouseDownFlag = false;
+
+                {
+                    var mouseUp = this.MouseUp;
+                    if (mouseUp != null)
+                    {
+                        mouseUp(this, e);
+                    }
+                }
             }
         }
 

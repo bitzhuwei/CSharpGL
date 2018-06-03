@@ -17,17 +17,19 @@ namespace c11d00_Arcball
         private ICamera modelCamera;
         private RenderToTexttureNode rtt;
         private GroupNode groupNode;
+        private ArcBallManipulater modelManipulater;
 
         public RenderToTexttureNode Render2TextureNode
         {
             get { return rtt; }
         }
 
-        public FormArcball(ICamera camera)
+        public FormArcball(ICamera camera, ArcBallManipulater manipulater)
         {
             InitializeComponent();
 
             this.modelCamera = camera;
+            this.modelManipulater = manipulater;
 
             this.Load += FormMain_Load;
             this.winGLCanvas1.OpenGLDraw += winGLCanvas1_OpenGLDraw;
@@ -66,6 +68,37 @@ namespace c11d00_Arcball
                 var manipulater = new ArcBallManipulater(GLMouseButtons.Left);
                 manipulater.Bind(camera, this.winGLCanvas1);
                 manipulater.Rotated += manipulater_Rotated;
+            }
+            {
+                var manipualter = this.modelManipulater;
+                manipualter.Rotated += manipualter_Rotated;
+                manipualter.MouseDown += manipualter_MouseDown;
+                manipualter.MouseMove += manipualter_MouseMove;
+                manipualter.MouseUp += manipualter_MouseUp;
+            }
+        }
+
+        void manipualter_MouseUp(object sender, GLMouseEventArgs e)
+        {
+        }
+
+        void manipualter_MouseMove(object sender, GLMouseEventArgs e)
+        {
+        }
+
+        void manipualter_MouseDown(object sender, GLMouseEventArgs e)
+        {
+        }
+
+        void manipualter_Rotated(object sender, ArcBallManipulater.Rotation e)
+        {
+            {
+                SceneNodeBase node = this.rtt;
+                if (node != null)
+                {
+                    node.RotationAngle = e.angleInDegree;
+                    node.RotationAxis = e.axis;
+                }
             }
         }
 
