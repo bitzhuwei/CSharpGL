@@ -14,6 +14,7 @@ namespace c11d00_Arcball
     {
         private Scene scene;
         private ActionList actionList;
+        private RenderToTexttureNode render2TextureNode;
 
         public FormModel()
         {
@@ -51,14 +52,29 @@ namespace c11d00_Arcball
             manipulater.Bind(camera, this.winGLCanvas1);
             manipulater.Rotated += manipulater_Rotated;
 
-            (new FormArcball(camera)).Show();
+            var frmArcball = new FormArcball(camera);
+            frmArcball.Show();
+            this.render2TextureNode = frmArcball.Render2TextureNode;
         }
 
         void manipulater_Rotated(object sender, ArcBallManipulater.Rotation e)
         {
-            SceneNodeBase node = this.scene.RootNode;
-            node.RotationAngle = e.angleInDegree;
-            node.RotationAxis = e.axis;
+            {
+                SceneNodeBase node = this.scene.RootNode;
+                if (node != null)
+                {
+                    node.RotationAngle = e.angleInDegree;
+                    node.RotationAxis = e.axis;
+                }
+            }
+            {
+                SceneNodeBase node = this.render2TextureNode;
+                if (node != null)
+                {
+                    node.RotationAngle = e.angleInDegree;
+                    node.RotationAxis = e.axis;
+                }
+            }
         }
 
         private SceneNodeBase GetRootNode()

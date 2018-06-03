@@ -15,6 +15,13 @@ namespace c11d00_Arcball
         private Scene scene;
         private ActionList actionList;
         private ICamera modelCamera;
+        private RenderToTexttureNode rtt;
+        private GroupNode groupNode;
+
+        public RenderToTexttureNode Render2TextureNode
+        {
+            get { return rtt; }
+        }
 
         public FormArcball(ICamera camera)
         {
@@ -55,55 +62,67 @@ namespace c11d00_Arcball
             //var manipulater = new FirstPerspectiveManipulater();
             //manipulater.Bind(camera, this.winGLCanvas1);
 
-            var manipulater = new ArcBallManipulater(GLMouseButtons.Left);
-            manipulater.Bind(camera, this.winGLCanvas1);
-            manipulater.Rotated += manipulater_Rotated;
+            {
+                var manipulater = new ArcBallManipulater(GLMouseButtons.Left);
+                manipulater.Bind(camera, this.winGLCanvas1);
+                manipulater.Rotated += manipulater_Rotated;
+            }
         }
 
         void manipulater_Rotated(object sender, ArcBallManipulater.Rotation e)
         {
-            SceneNodeBase node = this.scene.RootNode;
-            node.RotationAngle = e.angleInDegree;
-            node.RotationAxis = e.axis;
+            SceneNodeBase node = this.groupNode;
+            {
+                if (node != null)
+                {
+                    node.RotationAngle = e.angleInDegree;
+                    node.RotationAxis = e.axis;
+                }
+            }
         }
 
         private SceneNodeBase GetRootNode(ICamera modelCamera)
         {
-            var group = new GroupNode();
-            RenderToTexttureNode rtt;
+            var root = new GroupNode();
             {
                 int width = this.winGLCanvas1.Width, height = this.winGLCanvas1.Height;
-                rtt = new RenderToTexttureNode(width, height, modelCamera, new ColoredFramebufferProvider());
+                var rtt = new RenderToTexttureNode(width, height, modelCamera, new ColoredFramebufferProvider());
                 rtt.BackgroundColor = Color.SkyBlue;
                 {
                     var teapot = TeapotNode.Create();
+                    teapot.RenderWireframe = false;
                     rtt.Children.Add(teapot);// rendered to framebuffer, then to texture.
                 }
-                group.Children.Add(rtt);
+                root.Children.Add(rtt);
+                this.rtt = rtt;
             }
             {
-                var rectangle = RectangleNode.Create();
-                //var rectangle = new LegacyRectangleRenderer();//LegacyRectangleRenderer dosen't work in rendering-to-texture.
-                rectangle.TextureSource = rtt;
-                rectangle.Scale = new vec3(1, 1, 1) * 6;
-                rectangle.RotationAxis = new vec3(-1, 0, 0);
-                rectangle.RotationAngle = 90;
-                group.Children.Add(rectangle);
+                var group = new GroupNode();
+                {
+                    var rectangle = RectangleNode.Create();
+                    rectangle.TextureSource = this.rtt;
+                    rectangle.Scale = new vec3(1, 1, 1) * 6;
+                    rectangle.RotationAxis = new vec3(-1, 0, 0);
+                    rectangle.RotationAngle = 90;
+                    group.Children.Add(rectangle);
+                }
+                {
+                    var model = new HalfSphere(3, 40, 40);
+                    var node = NoShadowNode.Create(model, HalfSphere.strPosition, HalfSphere.strNormal, model.Size);
+                    var list = node.RenderUnit.Methods[0].SwitchList;
+                    var list1 = node.RenderUnit.Methods[1].SwitchList;
+                    var polygonModeSwitch = new PolygonModeSwitch(PolygonMode.Line);
+                    var offsetSwitch = new PolygonOffsetFillSwitch();
+                    list.Add(polygonModeSwitch);
+                    list1.Add(polygonModeSwitch);
+                    var cmd = node.RenderUnit.Methods[0].VertexArrayObjects[0].DrawCommand as DrawElementsCmd;
+                    cmd.VertexCount = cmd.VertexCount / 2; // render only half a sphere.
+                    group.Children.Add(node);
+                }
+                root.Children.Add(group);
+                this.groupNode = group;
             }
-            {
-                var model = new HalfSphere(3, 40, 40);
-                var node = NoShadowNode.Create(model, HalfSphere.strPosition, HalfSphere.strNormal, model.Size);
-                var list = node.RenderUnit.Methods[0].SwitchList;
-                var list1 = node.RenderUnit.Methods[1].SwitchList;
-                var polygonModeSwitch = new PolygonModeSwitch(PolygonMode.Line);
-                var offsetSwitch = new PolygonOffsetFillSwitch();
-                list.Add(polygonModeSwitch);
-                list1.Add(polygonModeSwitch);
-                var cmd = node.RenderUnit.Methods[0].VertexArrayObjects[0].DrawCommand as DrawElementsCmd;
-                cmd.VertexCount = cmd.VertexCount / 2;
-                group.Children.Add(node);
-            }
-            return group;
+            return root;
         }
 
         //private Texture GetTexture()
