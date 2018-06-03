@@ -147,7 +147,8 @@ void main(void) {
 
     }
 
-    class RectangleModel : IBufferSource
+
+    public class RectangleModel : IBufferSource
     {
         public vec3 ModelSize { get; private set; }
 
@@ -160,6 +161,9 @@ void main(void) {
         private VertexBuffer positionBuffer;
         public const string strUV = "uv";
         private VertexBuffer uvBuffer;
+        public const string strNormal = "normal";
+        private VertexBuffer normalBuffer;
+
 
         private IDrawCommand drawCmd;
 
@@ -184,6 +188,15 @@ void main(void) {
                 }
 
                 yield return this.uvBuffer;
+            }
+            else if (bufferName == strNormal)
+            {
+                if (this.normalBuffer == null)
+                {
+                    this.normalBuffer = normals.GenVertexBuffer(VBOConfig.Vec3, BufferUsage.StaticDraw);
+                }
+
+                yield return this.normalBuffer;
             }
             else
             {
@@ -224,6 +237,16 @@ void main(void) {
             new vec2(0, 1),// 1
             new vec2(0, 0),// 2
             new vec2(1, 0),// 3
+        };
+        /// <summary>
+        /// four normals.
+        /// </summary>
+        private static readonly vec3[] normals = new vec3[]
+        {
+            new vec3(0, 0, 1),// 0
+            new vec3(0, 0, 1),// 1
+            new vec3(0, 0, 1),// 2
+            new vec3(0, 0, 1),// 3
         };
 
     }
