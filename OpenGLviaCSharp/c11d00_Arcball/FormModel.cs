@@ -56,6 +56,7 @@ namespace c11d00_Arcball
         private SceneNodeBase GetRootNode()
         {
             TeapotNode node = TeapotNode.Create();
+            (new FormProperyGrid(node)).Show();
             return node;
         }
 
