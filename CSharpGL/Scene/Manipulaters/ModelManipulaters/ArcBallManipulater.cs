@@ -21,10 +21,10 @@ namespace CSharpGL
 
         private bool mouseDownFlag;
         private GLMouseButtons lastBindingMouseButtons;
-        private GLEventHandler<GLMouseEventArgs> mouseDownEvent;
-        private GLEventHandler<GLMouseEventArgs> mouseMoveEvent;
-        private GLEventHandler<GLMouseEventArgs> mouseUpEvent;
-        private GLEventHandler<GLMouseEventArgs> mouseWheelEvent;
+        private readonly GLEventHandler<GLMouseEventArgs> mouseDownEvent;
+        private readonly GLEventHandler<GLMouseEventArgs> mouseMoveEvent;
+        private readonly GLEventHandler<GLMouseEventArgs> mouseUpEvent;
+        private readonly GLEventHandler<GLMouseEventArgs> mouseWheelEvent;
         private mat4 totalRotation = mat4.identity();
         private bool isBinded = false;
 
@@ -35,6 +35,23 @@ namespace CSharpGL
         {
             get { return isBinded; }
         }
+
+        /// <summary>
+        /// Occurs when this is bound to a canvas and mouse is down.
+        /// </summary>
+        public event GLEventHandler<GLMouseEventArgs> MouseDown;
+        ///// <summary>
+        ///// Occurs when this is bound to a canvas and mouse is moved.
+        ///// </summary>
+        //public event GLEventHandler<GLMouseEventArgs> MouseMove;
+        /// <summary>
+        /// Occurs when this is bound to a canvas and mouse is up.
+        /// </summary>
+        public event GLEventHandler<GLMouseEventArgs> MouseUp;
+        /// <summary>
+        /// Occurs when this is bound to a canvas and rotated.
+        /// </summary>
+        public event GLEventHandler<Rotation> Rotated;
 
         /// <summary>
         /// Rotate model using arc-ball method.
@@ -108,6 +125,14 @@ namespace CSharpGL
                 this._startPosition = GetArcBallPosition(e.X, e.Y);
 
                 mouseDownFlag = true;
+
+                {
+                    var mouseDown = this.MouseDown;
+                    if (mouseDown != null)
+                    {
+                        mouseDown(this, e);
+                    }
+                }
             }
         }
 
@@ -133,7 +158,20 @@ namespace CSharpGL
                     _startPosition = _endPosition;
 
                     mat4 newRotation = glm.rotate(angle, _normalVector);
-                    this.totalRotation = newRotation * totalRotation;
+                    this.totalRotation = newRotation * this.totalRotation;
+
+
+                    {
+                        var rotated = this.Rotated;
+                        if (rotated != null)
+                        {
+                            Quaternion quaternion = this.totalRotation.ToQuaternion();
+                            float angleInDegree;
+                            vec3 axis;
+                            quaternion.Parse(out angleInDegree, out axis);
+                            rotated(this, new Rotation(axis, angleInDegree, e.Button, e.Clicks, e.X, e.Y, e.Delta));
+                        }
+                    }
                 }
 
                 IGLCanvas canvas = this.canvas;
@@ -149,6 +187,14 @@ namespace CSharpGL
             if ((e.Button & this.lastBindingMouseButtons) != GLMouseButtons.None)
             {
                 mouseDownFlag = false;
+
+                {
+                    var mouseUp = this.MouseUp;
+                    if (mouseUp != null)
+                    {
+                        mouseUp(this, e);
+                    }
+                }
             }
         }
 
@@ -176,8 +222,8 @@ namespace CSharpGL
 
         private vec3 GetArcBallPosition(int x, int y)
         {
-            float rx = ((float)(x - _width) / 2) / _length;
-            float ry = ((float)(_height) / 2 - y) / _length;
+            float rx = (x - _width / 2.0f) / _length;
+            float ry = (_height / 2.0f - y) / _length;
             float zz = _radiusRadius - rx * rx - ry * ry;
             float rz = (zz > 0 ? (float)Math.Sqrt(zz) : 0.0f);
             var result = new vec3(
@@ -225,6 +271,47 @@ namespace CSharpGL
                 if (camera.UpVector != this.up) { return false; }
 
                 return true;
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public class Rotation : GLMouseEventArgs
+        {
+            /// <summary>
+            /// 
+            /// </summary>
+            public readonly vec3 axis;
+            /// <summary>
+            /// 
+            /// </summary>
+            public readonly float angleInDegree;
+
+            /// <summary>
+            /// 
+            /// </summary>
+            /// <param name="axis"></param>
+            /// <param name="angleInDegree"></param>
+            /// <param name="button">MouseButtons 值之一，它指示曾按下的是哪个鼠标按钮。</param>
+            /// <param name="clicks">鼠标按钮曾被按下的次数。</param>
+            /// <param name="x">鼠标单击的 x 坐标（以像素为单位，以left为0）。相对<see cref="CtrlRoot"/>而言。</param>
+            /// <param name="y">鼠标单击的 y 坐标（以像素为单位，以bottom为0）。相对<see cref="CtrlRoot"/>而言。</param>
+            /// <param name="delta">鼠标轮已转动的制动器数的有符号计数。</param>
+            public Rotation(vec3 axis, float angleInDegree, GLMouseButtons button, int clicks, int x, int y, int delta)
+                : base(button, clicks, x, y, delta)
+            {
+                this.axis = axis;
+                this.angleInDegree = angleInDegree;
+            }
+
+            /// <summary>
+            /// 
+            /// </summary>
+            /// <returns></returns>
+            public override string ToString()
+            {
+                return string.Format("axis:{0}, angle:{1}°", this.axis, this.angleInDegree);
             }
         }
     }

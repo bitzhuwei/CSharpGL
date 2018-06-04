@@ -91,7 +91,9 @@
     <Compile Include="SimpleObjFileFormat\ObjVNFResult.cs" />
     <Compile Include="SimpleObjFileFormat\PartParsers\ObjVNFContext.cs" />
     <Compile Include="SimpleObjFileFormat\ObjVNFParser.cs" />
+    <Compile Include="Sphere\HalfSphere.cs" />
     <Compile Include="Sphere\Sphere.cs" />
+    <Compile Include="Sphere\HalfSphereModel.cs" />
     <Compile Include="Sphere\SphereModel.cs" />
     <Compile Include="Teapot\AdjacentTeapot.cs" />
     <Compile Include="Teapot\Teapot.cs" />
@@ -135,7 +137,9 @@
     <None Include="TrefoilKnotModel\TrefoilKnot.frag" />
     <None Include="TrefoilKnotModel\TrefoilKnot.vert" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="UniformedNode\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

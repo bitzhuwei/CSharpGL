@@ -1,5 +1,4 @@
-﻿using CSharpGL;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,79 +6,73 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using CSharpGL;
 
-namespace VolumeRendering.Raycast
+namespace c11d00_Arcball
 {
-    public partial class FormMain : Form
+    public partial class FormModel : Form
     {
         private Scene scene;
         private ActionList actionList;
 
-        private Picking pickingAction;
-        private LegacyTriangleNode triangleTip;
-        private LegacyQuadNode quadTip;
-
-        public FormMain()
+        public FormModel()
         {
             InitializeComponent();
 
             this.Load += FormMain_Load;
             this.winGLCanvas1.OpenGLDraw += winGLCanvas1_OpenGLDraw;
             this.winGLCanvas1.Resize += winGLCanvas1_Resize;
-
-            // picking events
-            this.winGLCanvas1.MouseDown += glCanvas1_MouseDown;
-            this.winGLCanvas1.MouseMove += glCanvas1_MouseMove;
-            this.winGLCanvas1.MouseUp += glCanvas1_MouseUp;
             this.winGLCanvas1.MouseWheel += winGLCanvas1_MouseWheel;
         }
 
         void winGLCanvas1_MouseWheel(object sender, MouseEventArgs e)
         {
-            var scene = this.scene;
-            if (scene != null)
-            {
-                scene.Camera.MouseWheel(e.Delta);
-            }
+            this.scene.Camera.MouseWheel(e.Delta);
         }
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-            var position = new vec3(5, 3, 4) * 0.2f;
+            var position = new vec3(5, 3, 4);
             var center = new vec3(0, 0, 0);
             var up = new vec3(0, 1, 0);
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
-
-            this.scene = new Scene(camera)
-;
-            {
-                var manipulater = new ArcBallManipulater(GLMouseButtons.Right);
-                manipulater.Bind(camera, this.winGLCanvas1);
-                manipulater.Rotated += manipulater_Rotated;
-                var node = RaycastNode.Create();
-                this.scene.RootNode = node;
-                (new FormProperyGrid(node)).Show();
-            }
+            this.scene = new Scene(camera);
+            this.scene.RootNode = GetRootNode();
 
             var list = new ActionList();
-            var transformAction = new TransformAction(scene.RootNode);
-            list.Add(transformAction);
-            var renderAction = new RenderAction(scene);
-            list.Add(renderAction);
+            list.Add(new TransformAction(scene.RootNode));
+            list.Add(new RenderAction(scene));
             this.actionList = list;
 
-            this.pickingAction = new Picking(scene);
+            //var manipulater = new FirstPerspectiveManipulater();
+            //manipulater.Bind(camera, this.winGLCanvas1);
 
-            this.triangleTip = new LegacyTriangleNode();
-            this.quadTip = new LegacyQuadNode();
+            var manipulater = new ArcBallManipulater(GLMouseButtons.Left);
+            manipulater.Bind(camera, this.winGLCanvas1);
+            manipulater.Rotated += manipulater_Rotated;
 
+            var frmArcball = new FormArcball(camera, manipulater, this.winGLCanvas1);
+            frmArcball.Show();
         }
 
         void manipulater_Rotated(object sender, ArcBallManipulater.Rotation e)
         {
-            SceneNodeBase node = this.scene.RootNode;
-            node.RotationAngle = e.angleInDegree;
-            node.RotationAxis = e.axis;
+            {
+                SceneNodeBase node = this.scene.RootNode;
+                if (node != null)
+                {
+                    node.RotationAngle = e.angleInDegree;
+                    node.RotationAxis = e.axis;
+                }
+            }
+        }
+
+        private SceneNodeBase GetRootNode()
+        {
+            TeapotNode node = TeapotNode.Create();
+            node.RenderWireframe = false;
+            //(new FormProperyGrid(node)).Show();
+            return node;
         }
 
         private void winGLCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
@@ -99,6 +92,7 @@ namespace VolumeRendering.Raycast
         {
             this.scene.Camera.AspectRatio = ((float)this.winGLCanvas1.Width) / ((float)this.winGLCanvas1.Height);
         }
+
 
     }
 }

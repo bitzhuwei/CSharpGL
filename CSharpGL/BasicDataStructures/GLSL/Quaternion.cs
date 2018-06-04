@@ -102,11 +102,11 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        /// <param name="angleDegree"></param>
+        /// <param name="angleInDegree"></param>
         /// <param name="axis"></param>
-        public void Parse(out float angleDegree, out vec3 axis)
+        public void Parse(out float angleInDegree, out vec3 axis)
         {
-            angleDegree = (float)(Math.Acos(w) * 2 * 180.0 / Math.PI);
+            angleInDegree = (float)(Math.Acos(w) * 2 * 180.0 / Math.PI);
             axis = (new vec3(x, y, z)).normalize();
         }
 
