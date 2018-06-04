@@ -18,6 +18,7 @@ namespace c11d00_Arcball
         private RenderToTexttureNode rtt;
         private GroupNode groupNode;
         private ArcBallManipulater modelManipulater;
+        private LinesNode linesNode;
 
         public RenderToTexttureNode Render2TextureNode
         {
@@ -104,8 +105,8 @@ namespace c11d00_Arcball
 
         void manipulater_Rotated(object sender, ArcBallManipulater.Rotation e)
         {
-            SceneNodeBase node = this.groupNode;
             {
+                SceneNodeBase node = this.groupNode;
                 if (node != null)
                 {
                     node.RotationAngle = e.angleInDegree;
@@ -117,6 +118,7 @@ namespace c11d00_Arcball
         private SceneNodeBase GetRootNode(ICamera modelCamera)
         {
             var root = new GroupNode();
+            // render 'scene' to franebuffer.
             {
                 int width = this.winGLCanvas1.Width, height = this.winGLCanvas1.Height;
                 var rtt = new RenderToTexttureNode(width, height, modelCamera, new ColoredFramebufferProvider());
@@ -131,16 +133,19 @@ namespace c11d00_Arcball
             }
             {
                 var group = new GroupNode();
+                // display 'scene' in rectangle.
                 {
-                    var rectangle = RectangleNode.Create();
-                    rectangle.TextureSource = this.rtt;
-                    rectangle.Scale = new vec3(1, 1, 1) * 6;
-                    rectangle.RotationAxis = new vec3(-1, 0, 0);
-                    rectangle.RotationAngle = 90;
-                    group.Children.Add(rectangle);
+                    var node = RectangleNode.Create();
+                    node.TextureSource = this.rtt;
+                    node.Scale = new vec3(1, 1, 1) * 6;
+                    node.RotationAxis = new vec3(-1, 0, 0);
+                    node.RotationAngle = 90;
+                    group.Children.Add(node);
                 }
+                // arcball.
+                const float radius = 3;
                 {
-                    var model = new HalfSphere(3, 40, 40);
+                    var model = new HalfSphere(radius, 40, 40);
                     var node = NoShadowNode.Create(model, HalfSphere.strPosition, HalfSphere.strNormal, model.Size);
                     var list = node.RenderUnit.Methods[0].SwitchList;
                     var list1 = node.RenderUnit.Methods[1].SwitchList;
@@ -151,6 +156,12 @@ namespace c11d00_Arcball
                     var cmd = node.RenderUnit.Methods[0].VertexArrayObjects[0].DrawCommand as DrawElementsCmd;
                     cmd.VertexCount = cmd.VertexCount / 2; // render only half a sphere.
                     group.Children.Add(node);
+                }
+                // lines.
+                {
+                    var node = LinesNode.Create(radius);
+                    group.Children.Add(node);
+                    this.linesNode = node;
                 }
                 root.Children.Add(group);
                 this.groupNode = group;
