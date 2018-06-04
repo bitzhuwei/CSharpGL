@@ -19,6 +19,7 @@ namespace c11d00_Arcball
         private GroupNode groupNode;
         private ArcBallManipulater modelManipulater;
         private LinesNode linesNode;
+        private FanNode fanNode;
 
         public RenderToTexttureNode Render2TextureNode
         {
@@ -162,6 +163,12 @@ namespace c11d00_Arcball
                     var node = LinesNode.Create(radius);
                     group.Children.Add(node);
                     this.linesNode = node;
+                }
+                // fan
+                {
+                    var node = FanNode.Create(radius);
+                    group.Children.Add(node);
+                    this.fanNode = node;
                 }
                 root.Children.Add(group);
                 this.groupNode = group;
