@@ -22,11 +22,6 @@ namespace c11d00_Arcball
         private LinesNode linesNode;
         private FanNode fanNode;
 
-        public RenderToTexttureNode Render2TextureNode
-        {
-            get { return rtt; }
-        }
-
         public FormArcball(ICamera camera, ArcBallManipulater manipulater, IGLCanvas canvas)
         {
             InitializeComponent();
