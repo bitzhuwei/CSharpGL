@@ -18,26 +18,26 @@ namespace c11d00_Arcball
             {
                 var positions = new vec3[count];
                 positions[0] = new vec3(0, 0, 0);
-                for (int i = 0; i < count - 4; i++)
+                for (int i = 0; i < count - 1; i++)
                 {
-                    float x = -length * (float)(i) / (float)(count - 4 - 1)
-                        + length * (float)(count - 4 - i - 1) / (float)(count - 4 - 1);
+                    float x = -length * (float)(i) / (float)(count - 1 - 1)
+                        + length * (float)(count - 1 - i - 1) / (float)(count - 1 - 1);
                     float y = (float)Math.Sqrt(radius * radius - x * x);
-                    positions[i + 4] = new vec3(x, y, 0);
+                    positions[i + 1] = new vec3(x, y, 0);
                 }
                 this.positions = positions;
             }
             {
                 var colors = new vec3[count];
                 colors[0] = new vec3(1, 1, 1);
-                for (int i = 0; i < count - 4; i++)
+                for (int i = 0; i < count - 1; i++)
                 {
-                    colors[i + 4] = new vec3(
-                        0.0f * (float)(i) / (float)(count - 4 - 1)
-                        + 1.0f * (float)(count - 4 - i - 1) / (float)(count - 4 - 1),
-                        1.0f * (float)(i) / (float)(count - 4)
-                        + 0.0f * (float)(count - 4 - i - 1) / (float)(count - 4 - 1),
-                        0.5f);
+                    colors[i + 1] = new vec3(
+                        1.0f * (float)(i) / (float)(count - 1 - 1)
+                        + 0.0f * (float)(count - 1 - i - 1) / (float)(count - 1 - 1),
+                        0.0f * (float)(i) / (float)(count - 1 - 1)
+                        + 1.0f * (float)(count - 1 - i - 1) / (float)(count - 1 - 1),
+                        0.0f);
                 }
                 this.colors = colors;
             }
@@ -82,7 +82,7 @@ namespace c11d00_Arcball
         {
             if (this.drawCmd == null)
             {
-                this.drawCmd = new DrawArraysCmd(DrawMode.Polygon, positions.Length);
+                this.drawCmd = new DrawArraysCmd(DrawMode.TriangleFan, positions.Length);
             }
 
             yield return this.drawCmd;

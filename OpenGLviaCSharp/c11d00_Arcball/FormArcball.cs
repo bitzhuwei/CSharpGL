@@ -43,7 +43,7 @@ namespace c11d00_Arcball
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-            var position = new vec3(3, 5, 4);
+            var position = new vec3(0, 5, 4);
             var center = new vec3(0, 0, 0);
             var up = new vec3(0, 1, 0);
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);

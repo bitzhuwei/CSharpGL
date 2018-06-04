@@ -17,6 +17,7 @@ namespace c11d00_Arcball
             const int count = 8;
             {
                 var positions = new vec3[count];
+
                 positions[0] = new vec3(-length, length, 0);
                 positions[1] = new vec3(-length, 0, 0);
                 positions[2] = new vec3(-length, length, 0);
@@ -26,13 +27,7 @@ namespace c11d00_Arcball
                 positions[5] = new vec3(length, length, 0);
                 positions[6] = new vec3(length, 0, 0);
                 positions[7] = new vec3(length, length, 0);
-                //for (int i = 0; i < count - 4; i++)
-                //{
-                //    float x = -length * (float)(i + 1) / (float)(count - 4 + 1)
-                //        + length * (float)(count - 4 - i - 1) / (float)(count - 4 + 1);
-                //    float y = (float)Math.Sqrt(radius * radius - x * x);
-                //    positions[i + 4] = new vec3(x, y, 0);
-                //}
+
                 this.positions = positions;
             }
             {
@@ -50,15 +45,7 @@ namespace c11d00_Arcball
                 // in
                 colors[6] = new vec3(1, 0, 0);
                 colors[7] = new vec3(1, 0, 0);
-                //for (int i = 0; i < count - 4; i++)
-                //{
-                //    colors[i + 4] = new vec3(
-                //        0.0f * (float)(i + 1) / (float)(count - 4 + 1)
-                //        + 1.0f * (float)(count - 4 - i - 1) / (float)(count - 4 + 1),
-                //        1.0f * (float)(i + 1) / (float)(count - 4 + 1)
-                //        + 0.0f * (float)(count - 4 - i - 1) / (float)(count - 4 + 1),
-                //        0.5f);
-                //}
+
                 this.colors = colors;
             }
         }
