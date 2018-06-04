@@ -40,10 +40,10 @@ namespace CSharpGL
         /// Occurs when this is bound to a canvas and mouse is down.
         /// </summary>
         public event GLEventHandler<GLMouseEventArgs> MouseDown;
-        /// <summary>
-        /// Occurs when this is bound to a canvas and mouse is moved.
-        /// </summary>
-        public event GLEventHandler<GLMouseEventArgs> MouseMove;
+        ///// <summary>
+        ///// Occurs when this is bound to a canvas and mouse is moved.
+        ///// </summary>
+        //public event GLEventHandler<GLMouseEventArgs> MouseMove;
         /// <summary>
         /// Occurs when this is bound to a canvas and mouse is up.
         /// </summary>
@@ -51,7 +51,7 @@ namespace CSharpGL
         /// <summary>
         /// Occurs when this is bound to a canvas and rotated.
         /// </summary>
-        public event EventHandler<Rotation> Rotated;
+        public event GLEventHandler<Rotation> Rotated;
 
         /// <summary>
         /// Rotate model using arc-ball method.
@@ -169,14 +169,7 @@ namespace CSharpGL
                             float angleInDegree;
                             vec3 axis;
                             quaternion.Parse(out angleInDegree, out axis);
-                            rotated(this, new Rotation(axis, angleInDegree));
-                        }
-                    }
-                    {
-                        var mouseMove = this.MouseMove;
-                        if (mouseMove != null)
-                        {
-                            mouseMove(this, e);
+                            rotated(this, new Rotation(axis, angleInDegree, e.Button, e.Clicks, e.X, e.Y, e.Delta));
                         }
                     }
                 }
@@ -284,7 +277,7 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        public class Rotation : EventArgs
+        public class Rotation : GLMouseEventArgs
         {
             /// <summary>
             /// 
@@ -300,7 +293,13 @@ namespace CSharpGL
             /// </summary>
             /// <param name="axis"></param>
             /// <param name="angleInDegree"></param>
-            public Rotation(vec3 axis, float angleInDegree)
+            /// <param name="button">MouseButtons 值之一，它指示曾按下的是哪个鼠标按钮。</param>
+            /// <param name="clicks">鼠标按钮曾被按下的次数。</param>
+            /// <param name="x">鼠标单击的 x 坐标（以像素为单位，以left为0）。相对<see cref="CtrlRoot"/>而言。</param>
+            /// <param name="y">鼠标单击的 y 坐标（以像素为单位，以bottom为0）。相对<see cref="CtrlRoot"/>而言。</param>
+            /// <param name="delta">鼠标轮已转动的制动器数的有符号计数。</param>
+            public Rotation(vec3 axis, float angleInDegree, GLMouseButtons button, int clicks, int x, int y, int delta)
+                : base(button, clicks, x, y, delta)
             {
                 this.axis = axis;
                 this.angleInDegree = angleInDegree;

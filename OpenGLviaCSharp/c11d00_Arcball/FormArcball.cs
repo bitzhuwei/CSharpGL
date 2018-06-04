@@ -63,16 +63,18 @@ namespace c11d00_Arcball
             //var manipulater = new FirstPerspectiveManipulater();
             //manipulater.Bind(camera, this.winGLCanvas1);
 
+            // rotate this scene.
             {
                 var manipulater = new ArcBallManipulater(GLMouseButtons.Left);
                 manipulater.Bind(camera, this.winGLCanvas1);
                 manipulater.Rotated += thisManipulater_Rotated;
             }
+            // model manipulater also affects teapot in this scene's rtt node.
             {
                 var manipulater = this.modelManipulater;
                 manipulater.Rotated += manipulater_Rotated;
                 manipulater.MouseDown += manipulater_MouseDown;
-                manipulater.MouseMove += manipulater_MouseMove;
+                manipulater.Rotated += manipulater_MouseMove;
                 manipulater.MouseUp += manipulater_MouseUp;
 
                 this.modelCanvas.MouseMove += modelCanvas_MouseMove;
@@ -94,7 +96,7 @@ namespace c11d00_Arcball
             this.fanNode.MouseUp(e.X, e.Y, this.modelCanvas.Width, this.modelCanvas.Height);
         }
 
-        void manipulater_MouseMove(object sender, GLMouseEventArgs e)
+        void manipulater_MouseMove(object sender, ArcBallManipulater.Rotation e)
         {
             this.linesNode.MouseMove(e.X, e.Y, this.modelCanvas.Width, this.modelCanvas.Height);
             this.fanNode.MouseMove(e.X, e.Y, this.modelCanvas.Width, this.modelCanvas.Height);
