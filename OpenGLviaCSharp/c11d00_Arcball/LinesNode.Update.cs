@@ -20,8 +20,19 @@ namespace c11d00_Arcball
             z0 = z0 * diameter;
 
             this.mouseDown = true;
-            this.mouseDownPosition = new vec3(x0, y0, z0);
-            this.mouseMovePosition = new vec3(x0, y0, z0);
+            this.outMouseDownPosition = new vec3(x0, y0, z0);
+            this.outMouseMovePosition = new vec3(x0, y0, z0);
+            if (yy0 >= 0)
+            {
+                this.inMouseDownPosition = new vec3(x0, y0, z0);
+                this.inMouseMovePosition = new vec3(x0, y0, z0);
+            }
+            else
+            {
+                float length = (float)Math.Sqrt(x0 * x0 + z0 * z0) * 2;
+                this.inMouseDownPosition = new vec3(x0 * diameter / length, y0, z0 * diameter / length);
+                this.inMouseMovePosition = new vec3(x0 * diameter / length, y0, z0 * diameter / length);
+            }
         }
 
         public void MouseMove(int x, int y, int width, int height)
@@ -35,14 +46,25 @@ namespace c11d00_Arcball
             y0 = y0 * diameter;
             z0 = z0 * diameter;
 
-            this.mouseMovePosition = new vec3(x0, y0, z0);
+            this.outMouseMovePosition = new vec3(x0, y0, z0);
+            if (yy0 >= 0)
+            {
+                this.inMouseMovePosition = new vec3(x0, y0, z0);
+            }
+            else
+            {
+                float length = (float)Math.Sqrt(x0 * x0 + z0 * z0) * 2;
+                this.inMouseMovePosition = new vec3(x0 * diameter / length, y0, z0 * diameter / length);
+            }
         }
 
         public void MouseUp(int x, int y, int width, int height)
         {
             this.mouseDown = false;
-            this.mouseDownPosition = new vec3(0, 0, 0);
-            this.mouseMovePosition = new vec3(0, 0, 0);
+            this.outMouseDownPosition = new vec3(0, 0, 0);
+            this.outMouseMovePosition = new vec3(0, 0, 0);
+            this.inMouseDownPosition = new vec3(0, 0, 0);
+            this.inMouseMovePosition = new vec3(0, 0, 0);
         }
 
     }

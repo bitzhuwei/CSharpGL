@@ -34,9 +34,11 @@ namespace c11d00_Arcball
             : base(model, builders)
         {
             float length = radius / (float)Math.Sqrt(2);
-            this.mouseDownPosition = new vec3(-length, length, 0);
-            this.mouseMovePosition = new vec3(length, length, 0);
-            this.mouseDown = false;
+            this.outMouseDownPosition = new vec3(-length, length, 0);
+            this.inMouseDownPosition = new vec3(-length, length, 0);
+            this.inMouseMovePosition = new vec3(length, length, 0);
+            this.outMouseMovePosition = new vec3(length, length, 0);
+            //this.mouseDown = false;
         }
 
         #region IRenderable 成员
@@ -56,8 +58,10 @@ namespace c11d00_Arcball
             ShaderProgram program = method.Program;
             // matrix.
             program.SetUniform("mvpMat", projection * view * model);
-            program.SetUniform("mouseDownPosition", this.mouseDownPosition);
-            program.SetUniform("mouseMovePosition", this.mouseMovePosition);
+            program.SetUniform("outMouseDownPosition", this.outMouseDownPosition);
+            program.SetUniform("inMouseDownPosition", this.inMouseDownPosition);
+            program.SetUniform("inMouseMovePosition", this.inMouseMovePosition);
+            program.SetUniform("outMouseMovePosition", this.outMouseMovePosition);
             bool mouseDown = this.mouseDown;
             if (!mouseDown)
             {
@@ -76,8 +80,12 @@ namespace c11d00_Arcball
 
         #endregion
 
-        private vec3 mouseDownPosition;
-        private vec3 mouseMovePosition;
+        //private vec3 mouseDownPosition;
+        private vec3 outMouseDownPosition;
+        private vec3 inMouseDownPosition;
+        //private vec3 mouseMovePosition;
+        private vec3 inMouseMovePosition;
+        private vec3 outMouseMovePosition;
         private bool mouseDown = false;
 
         /// <summary>

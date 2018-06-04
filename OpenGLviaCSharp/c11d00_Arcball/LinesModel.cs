@@ -14,13 +14,18 @@ namespace c11d00_Arcball
         public LinesModel(float radius)
         {
             float length = radius / (float)Math.Sqrt(2);
-            const int count = 4;
+            const int count = 8;
             {
                 var positions = new vec3[count];
                 positions[0] = new vec3(-length, length, 0);
                 positions[1] = new vec3(-length, 0, 0);
-                positions[2] = new vec3(length, 0, 0);
-                positions[3] = new vec3(length, length, 0);
+                positions[2] = new vec3(-length, length, 0);
+                positions[3] = new vec3(-length, 0, 0);
+
+                positions[4] = new vec3(length, 0, 0);
+                positions[5] = new vec3(length, length, 0);
+                positions[6] = new vec3(length, 0, 0);
+                positions[7] = new vec3(length, length, 0);
                 //for (int i = 0; i < count - 4; i++)
                 //{
                 //    float x = -length * (float)(i + 1) / (float)(count - 4 + 1)
@@ -32,10 +37,19 @@ namespace c11d00_Arcball
             }
             {
                 var colors = new vec3[count];
-                colors[0] = new vec3(0, 1, 0);
-                colors[1] = new vec3(0, 1, 0);
-                colors[2] = new vec3(1, 0, 0);
-                colors[3] = new vec3(1, 0, 0);
+                // out 
+                colors[0] = new vec3(0, 1, 0) * 0.5f;
+                colors[1] = new vec3(0, 1, 0) * 0.5f;
+                // in
+                colors[2] = new vec3(0, 1, 0);
+                colors[3] = new vec3(0, 1, 0);
+
+                // out 
+                colors[4] = new vec3(1, 0, 0) * 0.5f;
+                colors[5] = new vec3(1, 0, 0) * 0.5f;
+                // in
+                colors[6] = new vec3(1, 0, 0);
+                colors[7] = new vec3(1, 0, 0);
                 //for (int i = 0; i < count - 4; i++)
                 //{
                 //    colors[i + 4] = new vec3(
