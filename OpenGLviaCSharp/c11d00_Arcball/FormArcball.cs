@@ -15,9 +15,10 @@ namespace c11d00_Arcball
         private Scene scene;
         private ActionList actionList;
         private ICamera modelCamera;
+        private ArcBallManipulater modelManipulater;
+        private IGLCanvas modelCanvas;
         private RenderToTexttureNode rtt;
         private GroupNode groupNode;
-        private ArcBallManipulater modelManipulater;
         private LinesNode linesNode;
         private FanNode fanNode;
 
@@ -26,12 +27,13 @@ namespace c11d00_Arcball
             get { return rtt; }
         }
 
-        public FormArcball(ICamera camera, ArcBallManipulater manipulater)
+        public FormArcball(ICamera camera, ArcBallManipulater manipulater, IGLCanvas canvas)
         {
             InitializeComponent();
 
             this.modelCamera = camera;
             this.modelManipulater = manipulater;
+            this.modelCanvas = canvas;
 
             this.Load += FormMain_Load;
             this.winGLCanvas1.OpenGLDraw += winGLCanvas1_OpenGLDraw;
@@ -69,30 +71,47 @@ namespace c11d00_Arcball
             {
                 var manipulater = new ArcBallManipulater(GLMouseButtons.Left);
                 manipulater.Bind(camera, this.winGLCanvas1);
-                manipulater.Rotated += manipulater_Rotated;
+                manipulater.Rotated += thisManipulater_Rotated;
             }
             {
-                var manipualter = this.modelManipulater;
-                manipualter.Rotated += manipualter_Rotated;
-                manipualter.MouseDown += manipualter_MouseDown;
-                manipualter.MouseMove += manipualter_MouseMove;
-                manipualter.MouseUp += manipualter_MouseUp;
+                var manipulater = this.modelManipulater;
+                manipulater.Rotated += manipulater_Rotated;
+                manipulater.MouseDown += manipulater_MouseDown;
+                manipulater.MouseMove += manipulater_MouseMove;
+                manipulater.MouseUp += manipulater_MouseUp;
+
+                this.modelCanvas.MouseMove += modelCanvas_MouseMove;
             }
         }
 
-        void manipualter_MouseUp(object sender, GLMouseEventArgs e)
+        void modelCanvas_MouseMove(object sender, GLMouseEventArgs e)
         {
+            if (!this.linesNode.IsMouseDown)
+            {
+                this.linesNode.MouseMove(e.X, e.Y, this.modelCanvas.Width, this.modelCanvas.Height);
+            }
         }
 
-        void manipualter_MouseMove(object sender, GLMouseEventArgs e)
+
+        void manipulater_MouseUp(object sender, GLMouseEventArgs e)
         {
+            this.linesNode.MouseUp(e.X, e.Y, this.modelCanvas.Width, this.modelCanvas.Height);
+            this.fanNode.MouseUp(e.X, e.Y, this.modelCanvas.Width, this.modelCanvas.Height);
         }
 
-        void manipualter_MouseDown(object sender, GLMouseEventArgs e)
+        void manipulater_MouseMove(object sender, GLMouseEventArgs e)
         {
+            this.linesNode.MouseMove(e.X, e.Y, this.modelCanvas.Width, this.modelCanvas.Height);
+            this.fanNode.MouseMove(e.X, e.Y, this.modelCanvas.Width, this.modelCanvas.Height);
         }
 
-        void manipualter_Rotated(object sender, ArcBallManipulater.Rotation e)
+        void manipulater_MouseDown(object sender, GLMouseEventArgs e)
+        {
+            this.linesNode.MouseDown(e.X, e.Y, this.modelCanvas.Width, this.modelCanvas.Height);
+            this.fanNode.MouseDown(e.X, e.Y, this.modelCanvas.Width, this.modelCanvas.Height);
+        }
+
+        void manipulater_Rotated(object sender, ArcBallManipulater.Rotation e)
         {
             {
                 SceneNodeBase node = this.rtt;
@@ -104,7 +123,7 @@ namespace c11d00_Arcball
             }
         }
 
-        void manipulater_Rotated(object sender, ArcBallManipulater.Rotation e)
+        void thisManipulater_Rotated(object sender, ArcBallManipulater.Rotation e)
         {
             {
                 SceneNodeBase node = this.groupNode;
@@ -143,8 +162,8 @@ namespace c11d00_Arcball
                     node.RotationAngle = 90;
                     group.Children.Add(node);
                 }
-                // arcball.
                 const float radius = 3;
+                // arcball.
                 {
                     var model = new HalfSphere(radius, 40, 40);
                     var node = NoShadowNode.Create(model, HalfSphere.strPosition, HalfSphere.strNormal, model.Size);
@@ -210,6 +229,7 @@ namespace c11d00_Arcball
         {
             this.scene.Camera.AspectRatio = ((float)this.winGLCanvas1.Width) / ((float)this.winGLCanvas1.Height);
         }
+
 
     }
 }

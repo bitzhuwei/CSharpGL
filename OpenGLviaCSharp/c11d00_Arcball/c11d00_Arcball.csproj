@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -59,7 +60,7 @@
     <Compile Include="LinesModel.cs" />
     <Compile Include="FanNode.cs" />
     <Compile Include="FanNode.shaders.cs" />
-    <Compile Include="FanNode.update.cs" />
+    <Compile Include="FanNode.Update.cs" />
     <Compile Include="LinesNode.Update.cs" />
     <Compile Include="LinesNode.cs" />
     <Compile Include="LInesNode.shaders.cs" />

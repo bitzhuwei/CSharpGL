@@ -8,6 +8,8 @@ namespace c11d00_Arcball
 {
     partial class FanNode : ModernNode, IRenderable
     {
+        private VertexBuffer positionBuffer;
+
         public static FanNode Create(float radius)
         {
             var vs = new VertexShader(vertexCode);
@@ -29,6 +31,13 @@ namespace c11d00_Arcball
         private FanNode(IBufferSource model, params RenderMethodBuilder[] builders)
             : base(model, builders)
         {
+        }
+
+        protected override void DoInitialize()
+        {
+            base.DoInitialize();
+
+            this.positionBuffer = this.RenderUnit.Methods[0].VertexArrayObjects[0].VertexAttributes[0].Buffer;
         }
 
         #region IRenderable 成员
