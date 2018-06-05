@@ -53,7 +53,7 @@ namespace VolumeRendering.Raycast
             this.scene = new Scene(camera)
 ;
             {
-                var manipulater = new ArcBallManipulater(GLMouseButtons.Right);
+                var manipulater = new ArcBallManipulater(GLMouseButtons.Left | GLMouseButtons.Right);
                 manipulater.Bind(camera, this.winGLCanvas1);
                 manipulater.Rotated += manipulater_Rotated;
                 var node = RaycastNode.Create();

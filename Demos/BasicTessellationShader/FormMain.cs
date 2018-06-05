@@ -34,7 +34,7 @@ namespace BasicTessellationShader
 ;
             {
                 string folder = System.Windows.Forms.Application.StartupPath;
-                string objFilename = System.IO.Path.Combine(folder + @"\..\..\..\..\Infrastructure\CSharpGL.Model", "quad2.obj_");
+                string objFilename = System.IO.Path.Combine(folder + @"\..\..\..\..\Infrastructure\CSharpGL.Models", "quad2.obj_");
                 var parser = new ObjVNFParser(true);
                 ObjVNFResult result = parser.Parse(objFilename);
                 if (result.Error != null)
