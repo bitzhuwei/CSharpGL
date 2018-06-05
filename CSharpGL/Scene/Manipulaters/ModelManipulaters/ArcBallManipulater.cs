@@ -96,7 +96,7 @@ namespace CSharpGL
             canvas.MouseUp += this.mouseUpEvent;
             canvas.MouseWheel += this.mouseWheelEvent;
 
-            SetCamera(camera.Position, camera.Target, camera.UpVector);
+            //SetCamera(camera.Position, camera.Target, camera.UpVector);
 
             this.isBinded = true;
         }
@@ -114,8 +114,8 @@ namespace CSharpGL
             this.lastBindingMouseButtons = this.BindingMouseButtons;
             if ((e.Button & this.lastBindingMouseButtons) != GLMouseButtons.None)
             {
-                var control = sender as Control;
-                this.SetBounds(control.Width, control.Height);
+                IGLCanvas canvas = this.canvas;
+                this.SetBounds(this.canvas.Width, this.canvas.Height);
 
                 if (!cameraState.IsSameState(this.camera))
                 {
