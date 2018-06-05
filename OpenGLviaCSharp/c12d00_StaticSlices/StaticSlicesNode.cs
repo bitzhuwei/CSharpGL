@@ -11,6 +11,11 @@ namespace c12d00_StaticSlices
         private Texture texture1D;
         private Texture texture3D;
 
+        /// <summary>
+        /// Display 1 / HiddenLength of all slices.
+        /// </summary>
+        public int HiddenLength { get; set; }
+
         public static StaticSlicesNode Create(int sliceCount, Texture texture1D, Texture texture3D)
         {
             var vs = new VertexShader(vertexCode);
@@ -36,6 +41,7 @@ namespace c12d00_StaticSlices
         private StaticSlicesNode(IBufferSource model, params RenderMethodBuilder[] builders)
             : base(model, builders)
         {
+            this.HiddenLength = 1;// display all slices.
         }
 
         protected override void DoInitialize()
@@ -67,6 +73,7 @@ namespace c12d00_StaticSlices
             ShaderProgram program = method.Program;
             // matrix.
             program.SetUniform("mvpMat", projection * view * model);
+            program.SetUniform("hiddenLength", this.HiddenLength);
             method.Render();
         }
 
