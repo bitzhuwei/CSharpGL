@@ -34,7 +34,7 @@ namespace c12d00_StaticSlices
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-            var position = new vec3(5, 3, 4);
+            var position = new vec3(5, 3, 4) * 0.2f;
             var center = new vec3(0, 0, 0);
             var up = new vec3(0, 1, 0);
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
@@ -69,18 +69,30 @@ namespace c12d00_StaticSlices
 
         private SceneNodeBase GetRootNode()
         {
-            string folder = System.Windows.Forms.Application.StartupPath;
-            string tff = System.IO.Path.Combine(folder + @"\..\..\..\..\Infrastructure\CSharpGL.Models", "tff.dat");
-            Texture tffTexture = InitTFF1DTexture(tff);
+            var group = new GroupNode();
+            group.RotationAxis = new vec3(-0.8343f, -0.0144f, -0.5512f);
+            group.RotationAngle = 179.260315f;
+            {
+                string folder = System.Windows.Forms.Application.StartupPath;
+                string tff = System.IO.Path.Combine(folder + @"\..\..\..\..\Infrastructure\CSharpGL.Models", "tff.dat");
+                Texture tffTexture = InitTFF1DTexture(tff);
 
-            string head256 = System.IO.Path.Combine(folder + @"\..\..\..\..\Infrastructure\CSharpGL.Models", "head256.raw");
-            byte[] volumeData = GetVolumeData(head256);
-            Texture volumeTexture = InitVolume3DTexture(volumeData, 256, 256, 225);
+                string head256 = System.IO.Path.Combine(folder + @"\..\..\..\..\Infrastructure\CSharpGL.Models", "head256.raw");
+                byte[] volumeData = GetVolumeData(head256);
+                Texture volumeTexture = InitVolume3DTexture(volumeData, 256, 256, 225);
 
-            int sliceCount = 100;
-            StaticSlicesNode node = StaticSlicesNode.Create(sliceCount, tffTexture, volumeTexture);
-            node.Scale = new vec3(1, 225.0f / 256.0f, 1);
-            return node;
+                int sliceCount = 512;
+                StaticSlicesNode node = StaticSlicesNode.Create(sliceCount, tffTexture, volumeTexture);
+                node.Scale = new vec3(1, 1, 225.0f / 256.0f);
+                (new FormProperyGrid(node)).Show();
+                group.Children.Add(node);
+            }
+            {
+                var node = AxisNode.Create();
+                node.Scale = new vec3(1, 1, 1) * 3;
+                group.Children.Add(node);
+            }
+            return group;
         }
 
         private byte[] GetVolumeData(string filename)

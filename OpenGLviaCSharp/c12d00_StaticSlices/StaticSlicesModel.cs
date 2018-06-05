@@ -15,10 +15,20 @@ namespace c12d00_StaticSlices
             var positions = new vec3[sliceCount * 4];
             for (int i = 0; i < sliceCount; i++)
             {
-                positions[i * 4 + 0] = new vec3(1, 1, (float)i / (float)(sliceCount - 1));
-                positions[i * 4 + 1] = new vec3(-1, 1, (float)i / (float)(sliceCount - 1));
-                positions[i * 4 + 2] = new vec3(-1, -1, (float)i / (float)(sliceCount - 1));
-                positions[i * 4 + 3] = new vec3(1, -1, (float)i / (float)(sliceCount - 1));
+                positions[i * 4 + 0] = new vec3((float)i / (float)(sliceCount - 1), 1, 1);
+                positions[i * 4 + 1] = new vec3((float)i / (float)(sliceCount - 1), 0, 1);
+                positions[i * 4 + 2] = new vec3((float)i / (float)(sliceCount - 1), 0, 0);
+                positions[i * 4 + 3] = new vec3((float)i / (float)(sliceCount - 1), 1, 0);
+
+                //positions[i * 4 + 0] = new vec3(1, (float)i / (float)(sliceCount - 1), 1);
+                //positions[i * 4 + 1] = new vec3(0, (float)i / (float)(sliceCount - 1), 1);
+                //positions[i * 4 + 2] = new vec3(0, (float)i / (float)(sliceCount - 1), 0);
+                //positions[i * 4 + 3] = new vec3(1, (float)i / (float)(sliceCount - 1), 0);
+
+                //positions[i * 4 + 0] = new vec3(1, 1, (float)i / (float)(sliceCount - 1));
+                //positions[i * 4 + 1] = new vec3(0, 1, (float)i / (float)(sliceCount - 1));
+                //positions[i * 4 + 2] = new vec3(0, 0, (float)i / (float)(sliceCount - 1));
+                //positions[i * 4 + 3] = new vec3(1, 0, (float)i / (float)(sliceCount - 1));
             }
             positions.Move2Center();
             this.positions = positions;
@@ -26,10 +36,20 @@ namespace c12d00_StaticSlices
             var texCoords = new vec3[sliceCount * 4];
             for (int i = 0; i < sliceCount; i++)
             {
-                texCoords[i * 4 + 0] = new vec3(1, 1, (float)i / (float)(sliceCount - 1));
-                texCoords[i * 4 + 1] = new vec3(0, 1, (float)i / (float)(sliceCount - 1));
-                texCoords[i * 4 + 2] = new vec3(0, 0, (float)i / (float)(sliceCount - 1));
-                texCoords[i * 4 + 3] = new vec3(1, 0, (float)i / (float)(sliceCount - 1));
+                texCoords[i * 4 + 0] = new vec3((float)i / (float)(sliceCount - 1), 1, 1);
+                texCoords[i * 4 + 1] = new vec3((float)i / (float)(sliceCount - 1), 0, 1);
+                texCoords[i * 4 + 2] = new vec3((float)i / (float)(sliceCount - 1), 0, 0);
+                texCoords[i * 4 + 3] = new vec3((float)i / (float)(sliceCount - 1), 1, 0);
+
+                //texCoords[i * 4 + 0] = new vec3(1, (float)i / (float)(sliceCount - 1), 1);
+                //texCoords[i * 4 + 1] = new vec3(0, (float)i / (float)(sliceCount - 1), 1);
+                //texCoords[i * 4 + 2] = new vec3(0, (float)i / (float)(sliceCount - 1), 0);
+                //texCoords[i * 4 + 3] = new vec3(1, (float)i / (float)(sliceCount - 1), 0);
+
+                //texCoords[i * 4 + 0] = new vec3(1, 1, (float)i / (float)(sliceCount - 1));
+                //texCoords[i * 4 + 1] = new vec3(0, 1, (float)i / (float)(sliceCount - 1));
+                //texCoords[i * 4 + 2] = new vec3(0, 0, (float)i / (float)(sliceCount - 1));
+                //texCoords[i * 4 + 3] = new vec3(1, 0, (float)i / (float)(sliceCount - 1));
             }
             this.texCoords = texCoords;
         }
