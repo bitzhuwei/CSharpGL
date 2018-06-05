@@ -101,13 +101,6 @@ namespace CSharpGL
             this.isBinded = true;
         }
 
-        /// <summary>
-        ///
-        /// </summary>
-        public mat4 GetRotationMatrix()
-        {
-            return totalRotation;
-        }
 
         void IMouseHandler.canvas_MouseDown(object sender, GLMouseEventArgs e)
         {
@@ -258,6 +251,23 @@ namespace CSharpGL
             this.cameraState.up = up;
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        public mat4 GetRotationMatrix()
+        {
+            return this.totalRotation;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="totalRotation"></param>
+        public void SetRotationMatrix(mat4 totalRotation)
+        {
+            this.totalRotation = totalRotation;
+        }
+
         private class CameraState
         {
             public vec3 position;
@@ -314,5 +324,6 @@ namespace CSharpGL
                 return string.Format("axis:{0}, angle:{1}°", this.axis, this.angleInDegree);
             }
         }
+
     }
 }

@@ -21,7 +21,9 @@ uniform int hiddenLength = 1;
 void main() {
     gl_Position = mvpMat * vec4(inPosition, 1.0);
     passTexCoord = inTexCoord;
-    if ((gl_VertexID  / 4) % hiddenLength == 0) { hidden = 0; }
+
+    int length = hiddenLength > 0 ? hiddenLength : 1;
+    if ((gl_VertexID / 4) % length == (length / 2)) { hidden = 0; }
     else { hidden = 1; }
 }
 ";

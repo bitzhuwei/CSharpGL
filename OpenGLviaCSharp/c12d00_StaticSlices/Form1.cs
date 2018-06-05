@@ -35,7 +35,7 @@ namespace c12d00_StaticSlices
         private void FormMain_Load(object sender, EventArgs e)
         {
             var position = new vec3(5, 3, 4) * 0.2f;
-            var center = new vec3(0, 0, 0);
+            var center = new vec3(0, -0.1f, 0);
             var up = new vec3(0, 1, 0);
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
             this.scene = new Scene(camera);
@@ -51,6 +51,11 @@ namespace c12d00_StaticSlices
 
             var manipulater = new ArcBallManipulater(GLMouseButtons.Left);
             manipulater.Bind(camera, this.winGLCanvas1);
+            {
+                float angle = this.scene.RootNode.RotationAngle;
+                vec3 axis = this.scene.RootNode.RotationAxis;
+                manipulater.SetRotationMatrix(glm.rotate(angle, axis));
+            }
             manipulater.Rotated += manipulater_Rotated;
 
         }
