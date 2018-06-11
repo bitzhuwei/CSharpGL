@@ -61,6 +61,9 @@ layout(location = 0) out vec4 out_Color;
 //out vec4 out_Color;
 
 void main(void) {
+    //if (int(gl_FragCoord.x - 0.5) % 2 == 0 && int(gl_FragCoord.y - 0.5) % 2 == 0) discard;
+    //if (int(gl_FragCoord.x - 0.5) % 2 != 0 && int(gl_FragCoord.y - 0.5) % 2 != 0) discard;
+
 	vec4 color = texture(tex, passUV);
     if (transparentBackground)
     {
