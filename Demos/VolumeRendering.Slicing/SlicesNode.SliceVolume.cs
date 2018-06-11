@@ -11,10 +11,6 @@ namespace VolumeRendering.Slicing
         //for floating point inaccuracy
         const float EPSILON = 0.0001f;
 
-        //screen dimensions
-        const int WIDTH = 1280;
-        const int HEIGHT = 960;
-
         //total number of slices current used
         bool reSliceVolume = true;
 
@@ -56,7 +52,7 @@ namespace VolumeRendering.Slicing
         }
 
         //unit cube vertices
-        vec3[] vertexList = new vec3[]
+        private static readonly vec3[] vertexList = new vec3[]
         {
             new vec3(-0.5f, -0.5f, -0.5f),
             new vec3( 0.5f, -0.5f, -0.5f),
@@ -69,16 +65,16 @@ namespace VolumeRendering.Slicing
         };
 
         //unit cube edge groups
-        int[][] edgeGroups = new int[8][] 
+        private static readonly int[][] edgeGroups = new int[8][] 
         {
-	        new int[12]{ 0,1,5,6,   4,8,11,9,  3,7,2,10 }, // v0 is front
-	        new int[12]{ 0,4,3,11,  1,2,6,7,   5,9,8,10 }, // v1 is front
-	        new int[12]{ 1,5,0,8,   2,3,7,4,   6,10,9,11}, // v2 is front
-	        new int[12]{ 7,11,10,8, 2,6,1,9,   3,0,4,5  }, // v3 is front
-	        new int[12]{ 8,5,9,1,   11,10,7,6, 4,3,0,2  }, // v4 is front
-	        new int[12]{ 9,6,10,2,  8,11,4,7,  5,0,1,3  }, // v5 is front
-	        new int[12]{ 9,8,5,4,   6,1,2,0,   10,7,11,3}, // v6 is front
-	        new int[12]{ 10,9,6,5,  7,2,3,1,   11,4,8,0 }  // v7 is front
+	        new int[12]{ 0, 1, 5, 6,    4, 8, 11,9,   3, 7, 2, 10 }, // v0 is front
+	        new int[12]{ 0, 4, 3, 11,   1, 2, 6, 7,   5, 9, 8, 10 }, // v1 is front
+	        new int[12]{ 1, 5, 0, 8,    2, 3, 7, 4,   6, 10,9, 11 }, // v2 is front
+	        new int[12]{ 7, 11,10,8,    2, 6, 1, 9,   3, 0, 4, 5  }, // v3 is front
+	        new int[12]{ 8, 5, 9, 1,    11,10,7, 6,   4, 3, 0, 2  }, // v4 is front
+	        new int[12]{ 9, 6, 10,2,    8, 11,4, 7,   5, 0, 1, 3  }, // v5 is front
+	        new int[12]{ 9, 8, 5, 4,    6, 1, 2, 0,   10,7, 11,3  }, // v6 is front
+	        new int[12]{ 10,9, 6, 5,    7, 2, 3, 1,   11,4, 8, 0  }  // v7 is front
         };
 
         private static readonly int[][] edgeList = new int[12][] 
@@ -157,7 +153,7 @@ namespace VolumeRendering.Slicing
                 //do a dot of vDirection with the view direction vector
                 denom = vDirection[i].dot(cameraFront);
 
-                //determine the plane intersection parameter (lambda) and 
+                //determine the plane intwction parameter (lambda) and 
                 //plane intersection parameter increment (lambda_inc)
                 if (1.0 + denom != 1.0)
                 {
