@@ -27,12 +27,24 @@ namespace c03d06_FragCoord
             // resize event.
             this.winGLCanvas1.Resize += winGLCanvas1_Resize;
 
-            this.trvScene.AfterSelect += trvScene_AfterSelect;
+            this.winGLCanvas1.MouseMove += winGLCanvas1_MouseMove;
         }
 
-        void trvScene_AfterSelect(object sender, TreeViewEventArgs e)
+        void winGLCanvas1_MouseMove(object sender, MouseEventArgs e)
         {
-            this.propertyGrid1.SelectedObject = e.Node.Tag;
+            int x = e.X, y = this.winGLCanvas1.Height - e.Y - 1;
+            Color color = GetColorAtMouse(x, y);
+            this.lblInfo.Text = string.Format("Color at Mouse: {0}", color);
+        }
+
+
+        private Color GetColorAtMouse(int x, int y)
+        {
+            byte[] colors = new byte[4];
+            GL.Instance.ReadPixels(x, y, 1, 1, GL.GL_RGBA, GL.GL_UNSIGNED_BYTE, colors);
+            Color c = Color.FromArgb(colors[3], colors[0], colors[1], colors[2]);
+
+            return c;
         }
 
         private void FormMain_Load(object sender, EventArgs e)
@@ -54,27 +66,6 @@ namespace c03d06_FragCoord
             list.Add(renderAction);
             this.actionList = list;
 
-
-            Match(this.trvScene, scene.RootNode);
-            this.trvScene.ExpandAll();
-        }
-
-        private void Match(TreeView treeView, SceneNodeBase nodeBase)
-        {
-            treeView.Nodes.Clear();
-            var node = new TreeNode(nodeBase.ToString()) { Tag = nodeBase };
-            treeView.Nodes.Add(node);
-            Match(node, nodeBase);
-        }
-
-        private void Match(TreeNode node, SceneNodeBase nodeBase)
-        {
-            foreach (var item in nodeBase.Children)
-            {
-                var child = new TreeNode(item.ToString()) { Tag = item };
-                node.Nodes.Add(child);
-                Match(child, item);
-            }
         }
 
         private void winGLCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
