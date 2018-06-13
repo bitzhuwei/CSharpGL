@@ -96,26 +96,19 @@ namespace CSharpGL
             canvas.MouseUp += this.mouseUpEvent;
             canvas.MouseWheel += this.mouseWheelEvent;
 
-            SetCamera(camera.Position, camera.Target, camera.UpVector);
+            //SetCamera(camera.Position, camera.Target, camera.UpVector);
 
             this.isBinded = true;
         }
 
-        /// <summary>
-        ///
-        /// </summary>
-        public mat4 GetRotationMatrix()
-        {
-            return totalRotation;
-        }
 
         void IMouseHandler.canvas_MouseDown(object sender, GLMouseEventArgs e)
         {
             this.lastBindingMouseButtons = this.BindingMouseButtons;
             if ((e.Button & this.lastBindingMouseButtons) != GLMouseButtons.None)
             {
-                var control = sender as Control;
-                this.SetBounds(control.Width, control.Height);
+                IGLCanvas canvas = this.canvas;
+                this.SetBounds(this.canvas.Width, this.canvas.Height);
 
                 if (!cameraState.IsSameState(this.camera))
                 {
@@ -258,6 +251,23 @@ namespace CSharpGL
             this.cameraState.up = up;
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        public mat4 GetRotationMatrix()
+        {
+            return this.totalRotation;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="totalRotation"></param>
+        public void SetRotationMatrix(mat4 totalRotation)
+        {
+            this.totalRotation = totalRotation;
+        }
+
         private class CameraState
         {
             public vec3 position;
@@ -314,5 +324,6 @@ namespace CSharpGL
                 return string.Format("axis:{0}, angle:{1}°", this.axis, this.angleInDegree);
             }
         }
+
     }
 }

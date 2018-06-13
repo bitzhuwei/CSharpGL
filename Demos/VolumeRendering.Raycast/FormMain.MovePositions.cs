@@ -28,26 +28,26 @@ namespace VolumeRendering.Raycast
             }
             else if (e.Button == System.Windows.Forms.MouseButtons.Left)
             {
-                // move vertex
-                if (pickedGeometry != null)
-                {
-                    IGLCanvas canvas = this.winGLCanvas1;
-                    var viewport = new vec4(0, 0, canvas.Width, canvas.Height);
-                    var lastWindowSpacePos = new vec3(e.X, this.winGLCanvas1.Height - e.Y - 1, pickedGeometry.PickedPosition.z);
-                    mat4 projectionMatrix = this.scene.Camera.GetProjectionMatrix();
-                    mat4 viewMatrix = this.scene.Camera.GetViewMatrix();
-                    mat4 modelMatrix = (pickedGeometry.FromObject as PickableNode).GetModelMatrix();
-                    var lastModelSpacePos = glm.unProject(lastWindowSpacePos, viewMatrix * modelMatrix, projectionMatrix, viewport);
+                //// move vertex
+                //if (pickedGeometry != null)
+                //{
+                //    IGLCanvas canvas = this.winGLCanvas1;
+                //    var viewport = new vec4(0, 0, canvas.Width, canvas.Height);
+                //    var lastWindowSpacePos = new vec3(e.X, this.winGLCanvas1.Height - e.Y - 1, pickedGeometry.PickedPosition.z);
+                //    mat4 projectionMatrix = this.scene.Camera.GetProjectionMatrix();
+                //    mat4 viewMatrix = this.scene.Camera.GetViewMatrix();
+                //    mat4 modelMatrix = (pickedGeometry.FromObject as PickableNode).GetModelMatrix();
+                //    var lastModelSpacePos = glm.unProject(lastWindowSpacePos, viewMatrix * modelMatrix, projectionMatrix, viewport);
 
-                    var dragParam = new DragParam(
-                        lastModelSpacePos,
-                        this.scene.Camera.GetProjectionMatrix(),
-                        this.scene.Camera.GetViewMatrix(),
-                        viewport,
-                        new ivec2(e.X, this.winGLCanvas1.Height - e.Y - 1));
-                    dragParam.pickedVertexIds.AddRange(pickedGeometry.VertexIds);
-                    this.dragParam = dragParam;
-                }
+                //    var dragParam = new DragParam(
+                //        lastModelSpacePos,
+                //        this.scene.Camera.GetProjectionMatrix(),
+                //        this.scene.Camera.GetViewMatrix(),
+                //        viewport,
+                //        new ivec2(e.X, this.winGLCanvas1.Height - e.Y - 1));
+                //    dragParam.pickedVertexIds.AddRange(pickedGeometry.VertexIds);
+                //    this.dragParam = dragParam;
+                //}
             }
         }
 
@@ -82,9 +82,14 @@ namespace VolumeRendering.Raycast
             {
                 int x = e.X;
                 int y = this.winGLCanvas1.Height - e.Y - 1;
-                this.pickedGeometry = this.pickingAction.Pick(x, y, PickingGeometryTypes.Triangle | PickingGeometryTypes.Quad, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
+                PickedGeometry pickedGeometry = this.pickingAction.Pick(x, y, PickingGeometryTypes.Triangle | PickingGeometryTypes.Quad, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
+                this.pickedGeometry = pickedGeometry;
+                this.UpdateHightlight(pickedGeometry);
 
-                this.UpdateHightlight();
+                if (pickedGeometry != null)
+                {
+                    this.winGLCanvas1.Invalidate();
+                }
             }
 
             this.lastMousePosition = e.Location;
@@ -134,9 +139,8 @@ namespace VolumeRendering.Raycast
             }
         }
 
-        private void UpdateHightlight()
+        private void UpdateHightlight(PickedGeometry picked)
         {
-            PickedGeometry picked = this.pickedGeometry;
             if (picked != null)
             {
                 switch (picked.Type)

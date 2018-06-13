@@ -112,7 +112,7 @@ namespace SimpleObjFile
             manipulater.Bind(camera, this.winGLCanvas1);
 
             string folder = System.Windows.Forms.Application.StartupPath;
-            string filename = System.IO.Path.Combine(folder + @"\..\..\..\..\Infrastructure\CSharpGL.Model", "nanosuit.obj_");
+            string filename = System.IO.Path.Combine(folder + @"\..\..\..\..\Infrastructure\CSharpGL.Models", "nanosuit.obj_");
             var parser = new ObjVNFParser(false);
             ObjVNFResult result = parser.Parse(filename);
             if (result.Error != null)

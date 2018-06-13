@@ -131,9 +131,11 @@
     <None Include="cube.obj_" />
     <None Include="dragon.obj_" />
     <None Include="floor.obj_" />
+    <None Include="head256.raw" />
     <None Include="nanosuit.obj_" />
     <None Include="readme.md" />
     <None Include="SimpleObjFileFormat\readme.md" />
+    <None Include="tff.dat" />
     <None Include="TrefoilKnotModel\TrefoilKnot.frag" />
     <None Include="TrefoilKnotModel\TrefoilKnot.vert" />
   </ItemGroup>

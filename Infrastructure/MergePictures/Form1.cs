@@ -72,6 +72,11 @@ namespace MergePictures
             }
 
             totalPicture.Save(Path.Combine(this.txtFolder.Text, "Total.png"));
+            totalPicture.Dispose();
+            foreach (var item in pictures)
+            {
+                item.Dispose();
+            }
         }
     }
 }

@@ -109,7 +109,7 @@ namespace VolumeRendering.Slicing
 
             if (this.reSliceVolume)
             {
-                SliceVolume(this.viewDir, this.sliceCount);
+                SliceVolume(this.ViewDirection, this.sliceCount);
 
                 this.reSliceVolume = false;
             }

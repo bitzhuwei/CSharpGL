@@ -88,7 +88,7 @@ namespace Lighting.ShadowMapping
             for (int i = 0; i < filenames.Length; i++)
             {
                 string folder = System.Windows.Forms.Application.StartupPath;
-                string filename = System.IO.Path.Combine(folder + @"\..\..\..\..\Infrastructure\CSharpGL.Model", filenames[i]);
+                string filename = System.IO.Path.Combine(folder + @"\..\..\..\..\Infrastructure\CSharpGL.Models", filenames[i]);
                 var parser = new ObjVNFParser(true);
                 ObjVNFResult result = parser.Parse(filename);
                 if (result.Error != null)

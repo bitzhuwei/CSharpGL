@@ -23,9 +23,11 @@ namespace VolumeRendering.Raycast
             base.DoInitialize();
 
             string folder = System.Windows.Forms.Application.StartupPath;
-            this.transferFunc1DTexture = InitTFF1DTexture(System.IO.Path.Combine(folder, @"tff.dat"));
+            string tff = System.IO.Path.Combine(folder + @"\..\..\..\..\Infrastructure\CSharpGL.Models", "tff.dat");
+            this.transferFunc1DTexture = InitTFF1DTexture(tff);
 
-            byte[] volumeData = GetVolumeData(System.IO.Path.Combine(folder, @"head256.raw"));
+            string head256 = System.IO.Path.Combine(folder + @"\..\..\..\..\Infrastructure\CSharpGL.Models", "head256.raw");
+            byte[] volumeData = GetVolumeData(head256);
             this.volume3DTexture = InitVolume3DTexture(volumeData, 256, 256, 225);
             {
                 // setting uniforms such as
