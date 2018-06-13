@@ -68,10 +68,6 @@ namespace c12d01_SliceAndCamera
                 rootNode.Children.Add(cameraNode);
             }
             {
-                var perspectiveNode = PerspectiveNode.Create();
-                rootNode.Children.Add(perspectiveNode);
-            }
-            {
                 //var cameraOutlineNode = CameraOutlineNode.Create();
                 //rootNode.Children.Add(cameraOutlineNode);
             }
@@ -84,11 +80,20 @@ namespace c12d01_SliceAndCamera
                 rootNode.Children.Add(cubeNode);
             }
             {
-                var rectNode = RectangleNode.Create();
-                rectNode.WorldPosition = new vec3(0, 0, -5);
-                rectNode.Scale = new vec3(1, 1, 1) * 3;
+                //var miniGroup = new SwitchListGroupNode();
+                {
+                    var rectNode = RectNode.Create();
+                    rectNode.WorldPosition = new vec3(0, 0, -5);
+                    rectNode.Scale = new vec3(1, 1, 1) * 3;
 
-                rootNode.Children.Add(rectNode);
+                    rootNode.Children.Add(rectNode);
+                }
+                {
+                    var perspectiveNode = PerspectiveNode.Create();
+                    rootNode.Children.Add(perspectiveNode);
+                }
+                //miniGroup.SwitchList.Add(new BlendSwitch(BlendEquationMode.Add, BlendSrcFactor.SrcAlpha, BlendDestFactor.OneMinusSrcAlpha));
+                //rootNode.Children.Add(miniGroup);
             }
             {
                 var groundNode = GroundNode.Create();

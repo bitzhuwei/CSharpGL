@@ -20,7 +20,10 @@ namespace c12d01_SliceAndCamera
             var map = new AttributeMap();
             map.Add("inPosition", PerspectiveModel.strPosition);
             // build a render method.
-            var builder = new RenderMethodBuilder(array, map);
+            //var cullfaceSwitch = new CullFaceSwitch(CullFaceMode.Back);
+            var polygonModeSwitch = new PolygonModeSwitch(PolygonMode.Line);
+            var lineWidthSwitch = new LineWidthSwitch(5);
+            var builder = new RenderMethodBuilder(array, map, polygonModeSwitch, lineWidthSwitch);
             // create node.
             var node = new PerspectiveNode(model, builder);
             // initialize node.

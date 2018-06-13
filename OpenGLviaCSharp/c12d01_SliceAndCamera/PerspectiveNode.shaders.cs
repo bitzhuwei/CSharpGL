@@ -23,7 +23,7 @@ void main() {
         private const string fragmentCode = @"
 #version 150
 
-uniform vec4 color = vec4(0.5); // default: red color.
+uniform vec4 color = vec4(1,0,0,1); // default: red color.
 
 uniform bool halfTransparent = false;
 
