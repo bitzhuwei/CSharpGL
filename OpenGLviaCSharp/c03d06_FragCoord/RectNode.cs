@@ -16,7 +16,6 @@ namespace c03d06_FragCoord
             var array = new ShaderArray(vs, fs);
             var map = new AttributeMap();
             map.Add("inPosition", RectModel.strPosition);
-            map.Add("inColor", RectModel.strColor);
             var builder = new RenderMethodBuilder(array, map);
 
             var node = new RectNode(x, y, width, height, model, builder);
@@ -38,8 +37,14 @@ namespace c03d06_FragCoord
 
         public void RenderBeforeChildren(RenderEventArgs arg)
         {
+            var viewport = new float[4];
+            GL.Instance.GetFloatv((uint)GetTarget.Viewport, viewport);
+            //var vp = new vec4(viewport[0], viewport[1], viewport[2], viewport[3]);
+
             var method = this.RenderUnit.Methods[0];
             ShaderProgram program = method.Program;
+            program.SetUniform("width", viewport[2]);
+            program.SetUniform("height", viewport[3]);
             method.Render();
         }
 
