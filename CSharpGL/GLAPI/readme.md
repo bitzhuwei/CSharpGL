@@ -6,6 +6,7 @@ OpenGL is a specification of 3D graphics library. That's why `GL` is an abstract
 
 # Versions
 | OpenGL Version | GLSL Version |
+|:-|:-|
 | 2.0 | 110 |
 | 2.1 | 120 |
 | 3.0 | 130 |
