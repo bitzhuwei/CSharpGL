@@ -26,8 +26,6 @@ uniform float height;
 out vec4 out_Color;
 
 void main(void) {
-	//out_Color = gl_FragCoord / viewport;//vec4(passColor, 1.0);
-    vec4 coord = gl_FragCoord;
 	out_Color = vec4(coord.x / width, coord.y / height, 0, 1);
 }
 ";

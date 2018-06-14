@@ -50,8 +50,7 @@ uniform vec4 color = vec4(1, 1, 1, 1) * 0.5;
 out vec4 out_Color;
 
 void main(void) {
-    if (int(gl_FragCoord.x - 0.5) % 2 == 0 && int(gl_FragCoord.y - 0.5) % 2 == 0) discard;
-    if (int(gl_FragCoord.x - 0.5) % 2 != 0 && int(gl_FragCoord.y - 0.5) % 2 != 0) discard;
+    if (int(gl_FragCoord.x + gl_FragCoord.y) % 2 == 1) discard;
 
     out_Color = color;
 }

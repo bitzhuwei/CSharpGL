@@ -17,8 +17,8 @@ uniform mat4 MVP;  //combined modelview projection matrix
 
 void main()
 {  
-	//get the clipspace vertex position
-	gl_Position = MVP*vec4(vVertex.xyz,1);
+    //get the clipspace vertex position
+    gl_Position = MVP*vec4(vVertex.xyz,1);
 }
 ";
         public const string peelFrag = @"#version 330 core
@@ -31,16 +31,15 @@ uniform sampler2DRect  depthTexture;		//depth texture
 
 void main()
 {
-	//read the depth value from the depth texture
-	float frontDepth = texture(depthTexture, gl_FragCoord.xy).r;
+    //read the depth value from the depth texture
+    float frontDepth = texture(depthTexture, gl_FragCoord.xy).r;
 
-	//compare the current fragment depth with the depth in the depth texture
-	//if it is less, discard the current fragment
-	if(gl_FragCoord.z <= frontDepth)
-		discard;
+    //compare the current fragment depth with the depth in the depth texture
+    //if it is less, discard the current fragment
+    if(gl_FragCoord.z <= frontDepth) discard;
 	
-	//otherwise set the given color uniform as the final output
-	vFragColor = vec4(vColor.rgb * vColor.a, vColor.a);
+    //otherwise set the given color uniform as the final output
+    vFragColor = vec4(vColor.rgb * vColor.a, vColor.a);
 }
 ";
     }
