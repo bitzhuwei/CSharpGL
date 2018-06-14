@@ -1,0 +1,8 @@
+title: CSharpGL
+description: Object Oriented OpenGL in C#
+google_analytics: 
+show_downloads: true
+theme: jekyll-theme-cayman
+
+gems:
+  - jekyll-mentions
