@@ -15,7 +15,7 @@ in vec3 inPosition;
 uniform mat4 mvpMat;
 
 void main(void) {
-	gl_Position = mvpMat * vec4(inPosition, 1.0);
+    gl_Position = mvpMat * vec4(inPosition, 1.0);
 }
 ";
         private const string ambientFrag = @"#version 330
@@ -25,7 +25,7 @@ uniform vec3 ambientColor;
 out vec4 out_Color;
 
 void main(void) {
-	out_Color = vec4(ambientColor, 0.1);
+    out_Color = vec4(ambientColor, 0.1);
 }
 ";
 
@@ -101,7 +101,7 @@ void EmitQuad(vec3 StartVertex, vec3 EndVertex)
 void main()
 {
     vec3 worldPos[6]; 
-	worldPos[0] = vec3(gWorld * vec4(PosL[0], 1.0));
+    worldPos[0] = vec3(gWorld * vec4(PosL[0], 1.0));
     worldPos[1] = vec3(gWorld * vec4(PosL[1], 1.0));
     worldPos[2] = vec3(gWorld * vec4(PosL[2], 1.0));
     worldPos[3] = vec3(gWorld * vec4(PosL[3], 1.0));
@@ -196,11 +196,11 @@ struct Light {
     float constant;  // Attenuation.constant.
     float linear;    // Attenuation.linear.
     float quadratic; // Attenuation.quadratic.
-	// direction from outer space to light source.
-	vec3 direction;  // for point light, meaningless.
-	// Note: We assume that spot light's angle ranges from 0 to 180 degrees.
+    // direction from outer space to light source.
+    vec3 direction;  // for point light, meaningless.
+    // Note: We assume that spot light's angle ranges from 0 to 180 degrees.
     // cutOff = Cos(angle). angle ranges in [0, 90].
-	float cutOff;    // for spot light, cutOff. for others, meaningless.
+    float cutOff;    // for spot light, cutOff. for others, meaningless.
 };
 
 struct Material {
@@ -250,7 +250,7 @@ void main() {
     float specular = 0;
     DirectionalLightUp(light, diffuse, specular);
 
-	fragColor = vec4(diffuse * light.diffuse * material.diffuse + specular * light.specular * material.specular, 1.0);
+    fragColor = vec4(diffuse * light.diffuse * material.diffuse + specular * light.specular * material.specular, 1.0);
 }
 ";
 
@@ -263,7 +263,7 @@ in vec3 inNormal;
 // Declare an interface block.
 out VS_OUT {
     vec3 position;
-	vec3 normal;
+    vec3 normal;
 } vs_out;
 
 uniform mat4 mvpMat;
@@ -273,8 +273,8 @@ uniform mat4 normalMat; // transpose(inverse(modelMat));
 void main() {
     gl_Position = mvpMat * vec4(inPosition, 1.0);
     vec4 worldPos = modelMat * vec4(inPosition, 1.0);
-	vs_out.position = worldPos.xyz;
-	vs_out.normal = (normalMat * vec4(inNormal, 0)).xyz;
+    vs_out.position = worldPos.xyz;
+    vs_out.normal = (normalMat * vec4(inNormal, 0)).xyz;
 }
 ";
         private const string blinnPhongFrag = @"// Blinn-Phong-WorldSpace.frag
@@ -287,11 +287,11 @@ struct Light {
     float constant;  // Attenuation.constant.
     float linear;    // Attenuation.linear.
     float quadratic; // Attenuation.quadratic.
-	// direction from outer space to light source.
-	vec3 direction;  // for point light, meaningless.
-	// Note: We assume that spot light's angle ranges from 0 to 180 degrees.
+    // direction from outer space to light source.
+    vec3 direction;  // for point light, meaningless.
+    // Note: We assume that spot light's angle ranges from 0 to 180 degrees.
     // cutOff = Cos(angle). angle ranges in [0, 90].
-	float cutOff;    // for spot light, cutOff. for others, meaningless.
+    float cutOff;    // for spot light, cutOff. for others, meaningless.
 };
 
 struct Material {
@@ -311,7 +311,7 @@ uniform bool blinn = true;
 
 in VS_OUT {
     vec3 position;
-	vec3 normal;
+    vec3 normal;
 } fs_in;
 
 void LightUp(vec3 lightDir, vec3 normal, vec3 ePos, vec3 vPos, float shiness, out float diffuse, out float specular) {
@@ -380,12 +380,12 @@ out vec4 fragColor;
 void main() {
     float diffuse = 0;
     float specular = 0;
-	if (lightUpRoutine == 0) { PointLightUp(light, diffuse, specular); }
-	else if (lightUpRoutine == 1) { DirectionalLightUp(light, diffuse, specular); }
-	else if (lightUpRoutine == 2) { SpotLightUp(light, diffuse, specular); }
+    if (lightUpRoutine == 0) { PointLightUp(light, diffuse, specular); }
+    else if (lightUpRoutine == 1) { DirectionalLightUp(light, diffuse, specular); }
+    else if (lightUpRoutine == 2) { SpotLightUp(light, diffuse, specular); }
     else { diffuse = 0; specular = 0; }
 
-	fragColor = vec4(diffuse * light.diffuse * material.diffuse + specular * light.specular * material.specular, 1.0);
+    fragColor = vec4(diffuse * light.diffuse * material.diffuse + specular * light.specular * material.specular, 1.0);
 }
 ";
     }

@@ -31,8 +31,7 @@ out vec4 outColor;
 
 void main() {
     if (halfTransparent) {
-        if (int(gl_FragCoord.x - 0.5) % 2 == 1 && int(gl_FragCoord.y - 0.5) % 2 == 1) discard;
-        if (int(gl_FragCoord.x - 0.5) % 2 != 1 && int(gl_FragCoord.y - 0.5) % 2 != 1) discard;
+        if (int(gl_FragCoord.x + gl_FragCoord.y) % 2 == 1) discard;
     }
 
     outColor = color;

@@ -28,8 +28,7 @@ uniform vec3 color = vec3(1, 1, 0);
 out vec4 outColor;
 
 void main() {
-    if (int(gl_FragCoord.x - 0.5) % 2 == 0 && int(gl_FragCoord.y - 0.5) % 2 == 0) discard;
-    if (int(gl_FragCoord.x - 0.5) % 2 != 0 && int(gl_FragCoord.y - 0.5) % 2 != 0) discard;
+    if (int(gl_FragCoord.x + gl_FragCoord.y) % 2 == 1) discard;
 
     outColor = vec4(color, 1.0);
 }

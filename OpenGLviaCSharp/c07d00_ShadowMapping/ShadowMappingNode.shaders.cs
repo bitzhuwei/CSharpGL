@@ -25,7 +25,7 @@ uniform vec3 ambientColor;
 out vec4 fragColor;
 
 void main() {
-	fragColor = vec4(ambientColor, 1.0);
+    fragColor = vec4(ambientColor, 1.0);
 }
 ";
 
@@ -38,7 +38,7 @@ in vec3 inPosition;
 
 void main(void)
 {
-	gl_Position = mvpMatrix * vec4(inPosition, 1.0);
+    gl_Position = mvpMatrix * vec4(inPosition, 1.0);
 }
 ";
         // this fragment shader is not needed.
@@ -62,7 +62,7 @@ in vec3 inNormal;
 // Declare an interface block.
 out VS_OUT {
     vec3 position;
-	vec3 normal;
+    vec3 normal;
     vec4 shadow_coord;
 } vs_out;
 
@@ -74,8 +74,8 @@ uniform mat4 shadow_matrix;
 void main() {
     gl_Position = mvpMat * vec4(inPosition, 1.0);
     vec4 worldPos = modelMat * vec4(inPosition, 1.0);
-	vs_out.position = worldPos.xyz;
-	vs_out.normal = (normalMat * vec4(inNormal, 0)).xyz;
+    vs_out.position = worldPos.xyz;
+    vs_out.normal = (normalMat * vec4(inNormal, 0)).xyz;
     vs_out.shadow_coord = shadow_matrix * worldPos;
 }
 ";
@@ -189,20 +189,20 @@ void SpotLightUp(Light light, out float diffuse, out float specular) {
 // direction is the direction to lightPos.
 bool InsidePyramid(vec3 lightPos, vec3 direction, vec3 vPos, vec3 baseX, vec3 baseY) {
     direction = normalize(direction);
-	vec3 t = lightPos - vPos;
-	float height = dot(t, direction);
-	if (height <= 0) { return false; }
+    vec3 t = lightPos - vPos;
+    float height = dot(t, direction);
+    if (height <= 0) { return false; }
 	
-	vec3 h = height * direction;
-	vec3 p = h - t;
+    vec3 h = height * direction;
+    vec3 p = h - t;
 	
-	baseX = normalize(baseX);
-	if (abs(dot(p, baseX)) > height) { return false; }
+    baseX = normalize(baseX);
+    if (abs(dot(p, baseX)) > height) { return false; }
 	
-	baseY = normalize(baseY);
-	if (abs(dot(p, baseY)) > height) { return false; }
+    baseY = normalize(baseY);
+    if (abs(dot(p, baseY)) > height) { return false; }
 	
-	return true;
+    return true;
 }
 
 void TSpotLightUp(Light light, vec3 direction, vec3 baseX, vec3 baseY, out float diffuse, out float specular) {
@@ -245,12 +245,12 @@ void main() {
     else if (lightUpRoutine == 8) { TSpotLightUp(light, vec3(0, 0, 1), vec3(1, 0, 0), vec3(0, 1, 0), diffuse, specular); }
     else { diffuse = 0; specular = 0; }
     
-	float f = 1;
+    float f = 1;
     if (useShadow) {
         f = textureProj(depth_texture, fs_in.shadow_coord);
     }
     
-	fragColor = vec4(f * diffuse * light.diffuse * material.diffuse + f * specular * light.specular * material.specular, 1.0);
+    fragColor = vec4(f * diffuse * light.diffuse * material.diffuse + f * specular * light.specular * material.specular, 1.0);
 }
 ";
 

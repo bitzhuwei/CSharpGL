@@ -16,7 +16,7 @@ uniform mat4 modelMatrix;
 
 void main(void)
 {
-	gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(position, 1.0f);
+    gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(position, 1.0f);
 }
 ";
         private const string renderFrag = @"#version 430 core

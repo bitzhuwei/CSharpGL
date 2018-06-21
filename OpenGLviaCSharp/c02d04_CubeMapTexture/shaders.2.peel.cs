@@ -19,8 +19,8 @@ out vec3 passTexCoord;
 
 void main()
 {  
-	//get the clipspace vertex position
-	gl_Position = MVP*vec4(vVertex.xyz,1);
+    //get the clipspace vertex position
+    gl_Position = MVP*vec4(vVertex.xyz,1);
 
     passTexCoord = vVertex; // Special property for the Cube model.
 }
@@ -38,17 +38,16 @@ out vec4 vFragColor;	//fragment shader output
 
 void main()
 {
-	//read the depth value from the depth texture
-	float frontDepth = texture(depthTexture, gl_FragCoord.xy).r;
+    //read the depth value from the depth texture
+    float frontDepth = texture(depthTexture, gl_FragCoord.xy).r;
 
-	//compare the current fragment depth with the depth in the depth texture
-	//if it is less, discard the current fragment
-	if(gl_FragCoord.z <= frontDepth)
-		discard;
+    //compare the current fragment depth with the depth in the depth texture
+    //if it is less, discard the current fragment
+    if(gl_FragCoord.z <= frontDepth) discard;
 	
-	//otherwise set the given color uniform as the final output
+    //otherwise set the given color uniform as the final output
     vec4 vColor = texture(cubeTex, passTexCoord);
-	vFragColor = vec4(vColor.rgb * alpha, alpha);
+    vFragColor = vec4(vColor.rgb * alpha, alpha);
 }
 ";
     }

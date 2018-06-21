@@ -19,7 +19,7 @@ namespace VolumeRendering.Raycast
         private IDrawCommand drawCmd = null;
 
 
-        // draw the six faces of the boundbox by drawwing quads
+        // draw the six faces of the boundbox by drawing quads
         // draw it contra-clockwise
         // front: 1 5 7 3
         // back:  0 2 6 4

@@ -17,8 +17,8 @@ uniform mat4 MVP;  //combined modelview projection matrix
 
 void main()
 {  
-	//get the clipspace vertex position
-	gl_Position = MVP*vec4(vVertex.xyz,1);
+    //get the clipspace vertex position
+    gl_Position = MVP*vec4(vVertex.xyz,1);
 }
 ";
         public const string initFrag = @"#version 330 core

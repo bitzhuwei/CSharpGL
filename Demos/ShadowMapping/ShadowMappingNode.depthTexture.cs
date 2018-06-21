@@ -20,7 +20,7 @@ in vec3 inPosition;
 
 void main(void)
 {
-	gl_Position = mvpMatrix * vec4(inPosition, 1.0);
+    gl_Position = mvpMatrix * vec4(inPosition, 1.0);
 }
 ";
         // this fragment shader is not needed.
