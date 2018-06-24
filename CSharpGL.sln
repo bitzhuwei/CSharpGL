@@ -175,6 +175,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "c13d01_QueryObject", "OpenG
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoftGL.Windows", "Infrastructure\SoftGL.Windows\SoftGL.Windows.csproj", "{0208C27C-2FEE-48B9-A6A5-DB0BDF39A7E6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "c14d00_HowTransformFeedbackWorks", "OpenGLviaCSharp\c14d00_HowTransformFeedbackWorks\c14d00_HowTransformFeedbackWorks.csproj", "{DB98BED0-EA73-4966-8CC4-844AACE68E2C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "c14d01_TransformFeedbackObject", "OpenGLviaCSharp\c14d01_TransformFeedbackObject\c14d01_TransformFeedbackObject.csproj", "{C2D09672-90B7-48A4-B987-203A25FE666E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -513,6 +517,14 @@ Global
 		{0208C27C-2FEE-48B9-A6A5-DB0BDF39A7E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0208C27C-2FEE-48B9-A6A5-DB0BDF39A7E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0208C27C-2FEE-48B9-A6A5-DB0BDF39A7E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB98BED0-EA73-4966-8CC4-844AACE68E2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB98BED0-EA73-4966-8CC4-844AACE68E2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB98BED0-EA73-4966-8CC4-844AACE68E2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB98BED0-EA73-4966-8CC4-844AACE68E2C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2D09672-90B7-48A4-B987-203A25FE666E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2D09672-90B7-48A4-B987-203A25FE666E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2D09672-90B7-48A4-B987-203A25FE666E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2D09672-90B7-48A4-B987-203A25FE666E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -599,5 +611,7 @@ Global
 		{2CCC5BBF-40CA-452B-A275-4EEB7D36E61D} = {7CF86F60-2BAC-4F60-AF1C-869737385E1B}
 		{46DBCBF7-FA57-4F29-B973-FED1143C5307} = {7CF86F60-2BAC-4F60-AF1C-869737385E1B}
 		{0208C27C-2FEE-48B9-A6A5-DB0BDF39A7E6} = {E800BE67-00FE-4C05-9F0F-640DC7134E7D}
+		{DB98BED0-EA73-4966-8CC4-844AACE68E2C} = {7CF86F60-2BAC-4F60-AF1C-869737385E1B}
+		{C2D09672-90B7-48A4-B987-203A25FE666E} = {7CF86F60-2BAC-4F60-AF1C-869737385E1B}
 	EndGlobalSection
 EndGlobal
