@@ -10,32 +10,39 @@ namespace HowTransformFeedbackWorks
     {
         private const string renderVert = @"
 #version 330
-layout(location = 0) in vec4 vposition;
+
+in vec4 vposition;
+
 void main() {
-   gl_Position = vposition;
+    gl_Position = vposition;
 }
 ";
         private const string renderGeom =
          @"#version 330
-uniform mat4 View;
-uniform mat4 Projection;
 layout (points) in;
 layout (triangle_strip, max_vertices = 4) out;
+
+uniform mat4 Projection;
+uniform mat4 View;
+
 out vec2 txcoord;
+
 void main() {
-   vec4 pos = View*gl_in[0].gl_Position;
-   txcoord = vec2(-1,-1);
-   gl_Position = Projection*(pos+0.2*vec4(txcoord,0,0));
-   EmitVertex();
-   txcoord = vec2( 1,-1);
-   gl_Position = Projection*(pos+0.2*vec4(txcoord,0,0));
-   EmitVertex();
-   txcoord = vec2(-1, 1);
-   gl_Position = Projection*(pos+0.2*vec4(txcoord,0,0));
-   EmitVertex();
-   txcoord = vec2( 1, 1);
-   gl_Position = Projection*(pos+0.2*vec4(txcoord,0,0));
-   EmitVertex();
+    vec4 pos = View * gl_in[0].gl_Position;
+    txcoord = vec2(-1, -1);
+    gl_Position = Projection * (pos + 0.2 * vec4(txcoord, 0, 0));
+    EmitVertex();
+    txcoord = vec2( 1, -1);
+    gl_Position = Projection * (pos + 0.2 * vec4(txcoord, 0, 0));
+    EmitVertex();
+    txcoord = vec2(-1,  1);
+    gl_Position = Projection * (pos + 0.2 * vec4(txcoord, 0, 0));
+    EmitVertex();
+    txcoord = vec2( 1,  1);
+    gl_Position = Projection * (pos + 0.2 * vec4(txcoord, 0, 0));
+    EmitVertex();
+
+    EndPrimitive();
 }
 ";
         private const string renderFrag =
@@ -48,7 +55,7 @@ void main() {
     float distance = sqrt(dot(txcoord, txcoord));
     if (distance > 0.25) discard;
     FragColor = mix(color1, color2, smoothstep(0.1, 0.25, distance));
-} 
+}
 ";
     }
 }
