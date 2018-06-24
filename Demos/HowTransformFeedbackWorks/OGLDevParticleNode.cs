@@ -16,6 +16,8 @@ namespace HowTransformFeedbackWorks
         private const string vposition = "vposition";
 
         private TransformFeedbackObject[] transformFeedbackObjects = new TransformFeedbackObject[2];
+        private BlendSwitch blendSwitch = new BlendSwitch(BlendEquationMode.Add, BlendSrcFactor.SrcAlpha, BlendDestFactor.OneMinusSrcAlpha);
+
         private int currentIndex = 0;
 
         public static OGLDevParticleNode Create(int particleCount)
@@ -69,7 +71,7 @@ namespace HowTransformFeedbackWorks
         float[] radius = new float[spheres];
 
         // physical parameters 
-        float dt = 1.0f / 60.0f;
+        float dt = 4.0f / 60.0f;
         vec3 g = new vec3(0.0f, -9.81f, 0.0f);
         float bounce = 1.2f; // inelastic: 1.0f, elastic: 2.0f 
         Random random = new Random();
@@ -151,8 +153,10 @@ namespace HowTransformFeedbackWorks
 
                 program.SetUniform("Projection", projection);
                 program.SetUniform("View", view * model);
+                this.blendSwitch.On();
                 //unit.Render(); // this methos must specify vertes count.
                 tf.Draw(method); // render updated buffersi without specifying vertex count.
+                this.blendSwitch.Off();
             }
             // exchange
             {

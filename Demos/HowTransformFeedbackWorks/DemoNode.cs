@@ -12,9 +12,7 @@ namespace HowTransformFeedbackWorks
     partial class DemoNode : ModernNode, IRenderable
     {
         private const string inPosition = "inPosition";
-        private const string inVelocity = "inVelocity";
         private const string outPosition = "outPosition";
-        private const string outVelocity = "outVelocity";
         private const string mvpMatrix = "mvpMatrix";
         private TransformFeedbackObject[] transformFeedbackObjects = new TransformFeedbackObject[2];
         private int currentIndex = 0;
@@ -23,16 +21,13 @@ namespace HowTransformFeedbackWorks
         {
             RenderMethodBuilder updateBuilder, updateBuilder2;
             {
-                IShaderProgramProvider updateProvider;
                 var vs = new VertexShader(updateVert);
-                var feedbackVaryings = new string[] { outPosition, outVelocity };
-                updateProvider = new ShaderArray(feedbackVaryings, ShaderProgram.BufferMode.Separate, vs);
+                var feedbackVaryings = new string[] { outPosition, };
+                IShaderProgramProvider updateProvider = new ShaderArray(feedbackVaryings, ShaderProgram.BufferMode.Separate, vs);
                 var map = new AttributeMap();
                 map.Add(inPosition, DemoModel.inPosition);
-                map.Add(inVelocity, DemoModel.inVelocity);
                 var map2 = new AttributeMap();
                 map2.Add(inPosition, DemoModel.inPosition2);
-                map2.Add(inVelocity, DemoModel.inVelocity2);
                 updateBuilder = new RenderMethodBuilder(updateProvider, map);
                 updateBuilder2 = new RenderMethodBuilder(updateProvider, map2);
             }
@@ -45,10 +40,8 @@ namespace HowTransformFeedbackWorks
                 renderProvider = new ShaderArray(vs, fs);
                 var map = new AttributeMap();
                 map.Add(inPosition, DemoModel.inPosition);
-                map.Add(inVelocity, DemoModel.inVelocity);
                 var map2 = new AttributeMap();
                 map2.Add(inPosition, DemoModel.inPosition2);
-                map2.Add(inVelocity, DemoModel.inVelocity2);
                 renderBuilder = new RenderMethodBuilder(renderProvider, map);
                 renderBuilder2 = new RenderMethodBuilder(renderProvider, map2);
             }
@@ -73,13 +66,11 @@ namespace HowTransformFeedbackWorks
             {
                 var tf = new TransformFeedbackObject();
                 RenderMethod method = this.RenderUnit.Methods[i];
-                foreach (var vao in method.VertexArrayObjects)
+                VertexArrayObject vao = method.VertexArrayObjects[0]; // only one element here.
+                VertexShaderAttribute[] attributes = vao.VertexAttributes;
+                for (uint t = 0; t < attributes.Length; t++)
                 {
-                    VertexShaderAttribute[] attributes = vao.VertexAttributes;
-                    for (uint t = 0; t < attributes.Length; t++)
-                    {
-                        tf.BindBuffer(t, attributes[t].Buffer);
-                    }
+                    tf.BindBuffer(t, attributes[t].Buffer);
                 }
                 this.transformFeedbackObjects[i] = tf;
             }

@@ -43,8 +43,11 @@ void main() {
 in vec2 txcoord;
 layout(location = 0) out vec4 FragColor;
 void main() {
-   float s = 0.2*(1/(1+15.*dot(txcoord, txcoord))-1/16.);
-   FragColor = s*vec4(0.3,0.3,1.0,1);
+    const vec4 color1 = vec4(0.6, 0.0, 0.0, 1.0);
+    const vec4 color2 = vec4(0.9, 0.7, 1.0, 0.0);
+    float distance = sqrt(dot(txcoord, txcoord));
+    if (distance > 0.25) discard;
+    FragColor = mix(color1, color2, smoothstep(0.1, 0.25, distance));
 } 
 ";
     }

@@ -11,16 +11,16 @@ namespace HowTransformFeedbackWorks
         private const string renderVert = @"#version 330
 
 in vec3 inPosition; // world space
-in vec3 inVelocity;
 
 uniform mat4 mvpMatrix;
+vec3 velocities[3] = vec3[3](vec3(1, 0, 0), vec3(0, 1, 0), vec3(0, 0, 1));
 
 out vec3 passColor;
 
 void main()
 {
     gl_Position = mvpMatrix * vec4(inPosition, 1);
-    passColor = inVelocity;
+    passColor = velocities[gl_VertexID];
 }
 ";
         private const string renderFrag = @"#version 330

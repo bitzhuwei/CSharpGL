@@ -10,24 +10,22 @@ namespace HowTransformFeedbackWorks
     {
         private const string updateVert = @"#version 330
 
-in vec3 inPosition;// world space.
-in vec3 inVelocity;// world space.
+in vec3 inPosition;
 
-out vec3 outPosition;// world space
-out vec3 outVelocity;// world space
+out vec3 outPosition;
 
 uniform float time = 0.01;
+vec3 velocities[3] = vec3[3](vec3(1, 0, 0), vec3(0, 1, 0), vec3(0, 0, 1));
 
 void main()
 {
-    vec3 pos = inPosition + inVelocity * time;
-    if (pos.x >3 || pos.y > 3 || pos.z > 3)
+    vec3 pos = inPosition + velocities[gl_VertexID] * time;
+    if (pos.x > 1 || pos.y > 1 || pos.z > 1)
     {
         pos = vec3(0, 0, 0);
     }
     
     outPosition = pos;
-    outVelocity = inVelocity;
 
     gl_Position = vec4(pos, 1); 
 }

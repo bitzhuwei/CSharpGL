@@ -38,11 +38,11 @@ void main() {
    }
    outvelocity += dt*g;
    outposition = inposition + dt*outvelocity;
-   if(outposition.y < -30.0)
+   if(outposition.y < -5.0)
    {
        outvelocity = vec3(0,0,0);
        outposition = 0.5-vec3(hash(3*gl_VertexID+0),hash(3*gl_VertexID+1),hash(3*gl_VertexID+2));
-       outposition = vec3(0,20,0) + 5.0*outposition;
+       outposition = vec3(0,5,0) + 5.0*outposition;
    }
 }
 ";

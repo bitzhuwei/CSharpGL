@@ -28,19 +28,19 @@ namespace HowTransformFeedbackWorks
         private void FormMain_Load(object sender, EventArgs e)
         {
             //CSharpGL.HowTransformFeedbackWorks.Run();
-            var position = new vec3(5, 3, 4);
+            var position = new vec3(5, 3, 4) * 0.2f;
             var center = new vec3(0, 0, 0);
             var up = new vec3(0, 1, 0);
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
 
-            this.scene = new Scene(camera)
-;
-            //this.scene.ClearColor = Color.Black.ToVec4();
+            this.scene = new Scene(camera);
+            this.scene.ClearColor = Color.Black.ToVec4();
             {
-                //var node = ParticleDemoNode.Create(10000);
-                var node = DemoNode.Create();
+                //var node = DemoNode.Create();
+                var node = OGLDevParticleNode.Create(1000);
                 var ground = GroundNode.Create();
                 ground.RenderUnit.Methods[0].SwitchList.Add(new PolygonModeSwitch(PolygonMode.Line));
+                ground.EnableRendering = ThreeFlags.None;
                 var group = new GroupNode(node, ground);
                 this.scene.RootNode = group;
             }
