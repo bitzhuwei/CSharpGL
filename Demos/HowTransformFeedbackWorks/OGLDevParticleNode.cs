@@ -16,7 +16,6 @@ namespace HowTransformFeedbackWorks
         private const string vposition = "vposition";
 
         private TransformFeedbackObject[] transformFeedbackObjects = new TransformFeedbackObject[2];
-        private BlendSwitch blendSwitch = new BlendSwitch(BlendEquationMode.Add, BlendSrcFactor.SrcAlpha, BlendDestFactor.OneMinusSrcAlpha);
 
         private int currentIndex = 0;
 
@@ -35,7 +34,7 @@ namespace HowTransformFeedbackWorks
                 renderProvider = new ShaderArray(vs, gs, fs);
             }
             RenderMethodBuilder updateBuilder, updateBuilder2, renderBuilder, renderBuilder2;
-            var blend = new BlendFuncSwitch(BlendSrcFactor.One, BlendDestFactor.One);
+            var blend = new BlendSwitch(BlendEquationMode.Add, BlendSrcFactor.One, BlendDestFactor.One);
             {
                 var map = new AttributeMap();
                 map.Add(inPosition, OGLDevParticleModel.inPosition);
@@ -153,10 +152,8 @@ namespace HowTransformFeedbackWorks
 
                 program.SetUniform("Projection", projection);
                 program.SetUniform("View", view * model);
-                this.blendSwitch.On();
-                //unit.Render(); // this methos must specify vertes count.
-                tf.Draw(method); // render updated buffersi without specifying vertex count.
-                this.blendSwitch.Off();
+                //unit.Render(); // this method requires specified vertes count.
+                tf.Draw(method); // render updated buffers without specifying vertex count.
             }
             // exchange
             {
