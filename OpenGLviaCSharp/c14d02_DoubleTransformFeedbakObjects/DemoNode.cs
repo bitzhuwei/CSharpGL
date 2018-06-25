@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using CSharpGL;
 
-namespace HowTransformFeedbackWorks
+namespace c14d02_DoubleTransformFeedbakObjects
 {
     /// <summary>
     /// totally same with <see cref="SimpleTransformFeedBackNode"/>

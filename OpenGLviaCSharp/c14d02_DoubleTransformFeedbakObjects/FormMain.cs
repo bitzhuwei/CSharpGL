@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace HowTransformFeedbackWorks
+namespace c14d02_DoubleTransformFeedbakObjects
 {
     public partial class FormMain : Form
     {
@@ -27,7 +27,6 @@ namespace HowTransformFeedbackWorks
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-            //CSharpGL.HowTransformFeedbackWorks.Run();
             var position = new vec3(5, 3, 4) * 0.2f;
             var center = new vec3(0, 0, 0);
             var up = new vec3(0, 1, 0);
@@ -36,8 +35,7 @@ namespace HowTransformFeedbackWorks
             this.scene = new Scene(camera);
             this.scene.ClearColor = Color.Black.ToVec4();
             {
-                //var node = DemoNode.Create();
-                var node = OGLDevParticleNode.Create(1000);
+                var node = DemoNode.Create();
                 var ground = GroundNode.Create();
                 ground.RenderUnit.Methods[0].SwitchList.Add(new PolygonModeSwitch(PolygonMode.Line));
                 ground.EnableRendering = ThreeFlags.None;

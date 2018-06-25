@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace HowTransformFeedbackWorks.Properties
+namespace c14d02_DoubleTransformFeedbakObjects.Properties
 {
 
 
@@ -44,7 +44,7 @@ namespace HowTransformFeedbackWorks.Properties
             {
                 if ((resourceMan == null))
                 {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("HowTransformFeedbackWorks.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("c14d02_DoubleTransformFeedbakObjects.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

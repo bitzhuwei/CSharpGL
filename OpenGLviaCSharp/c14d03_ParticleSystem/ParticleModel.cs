@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using CSharpGL;
 
-namespace HowTransformFeedbackWorks
+namespace c14d03_ParticleSystem
 {
-    partial class OGLDevParticleModel : IBufferSource
+    partial class ParticleModel : IBufferSource
     {
         public const string inPosition = "inPosition";
         public const string inPosition2 = "inPosition2";
@@ -24,7 +24,7 @@ namespace HowTransformFeedbackWorks
 
         private static Random random = new Random();
 
-        public OGLDevParticleModel(int particleCount)
+        public ParticleModel(int particleCount)
         {
             {
                 var positions = new vec3[particleCount];

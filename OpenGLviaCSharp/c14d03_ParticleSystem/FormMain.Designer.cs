@@ -1,4 +1,4 @@
-﻿namespace HowTransformFeedbackWorks
+﻿namespace c14d03_ParticleSystem
 {
     partial class FormMain
     {

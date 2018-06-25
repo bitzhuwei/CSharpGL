@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace HowTransformFeedbackWorks
+namespace c14d03_ParticleSystem
 {
-    partial class OGLDevParticleNode : ModernNode, IRenderable
+    partial class ParticleNode : ModernNode, IRenderable
     {
         private const string inPosition = "inposition";
         private const string inVelocity = "invelocity";
@@ -19,7 +19,7 @@ namespace HowTransformFeedbackWorks
 
         private int currentIndex = 0;
 
-        public static OGLDevParticleNode Create(int particleCount)
+        public static ParticleNode Create(int particleCount)
         {
             IShaderProgramProvider updateProvider, renderProvider;
             {
@@ -37,29 +37,29 @@ namespace HowTransformFeedbackWorks
             var blend = new BlendSwitch(BlendEquationMode.Add, BlendSrcFactor.One, BlendDestFactor.One);
             {
                 var map = new AttributeMap();
-                map.Add(inPosition, OGLDevParticleModel.inPosition);
-                map.Add(inVelocity, OGLDevParticleModel.inVelocity);
+                map.Add(inPosition, ParticleModel.inPosition);
+                map.Add(inVelocity, ParticleModel.inVelocity);
                 updateBuilder = new RenderMethodBuilder(updateProvider, map);
             }
             {
                 var map = new AttributeMap();
-                map.Add(inPosition, OGLDevParticleModel.inPosition2);
-                map.Add(inVelocity, OGLDevParticleModel.inVelocity2);
+                map.Add(inPosition, ParticleModel.inPosition2);
+                map.Add(inVelocity, ParticleModel.inVelocity2);
                 updateBuilder2 = new RenderMethodBuilder(updateProvider, map);
             }
             {
                 var map = new AttributeMap();
-                map.Add(vposition, OGLDevParticleModel.inPosition);
+                map.Add(vposition, ParticleModel.inPosition);
                 renderBuilder = new RenderMethodBuilder(renderProvider, map, blend);
             }
             {
                 var map = new AttributeMap();
-                map.Add(vposition, OGLDevParticleModel.inPosition2);
+                map.Add(vposition, ParticleModel.inPosition2);
                 renderBuilder2 = new RenderMethodBuilder(renderProvider, map, blend);
             }
 
-            var model = new OGLDevParticleModel(particleCount);
-            var node = new OGLDevParticleNode(model, updateBuilder, updateBuilder2, renderBuilder, renderBuilder2);
+            var model = new ParticleModel(particleCount);
+            var node = new ParticleNode(model, updateBuilder, updateBuilder2, renderBuilder, renderBuilder2);
             node.Initialize();
 
             return node;
@@ -75,7 +75,7 @@ namespace HowTransformFeedbackWorks
         float bounce = 1.2f; // inelastic: 1.0f, elastic: 2.0f 
         Random random = new Random();
 
-        private OGLDevParticleNode(IBufferSource model, params RenderMethodBuilder[] builders)
+        private ParticleNode(IBufferSource model, params RenderMethodBuilder[] builders)
             : base(model, builders)
         {
             center[0] = new vec3(0, 0, 1);

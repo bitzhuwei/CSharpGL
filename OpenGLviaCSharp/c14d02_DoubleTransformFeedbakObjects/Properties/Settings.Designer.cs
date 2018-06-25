@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace HowTransformFeedbackWorks.Properties
+namespace c14d02_DoubleTransformFeedbakObjects.Properties
 {
 
 

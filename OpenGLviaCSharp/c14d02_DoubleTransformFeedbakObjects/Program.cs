@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace HowTransformFeedbackWorks
+namespace c14d02_DoubleTransformFeedbakObjects
 {
     static class Program
     {

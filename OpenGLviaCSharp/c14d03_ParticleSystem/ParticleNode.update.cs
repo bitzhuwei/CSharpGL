@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using CSharpGL;
 
-namespace HowTransformFeedbackWorks
+namespace c14d03_ParticleSystem
 {
-    partial class OGLDevParticleNode
+    partial class ParticleNode
     {
         private const string updateVert =
          @"#version 330
