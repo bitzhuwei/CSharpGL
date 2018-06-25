@@ -59,7 +59,7 @@
             this.ClientSize = new System.Drawing.Size(985, 577);
             this.Controls.Add(this.winGLCanvas1);
             this.Name = "FormMain";
-            this.Text = "How Transform Feedback Works - CSharpGL";
+            this.Text = "Particle System via Transform Feedback - CSharpGL";
             ((System.ComponentModel.ISupportInitialize)(this.winGLCanvas1)).EndInit();
             this.ResumeLayout(false);
 
