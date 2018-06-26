@@ -24,13 +24,7 @@ namespace ComputeShader.HelloComputeShader
         public static SimpleComputeNode Create()
         {
             var model = new SimpleCompute();
-            RenderMethodBuilder reset, compute, render;
-            {
-                var cs = new CSharpGL.ComputeShader(resetCompute);
-                var map = new AttributeMap();
-                var provider = new ShaderArray(cs);
-                reset = new RenderMethodBuilder(provider, map);
-            }
+            RenderMethodBuilder compute, render;
             {
                 var cs = new CSharpGL.ComputeShader(computeShader);
                 var map = new AttributeMap();
@@ -46,7 +40,7 @@ namespace ComputeShader.HelloComputeShader
                 render = new RenderMethodBuilder(provider, map);
             }
 
-            var node = new SimpleComputeNode(model, reset, compute, render);
+            var node = new SimpleComputeNode(model, compute, render);
             node.Initialize();
 
             return node;
@@ -66,13 +60,13 @@ namespace ComputeShader.HelloComputeShader
             }
             {
                 // This is the texture that the compute program will write into
-                var storage = new TexStorage2D(TexStorage2D.Target.Texture2D, GL.GL_RGBA32F, 8, 256, 256);
+                var storage = new TexStorage2D(TexStorage2D.Target.Texture2D, GL.GL_RGBA32F, 256, 256, 8);
                 var texture = new Texture(storage);
                 texture.Initialize();
                 this.outputTexture = texture;
             }
             {
-                RenderMethod method = this.RenderUnit.Methods[2];
+                RenderMethod method = this.RenderUnit.Methods[1];
                 ShaderProgram program = method.Program;
                 program.SetUniform("output_image", this.outputTexture);
             }
@@ -127,20 +121,30 @@ namespace ComputeShader.HelloComputeShader
         {
             // reset image
             {
+                // Activate the compute program and bind the output texture image
                 RenderMethod method = this.RenderUnit.Methods[0];
                 ShaderProgram program = method.Program;
+                program.SetUniform("reset", true);
                 program.Bind();
-                glBindImageTexture(0, outputTexture.Id, 0, false, 0, GL.GL_WRITE_ONLY, GL.GL_RGBA32F);
+                program.PushUniforms();
+                uint imageUnit = 0;
+                glBindImageTexture(imageUnit, outputTexture.Id, 0, false, 0, GL.GL_WRITE_ONLY, GL.GL_RGBA32F);
                 glDispatchCompute(maxX, maxY, maxZ);
                 program.Unbind();
             }
-
+            //{
+            //    var image = this.outputTexture.GetImage(256, 256);
+            //    image.Save("x0.png");
+            //}
             {
                 // Activate the compute program and bind the output texture image
-                RenderMethod method = this.RenderUnit.Methods[1];
+                RenderMethod method = this.RenderUnit.Methods[0];
                 ShaderProgram program = method.Program;
+                program.SetUniform("reset", false);
                 program.Bind();
-                glBindImageTexture(0, outputTexture.Id, 0, false, 0, GL.GL_WRITE_ONLY, GL.GL_RGBA32F);
+                program.PushUniforms();
+                uint imageUnit = 0;
+                glBindImageTexture(imageUnit, outputTexture.Id, 0, false, 0, GL.GL_WRITE_ONLY, GL.GL_RGBA32F);
                 glDispatchCompute(GroupX, GroupY, GroupZ);
                 program.Unbind();
             }
@@ -150,11 +154,12 @@ namespace ComputeShader.HelloComputeShader
                 mat4 view = camera.GetViewMatrix();
                 mat4 model = mat4.identity();
 
-                RenderMethod method = this.RenderUnit.Methods[2];
+                RenderMethod method = this.RenderUnit.Methods[1];
                 ShaderProgram program = method.Program;
                 program.SetUniform("projectionMatrix", projection);
                 program.SetUniform("viewMatrix", view);
                 program.SetUniform("modelMatrix", model);
+                program.SetUniform("output_image", this.outputTexture);
 
                 method.Render();
             }
