@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Runtime.InteropServices;
 
 namespace CSharpGL
 {
@@ -8,6 +9,11 @@ namespace CSharpGL
     /// </summary>
     public class SoftGLRenderContext : GLRenderContext
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        internal IntPtr Pointer { get; private set; }
+
         /// <summary>
         /// creates render device and render context.
         /// </summary>
@@ -18,6 +24,9 @@ namespace CSharpGL
         public SoftGLRenderContext(int width, int height, ContextGenerationParams parameters)
             : base(width, height, parameters)
         {
+            GCHandle handle = GCHandle.Alloc(this, GCHandleType.WeakTrackResurrection);
+            this.Pointer = GCHandle.ToIntPtr(handle);
+            handle.Free();
             // Create a new window class, as basic as possible.
             if (!this.CreateBasicRenderContext(width, height, parameters))
             {

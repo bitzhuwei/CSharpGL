@@ -10,6 +10,8 @@ namespace CSharpGL
     /// </summary>
     public partial class SoftGL : GL
     {
+        private SoftGLRenderContext currentContext;
+
         /// <summary>
         /// Single instance of <see cref="SoftGL"/>.
         /// </summary>
