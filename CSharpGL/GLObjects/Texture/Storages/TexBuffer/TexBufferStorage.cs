@@ -8,7 +8,7 @@ namespace CSharpGL
     /// <summary>
     /// Setup texture's storage information with a <see cref="GLBuffer"/>.
     /// </summary>
-    class TexBufferStorage : TexStorageBase, IDisposable
+    public class TexBufferStorage : TexStorageBase, IDisposable
     {
         private GLBuffer buffer;
         private bool autoDispose;
