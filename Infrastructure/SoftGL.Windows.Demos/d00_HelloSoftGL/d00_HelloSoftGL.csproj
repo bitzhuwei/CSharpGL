@@ -4,15 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{0208C27C-2FEE-48B9-A6A5-DB0BDF39A7E6}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{F9D8BC8C-CCC1-4AA4-A794-EE17F9BB322B}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SoftGL.Windows</RootNamespace>
-    <AssemblyName>SoftGL.Windows</AssemblyName>
+    <RootNamespace>d00_HelloSoftGL</RootNamespace>
+    <AssemblyName>d00_HelloSoftGL</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -20,9 +21,9 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -33,59 +34,50 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GLAPI\SoftGL.cs" />
-    <Compile Include="GLAPI\SoftGL.DrawText.cs">
-      <SubType>Code</SubType>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GLAPI\SoftGL.ExtendedAPI.cs" />
-    <Compile Include="GLAPI\SoftGL.ExtendedConsts.cs" />
-    <Compile Include="GLAPI\Soft.BasicAPI.cs" />
-    <Compile Include="GLAPI\SoftGL.OpenGL32.DLL.cs" />
-    <Compile Include="GUI\WinCtrlRoot\TranslateExtension.cs" />
-    <Compile Include="GUI\WinCtrlRoot\WinSoftCtrlRoot.cs" />
-    <Compile Include="RenderContexts\DIBSection.cs">
-      <SubType>Code</SubType>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="RenderContexts\DIBSection.IDisposable.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="RenderContexts\SoftGLRenderContext.cs" />
-    <Compile Include="WinSoftGLCanvas\WinSoftGLCanvas.ContextGenerationParameters.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="WinSoftGLCanvas\WinSoftGLCanvas.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="WinSoftGLCanvas\WinSoftGLCanvas.Designer.cs">
-      <DependentUpon>WinSoftGLCanvas.cs</DependentUpon>
-    </Compile>
-    <Compile Include="WinSoftGLCanvas\WinSoftGLCanvas.Events.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="WinSoftGLCanvas\WinSoftGLCanvas.IGLCanvas.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="WinSoftGLCanvas\WinSoftGLCanvas.ISupportInitialize.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <None Include="GLAPI\readme.md" />
-    <None Include="readme.md" />
-    <Compile Include="Class1.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <None Include="WinSoftGLCanvas\readme.md" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\CSharpGL\CSharpGL.csproj">
+    <ProjectReference Include="..\..\..\CSharpGL\CSharpGL.csproj">
       <Project>{a03cffff-433c-4a6e-8bd1-3a60ef9817a5}</Project>
       <Name>CSharpGL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\SoftGL.Windows\SoftGL.Windows.csproj">
+      <Project>{0208c27c-2fee-48b9-a6a5-db0bdf39a7e6}</Project>
+      <Name>SoftGL.Windows</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

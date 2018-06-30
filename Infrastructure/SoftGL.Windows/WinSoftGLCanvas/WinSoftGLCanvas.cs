@@ -14,12 +14,12 @@ namespace CSharpGL
     [Description("A canvas for OpenGL rendering.")]
     //[ToolboxBitmap(typeof(GLCanvas), @"CSharpGL.WinformControls.GLCanvas.ico")]
     //[Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
-    public partial class WinGLCanvas :
+    public partial class WinSoftGLCanvas :
         UserControl,
         ISupportInitialize,
         IGLCanvas
     {
-        private const string strWinGLCanvas = "WinGLCanvas";
+        private const string strWinSoftGLCanvas = "WinSoftGLCanvas";
 
         private readonly Stopwatch stopWatch = new Stopwatch();
 
@@ -35,7 +35,7 @@ namespace CSharpGL
         /// <summary>
         /// Creats render context and supports OpenGL rendering.
         /// </summary>
-        public WinGLCanvas()
+        public WinSoftGLCanvas()
         {
             InitializeComponent();
 
@@ -45,7 +45,7 @@ namespace CSharpGL
             SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
 
             // initialize GL instance before any GL commands.
-            var gl = WinGL.Instance;
+            var gl = SoftGL.Instance;
             gl.Finish();
 
             // check http://stackoverflow.com/questions/34664/designmode-with-controls
@@ -98,7 +98,7 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        [Category(strWinGLCanvas)]
+        [Category(strWinSoftGLCanvas)]
         [Description("FPS")]
         public double FPS { get; private set; }
 
@@ -139,7 +139,7 @@ namespace CSharpGL
         /// <value>
         /// The render trigger.
         /// </value>
-        [Category(strWinGLCanvas)]
+        [Category(strWinSoftGLCanvas)]
         [Description("The render trigger - determines when rendering will occur.")]
         public RenderTrigger RenderTrigger
         {
@@ -168,7 +168,7 @@ namespace CSharpGL
         /// <summary>
         /// Interval between two rendering passes. Must be greater than 0.(in milliseconds)
         /// </summary>
-        [Category(strWinGLCanvas)]
+        [Category(strWinSoftGLCanvas)]
         [Description("Interval between two rendering passes. Must be greater than 0.(in milliseconds).")]
         [DefaultValue(50)]
         public int TimerTriggerInterval
