@@ -44,12 +44,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AttractorsNode.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="AttractorsNode.shaders.cs" />
     <Compile Include="ParticlesNode.shaders.cs" />
     <Compile Include="ParticlesNode.cs" />
     <Compile Include="ParticlesModel.cs" />

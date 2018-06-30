@@ -33,6 +33,12 @@ namespace c15d00_ParticleSystem
         //private attractor_block attractors;
         private vec4[] attractors = new vec4[attractorCount];
 
+        public vec4[] Attractors
+        {
+            get { return attractors; }
+            set { attractors = value; }
+        }
+
         protected override void DoInitialize()
         {
             base.DoInitialize();

@@ -36,9 +36,10 @@ namespace c15d00_ParticleSystem
             this.scene.ClearColor = Color.Black.ToVec4();
             {
                 var particlesNode = ParticlesNode.Create(10000);
+                //var attractorsNode = AttractorsNode.Create(particlesNode);
                 //var cubeNode = CubeNode.Create();
                 //cubeNode.RenderUnit.Methods[0].SwitchList.Add(new PolygonModeSwitch(PolygonMode.Line));
-                var groupNode = new GroupNode(particlesNode);//, cubeNode);
+                var groupNode = new GroupNode(particlesNode);//, attractorsNode);//, cubeNode);
                 this.scene.RootNode = groupNode;
             }
 
