@@ -181,6 +181,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "c14d02_DoubleTransformFeedb
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "c14d03_ParticleSystem", "OpenGLviaCSharp\c14d03_ParticleSystem\c14d03_ParticleSystem.csproj", "{09D5A5E0-11D9-4CE0-A480-3B9B6588A192}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "c15d00_ParticleSystem", "OpenGLviaCSharp\c15d00_ParticleSystem\c15d00_ParticleSystem.csproj", "{B4A782D8-EDAA-441B-92D4-85453548CDBA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -531,6 +533,10 @@ Global
 		{09D5A5E0-11D9-4CE0-A480-3B9B6588A192}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{09D5A5E0-11D9-4CE0-A480-3B9B6588A192}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{09D5A5E0-11D9-4CE0-A480-3B9B6588A192}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B4A782D8-EDAA-441B-92D4-85453548CDBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4A782D8-EDAA-441B-92D4-85453548CDBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4A782D8-EDAA-441B-92D4-85453548CDBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4A782D8-EDAA-441B-92D4-85453548CDBA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -620,5 +626,6 @@ Global
 		{C2D09672-90B7-48A4-B987-203A25FE666E} = {7CF86F60-2BAC-4F60-AF1C-869737385E1B}
 		{2352E23B-A055-4C71-9BEB-48300B1D77F6} = {7CF86F60-2BAC-4F60-AF1C-869737385E1B}
 		{09D5A5E0-11D9-4CE0-A480-3B9B6588A192} = {7CF86F60-2BAC-4F60-AF1C-869737385E1B}
+		{B4A782D8-EDAA-441B-92D4-85453548CDBA} = {7CF86F60-2BAC-4F60-AF1C-869737385E1B}
 	EndGlobalSection
 EndGlobal
