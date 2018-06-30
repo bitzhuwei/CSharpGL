@@ -20,8 +20,9 @@ namespace CSharpGL
 
         public override IntPtr GetCurrentContext()
         {
-            //return Win32.wglGetCurrentContext();
-            throw new NotImplementedException();
+            SoftGLRenderContext context = this.currentContext;
+
+            return context == null ? IntPtr.Zero : context.Pointer;
         }
     }
 }
