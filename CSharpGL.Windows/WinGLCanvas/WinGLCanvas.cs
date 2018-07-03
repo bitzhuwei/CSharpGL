@@ -45,7 +45,7 @@ namespace CSharpGL
             SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
 
             // initialize GL instance before any GL commands.
-            var gl = WinGL.Instance;
+            var gl = WinGL.WinGLInstance;
             gl.Finish();
 
             // check http://stackoverflow.com/questions/34664/designmode-with-controls
