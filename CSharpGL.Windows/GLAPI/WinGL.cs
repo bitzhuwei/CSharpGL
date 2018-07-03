@@ -10,11 +10,10 @@ namespace CSharpGL
     /// </summary>
     public partial class WinGL : GL
     {
-
         /// <summary>
         /// Single instance of <see cref="WinGL"/>.
         /// </summary>
-        private static readonly WinGL WinGLInstance = new WinGL();
+        public static readonly WinGL WinGLInstance = new WinGL();
         private WinGL() : base() { }
 
         public override IntPtr GetCurrentContext()

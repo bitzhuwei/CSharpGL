@@ -15,7 +15,7 @@ namespace CSharpGL
         /// <summary>
         /// Single instance of <see cref="SoftGL"/>.
         /// </summary>
-        private static readonly SoftGL SoftGLInstance = new SoftGL();
+        public static readonly SoftGL SoftGLInstance = new SoftGL();
         private SoftGL() : base() { }
 
         public override IntPtr GetCurrentContext()
