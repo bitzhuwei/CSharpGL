@@ -40,16 +40,8 @@ namespace c14d03_ParticleSystem
             }
             {
                 var group = new GroupNode();
-
-                var spheres = new SphereParam[] 
-                { 
-                    new SphereParam(new vec3(0, -2, 0), 5),
-                    //new SphereParam(new vec3(0, 0, 0), 3),
-                    //new SphereParam(new vec3(-3, 0, 0), 3),
-                };
-
                 {
-                    var node = ParticleNode.Create(6000, spheres);
+                    var node = ParticleNode.Create(6000);
                     group.Children.Add(node);
                 }
 
@@ -74,21 +66,6 @@ namespace c14d03_ParticleSystem
                     }
                 }
 
-                foreach (var item in spheres)
-                {
-                    var model = new HalfSphere(item.radius, 40, 40);
-                    var node = NoShadowNode.Create(model, HalfSphere.strPosition, HalfSphere.strNormal, model.Size);
-                    node.WorldPosition = item.center;
-                    var list = node.RenderUnit.Methods[0].SwitchList;
-                    var list1 = node.RenderUnit.Methods[1].SwitchList;
-                    var polygonModeSwitch = new PolygonModeSwitch(PolygonMode.Line);
-                    var offsetSwitch = new PolygonOffsetFillSwitch();
-                    list.Add(polygonModeSwitch);
-                    list1.Add(polygonModeSwitch);
-                    var cmd = node.RenderUnit.Methods[0].VertexArrayObjects[0].DrawCommand as DrawElementsCmd;
-                    cmd.VertexCount = cmd.VertexCount / 2; // render only half a sphere.
-                    //group.Children.Add(node);
-                }
                 this.scene.RootNode = group;
             }
 
@@ -136,15 +113,4 @@ namespace c14d03_ParticleSystem
         }
     }
 
-    class SphereParam
-    {
-        public vec3 center;
-        public float radius;
-
-        public SphereParam(vec3 center, float radius)
-        {
-            this.center = center;
-            this.radius = radius;
-        }
-    }
 }

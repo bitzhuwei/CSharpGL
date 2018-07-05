@@ -17,7 +17,7 @@ namespace c14d03_ParticleSystem
 
         private int currentIndex = 0;
 
-        public static ParticleNode Create(int particleCount, SphereParam[] sphereParms)
+        public static ParticleNode Create(int particleCount)
         {
             IShaderProgramProvider updateProvider, renderProvider;
             {
@@ -60,23 +60,13 @@ namespace c14d03_ParticleSystem
 
             var model = new ParticleModel(particleCount);
             var node = new ParticleNode(model, updateBuilder, updateBuilder2, renderBuilder, renderBuilder2);
-            for (int i = 0; i < sphereParms.Length; i++)
-            {
-                node.center[i] = sphereParms[i].center;
-                node.radius[i] = sphereParms[i].radius;
-            }
             node.Initialize();
 
             return node;
         }
-        // define spheres for the particles to bounce off 
-        vec3[] center = new vec3[3];
-        float[] radius = new float[3];
 
         // physical parameters 
         vec3 gravity = new vec3(0.0f, -9.8f, 0.0f);
-        float bounce = 1f; // inelastic: 1.0f, elastic: 2.0f 
-        Random random = new Random();
         private DateTime lastTime;
         private bool firstRendering = true;
 
@@ -142,12 +132,8 @@ namespace c14d03_ParticleSystem
                 RenderMethod method = this.RenderUnit.Methods[currentIndex];
                 ShaderProgram program = method.Program;
                 // set the uniforms 
-                program.SetUniform("center", center);
-                program.SetUniform("radius", radius);
                 program.SetUniform("gravity", gravity);
                 program.SetUniform("deltaTime", seconds);
-                program.SetUniform("bounce", bounce);
-                program.SetUniform("seed", random.Next());
                 method.Render(tf); // update buffers and record output to tf's binding.
 
                 GL.Instance.Disable(GL.GL_RASTERIZER_DISCARD);
