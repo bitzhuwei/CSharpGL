@@ -13,8 +13,6 @@ namespace c14d03_ParticleSystem
         private const string outPosition = "outPosition";
         private const string outVelocity = "outVelocity";
 
-        private const string vposition = "vposition";
-
         private TransformFeedbackObject[] transformFeedbackObjects = new TransformFeedbackObject[2];
 
         private int currentIndex = 0;
@@ -49,12 +47,14 @@ namespace c14d03_ParticleSystem
             }
             {
                 var map = new AttributeMap();
-                map.Add(vposition, ParticleModel.inPosition);
+                map.Add(inPosition, ParticleModel.inPosition);
+                map.Add(inVelocity, ParticleModel.inVelocity);
                 renderBuilder = new RenderMethodBuilder(renderProvider, map, blend);
             }
             {
                 var map = new AttributeMap();
-                map.Add(vposition, ParticleModel.inPosition2);
+                map.Add(inPosition, ParticleModel.inPosition2);
+                map.Add(inVelocity, ParticleModel.inVelocity2);
                 renderBuilder2 = new RenderMethodBuilder(renderProvider, map, blend);
             }
 
