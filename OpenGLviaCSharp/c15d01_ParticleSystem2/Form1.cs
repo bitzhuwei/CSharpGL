@@ -23,6 +23,35 @@ namespace c15d01_ParticleSystem2
             this.Load += FormMain_Load;
             this.winGLCanvas1.OpenGLDraw += winGLCanvas1_OpenGLDraw;
             this.winGLCanvas1.Resize += winGLCanvas1_Resize;
+            this.winGLCanvas1.KeyPress += winGLCanvas1_KeyPress;
+        }
+
+        void winGLCanvas1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 'p')
+            {
+                if (this.stopped)
+                {
+                    this.particleNode.Stopped = stopped;
+                    this.stopped = false;
+                }
+                else
+                {
+                    this.particleNode.Stopped = stopped;
+                    this.stopped = true;
+                }
+            }
+            else if (e.KeyChar == 'b')
+            {
+                if (this.attractorsNode.EnableRendering == ThreeFlags.None)
+                {
+                    this.attractorsNode.EnableRendering = ThreeFlags.BeforeChildren | ThreeFlags.Children;
+                }
+                else
+                {
+                    this.attractorsNode.EnableRendering = ThreeFlags.None;
+                }
+            }
         }
 
         private void FormMain_Load(object sender, EventArgs e)
@@ -36,10 +65,12 @@ namespace c15d01_ParticleSystem2
             this.scene.ClearColor = Color.Black.ToVec4();
             {
                 var particlesNode = ParticlesNode.Create(10000);
-                //var attractorsNode = AttractorsNode.Create(particlesNode);
-                //var cubeNode = CubeNode.Create();
-                //cubeNode.RenderUnit.Methods[0].SwitchList.Add(new PolygonModeSwitch(PolygonMode.Line));
-                var groupNode = new GroupNode(particlesNode);//, attractorsNode);//, cubeNode);
+                this.particleNode = particlesNode;
+                var attractorsNode = AttractorsNode.Create(particlesNode);
+                this.attractorsNode = attractorsNode;
+                var cubeNode = CubeNode.Create();
+                cubeNode.RenderUnit.Methods[0].SwitchList.Add(new PolygonModeSwitch(PolygonMode.Line));
+                var groupNode = new GroupNode(particlesNode, attractorsNode);//, cubeNode);
                 this.scene.RootNode = groupNode;
             }
 
@@ -71,6 +102,10 @@ namespace c15d01_ParticleSystem2
         {
             this.scene.Camera.AspectRatio = ((float)this.winGLCanvas1.Width) / ((float)this.winGLCanvas1.Height);
         }
+
+        private bool stopped = false;
+        private ParticlesNode particleNode;
+        private AttractorsNode attractorsNode;
 
     }
 }

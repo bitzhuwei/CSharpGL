@@ -79,6 +79,8 @@ namespace c15d01_ParticleSystem2
 
         #region IRenderable 成员
 
+        public bool Stopped { get; set; }
+
         private DateTime lastTime = DateTime.Now;
 
         private float speed = 10f;
@@ -102,6 +104,7 @@ namespace c15d01_ParticleSystem2
 
         public unsafe void RenderBeforeChildren(RenderEventArgs arg)
         {
+            if (!this.Stopped)
             {
                 this.attractorInterval += random.NextDouble() * 5;
                 for (int i = 0; i < attractorCount; i++)
@@ -116,9 +119,13 @@ namespace c15d01_ParticleSystem2
             }
             {
                 DateTime now = DateTime.Now;
+                if (this.Stopped)
+                {
+                    this.lastTime = now;
+                }
                 TimeSpan span = now.Subtract(this.lastTime);
-                this.lastTime = now;
                 float deltaTime = (float)(span.TotalSeconds * this.speed);
+                this.lastTime = now;
 
                 this.computeProgram.Bind();
                 const uint imageUnit0 = 0, imageUnit1 = 1;
