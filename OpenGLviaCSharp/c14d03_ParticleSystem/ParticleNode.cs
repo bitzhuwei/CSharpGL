@@ -19,7 +19,7 @@ namespace c14d03_ParticleSystem
 
         private int currentIndex = 0;
 
-        public static ParticleNode Create(int particleCount)
+        public static ParticleNode Create(int particleCount, SphereParam[] sphereParms)
         {
             IShaderProgramProvider updateProvider, renderProvider;
             {
@@ -60,18 +60,22 @@ namespace c14d03_ParticleSystem
 
             var model = new ParticleModel(particleCount);
             var node = new ParticleNode(model, updateBuilder, updateBuilder2, renderBuilder, renderBuilder2);
+            for (int i = 0; i < sphereParms.Length; i++)
+            {
+                node.center[i] = sphereParms[i].center;
+                node.radius[i] = sphereParms[i].radius;
+            }
             node.Initialize();
 
             return node;
         }
         // define spheres for the particles to bounce off 
-        const int spheres = 3;
-        vec3[] center = new vec3[spheres];
-        float[] radius = new float[spheres];
+        vec3[] center = new vec3[3];
+        float[] radius = new float[3];
 
         // physical parameters 
         vec3 gravity = new vec3(0.0f, -9.8f, 0.0f);
-        float bounce = 1.2f; // inelastic: 1.0f, elastic: 2.0f 
+        float bounce = 1f; // inelastic: 1.0f, elastic: 2.0f 
         Random random = new Random();
         private DateTime lastTime;
         private bool firstRendering = true;
@@ -79,12 +83,6 @@ namespace c14d03_ParticleSystem
         private ParticleNode(IBufferSource model, params RenderMethodBuilder[] builders)
             : base(model, builders)
         {
-            center[0] = new vec3(0, 0, 1);
-            radius[0] = 3;
-            center[1] = new vec3(-3, 0, 0);
-            radius[1] = 7;
-            center[2] = new vec3(5, -10, 0);
-            radius[2] = 12;
         }
 
         protected override void DoInitialize()

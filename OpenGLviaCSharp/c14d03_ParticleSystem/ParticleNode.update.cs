@@ -16,7 +16,7 @@ in vec4 inVelocity;
 uniform vec3 center[3];
 uniform float radius[3];
 uniform vec3 gravity;
-uniform float deltaTime;
+uniform float deltaTime = 0.5f;
 uniform float bounce;
 uniform int seed;
 
@@ -24,9 +24,9 @@ out vec3 outPosition;
 out vec4 outVelocity;
 
 float hash(int x) {
-   x = x * 1235167 + gl_VertexID * 948737 + seed * 9284365;
-   x = (x >> 13) ^ x;
-   return ((x * (x * x * 60493 + 19990303) + 1376312589) & 0x7fffffff) / float(0x7fffffff - 1);
+    x = x * 1235167 + gl_VertexID * 948737 + seed * 9284365;
+    x = (x >> 13) ^ x;
+    return ((x * (x * x * 60493 + 19990303) + 1376312589) & 0x7fffffff) /  float(0x7fffffff - 1);
 }
 
 float rand(float seed){
@@ -34,22 +34,33 @@ float rand(float seed){
 }
 
 void main() {
-   outVelocity = inVelocity;
-   for(int j = 0;j < 3; ++j) {
-       vec3 diff = inPosition - center[j];
-       float dist = length(diff);
-       float vdot = dot(diff, inVelocity.xyz);
-       if(dist < radius[j] && vdot < 0.0)
-           outVelocity.xyz -= bounce * diff * vdot / (dist * dist);
-   }
-   outVelocity.xyz += deltaTime * gravity;
-   outPosition = inPosition + deltaTime * outVelocity.xyz;
-   if(outPosition.y < -5.0)
-   {
-       outVelocity.xyz = vec3(0, hash(gl_VertexID), 0);
-       outPosition = 0.5 - vec3(hash(3 * gl_VertexID + 0), hash(3 * gl_VertexID + 1), hash(3 * gl_VertexID + 2));
-       outPosition = vec3(0, 5, 0) + 5.0 * outPosition;
-   }
+    outVelocity = inVelocity;
+
+    bool collision = false;
+	for(int j = 0;j < 1; ++j) {
+        vec3 diff = inPosition - center[j];
+		float dist = length(diff);
+		float vdot = dot(diff, inVelocity.xyz);
+		if(dist < radius[j] && vdot < 0.0) {
+		    outVelocity.xyz -= bounce * diff * vdot / (dist * dist);
+			outPosition = normalize(diff) * (0.2 + radius[j]) + center[j];
+			collision = true;
+		}
+	}
+	if (!collision) {
+	    outVelocity.xyz += deltaTime * gravity;
+		outPosition = inPosition + deltaTime * outVelocity.xyz;
+	}
+	
+    outVelocity.w = inVelocity.w - 1 * deltaTime;
+
+    if (outVelocity.w < 0)
+	{
+        outVelocity.w = 2;
+		outVelocity.xyz = vec3(0, hash(gl_VertexID), 0);
+		outPosition = 0.5 - vec3(hash(3 * gl_VertexID + 0), hash(3 * gl_VertexID + 1), hash(3 * gl_VertexID + 2));
+		outPosition = vec3(0, 5, 0) + 5.0 * outPosition;
+	}
 }
 ";
     }

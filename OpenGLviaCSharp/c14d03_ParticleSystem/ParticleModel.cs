@@ -45,7 +45,7 @@ namespace c14d03_ParticleSystem
                         (float)(random.NextDouble() - 0.5),
                         (float)(random.NextDouble() - 0.5),
                         (float)(random.NextDouble() - 0.5),
-                        (float)(random.NextDouble()));
+                        (float)(random.NextDouble() * 2));
                 }
                 this.velocitys = velocitys;
             }
