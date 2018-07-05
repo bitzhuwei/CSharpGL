@@ -8,10 +8,10 @@ namespace c14d03_ParticleSystem
 {
     partial class ParticleNode : ModernNode, IRenderable
     {
-        private const string inPosition = "inposition";
-        private const string inVelocity = "invelocity";
-        private const string outPosition = "outposition";
-        private const string outVelocity = "outvelocity";
+        private const string inPosition = "inPosition";
+        private const string inVelocity = "inVelocity";
+        private const string outPosition = "outPosition";
+        private const string outVelocity = "outVelocity";
 
         private const string vposition = "vposition";
 
@@ -70,8 +70,8 @@ namespace c14d03_ParticleSystem
         float[] radius = new float[spheres];
 
         // physical parameters 
-        float dt = 4.0f / 60.0f;
-        vec3 g = new vec3(0.0f, -9.81f, 0.0f);
+        float deltaTime = 4.0f / 60.0f;
+        vec3 gravity = new vec3(0.0f, -9.8f, 0.0f);
         float bounce = 1.2f; // inelastic: 1.0f, elastic: 2.0f 
         Random random = new Random();
 
@@ -133,8 +133,8 @@ namespace c14d03_ParticleSystem
                 // set the uniforms 
                 program.SetUniform("center", center);
                 program.SetUniform("radius", radius);
-                program.SetUniform("g", g);
-                program.SetUniform("dt", dt);
+                program.SetUniform("gravity", gravity);
+                program.SetUniform("deltaTime", deltaTime);
                 program.SetUniform("bounce", bounce);
                 program.SetUniform("seed", random.Next());
                 method.Render(tf); // update buffers and record output to tf's binding.
@@ -150,8 +150,8 @@ namespace c14d03_ParticleSystem
                 mat4 view = camera.GetViewMatrix();
                 mat4 model = this.GetModelMatrix();
 
-                program.SetUniform("Projection", projection);
-                program.SetUniform("View", view * model);
+                program.SetUniform("projectionMat", projection);
+                program.SetUniform("viewMat", view * model);
                 //unit.Render(); // this method requires specified vertes count.
                 tf.Draw(method); // render updated buffers without specifying vertex count.
             }

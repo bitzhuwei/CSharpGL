@@ -10,18 +10,18 @@ namespace c14d03_ParticleSystem
     {
         private const string updateVert =
          @"#version 330
-in vec3 inposition;
-in vec3 invelocity;
+in vec3 inPosition;
+in vec3 inVelocity;
 
 uniform vec3 center[3];
 uniform float radius[3];
-uniform vec3 g;
-uniform float dt;
+uniform vec3 gravity;
+uniform float deltaTime;
 uniform float bounce;
 uniform int seed;
 
-out vec3 outposition;
-out vec3 outvelocity;
+out vec3 outPosition;
+out vec3 outVelocity;
 
 float hash(int x) {
    x = x * 1235167 + gl_VertexID * 948737 + seed * 9284365;
@@ -29,22 +29,26 @@ float hash(int x) {
    return ((x * (x * x * 60493 + 19990303) + 1376312589) & 0x7fffffff) / float(0x7fffffff - 1);
 }
 
+float rand(float seed){
+    return fract(sin(seed * 12.9898)) * 43758.5453;
+}
+
 void main() {
-   outvelocity = invelocity;
+   outVelocity = inVelocity;
    for(int j = 0;j < 3; ++j) {
-       vec3 diff = inposition - center[j];
+       vec3 diff = inPosition - center[j];
        float dist = length(diff);
-       float vdot = dot(diff, invelocity);
+       float vdot = dot(diff, inVelocity);
        if(dist < radius[j] && vdot < 0.0)
-           outvelocity -= bounce * diff * vdot / (dist * dist);
+           outVelocity -= bounce * diff * vdot / (dist * dist);
    }
-   outvelocity += dt * g;
-   outposition = inposition + dt * outvelocity;
-   if(outposition.y < -5.0)
+   outVelocity += deltaTime * gravity;
+   outPosition = inPosition + deltaTime * outVelocity;
+   if(outPosition.y < -5.0)
    {
-       outvelocity = vec3(0, 0, 0);
-       outposition = 0.5 - vec3(hash(3 * gl_VertexID + 0), hash(3 * gl_VertexID + 1), hash(3 * gl_VertexID + 2));
-       outposition = vec3(0, 5, 0) + 5.0 * outposition;
+       outVelocity = vec3(0, hash(gl_VertexID), 0);
+       outPosition = 0.5 - vec3(hash(3 * gl_VertexID + 0), hash(3 * gl_VertexID + 1), hash(3 * gl_VertexID + 2));
+       outPosition = vec3(0, 5, 0) + 5.0 * outPosition;
    }
 }
 ";
