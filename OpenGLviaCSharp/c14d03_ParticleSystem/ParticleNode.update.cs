@@ -11,7 +11,7 @@ namespace c14d03_ParticleSystem
         private const string updateVert =
          @"#version 330
 in vec3 inPosition;
-in vec3 inVelocity;
+in vec4 inVelocity;
 
 uniform vec3 center[3];
 uniform float radius[3];
@@ -21,7 +21,7 @@ uniform float bounce;
 uniform int seed;
 
 out vec3 outPosition;
-out vec3 outVelocity;
+out vec4 outVelocity;
 
 float hash(int x) {
    x = x * 1235167 + gl_VertexID * 948737 + seed * 9284365;
@@ -38,15 +38,15 @@ void main() {
    for(int j = 0;j < 3; ++j) {
        vec3 diff = inPosition - center[j];
        float dist = length(diff);
-       float vdot = dot(diff, inVelocity);
+       float vdot = dot(diff, inVelocity.xyz);
        if(dist < radius[j] && vdot < 0.0)
-           outVelocity -= bounce * diff * vdot / (dist * dist);
+           outVelocity.xyz -= bounce * diff * vdot / (dist * dist);
    }
-   outVelocity += deltaTime * gravity;
-   outPosition = inPosition + deltaTime * outVelocity;
+   outVelocity.xyz += deltaTime * gravity;
+   outPosition = inPosition + deltaTime * outVelocity.xyz;
    if(outPosition.y < -5.0)
    {
-       outVelocity = vec3(0, hash(gl_VertexID), 0);
+       outVelocity.xyz = vec3(0, hash(gl_VertexID), 0);
        outPosition = 0.5 - vec3(hash(3 * gl_VertexID + 0), hash(3 * gl_VertexID + 1), hash(3 * gl_VertexID + 2));
        outPosition = vec3(0, 5, 0) + 5.0 * outPosition;
    }

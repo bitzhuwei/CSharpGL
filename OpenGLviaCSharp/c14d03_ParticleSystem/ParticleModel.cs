@@ -20,7 +20,7 @@ namespace c14d03_ParticleSystem
         private IDrawCommand drawCmd;
 
         private readonly vec3[] positions;
-        private readonly vec3[] velocitys;
+        private readonly vec4[] velocitys;
 
         private static Random random = new Random();
 
@@ -38,7 +38,16 @@ namespace c14d03_ParticleSystem
                 this.positions = positions;
             }
             {
-                this.velocitys = new vec3[particleCount];
+                var velocitys = new vec4[particleCount];
+                for (int i = 0; i < particleCount; i++)
+                {
+                    velocitys[i] = new vec4(
+                        (float)(random.NextDouble() - 0.5),
+                        (float)(random.NextDouble() - 0.5),
+                        (float)(random.NextDouble() - 0.5),
+                        (float)(random.NextDouble()));
+                }
+                this.velocitys = velocitys;
             }
         }
 
@@ -68,7 +77,7 @@ namespace c14d03_ParticleSystem
             {
                 if (this.velocityBuffer == null)
                 {
-                    this.velocityBuffer = velocitys.GenVertexBuffer(VBOConfig.Vec3, BufferUsage.DynamicCopy);
+                    this.velocityBuffer = velocitys.GenVertexBuffer(VBOConfig.Vec4, BufferUsage.DynamicCopy);
                 }
 
                 yield return this.velocityBuffer;
@@ -77,7 +86,7 @@ namespace c14d03_ParticleSystem
             {
                 if (this.velocityBuffer2 == null)
                 {
-                    this.velocityBuffer2 = velocitys.GenVertexBuffer(VBOConfig.Vec3, BufferUsage.DynamicCopy);
+                    this.velocityBuffer2 = velocitys.GenVertexBuffer(VBOConfig.Vec4, BufferUsage.DynamicCopy);
                 }
 
                 yield return this.velocityBuffer2;
