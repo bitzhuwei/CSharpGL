@@ -15,70 +15,112 @@ uniform vec4 attractors[64]; // xyz = position, w = mass
 // 128 particles for each part.
 layout (local_size_x = 128) in;
 // velocities of partiles.
-layout (rgba32f, binding = 0) uniform imageBuffer velocity_buffer;
+layout (rgba32f, binding = 0) uniform imageBuffer positionBuffer;
 // masses of partiles.
-layout (rgba32f, binding = 1) uniform imageBuffer position_buffer;
+layout (rgba32f, binding = 1) uniform imageBuffer velocityBuffer;
 // time interval.
-uniform float dt; // in seconds.
+uniform vec3 gravity = vec3(0, -9.81, 0);
+uniform float deltaTime; // in seconds.
 uniform float dieSpeed = 0.02;
 
+
+// return value between [-1, 1].
+float rand(float seed){
+ return fract(sin(dot(vec2(seed, seed * seed), vec2(345.0324, 51.8234))) * 9846.29384) - 0.5;
+}
+
 void main(void)
 {
+    int id = int(gl_GlobalInvocationID.x);
     // read position and velocity of current particle.
-    vec4 pos = imageLoad(position_buffer, int(gl_GlobalInvocationID.x));
-    vec4 vel = imageLoad(velocity_buffer, int(gl_GlobalInvocationID.x));
+    vec4 pos = imageLoad(positionBuffer, id);
+    vec4 vel = imageLoad(velocityBuffer, id);
 
-    int i;
-    // update position and life.
-    pos.xyz += vel.xyz * dt;
-    pos.w -= dieSpeed * dt;
-    // for each attractorss.
-    for (i = 0; i < 64; i++)
-    {
-        // update velocity according to force.
-        vec3 dist = (attractors[i].xyz - pos.xyz);
-        vel.xyz += dt * dt * attractors[i].w * normalize(dist) / (dot(dist, dist) + 0.1);
+    pos.xyz += deltaTime * vel.xyz;
+    pos.w -= deltaTime;
+    vel.xyz += gravity * deltaTime;
+
+    if (pos.w < 0)
+	{
+        pos.w = 6;
+		vel.xyz = vec3(rand(id * 3 + deltaTime + 0) * 8, rand(id * 3 + deltaTime + 1) * 8, rand(id * 3 + deltaTime + 2) * 8);
+		pos.xyz = vec3(0, 5, 0) - vec3(rand(id * 3 + 0) * 4, rand(id * 3 + 1) * 2, rand(id * 3 + 2) * 4);
+	}
+
+    if (pos.y < -3) {
+        vel.xyz = reflect(vel.xyz, vec3(0, 1, 0)) * 0.8;
+        pos.y = -3;
     }
-    // reset particle if it's dead.
-    if (pos.w <= 0.0)
-    {
-        pos.xyz = -pos.xyz * 0.01;
-        vel.xyz *= 0.01;
-        pos.w += 1.0f;
-        pos = vec4(0, 0, 0, 1);
-    }
+
     // write positon and velocity to buffer.
-    imageStore(position_buffer, int(gl_GlobalInvocationID.x), pos);
-    imageStore(velocity_buffer, int(gl_GlobalInvocationID.x), vel);
+    imageStore(positionBuffer, id, pos);
+    imageStore(velocityBuffer, id, vel);
 }
 ";
 
-        private const string vertexCode = @"#version 430 core
+        private const string renderVert = @"
+#version 330
 
-in vec4 position;
+in vec4 inPosition;
 
-uniform mat4 mvp;
+out float life;
 
-out float intensity;
-
-void main(void)
-{
-    intensity = position.w;// life cycle (0 - 1).
-    gl_Position = mvp * vec4(position.xyz, 1.0);
+void main() {
+    gl_Position = vec4(inPosition.xyz, 1.0);
+    life = inPosition.w;
 }
 ";
+        private const string renderGeom =
+         @"#version 330
+layout (points) in;
+layout (triangle_strip, max_vertices = 4) out;
 
-        private const string fragmentCode = @"#version 430 core
+uniform mat4 projectionMat;
+uniform mat4 viewMat;
 
-out vec4 color;
+in float life[];
 
-in float intensity;
+out vec2 texCoord;
+out float passLife;
 
-void main(void)
-{
-    color = vec4(0.0f, 0.2f, 1.0f, 1.0f) * intensity + vec4(0.2f, 0.05f, 0.0f, 1.0f) * (1.0f - intensity);
+void main() {
+    passLife = life[0];
+
+    vec4 pos = viewMat * gl_in[0].gl_Position;
+    texCoord = vec2(-1, -1);
+    gl_Position = projectionMat * (pos + 0.2 * vec4(texCoord, 0, 0));
+    EmitVertex();
+    texCoord = vec2( 1, -1);
+    gl_Position = projectionMat * (pos + 0.2 * vec4(texCoord, 0, 0));
+    EmitVertex();
+    texCoord = vec2(-1,  1);
+    gl_Position = projectionMat * (pos + 0.2 * vec4(texCoord, 0, 0));
+    EmitVertex();
+    texCoord = vec2( 1,  1);
+    gl_Position = projectionMat * (pos + 0.2 * vec4(texCoord, 0, 0));
+    EmitVertex();
+
+    EndPrimitive();
 }
 ";
+        private const string renderFrag =
+         @"#version 330
 
+in vec2 texCoord;
+in float passLife;
+
+out vec4 outColor;
+
+uniform vec4 color1 = vec4(0.3, 0.7, 0.1, 0.4);
+uniform vec4 color2 = vec4(0.8, 0.2, 0.9, 0.1);
+
+void main() {
+    float distance = dot(texCoord, texCoord);
+    if (distance > 0.5) discard;
+    vec4 color = color1 * distance + color2 * (1.0 - distance);
+    color.a *= (passLife / 6);
+    outColor = color;
+} 
+";
     }
 }

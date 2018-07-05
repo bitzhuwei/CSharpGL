@@ -8,7 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using CSharpGL;
 
-namespace c15d00_ParticleSystem
+namespace c15d01_ParticleSystem2
 {
     public partial class Form1 : Form
     {
@@ -35,52 +35,20 @@ namespace c15d00_ParticleSystem
             this.scene = new Scene(camera);
             this.scene.ClearColor = Color.Black.ToVec4();
             {
-                var groupNode = new GroupNode();//, attractorsNode);//, cubeNode);
-                {
-                    var node = ParticlesNode.Create(6000 / 128);
-                    groupNode.Children.Add(node);
-                }
-                {
-                    string folder = System.Windows.Forms.Application.StartupPath;
-                    string filename = System.IO.Path.Combine(folder + @"\..\..\..\..\Infrastructure\CSharpGL.Models", "floor.obj_");
-                    var parser = new ObjVNFParser(true);
-                    ObjVNFResult result = parser.Parse(filename);
-                    if (result.Error != null)
-                    {
-                        MessageBox.Show(result.Error.ToString());
-                    }
-                    else
-                    {
-                        ObjVNFMesh mesh = result.Mesh;
-                        var model = new ObjVNF(mesh);
-                        var node = NoShadowNode.Create(model, ObjVNF.strPosition, ObjVNF.strNormal, model.GetSize());
-                        node.WorldPosition = new vec3(0, -3, 0);
-                        node.Color = new vec3(0, 1, 0);
-                        node.Name = filename;
-                        groupNode.Children.Add(node);
-                    }
-                }
-
+                var particlesNode = ParticlesNode.Create(10000);
                 //var attractorsNode = AttractorsNode.Create(particlesNode);
                 //var cubeNode = CubeNode.Create();
                 //cubeNode.RenderUnit.Methods[0].SwitchList.Add(new PolygonModeSwitch(PolygonMode.Line));
+                var groupNode = new GroupNode(particlesNode);//, attractorsNode);//, cubeNode);
                 this.scene.RootNode = groupNode;
             }
-            {
-                var light = new PointLight(new vec3(1, 1, 1) * 30);
-                this.scene.Lights.Add(light);
-            }
 
-            {
-                var list = new ActionList();
-                var transformAction = new TransformAction(scene.RootNode);
-                list.Add(transformAction);
-                var renderAction = new RenderAction(scene);
-                list.Add(renderAction);
-                var blinnPhongAction = new BlinnPhongAction(scene);
-                list.Add(blinnPhongAction);
-                this.actionList = list;
-            }
+            var list = new ActionList();
+            var transformAction = new TransformAction(scene.RootNode);
+            list.Add(transformAction);
+            var renderAction = new RenderAction(scene);
+            list.Add(renderAction);
+            this.actionList = list;
 
             var manipulater = new FirstPerspectiveManipulater();
             manipulater.Bind(camera, this.winGLCanvas1);

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using CSharpGL;
 
-namespace c15d00_ParticleSystem
+namespace c15d01_ParticleSystem2
 {
     class ParticlesModel : IBufferSource
     {
@@ -35,10 +35,11 @@ namespace c15d00_ParticleSystem
                 for (int i = 0; i < count; i++)
                 {
                     velocities[i] = new vec4(
-                        (float)(random.NextDouble() - 0.5),
-                        (float)(random.NextDouble() - 0.5),
-                        (float)(random.NextDouble() - 0.5),
-                        (float)(random.NextDouble() * 6));
+                        (float)(random.NextDouble() - 0.5) * 0.2f,
+                        (float)(random.NextDouble() - 0.5) * 0.2f,
+                        (float)(random.NextDouble() - 0.5) * 0.2f,
+                        0);
+
                 }
                 this.velocities = velocities;
             }

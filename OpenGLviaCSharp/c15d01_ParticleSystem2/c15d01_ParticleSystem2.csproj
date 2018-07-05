@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{387C972D-9E6D-44C9-966A-F9BD9B0AF31F}</ProjectGuid>
+    <ProjectGuid>{B4A782D8-EDAA-441B-92D4-85453548CDBA}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>c15d00_ParticleSystem</RootNamespace>
-    <AssemblyName>c15d00_ParticleSystem</AssemblyName>
+    <RootNamespace>c15d01_ParticleSystem2</RootNamespace>
+    <AssemblyName>c15d01_ParticleSystem2</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

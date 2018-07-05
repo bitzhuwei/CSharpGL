@@ -13,7 +13,7 @@ namespace c14d03_ParticleSystem
 in vec3 inPosition;
 in vec4 inVelocity;
 
-uniform vec3 gravity;
+uniform vec3 gravity = vec3(0, -9.81, 0);
 uniform float deltaTime; // in seconds.
 
 out vec3 outPosition;

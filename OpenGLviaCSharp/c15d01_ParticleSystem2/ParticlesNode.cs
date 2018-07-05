@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using CSharpGL;
 
-namespace c15d00_ParticleSystem
+namespace c15d01_ParticleSystem2
 {
     partial class ParticlesNode : ModernNode, IRenderable
     {
@@ -14,16 +14,12 @@ namespace c15d00_ParticleSystem
         public static ParticlesNode Create(int groupCount)
         {
             var model = new ParticlesModel(groupCount * 128);
-            var vs = new VertexShader(renderVert);
-            var gs = new GeometryShader(renderGeom);
-            var fs = new FragmentShader(renderFrag);
-            var array = new ShaderArray(vs, gs, fs);
+            var vs = new VertexShader(vertexCode);
+            var fs = new FragmentShader(fragmentCode);
+            var array = new ShaderArray(vs, fs);
             var map = new AttributeMap();
-            map.Add("inPosition", ParticlesModel.strPosition);
-            var builder = new RenderMethodBuilder(array, map,
-                new BlendSwitch(BlendEquationMode.Add, BlendSrcFactor.One, BlendDestFactor.One)
-
-                );
+            map.Add("position", ParticlesModel.strPosition);
+            var builder = new RenderMethodBuilder(array, map, new BlendSwitch(BlendEquationMode.Add, BlendSrcFactor.One, BlendDestFactor.One));
             var node = new ParticlesNode(model, builder);
             node.groupCount = groupCount;
             node.Initialize();
@@ -34,6 +30,7 @@ namespace c15d00_ParticleSystem
         private ParticlesNode(IBufferSource model, params RenderMethodBuilder[] builders) : base(model, builders) { }
 
         const int attractorCount = 64;
+        //private attractor_block attractors;
         private vec4[] attractors = new vec4[attractorCount];
 
         public vec4[] Attractors
@@ -63,6 +60,16 @@ namespace c15d00_ParticleSystem
             }
             {
                 var random = new Random();
+                //var attractors = new vec4[attractorCount];
+                //for (int i = 0; i < attractorCount; i++)
+                //{
+                //    //attractors[i] = new vec4((float)random.NextDouble(), (float)random.NextDouble(), (float)random.NextDouble(), (float)random.NextDouble());
+                //    attractors[i] = new vec4(1, 1, 1, 1);
+                //}
+                //UniformBuffer buffer = attractors.GenUniformBuffer(BufferUsage.DynamicCopy);
+                //this.attactorBuffer = buffer;
+                //var attractors = new attractor_block();
+                //attractors.attractor = new vec4[attractorCount];
                 for (int i = 0; i < attractorCount; i++)
                 {
                     this.attractors[i] = new vec4((float)random.NextDouble(), (float)random.NextDouble(), (float)random.NextDouble(), (float)random.NextDouble());
@@ -73,9 +80,8 @@ namespace c15d00_ParticleSystem
         #region IRenderable 成员
 
         private DateTime lastTime = DateTime.Now;
-        private bool firstRendering = true;
 
-        private float speed = 1f;
+        private float speed = 10f;
 
         public float Speed
         {
@@ -110,12 +116,6 @@ namespace c15d00_ParticleSystem
             }
             {
                 DateTime now = DateTime.Now;
-                if (this.firstRendering)
-                {
-                    this.lastTime = now;
-                    this.firstRendering = false;
-                }
-
                 TimeSpan span = now.Subtract(this.lastTime);
                 this.lastTime = now;
                 float deltaTime = (float)(span.TotalSeconds * this.speed);
@@ -141,10 +141,7 @@ namespace c15d00_ParticleSystem
                 mat4 view = camera.GetViewMatrix();
                 mat4 model = this.GetModelMatrix();
                 var method = this.RenderUnit.Methods[0];
-                GL.Instance.Enable(GL.GL_VERTEX_PROGRAM_POINT_SIZE);
-                ShaderProgram program = method.Program;
-                program.SetUniform("projectionMat", projection);
-                program.SetUniform("viewMat", view * model);
+                method.Program.SetUniform("mvp", projection * view * model);
                 method.Render();
             }
         }
@@ -168,4 +165,18 @@ namespace c15d00_ParticleSystem
         }
 
     }
+
+    //struct attractor_block : IEquatable<attractor_block>
+    //{
+    //    public vec4[] attractor;
+
+    //    #region IEquatable<attractor_block> 成员
+
+    //    public bool Equals(attractor_block other)
+    //    {
+    //        return false;
+    //    }
+
+    //    #endregion
+    //}
 }

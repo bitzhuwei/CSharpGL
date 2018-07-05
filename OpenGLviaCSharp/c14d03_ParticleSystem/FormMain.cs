@@ -76,7 +76,6 @@ namespace c14d03_ParticleSystem
                 var renderAction = new RenderAction(scene);
                 list.Add(renderAction);
                 var blinnPhongAction = new BlinnPhongAction(scene);
-                //scene.AmbientColor = new vec3(1, 1, 1) 
                 list.Add(blinnPhongAction);
                 this.actionList = list;
             }
