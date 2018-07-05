@@ -23,16 +23,11 @@ uniform int seed;
 out vec3 outPosition;
 out vec4 outVelocity;
 
-float hash(int x) {
-    x = x * 1235167 + gl_VertexID * 948737 + seed * 9284365;
-    x = (x >> 13) ^ x;
-    return ((x * (x * x * 60493 + 19990303) + 1376312589) & 0x7fffffff) /  float(0x7fffffff - 1);
-}
-
+// return value between [-1, 1].
 float rand(float seed){
-    return fract(sin(seed * 12.9898)) * 43758.5453;
+ return fract(sin(dot(vec2(seed, seed * seed), vec2(12.9898,78.233))) * 43758.5453) - 0.5;
 }
-
+ 
 void main() {
     outVelocity = inVelocity;
 
@@ -57,9 +52,8 @@ void main() {
     if (outVelocity.w < 0)
 	{
         outVelocity.w = 2;
-		outVelocity.xyz = vec3(0, hash(gl_VertexID), 0);
-		outPosition = 0.5 - vec3(hash(3 * gl_VertexID + 0), hash(3 * gl_VertexID + 1), hash(3 * gl_VertexID + 2));
-		outPosition = vec3(0, 5, 0) + 5.0 * outPosition;
+		outVelocity.xyz = vec3(0, rand(gl_VertexID), 0);
+		outPosition = vec3(0, 5, 0) - 2 * vec3(rand(gl_VertexID * 3 + 0), rand(gl_VertexID * 3 + 1), rand(gl_VertexID * 3 + 2));
 	}
 }
 ";
