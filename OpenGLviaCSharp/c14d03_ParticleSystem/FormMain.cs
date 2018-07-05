@@ -35,6 +35,10 @@ namespace c14d03_ParticleSystem
             this.scene = new Scene(camera);
             this.scene.ClearColor = Color.Black.ToVec4();
             {
+                var light = new PointLight(new vec3(1, 1, 1) * 30);
+                this.scene.Lights.Add(light);
+            }
+            {
                 var group = new GroupNode();
 
                 var spheres = new SphereParam[] 
@@ -45,16 +49,31 @@ namespace c14d03_ParticleSystem
                 };
 
                 {
-                    var node = ParticleNode.Create(10000, spheres);
+                    var node = ParticleNode.Create(6000, spheres);
                     group.Children.Add(node);
                 }
 
                 {
-                    var node = GroundNode.Create();
-                    node.RenderUnit.Methods[0].SwitchList.Add(new PolygonModeSwitch(PolygonMode.Line));
-                    //ground.EnableRendering = ThreeFlags.None;
-                    //group.Children.Add(node);
+                    string folder = System.Windows.Forms.Application.StartupPath;
+                    string filename = System.IO.Path.Combine(folder + @"\..\..\..\..\Infrastructure\CSharpGL.Models", "floor.obj_");
+                    var parser = new ObjVNFParser(true);
+                    ObjVNFResult result = parser.Parse(filename);
+                    if (result.Error != null)
+                    {
+                        MessageBox.Show(result.Error.ToString());
+                    }
+                    else
+                    {
+                        ObjVNFMesh mesh = result.Mesh;
+                        var model = new ObjVNF(mesh);
+                        var node = NoShadowNode.Create(model, ObjVNF.strPosition, ObjVNF.strNormal, model.GetSize());
+                        node.WorldPosition = new vec3(0, -3, 0);
+                        node.Color = new vec3(0, 1, 0);
+                        node.Name = filename;
+                        group.Children.Add(node);
+                    }
                 }
+
                 foreach (var item in spheres)
                 {
                     var model = new HalfSphere(item.radius, 40, 40);
@@ -68,7 +87,7 @@ namespace c14d03_ParticleSystem
                     list1.Add(polygonModeSwitch);
                     var cmd = node.RenderUnit.Methods[0].VertexArrayObjects[0].DrawCommand as DrawElementsCmd;
                     cmd.VertexCount = cmd.VertexCount / 2; // render only half a sphere.
-                    group.Children.Add(node);
+                    //group.Children.Add(node);
                 }
                 this.scene.RootNode = group;
             }
@@ -80,7 +99,7 @@ namespace c14d03_ParticleSystem
                 var renderAction = new RenderAction(scene);
                 list.Add(renderAction);
                 var blinnPhongAction = new BlinnPhongAction(scene);
-                scene.AmbientColor = new vec3(1, 1, 1);
+                //scene.AmbientColor = new vec3(1, 1, 1) 
                 list.Add(blinnPhongAction);
                 this.actionList = list;
             }

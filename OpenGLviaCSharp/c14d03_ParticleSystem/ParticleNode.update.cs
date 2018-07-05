@@ -32,7 +32,7 @@ void main() {
     outVelocity = inVelocity;
 
     bool collision = false;
-	for(int j = 0;j < 1; ++j) {
+	for(int j = 0;j < 0; ++j) {
         vec3 diff = inPosition - center[j];
 		float dist = length(diff);
 		float vdot = dot(diff, inVelocity.xyz);
@@ -51,11 +51,16 @@ void main() {
 
     if (outVelocity.w < 0)
 	{
-        outVelocity.w = 2;
-		outVelocity.xyz = vec3(0, rand(gl_VertexID), 0);
-		outPosition = vec3(0, 5, 0) - 2 * vec3(rand(gl_VertexID * 3 + 0), rand(gl_VertexID * 3 + 1), rand(gl_VertexID * 3 + 2));
+        outVelocity.w = 6;
+		outVelocity.xyz = vec3(rand(gl_VertexID * 3 + deltaTime + 0) * 8, rand(gl_VertexID * 3 + deltaTime + 1), rand(gl_VertexID * 3 + deltaTime + 2) * 8);
+		outPosition = vec3(0, 5, 0) - vec3(rand(gl_VertexID * 3 + 0) * 4, rand(gl_VertexID * 3 + 1) * 2, rand(gl_VertexID * 3 + 2) * 4);
 	}
+
+    if (outPosition.y < -3) {
+        outVelocity.xyz = reflect(outVelocity.xyz, vec3(0, 1, 0)) * 0.8;
+    }
 }
 ";
+
     }
 }

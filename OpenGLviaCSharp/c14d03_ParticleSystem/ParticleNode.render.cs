@@ -69,7 +69,7 @@ void main() {
     float distance = dot(texCoord, texCoord);
     if (distance > 0.5) discard;
     vec4 color = color1 * distance + color2 * (1.0 - distance);
-    color.a *= (passLife / 2);
+    color.a *= (passLife / 6);
     outColor = color;
 } 
 ";
