@@ -13,41 +13,21 @@ namespace c14d03_ParticleSystem
 in vec3 inPosition;
 in vec4 inVelocity;
 
-uniform vec3 center[3];
-uniform float radius[3];
 uniform vec3 gravity;
-uniform float deltaTime = 0.5f;
-uniform float bounce;
-uniform int seed;
+uniform float deltaTime; // in seconds.
 
 out vec3 outPosition;
 out vec4 outVelocity;
 
 // return value between [-1, 1].
 float rand(float seed){
- return fract(sin(dot(vec2(seed, seed * seed), vec2(345.0324, 51.0324))) * 9846.29384) - 0.5;
+ return fract(sin(dot(vec2(seed, seed * seed), vec2(345.0324, 51.8234))) * 9846.29384) - 0.5;
 }
  
 void main() {
-    outVelocity = inVelocity;
-
-    bool collision = false;
-	for(int j = 0;j < 0; ++j) {
-        vec3 diff = inPosition - center[j];
-		float dist = length(diff);
-		float vdot = dot(diff, inVelocity.xyz);
-		if(dist < radius[j] && vdot < 0.0) {
-		    outVelocity.xyz -= bounce * diff * vdot / (dist * dist);
-			outPosition = normalize(diff) * (0.2 + radius[j]) + center[j];
-			collision = true;
-		}
-	}
-	if (!collision) {
-	    outVelocity.xyz += deltaTime * gravity;
-		outPosition = inPosition + deltaTime * outVelocity.xyz;
-	}
-	
-    outVelocity.w = inVelocity.w - 1 * deltaTime;
+	outPosition = inPosition + deltaTime * inVelocity.xyz;
+	outVelocity.xyz = inVelocity.xyz + deltaTime * gravity;		
+	outVelocity.w = inVelocity.w - 1 * deltaTime;
 
     if (outVelocity.w < 0)
 	{
@@ -58,6 +38,7 @@ void main() {
 
     if (outPosition.y < -3) {
         outVelocity.xyz = reflect(outVelocity.xyz, vec3(0, 1, 0)) * 0.8;
+        outPosition.y = -3;
     }
 }
 ";
