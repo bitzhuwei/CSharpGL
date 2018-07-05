@@ -70,10 +70,11 @@ namespace c14d03_ParticleSystem
         float[] radius = new float[spheres];
 
         // physical parameters 
-        float deltaTime = 4.0f / 60.0f;
         vec3 gravity = new vec3(0.0f, -9.8f, 0.0f);
         float bounce = 1.2f; // inelastic: 1.0f, elastic: 2.0f 
         Random random = new Random();
+        private DateTime lastTime;
+        private bool firstRendering = true;
 
         private ParticleNode(IBufferSource model, params RenderMethodBuilder[] builders)
             : base(model, builders)
@@ -111,6 +112,8 @@ namespace c14d03_ParticleSystem
         #region IRenderable 成员
 
         private ThreeFlags enableRendering = ThreeFlags.BeforeChildren | ThreeFlags.Children | ThreeFlags.AfterChildren;
+
+
         /// <summary>
         /// Render before/after children? Render children? 
         /// RenderAction cares about this property. Other actions, maybe, maybe not, your choice.
@@ -126,6 +129,16 @@ namespace c14d03_ParticleSystem
             TransformFeedbackObject tf = transformFeedbackObjects[(currentIndex + 1) % 2];
             // update
             {
+                if (this.firstRendering)
+                {
+                    this.lastTime = DateTime.Now;
+                    this.firstRendering = false;
+                }
+
+                var now = DateTime.Now;
+                float seconds = (float)now.Subtract(this.lastTime).TotalSeconds;
+                this.lastTime = now;
+
                 GL.Instance.Enable(GL.GL_RASTERIZER_DISCARD);
 
                 RenderMethod method = this.RenderUnit.Methods[currentIndex];
@@ -134,7 +147,7 @@ namespace c14d03_ParticleSystem
                 program.SetUniform("center", center);
                 program.SetUniform("radius", radius);
                 program.SetUniform("gravity", gravity);
-                program.SetUniform("deltaTime", deltaTime);
+                program.SetUniform("deltaTime", seconds);
                 program.SetUniform("bounce", bounce);
                 program.SetUniform("seed", random.Next());
                 method.Render(tf); // update buffers and record output to tf's binding.
