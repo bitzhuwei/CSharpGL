@@ -63,9 +63,11 @@
     <Compile Include="FormProperyGrid.Designer.cs">
       <DependentUpon>FormProperyGrid.cs</DependentUpon>
     </Compile>
+    <Compile Include="HanoiTower\PrismoidModel.cs" />
     <Compile Include="HighlightPick\LegacyQuadNode.cs" />
     <Compile Include="HighlightPick\LegacyPointNode.cs" />
     <Compile Include="HighlightPick\LegacyTriangleNode.cs" />
+    <Compile Include="IObjFormat.cs" />
     <Compile Include="KleinBottle\KleinBottleModel.cs" />
     <Compile Include="KleinBottle\KleinBottleNode.shaders.cs" />
     <Compile Include="KleinBottle\KleinBottleNode.cs" />
