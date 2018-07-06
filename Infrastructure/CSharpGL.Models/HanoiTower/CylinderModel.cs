@@ -18,18 +18,19 @@ namespace CSharpGL
         {
             {
                 var positions = new vec3[1 + sliceCount + sliceCount + 1];
-                positions[0] = new vec3(0, height / 2, 0);
+                int t = 0;
+                positions[t++] = new vec3(0, height / 2, 0);
                 for (int i = 1; i < sliceCount + 1; i++)
                 {
                     double d = 2 * Math.PI * i / (sliceCount);
-                    positions[i] = new vec3((float)Math.Sin(d), height / 2, (float)Math.Cos(d));
+                    positions[t++] = new vec3((float)Math.Sin(d), height / 2, (float)Math.Cos(d));
                 }
                 for (int i = 1; i < sliceCount + 1; i++)
                 {
                     double d = 2 * Math.PI * i / (sliceCount);
-                    positions[i] = new vec3((float)Math.Sin(d), -height / 2, (float)Math.Cos(d));
+                    positions[t++] = new vec3((float)Math.Sin(d), -height / 2, (float)Math.Cos(d));
                 }
-                positions[1 + sliceCount + sliceCount] = new vec3(0, -height / 2, 0);
+                positions[t++] = new vec3(0, -height / 2, 0);
                 BoundingBox box = positions.Move2Center();
                 this.positions = positions;
                 this.modelSize = box.MaxPosition - box.MinPosition;
@@ -41,23 +42,23 @@ namespace CSharpGL
                 {
                     indexes[t++] = 0;
                     indexes[t++] = i + 1;
-                    indexes[t++] = i + 2;
+                    indexes[t++] = (i + 1) % sliceCount + 1;
                 }
                 for (uint i = 0; i < sliceCount; i++)
                 {
-                    indexes[t++] = i + 2;
-                    indexes[t++] = i + 1;
-                    indexes[t++] = sliceCount + i + 2;
+                    indexes[t++] = (i + 1) % sliceCount + 1;
+                    indexes[t++] = (i + 1);
+                    indexes[t++] = sliceCount + (i + 1) % sliceCount + 1;
 
-                    indexes[t++] = i + 1;
-                    indexes[t++] = sliceCount + i + 1;
-                    indexes[t++] = sliceCount + i + 2;
+                    indexes[t++] = (i + 1);
+                    indexes[t++] = sliceCount + (i + 1);
+                    indexes[t++] = sliceCount + (i + 1) % sliceCount + 1;
                 }
                 for (uint i = 0; i < sliceCount; i++)
                 {
-                    indexes[t++] = sliceCount + sliceCount + 0;
-                    indexes[t++] = sliceCount + i + 2;
-                    indexes[t++] = sliceCount + i + 1;
+                    indexes[t++] = sliceCount + sliceCount + 1;
+                    indexes[t++] = sliceCount + (i + 1) % sliceCount + 1;
+                    indexes[t++] = sliceCount + (i + 1);
                 }
                 this.indexes = indexes;
             }
