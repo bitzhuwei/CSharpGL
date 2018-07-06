@@ -115,14 +115,23 @@ namespace CSharpGL
             else if (parts.Length == 2)
             {
                 vertexIndex = uint.Parse(parts[0]);
-                texCoordIndex = uint.Parse(parts[1]);
+                if (parts[1].Trim() != string.Empty)
+                { texCoordIndex = uint.Parse(parts[1]); }
+                else
+                { texCoordIndex = 0; }
                 normalIndex = 0;
             }
             else if (parts.Length == 3)
             {
                 vertexIndex = uint.Parse(parts[0]);
-                texCoordIndex = uint.Parse(parts[1]);
-                normalIndex = uint.Parse(parts[2]);
+                if (parts[1].Trim() != string.Empty)
+                { texCoordIndex = uint.Parse(parts[1]); }
+                else
+                { texCoordIndex = 0; }
+                if (parts[2].Trim() != string.Empty)
+                { normalIndex = uint.Parse(parts[2]); }
+                else
+                { normalIndex = 0; }
             }
             else
             {

@@ -151,7 +151,7 @@ namespace CSharpGL
                 for (int i = 0; i < indexes.Length; i += 3)
                 {
                     stream.WriteLine();
-                    stream.Write(string.Format("f {0} {1} {2}", indexes[i + 0] + 1, indexes[i + 1] + 1, indexes[i + 2] + 1));
+                    stream.Write(string.Format("f {0}//{0} {1}//{1} {2}//{2}", indexes[i + 0] + 1, indexes[i + 1] + 1, indexes[i + 2] + 1));
                 }
             }
         }
