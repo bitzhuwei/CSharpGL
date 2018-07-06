@@ -111,6 +111,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="TrefoilKnotModel\TrefoilKnotModel.cs" />
+    <None Include="vnfannulus.obj_" />
+    <None Include="vnfcylinder.obj_" />
+    <None Include="vnfprismoid.obj_" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\CSharpGL\CSharpGL.csproj">
