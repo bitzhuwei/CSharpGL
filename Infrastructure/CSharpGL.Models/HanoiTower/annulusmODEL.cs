@@ -22,12 +22,13 @@ namespace CSharpGL
                 var y = new vec3(0, 1, 0);
                 for (int i = 0; i < sliceCount; i++)
                 {
-                    double di = Math.PI * i / sliceCount / 180.0;
-                    var center = new vec3((float)Math.Sin(di), 0, (float)Math.Cos(di));
+                    double di = 2 * Math.PI * i / sliceCount;
+                    var center = new vec3(radius * (float)Math.Sin(di), 0, radius * (float)Math.Cos(di));
                     float length = center.length();
+                    center = center.normalize();
                     for (int j = 0; j < secondSliceCount; j++)
                     {
-                        double dj = Math.PI * j / secondSliceCount / 180.0;
+                        double dj = 2 * Math.PI * j / secondSliceCount;
                         positions[t++] = center * (length - thickness * (float)Math.Cos(dj))
                             + y * (thickness * (float)Math.Sin(dj));
                     }

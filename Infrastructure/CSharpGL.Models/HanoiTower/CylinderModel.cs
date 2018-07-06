@@ -21,12 +21,12 @@ namespace CSharpGL
                 positions[0] = new vec3(0, height / 2, 0);
                 for (int i = 1; i < sliceCount + 1; i++)
                 {
-                    double d = Math.PI * i / (sliceCount) / 180.0;
+                    double d = 2 * Math.PI * i / (sliceCount);
                     positions[i] = new vec3((float)Math.Sin(d), height / 2, (float)Math.Cos(d));
                 }
                 for (int i = 1; i < sliceCount + 1; i++)
                 {
-                    double d = Math.PI * i / (sliceCount) / 180.0;
+                    double d = 2 * Math.PI * i / (sliceCount);
                     positions[i] = new vec3((float)Math.Sin(d), -height / 2, (float)Math.Cos(d));
                 }
                 positions[1 + sliceCount + sliceCount] = new vec3(0, -height / 2, 0);
