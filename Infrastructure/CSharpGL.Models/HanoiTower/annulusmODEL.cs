@@ -39,17 +39,30 @@ namespace CSharpGL
             {
                 var indexes = new uint[sliceCount * (secondSliceCount * 3 + secondSliceCount * 3)];
                 uint t = 0;
-                for (uint i = 0; i < sliceCount; i++)
+                for (uint i = 0; i < sliceCount - 1; i++)
                 {
                     for (uint j = 0; j < secondSliceCount; j++)
                     {
                         indexes[t++] = i * secondSliceCount + j;
-                        indexes[t++] = i * secondSliceCount + j + 1;
-                        indexes[t++] = i * secondSliceCount + secondSliceCount + j + 1;
+                        indexes[t++] = i * secondSliceCount + (j + 1) % secondSliceCount;
+                        indexes[t++] = i * secondSliceCount + secondSliceCount + (j + 1) % secondSliceCount;
 
                         indexes[t++] = i * secondSliceCount + j;
-                        indexes[t++] = i * secondSliceCount + secondSliceCount + j + 1;
-                        indexes[t++] = i * secondSliceCount + secondSliceCount + j + 2;
+                        indexes[t++] = i * secondSliceCount + secondSliceCount + (j + 1) % secondSliceCount;
+                        indexes[t++] = i * secondSliceCount + secondSliceCount + (j + 2) % secondSliceCount;
+                    }
+                }
+                {
+                    uint i = sliceCount - 1;
+                    for (uint j = 0; j < secondSliceCount; j++)
+                    {
+                        indexes[t++] = i * secondSliceCount + j;
+                        indexes[t++] = i * secondSliceCount + (j + 1) % secondSliceCount;
+                        indexes[t++] = (j + 1) % secondSliceCount;
+
+                        indexes[t++] = i * secondSliceCount + j;
+                        indexes[t++] = (j + 1) % secondSliceCount;
+                        indexes[t++] = (j + 2) % secondSliceCount;
                     }
                 }
                 this.indexes = indexes;
