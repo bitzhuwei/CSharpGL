@@ -6,7 +6,7 @@ using System.Text;
 namespace CSharpGL
 {
 
-    class CylinderModel : IBufferSource, IObjFormat
+    public class CylinderModel : IBufferSource, IObjFormat
     {
         private vec3 modelSize;
         public vec3 ModelSize()

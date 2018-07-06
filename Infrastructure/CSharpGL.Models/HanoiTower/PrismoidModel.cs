@@ -20,7 +20,7 @@ namespace CSharpGL
     ///    /
     ///   Z
     /// </summary>
-    class PrismoidModel : IBufferSource, IObjFormat
+    public class PrismoidModel : IBufferSource, IObjFormat
     {
         private vec3 modelSize;
         public vec3 ModelSize()

@@ -6,7 +6,7 @@ using System.Text;
 namespace CSharpGL
 {
 
-    class AnnulusModel : IBufferSource, IObjFormat
+    public class AnnulusModel : IBufferSource, IObjFormat
     {
         private vec3 modelSize;
         public vec3 ModelSize()
