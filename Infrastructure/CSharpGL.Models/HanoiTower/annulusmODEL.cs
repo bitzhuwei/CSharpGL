@@ -6,7 +6,7 @@ using System.Text;
 namespace CSharpGL
 {
 
-    class CylinderModel : IBufferSource, IObjFormat
+    class AnnulusModel : IBufferSource, IObjFormat
     {
         private vec3 modelSize;
         public vec3 ModelSize()
@@ -14,58 +14,43 @@ namespace CSharpGL
             return this.modelSize;
         }
 
-        public CylinderModel(float radius, float height, uint sliceCount)
+        public AnnulusModel(float radius, float thickness, uint sliceCount, uint secondSliceCount)
         {
             {
-                var positions = new vec3[1 + sliceCount + sliceCount + 1];
-                positions[0] = new vec3(0, height / 2, 0);
-                for (int i = 1; i < sliceCount + 1; i++)
+                var positions = new vec3[sliceCount * secondSliceCount];
+                int t = 0;
+                var y = new vec3(0, 1, 0);
+                for (int i = 0; i < sliceCount; i++)
                 {
-                    double d = Math.PI * i / (sliceCount) / 180.0;
-                    positions[i] = new vec3(
-                        (float)Math.Sin(d),
-                        height / 2,
-                        (float)Math.Cos(d)
-                        );
+                    double di = Math.PI * i / sliceCount / 180.0;
+                    var center = new vec3((float)Math.Sin(di), 0, (float)Math.Cos(di));
+                    float length = center.length();
+                    for (int j = 0; j < secondSliceCount; j++)
+                    {
+                        double dj = Math.PI * j / secondSliceCount / 180.0;
+                        positions[t++] = center * (length - thickness * (float)Math.Cos(dj))
+                            + y * (thickness * (float)Math.Sin(dj));
+                    }
                 }
-                for (int i = 1; i < sliceCount + 1; i++)
-                {
-                    double d = Math.PI * i / (sliceCount) / 180.0;
-                    positions[i] = new vec3(
-                        (float)Math.Sin(d),
-                        -height / 2,
-                        (float)Math.Cos(d),
-                        );
-                }
-                positions[1 + sliceCount + sliceCount] = new vec3(0, -height / 2, 0);
                 BoundingBox box = positions.Move2Center();
                 this.positions = positions;
                 this.modelSize = box.MaxPosition - box.MinPosition;
             }
             {
-                var indexes = new uint[3 * (sliceCount + sliceCount * 2 + sliceCount)];
+                var indexes = new uint[sliceCount * (secondSliceCount * 3 + secondSliceCount * 3)];
                 uint t = 0;
                 for (uint i = 0; i < sliceCount; i++)
                 {
-                    indexes[t++] = 0;
-                    indexes[t++] = i + 1;
-                    indexes[t++] = i + 2;
-                }
-                for (uint i = 0; i < sliceCount; i++)
-                {
-                    indexes[t++] = i + 2;
-                    indexes[t++] = i + 1;
-                    indexes[t++] = 1 + sliceCount + i + 2;
+                    for (uint j = 0; j < secondSliceCount; j++)
+                    {
+                        indexes[t++] = i * secondSliceCount + j;
+                        indexes[t++] = i * secondSliceCount + j + 1;
+                        indexes[t++] = i * secondSliceCount + secondSliceCount + j + 1;
 
-                    indexes[t++] = i + 1;
-                    indexes[t++] = 1 + sliceCount + i + 1;
-                    indexes[t++] = 1 + sliceCount + i + 2;
-                }
-                for (uint i = 0; i < sliceCount; i++)
-                {
-                    indexes[t++] = 1 + sliceCount + sliceCount + 0;
-                    indexes[t++] = 1 + sliceCount + i + 2;
-                    indexes[t++] = 1 + sliceCount + i + 1;
+                        indexes[t++] = i * secondSliceCount + j;
+                        indexes[t++] = i * secondSliceCount + secondSliceCount + j + 1;
+                        indexes[t++] = i * secondSliceCount + secondSliceCount + j + 2;
+                    }
                 }
                 this.indexes = indexes;
             }
