@@ -30,7 +30,7 @@ namespace IObjFormatConsole
             }
             {
                 Console.WriteLine("cylinder");
-                var cylinder = new CylinderModel(0.5f, 6, 17);
+                var cylinder = new CylinderModel(0.25f, 6, 17);
                 var filename = "cylinder.obj";
                 cylinder.DumpObjFile(filename, "cylinder");
                 var parser = new ObjVNFParser(false);
@@ -63,6 +63,25 @@ namespace IObjFormatConsole
                     ObjVNFMesh mesh = result.Mesh;
                     var model = new ObjVNF(mesh);
                     model.DumpObjFile("vnf" + filename, "annulus");
+                }
+            }
+
+            {
+                Console.WriteLine("plate");
+                var plate = new PlateModel(0.5f + 0.4f, 0.3f, 0.3f, 17, 17);
+                var filename = "plate.obj";
+                plate.DumpObjFile(filename, "plate");
+                var parser = new ObjVNFParser(false);
+                ObjVNFResult result = parser.Parse(filename);
+                if (result.Error != null)
+                {
+                    Console.WriteLine("Error: {0}", result.Error);
+                }
+                else
+                {
+                    ObjVNFMesh mesh = result.Mesh;
+                    var model = new ObjVNF(mesh);
+                    model.DumpObjFile("vnf" + filename, "plate");
                 }
             }
             Console.WriteLine("done");
