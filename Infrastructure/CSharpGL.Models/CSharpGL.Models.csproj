@@ -63,6 +63,7 @@
     <Compile Include="FormProperyGrid.Designer.cs">
       <DependentUpon>FormProperyGrid.cs</DependentUpon>
     </Compile>
+    <Compile Include="HanoiTower\HanoiTower.cs" />
     <Compile Include="HanoiTower\AnnulusModel.cs" />
     <Compile Include="HanoiTower\CylinderModel.cs" />
     <Compile Include="HanoiTower\PrismoidModel.cs" />
