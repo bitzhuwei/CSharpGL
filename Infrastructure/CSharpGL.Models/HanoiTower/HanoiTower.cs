@@ -15,8 +15,8 @@ namespace CSharpGL
                 var prismoid = new PrismoidModel(6.5f, 6.5f, 7, 7, 0.5f);
                 list.Add(new ObjItem(prismoid, new vec3(0, 0.5f, 0), new vec3(0.7f, 0.7f, 0.7f)));
             }
+            float radius = 3;
             {
-                float radius = 2;
                 list.Add(new ObjItem(new CylinderModel(0.25f, 6, 30),
                     new vec3(
                         (float)(Math.Cos(0) * radius),
@@ -37,7 +37,19 @@ namespace CSharpGL
                     new vec3(0, 0, 1)));
             }
             {
-
+                var random = new Random();
+                for (int i = 0; i < 5; i++)
+                {
+                    list.Add(new ObjItem(new DiskModel(2 - i * 0.1f, 2.7f, 0.25f, 30, 15),
+                        new vec3(
+                            (float)(Math.Cos(0) * radius),
+                            3.5f,
+                            (float)(Math.Cos(0) * radius)),
+                        new vec3(
+                            (float)random.NextDouble(),
+                            (float)random.NextDouble(),
+                            (float)random.NextDouble())));
+                }
             }
 
             return list.ToArray();
