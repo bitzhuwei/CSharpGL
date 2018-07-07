@@ -20,28 +20,43 @@ namespace CSharpGL
             uint[] upSphere = new uint[sliceCount];
             uint[] downSphere = new uint[sliceCount];
             {
-                var positions = new vec3[sliceCount * secondSliceCount];
-                int t = 0;
+                var positions = new vec3[sliceCount * secondSliceCount + sliceCount + sliceCount];
+                uint t = 0;
                 var y = new vec3(0, 1, 0);
                 for (int i = 0; i < sliceCount; i++)
                 {
+                    upSphere[i] = t;
                     double di = 2 * Math.PI * i / sliceCount;
                     var center = new vec3(radius * (float)Math.Sin(di), 0, radius * (float)Math.Cos(di));
                     float length = center.length();
                     center = center.normalize();
                     for (int j = 0; j < secondSliceCount; j++)
                     {
-                        double dj = Math.PI / 2 + Math.PI * j / secondSliceCount;
+                        double dj = Math.PI / 2 + Math.PI * j / (secondSliceCount - 1);
                         positions[t++] = center * (length - thickness * (float)Math.Cos(dj))
                             + y * (thickness * (float)Math.Sin(dj));
                     }
+                    downSphere[i] = t - 1;
+                }
+                upPlane = t;
+                for (int i = 0; i < sliceCount; i++)
+                {
+                    double di = 2 * Math.PI * i / sliceCount;
+                    positions[t++] = new vec3(holeRadius * (float)Math.Sin(di), thickness, holeRadius * (float)Math.Cos(di));
+                }
+                downPlane = t;
+                for (int i = 0; i < sliceCount; i++)
+                {
+                    double di = 2 * Math.PI * i / sliceCount;
+                    positions[t++] = new vec3(holeRadius * (float)Math.Sin(di), -thickness, holeRadius * (float)Math.Cos(di));
                 }
                 BoundingBox box = positions.Move2Center();
                 this.positions = positions;
                 this.modelSize = box.MaxPosition - box.MinPosition;
             }
             {
-                var indexes = new uint[sliceCount * (secondSliceCount - 1) * 2 * 3];
+                var indexes = new uint[sliceCount * (secondSliceCount - 1) * 2 * 3
+                    + sliceCount * 2 * 3 + sliceCount * 2 * 3];
                 uint t = 0;
                 for (uint i = 0; i < sliceCount; i++)
                 {
@@ -55,6 +70,26 @@ namespace CSharpGL
                         indexes[t++] = (i * secondSliceCount + secondSliceCount + (j + 1) % secondSliceCount) % (sliceCount * secondSliceCount);
                         indexes[t++] = (i * secondSliceCount + secondSliceCount + j) % (sliceCount * secondSliceCount);
                     }
+                }
+                for (uint i = 0; i < sliceCount; i++)
+                {
+                    indexes[t++] = upPlane + i;
+                    indexes[t++] = upSphere[i];
+                    indexes[t++] = upPlane + (i + 1) % sliceCount;
+
+                    indexes[t++] = upPlane + (i + 1) % sliceCount;
+                    indexes[t++] = upSphere[i];
+                    indexes[t++] = upSphere[(i + 1) % sliceCount];
+                }
+                for (uint i = 0; i < sliceCount; i++)
+                {
+                    indexes[t++] = downPlane + i;
+                    indexes[t++] = downPlane + (i + 1) % sliceCount;
+                    indexes[t++] = downSphere[i];
+
+                    indexes[t++] = downPlane + (i + 1) % sliceCount;
+                    indexes[t++] = downSphere[(i + 1) % sliceCount];
+                    indexes[t++] = downSphere[i];
                 }
                 this.indexes = indexes;
             }
