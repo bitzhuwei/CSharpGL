@@ -67,10 +67,10 @@ namespace IObjFormatConsole
             }
 
             {
-                Console.WriteLine("plate");
-                var plate = new PlateModel(0.5f + 0.4f, 0.3f, 0.3f, 17, 17);
-                var filename = "plate.obj";
-                plate.DumpObjFile(filename, "plate");
+                Console.WriteLine("disk");
+                var disk = new DiskModel(0.5f + 0.4f, 0.3f, 0.3f, 17, 17);
+                var filename = "disk.obj";
+                disk.DumpObjFile(filename, "disk");
                 var parser = new ObjVNFParser(false);
                 ObjVNFResult result = parser.Parse(filename);
                 if (result.Error != null)
@@ -81,7 +81,7 @@ namespace IObjFormatConsole
                 {
                     ObjVNFMesh mesh = result.Mesh;
                     var model = new ObjVNF(mesh);
-                    model.DumpObjFile("vnf" + filename, "plate");
+                    model.DumpObjFile("vnf" + filename, "disk");
                 }
             }
             Console.WriteLine("done");

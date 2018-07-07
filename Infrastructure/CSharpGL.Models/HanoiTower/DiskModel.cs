@@ -6,7 +6,7 @@ using System.Text;
 namespace CSharpGL
 {
 
-    public class PlateModel : IBufferSource, IObjFormat
+    public class DiskModel : IBufferSource, IObjFormat
     {
         private vec3 modelSize;
         public vec3 ModelSize()
@@ -14,7 +14,7 @@ namespace CSharpGL
             return this.modelSize;
         }
 
-        public PlateModel(float radius, float holeRadius, float thickness, uint sliceCount, uint secondSliceCount)
+        public DiskModel(float radius, float holeRadius, float thickness, uint sliceCount, uint secondSliceCount)
         {
             uint upPlane, downPlane;
             uint[] upSphere = new uint[sliceCount];
