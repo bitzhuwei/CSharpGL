@@ -56,7 +56,8 @@ namespace CSharpGL
             }
             {
                 var indexes = new uint[sliceCount * (secondSliceCount - 1) * 2 * 3
-                    + sliceCount * 2 * 3 + sliceCount * 2 * 3];
+                    + sliceCount * 2 * 3 + sliceCount * 2 * 3
+                    + sliceCount * 2 * 3];
                 uint t = 0;
                 for (uint i = 0; i < sliceCount; i++)
                 {
@@ -90,6 +91,16 @@ namespace CSharpGL
                     indexes[t++] = downPlane + (i + 1) % sliceCount;
                     indexes[t++] = downSphere[(i + 1) % sliceCount];
                     indexes[t++] = downSphere[i];
+                }
+                for (uint i = 0; i < sliceCount; i++)
+                {
+                    indexes[t++] = upPlane + i;
+                    indexes[t++] = upPlane + (i + 1) % sliceCount;
+                    indexes[t++] = downPlane + i;
+
+                    indexes[t++] = downPlane + i;
+                    indexes[t++] = upPlane + (i + 1) % sliceCount;
+                    indexes[t++] = downPlane + (i + 1) % sliceCount;
                 }
                 this.indexes = indexes;
             }
