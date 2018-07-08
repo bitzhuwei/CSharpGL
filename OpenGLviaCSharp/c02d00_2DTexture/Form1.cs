@@ -56,7 +56,7 @@ namespace c02d00_2DTexture
         private Texture GetTexture()
         {
             string folder = System.Windows.Forms.Application.StartupPath;
-            var bmp = new Bitmap(System.IO.Path.Combine(folder, @"Crate.bmp"));
+            var bmp = new Bitmap(System.IO.Path.Combine(folder, @"cloth.png"));
             TexStorageBase storage = new TexImageBitmap(bmp);
             var texture = new Texture(storage,
                 new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP_TO_EDGE),
