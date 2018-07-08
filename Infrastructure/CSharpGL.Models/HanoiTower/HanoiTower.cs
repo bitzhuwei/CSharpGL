@@ -11,40 +11,42 @@ namespace CSharpGL
         public static ObjItem[] GetDataSource()
         {
             var list = new List<ObjItem>();
+			float floating = 4;
             {
-                var prismoid = new PrismoidModel(6.5f, 6.5f, 7, 7, 0.5f);
-                list.Add(new ObjItem(prismoid, new vec3(0, 0.5f, 0), new vec3(0.7f, 0.7f, 0.7f)));
+                var prismoid = new PrismoidModel(16f, 16f, 18f, 18f, 0.5f);
+                list.Add(new ObjItem(prismoid, new vec3(0, 0.25f + floating, 0), new vec3(0.7f, 0.7f, 0.7f)));
             }
-            float radius = 3;
+			float radius = 5;
             {
-                list.Add(new ObjItem(new CylinderModel(0.25f, 6, 30),
+                list.Add(new ObjItem(new CylinderModel(0.45f, 8, 30),
                     new vec3(
                         (float)(Math.Cos(0) * radius),
-                        3.5f,
-                        (float)(Math.Cos(0) * radius)),
+                        4 + 0.5f + floating,
+                        (float)(Math.Sin(0) * radius)),
                     new vec3(1, 0, 0)));
-                list.Add(new ObjItem(new CylinderModel(0.25f, 6, 30),
+                list.Add(new ObjItem(new CylinderModel(0.45f, 8, 30),
                     new vec3(
                         (float)(Math.Cos(Math.PI * 2 / 3.0) * radius),
-                        3.5f,
-                        (float)(Math.Cos(Math.PI * 2 / 3.0) * radius)),
+                        4 + 0.5f + floating,
+                        (float)(Math.Sin(Math.PI * 2 / 3.0) * radius)),
                     new vec3(0, 1, 0)));
-                list.Add(new ObjItem(new CylinderModel(0.25f, 6, 30),
+                list.Add(new ObjItem(new CylinderModel(0.45f, 8, 30),
                     new vec3(
                         (float)(Math.Cos(Math.PI * 2 * 2.0 / 3.0) * radius),
-                        3.5f,
-                        (float)(Math.Cos(Math.PI * 2 * 2.0 / 3.0) * radius)),
+                        4 + 0.5f + floating,
+                        (float)(Math.Sin(Math.PI * 2 * 2.0 / 3.0) * radius)),
                     new vec3(0, 0, 1)));
             }
             {
                 var random = new Random();
-                for (int i = 0; i < 5; i++)
+                for (int i = 0; i < 10; i++)
                 {
-                    list.Add(new ObjItem(new DiskModel(2 - i * 0.1f, 2.7f, 0.25f, 30, 15),
+                    list.Add(new ObjItem(new DiskModel(3f - i * 0.2f, 0.8f, 0.25f, 30, 15),
                         new vec3(
                             (float)(Math.Cos(0) * radius),
-                            3.5f,
-                            (float)(Math.Cos(0) * radius)),
+                            0.3f + i * 0.55f + 0.5f + floating,
+                            (float)(Math.Sin(0) * radius)),
+						//new vec3(1, 1, 1)));
                         new vec3(
                             (float)random.NextDouble(),
                             (float)random.NextDouble(),

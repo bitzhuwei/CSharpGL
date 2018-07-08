@@ -23,12 +23,12 @@ namespace CSharpGL
                 for (int i = 1; i < sliceCount + 1; i++)
                 {
                     double d = 2 * Math.PI * i / (sliceCount);
-                    positions[t++] = new vec3((float)Math.Sin(d), height / 2, (float)Math.Cos(d));
+                    positions[t++] = new vec3((float)Math.Sin(d) * radius, height / 2, (float)Math.Cos(d) * radius);
                 }
                 for (int i = 1; i < sliceCount + 1; i++)
                 {
                     double d = 2 * Math.PI * i / (sliceCount);
-                    positions[t++] = new vec3((float)Math.Sin(d), -height / 2, (float)Math.Cos(d));
+                    positions[t++] = new vec3((float)Math.Sin(d) * radius, -height / 2, (float)Math.Cos(d) * radius);
                 }
                 positions[t++] = new vec3(0, -height / 2, 0);
                 BoundingBox box = positions.Move2Center();

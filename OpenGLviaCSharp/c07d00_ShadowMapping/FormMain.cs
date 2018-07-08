@@ -28,15 +28,6 @@ namespace c07d00_ShadowMapping
             this.Load += FormMain_Load;
             this.winGLCanvas1.OpenGLDraw += winGLCanvas1_OpenGLDraw;
             this.winGLCanvas1.Resize += winGLCanvas1_Resize;
-            this.winGLCanvas1.KeyPress += winGLCanvas1_KeyPress;
-        }
-
-        void winGLCanvas1_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == 's')
-            {
-                this.rect.TextureSource = this.shadowMappingAction.LightEquipment;
-            }
         }
 
         private void FormMain_Load(object sender, EventArgs e)
@@ -97,8 +88,8 @@ namespace c07d00_ShadowMapping
         private SceneNodeBase GetRootNode()
         {
             var group = new GroupNode();
-            var filenames = new string[] { "floor.obj_", "vnfprismoid.obj_", };
-            var colors = new Color[] { Color.Green, Color.White, };
+            var filenames = new string[] { "floor.obj_", };
+            var colors = new Color[] { Color.Green, };
             for (int i = 0; i < filenames.Length; i++)
             {
                 string folder = System.Windows.Forms.Application.StartupPath;
@@ -121,11 +112,31 @@ namespace c07d00_ShadowMapping
                 }
             }
             {
-                var rect = DepthRectNode.Create();
-                rect.Scale = new vec3(1, 1, 1) * 50;
-                rect.WorldPosition = new vec3(1, 1, 1) * 27;
-                group.Children.Add(rect);
-                this.rect = rect;
+                var hanoiTower = new GroupNode();
+				ObjItem[] items = HanoiTower.GetDataSource();
+				foreach (var item in items)
+				{
+					var objFormat = item.model;
+					var filename = item.GetType().Name;
+					objFormat.DumpObjFile(filename, filename);
+					var parser = new ObjVNFParser(false);
+					ObjVNFResult result = parser.Parse(filename);
+					if (result.Error != null)
+					{
+						Console.WriteLine("Error: {0}", result.Error);
+					}
+					else
+					{
+						ObjVNFMesh mesh = result.Mesh;
+						var model = new ObjVNF(mesh);
+						var node = ShadowMappingNode.Create(model, ObjVNF.strPosition, ObjVNF.strNormal, model.GetSize());
+						node.WorldPosition = item.position;
+						node.Color = item.color;
+						node.Name = filename;
+						hanoiTower.Children.Add(node);
+					}
+				}
+				group.Children.Add(hanoiTower);
             }
 
             return group;

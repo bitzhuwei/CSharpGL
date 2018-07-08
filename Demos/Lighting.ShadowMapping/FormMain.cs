@@ -84,7 +84,7 @@ namespace Lighting.ShadowMapping
         private SceneNodeBase GetRootNode()
         {
             var group = new GroupNode();
-            var filenames = new string[] { "floor.obj_", "bunny.obj_", };
+            var filenames = new string[] { "floor.obj_", };
             for (int i = 0; i < filenames.Length; i++)
             {
                 string folder = System.Windows.Forms.Application.StartupPath;
@@ -104,6 +104,35 @@ namespace Lighting.ShadowMapping
                     node.Name = filename;
                     group.Children.Add(node);
                 }
+            }
+            {
+                var hanoiTower = new GroupNode();
+				ObjItem[] items = HanoiTower.GetDataSource();
+				int i = 0;
+				foreach (var item in items)
+				{
+				i++; if (i < 5) { continue; } //if (i > 2) { break; }
+					var objFormat = item.model;
+					var filename = item.GetType().Name;
+					objFormat.DumpObjFile(filename, filename);
+					var parser = new ObjVNFParser(false);
+					ObjVNFResult result = parser.Parse(filename);
+					if (result.Error != null)
+					{
+						Console.WriteLine("Error: {0}", result.Error);
+					}
+					else
+					{
+						ObjVNFMesh mesh = result.Mesh;
+						var model = new ObjVNF(mesh);
+						var node = ShadowMappingNode.Create(model, ObjVNF.strPosition, ObjVNF.strNormal, model.GetSize());
+						node.WorldPosition = item.position;
+						node.Color = item.color;
+						node.Name = filename;
+						hanoiTower.Children.Add(node);
+					}
+				}
+				group.Children.Add(hanoiTower);
             }
 
             return group;
