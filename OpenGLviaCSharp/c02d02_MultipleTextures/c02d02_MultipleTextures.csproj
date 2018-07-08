@@ -77,10 +77,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Crate.png">
+    <Content Include="base.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="nuclear.png">
+    <Content Include="fish.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Rainbow.png">
