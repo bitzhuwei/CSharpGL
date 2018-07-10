@@ -27,19 +27,12 @@ namespace CSharpGL
     {
         private const string inPosition = "inPosition";
         private const string inUV = "inUV";
-        private const string projectionMatrix = "projectionMatrix";
-        private const string viewMatrix = "viewMatrix";
-        private const string modelMatrix = "modelMatrix";
         private const string tex = "tex";
         private const string vertexCode =
             @"#version 330 core
 
 in vec3 " + inPosition + @";
 in vec2 " + inUV + @";
-
-uniform mat4 " + projectionMatrix + @";
-uniform mat4 " + viewMatrix + @";
-uniform mat4 " + modelMatrix + @";
 
 out vec2 passUV;
 
