@@ -106,33 +106,29 @@ namespace Lighting.ShadowMapping
                 }
             }
             {
-                var hanoiTower = new GroupNode();
-				ObjItem[] items = HanoiTower.GetDataSource();
-				int i = 0;
-				foreach (var item in items)
-				{
-				i++; if (i < 5) { continue; } //if (i > 2) { break; }
-					var objFormat = item.model;
-					var filename = item.GetType().Name;
-					objFormat.DumpObjFile(filename, filename);
-					var parser = new ObjVNFParser(false);
-					ObjVNFResult result = parser.Parse(filename);
-					if (result.Error != null)
-					{
-						Console.WriteLine("Error: {0}", result.Error);
-					}
-					else
-					{
-						ObjVNFMesh mesh = result.Mesh;
-						var model = new ObjVNF(mesh);
-						var node = ShadowMappingNode.Create(model, ObjVNF.strPosition, ObjVNF.strNormal, model.GetSize());
-						node.WorldPosition = item.position;
-						node.Color = item.color;
-						node.Name = filename;
-						hanoiTower.Children.Add(node);
-					}
-				}
-				group.Children.Add(hanoiTower);
+                var list = new List<IObjFormat>();
+                list.Add(new AnnulusModel(1.5f + 0.4f, 0.7f, 37, 37));
+                list.Add(new CylinderModel(0.5f, 6, 37));
+                foreach (var item in list)
+                {
+                    item.DumpObjFile("tmp.obj", "tmp");
+                    var parser = new ObjVNFParser(false);
+                    ObjVNFResult result = parser.Parse("tmp.obj");
+                    if (result.Error != null)
+                    {
+                        Console.WriteLine("Error: {0}", result.Error);
+                    }
+                    else
+                    {
+                        ObjVNFMesh mesh = result.Mesh;
+                        var model = new ObjVNF(mesh);
+                        var node = ShadowMappingNode.Create(model, ObjVNF.strPosition, ObjVNF.strNormal, model.GetSize());
+                        node.WorldPosition = new vec3(0, 2, 0);
+                        node.Color = new vec3(1, 1, 1);
+                        node.Name = item.GetType().Name;
+                        group.Children.Add(node);
+                    }
+                }
             }
 
             return group;
