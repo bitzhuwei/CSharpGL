@@ -69,7 +69,7 @@ namespace c02d03_MultipleRenderMethods
         {
             {
                 string folder = System.Windows.Forms.Application.StartupPath;
-                var bmp = new Bitmap(System.IO.Path.Combine(folder, @"Crate.png"));
+                var bmp = new Bitmap(System.IO.Path.Combine(folder, @"base.png"));
                 TexStorageBase storage = new TexImageBitmap(bmp);
                 var texture = new Texture(storage,
                     new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP_TO_EDGE),
@@ -83,7 +83,7 @@ namespace c02d03_MultipleRenderMethods
             }
             {
                 string folder = System.Windows.Forms.Application.StartupPath;
-                var bmp = new Bitmap(System.IO.Path.Combine(folder, @"nuclear.png"));
+                var bmp = new Bitmap(System.IO.Path.Combine(folder, @"fish.png"));
                 TexStorageBase storage = new TexImageBitmap(bmp);
                 var texture = new Texture(storage,
                     new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP_TO_EDGE),
@@ -100,7 +100,7 @@ namespace c02d03_MultipleRenderMethods
         private Texture GetTexture()
         {
             string folder = System.Windows.Forms.Application.StartupPath;
-            var bmp = new Bitmap(System.IO.Path.Combine(folder, @"Crate.png"));
+            var bmp = new Bitmap(System.IO.Path.Combine(folder, @"base.png"));
             TexStorageBase storage = new TexImageBitmap(bmp);
             var texture = new Texture(storage,
                 new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP_TO_EDGE),
