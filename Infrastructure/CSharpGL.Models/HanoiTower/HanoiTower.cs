@@ -11,12 +11,12 @@ namespace CSharpGL
         public static ObjItem[] GetDataSource()
         {
             var list = new List<ObjItem>();
-			float floating = 4;
+            float floating = 4;
             {
                 var prismoid = new PrismoidModel(16f, 16f, 18f, 18f, 0.5f);
                 list.Add(new ObjItem(prismoid, new vec3(0, 0.25f + floating, 0), new vec3(0.7f, 0.7f, 0.7f)));
             }
-			float radius = 5;
+            float radius = 5;
             {
                 list.Add(new ObjItem(new CylinderModel(0.45f, 8, 30),
                     new vec3(
@@ -46,11 +46,11 @@ namespace CSharpGL
                             (float)(Math.Cos(0) * radius),
                             0.3f + i * 0.55f + 0.5f + floating,
                             (float)(Math.Sin(0) * radius)),
-						//new vec3(1, 1, 1)));
+                        //new vec3(1, 1, 1)));
                         new vec3(
-                            (float)random.NextDouble(),
-                            (float)random.NextDouble(),
-                            (float)random.NextDouble())));
+                            (float)random.NextDouble() / 2.0f + 0.5f,
+                            (float)random.NextDouble() / 2.0f + 0.5f,
+                            (float)random.NextDouble() / 2.0f + 0.5f)));
                 }
             }
 
