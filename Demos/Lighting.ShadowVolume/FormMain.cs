@@ -86,7 +86,7 @@ namespace Lighting.ShadowVolume
         private SceneNodeBase GetRootNode()
         {
             var group = new GroupNode();
-            var filenames = new string[] { "floor.obj_", "bunny.obj_", };
+            var filenames = new string[] { "floor.obj_", };
             for (int i = 0; i < filenames.Length; i++)
             {
                 string folder = System.Windows.Forms.Application.StartupPath;
@@ -104,6 +104,21 @@ namespace Lighting.ShadowVolume
                     var node = ShadowVolumeNode.Create(model, ObjVNF.strPosition, ObjVNF.strNormal, model.GetSize());
                     node.WorldPosition = new vec3(0, i * 5, 0);
                     node.Name = filename;
+                    group.Children.Add(node);
+                }
+            }
+            {
+                var parser = new ObjVNFParser(false);
+                var dataSource = HanoiTower.GetDataSource();
+                foreach (var item in dataSource)
+                {
+                    item.model.DumpObjFile("tmp");
+                    var result = parser.Parse("tmp");
+                    var model = new AdjacentTriangleModel(result.Mesh);
+                    var node = ShadowVolumeNode.Create(model, ObjVNF.strPosition, ObjVNF.strNormal, model.GetSize());
+                    node.Name = item.model.GetType().Name;
+                    node.Color = item.color;
+                    node.WorldPosition = item.position;
                     group.Children.Add(node);
                 }
             }
