@@ -26,9 +26,26 @@ namespace VolumeRendering.Raycast
             string tff = System.IO.Path.Combine(folder + @"\..\..\..\..\Infrastructure\CSharpGL.Models", "tff.dat");
             this.transferFunc1DTexture = InitTFF1DTexture(tff);
 
-            string head256 = System.IO.Path.Combine(folder + @"\..\..\..\..\Infrastructure\CSharpGL.Models", "head256.raw");
-            byte[] volumeData = GetVolumeData(head256);
-            this.volume3DTexture = InitVolume3DTexture(volumeData, 256, 256, 225);
+            {
+                //string head256 = System.IO.Path.Combine(folder + @"\..\..\..\..\Infrastructure\CSharpGL.Models", "head256.raw");
+                //byte[] volumeData = GetVolumeData(head256);
+                //this.volume3DTexture = InitVolume3DTexture(volumeData, 256,256,225);
+            }
+            {
+                //string head256 = System.IO.Path.Combine(folder + @"\..\..\..\..\Infrastructure\CSharpGL.Models", "heart125-154-145.raw");
+                //byte[] volumeData = GetVolumeData(head256);
+                //this.volume3DTexture = InitVolume3DTexture(volumeData, 125,154,145);
+            }
+            //{
+            //    string head256 = System.IO.Path.Combine(folder + @"\..\..\..\..\Infrastructure\CSharpGL.Models", "harmonic16-16-16.raw");
+            //    byte[] volumeData = GetVolumeData(head256);
+            //    this.volume3DTexture = InitVolume3DTexture(volumeData, 16, 16, 16);
+            //}
+            {
+                int width = 64, height = 64, depth = 64;
+                byte[] volumeData = VolumeData.GetData(width, height, depth);
+                this.volume3DTexture = InitVolume3DTexture(volumeData, width, height, depth);
+            }
             {
                 // setting uniforms such as
                 // ScreenSize
