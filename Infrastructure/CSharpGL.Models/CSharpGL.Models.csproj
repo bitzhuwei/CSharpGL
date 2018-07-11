@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="VolumeData.cs" />
     <None Include="Amber\readme.md" />
     <Compile Include="AdjacentTriangleModel.cs" />
     <Compile Include="Amber\AmberLoader.cs" />
