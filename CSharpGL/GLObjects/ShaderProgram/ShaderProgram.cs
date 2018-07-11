@@ -67,7 +67,7 @@ namespace CSharpGL
             {
                 glTransformFeedbackVaryings = GL.Instance.GetDelegateFor("glTransformFeedbackVaryings", GLDelegates.typeof_void_uint_int_stringN_uint) as GLDelegates.void_uint_int_stringN_uint;
             }
-            glTransformFeedbackVaryings(this.ProgramId, 1, feedbackVaryings, (uint)mode);
+            glTransformFeedbackVaryings(this.ProgramId, feedbackVaryings.Length, feedbackVaryings, (uint)mode);
 
             this.Initialize(shaders);
         }

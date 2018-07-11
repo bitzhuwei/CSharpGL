@@ -126,7 +126,7 @@ namespace Texture2D
             var rectangle = RectangleNode.Create();
             rectangle.Scale *= 3;
             string folder = System.Windows.Forms.Application.StartupPath;
-            rectangle.TextureSource = new TextureSource(System.IO.Path.Combine(folder, @"Lenna.png"));
+            rectangle.TextureSource = new TextureSource(System.IO.Path.Combine(folder, @"texture2D.png"));
 
             //var blend = RectangleNode.Create();
             //blend.Scale *= 1.5f;

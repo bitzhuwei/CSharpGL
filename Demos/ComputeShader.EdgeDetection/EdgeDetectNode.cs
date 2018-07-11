@@ -82,7 +82,7 @@ namespace ComputeShader.EdgeDetection
 
         private void InitFinalTexture()
         {
-            var storage = new TexStorage2D(TexStorage2D.Target.Texture2D, GL.GL_RGBA32F, 8, width, height);
+            var storage = new TexStorage2D(TexStorage2D.Target.Texture2D, GL.GL_RGBA32F, width, height, 8);
             var texture = new Texture(storage);
             texture.Initialize();
 
@@ -91,7 +91,7 @@ namespace ComputeShader.EdgeDetection
 
         private void InitIntermediateTexture()
         {
-            var storage = new TexStorage2D(TexStorage2D.Target.Texture2D, GL.GL_RGBA32F, 8, width, height);
+            var storage = new TexStorage2D(TexStorage2D.Target.Texture2D, GL.GL_RGBA32F, width, height, 8);
             var texture = new Texture(storage);
             texture.Initialize();
 
@@ -129,21 +129,22 @@ namespace ComputeShader.EdgeDetection
 
         public void RenderBeforeChildren(RenderEventArgs arg)
         {
+            uint inputUnit = 0, outputUnit = 1;
             {
                 RenderMethod method = this.RenderUnit.Methods[0];
                 ShaderProgram computeProgram = method.Program;
                 // Activate the compute program and bind the output texture image
                 computeProgram.Bind();
-                glBindImageTexture((uint)computeProgram.GetUniformLocation("input_image"), this.texture.Id, 0, false, 0, GL.GL_READ_WRITE, GL.GL_RGBA32F);
-                glBindImageTexture((uint)computeProgram.GetUniformLocation("output_image"), this.intermediateTexture.Id, 0, false, 0, GL.GL_READ_WRITE, GL.GL_RGBA32F);
+                glBindImageTexture(inputUnit, this.texture.Id, 0, false, 0, GL.GL_READ_WRITE, GL.GL_RGBA32F);
+                glBindImageTexture(outputUnit, this.intermediateTexture.Id, 0, false, 0, GL.GL_READ_WRITE, GL.GL_RGBA32F);
                 // Dispatch
                 glDispatchCompute(1, width, 1);
                 glMemoryBarrier(GL.GL_SHADER_IMAGE_ACCESS_BARRIER_BIT);
                 computeProgram.Unbind();
 
                 computeProgram.Bind();
-                glBindImageTexture((uint)computeProgram.GetUniformLocation("input_image"), this.intermediateTexture.Id, 0, false, 0, GL.GL_READ_WRITE, GL.GL_RGBA32F);
-                glBindImageTexture((uint)computeProgram.GetUniformLocation("output_image"), this.finalTexture.Id, 0, false, 0, GL.GL_READ_WRITE, GL.GL_RGBA32F);
+                glBindImageTexture(inputUnit, this.intermediateTexture.Id, 0, false, 0, GL.GL_READ_WRITE, GL.GL_RGBA32F);
+                glBindImageTexture(outputUnit, this.finalTexture.Id, 0, false, 0, GL.GL_READ_WRITE, GL.GL_RGBA32F);
                 // Dispatch
                 glDispatchCompute(1, height, 1);
                 glMemoryBarrier(GL.GL_SHADER_IMAGE_ACCESS_BARRIER_BIT);

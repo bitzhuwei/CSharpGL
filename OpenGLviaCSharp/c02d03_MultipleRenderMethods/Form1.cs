@@ -26,6 +26,15 @@ namespace c02d03_MultipleRenderMethods
             this.winGLCanvas1.OpenGLDraw += winGLCanvas1_OpenGLDraw;
             // resize event.
             this.winGLCanvas1.Resize += winGLCanvas1_Resize;
+            this.winGLCanvas1.KeyPress += winGLCanvas1_KeyPress;
+        }
+
+        void winGLCanvas1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 'p')
+            {
+                this.timer1.Enabled = !this.timer1.Enabled;
+            }
         }
 
         private void FormMain_Load(object sender, EventArgs e)
@@ -60,7 +69,7 @@ namespace c02d03_MultipleRenderMethods
         {
             {
                 string folder = System.Windows.Forms.Application.StartupPath;
-                var bmp = new Bitmap(System.IO.Path.Combine(folder, @"Crate.bmp"));
+                var bmp = new Bitmap(System.IO.Path.Combine(folder, @"base.png"));
                 TexStorageBase storage = new TexImageBitmap(bmp);
                 var texture = new Texture(storage,
                     new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP_TO_EDGE),
@@ -74,7 +83,7 @@ namespace c02d03_MultipleRenderMethods
             }
             {
                 string folder = System.Windows.Forms.Application.StartupPath;
-                var bmp = new Bitmap(System.IO.Path.Combine(folder, @"nuclear.png"));
+                var bmp = new Bitmap(System.IO.Path.Combine(folder, @"fish.png"));
                 TexStorageBase storage = new TexImageBitmap(bmp);
                 var texture = new Texture(storage,
                     new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP_TO_EDGE),
@@ -91,7 +100,7 @@ namespace c02d03_MultipleRenderMethods
         private Texture GetTexture()
         {
             string folder = System.Windows.Forms.Application.StartupPath;
-            var bmp = new Bitmap(System.IO.Path.Combine(folder, @"Crate.bmp"));
+            var bmp = new Bitmap(System.IO.Path.Combine(folder, @"base.png"));
             TexStorageBase storage = new TexImageBitmap(bmp);
             var texture = new Texture(storage,
                 new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP_TO_EDGE),

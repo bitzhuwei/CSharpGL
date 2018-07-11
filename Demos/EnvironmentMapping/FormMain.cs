@@ -97,7 +97,7 @@ namespace EnvironmentMapping
             var totalBmp = new Bitmap(System.IO.Path.Combine(folder, @"cubemaps_skybox.png"));
             Bitmap[] bitmaps = GetBitmaps(totalBmp);
             this.skybox = SkyboxNode.Create(bitmaps); this.skybox.Scale *= 60;
-            string objFilename = System.IO.Path.Combine(folder + @"\..\..\..\..\Infrastructure\CSharpGL.Models", "nanosuit.obj_");
+            string objFilename = System.IO.Path.Combine(folder + @"\..\..\..\..\Infrastructure\CSharpGL.Models", "vnfannulus.obj_");
             var parser = new ObjVNFParser(false);
             ObjVNFResult result = parser.Parse(objFilename);
             if (result.Error != null)
@@ -113,13 +113,14 @@ namespace EnvironmentMapping
                 node.ModelSize = model.GetSize();
                 float max = node.ModelSize.max();
                 node.Scale *= 20.0f / max;
+                node.RotationAxis = new vec3(0, 0, 1);
+                node.RotationAngle = 90;
                 node.Children.Add(new LegacyBoundingBoxNode(node.ModelSize));
                 this.environmentMappingNode = node;
 
                 var group = new GroupNode(this.environmentMappingNode, this.skybox);
 
                 this.scene = new Scene(camera)
-
                 {
                     RootNode = group,
                 };

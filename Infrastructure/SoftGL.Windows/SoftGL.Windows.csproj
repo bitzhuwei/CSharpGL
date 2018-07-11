@@ -34,6 +34,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
@@ -48,6 +49,8 @@
     <Compile Include="GLAPI\SoftGL.ExtendedConsts.cs" />
     <Compile Include="GLAPI\Soft.BasicAPI.cs" />
     <Compile Include="GLAPI\SoftGL.OpenGL32.DLL.cs" />
+    <Compile Include="GUI\WinCtrlRoot\TranslateExtension.cs" />
+    <Compile Include="GUI\WinCtrlRoot\WinSoftCtrlRoot.cs" />
     <Compile Include="RenderContexts\DIBSection.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -55,10 +58,29 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="RenderContexts\SoftGLRenderContext.cs" />
+    <Compile Include="WinSoftGLCanvas\WinSoftGLCanvas.ContextGenerationParameters.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WinSoftGLCanvas\WinSoftGLCanvas.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WinSoftGLCanvas\WinSoftGLCanvas.Designer.cs">
+      <DependentUpon>WinSoftGLCanvas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WinSoftGLCanvas\WinSoftGLCanvas.Events.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WinSoftGLCanvas\WinSoftGLCanvas.IGLCanvas.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WinSoftGLCanvas\WinSoftGLCanvas.ISupportInitialize.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <None Include="GLAPI\readme.md" />
     <None Include="readme.md" />
     <Compile Include="Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="WinSoftGLCanvas\readme.md" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\CSharpGL\CSharpGL.csproj">

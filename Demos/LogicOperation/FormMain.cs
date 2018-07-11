@@ -62,7 +62,7 @@ namespace LogicOperation
         private SceneNodeBase GetRootElement()
         {
             string folder = System.Windows.Forms.Application.StartupPath;
-            var bitmap = new Bitmap(System.IO.Path.Combine(folder, @"Lenna.png"));
+            var bitmap = new Bitmap(System.IO.Path.Combine(folder, @"flower.png"));
             bitmap.RotateFlip(RotateFlipType.Rotate180FlipX);
             var texture = new Texture(new TexImageBitmap(bitmap));
             texture.BuiltInSampler.Add(new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_REPEAT));

@@ -12,8 +12,8 @@ namespace Normal
     /// </summary>
     public partial class NormalNode : PickableNode, IRenderable
     {
-        private const string vPosition = "vPosition";
-        private const string vNormal = "vNormal";
+        private const string inPosition = "inPosition";
+        private const string inNormal = "inNormal";
         private const string projectionMatrix = "projectionMatrix";
         private const string viewMatrix = "viewMatrix";
         private const string modelMatrix = "modelMatrix";
@@ -39,8 +39,8 @@ namespace Normal
                 var fs = new FragmentShader(fragmentShader);
                 var provider = new ShaderArray(vs, fs);
                 var map = new AttributeMap();
-                map.Add(vPosition, position);
-                map.Add(vNormal, normal);
+                map.Add(inPosition, position);
+                map.Add(inNormal, normal);
                 builders[0] = new RenderMethodBuilder(provider, map);
             }
             {
@@ -50,8 +50,8 @@ namespace Normal
                 var fs = new FragmentShader(normalFragment);
                 var provider = new ShaderArray(vs, gs, fs);
                 var map = new AttributeMap();
-                map.Add(vPosition, position);
-                map.Add(vNormal, normal);
+                map.Add(inPosition, position);
+                map.Add(inNormal, normal);
                 builders[1] = new RenderMethodBuilder(provider, map);
             }
 

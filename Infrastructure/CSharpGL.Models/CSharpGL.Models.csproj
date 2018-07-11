@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="VolumeData.cs" />
     <None Include="Amber\readme.md" />
     <Compile Include="AdjacentTriangleModel.cs" />
     <Compile Include="Amber\AmberLoader.cs" />
@@ -63,13 +64,21 @@
     <Compile Include="FormProperyGrid.Designer.cs">
       <DependentUpon>FormProperyGrid.cs</DependentUpon>
     </Compile>
+    <Compile Include="HanoiTower\HanoiTower.cs" />
+    <Compile Include="HanoiTower\AnnulusModel.cs" />
+    <Compile Include="HanoiTower\CylinderModel.cs" />
+    <Compile Include="HanoiTower\PrismoidModel.cs" />
+    <Compile Include="HanoiTower\DiskModel.cs" />
     <Compile Include="HighlightPick\LegacyQuadNode.cs" />
     <Compile Include="HighlightPick\LegacyPointNode.cs" />
     <Compile Include="HighlightPick\LegacyTriangleNode.cs" />
+    <Compile Include="IObjFormat.cs" />
     <Compile Include="KleinBottle\KleinBottleModel.cs" />
     <Compile Include="KleinBottle\KleinBottleNode.shaders.cs" />
     <Compile Include="KleinBottle\KleinBottleNode.cs" />
     <Compile Include="LightPositionNode.cs" />
+    <Compile Include="NoShadowNode.cs" />
+    <Compile Include="NoShadowNode.shaders.cs" />
     <Compile Include="Propeller\FlabellumNode.cs" />
     <Compile Include="Propeller\LegacyFlabellumNode.cs" />
     <Compile Include="Propeller\LegacyPropellerNode.cs" />
@@ -105,6 +114,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="TrefoilKnotModel\TrefoilKnotModel.cs" />
+    <None Include="vnfannulus.obj_" />
+    <None Include="vnfcylinder.obj_" />
+    <None Include="vnfdisk.obj_" />
+    <None Include="vnfprismoid.obj_" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\CSharpGL\CSharpGL.csproj">

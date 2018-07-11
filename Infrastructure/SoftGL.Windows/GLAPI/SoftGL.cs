@@ -10,16 +10,19 @@ namespace CSharpGL
     /// </summary>
     public partial class SoftGL : GL
     {
+        private SoftGLRenderContext currentContext;
+
         /// <summary>
         /// Single instance of <see cref="SoftGL"/>.
         /// </summary>
-        public static readonly SoftGL CSharpGLInstance = new SoftGL();
+        public static readonly SoftGL SoftGLInstance = new SoftGL();
         private SoftGL() : base() { }
 
         public override IntPtr GetCurrentContext()
         {
-            //return Win32.wglGetCurrentContext();
-            throw new NotImplementedException();
+            SoftGLRenderContext context = this.currentContext;
+
+            return context == null ? IntPtr.Zero : context.Pointer;
         }
     }
 }

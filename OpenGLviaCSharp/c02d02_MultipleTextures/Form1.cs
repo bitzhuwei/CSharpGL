@@ -61,7 +61,7 @@ namespace c02d02_MultipleTextures
         {
             {
                 string folder = System.Windows.Forms.Application.StartupPath;
-                var bmp = new Bitmap(System.IO.Path.Combine(folder, @"Crate.bmp"));
+                var bmp = new Bitmap(System.IO.Path.Combine(folder, @"base.png"));
                 TexStorageBase storage = new TexImageBitmap(bmp);
                 var texture = new Texture(storage,
                     new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP_TO_EDGE),
@@ -90,7 +90,8 @@ namespace c02d02_MultipleTextures
             }
             {
                 string folder = System.Windows.Forms.Application.StartupPath;
-                var bmp = new Bitmap(System.IO.Path.Combine(folder, @"nuclear.png"));
+                var bmp = new Bitmap(System.IO.Path.Combine(folder, @"fish.png"));
+                bmp.RotateFlip(RotateFlipType.Rotate180FlipX);
                 TexStorageBase storage = new TexImageBitmap(bmp);
                 var texture = new Texture(storage,
                     new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP_TO_EDGE),
@@ -107,7 +108,7 @@ namespace c02d02_MultipleTextures
         private Texture GetTexture()
         {
             string folder = System.Windows.Forms.Application.StartupPath;
-            var bmp = new Bitmap(System.IO.Path.Combine(folder, @"Crate.bmp"));
+            var bmp = new Bitmap(System.IO.Path.Combine(folder, @"base.png"));
             TexStorageBase storage = new TexImageBitmap(bmp);
             var texture = new Texture(storage,
                 new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP_TO_EDGE),

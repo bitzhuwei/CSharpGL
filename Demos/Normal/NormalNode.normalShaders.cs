@@ -10,17 +10,14 @@ namespace Normal
     {
         private const string normalVertex = @"#version 150 core
 
-in vec3 vPosition;
-in vec3 vNormal;
-out VS_GS_VERTEX
-{
-    vec3 normal;
-} vertex_out;
+in vec3 inPosition;
+in vec3 inNormal;
+out vec3 passNormal;
 
 void main(void)
 {
-    gl_Position = vec4(vPosition, 1.0f);
-    vertex_out.normal = vNormal;
+    gl_Position = vec4(inPosition, 1.0f);
+    passNormal = inNormal;
 }
 ";
         private const string normalGeometry = @"#version 150 core
@@ -35,15 +32,9 @@ uniform mat4 projectionMatrix;
 uniform mat4 viewMatrix;
 uniform mat4 modelMatrix;
 
-in VS_GS_VERTEX
-{
-    vec3 normal;
-} vertex_in[];
+in vec3 passNormal[];
 
-out GS_FS_VERTEX
-{
-    vec3 color;
-} vertex_out;
+out vec3 passColor;
 
 void main(void)
 {
@@ -51,12 +42,12 @@ void main(void)
 	{
 		vec4 position = gl_in[i].gl_Position;
 		
-		vertex_out.color = vertexColor;
+		passColor = vertexColor;
         gl_Position = projectionMatrix * viewMatrix * modelMatrix * position;
 		EmitVertex();
         
-		vertex_out.color = pointerColor;
-		vec4 target = vec4(position.xyz + normalize(vertex_in[i].normal) * normalLength, 1.0f);
+		passColor = pointerColor;
+		vec4 target = vec4(position.xyz + normalize(passNormal[i]) * normalLength, 1.0f);
         gl_Position = projectionMatrix * viewMatrix * modelMatrix * target;
 		EmitVertex();
 
@@ -67,16 +58,13 @@ void main(void)
 
         private const string normalFragment = @"#version 150 core
 
-in GS_FS_VERTEX
-{
-    vec3 color;
-} fragment_in;
+in vec3 passColor;
 
 out vec4 outColor;
 
 void main(void)
 {
-    outColor = vec4(fragment_in.color, 1);
+    outColor = vec4(passColor, 1);
 }
 ";
     }

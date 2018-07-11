@@ -28,15 +28,6 @@ namespace c07d00_ShadowMapping
             this.Load += FormMain_Load;
             this.winGLCanvas1.OpenGLDraw += winGLCanvas1_OpenGLDraw;
             this.winGLCanvas1.Resize += winGLCanvas1_Resize;
-            this.winGLCanvas1.KeyPress += winGLCanvas1_KeyPress;
-        }
-
-        void winGLCanvas1_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == 's')
-            {
-                this.rect.TextureSource = this.shadowMappingAction.LightEquipment;
-            }
         }
 
         private void FormMain_Load(object sender, EventArgs e)
@@ -45,6 +36,7 @@ namespace c07d00_ShadowMapping
             var center = new vec3(0, 0, 0);
             var up = new vec3(0, 1, 0);
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
+
             this.scene = new Scene(camera);
             this.scene.RootNode = GetRootNode();
             // add lights.
@@ -59,14 +51,20 @@ namespace c07d00_ShadowMapping
                     this.scene.RootNode.Children.Add(node);
                 }
             }
-
-            var list = new ActionList();
-            list.Add(new TransformAction(scene.RootNode));
-            var shadowMappingAction = new ShadowMappingAction(scene);
-            list.Add(shadowMappingAction);
-            this.shadowMappingAction = shadowMappingAction;
-            list.Add(new RenderAction(scene));
-            this.actionList = list;
+            {
+                var list = new ActionList();
+                list.Add(new TransformAction(scene.RootNode));
+                var shadowMappingAction = new ShadowMappingAction(scene);
+                list.Add(shadowMappingAction);
+                this.shadowMappingAction = shadowMappingAction;
+                list.Add(new RenderAction(scene));
+                this.actionList = list;
+            }
+            //{
+            //    var node = DepthRectNode.Create();
+            //    node.TextureSource = this.shadowMappingAction.LightEquipment;
+            //    this.scene.RootNode.Children.Add(node);
+            //}
 
             Match(this.trvScene, scene.RootNode);
             this.trvScene.ExpandAll();
@@ -97,8 +95,8 @@ namespace c07d00_ShadowMapping
         private SceneNodeBase GetRootNode()
         {
             var group = new GroupNode();
-            var filenames = new string[] { "floor.obj_", "dragon.obj_", };
-            var colors = new Color[] { Color.Green, Color.White, };
+            var filenames = new string[] { "floor.obj_", };
+            var colors = new Color[] { Color.Green, };
             for (int i = 0; i < filenames.Length; i++)
             {
                 string folder = System.Windows.Forms.Application.StartupPath;
@@ -121,12 +119,33 @@ namespace c07d00_ShadowMapping
                 }
             }
             {
-                var rect = DepthRectNode.Create();
-                rect.Scale = new vec3(1, 1, 1) * 50;
-                rect.WorldPosition = new vec3(1, 1, 1) * 27;
-                group.Children.Add(rect);
-                this.rect = rect;
+                var hanoiTower = new GroupNode();
+                ObjItem[] items = HanoiTower.GetDataSource();
+                foreach (var item in items)
+                {
+                    var objFormat = item.model;
+                    var filename = item.GetType().Name;
+                    objFormat.DumpObjFile(filename, filename);
+                    var parser = new ObjVNFParser(false);
+                    ObjVNFResult result = parser.Parse(filename);
+                    if (result.Error != null)
+                    {
+                        Console.WriteLine("Error: {0}", result.Error);
+                    }
+                    else
+                    {
+                        ObjVNFMesh mesh = result.Mesh;
+                        var model = new ObjVNF(mesh);
+                        var node = ShadowMappingNode.Create(model, ObjVNF.strPosition, ObjVNF.strNormal, model.GetSize());
+                        node.WorldPosition = item.position;
+                        node.Color = item.color;
+                        node.Name = filename;
+                        hanoiTower.Children.Add(node);
+                    }
+                }
+                group.Children.Add(hanoiTower);
             }
+
 
             return group;
         }
