@@ -16,91 +16,97 @@ namespace CSharpGL
 
         public DiskModel(float radius, float holeRadius, float halfThickness, uint sliceCount, uint secondSliceCount)
         {
-            uint upPlane, downPlane;
-            uint[] upSphere = new uint[sliceCount];
-            uint[] downSphere = new uint[sliceCount];
+            float planeRadius = radius - holeRadius - halfThickness;
+            uint[] outUpSphere = new uint[sliceCount];
+            uint[] outDownSphere = new uint[sliceCount];
+            uint[] inUpSphere = new uint[sliceCount];
+            uint[] inDownSphere = new uint[sliceCount];
             {
-                var positions = new vec3[sliceCount * secondSliceCount + sliceCount + sliceCount];
+                var positions = new vec3[sliceCount * ((secondSliceCount + 1) * 2)];
                 uint t = 0;
                 var y = new vec3(0, 1, 0);
                 for (int i = 0; i < sliceCount; i++)
                 {
-                    upSphere[i] = t;
+                    outUpSphere[i] = t;
                     double di = 2 * Math.PI * i / sliceCount;
                     var center = new vec3(radius * (float)Math.Sin(di), 0, radius * (float)Math.Cos(di));
-                    float length = center.length();
                     center = center.normalize();
-                    for (int j = 0; j < secondSliceCount; j++)
+                    for (int j = 0; j < (secondSliceCount + 1); j++)
                     {
-                        double dj = Math.PI / 2 + Math.PI * j / (secondSliceCount - 1);
-                        positions[t++] = center * (length - halfThickness * (float)Math.Cos(dj))
+                        double dj = Math.PI / 2 + Math.PI * j / (secondSliceCount);
+                        positions[t++] = center * ((radius + planeRadius) - halfThickness * (float)Math.Cos(dj))
                             + y * (halfThickness * (float)Math.Sin(dj));
                     }
-                    downSphere[i] = t - 1;
+                    outDownSphere[i] = t - 1;
                 }
-                upPlane = t;
                 for (int i = 0; i < sliceCount; i++)
                 {
+                    inDownSphere[i] = t;
                     double di = 2 * Math.PI * i / sliceCount;
-                    positions[t++] = new vec3(holeRadius * (float)Math.Sin(di), halfThickness, holeRadius * (float)Math.Cos(di));
+                    var center = new vec3(radius * (float)Math.Sin(di), 0, radius * (float)Math.Cos(di));
+                    center = center.normalize();
+                    for (int j = 0; j < (secondSliceCount + 1); j++)
+                    {
+                        double dj = Math.PI / 2 + Math.PI + Math.PI * j / (secondSliceCount);
+                        positions[t++] = center * ((radius - planeRadius) - halfThickness * (float)Math.Cos(dj))
+                            + y * (halfThickness * (float)Math.Sin(dj));
+                    }
+                    inUpSphere[i] = t - 1;
                 }
-                downPlane = t;
-                for (int i = 0; i < sliceCount; i++)
-                {
-                    double di = 2 * Math.PI * i / sliceCount;
-                    positions[t++] = new vec3(holeRadius * (float)Math.Sin(di), -halfThickness, holeRadius * (float)Math.Cos(di));
-                }
+
                 BoundingBox box = positions.Move2Center();
                 this.positions = positions;
                 this.modelSize = box.MaxPosition - box.MinPosition;
             }
             {
-                var indexes = new uint[sliceCount * (secondSliceCount - 1) * 2 * 3
-                    + sliceCount * 2 * 3 + sliceCount * 2 * 3
-                    + sliceCount * 2 * 3];
+                var indexes = new uint[(sliceCount * (secondSliceCount) * 2 * 3 * 2)
+                    + sliceCount * 2 * 3 + sliceCount * 2 * 3];
                 uint t = 0;
                 for (uint i = 0; i < sliceCount; i++)
                 {
-                    for (uint j = 0; j < secondSliceCount - 1; j++)
+                    for (uint j = 0; j < secondSliceCount; j++)
                     {
-                        indexes[t++] = i * secondSliceCount + j;
-                        indexes[t++] = i * secondSliceCount + (j + 1) % secondSliceCount;
-                        indexes[t++] = (i * secondSliceCount + secondSliceCount + (j + 1) % secondSliceCount) % (sliceCount * secondSliceCount);
+                        indexes[t++] = outUpSphere[i] + j;
+                        indexes[t++] = outUpSphere[i] + (j + 1);
+                        indexes[t++] = outUpSphere[(i + 1) % sliceCount] + j + 1;
 
-                        indexes[t++] = i * secondSliceCount + j;
-                        indexes[t++] = (i * secondSliceCount + secondSliceCount + (j + 1) % secondSliceCount) % (sliceCount * secondSliceCount);
-                        indexes[t++] = (i * secondSliceCount + secondSliceCount + j) % (sliceCount * secondSliceCount);
+                        indexes[t++] = outUpSphere[i] + j;
+                        indexes[t++] = outUpSphere[(i + 1) % sliceCount] + j + 1;
+                        indexes[t++] = outUpSphere[(i + 1) % sliceCount] + j;
                     }
                 }
                 for (uint i = 0; i < sliceCount; i++)
                 {
-                    indexes[t++] = upPlane + i;
-                    indexes[t++] = upSphere[i];
-                    indexes[t++] = upPlane + (i + 1) % sliceCount;
+                    for (uint j = 0; j < secondSliceCount; j++)
+                    {
+                        indexes[t++] = inDownSphere[i] + j;
+                        indexes[t++] = inDownSphere[i] + (j + 1);
+                        indexes[t++] = inDownSphere[(i + 1) % sliceCount] + j + 1;
 
-                    indexes[t++] = upPlane + (i + 1) % sliceCount;
-                    indexes[t++] = upSphere[i];
-                    indexes[t++] = upSphere[(i + 1) % sliceCount];
+                        indexes[t++] = inDownSphere[i] + j;
+                        indexes[t++] = inDownSphere[(i + 1) % sliceCount] + j + 1;
+                        indexes[t++] = inDownSphere[(i + 1) % sliceCount] + j;
+                    }
                 }
                 for (uint i = 0; i < sliceCount; i++)
                 {
-                    indexes[t++] = downPlane + i;
-                    indexes[t++] = downPlane + (i + 1) % sliceCount;
-                    indexes[t++] = downSphere[i];
+                    indexes[t++] = inUpSphere[i];
+                    indexes[t++] = outUpSphere[i];
+                    indexes[t++] = outUpSphere[(i + 1) % sliceCount];
 
-                    indexes[t++] = downPlane + (i + 1) % sliceCount;
-                    indexes[t++] = downSphere[(i + 1) % sliceCount];
-                    indexes[t++] = downSphere[i];
+                    indexes[t++] = inUpSphere[i];
+                    indexes[t++] = outUpSphere[(i + 1) % sliceCount];
+                    indexes[t++] = inUpSphere[(i + 1) % sliceCount];
                 }
                 for (uint i = 0; i < sliceCount; i++)
                 {
-                    indexes[t++] = upPlane + i;
-                    indexes[t++] = upPlane + (i + 1) % sliceCount;
-                    indexes[t++] = downPlane + i;
+                    indexes[t++] = inDownSphere[i];
+                    indexes[t++] = outDownSphere[(i + 1) % sliceCount];
+                    indexes[t++] = outDownSphere[i];
 
-                    indexes[t++] = downPlane + i;
-                    indexes[t++] = upPlane + (i + 1) % sliceCount;
-                    indexes[t++] = downPlane + (i + 1) % sliceCount;
+                    indexes[t++] = inDownSphere[i];
+                    indexes[t++] = inDownSphere[(i + 1) % sliceCount];
+                    indexes[t++] = outDownSphere[(i + 1) % sliceCount];
                 }
                 this.indexes = indexes;
             }
