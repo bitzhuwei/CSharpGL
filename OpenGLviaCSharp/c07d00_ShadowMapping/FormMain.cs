@@ -119,6 +119,7 @@ namespace c07d00_ShadowMapping
                 }
             }
             {
+				var parser = new ObjVNFParser(false);
                 var hanoiTower = new GroupNode();
                 ObjItem[] items = HanoiTower.GetDataSource();
                 foreach (var item in items)
@@ -126,7 +127,6 @@ namespace c07d00_ShadowMapping
                     var objFormat = item.model;
                     var filename = item.GetType().Name;
                     objFormat.DumpObjFile(filename, filename);
-                    var parser = new ObjVNFParser(false);
                     ObjVNFResult result = parser.Parse(filename);
                     if (result.Error != null)
                     {
@@ -145,7 +145,6 @@ namespace c07d00_ShadowMapping
                 }
                 group.Children.Add(hanoiTower);
             }
-
 
             return group;
         }

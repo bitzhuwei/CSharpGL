@@ -107,22 +107,34 @@ namespace Lighting.ShadowVolume
                     group.Children.Add(node);
                 }
             }
-            {
-                var parser = new ObjVNFParser(false);
-                var dataSource = HanoiTower.GetDataSource();
-                foreach (var item in dataSource)
+			{
+				var parser = new ObjVNFParser(false);
+                var hanoiTower = new GroupNode();
+                ObjItem[] items = HanoiTower.GetDataSource();
+                foreach (var item in items)
                 {
-                    item.model.DumpObjFile("tmp");
-                    var result = parser.Parse("tmp");
-                    var model = new AdjacentTriangleModel(result.Mesh);
-                    var node = ShadowVolumeNode.Create(model, ObjVNF.strPosition, ObjVNF.strNormal, model.GetSize());
-                    node.Name = item.model.GetType().Name;
-                    node.Color = item.color;
-                    node.WorldPosition = item.position;
-                    group.Children.Add(node);
+                    var objFormat = item.model;
+                    var filename = item.GetType().Name;
+                    objFormat.DumpObjFile(filename, filename);
+                    ObjVNFResult result = parser.Parse(filename);
+                    if (result.Error != null)
+                    {
+                        Console.WriteLine("Error: {0}", result.Error);
+                    }
+                    else
+                    {
+                        ObjVNFMesh mesh = result.Mesh;
+                        var model = new ObjVNF(mesh);
+                        var node = ShadowVolumeNode.Create(model, ObjVNF.strPosition, ObjVNF.strNormal, model.GetSize());
+                        node.WorldPosition = item.position;
+                        node.Color = item.color;
+                        node.Name = filename;
+                        hanoiTower.Children.Add(node);
+                    }
                 }
+                group.Children.Add(hanoiTower);
             }
-
+			
             return group;
         }
 
