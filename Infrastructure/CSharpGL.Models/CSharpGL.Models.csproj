@@ -117,6 +117,7 @@
     <None Include="vnfannulus.obj_" />
     <None Include="vnfcylinder.obj_" />
     <None Include="vnfdisk.obj_" />
+    <None Include="vnfHanoiTower.obj_" />
     <None Include="vnfprismoid.obj_" />
   </ItemGroup>
   <ItemGroup>
