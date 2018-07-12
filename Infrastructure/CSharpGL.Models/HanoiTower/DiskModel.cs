@@ -14,7 +14,7 @@ namespace CSharpGL
             return this.modelSize;
         }
 
-        public DiskModel(float radius, float holeRadius, float thickness, uint sliceCount, uint secondSliceCount)
+        public DiskModel(float radius, float holeRadius, float halfThickness, uint sliceCount, uint secondSliceCount)
         {
             uint upPlane, downPlane;
             uint[] upSphere = new uint[sliceCount];
@@ -33,8 +33,8 @@ namespace CSharpGL
                     for (int j = 0; j < secondSliceCount; j++)
                     {
                         double dj = Math.PI / 2 + Math.PI * j / (secondSliceCount - 1);
-                        positions[t++] = center * (length - thickness * (float)Math.Cos(dj))
-                            + y * (thickness * (float)Math.Sin(dj));
+                        positions[t++] = center * (length - halfThickness * (float)Math.Cos(dj))
+                            + y * (halfThickness * (float)Math.Sin(dj));
                     }
                     downSphere[i] = t - 1;
                 }
@@ -42,13 +42,13 @@ namespace CSharpGL
                 for (int i = 0; i < sliceCount; i++)
                 {
                     double di = 2 * Math.PI * i / sliceCount;
-                    positions[t++] = new vec3(holeRadius * (float)Math.Sin(di), thickness, holeRadius * (float)Math.Cos(di));
+                    positions[t++] = new vec3(holeRadius * (float)Math.Sin(di), halfThickness, holeRadius * (float)Math.Cos(di));
                 }
                 downPlane = t;
                 for (int i = 0; i < sliceCount; i++)
                 {
                     double di = 2 * Math.PI * i / sliceCount;
-                    positions[t++] = new vec3(holeRadius * (float)Math.Sin(di), -thickness, holeRadius * (float)Math.Cos(di));
+                    positions[t++] = new vec3(holeRadius * (float)Math.Sin(di), -halfThickness, holeRadius * (float)Math.Cos(di));
                 }
                 BoundingBox box = positions.Move2Center();
                 this.positions = positions;
