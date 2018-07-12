@@ -193,6 +193,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IObjFormatConsole", "Infras
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MipmapGenerator", "Infrastructure\MipmapGenerator\MipmapGenerator.csproj", "{B9285B42-9DF1-4529-9097-2513DBE43F4A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "c05d00_AmbientDiffuseSpecular", "OpenGLviaCSharp\c05d00_AmbientDiffuseSpecular\c05d00_AmbientDiffuseSpecular.csproj", "{15C0387E-93FE-4FF6-A188-8253D81C13A0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -563,6 +565,10 @@ Global
 		{B9285B42-9DF1-4529-9097-2513DBE43F4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B9285B42-9DF1-4529-9097-2513DBE43F4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B9285B42-9DF1-4529-9097-2513DBE43F4A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15C0387E-93FE-4FF6-A188-8253D81C13A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15C0387E-93FE-4FF6-A188-8253D81C13A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15C0387E-93FE-4FF6-A188-8253D81C13A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15C0387E-93FE-4FF6-A188-8253D81C13A0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -658,5 +664,6 @@ Global
 		{B4A782D8-EDAA-441B-92D4-85453548CDBA} = {7CF86F60-2BAC-4F60-AF1C-869737385E1B}
 		{64334D02-41DA-4AA4-80EF-C379B6715782} = {E800BE67-00FE-4C05-9F0F-640DC7134E7D}
 		{B9285B42-9DF1-4529-9097-2513DBE43F4A} = {E800BE67-00FE-4C05-9F0F-640DC7134E7D}
+		{15C0387E-93FE-4FF6-A188-8253D81C13A0} = {7CF86F60-2BAC-4F60-AF1C-869737385E1B}
 	EndGlobalSection
 EndGlobal
