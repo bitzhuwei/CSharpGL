@@ -13,7 +13,7 @@ namespace IObjFormatConsole
             {
                 Console.WriteLine("prismoid");
                 var prismoid = new PrismoidModel(5, 5, 6, 6, 2);
-                var filename = "prismoid.obj";
+                var filename = "prismoid.obj_";
                 prismoid.DumpObjFile(filename, "prismoid");
                 var parser = new ObjVNFParser(false);
                 ObjVNFResult result = parser.Parse(filename);
@@ -31,7 +31,7 @@ namespace IObjFormatConsole
             {
                 Console.WriteLine("cylinder");
                 var cylinder = new CylinderModel(0.25f, 6, 17);
-                var filename = "cylinder.obj";
+                var filename = "cylinder.obj_";
                 cylinder.DumpObjFile(filename, "cylinder");
                 var parser = new ObjVNFParser(false);
                 ObjVNFResult result = parser.Parse(filename);
@@ -50,7 +50,7 @@ namespace IObjFormatConsole
             {
                 Console.WriteLine("annulus");
                 var annulus = new AnnulusModel(0.5f + 0.4f, 0.3f, 17, 17);
-                var filename = "annulus.obj";
+                var filename = "annulus.obj_";
                 annulus.DumpObjFile(filename, "annulus");
                 var parser = new ObjVNFParser(false);
                 ObjVNFResult result = parser.Parse(filename);
@@ -69,7 +69,7 @@ namespace IObjFormatConsole
             {
                 Console.WriteLine("disk");
                 var disk = new DiskModel(0.5f + 0.4f, 0.3f, 0.3f, 17, 17);
-                var filename = "disk.obj";
+                var filename = "disk.obj_";
                 disk.DumpObjFile(filename, "disk");
                 var parser = new ObjVNFParser(false);
                 ObjVNFResult result = parser.Parse(filename);
@@ -106,8 +106,7 @@ namespace IObjFormatConsole
                     nextIndex += (uint)positions.Length;
                 }
                 var hanoiTower = new TmpModel(positionList.ToArray(), indexList.ToArray());
-                hanoiTower.DumpObjFile("HanoiTower.obj", "HanoiTower");
-                var filename = "HanoiTower.obj";
+                var filename = "HanoiTower.obj_";
                 hanoiTower.DumpObjFile(filename, "hanoiTower");
                 var parser = new ObjVNFParser(false);
                 ObjVNFResult result = parser.Parse(filename);
