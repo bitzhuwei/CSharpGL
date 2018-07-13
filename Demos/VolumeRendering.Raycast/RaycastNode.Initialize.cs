@@ -23,8 +23,10 @@ namespace VolumeRendering.Raycast
             base.DoInitialize();
 
             string folder = System.Windows.Forms.Application.StartupPath;
-            string tff = System.IO.Path.Combine(folder + @"\..\..\..\..\Infrastructure\CSharpGL.Models", "tff.dat");
-            this.transferFunc1DTexture = InitTFF1DTexture(tff);
+            {
+                string tff = "tff.png";
+                this.transferFunc1DTexture = InitTFF1DTexture(tff);
+            }
 
             {
                 //string head256 = System.IO.Path.Combine(folder + @"\..\..\..\..\Infrastructure\CSharpGL.Models", "head256.raw");
@@ -167,15 +169,9 @@ namespace VolumeRendering.Raycast
 
         private Texture InitTFF1DTexture(string filename)
         {
-            byte[] tff;
-            using (var fs = new FileStream(filename, FileMode.Open, FileAccess.Read))
-            using (var br = new BinaryReader(fs))
-            {
-                tff = br.ReadBytes((int)fs.Length);
-            }
-
+            var bitmap = new System.Drawing.Bitmap(filename);
             const int width = 256;
-            var storage = new TexImage1D(GL.GL_RGBA8, width, GL.GL_RGBA, GL.GL_UNSIGNED_BYTE, new ArrayDataProvider<byte>(tff));
+            var storage = new TexImage1D(GL.GL_RGBA8, width, GL.GL_RGBA, GL.GL_UNSIGNED_BYTE, new ImageDataProvider(bitmap));
             var texture = new Texture(storage,
                 new TexParameteri(TexParameter.PropertyName.TextureWrapR, (int)GL.GL_REPEAT),
                 new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_REPEAT),
@@ -184,6 +180,7 @@ namespace VolumeRendering.Raycast
                 new TexParameteri(TexParameter.PropertyName.TextureMagFilter, (int)GL.GL_NEAREST));
             texture.Initialize();
             texture.TextureUnitIndex = 0;
+            bitmap.Dispose();
 
             return texture;
         }

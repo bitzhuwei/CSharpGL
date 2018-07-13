@@ -13,6 +13,7 @@ namespace CSharpGL
             list.Add(new ShapingSphere(width, height, depth));
 
             var result = new byte[width * height * depth];
+            int count = 0;
             for (int i = 0; i < width; i++)
             {
                 for (int j = 0; j < height; j++)
@@ -23,14 +24,18 @@ namespace CSharpGL
                         foreach (var item in list)
                         {
                             byte value = item.Shaping(i, j, k);
-                            if (byte.MaxValue - result[index] > value)
+                            if (value > 0)
                             {
-                                result[index] = value;
-                            }
-                            else
-                            {
-                                result[index] = byte.MaxValue;
-                                break;
+                                count++;
+                                if (byte.MaxValue - result[index] > value)
+                                {
+                                    result[index] += value;
+                                }
+                                else
+                                {
+                                    result[index] = byte.MaxValue;
+                                    break;
+                                }
                             }
                         }
                     }
