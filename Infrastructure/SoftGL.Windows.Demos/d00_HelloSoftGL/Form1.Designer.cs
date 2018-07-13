@@ -28,12 +28,43 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.winSoftGLCanvas1 = new CSharpGL.WinSoftGLCanvas();
+            ((System.ComponentModel.ISupportInitialize)(this.winSoftGLCanvas1)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // winSoftGLCanvas1
+            // 
+            this.winSoftGLCanvas1.AccumAlphaBits = ((byte)(0));
+            this.winSoftGLCanvas1.AccumBits = ((byte)(0));
+            this.winSoftGLCanvas1.AccumBlueBits = ((byte)(0));
+            this.winSoftGLCanvas1.AccumGreenBits = ((byte)(0));
+            this.winSoftGLCanvas1.AccumRedBits = ((byte)(0));
+            this.winSoftGLCanvas1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.winSoftGLCanvas1.Location = new System.Drawing.Point(0, 0);
+            this.winSoftGLCanvas1.Name = "winSoftGLCanvas1";
+            this.winSoftGLCanvas1.RenderTrigger = CSharpGL.RenderTrigger.TimerBased;
+            this.winSoftGLCanvas1.Size = new System.Drawing.Size(616, 407);
+            this.winSoftGLCanvas1.StencilBits = ((byte)(0));
+            this.winSoftGLCanvas1.TabIndex = 0;
+            this.winSoftGLCanvas1.TimerTriggerInterval = 40;
+            this.winSoftGLCanvas1.UpdateContextVersion = true;
+            // 
+            // Form1
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Text = "Form1";
+            this.ClientSize = new System.Drawing.Size(616, 407);
+            this.Controls.Add(this.winSoftGLCanvas1);
+            this.Name = "Form1";
+            this.Text = "Hello SoftGL";
+            ((System.ComponentModel.ISupportInitialize)(this.winSoftGLCanvas1)).EndInit();
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private CSharpGL.WinSoftGLCanvas winSoftGLCanvas1;
     }
 }
 
