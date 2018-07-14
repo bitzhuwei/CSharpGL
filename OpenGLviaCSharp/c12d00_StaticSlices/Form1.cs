@@ -78,13 +78,10 @@ namespace c12d00_StaticSlices
             group.RotationAxis = new vec3(-0.8343f, -0.0144f, -0.5512f);
             group.RotationAngle = 179.260315f;
             {
-                string folder = System.Windows.Forms.Application.StartupPath;
-                string tff = System.IO.Path.Combine(folder + @"\..\..\..\..\Infrastructure\CSharpGL.Models", "tff.dat");
-                Texture tffTexture = InitTFF1DTexture(tff);
-
-                string head256 = System.IO.Path.Combine(folder + @"\..\..\..\..\Infrastructure\CSharpGL.Models", "head256.raw");
-                byte[] volumeData = GetVolumeData(head256);
-                Texture volumeTexture = InitVolume3DTexture(volumeData, 256, 256, 225);
+                Texture tffTexture = InitTFF1DTexture("tff.png");
+                int width = 128, height = 128, depth = 128;
+                byte[] volumeData = VolumeData.GetData(width, height, depth);
+                Texture volumeTexture = InitVolume3DTexture(volumeData, width, height, depth);
 
                 int sliceCount = 512;
                 StaticSlicesNode node = StaticSlicesNode.Create(sliceCount, tffTexture, volumeTexture);
@@ -133,15 +130,9 @@ namespace c12d00_StaticSlices
 
         private Texture InitTFF1DTexture(string filename)
         {
-            byte[] tff;
-            using (var fs = new FileStream(filename, FileMode.Open, FileAccess.Read))
-            using (var br = new BinaryReader(fs))
-            {
-                tff = br.ReadBytes((int)fs.Length);
-            }
-
+            var bitmap = new System.Drawing.Bitmap(filename);
             const int width = 256;
-            var storage = new TexImage1D(GL.GL_RGBA8, width, GL.GL_RGBA, GL.GL_UNSIGNED_BYTE, new ArrayDataProvider<byte>(tff));
+            var storage = new TexImage1D(GL.GL_RGBA8, width, GL.GL_RGBA, GL.GL_UNSIGNED_BYTE, new ImageDataProvider(bitmap));
             var texture = new Texture(storage,
                 new TexParameteri(TexParameter.PropertyName.TextureWrapR, (int)GL.GL_REPEAT),
                 new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_REPEAT),
@@ -150,6 +141,7 @@ namespace c12d00_StaticSlices
                 new TexParameteri(TexParameter.PropertyName.TextureMagFilter, (int)GL.GL_NEAREST));
             texture.Initialize();
             texture.TextureUnitIndex = 0;
+            bitmap.Dispose();
 
             return texture;
         }
