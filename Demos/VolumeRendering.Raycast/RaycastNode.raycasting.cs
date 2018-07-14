@@ -67,9 +67,10 @@ void main()
     for(int i = 0; i < cycle; i++)
     {
         // get scaler value in the volume data
-        intensity =  texture(VolumeTex, voxelCoord).x;
+        intensity = texture(VolumeTex, voxelCoord).x;
         // get mapped color from 1-D texture
         colorSample = texture(TransferFunc, intensity);
+        colorSample.a /= 50;
         // modulate the value of colorSample.a
         // front-to-back integration
         if (colorSample.a > 0.0) {

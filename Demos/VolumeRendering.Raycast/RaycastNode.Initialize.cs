@@ -44,7 +44,7 @@ namespace VolumeRendering.Raycast
             //    this.volume3DTexture = InitVolume3DTexture(volumeData, 16, 16, 16);
             //}
             {
-                int width = 64, height = 64, depth = 64;
+                int width = 128, height = 128, depth = 128;
                 byte[] volumeData = VolumeData.GetData(width, height, depth);
                 this.volume3DTexture = InitVolume3DTexture(volumeData, width, height, depth);
             }
@@ -60,10 +60,10 @@ namespace VolumeRendering.Raycast
                 //program.SetUniform("StepSize", this.g_stepSize);
                 program.SetUniform("TransferFunc", this.transferFunc1DTexture);
                 program.SetUniform("VolumeTex", this.volume3DTexture);
-                //var clearColor = new float[4];
-                //OpenGL.GetFloat(GetTarget.ColorClearValue, clearColor);
-                //this.raycastRenderer.glUniform("backgroundColor", clearColor.ToVec4());
-                program.SetUniform("backgroundColor", new vec4(0.4f, 0.8f, 1.0f, 1.0f));
+                var clearColor = new float[4];
+                //GL.Instance.GetFloatv((uint)GetTarget.ColorClearValue, clearColor);
+                //program.SetUniform("backgroundColor", new vec4(clearColor[0], clearColor[1], clearColor[2], clearColor[3]));
+                program.SetUniform("backgroundColor", System.Drawing.Color.SkyBlue.ToVec4());
             }
         }
 
