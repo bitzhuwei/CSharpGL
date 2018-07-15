@@ -16,6 +16,7 @@ namespace fuluDd00_VolumeMapping
         private Scene scene;
         private ActionList actionList;
         private PeelingNode peelingNode;
+        private RaycastNode raycastNode;
 
         public FormMain()
         {
@@ -28,7 +29,7 @@ namespace fuluDd00_VolumeMapping
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-            var position = new vec3(5, 3, 4) * 1f;
+            var position = new vec3(5, 3, 4) * 0.3f;
             var center = new vec3(0, 0, 0);
             var up = new vec3(0, 1, 0);
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
@@ -53,8 +54,9 @@ namespace fuluDd00_VolumeMapping
 
         private SceneNodeBase GetTree(Scene scene)
         {
-            var children = new List<SceneNodeBase>();
+            var groupNode = new GroupNode();
             {
+                var children = new List<SceneNodeBase>();
                 const float alpha = 0.2f;
                 var colors = new vec4[] { new vec4(1, 0, 0, alpha), new vec4(0, 1, 0, alpha), new vec4(0, 0, 1, alpha) };
 
@@ -75,10 +77,15 @@ namespace fuluDd00_VolumeMapping
                         }
                     }
                 }
+                this.peelingNode = new PeelingNode(children.ToArray());
+                groupNode.Children.Add(this.peelingNode);
             }
-            this.peelingNode = new PeelingNode(children.ToArray());
+            {
+                this.raycastNode = RaycastNode.Create(this.peelingNode);
+                groupNode.Children.Add(this.raycastNode);
+            }
 
-            return this.peelingNode;
+            return groupNode;
         }
 
         private void winGLCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
@@ -97,6 +104,16 @@ namespace fuluDd00_VolumeMapping
         void winGLCanvas1_Resize(object sender, EventArgs e)
         {
             this.scene.Camera.AspectRatio = ((float)this.winGLCanvas1.Width) / ((float)this.winGLCanvas1.Height);
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            var node = this.raycastNode;
+            if (node != null)
+            {
+                node.RotationAxis = new vec3(0, 1, 0);
+                node.RotationAngle += 1;
+            }
         }
 
     }

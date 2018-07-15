@@ -28,7 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.winGLCanvas1 = new CSharpGL.WinGLCanvas();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.winGLCanvas1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -49,6 +51,11 @@
             this.winGLCanvas1.TimerTriggerInterval = 40;
             this.winGLCanvas1.UpdateContextVersion = true;
             // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -65,6 +72,7 @@
         #endregion
 
         private CSharpGL.WinGLCanvas winGLCanvas1;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 

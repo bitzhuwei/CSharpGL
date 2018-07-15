@@ -7,7 +7,7 @@ using System.Drawing;
 
 namespace fuluDd00_VolumeMapping
 {
-    partial class PeelingNode : SceneNodeBase, IRenderable
+    partial class PeelingNode : SceneNodeBase, IRenderable, IVolumeData
     {
         private int width;
         private int height;
@@ -50,9 +50,24 @@ namespace fuluDd00_VolumeMapping
             set { firstRun = value; }
         }
 
+        const int vWidth = 64;
+        const int vHeight = 64;
+        const int vDepth = 64;
+        private byte[] volumeData = new byte[vWidth * vHeight * vDepth];
+
+        public byte[] VolumeData
+        {
+            get { return volumeData; }
+        }
+
+        public int Width { get { return vWidth; } }
+        public int Height { get { return vHeight; } }
+        public int Depth { get { return vDepth; } }
 
         public void RenderBeforeChildren(RenderEventArgs arg)
         {
+            if (!this.firstRun) { return; }
+
             var viewport = new int[4]; GL.Instance.GetIntegerv((uint)GetTarget.Viewport, viewport);
 
             if (this.width != viewport[2] || this.height != viewport[3])
@@ -69,6 +84,7 @@ namespace fuluDd00_VolumeMapping
             this.resources.blenderFBO.Unbind();
             Texture targetTexture = this.resources.blenderColorTexture;
 
+            var bitmapList = new List<Bitmap>();
             // remember clear color.
             var clearColor = new float[4];
             GL.Instance.GetFloatv((uint)GetTarget.ColorClearValue, clearColor);
@@ -84,7 +100,14 @@ namespace fuluDd00_VolumeMapping
                 this.resources.blenderFBO.Unbind();
                 targetTexture = this.resources.blenderColorTexture;
 
-                if (firstRun) { targetTexture.GetImage(this.width, this.height).Save("0.init.png"); }
+                if (firstRun)
+                {
+                    var bitmap = targetTexture.GetImage(this.width, this.height);
+                    bitmap.Save("0.init.png");
+                    var image = (Bitmap)bitmap.GetThumbnailImage(vWidth, vHeight, null, IntPtr.Zero);
+                    bitmapList.Add(image);
+                    bitmap.Dispose();
+                }
             }
 
             int numLayers = (NUM_PASSES - 1) * 2;
@@ -117,35 +140,56 @@ namespace fuluDd00_VolumeMapping
 
                     if (firstRun && sampled)
                     {
-                        targetTexture.GetImage(this.width, this.height).Save(string.Format(
-                            "{0}.peel.png", layer * 2 - 1));
-                        {
+                        var bitmap = targetTexture.GetImage(this.width, this.height);
+                        bitmap.Save(string.Format("{0}.peel.png", layer * 2 - 1));
+                        var image = (Bitmap)bitmap.GetThumbnailImage(vWidth, vHeight, null, IntPtr.Zero);
+                        bitmapList.Add(image);
+                        bitmap.Dispose();
+                    }
+                }
 
+                //    // blend.
+                //    if (currentStep <= totalStep)
+                //    {
+                //        currentStep++;
+                //        this.resources.blenderFBO.Bind();
+                //        this.depthTest.On();
+                //        //this.DrawFullScreenQuad(arg, QuadNode.RenderMode.Blend, this.resources.colorTextures[currId], false);
+                //        this.depthTest.Off();
+                //        this.resources.blenderFBO.Unbind();
+                //        targetTexture = this.resources.blenderColorTexture;
+                //        if (firstRun && sampled)
+                //        {
+                //            targetTexture.GetImage(this.width, this.height).Save(string.Format(
+                //                "{0}.blend.png", layer * 2));
+                //        }
+                //    }
+
+                //    if (!sampled) { break; }
+            }
+
+            byte minA = byte.MaxValue;
+            byte maxA = byte.MinValue;
+            var volumeData = this.volumeData;
+            foreach (var bitmap in bitmapList)
+            {
+                for (int w = 0; w < vWidth; w++)
+                {
+                    for (int h = 0; h < vHeight; h++)
+                    {
+                        Color color = bitmap.GetPixel(w, h);
+                        if (color.A < minA) { minA = color.A; }
+                        if (maxA < color.A) { maxA = color.A; }
+                        int d = (int)((double)vDepth * (double)color.A / 256.0);
+                        int index = w * vHeight * vDepth + h * vDepth + d;
+                        if (color.A != 0)
+                        {
+                            volumeData[index] += Math.Max(color.R, Math.Max(color.G, color.B));
                         }
                     }
                 }
-
-
-                // blend.
-                if (currentStep <= totalStep)
-                {
-                    currentStep++;
-                    this.resources.blenderFBO.Bind();
-                    this.depthTest.On();
-                    //this.DrawFullScreenQuad(arg, QuadNode.RenderMode.Blend, this.resources.colorTextures[currId], false);
-                    this.depthTest.Off();
-                    this.resources.blenderFBO.Unbind();
-                    targetTexture = this.resources.blenderColorTexture;
-                    if (firstRun && sampled)
-                    {
-                        targetTexture.GetImage(this.width, this.height).Save(string.Format(
-                            "{0}.blend.png", layer * 2));
-                    }
-                }
-
-                if (!sampled) { break; }
+                bitmap.Dispose();
             }
-
             // restore clear color.
             //GL.Instance.ClearColor(clearColor[0], clearColor[1], clearColor[2], clearColor[3]);
             // final.
@@ -160,7 +204,7 @@ namespace fuluDd00_VolumeMapping
             //    final.RotateFlip(RotateFlipType.Rotate180FlipX);
             //    final.Save(string.Format("{0}.final.png", finalId));
             //}
-            //this.firstRun = false;
+            this.firstRun = false;
         }
 
         private void Resize(int width, int height)
