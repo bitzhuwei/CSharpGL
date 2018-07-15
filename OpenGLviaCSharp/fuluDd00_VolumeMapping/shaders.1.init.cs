@@ -29,7 +29,7 @@ uniform vec4 vColor;	//colour uniform
 
 void main()
 {
-    vFragColor = vec4(vColor.rgb * vColor.a, 1.0 - vColor.a);
+    vFragColor = vec4(vColor.rgb, gl_FragCoord.z);
 }
 ";
 

@@ -39,7 +39,7 @@ void main()
     if(gl_FragCoord.z <= frontDepth) discard;
 	
     //otherwise set the given color uniform as the final output
-    vFragColor = vec4(vColor.rgb * vColor.a, vColor.a);
+    vFragColor = vec4(vColor.rgb, gl_FragCoord.z);
 }
 ";
     }
