@@ -29,10 +29,15 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.winGLCanvas1 = new CSharpGL.WinGLCanvas();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.winGLCanvas1 = new CSharpGL.WinGLCanvas();
             ((System.ComponentModel.ISupportInitialize)(this.winGLCanvas1)).BeginInit();
             this.SuspendLayout();
+            // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // winGLCanvas1
             // 
@@ -50,11 +55,6 @@
             this.winGLCanvas1.TabIndex = 0;
             this.winGLCanvas1.TimerTriggerInterval = 40;
             this.winGLCanvas1.UpdateContextVersion = true;
-            // 
-            // timer1
-            // 
-            this.timer1.Enabled = true;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // FormMain
             // 

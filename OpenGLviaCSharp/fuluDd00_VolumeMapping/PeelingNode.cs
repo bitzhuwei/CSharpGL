@@ -168,6 +168,8 @@ namespace fuluDd00_VolumeMapping
                 //    if (!sampled) { break; }
             }
 
+            Color background = Color.SkyBlue;
+            int count = 0;
             byte minA = byte.MaxValue;
             byte maxA = byte.MinValue;
             var volumeData = this.volumeData;
@@ -182,9 +184,11 @@ namespace fuluDd00_VolumeMapping
                         if (maxA < color.A) { maxA = color.A; }
                         int d = (int)((double)vDepth * (double)color.A / 256.0);
                         int index = w * vHeight * vDepth + h * vDepth + d;
-                        if (color.A != 0)
+                        if (color.A != 0 &&
+                            (color.R != background.R || color.G != background.G || color.B != background.B))
                         {
-                            volumeData[index] += Math.Max(color.R, Math.Max(color.G, color.B));
+                            volumeData[index] += (byte)(color.R * 0.299 + color.G * 0.587 + color.B * 0.114);//Math.Max(color.R, Math.Max(color.G, color.B));
+                            count++;
                         }
                     }
                 }

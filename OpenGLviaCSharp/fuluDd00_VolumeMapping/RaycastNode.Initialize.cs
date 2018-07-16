@@ -63,7 +63,7 @@ namespace fuluDd00_VolumeMapping
                 var clearColor = new float[4];
                 //GL.Instance.GetFloatv((uint)GetTarget.ColorClearValue, clearColor);
                 //program.SetUniform("backgroundColor", new vec4(clearColor[0], clearColor[1], clearColor[2], clearColor[3]));
-                program.SetUniform("backgroundColor", System.Drawing.Color.SkyBlue.ToVec4());
+                program.SetUniform("backgroundColor", System.Drawing.Color.White.ToVec4());
             }
         }
 

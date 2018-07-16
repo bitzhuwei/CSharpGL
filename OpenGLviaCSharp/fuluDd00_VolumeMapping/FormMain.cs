@@ -29,10 +29,10 @@ namespace fuluDd00_VolumeMapping
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-            var position = new vec3(5, 3, 4) * 0.3f;
+            var position = new vec3(0, 0, 2);
             var center = new vec3(0, 0, 0);
             var up = new vec3(0, 1, 0);
-            var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
+            var camera = new Camera(position, center, up, CameraType.Ortho, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
             var scene = new Scene(camera);
             var rootElement = GetTree(scene);
             scene.RootNode = rootElement;
@@ -69,6 +69,7 @@ namespace fuluDd00_VolumeMapping
                         {
                             vec3 worldPosition = new vec3(i * 2, j * 2, k * 2);
                             var cubeNode = CubeNode.Create(new CubeModel(), CubeModel.positions);
+                            //var cubeNode = CubeNode.Create(new RectangleModel(), RectangleModel.strPosition);
                             cubeNode.WorldPosition = worldPosition;
                             cubeNode.Color = colors[index++];
                             cubeNode.Name = string.Format("{0},{1},{2}:{3}", k, j, i, cubeNode.Color);
@@ -77,6 +78,11 @@ namespace fuluDd00_VolumeMapping
                         }
                     }
                 }
+                //{
+                //    var cubeNode = CubeNode.Create(new RectangleModel(), RectangleModel.strPosition);
+                //    cubeNode.Color = Color.Red.ToVec4();
+                //    children.Add(cubeNode);
+                //}
                 this.peelingNode = new PeelingNode(children.ToArray());
                 groupNode.Children.Add(this.peelingNode);
             }
