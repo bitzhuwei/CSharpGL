@@ -68,6 +68,8 @@ namespace fuluDd00_VolumeMapping
         {
             if (!this.firstRun) { return; }
 
+            var position = new vec3(0, 0, 2);
+
             var viewport = new int[4]; GL.Instance.GetIntegerv((uint)GetTarget.Viewport, viewport);
 
             if (this.width != viewport[2] || this.height != viewport[3])
@@ -76,6 +78,11 @@ namespace fuluDd00_VolumeMapping
 
                 this.width = viewport[2];
                 this.height = viewport[3];
+
+                var center = new vec3(0, 0, 0);
+                var up = new vec3(0, 1, 0);
+                var camera = new Camera(position, center, up, CameraType.Ortho, this.width, this.height);
+                arg = new RenderEventArgs(arg.Param, camera);
             }
 
             int currentStep = 0, totalStep = this.RenderStep;

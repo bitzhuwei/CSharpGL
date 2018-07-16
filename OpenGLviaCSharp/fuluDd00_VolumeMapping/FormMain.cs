@@ -32,7 +32,7 @@ namespace fuluDd00_VolumeMapping
             var position = new vec3(0, 0, 2);
             var center = new vec3(0, 0, 0);
             var up = new vec3(0, 1, 0);
-            var camera = new Camera(position, center, up, CameraType.Ortho, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
+            var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
             var scene = new Scene(camera);
             var rootElement = GetTree(scene);
             scene.RootNode = rootElement;

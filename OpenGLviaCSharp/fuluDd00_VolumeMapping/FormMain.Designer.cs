@@ -50,7 +50,7 @@
             this.winGLCanvas1.Location = new System.Drawing.Point(0, 0);
             this.winGLCanvas1.Name = "winGLCanvas1";
             this.winGLCanvas1.RenderTrigger = CSharpGL.RenderTrigger.TimerBased;
-            this.winGLCanvas1.Size = new System.Drawing.Size(819, 496);
+            this.winGLCanvas1.Size = new System.Drawing.Size(486, 397);
             this.winGLCanvas1.StencilBits = ((byte)(0));
             this.winGLCanvas1.TabIndex = 0;
             this.winGLCanvas1.TimerTriggerInterval = 40;
@@ -60,7 +60,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(819, 496);
+            this.ClientSize = new System.Drawing.Size(486, 397);
             this.Controls.Add(this.winGLCanvas1);
             this.Name = "FormMain";
             this.Text = "CSharpGL - IBufferSource -> Texture3D";

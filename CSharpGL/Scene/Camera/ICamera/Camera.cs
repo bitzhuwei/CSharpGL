@@ -45,7 +45,7 @@ namespace CSharpGL
             perspectiveCamera.Near = 0.1;
             perspectiveCamera.Far = 10000;
 
-            const int factor = 100;
+            const int factor = 50;
             IOrthoCamera orthoCamera = this;
             orthoCamera.Left = -width / 2 / factor;
             orthoCamera.Right = width / 2 / factor;
