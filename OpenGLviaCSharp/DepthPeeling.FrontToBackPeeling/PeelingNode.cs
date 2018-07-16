@@ -83,6 +83,21 @@ namespace DepthPeeling.FrontToBackPeeling
                 this.height = viewport[3];
             }
 
+            {
+                var position = new vec3(0, 0, 1);
+                var center = new vec3(0, 0, 0);
+                var up = new vec3(0, 1, 0);
+                var camera = new Camera(position, center, up, CameraType.Ortho, this.width, this.height);
+                {
+                    vec3 size = this.ModelSize;
+                    IOrthoViewCamera c = camera;
+                    c.Left = -size.x / 2; c.Right = size.x / 2;
+                    c.Bottom = -size.y / 2; c.Top = size.y / 2;
+                    c.Near = -size.z / 2; c.Far = size.z / 2;
+                }
+                arg = new RenderEventArgs(arg.Param, camera);
+            }
+
             int currentStep = 0, totalStep = this.RenderStep;
             this.resources.blenderFBO.Bind();
             GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);

@@ -62,21 +62,31 @@ namespace fuluDd00_VolumeMapping
                     new vec4(1, 0, 0, alpha), new vec4(0, 1, 0, alpha), new vec4(0, 0, 1, alpha),
                     new vec4(1, 1, 0, alpha), new vec4(0.5f, 0.5f, 0.5f, alpha), new vec4(1, 0, 1, alpha),
                     new vec4(1, 0, 0, alpha), new vec4(0, 1, 0, alpha), new vec4(0, 0, 1, alpha),
+                    
+                    new vec4(1, 1, 0, alpha), new vec4(0.5f, 0.5f, 0.5f, alpha), new vec4(1, 0, 1, alpha),
+                    new vec4(1, 0, 0, alpha), new vec4(0, 1, 0, alpha), new vec4(0, 0, 1, alpha),
+                    new vec4(1, 0, 0, alpha), new vec4(0, 1, 0, alpha), new vec4(0, 0, 1, alpha),
+                    
+                    new vec4(1, 0, 0, alpha), new vec4(1, 0, 0, alpha), new vec4(1, 0, 0, alpha),
+                    new vec4(1, 1, 0, alpha), new vec4(1, 1, 0, alpha), new vec4(1, 1, 0, alpha),
+                    new vec4(1, 0, 0, alpha), new vec4(1, 0, 0, alpha), new vec4(1, 0, 0, alpha),
+
                 };
 
                 int index = 0;
-                //for (int k = -1; k < 2; k++)
+                for (int k = -1; k < 2; k++)
                 {
                     for (int j = -1; j < 2; j++)
                     {
                         for (int i = -1; i < 2; i++)
                         {
-                            vec3 worldPosition = new vec3(i * 2, j * 2, 0) + new vec3(-2.375f, -1.75f, 0);
-                            var cubeNode = CubeNode.Create(new CubeModel(), CubeModel.positions);
+                            vec3 worldPosition = new vec3(i * 2, j * 2, k) + new vec3(-2.375f, -1.75f, 0);
+                            //var cubeNode = CubeNode.Create(new CubeModel(), CubeModel.positions);
                             //var cubeNode = CubeNode.Create(new RectangleModel(), RectangleModel.strPosition);
+                            var cubeNode = CubeNode.Create(new Sphere(0.5f), Sphere.strPosition);
                             cubeNode.WorldPosition = worldPosition;
                             cubeNode.Color = colors[index++];
-                            cubeNode.Name = string.Format("{0},{1},{2}:{3}", 0, j, i, cubeNode.Color);
+                            cubeNode.Name = string.Format("{0},{1},{2}:{3}", k, j, i, cubeNode.Color);
 
                             children.Add(cubeNode);
                         }

@@ -106,6 +106,7 @@ namespace DepthPeeling.FrontToBackPeeling
                 }
             }
             this.peelingNode = new PeelingNode(children.ToArray());
+            this.peelingNode.ModelSize = new vec3(5, 5, 5);
 
             return this.peelingNode;
         }

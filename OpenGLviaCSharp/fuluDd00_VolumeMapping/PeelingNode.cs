@@ -77,9 +77,11 @@ namespace fuluDd00_VolumeMapping
 
                 this.width = vWidth;
                 this.height = vHeight;
-
+            }
+            {
                 var position = new vec3(0, 0, 0);
                 var center = new vec3(0, 0, -1);
+                //var center = new vec3(-3, -4, -5);
                 var up = new vec3(0, 1, 0);
                 var camera = new Camera(position, center, up, CameraType.Ortho, vWidth, vHeight);
                 {
@@ -157,7 +159,7 @@ namespace fuluDd00_VolumeMapping
 
                     if (firstRun && sampled)
                     {
-                        var bitmap = targetTexture.GetImage(this.width, this.height);
+                        var bitmap = targetTexture.GetImage(vWidth, vHeight);
                         bitmap.Save(string.Format("{0}.peel.png", layer * 2 - 1));
                         //var image = (Bitmap)bitmap.GetThumbnailImage(vWidth, vHeight, null, IntPtr.Zero);
                         bitmapList.Add(bitmap);
