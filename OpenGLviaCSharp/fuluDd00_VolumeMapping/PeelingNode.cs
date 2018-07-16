@@ -53,7 +53,7 @@ namespace fuluDd00_VolumeMapping
         const int vWidth = 64;
         const int vHeight = 64;
         const int vDepth = 64;
-        private byte[] volumeData = new byte[vWidth * vHeight * vDepth];
+        private byte[] volumeData;// = new byte[vWidth * vHeight * vDepth];
 
         public byte[] VolumeData
         {
@@ -179,7 +179,7 @@ namespace fuluDd00_VolumeMapping
             int count = 0;
             byte minA = byte.MaxValue;
             byte maxA = byte.MinValue;
-            var volumeData = this.volumeData;
+            var volumeData = new byte[vWidth * vHeight * vDepth]; ;
             foreach (var bitmap in bitmapList)
             {
                 for (int w = 0; w < vWidth; w++)
@@ -201,6 +201,7 @@ namespace fuluDd00_VolumeMapping
                 }
                 bitmap.Dispose();
             }
+            this.volumeData = volumeData;
             // restore clear color.
             //GL.Instance.ClearColor(clearColor[0], clearColor[1], clearColor[2], clearColor[3]);
             // final.
