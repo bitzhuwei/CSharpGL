@@ -29,7 +29,7 @@ namespace fuluDd00_VolumeMapping
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-            var position = new vec3(0, 0, 2);
+            var position = new vec3(5, 4, 3) * 0.3f;
             var center = new vec3(0, 0, 0);
             var up = new vec3(0, 1, 0);
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
@@ -58,21 +58,25 @@ namespace fuluDd00_VolumeMapping
             {
                 var children = new List<SceneNodeBase>();
                 const float alpha = 0.2f;
-                var colors = new vec4[] { new vec4(1, 0, 0, alpha), new vec4(0, 1, 0, alpha), new vec4(0, 0, 1, alpha) };
+                var colors = new vec4[] {
+                    new vec4(1, 0, 0, alpha), new vec4(0, 1, 0, alpha), new vec4(0, 0, 1, alpha),
+                    new vec4(1, 1, 0, alpha), new vec4(0.5f, 0.5f, 0.5f, alpha), new vec4(1, 0, 1, alpha),
+                    new vec4(1, 0, 0, alpha), new vec4(0, 1, 0, alpha), new vec4(0, 0, 1, alpha),
+                };
 
-                for (int k = -1; k < 2; k++)
+                int index = 0;
+                //for (int k = -1; k < 2; k++)
                 {
                     for (int j = -1; j < 2; j++)
                     {
-                        int index = 0;
                         for (int i = -1; i < 2; i++)
                         {
-                            vec3 worldPosition = new vec3(i * 2, j * 2, k * 2);
+                            vec3 worldPosition = new vec3(i * 2, j * 2, 0) + new vec3(-2.375f, -1.75f, 0);
                             var cubeNode = CubeNode.Create(new CubeModel(), CubeModel.positions);
                             //var cubeNode = CubeNode.Create(new RectangleModel(), RectangleModel.strPosition);
                             cubeNode.WorldPosition = worldPosition;
                             cubeNode.Color = colors[index++];
-                            cubeNode.Name = string.Format("{0},{1},{2}:{3}", k, j, i, cubeNode.Color);
+                            cubeNode.Name = string.Format("{0},{1},{2}:{3}", 0, j, i, cubeNode.Color);
 
                             children.Add(cubeNode);
                         }
@@ -81,10 +85,11 @@ namespace fuluDd00_VolumeMapping
                 //{
                 //    var cubeNode = CubeNode.Create(new RectangleModel(), RectangleModel.strPosition);
                 //    cubeNode.Color = Color.Red.ToVec4();
+                //    cubeNode.WorldPosition = new vec3(-1.5f, -0.5f, 0);
                 //    children.Add(cubeNode);
                 //}
                 this.peelingNode = new PeelingNode(children.ToArray());
-                this.peelingNode.ModelSize = new vec3(5, 5, 5);
+                this.peelingNode.ModelSize = new vec3(5, 5, 5) * 2;
                 groupNode.Children.Add(this.peelingNode);
             }
             {

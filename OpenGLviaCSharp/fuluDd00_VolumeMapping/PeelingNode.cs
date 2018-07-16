@@ -68,20 +68,30 @@ namespace fuluDd00_VolumeMapping
         {
             if (!this.firstRun) { return; }
 
-            var position = new vec3(0, 0, 2);
 
-            var viewport = new int[4]; GL.Instance.GetIntegerv((uint)GetTarget.Viewport, viewport);
+            //var viewport = new int[4]; GL.Instance.GetIntegerv((uint)GetTarget.Viewport, viewport);
 
-            if (this.width != viewport[2] || this.height != viewport[3])
+            if (this.width != vWidth || this.height != vHeight)
             {
-                Resize(viewport[2], viewport[3]);
+                Resize(vWidth, vHeight);
 
-                this.width = viewport[2];
-                this.height = viewport[3];
+                this.width = vWidth;
+                this.height = vHeight;
 
-                var center = new vec3(0, 0, 0);
+                var position = new vec3(0, 0, 0);
+                var center = new vec3(0, 0, -1);
                 var up = new vec3(0, 1, 0);
-                var camera = new Camera(position, center, up, CameraType.Ortho, this.width, this.height);
+                var camera = new Camera(position, center, up, CameraType.Ortho, vWidth, vHeight);
+                {
+                    vec3 size = this.ModelSize;
+                    IOrthoViewCamera c = camera;
+                    c.Left = -size.x / 2; c.Right = size.x / 2;
+                    c.Bottom = -size.y / 2; c.Top = size.y / 2;
+                    c.Near = -size.z / 2; c.Far = size.z / 2;
+                    //c.Left = -size.x; c.Right = size.x;
+                    //c.Bottom = -size.y; c.Top = size.y;
+                    //c.Near = -size.z; c.Far = size.z;
+                }
                 arg = new RenderEventArgs(arg.Param, camera);
             }
 
@@ -109,11 +119,11 @@ namespace fuluDd00_VolumeMapping
 
                 if (firstRun)
                 {
-                    var bitmap = targetTexture.GetImage(this.width, this.height);
+                    var bitmap = targetTexture.GetImage(vWidth, vHeight);
                     bitmap.Save("0.init.png");
-                    var image = (Bitmap)bitmap.GetThumbnailImage(vWidth, vHeight, null, IntPtr.Zero);
-                    bitmapList.Add(image);
-                    bitmap.Dispose();
+                    //var image = (Bitmap)bitmap.GetThumbnailImage(vWidth, vHeight, null, IntPtr.Zero);
+                    bitmapList.Add(bitmap);
+                    //bitmap.Dispose();
                 }
             }
 
@@ -149,9 +159,9 @@ namespace fuluDd00_VolumeMapping
                     {
                         var bitmap = targetTexture.GetImage(this.width, this.height);
                         bitmap.Save(string.Format("{0}.peel.png", layer * 2 - 1));
-                        var image = (Bitmap)bitmap.GetThumbnailImage(vWidth, vHeight, null, IntPtr.Zero);
-                        bitmapList.Add(image);
-                        bitmap.Dispose();
+                        //var image = (Bitmap)bitmap.GetThumbnailImage(vWidth, vHeight, null, IntPtr.Zero);
+                        bitmapList.Add(bitmap);
+                        //bitmap.Dispose();
                     }
                 }
             }
