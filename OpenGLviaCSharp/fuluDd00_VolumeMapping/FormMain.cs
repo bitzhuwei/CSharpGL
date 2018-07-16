@@ -84,6 +84,7 @@ namespace fuluDd00_VolumeMapping
                 //    children.Add(cubeNode);
                 //}
                 this.peelingNode = new PeelingNode(children.ToArray());
+                this.peelingNode.ModelSize = new vec3(5, 5, 5);
                 groupNode.Children.Add(this.peelingNode);
             }
             {
