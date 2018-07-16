@@ -50,9 +50,9 @@ namespace fuluDd00_VolumeMapping
             set { firstRun = value; }
         }
 
-        const int vWidth = 64;
-        const int vHeight = 64;
-        const int vDepth = 64;
+        const int vWidth = 256;
+        const int vHeight = 256;
+        const int vDepth = 256;
         private byte[] volumeData;// = new byte[vWidth * vHeight * vDepth];
 
         public byte[] VolumeData
