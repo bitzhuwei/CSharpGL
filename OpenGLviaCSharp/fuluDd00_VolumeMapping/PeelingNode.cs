@@ -154,25 +154,6 @@ namespace fuluDd00_VolumeMapping
                         bitmap.Dispose();
                     }
                 }
-
-                //    // blend.
-                //    if (currentStep <= totalStep)
-                //    {
-                //        currentStep++;
-                //        this.resources.blenderFBO.Bind();
-                //        this.depthTest.On();
-                //        //this.DrawFullScreenQuad(arg, QuadNode.RenderMode.Blend, this.resources.colorTextures[currId], false);
-                //        this.depthTest.Off();
-                //        this.resources.blenderFBO.Unbind();
-                //        targetTexture = this.resources.blenderColorTexture;
-                //        if (firstRun && sampled)
-                //        {
-                //            targetTexture.GetImage(this.width, this.height).Save(string.Format(
-                //                "{0}.blend.png", layer * 2));
-                //        }
-                //    }
-
-                //    if (!sampled) { break; }
             }
 
             Color background = Color.SkyBlue;
@@ -194,7 +175,7 @@ namespace fuluDd00_VolumeMapping
                         if (color.A != 0 &&
                             (color.R != background.R || color.G != background.G || color.B != background.B))
                         {
-                            volumeData[index] += (byte)(color.R * 0.299 + color.G * 0.587 + color.B * 0.114);//Math.Max(color.R, Math.Max(color.G, color.B));
+                            volumeData[index] += (byte)(color.R * 0.299 + color.G * 0.587 + color.B * 0.114);
                             count++;
                         }
                     }
@@ -202,20 +183,7 @@ namespace fuluDd00_VolumeMapping
                 bitmap.Dispose();
             }
             this.volumeData = volumeData;
-            // restore clear color.
-            //GL.Instance.ClearColor(clearColor[0], clearColor[1], clearColor[2], clearColor[3]);
-            // final.
-            //this.DrawFullScreenQuad(arg, QuadNode.RenderMode.Final, targetTexture, this.renderStep >= maxStep);
-            //if (this.firstRun)
-            //{
-            //    var final = new Bitmap(width, height);
-            //    var data = final.LockBits(new Rectangle(0, 0, width, height), System.Drawing.Imaging.ImageLockMode.ReadWrite, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
-            //    //GL.Instance.GetTexImage((uint)texture.Target, 0, GL.GL_BGRA, GL.GL_UNSIGNED_BYTE, data.Scan0);
-            //    GL.Instance.ReadPixels(0, 0, width, height, GL.GL_BGRA, GL.GL_UNSIGNED_BYTE, data.Scan0);
-            //    final.UnlockBits(data);
-            //    final.RotateFlip(RotateFlipType.Rotate180FlipX);
-            //    final.Save(string.Format("{0}.final.png", finalId));
-            //}
+
             this.firstRun = false;
         }
 
