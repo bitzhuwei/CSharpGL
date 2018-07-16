@@ -197,6 +197,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "c05d00_AmbientDiffuseSpecul
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "fuluDd00_VolumeMapping", "OpenGLviaCSharp\fuluDd00_VolumeMapping\fuluDd00_VolumeMapping.csproj", "{76BE3DDD-9578-4CD2-A1E0-C20B0E49C88F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DepthPeeling.FrontToBackPeeling", "OpenGLviaCSharp\DepthPeeling.FrontToBackPeeling\DepthPeeling.FrontToBackPeeling.csproj", "{F3BC91EA-6FE6-47CB-AA06-D7943710FD66}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -575,6 +577,10 @@ Global
 		{76BE3DDD-9578-4CD2-A1E0-C20B0E49C88F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{76BE3DDD-9578-4CD2-A1E0-C20B0E49C88F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{76BE3DDD-9578-4CD2-A1E0-C20B0E49C88F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3BC91EA-6FE6-47CB-AA06-D7943710FD66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3BC91EA-6FE6-47CB-AA06-D7943710FD66}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3BC91EA-6FE6-47CB-AA06-D7943710FD66}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3BC91EA-6FE6-47CB-AA06-D7943710FD66}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -672,5 +678,6 @@ Global
 		{B9285B42-9DF1-4529-9097-2513DBE43F4A} = {E800BE67-00FE-4C05-9F0F-640DC7134E7D}
 		{15C0387E-93FE-4FF6-A188-8253D81C13A0} = {7CF86F60-2BAC-4F60-AF1C-869737385E1B}
 		{76BE3DDD-9578-4CD2-A1E0-C20B0E49C88F} = {7CF86F60-2BAC-4F60-AF1C-869737385E1B}
+		{F3BC91EA-6FE6-47CB-AA06-D7943710FD66} = {7CF86F60-2BAC-4F60-AF1C-869737385E1B}
 	EndGlobalSection
 EndGlobal
