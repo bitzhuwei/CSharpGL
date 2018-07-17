@@ -9,18 +9,30 @@ namespace fuluDd00_VolumeMapping
 {
     partial class PeelingNode : SceneNodeBase, IRenderable, IVolumeData
     {
-        private int width;
-        private int height;
         private PeelingResource resources;
         private Query query;
         private bool bUseOQ = true;
         private const int NUM_PASSES = 16;
         private DepthTestSwitch depthTest = new DepthTestSwitch(enableCapacity: false);
+        private ShaderProgram engraveComp;
 
         public PeelingNode(params SceneNodeBase[] children)
         {
             this.query = new Query();
             this.Children.AddRange(children);
+            //{
+            //    var cs = new CSharpGL.ComputeShader(Shaders.engraveComp);
+            //    var provider = new ShaderArray(cs);
+            //    this.engraveComp = provider.GetShaderProgram();
+            //}
+            //{
+            //    var storage = new TexStorage3D(TexStorage3D.Target.Texture3D, GL.GL_RED, this.Width, this.Height, this.Depth);
+            //    var texture = new Texture(storage);
+            //    texture.Initialize();
+            //}
+            {
+                InitializePeelingResource(vWidth, vHeight);
+            }
         }
 
         /// <summary>
@@ -60,6 +72,13 @@ namespace fuluDd00_VolumeMapping
             get { return volumeData; }
         }
 
+        private Texture texVolumeData;
+
+        public Texture TexVolumeData
+        {
+            get { return texVolumeData; }
+        }
+
         public int Width { get { return vWidth; } }
         public int Height { get { return vHeight; } }
         public int Depth { get { return vDepth; } }
@@ -71,13 +90,6 @@ namespace fuluDd00_VolumeMapping
 
             //var viewport = new int[4]; GL.Instance.GetIntegerv((uint)GetTarget.Viewport, viewport);
 
-            if (this.width != vWidth || this.height != vHeight)
-            {
-                Resize(vWidth, vHeight);
-
-                this.width = vWidth;
-                this.height = vHeight;
-            }
             {
                 var position = new vec3(0, 0, 0);
                 var center = new vec3(0, 0, -1);
@@ -194,12 +206,28 @@ namespace fuluDd00_VolumeMapping
                 }
                 bitmap.Dispose();
             }
+
             this.volumeData = volumeData;
 
             this.firstRun = false;
         }
 
-        private void Resize(int width, int height)
+        private void ComputeShaderEngrave(Texture texInput, Texture texOutput, int width, int height)
+        {
+            // engrave volume data with compute shader.
+            uint inputUnit = 0, outputUnit = 1;
+            ShaderProgram computeProgram = this.engraveComp;
+            // Activate the compute program and bind the output texture image
+            computeProgram.Bind();
+            glBindImageTexture(inputUnit, texInput.Id, 0, false, 0, GL.GL_READ_WRITE, GL.GL_RGBA32F);
+            glBindImageTexture(outputUnit, texOutput.Id, 0, false, 0, GL.GL_READ_WRITE, GL.GL_R8UI);
+            // Dispatch
+            glDispatchCompute((uint)width, (uint)height, 1);
+            glMemoryBarrier(GL.GL_SHADER_IMAGE_ACCESS_BARRIER_BIT);
+            computeProgram.Unbind();
+        }
+
+        private void InitializePeelingResource(int width, int height)
         {
             if (this.resources != null) { this.resources.Dispose(); }
             this.resources = new PeelingResource(width, height);
