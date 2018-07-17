@@ -20,11 +20,11 @@ namespace fuluDd00_VolumeMapping
         {
             this.query = new Query();
             this.Children.AddRange(children);
-            //{
-            //    var cs = new CSharpGL.ComputeShader(Shaders.engraveComp);
-            //    var provider = new ShaderArray(cs);
-            //    this.engraveComp = provider.GetShaderProgram();
-            //}
+            {
+                var cs = new CSharpGL.ComputeShader(Shaders.engraveComp);
+                var provider = new ShaderArray(cs);
+                this.engraveComp = provider.GetShaderProgram();
+            }
             //{
             //    var storage = new TexStorage3D(TexStorage3D.Target.Texture3D, GL.GL_RED, this.Width, this.Height, this.Depth);
             //    var texture = new Texture(storage);
