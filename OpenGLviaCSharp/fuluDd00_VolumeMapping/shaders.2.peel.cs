@@ -9,24 +9,24 @@ namespace fuluDd00_VolumeMapping
     public static partial class Shaders
     {
         public const string peelVert = @"#version 330 core
-  
-layout(location = 0) in vec3 vVertex; //object space vertex position
+
+in vec3 inPosiiton; //object space vertex position
 
 //uniform
-uniform mat4 MVP;  //combined modelview projection matrix
+uniform mat4 mapMat;  //combined modelview projection matrix
 
 void main()
 {  
     //get the clipspace vertex position
-    gl_Position = MVP*vec4(vVertex.xyz,1);
+    gl_Position = mapMat * vec4(inPosiiton, 1);
 }
 ";
         public const string peelFrag = @"#version 330 core
 
-layout(location = 0) out vec4 vFragColor;	//fragment shader output
+out vec4 outColor;	//fragment shader output
 
 //uniforms
-uniform vec4 vColor;						//solid colour 
+uniform vec4 color;						//solid colour 
 uniform sampler2DRect  depthTexture;		//depth texture 
 
 void main()
@@ -39,7 +39,7 @@ void main()
     if(gl_FragCoord.z <= frontDepth) discard;
 	
     //otherwise set the given color uniform as the final output
-    vFragColor = vec4(vColor.rgb, gl_FragCoord.z);
+    outColor = vec4(color.rgb, gl_FragCoord.z);
 }
 ";
     }

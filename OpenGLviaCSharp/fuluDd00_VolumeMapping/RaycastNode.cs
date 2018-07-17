@@ -96,7 +96,7 @@ namespace fuluDd00_VolumeMapping
             {
                 RenderMethod method = this.RenderUnit.Methods[0];// backface.
                 ShaderProgram program = method.Program;
-                program.SetUniform("MVP", mvp);
+                program.SetUniform("mapMat", mvp);
 
                 // render to texture
                 this.framebuffer.Bind(FramebufferTarget.Framebuffer);
@@ -109,7 +109,7 @@ namespace fuluDd00_VolumeMapping
             {
                 RenderMethod method = this.RenderUnit.Methods[1];// raycasting.
                 ShaderProgram program = method.Program;
-                program.SetUniform("MVP", mvp);
+                program.SetUniform("mapMat", mvp);
 
                 method.Render();
             }

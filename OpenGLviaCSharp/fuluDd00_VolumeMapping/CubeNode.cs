@@ -15,22 +15,22 @@ namespace fuluDd00_VolumeMapping
         /// </summary>
         public RenderMode Mode { get; set; }
 
-        private vec4 vColor;
+        private vec4 color;
         /// <summary>
         /// 
         /// </summary>
         public vec4 Color
         {
-            get { return vColor; }
+            get { return color; }
             set
             {
-                this.vColor = value;
+                this.color = value;
 
                 for (int i = 0; i < this.RenderUnit.Methods.Length; i++)
                 {
                     RenderMethod method = this.RenderUnit.Methods[i];
                     ShaderProgram program = method.Program;
-                    program.SetUniform("vColor", value);
+                    program.SetUniform("color", value);
                 }
             }
         }
@@ -60,7 +60,7 @@ namespace fuluDd00_VolumeMapping
                 var fs = new FragmentShader(Shaders.initFrag);
                 var provider = new ShaderArray(vs, fs);
                 var map = new AttributeMap();
-                map.Add("vVertex", positionNameInIBufferSource);
+                map.Add("inPosiiton", positionNameInIBufferSource);
                 initBuilder = new RenderMethodBuilder(provider, map);
             }
             {
@@ -68,7 +68,7 @@ namespace fuluDd00_VolumeMapping
                 var fs = new FragmentShader(Shaders.peelFrag);
                 var provider = new ShaderArray(vs, fs);
                 var map = new AttributeMap();
-                map.Add("vVertex", positionNameInIBufferSource);
+                map.Add("inPosiiton", positionNameInIBufferSource);
                 peelBuilder = new RenderMethodBuilder(provider, map);
             }
 
@@ -103,7 +103,7 @@ namespace fuluDd00_VolumeMapping
 
             RenderMethod method = this.RenderUnit.Methods[(int)this.Mode];
             ShaderProgram program = method.Program;
-            program.SetUniform("MVP", projection * view * model);
+            program.SetUniform("mapMat", projection * view * model);
 
             method.Render();
         }
