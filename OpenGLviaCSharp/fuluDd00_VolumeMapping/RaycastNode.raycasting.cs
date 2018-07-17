@@ -16,12 +16,12 @@ in vec3 boundingBox;
 
 out vec3 passEntryPoint;
 
-uniform mat4 mapMat;
+uniform mat4 mvpMat;
 
 void main()
 {
     passEntryPoint = boundingBox;
-    gl_Position = mapMat * vec4(position, 1.0);
+    gl_Position = mvpMat * vec4(position, 1.0);
 }
 ";
         private const string raycastingFrag = @"#version 150

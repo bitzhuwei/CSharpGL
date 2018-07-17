@@ -13,12 +13,12 @@ namespace fuluDd00_VolumeMapping
 in vec3 inPosiiton; //object space vertex position
 
 //uniform
-uniform mat4 mapMat;  //combined modelview projection matrix
+uniform mat4 mvpMat;  //combined modelview projection matrix
 
 void main()
 {  
     //get the clipspace vertex position
-    gl_Position = mapMat * vec4(inPosiiton, 1);
+    gl_Position = mvpMat * vec4(inPosiiton, 1);
 }
 ";
         public const string peelFrag = @"#version 330 core
