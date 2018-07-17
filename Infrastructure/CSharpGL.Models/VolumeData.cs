@@ -10,14 +10,11 @@ namespace CSharpGL
         public static byte[] GetData(int width, int height, int depth)
         {
             var list = new List<ShapingBase>();
-            //list.Add(new ShapingSpheroid(width / 3, height / 3, depth / 3, width, height, depth, 0.1));
-            //list.Add(new ShapingSpheroid(2 * width / 11 + 6, 2 * height / 11, 2 * depth / 11, width, height, depth, 0, 0, 0));
             list.Add(new ShapingSpheroid(width / 11 + 6, 5 * height / 11, depth / 11 + 6, width, height, depth, 0, 0, 0));
             list.Add(new ShapingSpheroid(width / 22 + 6, 2 * height / 11, depth / 22 + 6, width, height, depth, 10, -width / 3, 10));
             list.Add(new ShapingSpheroid(width / 22 + 6, 2 * height / 11, depth / 22 + 6, width, height, depth, 10, -width / 3, -10));
             list.Add(new ShapingSpheroid(width / 22 + 6, 2 * height / 11, depth / 22 + 6, width, height, depth, -10, -width / 3, -10));
             list.Add(new ShapingSpheroid(width / 22 + 6, 2 * height / 11, depth / 22 + 6, width, height, depth, -10, -width / 3, 10));
-            //list.Add(new ShapingHeart(width, height, depth));
             list.Add(new ShapingPlane(0, 1, 0, -2.0 * width / 5.0, width, height, depth));
 
             var result = new byte[width * height * depth];
