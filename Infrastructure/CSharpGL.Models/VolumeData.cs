@@ -63,7 +63,7 @@ namespace CSharpGL
         }
 
 
-        // 
+        // ax + by + cz + d = 0
         class ShapingPlane : ShapingBase
         {
             double a;
