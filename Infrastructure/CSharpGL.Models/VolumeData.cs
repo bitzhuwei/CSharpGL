@@ -21,7 +21,6 @@ namespace CSharpGL
             list.Add(new ShapingPlane(0, 1, 0, -2.0 * width / 5.0, width, height, depth));
 
             var result = new byte[width * height * depth];
-            int count = 0;
             for (int i = 0; i < width; i++)
             {
                 for (int j = 0; j < height; j++)
@@ -34,7 +33,6 @@ namespace CSharpGL
                             byte value = item.Shaping(i, j, k);
                             if (value > 0)
                             {
-                                count++;
                                 if (byte.MaxValue - result[index] > value)
                                 {
                                     result[index] += value;
@@ -85,8 +83,8 @@ namespace CSharpGL
                 double x = (i - width / 2.0);
                 double y = (i - width / 2.0);
                 double z = (j - height / 2.0);
-                double diff = a * x + b * y + c * z - d;
-                if (0 <= diff && diff < 1)
+                double delta = a * x + b * y + c * z - d;
+                if (0 <= delta && delta < 1)
                 {
                     return (byte)40;
                 }
@@ -122,8 +120,8 @@ namespace CSharpGL
                 double x = i - width / 2.0 - posX;
                 double y = j - height / 2.0 - posY;
                 double z = k - depth / 2.0 - posZ;
-                double diff = x * x / aa + y * y / bb + z * z / cc - 1;
-                if (0 <= diff && diff < maxDiff)
+                double delta = x * x / aa + y * y / bb + z * z / cc - 1;
+                if (0 <= delta && delta < maxDiff)
                 {
                     return value;
                 }
