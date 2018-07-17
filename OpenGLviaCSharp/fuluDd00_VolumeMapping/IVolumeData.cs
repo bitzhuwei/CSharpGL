@@ -12,5 +12,7 @@ namespace fuluDd00_VolumeMapping
         int Height { get; }
         int Depth { get; }
         byte[] VolumeData { get; }
+
+        Texture TexVolumeData { get; }
     }
 }

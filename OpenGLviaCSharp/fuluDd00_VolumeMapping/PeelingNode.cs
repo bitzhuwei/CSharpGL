@@ -25,11 +25,12 @@ namespace fuluDd00_VolumeMapping
                 var provider = new ShaderArray(cs);
                 this.engraveComp = provider.GetShaderProgram();
             }
-            //{
-            //    var storage = new TexStorage3D(TexStorage3D.Target.Texture3D, GL.GL_RED, this.Width, this.Height, this.Depth);
-            //    var texture = new Texture(storage);
-            //    texture.Initialize();
-            //}
+            {
+                var storage = new TexStorage3D(TexStorage3D.Target.Texture3D, GL.GL_RED, this.Width, this.Height, this.Depth);
+                var texture = new Texture(storage);
+                texture.Initialize();
+                this.texVolumeData = texture;
+            }
             {
                 InitializePeelingResource(vWidth, vHeight);
             }
@@ -76,7 +77,7 @@ namespace fuluDd00_VolumeMapping
 
         public Texture TexVolumeData
         {
-            get { return texVolumeData; }
+            get { return this.texVolumeData; }
         }
 
         public int Width { get { return vWidth; } }
@@ -138,6 +139,7 @@ namespace fuluDd00_VolumeMapping
                     //var image = (Bitmap)bitmap.GetThumbnailImage(vWidth, vHeight, null, IntPtr.Zero);
                     bitmapList.Add(bitmap);
                     //bitmap.Dispose();
+                    ComputeShaderEngrave(targetTexture, this.texVolumeData, vWidth, vHeight);
                 }
             }
 
@@ -176,6 +178,7 @@ namespace fuluDd00_VolumeMapping
                         //var image = (Bitmap)bitmap.GetThumbnailImage(vWidth, vHeight, null, IntPtr.Zero);
                         bitmapList.Add(bitmap);
                         //bitmap.Dispose();
+                        ComputeShaderEngrave(targetTexture, this.texVolumeData, vWidth, vHeight);
                     }
                 }
             }
