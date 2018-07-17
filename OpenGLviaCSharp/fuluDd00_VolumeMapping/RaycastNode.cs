@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 
 namespace fuluDd00_VolumeMapping
@@ -66,8 +67,8 @@ namespace fuluDd00_VolumeMapping
                     var provider = this.volumeDataProvider;
                     int width = provider.Width, height = provider.Height, depth = provider.Depth;
                     byte[] volumeData = provider.VolumeData;
-                    //this.volume3DTexture = InitVolume3DTexture(volumeData, width, height, depth);
-                    this.volume3DTexture = provider.TexVolumeData;
+                    this.volume3DTexture = InitVolume3DTexture(volumeData, width, height, depth);
+                    //this.volume3DTexture = provider.TexVolumeData;
                 }
                 //{
                 //    int width = 128, height = 128, depth = 128;

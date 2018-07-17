@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using CSharpGL;
 using System.Drawing;
+using System.Runtime.InteropServices;
 
 namespace fuluDd00_VolumeMapping
 {
@@ -211,6 +212,26 @@ namespace fuluDd00_VolumeMapping
             }
 
             this.volumeData = volumeData;
+            // texVolumeData => *.dat
+            {
+                var texture = this.texVolumeData;
+                texture.Bind();
+
+                var array = new byte[Width * Height * Depth];
+                GCHandle pinned = GCHandle.Alloc(array, GCHandleType.Pinned);
+                IntPtr header = Marshal.UnsafeAddrOfPinnedArrayElement(array, 0);
+                GL.Instance.GetTexImage((uint)texture.Target, 0, GL.GL_RED, GL.GL_UNSIGNED_BYTE, header);
+                pinned.Free();
+
+                texture.Unbind();
+
+                for (int i = 0; i < array.Length; i++)
+                {
+                    if (array[i] != 0) { Console.WriteLine("adsf"); }
+                }
+
+                Console.WriteLine("asdfF");
+            }
 
             this.firstRun = false;
         }
@@ -223,10 +244,13 @@ namespace fuluDd00_VolumeMapping
             // Activate the compute program and bind the output texture image
             computeProgram.Bind();
             glBindImageTexture(inputUnit, texInput.Id, 0, false, 0, GL.GL_READ_WRITE, GL.GL_RGBA32F);
-            glBindImageTexture(outputUnit, texOutput.Id, 0, false, 0, GL.GL_READ_WRITE, GL.GL_R8UI);
+            glBindImageTexture(outputUnit, texOutput.Id, 0, true, 0, GL.GL_READ_WRITE, GL.GL_RED);
             // Dispatch
-            glDispatchCompute((uint)width, (uint)height, 1);
+            glDispatchCompute(1, (uint)height, 1);
+            //glDispatchCompute((uint)width, (uint)height, 1);
             glMemoryBarrier(GL.GL_SHADER_IMAGE_ACCESS_BARRIER_BIT);
+            glBindImageTexture(inputUnit, 0, 0, false, 0, GL.GL_READ_WRITE, GL.GL_RGBA32F);
+            glBindImageTexture(outputUnit, 0, 0, true, 0, GL.GL_READ_WRITE, GL.GL_RED);
             computeProgram.Unbind();
         }
 
