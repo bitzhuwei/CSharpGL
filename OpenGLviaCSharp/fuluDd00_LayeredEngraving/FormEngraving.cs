@@ -10,13 +10,13 @@ using CSharpGL;
 
 namespace fuluDd00_LayeredEngraving
 {
-    public partial class FormMain : Form
+    public partial class FormEngraving : Form
     {
         private Scene scene;
         private ActionList actionList;
         private PeelingNode peelingNode;
 
-        public FormMain()
+        public FormEngraving()
         {
             InitializeComponent();
 

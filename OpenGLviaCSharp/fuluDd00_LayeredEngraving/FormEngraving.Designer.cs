@@ -1,6 +1,6 @@
 ﻿namespace fuluDd00_LayeredEngraving
 {
-    partial class FormMain
+    partial class FormEngraving
     {
         /// <summary>
         /// Required designer variable.
