@@ -80,7 +80,7 @@ namespace fuluDd00_LayeredEngrave
                     {
                         for (int i = -1; i < 2; i++)
                         {
-                            vec3 worldPosition = new vec3(i * 2, j * 2, k) + new vec3(-2.375f, -1.75f, 0);
+                            vec3 worldPosition = new vec3(i * 2, j * 2, k);// +new vec3(-2.375f, -1.75f, 0);
                             //var cubeNode = CubeNode.Create(new CubeModel(), CubeModel.positions);
                             //var cubeNode = CubeNode.Create(new RectangleModel(), RectangleModel.strPosition);
                             var cubeNode = CubeNode.Create(new Sphere(0.5f), Sphere.strPosition);
@@ -98,7 +98,7 @@ namespace fuluDd00_LayeredEngrave
                 //    cubeNode.WorldPosition = new vec3(-1.5f, -0.5f, 0);
                 //    children.Add(cubeNode);
                 //}
-                var size = new vec3(5, 5, 5) * 2;
+                var size = new vec3(5, 5, 5);// *2;
                 this.peelingNode = new PeelingNode(size, children.ToArray());
                 groupNode.Children.Add(this.peelingNode);
             }

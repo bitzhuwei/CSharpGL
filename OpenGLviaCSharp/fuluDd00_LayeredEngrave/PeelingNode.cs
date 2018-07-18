@@ -77,6 +77,7 @@ namespace fuluDd00_LayeredEngrave
         {
             if (!this.firstRun) { return; }
 
+            var viewport = new int[4]; GL.Instance.GetIntegerv((uint)GetTarget.Viewport, viewport);
             {
                 var position = new vec3(0, 0, 0);
                 var center = new vec3(0, 0, -1);
@@ -102,10 +103,13 @@ namespace fuluDd00_LayeredEngrave
             this.resources.blenderFBO.Unbind();
             Texture targetTexture = this.resources.blenderColorTexture;
 
-            var bitmapList = new List<Bitmap>();
             // remember clear color.
             var clearColor = new float[4];
             GL.Instance.GetFloatv((uint)GetTarget.ColorClearValue, clearColor);
+
+            GL.Instance.Viewport(0, 0, vWidth, vHeight);
+
+            var bitmapList = new List<Bitmap>();
 
             // init.
             if (currentStep <= totalStep)
@@ -166,6 +170,11 @@ namespace fuluDd00_LayeredEngrave
                     }
                 }
             }
+
+            // restore clear color.
+            GL.Instance.ClearColor(clearColor[0], clearColor[1], clearColor[2], clearColor[3]);
+            GL.Instance.Viewport(viewport[0], viewport[1], viewport[2], viewport[3]);
+
 
             Color background = Color.SkyBlue;
             int count = 0;
