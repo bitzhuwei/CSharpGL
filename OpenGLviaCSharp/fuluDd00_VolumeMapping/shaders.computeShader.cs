@@ -17,22 +17,15 @@ layout (std430, binding = 1) buffer outputBuffer {
     uint outBuffer[];
 };
 
-//uniform int width;
+//uniform int width = 256;
 uniform int height = 256;
 uniform int depth = 256;
 
 void main(void)
 {
-    //ivec2 pos = ivec2(gl_GlobalInvocationID.xy);
-    //vec4 color = imageLoad(input_image, pos);
-
-    uint w = gl_LocalInvocationID.x;
-    uint h = gl_WorkGroupID.y;
+    uint w = gl_GlobalInvocationID.x; // or uint w = gl_LocalInvocationID.x;
+    uint h = gl_GlobalInvocationID.y; // or uint h = gl_WorkGroupID.y;
     vec4 color = imageLoad(input_image, ivec2(w, h));
-	//if (color.r == 0 && color.g == 0 && color.b == 0 && color.a ==0)
-    //{ outBuffer[1] = 234; }
-    //else 
-    //{ outBuffer[2] = 432; }
     uint d = uint(depth * color.a);
     if (d == depth) { d = depth - 1; }
     uint index = uint(w * height * depth + h * depth + d);

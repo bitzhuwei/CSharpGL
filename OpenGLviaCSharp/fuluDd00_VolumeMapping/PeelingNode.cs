@@ -252,7 +252,7 @@ namespace fuluDd00_VolumeMapping
                 var array = (uint*)buffer.MapBuffer(MapBufferAccess.ReadWrite);
                 for (int i = 0; i < this.volumeData.Length; i++)
                 {
-                    //this.volumeData[i] = (byte)array[i];
+                    this.volumeData[i] = (byte)array[i];
                     //if (this.volumeData[i] != array[i]) { Console.WriteLine("adsf"); }
                     //if (array[i] != 0) { Console.WriteLine("asdf"); }
                 }
