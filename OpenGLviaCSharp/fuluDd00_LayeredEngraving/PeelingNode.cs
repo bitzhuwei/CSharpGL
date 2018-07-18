@@ -100,17 +100,18 @@ namespace fuluDd00_LayeredEngraving
             int width = volumeSize.x, height = volumeSize.y, depth = volumeSize.z;
             PeelingResource resouce = this.resources4VolumeData;
 
-            //{
-            //    var position = new vec3(0, 0, 0);
-            //    var center = new vec3(0, 0, -1);
-            //    var up = new vec3(0, 1, 0);
-            //    ICamera camera = new Camera(position, center, up, CameraType.Ortho, width, height);
-            //    IOrthoViewCamera c = camera;
-            //    c.Left = -width / 2.0; c.Right = width / 2.0;
-            //    c.Bottom = -height / 2.0; c.Top = height / 2.0;
-            //    c.Near = -depth / 2.0; c.Far = depth / 2.0;
-            //    arg = new RenderEventArgs(arg.Param, camera);
-            //}
+            {
+                var position = new vec3(0, 0, 0);
+                var center = new vec3(0, 0, -1);
+                var up = new vec3(0, 1, 0);
+                ICamera camera = new Camera(position, center, up, CameraType.Ortho, width, height);
+                vec3 size = this.ModelSize;
+                IOrthoViewCamera c = camera;
+                c.Left = -size.x / 2.0; c.Right = size.x / 2.0;
+                c.Bottom = -size.y / 2.0; c.Top = size.y / 2.0;
+                c.Near = -size.z / 2.0; c.Far = size.z / 2.0;
+                arg = new RenderEventArgs(arg.Param, camera);
+            }
 
             if (resouce == null
                 || resouce.width != width
