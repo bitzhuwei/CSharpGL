@@ -18,6 +18,7 @@ namespace fuluDd00_LayeredEngraving
         private const int NUM_PASSES = 16;
         private DepthTestSwitch depthTest = new DepthTestSwitch(enableCapacity: false);
         private BlendSwitch blend = new BlendSwitch(BlendEquationMode.Add, BlendSrcFactor.DstAlpha, BlendDestFactor.One, BlendSrcFactor.Zero, BlendDestFactor.OneMinusSrcAlpha);
+        private ivec3 volumeSize;
 
         private bool showDepthPeeling = true;
         /// <summary>
@@ -34,9 +35,10 @@ namespace fuluDd00_LayeredEngraving
             glBlendFuncSeparate = GL.Instance.GetDelegateFor("glBlendFuncSeparate", GLDelegates.typeof_void_uint_uint_uint_uint) as GLDelegates.void_uint_uint_uint_uint;
         }
 
-        public PeelingNode(vec3 size, params SceneNodeBase[] children)
+        public PeelingNode(vec3 size, ivec3 volumeSize, params SceneNodeBase[] children)
         {
             this.ModelSize = size;
+            this.volumeSize = volumeSize;
 
             this.query = new Query();
             this.Children.AddRange(children);
@@ -77,7 +79,7 @@ namespace fuluDd00_LayeredEngraving
         {
             Render4Display(arg);
 
-            //Render4VolumeData(arg);
+            Render4VolumeData(arg);
         }
 
         private void Render4VolumeData(RenderEventArgs arg)
