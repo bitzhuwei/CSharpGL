@@ -16,6 +16,7 @@ namespace fuluDd00_VolumeMapping
         private const int NUM_PASSES = 16;
         private DepthTestSwitch depthTest = new DepthTestSwitch(enableCapacity: false);
         private ShaderProgram engraveComp;
+        private VertexBuffer outBuffer;
 
         public PeelingNode(params SceneNodeBase[] children)
         {
@@ -26,11 +27,15 @@ namespace fuluDd00_VolumeMapping
                 var provider = new ShaderArray(cs);
                 this.engraveComp = provider.GetShaderProgram();
             }
+            //{
+            //    var storage = new TexStorage3D(TexStorage3D.Target.Texture3D, GL.GL_RED, this.Width, this.Height, this.Depth);
+            //    var texture = new Texture(storage);
+            //    texture.Initialize();
+            //    this.texVolumeData = texture;
+            //}
             {
-                var storage = new TexStorage3D(TexStorage3D.Target.Texture3D, GL.GL_RED, this.Width, this.Height, this.Depth);
-                var texture = new Texture(storage);
-                texture.Initialize();
-                this.texVolumeData = texture;
+                var data = new uint[Width * Height * Depth];
+                this.outBuffer = data.GenVertexBuffer(VBOConfig.UInt, BufferUsage.DynamicCopy);
             }
             {
                 InitializePeelingResource(vWidth, vHeight);
@@ -85,7 +90,7 @@ namespace fuluDd00_VolumeMapping
         public int Height { get { return vHeight; } }
         public int Depth { get { return vDepth; } }
 
-        public void RenderBeforeChildren(RenderEventArgs arg)
+        public unsafe void RenderBeforeChildren(RenderEventArgs arg)
         {
             if (!this.firstRun) { return; }
 
@@ -140,7 +145,12 @@ namespace fuluDd00_VolumeMapping
                     //var image = (Bitmap)bitmap.GetThumbnailImage(vWidth, vHeight, null, IntPtr.Zero);
                     bitmapList.Add(bitmap);
                     //bitmap.Dispose();
-                    ComputeShaderEngrave(targetTexture, this.texVolumeData, vWidth, vHeight);
+                    //ComputeShaderEngrave(targetTexture, this.texVolumeData, vWidth, vHeight);
+                    var image = new Bitmap("0.init.png");
+                    var texture = this.GetTexture(image);
+                    image.Dispose();
+                    ComputeShaderEngrave(texture, this.outBuffer, vWidth, vHeight);
+                    texture.Dispose();
                 }
             }
 
@@ -179,7 +189,12 @@ namespace fuluDd00_VolumeMapping
                         //var image = (Bitmap)bitmap.GetThumbnailImage(vWidth, vHeight, null, IntPtr.Zero);
                         bitmapList.Add(bitmap);
                         //bitmap.Dispose();
-                        ComputeShaderEngrave(targetTexture, this.texVolumeData, vWidth, vHeight);
+                        //ComputeShaderEngrave(targetTexture, this.texVolumeData, vWidth, vHeight);
+                        var image = new Bitmap(string.Format("{0}.peel.png", layer * 2 - 1));
+                        var texture = this.GetTexture(image);
+                        image.Dispose();
+                        ComputeShaderEngrave(texture, this.outBuffer, vWidth, vHeight);
+                        texture.Dispose();
                     }
                 }
             }
@@ -213,45 +228,93 @@ namespace fuluDd00_VolumeMapping
 
             this.volumeData = volumeData;
             // texVolumeData => *.dat
+            //{
+            //    var texture = this.texVolumeData;
+            //    texture.Bind();
+
+            //    var array = new byte[Width * Height * Depth];
+            //    GCHandle pinned = GCHandle.Alloc(array, GCHandleType.Pinned);
+            //    IntPtr header = Marshal.UnsafeAddrOfPinnedArrayElement(array, 0);
+            //    GL.Instance.GetTexImage((uint)texture.Target, 0, GL.GL_RED, GL.GL_UNSIGNED_BYTE, header);
+            //    pinned.Free();
+
+            //    texture.Unbind();
+
+            //    for (int i = 0; i < array.Length; i++)
+            //    {
+            //        if (array[i] != 0) { Console.WriteLine("adsf"); }
+            //    }
+
+            //    Console.WriteLine("asdfF");
+            //}
             {
-                var texture = this.texVolumeData;
-                texture.Bind();
-
-                var array = new byte[Width * Height * Depth];
-                GCHandle pinned = GCHandle.Alloc(array, GCHandleType.Pinned);
-                IntPtr header = Marshal.UnsafeAddrOfPinnedArrayElement(array, 0);
-                GL.Instance.GetTexImage((uint)texture.Target, 0, GL.GL_RED, GL.GL_UNSIGNED_BYTE, header);
-                pinned.Free();
-
-                texture.Unbind();
-
-                for (int i = 0; i < array.Length; i++)
+                VertexBuffer buffer = this.outBuffer;
+                var array = (uint*)buffer.MapBuffer(MapBufferAccess.ReadWrite);
+                for (int i = 0; i < this.volumeData.Length; i++)
                 {
-                    if (array[i] != 0) { Console.WriteLine("adsf"); }
+                    //this.volumeData[i] = (byte)array[i];
+                    //if (this.volumeData[i] != array[i]) { Console.WriteLine("adsf"); }
+                    //if (array[i] != 0) { Console.WriteLine("asdf"); }
                 }
-
-                Console.WriteLine("asdfF");
+                buffer.UnmapBuffer();
             }
 
             this.firstRun = false;
         }
+        internal static GLDelegates.void_uint_uint_uint glBindBufferBase;
 
-        private void ComputeShaderEngrave(Texture texInput, Texture texOutput, int width, int height)
+        private void ComputeShaderEngrave(Texture texInput, VertexBuffer outBuffer, int width, int height)
         {
+            if (glBindBufferBase == null) { glBindBufferBase = GL.Instance.GetDelegateFor("glBindBufferBase", GLDelegates.typeof_void_uint_uint_uint) as GLDelegates.void_uint_uint_uint; }
+
             // engrave volume data with compute shader.
             uint inputUnit = 0, outputUnit = 1;
             ShaderProgram computeProgram = this.engraveComp;
             // Activate the compute program and bind the output texture image
             computeProgram.Bind();
+            //glBindImageTexture(outputUnit, outBuffer.BufferId, 0, false, 0, GL.GL_READ_WRITE, GL.GL_RED);
+            glBindBufferBase(GL.GL_SHADER_STORAGE_BUFFER, outputUnit, outBuffer.BufferId);
             glBindImageTexture(inputUnit, texInput.Id, 0, false, 0, GL.GL_READ_WRITE, GL.GL_RGBA32F);
-            glBindImageTexture(outputUnit, texOutput.Id, 0, true, 0, GL.GL_READ_WRITE, GL.GL_RED);
             // Dispatch
             glDispatchCompute(1, (uint)height, 1);
             //glDispatchCompute((uint)width, (uint)height, 1);
             glMemoryBarrier(GL.GL_SHADER_IMAGE_ACCESS_BARRIER_BIT);
             glBindImageTexture(inputUnit, 0, 0, false, 0, GL.GL_READ_WRITE, GL.GL_RGBA32F);
-            glBindImageTexture(outputUnit, 0, 0, true, 0, GL.GL_READ_WRITE, GL.GL_RED);
+            //glBindImageTexture(outputUnit, 0, 0, false, 0, GL.GL_READ_WRITE, GL.GL_RED);
             computeProgram.Unbind();
+        }
+        //private void ComputeShaderEngrave(Texture texInput, Texture texOutput, int width, int height)
+        //{
+        //    // engrave volume data with compute shader.
+        //    uint inputUnit = 0, outputUnit = 1;
+        //    ShaderProgram computeProgram = this.engraveComp;
+        //    // Activate the compute program and bind the output texture image
+        //    computeProgram.Bind();
+        //    glBindImageTexture(inputUnit, texInput.Id, 0, false, 0, GL.GL_READ_WRITE, GL.GL_RGBA32F);
+        //    glBindImageTexture(outputUnit, texOutput.Id, 0, true, 0, GL.GL_READ_WRITE, GL.GL_RED);
+        //    // Dispatch
+        //    glDispatchCompute(1, (uint)height, 1);
+        //    //glDispatchCompute((uint)width, (uint)height, 1);
+        //    glMemoryBarrier(GL.GL_SHADER_IMAGE_ACCESS_BARRIER_BIT);
+        //    glBindImageTexture(inputUnit, 0, 0, false, 0, GL.GL_READ_WRITE, GL.GL_RGBA32F);
+        //    glBindImageTexture(outputUnit, 0, 0, true, 0, GL.GL_READ_WRITE, GL.GL_RED);
+        //    computeProgram.Unbind();
+        //}
+
+        private Texture GetTexture(Bitmap bitmap)
+        {
+            //bitmap.RotateFlip(RotateFlipType.Rotate180FlipX);
+
+            var texture = new Texture(new TexImageBitmap(bitmap, GL.GL_RGBA32F));
+            texture.BuiltInSampler.Add(new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP_TO_EDGE));
+            texture.BuiltInSampler.Add(new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_CLAMP_TO_EDGE));
+            texture.BuiltInSampler.Add(new TexParameteri(TexParameter.PropertyName.TextureWrapR, (int)GL.GL_CLAMP_TO_EDGE));
+            texture.BuiltInSampler.Add(new TexParameteri(TexParameter.PropertyName.TextureMinFilter, (int)GL.GL_LINEAR));
+            texture.BuiltInSampler.Add(new TexParameteri(TexParameter.PropertyName.TextureMagFilter, (int)GL.GL_LINEAR));
+
+            texture.Initialize();
+
+            return texture;
         }
 
         private void InitializePeelingResource(int width, int height)
