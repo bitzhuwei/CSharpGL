@@ -105,7 +105,8 @@ namespace fuluDd00_LayeredEngraving
                     }
                 }
             }
-            this.peelingNode = new PeelingNode(children.ToArray());
+            var size = new vec3(5, 5, 5);
+            this.peelingNode = new PeelingNode(size, children.ToArray());
 
             return this.peelingNode;
         }
