@@ -76,9 +76,18 @@ namespace fuluDd00_LayeredEngrave
         public unsafe void RenderBeforeChildren(RenderEventArgs arg)
         {
             if (!this.firstRun) { return; }
-
+            // This helps to prove GetPixel(..)'s Y axis is from up to down.
+            //{
+            //    var bmp = new Bitmap("test.bmp");
+            //    Color c = bmp.GetPixel(0, 0);
+            //    c = bmp.GetPixel(bmp.Width - 1, 0);
+            //    c = bmp.GetPixel(bmp.Width - 1, bmp.Height - 1);
+            //    c = bmp.GetPixel(0, bmp.Height - 1);
+            //}
             var volumeData = new byte[vWidth * vHeight * vDepth]; ;
 
+            EngraveX(arg, volumeData, vWidth, vHeight, vDepth);
+            EngraveY(arg, volumeData, vWidth, vHeight, vDepth);
             EngraveZ(arg, volumeData, vWidth, vHeight, vDepth);
 
             this.volumeData = volumeData;
@@ -86,6 +95,119 @@ namespace fuluDd00_LayeredEngrave
             this.firstRun = false;
         }
 
+        unsafe private void EngraveX(RenderEventArgs arg, byte[] volumeData, int width, int height, int depth)
+        {
+            var viewport = new int[4]; GL.Instance.GetIntegerv((uint)GetTarget.Viewport, viewport);
+            {
+                var position = new vec3(0, 0, 0);
+                var center = new vec3(1, 0, 0);
+                //var center = new vec3(-3, -4, -5);
+                var up = new vec3(0, 1, 0);
+                var camera = new Camera(position, center, up, CameraType.Ortho, vWidth, vHeight);
+                {
+                    vec3 size = this.ModelSize;
+                    IOrthoViewCamera c = camera;
+                    c.Left = -size.z / 2; c.Right = size.z / 2;
+                    c.Bottom = -size.y / 2; c.Top = size.y / 2;
+                    c.Near = -size.x / 2; c.Far = size.x / 2;
+                    //c.Left = -size.x; c.Right = size.x;
+                    //c.Bottom = -size.y; c.Top = size.y;
+                    //c.Near = -size.z; c.Far = size.z;
+                }
+                arg = new RenderEventArgs(arg.Param, camera);
+            }
+
+
+            // remember clear color.
+            var clearColor = new float[4];
+            GL.Instance.GetFloatv((uint)GetTarget.ColorClearValue, clearColor);
+
+            GL.Instance.Viewport(0, 0, vWidth, vHeight);
+
+            List<Bitmap> bitmapList = LayeredEngraving(arg);
+
+            // restore clear color.
+            GL.Instance.ClearColor(clearColor[0], clearColor[1], clearColor[2], clearColor[3]);
+            GL.Instance.Viewport(viewport[0], viewport[1], viewport[2], viewport[3]);
+
+
+            Color background = Color.SkyBlue;
+            foreach (var bitmap in bitmapList)
+            {
+                for (int d = 0; d < vWidth; d++)
+                {
+                    for (int h = 0; h < vHeight; h++)
+                    {
+                        Color color = bitmap.GetPixel(d, h);
+                        int w = (int)((double)vDepth * (double)color.A / 256.0);
+                        int index = w * vHeight * vDepth + h * vDepth + d;
+                        if (color.A != 0 &&
+                            (color.R != background.R || color.G != background.G || color.B != background.B))
+                        {
+                            volumeData[index] += (byte)(color.R * 0.299 + color.G * 0.587 + color.B * 0.114);
+                        }
+                    }
+                }
+                bitmap.Dispose();
+            }
+        }
+
+        unsafe private void EngraveY(RenderEventArgs arg, byte[] volumeData, int width, int height, int depth)
+        {
+            var viewport = new int[4]; GL.Instance.GetIntegerv((uint)GetTarget.Viewport, viewport);
+            {
+                var position = new vec3(0, 0, 0);
+                var center = new vec3(0, -1, 0);
+                //var center = new vec3(-3, -4, -5);
+                var up = new vec3(-1, 0, 0);
+                var camera = new Camera(position, center, up, CameraType.Ortho, vWidth, vHeight);
+                {
+                    vec3 size = this.ModelSize;
+                    IOrthoViewCamera c = camera;
+                    c.Left = -size.z / 2; c.Right = size.z / 2;
+                    c.Bottom = -size.x / 2; c.Top = size.x / 2;
+                    c.Near = -size.y / 2; c.Far = size.y / 2;
+                    //c.Left = -size.x; c.Right = size.x;
+                    //c.Bottom = -size.y; c.Top = size.y;
+                    //c.Near = -size.z; c.Far = size.z;
+                }
+                arg = new RenderEventArgs(arg.Param, camera);
+            }
+
+
+            // remember clear color.
+            var clearColor = new float[4];
+            GL.Instance.GetFloatv((uint)GetTarget.ColorClearValue, clearColor);
+
+            GL.Instance.Viewport(0, 0, vWidth, vHeight);
+
+            List<Bitmap> bitmapList = LayeredEngraving(arg);
+
+            // restore clear color.
+            GL.Instance.ClearColor(clearColor[0], clearColor[1], clearColor[2], clearColor[3]);
+            GL.Instance.Viewport(viewport[0], viewport[1], viewport[2], viewport[3]);
+
+
+            Color background = Color.SkyBlue;
+            foreach (var bitmap in bitmapList)
+            {
+                for (int d = 0; d < vWidth; d++)
+                {
+                    for (int w = 0; w < vHeight; w++)
+                    {
+                        Color color = bitmap.GetPixel(d, w);
+                        int h = (int)((double)vDepth * (double)color.A / 256.0);
+                        int index = w * vHeight * vDepth + h * vDepth + d;
+                        if (color.A != 0 &&
+                            (color.R != background.R || color.G != background.G || color.B != background.B))
+                        {
+                            volumeData[index] += (byte)(color.R * 0.299 + color.G * 0.587 + color.B * 0.114);
+                        }
+                    }
+                }
+                bitmap.Dispose();
+            }
+        }
         unsafe private void EngraveZ(RenderEventArgs arg, byte[] volumeData, int width, int height, int depth)
         {
             var viewport = new int[4]; GL.Instance.GetIntegerv((uint)GetTarget.Viewport, viewport);
@@ -108,7 +230,6 @@ namespace fuluDd00_LayeredEngrave
                 arg = new RenderEventArgs(arg.Param, camera);
             }
 
-            int currentStep = 0, totalStep = this.RenderStep;
 
             // remember clear color.
             var clearColor = new float[4];
@@ -116,7 +237,39 @@ namespace fuluDd00_LayeredEngrave
 
             GL.Instance.Viewport(0, 0, vWidth, vHeight);
 
+            List<Bitmap> bitmapList = LayeredEngraving(arg);
+
+            // restore clear color.
+            GL.Instance.ClearColor(clearColor[0], clearColor[1], clearColor[2], clearColor[3]);
+            GL.Instance.Viewport(viewport[0], viewport[1], viewport[2], viewport[3]);
+
+
+            Color background = Color.SkyBlue;
+            foreach (var bitmap in bitmapList)
+            {
+                for (int w = 0; w < vWidth; w++)
+                {
+                    for (int h = 0; h < vHeight; h++)
+                    {
+                        Color color = bitmap.GetPixel(w, h);
+                        int d = (int)((double)vDepth * (double)color.A / 256.0);
+                        int index = w * vHeight * vDepth + h * vDepth + d;
+                        if (color.A != 0 &&
+                            (color.R != background.R || color.G != background.G || color.B != background.B))
+                        {
+                            volumeData[index] += (byte)(color.R * 0.299 + color.G * 0.587 + color.B * 0.114);
+                        }
+                    }
+                }
+                bitmap.Dispose();
+            }
+        }
+
+        unsafe private List<Bitmap> LayeredEngraving(RenderEventArgs arg)
+        {
             var bitmapList = new List<Bitmap>();
+
+            int currentStep = 0, totalStep = this.RenderStep;
             Texture targetTexture;
             // init.
             if (currentStep <= totalStep)
@@ -178,30 +331,7 @@ namespace fuluDd00_LayeredEngrave
                 }
             }
 
-            // restore clear color.
-            GL.Instance.ClearColor(clearColor[0], clearColor[1], clearColor[2], clearColor[3]);
-            GL.Instance.Viewport(viewport[0], viewport[1], viewport[2], viewport[3]);
-
-
-            Color background = Color.SkyBlue;
-            foreach (var bitmap in bitmapList)
-            {
-                for (int w = 0; w < vWidth; w++)
-                {
-                    for (int h = 0; h < vHeight; h++)
-                    {
-                        Color color = bitmap.GetPixel(w, h);
-                        int d = (int)((double)vDepth * (double)color.A / 256.0);
-                        int index = w * vHeight * vDepth + h * vDepth + d;
-                        if (color.A != 0 &&
-                            (color.R != background.R || color.G != background.G || color.B != background.B))
-                        {
-                            volumeData[index] += (byte)(color.R * 0.299 + color.G * 0.587 + color.B * 0.114);
-                        }
-                    }
-                }
-                bitmap.Dispose();
-            }
+            return bitmapList;
         }
 
         private void InitializePeelingResource(int width, int height)
