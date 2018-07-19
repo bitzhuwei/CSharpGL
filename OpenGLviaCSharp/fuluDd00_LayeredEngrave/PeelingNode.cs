@@ -77,6 +77,17 @@ namespace fuluDd00_LayeredEngrave
         {
             if (!this.firstRun) { return; }
 
+            var volumeData = new byte[vWidth * vHeight * vDepth]; ;
+
+            EngraveZ(arg, volumeData, vWidth, vHeight, vDepth);
+
+            this.volumeData = volumeData;
+
+            this.firstRun = false;
+        }
+
+        unsafe private void EngraveZ(RenderEventArgs arg, byte[] volumeData, int width, int height, int depth)
+        {
             var viewport = new int[4]; GL.Instance.GetIntegerv((uint)GetTarget.Viewport, viewport);
             {
                 var position = new vec3(0, 0, 0);
@@ -177,10 +188,6 @@ namespace fuluDd00_LayeredEngrave
 
 
             Color background = Color.SkyBlue;
-            int count = 0;
-            byte minA = byte.MaxValue;
-            byte maxA = byte.MinValue;
-            var volumeData = new byte[vWidth * vHeight * vDepth]; ;
             foreach (var bitmap in bitmapList)
             {
                 for (int w = 0; w < vWidth; w++)
@@ -188,24 +195,17 @@ namespace fuluDd00_LayeredEngrave
                     for (int h = 0; h < vHeight; h++)
                     {
                         Color color = bitmap.GetPixel(w, h);
-                        if (color.A < minA) { minA = color.A; }
-                        if (maxA < color.A) { maxA = color.A; }
                         int d = (int)((double)vDepth * (double)color.A / 256.0);
                         int index = w * vHeight * vDepth + h * vDepth + d;
                         if (color.A != 0 &&
                             (color.R != background.R || color.G != background.G || color.B != background.B))
                         {
                             volumeData[index] += (byte)(color.R * 0.299 + color.G * 0.587 + color.B * 0.114);
-                            count++;
                         }
                     }
                 }
                 bitmap.Dispose();
             }
-
-            this.volumeData = volumeData;
-
-            this.firstRun = false;
         }
 
         private void InitializePeelingResource(int width, int height)
