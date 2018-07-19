@@ -100,7 +100,7 @@ namespace fuluDd00_LayeredEngrave
             var viewport = new int[4]; GL.Instance.GetIntegerv((uint)GetTarget.Viewport, viewport);
             {
                 var position = new vec3(0, 0, 0);
-                var center = new vec3(1, 0, 0);
+                var center = new vec3(-1, 0, 0);
                 //var center = new vec3(-3, -4, -5);
                 var up = new vec3(0, 1, 0);
                 var camera = new Camera(position, center, up, CameraType.Ortho, vWidth, vHeight);
@@ -138,8 +138,8 @@ namespace fuluDd00_LayeredEngrave
                 {
                     for (int h = 0; h < vHeight; h++)
                     {
-                        Color color = bitmap.GetPixel(d, h);
-                        int w = (int)((double)vDepth * (double)color.A / 256.0);
+                        Color color = bitmap.GetPixel(d, vHeight - h - 1);
+                        int w = vDepth - (int)((double)vDepth * (double)color.A / 256.0) - 1;
                         int index = w * vHeight * vDepth + h * vDepth + d;
                         if (color.A != 0 &&
                             (color.R != background.R || color.G != background.G || color.B != background.B))
@@ -159,7 +159,7 @@ namespace fuluDd00_LayeredEngrave
                 var position = new vec3(0, 0, 0);
                 var center = new vec3(0, -1, 0);
                 //var center = new vec3(-3, -4, -5);
-                var up = new vec3(-1, 0, 0);
+                var up = new vec3(0, 0, -1);
                 var camera = new Camera(position, center, up, CameraType.Ortho, vWidth, vHeight);
                 {
                     vec3 size = this.ModelSize;
@@ -191,12 +191,12 @@ namespace fuluDd00_LayeredEngrave
             Color background = Color.SkyBlue;
             foreach (var bitmap in bitmapList)
             {
-                for (int d = 0; d < vWidth; d++)
+                for (int w = 0; w < vWidth; w++)
                 {
-                    for (int w = 0; w < vHeight; w++)
+                    for (int d = 0; d < vHeight; d++)
                     {
-                        Color color = bitmap.GetPixel(d, w);
-                        int h = (int)((double)vDepth * (double)color.A / 256.0);
+                        Color color = bitmap.GetPixel(w, vDepth - d - 1);
+                        int h = vHeight - (int)((double)vDepth * (double)color.A / 256.0) - 1;
                         int index = w * vHeight * vDepth + h * vDepth + d;
                         if (color.A != 0 &&
                             (color.R != background.R || color.G != background.G || color.B != background.B))
@@ -251,7 +251,7 @@ namespace fuluDd00_LayeredEngrave
                 {
                     for (int h = 0; h < vHeight; h++)
                     {
-                        Color color = bitmap.GetPixel(w, h);
+                        Color color = bitmap.GetPixel(w, vHeight - h - 1);
                         int d = (int)((double)vDepth * (double)color.A / 256.0);
                         int index = w * vHeight * vDepth + h * vDepth + d;
                         if (color.A != 0 &&
