@@ -109,10 +109,6 @@ namespace fuluDd00_LayeredEngrave
             }
 
             int currentStep = 0, totalStep = this.RenderStep;
-            this.resources.blenderFBO.Bind();
-            GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
-            this.resources.blenderFBO.Unbind();
-            Texture targetTexture = this.resources.blenderColorTexture;
 
             // remember clear color.
             var clearColor = new float[4];
@@ -121,7 +117,7 @@ namespace fuluDd00_LayeredEngrave
             GL.Instance.Viewport(0, 0, vWidth, vHeight);
 
             var bitmapList = new List<Bitmap>();
-
+            Texture targetTexture;
             // init.
             if (currentStep <= totalStep)
             {
