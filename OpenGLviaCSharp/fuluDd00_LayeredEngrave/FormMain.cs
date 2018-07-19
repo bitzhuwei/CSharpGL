@@ -73,7 +73,7 @@ namespace fuluDd00_LayeredEngrave
 
                 };
 
-                var size = new vec3(5, 5, 5);// *2;
+                var size = new vec3(5, 5, 5);
                 //int index = 0;
                 //for (int k = -1; k < 2; k++)
                 //{
@@ -95,35 +95,27 @@ namespace fuluDd00_LayeredEngrave
                 //        }
                 //    }
                 //}
-                {
-                    vec3 worldPosition = new vec3(0, 2, 0);// +new vec3(-2.375f, -1.75f, 0);
-                    //var cubeNode = CubeNode.Create(new CubeModel(), CubeModel.positions);
-                    //var cubeNode = CubeNode.Create(new RectangleModel(), RectangleModel.strPosition);
-                    var cubeNode = CubeNode.Create(new Sphere(0.5f), Sphere.strPosition);
-                    cubeNode.WorldPosition = worldPosition;
-                    cubeNode.Color = colors[0];
 
-                    children.Add(cubeNode);
+                {
+                    string folder = System.Windows.Forms.Application.StartupPath;
+                    string objFilename = System.IO.Path.Combine(folder + @"\..\..\..\..\Infrastructure\CSharpGL.Models", "vnfHanoiTower.obj_");
+                    var parser = new ObjVNFParser(true);
+                    ObjVNFResult result = parser.Parse(objFilename);
+                    if (result.Error != null)
+                    {
+                        MessageBox.Show(result.Error.ToString());
+                    }
+                    else
+                    {
+                        var model = new ObjVNF(result.Mesh);
+                        var cubeNode = CubeNode.Create(model, ObjVNF.strPosition);
+                        cubeNode.Color = Color.Red.ToVec4();
+                        size = model.GetSize();
+                        float max = size.max();
+                        size = new vec3(max, max, max);
+                        children.Add(cubeNode);
+                    }
                 }
-                //{
-                //    string folder = System.Windows.Forms.Application.StartupPath;
-                //    string objFilename = System.IO.Path.Combine(folder + @"\..\..\..\..\Infrastructure\CSharpGL.Models", "vnfHanoiTower.obj_");
-                //    var parser = new ObjVNFParser(true);
-                //    ObjVNFResult result = parser.Parse(objFilename);
-                //    if (result.Error != null)
-                //    {
-                //        MessageBox.Show(result.Error.ToString());
-                //    }
-                //    else
-                //    {
-                //        var model = new ObjVNF(result.Mesh);
-                //        var cubeNode = CubeNode.Create(model, ObjVNF.strPosition);
-                //        cubeNode.Color = Color.Red.ToVec4();
-                //        //cubeNode.WorldPosition = new vec3(-1.5f, -0.5f, 0);
-                //        size = model.GetSize() * 2;
-                //        children.Add(cubeNode);
-                //    }
-                //}
                 this.peelingNode = new PeelingNode(size, children.ToArray());
                 groupNode.Children.Add(this.peelingNode);
             }
