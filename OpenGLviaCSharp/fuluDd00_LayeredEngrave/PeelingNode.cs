@@ -124,7 +124,7 @@ namespace fuluDd00_LayeredEngrave
 
             GL.Instance.Viewport(0, 0, vWidth, vHeight);
 
-            List<Bitmap> bitmapList = LayeredEngraving(arg);
+            List<Bitmap> bitmapList = LayeredEngraving(arg, "X");
 
             // restore clear color.
             GL.Instance.ClearColor(clearColor[0], clearColor[1], clearColor[2], clearColor[3]);
@@ -181,7 +181,7 @@ namespace fuluDd00_LayeredEngrave
 
             GL.Instance.Viewport(0, 0, vWidth, vHeight);
 
-            List<Bitmap> bitmapList = LayeredEngraving(arg);
+            List<Bitmap> bitmapList = LayeredEngraving(arg, "Y");
 
             // restore clear color.
             GL.Instance.ClearColor(clearColor[0], clearColor[1], clearColor[2], clearColor[3]);
@@ -237,7 +237,7 @@ namespace fuluDd00_LayeredEngrave
 
             GL.Instance.Viewport(0, 0, vWidth, vHeight);
 
-            List<Bitmap> bitmapList = LayeredEngraving(arg);
+            List<Bitmap> bitmapList = LayeredEngraving(arg, "Z");
 
             // restore clear color.
             GL.Instance.ClearColor(clearColor[0], clearColor[1], clearColor[2], clearColor[3]);
@@ -265,7 +265,7 @@ namespace fuluDd00_LayeredEngrave
             }
         }
 
-        unsafe private List<Bitmap> LayeredEngraving(RenderEventArgs arg)
+        unsafe private List<Bitmap> LayeredEngraving(RenderEventArgs arg, string prefix)
         {
             var bitmapList = new List<Bitmap>();
 
@@ -285,7 +285,7 @@ namespace fuluDd00_LayeredEngrave
                 if (firstRun)
                 {
                     var bitmap = targetTexture.GetImage(vWidth, vHeight);
-                    bitmap.Save("0.init.png");
+                    bitmap.Save(string.Format("{0}.0.init.png", prefix));
                     //var image = (Bitmap)bitmap.GetThumbnailImage(vWidth, vHeight, null, IntPtr.Zero);
                     bitmapList.Add(bitmap);
                     //bitmap.Dispose();
@@ -323,7 +323,7 @@ namespace fuluDd00_LayeredEngrave
                     if (firstRun && sampled)
                     {
                         var bitmap = targetTexture.GetImage(vWidth, vHeight);
-                        bitmap.Save(string.Format("{0}.peel.png", layer * 2 - 1));
+                        bitmap.Save(string.Format("{0}{1}.peel.png", prefix, layer * 2 - 1));
                         //var image = (Bitmap)bitmap.GetThumbnailImage(vWidth, vHeight, null, IntPtr.Zero);
                         bitmapList.Add(bitmap);
                         //bitmap.Dispose();
