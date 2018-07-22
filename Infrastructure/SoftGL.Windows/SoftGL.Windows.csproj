@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="RenderContexts\LastError.cs" />
+    <Compile Include="RenderContexts\TextureUnit.cs" />
     <Compile Include="GLAPI\SoftGL.cs" />
     <Compile Include="GLAPI\SoftGL.DrawText.cs">
       <SubType>Code</SubType>

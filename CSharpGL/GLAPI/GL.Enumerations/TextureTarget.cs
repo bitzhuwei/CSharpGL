@@ -6,11 +6,6 @@
     public enum TextureTarget : uint
     {
         /// <summary>
-        ///
-        /// </summary>
-        Unknown = 0,
-
-        /// <summary>
         /// 
         /// </summary>
         Texture1D = GL.GL_TEXTURE_1D,
