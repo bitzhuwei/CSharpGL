@@ -60,25 +60,25 @@ uniform float gSpecularPower;
 
 vec4 CalcDirectionalLight(vec3 normal)
 {
-    vec4 Ambientcolor = vec4(light.color * light.ambient, 1.0f);
+    vec4 ambient = vec4(light.color * light.ambient, 1.0f);
     float DiffuseFactor = dot(normal, -light.direction);
 
-    vec4 Diffusecolor  = vec4(0, 0, 0, 0);
-    vec4 Specularcolor = vec4(0, 0, 0, 0);
+    vec4 difuse  = vec4(0, 0, 0, 0);
+    vec4 specular = vec4(0, 0, 0, 0);
 
     if (DiffuseFactor > 0) {
-        Diffusecolor = vec4(light.color * light.diffuse * DiffuseFactor, 1.0f);
+        difuse = vec4(light.color * light.diffuse * DiffuseFactor, 1.0f);
 
         vec3 VertexToEye = normalize(gEyeWorldPos - passWorldPos);
         vec3 lightReflect = normalize(reflect(light.direction, normal));
         float SpecularFactor = dot(VertexToEye, lightReflect);
         if (SpecularFactor > 0) {
             SpecularFactor = pow(SpecularFactor, gSpecularPower);
-            Specularcolor = vec4(light.color * gMatSpecularIntensity * SpecularFactor, 1.0f);
+            specular = vec4(light.color * gMatSpecularIntensity * SpecularFactor, 1.0f);
         }
     }
 
-    return (Ambientcolor + Diffusecolor + Specularcolor);
+    return (ambient + difuse + specular);
 }
 
 vec3 CalcBumpedNormal()
@@ -97,10 +97,10 @@ vec3 CalcBumpedNormal()
 void main()
 {
     vec3 normal = CalcBumpedNormal();
-    vec4 TotalLight = CalcDirectionalLight(normal);
+    vec4 lightColor = CalcDirectionalLight(normal);
 
-    vec4 SampledColor = texture2D(gColorMap, passTexCoord.xy);
-    fragColor = SampledColor * TotalLight;
+    vec4 sampledColor = texture2D(gColorMap, passTexCoord.xy);
+    fragColor = sampledColor * lightColor;
 }
 ";
     }
