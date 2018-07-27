@@ -17,7 +17,7 @@ namespace NormalMapping
             var array = new ShaderArray(vs, fs);
             var map = new AttributeMap();
             map.Add("inPosition", NormalMappingModel.strPosition);
-            map.Add("TexCoord", NormalMappingModel.strTexCoord);
+            map.Add("inTexCoord", NormalMappingModel.strTexCoord);
             map.Add("Normal", NormalMappingModel.strNormal);
             map.Add("Tangent", NormalMappingModel.strTangent);
             var builder = new RenderMethodBuilder(array, map);
