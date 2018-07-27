@@ -83,11 +83,7 @@ struct SpotLight
     float Cutoff;                                                                           
 };                                                                                          
                                                                                             
-uniform int gNumPointLights;                                                                
-uniform int gNumSpotLights;                                                                 
 uniform DirectionalLight gDirectionalLight;                                                 
-uniform PointLight gPointLights[MAX_POINT_LIGHTS];                                          
-uniform SpotLight gSpotLights[MAX_SPOT_LIGHTS];                                             
 uniform sampler2D gColorMap;                                                                
 uniform sampler2D gShadowMap;                                                               
 uniform sampler2D gNormalMap;                                                               
