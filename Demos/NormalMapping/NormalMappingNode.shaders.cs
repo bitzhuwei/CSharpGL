@@ -16,7 +16,7 @@ layout (location = 2) in vec3 inNormal;
 layout (location = 3) in vec3 inTangent;                                              
                                                                                     
 uniform mat4 mvpMat;                                                                  
-uniform mat4 gWorld;                                                                
+uniform mat4 modelMat;                                                                
                                                                                     
 out vec3 WorldPos0;                                                                 
 out vec3 Normal0;                                                                   
@@ -26,9 +26,9 @@ out vec2 TexCoord0;
 void main()                                                                         
 {                                                                                   
     gl_Position   = mvpMat * vec4(inPosition, 1.0);                                     
-    WorldPos0     = (gWorld * vec4(inPosition, 1.0)).xyz;                             
-    Normal0       = (gWorld * vec4(inNormal, 0.0)).xyz;                               
-    Tangent0      = (gWorld * vec4(inTangent, 0.0)).xyz;                              
+    WorldPos0     = (modelMat * vec4(inPosition, 1.0)).xyz;                             
+    Normal0       = (modelMat * vec4(inNormal, 0.0)).xyz;                               
+    Tangent0      = (modelMat * vec4(inTangent, 0.0)).xyz;                              
     TexCoord0     = inTexCoord;                                                       
 }
 ";

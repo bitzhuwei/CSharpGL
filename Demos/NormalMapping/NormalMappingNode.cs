@@ -141,7 +141,7 @@ namespace NormalMapping
             RenderMethod method = this.RenderUnit.Methods[0];
             ShaderProgram program = method.Program;
             program.SetUniform("mvpMat", projection * view * model);
-            program.SetUniform("gWorld", model);
+            program.SetUniform("modelMat", model);
 
             method.Render();
         }
