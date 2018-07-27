@@ -12,7 +12,7 @@ namespace NormalMapping
                                                                                     
 layout (location = 0) in vec3 inPosition;                                             
 layout (location = 1) in vec2 inTexCoord;                                             
-layout (location = 2) in vec3 Normal;                                               
+layout (location = 2) in vec3 inNormal;                                               
 layout (location = 3) in vec3 Tangent;                                              
                                                                                     
 uniform mat4 gMVP;                                                                  
@@ -30,7 +30,7 @@ void main()
     gl_Position   = gMVP * vec4(inPosition, 1.0);                                     
     LightSpacePos = gLightMVP * vec4(inPosition, 1.0);                                
     TexCoord0     = inTexCoord;                                                       
-    Normal0       = (gWorld * vec4(Normal, 0.0)).xyz;                               
+    Normal0       = (gWorld * vec4(inNormal, 0.0)).xyz;                               
     Tangent0      = (gWorld * vec4(Tangent, 0.0)).xyz;                              
     WorldPos0     = (gWorld * vec4(inPosition, 1.0)).xyz;                             
 }

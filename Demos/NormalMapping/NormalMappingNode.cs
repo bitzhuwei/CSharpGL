@@ -18,7 +18,7 @@ namespace NormalMapping
             var map = new AttributeMap();
             map.Add("inPosition", NormalMappingModel.strPosition);
             map.Add("inTexCoord", NormalMappingModel.strTexCoord);
-            map.Add("Normal", NormalMappingModel.strNormal);
+            map.Add("inNormal", NormalMappingModel.strNormal);
             map.Add("Tangent", NormalMappingModel.strTangent);
             var builder = new RenderMethodBuilder(array, map);
             var node = new NormalMappingNode(model, builder);
