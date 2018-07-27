@@ -65,7 +65,7 @@ namespace NormalMapping
                 program.SetUniform("light.color", dirLight.Diffuse);
                 program.SetUniform("light.ambient", 0.2f);
                 program.SetUniform("light.diffuse", 0.8f);
-                program.SetUniform("light.Direction", dirLight.Direction.normalize());
+                program.SetUniform("light.direction", dirLight.Direction.normalize());
 
                 this.m_dirLight = dirLight;
             }
