@@ -58,32 +58,27 @@ uniform vec3 gEyeWorldPos;
 uniform float gMatSpecularIntensity;
 uniform float gSpecularPower;
 
-vec4 CalcLightInternal(DirectionalLight Light, vec3 normal, float ShadowFactor)
+vec4 CalcDirectionalLight(vec3 normal)
 {
-    vec4 AmbientColor = vec4(Light.Color * Light.AmbientIntensity, 1.0f);
-    float DiffuseFactor = dot(normal, -Light.Direction);
+    vec4 AmbientColor = vec4(light.Color * light.AmbientIntensity, 1.0f);
+    float DiffuseFactor = dot(normal, -light.Direction);
 
     vec4 DiffuseColor  = vec4(0, 0, 0, 0);
     vec4 SpecularColor = vec4(0, 0, 0, 0);
 
     if (DiffuseFactor > 0) {
-        DiffuseColor = vec4(Light.Color * Light.DiffuseIntensity * DiffuseFactor, 1.0f);
+        DiffuseColor = vec4(light.Color * light.DiffuseIntensity * DiffuseFactor, 1.0f);
 
         vec3 VertexToEye = normalize(gEyeWorldPos - passWorldPos);
-        vec3 LightReflect = normalize(reflect(Light.Direction, normal));
-        float SpecularFactor = dot(VertexToEye, LightReflect);
+        vec3 lightReflect = normalize(reflect(light.Direction, normal));
+        float SpecularFactor = dot(VertexToEye, lightReflect);
         if (SpecularFactor > 0) {
             SpecularFactor = pow(SpecularFactor, gSpecularPower);
-            SpecularColor = vec4(Light.Color * gMatSpecularIntensity * SpecularFactor, 1.0f);
+            SpecularColor = vec4(light.Color * gMatSpecularIntensity * SpecularFactor, 1.0f);
         }
     }
 
-    return (AmbientColor + ShadowFactor * (DiffuseColor + SpecularColor));
-}
-
-vec4 CalcDirectionalLight(vec3 normal)
-{
-    return CalcLightInternal(light, normal, 1.0);
+    return (AmbientColor + DiffuseColor + SpecularColor);
 }
 
 vec3 CalcBumpedNormal()
