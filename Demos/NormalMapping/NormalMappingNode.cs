@@ -16,7 +16,7 @@ namespace NormalMapping
             var fs = new FragmentShader(fragmentCode);
             var array = new ShaderArray(vs, fs);
             var map = new AttributeMap();
-            map.Add("Position", NormalMappingModel.strPosition);
+            map.Add("inPosition", NormalMappingModel.strPosition);
             map.Add("TexCoord", NormalMappingModel.strTexCoord);
             map.Add("Normal", NormalMappingModel.strNormal);
             map.Add("Tangent", NormalMappingModel.strTangent);
