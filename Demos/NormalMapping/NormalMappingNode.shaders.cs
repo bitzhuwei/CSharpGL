@@ -44,10 +44,10 @@ out vec4 fragColor;
 
 struct DirectionalLight
 {
-    vec3 Color;
-    float AmbientIntensity;
-    float DiffuseIntensity;
-    vec3 Direction;
+    vec3 color;
+    float ambient;
+    float diffuse;
+    vec3 direction;
 };
 
 uniform DirectionalLight light;
@@ -60,25 +60,25 @@ uniform float gSpecularPower;
 
 vec4 CalcDirectionalLight(vec3 normal)
 {
-    vec4 AmbientColor = vec4(light.Color * light.AmbientIntensity, 1.0f);
-    float DiffuseFactor = dot(normal, -light.Direction);
+    vec4 Ambientcolor = vec4(light.color * light.ambient, 1.0f);
+    float DiffuseFactor = dot(normal, -light.direction);
 
-    vec4 DiffuseColor  = vec4(0, 0, 0, 0);
-    vec4 SpecularColor = vec4(0, 0, 0, 0);
+    vec4 Diffusecolor  = vec4(0, 0, 0, 0);
+    vec4 Specularcolor = vec4(0, 0, 0, 0);
 
     if (DiffuseFactor > 0) {
-        DiffuseColor = vec4(light.Color * light.DiffuseIntensity * DiffuseFactor, 1.0f);
+        Diffusecolor = vec4(light.color * light.diffuse * DiffuseFactor, 1.0f);
 
         vec3 VertexToEye = normalize(gEyeWorldPos - passWorldPos);
-        vec3 lightReflect = normalize(reflect(light.Direction, normal));
+        vec3 lightReflect = normalize(reflect(light.direction, normal));
         float SpecularFactor = dot(VertexToEye, lightReflect);
         if (SpecularFactor > 0) {
             SpecularFactor = pow(SpecularFactor, gSpecularPower);
-            SpecularColor = vec4(light.Color * gMatSpecularIntensity * SpecularFactor, 1.0f);
+            Specularcolor = vec4(light.color * gMatSpecularIntensity * SpecularFactor, 1.0f);
         }
     }
 
-    return (AmbientColor + DiffuseColor + SpecularColor);
+    return (Ambientcolor + Diffusecolor + Specularcolor);
 }
 
 vec3 CalcBumpedNormal()
