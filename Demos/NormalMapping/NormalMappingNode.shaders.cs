@@ -63,57 +63,54 @@ uniform vec3 gEyeWorldPos;
 uniform float gMatSpecularIntensity;
 uniform float gSpecularPower;
 
-vec4 CalcLightInternal(BaseLight Light, vec3 LightDirection, vec3 normal,                   
-                       float ShadowFactor)                                                  
-{                                                                                           
+vec4 CalcLightInternal(BaseLight Light, vec3 LightDirection, vec3 normal, float ShadowFactor)
+{
     vec4 AmbientColor = vec4(Light.Color * Light.AmbientIntensity, 1.0f);
-    float DiffuseFactor = dot(normal, -LightDirection);                                     
-                                                                                            
-    vec4 DiffuseColor  = vec4(0, 0, 0, 0);                                                  
-    vec4 SpecularColor = vec4(0, 0, 0, 0);                                                  
-                                                                                            
-    if (DiffuseFactor > 0) {                                                                
+    float DiffuseFactor = dot(normal, -LightDirection);
+
+    vec4 DiffuseColor  = vec4(0, 0, 0, 0);
+    vec4 SpecularColor = vec4(0, 0, 0, 0);
+
+    if (DiffuseFactor > 0) {
         DiffuseColor = vec4(Light.Color * Light.DiffuseIntensity * DiffuseFactor, 1.0f);
-                                                                                            
-        vec3 VertexToEye = normalize(gEyeWorldPos - passWorldPos);                             
-        vec3 LightReflect = normalize(reflect(LightDirection, normal));                     
-        float SpecularFactor = dot(VertexToEye, LightReflect);                                      
-        if (SpecularFactor > 0) {                                                           
-            SpecularFactor = pow(SpecularFactor, gSpecularPower);                               
+
+        vec3 VertexToEye = normalize(gEyeWorldPos - passWorldPos);
+        vec3 LightReflect = normalize(reflect(LightDirection, normal));
+        float SpecularFactor = dot(VertexToEye, LightReflect);
+        if (SpecularFactor > 0) {
+            SpecularFactor = pow(SpecularFactor, gSpecularPower);
             SpecularColor = vec4(Light.Color * gMatSpecularIntensity * SpecularFactor, 1.0f);
-        }                                                                                   
-    }                                                                                       
-                                                                                            
-    return (AmbientColor + ShadowFactor * (DiffuseColor + SpecularColor));                  
-}                                                                                           
-                                                                                            
-vec4 CalcDirectionalLight(vec3 normal)                                                      
-{                                                                                                
-    return CalcLightInternal(gDirectionalLight.Base, gDirectionalLight.Direction, normal, 1.0);  
-}                                                                                                
-                                                                                            
-vec3 CalcBumpedNormal()                                                                     
-{                                                                                           
-    vec3 normal = normalize(passNormal);                                                       
-    vec3 Tangent = normalize(passTangent);                                                     
-    Tangent = normalize(Tangent - dot(Tangent, normal) * normal);                           
-    vec3 Bitangent = cross(Tangent, normal);                                                
-    vec3 BumpMapNormal = texture(gNormalMap, passTexCoord).xyz;                                
-    BumpMapNormal = 2.0 * BumpMapNormal - vec3(1.0, 1.0, 1.0);                              
-    vec3 NewNormal;                                                                         
-    mat3 TBN = mat3(Tangent, Bitangent, normal);                                            
-    NewNormal = TBN * BumpMapNormal;                                                        
-    NewNormal = normalize(NewNormal);                                                       
-    return NewNormal;                                                                       
-}                                                                                           
-                                                                                            
-void main()                                                                                 
-{                                                                                           
-    vec3 normal = CalcBumpedNormal();                                                       
-    vec4 TotalLight = CalcDirectionalLight(normal);                                         
-                                                                                            
-    vec4 SampledColor = texture2D(gColorMap, passTexCoord.xy);                                 
-    FragColor = SampledColor * TotalLight;                                                  
+        }
+    }
+
+    return (AmbientColor + ShadowFactor * (DiffuseColor + SpecularColor));
+}
+
+vec4 CalcDirectionalLight(vec3 normal)
+{
+    return CalcLightInternal(gDirectionalLight.Base, gDirectionalLight.Direction, normal, 1.0);
+}
+
+vec3 CalcBumpedNormal()
+{
+    vec3 normal = normalize(passNormal);
+    vec3 Tangent = normalize(passTangent);
+    Tangent = normalize(Tangent - dot(Tangent, normal) * normal);
+    vec3 Bitangent = cross(Tangent, normal);
+    vec3 BumpMapNormal = texture(gNormalMap, passTexCoord).xyz;
+    BumpMapNormal = 2.0 * BumpMapNormal - vec3(1.0, 1.0, 1.0);
+    mat3 TBN = mat3(Tangent, Bitangent, normal);
+    vec3 newNormal = TBN * BumpMapNormal;
+    return normalize(newNormal);
+}
+
+void main()
+{
+    vec3 normal = CalcBumpedNormal();
+    vec4 TotalLight = CalcDirectionalLight(normal);
+
+    vec4 SampledColor = texture2D(gColorMap, passTexCoord.xy);
+    FragColor = SampledColor * TotalLight;
 }
 ";
     }
