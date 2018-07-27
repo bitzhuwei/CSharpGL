@@ -53,7 +53,7 @@ struct DirectionalLight
 uniform DirectionalLight light;
 uniform sampler2D texColor;
 uniform sampler2D gShadowMap;
-uniform sampler2D gNormalMap;
+uniform sampler2D texNormal;
 uniform vec3 eyeWorldPos;
 uniform float gMatSpecular = 1;
 uniform float specularPower = 1;
@@ -87,7 +87,7 @@ vec3 CalcBumpedNormal()
     vec3 tangent = normalize(passTangent);
     tangent = normalize(tangent - dot(tangent, normal) * normal);
     vec3 bitangent = cross(tangent, normal);
-    vec3 bumpMapNormal = texture(gNormalMap, passTexCoord).xyz;
+    vec3 bumpMapNormal = texture(texNormal, passTexCoord).xyz;
     bumpMapNormal = 2.0 * bumpMapNormal - vec3(1.0, 1.0, 1.0);
     mat3 TBN = mat3(tangent, bitangent, normal);
     vec3 newNormal = TBN * bumpMapNormal;

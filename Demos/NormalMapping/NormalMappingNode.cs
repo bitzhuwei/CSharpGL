@@ -48,7 +48,7 @@ namespace NormalMapping
 
                 RenderMethod method = this.RenderUnit.Methods[0];
                 ShaderProgram program = method.Program;
-                program.SetUniform("gNormalMap", value ? this.m_pNormalMap : this.m_pNotNormalMap);
+                program.SetUniform("texNormal", value ? this.m_pNormalMap : this.m_pNotNormalMap);
             }
         }
 
@@ -98,7 +98,7 @@ namespace NormalMapping
                 texture.TextureUnitIndex = 2;
                 texture.Initialize();
                 bmp.Dispose();
-                program.SetUniform("gNormalMap", texture);
+                program.SetUniform("texNormal", texture);
                 this.m_pNormalMap = texture;
             }
             {
@@ -114,7 +114,7 @@ namespace NormalMapping
                 texture.TextureUnitIndex = 2;
                 texture.Initialize();
                 bmp.Dispose();
-                //program.SetUniform("gNormalMap", texture);
+                //program.SetUniform("texNormal", texture);
                 this.m_pNotNormalMap = texture;
             }
         }
