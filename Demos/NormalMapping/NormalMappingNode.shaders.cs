@@ -38,9 +38,6 @@ void main()
 
         private const string fragmentCode = @"#version 330                                                                        
                                                                                     
-const int MAX_POINT_LIGHTS = 2;                                                     
-const int MAX_SPOT_LIGHTS = 2;                                                      
-                                                                                    
 in vec4 LightSpacePos;                                                              
 in vec2 TexCoord0;                                                                  
 in vec3 Normal0;                                                                    
@@ -61,28 +58,7 @@ struct DirectionalLight
     BaseLight Base;                                                                 
     vec3 Direction;                                                                 
 };                                                                                  
-                                                                                    
-struct Attenuation                                                                  
-{                                                                                   
-    float Constant;                                                                 
-    float Linear;                                                                   
-    float Exp;                                                                      
-};                                                                                  
-                                                                                    
-struct PointLight                                                                           
-{                                                                                           
-    BaseLight Base;                                                                         
-    vec3 Position;                                                                          
-    Attenuation Atten;                                                                      
-};                                                                                          
-                                                                                            
-struct SpotLight                                                                            
-{                                                                                           
-    PointLight Base;                                                                        
-    vec3 Direction;                                                                         
-    float Cutoff;                                                                           
-};                                                                                          
-                                                                                            
+
 uniform DirectionalLight gDirectionalLight;                                                 
 uniform sampler2D gColorMap;                                                                
 uniform sampler2D gShadowMap;                                                               
