@@ -186,14 +186,6 @@ void main()
     vec3 Normal = CalcBumpedNormal();                                                       
     vec4 TotalLight = CalcDirectionalLight(Normal);                                         
                                                                                             
-    for (int i = 0 ; i < gNumPointLights ; i++) {                                           
-        TotalLight += CalcPointLight(gPointLights[i], Normal, LightSpacePos);               
-    }                                                                                       
-                                                                                            
-    for (int i = 0 ; i < gNumSpotLights ; i++) {                                            
-        TotalLight += CalcSpotLight(gSpotLights[i], Normal, LightSpacePos);                 
-    }                                                                                       
-                                                                                            
     vec4 SampledColor = texture2D(gColorMap, TexCoord0.xy);                                 
     FragColor = SampledColor * TotalLight;                                                  
 }
