@@ -94,13 +94,13 @@ vec4 CalcDirectionalLight(vec3 normal)
 vec3 CalcBumpedNormal()
 {
     vec3 normal = normalize(passNormal);
-    vec3 Tangent = normalize(passTangent);
-    Tangent = normalize(Tangent - dot(Tangent, normal) * normal);
-    vec3 Bitangent = cross(Tangent, normal);
-    vec3 BumpMapNormal = texture(gNormalMap, passTexCoord).xyz;
-    BumpMapNormal = 2.0 * BumpMapNormal - vec3(1.0, 1.0, 1.0);
-    mat3 TBN = mat3(Tangent, Bitangent, normal);
-    vec3 newNormal = TBN * BumpMapNormal;
+    vec3 tangent = normalize(passTangent);
+    tangent = normalize(tangent - dot(tangent, normal) * normal);
+    vec3 bitangent = cross(tangent, normal);
+    vec3 bumpMapNormal = texture(gNormalMap, passTexCoord).xyz;
+    bumpMapNormal = 2.0 * bumpMapNormal - vec3(1.0, 1.0, 1.0);
+    mat3 TBN = mat3(tangent, bitangent, normal);
+    vec3 newNormal = TBN * bumpMapNormal;
     return normalize(newNormal);
 }
 
