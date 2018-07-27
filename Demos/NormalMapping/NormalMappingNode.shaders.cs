@@ -40,18 +40,13 @@ in vec3 passNormal;
 in vec3 passWorldPos;
 in vec3 passTangent;
 
-out vec4 FragColor;
+out vec4 fragColor;
 
-struct BaseLight
+struct DirectionalLight
 {
     vec3 Color;
     float AmbientIntensity;
     float DiffuseIntensity;
-};
-
-struct DirectionalLight
-{
-    BaseLight Base;
     vec3 Direction;
 };
 
@@ -63,10 +58,10 @@ uniform vec3 gEyeWorldPos;
 uniform float gMatSpecularIntensity;
 uniform float gSpecularPower;
 
-vec4 CalcLightInternal(BaseLight Light, vec3 LightDirection, vec3 normal, float ShadowFactor)
+vec4 CalcLightInternal(DirectionalLight Light, vec3 normal, float ShadowFactor)
 {
     vec4 AmbientColor = vec4(Light.Color * Light.AmbientIntensity, 1.0f);
-    float DiffuseFactor = dot(normal, -LightDirection);
+    float DiffuseFactor = dot(normal, -Light.Direction);
 
     vec4 DiffuseColor  = vec4(0, 0, 0, 0);
     vec4 SpecularColor = vec4(0, 0, 0, 0);
@@ -75,7 +70,7 @@ vec4 CalcLightInternal(BaseLight Light, vec3 LightDirection, vec3 normal, float 
         DiffuseColor = vec4(Light.Color * Light.DiffuseIntensity * DiffuseFactor, 1.0f);
 
         vec3 VertexToEye = normalize(gEyeWorldPos - passWorldPos);
-        vec3 LightReflect = normalize(reflect(LightDirection, normal));
+        vec3 LightReflect = normalize(reflect(Light.Direction, normal));
         float SpecularFactor = dot(VertexToEye, LightReflect);
         if (SpecularFactor > 0) {
             SpecularFactor = pow(SpecularFactor, gSpecularPower);
@@ -88,7 +83,7 @@ vec4 CalcLightInternal(BaseLight Light, vec3 LightDirection, vec3 normal, float 
 
 vec4 CalcDirectionalLight(vec3 normal)
 {
-    return CalcLightInternal(light.Base, light.Direction, normal, 1.0);
+    return CalcLightInternal(light, normal, 1.0);
 }
 
 vec3 CalcBumpedNormal()
@@ -110,7 +105,7 @@ void main()
     vec4 TotalLight = CalcDirectionalLight(normal);
 
     vec4 SampledColor = texture2D(gColorMap, passTexCoord.xy);
-    FragColor = SampledColor * TotalLight;
+    fragColor = SampledColor * TotalLight;
 }
 ";
     }

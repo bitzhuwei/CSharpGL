@@ -62,9 +62,9 @@ namespace NormalMapping
                 var dirLight = new DirectionalLight(new vec3(1.0f, 0.0f, 0.0f));
                 dirLight.Diffuse = new vec3(0.8f);
                 dirLight.Specular = new vec3(0.8f);
-                program.SetUniform("light.Base.Color", dirLight.Diffuse);
-                program.SetUniform("light.Base.AmbientIntensity", 0.2f);
-                program.SetUniform("light.Base.DiffuseIntensity", 0.8f);
+                program.SetUniform("light.Color", dirLight.Diffuse);
+                program.SetUniform("light.AmbientIntensity", 0.2f);
+                program.SetUniform("light.DiffuseIntensity", 0.8f);
                 program.SetUniform("light.Direction", dirLight.Direction.normalize());
 
                 this.m_dirLight = dirLight;
