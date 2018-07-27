@@ -62,7 +62,7 @@ vec4 CalcDirectionalLight(vec3 normal)
     vec4 ambient = vec4(light.color * light.ambient, 1.0f);
     float diffuseFactor = dot(normal, -light.direction);
 
-    vec4 difuse  = vec4(0, 0, 0, 0);
+    vec4 difuse = vec4(0, 0, 0, 0);
     vec4 specular = vec4(0, 0, 0, 0);
 
     if (diffuseFactor > 0) {
