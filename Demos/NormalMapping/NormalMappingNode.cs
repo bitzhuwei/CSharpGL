@@ -142,6 +142,7 @@ namespace NormalMapping
             ShaderProgram program = method.Program;
             program.SetUniform("mvpMat", projection * view * model);
             program.SetUniform("modelMat", model);
+            program.SetUniform("eyeWorldPos", camera.Position);
 
             method.Render();
         }
