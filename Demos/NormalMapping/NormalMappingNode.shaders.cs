@@ -55,8 +55,8 @@ uniform sampler2D gColorMap;
 uniform sampler2D gShadowMap;
 uniform sampler2D gNormalMap;
 uniform vec3 eyeWorldPos;
-uniform float gMatSpecularIntensity;
-uniform float gSpecularPower;
+uniform float gMatSpecular = 1;
+uniform float specularPower = 1;
 
 vec4 CalcDirectionalLight(vec3 normal)
 {
@@ -69,12 +69,12 @@ vec4 CalcDirectionalLight(vec3 normal)
     if (DiffuseFactor > 0) {
         difuse = vec4(light.color * light.diffuse * DiffuseFactor, 1.0f);
 
-        vec3 VertexToEye = normalize(eyeWorldPos - passWorldPos);
+        vec3 v2e = normalize(eyeWorldPos - passWorldPos);
         vec3 lightReflect = normalize(reflect(light.direction, normal));
-        float SpecularFactor = dot(VertexToEye, lightReflect);
-        if (SpecularFactor > 0) {
-            SpecularFactor = pow(SpecularFactor, gSpecularPower);
-            specular = vec4(light.color * gMatSpecularIntensity * SpecularFactor, 1.0f);
+        float specularFactor = dot(v2e, lightReflect);
+        if (specularFactor > 0) {
+            specularFactor = pow(specularFactor, specularPower);
+            specular = vec4(light.color * gMatSpecular * specularFactor, 1.0f);
         }
     }
 
