@@ -52,7 +52,6 @@ struct DirectionalLight
 
 uniform DirectionalLight light;
 uniform sampler2D texColor;
-uniform sampler2D gShadowMap;
 uniform sampler2D texNormal;
 uniform vec3 eyeWorldPos;
 uniform float gMatSpecular = 1;
