@@ -19,7 +19,7 @@ namespace NormalMapping
             map.Add("inPosition", NormalMappingModel.strPosition);
             map.Add("inTexCoord", NormalMappingModel.strTexCoord);
             map.Add("inNormal", NormalMappingModel.strNormal);
-            map.Add("Tangent", NormalMappingModel.strTangent);
+            map.Add("inTangent", NormalMappingModel.strTangent);
             var builder = new RenderMethodBuilder(array, map);
             var node = new NormalMappingNode(model, builder);
             node.ModelSize = new vec3(2, 2, 0.1f);
