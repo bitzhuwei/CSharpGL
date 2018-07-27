@@ -55,7 +55,7 @@ struct DirectionalLight
     vec3 Direction;
 };
 
-uniform DirectionalLight gDirectionalLight;
+uniform DirectionalLight light;
 uniform sampler2D gColorMap;
 uniform sampler2D gShadowMap;
 uniform sampler2D gNormalMap;
@@ -88,7 +88,7 @@ vec4 CalcLightInternal(BaseLight Light, vec3 LightDirection, vec3 normal, float 
 
 vec4 CalcDirectionalLight(vec3 normal)
 {
-    return CalcLightInternal(gDirectionalLight.Base, gDirectionalLight.Direction, normal, 1.0);
+    return CalcLightInternal(light.Base, light.Direction, normal, 1.0);
 }
 
 vec3 CalcBumpedNormal()
