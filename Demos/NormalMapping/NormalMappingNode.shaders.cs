@@ -10,35 +10,35 @@ namespace NormalMapping
     {
         private const string vertexCode = @"#version 330                                                                        
                                                                                     
-layout (location = 0) in vec3 inPosition;                                             
-layout (location = 1) in vec2 inTexCoord;                                             
-layout (location = 2) in vec3 inNormal;                                               
-layout (location = 3) in vec3 inTangent;                                              
+in vec3 inPosition;                                             
+in vec3 inNormal;                                               
+in vec3 inTangent;                                              
+in vec2 inTexCoord;                                             
                                                                                     
 uniform mat4 mvpMat;                                                                  
 uniform mat4 modelMat;                                                                
                                                                                     
-out vec3 WorldPos0;                                                                 
-out vec3 Normal0;                                                                   
-out vec3 Tangent0;                                                                  
-out vec2 TexCoord0;                                                                 
+out vec3 passWorldPos;                                                                 
+out vec3 passNormal;                                                                   
+out vec3 passTangent;                                                                  
+out vec2 passTexCoord;                                                                 
                                                                                     
 void main()                                                                         
 {                                                                                   
     gl_Position   = mvpMat * vec4(inPosition, 1.0);                                     
-    WorldPos0     = (modelMat * vec4(inPosition, 1.0)).xyz;                             
-    Normal0       = (modelMat * vec4(inNormal, 0.0)).xyz;                               
-    Tangent0      = (modelMat * vec4(inTangent, 0.0)).xyz;                              
-    TexCoord0     = inTexCoord;                                                       
+    passWorldPos  = (modelMat * vec4(inPosition, 1.0)).xyz;                             
+    passNormal    = (modelMat * vec4(inNormal, 0.0)).xyz;                               
+    passTangent   = (modelMat * vec4(inTangent, 0.0)).xyz;                              
+    passTexCoord  = inTexCoord;                                                       
 }
 ";
 
         private const string fragmentCode = @"#version 330                                                                        
                                                                                     
-in vec2 TexCoord0;                                                                  
-in vec3 Normal0;                                                                    
-in vec3 WorldPos0;                                                                  
-in vec3 Tangent0;                                                                   
+in vec2 passTexCoord;                                                                  
+in vec3 passNormal;                                                                    
+in vec3 passWorldPos;                                                                  
+in vec3 passTangent;                                                                   
                                                                                     
 out vec4 FragColor;                                                                 
                                                                                     
@@ -75,7 +75,7 @@ vec4 CalcLightInternal(BaseLight Light, vec3 LightDirection, vec3 Normal,
     if (DiffuseFactor > 0) {                                                                
         DiffuseColor = vec4(Light.Color * Light.DiffuseIntensity * DiffuseFactor, 1.0f);
                                                                                             
-        vec3 VertexToEye = normalize(gEyeWorldPos - WorldPos0);                             
+        vec3 VertexToEye = normalize(gEyeWorldPos - passWorldPos);                             
         vec3 LightReflect = normalize(reflect(LightDirection, Normal));                     
         float SpecularFactor = dot(VertexToEye, LightReflect);                                      
         if (SpecularFactor > 0) {                                                           
@@ -94,11 +94,11 @@ vec4 CalcDirectionalLight(vec3 Normal)
                                                                                             
 vec3 CalcBumpedNormal()                                                                     
 {                                                                                           
-    vec3 Normal = normalize(Normal0);                                                       
-    vec3 Tangent = normalize(Tangent0);                                                     
+    vec3 Normal = normalize(passNormal);                                                       
+    vec3 Tangent = normalize(passTangent);                                                     
     Tangent = normalize(Tangent - dot(Tangent, Normal) * Normal);                           
     vec3 Bitangent = cross(Tangent, Normal);                                                
-    vec3 BumpMapNormal = texture(gNormalMap, TexCoord0).xyz;                                
+    vec3 BumpMapNormal = texture(gNormalMap, passTexCoord).xyz;                                
     BumpMapNormal = 2.0 * BumpMapNormal - vec3(1.0, 1.0, 1.0);                              
     vec3 NewNormal;                                                                         
     mat3 TBN = mat3(Tangent, Bitangent, Normal);                                            
@@ -112,7 +112,7 @@ void main()
     vec3 Normal = CalcBumpedNormal();                                                       
     vec4 TotalLight = CalcDirectionalLight(Normal);                                         
                                                                                             
-    vec4 SampledColor = texture2D(gColorMap, TexCoord0.xy);                                 
+    vec4 SampledColor = texture2D(gColorMap, passTexCoord.xy);                                 
     FragColor = SampledColor * TotalLight;                                                  
 }
 ";
