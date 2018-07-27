@@ -51,7 +51,7 @@ struct DirectionalLight
 };
 
 uniform DirectionalLight light;
-uniform sampler2D gColorMap;
+uniform sampler2D texColor;
 uniform sampler2D gShadowMap;
 uniform sampler2D gNormalMap;
 uniform vec3 eyeWorldPos;
@@ -66,7 +66,7 @@ vec4 CalcDirectionalLight(vec3 normal)
     vec4 difuse  = vec4(0, 0, 0, 0);
     vec4 specular = vec4(0, 0, 0, 0);
 
-    if (DiffuseFactor > 0) {
+    if (diffuseFactor > 0) {
         difuse = vec4(light.color * light.diffuse * diffuseFactor, 1.0f);
 
         vec3 v2e = normalize(eyeWorldPos - passWorldPos);
@@ -99,7 +99,7 @@ void main()
     vec3 normal = CalcBumpedNormal();
     vec4 lightColor = CalcDirectionalLight(normal);
 
-    vec4 sampledColor = texture2D(gColorMap, passTexCoord.xy);
+    vec4 sampledColor = texture2D(texColor, passTexCoord.xy);
     fragColor = sampledColor * lightColor;
 }
 ";

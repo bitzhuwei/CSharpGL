@@ -82,7 +82,7 @@ namespace NormalMapping
                 texture.TextureUnitIndex = 0;
                 texture.Initialize();
                 bmp.Dispose();
-                program.SetUniform("gColorMap", texture);
+                program.SetUniform("texColor", texture);
                 this.m_pTexture = texture;
             }
             {
