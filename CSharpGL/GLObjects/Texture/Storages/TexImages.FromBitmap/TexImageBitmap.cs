@@ -32,7 +32,7 @@ namespace CSharpGL
         /// <param name="internalFormat"></param>
         /// <param name="mipmapLevelCount"></param>
         /// <param name="border"></param>
-        public TexImageBitmap(Bitmap bitmap, uint internalFormat = GL.GL_RGBA, int mipmapLevelCount = 1, int border = 0)
+        public TexImageBitmap(Bitmap bitmap, uint internalFormat = GL.GL_RGBA, int mipmapLevelCount = 1, bool border = false)
             : base(TextureTarget.Texture2D, internalFormat, mipmapLevelCount, border)
         {
             if (bitmap == null) { throw new ArgumentNullException("bitmap"); }
@@ -50,7 +50,7 @@ namespace CSharpGL
         /// <param name="internalFormat"></param>
         /// <param name="mipmapLevelCount"></param>
         /// <param name="border"></param>
-        public TexImageBitmap(int width, int height, uint internalFormat = GL.GL_RGBA, int mipmapLevelCount = 1, int border = 0)
+        public TexImageBitmap(int width, int height, uint internalFormat = GL.GL_RGBA, int mipmapLevelCount = 1, bool border = false)
             : base(TextureTarget.Texture2D, internalFormat, mipmapLevelCount, border)
         {
             this.width = width;
@@ -67,7 +67,7 @@ namespace CSharpGL
             {
                 for (int level = 0; level < mipmapLevelCount; level++)
                 {
-                    GL.Instance.TexImage2D((uint)this.target, level, this.internalFormat, this.width, this.height, this.border, GL.GL_BGRA, GL.GL_UNSIGNED_BYTE, IntPtr.Zero);
+                    GL.Instance.TexImage2D((uint)this.target, level, this.internalFormat, this.width, this.height, this.border ? 1 : 0, GL.GL_BGRA, GL.GL_UNSIGNED_BYTE, IntPtr.Zero);
                 }
             }
             else
@@ -76,7 +76,7 @@ namespace CSharpGL
                     const int level = 0;
                     BitmapData data = bitmap.LockBits(new Rectangle(0, 0, this.width, this.height), System.Drawing.Imaging.ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
                     IntPtr pixels = data.Scan0;
-                    GL.Instance.TexImage2D((uint)this.target, level, this.internalFormat, this.width, this.height, this.border, GL.GL_BGRA, GL.GL_UNSIGNED_BYTE, pixels);
+                    GL.Instance.TexImage2D((uint)this.target, level, this.internalFormat, this.width, this.height, this.border ? 1 : 0, GL.GL_BGRA, GL.GL_UNSIGNED_BYTE, pixels);
                     bitmap.UnlockBits(data);
                 }
                 Bitmap bmp = bitmap;
@@ -85,7 +85,7 @@ namespace CSharpGL
                     bmp = (Bitmap)bmp.GetThumbnailImage(bmp.Width / 2, bmp.Height / 2, new Image.GetThumbnailImageAbort(ThumbnailCallback), IntPtr.Zero);
                     BitmapData data = bmp.LockBits(new Rectangle(0, 0, bmp.Width, bmp.Height), System.Drawing.Imaging.ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
                     IntPtr pixels = data.Scan0;
-                    GL.Instance.TexImage2D((uint)this.target, level, this.internalFormat, bmp.Width, bmp.Height, this.border, GL.GL_BGRA, GL.GL_UNSIGNED_BYTE, pixels);
+                    GL.Instance.TexImage2D((uint)this.target, level, this.internalFormat, bmp.Width, bmp.Height, this.border ? 1 : 0, GL.GL_BGRA, GL.GL_UNSIGNED_BYTE, pixels);
                     bmp.UnlockBits(data);
                     bmp.Dispose();
                 }

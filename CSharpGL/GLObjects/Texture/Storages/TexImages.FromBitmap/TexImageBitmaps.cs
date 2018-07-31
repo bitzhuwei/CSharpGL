@@ -52,7 +52,7 @@ namespace CSharpGL
         /// <param name="internalFormat"></param>
         /// <param name="mipmapLevelCount"></param>
         /// <param name="border"></param>
-        public TexImageBitmaps(Bitmap[] layers, uint internalFormat = GL.GL_RGBA8, int mipmapLevelCount = 1, int border = 0)
+        public TexImageBitmaps(Bitmap[] layers, uint internalFormat = GL.GL_RGBA8, int mipmapLevelCount = 1, bool border = false)
             : base(TextureTarget.Texture2DArray, internalFormat, mipmapLevelCount, border)
         {
             if (layers == null || layers.Length < 1) { throw new ArgumentNullException("bitmap"); }
@@ -80,7 +80,7 @@ namespace CSharpGL
         /// <param name="internalFormat"></param>
         /// <param name="mipmapLevelCount"></param>
         /// <param name="border"></param>
-        public TexImageBitmaps(int width, int height, int layerCount, uint internalFormat = GL.GL_RGBA8, int mipmapLevelCount = 1, int border = 0)
+        public TexImageBitmaps(int width, int height, int layerCount, uint internalFormat = GL.GL_RGBA8, int mipmapLevelCount = 1, bool border = false)
             : base(TextureTarget.Texture2DArray, internalFormat, mipmapLevelCount, border)
         {
             if (width < 1) { throw new ArgumentException("width must be greater than 0!"); }
@@ -110,7 +110,7 @@ namespace CSharpGL
                 int w = this.width, h = this.height;
                 for (int i = 0; i < mipmapLevelCount; i++)
                 {
-                    glTexImage3D((uint)this.target, i, this.internalFormat, w, h, this.layerCount, this.border, GL.GL_BGRA, GL.GL_UNSIGNED_BYTE, IntPtr.Zero);
+                    glTexImage3D((uint)this.target, i, this.internalFormat, w, h, this.layerCount, this.border ? 1 : 0, GL.GL_BGRA, GL.GL_UNSIGNED_BYTE, IntPtr.Zero);
                     w = w / 2; h = h / 2;
                 }
             }
