@@ -166,6 +166,7 @@
     <Compile Include="GLObjects\Shaders\Shaders\TessEvaluationShader.cs" />
     <Compile Include="GLObjects\Shaders\Shaders\TessControlShader.cs" />
     <Compile Include="GLObjects\Texture\MipmapBuilder.cs" />
+    <Compile Include="GLObjects\Texture\Samplers\BuiltInSampler\TexParameters\TexParameterfv.cs" />
     <Compile Include="GLObjects\Texture\Storages\TexImages.FromBitmap\TexImageBitmaps.cs" />
     <Compile Include="GLObjects\Texture\Storages\TexImages.FromBitmap\TexImageBitmap.cs" />
     <Compile Include="GLObjects\Texture\Storages\TexImages\CubemapTexImage2D.cs" />

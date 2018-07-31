@@ -68,6 +68,10 @@ namespace CSharpGL
             /// 
             /// </summary>
             GenerateMipmap = GL.GL_GENERATE_MIPMAP,
+            /// <summary>
+            /// 
+            /// </summary>
+            TextureBorderColor = GL.GL_TEXTURE_BORDER_COLOR,
         }
     }
 }
