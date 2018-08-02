@@ -47,7 +47,6 @@ void main(void) {
         public vec4 Color { get; set; }
 
         /// <summary>
-        /// Render propeller in modern opengl.
         /// </summary>
         /// <returns></returns>
         public static GroundNode Create()
@@ -68,7 +67,6 @@ void main(void) {
         }
 
         /// <summary>
-        /// Render propeller in legacy opengl.
         /// </summary>
         private GroundNode(GroundModel model, string positionNameInIBufferable, params RenderMethodBuilder[] builders)
             : base(model, positionNameInIBufferable, builders)
