@@ -79,7 +79,7 @@ void main(void)
 	float NdotL = dot(N, L);
 	float EdotR = dot(E, R);
 	float diffuse = max(NdotL, 0.0);
-	float specular = max(pow(EdotR, material_specular_power), 0.0);
+	float specular = 0;//max(pow(EdotR, material_specular_power), 0.0);
 	
 	color = vec4(material_ambient + material_diffuse * diffuse + material_specular * specular, 1.0);
 }
