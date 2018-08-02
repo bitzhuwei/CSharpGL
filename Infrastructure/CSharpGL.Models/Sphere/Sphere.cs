@@ -7,7 +7,7 @@ namespace CSharpGL
     /// http://images.cnblogs.com/cnblogs_com/bitzhuwei/554293/o_sphere.jpg
     /// <para>Uses <see cref="DrawElementsCmd"/></para>
     /// </summary>
-    public class Sphere : IBufferSource
+    public class Sphere : IBufferSource, IObjFormat
     {
         private SphereModel model;
 
@@ -238,5 +238,31 @@ namespace CSharpGL
         ///
         /// </summary>
         public vec3 Size { get; private set; }
+
+        #region IObjFormat 成员
+
+        public vec3[] GetPositions()
+        {
+            return this.model.positions;
+        }
+
+        public uint[] GetIndexes()
+        {
+            var list = new List<uint>();
+            var indexes = this.model.indexes;
+            for (int i = 0; i < indexes.Length - 2; i++)
+            {
+                var index0 = indexes[i + 0];
+                var index1 = indexes[i + 1];
+                var index2 = indexes[i + 2];
+                if (index0 == uint.MaxValue || index1 == uint.MaxValue || index2 == uint.MaxValue) { continue; }
+
+                list.Add(index0); list.Add(index1); list.Add(index2);
+            }
+
+            return list.ToArray();
+        }
+
+        #endregion
     }
 }

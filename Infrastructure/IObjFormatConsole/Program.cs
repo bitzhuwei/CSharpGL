@@ -11,6 +11,24 @@ namespace IObjFormatConsole
         static void Main(string[] args)
         {
             {
+                Console.WriteLine("sphere");
+                var sphere = new Sphere(1, 40, 80);
+                var filename = "sphere.obj_";
+                sphere.DumpObjFile(filename, "sphere");
+                var parser = new ObjVNFParser(false);
+                ObjVNFResult result = parser.Parse(filename);
+                if (result.Error != null)
+                {
+                    Console.WriteLine("Error: {0}", result.Error);
+                }
+                else
+                {
+                    ObjVNFMesh mesh = result.Mesh;
+                    var model = new ObjVNF(mesh);
+                    model.DumpObjFile("vnf" + filename, "sphere");
+                }
+            }
+            {
                 Console.WriteLine("prismoid");
                 var prismoid = new PrismoidModel(5, 5, 6, 6, 2);
                 var filename = "prismoid.obj_";
