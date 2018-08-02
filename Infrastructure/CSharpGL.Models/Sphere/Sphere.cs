@@ -248,6 +248,8 @@ namespace CSharpGL
 
         public uint[] GetIndexes()
         {
+            bool reverse = false;
+
             var list = new List<uint>();
             var indexes = this.model.indexes;
             for (int i = 0; i < indexes.Length - 2; i++)
@@ -257,7 +259,16 @@ namespace CSharpGL
                 var index2 = indexes[i + 2];
                 if (index0 == uint.MaxValue || index1 == uint.MaxValue || index2 == uint.MaxValue) { continue; }
 
-                list.Add(index0); list.Add(index1); list.Add(index2);
+                if (reverse)
+                {
+                    list.Add(index0); list.Add(index2); list.Add(index1);
+                }
+                else
+                {
+                    list.Add(index0); list.Add(index1); list.Add(index2);
+                }
+
+                reverse = !reverse;
             }
 
             return list.ToArray();
