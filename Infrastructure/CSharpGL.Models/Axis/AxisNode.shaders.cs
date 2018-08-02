@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using CSharpGL;
 
-namespace c03d02_ViewSpace
+namespace CSharpGL
 {
     partial class AxisNode
     {

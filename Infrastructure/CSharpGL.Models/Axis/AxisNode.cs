@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using CSharpGL;
 
-namespace c03d02_ViewSpace
+namespace CSharpGL
 {
-    partial class AxisNode : ModernNode, IRenderable
+    public partial class AxisNode : ModernNode, IRenderable
     {
         public static AxisNode Create()
         {
@@ -21,7 +21,7 @@ namespace c03d02_ViewSpace
             map.Add("inPosition", AxisModel.strPosition);
             map.Add("inColor", AxisModel.strColor);
             // build a render method.
-            var builder = new RenderMethodBuilder(array, map, new LineWidthSwitch(5));
+            var builder = new RenderMethodBuilder(array, map, new LineWidthSwitch(3));
             // create node.
             var node = new AxisNode(model, builder);
             // initialize node.
