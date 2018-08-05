@@ -15,8 +15,9 @@ namespace RenderToTexture
         private Scene scene;
         private ActionList actionList;
         //private LegacyRectangleRenderer rectangle;//LegacyRectangleRenderer dosen't work in rendering-to-texture.
-        private TeapotNode teapot;
-        private RenderToTexttureNode rtt;
+        private MultiTargetTeapotNode teapot;
+        //private RenderToTextureNode rtt;
+        private MultiTargetFramebufferProvider framebufferProvider;
         private RectangleNode rectangle;
         public FormMain()
         {
@@ -25,17 +26,34 @@ namespace RenderToTexture
             this.Load += FormMain_Load;
             this.winGLCanvas1.OpenGLDraw += winGLCanvas1_OpenGLDraw;
             this.winGLCanvas1.Resize += winGLCanvas1_Resize;
+            this.winGLCanvas1.KeyPress += winGLCanvas1_KeyPress;
         }
+
+        void winGLCanvas1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 'd')
+            {
+                var textures = this.framebufferProvider.OutTextures;
+                for (int i = 0; i < textures.Length; i++)
+                {
+                    var image = textures[i].GetImage(width, height);
+                    image.Save(string.Format("rtt[{0}].png", i));
+                }
+            }
+        }
+
+        private const int width = 400, height = 200;
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-            var teapot = TeapotNode.Create();
+            var teapot = MultiTargetTeapotNode.Create();
             this.teapot = teapot;
 
-            int width = 400, height = 200;
-            var rtt = new RenderToTexttureNode(width, height, new Camera(new vec3(0, 0, 5), new vec3(0, 0, 0), new vec3(0, 1, 0), CameraType.Perspecitive, width, height), new ColoredFramebufferProvider());
+            var framebufferProvider = new MultiTargetFramebufferProvider();
+            this.framebufferProvider = framebufferProvider;
+            var rtt = new RenderToTextureNode(width, height, new Camera(new vec3(0, 0, 5), new vec3(0, 0, 0), new vec3(0, 1, 0), CameraType.Perspecitive, width, height), framebufferProvider);
             rtt.Children.Add(teapot);// rendered to framebuffer, then to texture.
-            this.rtt = rtt;
+            //this.rtt = rtt;
 
             var rectangle = RectangleNode.Create();
             //var rectangle = new LegacyRectangleRenderer();//LegacyRectangleRenderer dosen't work in rendering-to-texture.
