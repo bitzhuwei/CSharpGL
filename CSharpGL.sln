@@ -203,6 +203,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "fuluDd00_LayeredEngraving",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "c05d01_TangentSpace", "OpenGLviaCSharp\c05d01_TangentSpace\c05d01_TangentSpace.csproj", "{76E64389-D37E-424D-B5B4-93C45CF2132C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "c15d00_InverseColor", "OpenGLviaCSharp\c15d00_InverseColor\c15d00_InverseColor.csproj", "{CA0EA4EC-FE16-4A46-AD98-0CC418F54B7E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -593,6 +595,10 @@ Global
 		{76E64389-D37E-424D-B5B4-93C45CF2132C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{76E64389-D37E-424D-B5B4-93C45CF2132C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{76E64389-D37E-424D-B5B4-93C45CF2132C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA0EA4EC-FE16-4A46-AD98-0CC418F54B7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA0EA4EC-FE16-4A46-AD98-0CC418F54B7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA0EA4EC-FE16-4A46-AD98-0CC418F54B7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA0EA4EC-FE16-4A46-AD98-0CC418F54B7E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -693,5 +699,6 @@ Global
 		{742745EC-8948-4BA0-9D51-9646DD8CFACB} = {7CF86F60-2BAC-4F60-AF1C-869737385E1B}
 		{FA5AFAD2-8719-4267-9DEA-C83FADD4E241} = {7CF86F60-2BAC-4F60-AF1C-869737385E1B}
 		{76E64389-D37E-424D-B5B4-93C45CF2132C} = {7CF86F60-2BAC-4F60-AF1C-869737385E1B}
+		{CA0EA4EC-FE16-4A46-AD98-0CC418F54B7E} = {7CF86F60-2BAC-4F60-AF1C-869737385E1B}
 	EndGlobalSection
 EndGlobal
