@@ -27,7 +27,7 @@ namespace CSharpGL
         /// <param name="dataProvider"></param>
         /// <param name="mipmapLevelCount"></param>
         /// <param name="border"></param>
-        public CubemapTexImage2D(uint internalFormat, int width, int height, uint format, uint type, CubemapDataProvider dataProvider, int mipmapLevelCount = 1, int border = 0)
+        public CubemapTexImage2D(uint internalFormat, int width, int height, uint format, uint type, CubemapDataProvider dataProvider, int mipmapLevelCount = 1, bool border = false)
             : base(TextureTarget.TextureCubeMap, internalFormat, mipmapLevelCount, border)
         {
             if (dataProvider == null) { throw new ArgumentNullException("dataProvider"); }
@@ -48,7 +48,7 @@ namespace CSharpGL
                 uint target = (uint)item.target;
                 IntPtr pixels = item.LockData();
 
-                GL.Instance.TexImage2D(target, 0, internalFormat, width, height, border, format, type, pixels);
+                GL.Instance.TexImage2D(target, 0, internalFormat, width, height, border ? 1 : 0, format, type, pixels);
 
                 item.FreeData();
             }

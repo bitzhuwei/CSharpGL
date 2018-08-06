@@ -25,7 +25,7 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        public readonly int border;
+        public readonly bool border;
 
         /// <summary>
         /// 
@@ -34,7 +34,7 @@ namespace CSharpGL
         /// <param name="internalFormat"></param>
         /// <param name="mipmapLevelCount"></param>
         /// <param name="border"></param>
-        public TexStorageBase(TextureTarget target, uint internalFormat, int mipmapLevelCount = 1, int border = 0)
+        public TexStorageBase(TextureTarget target, uint internalFormat, int mipmapLevelCount = 1, bool border = false)
         {
             this.target = target;
             this.internalFormat = internalFormat;

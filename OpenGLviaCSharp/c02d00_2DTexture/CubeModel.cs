@@ -115,12 +115,12 @@ namespace c02d00_2DTexture
         /// </summary>
         private static readonly vec2[] uvs = new vec2[]
         {
-            new vec2(0, 0), new vec2(1, 0), new vec2(1, 1), new vec2(0, 1),
-            new vec2(0, 0), new vec2(1, 0), new vec2(1, 1), new vec2(0, 1),
-            new vec2(0, 0), new vec2(1, 0), new vec2(1, 1), new vec2(0, 1),
-            new vec2(0, 0), new vec2(1, 0), new vec2(1, 1), new vec2(0, 1),
-            new vec2(0, 0), new vec2(1, 0), new vec2(1, 1), new vec2(0, 1),
-            new vec2(0, 0), new vec2(1, 0), new vec2(1, 1), new vec2(0, 1),
+            new vec2(0, 0), new vec2(2, 0), new vec2(2, 2), new vec2(0, 2),
+            new vec2(0, 0), new vec2(2, 0), new vec2(2, 2), new vec2(0, 2),
+            new vec2(0, 0), new vec2(2, 0), new vec2(2, 2), new vec2(0, 2),
+            new vec2(0, 0), new vec2(2, 0), new vec2(2, 2), new vec2(0, 2),
+            new vec2(0, 0), new vec2(2, 0), new vec2(2, 2), new vec2(0, 2),
+            new vec2(0, 0), new vec2(2, 0), new vec2(2, 2), new vec2(0, 2),
         };
     }
 }

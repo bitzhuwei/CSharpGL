@@ -43,6 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Axis\AxisModel.cs" />
+    <Compile Include="Axis\AxisNode.cs" />
+    <Compile Include="Axis\AxisNode.shaders.cs" />
     <Compile Include="VolumeData.cs" />
     <None Include="Amber\readme.md" />
     <Compile Include="AdjacentTriangleModel.cs" />
@@ -117,6 +120,7 @@
     <None Include="vnfannulus.obj_" />
     <None Include="vnfcylinder.obj_" />
     <None Include="vnfdisk.obj_" />
+    <None Include="vnfHanoiTower.obj_" />
     <None Include="vnfprismoid.obj_" />
   </ItemGroup>
   <ItemGroup>
@@ -139,16 +143,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="KleinBottle\以从零编写一个KleinBottle渲染器为例学习如何使用CSharpGL.md" />
-    <None Include="buddha.obj_" />
-    <None Include="bunny.obj_" />
     <None Include="cube.obj_" />
-    <None Include="dragon.obj_" />
     <None Include="floor.obj_" />
-    <None Include="head256.raw" />
-    <None Include="nanosuit.obj_" />
     <None Include="readme.md" />
     <None Include="SimpleObjFileFormat\readme.md" />
-    <None Include="tff.dat" />
     <None Include="TrefoilKnotModel\TrefoilKnot.frag" />
     <None Include="TrefoilKnotModel\TrefoilKnot.vert" />
   </ItemGroup>

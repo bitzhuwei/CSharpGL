@@ -16,10 +16,10 @@ namespace NormalMapping
             var fs = new FragmentShader(fragmentCode);
             var array = new ShaderArray(vs, fs);
             var map = new AttributeMap();
-            map.Add("Position", NormalMappingModel.strPosition);
-            map.Add("TexCoord", NormalMappingModel.strTexCoord);
-            map.Add("Normal", NormalMappingModel.strNormal);
-            map.Add("Tangent", NormalMappingModel.strTangent);
+            map.Add("inPosition", NormalMappingModel.strPosition);
+            map.Add("inTexCoord", NormalMappingModel.strTexCoord);
+            map.Add("inNormal", NormalMappingModel.strNormal);
+            map.Add("inTangent", NormalMappingModel.strTangent);
             var builder = new RenderMethodBuilder(array, map);
             var node = new NormalMappingNode(model, builder);
             node.ModelSize = new vec3(2, 2, 0.1f);
@@ -48,7 +48,7 @@ namespace NormalMapping
 
                 RenderMethod method = this.RenderUnit.Methods[0];
                 ShaderProgram program = method.Program;
-                program.SetUniform("gNormalMap", value ? this.m_pNormalMap : this.m_pNotNormalMap);
+                program.SetUniform("texNormal", value ? this.m_pNormalMap : this.m_pNotNormalMap);
             }
         }
 
@@ -62,10 +62,10 @@ namespace NormalMapping
                 var dirLight = new DirectionalLight(new vec3(1.0f, 0.0f, 0.0f));
                 dirLight.Diffuse = new vec3(0.8f);
                 dirLight.Specular = new vec3(0.8f);
-                program.SetUniform("gDirectionalLight.Base.Color", dirLight.Diffuse);
-                program.SetUniform("gDirectionalLight.Base.AmbientIntensity", 0.2f);
-                program.SetUniform("gDirectionalLight.Base.DiffuseIntensity", 0.8f);
-                program.SetUniform("gDirectionalLight.Direction", dirLight.Direction.normalize());
+                program.SetUniform("light.color", dirLight.Diffuse);
+                program.SetUniform("light.ambient", 0.2f);
+                program.SetUniform("light.diffuse", 0.8f);
+                program.SetUniform("light.direction", dirLight.Direction.normalize());
 
                 this.m_dirLight = dirLight;
             }
@@ -82,7 +82,7 @@ namespace NormalMapping
                 texture.TextureUnitIndex = 0;
                 texture.Initialize();
                 bmp.Dispose();
-                program.SetUniform("gColorMap", texture);
+                program.SetUniform("texColor", texture);
                 this.m_pTexture = texture;
             }
             {
@@ -98,7 +98,7 @@ namespace NormalMapping
                 texture.TextureUnitIndex = 2;
                 texture.Initialize();
                 bmp.Dispose();
-                program.SetUniform("gNormalMap", texture);
+                program.SetUniform("texNormal", texture);
                 this.m_pNormalMap = texture;
             }
             {
@@ -114,7 +114,7 @@ namespace NormalMapping
                 texture.TextureUnitIndex = 2;
                 texture.Initialize();
                 bmp.Dispose();
-                //program.SetUniform("gNormalMap", texture);
+                //program.SetUniform("texNormal", texture);
                 this.m_pNotNormalMap = texture;
             }
         }
@@ -140,8 +140,9 @@ namespace NormalMapping
 
             RenderMethod method = this.RenderUnit.Methods[0];
             ShaderProgram program = method.Program;
-            program.SetUniform("gMVP", projection * view * model);
-            program.SetUniform("gWorld", model);
+            program.SetUniform("mvpMat", projection * view * model);
+            program.SetUniform("modelMat", model);
+            program.SetUniform("eyeWorldPos", camera.Position);
 
             method.Render();
         }

@@ -51,9 +51,6 @@
     <Compile Include="SliceNode.shaders.cs" />
     <Compile Include="SliceNode.cs" />
     <Compile Include="SliceModel.cs" />
-    <Compile Include="AxisModel.cs" />
-    <Compile Include="AxisNode.cs" />
-    <Compile Include="AxisNode.shaders.cs" />
     <Compile Include="CameraModel.cs" />
     <Compile Include="CameraNode.cs" />
     <Compile Include="CameraNode.shaders.cs" />

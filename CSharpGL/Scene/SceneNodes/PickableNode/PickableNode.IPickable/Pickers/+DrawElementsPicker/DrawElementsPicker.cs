@@ -46,7 +46,7 @@ namespace CSharpGL
             PickableNode node = this.Node;
 
             // Find primitiveInfo
-            RecognizedPrimitiveInfo primitiveInfo = this.GetPrimitiveInfoOfPickedGeometry(arg, flatColorVertexId);
+            RecognizedPrimitiveInfo primitiveInfo = this.GetPrimitiveInfoOfPickedGeometry(arg, flatColorVertexId, baseId);
             if (primitiveInfo == null)
             {
                 Debug.WriteLine(string.Format(
@@ -188,30 +188,15 @@ namespace CSharpGL
         /// <returns></returns>
         private RecognizedPrimitiveInfo GetPrimitiveInfoOfPickedGeometry(
             PickingEventArgs arg,
-            uint flatColorVertexId)
+            uint flatColorVertexId, uint baseId)
         {
             List<RecognizedPrimitiveInfo> primitiveInfoList = GetPossiblePrimitives(arg, flatColorVertexId);
 
             if (primitiveInfoList.Count == 0) { return null; }
 
-            RecognizedPrimitiveInfo primitiveInfo = FindThePickedOne(arg, primitiveInfoList);
+            RecognizedPrimitiveInfo primitiveInfo = FindThePickedOne(arg, primitiveInfoList, baseId);
 
             return primitiveInfo;
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="arg"></param>
-        /// <param name="twoPrimitivesIndexBuffer"></param>
-        /// <returns></returns>
-        private uint Pick(PickingEventArgs arg, DrawElementsCmd twoPrimitivesIndexBuffer)
-        {
-            this.Node.Render4InnerPicking(arg, twoPrimitivesIndexBuffer);
-
-            uint pickedIndex = ColorCodedPicking.ReadStageVertexId(arg.X, arg.Y);
-
-            return pickedIndex;
         }
 
         /// <summary>

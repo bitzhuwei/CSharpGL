@@ -67,6 +67,18 @@ namespace CSharpGL
                 var arg = new PickingEventArgs(this.Scene, x, y, geometryTypes);
                 this.RenderForPicking(this.Scene.RootNode, arg);
 
+                bool dump = false;
+                if (dump)
+                {
+                    var final = new Bitmap(width, height);
+                    var data = final.LockBits(new Rectangle(0, 0, width, height), System.Drawing.Imaging.ImageLockMode.ReadWrite, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+                    //glGetTexImage((uint)texture.Target, 0, GL_BGRA, GL_UNSIGNED_BYTE, data.Scan0);
+                    GL.Instance.ReadPixels(0, 0, width, height, GL.GL_BGRA, GL.GL_UNSIGNED_BYTE, data.Scan0);
+                    final.UnlockBits(data);
+                    final.RotateFlip(RotateFlipType.Rotate180FlipX);
+                    final.Save(string.Format("picking.dump.png"));
+                }
+
                 uint stageVertexId = ColorCodedPicking.ReadStageVertexId(x, y);
 
                 pickedGeometry = SearchGeometry(stageVertexId, arg, this.Scene.RootNode);

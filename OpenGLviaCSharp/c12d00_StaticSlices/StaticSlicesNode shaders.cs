@@ -37,6 +37,8 @@ uniform sampler1D tex1D;
 uniform sampler3D tex3D;
 uniform int hiddenLength = 1;
 
+uniform bool showSlice = false;
+
 out vec4 fragColor;
 
 void main() {
@@ -44,7 +46,13 @@ void main() {
 
 	float p = texture(tex3D, passTexCoord).r;
     vec4 color = texture(tex1D, p);
-    fragColor = vec4(color.rgb, color.a * hiddenLength);
+	if (showSlice) {
+        if (color.a > 0) { fragColor = vec4(color.rgb, hiddenLength / 256.0) + color / 10000; }
+        else { fragColor = vec4(1, 1, 1, hiddenLength / 256.0) + color / 10000; }
+	}
+	else {
+        fragColor = vec4(color.rgb, color.a / 50 * hiddenLength);
+	}
 }
 ";
     }

@@ -17,7 +17,7 @@ namespace CSharpGL
         /// <returns></returns>
         private RecognizedPrimitiveInfo FindThePickedOne(
             PickingEventArgs arg,
-            List<RecognizedPrimitiveInfo> primitiveInfoList)
+            List<RecognizedPrimitiveInfo> primitiveInfoList, uint baseId)
         {
             if (primitiveInfoList == null || primitiveInfoList.Count == 0) { return null; }
 #if DEBUG
@@ -33,31 +33,30 @@ namespace CSharpGL
             NoPrimitiveRestartIndex(primitiveInfoList);
 #endif
             DrawMode singlePrimitiveMode = this.DrawCommand.CurrentMode.ToSinglePrimitiveMode();
-            for (int left = 0; left < primitiveInfoList.Count - 1; left++)
+            for (int current = 1; current < primitiveInfoList.Count; current++)
             {
-                for (int right = left + 1; right < primitiveInfoList.Count; right++)
+                DrawElementsCmd twoPrimitivesIndexBuffer;
+                uint leftLastIndex, rightLastIndex;
+                AssembleIndexBuffer(
+                    primitiveInfoList[target], primitiveInfoList[current], singlePrimitiveMode,
+                    out twoPrimitivesIndexBuffer, out leftLastIndex, out rightLastIndex);
+
+                this.Node.Render4InnerPicking(arg, twoPrimitivesIndexBuffer);
+                uint stageVertexId = ColorCodedPicking.ReadStageVertexId(arg.X, arg.Y);
+                uint pickedIndex = stageVertexId - baseId;
+                if (pickedIndex == rightLastIndex)
                 {
-                    DrawElementsCmd twoPrimitivesIndexBuffer;
-                    uint leftLastIndex, rightLastIndex;
-                    AssembleIndexBuffer(
-                        primitiveInfoList[left], primitiveInfoList[right], singlePrimitiveMode,
-                        out twoPrimitivesIndexBuffer, out leftLastIndex, out rightLastIndex);
-                    uint pickedIndex = Pick(arg, twoPrimitivesIndexBuffer);
-                    if (pickedIndex == rightLastIndex)
-                    {
-                        target = right;
-                        break;
-                    }
-                    else if (pickedIndex == leftLastIndex)
-                    {
-                        target = left;
-                        break;
-                    }
-                    else if (pickedIndex == uint.MaxValue)// 两个候选图元都没有被拾取到
-                    { /* nothing to do */}
-                    else
-                    { throw new Exception("This should not happen!"); }
+                    target = current;
                 }
+                else if (pickedIndex == leftLastIndex)// 保留上一次的候选图元
+                {
+                    //target = target;
+                    /* nothing to do */
+                }
+                else if (stageVertexId == uint.MaxValue)// 两个候选图元都没有被拾取到
+                { /* nothing to do */ }
+                else
+                { throw new Exception("This should not happen!"); }
             }
 
             return primitiveInfoList[target];

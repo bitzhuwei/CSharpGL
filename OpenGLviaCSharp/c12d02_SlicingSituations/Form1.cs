@@ -72,11 +72,6 @@ namespace c12d02_SlicingSituations
         private SceneNodeBase GetRootNode()
         {
             var rootNode = new GroupNode();
-            //{
-            //    var node = AxisNode.Create();
-            //    node.Scale = new vec3(1, 1, 1) * 5;
-            //    rootNode.Children.Add(node);
-            //}
             {
                 var node = CubeNode.Create();
                 node.WorldPosition = new vec3(1, 1, 1) * 0.5f;

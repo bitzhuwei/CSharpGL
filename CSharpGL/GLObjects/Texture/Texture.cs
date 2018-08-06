@@ -23,14 +23,12 @@ namespace CSharpGL
             get
             {
                 var storage = this.Storage;
-                if (storage != null)
+                if (storage == null)
                 {
-                    return storage.target;
+                    throw new Exception(string.Format("storage not specified for texture!"));
                 }
-                else
-                {
-                    return TextureTarget.Unknown;
-                }
+
+                return storage.target;
             }
         }
 

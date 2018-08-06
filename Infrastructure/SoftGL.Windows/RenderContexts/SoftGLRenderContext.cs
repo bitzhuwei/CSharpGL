@@ -7,7 +7,7 @@ namespace CSharpGL
     /// <summary>
     /// creates render device and render context.
     /// </summary>
-    public class SoftGLRenderContext : GLRenderContext
+    public partial class SoftGLRenderContext : GLRenderContext
     {
         /// <summary>
         /// 

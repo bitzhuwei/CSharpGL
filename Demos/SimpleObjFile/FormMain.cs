@@ -93,8 +93,7 @@ namespace SimpleObjFile
             var up = new vec3(0, 1, 0);
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
 
-            this.scene = new Scene(camera)
-;
+            this.scene = new Scene(camera);
 
             var list = new ActionList();
             var transformAction = new TransformAction(scene.RootNode);
@@ -110,25 +109,28 @@ namespace SimpleObjFile
 
             var manipulater = new FirstPerspectiveManipulater();
             manipulater.Bind(camera, this.winGLCanvas1);
-
-            string folder = System.Windows.Forms.Application.StartupPath;
-            string filename = System.IO.Path.Combine(folder + @"\..\..\..\..\Infrastructure\CSharpGL.Models", "nanosuit.obj_");
-            var parser = new ObjVNFParser(false);
-            ObjVNFResult result = parser.Parse(filename);
-            if (result.Error != null)
             {
-                MessageBox.Show(result.Error.ToString());
-            }
-            else
-            {
-                var node = ObjVNFNode.Create(result.Mesh);
-                node.Children.Add(new LegacyBoundingBoxNode(node.ModelSize));
-                float max = node.ModelSize.max();
-                node.Scale *= 7.0f / max;
-                node.WorldPosition = new vec3(0, 0, 0);
-                var rootElement = this.scene.RootNode;
-                this.scene.RootNode = node;
-                if (rootElement != null) { rootElement.Dispose(); }
+                var disk = new DiskModel(0.5f + 0.4f, 0.3f, 0.3f, 40, 80);
+                var filename = "disk.obj";
+                disk.DumpObjFile(filename, "disk");
+                var parser = new ObjVNFParser(false);
+                ObjVNFResult result = parser.Parse(filename);
+                if (result.Error != null)
+                {
+                    Console.WriteLine("Error: {0}", result.Error);
+                }
+                else
+                {
+                    ObjVNFMesh mesh = result.Mesh;
+                    var node = ObjVNFNode.Create(mesh);
+                    node.Children.Add(new LegacyBoundingBoxNode(node.ModelSize));
+                    float max = node.ModelSize.max();
+                    node.Scale *= 7.0f / max;
+                    node.WorldPosition = new vec3(0, 0, 0);
+                    var rootElement = this.scene.RootNode;
+                    this.scene.RootNode = node;
+                    if (rootElement != null) { rootElement.Dispose(); }
+                }
             }
         }
 

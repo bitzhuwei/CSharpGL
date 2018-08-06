@@ -9,28 +9,28 @@ namespace SimpleInstancedRendering
     partial class SmallQuadNode : ModernNode, IRenderable
     {
         private const string vertexCode = @"#version 330 core
-layout (location = 0) in vec2 aPos;
-layout (location = 1) in vec3 aColor;
+in vec2 inPosition;
+in vec3 inColor;
 
-out vec3 fColor;
+out vec3 passColor;
 
 uniform vec2 offsets[100];
 
 void main()
 {
     vec2 offset = offsets[gl_InstanceID];
-    gl_Position = vec4(aPos + offset, 0.0, 1.0);
-    fColor = aColor;
+    gl_Position = vec4(inPosition + offset, 0.0, 1.0);
+    passColor = inColor;
 }";
 
         private const string fragmentCode = @"#version 330 core
-out vec4 FragColor;
+out vec4 outColor;
 
-in vec3 fColor;
+in vec3 passColor;
 
 void main()
 {
-    FragColor = vec4(fColor, 1.0);
+    outColor = vec4(passColor, 1.0);
 }";
 
         public static SmallQuadNode Create()
@@ -40,8 +40,8 @@ void main()
             var fs = new FragmentShader(fragmentCode);
             var array = new ShaderArray(vs, fs);
             var map = new AttributeMap();
-            map.Add("aPos", SmallQuadModel.strPosition);
-            map.Add("aColor", SmallQuadModel.strColor);
+            map.Add("inPosition", SmallQuadModel.strPosition);
+            map.Add("inColor", SmallQuadModel.strColor);
             var builder = new RenderMethodBuilder(array, map);
             var node = new SmallQuadNode(model, builder);
             node.Initialize();

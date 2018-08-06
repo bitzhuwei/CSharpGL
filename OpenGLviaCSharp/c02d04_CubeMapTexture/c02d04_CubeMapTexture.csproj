@@ -43,7 +43,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AxisModel.cs" />
     <Compile Include="RenderMode.cs" />
     <Compile Include="CubeModel.cs" />
     <Compile Include="CubeMapNode.cs" />

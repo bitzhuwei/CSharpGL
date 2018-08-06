@@ -57,11 +57,12 @@ namespace c02d00_2DTexture
         {
             string folder = System.Windows.Forms.Application.StartupPath;
             var bmp = new Bitmap(System.IO.Path.Combine(folder, @"cloth.png"));
-            TexStorageBase storage = new TexImageBitmap(bmp);
+            TexStorageBase storage = new TexImageBitmap(bmp, GL.GL_RGBA, 1, true);
             var texture = new Texture(storage,
-                new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP_TO_EDGE),
-                new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_CLAMP_TO_EDGE),
-                new TexParameteri(TexParameter.PropertyName.TextureWrapR, (int)GL.GL_CLAMP_TO_EDGE),
+                new TexParameterfv(TexParameter.PropertyName.TextureBorderColor, 1, 0, 0),
+                new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP_TO_BORDER),
+                new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_CLAMP_TO_BORDER),
+                new TexParameteri(TexParameter.PropertyName.TextureWrapR, (int)GL.GL_CLAMP_TO_BORDER),
                 new TexParameteri(TexParameter.PropertyName.TextureMinFilter, (int)GL.GL_LINEAR),
                 new TexParameteri(TexParameter.PropertyName.TextureMagFilter, (int)GL.GL_LINEAR));
             texture.Initialize();

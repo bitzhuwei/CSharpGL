@@ -36,7 +36,7 @@ namespace CSharpGL
         /// <param name="dataProvider"></param>
         /// <param name="mipmapLevelCount"></param>
         /// <param name="border"></param>
-        public TexImage3D(Target target, uint internalFormat, int width, int height, int depth, uint format, uint type, LeveledDataProvider dataProvider = null, int mipmapLevelCount = 1, int border = 0)
+        public TexImage3D(Target target, uint internalFormat, int width, int height, int depth, uint format, uint type, LeveledDataProvider dataProvider = null, int mipmapLevelCount = 1, bool border = false)
             : base((TextureTarget)target, internalFormat, mipmapLevelCount, border)
         {
             this.width = width; this.height = height; this.depth = depth;
@@ -62,7 +62,7 @@ namespace CSharpGL
                 int level = item.level;
                 IntPtr pixels = item.LockData();
 
-                glTexImage3D((uint)target, level, internalFormat, width, height, depth, border, format, type, pixels);
+                glTexImage3D((uint)target, level, internalFormat, width, height, depth, border ? 1 : 0, format, type, pixels);
 
                 item.FreeData();
             }

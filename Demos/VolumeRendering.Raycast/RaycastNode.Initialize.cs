@@ -23,12 +23,31 @@ namespace VolumeRendering.Raycast
             base.DoInitialize();
 
             string folder = System.Windows.Forms.Application.StartupPath;
-            string tff = System.IO.Path.Combine(folder + @"\..\..\..\..\Infrastructure\CSharpGL.Models", "tff.dat");
-            this.transferFunc1DTexture = InitTFF1DTexture(tff);
+            {
+                string tff = "tff.png";
+                this.transferFunc1DTexture = InitTFF1DTexture(tff);
+            }
 
-            string head256 = System.IO.Path.Combine(folder + @"\..\..\..\..\Infrastructure\CSharpGL.Models", "head256.raw");
-            byte[] volumeData = GetVolumeData(head256);
-            this.volume3DTexture = InitVolume3DTexture(volumeData, 256, 256, 225);
+            {
+                //string head256 = System.IO.Path.Combine(folder + @"\..\..\..\..\Infrastructure\CSharpGL.Models", "head256.raw");
+                //byte[] volumeData = GetVolumeData(head256);
+                //this.volume3DTexture = InitVolume3DTexture(volumeData, 256,256,225);
+            }
+            {
+                //string head256 = System.IO.Path.Combine(folder + @"\..\..\..\..\Infrastructure\CSharpGL.Models", "heart125-154-145.raw");
+                //byte[] volumeData = GetVolumeData(head256);
+                //this.volume3DTexture = InitVolume3DTexture(volumeData, 125,154,145);
+            }
+            //{
+            //    string head256 = System.IO.Path.Combine(folder + @"\..\..\..\..\Infrastructure\CSharpGL.Models", "harmonic16-16-16.raw");
+            //    byte[] volumeData = GetVolumeData(head256);
+            //    this.volume3DTexture = InitVolume3DTexture(volumeData, 16, 16, 16);
+            //}
+            {
+                int width = 128, height = 128, depth = 128;
+                byte[] volumeData = VolumeData.GetData(width, height, depth);
+                this.volume3DTexture = InitVolume3DTexture(volumeData, width, height, depth);
+            }
             {
                 // setting uniforms such as
                 // ScreenSize
@@ -41,10 +60,10 @@ namespace VolumeRendering.Raycast
                 //program.SetUniform("StepSize", this.g_stepSize);
                 program.SetUniform("TransferFunc", this.transferFunc1DTexture);
                 program.SetUniform("VolumeTex", this.volume3DTexture);
-                //var clearColor = new float[4];
-                //OpenGL.GetFloat(GetTarget.ColorClearValue, clearColor);
-                //this.raycastRenderer.glUniform("backgroundColor", clearColor.ToVec4());
-                program.SetUniform("backgroundColor", new vec4(0.4f, 0.8f, 1.0f, 1.0f));
+                var clearColor = new float[4];
+                //GL.Instance.GetFloatv((uint)GetTarget.ColorClearValue, clearColor);
+                //program.SetUniform("backgroundColor", new vec4(clearColor[0], clearColor[1], clearColor[2], clearColor[3]));
+                program.SetUniform("backgroundColor", System.Drawing.Color.SkyBlue.ToVec4());
             }
         }
 
@@ -150,15 +169,9 @@ namespace VolumeRendering.Raycast
 
         private Texture InitTFF1DTexture(string filename)
         {
-            byte[] tff;
-            using (var fs = new FileStream(filename, FileMode.Open, FileAccess.Read))
-            using (var br = new BinaryReader(fs))
-            {
-                tff = br.ReadBytes((int)fs.Length);
-            }
-
+            var bitmap = new System.Drawing.Bitmap(filename);
             const int width = 256;
-            var storage = new TexImage1D(GL.GL_RGBA8, width, GL.GL_RGBA, GL.GL_UNSIGNED_BYTE, new ArrayDataProvider<byte>(tff));
+            var storage = new TexImage1D(GL.GL_RGBA8, width, GL.GL_RGBA, GL.GL_UNSIGNED_BYTE, new ImageDataProvider(bitmap));
             var texture = new Texture(storage,
                 new TexParameteri(TexParameter.PropertyName.TextureWrapR, (int)GL.GL_REPEAT),
                 new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_REPEAT),
@@ -167,6 +180,7 @@ namespace VolumeRendering.Raycast
                 new TexParameteri(TexParameter.PropertyName.TextureMagFilter, (int)GL.GL_NEAREST));
             texture.Initialize();
             texture.TextureUnitIndex = 0;
+            bitmap.Dispose();
 
             return texture;
         }

@@ -50,7 +50,6 @@ namespace Texture2D
             var up = new vec3(0, 1, 0);
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
             this.scene = new Scene(camera)
-
             {
                 RootNode = rootElement,
                 RootControl = rootControl,
@@ -77,6 +76,10 @@ namespace Texture2D
 
             Match(this.trvSceneGUI, scene.RootControl);
             this.trvSceneGUI.ExpandAll();
+
+            var manipulater = new FirstPerspectiveManipulater();
+            manipulater.Bind(camera, this.winGLCanvas1);
+            manipulater.StepLength = 0.1f;
         }
 
         private WinCtrlRoot GetRootControl()
@@ -143,6 +146,8 @@ namespace Texture2D
             // note: this tells us that the right way is to render the nearest transparenct object at last.
             var group = new GroupNode(rectangle);//, blend, blend2);
 
+            var axis = AxisNode.Create();
+            group.Children.Add(axis);
             return group;
         }
 

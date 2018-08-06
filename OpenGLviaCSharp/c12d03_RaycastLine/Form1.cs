@@ -57,11 +57,6 @@ namespace c12d03_RaycastLine
         private SceneNodeBase GetRootNode()
         {
             var rootNode = new GroupNode();
-            //{
-            //    var node = AxisNode.Create();
-            //    node.Scale = new vec3(1, 1, 1) * 0.2f;
-            //    rootNode.Children.Add(node);
-            //}
             {
                 var node = CameraNode.Create();
                 node.Scale = new vec3(1, 1, 1) * 0.2f;

@@ -3,6 +3,12 @@ using System.Text;
 
 namespace CSharpGL
 {
+    // 
+    //                ----------------------------------------------------------------------
+    // IndexBuffer:          | vertexIds[0] | vertexIds[1] | .. | vertexIds[last] |
+    //                ----------------------------------------------------------------------
+    //                                                                 index
+    //
     /// <summary>
     /// All vertexs' ids of picked geometry and their indexes in <see cref="IndexBuffer"/>.
     /// </summary>

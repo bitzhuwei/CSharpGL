@@ -139,7 +139,7 @@ float snoise(vec3 v)
 void main(void)
 {
   // Perturb the texcoords with three components of noise
-  vec3 uvw = v_texCoord3D + 0.1*vec3(snoise(v_texCoord3D * rainDrop + vec3(0.0, 0.0, time)),
+  vec3 uvw = v_texCoord3D + 0.1 * vec3(snoise(v_texCoord3D * rainDrop + vec3(0.0, 0.0, time)),
     snoise(v_texCoord3D + vec3(43.0, 17.0, time)),
 	snoise(v_texCoord3D + vec3(-17.0, -43.0, time)));
   // Six components of noise in a fractal sum
@@ -152,7 +152,6 @@ void main(void)
   float minimum = -(0.5 + 0.25 + 0.125 + 0.0625 + 0.03125);
   float maximum = (0.5 + 0.25 + 0.125 + 0.0625 + 0.03125);
   n = n / (maximum - minimum) - minimum;// make n to (0 ~ 1)
-  // n = n * 0.7;
   // A hot colormap - cheesy but effective 
   out_Color = texture(sunColor, n);
 }

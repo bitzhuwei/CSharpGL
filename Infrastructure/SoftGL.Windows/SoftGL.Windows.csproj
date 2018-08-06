@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="RenderContexts\LastError.cs" />
+    <Compile Include="RenderContexts\TextureUnit.cs" />
     <Compile Include="GLAPI\SoftGL.cs" />
     <Compile Include="GLAPI\SoftGL.DrawText.cs">
       <SubType>Code</SubType>
@@ -48,7 +50,6 @@
     <Compile Include="GLAPI\SoftGL.ExtendedAPI.cs" />
     <Compile Include="GLAPI\SoftGL.ExtendedConsts.cs" />
     <Compile Include="GLAPI\Soft.BasicAPI.cs" />
-    <Compile Include="GLAPI\SoftGL.OpenGL32.DLL.cs" />
     <Compile Include="GUI\WinCtrlRoot\TranslateExtension.cs" />
     <Compile Include="GUI\WinCtrlRoot\WinSoftCtrlRoot.cs" />
     <Compile Include="RenderContexts\DIBSection.cs">

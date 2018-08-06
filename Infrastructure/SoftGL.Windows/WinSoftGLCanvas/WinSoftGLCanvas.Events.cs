@@ -56,12 +56,16 @@ namespace CSharpGL
             stopWatch.Stop();
 
             {
-                ErrorCode error = (ErrorCode)GL.Instance.GetError();
-                if (error != ErrorCode.NoError)
+                GL gl = GL.Instance;
+                if (gl != null)
                 {
-                    string str = string.Format("{0}: OpenGL error: {1}", this.GetType().FullName, error);
-                    Debug.WriteLine(str);
-                    Log.Write(str);
+                    ErrorCode error = (ErrorCode)gl.GetError();
+                    if (error != ErrorCode.NoError)
+                    {
+                        string str = string.Format("{0}: OpenGL error: {1}", this.GetType().FullName, error);
+                        Debug.WriteLine(str);
+                        Log.Write(str);
+                    }
                 }
             }
 

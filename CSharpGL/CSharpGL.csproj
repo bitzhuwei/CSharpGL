@@ -166,6 +166,7 @@
     <Compile Include="GLObjects\Shaders\Shaders\TessEvaluationShader.cs" />
     <Compile Include="GLObjects\Shaders\Shaders\TessControlShader.cs" />
     <Compile Include="GLObjects\Texture\MipmapBuilder.cs" />
+    <Compile Include="GLObjects\Texture\Samplers\BuiltInSampler\TexParameters\TexParameterfv.cs" />
     <Compile Include="GLObjects\Texture\Storages\TexImages.FromBitmap\TexImageBitmaps.cs" />
     <Compile Include="GLObjects\Texture\Storages\TexImages.FromBitmap\TexImageBitmap.cs" />
     <Compile Include="GLObjects\Texture\Storages\TexImages\CubemapTexImage2D.cs" />
@@ -302,7 +303,7 @@
     <Compile Include="Scene\SceneNodes\ConcreteNodes\TextBillboardNode\TextBillboardNode.Text.cs" />
     <Compile Include="Scene\SceneNodes\ConcreteNodes\TextBillboardNode\TextBillboardNode.shaders.cs" />
     <Compile Include="Scene\SceneNodes\ConcreteNodes\TextBillboardNode\TextBillboardNode.cs" />
-    <Compile Include="Scene\SceneNodes\ConcreteNodes\RenderToTextureNode\RenderToTexttureNode.cs" />
+    <Compile Include="Scene\SceneNodes\ConcreteNodes\RenderToTextureNode\RenderToTextureNode.cs" />
     <Compile Include="Scene\SceneNodes\CameraNode\CameraNode.cs" />
     <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\ColorCodedPicking\PrimivitiveRecognizers\LinesAdjacencyRecognizer.cs" />
     <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\ColorCodedPicking\PrimivitiveRecognizers\TrianglesAdjacencyRecognizer.cs" />

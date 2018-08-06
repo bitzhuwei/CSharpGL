@@ -16,6 +16,8 @@ namespace c12d00_StaticSlices
         /// </summary>
         public int HiddenLength { get; set; }
 
+        public bool ShowSlice { get; set; }
+
         public static StaticSlicesNode Create(int sliceCount, Texture texture1D, Texture texture3D)
         {
             var vs = new VertexShader(vertexCode);
@@ -74,6 +76,7 @@ namespace c12d00_StaticSlices
             // matrix.
             program.SetUniform("mvpMat", projection * view * model);
             program.SetUniform("hiddenLength", this.HiddenLength);
+            program.SetUniform("showSlice", this.ShowSlice);
             method.Render();
         }
 
