@@ -93,8 +93,7 @@ namespace SimpleObjFile
             var up = new vec3(0, 1, 0);
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
 
-            this.scene = new Scene(camera)
-;
+            this.scene = new Scene(camera);
 
             var list = new ActionList();
             var transformAction = new TransformAction(scene.RootNode);
