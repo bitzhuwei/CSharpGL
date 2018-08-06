@@ -37,7 +37,7 @@ namespace CSharpGL
         /// <returns>如果在整个 System.Collections.Generic.List&lt;T&gt; 中找到 item 的第一个匹配项，则为该项的从零开始的索引；否则为-1。</returns>
         public int IndexOf(SceneNodeBase item)
         {
-            return list.IndexOf(item);
+            return this.list.IndexOf(item);
         }
 
         /// <summary>
@@ -48,7 +48,7 @@ namespace CSharpGL
         public void Insert(int index, SceneNodeBase item)
         {
             item.parent = this.parent;
-            list.Insert(index, item);
+            this.list.Insert(index, item);
         }
 
         /// <summary>
@@ -57,7 +57,7 @@ namespace CSharpGL
         /// <param name="index">要移除的元素的从零开始的索引。</param>
         public void RemoveAt(int index)
         {
-            SceneNodeBase obj = list[index];
+            SceneNodeBase obj = this.list[index];
             this.list.RemoveAt(index);
             obj.parent = null;
         }
@@ -71,11 +71,11 @@ namespace CSharpGL
         {
             get
             {
-                return list[index];
+                return this.list[index];
             }
             set
             {
-                list[index] = value;
+                this.list[index] = value;
             }
         }
 
@@ -86,7 +86,11 @@ namespace CSharpGL
         public void Add(SceneNodeBase item)
         {
             item.parent = this.parent;
-            list.Add(item);
+
+            if (!this.list.Contains(item))
+            {
+                this.list.Add(item);
+            }
         }
 
         /// <summary>
@@ -97,9 +101,8 @@ namespace CSharpGL
         {
             foreach (var item in items)
             {
-                item.parent = this.parent;
+                this.Add(item);
             }
-            list.AddRange(items);
         }
 
         /// <summary>
@@ -123,7 +126,7 @@ namespace CSharpGL
         /// <returns>如果在 System.Collections.Generic.List&lt;T&gt; 中找到 item，则为 true，否则为 false。</returns>
         public bool Contains(SceneNodeBase item)
         {
-            return list.Contains(item);
+            return this.list.Contains(item);
         }
 
         /// <summary>
@@ -133,7 +136,7 @@ namespace CSharpGL
         /// <param name="arrayIndex">array 中从零开始的索引，从此处开始复制。</param>
         public void CopyTo(SceneNodeBase[] array, int arrayIndex)
         {
-            list.CopyTo(array, arrayIndex);
+            this.list.CopyTo(array, arrayIndex);
         }
 
         /// <summary>
@@ -159,7 +162,7 @@ namespace CSharpGL
         /// <returns>如果成功移除 item，则为 true；否则为 false。如果在 System.Collections.Generic.List&lt;T&gt; 中没有找到item，该方法也会返回 false。</returns>
         public bool Remove(SceneNodeBase item)
         {
-            bool result = list.Remove(item);
+            bool result = this.list.Remove(item);
             if (result)
             {
                 item.parent = null;
@@ -174,7 +177,7 @@ namespace CSharpGL
         /// <returns>用于 System.Collections.Generic.List&lt;T&gt; 的 System.Collections.Generic.List&lt;T&gt;.Enumerator。</returns>
         public IEnumerator<SceneNodeBase> GetEnumerator()
         {
-            return list.GetEnumerator();
+            return this.list.GetEnumerator();
         }
 
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()

@@ -19,6 +19,8 @@ namespace CSharpGL
         /// <param name="scene"></param>
         public RenderAction(Scene scene)
         {
+            if (scene == null) { throw new ArgumentNullException("scene"); }
+
             this.scene = scene;
         }
 

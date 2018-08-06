@@ -72,16 +72,17 @@ namespace CSharpGL
                 SceneNodeBase old = this.parent;
                 if (old != value)
                 {
-                    this.parent = value;
-
-                    if (value == null) // parent != null
+                    if (old != null)
                     {
                         old.Children.Remove(this);
                     }
-                    else // value != null && parent == null
+
+                    if (value != null)
                     {
                         value.Children.Add(this);
                     }
+
+                    this.parent = value;
                 }
             }
         }

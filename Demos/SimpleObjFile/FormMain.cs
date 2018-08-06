@@ -14,8 +14,9 @@ namespace SimpleObjFile
     {
         private Scene scene;
         private ActionList actionList;
-        private LegacyTriangleNode triangleTip;
-        private LegacyQuadNode quadTip;
+        //private LegacyTriangleNode triangleTip;
+        //private LegacyQuadNode quadTip;
+        private HighlightGeometryNode tipNode;
         private Picking pickingAction;
 
         public FormMain()
@@ -35,10 +36,11 @@ namespace SimpleObjFile
         /// <param name="e"></param>
         void winGLCanvas1_MouseMove(object sender, MouseEventArgs e)
         {
-            LegacyTriangleNode triangleTip = this.triangleTip;
-            if (triangleTip == null) { return; }
-            LegacyQuadNode quadTip = this.quadTip;
-            if (quadTip == null) { return; }
+            //LegacyTriangleNode triangleTip = this.triangleTip;
+            //if (triangleTip == null) { return; }
+            //LegacyQuadNode quadTip = this.quadTip;
+            //if (quadTip == null) { return; }
+            HighlightGeometryNode tipNode = this.tipNode;
 
             int x = e.X;
             int y = this.winGLCanvas1.Height - e.Y - 1;
@@ -49,28 +51,51 @@ namespace SimpleObjFile
             }
             catch (Exception)
             { }
+
             if (pickedGeometry != null)
             {
                 switch (pickedGeometry.Type)
                 {
                     case GeometryType.Point:
-                        throw new NotImplementedException();
+                        tipNode.Vertex0 = pickedGeometry.Positions[0];
+                        tipNode.CurrentMode = CSharpGL.DrawMode.Points;
+                        tipNode.Parent = pickedGeometry.FromObject as SceneNodeBase;
+                        //tipNode.Parent = this.scene.RootNode;
+                        break;
                     case GeometryType.Line:
-                        throw new NotImplementedException();
+                        tipNode.Vertex0 = pickedGeometry.Positions[0];
+                        tipNode.Vertex1 = pickedGeometry.Positions[1];
+                        tipNode.CurrentMode = CSharpGL.DrawMode.Lines;
+                        tipNode.Parent = pickedGeometry.FromObject as SceneNodeBase;
+                        //tipNode.Parent = this.scene.RootNode;
+                        break;
                     case GeometryType.Triangle:
-                        triangleTip.Vertex0 = pickedGeometry.Positions[0];
-                        triangleTip.Vertex1 = pickedGeometry.Positions[1];
-                        triangleTip.Vertex2 = pickedGeometry.Positions[2];
-                        triangleTip.Parent = pickedGeometry.FromObject as SceneNodeBase;
-                        quadTip.Parent = null;
+                        //triangleTip.Vertex0 = pickedGeometry.Positions[0];
+                        //triangleTip.Vertex1 = pickedGeometry.Positions[1];
+                        //triangleTip.Vertex2 = pickedGeometry.Positions[2];
+                        //triangleTip.Parent = pickedGeometry.FromObject as SceneNodeBase;
+                        //quadTip.Parent = null;
+                        tipNode.Vertex0 = pickedGeometry.Positions[0];
+                        tipNode.Vertex1 = pickedGeometry.Positions[1];
+                        tipNode.Vertex2 = pickedGeometry.Positions[2];
+                        tipNode.CurrentMode = CSharpGL.DrawMode.Triangles;
+                        tipNode.Parent = pickedGeometry.FromObject as SceneNodeBase;
+                        //tipNode.Parent = this.scene.RootNode;
                         break;
                     case GeometryType.Quad:
-                        quadTip.Vertex0 = pickedGeometry.Positions[0];
-                        quadTip.Vertex1 = pickedGeometry.Positions[1];
-                        quadTip.Vertex2 = pickedGeometry.Positions[2];
-                        quadTip.Vertex3 = pickedGeometry.Positions[3];
-                        quadTip.Parent = pickedGeometry.FromObject as SceneNodeBase;
-                        triangleTip.Parent = null;
+                        //quadTip.Vertex0 = pickedGeometry.Positions[0];
+                        //quadTip.Vertex1 = pickedGeometry.Positions[1];
+                        //quadTip.Vertex2 = pickedGeometry.Positions[2];
+                        //quadTip.Vertex3 = pickedGeometry.Positions[3];
+                        //quadTip.Parent = pickedGeometry.FromObject as SceneNodeBase;
+                        //triangleTip.Parent = null;
+                        tipNode.Vertex0 = pickedGeometry.Positions[0];
+                        tipNode.Vertex1 = pickedGeometry.Positions[1];
+                        tipNode.Vertex2 = pickedGeometry.Positions[2];
+                        tipNode.Vertex3 = pickedGeometry.Positions[3];
+                        tipNode.CurrentMode = CSharpGL.DrawMode.Quads;
+                        tipNode.Parent = pickedGeometry.FromObject as SceneNodeBase;
+                        //tipNode.Parent = this.scene.RootNode;
                         break;
                     case GeometryType.Polygon:
                         throw new NotImplementedException();
@@ -81,22 +106,32 @@ namespace SimpleObjFile
             }
             else
             {
-                triangleTip.Parent = null;
-                quadTip.Parent = null;
+                //triangleTip.Parent = null;
+                //quadTip.Parent = null;
+                tipNode.Parent = null;
             }
         }
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-            var position = new vec3(5, 3, 4);
+            var position = new vec3(5, 6, 4) * 3;
             var center = new vec3(0, 0, 0);
             var up = new vec3(0, 1, 0);
             var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
 
             this.scene = new Scene(camera);
 
+            //(new FormTree(scene)).Show();
+
+            this.scene.RootNode = new GroupNode();
+            {
+                var axisNode = AxisNode.Create();
+                axisNode.Scale = new vec3(1, 1, 1) * 30;
+                this.scene.RootNode.Children.Add(axisNode);
+            }
+
             var list = new ActionList();
-            var transformAction = new TransformAction(scene.RootNode);
+            var transformAction = new TransformAction(scene);
             list.Add(transformAction);
             var renderAction = new RenderAction(scene);
             list.Add(renderAction);
@@ -104,32 +139,38 @@ namespace SimpleObjFile
 
             this.pickingAction = new Picking(scene);
 
-            this.triangleTip = new LegacyTriangleNode();
-            this.quadTip = new LegacyQuadNode();
+            //this.triangleTip = new LegacyTriangleNode();
+            //this.quadTip = new LegacyQuadNode();
+            this.tipNode = HighlightGeometryNode.Create();
 
             var manipulater = new FirstPerspectiveManipulater();
             manipulater.Bind(camera, this.winGLCanvas1);
             {
-                var disk = new DiskModel(0.5f + 0.4f, 0.3f, 0.3f, 40, 80);
-                var filename = "disk.obj";
-                disk.DumpObjFile(filename, "disk");
-                var parser = new ObjVNFParser(false);
-                ObjVNFResult result = parser.Parse(filename);
-                if (result.Error != null)
+                ObjItem[] items = HanoiTower.GetDataSource();
+                for (int i = 0; i < items.Length; i++)
                 {
-                    Console.WriteLine("Error: {0}", result.Error);
-                }
-                else
-                {
-                    ObjVNFMesh mesh = result.Mesh;
-                    var node = ObjVNFNode.Create(mesh);
-                    node.Children.Add(new LegacyBoundingBoxNode(node.ModelSize));
-                    float max = node.ModelSize.max();
-                    node.Scale *= 7.0f / max;
-                    node.WorldPosition = new vec3(0, 0, 0);
-                    var rootElement = this.scene.RootNode;
-                    this.scene.RootNode = node;
-                    if (rootElement != null) { rootElement.Dispose(); }
+                    var item = items[i];
+                    var filename = "item" + (i) + ".obj";
+                    item.model.DumpObjFile(filename, "item" + (i));
+                    var parser = new ObjVNFParser(false);
+                    ObjVNFResult result = parser.Parse(filename);
+                    if (result.Error != null)
+                    {
+                        //Console.WriteLine("Error: {0}", result.Error);
+                    }
+                    else
+                    {
+                        ObjVNFMesh mesh = result.Mesh;
+                        var node = ObjVNFNode.Create(mesh);
+                        node.Children.Add(new LegacyBoundingBoxNode(node.ModelSize));
+                        //float max = node.ModelSize.max();
+                        //node.Scale *= 7.0f / max;
+                        node.WorldPosition = item.position;
+                        node.Diffuse = item.color;
+                        var rootElement = this.scene.RootNode;
+                        this.scene.RootNode.Children.Add(node);
+                        //if (rootElement != null) { rootElement.Dispose(); }
+                    }
                 }
             }
         }

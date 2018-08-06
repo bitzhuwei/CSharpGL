@@ -46,6 +46,9 @@
     <Compile Include="Axis\AxisModel.cs" />
     <Compile Include="Axis\AxisNode.cs" />
     <Compile Include="Axis\AxisNode.shaders.cs" />
+    <Compile Include="HighlightPick\HighlightGeometryModel.cs" />
+    <Compile Include="HighlightPick\HighlightGeometryNode.shaders.cs" />
+    <Compile Include="HighlightPick\HighlightGeometryNode.cs" />
     <Compile Include="VolumeData.cs" />
     <None Include="Amber\readme.md" />
     <Compile Include="AdjacentTriangleModel.cs" />
