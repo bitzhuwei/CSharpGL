@@ -6,7 +6,7 @@ using CSharpGL;
 
 namespace c15d00_InverseColor
 {
-    partial class EdgeDetectNode
+    partial class ComputeShaderNode
     {
         private const string fuzzyComp = @"#version 430 core
 
@@ -15,7 +15,7 @@ layout (local_size_x = 512) in;
 layout (rgba32f, binding = 0) uniform image2D inImage;
 layout (rgba32f, binding = 1) uniform image2D outImage;
 
-uniform int strength = 3;
+const int strength = 3;
 
 void main(void)
 {

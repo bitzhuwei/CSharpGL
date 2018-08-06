@@ -5,7 +5,7 @@ using System.Text;
 
 namespace c15d00_InverseColor
 {
-    partial class EdgeDetectNode
+    partial class ComputeShaderNode
     {
 
         private const string inPosition = "inPosition";

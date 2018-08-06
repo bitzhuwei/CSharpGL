@@ -43,10 +43,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EdgeDetectNode.Fuzzy.cs" />
-    <Compile Include="EdgeDetectNode.InverseColor.cs" />
-    <Compile Include="EdgeDetectNode.cs" />
-    <Compile Include="EdgeDetectNode.renderShader.cs" />
+    <Compile Include="ComputeShaderNode.Mosaic.cs" />
+    <Compile Include="ComputeShaderNode.Fuzzy.cs" />
+    <Compile Include="ComputeShaderNode.InverseColor.cs" />
+    <Compile Include="ComputeShaderNode.cs" />
+    <Compile Include="ComputeShaderNode.renderShader.cs" />
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>

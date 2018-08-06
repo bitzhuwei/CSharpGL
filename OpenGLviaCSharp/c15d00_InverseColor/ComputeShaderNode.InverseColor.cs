@@ -6,7 +6,7 @@ using CSharpGL;
 
 namespace c15d00_InverseColor
 {
-    partial class EdgeDetectNode
+    partial class ComputeShaderNode
     {
         private const string inverseColorComp = @"#version 430 core
 
