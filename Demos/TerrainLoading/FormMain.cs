@@ -40,7 +40,7 @@ namespace TerrainLoading
             };
 
             var list = new ActionList();
-            var transformAction = new TransformAction(scene.RootNode);
+            var transformAction = new TransformAction(scene);
             list.Add(transformAction);
             var renderAction = new RenderAction(scene);
             list.Add(renderAction);

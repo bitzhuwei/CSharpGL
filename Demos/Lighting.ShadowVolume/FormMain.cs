@@ -50,7 +50,7 @@ namespace Lighting.ShadowVolume
             }
 
             var list = new ActionList();
-            list.Add(new TransformAction(scene.RootNode));
+            list.Add(new TransformAction(scene));
             var action = (new ShadowVolumeAction(scene));
             list.Add(action);
             (new FormProperyGrid(action)).Show();
@@ -107,8 +107,8 @@ namespace Lighting.ShadowVolume
                     group.Children.Add(node);
                 }
             }
-			{
-				var parser = new ObjVNFParser(false);
+            {
+                var parser = new ObjVNFParser(false);
                 var hanoiTower = new GroupNode();
                 ObjItem[] items = HanoiTower.GetDataSource();
                 foreach (var item in items)
@@ -134,7 +134,7 @@ namespace Lighting.ShadowVolume
                 }
                 group.Children.Add(hanoiTower);
             }
-			
+
             return group;
         }
 

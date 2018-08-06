@@ -47,7 +47,7 @@ namespace WorldSpaceBillboard
             };
 
             var list = new ActionList();
-            var transformAction = new TransformAction(scene.RootNode);
+            var transformAction = new TransformAction(scene);
             list.Add(transformAction);
             var billboardSortAction = new BillboardSortAction(scene.RootNode, scene.Camera);
             (new FormProperyGrid(billboardSortAction)).Show();

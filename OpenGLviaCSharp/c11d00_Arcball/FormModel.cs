@@ -40,7 +40,7 @@ namespace c11d00_Arcball
             this.scene.RootNode = GetRootNode();
 
             var list = new ActionList();
-            list.Add(new TransformAction(scene.RootNode));
+            list.Add(new TransformAction(scene));
             list.Add(new RenderAction(scene));
             this.actionList = list;
 

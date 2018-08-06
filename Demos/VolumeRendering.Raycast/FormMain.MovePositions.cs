@@ -13,7 +13,6 @@ namespace VolumeRendering.Raycast
     public partial class FormMain
     {
         private PickedGeometry pickedGeometry;
-        private DragParam dragParam;
         private Point lastMousePosition;
 
         private void glCanvas1_MouseDown(object sender, MouseEventArgs e)
@@ -107,7 +106,6 @@ namespace VolumeRendering.Raycast
             else if (e.Button == System.Windows.Forms.MouseButtons.Left)
             {
                 // move vertex
-                this.dragParam = null;
             }
 
             this.lastMousePosition = e.Location;

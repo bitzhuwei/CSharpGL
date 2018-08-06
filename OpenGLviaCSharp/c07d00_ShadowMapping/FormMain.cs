@@ -16,7 +16,6 @@ namespace c07d00_ShadowMapping
         private ActionList actionList;
         private List<LightBase> lights;
         private ShadowMappingAction shadowMappingAction;
-        private DepthRectNode rect;
 
         public FormMain(List<LightBase> lights, string text)
         {
@@ -53,7 +52,7 @@ namespace c07d00_ShadowMapping
             }
             {
                 var list = new ActionList();
-                list.Add(new TransformAction(scene.RootNode));
+                list.Add(new TransformAction(scene));
                 var shadowMappingAction = new ShadowMappingAction(scene);
                 list.Add(shadowMappingAction);
                 this.shadowMappingAction = shadowMappingAction;
@@ -119,7 +118,7 @@ namespace c07d00_ShadowMapping
                 }
             }
             {
-				var parser = new ObjVNFParser(false);
+                var parser = new ObjVNFParser(false);
                 var hanoiTower = new GroupNode();
                 ObjItem[] items = HanoiTower.GetDataSource();
                 foreach (var item in items)

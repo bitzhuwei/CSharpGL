@@ -58,7 +58,7 @@ namespace c05d00_AmbientDiffuseSpecular
             }
 
             var list = new ActionList();
-            var transformAction = new TransformAction(scene.RootNode);
+            var transformAction = new TransformAction(scene);
             list.Add(transformAction);
             var blinnPhongAction = new BlinnPhongAction(scene);
             list.Add(blinnPhongAction);

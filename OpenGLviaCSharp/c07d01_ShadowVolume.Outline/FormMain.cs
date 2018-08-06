@@ -50,7 +50,7 @@ namespace Lighting.ShadowVolume
             }
 
             var list = new ActionList();
-            list.Add(new TransformAction(scene.RootNode));
+            list.Add(new TransformAction(scene));
             var action = (new BlinnPhongAction(scene));
             list.Add(action);
             (new FormProperyGrid(action)).Show();

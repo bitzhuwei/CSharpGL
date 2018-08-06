@@ -44,7 +44,7 @@ namespace StencilTest
             Match(this.trvScene, scene.RootNode);
             this.trvScene.ExpandAll();
 
-            var tansformAction = new TransformAction(scene.RootNode);
+            var tansformAction = new TransformAction(scene);
             var renderAction = new RenderAction(scene);
             var actionList = new ActionList();
             actionList.Add(tansformAction); actionList.Add(renderAction);

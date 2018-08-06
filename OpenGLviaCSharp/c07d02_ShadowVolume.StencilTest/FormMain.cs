@@ -50,7 +50,7 @@ namespace c07d02_ShadowVolume.StencilTest
             }
 
             var list = new ActionList();
-            list.Add(new TransformAction(scene.RootNode));
+            list.Add(new TransformAction(scene));
             var action = (new ShadowVolumeAction(scene));
             list.Add(action);
             (new FormProperyGrid(action)).Show();

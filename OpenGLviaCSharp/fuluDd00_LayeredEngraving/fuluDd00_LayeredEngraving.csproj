@@ -45,7 +45,6 @@
   <ItemGroup>
     <Compile Include="CubeModel.cs" />
     <Compile Include="CubeNode.cs" />
-    <Compile Include="DragParam.cs" />
     <Compile Include="FormEngraving.cs">
       <SubType>Form</SubType>
     </Compile>

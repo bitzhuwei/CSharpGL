@@ -17,7 +17,7 @@ namespace c11d00_Arcball
         private ICamera modelCamera;
         private ArcBallManipulater modelManipulater;
         private IGLCanvas modelCanvas;
-        private RenderToTexttureNode rtt;
+        private RenderToTextureNode rtt;
         private GroupNode groupNode;
         private LinesNode linesNode;
         private FanNode fanNode;
@@ -55,7 +55,7 @@ namespace c11d00_Arcball
             this.scene.RootNode = GetRootNode(this.modelCamera);
 
             var list = new ActionList();
-            list.Add(new TransformAction(scene.RootNode));
+            list.Add(new TransformAction(scene));
             list.Add(new RenderAction(scene));
             list.Add(new BlinnPhongAction(scene));
             this.actionList = list;
@@ -138,7 +138,7 @@ namespace c11d00_Arcball
             // render 'scene' to franebuffer.
             {
                 int width = this.winGLCanvas1.Width, height = this.winGLCanvas1.Height;
-                var rtt = new RenderToTexttureNode(width, height, modelCamera, new ColoredFramebufferProvider());
+                var rtt = new RenderToTextureNode(width, height, modelCamera, new ColoredFramebufferProvider());
                 rtt.BackgroundColor = Color.SkyBlue;
                 {
                     var teapot = TeapotNode.Create();

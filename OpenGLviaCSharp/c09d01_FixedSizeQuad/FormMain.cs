@@ -35,7 +35,7 @@ namespace c09d01_FixedSizeQuad
             this.scene.RootNode = GetTree();
 
             var list = new ActionList();
-            list.Add(new TransformAction(scene.RootNode));
+            list.Add(new TransformAction(scene));
             list.Add(new RenderAction(scene));
             this.actionList = list;
 

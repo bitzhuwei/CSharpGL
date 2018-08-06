@@ -68,10 +68,10 @@ void main(void) {
             var fs = new FragmentShader(fragmentCode);
             var provider = new ShaderArray(vs, fs);
             var map = new AttributeMap();
-            map.Add(inPosition, RectangleModel.strPosition);
-            map.Add(inUV, RectangleModel.strUV);
+            map.Add(inPosition, RectModel.strPosition);
+            map.Add(inUV, RectModel.strUV);
             var builder = new RenderMethodBuilder(provider, map);
-            var node = new DepthRectNode(new RectangleModel(), RectangleModel.strPosition, builder);
+            var node = new DepthRectNode(new RectModel(), RectModel.strPosition, builder);
             node.Initialize();
 
             return node;
@@ -80,7 +80,7 @@ void main(void) {
         /// <summary>
         /// Render propeller in legacy opengl.
         /// </summary>
-        private DepthRectNode(RectangleModel model, string positionNameInIBufferable, params RenderMethodBuilder[] builders)
+        private DepthRectNode(RectModel model, string positionNameInIBufferable, params RenderMethodBuilder[] builders)
             : base(model, positionNameInIBufferable, builders)
         {
             this.ModelSize = model.ModelSize;
@@ -118,14 +118,13 @@ void main(void) {
         }
 
         public ITextureSource TextureSource { get; set; }
-
     }
 
-    class RectangleModel : IBufferSource
+    class RectModel : IBufferSource
     {
         public vec3 ModelSize { get; private set; }
 
-        public RectangleModel()
+        public RectModel()
         {
             this.ModelSize = new vec3(xLength * 2, yLength * 2, (xLength + yLength) * 0.02f);
         }
@@ -199,6 +198,5 @@ void main(void) {
             new vec2(0, 0),// 2
             new vec2(1, 0),// 3
         };
-
     }
 }

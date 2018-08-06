@@ -40,7 +40,7 @@ namespace c08d03_flat
             this.triangleTip.LineWidth = 10;
 
             var list = new ActionList();
-            list.Add(new TransformAction(scene.RootNode));
+            list.Add(new TransformAction(scene));
             list.Add(new RenderAction(scene));
             this.actionList = list;
 

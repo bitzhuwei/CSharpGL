@@ -34,7 +34,7 @@ namespace c08d00_gl_VertexID
             this.scene.RootNode = GetRootNode();
 
             var list = new ActionList();
-            list.Add(new TransformAction(scene.RootNode));
+            list.Add(new TransformAction(scene));
             list.Add(new RenderAction(scene));
             this.actionList = list;
 
