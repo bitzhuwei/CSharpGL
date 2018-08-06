@@ -12,7 +12,7 @@ namespace Texture2D
         public TextureSource(string filename)
         {
             var bmp = new System.Drawing.Bitmap(filename);
-            //bmp.RotateFlip(System.Drawing.RotateFlipType.Rotate180FlipX);
+            bmp.RotateFlip(System.Drawing.RotateFlipType.Rotate180FlipX);
             var storage = new TexImageBitmap(bmp);
             texture = new Texture(storage);
             texture.BuiltInSampler.Add(new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP_TO_EDGE));
