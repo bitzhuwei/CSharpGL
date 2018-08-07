@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace c07d00_ShadowMapping
+namespace c10d00_UserInterface
 {
     public partial class FormMain : Form
     {
@@ -38,6 +38,10 @@ namespace c07d00_ShadowMapping
 
             this.scene = new Scene(camera);
             this.scene.RootNode = GetRootNode();
+            WinCtrlRoot rootControl = GetRootControl();
+            rootControl.Bind(this.winGLCanvas1);
+            this.scene.RootControl = rootControl;
+
             // add lights.
             {
                 var lightList = this.lights;
@@ -57,6 +61,12 @@ namespace c07d00_ShadowMapping
                 list.Add(shadowMappingAction);
                 this.shadowMappingAction = shadowMappingAction;
                 list.Add(new RenderAction(scene));
+
+                //var guiLayoutAction = new GUILayoutAction(scene.RootControl);
+                //list.Add(guiLayoutAction);
+                var guiRenderAction = new GUIRenderAction(scene.RootControl);
+                list.Add(guiRenderAction);
+
                 this.actionList = list;
             }
             {
@@ -65,12 +75,33 @@ namespace c07d00_ShadowMapping
                 this.scene.RootNode.Children.Add(node);
             }
 
-            Match(this.trvScene, scene.RootNode);
-            this.trvScene.ExpandAll();
+            Match(this.trvSceneObject, scene.RootNode);
+            this.trvSceneObject.ExpandAll();
+
+            Match(this.trvSceneGUI, scene.RootControl);
+            this.trvSceneGUI.ExpandAll();
 
             var manipulater = new FirstPerspectiveManipulater();
             manipulater.Bind(camera, this.winGLCanvas1);
 
+        }
+
+        private void Match(TreeView treeView, GLControl nodeBase)
+        {
+            treeView.Nodes.Clear();
+            var node = new TreeNode(nodeBase.ToString()) { Tag = nodeBase };
+            treeView.Nodes.Add(node);
+            Match(node, nodeBase);
+        }
+
+        private void Match(TreeNode node, GLControl nodeBase)
+        {
+            foreach (var item in nodeBase.Children)
+            {
+                var child = new TreeNode(item.ToString()) { Tag = item };
+                node.Nodes.Add(child);
+                Match(child, item);
+            }
         }
 
         private void Match(TreeView treeView, SceneNodeBase nodeBase)
@@ -146,6 +177,48 @@ namespace c07d00_ShadowMapping
             }
 
             return group;
+        }
+
+        private WinCtrlRoot GetRootControl()
+        {
+            var root = new WinCtrlRoot(this.winGLCanvas1.Width, this.winGLCanvas1.Height);
+
+            string folder = System.Windows.Forms.Application.StartupPath;
+            var bitmap = new Bitmap(System.IO.Path.Combine(folder, @"image.png"));
+            {
+                var control = new CtrlImage(bitmap, false) { Anchor = GUIAnchorStyles.Left | GUIAnchorStyles.Bottom };
+                control.Location = new GUIPoint(10, 10);
+                control.Width = 100; control.Height = 50;
+                bitmap.Dispose();
+                control.MouseUp += control_MouseUp;
+                root.Children.Add(control);
+            }
+            {
+                var control = new CtrlButton() { Anchor = GUIAnchorStyles.Left | GUIAnchorStyles.Bottom };
+                control.Location = new GUIPoint(10, 70);
+                control.Width = 100; control.Height = 50;
+                control.Focused = true;
+                control.MouseUp += control_MouseUp;
+                root.Children.Add(control);
+            }
+            {
+                var control = new CtrlLabel(100) { Anchor = GUIAnchorStyles.Left | GUIAnchorStyles.Bottom };
+                control.Location = new GUIPoint(10, 130);
+                control.Width = 100; control.Height = 30;
+                control.Text = "Hello CSharpGL!";
+                control.RenderBackground = true;
+                control.BackgroundColor = new vec4(1, 0, 0, 1);
+                control.MouseUp += control_MouseUp;
+
+                root.Children.Add(control);
+            }
+
+            return root;
+        }
+
+        void control_MouseUp(object sender, GLMouseEventArgs e)
+        {
+            MessageBox.Show(string.Format("This is a message from {0}!", sender));
         }
 
         private void winGLCanvas1_OpenGLDraw(object sender, PaintEventArgs e)

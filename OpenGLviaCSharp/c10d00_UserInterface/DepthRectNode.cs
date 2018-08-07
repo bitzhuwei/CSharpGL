@@ -5,7 +5,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 
-namespace c07d00_ShadowMapping
+namespace c10d00_UserInterface
 {
     // Y
     // ^
