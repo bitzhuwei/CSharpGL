@@ -143,6 +143,7 @@ namespace c10d00_UserInterface
                     var model = new ObjVNF(mesh);
                     var node = ShadowMappingNode.Create(model, ObjVNF.strPosition, ObjVNF.strNormal, model.GetSize());
                     node.WorldPosition = new vec3(0, i * 5, 0);
+                    node.Scale = new vec3(1, 1, 1) * 4;
                     node.Color = colors[i].ToVec3();
                     node.Name = filename;
                     group.Children.Add(node);
@@ -183,34 +184,33 @@ namespace c10d00_UserInterface
         {
             var root = new WinCtrlRoot(this.winGLCanvas1.Width, this.winGLCanvas1.Height);
 
-            string folder = System.Windows.Forms.Application.StartupPath;
-            var bitmap = new Bitmap(System.IO.Path.Combine(folder, @"image.png"));
             {
-                var control = new CtrlImage(bitmap, false) { Anchor = GUIAnchorStyles.Left | GUIAnchorStyles.Bottom };
-                control.Location = new GUIPoint(10, 10);
-                control.Width = 100; control.Height = 50;
-                bitmap.Dispose();
-                control.MouseUp += control_MouseUp;
-                root.Children.Add(control);
-            }
-            {
-                var control = new CtrlButton() { Anchor = GUIAnchorStyles.Left | GUIAnchorStyles.Bottom };
-                control.Location = new GUIPoint(10, 70);
-                control.Width = 100; control.Height = 50;
-                control.Focused = true;
-                control.MouseUp += control_MouseUp;
-                root.Children.Add(control);
-            }
-            {
-                var control = new CtrlLabel(100) { Anchor = GUIAnchorStyles.Left | GUIAnchorStyles.Bottom };
-                control.Location = new GUIPoint(10, 130);
+                var control = new CtrlLabel(100) { Anchor = GUIAnchorStyles.Left | GUIAnchorStyles.Top };
                 control.Width = 100; control.Height = 30;
                 control.Text = "Hello CSharpGL!";
                 control.RenderBackground = true;
                 control.BackgroundColor = new vec4(1, 0, 0, 1);
                 control.MouseUp += control_MouseUp;
-
                 root.Children.Add(control);
+                control.Location = new GUIPoint(10, root.Height - control.Height - 10);
+            }
+            {
+                var control = new CtrlButton() { Anchor = GUIAnchorStyles.Left | GUIAnchorStyles.Top };
+                control.Width = 100; control.Height = 50;
+                control.Focused = true;
+                control.MouseUp += control_MouseUp;
+                root.Children.Add(control);
+                control.Location = new GUIPoint(10, root.Height - control.Height - 50);
+            }
+            {
+                string folder = System.Windows.Forms.Application.StartupPath;
+                var bitmap = new Bitmap(System.IO.Path.Combine(folder, @"image.png"));
+                var control = new CtrlImage(bitmap, false) { Anchor = GUIAnchorStyles.Left | GUIAnchorStyles.Top };
+                control.Width = 100; control.Height = 50;
+                bitmap.Dispose();
+                control.MouseUp += control_MouseUp;
+                root.Children.Add(control);
+                control.Location = new GUIPoint(10, root.Height - control.Height - 110);
             }
 
             return root;

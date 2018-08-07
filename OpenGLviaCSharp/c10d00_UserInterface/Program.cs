@@ -27,7 +27,7 @@ namespace c10d00_UserInterface
             var list = new List<LightBase>();
             double radian = 120.0 / 180.0 * Math.PI / 2.0;
             {
-                var light = new CSharpGL.SpotLight(new vec3(3, 3, 3), new vec3(), (float)Math.Cos(radian), new Attenuation(2, 0, 0));
+                var light = new CSharpGL.SpotLight(new vec3(3, 3, 3), new vec3(), (float)Math.Cos(radian), new Attenuation(1, 0, 0));
                 light.Diffuse = new vec3(1, 1, 1);
                 light.Specular = new vec3(1, 1, 1);
                 list.Add(light);
