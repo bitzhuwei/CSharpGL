@@ -83,7 +83,7 @@ namespace CSharpGL
                 double delta = a * x + b * y + c * z - d;
                 if (0 <= delta && delta < 1)
                 {
-                    return (byte)40;
+                    return (byte)(40 * delta);
                 }
                 else
                 {
@@ -120,7 +120,7 @@ namespace CSharpGL
                 double delta = x * x / aa + y * y / bb + z * z / cc - 1;
                 if (0 <= delta && delta < maxDiff)
                 {
-                    return value;
+                    return (byte)(value * delta * 10);
                 }
                 else
                 {
