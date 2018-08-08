@@ -15,13 +15,13 @@ in vec3 boundingBox;
 
 out vec3 passExitPoint;
 
-uniform mat4 MVP;
+uniform mat4 mvpMat;
 
 
 void main()
 {
     passExitPoint = boundingBox;
-    gl_Position = MVP * vec4(position, 1.0);
+    gl_Position = mvpMat * vec4(position, 1.0);
 }
 ";
         private const string backfaceFrag = @"#version 150
