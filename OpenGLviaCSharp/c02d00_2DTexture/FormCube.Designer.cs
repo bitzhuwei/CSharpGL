@@ -1,6 +1,6 @@
 ﻿namespace c02d00_2DTexture
 {
-    partial class Form1
+    partial class FormCube
     {
         /// <summary>
         /// 必需的设计器变量。

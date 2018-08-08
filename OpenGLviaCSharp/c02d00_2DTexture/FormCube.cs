@@ -10,25 +10,25 @@ using System.Windows.Forms;
 
 namespace c02d00_2DTexture
 {
-    public partial class Form1 : Form
+    public partial class FormCube : Form
     {
         private Scene scene;
         private ActionList actionList;
         private CubeNode cubeNode;
 
-        public Form1()
+        public FormCube()
         {
             InitializeComponent();
 
             // init resources.
-            this.Load += FormMain_Load;
+            this.Load += FormCube_Load;
             // render event.
             this.winGLCanvas1.OpenGLDraw += winGLCanvas1_OpenGLDraw;
             // resize event.
             this.winGLCanvas1.Resize += winGLCanvas1_Resize;
         }
 
-        private void FormMain_Load(object sender, EventArgs e)
+        private void FormCube_Load(object sender, EventArgs e)
         {
             var position = new vec3(5, 3, 4) * 0.3f;
             var center = new vec3(0, 0, 0);
