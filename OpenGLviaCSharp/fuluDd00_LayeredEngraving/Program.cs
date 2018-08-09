@@ -16,7 +16,7 @@ namespace fuluDd00_LayeredEngraving
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new FormEngraving());
-            //Application.Run(new FormVolumeRendering());
+            Application.Run(new FormVolumeRendering());
         }
     }
 }

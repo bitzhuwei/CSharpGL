@@ -29,7 +29,7 @@ namespace fuluDd00_MathExpression
             }
             {
                 int width = 128, height = 128, depth = 128;
-                byte[] volumeData = VolumeData.GetData(width, height, depth);
+                Voxel[] volumeData = VolumeData.GetData(width, height, depth);
                 this.volume3DTexture = InitVolume3DTexture(volumeData, width, height, depth);
             }
             {
@@ -98,9 +98,9 @@ namespace fuluDd00_MathExpression
             return data;
         }
 
-        private Texture InitVolume3DTexture(byte[] data, int width, int height, int depth)
+        private Texture InitVolume3DTexture(Voxel[] data, int width, int height, int depth)
         {
-            var storage = new TexImage3D(TexImage3D.Target.Texture3D, GL.GL_RED, width, height, depth, GL.GL_RED, GL.GL_UNSIGNED_BYTE, new ArrayDataProvider<byte>(data));
+            var storage = new TexImage3D(TexImage3D.Target.Texture3D, GL.GL_RGB, width, height, depth, GL.GL_RGB, GL.GL_UNSIGNED_BYTE, new ArrayDataProvider<Voxel>(data));
             var texture = new Texture(storage, new MipmapBuilder(),
                 new TexParameteri(TexParameter.PropertyName.TextureWrapR, (int)GL.GL_CLAMP),
                 new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP),
