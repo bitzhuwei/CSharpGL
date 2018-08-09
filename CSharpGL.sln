@@ -209,6 +209,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "c10d00_UserInterface", "Ope
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "fuluDd00_MathExpression", "OpenGLviaCSharp\fuluDd00_MathExpression\fuluDd00_MathExpression.csproj", "{D8BE3724-8F31-49D6-A71A-CF7CE40B8CFF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "fuluDD01_LayeredEngraving.PNG", "OpenGLviaCSharp\fuluDD01_LayeredEngraving.PNG\fuluDD01_LayeredEngraving.PNG.csproj", "{38CF5431-64B3-4B37-A6B4-92B9FAB5A7F2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -611,6 +613,10 @@ Global
 		{D8BE3724-8F31-49D6-A71A-CF7CE40B8CFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D8BE3724-8F31-49D6-A71A-CF7CE40B8CFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D8BE3724-8F31-49D6-A71A-CF7CE40B8CFF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38CF5431-64B3-4B37-A6B4-92B9FAB5A7F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38CF5431-64B3-4B37-A6B4-92B9FAB5A7F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38CF5431-64B3-4B37-A6B4-92B9FAB5A7F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38CF5431-64B3-4B37-A6B4-92B9FAB5A7F2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -714,5 +720,6 @@ Global
 		{CA0EA4EC-FE16-4A46-AD98-0CC418F54B7E} = {7CF86F60-2BAC-4F60-AF1C-869737385E1B}
 		{91D10DB5-8576-4A0C-855C-5C0DBBA3B120} = {7CF86F60-2BAC-4F60-AF1C-869737385E1B}
 		{D8BE3724-8F31-49D6-A71A-CF7CE40B8CFF} = {7CF86F60-2BAC-4F60-AF1C-869737385E1B}
+		{38CF5431-64B3-4B37-A6B4-92B9FAB5A7F2} = {7CF86F60-2BAC-4F60-AF1C-869737385E1B}
 	EndGlobalSection
 EndGlobal
