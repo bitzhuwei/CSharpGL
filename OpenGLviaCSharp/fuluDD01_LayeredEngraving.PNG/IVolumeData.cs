@@ -11,7 +11,7 @@ namespace fuluDD01_LayeredEngraving.PNG
         int Width { get; }
         int Height { get; }
         int Depth { get; }
-        byte[] VolumeData { get; }
+        Voxel[] VolumeData { get; }
 
         Texture TexVolumeData { get; }
     }

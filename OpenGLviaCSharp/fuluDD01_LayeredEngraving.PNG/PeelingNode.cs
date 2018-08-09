@@ -55,9 +55,9 @@ namespace fuluDD01_LayeredEngraving.PNG
         const int vWidth = 256;
         const int vHeight = 256;
         const int vDepth = 256;
-        private byte[] volumeData;// = new byte[vWidth * vHeight * vDepth];
+        private Voxel[] volumeData;// = new byte[vWidth * vHeight * vDepth];
 
-        public byte[] VolumeData
+        public Voxel[] VolumeData
         {
             get { return volumeData; }
         }
@@ -84,7 +84,7 @@ namespace fuluDD01_LayeredEngraving.PNG
             //    c = bmp.GetPixel(bmp.Width - 1, bmp.Height - 1);
             //    c = bmp.GetPixel(0, bmp.Height - 1);
             //}
-            var volumeData = new byte[vWidth * vHeight * vDepth]; ;
+            var volumeData = new Voxel[vWidth * vHeight * vDepth]; ;
 
             EngraveX(arg, volumeData, vWidth, vHeight, vDepth);
             EngraveY(arg, volumeData, vWidth, vHeight, vDepth);
@@ -95,7 +95,7 @@ namespace fuluDD01_LayeredEngraving.PNG
             this.firstRun = false;
         }
 
-        unsafe private void EngraveX(RenderEventArgs arg, byte[] volumeData, int width, int height, int depth)
+        unsafe private void EngraveX(RenderEventArgs arg, Voxel[] volumeData, int width, int height, int depth)
         {
             var viewport = new int[4]; GL.Instance.GetIntegerv((uint)GetTarget.Viewport, viewport);
             {
@@ -144,7 +144,8 @@ namespace fuluDD01_LayeredEngraving.PNG
                         if (color.A != 0 &&
                             (color.R != background.R || color.G != background.G || color.B != background.B))
                         {
-                            volumeData[index] += (byte)(color.R * 0.299 + color.G * 0.587 + color.B * 0.114);
+                            //volumeData[index] += (byte)(color.R * 0.299 + color.G * 0.587 + color.B * 0.114);
+                            volumeData[index] += new Voxel(color.R, color.G, color.B);
                         }
                     }
                 }
@@ -152,7 +153,7 @@ namespace fuluDD01_LayeredEngraving.PNG
             }
         }
 
-        unsafe private void EngraveY(RenderEventArgs arg, byte[] volumeData, int width, int height, int depth)
+        unsafe private void EngraveY(RenderEventArgs arg, Voxel[] volumeData, int width, int height, int depth)
         {
             var viewport = new int[4]; GL.Instance.GetIntegerv((uint)GetTarget.Viewport, viewport);
             {
@@ -201,14 +202,15 @@ namespace fuluDD01_LayeredEngraving.PNG
                         if (color.A != 0 &&
                             (color.R != background.R || color.G != background.G || color.B != background.B))
                         {
-                            volumeData[index] += (byte)(color.R * 0.299 + color.G * 0.587 + color.B * 0.114);
+                            //volumeData[index] += (byte)(color.R * 0.299 + color.G * 0.587 + color.B * 0.114);
+                            volumeData[index] += new Voxel(color.R, color.G, color.B);
                         }
                     }
                 }
                 bitmap.Dispose();
             }
         }
-        unsafe private void EngraveZ(RenderEventArgs arg, byte[] volumeData, int width, int height, int depth)
+        unsafe private void EngraveZ(RenderEventArgs arg, Voxel[] volumeData, int width, int height, int depth)
         {
             var viewport = new int[4]; GL.Instance.GetIntegerv((uint)GetTarget.Viewport, viewport);
             {
@@ -257,7 +259,8 @@ namespace fuluDD01_LayeredEngraving.PNG
                         if (color.A != 0 &&
                             (color.R != background.R || color.G != background.G || color.B != background.B))
                         {
-                            volumeData[index] += (byte)(color.R * 0.299 + color.G * 0.587 + color.B * 0.114);
+                            //volumeData[index] += (byte)(color.R * 0.299 + color.G * 0.587 + color.B * 0.114);
+                            volumeData[index] += new Voxel(color.R, color.G, color.B);
                         }
                     }
                 }

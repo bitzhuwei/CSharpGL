@@ -97,7 +97,6 @@ void main()
     // FragColor = vec4(exitPoint, 1.0);
    
 }
-
 ";
     }
 }

@@ -24,6 +24,7 @@ namespace CSharpGL
 
             return new Voxel(r, g, b);
         }
+
     }
 
     public class VolumeData
