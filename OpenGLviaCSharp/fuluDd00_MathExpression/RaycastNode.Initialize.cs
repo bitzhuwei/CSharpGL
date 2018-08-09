@@ -10,7 +10,6 @@ namespace fuluDd00_MathExpression
 {
     public partial class RaycastNode
     {
-        private Texture transferFunc1DTexture;
         private Texture backface2DTexture;
         private int width;
         private int height;
@@ -22,29 +21,16 @@ namespace fuluDd00_MathExpression
         {
             base.DoInitialize();
 
-            string folder = System.Windows.Forms.Application.StartupPath;
-            {
-                string tff = "tff.png";
-                this.transferFunc1DTexture = InitTFF1DTexture(tff);
-            }
             {
                 int width = 128, height = 128, depth = 128;
                 Voxel[] volumeData = VolumeData.GetData(width, height, depth);
                 this.volume3DTexture = InitVolume3DTexture(volumeData, width, height, depth);
             }
             {
-                // setting uniforms such as
-                // ScreenSize
-                // StepSize
-                // TransferFunc
-                // ExitPoints i.e. the backface, the backface hold the ExitPoints of ray casting
-                // VolumeTex the texture that hold the volume data i.e. head256.raw
                 RenderMethod method = this.RenderUnit.Methods[1];
                 ShaderProgram program = method.Program;
-                //program.SetUniform("StepSize", this.g_stepSize);
-                program.SetUniform("TransferFunc", this.transferFunc1DTexture);
                 program.SetUniform("VolumeTex", this.volume3DTexture);
-                var clearColor = new float[4];
+                //var clearColor = new float[4];
                 //GL.Instance.GetFloatv((uint)GetTarget.ColorClearValue, clearColor);
                 //program.SetUniform("backgroundColor", new vec4(clearColor[0], clearColor[1], clearColor[2], clearColor[3]));
                 program.SetUniform("backgroundColor", System.Drawing.Color.SkyBlue.ToVec4());
@@ -126,24 +112,6 @@ namespace fuluDd00_MathExpression
                 new TexParameteri(TexParameter.PropertyName.TextureMagFilter, (int)GL.GL_NEAREST));
             texture.Initialize();
             texture.TextureUnitIndex = 1;
-
-            return texture;
-        }
-
-        private Texture InitTFF1DTexture(string filename)
-        {
-            var bitmap = new System.Drawing.Bitmap(filename);
-            const int width = 256;
-            var storage = new TexImage1D(GL.GL_RGBA8, width, GL.GL_RGBA, GL.GL_UNSIGNED_BYTE, new ImageDataProvider(bitmap));
-            var texture = new Texture(storage,
-                new TexParameteri(TexParameter.PropertyName.TextureWrapR, (int)GL.GL_REPEAT),
-                new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_REPEAT),
-                new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_REPEAT),
-                new TexParameteri(TexParameter.PropertyName.TextureMinFilter, (int)GL.GL_NEAREST),
-                new TexParameteri(TexParameter.PropertyName.TextureMagFilter, (int)GL.GL_NEAREST));
-            texture.Initialize();
-            texture.TextureUnitIndex = 0;
-            bitmap.Dispose();
 
             return texture;
         }

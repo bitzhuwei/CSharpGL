@@ -28,7 +28,6 @@ void main()
 
 in vec3 passEntryPoint;
 
-uniform sampler1D TransferFunc;
 uniform sampler2D ExitPoints;
 uniform sampler3D VolumeTex;
 
