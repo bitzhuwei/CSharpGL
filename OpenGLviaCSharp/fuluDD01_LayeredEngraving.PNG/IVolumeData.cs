@@ -14,7 +14,7 @@ namespace fuluDD01_LayeredEngraving.PNG
 
         int Depth { get; }
 
-        Voxel[] VolumeData { get; }
+        byte[] VolumeData { get; }
 
     }
 }

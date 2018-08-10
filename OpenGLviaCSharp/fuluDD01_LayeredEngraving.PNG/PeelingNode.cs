@@ -5,6 +5,7 @@ using System.Text;
 using CSharpGL;
 using System.Drawing;
 using System.Runtime.InteropServices;
+using System.IO;
 
 namespace fuluDD01_LayeredEngraving.PNG
 {
@@ -55,9 +56,9 @@ namespace fuluDD01_LayeredEngraving.PNG
         const int vWidth = 256;
         const int vHeight = 256;
         const int vDepth = 256;
-        private Voxel[] volumeData;// = new byte[vWidth * vHeight * vDepth];
+        private byte[] volumeData;// = new byte[vWidth * vHeight * vDepth];
 
-        public Voxel[] VolumeData
+        public byte[] VolumeData
         {
             get { return volumeData; }
         }
@@ -77,15 +78,44 @@ namespace fuluDD01_LayeredEngraving.PNG
             //    c = bmp.GetPixel(bmp.Width - 1, bmp.Height - 1);
             //    c = bmp.GetPixel(0, bmp.Height - 1);
             //}
-            var volumeData = new Voxel[vWidth * vHeight * vDepth]; ;
+            string filename = "engraving.png.raw";
+            if (!File.Exists(filename))
+            {
+                var data = new Voxel[vWidth * vHeight * vDepth]; ;
 
-            EngraveX(arg, volumeData, vWidth, vHeight, vDepth);
-            EngraveY(arg, volumeData, vWidth, vHeight, vDepth);
-            EngraveZ(arg, volumeData, vWidth, vHeight, vDepth);
+                EngraveX(arg, data, vWidth, vHeight, vDepth);
+                EngraveY(arg, data, vWidth, vHeight, vDepth);
+                EngraveZ(arg, data, vWidth, vHeight, vDepth);
 
-            this.volumeData = volumeData;
+                using (var fs = new FileStream(filename, FileMode.Create, FileAccess.Write))
+                using (var bw = new BinaryWriter(fs))
+                {
+                    for (int i = 0; i < data.Length; i++)
+                    {
+                        Voxel v = data[i];
+                        bw.Write(v.r); bw.Write(v.g); bw.Write(v.b);
+                    }
+                }
+            }
+            this.volumeData = GetVolumeData(filename);
 
             this.firstRun = false;
+        }
+
+        private byte[] GetVolumeData(string filename)
+        {
+            byte[] data;
+            //int index = 0;
+            //int readCount = 0;
+            using (var fs = new FileStream(filename, FileMode.Open, FileAccess.Read))
+            using (var br = new BinaryReader(fs))
+            {
+                int unReadCount = (int)fs.Length;
+                data = new byte[unReadCount];
+                br.Read(data, 0, unReadCount);
+            }
+
+            return data;
         }
 
         unsafe private void EngraveX(RenderEventArgs arg, Voxel[] volumeData, int width, int height, int depth)

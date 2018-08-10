@@ -66,7 +66,7 @@ namespace fuluDD02_LayeredEngraving.ComputeShader
                 {
                     var provider = this.volumeDataProvider;
                     int width = provider.Width, height = provider.Height, depth = provider.Depth;
-                    Voxel[] volumeData = provider.VolumeData;
+                    byte[] volumeData = provider.VolumeData;
                     this.volume3DTexture = InitVolume3DTexture(volumeData, width, height, depth);
                     //this.volume3DTexture = provider.TexVolumeData;
                 }

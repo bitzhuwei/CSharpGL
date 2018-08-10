@@ -11,7 +11,7 @@ namespace fuluDD02_LayeredEngraving.ComputeShader
         int Width { get; }
         int Height { get; }
         int Depth { get; }
-        Voxel[] VolumeData { get; }
+        byte[] VolumeData { get; }
 
         Texture TexVolumeData { get; }
     }

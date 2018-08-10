@@ -5,6 +5,7 @@ using System.Text;
 using CSharpGL;
 using System.Drawing;
 using System.Runtime.InteropServices;
+using System.IO;
 
 namespace fuluDD02_LayeredEngraving.ComputeShader
 {
@@ -68,9 +69,9 @@ namespace fuluDD02_LayeredEngraving.ComputeShader
         const int vWidth = 256;
         const int vHeight = 256;
         const int vDepth = 256;
-        private Voxel[] volumeData;// = new byte[vWidth * vHeight * vDepth];
+        private byte[] volumeData;// = new byte[vWidth * vHeight * vDepth];
 
-        public Voxel[] VolumeData
+        public byte[] VolumeData
         {
             get { return volumeData; }
         }
@@ -184,23 +185,48 @@ namespace fuluDD02_LayeredEngraving.ComputeShader
             }
 
             {
-                var volumeData = new Voxel[vWidth * vHeight * vDepth]; ;
-                VertexBuffer buffer = this.outBuffer;
-                var array = (uint*)buffer.MapBuffer(MapBufferAccess.ReadWrite);
-                for (int i = 0; i < volumeData.Length; i++)
+                string filename = "engraving.comp.raw";
+                if (!File.Exists(filename))
                 {
-                    vec4 color = glm.unpackUnorm4x8(array[i]);
-                    volumeData[i] = new Voxel(
-                        (byte)(color.x * 255.0),
-                        (byte)(color.y * 255.0),
-                        (byte)(color.z * 255.0)
-                        );
+                    var data = new byte[vWidth * vHeight * vDepth * 3]; ;
+                    VertexBuffer buffer = this.outBuffer;
+                    var array = (uint*)buffer.MapBuffer(MapBufferAccess.ReadWrite);
+                    for (int i = 0; i < data.Length / 3; i++)
+                    {
+                        vec4 color = glm.unpackUnorm4x8(array[i]);
+                        data[i * 3 + 0] = (byte)(color.x * 255.0);
+                        data[i * 3 + 1] = (byte)(color.y * 255.0);
+                        data[i * 3 + 2] = (byte)(color.z * 255.0);
+                    }
+                    buffer.UnmapBuffer();
+
+                    using (var fs = new FileStream(filename, FileMode.Create, FileAccess.Write))
+                    using (var bw = new BinaryWriter(fs))
+                    {
+                        bw.Write(data);
+                    }
                 }
-                buffer.UnmapBuffer();
-                this.volumeData = volumeData;
+
+                this.volumeData = GetVolumeData(filename);
             }
 
             this.firstRun = false;
+        }
+
+        private byte[] GetVolumeData(string filename)
+        {
+            byte[] data;
+            //int index = 0;
+            //int readCount = 0;
+            using (var fs = new FileStream(filename, FileMode.Open, FileAccess.Read))
+            using (var br = new BinaryReader(fs))
+            {
+                int unReadCount = (int)fs.Length;
+                data = new byte[unReadCount];
+                br.Read(data, 0, unReadCount);
+            }
+
+            return data;
         }
 
         internal static GLDelegates.void_uint_uint_uint glBindBufferBase;
