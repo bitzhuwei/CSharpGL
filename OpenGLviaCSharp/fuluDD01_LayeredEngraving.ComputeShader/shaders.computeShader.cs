@@ -29,7 +29,7 @@ void main(void)
     uint d = uint(depth * color.a);
     if (d == depth) { d = depth - 1; }
     uint index = uint(w * height * depth + h * depth + d);
-	uint value = uint((color.r * 0.299 + color.g * 0.587 + color.b * 0.114) * 255);
+	uint value = packUnorm4x8(color);
     outBuffer[index] = value;
 }
 ";

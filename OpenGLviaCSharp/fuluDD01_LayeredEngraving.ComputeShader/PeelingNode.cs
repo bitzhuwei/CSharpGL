@@ -68,9 +68,9 @@ namespace fuluDD02_LayeredEngraving.ComputeShader
         const int vWidth = 256;
         const int vHeight = 256;
         const int vDepth = 256;
-        private byte[] volumeData;// = new byte[vWidth * vHeight * vDepth];
+        private Voxel[] volumeData;// = new byte[vWidth * vHeight * vDepth];
 
-        public byte[] VolumeData
+        public Voxel[] VolumeData
         {
             get { return volumeData; }
         }
@@ -184,12 +184,17 @@ namespace fuluDD02_LayeredEngraving.ComputeShader
             }
 
             {
-                var volumeData = new byte[vWidth * vHeight * vDepth]; ;
+                var volumeData = new Voxel[vWidth * vHeight * vDepth]; ;
                 VertexBuffer buffer = this.outBuffer;
                 var array = (uint*)buffer.MapBuffer(MapBufferAccess.ReadWrite);
                 for (int i = 0; i < volumeData.Length; i++)
                 {
-                    volumeData[i] = (byte)array[i];
+                    vec4 color = glm.unpackUnorm4x8(array[i]);
+                    volumeData[i] = new Voxel(
+                        (byte)(color.x * 255.0),
+                        (byte)(color.y * 255.0),
+                        (byte)(color.z * 255.0)
+                        );
                 }
                 buffer.UnmapBuffer();
                 this.volumeData = volumeData;
@@ -197,6 +202,7 @@ namespace fuluDD02_LayeredEngraving.ComputeShader
 
             this.firstRun = false;
         }
+
         internal static GLDelegates.void_uint_uint_uint glBindBufferBase;
 
         private void ComputeShaderEngrave(Texture texInput, VertexBuffer outBuffer, int width, int height)
