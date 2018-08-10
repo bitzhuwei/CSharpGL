@@ -23,7 +23,21 @@ namespace fuluDd00_MathExpression
 
             {
                 int width = 128, height = 128, depth = 128;
-                Voxel[] volumeData = VolumeData.GetData(width, height, depth);
+                string filename = "math.raw";
+                if (!File.Exists(filename))
+                {
+                    Voxel[] data = VolumeData.GetData(width, height, depth);
+                    using (var fs = new FileStream(filename, FileMode.Create, FileAccess.Write))
+                    using (var bw = new BinaryWriter(fs))
+                    {
+                        for (int i = 0; i < data.Length; i++)
+                        {
+                            Voxel v = data[i];
+                            bw.Write(v.r); bw.Write(v.g); bw.Write(v.b);
+                        }
+                    }
+                }
+                byte[] volumeData = GetVolumeData(filename);
                 this.volume3DTexture = InitVolume3DTexture(volumeData, width, height, depth);
             }
             {
@@ -84,9 +98,9 @@ namespace fuluDd00_MathExpression
             return data;
         }
 
-        private Texture InitVolume3DTexture(Voxel[] data, int width, int height, int depth)
+        private Texture InitVolume3DTexture(byte[] data, int width, int height, int depth)
         {
-            var storage = new TexImage3D(TexImage3D.Target.Texture3D, GL.GL_RGB, width, height, depth, GL.GL_RGB, GL.GL_UNSIGNED_BYTE, new ArrayDataProvider<Voxel>(data));
+            var storage = new TexImage3D(TexImage3D.Target.Texture3D, GL.GL_RGB, width, height, depth, GL.GL_RGB, GL.GL_UNSIGNED_BYTE, new ArrayDataProvider<byte>(data));
             var texture = new Texture(storage, new MipmapBuilder(),
                 new TexParameteri(TexParameter.PropertyName.TextureWrapR, (int)GL.GL_CLAMP),
                 new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP),
