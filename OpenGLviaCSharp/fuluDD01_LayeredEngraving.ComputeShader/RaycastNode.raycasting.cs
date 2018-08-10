@@ -28,6 +28,7 @@ void main()
 
 in vec3 passEntryPoint;
 
+uniform sampler1D TransferFunc;
 uniform sampler2D ExitPoints;
 uniform sampler3D VolumeTex;
 
@@ -60,18 +61,19 @@ void main()
     vec3 colorAccumulator = vec3(0.0); // The dest color
     float alphaAccumulator = 0.0f;
     float lengthAccumulator = 0.0;
-    vec3 intensity;
+    float intensity;
     vec4 colorSample; // The src color 
  
     for(int i = 0; i < cycle; i++)
     {
         // get scaler value in the volume data
-        intensity = texture(VolumeTex, voxelCoord).rgb;
+        intensity = texture(VolumeTex, voxelCoord).x;
         // get mapped color from 1-D texture
-        colorSample = vec4(intensity, 0.05);
+        colorSample = texture(TransferFunc, intensity);
+        colorSample.a /= 50;
         // modulate the value of colorSample.a
         // front-to-back integration
-        if (colorSample.r > 0.0 || colorSample.g > 0.0 || colorSample.b > 0.0) {
+        if (colorSample.a > 0.0) {
             // accomodate for variable sampling rates (base interval defined by mod_compositing.frag)
             colorSample.a = 1.0 - pow(1.0 - colorSample.a, StepSize * 200.0f);
             colorAccumulator += (1.0 - alphaAccumulator) * colorSample.rgb * colorSample.a;
@@ -97,6 +99,7 @@ void main()
     // FragColor = vec4(exitPoint, 1.0);
    
 }
+
 ";
     }
 }

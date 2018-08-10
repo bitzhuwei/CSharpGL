@@ -9,12 +9,10 @@ namespace fuluDD02_LayeredEngraving.ComputeShader
     public interface IVolumeData
     {
         int Width { get; }
-
         int Height { get; }
-
         int Depth { get; }
+        byte[] VolumeData { get; }
 
-        Voxel[] VolumeData { get; }
-
+        Texture TexVolumeData { get; }
     }
 }

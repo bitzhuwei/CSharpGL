@@ -30,7 +30,7 @@ namespace fuluDD02_LayeredEngraving.ComputeShader
                 this.engraveComp = provider.GetShaderProgram();
             }
             {
-                var data = new uint[Width * Height * Depth * 3];
+                var data = new uint[Width * Height * Depth];
                 this.outBuffer = data.GenVertexBuffer(VBOConfig.UInt, BufferUsage.DynamicCopy);
             }
             {
@@ -68,11 +68,18 @@ namespace fuluDD02_LayeredEngraving.ComputeShader
         const int vWidth = 256;
         const int vHeight = 256;
         const int vDepth = 256;
-        private Voxel[] volumeData;// = new byte[vWidth * vHeight * vDepth];
+        private byte[] volumeData;// = new byte[vWidth * vHeight * vDepth];
 
-        public Voxel[] VolumeData
+        public byte[] VolumeData
         {
             get { return volumeData; }
+        }
+
+        private Texture texVolumeData;
+
+        public Texture TexVolumeData
+        {
+            get { return this.texVolumeData; }
         }
 
         public int Width { get { return vWidth; } }
@@ -177,15 +184,12 @@ namespace fuluDD02_LayeredEngraving.ComputeShader
             }
 
             {
-                var volumeData = new Voxel[vWidth * vHeight * vDepth]; ;
+                var volumeData = new byte[vWidth * vHeight * vDepth]; ;
                 VertexBuffer buffer = this.outBuffer;
                 var array = (uint*)buffer.MapBuffer(MapBufferAccess.ReadWrite);
                 for (int i = 0; i < volumeData.Length; i++)
                 {
-                    volumeData[i] = new Voxel(
-                        (byte)(array[i * 3 + 0]),
-                        (byte)(array[i * 3 + 1]),
-                        (byte)(array[i * 3 + 2]));
+                    volumeData[i] = (byte)array[i];
                 }
                 buffer.UnmapBuffer();
                 this.volumeData = volumeData;

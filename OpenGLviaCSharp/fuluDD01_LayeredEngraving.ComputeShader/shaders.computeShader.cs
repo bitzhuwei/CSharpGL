@@ -29,9 +29,8 @@ void main(void)
     uint d = uint(depth * color.a);
     if (d == depth) { d = depth - 1; }
     uint index = uint(w * height * depth + h * depth + d);
-    outBuffer[index * 3 + 0] = uint(color.r * 255.0);
-    outBuffer[index * 3 + 1] = uint(color.g * 255.0);
-    outBuffer[index * 3 + 2] = uint(color.b * 255.0);
+	uint value = uint((color.r * 0.299 + color.g * 0.587 + color.b * 0.114) * 255);
+    outBuffer[index] = value;
 }
 ";
         //        public const string engraveComp = @"#version 430 core

@@ -73,49 +73,32 @@ namespace fuluDD02_LayeredEngraving.ComputeShader
 
                 };
 
-                var size = new vec3(5, 5, 5);
-                //int index = 0;
-                //for (int k = -1; k < 2; k++)
-                //{
-                //    for (int j = -1; j < 2; j++)
-                //    {
-                //        for (int i = -1; i < 2; i++)
-                //        {
-                //            if (j == 1 && (k != 0 || i != 0)) { continue; }
-
-                //            vec3 worldPosition = new vec3(i * 2, j * 2, k * 2);// +new vec3(-2.375f, -1.75f, 0);
-                //            //var cubeNode = CubeNode.Create(new CubeModel(), CubeModel.positions);
-                //            //var cubeNode = CubeNode.Create(new RectangleModel(), RectangleModel.strPosition);
-                //            var cubeNode = CubeNode.Create(new Sphere(0.5f), Sphere.strPosition);
-                //            cubeNode.WorldPosition = worldPosition;
-                //            cubeNode.Color = colors[index++];
-                //            cubeNode.Name = string.Format("{0},{1},{2}:{3}", k, j, i, cubeNode.Color);
-
-                //            children.Add(cubeNode);
-                //        }
-                //    }
-                //}
-
+                int index = 0;
+                for (int k = -1; k < 2; k++)
                 {
-                    string folder = System.Windows.Forms.Application.StartupPath;
-                    string objFilename = System.IO.Path.Combine(folder + @"\..\..\..\..\Infrastructure\CSharpGL.Models", "vnfHanoiTower.obj_");
-                    var parser = new ObjVNFParser(true);
-                    ObjVNFResult result = parser.Parse(objFilename);
-                    if (result.Error != null)
+                    for (int j = -1; j < 2; j++)
                     {
-                        MessageBox.Show(result.Error.ToString());
-                    }
-                    else
-                    {
-                        var model = new ObjVNF(result.Mesh);
-                        var cubeNode = CubeNode.Create(model, ObjVNF.strPosition);
-                        cubeNode.Color = Color.Red.ToVec4();
-                        size = model.GetSize();
-                        float max = size.max();
-                        size = new vec3(max, max, max);
-                        children.Add(cubeNode);
+                        for (int i = -1; i < 2; i++)
+                        {
+                            vec3 worldPosition = new vec3(i * 2, j * 2, k) + new vec3(-2.375f, -1.75f, 0);
+                            //var cubeNode = CubeNode.Create(new CubeModel(), CubeModel.positions);
+                            //var cubeNode = CubeNode.Create(new RectangleModel(), RectangleModel.strPosition);
+                            var cubeNode = CubeNode.Create(new Sphere(0.5f), Sphere.strPosition);
+                            cubeNode.WorldPosition = worldPosition;
+                            cubeNode.Color = colors[index++];
+                            cubeNode.Name = string.Format("{0},{1},{2}:{3}", k, j, i, cubeNode.Color);
+
+                            children.Add(cubeNode);
+                        }
                     }
                 }
+                //{
+                //    var cubeNode = CubeNode.Create(new RectangleModel(), RectangleModel.strPosition);
+                //    cubeNode.Color = Color.Red.ToVec4();
+                //    cubeNode.WorldPosition = new vec3(-1.5f, -0.5f, 0);
+                //    children.Add(cubeNode);
+                //}
+                var size = new vec3(5, 5, 5) * 2;
                 this.peelingNode = new PeelingNode(size, children.ToArray());
                 groupNode.Children.Add(this.peelingNode);
             }
