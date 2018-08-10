@@ -9,10 +9,12 @@ namespace fuluDD01_LayeredEngraving.PNG
     public interface IVolumeData
     {
         int Width { get; }
+
         int Height { get; }
+
         int Depth { get; }
+
         Voxel[] VolumeData { get; }
 
-        Texture TexVolumeData { get; }
     }
 }

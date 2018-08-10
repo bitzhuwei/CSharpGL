@@ -62,13 +62,6 @@ namespace fuluDD01_LayeredEngraving.PNG
             get { return volumeData; }
         }
 
-        private Texture texVolumeData;
-
-        public Texture TexVolumeData
-        {
-            get { return this.texVolumeData; }
-        }
-
         public int Width { get { return vWidth; } }
         public int Height { get { return vHeight; } }
         public int Depth { get { return vDepth; } }
