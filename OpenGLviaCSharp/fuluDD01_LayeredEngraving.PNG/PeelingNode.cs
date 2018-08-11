@@ -81,7 +81,7 @@ namespace fuluDD01_LayeredEngraving.PNG
             string filename = "engraving.png.raw";
             if (!File.Exists(filename))
             {
-                var data = new Voxel[vWidth * vHeight * vDepth]; ;
+                var data = new Voxel[vWidth * vHeight * vDepth];
 
                 EngraveX(arg, data, vWidth, vHeight, vDepth);
                 EngraveY(arg, data, vWidth, vHeight, vDepth);
