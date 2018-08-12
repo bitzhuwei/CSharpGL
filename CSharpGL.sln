@@ -207,6 +207,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "fuluDD01_LayeredEngraving.P
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "fuluDD02_LayeredEngraving.ComputeShader", "OpenGLviaCSharp\fuluDD02_LayeredEngraving.ComputeShader\fuluDD02_LayeredEngraving.ComputeShader.csproj", "{29EDEE1A-10E5-4E74-9F4A-EF5F21430960}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Compare2Files", "Infrastructure\Compare2Files\Compare2Files.csproj", "{93290866-6A4D-4043-8E70-44E1801DE25F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -605,6 +607,10 @@ Global
 		{29EDEE1A-10E5-4E74-9F4A-EF5F21430960}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{29EDEE1A-10E5-4E74-9F4A-EF5F21430960}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{29EDEE1A-10E5-4E74-9F4A-EF5F21430960}.Release|Any CPU.Build.0 = Release|Any CPU
+		{93290866-6A4D-4043-8E70-44E1801DE25F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93290866-6A4D-4043-8E70-44E1801DE25F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93290866-6A4D-4043-8E70-44E1801DE25F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{93290866-6A4D-4043-8E70-44E1801DE25F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -707,5 +713,6 @@ Global
 		{D8BE3724-8F31-49D6-A71A-CF7CE40B8CFF} = {7CF86F60-2BAC-4F60-AF1C-869737385E1B}
 		{38CF5431-64B3-4B37-A6B4-92B9FAB5A7F2} = {7CF86F60-2BAC-4F60-AF1C-869737385E1B}
 		{29EDEE1A-10E5-4E74-9F4A-EF5F21430960} = {7CF86F60-2BAC-4F60-AF1C-869737385E1B}
+		{93290866-6A4D-4043-8E70-44E1801DE25F} = {E800BE67-00FE-4C05-9F0F-640DC7134E7D}
 	EndGlobalSection
 EndGlobal
