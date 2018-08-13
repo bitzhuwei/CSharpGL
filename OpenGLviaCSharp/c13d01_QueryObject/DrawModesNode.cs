@@ -8,7 +8,6 @@ namespace c13d01_QueryObject
 {
     partial class DrawModesNode : PickableNode, IRenderable
     {
-
         public enum EMethod { Smooth, Flat, };
         public EMethod Method { get; set; }
 
@@ -33,6 +32,7 @@ namespace c13d01_QueryObject
                 }
             }
         }
+
         public static DrawModesNode Create(IBufferSource model, string position, string color, vec3 size)
         {
             RenderMethodBuilder smoothBulder, flatBuilder;
@@ -68,6 +68,7 @@ namespace c13d01_QueryObject
             : base(model, positionNameInIBufferSource, builders)
         {
             this.EnableRendering = ThreeFlags.BeforeChildren | ThreeFlags.Children;
+            this.PointSize = 15;
         }
 
         #region IRenderable 成员
@@ -84,6 +85,7 @@ namespace c13d01_QueryObject
             var method = this.RenderUnit.Methods[(int)this.Method];
             ShaderProgram program = method.Program;
             program.SetUniform("mvpMatrix", projection * view * model);
+            program.SetUniform("pointSize", this.PointSize);
             GL.Instance.Enable(GL.GL_PROGRAM_POINT_SIZE);
             method.Render();
         }
@@ -93,6 +95,9 @@ namespace c13d01_QueryObject
         }
 
         #endregion
+
+        public int PointSize { get; set; }
+
     }
 
 }

@@ -16,6 +16,7 @@ namespace c13d01_QueryObject
         private DrawModesNode drawModeNode;
         private ActionList actionList;
         private Picking pickingAction;
+        private Query query;
 
         public FormMain()
         {
@@ -53,9 +54,12 @@ namespace c13d01_QueryObject
 
             this.pickingAction = new Picking(scene);
 
+            {
+                this.query = new Query();
+            }
+
             var manipulater = new FirstPerspectiveManipulater();
             manipulater.Bind(camera, this.winGLCanvas1);
-
         }
 
         private SceneNodeBase GetRootNode()
@@ -67,38 +71,12 @@ namespace c13d01_QueryObject
                 group.Children.Add(node);
 
                 this.drawModeNode = node;
+                (new FormProperyGrid(node)).Show();
             }
+
             return group;
         }
-        //private SceneNodeBase GetRootNode()
-        //{
-        //    var group = new GroupNode();
-        //    var filenames = new string[] { "floor.obj_", "cube.obj_", };
-        //    var colors = new Color[] { Color.Green, Color.White, };
-        //    for (int i = 0; i < filenames.Length; i++)
-        //    {
-        //        string folder = System.Windows.Forms.Application.StartupPath;
-        //        string filename = System.IO.Path.Combine(folder + @"\..\..\..\..\Infrastructure\CSharpGL.Models", filenames[i]);
-        //        var parser = new ObjVNFParser(true);
-        //        ObjVNFResult result = parser.Parse(filename);
-        //        if (result.Error != null)
-        //        {
-        //            MessageBox.Show(result.Error.ToString());
-        //        }
-        //        else
-        //        {
-        //            ObjVNFMesh mesh = result.Mesh;
-        //            var model = new AdjacentTriangleModel(mesh);
-        //            var node = PointsNode.Create(model, ObjVNF.strPosition, ObjVNF.strNormal, model.GetSize());
-        //            node.Color = colors[i].ToVec3();
-        //            node.WorldPosition = new vec3(0, i * 5, 0);
-        //            node.Name = filename;
-        //            group.Children.Add(node);
-        //        }
-        //    }
 
-        //    return group;
-        //}
 
         private void winGLCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
         {
@@ -110,7 +88,13 @@ namespace c13d01_QueryObject
                 GL.Instance.ClearColor(0, 0, 0, 0);
                 GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT | GL.GL_STENCIL_BUFFER_BIT);
 
-                list.Act(new ActionParams(Viewport.GetCurrent()));
+                query.BeginQuery(QueryTarget.SamplesPassed);
+                {
+                    list.Act(new ActionParams(Viewport.GetCurrent()));
+                }
+                query.EndQuery(QueryTarget.SamplesPassed);
+                int sampleCount = this.query.SampleCount();
+                this.lblSampleCount.Text = string.Format("Sample Passed: {0}", sampleCount);
             }
         }
 
@@ -147,5 +131,42 @@ namespace c13d01_QueryObject
                 this.drawModeNode.Method = DrawModesNode.EMethod.Smooth;
             }
         }
+
+    }
+
+    class TextureSource : ITextureSource
+    {
+        private static readonly Texture texture;
+        static TextureSource()
+        {
+            texture = GetTexture();
+        }
+        private static Texture GetTexture()
+        {
+            string folder = System.Windows.Forms.Application.StartupPath;
+            var bmp = new Bitmap(System.IO.Path.Combine(folder, @"cloth.png"));
+            TexStorageBase storage = new TexImageBitmap(bmp, GL.GL_RGBA, 1, true);
+            var texture = new Texture(storage,
+                new TexParameterfv(TexParameter.PropertyName.TextureBorderColor, 1, 0, 0),
+                new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP_TO_BORDER),
+                new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_CLAMP_TO_BORDER),
+                new TexParameteri(TexParameter.PropertyName.TextureWrapR, (int)GL.GL_CLAMP_TO_BORDER),
+                new TexParameteri(TexParameter.PropertyName.TextureMinFilter, (int)GL.GL_LINEAR),
+                new TexParameteri(TexParameter.PropertyName.TextureMagFilter, (int)GL.GL_LINEAR));
+            texture.Initialize();
+            bmp.Dispose();
+
+            return texture;
+        }
+
+
+        #region ITextureSource 成员
+
+        public Texture BindingTexture
+        {
+            get { return texture; }
+        }
+
+        #endregion
     }
 }

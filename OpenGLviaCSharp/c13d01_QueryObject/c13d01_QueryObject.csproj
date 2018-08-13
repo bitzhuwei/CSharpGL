@@ -46,12 +46,6 @@
     <Compile Include="DrawModesModel.cs" />
     <Compile Include="DrawModesNode.cs" />
     <Compile Include="DrawModesNode.shaders.cs" />
-    <Compile Include="Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>

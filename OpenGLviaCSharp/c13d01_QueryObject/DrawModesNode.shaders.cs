@@ -14,6 +14,7 @@ in vec3 inPosition;
 in vec3 inColor;
 
 uniform mat4 mvpMatrix;
+uniform int pointSize = 15;
 
 out vec3 passColor;
 
@@ -23,7 +24,7 @@ void main(void) {
 
     passColor = inColor;
 
-    gl_PointSize = 15;
+    gl_PointSize = pointSize;
 }
 
 ";

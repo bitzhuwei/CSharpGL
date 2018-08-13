@@ -34,6 +34,7 @@
             this.cmbDrawMode = new System.Windows.Forms.ComboBox();
             this.rdoSmooth = new System.Windows.Forms.RadioButton();
             this.rdoFlat = new System.Windows.Forms.RadioButton();
+            this.lblSampleCount = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.winGLCanvas1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -63,7 +64,7 @@
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(335, 491);
+            this.textBox1.Size = new System.Drawing.Size(335, 423);
             this.textBox1.TabIndex = 1;
             // 
             // label1
@@ -113,6 +114,16 @@
             this.rdoFlat.UseVisualStyleBackColor = true;
             this.rdoFlat.CheckedChanged += new System.EventHandler(this.rdoFlat_CheckedChanged);
             // 
+            // lblSampleCount
+            // 
+            this.lblSampleCount.AutoSize = true;
+            this.lblSampleCount.Font = new System.Drawing.Font("宋体", 14F);
+            this.lblSampleCount.Location = new System.Drawing.Point(12, 500);
+            this.lblSampleCount.Name = "lblSampleCount";
+            this.lblSampleCount.Size = new System.Drawing.Size(209, 19);
+            this.lblSampleCount.TabIndex = 2;
+            this.lblSampleCount.Text = "Rendered Sample: {0}";
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -121,6 +132,7 @@
             this.Controls.Add(this.rdoFlat);
             this.Controls.Add(this.rdoSmooth);
             this.Controls.Add(this.cmbDrawMode);
+            this.Controls.Add(this.lblSampleCount);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.winGLCanvas1);
@@ -140,5 +152,6 @@
         private System.Windows.Forms.ComboBox cmbDrawMode;
         private System.Windows.Forms.RadioButton rdoSmooth;
         private System.Windows.Forms.RadioButton rdoFlat;
+        private System.Windows.Forms.Label lblSampleCount;
     }
 }
