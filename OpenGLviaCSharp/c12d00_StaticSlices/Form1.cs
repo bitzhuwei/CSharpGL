@@ -80,7 +80,7 @@ namespace c12d00_StaticSlices
             {
                 Texture tffTexture = InitTFF1DTexture("tff.png");
                 int width = 128, height = 128, depth = 128;
-                byte[] volumeData = VolumeData.GetData(width, height, depth);
+                byte[] volumeData = VolumeDataGenerator.GetData(width, height, depth);
                 Texture volumeTexture = InitVolume3DTexture(volumeData, width, height, depth);
 
                 int sliceCount = 512;
