@@ -102,7 +102,7 @@ void main(void) {
                 this.RotationAngle += delta * 31;
                 var position = new vec3(
                     (float)Math.Cos(this.RotationAngle / 5 * Math.PI / 180.0),
-                    (float)Math.Cos(this.RotationAngle / 50 * Math.PI / 180.0),
+                    (float)Math.Cos(this.RotationAngle / 50 * Math.PI / 180.0) + 1,
                     (float)Math.Sin(this.RotationAngle / 5 * Math.PI / 180.0)) * 9;
                 this.light.Position = position;
                 this.light.Direction = position;
