@@ -6,10 +6,11 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace fuluDd00_MathExpression
+namespace fuluDD02_LayeredEngraving.ComputeShader
 {
     public partial class RaycastNode
     {
+        private Texture transferFunc1DTexture;
         private Texture backface2DTexture;
         private int width;
         private int height;
@@ -22,28 +23,8 @@ namespace fuluDd00_MathExpression
             base.DoInitialize();
 
             {
-                int width = 128, height = 128, depth = 128;
-                string filename = "math.raw";
-                if (!File.Exists(filename))
-                {
-                    Voxel[] data = VolumeData.GetData(width, height, depth);
-                    using (var fs = new FileStream(filename, FileMode.Create, FileAccess.Write))
-                    using (var bw = new BinaryWriter(fs))
-                    {
-                        for (int i = 0; i < data.Length; i++)
-                        {
-                            Voxel v = data[i];
-                            bw.Write(v.r); bw.Write(v.g); bw.Write(v.b);
-                        }
-                    }
-                }
-                byte[] volumeData = GetVolumeData(filename);
-                this.volume3DTexture = InitVolume3DTexture(volumeData, width, height, depth);
-            }
-            {
                 RenderMethod method = this.RenderUnit.Methods[1];
                 ShaderProgram program = method.Program;
-                program.SetUniform("VolumeTex", this.volume3DTexture);
                 //var clearColor = new float[4];
                 //GL.Instance.GetFloatv((uint)GetTarget.ColorClearValue, clearColor);
                 //program.SetUniform("backgroundColor", new vec4(clearColor[0], clearColor[1], clearColor[2], clearColor[3]));

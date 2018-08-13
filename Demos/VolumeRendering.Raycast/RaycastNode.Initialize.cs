@@ -45,7 +45,13 @@ namespace VolumeRendering.Raycast
             //}
             {
                 int width = 128, height = 128, depth = 128;
-                byte[] volumeData = VolumeData.GetData(width, height, depth);
+                byte[] volumeData = VolumeDataGenerator.GetData(width, height, depth);
+                // write volume data to raw file.
+                //using (var fs = new FileStream("self.raw", FileMode.Create, FileAccess.Write))
+                //using (var bw = new BinaryWriter(fs))
+                //{
+                //    bw.Write(volumeData);
+                //}
                 this.volume3DTexture = InitVolume3DTexture(volumeData, width, height, depth);
             }
             {

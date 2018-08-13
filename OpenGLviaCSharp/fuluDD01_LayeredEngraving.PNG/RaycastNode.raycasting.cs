@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace fuluDd00_MathExpression
+namespace fuluDD01_LayeredEngraving.PNG
 {
     public partial class RaycastNode
     {
@@ -68,7 +68,7 @@ void main()
         // get scaler value in the volume data
         intensity = texture(VolumeTex, voxelCoord).rgb;
         // get mapped color from 1-D texture
-        colorSample = vec4(intensity, 0.1);
+        colorSample = vec4(intensity, 0.05);
         // modulate the value of colorSample.a
         // front-to-back integration
         if (colorSample.r > 0.0 || colorSample.g > 0.0 || colorSample.b > 0.0) {

@@ -2,9 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 
-namespace fuluDd00_MathExpression
+namespace fuluDD02_LayeredEngraving.ComputeShader
 {
     public partial class RaycastNode : PickableNode, IRenderable
     {
@@ -12,7 +13,7 @@ namespace fuluDd00_MathExpression
         /// 
         /// </summary>
         /// <returns></returns>
-        public static RaycastNode Create()
+        public static RaycastNode Create(IVolumeData volumeDataProvider)
         {
             var model = new BoundingBoxModel();
             RenderMethodBuilder backfaceBuilder, raycastingBuilder;
@@ -36,6 +37,7 @@ namespace fuluDd00_MathExpression
             }
 
             var node = new RaycastNode(model, BoundingBoxModel.strPosition, backfaceBuilder, raycastingBuilder);
+            node.volumeDataProvider = volumeDataProvider;
             node.Initialize();
 
             return node;
@@ -59,6 +61,26 @@ namespace fuluDd00_MathExpression
 
         public void RenderBeforeChildren(RenderEventArgs arg)
         {
+            if (this.volume3DTexture == null)
+            {
+                {
+                    var provider = this.volumeDataProvider;
+                    int width = provider.Width, height = provider.Height, depth = provider.Depth;
+                    byte[] volumeData = provider.VolumeData;
+                    this.volume3DTexture = InitVolume3DTexture(volumeData, width, height, depth);
+                    //this.volume3DTexture = provider.TexVolumeData;
+                }
+                //{
+                //    int width = 128, height = 128, depth = 128;
+                //    byte[] volumeData = VolumeData.GetData(width, height, depth);
+                //    this.volume3DTexture = InitVolume3DTexture(volumeData, width, height, depth);
+                //}
+
+                RenderMethod method = this.RenderUnit.Methods[1];
+                ShaderProgram program = method.Program;
+                program.SetUniform("VolumeTex", this.volume3DTexture);
+            }
+
             Viewport viewport = arg.Param.Viewport;
 
             if (this.width != viewport.width || this.height != viewport.height)
@@ -100,6 +122,7 @@ namespace fuluDd00_MathExpression
         }
 
         int cycle = 1600;
+        private IVolumeData volumeDataProvider;
         public int Cycle
         {
             get

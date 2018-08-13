@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D8BE3724-8F31-49D6-A71A-CF7CE40B8CFF}</ProjectGuid>
+    <ProjectGuid>{29EDEE1A-10E5-4E74-9F4A-EF5F21430960}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>fuluDd00_MathExpression</RootNamespace>
-    <AssemblyName>fuluDd00_MathExpression</AssemblyName>
+    <RootNamespace>fuluDD02_LayeredEngraving.ComputeShader</RootNamespace>
+    <AssemblyName>fuluDD02_LayeredEngraving.ComputeShader</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -43,27 +44,33 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FormVolumeRendering.cs">
+    <Compile Include="CubeModel.cs" />
+    <Compile Include="CubeNode.cs" />
+    <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormVolumeRendering.Designer.cs">
-      <DependentUpon>FormVolumeRendering.cs</DependentUpon>
+    <Compile Include="FormMain.Designer.cs">
+      <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormVolumeRendering.MovePositions.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Program.cs">
-      <SubType>
-      </SubType>
-    </Compile>
+    <Compile Include="IVolumeData.cs" />
+    <Compile Include="PeelingNode.cs" />
+    <Compile Include="PeelingNode.Dump.cs" />
+    <Compile Include="PeelingNode.EngraveComp.cs" />
+    <Compile Include="PeelingNode.Framebuffers.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RaycastModel.cs" />
     <Compile Include="RaycastNode.backface.cs" />
     <Compile Include="RaycastNode.cs" />
     <Compile Include="RaycastNode.Initialize.cs" />
     <Compile Include="RaycastNode.raycasting.cs" />
-    <EmbeddedResource Include="FormVolumeRendering.resx">
-      <DependentUpon>FormVolumeRendering.cs</DependentUpon>
+    <Compile Include="shaders.1.init.cs" />
+    <Compile Include="shaders.2.peel.cs" />
+    <Compile Include="shaders.3.blend.cs" />
+    <Compile Include="shaders.4.final.cs" />
+    <Compile Include="shaders.computeShader.cs" />
+    <EmbeddedResource Include="FormMain.resx">
+      <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -73,6 +80,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

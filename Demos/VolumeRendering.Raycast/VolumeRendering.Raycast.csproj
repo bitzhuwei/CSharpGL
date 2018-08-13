@@ -59,6 +59,7 @@
     <Compile Include="RaycastNode.raycasting.cs" />
     <Compile Include="RaycastNode.backface.cs" />
     <Compile Include="RaycastNode.cs" />
+    <Compile Include="VolumeDataGenerator.cs" />
     <Content Include="tff.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
