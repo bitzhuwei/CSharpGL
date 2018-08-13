@@ -27,7 +27,12 @@ namespace Compare2Files
                 file1.Read(content1, 0, 1);
                 if (content0[0] != content1[0])
                 {
-                    Console.WriteLine("Different...");
+                    //if (!
+                    //    ((content0[0] == 0 && content1[0] == 255)
+                    //    || (content0[0] == 255 && content1[0] == 0)))
+                    {
+                        Console.WriteLine("Different...");
+                    }
                 }
             }
 

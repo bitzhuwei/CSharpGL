@@ -79,7 +79,7 @@ namespace fuluDD01_LayeredEngraving.PNG
             //    c = bmp.GetPixel(0, bmp.Height - 1);
             //}
             string filename = "engraving.png.raw";
-            if (!File.Exists(filename))
+            //if (!File.Exists(filename))
             {
                 var data = new Voxel[vWidth * vHeight * vDepth];
 

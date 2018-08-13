@@ -22,48 +22,13 @@ namespace fuluDD02_LayeredEngraving.ComputeShader
         {
             base.DoInitialize();
 
-            string folder = System.Windows.Forms.Application.StartupPath;
             {
-                string tff = "tff.png";
-                this.transferFunc1DTexture = InitTFF1DTexture(tff);
-            }
-
-            {
-                //string head256 = System.IO.Path.Combine(folder + @"\..\..\..\..\Infrastructure\CSharpGL.Models", "head256.raw");
-                //byte[] volumeData = GetVolumeData(head256);
-                //this.volume3DTexture = InitVolume3DTexture(volumeData, 256,256,225);
-            }
-            {
-                //string head256 = System.IO.Path.Combine(folder + @"\..\..\..\..\Infrastructure\CSharpGL.Models", "heart125-154-145.raw");
-                //byte[] volumeData = GetVolumeData(head256);
-                //this.volume3DTexture = InitVolume3DTexture(volumeData, 125,154,145);
-            }
-            //{
-            //    string head256 = System.IO.Path.Combine(folder + @"\..\..\..\..\Infrastructure\CSharpGL.Models", "harmonic16-16-16.raw");
-            //    byte[] volumeData = GetVolumeData(head256);
-            //    this.volume3DTexture = InitVolume3DTexture(volumeData, 16, 16, 16);
-            //}
-            //{
-            //    int width = 128, height = 128, depth = 128;
-            //    byte[] volumeData = VolumeData.GetData(width, height, depth);
-            //    this.volume3DTexture = InitVolume3DTexture(volumeData, width, height, depth);
-            //}
-            {
-                // setting uniforms such as
-                // ScreenSize
-                // StepSize
-                // TransferFunc
-                // ExitPoints i.e. the backface, the backface hold the ExitPoints of ray casting
-                // VolumeTex the texture that hold the volume data i.e. head256.raw
                 RenderMethod method = this.RenderUnit.Methods[1];
                 ShaderProgram program = method.Program;
-                //program.SetUniform("StepSize", this.g_stepSize);
-                program.SetUniform("TransferFunc", this.transferFunc1DTexture);
-                //program.SetUniform("VolumeTex", this.volume3DTexture);
-                var clearColor = new float[4];
+                //var clearColor = new float[4];
                 //GL.Instance.GetFloatv((uint)GetTarget.ColorClearValue, clearColor);
                 //program.SetUniform("backgroundColor", new vec4(clearColor[0], clearColor[1], clearColor[2], clearColor[3]));
-                program.SetUniform("backgroundColor", System.Drawing.Color.White.ToVec4());
+                program.SetUniform("backgroundColor", System.Drawing.Color.SkyBlue.ToVec4());
             }
         }
 
@@ -109,21 +74,6 @@ namespace fuluDD02_LayeredEngraving.ComputeShader
                 int unReadCount = (int)fs.Length;
                 data = new byte[unReadCount];
                 br.Read(data, 0, unReadCount);
-                //const int cacheSize = 1024 * 1024;
-                //do
-                //{
-                //    int min = Math.Min(cacheSize, unReadCount);
-                //    var cache = new byte[min];
-                //    readCount = br.Read(cache, 0, min);
-                //    if (readCount != min)
-                //    { throw new Exception(); }
-
-                //    for (int i = 0; i < readCount; i++)
-                //    {
-                //        data[index++] = cache[i];
-                //    }
-                //    unReadCount -= readCount;
-                //} while (readCount > 0);
             }
 
             return data;
@@ -132,12 +82,6 @@ namespace fuluDD02_LayeredEngraving.ComputeShader
         private Texture InitVolume3DTexture(byte[] data, int width, int height, int depth)
         {
             var storage = new TexImage3D(TexImage3D.Target.Texture3D, GL.GL_RGB, width, height, depth, GL.GL_RGB, GL.GL_UNSIGNED_BYTE, new ArrayDataProvider<byte>(data));
-            //var texture = new Texture(storage,
-            //    new TexParameteri(TexParameter.PropertyName.TextureWrapR, (int)GL.GL_REPEAT),
-            //    new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_REPEAT),
-            //    new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_REPEAT),
-            //    new TexParameteri(TexParameter.PropertyName.TextureMinFilter, (int)GL.GL_LINEAR),
-            //    new TexParameteri(TexParameter.PropertyName.TextureMagFilter, (int)GL.GL_LINEAR));
             var texture = new Texture(storage, new MipmapBuilder(),
                 new TexParameteri(TexParameter.PropertyName.TextureWrapR, (int)GL.GL_CLAMP),
                 new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP),
@@ -163,24 +107,6 @@ namespace fuluDD02_LayeredEngraving.ComputeShader
                 new TexParameteri(TexParameter.PropertyName.TextureMagFilter, (int)GL.GL_NEAREST));
             texture.Initialize();
             texture.TextureUnitIndex = 1;
-
-            return texture;
-        }
-
-        private Texture InitTFF1DTexture(string filename)
-        {
-            var bitmap = new System.Drawing.Bitmap(filename);
-            const int width = 256;
-            var storage = new TexImage1D(GL.GL_RGBA8, width, GL.GL_RGBA, GL.GL_UNSIGNED_BYTE, new ImageDataProvider(bitmap));
-            var texture = new Texture(storage,
-                new TexParameteri(TexParameter.PropertyName.TextureWrapR, (int)GL.GL_REPEAT),
-                new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_REPEAT),
-                new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_REPEAT),
-                new TexParameteri(TexParameter.PropertyName.TextureMinFilter, (int)GL.GL_NEAREST),
-                new TexParameteri(TexParameter.PropertyName.TextureMagFilter, (int)GL.GL_NEAREST));
-            texture.Initialize();
-            texture.TextureUnitIndex = 0;
-            bitmap.Dispose();
 
             return texture;
         }
