@@ -86,7 +86,7 @@ namespace Lighting.ShadowVolume
         private SceneNodeBase GetRootNode()
         {
             var group = new GroupNode();
-            var filenames = new string[] { "floor.obj_", "dragon.obj_", "cube.obj_", };
+            var filenames = new string[] { "floor.obj_", "cube.obj_", };
             var colors = new Color[] { Color.Green, Color.White, Color.White, };
             for (int i = 0; i < filenames.Length; i++)
             {
@@ -106,6 +106,26 @@ namespace Lighting.ShadowVolume
                     node.Color = colors[i].ToVec3();
                     node.WorldPosition = new vec3(0, i * 5, 0);
                     node.Name = filename;
+                    group.Children.Add(node);
+                }
+            }
+            {
+                var obj = new AnnulusModel(3, 0.4f, 16, 16);
+                obj.DumpObjFile("annulus.obj_");
+                var parser = new ObjVNFParser(true);
+                ObjVNFResult result = parser.Parse("annulus.obj_");
+                if (result.Error != null)
+                {
+                    MessageBox.Show(result.Error.ToString());
+                }
+                else
+                {
+                    ObjVNFMesh mesh = result.Mesh;
+                    var model = new AdjacentTriangleModel(mesh);
+                    var node = ShadowVolumeNode.Create(model, ObjVNF.strPosition, ObjVNF.strNormal, model.GetSize());
+                    node.Color = new vec3(1, 1, 1);
+                    node.WorldPosition = new vec3(0, 1 * 5, 0);
+                    node.Name = "annulus.obj_";
                     group.Children.Add(node);
                 }
             }

@@ -199,11 +199,15 @@ namespace c02d04_CubeMapTexture
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            var node = this.scene.RootNode;
-            if (node != null)
+            Scene scene = this.scene;
+            if (scene != null)
             {
-                node.RotationAxis = new vec3(0, 1, 0);
-                node.RotationAngle += 1.3f;
+                var node = scene.RootNode;
+                if (node != null)
+                {
+                    node.RotationAxis = new vec3(0, 1, 0);
+                    node.RotationAngle += 1.3f;
+                }
             }
         }
     }
