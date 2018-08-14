@@ -35,7 +35,7 @@ namespace CSharpGL
         public uint LastVertexId { get { return this.VertexIds[this.VertexIds.Length - 1]; } }
 
         /// <summary>
-        /// All vertexs' ids of picked geometry.
+        /// All vertexs' ids in the 'big VertexBuffer' of picked geometry.
         /// </summary>
         public uint[] VertexIds { get; private set; }
 
