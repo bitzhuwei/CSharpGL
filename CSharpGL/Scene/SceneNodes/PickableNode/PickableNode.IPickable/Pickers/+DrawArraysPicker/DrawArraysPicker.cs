@@ -105,7 +105,8 @@ namespace CSharpGL
         /// <returns></returns>
         private PickedGeometry SearchPoint(PickingEventArgs arg, uint stageVertexId, uint flatColorVertexId, DrawArraysPointSearcher searcher)
         {
-            var vertexIds = new uint[] { searcher.Search(arg, flatColorVertexId, this), };
+            uint baseId = stageVertexId - flatColorVertexId;
+            var vertexIds = new uint[] { searcher.Search(arg, flatColorVertexId, stageVertexId, this) - baseId };
             vec3[] positions = FillPickedGeometrysPosition(vertexIds);
             var pickedGeometry = new PickedGeometry(GeometryType.Point, positions, vertexIds, stageVertexId, this.Node);
 

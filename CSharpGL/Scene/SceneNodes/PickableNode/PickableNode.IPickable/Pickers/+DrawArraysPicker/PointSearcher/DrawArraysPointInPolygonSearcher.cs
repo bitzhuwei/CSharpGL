@@ -9,10 +9,11 @@ namespace CSharpGL
         /// </summary>
         /// <param name="arg"></param>
         /// <param name="flatColorVertexId"></param>
+        /// <param name="stageVertexId"></param>
         /// <param name="picker"></param>
         /// <returns></returns>
         internal override uint Search(PickingEventArgs arg,
-            uint flatColorVertexId, DrawArraysPicker picker)
+            uint flatColorVertexId, uint stageVertexId, DrawArraysPicker picker)
         {
             var cmd = picker.DrawCommand as DrawArraysCmd;
             // when the temp index buffer could be long, it's no longer needed.
@@ -21,7 +22,8 @@ namespace CSharpGL
             picker.Node.Render4InnerPicking(arg, drawCmd);
             uint id = ColorCodedPicking.ReadStageVertexId(arg.X, arg.Y);
 
-            if (cmd.FirstVertex <= id && id < cmd.FirstVertex + cmd.VertexCount)
+            uint baseId = stageVertexId - flatColorVertexId;
+            if (baseId + cmd.FirstVertex <= id && id < baseId + cmd.FirstVertex + cmd.VertexCount)
             { return id; }
             else
             { throw new Exception("This should not happen!"); }
