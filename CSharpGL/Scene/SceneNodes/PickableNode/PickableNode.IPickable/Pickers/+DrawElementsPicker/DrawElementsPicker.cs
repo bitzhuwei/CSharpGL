@@ -110,7 +110,7 @@ namespace CSharpGL
         /// <returns></returns>
         private PickedGeometry SearchPoint(PickingEventArgs arg, uint stageVertexId, uint singleNodeVertexId, RecognizedPrimitiveInfo primitiveInfo, DrawElementsPointSearcher searcher)
         {
-            uint id = searcher.Search(arg, primitiveInfo, this);
+            uint id = searcher.Search(arg, primitiveInfo, singleNodeVertexId, stageVertexId, this);
             if (id == uint.MaxValue) { return null; }// Scene's changed before second rendering for picking>
 
             uint baseId = stageVertexId - singleNodeVertexId;

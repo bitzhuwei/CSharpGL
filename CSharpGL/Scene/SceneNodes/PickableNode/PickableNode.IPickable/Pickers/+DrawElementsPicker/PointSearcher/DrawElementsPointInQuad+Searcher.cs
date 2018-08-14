@@ -9,10 +9,13 @@ namespace CSharpGL
         /// </summary>
         /// <param name="arg"></param>
         /// <param name="primitiveInfo"></param>
+        /// <param name="singleNodeVertexId"></param>
+        /// <param name="stageVertexId"></param>
         /// <param name="picker"></param>
         /// <returns></returns>
         internal override uint Search(PickingEventArgs arg,
             RecognizedPrimitiveInfo primitiveInfo,
+            uint singleNodeVertexId, uint stageVertexId,
             DrawElementsPicker picker)
         {
             uint[] indexList = primitiveInfo.VertexIds;
@@ -25,8 +28,9 @@ namespace CSharpGL
 
             buffer.Dispose();
 
-            if (id == indexList[0] || id == indexList[1]
-                || id == indexList[2] || id == indexList[3])
+            uint baseId = stageVertexId - singleNodeVertexId;
+            if (id == baseId + indexList[0] || id == baseId + indexList[1]
+                || id == baseId + indexList[2] || id == baseId + indexList[3])
             { return id; }
             else if (id == uint.MaxValue) // Scene's changed before second rendering for picking>
             { return id; }
