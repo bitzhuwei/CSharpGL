@@ -25,10 +25,19 @@ namespace CSharpGL
 
             buffer.Dispose();
 
-            if (id != uint.MaxValue)
+#if DEBUG
+            foreach (var item in indexList)
+            {
+                if (item == id) { return id; }
+            }
+
+            if (id == uint.MaxValue) // Scene's changed before second rendering for picking>
             { return id; }
             else
             { throw new Exception("This should not happen!"); }
+#else
+            return id; // TODO: this is not safe.
+#endif
         }
     }
 }

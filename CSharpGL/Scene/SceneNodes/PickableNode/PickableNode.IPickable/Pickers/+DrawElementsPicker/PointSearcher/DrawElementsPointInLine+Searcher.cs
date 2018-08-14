@@ -2,7 +2,7 @@
 
 namespace CSharpGL
 {
-    internal class DrawElementsPointInQuadSearcher : DrawElementsPointSearcher
+    internal class DrawElementsPointInLineSearcher : DrawElementsPointSearcher
     {
         /// <summary>
         ///
@@ -16,7 +16,7 @@ namespace CSharpGL
             DrawElementsPicker picker)
         {
             uint[] indexList = primitiveInfo.VertexIds;
-            if (indexList.Length != 4) { throw new ArgumentException(); }
+            if (indexList.Length != 2) { throw new ArgumentException(); }
 
             IndexBuffer buffer = indexList.GenIndexBuffer(BufferUsage.StaticDraw);
             var cmd = new DrawElementsCmd(buffer, DrawMode.Points);
@@ -25,8 +25,7 @@ namespace CSharpGL
 
             buffer.Dispose();
 
-            if (id == indexList[0] || id == indexList[1]
-                || id == indexList[2] || id == indexList[3])
+            if (id == indexList[0] || id == indexList[1])
             { return id; }
             else if (id == uint.MaxValue) // Scene's changed before second rendering for picking>
             { return id; }

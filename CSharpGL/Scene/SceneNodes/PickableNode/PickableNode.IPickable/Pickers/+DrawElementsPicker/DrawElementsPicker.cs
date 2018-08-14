@@ -64,13 +64,6 @@ namespace CSharpGL
                 // 获取pickedGeometry
                 if (typeOfMode == GeometryType.Point)
                 { return PickWhateverItIs(arg, stageVertexId, primitiveInfo, typeOfMode); }
-                else if (typeOfMode == GeometryType.Line)
-                {
-                    if (this.OnPrimitiveTest(singleNodeVertexId, drawMode))
-                    { return PickPoint(arg, stageVertexId, singleNodeVertexId); }
-                    else
-                    { return null; }
-                }
                 else
                 {
                     DrawElementsPointSearcher searcher = GetPointSearcher(drawMode);
@@ -117,7 +110,11 @@ namespace CSharpGL
         /// <returns></returns>
         private PickedGeometry SearchPoint(PickingEventArgs arg, uint stageVertexId, uint singleNodeVertexId, RecognizedPrimitiveInfo primitiveInfo, DrawElementsPointSearcher searcher)
         {
-            var vertexIds = new uint[] { searcher.Search(arg, primitiveInfo, this), };
+            uint id = searcher.Search(arg, primitiveInfo, this);
+            if (id == uint.MaxValue) { return null; }// Scene's changed before second rendering for picking>
+
+            uint baseId = stageVertexId - singleNodeVertexId;
+            var vertexIds = new uint[] { (id - baseId) };
             vec3[] positions = FillPickedGeometrysPosition(vertexIds);
             var pickedGeometry = new PickedGeometry(GeometryType.Point, positions, vertexIds, stageVertexId, this.Node);
 
@@ -211,10 +208,11 @@ namespace CSharpGL
         {
             var drawCmd = this.DrawCommand;
             DrawMode mode = drawCmd.CurrentMode;
-            PrimitiveRecognizer recognizer = PrimitiveRecognizerFactory.Create(
-                (arg.GeometryType.Contains(GeometryType.Point)
-                && mode.ToGeometryType() == GeometryType.Line) ?
-                DrawMode.Points : mode);
+            //PrimitiveRecognizer recognizer = PrimitiveRecognizerFactory.Create(
+            //    (arg.GeometryType.Contains(GeometryType.Point)
+            //    && mode.ToGeometryType() == GeometryType.Line) ?
+            //    DrawMode.Points : mode);
+            PrimitiveRecognizer recognizer = PrimitiveRecognizerFactory.Create(mode);
 
             List<RecognizedPrimitiveInfo> primitiveInfoList = recognizer.Recognize(singleNodeVertexId, drawCmd);
             return primitiveInfoList;

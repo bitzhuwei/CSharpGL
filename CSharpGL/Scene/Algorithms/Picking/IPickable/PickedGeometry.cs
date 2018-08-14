@@ -96,7 +96,7 @@ namespace CSharpGL
             {
                 var pos4 = new vec4(positions[i], 1);
                 worldPos[i] = model * pos4;
-                builder.Append('['); builder.Append(indexes[i]); builder.Append("]: ");
+                builder.Append("BigBuffer["); builder.Append(indexes[i]); builder.Append("]: ");
                 builder.Append(worldPos[i]);
                 builder.AppendLine();
             }
@@ -207,7 +207,7 @@ namespace CSharpGL
             builder.AppendLine();
             for (int i = 0; i < positions.Length; i++)
             {
-                builder.Append('['); builder.Append(indexes[i]); builder.Append("]: ");
+                builder.Append("BigBuffer["); builder.Append(indexes[i]); builder.Append("]: ");
                 builder.Append(positions[i]);
                 if (i + 1 < positions.Length)
                 {

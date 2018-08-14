@@ -61,6 +61,7 @@ namespace CSharpGL
             return result;
         }
 
+        private static readonly DrawElementsPointSearcher pointInLine = new DrawElementsPointInLineSearcher();
         private static readonly DrawElementsPointSearcher pointInTriangle = new DrawElementsPointInTriangleSearcher();
         private static readonly DrawElementsPointSearcher pointInQuad = new DrawElementsPointInQuadSearcher();
         private static readonly DrawElementsPointSearcher pointInPolygon = new DrawElementsPointInPolygonSearcher();
@@ -73,10 +74,13 @@ namespace CSharpGL
                 case DrawMode.Points:
                     break;
                 case DrawMode.Lines:
+                    result = pointInLine;
                     break;
                 case DrawMode.LineLoop:
+                    result = pointInLine;
                     break;
                 case DrawMode.LineStrip:
+                    result = pointInLine;
                     break;
                 case DrawMode.Triangles:
                     result = pointInTriangle;
@@ -97,8 +101,10 @@ namespace CSharpGL
                     result = pointInPolygon;
                     break;
                 case DrawMode.LinesAdjacency:
+                    result = pointInLine;
                     break;
                 case DrawMode.LineStripAdjacency:
+                    result = pointInLine;
                     break;
                 case DrawMode.TrianglesAdjacency:
                     result = pointInTriangle;

@@ -27,6 +27,8 @@ namespace CSharpGL
 
             if (id == indexList[0] || id == indexList[1] || id == indexList[2])
             { return id; }
+            else if (id == uint.MaxValue) // Scene's changed before second rendering for picking>
+            { return id; }
             else
             { throw new Exception("This should not happen!"); }
         }
