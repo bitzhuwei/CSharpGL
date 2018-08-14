@@ -8,18 +8,18 @@ namespace CSharpGL
         /// 在三角形图元中拾取指定位置的Point
         /// </summary>
         /// <param name="arg">渲染参数</param>
-        /// <param name="flatColorVertexId">三角形图元的最后一个顶点</param>
+        /// <param name="singleNodeVertexId">三角形图元的最后一个顶点</param>
         /// <param name="stageVertexId"></param>
         /// <param name="picker">目标Renderer</param>
         /// <returns></returns>
-        internal override uint Search(PickingEventArgs arg, uint flatColorVertexId, uint stageVertexId, DrawArraysPicker picker)
+        internal override uint Search(PickingEventArgs arg, uint singleNodeVertexId, uint stageVertexId, DrawArraysPicker picker)
         {
             // 创建临时索引
             var array = new uint[] 
             { 
-                flatColorVertexId - 0,
-                flatColorVertexId - 1,
-                flatColorVertexId - 2
+                singleNodeVertexId - 0,
+                singleNodeVertexId - 1,
+                singleNodeVertexId - 2
             };
             IndexBuffer buffer = array.GenIndexBuffer(BufferUsage.StaticDraw);
             var cmd = new DrawElementsCmd(buffer, DrawMode.Points);

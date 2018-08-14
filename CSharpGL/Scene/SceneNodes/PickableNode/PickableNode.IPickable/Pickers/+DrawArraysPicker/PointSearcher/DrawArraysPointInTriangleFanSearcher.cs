@@ -8,17 +8,17 @@ namespace CSharpGL
         ///
         /// </summary>
         /// <param name="arg"></param>
-        /// <param name="flatColorVertexId"></param>
+        /// <param name="singleNodeVertexId"></param>
         /// <param name="stageVertexId"></param>
         /// <param name="picker"></param>
         /// <returns></returns>
-        internal override uint Search(PickingEventArgs arg, uint flatColorVertexId, uint stageVertexId, DrawArraysPicker picker)
+        internal override uint Search(PickingEventArgs arg, uint singleNodeVertexId, uint stageVertexId, DrawArraysPicker picker)
         {
             var array = new uint[] 
             { 
                 0, 
-                flatColorVertexId - 1, 
-                flatColorVertexId - 0
+                singleNodeVertexId - 1, 
+                singleNodeVertexId - 0
             };
             IndexBuffer buffer = array.GenIndexBuffer(BufferUsage.StaticDraw);
             var cmd = new DrawElementsCmd(buffer, DrawMode.Points);

@@ -40,18 +40,18 @@ namespace CSharpGL
         public override PickedGeometry GetPickedGeometry(PickingEventArgs arg, uint stageVertexId, uint baseId)
         {
             if (stageVertexId < baseId) { return null; }
-            uint flatColorVertexId = stageVertexId - baseId;
-            if (this.PositionBuffer.Length <= flatColorVertexId) { return null; }
+            uint singleNodeVertexId = stageVertexId - baseId;
+            if (this.PositionBuffer.Length <= singleNodeVertexId) { return null; }
 
             PickableNode node = this.Node;
 
             // Find primitiveInfo
-            RecognizedPrimitiveInfo primitiveInfo = this.GetPrimitiveInfoOfPickedGeometry(arg, flatColorVertexId, baseId);
+            RecognizedPrimitiveInfo primitiveInfo = this.GetPrimitiveInfoOfPickedGeometry(arg, singleNodeVertexId, baseId);
             if (primitiveInfo == null)
             {
                 Debug.WriteLine(string.Format(
-                    "Got flatColorVertexId[{0}] but no primitiveInfo! Params are [{1}] [{2}]",
-                    flatColorVertexId, arg, stageVertexId));
+                    "Got singleNodeVertexId[{0}] but no primitiveInfo! Params are [{1}] [{2}]",
+                    singleNodeVertexId, arg, stageVertexId));
                 { return null; }
             }
 
@@ -66,8 +66,8 @@ namespace CSharpGL
                 { return PickWhateverItIs(arg, stageVertexId, primitiveInfo, typeOfMode); }
                 else if (typeOfMode == GeometryType.Line)
                 {
-                    if (this.OnPrimitiveTest(flatColorVertexId, drawMode))
-                    { return PickPoint(arg, stageVertexId, flatColorVertexId); }
+                    if (this.OnPrimitiveTest(singleNodeVertexId, drawMode))
+                    { return PickPoint(arg, stageVertexId, singleNodeVertexId); }
                     else
                     { return null; }
                 }
@@ -75,7 +75,7 @@ namespace CSharpGL
                 {
                     DrawElementsPointSearcher searcher = GetPointSearcher(drawMode);
                     if (searcher != null)// line is from triangle, quad or polygon
-                    { return SearchPoint(arg, stageVertexId, flatColorVertexId, primitiveInfo, searcher); }
+                    { return SearchPoint(arg, stageVertexId, singleNodeVertexId, primitiveInfo, searcher); }
                     else
                     { throw new Exception(string.Format("Lack of searcher for [{0}]", drawMode)); }
                 }
@@ -111,11 +111,11 @@ namespace CSharpGL
         /// </summary>
         /// <param name="arg"></param>
         /// <param name="stageVertexId"></param>
-        /// <param name="flatColorVertexId"></param>
+        /// <param name="singleNodeVertexId"></param>
         /// <param name="primitiveInfo"></param>
         /// <param name="searcher"></param>
         /// <returns></returns>
-        private PickedGeometry SearchPoint(PickingEventArgs arg, uint stageVertexId, uint flatColorVertexId, RecognizedPrimitiveInfo primitiveInfo, DrawElementsPointSearcher searcher)
+        private PickedGeometry SearchPoint(PickingEventArgs arg, uint stageVertexId, uint singleNodeVertexId, RecognizedPrimitiveInfo primitiveInfo, DrawElementsPointSearcher searcher)
         {
             var vertexIds = new uint[] { searcher.Search(arg, primitiveInfo, this), };
             vec3[] positions = FillPickedGeometrysPosition(vertexIds);
@@ -163,17 +163,17 @@ namespace CSharpGL
         /// So keep it like this.
         /// Also, why would someone use glDrawElements() when rendering GL_POINTS?
         /// </summary>
-        /// <param name="flatColorVertexId"></param>
+        /// <param name="singleNodeVertexId"></param>
         /// <param name="mode"></param>
         /// <returns></returns>
-        private bool OnPrimitiveTest(uint flatColorVertexId, DrawMode mode)
+        private bool OnPrimitiveTest(uint singleNodeVertexId, DrawMode mode)
         {
             return true;
         }
 
-        private PickedGeometry PickPoint(PickingEventArgs arg, uint stageVertexId, uint flatColorVertexId)
+        private PickedGeometry PickPoint(PickingEventArgs arg, uint stageVertexId, uint singleNodeVertexId)
         {
-            var vertexIds = new uint[] { flatColorVertexId, };
+            var vertexIds = new uint[] { singleNodeVertexId, };
             vec3[] positions = FillPickedGeometrysPosition(vertexIds);
             var pickedGeometry = new PickedGeometry(GeometryType.Point, positions, vertexIds, stageVertexId, this.Node);
 
@@ -184,13 +184,13 @@ namespace CSharpGL
         ///
         /// </summary>
         /// <param name="arg"></param>
-        /// <param name="flatColorVertexId"></param>
+        /// <param name="singleNodeVertexId"></param>
         /// <returns></returns>
         private RecognizedPrimitiveInfo GetPrimitiveInfoOfPickedGeometry(
             PickingEventArgs arg,
-            uint flatColorVertexId, uint baseId)
+            uint singleNodeVertexId, uint baseId)
         {
-            List<RecognizedPrimitiveInfo> primitiveInfoList = GetPossiblePrimitives(arg, flatColorVertexId);
+            List<RecognizedPrimitiveInfo> primitiveInfoList = GetPossiblePrimitives(arg, singleNodeVertexId);
 
             if (primitiveInfoList.Count == 0) { return null; }
 
@@ -200,14 +200,14 @@ namespace CSharpGL
         }
 
         /// <summary>
-        /// 遍历以<paramref name="flatColorVertexId"/>为最后一个顶点的图元，
+        /// 遍历以<paramref name="singleNodeVertexId"/>为最后一个顶点的图元，
         /// 瞄准每个图元的索引（例如1个三角形有3个索引）中的最后一个索引，
         /// 将此索引在<see cref="IndexBuffer"/>中的索引（位置）收集起来。
         /// </summary>
         /// <param name="arg"></param>
-        /// <param name="flatColorVertexId"></param>
+        /// <param name="singleNodeVertexId"></param>
         /// <returns></returns>
-        private List<RecognizedPrimitiveInfo> GetPossiblePrimitives(PickingEventArgs arg, uint flatColorVertexId)
+        private List<RecognizedPrimitiveInfo> GetPossiblePrimitives(PickingEventArgs arg, uint singleNodeVertexId)
         {
             var drawCmd = this.DrawCommand;
             DrawMode mode = drawCmd.CurrentMode;
@@ -216,7 +216,7 @@ namespace CSharpGL
                 && mode.ToGeometryType() == GeometryType.Line) ?
                 DrawMode.Points : mode);
 
-            List<RecognizedPrimitiveInfo> primitiveInfoList = recognizer.Recognize(flatColorVertexId, drawCmd);
+            List<RecognizedPrimitiveInfo> primitiveInfoList = recognizer.Recognize(singleNodeVertexId, drawCmd);
             return primitiveInfoList;
         }
 

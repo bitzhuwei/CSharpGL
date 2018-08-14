@@ -39,8 +39,8 @@ namespace CSharpGL
         public override PickedGeometry GetPickedGeometry(PickingEventArgs arg, uint stageVertexId, uint baseId)
         {
             if (stageVertexId < baseId) { return null; }
-            uint flatColorVertexId = stageVertexId - baseId;
-            if (this.PositionBuffer.Length <= flatColorVertexId) { return null; }
+            uint singleNodeVertexId = stageVertexId - baseId;
+            if (this.PositionBuffer.Length <= singleNodeVertexId) { return null; }
 
             PickingGeometryTypes pickingType = arg.GeometryType;
 
@@ -49,11 +49,11 @@ namespace CSharpGL
                 DrawMode mode = this.DrawCommand.CurrentMode;
                 GeometryType typeOfMode = mode.ToGeometryType();
                 if (typeOfMode == GeometryType.Point)
-                { return PickWhateverItIs(arg, stageVertexId, flatColorVertexId, mode, typeOfMode); }
+                { return PickWhateverItIs(arg, stageVertexId, singleNodeVertexId, mode, typeOfMode); }
                 else if (typeOfMode == GeometryType.Line)
                 {
-                    if (this.OnPrimitiveTest(flatColorVertexId, mode))
-                    { return PickPoint(arg, stageVertexId, flatColorVertexId); }
+                    if (this.OnPrimitiveTest(singleNodeVertexId, mode))
+                    { return PickPoint(arg, stageVertexId, singleNodeVertexId); }
                     else
                     { return null; }
                 }
@@ -61,7 +61,7 @@ namespace CSharpGL
                 {
                     DrawArraysPointSearcher searcher = GetPointSearcher(mode);
                     if (searcher != null)// point is from triangle, quad or polygon
-                    { return SearchPoint(arg, stageVertexId, flatColorVertexId, searcher); }
+                    { return SearchPoint(arg, stageVertexId, singleNodeVertexId, searcher); }
                     else
                     { throw new Exception(string.Format("Lack of searcher for [{0}]", mode)); }
                 }
@@ -71,12 +71,12 @@ namespace CSharpGL
                 DrawMode mode = this.DrawCommand.CurrentMode;
                 GeometryType typeOfMode = mode.ToGeometryType();
                 if (pickingType.Contains(typeOfMode))
-                { return PickWhateverItIs(arg, stageVertexId, flatColorVertexId, mode, typeOfMode); }
+                { return PickWhateverItIs(arg, stageVertexId, singleNodeVertexId, mode, typeOfMode); }
                 else
                 {
                     DrawArraysLineSearcher searcher = GetLineSearcher(mode);
                     if (searcher != null)// line is from triangle, quad or polygon
-                    { return SearchLine(arg, stageVertexId, flatColorVertexId, searcher); }
+                    { return SearchLine(arg, stageVertexId, singleNodeVertexId, searcher); }
                     else if (mode == DrawMode.Points)// want a line when rendering GL_POINTS
                     { return null; }
                     else
@@ -88,7 +88,7 @@ namespace CSharpGL
                 DrawMode mode = this.DrawCommand.CurrentMode;
                 GeometryType typeOfMode = mode.ToGeometryType();
                 if (pickingType.Contains(typeOfMode)) // I want what it is
-                { return PickWhateverItIs(arg, stageVertexId, flatColorVertexId, mode, typeOfMode); }
+                { return PickWhateverItIs(arg, stageVertexId, singleNodeVertexId, mode, typeOfMode); }
                 else
                 { return null; }
                 //{ throw new Exception(string.Format("Lack of searcher for [{0}]", mode)); }
@@ -100,20 +100,20 @@ namespace CSharpGL
         /// </summary>
         /// <param name="arg"></param>
         /// <param name="stageVertexId"></param>
-        /// <param name="flatColorVertexId"></param>
+        /// <param name="singleNodeVertexId"></param>
         /// <param name="searcher"></param>
         /// <returns></returns>
-        private PickedGeometry SearchPoint(PickingEventArgs arg, uint stageVertexId, uint flatColorVertexId, DrawArraysPointSearcher searcher)
+        private PickedGeometry SearchPoint(PickingEventArgs arg, uint stageVertexId, uint singleNodeVertexId, DrawArraysPointSearcher searcher)
         {
-            uint baseId = stageVertexId - flatColorVertexId;
-            var vertexIds = new uint[] { searcher.Search(arg, flatColorVertexId, stageVertexId, this) - baseId };
+            uint baseId = stageVertexId - singleNodeVertexId;
+            var vertexIds = new uint[] { searcher.Search(arg, singleNodeVertexId, stageVertexId, this) - baseId };
             vec3[] positions = FillPickedGeometrysPosition(vertexIds);
             var pickedGeometry = new PickedGeometry(GeometryType.Point, positions, vertexIds, stageVertexId, this.Node);
 
             return pickedGeometry;
         }
 
-        private PickedGeometry PickWhateverItIs(PickingEventArgs arg, uint stageVertexId, uint flatColorVertexId, DrawMode mode, GeometryType typeOfMode)
+        private PickedGeometry PickWhateverItIs(PickingEventArgs arg, uint stageVertexId, uint singleNodeVertexId, DrawMode mode, GeometryType typeOfMode)
         {
             //PickedGeometry pickedGeometry = new PickedGeometry();
             //pickedGeometry.GeometryType = typeOfMode;
@@ -126,7 +126,7 @@ namespace CSharpGL
 
             uint[] vertexIds; vec3[] positions;
 
-            if (flatColorVertexId == 0 && vertexCount == 2)
+            if (singleNodeVertexId == 0 && vertexCount == 2)
             {
                 // This is when mode is GL_LINE_LOOP and picked last line(the loop back one)
                 PickingLastLineInLineLoop(out vertexIds, out positions);
@@ -137,42 +137,42 @@ namespace CSharpGL
                 switch (typeOfMode)
                 {
                     case GeometryType.Point:
-                        vertexIds = new uint[] { flatColorVertexId, };
-                        positions = FillPickedGeometrysPosition(flatColorVertexId, 1);
+                        vertexIds = new uint[] { singleNodeVertexId, };
+                        positions = FillPickedGeometrysPosition(singleNodeVertexId, 1);
                         break;
 
                     case GeometryType.Line:
-                        vertexIds = new uint[] { flatColorVertexId - 1, flatColorVertexId, };
-                        positions = FillPickedGeometrysPosition(flatColorVertexId - 1, 2);
+                        vertexIds = new uint[] { singleNodeVertexId - 1, singleNodeVertexId, };
+                        positions = FillPickedGeometrysPosition(singleNodeVertexId - 1, 2);
                         break;
 
                     case GeometryType.Triangle:
                         if (mode == DrawMode.TriangleFan)
                         {
-                            vertexIds = new uint[] { 0, flatColorVertexId - 1, flatColorVertexId, };
+                            vertexIds = new uint[] { 0, singleNodeVertexId - 1, singleNodeVertexId, };
                             positions = FillPickedGeometrysPosition(vertexIds);
                         }
                         else if (mode == DrawMode.TrianglesAdjacency || mode == DrawMode.TriangleStripAdjacency)
                         {
-                            vertexIds = new uint[] { flatColorVertexId - 4, flatColorVertexId - 2, flatColorVertexId, };
+                            vertexIds = new uint[] { singleNodeVertexId - 4, singleNodeVertexId - 2, singleNodeVertexId, };
                             positions = FillPickedGeometrysPosition(vertexIds);
                         }
                         else
                         {
-                            vertexIds = new uint[] { flatColorVertexId - 2, flatColorVertexId - 1, flatColorVertexId, };
-                            positions = FillPickedGeometrysPosition(flatColorVertexId - 2, 3);
+                            vertexIds = new uint[] { singleNodeVertexId - 2, singleNodeVertexId - 1, singleNodeVertexId, };
+                            positions = FillPickedGeometrysPosition(singleNodeVertexId - 2, 3);
                         }
                         break;
 
                     case GeometryType.Quad:
-                        vertexIds = new uint[] { flatColorVertexId - 3, flatColorVertexId - 2, flatColorVertexId - 1, flatColorVertexId, };
-                        positions = FillPickedGeometrysPosition(flatColorVertexId - 3, 4);
+                        vertexIds = new uint[] { singleNodeVertexId - 3, singleNodeVertexId - 2, singleNodeVertexId - 1, singleNodeVertexId, };
+                        positions = FillPickedGeometrysPosition(singleNodeVertexId - 3, 4);
                         break;
 
                     case GeometryType.Polygon:
                         vertexIds = new uint[vertexCount];
                         for (uint i = 0; i < vertexCount; i++)
-                        { vertexIds[i] = flatColorVertexId + i; }
+                        { vertexIds[i] = singleNodeVertexId + i; }
                         positions = FillPickedGeometrysPosition(0, vertexCount);
                         break;
 
@@ -185,9 +185,9 @@ namespace CSharpGL
             return pickedGeometry;
         }
 
-        private PickedGeometry PickPoint(PickingEventArgs arg, uint stageVertexId, uint flatColorVertexId)
+        private PickedGeometry PickPoint(PickingEventArgs arg, uint stageVertexId, uint singleNodeVertexId)
         {
-            var vertexIds = new uint[] { flatColorVertexId, };
+            var vertexIds = new uint[] { singleNodeVertexId, };
             var positions = FillPickedGeometrysPosition(vertexIds);
             var pickedGeometry = new PickedGeometry(GeometryType.Point, positions, vertexIds, stageVertexId, this.Node);
 
@@ -201,13 +201,13 @@ namespace CSharpGL
         /// </summary>
         /// <param name="arg"></param>
         /// <param name="stageVertexId"></param>
-        /// <param name="flatColorVertexId"></param>
+        /// <param name="singleNodeVertexId"></param>
         /// <param name="searcher"></param>
         /// <returns></returns>
         private PickedGeometry SearchLine(PickingEventArgs arg, uint stageVertexId,
-            uint flatColorVertexId, DrawArraysLineSearcher searcher)
+            uint singleNodeVertexId, DrawArraysLineSearcher searcher)
         {
-            var vertexIds = searcher.Search(arg, flatColorVertexId, stageVertexId, this);
+            var vertexIds = searcher.Search(arg, singleNodeVertexId, stageVertexId, this);
             var positions = FillPickedGeometrysPosition(vertexIds);
             var pickedGeometry = new PickedGeometry(GeometryType.Line, positions, vertexIds, stageVertexId, this.Node);
 
@@ -220,10 +220,10 @@ namespace CSharpGL
         /// now that I know the mouse is picking on some point,
         /// I need to make sure that point should appear.
         /// </summary>
-        /// <param name="flatColorVertexId"></param>
+        /// <param name="singleNodeVertexId"></param>
         /// <param name="mode"></param>
         /// <returns></returns>
-        private bool OnPrimitiveTest(uint flatColorVertexId, DrawMode mode)
+        private bool OnPrimitiveTest(uint singleNodeVertexId, DrawMode mode)
         {
             bool result = false;
             var drawCmd = this.DrawCommand as DrawArraysCmd;
@@ -251,11 +251,11 @@ namespace CSharpGL
                     {
                         if (vertexCount % 2 == 0)
                         {
-                            result = (first <= flatColorVertexId && flatColorVertexId <= last);
+                            result = (first <= singleNodeVertexId && singleNodeVertexId <= last);
                         }
                         else
                         {
-                            result = (first <= flatColorVertexId && flatColorVertexId <= last - 1);
+                            result = (first <= singleNodeVertexId && singleNodeVertexId <= last - 1);
                         }
                     }
                     break;
@@ -263,7 +263,7 @@ namespace CSharpGL
                 case DrawMode.LineStripAdjacency:
                     if (vertexCount > 3)
                     {
-                        result = (first < flatColorVertexId && flatColorVertexId < last);
+                        result = (first < singleNodeVertexId && singleNodeVertexId < last);
                     }
                     break;
 
@@ -271,9 +271,9 @@ namespace CSharpGL
                     if (vertexCount > 3)
                     {
                         var lastPart = last - (last + 1 - first) % 4;
-                        if (first <= flatColorVertexId && flatColorVertexId <= lastPart)
+                        if (first <= singleNodeVertexId && singleNodeVertexId <= lastPart)
                         {
-                            var m = (flatColorVertexId - first) % 4;
+                            var m = (singleNodeVertexId - first) % 4;
                             result = (m == 1 || m == 2);
                         }
                     }
@@ -296,11 +296,11 @@ namespace CSharpGL
                 case DrawMode.Triangles:
                     if (vertexCount > 2)
                     {
-                        if (first <= flatColorVertexId)
+                        if (first <= singleNodeVertexId)
                         {
-                            result = ((vertexCount % 3 == 0) && (flatColorVertexId <= last))
-                                || ((vertexCount % 3 == 1) && (flatColorVertexId < last))
-                                || ((vertexCount % 3 == 2) && (flatColorVertexId + 1 < last));
+                            result = ((vertexCount % 3 == 0) && (singleNodeVertexId <= last))
+                                || ((vertexCount % 3 == 1) && (singleNodeVertexId < last))
+                                || ((vertexCount % 3 == 2) && (singleNodeVertexId + 1 < last));
                         }
                     }
                     break;
@@ -309,9 +309,9 @@ namespace CSharpGL
                     if (vertexCount > 5)
                     {
                         var lastPart = last - (last + 1 - first) % 2;
-                        if (first <= flatColorVertexId && flatColorVertexId <= lastPart)
+                        if (first <= singleNodeVertexId && singleNodeVertexId <= lastPart)
                         {
-                            result = (flatColorVertexId - first) % 2 == 0;
+                            result = (singleNodeVertexId - first) % 2 == 0;
                         }
                     }
                     break;
@@ -320,9 +320,9 @@ namespace CSharpGL
                     if (vertexCount > 5)
                     {
                         var lastPart = last - (last + 1 - first) % 6;
-                        if (first <= flatColorVertexId && flatColorVertexId <= lastPart)
+                        if (first <= singleNodeVertexId && singleNodeVertexId <= lastPart)
                         {
-                            result = (flatColorVertexId - first) % 2 == 0;
+                            result = (singleNodeVertexId - first) % 2 == 0;
                         }
                     }
                     break;
@@ -334,10 +334,10 @@ namespace CSharpGL
                 case DrawMode.QuadStrip:
                     if (vertexCount > 3)
                     {
-                        if (first <= flatColorVertexId && flatColorVertexId <= last)
+                        if (first <= singleNodeVertexId && singleNodeVertexId <= last)
                         {
                             result = (vertexCount % 2 == 0)
-                                || (flatColorVertexId < last);
+                                || (singleNodeVertexId < last);
                         }
                     }
                     break;
@@ -345,13 +345,13 @@ namespace CSharpGL
                 case DrawMode.Quads:
                     if (vertexCount > 3)
                     {
-                        if (first <= flatColorVertexId && flatColorVertexId <= last)
+                        if (first <= singleNodeVertexId && singleNodeVertexId <= last)
                         {
                             var m = vertexCount % 4;
                             if (m == 0) { result = true; }
-                            else if (m == 1) { result = flatColorVertexId + 0 < last; }
-                            else if (m == 2) { result = flatColorVertexId + 1 < last; }
-                            else if (m == 3) { result = flatColorVertexId + 2 < last; }
+                            else if (m == 1) { result = singleNodeVertexId + 0 < last; }
+                            else if (m == 2) { result = singleNodeVertexId + 1 < last; }
+                            else if (m == 3) { result = singleNodeVertexId + 2 < last; }
                             else { throw new Exception("This should never happen!"); }
                         }
                     }
@@ -360,7 +360,7 @@ namespace CSharpGL
                 case DrawMode.Polygon:
                     if (vertexCount > 2)
                     {
-                        result = (first <= flatColorVertexId && flatColorVertexId <= last);
+                        result = (first <= singleNodeVertexId && singleNodeVertexId <= last);
                     }
                     break;
 
