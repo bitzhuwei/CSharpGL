@@ -1,4 +1,5 @@
-﻿namespace CSharpGL
+﻿using System;
+namespace CSharpGL
 {
     internal class DrawArraysLineInTrianglesAdjacencySearcher : DrawArraysLineSearcher
     {

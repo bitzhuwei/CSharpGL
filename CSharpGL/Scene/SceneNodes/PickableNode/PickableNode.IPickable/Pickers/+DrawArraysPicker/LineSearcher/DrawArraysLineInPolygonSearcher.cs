@@ -1,4 +1,5 @@
-﻿namespace CSharpGL
+﻿using System;
+namespace CSharpGL
 {
     internal class DrawArraysLineInPolygonSearcher : DrawArraysLineSearcher
     {
@@ -10,7 +11,8 @@
         /// <param name="stageVertexId"></param>
         /// <param name="picker"></param>
         /// <returns></returns>
-        internal override uint[] Search(PickingEventArgs arg, uint flatColorVertexId, uint stageVertexId, DrawArraysPicker picker)
+        internal override uint[] Search(PickingEventArgs arg,
+            uint flatColorVertexId, uint stageVertexId, DrawArraysPicker picker)
         {
             var cmd = picker.DrawCommand as DrawArraysCmd;
             // when the temp index buffer could be long, it's no longer needed.
@@ -18,15 +20,14 @@
             DrawArraysCmd drawCmd = new DrawArraysCmd(DrawMode.LineLoop, cmd.MaxVertexCount, cmd.FirstVertex, cmd.VertexCount);
             picker.Node.Render4InnerPicking(arg, drawCmd);
             uint id = ColorCodedPicking.ReadStageVertexId(arg.X, arg.Y);
-            
+
             uint baseId = stageVertexId - flatColorVertexId;
             if (id == baseId + cmd.FirstVertex)
             { return new uint[] { (uint)(baseId + cmd.FirstVertex + cmd.VertexCount - 1), id, }; }
-            else if(baseId + cmd.FirstVertex < id && id <= (uint)(baseId + cmd.FirstVertex + cmd.VertexCount - 1))
-            else
+            else if (baseId + cmd.FirstVertex < id && id <= (uint)(baseId + cmd.FirstVertex + cmd.VertexCount - 1))
             { return new uint[] { id - 1, id, }; }
             else
-            throw new Exception("This should not happen!");
+            { throw new Exception("This should not happen!"); }
         }
     }
 }

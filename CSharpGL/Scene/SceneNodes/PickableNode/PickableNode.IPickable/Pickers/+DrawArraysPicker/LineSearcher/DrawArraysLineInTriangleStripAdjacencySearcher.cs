@@ -1,4 +1,5 @@
-﻿namespace CSharpGL
+﻿using System;
+namespace CSharpGL
 {
     internal class DrawArraysLineInTriangleStripAdjacencySearcher : DrawArraysLineSearcher
     {
@@ -21,7 +22,7 @@
             };
             IndexBuffer buffer = array.GenIndexBuffer(BufferUsage.StaticDraw);
             var cmd = new DrawElementsCmd(buffer, DrawMode.Lines);
-            picker.Node.Render4InnerPicking(arg,  cmd);
+            picker.Node.Render4InnerPicking(arg, cmd);
             uint id = ColorCodedPicking.ReadStageVertexId(arg.X, arg.Y);
 
             buffer.Dispose();

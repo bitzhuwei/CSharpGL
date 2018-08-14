@@ -207,7 +207,7 @@ namespace CSharpGL
         private PickedGeometry SearchLine(PickingEventArgs arg, uint stageVertexId,
             uint flatColorVertexId, DrawArraysLineSearcher searcher)
         {
-            var vertexIds = searcher.Search(arg, flatColorVertexId, this);
+            var vertexIds = searcher.Search(arg, flatColorVertexId, stageVertexId, this);
             var positions = FillPickedGeometrysPosition(vertexIds);
             var pickedGeometry = new PickedGeometry(GeometryType.Line, positions, vertexIds, stageVertexId, this.Node);
 
