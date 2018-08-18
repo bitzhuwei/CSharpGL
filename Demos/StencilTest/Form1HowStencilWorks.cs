@@ -33,7 +33,7 @@ namespace StencilTest
             var position = new vec3(4, 3, 5) * 0.5f;
             var center = new vec3(0, 0, 0);
             var up = new vec3(0, 1, 0);
-            var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
+            var camera = new Camera(position, center, up, CameraType.Perspective, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
             this.scene = new Scene(camera)
 
             {
@@ -124,7 +124,7 @@ namespace StencilTest
         //private SceneNodeBase GetRootElement()
         //{
         //    int width = 600, height = 400;
-        //    var innerCamera = new Camera(new vec3(0, 2, 5), new vec3(0, 0, 0), new vec3(0, 1, 0), CameraType.Perspecitive, width, height);
+        //    var innerCamera = new Camera(new vec3(0, 2, 5), new vec3(0, 0, 0), new vec3(0, 1, 0), CameraType.Perspective, width, height);
         //    (innerCamera as IPerspectiveViewCamera).Far = 50;
         //    IFramebufferProvider source = new DepthFramebufferProvider();
         //    var rtt = new RTTRenderer(width, height, innerCamera, source);

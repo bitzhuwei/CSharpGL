@@ -10,7 +10,7 @@
         /// <param name="delta"></param>
         public static void MouseWheel(this ICamera camera, int delta)
         {
-            //if (camera.CameraType == CameraTypes.Perspecitive)
+            //if (camera.CameraType == CameraTypes.Perspective)
             {
                 var target2Position = (camera.Position - camera.Target);
                 if (target2Position.length() < 0.01)

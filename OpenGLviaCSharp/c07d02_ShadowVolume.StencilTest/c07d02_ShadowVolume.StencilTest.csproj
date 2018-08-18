@@ -43,6 +43,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CameraModel.cs" />
+    <Compile Include="CameraNode.cs" />
+    <Compile Include="CameraNode.shaders.cs" />
+    <Compile Include="CubeModel.cs">
+      <SubType>
+      </SubType>
+    </Compile>
+    <Compile Include="CubeNode.cs">
+      <SubType>
+      </SubType>
+    </Compile>
+    <Compile Include="CubeNode.shaders.cs">
+      <SubType>
+      </SubType>
+    </Compile>
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>

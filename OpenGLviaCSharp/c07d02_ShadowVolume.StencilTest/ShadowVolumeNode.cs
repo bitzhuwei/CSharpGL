@@ -52,6 +52,9 @@ namespace c07d02_ShadowVolume.StencilTest
             this.Color = new vec3(1, 1, 1);
             this.Shiness = 32;
             this.BlinnPhong = true;
+            this.AmbientColor = new vec3(1, 1, 1);
+            this.Ambient = true;
+            this.UnderLight = false;
         }
 
 
@@ -60,8 +63,22 @@ namespace c07d02_ShadowVolume.StencilTest
         private TwoFlags enableShadowVolume = TwoFlags.BeforeChildren | TwoFlags.Children;
         public TwoFlags EnableShadowVolume { get { return this.enableShadowVolume; } set { this.enableShadowVolume = value; } }
 
+        private LineWidthSwitch lineWidth = new LineWidthSwitch(9);
+        private PolygonModeSwitch polygonMode = new PolygonModeSwitch(PolygonMode.Line);
+        private LineStippleSwitch stipple = new LineStippleSwitch(1, 0xFF);
+        private CullFaceSwitch cullBackface = new CullFaceSwitch();
+        private CullFaceSwitch cullFrontface = new CullFaceSwitch(CullFaceMode.Front);
+
+        public vec3 AmbientColor { get; set; }
+
+        public bool Ambient { get; set; }
+
+        public bool UnderLight { get; set; }
+
         public void RenderAmbientColor(ShadowVolumeAmbientEventArgs arg)
         {
+            if (!this.Ambient) { return; }
+
             ICamera camera = arg.Camera;
             mat4 projection = camera.GetProjectionMatrix();
             mat4 view = camera.GetViewMatrix();
@@ -70,9 +87,33 @@ namespace c07d02_ShadowVolume.StencilTest
             var method = this.RenderUnit.Methods[(int)MethodName.renderAmbientColor];
             ShaderProgram program = method.Program;
             program.SetUniform("mvpMat", projection * view * model);
-            program.SetUniform("ambientColor", arg.Ambient);
+            program.SetUniform("ambientColor", this.AmbientColor);
 
-            method.Render();
+            //if (!UnderLight)
+            //{
+            //    polygonMode.On();
+            //    lineWidth.On();
+            //    cullFrontface.On();
+            //    stipple.On();
+            //    method.Render();
+            //    stipple.Off();
+            //    cullFrontface.Off();
+            //    lineWidth.Off();
+            //    polygonMode.Off();
+
+            //    polygonMode.On();
+            //    lineWidth.On();
+            //    cullBackface.On();
+            //    method.Render();
+            //    cullBackface.Off();
+            //    lineWidth.Off();
+            //    polygonMode.Off();
+            //}
+            //else
+            {
+                program.SetUniform("ambientColor", arg.Ambient);
+                method.Render();
+            }
         }
 
         private TwoFlags enableExtrude = TwoFlags.BeforeChildren | TwoFlags.Children;
@@ -138,6 +179,8 @@ namespace c07d02_ShadowVolume.StencilTest
 
         public void RenderUnderLight(ShadowVolumeUnderLightEventArgs arg)
         {
+            if (!UnderLight) { return; }
+
             ICamera camera = arg.Camera;
             mat4 projection = camera.GetProjectionMatrix();
             mat4 view = camera.GetViewMatrix();

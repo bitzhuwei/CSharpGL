@@ -33,7 +33,7 @@ namespace c07d02_ShadowVolume.StencilTest
             var position = new vec3(1, 0.6f, 1) * 16;
             var center = new vec3(0, 0, 0);
             var up = new vec3(0, 1, 0);
-            var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
+            var camera = new Camera(position, center, up, CameraType.Ortho, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
             this.scene = new Scene(camera);
             this.scene.RootNode = GetRootNode();
             // add lights.
@@ -45,7 +45,7 @@ namespace c07d02_ShadowVolume.StencilTest
                     this.scene.Lights.Add(light);
                     var node = LightPositionNode.Create(light, angle);
                     angle += 360.0f / lightList.Count;
-                    this.scene.RootNode.Children.Add(node);
+                    //this.scene.RootNode.Children.Add(node);
                 }
             }
 
@@ -86,29 +86,95 @@ namespace c07d02_ShadowVolume.StencilTest
         private SceneNodeBase GetRootNode()
         {
             var group = new GroupNode();
-            var filenames = new string[] { "floor.obj_", "cube.obj_", };
-            var colors = new Color[] { Color.Green, Color.White, };
-            for (int i = 0; i < filenames.Length; i++)
             {
-                string folder = System.Windows.Forms.Application.StartupPath;
-                string filename = System.IO.Path.Combine(folder + @"\..\..\..\..\Infrastructure\CSharpGL.Models", filenames[i]);
-                var parser = new ObjVNFParser(true);
-                ObjVNFResult result = parser.Parse(filename);
-                if (result.Error != null)
+                var filenames = new string[] { "floor.obj_", "cube.obj_", };
+                var colors = new Color[] { Color.SkyBlue, Color.White, };
+                for (int i = 0; i < filenames.Length; i++)
                 {
-                    MessageBox.Show(result.Error.ToString());
-                }
-                else
-                {
-                    ObjVNFMesh mesh = result.Mesh;
-                    var model = new AdjacentTriangleModel(mesh);
-                    var node = ShadowVolumeNode.Create(model, ObjVNF.strPosition, ObjVNF.strNormal, model.GetSize());
-                    node.Color = colors[i].ToVec3();
-                    node.WorldPosition = new vec3(0, i * 5, 0);
-                    node.Name = filename;
-                    group.Children.Add(node);
+                    string folder = System.Windows.Forms.Application.StartupPath;
+                    string filename = System.IO.Path.Combine(folder + @"\..\..\..\..\Infrastructure\CSharpGL.Models", filenames[i]);
+                    var parser = new ObjVNFParser(true);
+                    ObjVNFResult result = parser.Parse(filename);
+                    if (result.Error != null)
+                    {
+                        MessageBox.Show(result.Error.ToString());
+                    }
+                    else
+                    {
+                        ObjVNFMesh mesh = result.Mesh;
+                        var model = new AdjacentTriangleModel(mesh);
+                        var node = ShadowVolumeNode.Create(model, ObjVNF.strPosition, ObjVNF.strNormal, model.GetSize());
+                        node.Color = colors[i].ToVec3();
+                        node.WorldPosition = new vec3(0, i * 45, 0);
+                        if (i == 0)
+                        {
+                            node.RotationAxis = new vec3(1, 0, 0);
+                            node.RotationAngle = 90;
+                        }
+                        if (i == 1)
+                        {
+                            node.RotationAxis = new vec3(1, 1, 1);
+                            node.RotationAngle = 90;
+                            node.Scale = new vec3(1, 1, 1) * 11;
+                        }
+                        node.Name = filename;
+                        group.Children.Add(node);
+                    }
                 }
             }
+            {
+                var node = CubeNode.Create();
+                node.RotationAxis = new vec3(1, 1, 1);
+                node.RotationAngle = 90;
+                node.Scale = new vec3(1, 1, 1) * 22;
+                node.WorldPosition = new vec3(0, 45, 0);
+                group.Children.Add(node);
+            }
+            {
+                var node = CameraNode.Create();
+                node.RotationAxis = new vec3(1, 1, 1);
+                node.RotationAngle = 90;
+                node.Scale = new vec3(1, 1, 1) * 11;
+                group.Children.Add(node);
+            }
+            {
+                var node = AxisNode.Create();
+                node.RotationAxis = new vec3(1, 1, 1);
+                node.RotationAngle = 90;
+                node.Scale = new vec3(1, 1, 1) * 11;
+                group.Children.Add(node);
+            }
+            //{
+            //    var filenames = new string[] { "floor.obj_", "cube.obj_", };
+            //    var colors = new Color[] { Color.SkyBlue, Color.White, };
+            //    for (int i = 0; i < filenames.Length; i++)
+            //    {
+            //        string folder = System.Windows.Forms.Application.StartupPath;
+            //        string filename = System.IO.Path.Combine(folder + @"\..\..\..\..\Infrastructure\CSharpGL.Models", filenames[i]);
+            //        var parser = new ObjVNFParser(true);
+            //        ObjVNFResult result = parser.Parse(filename);
+            //        if (result.Error != null)
+            //        {
+            //            MessageBox.Show(result.Error.ToString());
+            //        }
+            //        else
+            //        {
+            //            ObjVNFMesh mesh = result.Mesh;
+            //            var model = new AdjacentTriangleModel(mesh);
+            //            var node = ShadowVolumeNode.Create(model, ObjVNF.strPosition, ObjVNF.strNormal, model.GetSize());
+            //            node.Color = colors[i].ToVec3();
+            //            node.WorldPosition = new vec3(0, i * 15, 0);
+            //            if (i == 1)
+            //            {
+            //                node.RotationAxis = new vec3(1, 1, 1);
+            //                node.RotationAngle = 90;
+            //                node.Scale = new vec3(1, 1, 1) * 5;
+            //            }
+            //            node.Name = filename;
+            //            group.Children.Add(node);
+            //        }
+            //    }
+            //}
 
             return group;
         }

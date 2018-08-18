@@ -8,7 +8,7 @@
         /// <summary>
         /// 透视
         /// </summary>
-        Perspecitive,
+        Perspective,
 
         /// <summary>
         /// 正交

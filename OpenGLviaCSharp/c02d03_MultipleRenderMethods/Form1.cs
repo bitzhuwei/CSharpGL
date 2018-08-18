@@ -42,7 +42,7 @@ namespace c02d03_MultipleRenderMethods
             var position = new vec3(5, 3, 4) * 0.3f;
             var center = new vec3(0, 0, 0);
             var up = new vec3(0, 1, 0);
-            var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
+            var camera = new Camera(position, center, up, CameraType.Perspective, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
             Texture texture0, texture1;
             GetTextures(out texture0, out texture1);
             texture0.TextureUnitIndex = 0;// glActiveTexture(GL_TEXTURE0 + 0); glBindTexture(GL_TEXTURE_2D, texture0.TextureId);

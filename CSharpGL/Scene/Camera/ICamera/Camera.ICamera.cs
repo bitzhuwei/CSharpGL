@@ -25,7 +25,7 @@ namespace CSharpGL
 
             switch (this.CameraType)
             {
-                case CameraType.Perspecitive:
+                case CameraType.Perspective:
                     result = ((IPerspectiveCamera)this).GetPerspectiveProjectionMatrix();
                     break;
 

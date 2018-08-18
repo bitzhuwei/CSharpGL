@@ -39,7 +39,7 @@ namespace ColorCodedPicking
             var position = new vec3(5, 3, 4);
             var center = new vec3(0, 0, 0);
             var up = new vec3(0, 1, 0);
-            var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
+            var camera = new Camera(position, center, up, CameraType.Perspective, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
             this.teapot = TeapotNode.Create(false);
             teapot.Children.Add(new LegacyBoundingBoxNode(teapot.ModelSize));
             var ground = GroundNode.Create(); ground.Color = Color.Gray.ToVec4(); ground.Scale *= 10; ground.WorldPosition = new vec3(0, -3, 0);
