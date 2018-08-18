@@ -23,8 +23,7 @@ namespace c07d02_ShadowVolume.StencilTest
         {
             var list = new List<LightBase>();
             {
-                //var light = new CSharpGL.PointLight(new vec3(3, 3, 3), new Attenuation(2, 0, 0));
-                var light = new CSharpGL.DirectionalLight(new vec3(0, 0, 1));
+                var light = new CSharpGL.PointLight(new vec3(3, 3, 3), new Attenuation(2, 0, 0));
                 light.Diffuse = new vec3(1, 1, 1);
                 light.Specular = new vec3(1, 1, 1);
                 list.Add(light);
