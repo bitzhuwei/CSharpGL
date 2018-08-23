@@ -35,7 +35,7 @@ void main()
     //by multiplying the colour alpha with the background colour and adding the 
     //product to the given colour uniform
     if (useBackground) {
-        outColor = color + backgroundColor*color.a;
+        outColor = color + backgroundColor * color.a;
     }
     else {
         outColor = color;
