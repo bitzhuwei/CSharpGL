@@ -40,7 +40,7 @@ in vec3 passPosition[]; // an array of 6 vertices (triangle with adjacency)
 uniform bool farAway = false; // light's position is infinitly far away.
 uniform vec3 lightPosition; // if farAway is true, lightPosition means direction to light source; otherwise, it means light's position.
 uniform mat4 vpMat;
-uniform mat4 gWorld;
+uniform mat4 modelMat;
 float EPSILON = 0.0001;
 out GS_FS {
     vec3 position;
@@ -82,12 +82,12 @@ void EmitQuad(vec3 StartVertex, vec3 EndVertex)
 void main()
 {
     vec3 worldSpacePos[6]; 
-    worldSpacePos[0] = vec3(gWorld * vec4(passPosition[0], 1.0));
-    worldSpacePos[1] = vec3(gWorld * vec4(passPosition[1], 1.0));
-    worldSpacePos[2] = vec3(gWorld * vec4(passPosition[2], 1.0));
-    worldSpacePos[3] = vec3(gWorld * vec4(passPosition[3], 1.0));
-    worldSpacePos[4] = vec3(gWorld * vec4(passPosition[4], 1.0));
-    worldSpacePos[5] = vec3(gWorld * vec4(passPosition[5], 1.0));
+    worldSpacePos[0] = vec3(modelMat * vec4(passPosition[0], 1.0));
+    worldSpacePos[1] = vec3(modelMat * vec4(passPosition[1], 1.0));
+    worldSpacePos[2] = vec3(modelMat * vec4(passPosition[2], 1.0));
+    worldSpacePos[3] = vec3(modelMat * vec4(passPosition[3], 1.0));
+    worldSpacePos[4] = vec3(modelMat * vec4(passPosition[4], 1.0));
+    worldSpacePos[5] = vec3(modelMat * vec4(passPosition[5], 1.0));
     vec3 e1 = worldSpacePos[2] - worldSpacePos[0];
     vec3 e2 = worldSpacePos[4] - worldSpacePos[0];
     vec3 e3 = worldSpacePos[1] - worldSpacePos[0];

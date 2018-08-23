@@ -117,8 +117,8 @@ namespace BasicTessellationShader
             RenderMethod method = this.RenderUnit.Methods[0];
             ShaderProgram program = method.Program;
             //program.SetUniform()
-            //uniform mat4 gWorld;                                                                           
-            program.SetUniform("gWorld", model);
+            //uniform mat4 modelMat;                                                                           
+            program.SetUniform("modelMat", model);
             //uniform vec3 gEyeWorldPos;
             program.SetUniform("gEyeWorldPos", camera.Position);
             //uniform mat4 gVP;
