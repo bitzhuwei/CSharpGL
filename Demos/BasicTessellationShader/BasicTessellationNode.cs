@@ -22,7 +22,7 @@ namespace BasicTessellationShader
             var fs = new FragmentShader(renderFrag);
             var provider = new ShaderArray(vs, tc, te, fs);
             var map = new AttributeMap();
-            map.Add("Position_VS_in", ObjVNF.strPosition);
+            map.Add("inPosition", ObjVNF.strPosition);
             map.Add("TexCoord_VS_in", ObjVNF.strTexCoord);
             map.Add("Normal_VS_in", ObjVNF.strNormal);
             var builder = new RenderMethodBuilder(provider, map);

@@ -10,7 +10,7 @@ namespace BasicTessellationShader
     {
         private const string renderVert = @"#version 410 core
                                                                                                 
-layout (location = 0) in vec3 Position_VS_in;                                                   
+layout (location = 0) in vec3 inPosition;                                                   
 layout (location = 1) in vec2 TexCoord_VS_in;                                                   
 layout (location = 2) in vec3 Normal_VS_in;                                                     
                                                                                                 
@@ -22,7 +22,7 @@ out vec3 Normal_CS_in;
                                                                                                 
 void main()                                                                                     
 {                                                                                               
-    WorldPos_CS_in = (modelMat * vec4(Position_VS_in, 1.0)).xyz;                                  
+    WorldPos_CS_in = (modelMat * vec4(inPosition, 1.0)).xyz;                                  
     TexCoord_CS_in = TexCoord_VS_in;                                                            
     Normal_CS_in   = (modelMat * vec4(Normal_VS_in, 0.0)).xyz;                                    
 }
