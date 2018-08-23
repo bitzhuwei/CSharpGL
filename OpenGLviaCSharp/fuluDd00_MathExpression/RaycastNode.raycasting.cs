@@ -10,9 +10,9 @@ namespace fuluDd00_MathExpression
     {
         private const string raycastingVert = @"#version 150
 
-in vec3 position;
+in vec3 inPosition;
 // have to use this variable!!!, or it will be very hard to debug for AMD video card
-in vec3 boundingBox;  
+in vec3 inBoundingBox;  
 
 out vec3 passEntryPoint;
 
@@ -20,8 +20,8 @@ uniform mat4 mvpMat;
 
 void main()
 {
-    passEntryPoint = boundingBox;
-    gl_Position = mvpMat * vec4(position, 1.0);
+    passEntryPoint = inBoundingBox;
+    gl_Position = mvpMat * vec4(inPosition, 1.0);
 }
 ";
         private const string raycastingFrag = @"#version 150
