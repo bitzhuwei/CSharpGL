@@ -20,7 +20,7 @@ void main()
 ";
         public const string finalFrag = @"#version 330 core
 
-layout(location = 0) out vec4 vFragColor;	//fragment shader output
+layout(location = 0) out vec4 outColor;	//fragment shader output
 
 //uniforms
 uniform sampler2DRect colorTexture;	//colour texture from previous pass
@@ -35,10 +35,10 @@ void main()
     //by multiplying the colour alpha with the background colour and adding the 
     //product to the given colour uniform
     if (useBackground) {
-	    vFragColor = color + vBackgroundColor*color.a;
+	    outColor = color + vBackgroundColor*color.a;
     }
     else {
-        vFragColor = color;
+        outColor = color;
     }
 }
 ";

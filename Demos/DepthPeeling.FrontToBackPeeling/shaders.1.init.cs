@@ -23,13 +23,13 @@ void main()
 ";
         public const string initFrag = @"#version 330 core
 
-layout(location = 0) out vec4 vFragColor; //output fragment colour
+layout(location = 0) out vec4 outColor; //output fragment colour
 
 uniform vec4 vColor;	//colour uniform
 
 void main()
 {
-    vFragColor = vec4(vColor.rgb * vColor.a, 1.0 - vColor.a);
+    outColor = vec4(vColor.rgb * vColor.a, 1.0 - vColor.a);
 }
 ";
 

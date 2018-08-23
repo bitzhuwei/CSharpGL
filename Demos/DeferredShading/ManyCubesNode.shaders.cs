@@ -27,11 +27,11 @@ void main()
 
 in vec3 passColor;
 
-layout (location = 0) out vec3 vFragColor;
+layout (location = 0) out vec3 outColor;
 
 void main()
 {
-    vFragColor = passColor;
+    outColor = passColor;
 }
 ";
 

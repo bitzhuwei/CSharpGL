@@ -94,7 +94,7 @@ void main()
 
         private const string frag = @"#version 330 core
 
-layout(location=0) out vec4 vFragColor; // fragment shader output
+layout(location=0) out vec4 outColor; // fragment shader output
 
 //input from the vertex shader
 in vec4 vSmoothColor;	//lienarly interpolated particle colour
@@ -103,12 +103,12 @@ in vec4 vSmoothColor;	//lienarly interpolated particle colour
 void main()
 {
 	//use the particle smooth colour as fragment output
-	vFragColor = vSmoothColor; 
+	outColor = vSmoothColor; 
 }
 ";
         private const string texturedFrag = @"#version 330 core
 
-layout(location=0) out vec4 vFragColor; // fragment shader output
+layout(location=0) out vec4 outColor; // fragment shader output
 
 //input from the vertex shader
 in vec4 vSmoothColor;	//lienarly interpolated particle colour
@@ -119,7 +119,7 @@ void main()
 { 
 	//use the particle smooth colour alpha value to fade the colour obtained
 	//from the texture lookup 
-	vFragColor = vec4(texture(textureMap, gl_PointCoord).rgb, 1.0) * vSmoothColor.a;  
+	outColor = vec4(texture(textureMap, gl_PointCoord).rgb, 1.0) * vSmoothColor.a;  
 }
 ";
     }

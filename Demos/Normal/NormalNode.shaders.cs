@@ -39,14 +39,14 @@ const vec3 lightPosition = vec3(0, 0, 0); // flash light's position in eye space
 in vec3 passPosition;
 in vec3 passNormal;
 
-out vec4 vFragColor;
+out vec4 outColor;
 
 void main(void)
 {
     vec3 L = normalize(lightPosition - passPosition);
     float diffuse = max(0, dot(L, normalize(passNormal)));
     
-    vFragColor = vec4(ambientColor + diffuse * diffuseColor, 1);
+    outColor = vec4(ambientColor + diffuse * diffuseColor, 1);
 }
 ";
 

@@ -47,7 +47,7 @@ uniform float spotExponent = 1; // spot light exponent
 in vec3 passPosition;
 in vec3 passNormal;
 
-out vec4 vFragColor;
+out vec4 outColor;
 
 void main(void)
 {
@@ -73,11 +73,11 @@ void main(void)
             specular *= attenuationAmount;
 	    }
 
-        vFragColor = vec4(((ambientColor + diffuse) * diffuseColor + specular) * lightColor, 1);
+        outColor = vec4(((ambientColor + diffuse) * diffuseColor + specular) * lightColor, 1);
     }
 	else
     {
-        vFragColor = vec4((ambientColor * diffuseColor) * lightColor, 1.0);
+        outColor = vec4((ambientColor * diffuseColor) * lightColor, 1.0);
     }
 }
 ";

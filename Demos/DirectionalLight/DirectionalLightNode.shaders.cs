@@ -38,7 +38,7 @@ uniform vec3 " + ambientColor + @" = vec3(0.2, 0.2, 0.2);
 // inputs from vertex shader
 smooth in vec3 eyeSpaceNormal; // interpolated normal in eye space
 
-layout (location = 0) out vec4 vFragColor; // fargment shader output
+layout (location = 0) out vec4 outColor; // fargment shader output
 
 void main()
 {
@@ -52,7 +52,7 @@ void main()
         specular = pow(specular, shiness) * strength;
     }
     
-    vFragColor = vec4(((ambientColor + diffuse) * diffuseColor + specular) * lightColor, 1.0);
+    outColor = vec4(((ambientColor + diffuse) * diffuseColor + specular) * lightColor, 1.0);
 }
 ";
 

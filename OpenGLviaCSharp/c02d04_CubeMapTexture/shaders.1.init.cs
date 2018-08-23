@@ -32,12 +32,12 @@ in vec3 passTexCoord;
 uniform samplerCube cubeTex;	//texture uniform
 uniform float alpha = 0.25;
 
-out vec4 vFragColor; //output fragment colour
+out vec4 outColor; //output fragment colour
 
 void main()
 {
     vec4 vColor = texture(cubeTex, passTexCoord);
-    vFragColor = vec4(vColor.rgb * alpha, 1.0 - alpha);
+    outColor = vec4(vColor.rgb * alpha, 1.0 - alpha);
 }
 ";
     }

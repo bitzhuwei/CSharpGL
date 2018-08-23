@@ -22,14 +22,14 @@ void main()
 
 uniform sampler2DRect tempTexture; //intermediate blending result
 
-layout(location = 0) out vec4 vFragColor; //fragment shader output
+layout(location = 0) out vec4 outColor; //fragment shader output
 
 void main()
 {
     //return the intermediate blending result
-    vFragColor = texture(tempTexture, gl_FragCoord.xy); 
+    outColor = texture(tempTexture, gl_FragCoord.xy); 
     // for occlusion query.
-    if (vFragColor.a == 0) discard;
+    if (outColor.a == 0) discard;
 }
 ";
 

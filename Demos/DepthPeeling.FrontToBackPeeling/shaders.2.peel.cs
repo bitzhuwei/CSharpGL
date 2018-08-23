@@ -23,7 +23,7 @@ void main()
 ";
         public const string peelFrag = @"#version 330 core
 
-layout(location = 0) out vec4 vFragColor;	//fragment shader output
+layout(location = 0) out vec4 outColor;	//fragment shader output
 
 //uniforms
 uniform vec4 vColor;						//solid colour 
@@ -39,7 +39,7 @@ void main()
     if(gl_FragCoord.z <= frontDepth) discard;
 	
     //otherwise set the given color uniform as the final output
-    vFragColor = vec4(vColor.rgb * vColor.a, vColor.a);
+    outColor = vec4(vColor.rgb * vColor.a, vColor.a);
 }
 ";
     }

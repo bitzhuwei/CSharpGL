@@ -31,7 +31,7 @@ void main()
 ";
         private const string classificationFrag = @"#version 330 core
 
-layout(location = 0) out vec4 vFragColor;	//fragment shader output
+layout(location = 0) out vec4 outColor;	//fragment shader output
 
 smooth in vec3 vUV;			//3D texture coordinates form vertex shader interpolated by rasterizer
 
@@ -46,7 +46,7 @@ void main()
 	//we can get the sample value from the texture using the red channel. Then, we use the density 
 	//value obtained from the volume dataset and lookup the colour from the transfer function texture 
 	//by doing a dependent texture lookup.
-	vFragColor = texture(lut, texture(volume, vUV).r);
+	outColor = texture(lut, texture(volume, vUV).r);
 }
 ";
 

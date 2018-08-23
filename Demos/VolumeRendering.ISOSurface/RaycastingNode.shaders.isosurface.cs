@@ -31,7 +31,7 @@ void main()
 ";
         private const string isosurfaceFrag = @"#version 330 core
 
-layout(location = 0) out vec4 vFragColor;	//fragment shader output
+layout(location = 0) out vec4 outColor;	//fragment shader output
 
 smooth in vec3 vUV;				//3D texture coordinates form vertex shader 
 								//interpolated by rasterizer
@@ -163,7 +163,7 @@ void main()
 			vec3 tc = Bisection(xN, xF, isoValue);	
 	
 			//This returns the first hit surface
-			//vFragColor = make_float4(xN,1);
+			//outColor = make_float4(xN,1);
           	
 			//To get the shaded iso-surface, we first estimate the normal
 			//at the refined position
@@ -179,9 +179,9 @@ void main()
 
 			//Finally, we call PhongLighing function to get the final colour
 			//with diffuse and specular components. Try changing this call to this
-			//vFragColor =  PhongLighting(L,N,V,250,  tc); to get a multi colour
+			//outColor =  PhongLighting(L,N,V,250,  tc); to get a multi colour
 			//iso-surface
-			vFragColor =  PhongLighting(L,N,V,250, vec3(0.5));	
+			outColor =  PhongLighting(L,N,V,250, vec3(0.5));	
             isDiscard = false;
 			break;
 		} 

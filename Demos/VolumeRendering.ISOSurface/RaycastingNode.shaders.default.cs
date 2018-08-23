@@ -31,7 +31,7 @@ void main()
 ";
         private const string defaultFrag = @"#version 330 core
 
-layout(location = 0) out vec4 vFragColor;	//fragment shader output
+layout(location = 0) out vec4 outColor;	//fragment shader output
 
 smooth in vec3 vUV;				//3D texture coordinates form vertex shader 
 								//interpolated by rasterizer
@@ -99,15 +99,15 @@ void main()
 		//Next, this alpha is multiplied with the current sample colour and accumulated
 		//to the composited colour. The alpha value from the previous steps is then 
 		//accumulated to the composited colour alpha.
-		float prev_alpha = sample - (sample * vFragColor.a);
-		vFragColor.rgb = prev_alpha * vec3(sample) + vFragColor.rgb; 
-		vFragColor.a += prev_alpha; 
+		float prev_alpha = sample - (sample * outColor.a);
+		outColor.rgb = prev_alpha * vec3(sample) + outColor.rgb; 
+		outColor.a += prev_alpha; 
         isDiscard = false;
 			
 		//early ray termination
 		//if the currently composited colour alpha is already fully saturated
 		//we terminated the loop
-		if( vFragColor.a>0.99)
+		if( outColor.a>0.99)
 			break;
 	} 
     

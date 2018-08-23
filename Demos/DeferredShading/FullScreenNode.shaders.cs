@@ -31,10 +31,10 @@ uniform sampler2D colorSampler;
 
 in vec2 passTexCoord;
 
-out vec4 vFragColor;
+out vec4 outColor;
 
 void main(void) {
-    vFragColor = texture(colorSampler, passTexCoord);
+    outColor = texture(colorSampler, passTexCoord);
 }
 ";
 

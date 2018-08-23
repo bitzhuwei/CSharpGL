@@ -20,7 +20,7 @@ void main()
 ";
         public const string finalFrag = @"#version 330 core
 
-layout(location = 0) out vec4 vFragColor;	//fragment shader output
+layout(location = 0) out vec4 outColor;	//fragment shader output
 
 uniform sampler2DRect DepthBlenderTex;
 uniform sampler2DRect FrontBlenderTex;
@@ -42,7 +42,7 @@ void main(void)
     // back blender
     //color = backColor;
     
-    vFragColor = vec4(color, frontColor.a);
+    outColor = vec4(color, frontColor.a);
 }
 
 ";

@@ -34,7 +34,7 @@ uniform samplerCube cubeTex;	//texture uniform
 uniform sampler2DRect  depthTexture;		//depth texture 
 uniform float alpha = 0.25;
 
-out vec4 vFragColor;	//fragment shader output
+out vec4 outColor;	//fragment shader output
 
 void main()
 {
@@ -47,7 +47,7 @@ void main()
 	
     //otherwise set the given color uniform as the final output
     vec4 vColor = texture(cubeTex, passTexCoord);
-    vFragColor = vec4(vColor.rgb * alpha, alpha);
+    outColor = vec4(vColor.rgb * alpha, alpha);
 }
 ";
     }
