@@ -12,10 +12,10 @@ namespace CSharpGL
     {
         private const string inPosition = "position";
         private const string inNormal = "normal";
-        private const string model_matrix = "model_matrix";
-        private const string view_matrix = "view_matrix";
-        private const string projection_matrix = "projection_matrix";
-        private const string material_ambient = "material_ambient";
+        private const string modelMat = "modelMat";
+        private const string viewMat = "viewMat";
+        private const string projectionMat = "projectionMat";
+        private const string materialAmbient = "materialAmbient";
         private const string material_diffuse = "material_diffuse";
         private const string material_specular = "material_specular";
         private const string material_specular_power = "material_specular_power";
@@ -24,9 +24,9 @@ namespace CSharpGL
         private const string vertexCode =
             @"#version 330
 
-uniform mat4 " + model_matrix + @";
-uniform mat4 " + view_matrix + @";
-uniform mat4 " + projection_matrix + @";
+uniform mat4 " + modelMat + @";
+uniform mat4 " + viewMat + @";
+uniform mat4 " + projectionMat + @";
 
 layout (location = 0) in vec4 " + inPosition + @";
 layout (location = 1) in vec3 " + inNormal + @";
@@ -40,13 +40,13 @@ out _Vertex
 
 void main(void)
 {
-	vec4 world_pos = model_matrix * position;
-	vec4 eye_pos = view_matrix * world_pos;
-	vec4 clip_pos = projection_matrix * eye_pos;
+	vec4 world_pos = modelMat * position;
+	vec4 eye_pos = viewMat * world_pos;
+	vec4 clip_pos = projectionMat * eye_pos;
 	
 	v.world_coord = world_pos.xyz;
 	v.eye_coord = eye_pos.xyz;
-	v.normal = normalize(mat3(view_matrix * model_matrix) * normal);
+	v.normal = normalize(mat3(viewMat * modelMat) * normal);
 	
 	gl_Position = clip_pos;
 }
@@ -54,7 +54,7 @@ void main(void)
         private const string fragmentCode =
             @"#version 330
 
-uniform vec3 " + material_ambient + @" = vec3(0.2, 0.2, 0.2);
+uniform vec3 " + materialAmbient + @" = vec3(0.2, 0.2, 0.2);
 uniform vec3 " + material_diffuse + @";
 uniform vec3 " + material_specular + @";
 uniform float " + material_specular_power + @";
@@ -81,7 +81,7 @@ void main(void)
 	float diffuse = max(NdotL, 0.0);
 	float specular = 0;//max(pow(EdotR, material_specular_power), 0.0);
 	
-	color = vec4(material_ambient + material_diffuse * diffuse + material_specular * specular, 1.0);
+	color = vec4(materialAmbient + material_diffuse * diffuse + material_specular * specular, 1.0);
 }
 ";
 
@@ -133,7 +133,7 @@ void main(void)
                 {
                     var method = this.RenderUnit.Methods[0];
                     ShaderProgram program = method.Program;
-                    program.GetUniformValue(material_ambient, out value);
+                    program.GetUniformValue(materialAmbient, out value);
                 }
                 return value;
             }
@@ -143,7 +143,7 @@ void main(void)
                 {
                     var method = this.RenderUnit.Methods[0];
                     ShaderProgram program = method.Program;
-                    program.SetUniform(material_ambient, value);
+                    program.SetUniform(materialAmbient, value);
                 }
             }
         }
@@ -178,11 +178,11 @@ void main(void)
 
             var method = this.RenderUnit.Methods[0];
             ShaderProgram program = method.Program;
-            program.SetUniform(model_matrix, model);
-            program.SetUniform(view_matrix, view);
-            program.SetUniform(projection_matrix, projection);
+            program.SetUniform(modelMat, model);
+            program.SetUniform(viewMat, view);
+            program.SetUniform(projectionMat, projection);
             program.SetUniform(light_position, new vec3(view * new vec4(LightPosition, 1.0f)));
-            //program.SetUniform(material_ambient, this.Ambient);
+            //program.SetUniform(materialAmbient, this.Ambient);
             program.SetUniform(material_diffuse, this.Diffuse);
             program.SetUniform(material_specular, this.Specular);
             program.SetUniform(material_specular_power, this.SpecularPower);
