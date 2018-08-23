@@ -61,7 +61,7 @@ namespace ImageProcessing.GrayFilter
 
             RenderMethod method = this.RenderUnit.Methods[0];
             ShaderProgram program = method.Program;
-            program.SetUniform("u_texture", texture);
+            program.SetUniform("tex", texture);
         }
 
         private ThreeFlags enableRendering = ThreeFlags.BeforeChildren | ThreeFlags.Children | ThreeFlags.AfterChildren;

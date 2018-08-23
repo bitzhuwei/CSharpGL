@@ -25,7 +25,7 @@ void main(void)
 ";
         private const string fragmentShader = @"#version 150 core
 
-uniform sampler2D u_texture; 
+uniform sampler2D tex; 
 
 in vec2 passTexCoord;
 
@@ -33,7 +33,7 @@ out vec4 outColor;
 
 void main(void)
 {
-	//outColor = texture(u_texture, passTexCoord);
+	//outColor = texture(tex, passTexCoord);
 	outColor = vec4(passTexCoord, passTexCoord.x / 2 + passTexCoord.y / 2, 1.0f);
 }
 ";

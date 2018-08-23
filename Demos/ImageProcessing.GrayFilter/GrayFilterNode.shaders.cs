@@ -26,7 +26,7 @@ void main(void)
 ";
         private const string renderFrag = @"#version 150
 
-uniform sampler2D u_texture; 
+uniform sampler2D tex; 
 
 in vec2 passTexCoord;
 
@@ -34,7 +34,7 @@ out vec4 outColor;
 
 void main(void)
 {
-	vec4 color = texture(u_texture, passTexCoord);
+	vec4 color = texture(tex, passTexCoord);
 
 	if (passTexCoord.s >= 0.5)
 	{
