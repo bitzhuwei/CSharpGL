@@ -18,26 +18,26 @@ layout(location = 0) in vec3 " + inPosition + @";
 
 uniform mat4 " + mvpMatrix + @";
 
-out vec3 texCoord;
+out vec3 passTexCoord;
 
 void main()
 {
     vec4 position = mvpMatrix * vec4(inPosition, 1.0); 
     gl_Position = position.xyww;
-    texCoord = inPosition;
+    passTexCoord = inPosition;
 }
 ";
         private const string fragmentCode = @"#version 330 core
 
 uniform samplerCube " + skybox + @";
 
-in vec3 texCoord;
+in vec3 passTexCoord;
 
 out vec4 color;
 
 void main()
 {
-    color = texture(skybox, texCoord);
+    color = texture(skybox, passTexCoord);
 }
 ";
         private Texture texture;
