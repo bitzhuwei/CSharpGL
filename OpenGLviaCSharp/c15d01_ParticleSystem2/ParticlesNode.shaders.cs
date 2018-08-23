@@ -27,7 +27,7 @@ uniform float deltaTime; // in seconds.
 
 // return value between [-1, 1].
 float rand(float seed){
- return fract(sin(dot(vec2(seed, seed * seed), vec2(345.0324, 51.8234))) * 9846.29384) - 0.5;
+    return fract(sin(dot(vec2(seed, seed * seed), vec2(345.0324, 51.8234))) * 9846.29384) - 0.5;
 }
 
 void main(void)
@@ -78,13 +78,13 @@ void main(void)
 
         private const string fragmentCode = @"#version 430 core
 
-out vec4 color;
+out vec4 outColor;
 
 in float intensity;
 
 void main(void)
 {
-    color = vec4(0.0f, 0.2f, 1.0f, 1.0f) * intensity + vec4(0.2f, 0.05f, 0.0f, 1.0f) * (1.0f - intensity);
+    outColor = vec4(0.0f, 0.2f, 1.0f, 1.0f) * intensity + vec4(0.2f, 0.05f, 0.0f, 1.0f) * (1.0f - intensity);
 }
 ";
 
