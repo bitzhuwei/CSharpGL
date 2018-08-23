@@ -20,7 +20,7 @@ namespace DeferredShading
         {
             var map = new AttributeMap();
             map.Add("inPosition", ManyCubesModel.strPosition);
-            map.Add("vColor", ManyCubesModel.strColor);
+            map.Add("inColor", ManyCubesModel.strColor);
             var vs = new VertexShader(firstPassVert);
             var fs = new FragmentShader(firstPassFrag);
             var array = new ShaderArray(vs, fs);

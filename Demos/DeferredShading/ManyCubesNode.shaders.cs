@@ -11,7 +11,7 @@ namespace DeferredShading
         private const string firstPassVert = @"#version 330 core
 
 in vec3 inPosition;
-in vec3 vColor;
+in vec3 inColor;
 
 uniform mat4 mvpMat;
 
@@ -20,7 +20,7 @@ out vec3 passColor;
 void main()
 {
 	gl_Position = mvpMat * vec4(inPosition, 1);
-    passColor = vColor;
+    passColor = inColor;
 }
 ";
         private const string firstPassFrag = @"#version 330 core
