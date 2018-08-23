@@ -24,7 +24,7 @@ namespace BasicTessellationShader
             var map = new AttributeMap();
             map.Add("inPosition", ObjVNF.strPosition);
             map.Add("inTexCoord", ObjVNF.strTexCoord);
-            map.Add("Normal_VS_in", ObjVNF.strNormal);
+            map.Add("inNormal", ObjVNF.strNormal);
             var builder = new RenderMethodBuilder(provider, map);
 
             var node = new BasicTessellationNode(model, builder);

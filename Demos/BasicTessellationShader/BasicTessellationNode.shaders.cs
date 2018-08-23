@@ -12,7 +12,7 @@ namespace BasicTessellationShader
                                                                                                 
 layout (location = 0) in vec3 inPosition;                                                   
 layout (location = 1) in vec2 inTexCoord;                                                   
-layout (location = 2) in vec3 Normal_VS_in;                                                     
+layout (location = 2) in vec3 inNormal;                                                     
                                                                                                 
 uniform mat4 modelMat;                                                                            
                                                                                                 
@@ -24,7 +24,7 @@ void main()
 {                                                                                               
     WorldPos_CS_in = (modelMat * vec4(inPosition, 1.0)).xyz;                                  
     TexCoord_CS_in = inTexCoord;                                                            
-    Normal_CS_in   = (modelMat * vec4(Normal_VS_in, 0.0)).xyz;                                    
+    Normal_CS_in   = (modelMat * vec4(inNormal, 0.0)).xyz;                                    
 }
 ";
         private const string renderTesc = @"#version 410 core                                                                               
