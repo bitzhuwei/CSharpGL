@@ -27,13 +27,13 @@ void main(void)
 
         private const string fragmentCode = @"#version 150 core
 
-out vec4 color;
+out vec4 outColor;
 
 in vec3 passColor;
 
 void main(void)
 {
-    color = vec4(passColor, 1.0);
+    outColor = vec4(passColor, 1.0);
 }
 ";
     }

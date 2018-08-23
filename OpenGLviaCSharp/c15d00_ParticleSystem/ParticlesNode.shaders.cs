@@ -26,7 +26,7 @@ uniform float dieSpeed = 0.02;
 
 // return value between [-1, 1].
 float rand(float seed){
- return fract(sin(dot(vec2(seed, seed * seed), vec2(345.0324, 51.8234))) * 9846.29384) - 0.5;
+    return fract(sin(dot(vec2(seed, seed * seed), vec2(345.0324, 51.8234))) * 9846.29384) - 0.5;
 }
 
 void main(void)
