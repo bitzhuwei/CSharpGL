@@ -23,7 +23,7 @@ namespace BasicTessellationShader
             var provider = new ShaderArray(vs, tc, te, fs);
             var map = new AttributeMap();
             map.Add("inPosition", ObjVNF.strPosition);
-            map.Add("TexCoord_VS_in", ObjVNF.strTexCoord);
+            map.Add("inTexCoord", ObjVNF.strTexCoord);
             map.Add("Normal_VS_in", ObjVNF.strNormal);
             var builder = new RenderMethodBuilder(provider, map);
 
