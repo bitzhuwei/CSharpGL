@@ -100,12 +100,12 @@ namespace Lighting.ShadowVolume
             if (arg.Light is DirectionalLight)
             {
                 var light = arg.Light as DirectionalLight;
-                program.SetUniform("gLightPos", light.Direction);
+                program.SetUniform("lightPosition", light.Direction);
                 program.SetUniform("farAway", true);
             }
             else
             {
-                program.SetUniform("gLightPos", arg.Light.Position);
+                program.SetUniform("lightPosition", arg.Light.Position);
                 program.SetUniform("farAway", false);
             }
 

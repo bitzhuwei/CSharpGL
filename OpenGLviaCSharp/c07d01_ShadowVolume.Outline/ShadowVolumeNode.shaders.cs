@@ -49,7 +49,7 @@ layout (line_strip, max_vertices = 6) out; // 4 per quad * 3 triangle vertices +
 in vec3 passPosition[]; // an array of 6 vertices (triangle with adjacency)
 
 uniform bool farAway = false; // light's position is infinitly far away.
-uniform vec3 gLightPos; // if farAway is true, gLightPos means direction to light source; otherwise, it means light's position.
+uniform vec3 lightPosition; // if farAway is true, lightPosition means direction to light source; otherwise, it means light's position.
 uniform mat4 gProjectionView;
 uniform mat4 gWorld;
 
@@ -86,8 +86,8 @@ void main()
 
     vec3 Normal = normalize(cross(e1,e2));
     vec3 LightDir;
-    if (farAway) { LightDir = gLightPos; }
-    else { LightDir = normalize(gLightPos - worldSpacePos[0]); }
+    if (farAway) { LightDir = lightPosition; }
+    else { LightDir = normalize(lightPosition - worldSpacePos[0]); }
 
     // Handle only light facing triangles
     if (dot(Normal, LightDir) > 0) {
@@ -101,8 +101,8 @@ void main()
         }
 
         Normal = cross(e4,e5);
-        if (farAway) { LightDir = gLightPos; }
-        else { LightDir = normalize(gLightPos - worldSpacePos[2]); }
+        if (farAway) { LightDir = lightPosition; }
+        else { LightDir = normalize(lightPosition - worldSpacePos[2]); }
 
         if (dot(Normal, LightDir) <= 0) {
             vec3 StartVertex = worldSpacePos[2];
@@ -111,8 +111,8 @@ void main()
         }
 
         Normal = cross(e2,e6);
-        if (farAway) { LightDir = gLightPos; }
-        else { LightDir = normalize(gLightPos - worldSpacePos[4]); }
+        if (farAway) { LightDir = lightPosition; }
+        else { LightDir = normalize(lightPosition - worldSpacePos[4]); }
 
         if (dot(Normal, LightDir) <= 0) {
             vec3 StartVertex = worldSpacePos[4];
