@@ -38,7 +38,7 @@ void main(void) {
 	gl_Position = MVP * vec4(inPosition, 1.0);
 
 	int objectID = pickingBaseId + gl_VertexID;
-	pass_Color = vec4(
+	passColor = vec4(
 		float(objectID & 0xFF) / 255.0, 
 		float((objectID >> 8) & 0xFF) / 255.0, 
 		float((objectID >> 16) & 0xFF) / 255.0, 
