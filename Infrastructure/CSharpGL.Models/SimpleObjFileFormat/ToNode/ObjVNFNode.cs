@@ -40,15 +40,15 @@ out _Vertex
 
 void main(void)
 {
-	vec4 world_pos = modelMat * position;
-	vec4 eye_pos = viewMat * world_pos;
-	vec4 clip_pos = projectionMat * eye_pos;
+	vec4 worldPos = modelMat * position;
+	vec4 eyePos = viewMat * worldPos;
+	vec4 clipPos = projectionMat * eyePos;
 	
-	v.worldSpacePos = world_pos.xyz;
-	v.eyeSpacePos = eye_pos.xyz;
+	v.worldSpacePos = worldPos.xyz;
+	v.eyeSpacePos = eyePos.xyz;
 	v.eyeSpaceNormal = normalize(mat3(viewMat * modelMat) * inNormal);
 	
-	gl_Position = clip_pos;
+	gl_Position = clipPos;
 }
 ";
         private const string fragmentCode =
