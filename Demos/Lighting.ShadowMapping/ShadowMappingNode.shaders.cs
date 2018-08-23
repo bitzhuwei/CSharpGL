@@ -64,7 +64,7 @@ out _Vertex {
     vec3 position;
     vec3 normal;
     vec4 shadow_coord;
-} vs_out;
+} v;
 
 uniform mat4 mvpMat;
 uniform mat4 modelMat;
@@ -74,9 +74,9 @@ uniform mat4 shadow_matrix;
 void main() {
     gl_Position = mvpMat * vec4(inPosition, 1.0);
     vec4 worldPos = modelMat * vec4(inPosition, 1.0);
-    vs_out.position = worldPos.xyz;
-    vs_out.normal = (normalMat * vec4(inNormal, 0)).xyz;
-    vs_out.shadow_coord = shadow_matrix * worldPos;
+    v.position = worldPos.xyz;
+    v.normal = (normalMat * vec4(inNormal, 0)).xyz;
+    v.shadow_coord = shadow_matrix * worldPos;
 }
 ";
         private const string blinnPhongFrag = @"// Blinn-Phong-WorldSpace.frag

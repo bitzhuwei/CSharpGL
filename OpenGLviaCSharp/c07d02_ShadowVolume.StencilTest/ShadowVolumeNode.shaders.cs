@@ -220,15 +220,15 @@ in vec3 inNormal;
 out _Vertex {
     vec3 position;
     vec3 normal;
-} vs_out;
+} v;
 uniform mat4 mvpMat;
 uniform mat4 modelMat;
 uniform mat4 normalMat; // transpose(inverse(modelMat));
 void main() {
     gl_Position = mvpMat * vec4(inPosition, 1.0);
     vec4 worldPos = modelMat * vec4(inPosition, 1.0);
-    vs_out.position = worldPos.xyz;
-    vs_out.normal = (normalMat * vec4(inNormal, 0)).xyz;
+    v.position = worldPos.xyz;
+    v.normal = (normalMat * vec4(inNormal, 0)).xyz;
 }
 ";
         private const string blinnPhongFrag = @"// Blinn-Phong-WorldSpace.frag
