@@ -85,36 +85,36 @@ void main()
     vec3 e6 = worldSpacePos[5] - worldSpacePos[0];
 
     vec3 Normal = normalize(cross(e1,e2));
-    vec3 LightDir;
-    if (farAway) { LightDir = lightPosition; }
-    else { LightDir = normalize(lightPosition - worldSpacePos[0]); }
+    vec3 lightDirection;
+    if (farAway) { lightDirection = lightPosition; }
+    else { lightDirection = normalize(lightPosition - worldSpacePos[0]); }
 
     // Handle only light facing triangles
-    if (dot(Normal, LightDir) > 0) {
+    if (dot(Normal, lightDirection) > 0) {
 
         Normal = cross(e3,e1);
 
-        if (dot(Normal, LightDir) <= 0) {
+        if (dot(Normal, lightDirection) <= 0) {
             vec3 startPos = worldSpacePos[0];
             vec3 endPos = worldSpacePos[2];
             EmitOutline(startPos, endPos);
         }
 
         Normal = cross(e4,e5);
-        if (farAway) { LightDir = lightPosition; }
-        else { LightDir = normalize(lightPosition - worldSpacePos[2]); }
+        if (farAway) { lightDirection = lightPosition; }
+        else { lightDirection = normalize(lightPosition - worldSpacePos[2]); }
 
-        if (dot(Normal, LightDir) <= 0) {
+        if (dot(Normal, lightDirection) <= 0) {
             vec3 startPos = worldSpacePos[2];
             vec3 endPos = worldSpacePos[4];
             EmitOutline(startPos, endPos);
         }
 
         Normal = cross(e2,e6);
-        if (farAway) { LightDir = lightPosition; }
-        else { LightDir = normalize(lightPosition - worldSpacePos[4]); }
+        if (farAway) { lightDirection = lightPosition; }
+        else { lightDirection = normalize(lightPosition - worldSpacePos[4]); }
 
-        if (dot(Normal, LightDir) <= 0) {
+        if (dot(Normal, lightDirection) <= 0) {
             vec3 startPos = worldSpacePos[4];
             vec3 endPos = worldSpacePos[0];
             EmitOutline(startPos, endPos);

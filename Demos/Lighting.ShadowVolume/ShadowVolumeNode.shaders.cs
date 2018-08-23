@@ -63,35 +63,35 @@ out GS_FS {
 // Emit a quad using a triangle strip
 void EmitQuad(vec3 startPos, vec3 endPos)
 {    
-    vec3 LightDir;
-    if (farAway) { LightDir = -lightPosition; }
-    else { LightDir = normalize(startPos - lightPosition); }
+    vec3 lightDirection;
+    if (farAway) { lightDirection = -lightPosition; }
+    else { lightDirection = normalize(startPos - lightPosition); }
 
     // Vertex #1: the starting vertex (just a tiny bit below the original edge)
     vertexOut.position = startPos;
-    vertexOut.normal = -cross((endPos - startPos), LightDir);
-    gl_Position = vpMat * vec4((startPos + LightDir * EPSILON), 1.0);
+    vertexOut.normal = -cross((endPos - startPos), lightDirection);
+    gl_Position = vpMat * vec4((startPos + lightDirection * EPSILON), 1.0);
     EmitVertex();
  
     // Vertex #2: the starting vertex projected to infinity
     vertexOut.position = startPos;
-    vertexOut.normal = -cross((endPos - startPos), LightDir);
-    gl_Position = vpMat * vec4(LightDir, 0.0);
+    vertexOut.normal = -cross((endPos - startPos), lightDirection);
+    gl_Position = vpMat * vec4(lightDirection, 0.0);
     EmitVertex();
     
-    if (farAway) { LightDir = -lightPosition; }
-    else { LightDir = normalize(endPos - lightPosition); }
+    if (farAway) { lightDirection = -lightPosition; }
+    else { lightDirection = normalize(endPos - lightPosition); }
 
     // Vertex #3: the ending vertex (just a tiny bit below the original edge)
     vertexOut.position = endPos;
-    vertexOut.normal = -cross((endPos - startPos), LightDir);
-    gl_Position = vpMat * vec4((endPos + LightDir * EPSILON), 1.0);
+    vertexOut.normal = -cross((endPos - startPos), lightDirection);
+    gl_Position = vpMat * vec4((endPos + lightDirection * EPSILON), 1.0);
     EmitVertex();
     
     // Vertex #4: the ending vertex projected to infinity
     vertexOut.position = endPos;
-    vertexOut.normal = -cross((endPos - startPos), LightDir);
-    gl_Position = vpMat * vec4(LightDir , 0.0);
+    vertexOut.normal = -cross((endPos - startPos), lightDirection);
+    gl_Position = vpMat * vec4(lightDirection , 0.0);
     EmitVertex();
 
     EndPrimitive();            
@@ -115,72 +115,72 @@ void main()
     vec3 e6 = worldSpacePos[5] - worldSpacePos[0];
 
     vec3 Normal = normalize(cross(e1,e2));
-    vec3 LightDir;
-    if (farAway) { LightDir = lightPosition; }
-    else { LightDir = normalize(lightPosition - worldSpacePos[0]); }
+    vec3 lightDirection;
+    if (farAway) { lightDirection = lightPosition; }
+    else { lightDirection = normalize(lightPosition - worldSpacePos[0]); }
 
     // Handle only light facing triangles
-    if (dot(Normal, LightDir) > 0) {
+    if (dot(Normal, lightDirection) > 0) {
 
         Normal = cross(e3,e1);
 
-        if (dot(Normal, LightDir) <= 0) {
+        if (dot(Normal, lightDirection) <= 0) {
             vec3 startPos = worldSpacePos[0];
             vec3 endPos = worldSpacePos[2];
             EmitQuad(startPos, endPos);
         }
 
         Normal = cross(e4,e5);
-        if (farAway) { LightDir = lightPosition; }
-        else { LightDir = normalize(lightPosition - worldSpacePos[2]); }
+        if (farAway) { lightDirection = lightPosition; }
+        else { lightDirection = normalize(lightPosition - worldSpacePos[2]); }
 
-        if (dot(Normal, LightDir) <= 0) {
+        if (dot(Normal, lightDirection) <= 0) {
             vec3 startPos = worldSpacePos[2];
             vec3 endPos = worldSpacePos[4];
             EmitQuad(startPos, endPos);
         }
 
         Normal = cross(e2,e6);
-        if (farAway) { LightDir = lightPosition; }
-        else { LightDir = normalize(lightPosition - worldSpacePos[4]); }
+        if (farAway) { lightDirection = lightPosition; }
+        else { lightDirection = normalize(lightPosition - worldSpacePos[4]); }
 
-        if (dot(Normal, LightDir) <= 0) {
+        if (dot(Normal, lightDirection) <= 0) {
             vec3 startPos = worldSpacePos[4];
             vec3 endPos = worldSpacePos[0];
             EmitQuad(startPos, endPos);
         }
 
         // render the front cap
-        if (farAway) { LightDir = -lightPosition; }
-        else { LightDir = (normalize(worldSpacePos[0] - lightPosition)); }
-        gl_Position = vpMat * vec4((worldSpacePos[0] + LightDir * EPSILON), 1.0);
+        if (farAway) { lightDirection = -lightPosition; }
+        else { lightDirection = (normalize(worldSpacePos[0] - lightPosition)); }
+        gl_Position = vpMat * vec4((worldSpacePos[0] + lightDirection * EPSILON), 1.0);
         EmitVertex();
 
-        if (farAway) { LightDir = -lightPosition; }
-        else { LightDir = (normalize(worldSpacePos[2] - lightPosition)); }
-        gl_Position = vpMat * vec4((worldSpacePos[2] + LightDir * EPSILON), 1.0);
+        if (farAway) { lightDirection = -lightPosition; }
+        else { lightDirection = (normalize(worldSpacePos[2] - lightPosition)); }
+        gl_Position = vpMat * vec4((worldSpacePos[2] + lightDirection * EPSILON), 1.0);
         EmitVertex();
 
-        if (farAway) { LightDir = -lightPosition; }
-        else { LightDir = (normalize(worldSpacePos[4] - lightPosition)); }
-        gl_Position = vpMat * vec4((worldSpacePos[4] + LightDir * EPSILON), 1.0);
+        if (farAway) { lightDirection = -lightPosition; }
+        else { lightDirection = (normalize(worldSpacePos[4] - lightPosition)); }
+        gl_Position = vpMat * vec4((worldSpacePos[4] + lightDirection * EPSILON), 1.0);
         EmitVertex();
         EndPrimitive();
  
         // render the back cap
-        if (farAway) { LightDir = -lightPosition; }
-        else { LightDir = worldSpacePos[0] - lightPosition; }
-        gl_Position = vpMat * vec4(LightDir, 0.0);
+        if (farAway) { lightDirection = -lightPosition; }
+        else { lightDirection = worldSpacePos[0] - lightPosition; }
+        gl_Position = vpMat * vec4(lightDirection, 0.0);
         EmitVertex();
 
-        if (farAway) { LightDir = -lightPosition; }
-        else { LightDir = worldSpacePos[4] - lightPosition; }
-        gl_Position = vpMat * vec4(LightDir, 0.0);
+        if (farAway) { lightDirection = -lightPosition; }
+        else { lightDirection = worldSpacePos[4] - lightPosition; }
+        gl_Position = vpMat * vec4(lightDirection, 0.0);
         EmitVertex();
 
-        if (farAway) { LightDir = -lightPosition; }
-        else { LightDir = worldSpacePos[2] - lightPosition; }
-        gl_Position = vpMat * vec4(LightDir, 0.0);
+        if (farAway) { lightDirection = -lightPosition; }
+        else { lightDirection = worldSpacePos[2] - lightPosition; }
+        gl_Position = vpMat * vec4(lightDirection, 0.0);
         EmitVertex();
 
         EndPrimitive();
