@@ -10,7 +10,7 @@ namespace DirectionalLight
     {
         private const string directionalLightVert = @"#version 330 core
 
-in vec3 " + vPosition + @"; // per-vertex position
+in vec3 " + inPosition + @"; // per-vertex position
 in vec3 " + vNormal + @"; // per-vertex normal
 
 uniform mat4 " + mvpMat + @"; // combined model view projection matrix
@@ -22,7 +22,7 @@ void main()
 {
 	vEyeSpaceNormal = normalMatrix * vNormal;
 
-	gl_Position = mvpMat * vec4(vPosition, 1);
+	gl_Position = mvpMat * vec4(inPosition, 1);
 }
 ";
         private const string directionalLightFrag = @"#version 330 core

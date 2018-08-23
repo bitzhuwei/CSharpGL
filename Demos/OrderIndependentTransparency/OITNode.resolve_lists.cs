@@ -10,13 +10,13 @@ namespace OrderIndependentTransparency
     {
         private const string resolveListsVert = @"#version 420 core
 
-in vec3 vPosition;
+in vec3 inPosition;
 
 uniform mat4 mvpMatrix;
 
 void main(void)
 {
-    gl_Position = mvpMatrix * vec4(vPosition, 1.0f);
+    gl_Position = mvpMatrix * vec4(inPosition, 1.0f);
 }
 ";
         private const string resolveListsFrag = @"#version 420 core

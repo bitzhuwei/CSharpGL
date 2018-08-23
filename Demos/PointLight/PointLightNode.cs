@@ -12,7 +12,7 @@ namespace PointLight
     /// </summary>
     public partial class PointLightNode : PickableNode, IRenderable
     {
-        private const string vPosition = "vPosition";
+        private const string inPosition = "inPosition";
         private const string vNormal = "vNormal";
 
         private const string projectionMatrix = "projectionMatrix";
@@ -43,7 +43,7 @@ namespace PointLight
             var fs = new FragmentShader(pointLightFrag);
             var provider = new ShaderArray(vs, fs);
             var map = new AttributeMap();
-            map.Add(vPosition, position);
+            map.Add(inPosition, position);
             map.Add(vNormal, normal);
             var builder = new RenderMethodBuilder(provider, map);
 

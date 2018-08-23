@@ -8,7 +8,7 @@ namespace OrderIndependentTransparency
 {
     public partial class OITNode : PickableNode, IRenderable
     {
-        private const string vPosition = "vPosition";
+        private const string inPosition = "inPosition";
         private const string vNormal = "vNormal";
         private const string mvpMatrix = "mvpMatrix";
 
@@ -31,7 +31,7 @@ namespace OrderIndependentTransparency
                 var fs = new FragmentShader(buildListsFrag);
                 var provider = new ShaderArray(vs, fs);
                 var map = new AttributeMap();
-                map.Add(vPosition, position);
+                map.Add(inPosition, position);
                 map.Add(vNormal, normal);
                 builders[buildLists] = new RenderMethodBuilder(provider, map);
             }
@@ -40,7 +40,7 @@ namespace OrderIndependentTransparency
                 var fs = new FragmentShader(resolveListsFrag);
                 var provider = new ShaderArray(vs, fs);
                 var map = new AttributeMap();
-                map.Add(vPosition, position);
+                map.Add(inPosition, position);
                 builders[resolveLists] = new RenderMethodBuilder(provider, map);
             }
             var node = new OITNode(model, position, builders);

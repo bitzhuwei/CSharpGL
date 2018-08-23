@@ -19,7 +19,7 @@ namespace DeferredShading
         public static ManyCubesNode Create(ManyCubesModel model)
         {
             var map = new AttributeMap();
-            map.Add("vPosition", ManyCubesModel.strPosition);
+            map.Add("inPosition", ManyCubesModel.strPosition);
             map.Add("vColor", ManyCubesModel.strColor);
             var vs = new VertexShader(firstPassVert);
             var fs = new FragmentShader(firstPassFrag);

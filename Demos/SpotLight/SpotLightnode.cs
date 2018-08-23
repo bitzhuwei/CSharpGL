@@ -12,7 +12,7 @@ namespace SpotLight
     /// </summary>
     public partial class SpotLightNode : PickableNode, IRenderable
     {
-        private const string vPosition = "vPosition";
+        private const string inPosition = "inPosition";
         private const string vNormal = "vNormal";
 
         private const string projectionMatrix = "projectionMatrix";
@@ -44,7 +44,7 @@ namespace SpotLight
             var fs = new FragmentShader(spotLightFrag);
             var provider = new ShaderArray(vs, fs);
             var map = new AttributeMap();
-            map.Add(vPosition, position);
+            map.Add(inPosition, position);
             map.Add(vNormal, normal);
             var builder = new RenderMethodBuilder(provider, map);
 

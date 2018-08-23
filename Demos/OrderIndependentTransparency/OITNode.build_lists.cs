@@ -10,7 +10,7 @@ namespace OrderIndependentTransparency
     {
         private const string buildListsVert = @"#version 330
 
-in vec3 vPosition;
+in vec3 inPosition;
 in vec3 vNormal;
 
 uniform mat4 mvpMatrix;
@@ -33,7 +33,7 @@ void main(void)
 	float a = (0.75f - minAlpha) * (1.0f - variance) + minAlpha;
     surface_color = vec4(normalized, a);
 
-    gl_Position = mvpMatrix * vec4(vPosition, 1.0f);
+    gl_Position = mvpMatrix * vec4(inPosition, 1.0f);
 }
 ";
         private const string buildListsFrag = @"#version 420 core

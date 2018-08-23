@@ -10,7 +10,7 @@ namespace DeferredShading
     {
         private const string regularVert = @"#version 330 core
 
-in vec3 vPosition; // per-vertex position
+in vec3 inPosition; // per-vertex position
 in vec3 vColor; // per-vertex normal
 
 uniform mat4 mvpMat; // combined model view projection matrix
@@ -19,7 +19,7 @@ out vec3 passColor;
 
 void main()
 {
-	gl_Position = mvpMat * vec4(vPosition, 1);
+	gl_Position = mvpMat * vec4(inPosition, 1);
     passColor = vColor;
 }
 ";

@@ -10,7 +10,7 @@ namespace SpotLight
     {
         private const string spotLightVert = @"#version 150 core
 
-in vec3 vPosition;
+in vec3 inPosition;
 in vec3 vNormal;
 
 uniform mat4 projectionMatrix;
@@ -23,9 +23,9 @@ out vec3 passNormal; // normal in eye space.
 
 void main(void)
 {
-    gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(vPosition, 1.0f);
+    gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(inPosition, 1.0f);
 
-    passPosition = (viewMatrix * modelMatrix * vec4(vPosition, 1.0f)).xyz;
+    passPosition = (viewMatrix * modelMatrix * vec4(inPosition, 1.0f)).xyz;
     passNormal = (normalMatrix * vec4(vNormal, 0)).xyz;
 }
 ";
