@@ -60,7 +60,7 @@ in vec3 inPosition;
 in vec3 inNormal;
 
 // Declare an interface block.
-out VS_OUT {
+out _Vertex {
     vec3 position;
     vec3 normal;
     vec4 shadow_coord;
@@ -119,7 +119,7 @@ uniform vec3 eyePos;
 
 uniform bool blinn = true;
 
-in VS_OUT {
+in _Vertex {
     vec3 position;
     vec3 normal;
     vec4 shadow_coord;
