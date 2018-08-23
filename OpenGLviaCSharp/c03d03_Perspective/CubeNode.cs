@@ -66,14 +66,12 @@ namespace c03d03_Perspective
             ShaderProgram program = method.Program;
             //set value for 'uniform mat4 mvpMatrix'; in shader.
             program.SetUniform("mvpMatrix", mvpMatrix);
-
             {
                 program.SetUniform("halfTransparent", true);
                 // render the cube model via OpenGL.
                 method.Render();
             }
             {
-
                 program.SetUniform("halfTransparent", false);
                 this.polygonModeSwitch.On();
                 this.lineWidthSwitch.On();
