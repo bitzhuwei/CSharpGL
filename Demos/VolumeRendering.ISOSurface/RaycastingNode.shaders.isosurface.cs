@@ -20,7 +20,7 @@ smooth out vec3 passUV; //3D texture coordinates for texture lookup in the fragm
 void main()
 {  
 	//get the clipspace position 
-	gl_Position = mvpMat*vec4(inPosition.xyz,1);
+	gl_Position = mvpMat * vec4(inPosition.xyz, 1);
 
 	//get the 3D texture coordinates by adding (0.5,0.5,0.5) to the object space 
 	//vertex position. Since the unit cube is at origin (min: (-0.5,-0.5,-0.5) and max: (0.5,0.5,0.5))
@@ -45,7 +45,7 @@ uniform vec3		stepSize;		//ray step size
 const int maxSampleCount = 300;		//total samples for each ray march step
 const vec3 texMin = vec3(0);		//minimum texture access coordinate
 const vec3 texMax = vec3(1);		//maximum texture access coordinate
-const float DELTA = 0.01;			//the step size for gradient calculation
+const float delta = 0.01;			//the step size for gradient calculation
 const float isoValue = 40/255.0;	//the isovalue for iso-surface detection
 
 //function to give a more accurate position of where the given iso-value (iso) is found
@@ -53,7 +53,7 @@ const float isoValue = 40/255.0;	//the isovalue for iso-surface detection
 vec3 Bisection(vec3 left, vec3 right , float iso)
 { 
 	//loop 4 times
-	for(int i=0;i<4;i++)
+	for(int i = 0;i < 4; i++)
 	{ 
 		//get the mid value between the left and right limit
 		vec3 midpoint = (right + left) * 0.5;
@@ -79,14 +79,14 @@ vec3 GetGradient(vec3 uvw)
 	vec3 s1, s2;  
 
 	//Using center finite difference 
-	s1.x = texture(volume, uvw-vec3(DELTA,0.0,0.0)).x ;
-	s2.x = texture(volume, uvw+vec3(DELTA,0.0,0.0)).x ;
+	s1.x = texture(volume, uvw-vec3(delta,0.0,0.0)).x ;
+	s2.x = texture(volume, uvw+vec3(delta,0.0,0.0)).x ;
 
-	s1.y = texture(volume, uvw-vec3(0.0,DELTA,0.0)).x ;
-	s2.y = texture(volume, uvw+vec3(0.0,DELTA,0.0)).x ;
+	s1.y = texture(volume, uvw-vec3(0.0,delta,0.0)).x ;
+	s2.y = texture(volume, uvw+vec3(0.0,delta,0.0)).x ;
 
-	s1.z = texture(volume, uvw-vec3(0.0,0.0,DELTA)).x ;
-	s2.z = texture(volume, uvw+vec3(0.0,0.0,DELTA)).x ;
+	s1.z = texture(volume, uvw-vec3(0.0,0.0,delta)).x ;
+	s2.z = texture(volume, uvw+vec3(0.0,0.0,delta)).x ;
 	 
 	return normalize((s1-s2)/2.0); 
 }
@@ -98,10 +98,10 @@ vec3 GetGradient(vec3 uvw)
 //the diffuse and specular contributions are added together
 vec4 PhongLighting(vec3 L, vec3 N, vec3 V, float specPower, vec3 diffuseColor)
 {
-	float diffuse = max(dot(L,N),0.0);
-	vec3 halfVec = normalize(L+V);
-	float specular = pow(max(0.00001,dot(halfVec,N)),specPower);	
-	return vec4((diffuse*diffuseColor + specular),1.0);
+	float diffuse = max(dot(L, N), 0.0);
+	vec3 halfVec = normalize(L + V);
+	float specular = pow(max(0.00001, dot(halfVec, N)), specPower);	
+	return vec4((diffuse * diffuseColor + specular),1.0);
 }
 
 void main()
@@ -140,7 +140,7 @@ void main()
 		//So to be within the dataset limits, the dot product will return a 
 		//value less than 3. If it is greater than 3, we are already out of 
 		//the volume dataset
-		stop = dot(sign(dataPos-texMin),sign(texMax-dataPos)) < 3.0;
+		stop = dot(sign(dataPos - texMin),sign(texMax - dataPos)) < 3.0;
 
 		//if the stopping condition is true we brek out of the ray marching loop		
 		if (stop) 
@@ -155,15 +155,15 @@ void main()
 		//In case of iso-surface rendering, we do not use compositing. 
 		//Instead, we find the zero crossing of the volume dataset iso function 
 		//by sampling two consecutive samples. 
-		if( (sample -isoValue) < 0  && (sample2-isoValue) >= 0.0)  {
+		if( (sample - isoValue) < 0  && (sample2 - isoValue) >= 0.0)  {
 			//If there is a zero crossing, we refine the detected iso-surface 
 			//location by using bisection based refinement.
 			vec3 xN = dataPos;
-			vec3 xF = dataPos+dirStep;	
+			vec3 xF = dataPos + dirStep;	
 			vec3 tc = Bisection(xN, xF, isoValue);	
 	
 			//This returns the first hit surface
-			//outColor = make_float4(xN,1);
+			//outColor = make_float4(xN, 1);
           	
 			//To get the shaded iso-surface, we first estimate the normal
 			//at the refined position
@@ -175,13 +175,13 @@ void main()
 
 			//We keep the view vector as the light vector to give us a head 
 			//light
-			vec3 L =  V;
+			vec3 L = V;
 
 			//Finally, we call PhongLighing function to get the final colour
 			//with diffuse and specular components. Try changing this call to this
-			//outColor =  PhongLighting(L,N,V,250,  tc); to get a multi colour
+			//outColor =  PhongLighting(L, N, V, 250, tc); to get a multi colour
 			//iso-surface
-			outColor =  PhongLighting(L,N,V,250, vec3(0.5));	
+			outColor = PhongLighting(L, N, V, 250, vec3(0.5));	
             isDiscard = false;
 			break;
 		} 
