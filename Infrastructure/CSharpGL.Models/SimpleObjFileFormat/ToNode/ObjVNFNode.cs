@@ -17,8 +17,8 @@ namespace CSharpGL
         private const string projectionMat = "projectionMat";
         private const string materialAmbient = "materialAmbient";
         private const string materialDiffuse = "materialDiffuse";
-        private const string material_specular = "material_specular";
-        private const string material_specular_power = "material_specular_power";
+        private const string materialSpecular = "materialSpecular";
+        private const string materialSpecularPower = "materialSpecularPower";
         private const string light_position = "light_position";
 
         private const string vertexCode =
@@ -56,8 +56,8 @@ void main(void)
 
 uniform vec3 " + materialAmbient + @" = vec3(0.2, 0.2, 0.2);
 uniform vec3 " + materialDiffuse + @";
-uniform vec3 " + material_specular + @";
-uniform float " + material_specular_power + @";
+uniform vec3 " + materialSpecular + @";
+uniform float " + materialSpecularPower + @";
 
 uniform vec3 " + light_position + @";
 
@@ -79,9 +79,9 @@ void main(void)
 	float NdotL = dot(N, L);
 	float EdotR = dot(E, R);
 	float diffuse = max(NdotL, 0.0);
-	float specular = 0;//max(pow(EdotR, material_specular_power), 0.0);
+	float specular = 0;//max(pow(EdotR, materialSpecularPower), 0.0);
 	
-	color = vec4(materialAmbient + materialDiffuse * diffuse + material_specular * specular, 1.0);
+	color = vec4(materialAmbient + materialDiffuse * diffuse + materialSpecular * specular, 1.0);
 }
 ";
 
@@ -184,8 +184,8 @@ void main(void)
             program.SetUniform(light_position, new vec3(view * new vec4(LightPosition, 1.0f)));
             //program.SetUniform(materialAmbient, this.Ambient);
             program.SetUniform(materialDiffuse, this.Diffuse);
-            program.SetUniform(material_specular, this.Specular);
-            program.SetUniform(material_specular_power, this.SpecularPower);
+            program.SetUniform(materialSpecular, this.Specular);
+            program.SetUniform(materialSpecularPower, this.SpecularPower);
 
             method.Render();
         }
