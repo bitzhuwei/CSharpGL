@@ -6,11 +6,14 @@ using CSharpGL;
 
 namespace c01d00_Cube
 {
+    /// <summary>
+    /// Renders a cube every time the action list works.
+    /// </summary>
     partial class CubeNode : ModernNode, IRenderable
     {
         public static CubeNode Create()
         {
-            // vertex buffer and index buffer.
+            // model provides vertex buffer and index buffer(within an IDrawCommand).
             var model = new CubeModel();
             // vertex shader and fragment shader.
             var vs = new VertexShader(vertexCode);
@@ -19,7 +22,7 @@ namespace c01d00_Cube
             // which vertex buffer maps to which attribute in shader.
             var map = new AttributeMap();
             map.Add("inPosition", CubeModel.strPosition);
-            // build a render method.
+            // help to build a render method.
             var builder = new RenderMethodBuilder(array, map);
             // create node.
             var node = new CubeNode(model, builder);

@@ -47,7 +47,7 @@ namespace c01d00_Cube
         };
 
         public const string strPosition = "position";
-        private VertexBuffer positionBuffer;
+        private VertexBuffer positionBuffer; // array in GPU side.
 
         private IDrawCommand drawCommand;
 
@@ -60,7 +60,10 @@ namespace c01d00_Cube
             {
                 if (this.positionBuffer == null)
                 {
-                    this.positionBuffer = positions.GenVertexBuffer(VBOConfig.Vec3, BufferUsage.StaticDraw);
+                    // transform managed array to vertex buffer.
+                    this.positionBuffer = positions.GenVertexBuffer(
+                        VBOConfig.Vec3, // mapping to 'in vec3 someVar;' in vertex shader.
+                        BufferUsage.StaticDraw); // GL_STATIC_DRAW.
                 }
 
                 yield return this.positionBuffer;
@@ -75,8 +78,9 @@ namespace c01d00_Cube
         {
             if (this.drawCommand == null)
             {
+                // indexes in GPU side.
                 IndexBuffer indexBuffer = indexes.GenIndexBuffer(BufferUsage.StaticDraw);
-                this.drawCommand = new DrawElementsCmd(indexBuffer, DrawMode.Triangles);
+                this.drawCommand = new DrawElementsCmd(indexBuffer, DrawMode.Triangles); // GL_TRIANGLES.
             }
 
             yield return this.drawCommand;
