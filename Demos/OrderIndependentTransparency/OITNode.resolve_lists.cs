@@ -30,7 +30,7 @@ void main(void)
 // The per-pixel image containing the head pointers
 layout (binding = 0, r32ui) uniform uimage2D heads;
 // Buffer containing linked lists of fragments
-layout (binding = 1, rgba32ui) uniform uimageBuffer list_buffer;
+layout (binding = 1, rgba32ui) uniform uimageBuffer lstBuffer;
 
 // This is the output color
 layout (location = 0) out vec4 color;
@@ -50,7 +50,7 @@ void main(void)
 
     while (current_index != 0 && fragment_count < MAX_FRAGMENTS)
     {
-        uvec4 fragment = imageLoad(list_buffer, int(current_index));
+        uvec4 fragment = imageLoad(lstBuffer, int(current_index));
         fragment_list[fragment_count] = fragment;
         current_index = fragment.x;
         fragment_count++;

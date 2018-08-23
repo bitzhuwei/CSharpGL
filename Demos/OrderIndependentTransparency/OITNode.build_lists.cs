@@ -42,7 +42,7 @@ layout (early_fragment_tests) in;
 
 layout (binding = 0, offset = 0) uniform atomic_uint atomicCounter;
 layout (binding = 0, r32ui) uniform uimage2D heads;
-layout (binding = 1, rgba32ui) uniform writeonly uimageBuffer list_buffer;
+layout (binding = 1, rgba32ui) uniform writeonly uimageBuffer lstBuffer;
 
 in vec4 passColor;
 
@@ -63,7 +63,7 @@ void main(void)
     item.z = floatBitsToUint(gl_FragCoord.z);
 	item.w = 255 / 4;
 
-    imageStore(list_buffer, int(index), item);
+    imageStore(lstBuffer, int(index), item);
 
     //color = passColor;
 	discard;
