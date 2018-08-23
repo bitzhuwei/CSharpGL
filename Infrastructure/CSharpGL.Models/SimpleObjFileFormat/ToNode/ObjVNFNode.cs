@@ -33,7 +33,7 @@ layout (location = 1) in vec3 " + inNormal + @";
 
 out _Vertex
 {
-	vec3 world_coord;
+	vec3 worldPos;
 	vec3 eye_coord;
 	vec3 normal;
 } v;
@@ -44,7 +44,7 @@ void main(void)
 	vec4 eye_pos = viewMat * world_pos;
 	vec4 clip_pos = projectionMat * eye_pos;
 	
-	v.world_coord = world_pos.xyz;
+	v.worldPos = world_pos.xyz;
 	v.eye_coord = eye_pos.xyz;
 	v.normal = normalize(mat3(viewMat * modelMat) * normal);
 	
@@ -65,7 +65,7 @@ layout (location = 0) out vec4 color;
 
 in _Vertex
 {
-	vec3 world_coord;
+	vec3 worldPos;
 	vec3 eye_coord;
 	vec3 normal;
 } fsVertex;
