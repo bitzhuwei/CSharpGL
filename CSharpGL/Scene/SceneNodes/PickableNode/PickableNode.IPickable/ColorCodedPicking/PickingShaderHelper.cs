@@ -32,7 +32,7 @@ uniform int pickingBaseId; // how many vertices have been coded so far?
 
 in vec3 " + in_Position + @";
 
-flat out vec4 pass_Color; // glShadeMode(GL_FLAT); in legacy opengl.
+flat out vec4 passColor; // glShadeMode(GL_FLAT); in legacy opengl.
 
 void main(void) {
 	gl_Position = MVP * vec4(in_Position, 1.0);
@@ -49,12 +49,12 @@ void main(void) {
         private static readonly string pickFragmentShader =
 @"#version 150 core
 
-flat in vec4 pass_Color; // glShadeMode(GL_FLAT); in legacy opengl.
+flat in vec4 passColor; // glShadeMode(GL_FLAT); in legacy opengl.
 
 out vec4 outColor;
 
 void main(void) {
-	outColor = pass_Color;
+	outColor = passColor;
 }
 ";
 
