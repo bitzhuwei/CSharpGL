@@ -100,7 +100,7 @@ namespace VolumeRendering.ISOSurface
 
             RenderMethod method = this.RenderUnit.Methods[(int)this.CurrentMode];
             ShaderProgram program = method.Program;
-            program.SetUniform("MVP", projection * view * model);
+            program.SetUniform("mvpMat", projection * view * model);
             program.SetUniform("camPos", cameraPos);
 
             method.Render();

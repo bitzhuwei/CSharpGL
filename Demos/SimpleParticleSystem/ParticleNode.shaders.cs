@@ -14,7 +14,7 @@ namespace SimpleParticleSystem
 out vec4 vSmoothColor;	//output to fragment shader
 
 //shader uniforms
-uniform mat4 MVP;				//combined modelview matrix 
+uniform mat4 mvpMat;				//combined modelview matrix 
 uniform float time;				//current time
  
 //particle attributes
@@ -88,7 +88,7 @@ void main()
 	//linearly interpolate between red and yellow colour
 	vSmoothColor = vec4(mix(RED,YELLOW,alpha),alpha);
 	//get clipspace position
-	gl_Position = MVP*vec4(pos,1);
+	gl_Position = mvpMat*vec4(pos,1);
 }
 ";
 

@@ -14,7 +14,7 @@ namespace DirectionalLight
     {
         private const string vPosition = "vPosition";
         private const string vNormal = "vNormal";
-        private const string MVP = "MVP";
+        private const string mvpMat = "mvpMat";
         private const string normalMatrix = "normalMatrix";
         private const string halfVector = "halfVector";
         private const string shiness = "shiness";
@@ -82,7 +82,7 @@ namespace DirectionalLight
             mat4 view = camera.GetViewMatrix();
             mat4 model = this.GetModelMatrix();
             mat3 normal = new mat3(glm.transpose(glm.inverse(view * model)));
-            program.SetUniform(MVP, projection * view * model);
+            program.SetUniform(mvpMat, projection * view * model);
             program.SetUniform(normalMatrix, normal);
             vec3 lightDir = new vec3(view * new vec4(this.Light.Direction, 0.0f));
             program.SetUniform(lightDirection, lightDir);

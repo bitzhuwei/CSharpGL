@@ -77,7 +77,7 @@ namespace SimpleParticleSystem
 
             RenderMethod method = this.RenderUnit.Methods[(int)this.Mode];
             ShaderProgram program = method.Program;
-            program.SetUniform("MVP", projection * view * model);
+            program.SetUniform("mvpMat", projection * view * model);
             program.SetUniform("time", time); time += this.DeltaTime;
             method.Render();
         }

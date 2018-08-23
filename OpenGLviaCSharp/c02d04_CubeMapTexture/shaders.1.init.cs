@@ -13,14 +13,14 @@ namespace c02d04_CubeMapTexture
 in vec3 vVertex; //object space vertex position
 
 //uniform
-uniform mat4 MVP;  //combined modelview projection matrix
+uniform mat4 mvpMat;  //combined modelview projection matrix
 
 out vec3 passTexCoord;
 
 void main()
 {  
 	//get the clipspace vertex position
-	gl_Position = MVP*vec4(vVertex.xyz,1);
+	gl_Position = mvpMat*vec4(vVertex.xyz,1);
 
     passTexCoord = vVertex; // Special property for the Cube model.
 }

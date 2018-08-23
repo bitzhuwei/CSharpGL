@@ -13,7 +13,7 @@ namespace DirectionalLight
 in vec3 " + vPosition + @"; // per-vertex position
 in vec3 " + vNormal + @"; // per-vertex normal
 
-uniform mat4 " + MVP + @"; // combined model view projection matrix
+uniform mat4 " + mvpMat + @"; // combined model view projection matrix
 uniform mat3 " + normalMatrix + @"; // normal matrix
 
 smooth out vec3 vEyeSpaceNormal; // normal in eye space
@@ -22,7 +22,7 @@ void main()
 {
 	vEyeSpaceNormal = normalMatrix * vNormal;
 
-	gl_Position = MVP * vec4(vPosition, 1);
+	gl_Position = mvpMat * vec4(vPosition, 1);
 }
 ";
         private const string directionalLightFrag = @"#version 330 core

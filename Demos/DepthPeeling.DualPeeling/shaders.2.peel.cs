@@ -13,12 +13,12 @@ namespace DepthPeeling.DualPeeling
 layout(location = 0) in vec3 vVertex; //object space vertex position
 
 //uniform
-uniform mat4 MVP;  //combined modelview projection matrix
+uniform mat4 mvpMat;  //combined modelview projection matrix
 
 void main()
 {  
     //get the clipspace vertex position
-    gl_Position = MVP*vec4(vVertex.xyz,1);
+    gl_Position = mvpMat*vec4(vVertex.xyz,1);
 }
 ";
         public const string peelFrag = @"#version 330 core

@@ -116,7 +116,7 @@ namespace VolumeRendering.Slicing
 
             RenderMethod method = this.RenderUnit.Methods[(int)this.CurrentMode];
             ShaderProgram program = method.Program;
-            program.SetUniform("MVP", projection * mv);
+            program.SetUniform("mvpMat", projection * mv);
             method.Render();
         }
 

@@ -103,7 +103,7 @@ namespace DepthPeeling.FrontToBackPeeling
 
             RenderMethod method = this.RenderUnit.Methods[(int)this.Mode];
             ShaderProgram program = method.Program;
-            program.SetUniform("MVP", projection * view * model);
+            program.SetUniform("mvpMat", projection * view * model);
 
             method.Render();
         }

@@ -108,7 +108,7 @@ namespace c02d04_CubeMapTexture
 
             RenderMethod method = this.RenderUnit.Methods[(int)this.Mode];
             ShaderProgram program = method.Program;
-            program.SetUniform("MVP", projection * view * model);
+            program.SetUniform("mvpMat", projection * view * model);
             program.SetUniform("tex", this.cubemapTexture);
 
             method.Render();

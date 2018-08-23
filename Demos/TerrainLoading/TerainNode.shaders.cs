@@ -11,7 +11,7 @@ namespace TerrainLoading
         private const string vert = @"#version 330 core
   
 //uniforms
-uniform mat4 MVP;					//combined modelview projection matrix
+uniform mat4 mvpMat;					//combined modelview projection matrix
 uniform ivec2 TERRAIN_SIZE;	//half terrain size
 uniform sampler2D heightMapTexture;	//heightmap texture
 uniform float scale;				//scale for the heightmap height
@@ -25,7 +25,7 @@ void main()
     float x = (u - 0.5) * TERRAIN_SIZE.x;
     float z = (v - 0.5) * TERRAIN_SIZE.y;
 
-	gl_Position = MVP*vec4(x, height, z, 1);			
+	gl_Position = mvpMat*vec4(x, height, z, 1);			
 }
 ";
 

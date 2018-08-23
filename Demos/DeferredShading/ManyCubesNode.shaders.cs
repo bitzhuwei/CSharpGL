@@ -13,13 +13,13 @@ namespace DeferredShading
 in vec3 vPosition;
 in vec3 vColor;
 
-uniform mat4 MVP;
+uniform mat4 mvpMat;
 
 out vec3 passColor;
 
 void main()
 {
-	gl_Position = MVP * vec4(vPosition, 1);
+	gl_Position = mvpMat * vec4(vPosition, 1);
     passColor = vColor;
 }
 ";

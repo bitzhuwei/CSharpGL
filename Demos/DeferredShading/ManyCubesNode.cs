@@ -56,7 +56,7 @@ namespace DeferredShading
 
             var method = this.RenderUnit.Methods[0];
             var program = method.Program;
-            program.SetUniform("MVP", p * v * m);
+            program.SetUniform("mvpMat", p * v * m);
 
             method.Render();
         }

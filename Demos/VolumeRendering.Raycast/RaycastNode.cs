@@ -76,7 +76,7 @@ namespace VolumeRendering.Raycast
             {
                 RenderMethod method = this.RenderUnit.Methods[0];// backface.
                 ShaderProgram program = method.Program;
-                program.SetUniform("MVP", mvp);
+                program.SetUniform("mvpMat", mvp);
 
                 // render to texture
                 this.framebuffer.Bind(FramebufferTarget.Framebuffer);
@@ -89,7 +89,7 @@ namespace VolumeRendering.Raycast
             {
                 RenderMethod method = this.RenderUnit.Methods[1];// raycasting.
                 ShaderProgram program = method.Program;
-                program.SetUniform("MVP", mvp);
+                program.SetUniform("mvpMat", mvp);
 
                 method.Render();
             }
