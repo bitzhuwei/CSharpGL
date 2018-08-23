@@ -22,7 +22,7 @@ out vec3 passNormal;
                                                                                                 
 void main()                                                                                     
 {                                                                                               
-    passPos = (modelMat * vec4(inPosition, 1.0)).xyz;                                  
+    passPos      = (modelMat * vec4(inPosition, 1.0)).xyz;                                  
     passTexCoord = inTexCoord;                                                            
     passNormal   = (modelMat * vec4(inNormal, 0.0)).xyz;                                    
 }
