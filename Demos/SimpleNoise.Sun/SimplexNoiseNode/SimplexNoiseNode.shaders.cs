@@ -11,17 +11,17 @@ uniform mat4 viewMatrix;
 uniform mat4 modelMatrix;
 uniform float granularity = 4.0f;
 
-out vec3 v_texCoord3D;
+out vec3 passTexCoord3D;
 
 void main(void) {
 	gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(inPosition, 1.0);
 
-	v_texCoord3D = normalize(inPosition) * granularity;
+	passTexCoord3D = normalize(inPosition) * granularity;
 }
 ";
         private const string renderFrag = @"#version 150 core
 
-in vec3 v_texCoord3D;
+in vec3 passTexCoord3D;
 
 uniform sampler2D permTexture;
 uniform sampler1D simplexTexture;
@@ -139,9 +139,9 @@ float snoise(vec3 v)
 void main(void)
 {
   // Perturb the texcoords with three components of noise
-  vec3 uvw = v_texCoord3D + 0.1 * vec3(snoise(v_texCoord3D * rainDrop + vec3(0.0, 0.0, time)),
-    snoise(v_texCoord3D + vec3(43.0, 17.0, time)),
-	snoise(v_texCoord3D + vec3(-17.0, -43.0, time)));
+  vec3 uvw = passTexCoord3D + 0.1 * vec3(snoise(passTexCoord3D * rainDrop + vec3(0.0, 0.0, time)),
+    snoise(passTexCoord3D + vec3(43.0, 17.0, time)),
+	snoise(passTexCoord3D + vec3(-17.0, -43.0, time)));
   // Six components of noise in a fractal sum
   float n = snoise(uvw - vec3(0.0, 0.0, time));
   n += 0.5 * snoise(uvw * 2.0 - vec3(0.0, 0.0, time*1.4)); 

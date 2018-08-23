@@ -16,8 +16,8 @@ namespace ImageProcessing.GrayFilter
             var fs = new FragmentShader(renderFrag);
             var provider = new ShaderArray(vs, fs);
             var map = new AttributeMap();
-            map.Add("a_vertex", GrayFilterModel.position);
-            map.Add("a_texCoord", GrayFilterModel.texCoord);
+            map.Add("inPosition", GrayFilterModel.position);
+            map.Add("inTexCoord", GrayFilterModel.texCoord);
             var builder = new RenderMethodBuilder(provider, map);
 
             var node = new GrayFilterNode(model, GrayFilterModel.position, builder);

@@ -12,31 +12,31 @@ namespace ImageProcessing.GrayFilter
 
 uniform mat4 mvpMatrix;
 
-in vec3 a_vertex;
-in vec2 a_texCoord;
+in vec3 inPosition;
+in vec2 inTexCoord;
 
-out vec2 v_texCoord;
+out vec2 passTexCoord;
 
 void main(void)
 {
-	v_texCoord = a_texCoord;
+	passTexCoord = inTexCoord;
 
-	gl_Position = mvpMatrix * vec4(a_vertex, 1.0f);
+	gl_Position = mvpMatrix * vec4(inPosition, 1.0f);
 }
 ";
         private const string renderFrag = @"#version 150
 
 uniform sampler2D u_texture; 
 
-in vec2 v_texCoord;
+in vec2 passTexCoord;
 
 out vec4 outColor;
 
 void main(void)
 {
-	vec4 color = texture(u_texture, v_texCoord);
+	vec4 color = texture(u_texture, passTexCoord);
 
-	if (v_texCoord.s >= 0.5)
+	if (passTexCoord.s >= 0.5)
 	{
 		float grey = color.r*0.299 + color.g*0.587 + color.b*0.114;
 		
