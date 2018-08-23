@@ -38,7 +38,7 @@ void main(void)
 
 	if (passTexCoord.s >= 0.5)
 	{
-		float grey = color.r*0.299 + color.g*0.587 + color.b*0.114;
+		float grey = color.r * 0.299 + color.g * 0.587 + color.b * 0.114;
 		
 		outColor = vec4(grey, grey, grey, 1.0f);
 	}
