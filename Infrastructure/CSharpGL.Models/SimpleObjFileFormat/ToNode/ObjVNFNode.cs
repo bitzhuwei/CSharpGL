@@ -31,12 +31,12 @@ uniform mat4 " + projection_matrix + @";
 layout (location = 0) in vec4 " + inPosition + @";
 layout (location = 1) in vec3 " + inNormal + @";
 
-out VS_FS_INTERFACE
+out _Vertex
 {
 	vec3 world_coord;
 	vec3 eye_coord;
 	vec3 normal;
-} vertex;
+} v;
 
 void main(void)
 {
@@ -44,9 +44,9 @@ void main(void)
 	vec4 eye_pos = view_matrix * world_pos;
 	vec4 clip_pos = projection_matrix * eye_pos;
 	
-	vertex.world_coord = world_pos.xyz;
-	vertex.eye_coord = eye_pos.xyz;
-	vertex.normal = normalize(mat3(view_matrix * model_matrix) * normal);
+	v.world_coord = world_pos.xyz;
+	v.eye_coord = eye_pos.xyz;
+	v.normal = normalize(mat3(view_matrix * model_matrix) * normal);
 	
 	gl_Position = clip_pos;
 }
@@ -63,19 +63,19 @@ uniform vec3 " + light_position + @";
 
 layout (location = 0) out vec4 color;
 
-in VS_FS_INTERFACE
+in _Vertex
 {
 	vec3 world_coord;
 	vec3 eye_coord;
 	vec3 normal;
-} fragment;
+} fsVertex;
 
 void main(void)
 {
-	vec3 N = normalize(fragment.normal);
-	vec3 L = normalize(light_position - fragment.eye_coord);
+	vec3 N = normalize(fsVertex.normal);
+	vec3 L = normalize(light_position - fsVertex.eye_coord);
 	vec3 R = reflect(L, N);
-	vec3 E = normalize(fragment.eye_coord);
+	vec3 E = normalize(fsVertex.eye_coord);
 	float NdotL = dot(N, L);
 	float EdotR = dot(E, R);
 	float diffuse = max(NdotL, 0.0);
