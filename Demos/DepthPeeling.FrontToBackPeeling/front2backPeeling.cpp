@@ -2,7 +2,7 @@
 #define ZNEAR 0.0001
 #define ZFAR 10.0
 #define FPS_TIME_WINDOW 1
-#define MAX_DEPTH 1.0
+#define maxDepth 1.0
 
 int g_numPasses = 4;
 

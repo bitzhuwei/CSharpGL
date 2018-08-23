@@ -18,7 +18,7 @@ uniform mat4 mvpMat;  //combined modelview projection matrix
 void main()
 {  
     //get the clipspace vertex position
-    gl_Position = mvpMat*vec4(inPosition.xyz,1);
+    gl_Position = mvpMat * vec4(inPosition.xyz, 1);
 }
 ";
         public const string peelFrag = @"#version 330 core
@@ -28,7 +28,7 @@ uniform sampler2DRect FrontBlenderTex;
 
 uniform vec4 vColor;						//solid colour 
 
-#define MAX_DEPTH 1.0
+#define maxDepth 1.0
 
 void main(void)
 {
@@ -57,7 +57,7 @@ void main(void)
 
     if (fragDepth < nearestDepth || fragDepth > farthestDepth) {
         // Skip this depth in the peeling algorithm
-        gl_FragData[0].xy = vec2(-MAX_DEPTH);
+        gl_FragData[0].xy = vec2(-maxDepth);
         return;
     }
 	
@@ -70,7 +70,7 @@ void main(void)
     // If we made it here, this fragment is on the peeled layer from last pass
     // therefore, we need to shade it, and make sure it is not peeled any farther
     vec4 color = vColor;
-    gl_FragData[0].xy = vec2(-MAX_DEPTH);
+    gl_FragData[0].xy = vec2(-maxDepth);
 	
     if (fragDepth == nearestDepth) {
         gl_FragData[1].xyz += color.rgb * color.a * alphaMultiplier;

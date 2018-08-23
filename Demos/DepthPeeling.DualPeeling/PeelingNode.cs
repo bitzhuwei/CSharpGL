@@ -58,7 +58,7 @@ namespace DepthPeeling.DualPeeling
 
         public ThreeFlags EnableRendering { get { return ThreeFlags.BeforeChildren; } set { } }
 
-        private const float MAX_DEPTH = 1.0f;
+        private const float maxDepth = 1.0f;
         public void RenderBeforeChildren(RenderEventArgs arg)
         {
             var viewport = new int[4]; GL.Instance.GetIntegerv((uint)GetTarget.Viewport, viewport);
@@ -107,7 +107,7 @@ namespace DepthPeeling.DualPeeling
                     }
                     // Render target 0 stores (-minDepth, maxDepth, alphaMultiplier)
                     fbo.SetDrawBuffer(GL.GL_COLOR_ATTACHMENT0);
-                    GL.Instance.ClearColor(-MAX_DEPTH, -MAX_DEPTH, 0, 0);
+                    GL.Instance.ClearColor(-maxDepth, -maxDepth, 0, 0);
                     GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT);
                     if (dump)
                     {
@@ -151,7 +151,7 @@ namespace DepthPeeling.DualPeeling
                         GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT);
 
                         fbo.SetDrawBuffer(GL.GL_COLOR_ATTACHMENT0 + bufId);
-                        GL.Instance.ClearColor(-MAX_DEPTH, -MAX_DEPTH, 0, 0);
+                        GL.Instance.ClearColor(-maxDepth, -maxDepth, 0, 0);
                         GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT);
 
                         // Render target 0: RG32F MAX blending
