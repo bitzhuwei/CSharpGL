@@ -77,7 +77,7 @@ namespace DepthPeeling.DualPeeling
                 var fs = new FragmentShader(Shaders.initFrag);
                 var provider = new ShaderArray(vs, fs);
                 var map = new AttributeMap();
-                map.Add("vVertex", CubeModel.positions);
+                map.Add("inPosition", CubeModel.positions);
                 initBuilder = new RenderMethodBuilder(provider, map);
             }
             {
@@ -85,7 +85,7 @@ namespace DepthPeeling.DualPeeling
                 var fs = new FragmentShader(Shaders.peelFrag);
                 var provider = new ShaderArray(vs, fs);
                 var map = new AttributeMap();
-                map.Add("vVertex", CubeModel.positions);
+                map.Add("inPosition", CubeModel.positions);
                 peelBuilder = new RenderMethodBuilder(provider, map);
             }
 

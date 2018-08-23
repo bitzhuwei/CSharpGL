@@ -16,7 +16,7 @@ namespace VolumeRendering.Slicing
         /// </summary>
         public RenderMode CurrentMode { get; set; }
 
-        private VertexBuffer vVertexBuffer;
+        private VertexBuffer inPositionBuffer;
         /// <summary>
         /// 
         /// </summary>
@@ -30,7 +30,7 @@ namespace VolumeRendering.Slicing
                 var fs = new FragmentShader(defaultFrag);
                 var provider = new ShaderArray(vs, fs);
                 var map = new AttributeMap();
-                map.Add("vVertex", SlicesModel.position);
+                map.Add("inPosition", SlicesModel.position);
                 defaultBuilder = new RenderMethodBuilder(provider, map, new BlendFuncSwitch(BlendSrcFactor.SrcAlpha, BlendDestFactor.OneMinusSrcAlpha));
             }
             {
@@ -38,7 +38,7 @@ namespace VolumeRendering.Slicing
                 var fs = new FragmentShader(classificationFrag);
                 var provider = new ShaderArray(vs, fs);
                 var map = new AttributeMap();
-                map.Add("vVertex", SlicesModel.position);
+                map.Add("inPosition", SlicesModel.position);
                 classificationBuilder = new RenderMethodBuilder(provider, map, new BlendFuncSwitch(BlendSrcFactor.SrcAlpha, BlendDestFactor.OneMinusSrcAlpha));
             }
 
@@ -58,7 +58,7 @@ namespace VolumeRendering.Slicing
             base.DoInitialize();
 
             // make sure model only returns once.
-            this.vVertexBuffer = (from item in this.RenderUnit.Model.GetVertexAttribute(SlicesModel.position) select item).First();
+            this.inPositionBuffer = (from item in this.RenderUnit.Model.GetVertexAttribute(SlicesModel.position) select item).First();
 
             var bmp = new Bitmap(1, 1);
             var bmpG = Graphics.FromImage(bmp);

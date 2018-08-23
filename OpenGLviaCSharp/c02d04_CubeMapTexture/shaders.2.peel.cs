@@ -10,7 +10,7 @@ namespace c02d04_CubeMapTexture
     {
         public const string peelVert = @"#version 330 core
   
-in vec3 vVertex; //object space vertex position
+in vec3 inPosition; //object space vertex position
 
 //uniform
 uniform mat4 mvpMat;  //combined modelview projection matrix
@@ -20,9 +20,9 @@ out vec3 passTexCoord;
 void main()
 {  
     //get the clipspace vertex position
-    gl_Position = mvpMat*vec4(vVertex.xyz,1);
+    gl_Position = mvpMat*vec4(inPosition.xyz,1);
 
-    passTexCoord = vVertex; // Special property for the Cube model.
+    passTexCoord = inPosition; // Special property for the Cube model.
 }
 ";
         public const string peelFrag = @"#version 330 core

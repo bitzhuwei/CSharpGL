@@ -29,7 +29,7 @@
 //            }
 
 //            int count = 0;
-//            vec3* vTextureSlices = (vec3*)this.vVertexBuffer.MapBuffer(MapBufferAccess.WriteOnly);
+//            vec3* vTextureSlices = (vec3*)this.inPositionBuffer.MapBuffer(MapBufferAccess.WriteOnly);
 //            //loop through all slices
 //            for (int i = num_slices - 1; i >= 0; i--)
 //            {
@@ -37,7 +37,7 @@
 //            }
 
 //            ////update buffer object with the new vertices
-//            this.vVertexBuffer.UnmapBuffer();
+//            this.inPositionBuffer.UnmapBuffer();
 //        }
 
 //        private void FindMaxMin(out int maxCosIndex, out int minCosIndex)
