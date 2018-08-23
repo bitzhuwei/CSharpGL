@@ -11,7 +11,7 @@ namespace CSharpGL
         private const string vertexShaderCode = @"#version 150 core
 
 in vec3 inPosition;
-in float in_TexCoord;
+in float inTexCoord;
 
 out float passTexCoord;
 
@@ -22,7 +22,7 @@ uniform mat4 modelMatrix;
 void main(void) {
 	gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(inPosition, 1.0);
 
-	passTexCoord = in_TexCoord;
+	passTexCoord = inTexCoord;
 }
 ";
         private const string fragmentShaderCode = @"#version 150 core
