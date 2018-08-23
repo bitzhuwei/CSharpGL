@@ -17,13 +17,13 @@ layout (location = 2) in vec3 inNormal;
 uniform mat4 modelMat;                                                                            
                                                                                                 
 out vec3 worldSpacePos;                                                                        
-out vec2 TexCoord_CS_in;                                                                        
+out vec2 passTexCoord;                                                                        
 out vec3 Normal_CS_in;                                                                          
                                                                                                 
 void main()                                                                                     
 {                                                                                               
     worldSpacePos = (modelMat * vec4(inPosition, 1.0)).xyz;                                  
-    TexCoord_CS_in = inTexCoord;                                                            
+    passTexCoord = inTexCoord;                                                            
     Normal_CS_in   = (modelMat * vec4(inNormal, 0.0)).xyz;                                    
 }
 ";
@@ -36,7 +36,7 @@ uniform vec3 gEyeWorldPos;
                                                                                                 
 // attributes of the input CPs                                                                  
 in vec3 worldSpacePos[];                                                                       
-in vec2 TexCoord_CS_in[];                                                                       
+in vec2 passTexCoord[];                                                                       
 in vec3 Normal_CS_in[];                                                                         
                                                                                                 
 // attributes of the output CPs                                                                 
@@ -62,7 +62,7 @@ float GetTessLevel(float Distance0, float Distance1)
 void main()                                                                                     
 {                                                                                               
     // Set the control points of the output patch                                               
-    TexCoord_ES_in[gl_InvocationID] = TexCoord_CS_in[gl_InvocationID];                          
+    TexCoord_ES_in[gl_InvocationID] = passTexCoord[gl_InvocationID];                          
     Normal_ES_in[gl_InvocationID]   = Normal_CS_in[gl_InvocationID];                            
     WorldPos_ES_in[gl_InvocationID] = worldSpacePos[gl_InvocationID];                          
                                                                                                 
