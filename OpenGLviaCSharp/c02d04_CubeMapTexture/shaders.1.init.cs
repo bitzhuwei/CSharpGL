@@ -20,7 +20,7 @@ out vec3 passTexCoord;
 void main()
 {  
 	//get the clipspace vertex position
-	gl_Position = mvpMat*vec4(inPosition.xyz,1);
+	gl_Position = mvpMat * vec4(inPosition.xyz, 1);
 
     passTexCoord = inPosition; // Special property for the Cube model.
 }

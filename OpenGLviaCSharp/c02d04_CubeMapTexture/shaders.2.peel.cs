@@ -20,7 +20,7 @@ out vec3 passTexCoord;
 void main()
 {  
     //get the clipspace vertex position
-    gl_Position = mvpMat*vec4(inPosition.xyz,1);
+    gl_Position = mvpMat * vec4(inPosition.xyz, 1);
 
     passTexCoord = inPosition; // Special property for the Cube model.
 }
@@ -31,7 +31,7 @@ in vec3 passTexCoord;
 
 //uniforms
 uniform samplerCube cubeTex;	//texture uniform
-uniform sampler2DRect  depthTexture;		//depth texture 
+uniform sampler2DRect depthTexture;		//depth texture 
 uniform float alpha = 0.25;
 
 out vec4 outColor;	//fragment shader output
