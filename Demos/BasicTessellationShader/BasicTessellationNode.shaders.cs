@@ -16,13 +16,13 @@ layout (location = 2) in vec3 inNormal;
                                                                                                 
 uniform mat4 modelMat;                                                                            
                                                                                                 
-out vec3 WorldPos_CS_in;                                                                        
+out vec3 worldSpacePos;                                                                        
 out vec2 TexCoord_CS_in;                                                                        
 out vec3 Normal_CS_in;                                                                          
                                                                                                 
 void main()                                                                                     
 {                                                                                               
-    WorldPos_CS_in = (modelMat * vec4(inPosition, 1.0)).xyz;                                  
+    worldSpacePos = (modelMat * vec4(inPosition, 1.0)).xyz;                                  
     TexCoord_CS_in = inTexCoord;                                                            
     Normal_CS_in   = (modelMat * vec4(inNormal, 0.0)).xyz;                                    
 }
@@ -35,7 +35,7 @@ layout (vertices = 3) out;
 uniform vec3 gEyeWorldPos;                                                                      
                                                                                                 
 // attributes of the input CPs                                                                  
-in vec3 WorldPos_CS_in[];                                                                       
+in vec3 worldSpacePos[];                                                                       
 in vec2 TexCoord_CS_in[];                                                                       
 in vec3 Normal_CS_in[];                                                                         
                                                                                                 
@@ -64,7 +64,7 @@ void main()
     // Set the control points of the output patch                                               
     TexCoord_ES_in[gl_InvocationID] = TexCoord_CS_in[gl_InvocationID];                          
     Normal_ES_in[gl_InvocationID]   = Normal_CS_in[gl_InvocationID];                            
-    WorldPos_ES_in[gl_InvocationID] = WorldPos_CS_in[gl_InvocationID];                          
+    WorldPos_ES_in[gl_InvocationID] = worldSpacePos[gl_InvocationID];                          
                                                                                                 
     // Calculate the distance from the camera to the three control points                       
     float EyeToVertexDistance0 = distance(gEyeWorldPos, WorldPos_ES_in[0]);                     
