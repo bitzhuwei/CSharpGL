@@ -42,7 +42,7 @@ uniform vec3 lightPosition; // if farAway is true, lightPosition means direction
 uniform mat4 vpMat;
 uniform mat4 modelMat;
 float EPSILON = 0.0001;
-out GS_FS {
+out _Vertex {
     vec3 position;
     vec3 normal;
 } vertexOut;
@@ -177,7 +177,7 @@ uniform Light light;
 uniform int lightUpRoutine; // 0: point light; 1: directional light; 2: spot light.
 uniform Material material;
 uniform vec3 eyePos;
-in GS_FS {
+in _Vertex {
     vec3 position;
     vec3 normal;
 } fsVertex;
