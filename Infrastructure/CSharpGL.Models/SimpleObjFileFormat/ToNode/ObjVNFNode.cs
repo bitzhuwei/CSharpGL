@@ -11,7 +11,7 @@ namespace CSharpGL
     public partial class ObjVNFNode : PickableNode, IRenderable
     {
         private const string inPosition = "position";
-        private const string inNormal = "normal";
+        private const string inNormal = "inNormal";
         private const string modelMat = "modelMat";
         private const string viewMat = "viewMat";
         private const string projectionMat = "projectionMat";
@@ -46,7 +46,7 @@ void main(void)
 	
 	v.worldSpacePos = world_pos.xyz;
 	v.eyeSpacePos = eye_pos.xyz;
-	v.eyeSpaceNormal = normalize(mat3(viewMat * modelMat) * normal);
+	v.eyeSpaceNormal = normalize(mat3(viewMat * modelMat) * inNormal);
 	
 	gl_Position = clip_pos;
 }
