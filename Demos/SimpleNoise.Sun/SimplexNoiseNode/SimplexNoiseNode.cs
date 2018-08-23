@@ -14,7 +14,7 @@ namespace SimpleNoise.Sun
                 var fs = new FragmentShader(renderFrag);
                 var provider = new ShaderArray(vs, fs);
                 var map = new AttributeMap();
-                map.Add("in_Position", Sphere.strPosition);
+                map.Add("inPosition", Sphere.strPosition);
                 renderBuilder = new RenderMethodBuilder(provider, map);
             }
             var node = new SimplexNoiseNode(model, Sphere.strPosition, renderBuilder);

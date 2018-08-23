@@ -27,20 +27,20 @@
 <div class="cnblogs_code">
 <pre><span style="color: #008080;"> 1</span> #version <span style="color: #800080;">150</span><span style="color: #000000;"> core
 </span><span style="color: #008080;"> 2</span> 
-<span style="color: #008080;"> 3</span> <span style="color: #0000ff;">in</span> vec3 in_Position;<span style="color: #008000;">//</span><span style="color: #008000;"> 一个顶点</span>
+<span style="color: #008080;"> 3</span> <span style="color: #0000ff;">in</span> vec3 inPosition;<span style="color: #008000;">//</span><span style="color: #008000;"> 一个顶点</span>
 <span style="color: #008080;"> 4</span> uniform mat4 projectionMatrix;<span style="color: #008000;">//</span><span style="color: #008000;"> 投影矩阵</span>
 <span style="color: #008080;"> 5</span> uniform mat4 viewMatrix;<span style="color: #008000;">//</span><span style="color: #008000;"> 视图矩阵</span>
 <span style="color: #008080;"> 6</span> uniform mat4 modelMatrix;<span style="color: #008000;">//</span><span style="color: #008000;"> 模型矩阵</span>
 <span style="color: #008080;"> 7</span> 
 <span style="color: #008080;"> 8</span> <span style="color: #0000ff;">void</span> main(<span style="color: #0000ff;">void</span><span style="color: #000000;">) {
 </span><span style="color: #008080;"> 9</span>     <span style="color: #008000;">//</span><span style="color: #008000;"> 计算顶点位置</span>
-<span style="color: #008080;">10</span>     gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(in_Position, <span style="color: #800080;">1.0</span><span style="color: #000000;">);
+<span style="color: #008080;">10</span>     gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(inPosition, <span style="color: #800080;">1.0</span><span style="color: #000000;">);
 </span><span style="color: #008080;">11</span> }</pre>
 </div>
 
 &nbsp;
 
-简单来说，vertex shader程序会对KleinBottle模型上的每个顶点都执行一次。因此在输入数据上写的是`in vec3 in_Position`，而不是`in vec3 in_Positions[]`。由于各个顶点之间互不影响，所以GPU就可以通过并行计算的方式大幅度提高渲染效率。即使有上百万个顶点，GPU也可以同时计算，这等于用一次执行的时间代替了CPU上的一个大型循环的时间。
+简单来说，vertex shader程序会对KleinBottle模型上的每个顶点都执行一次。因此在输入数据上写的是`in vec3 inPosition`，而不是`in vec3 inPositions[]`。由于各个顶点之间互不影响，所以GPU就可以通过并行计算的方式大幅度提高渲染效率。即使有上百万个顶点，GPU也可以同时计算，这等于用一次执行的时间代替了CPU上的一个大型循环的时间。
 
 而`uniform`修饰的变量则是对每次执行的vertex shader都相同的（即全局变量）。
 
@@ -139,7 +139,7 @@ Klein Bottle是个著名的三维模型，可以用一个公式来计算它的�
 </span><span style="color: #008080;"> 6</span>         <span style="color: #808080;">///</span> <span style="color: #808080;">&lt;para&gt;</span><span style="color: #008000;">Gets specified vertex buffer object.</span><span style="color: #808080;">&lt;/para&gt;</span>
 <span style="color: #008080;"> 7</span>         <span style="color: #808080;">///</span> <span style="color: #808080;">&lt;/summary&gt;</span>
 <span style="color: #008080;"> 8</span>         <span style="color: #808080;">///</span> <span style="color: #808080;">&lt;param name="bufferName"&gt;</span><span style="color: #008000;">buffer name(Gets this name from 'strPosition' etc.</span><span style="color: #808080;">&lt;/param&gt;</span>
-<span style="color: #008080;"> 9</span>         <span style="color: #808080;">///</span> <span style="color: #808080;">&lt;param name="varNameInShader"&gt;</span><span style="color: #008000;">name in vertex shader like `in vec3 in_Position;`.</span><span style="color: #808080;">&lt;/param&gt;</span>
+<span style="color: #008080;"> 9</span>         <span style="color: #808080;">///</span> <span style="color: #808080;">&lt;param name="varNameInShader"&gt;</span><span style="color: #008000;">name in vertex shader like `in vec3 inPosition;`.</span><span style="color: #808080;">&lt;/param&gt;</span>
 <span style="color: #008080;">10</span>         <span style="color: #808080;">///</span> <span style="color: #808080;">&lt;returns&gt;</span><span style="color: #008000;">Vertex Buffer Object.</span><span style="color: #808080;">&lt;/returns&gt;</span>
 <span style="color: #008080;">11</span>         VertexAttributeBuffer IBufferable.GetVertexAttributeBuffer(<span style="color: #0000ff;">string</span> bufferName, <span style="color: #0000ff;">string</span><span style="color: #000000;"> varNameInShader)
 </span><span style="color: #008080;">12</span> <span style="color: #000000;">        {
@@ -287,7 +287,7 @@ Klein Bottle是个著名的三维模型，可以用一个公式来计算它的�
 </span><span style="color: #008080;"> 6</span>             shaderCodes[<span style="color: #800080;">0</span>] = <span style="color: #0000ff;">new</span> ShaderCode(File.ReadAllText(<span style="color: #800000;">@"</span><span style="color: #800000;">shaders\KleinBottle.vert</span><span style="color: #800000;">"</span><span style="color: #000000;">), ShaderType.VertexShader);
 </span><span style="color: #008080;"> 7</span>             shaderCodes[<span style="color: #800080;">1</span>] = <span style="color: #0000ff;">new</span> ShaderCode(File.ReadAllText(<span style="color: #800000;">@"</span><span style="color: #800000;">shaders\KleinBottle.frag</span><span style="color: #800000;">"</span><span style="color: #000000;">), ShaderType.FragmentShader);
 </span><span style="color: #008080;"> 8</span>             <span style="color: #0000ff;">var</span> map = <span style="color: #0000ff;">new</span><span style="color: #000000;"> AttributeMap();
-</span><span style="color: #008080;"> 9</span>             map.Add(<span style="color: #800000;">"</span><span style="color: #800000;">in_Position</span><span style="color: #800000;">"</span>, <span style="color: #008000;">//</span><span style="color: #008000;"> variable name in vertex shader.</span>
+</span><span style="color: #008080;"> 9</span>             map.Add(<span style="color: #800000;">"</span><span style="color: #800000;">inPosition</span><span style="color: #800000;">"</span>, <span style="color: #008000;">//</span><span style="color: #008000;"> variable name in vertex shader.</span>
 <span style="color: #008080;">10</span> KleinBottleModel.strPosition <span style="color: #008000;">//</span><span style="color: #008000;"> buffer name in model.</span>
 <span style="color: #008080;">11</span> <span style="color: #000000;">);
 </span><span style="color: #008080;">12</span>             <span style="color: #0000ff;">var</span> renderer = <span style="color: #0000ff;">new</span><span style="color: #000000;"> KleinBottleRenderer(model, provider, map);

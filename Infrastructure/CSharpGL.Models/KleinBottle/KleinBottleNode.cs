@@ -14,7 +14,7 @@ namespace CSharpGL
             var fs = new FragmentShader(fragmentShaderCode);
             var provider = new ShaderArray(vs, fs);
             var map = new AttributeMap();
-            map.Add("in_Position", KleinBottleModel.strPosition);
+            map.Add("inPosition", KleinBottleModel.strPosition);
             map.Add("in_TexCoord", KleinBottleModel.strTexCoord);
             var builder = new RenderMethodBuilder(provider, map, new LineWidthSwitch(3));
             var node = new KleinBottleNode(model, KleinBottleModel.strPosition, builder);

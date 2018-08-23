@@ -4,7 +4,7 @@
     {
         private const string renderVert = @"#version 150 core
 
-in vec3 in_Position;
+in vec3 inPosition;
 
 uniform mat4 projectionMatrix;
 uniform mat4 viewMatrix;
@@ -14,9 +14,9 @@ uniform float granularity = 4.0f;
 out vec3 v_texCoord3D;
 
 void main(void) {
-	gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(in_Position, 1.0);
+	gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(inPosition, 1.0);
 
-	v_texCoord3D = normalize(in_Position) * granularity;
+	v_texCoord3D = normalize(inPosition) * granularity;
 }
 ";
         private const string renderFrag = @"#version 150 core
