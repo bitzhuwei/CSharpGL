@@ -19,7 +19,7 @@ namespace CSharpGL
         private const string materialDiffuse = "materialDiffuse";
         private const string materialSpecular = "materialSpecular";
         private const string materialSpecularPower = "materialSpecularPower";
-        private const string light_position = "light_position";
+        private const string lightPosition = "lightPosition";
 
         private const string vertexCode =
             @"#version 330
@@ -59,7 +59,7 @@ uniform vec3 " + materialDiffuse + @";
 uniform vec3 " + materialSpecular + @";
 uniform float " + materialSpecularPower + @";
 
-uniform vec3 " + light_position + @";
+uniform vec3 " + lightPosition + @";
 
 layout (location = 0) out vec4 color;
 
@@ -73,7 +73,7 @@ in _Vertex
 void main(void)
 {
 	vec3 N = normalize(fsVertex.eyeSpaceNormal);
-	vec3 L = normalize(light_position - fsVertex.eyeSpacePos);
+	vec3 L = normalize(lightPosition - fsVertex.eyeSpacePos);
 	vec3 R = reflect(L, N);
 	vec3 E = normalize(fsVertex.eyeSpacePos);
 	float NdotL = dot(N, L);
@@ -181,7 +181,7 @@ void main(void)
             program.SetUniform(modelMat, model);
             program.SetUniform(viewMat, view);
             program.SetUniform(projectionMat, projection);
-            program.SetUniform(light_position, new vec3(view * new vec4(LightPosition, 1.0f)));
+            program.SetUniform(lightPosition, new vec3(view * new vec4(LightPosition, 1.0f)));
             //program.SetUniform(materialAmbient, this.Ambient);
             program.SetUniform(materialDiffuse, this.Diffuse);
             program.SetUniform(materialSpecular, this.Specular);
