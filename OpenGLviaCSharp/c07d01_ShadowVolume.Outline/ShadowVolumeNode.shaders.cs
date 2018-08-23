@@ -50,7 +50,7 @@ in vec3 passPosition[]; // an array of 6 vertices (triangle with adjacency)
 
 uniform bool farAway = false; // light's position is infinitly far away.
 uniform vec3 lightPosition; // if farAway is true, lightPosition means direction to light source; otherwise, it means light's position.
-uniform mat4 gProjectionView;
+uniform mat4 vpMat;
 uniform mat4 gWorld;
 
 float EPSILON = 0.0001;
@@ -58,10 +58,10 @@ float EPSILON = 0.0001;
 // Emit a line using a triangle strip
 void EmitOutline(vec3 StartVertex, vec3 EndVertex)
 {    
-    gl_Position = gProjectionView * vec4(StartVertex, 1.0);
+    gl_Position = vpMat * vec4(StartVertex, 1.0);
     EmitVertex();
  
-    gl_Position = gProjectionView * vec4(EndVertex, 1.0);
+    gl_Position = vpMat * vec4(EndVertex, 1.0);
     EmitVertex();
     
     EndPrimitive();            

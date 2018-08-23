@@ -65,7 +65,7 @@ namespace Lighting.ShadowVolume
 
             var method = this.RenderUnit.Methods[(int)MethodName.extrudeShadow];
             ShaderProgram program = method.Program;
-            program.SetUniform("gProjectionView", projection * view);
+            program.SetUniform("vpMat", projection * view);
             program.SetUniform("gWorld", model);
             if (light is DirectionalLight)
             {
