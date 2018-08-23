@@ -12,7 +12,7 @@ namespace c01d00_Cube
 #version 150
 
 // element in vertex buffer. Vertex' position in model space.
-in vec3 inPosition; 
+in vec3 inPosition;
 
 uniform mat4 mvpMatrix;
 
