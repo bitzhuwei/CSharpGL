@@ -61,36 +61,36 @@ out GS_FS {
 } vertexOut;
 
 // Emit a quad using a triangle strip
-void EmitQuad(vec3 StartVertex, vec3 EndVertex)
+void EmitQuad(vec3 startPos, vec3 endPos)
 {    
     vec3 LightDir;
     if (farAway) { LightDir = -lightPosition; }
-    else { LightDir = normalize(StartVertex - lightPosition); }
+    else { LightDir = normalize(startPos - lightPosition); }
 
     // Vertex #1: the starting vertex (just a tiny bit below the original edge)
-    vertexOut.position = StartVertex;
-    vertexOut.normal = -cross((EndVertex - StartVertex), LightDir);
-    gl_Position = vpMat * vec4((StartVertex + LightDir * EPSILON), 1.0);
+    vertexOut.position = startPos;
+    vertexOut.normal = -cross((endPos - startPos), LightDir);
+    gl_Position = vpMat * vec4((startPos + LightDir * EPSILON), 1.0);
     EmitVertex();
  
     // Vertex #2: the starting vertex projected to infinity
-    vertexOut.position = StartVertex;
-    vertexOut.normal = -cross((EndVertex - StartVertex), LightDir);
+    vertexOut.position = startPos;
+    vertexOut.normal = -cross((endPos - startPos), LightDir);
     gl_Position = vpMat * vec4(LightDir, 0.0);
     EmitVertex();
     
     if (farAway) { LightDir = -lightPosition; }
-    else { LightDir = normalize(EndVertex - lightPosition); }
+    else { LightDir = normalize(endPos - lightPosition); }
 
     // Vertex #3: the ending vertex (just a tiny bit below the original edge)
-    vertexOut.position = EndVertex;
-    vertexOut.normal = -cross((EndVertex - StartVertex), LightDir);
-    gl_Position = vpMat * vec4((EndVertex + LightDir * EPSILON), 1.0);
+    vertexOut.position = endPos;
+    vertexOut.normal = -cross((endPos - startPos), LightDir);
+    gl_Position = vpMat * vec4((endPos + LightDir * EPSILON), 1.0);
     EmitVertex();
     
     // Vertex #4: the ending vertex projected to infinity
-    vertexOut.position = EndVertex;
-    vertexOut.normal = -cross((EndVertex - StartVertex), LightDir);
+    vertexOut.position = endPos;
+    vertexOut.normal = -cross((endPos - startPos), LightDir);
     gl_Position = vpMat * vec4(LightDir , 0.0);
     EmitVertex();
 
@@ -125,9 +125,9 @@ void main()
         Normal = cross(e3,e1);
 
         if (dot(Normal, LightDir) <= 0) {
-            vec3 StartVertex = worldSpacePos[0];
-            vec3 EndVertex = worldSpacePos[2];
-            EmitQuad(StartVertex, EndVertex);
+            vec3 startPos = worldSpacePos[0];
+            vec3 endPos = worldSpacePos[2];
+            EmitQuad(startPos, endPos);
         }
 
         Normal = cross(e4,e5);
@@ -135,9 +135,9 @@ void main()
         else { LightDir = normalize(lightPosition - worldSpacePos[2]); }
 
         if (dot(Normal, LightDir) <= 0) {
-            vec3 StartVertex = worldSpacePos[2];
-            vec3 EndVertex = worldSpacePos[4];
-            EmitQuad(StartVertex, EndVertex);
+            vec3 startPos = worldSpacePos[2];
+            vec3 endPos = worldSpacePos[4];
+            EmitQuad(startPos, endPos);
         }
 
         Normal = cross(e2,e6);
@@ -145,9 +145,9 @@ void main()
         else { LightDir = normalize(lightPosition - worldSpacePos[4]); }
 
         if (dot(Normal, LightDir) <= 0) {
-            vec3 StartVertex = worldSpacePos[4];
-            vec3 EndVertex = worldSpacePos[0];
-            EmitQuad(StartVertex, EndVertex);
+            vec3 startPos = worldSpacePos[4];
+            vec3 endPos = worldSpacePos[0];
+            EmitQuad(startPos, endPos);
         }
 
         // render the front cap

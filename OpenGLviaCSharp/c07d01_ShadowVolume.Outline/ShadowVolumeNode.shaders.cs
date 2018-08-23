@@ -56,12 +56,12 @@ uniform mat4 modelMat;
 float EPSILON = 0.0001;
 
 // Emit a line using a triangle strip
-void EmitOutline(vec3 StartVertex, vec3 EndVertex)
+void EmitOutline(vec3 startPos, vec3 endPos)
 {    
-    gl_Position = vpMat * vec4(StartVertex, 1.0);
+    gl_Position = vpMat * vec4(startPos, 1.0);
     EmitVertex();
  
-    gl_Position = vpMat * vec4(EndVertex, 1.0);
+    gl_Position = vpMat * vec4(endPos, 1.0);
     EmitVertex();
     
     EndPrimitive();            
@@ -95,9 +95,9 @@ void main()
         Normal = cross(e3,e1);
 
         if (dot(Normal, LightDir) <= 0) {
-            vec3 StartVertex = worldSpacePos[0];
-            vec3 EndVertex = worldSpacePos[2];
-            EmitOutline(StartVertex, EndVertex);
+            vec3 startPos = worldSpacePos[0];
+            vec3 endPos = worldSpacePos[2];
+            EmitOutline(startPos, endPos);
         }
 
         Normal = cross(e4,e5);
@@ -105,9 +105,9 @@ void main()
         else { LightDir = normalize(lightPosition - worldSpacePos[2]); }
 
         if (dot(Normal, LightDir) <= 0) {
-            vec3 StartVertex = worldSpacePos[2];
-            vec3 EndVertex = worldSpacePos[4];
-            EmitOutline(StartVertex, EndVertex);
+            vec3 startPos = worldSpacePos[2];
+            vec3 endPos = worldSpacePos[4];
+            EmitOutline(startPos, endPos);
         }
 
         Normal = cross(e2,e6);
@@ -115,9 +115,9 @@ void main()
         else { LightDir = normalize(lightPosition - worldSpacePos[4]); }
 
         if (dot(Normal, LightDir) <= 0) {
-            vec3 StartVertex = worldSpacePos[4];
-            vec3 EndVertex = worldSpacePos[0];
-            EmitOutline(StartVertex, EndVertex);
+            vec3 startPos = worldSpacePos[4];
+            vec3 endPos = worldSpacePos[0];
+            EmitOutline(startPos, endPos);
         }
     }
 }
