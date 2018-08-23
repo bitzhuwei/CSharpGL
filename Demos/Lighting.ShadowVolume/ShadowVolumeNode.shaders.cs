@@ -58,7 +58,7 @@ float EPSILON = 0.0001;
 out _Vertex {
     vec3 position;
     vec3 normal;
-} vertexOut;
+} v;
 
 // Emit a quad using a triangle strip
 void EmitQuad(vec3 startPos, vec3 endPos)
@@ -68,14 +68,14 @@ void EmitQuad(vec3 startPos, vec3 endPos)
     else { lightDirection = normalize(startPos - lightPosition); }
 
     // Vertex #1: the starting vertex (just a tiny bit below the original edge)
-    vertexOut.position = startPos;
-    vertexOut.normal = -cross((endPos - startPos), lightDirection);
+    v.position = startPos;
+    v.normal = -cross((endPos - startPos), lightDirection);
     gl_Position = vpMat * vec4((startPos + lightDirection * EPSILON), 1.0);
     EmitVertex();
  
     // Vertex #2: the starting vertex projected to infinity
-    vertexOut.position = startPos;
-    vertexOut.normal = -cross((endPos - startPos), lightDirection);
+    v.position = startPos;
+    v.normal = -cross((endPos - startPos), lightDirection);
     gl_Position = vpMat * vec4(lightDirection, 0.0);
     EmitVertex();
     
@@ -83,14 +83,14 @@ void EmitQuad(vec3 startPos, vec3 endPos)
     else { lightDirection = normalize(endPos - lightPosition); }
 
     // Vertex #3: the ending vertex (just a tiny bit below the original edge)
-    vertexOut.position = endPos;
-    vertexOut.normal = -cross((endPos - startPos), lightDirection);
+    v.position = endPos;
+    v.normal = -cross((endPos - startPos), lightDirection);
     gl_Position = vpMat * vec4((endPos + lightDirection * EPSILON), 1.0);
     EmitVertex();
     
     // Vertex #4: the ending vertex projected to infinity
-    vertexOut.position = endPos;
-    vertexOut.normal = -cross((endPos - startPos), lightDirection);
+    v.position = endPos;
+    v.normal = -cross((endPos - startPos), lightDirection);
     gl_Position = vpMat * vec4(lightDirection , 0.0);
     EmitVertex();
 
