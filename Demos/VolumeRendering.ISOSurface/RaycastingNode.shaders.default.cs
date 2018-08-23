@@ -39,7 +39,7 @@ smooth in vec3 passUV;				//3D texture coordinates form vertex shader
 //uniforms
 uniform sampler3D	volume;		//volume dataset
 uniform vec3		camPos;		//camera position
-uniform vec3		step_size;	//ray step size 
+uniform vec3		stepSize;	//ray step size 
 
 //constants
 const int maxSampleCount = 300;	//total samples for each ray march step
@@ -59,7 +59,7 @@ void main()
 
 	//multiply the raymarching direction with the step size to get the
 	//sub-step size we need to take at each raymarching step
-	vec3 dirStep = geomDir * step_size; 
+	vec3 dirStep = geomDir * stepSize; 
 	 
 	//flag to indicate if the raymarch loop should terminate
 	bool stop = false; 

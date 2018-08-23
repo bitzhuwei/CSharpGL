@@ -73,7 +73,7 @@ namespace VolumeRendering.ISOSurface
                 RenderMethod method = this.RenderUnit.Methods[i];
                 ShaderProgram program = method.Program;
                 program.SetUniform("volume", volume);
-                program.SetUniform("step_size", new vec3(1.0f / AmberLoader.length, 1.0f / AmberLoader.length, 1.0f / AmberLoader.length));
+                program.SetUniform("stepSize", new vec3(1.0f / AmberLoader.length, 1.0f / AmberLoader.length, 1.0f / AmberLoader.length));
             }
         }
 
