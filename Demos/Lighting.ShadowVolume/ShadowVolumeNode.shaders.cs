@@ -240,7 +240,7 @@ void DirectionalLightUp(Light light, out float diffuse, out float specular) {
     LightUp(lightDir, normal, eyePos, fsVertex.position, material.shiness, diffuse, specular);
 }
 
-out vec4 fragColor;
+out vec4 outColor;
 
 void main() {
     if (int(gl_FragCoord.x - 0.5) % 2 == 1 && int(gl_FragCoord.y - 0.5) % 2 != 1) discard;
@@ -250,7 +250,7 @@ void main() {
     float specular = 0;
     DirectionalLightUp(light, diffuse, specular);
 
-    fragColor = vec4(diffuse * light.diffuse * material.diffuse + specular * light.specular * material.specular, 1.0);
+    outColor = vec4(diffuse * light.diffuse * material.diffuse + specular * light.specular * material.specular, 1.0);
 }
 ";
 
@@ -375,7 +375,7 @@ void SpotLightUp(Light light, out float diffuse, out float specular) {
     }
 }
 
-out vec4 fragColor;
+out vec4 outColor;
 
 void main() {
     float diffuse = 0;
@@ -385,7 +385,7 @@ void main() {
     else if (lightUpRoutine == 2) { SpotLightUp(light, diffuse, specular); }
     else { diffuse = 0; specular = 0; }
 
-    fragColor = vec4(diffuse * light.diffuse * material.diffuse + specular * light.specular * material.specular, 1.0);
+    outColor = vec4(diffuse * light.diffuse * material.diffuse + specular * light.specular * material.specular, 1.0);
 }
 ";
     }

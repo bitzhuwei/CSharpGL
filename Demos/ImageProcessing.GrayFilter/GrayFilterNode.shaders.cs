@@ -30,7 +30,7 @@ uniform sampler2D u_texture;
 
 in vec2 v_texCoord;
 
-out vec4 fragColor;
+out vec4 outColor;
 
 void main(void)
 {
@@ -40,11 +40,11 @@ void main(void)
 	{
 		float grey = color.r*0.299 + color.g*0.587 + color.b*0.114;
 		
-		fragColor = vec4(grey, grey, grey, 1.0f);
+		outColor = vec4(grey, grey, grey, 1.0f);
 	}
 	else
 	{
-		fragColor = color;
+		outColor = color;
 	}
 }
 ";
