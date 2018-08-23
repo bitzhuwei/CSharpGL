@@ -41,7 +41,6 @@ in vec3 passPos;
 out vec4 outColor;
 
 void main() {
-    //outColor = color;
     vec4 c0 = texture(texture0, passTexCoord);
     float texCoord = (sqrt(passPos.x * passPos.x + passPos.y * passPos.y + passPos.z * passPos.z) - 0.5) / (sqrt(0.5 * 0.5 * 3) - 0.5);
     vec4 c1 = texture(texture1, texCoord);
