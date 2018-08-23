@@ -26,7 +26,7 @@ void main(void) {
         private const string extrudeVert = @"#version 330
 in vec3 inPosition;                                             
 out vec3 passPosition;
-                                                                                    
+
 void main()                                                                         
 {                                                                                   
     passPosition = inPosition;
