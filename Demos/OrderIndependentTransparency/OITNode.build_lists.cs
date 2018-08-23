@@ -41,7 +41,7 @@ void main(void)
 layout (early_fragment_tests) in;
 
 layout (binding = 0, offset = 0) uniform atomic_uint atomicCounter;
-layout (binding = 0, r32ui) uniform uimage2D head_pointer_image;
+layout (binding = 0, r32ui) uniform uimage2D heads;
 layout (binding = 1, rgba32ui) uniform writeonly uimageBuffer list_buffer;
 
 in vec4 passColor;
@@ -56,7 +56,7 @@ void main(void)
 
     index = atomicCounterIncrement(atomicCounter);
 
-    old_head = imageAtomicExchange(head_pointer_image, ivec2(gl_FragCoord.xy), uint(index));
+    old_head = imageAtomicExchange(heads, ivec2(gl_FragCoord.xy), uint(index));
 
     item.x = old_head;
     item.y = packUnorm4x8(passColor);

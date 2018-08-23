@@ -28,7 +28,7 @@ void main(void)
  */
 
 // The per-pixel image containing the head pointers
-layout (binding = 0, r32ui) uniform uimage2D head_pointer_image;
+layout (binding = 0, r32ui) uniform uimage2D heads;
 // Buffer containing linked lists of fragments
 layout (binding = 1, rgba32ui) uniform uimageBuffer list_buffer;
 
@@ -46,7 +46,7 @@ void main(void)
     uint current_index;
     uint fragment_count = 0;
 
-    current_index = imageLoad(head_pointer_image, ivec2(gl_FragCoord).xy).x;
+    current_index = imageLoad(heads, ivec2(gl_FragCoord).xy).x;
 
     while (current_index != 0 && fragment_count < MAX_FRAGMENTS)
     {
