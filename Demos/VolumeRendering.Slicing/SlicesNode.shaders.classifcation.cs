@@ -15,7 +15,7 @@ layout(location = 0) in vec3 inPosition;	//object space vertex position
 //uniform
 uniform mat4 mvpMat;		//combined modelview projection matrix
 
-smooth out vec3 vUV;	//3D texture coordinates for texture lookup in the fragment shader
+smooth out vec3 passUV;	//3D texture coordinates for texture lookup in the fragment shader
 
 void main()
 {  
@@ -26,14 +26,14 @@ void main()
 	//vertex position. Since the unit cube is at origin (min: (-0.5,-0.5,-0.5) and max: (0.5,0.5,0.5))
 	//adding (0.5,0.5,0.5) to the unit cube object space position gives us values from (0,0,0) to 
 	//(1,1,1)
-	vUV = inPosition + vec3(0.5);
+	passUV = inPosition + vec3(0.5);
 }
 ";
         private const string classificationFrag = @"#version 330 core
 
 layout(location = 0) out vec4 outColor;	//fragment shader output
 
-smooth in vec3 vUV;			//3D texture coordinates form vertex shader interpolated by rasterizer
+smooth in vec3 passUV;			//3D texture coordinates form vertex shader interpolated by rasterizer
 
 //uniforms
 uniform sampler3D volume;	//volume dataset
@@ -46,7 +46,7 @@ void main()
 	//we can get the sample value from the texture using the red channel. Then, we use the density 
 	//value obtained from the volume dataset and lookup the colour from the transfer function texture 
 	//by doing a dependent texture lookup.
-	outColor = texture(lut, texture(volume, vUV).r);
+	outColor = texture(lut, texture(volume, passUV).r);
 }
 ";
 

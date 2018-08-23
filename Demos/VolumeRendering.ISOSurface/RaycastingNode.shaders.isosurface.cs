@@ -15,7 +15,7 @@ layout(location = 0) in vec3 inPosition; //object space vertex position
 //uniform
 uniform mat4 mvpMat;   //combined modelview projection matrix
 
-smooth out vec3 vUV; //3D texture coordinates for texture lookup in the fragment shader
+smooth out vec3 passUV; //3D texture coordinates for texture lookup in the fragment shader
 
 void main()
 {  
@@ -26,14 +26,14 @@ void main()
 	//vertex position. Since the unit cube is at origin (min: (-0.5,-0.5,-0.5) and max: (0.5,0.5,0.5))
 	//adding (0.5,0.5,0.5) to the unit cube object space position gives us values from (0,0,0) to 
 	//(1,1,1)
-	vUV = inPosition + vec3(0.5);
+	passUV = inPosition + vec3(0.5);
 }
 ";
         private const string isosurfaceFrag = @"#version 330 core
 
 layout(location = 0) out vec4 outColor;	//fragment shader output
 
-smooth in vec3 vUV;				//3D texture coordinates form vertex shader 
+smooth in vec3 passUV;				//3D texture coordinates form vertex shader 
 								//interpolated by rasterizer
 
 //uniforms
@@ -107,13 +107,13 @@ vec4 PhongLighting(vec3 L, vec3 N, vec3 V, float specPower, vec3 diffuseColor)
 void main()
 { 
 	//get the 3D texture coordinates for lookup into the volume dataset
-	vec3 dataPos = vUV;
+	vec3 dataPos = passUV;
 		
 	//Gettting the ray marching direction:
 	//get the object space position by subracting 0.5 from the
 	//3D texture coordinates. Then subtraact it from camera position
 	//and normalize to get the ray marching direction
-	vec3 geomDir = normalize((vUV-vec3(0.5)) - camPos); 
+	vec3 geomDir = normalize((passUV-vec3(0.5)) - camPos); 
 
 	//multiply the raymarching direction with the step size to get the
 	//sub-step size we need to take at each raymarching step
