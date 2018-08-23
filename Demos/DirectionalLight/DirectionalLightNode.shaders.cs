@@ -16,11 +16,11 @@ in vec3 " + inNormal + @"; // per-vertex normal
 uniform mat4 " + mvpMat + @"; // combined model view projection matrix
 uniform mat3 " + normalMatrix + @"; // normal matrix
 
-smooth out vec3 vEyeSpaceNormal; // normal in eye space
+smooth out vec3 eyeSpaceNormal; // normal in eye space
 
 void main()
 {
-	vEyeSpaceNormal = normalMatrix * inNormal;
+	eyeSpaceNormal = normalMatrix * inNormal;
 
 	gl_Position = mvpMat * vec4(inPosition, 1);
 }
@@ -36,7 +36,7 @@ uniform vec3 " + diffuseColor + @" = vec3(1, 0.8431, 0); // diffuse color of sur
 uniform vec3 " + ambientColor + @" = vec3(0.2, 0.2, 0.2);
 
 // inputs from vertex shader
-smooth in vec3 vEyeSpaceNormal; // interpolated normal in eye space
+smooth in vec3 eyeSpaceNormal; // interpolated normal in eye space
 
 layout (location = 0) out vec4 vFragColor; // fargment shader output
 
@@ -44,11 +44,11 @@ void main()
 {
 	vec3 L = normalize(lightDirection); // light vector
 
-	float diffuse = max(0, dot(normalize(vEyeSpaceNormal), L));
+	float diffuse = max(0, dot(normalize(eyeSpaceNormal), L));
     float specular = 0;
     if (diffuse > 0)
     {
-        specular = max(0, dot(normalize(halfVector), vEyeSpaceNormal));
+        specular = max(0, dot(normalize(halfVector), eyeSpaceNormal));
         specular = pow(specular, shiness) * strength;
     }
     
