@@ -10,12 +10,12 @@ namespace fuluDD02_LayeredEngraving.ComputeShader
     {
         public const string blendVert = @"#version 330 core 
 
-in vec2 inPosiiton; //object space vertex position
+in vec2 inPosition; //object space vertex position
  
 void main()
 {  
     //get the clip space position from the object space position
-    gl_Position = vec4(inPosiiton * 2 - 1.0, 0, 1);
+    gl_Position = vec4(inPosition * 2 - 1.0, 0, 1);
 }
 ";
         public const string blendFrag = @"#version 330 core

@@ -10,7 +10,7 @@ namespace fuluDD02_LayeredEngraving.ComputeShader
     {
         public const string initVert = @"#version 330 core
 
-in vec3 inPosiiton; //object space vertex position
+in vec3 inPosition; //object space vertex position
 
 //uniform
 uniform mat4 mvpMat;  //combined modelview projection matrix
@@ -18,7 +18,7 @@ uniform mat4 mvpMat;  //combined modelview projection matrix
 void main()
 {  
 	//get the clipspace vertex position
-	gl_Position = mvpMat * vec4(inPosiiton, 1);
+	gl_Position = mvpMat * vec4(inPosition, 1);
 }
 ";
         public const string initFrag = @"#version 330 core
