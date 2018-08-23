@@ -28,7 +28,7 @@ const float life = 2;			//life of particle
 const float PI = 3.14159;
 const float TWO_PI = 2*PI;
 
-//colormap colours
+//colormap colors
 const vec3 RED = vec3(1,0,0);
 const vec3 GREEN = vec3(0,1,0);
 const vec3 YELLOW = vec3(1,1,0); 
@@ -85,7 +85,7 @@ void main()
 		alpha = 1.0 - (dt/life);	  
 	}
    
-	//linearly interpolate between red and yellow colour
+	//linearly interpolate between red and yellow color
 	passColor = vec4(mix(RED,YELLOW,alpha),alpha);
 	//get clipspace position
 	gl_Position = mvpMat*vec4(pos,1);
@@ -97,12 +97,12 @@ void main()
 layout(location=0) out vec4 outColor; // fragment shader output
 
 //input from the vertex shader
-in vec4 passColor;	//lienarly interpolated particle colour
+in vec4 passColor;	//lienarly interpolated particle color
 
 
 void main()
 {
-	//use the particle smooth colour as fragment output
+	//use the particle smooth color as fragment output
 	outColor = passColor; 
 }
 ";
@@ -111,13 +111,13 @@ void main()
 layout(location=0) out vec4 outColor; // fragment shader output
 
 //input from the vertex shader
-in vec4 passColor;	//lienarly interpolated particle colour
+in vec4 passColor;	//lienarly interpolated particle color
 
 uniform sampler2D textureMap;	//particle texture 
 
 void main()
 { 
-	//use the particle smooth colour alpha value to fade the colour obtained
+	//use the particle smooth color alpha value to fade the color obtained
 	//from the texture lookup 
 	outColor = vec4(texture(textureMap, gl_PointCoord).rgb, 1.0) * passColor.a;  
 }

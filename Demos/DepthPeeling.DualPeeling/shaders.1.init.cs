@@ -23,9 +23,9 @@ void main()
 ";
         public const string initFrag = @"#version 330 core
 
-out vec4 outColor; //output fragment colour
+out vec4 outColor; //output fragment color
 
-uniform vec4 vColor;	//colour uniform
+uniform vec4 vColor;	//color uniform
 
 void main()
 {

@@ -63,7 +63,7 @@ namespace c02d04_CubeMapTexture
                 var fs = new FragmentShader(Shaders.blendFrag);
                 var provider = new ShaderArray(vs, fs);
                 var map = new AttributeMap();
-                map.Add("inPosition", QuadModel.positions);
+                map.Add("inPosition", QuadModel.strPositions);
                 blendBuilder = new RenderMethodBuilder(provider, map);
             }
             {
@@ -71,7 +71,7 @@ namespace c02d04_CubeMapTexture
                 var fs = new FragmentShader(Shaders.finalFrag);
                 var provider = new ShaderArray(vs, fs);
                 var map = new AttributeMap();
-                map.Add("inPosition", QuadModel.positions);
+                map.Add("inPosition", QuadModel.strPositions);
                 finalBuilder = new RenderMethodBuilder(provider, map);
             }
 

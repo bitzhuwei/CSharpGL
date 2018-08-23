@@ -9,10 +9,10 @@ namespace c02d04_CubeMapTexture
     class QuadModel : IBufferSource
     {
 
-        private static readonly vec2[] quadVerts = new vec2[4] { new vec2(0, 0), new vec2(1, 0), new vec2(1, 1), new vec2(0, 1), };
-        private static readonly ushort[] quadIndices = new ushort[] { 0, 1, 2, 0, 2, 3 };
+        private static readonly vec2[] positions = new vec2[4] { new vec2(0, 0), new vec2(1, 0), new vec2(1, 1), new vec2(0, 1), };
+        private static readonly ushort[] indexes = new ushort[] { 0, 1, 2, 0, 2, 3 };
 
-        public const string positions = "positions";
+        public const string strPositions = "positions";
         private VertexBuffer positionBuffer;
 
         private IDrawCommand drawCmd;
@@ -21,11 +21,11 @@ namespace c02d04_CubeMapTexture
 
         public IEnumerable<VertexBuffer> GetVertexAttribute(string bufferName)
         {
-            if (positions == bufferName)
+            if (strPositions == bufferName)
             {
                 if (this.positionBuffer == null)
                 {
-                    this.positionBuffer = quadVerts.GenVertexBuffer(VBOConfig.Vec2, BufferUsage.StaticDraw);
+                    this.positionBuffer = positions.GenVertexBuffer(VBOConfig.Vec2, BufferUsage.StaticDraw);
                 }
 
                 yield return this.positionBuffer;
@@ -40,7 +40,7 @@ namespace c02d04_CubeMapTexture
         {
             if (this.drawCmd == null)
             {
-                IndexBuffer buffer = quadIndices.GenIndexBuffer(BufferUsage.StaticDraw);
+                IndexBuffer buffer = indexes.GenIndexBuffer(BufferUsage.StaticDraw);
                 this.drawCmd = new DrawElementsCmd(buffer, DrawMode.Triangles);
             }
 

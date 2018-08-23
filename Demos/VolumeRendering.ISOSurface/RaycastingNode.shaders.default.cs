@@ -96,16 +96,16 @@ void main()
 		//here we use front to back compositing scheme whereby the current sample
 		//value is multiplied to the currently accumulated alpha and then this product
 		//is subtracted from the sample value to get the alpha from the previous steps.
-		//Next, this alpha is multiplied with the current sample colour and accumulated
-		//to the composited colour. The alpha value from the previous steps is then 
-		//accumulated to the composited colour alpha.
+		//Next, this alpha is multiplied with the current sample color and accumulated
+		//to the composited color. The alpha value from the previous steps is then 
+		//accumulated to the composited color alpha.
 		float prev_alpha = sample - (sample * outColor.a);
 		outColor.rgb = prev_alpha * vec3(sample) + outColor.rgb; 
 		outColor.a += prev_alpha; 
         isDiscard = false;
 			
 		//early ray termination
-		//if the currently composited colour alpha is already fully saturated
+		//if the currently composited color alpha is already fully saturated
 		//we terminated the loop
 		if(outColor.a > 0.99)
 			break;

@@ -26,7 +26,7 @@ void main()
 uniform sampler2DRect DepthBlenderTex;
 uniform sampler2DRect FrontBlenderTex;
 
-uniform vec4 vColor;						//solid colour 
+uniform vec4 vColor;						//solid color 
 
 #define maxDepth 1.0
 

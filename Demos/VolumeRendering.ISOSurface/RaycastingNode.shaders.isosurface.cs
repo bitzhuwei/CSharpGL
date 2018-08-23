@@ -93,7 +93,7 @@ vec3 GetGradient(vec3 uvw)
 
 //function to estimate the PhongLighting component given the light vector (L),
 //the normal (N), the view vector (V), the specular power (specPower) and the
-//given diffuse colour (diffuseColor). The diffuse component is first calculated
+//given diffuse color (diffuseColor). The diffuse component is first calculated
 //Then, the half way vector is computed to obtain the specular component. Finally
 //the diffuse and specular contributions are added together
 vec4 PhongLighting(vec3 L, vec3 N, vec3 V, float specPower, vec3 diffuseColor)
@@ -177,9 +177,9 @@ void main()
 			//light
 			vec3 L = V;
 
-			//Finally, we call PhongLighing function to get the final colour
+			//Finally, we call PhongLighing function to get the final color
 			//with diffuse and specular components. Try changing this call to this
-			//outColor =  PhongLighting(L, N, V, 250, tc); to get a multi colour
+			//outColor =  PhongLighting(L, N, V, 250, tc); to get a multi color
 			//iso-surface
 			outColor = PhongLighting(L, N, V, 250, vec3(0.5));	
             isDiscard = false;

@@ -10,16 +10,15 @@ namespace c02d04_CubeMapTexture
     {
         public const string initVert = @"#version 330 core
   
-in vec3 inPosition; //object space vertex position
+in vec3 inPosition; //object space vertex position.
 
-//uniform
-uniform mat4 mvpMat;  //combined modelview projection matrix
+uniform mat4 mvpMat;  //combined modelview projection matrix.
 
 out vec3 passTexCoord;
 
 void main()
 {  
-	//get the clipspace vertex position
+	//get the clipspace vertex position.
 	gl_Position = mvpMat * vec4(inPosition.xyz, 1);
 
     passTexCoord = inPosition; // Special property for the Cube model.
@@ -29,10 +28,10 @@ void main()
 
 in vec3 passTexCoord;
 
-uniform samplerCube cubeTex;	//texture uniform
+uniform samplerCube cubeTex;
 uniform float alpha = 0.25;
 
-out vec4 outColor; //output fragment colour
+out vec4 outColor;
 
 void main()
 {

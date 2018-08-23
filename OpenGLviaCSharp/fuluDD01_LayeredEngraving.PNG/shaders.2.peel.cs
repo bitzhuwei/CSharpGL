@@ -26,7 +26,7 @@ void main()
 out vec4 outColor;	//fragment shader output
 
 //uniforms
-uniform vec4 color;						//solid colour 
+uniform vec4 color;						//solid color 
 uniform sampler2DRect  depthTexture;		//depth texture 
 
 void main()

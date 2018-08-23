@@ -23,17 +23,17 @@ void main()
 layout(location = 0) out vec4 outColor;	//fragment shader output
 
 //uniforms
-uniform sampler2DRect colorTexture;	//colour texture from previous pass
-uniform vec4 backgroundColor;		//background colour
+uniform sampler2DRect colorTexture;	//color texture from previous pass
+uniform vec4 backgroundColor;		//background color
 uniform bool useBackground = true;
 
 void main()
 {
-    //get the colour from the colour buffer
+    //get the color from the color buffer
     vec4 color = texture(colorTexture, gl_FragCoord.xy);
-    //combine the colour read from the colour texture with the background colour
-    //by multiplying the colour alpha with the background colour and adding the 
-    //product to the given colour uniform
+    //combine the color read from the color texture with the background color
+    //by multiplying the color alpha with the background color and adding the 
+    //product to the given color uniform
     if (useBackground) {
 	    outColor = color + backgroundColor * color.a;
     }
