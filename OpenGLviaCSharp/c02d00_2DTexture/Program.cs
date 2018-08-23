@@ -15,8 +15,8 @@ namespace c02d00_2DTexture
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new FormCube());
             Application.Run(new FormSphere());
-            //Application.Run(new FormCube());
         }
     }
 }

@@ -14,7 +14,7 @@ namespace c02d00_2DTexture
     {
         private Scene scene;
         private ActionList actionList;
-        private CubeNode sphereNode;
+        private SphereNode sphereNode;
 
         public FormSphere()
         {
@@ -39,7 +39,7 @@ namespace c02d00_2DTexture
             var up = new vec3(0, 1, 0);
             var camera = new Camera(position, center, up, CameraType.Perspective, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
             Texture texture = GetTexture();
-            this.sphereNode = CubeNode.Create(texture);
+            this.sphereNode = SphereNode.Create(texture);
             var scene = new Scene(camera);
             scene.RootNode = sphereNode;
             this.scene = scene;
