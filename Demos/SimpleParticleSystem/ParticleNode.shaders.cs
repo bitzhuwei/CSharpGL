@@ -11,7 +11,7 @@ namespace SimpleParticleSystem
 
         private const string vert = @"#version 330 core
   
-out vec4 vSmoothColor;	//output to fragment shader
+out vec4 passColor;	//output to fragment shader
 
 //shader uniforms
 uniform mat4 mvpMat;				//combined modelview matrix 
@@ -86,7 +86,7 @@ void main()
 	}
    
 	//linearly interpolate between red and yellow colour
-	vSmoothColor = vec4(mix(RED,YELLOW,alpha),alpha);
+	passColor = vec4(mix(RED,YELLOW,alpha),alpha);
 	//get clipspace position
 	gl_Position = mvpMat*vec4(pos,1);
 }
@@ -97,13 +97,13 @@ void main()
 layout(location=0) out vec4 outColor; // fragment shader output
 
 //input from the vertex shader
-in vec4 vSmoothColor;	//lienarly interpolated particle colour
+in vec4 passColor;	//lienarly interpolated particle colour
 
 
 void main()
 {
 	//use the particle smooth colour as fragment output
-	outColor = vSmoothColor; 
+	outColor = passColor; 
 }
 ";
         private const string texturedFrag = @"#version 330 core
@@ -111,7 +111,7 @@ void main()
 layout(location=0) out vec4 outColor; // fragment shader output
 
 //input from the vertex shader
-in vec4 vSmoothColor;	//lienarly interpolated particle colour
+in vec4 passColor;	//lienarly interpolated particle colour
 
 uniform sampler2D textureMap;	//particle texture 
 
@@ -119,7 +119,7 @@ void main()
 { 
 	//use the particle smooth colour alpha value to fade the colour obtained
 	//from the texture lookup 
-	outColor = vec4(texture(textureMap, gl_PointCoord).rgb, 1.0) * vSmoothColor.a;  
+	outColor = vec4(texture(textureMap, gl_PointCoord).rgb, 1.0) * passColor.a;  
 }
 ";
     }
