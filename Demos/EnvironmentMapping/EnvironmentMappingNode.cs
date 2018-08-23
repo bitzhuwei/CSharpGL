@@ -45,13 +45,13 @@ uniform samplerCube " + skybox + @";
 in vec3 passNormal;
 in vec3 passPosition;
 
-out vec4 FragColor;
+out vec4 outColor;
 
 void main()
 {             
     vec3 I = normalize(passPosition - cameraPos);
     vec3 R = reflect(I, normalize(passNormal));
-    FragColor = vec4(texture(skybox, R).rgb, 1.0);
+    outColor = vec4(texture(skybox, R).rgb, 1.0);
 }
 ";
         private const string refractFragmentCode = @"#version 330 core
@@ -63,13 +63,13 @@ uniform float " + ratio + @";
 in vec3 passNormal;
 in vec3 passPosition;
 
-out vec4 FragColor;
+out vec4 outColor;
 
 void main()
 {             
     vec3 I = normalize(passPosition - cameraPos);
     vec3 R = refract(I, normalize(passNormal), ratio);
-    FragColor = vec4(texture(skybox, R).rgb, 1);
+    outColor = vec4(texture(skybox, R).rgb, 1);
 }
 ";
 
