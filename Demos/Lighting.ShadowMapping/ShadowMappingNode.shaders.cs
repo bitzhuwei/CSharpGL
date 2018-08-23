@@ -63,7 +63,7 @@ in vec3 inNormal;
 out _Vertex {
     vec3 position;
     vec3 normal;
-    vec4 shadow_coord;
+    vec4 shadowCoord;
 } v;
 
 uniform mat4 mvpMat;
@@ -76,7 +76,7 @@ void main() {
     vec4 worldSpacePos = modelMat * vec4(inPosition, 1.0);
     v.position = worldSpacePos.xyz;
     v.normal = (normalMat * vec4(inNormal, 0)).xyz;
-    v.shadow_coord = shadowMat * worldSpacePos;
+    v.shadowCoord = shadowMat * worldSpacePos;
 }
 ";
         private const string blinnPhongFrag = @"// Blinn-Phong-WorldSpace.frag
@@ -122,7 +122,7 @@ uniform bool blinn = true;
 in _Vertex {
     vec3 position;
     vec3 normal;
-    vec4 shadow_coord;
+    vec4 shadowCoord;
 } fsVertex;
 
 void LightUp(vec3 lightDir, vec3 normal, vec3 ePos, vec3 vPos, float shiness, out float diffuse, out float specular) {
@@ -247,7 +247,7 @@ void main() {
     
     float f = 1;
     if (useShadow) {
-        f = textureProj(depth_texture, fsVertex.shadow_coord);
+        f = textureProj(depth_texture, fsVertex.shadowCoord);
     }
     
     fragColor = vec4(f * diffuse * light.diffuse * material.diffuse + f * specular * light.specular * material.specular, 1.0);
