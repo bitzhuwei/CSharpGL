@@ -20,7 +20,7 @@ smooth out vec3 passUV;	//3D texture coordinates for texture lookup in the fragm
 void main()
 {  
 	//get the clipspace position 
-	gl_Position = mvpMat*vec4(inPosition.xyz,1);
+	gl_Position = mvpMat * vec4(inPosition.xyz, 1);
 
 	//get the 3D texture coordinates by adding (0.5,0.5,0.5) to the object space 
 	//vertex position. Since the unit cube is at origin (min: (-0.5,-0.5,-0.5) and max: (0.5,0.5,0.5))

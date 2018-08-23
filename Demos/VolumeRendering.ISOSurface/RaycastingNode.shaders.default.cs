@@ -20,7 +20,7 @@ smooth out vec3 passUV; //3D texture coordinates for texture lookup in the fragm
 void main()
 {  
 	//get the clipspace position 
-	gl_Position = mvpMat*vec4(inPosition.xyz,1);
+	gl_Position = mvpMat*vec4(inPosition.xyz, 1);
 
 	//get the 3D texture coordinates by adding (0.5,0.5,0.5) to the object space 
 	//vertex position. Since the unit cube is at origin (min: (-0.5,-0.5,-0.5) and max: (0.5,0.5,0.5))
@@ -42,7 +42,7 @@ uniform vec3		camPos;		//camera position
 uniform vec3		step_size;	//ray step size 
 
 //constants
-const int MAX_SAMPLES = 300;	//total samples for each ray march step
+const int maxSampleCount = 300;	//total samples for each ray march step
 const vec3 texMin = vec3(0);	//minimum texture access coordinate
 const vec3 texMax = vec3(1);	//maximum texture access coordinate
 
@@ -67,7 +67,7 @@ void main()
     bool isDiscard = true;
 
 	//for all samples along the ray
-	for (int i = 0; i < MAX_SAMPLES; i++) {
+	for (int i = 0; i < maxSampleCount; i++) {
 		// advance ray by dirstep
 		dataPos = dataPos + dirStep;
 		

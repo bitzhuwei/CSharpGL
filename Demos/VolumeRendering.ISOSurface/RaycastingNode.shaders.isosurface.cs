@@ -42,7 +42,7 @@ uniform vec3		camPos;			//camera position
 uniform vec3		step_size;		//ray step size 
 
 //constants
-const int MAX_SAMPLES = 300;		//total samples for each ray march step
+const int maxSampleCount = 300;		//total samples for each ray march step
 const vec3 texMin = vec3(0);		//minimum texture access coordinate
 const vec3 texMax = vec3(1);		//maximum texture access coordinate
 const float DELTA = 0.01;			//the step size for gradient calculation
@@ -125,7 +125,7 @@ void main()
     bool isDiscard = true;
 
 	//for all samples along the ray
-	for (int i = 0; i < MAX_SAMPLES; i++) {
+	for (int i = 0; i < maxSampleCount; i++) {
 		// advance ray by dirstep
 		dataPos = dataPos + dirStep;
 		
