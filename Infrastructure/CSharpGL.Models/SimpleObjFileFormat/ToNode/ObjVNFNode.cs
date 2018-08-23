@@ -16,7 +16,7 @@ namespace CSharpGL
         private const string viewMat = "viewMat";
         private const string projectionMat = "projectionMat";
         private const string materialAmbient = "materialAmbient";
-        private const string material_diffuse = "material_diffuse";
+        private const string materialDiffuse = "materialDiffuse";
         private const string material_specular = "material_specular";
         private const string material_specular_power = "material_specular_power";
         private const string light_position = "light_position";
@@ -55,7 +55,7 @@ void main(void)
             @"#version 330
 
 uniform vec3 " + materialAmbient + @" = vec3(0.2, 0.2, 0.2);
-uniform vec3 " + material_diffuse + @";
+uniform vec3 " + materialDiffuse + @";
 uniform vec3 " + material_specular + @";
 uniform float " + material_specular_power + @";
 
@@ -81,7 +81,7 @@ void main(void)
 	float diffuse = max(NdotL, 0.0);
 	float specular = 0;//max(pow(EdotR, material_specular_power), 0.0);
 	
-	color = vec4(materialAmbient + material_diffuse * diffuse + material_specular * specular, 1.0);
+	color = vec4(materialAmbient + materialDiffuse * diffuse + material_specular * specular, 1.0);
 }
 ";
 
@@ -183,7 +183,7 @@ void main(void)
             program.SetUniform(projectionMat, projection);
             program.SetUniform(light_position, new vec3(view * new vec4(LightPosition, 1.0f)));
             //program.SetUniform(materialAmbient, this.Ambient);
-            program.SetUniform(material_diffuse, this.Diffuse);
+            program.SetUniform(materialDiffuse, this.Diffuse);
             program.SetUniform(material_specular, this.Specular);
             program.SetUniform(material_specular_power, this.SpecularPower);
 
