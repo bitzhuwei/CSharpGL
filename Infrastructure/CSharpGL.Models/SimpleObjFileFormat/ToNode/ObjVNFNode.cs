@@ -33,8 +33,8 @@ layout (location = 1) in vec3 " + inNormal + @";
 
 out _Vertex
 {
-	vec3 worldPos;
-	vec3 eye_coord;
+	vec3 worldSpacePos;
+	vec3 eyeSpacePos;
 	vec3 normal;
 } v;
 
@@ -44,8 +44,8 @@ void main(void)
 	vec4 eye_pos = viewMat * world_pos;
 	vec4 clip_pos = projectionMat * eye_pos;
 	
-	v.worldPos = world_pos.xyz;
-	v.eye_coord = eye_pos.xyz;
+	v.worldSpacePos = world_pos.xyz;
+	v.eyeSpacePos = eye_pos.xyz;
 	v.normal = normalize(mat3(viewMat * modelMat) * normal);
 	
 	gl_Position = clip_pos;
@@ -65,17 +65,17 @@ layout (location = 0) out vec4 color;
 
 in _Vertex
 {
-	vec3 worldPos;
-	vec3 eye_coord;
+	vec3 worldSpacePos;
+	vec3 eyeSpacePos;
 	vec3 normal;
 } fsVertex;
 
 void main(void)
 {
 	vec3 N = normalize(fsVertex.normal);
-	vec3 L = normalize(light_position - fsVertex.eye_coord);
+	vec3 L = normalize(light_position - fsVertex.eyeSpacePos);
 	vec3 R = reflect(L, N);
-	vec3 E = normalize(fsVertex.eye_coord);
+	vec3 E = normalize(fsVertex.eyeSpacePos);
 	float NdotL = dot(N, L);
 	float EdotR = dot(E, R);
 	float diffuse = max(NdotL, 0.0);
