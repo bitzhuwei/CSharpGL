@@ -35,7 +35,7 @@ out _Vertex
 {
 	vec3 worldSpacePos;
 	vec3 eyeSpacePos;
-	vec3 normal;
+	vec3 eyeSpaceNormal;
 } v;
 
 void main(void)
@@ -46,7 +46,7 @@ void main(void)
 	
 	v.worldSpacePos = world_pos.xyz;
 	v.eyeSpacePos = eye_pos.xyz;
-	v.normal = normalize(mat3(viewMat * modelMat) * normal);
+	v.eyeSpaceNormal = normalize(mat3(viewMat * modelMat) * normal);
 	
 	gl_Position = clip_pos;
 }
@@ -67,12 +67,12 @@ in _Vertex
 {
 	vec3 worldSpacePos;
 	vec3 eyeSpacePos;
-	vec3 normal;
+	vec3 eyeSpaceNormal;
 } fsVertex;
 
 void main(void)
 {
-	vec3 N = normalize(fsVertex.normal);
+	vec3 N = normalize(fsVertex.eyeSpaceNormal);
 	vec3 L = normalize(light_position - fsVertex.eyeSpacePos);
 	vec3 R = reflect(L, N);
 	vec3 E = normalize(fsVertex.eyeSpacePos);
