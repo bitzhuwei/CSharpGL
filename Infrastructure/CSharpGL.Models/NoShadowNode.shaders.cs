@@ -47,8 +47,8 @@ uniform mat4 normalMat; // transpose(inverse(modelMat));
 
 void main() {
     gl_Position = mvpMat * vec4(inPosition, 1.0);
-    vec4 worldPos = modelMat * vec4(inPosition, 1.0);
-	v.position = worldPos.xyz;
+    vec4 worldSpacePos = modelMat * vec4(inPosition, 1.0);
+	v.position = worldSpacePos.xyz;
 	v.normal = (normalMat * vec4(inNormal, 0)).xyz;
 }
 ";
