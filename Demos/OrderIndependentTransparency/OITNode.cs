@@ -9,7 +9,7 @@ namespace OrderIndependentTransparency
     public partial class OITNode : PickableNode, IRenderable
     {
         private const string inPosition = "inPosition";
-        private const string vNormal = "vNormal";
+        private const string inNormal = "inNormal";
         private const string mvpMatrix = "mvpMatrix";
 
         const int buildLists = 0;
@@ -32,7 +32,7 @@ namespace OrderIndependentTransparency
                 var provider = new ShaderArray(vs, fs);
                 var map = new AttributeMap();
                 map.Add(inPosition, position);
-                map.Add(vNormal, normal);
+                map.Add(inNormal, normal);
                 builders[buildLists] = new RenderMethodBuilder(provider, map);
             }
             {

@@ -11,7 +11,7 @@ namespace DirectionalLight
         private const string directionalLightVert = @"#version 330 core
 
 in vec3 " + inPosition + @"; // per-vertex position
-in vec3 " + vNormal + @"; // per-vertex normal
+in vec3 " + inNormal + @"; // per-vertex normal
 
 uniform mat4 " + mvpMat + @"; // combined model view projection matrix
 uniform mat3 " + normalMatrix + @"; // normal matrix
@@ -20,7 +20,7 @@ smooth out vec3 vEyeSpaceNormal; // normal in eye space
 
 void main()
 {
-	vEyeSpaceNormal = normalMatrix * vNormal;
+	vEyeSpaceNormal = normalMatrix * inNormal;
 
 	gl_Position = mvpMat * vec4(inPosition, 1);
 }

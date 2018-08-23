@@ -11,7 +11,7 @@ namespace SpotLight
         private const string spotLightVert = @"#version 150 core
 
 in vec3 inPosition;
-in vec3 vNormal;
+in vec3 inNormal;
 
 uniform mat4 projectionMatrix;
 uniform mat4 viewMatrix;
@@ -26,7 +26,7 @@ void main(void)
     gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(inPosition, 1.0f);
 
     passPosition = (viewMatrix * modelMatrix * vec4(inPosition, 1.0f)).xyz;
-    passNormal = (normalMatrix * vec4(vNormal, 0)).xyz;
+    passNormal = (normalMatrix * vec4(inNormal, 0)).xyz;
 }
 ";
         private const string spotLightFrag = @"#version 150 core

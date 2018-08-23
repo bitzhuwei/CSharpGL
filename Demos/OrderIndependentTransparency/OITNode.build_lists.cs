@@ -11,7 +11,7 @@ namespace OrderIndependentTransparency
         private const string buildListsVert = @"#version 330
 
 in vec3 inPosition;
-in vec3 vNormal;
+in vec3 inNormal;
 
 uniform mat4 mvpMatrix;
 
@@ -21,7 +21,7 @@ out vec4 surface_color;
 
 void main(void)
 {
-    vec3 color = vNormal;
+    vec3 color = inNormal;
     if (color.r < 0) { color.r = -color.r; }
     if (color.g < 0) { color.g = -color.g; }
     if (color.b < 0) { color.b = -color.b; }

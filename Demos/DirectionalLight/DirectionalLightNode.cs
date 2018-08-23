@@ -13,7 +13,7 @@ namespace DirectionalLight
     public partial class DirectionalLightNode : PickableNode, IRenderable
     {
         private const string inPosition = "inPosition";
-        private const string vNormal = "vNormal";
+        private const string inNormal = "inNormal";
         private const string mvpMat = "mvpMat";
         private const string normalMatrix = "normalMatrix";
         private const string halfVector = "halfVector";
@@ -44,7 +44,7 @@ namespace DirectionalLight
             var provider = new ShaderArray(vs, fs);
             var map = new AttributeMap();
             map.Add(inPosition, position);
-            map.Add(vNormal, normal);
+            map.Add(inNormal, normal);
             var builder = new RenderMethodBuilder(provider, map);
 
             var node = new DirectionalLightNode(model, position, builder);
