@@ -24,7 +24,7 @@ out vec4 outColor;	//fragment shader output
 
 //uniforms
 uniform sampler2DRect colorTexture;	//colour texture from previous pass
-uniform vec4 vBackgroundColor;		//background colour
+uniform vec4 backgroundColor;		//background colour
 uniform bool useBackground = true;
 
 void main()
@@ -35,7 +35,7 @@ void main()
     //by multiplying the colour alpha with the background colour and adding the 
     //product to the given colour uniform
     if (useBackground) {
-	    outColor = color + vBackgroundColor * color.a;
+	    outColor = color + backgroundColor * color.a;
     }
     else {
         outColor = color;
