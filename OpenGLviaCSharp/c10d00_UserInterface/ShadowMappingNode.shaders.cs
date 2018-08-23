@@ -123,7 +123,7 @@ in _Vertex {
     vec3 position;
     vec3 normal;
     vec4 shadow_coord;
-} fs_in;
+} fsVertex;
 
 void LightUp(vec3 lightDir, vec3 normal, vec3 ePos, vec3 vPos, float shiness, out float diffuse, out float specular) {
     // Diffuse factor
@@ -147,13 +147,13 @@ void LightUp(vec3 lightDir, vec3 normal, vec3 ePos, vec3 vPos, float shiness, ou
 }
 
 void PointLightUp(Light light, out float diffuse, out float specular) {
-    vec3 Distance = light.position - fs_in.position;
+    vec3 Distance = light.position - fsVertex.position;
     vec3 lightDir = normalize(Distance);
-    vec3 normal = normalize(fs_in.normal); 
+    vec3 normal = normalize(fsVertex.normal); 
     float distance = length(Distance);
     float attenuation = 1.0 / (light.constant + light.linear * distance + light.quadratic * distance * distance);
     
-    LightUp(lightDir, normal, eyePos, fs_in.position, material.shiness, diffuse, specular);
+    LightUp(lightDir, normal, eyePos, fsVertex.position, material.shiness, diffuse, specular);
     
     diffuse = diffuse * attenuation;
     specular = specular * attenuation;
@@ -161,13 +161,13 @@ void PointLightUp(Light light, out float diffuse, out float specular) {
 
 void DirectionalLightUp(Light light, out float diffuse, out float specular) {
     vec3 lightDir = normalize(light.direction);
-    vec3 normal = normalize(fs_in.normal); 
-    LightUp(lightDir, normal, eyePos, fs_in.position, material.shiness, diffuse, specular);
+    vec3 normal = normalize(fsVertex.normal); 
+    LightUp(lightDir, normal, eyePos, fsVertex.position, material.shiness, diffuse, specular);
 }
 
 // Note: We assume that spot light's angle ranges from 0 to 180 degrees.
 void SpotLightUp(Light light, out float diffuse, out float specular) {
-    vec3 Distance = light.position - fs_in.position;
+    vec3 Distance = light.position - fsVertex.position;
     vec3 lightDir = normalize(Distance);
     vec3 centerDir = normalize(light.direction);
     float c = dot(lightDir, centerDir);// cut off at this point.
@@ -175,11 +175,11 @@ void SpotLightUp(Light light, out float diffuse, out float specular) {
         diffuse = 0; specular = 0;
     }
     else {
-        vec3 normal = normalize(fs_in.normal); 
+        vec3 normal = normalize(fsVertex.normal); 
         float distance = length(Distance);
         float attenuation = 1.0 / (light.constant + light.linear * distance + light.quadratic * distance * distance);
 
-        LightUp(lightDir, normal, eyePos, fs_in.position, material.shiness, diffuse, specular);
+        LightUp(lightDir, normal, eyePos, fsVertex.position, material.shiness, diffuse, specular);
     
         diffuse = diffuse * attenuation;
         specular = specular * attenuation;
@@ -206,14 +206,14 @@ bool InsidePyramid(vec3 lightPos, vec3 direction, vec3 vPos, vec3 baseX, vec3 ba
 }
 
 void TSpotLightUp(Light light, vec3 direction, vec3 baseX, vec3 baseY, out float diffuse, out float specular) {
-    if (InsidePyramid(light.position, direction, fs_in.position, baseX, baseY)) {
-	    vec3 Distance = light.position - fs_in.position;
+    if (InsidePyramid(light.position, direction, fsVertex.position, baseX, baseY)) {
+	    vec3 Distance = light.position - fsVertex.position;
         vec3 lightDir = normalize(Distance);
-        vec3 normal = normalize(fs_in.normal); 
+        vec3 normal = normalize(fsVertex.normal); 
         float distance = length(Distance);
         float attenuation = 1.0 / (light.constant + light.linear * distance + light.quadratic * distance * distance);
 
-        LightUp(lightDir, normal, eyePos, fs_in.position, material.shiness, diffuse, specular);
+        LightUp(lightDir, normal, eyePos, fsVertex.position, material.shiness, diffuse, specular);
     
         diffuse = diffuse * attenuation;
         specular = specular * attenuation;
@@ -247,7 +247,7 @@ void main() {
     
     float f = 1;
     if (useShadow) {
-        f = textureProj(depth_texture, fs_in.shadow_coord);
+        f = textureProj(depth_texture, fsVertex.shadow_coord);
     }
     
     fragColor = vec4(f * diffuse * light.diffuse * material.diffuse + f * specular * light.specular * material.specular, 1.0);
