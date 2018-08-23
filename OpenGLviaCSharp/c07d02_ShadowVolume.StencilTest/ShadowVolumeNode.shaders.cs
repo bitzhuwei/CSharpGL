@@ -25,18 +25,18 @@ void main(void) {
 
         private const string extrudeVert = @"#version 330
 in vec3 inPosition;                                             
-out vec3 PosL;
+out vec3 passPosition;
                                                                                     
 void main()                                                                         
 {                                                                                   
-    PosL = inPosition;
+    passPosition = inPosition;
 }
 ";
 
         private const string extrudeGeom = @"#version 330
 layout (triangles_adjacency) in;    // six vertices in
 layout (triangle_strip, max_vertices = 18) out; // 4 per quad * 3 triangle vertices + 6 for near/far caps
-in vec3 PosL[]; // an array of 6 vertices (triangle with adjacency)
+in vec3 passPosition[]; // an array of 6 vertices (triangle with adjacency)
 uniform bool farAway = false; // light's position is infinitly far away.
 uniform vec3 gLightPos; // if farAway is true, gLightPos means direction to light source; otherwise, it means light's position.
 uniform mat4 gProjectionView;
@@ -82,12 +82,12 @@ void EmitQuad(vec3 StartVertex, vec3 EndVertex)
 void main()
 {
     vec3 worldSpacePos[6]; 
-    worldSpacePos[0] = vec3(gWorld * vec4(PosL[0], 1.0));
-    worldSpacePos[1] = vec3(gWorld * vec4(PosL[1], 1.0));
-    worldSpacePos[2] = vec3(gWorld * vec4(PosL[2], 1.0));
-    worldSpacePos[3] = vec3(gWorld * vec4(PosL[3], 1.0));
-    worldSpacePos[4] = vec3(gWorld * vec4(PosL[4], 1.0));
-    worldSpacePos[5] = vec3(gWorld * vec4(PosL[5], 1.0));
+    worldSpacePos[0] = vec3(gWorld * vec4(passPosition[0], 1.0));
+    worldSpacePos[1] = vec3(gWorld * vec4(passPosition[1], 1.0));
+    worldSpacePos[2] = vec3(gWorld * vec4(passPosition[2], 1.0));
+    worldSpacePos[3] = vec3(gWorld * vec4(passPosition[3], 1.0));
+    worldSpacePos[4] = vec3(gWorld * vec4(passPosition[4], 1.0));
+    worldSpacePos[5] = vec3(gWorld * vec4(passPosition[5], 1.0));
     vec3 e1 = worldSpacePos[2] - worldSpacePos[0];
     vec3 e2 = worldSpacePos[4] - worldSpacePos[0];
     vec3 e3 = worldSpacePos[1] - worldSpacePos[0];
