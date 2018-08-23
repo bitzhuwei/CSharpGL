@@ -13,14 +13,14 @@ namespace c08d01_PickPoint
 in vec3 inPosition;
 in vec3 inColor;
 
-uniform mat4 mvpMatrix;
+uniform mat4 mvpMat;
 uniform int highlightIndex = -1;
 
 out vec3 passColor;
 
 void main(void) {
     // transform vertex' position from model space to clip space.
-    gl_Position = mvpMatrix * vec4(inPosition, 1.0);
+    gl_Position = mvpMat * vec4(inPosition, 1.0);
 
     if (highlightIndex == gl_VertexID) {
         passColor = vec3(1, 1, 1);
@@ -48,12 +48,12 @@ void main(void) {
 
 in vec3 inPosition;
 out vec4 passColor;
-uniform mat4 mvpMatrix;
+uniform mat4 mvpMat;
 uniform int highlightIndex = -1;
 
 void main(void) {
     // transform vertex' position from model space to clip space.
-    gl_Position = mvpMatrix * vec4(inPosition, 1.0);
+    gl_Position = mvpMat * vec4(inPosition, 1.0);
 
     if (highlightIndex == gl_VertexID) {
         gl_PointSize = 14;

@@ -84,7 +84,7 @@ namespace ImageProcessing.GrayFilter
 
             RenderMethod method = this.RenderUnit.Methods[0];
             ShaderProgram program = method.Program;
-            program.SetUniform("mvpMatrix", projection * view * model);
+            program.SetUniform("mvpMat", projection * view * model);
 
             method.Render();
         }

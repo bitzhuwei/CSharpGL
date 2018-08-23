@@ -84,7 +84,7 @@ namespace c13d01_QueryObject
 
             var method = this.RenderUnit.Methods[(int)this.Method];
             ShaderProgram program = method.Program;
-            program.SetUniform("mvpMatrix", projection * view * model);
+            program.SetUniform("mvpMat", projection * view * model);
             program.SetUniform("pointSize", this.PointSize);
             GL.Instance.Enable(GL.GL_PROGRAM_POINT_SIZE);
             method.Render();

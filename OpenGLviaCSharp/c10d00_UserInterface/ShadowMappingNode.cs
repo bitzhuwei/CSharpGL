@@ -89,7 +89,7 @@ namespace c10d00_UserInterface
 
             var method = this.RenderUnit.Methods[1];
             ShaderProgram program = method.Program;
-            program.SetUniform("mvpMatrix", projection * view * model);
+            program.SetUniform("mvpMat", projection * view * model);
 
             method.Render();
         }

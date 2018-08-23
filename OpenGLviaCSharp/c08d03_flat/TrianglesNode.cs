@@ -58,7 +58,7 @@ namespace c08d03_flat
 
             var method = this.RenderUnit.Methods[(int)this.Method];
             ShaderProgram program = method.Program;
-            program.SetUniform("mvpMatrix", projection * view * model);
+            program.SetUniform("mvpMat", projection * view * model);
             method.Render();
         }
 

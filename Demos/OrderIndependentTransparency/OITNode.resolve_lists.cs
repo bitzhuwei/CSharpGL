@@ -12,11 +12,11 @@ namespace OrderIndependentTransparency
 
 in vec3 inPosition;
 
-uniform mat4 mvpMatrix;
+uniform mat4 mvpMat;
 
 void main(void)
 {
-    gl_Position = mvpMatrix * vec4(inPosition, 1.0f);
+    gl_Position = mvpMat * vec4(inPosition, 1.0f);
 }
 ";
         private const string resolveListsFrag = @"#version 420 core

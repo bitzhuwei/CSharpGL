@@ -49,12 +49,12 @@ namespace CSharpGL
 
         public void RenderBeforeChildren(RenderEventArgs arg)
         {
-            // gets mvpMatrix.
+            // gets mvpMat.
             ICamera camera = arg.Camera;
             mat4 projectionMat = camera.GetProjectionMatrix();
             mat4 viewMat = camera.GetViewMatrix();
             mat4 modelMat = this.GetModelMatrix();
-            mat4 mvpMatrix = projectionMat * viewMat * modelMat;
+            mat4 mvpMat = projectionMat * viewMat * modelMat;
             // a render uint wraps everything(model data, shaders, glswitches, etc.) for rendering.
             ModernRenderUnit unit = this.RenderUnit;
             // gets render method.
@@ -62,8 +62,8 @@ namespace CSharpGL
             RenderMethod method = unit.Methods[0];
             // shader program wraps vertex shader and fragment shader.
             ShaderProgram program = method.Program;
-            //set value for 'uniform mat4 mvpMatrix'; in shader.
-            program.SetUniform("mvpMatrix", mvpMatrix);
+            //set value for 'uniform mat4 mvpMat'; in shader.
+            program.SetUniform("mvpMat", mvpMat);
             // render the cube model via OpenGL.
             method.Render();
         }

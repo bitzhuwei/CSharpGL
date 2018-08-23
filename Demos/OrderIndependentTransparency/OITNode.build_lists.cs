@@ -13,7 +13,7 @@ namespace OrderIndependentTransparency
 in vec3 inPosition;
 in vec3 inNormal;
 
-uniform mat4 mvpMatrix;
+uniform mat4 mvpMat;
 
 uniform float minAlpha = 0.5f;
 
@@ -33,7 +33,7 @@ void main(void)
 	float a = (0.75f - minAlpha) * (1.0f - variance) + minAlpha;
     passColor = vec4(normalized, a);
 
-    gl_Position = mvpMatrix * vec4(inPosition, 1.0f);
+    gl_Position = mvpMat * vec4(inPosition, 1.0f);
 }
 ";
         private const string buildListsFrag = @"#version 420 core

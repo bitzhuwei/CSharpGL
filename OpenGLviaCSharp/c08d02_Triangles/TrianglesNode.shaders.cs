@@ -13,13 +13,13 @@ namespace c08d02_Triangles
 in vec3 inPosition;
 in vec3 inColor;
 
-uniform mat4 mvpMatrix;
+uniform mat4 mvpMat;
 
 out vec3 passColor;
 
 void main(void) {
     // transform vertex' position from model space to clip space.
-    gl_Position = mvpMatrix * vec4(inPosition, 1.0);
+    gl_Position = mvpMat * vec4(inPosition, 1.0);
 
     passColor = inColor;
 }
@@ -40,13 +40,13 @@ void main(void) {
 
 in vec3 inPosition;
 
-uniform mat4 mvpMatrix;
+uniform mat4 mvpMat;
 
 out vec4 passColor;
 
 void main(void) {
     // transform vertex' position from model space to clip space.
-    gl_Position = mvpMatrix * vec4(inPosition, 1.0);
+    gl_Position = mvpMat * vec4(inPosition, 1.0);
 
     // gets color value according to gl_VertexID.
     int index = gl_VertexID;

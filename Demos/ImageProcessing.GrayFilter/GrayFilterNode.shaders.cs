@@ -10,7 +10,7 @@ namespace ImageProcessing.GrayFilter
     {
         private const string renderVert = @"#version 150
 
-uniform mat4 mvpMatrix;
+uniform mat4 mvpMat;
 
 in vec3 inPosition;
 in vec2 inTexCoord;
@@ -21,7 +21,7 @@ void main(void)
 {
 	passTexCoord = inTexCoord;
 
-	gl_Position = mvpMatrix * vec4(inPosition, 1.0f);
+	gl_Position = mvpMat * vec4(inPosition, 1.0f);
 }
 ";
         private const string renderFrag = @"#version 150

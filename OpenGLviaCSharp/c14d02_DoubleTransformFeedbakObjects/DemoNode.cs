@@ -13,7 +13,7 @@ namespace c14d02_DoubleTransformFeedbakObjects
     {
         private const string inPosition = "inPosition";
         private const string outPosition = "outPosition";
-        private const string mvpMatrix = "mvpMatrix";
+        private const string mvpMat = "mvpMat";
         private TransformFeedbackObject[] transformFeedbackObjects = new TransformFeedbackObject[2];
         private int currentIndex = 0;
 
@@ -113,7 +113,7 @@ namespace c14d02_DoubleTransformFeedbakObjects
                 mat4 view = camera.GetViewMatrix();
                 mat4 model = this.GetModelMatrix();
 
-                program.SetUniform(mvpMatrix, projection * view * model);
+                program.SetUniform(mvpMat, projection * view * model);
                 //unit.Render(); // this method must specify vertex count.
                 tf.Draw(method); // render updated buffers without specifying vertex count.
             }

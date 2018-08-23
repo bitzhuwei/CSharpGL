@@ -10,7 +10,7 @@ namespace OrderIndependentTransparency
     {
         private const string inPosition = "inPosition";
         private const string inNormal = "inNormal";
-        private const string mvpMatrix = "mvpMatrix";
+        private const string mvpMat = "mvpMat";
 
         const int buildLists = 0;
         const int resolveLists = 1;
@@ -205,14 +205,14 @@ namespace OrderIndependentTransparency
                     // first pass
                     RenderMethod method = this.RenderUnit.Methods[buildLists];
                     ShaderProgram program = method.Program;
-                    program.SetUniform(mvpMatrix, projection * view * model);
+                    program.SetUniform(mvpMat, projection * view * model);
                     method.Render();
                 }
                 {
                     // second pass
                     RenderMethod method = this.RenderUnit.Methods[resolveLists];
                     ShaderProgram program = method.Program;
-                    program.SetUniform(mvpMatrix, projection * view * model);
+                    program.SetUniform(mvpMat, projection * view * model);
                     method.Render();
                 }
             }

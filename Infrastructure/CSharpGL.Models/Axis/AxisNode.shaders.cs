@@ -14,12 +14,12 @@ namespace CSharpGL
 in vec3 inPosition;
 in vec3 inColor;
 
-uniform mat4 mvpMatrix;
+uniform mat4 mvpMat;
 
 out vec3 passColor;
 
 void main() {
-    gl_Position = mvpMatrix * vec4(inPosition, 1.0); 
+    gl_Position = mvpMat * vec4(inPosition, 1.0); 
 
     passColor = inColor;
 }
