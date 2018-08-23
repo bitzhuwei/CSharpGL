@@ -123,7 +123,7 @@ namespace c10d00_UserInterface
             program.SetUniform("material.diffuse", this.Color);
             program.SetUniform("material.specular", this.Color);
             program.SetUniform("material.shiness", this.Shiness);
-            program.SetUniform("depth_texture", arg.ShadowMap);
+            program.SetUniform("depthTexture", arg.ShadowMap);
             // eye pos.
             program.SetUniform("eyePos", camera.Position); // camera's position in world space.
             // use blinn phong or not?

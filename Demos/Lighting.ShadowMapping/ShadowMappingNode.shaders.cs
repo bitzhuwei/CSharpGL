@@ -111,7 +111,7 @@ uniform int lightUpRoutine;
 
 uniform Material material;
 
-uniform sampler2DShadow depth_texture;
+uniform sampler2DShadow depthTexture;
 
 uniform bool useShadow = true;
 
@@ -247,7 +247,7 @@ void main() {
     
     float f = 1;
     if (useShadow) {
-        f = textureProj(depth_texture, fsVertex.shadowCoord);
+        f = textureProj(depthTexture, fsVertex.shadowCoord);
     }
     
     fragColor = vec4(f * diffuse * light.diffuse * material.diffuse + f * specular * light.specular * material.specular, 1.0);
