@@ -17,7 +17,7 @@ uniform mat4 mvpMatrix;
 
 uniform float minAlpha = 0.5f;
 
-out vec4 surface_color;
+out vec4 passColor;
 
 void main(void)
 {
@@ -31,7 +31,7 @@ void main(void)
 	variance += (normalized.b - normalized.r) * (normalized.b - normalized.r);
 	variance = variance / 2.0f;// range from 0.0f - 1.0f
 	float a = (0.75f - minAlpha) * (1.0f - variance) + minAlpha;
-    surface_color = vec4(normalized, a);
+    passColor = vec4(normalized, a);
 
     gl_Position = mvpMatrix * vec4(inPosition, 1.0f);
 }
@@ -44,7 +44,7 @@ layout (binding = 0, offset = 0) uniform atomic_uint list_counter;
 layout (binding = 0, r32ui) uniform uimage2D head_pointer_image;
 layout (binding = 1, rgba32ui) uniform writeonly uimageBuffer list_buffer;
 
-in vec4 surface_color;
+in vec4 passColor;
 
 layout (location = 0) out vec4 color;
 
@@ -59,13 +59,13 @@ void main(void)
     old_head = imageAtomicExchange(head_pointer_image, ivec2(gl_FragCoord.xy), uint(index));
 
     item.x = old_head;
-    item.y = packUnorm4x8(surface_color);
+    item.y = packUnorm4x8(passColor);
     item.z = floatBitsToUint(gl_FragCoord.z);
 	item.w = 255 / 4;
 
     imageStore(list_buffer, int(index), item);
 
-    //color = surface_color;
+    //color = passColor;
 	discard;
 }
 ";
