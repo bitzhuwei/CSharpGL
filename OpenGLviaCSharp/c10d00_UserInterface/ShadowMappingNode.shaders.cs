@@ -22,10 +22,10 @@ void main() {
 
 uniform vec3 ambientColor;
 
-out vec4 fragColor;
+out vec4 outColor;
 
 void main() {
-    fragColor = vec4(ambientColor, 1.0);
+    outColor = vec4(ambientColor, 1.0);
 }
 ";
 
@@ -224,7 +224,7 @@ void TSpotLightUp(Light light, vec3 direction, vec3 baseX, vec3 baseY, out float
 }
 
 
-out vec4 fragColor;
+out vec4 outColor;
 
 // 0: PointLight;  1: DirectionalLight; 
 // 2: SpotLight;
@@ -250,7 +250,7 @@ void main() {
         f = textureProj(depthTexture, fsVertex.shadowCoord);
     }
     
-    fragColor = vec4(f * diffuse * light.diffuse * material.diffuse + f * specular * light.specular * material.specular, 1.0);
+    outColor = vec4(f * diffuse * light.diffuse * material.diffuse + f * specular * light.specular * material.specular, 1.0);
 }
 ";
 

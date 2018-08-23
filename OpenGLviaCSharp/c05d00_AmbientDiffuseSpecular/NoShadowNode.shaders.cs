@@ -22,10 +22,10 @@ void main() {
 
 uniform vec3 ambientColor;
 
-out vec4 fragColor;
+out vec4 outColor;
 
 void main() {
-	fragColor = vec4(ambientColor, 1.0);
+	outColor = vec4(ambientColor, 1.0);
 }
 ";
 
@@ -150,7 +150,7 @@ void SpotLightUp(Light light, out float diffuse, out float specular) {
     }
 }
 
-out vec4 fragColor;
+out vec4 outColor;
 
 void main() {
     float diffuse = 0;
@@ -160,7 +160,7 @@ void main() {
 	else if (lightUpRoutine == 2) { SpotLightUp(light, diffuse, specular); }
     else { diffuse = 0; specular = 0; }
 
-	fragColor = vec4(diffuse * light.diffuse * material.diffuse + specular * light.specular * material.specular, 1.0);
+	outColor = vec4(diffuse * light.diffuse * material.diffuse + specular * light.specular * material.specular, 1.0);
 }
 ";
 
