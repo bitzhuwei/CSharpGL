@@ -53,9 +53,9 @@ layout(location = 0) out vec4 outColor;
 //out vec4 outColor;
 
 void main(void) {
-    float Depth = texture(tex, passUV).x;
-    Depth = 1.0 - (1.0 - Depth) * 25.0;
-    outColor = vec4(Depth);
+    float depth = texture(tex, passUV).x;
+    depth = 1.0 - (1.0 - depth) * 25.0;
+    outColor = vec4(depth);
 }
 ";
 
