@@ -16,21 +16,21 @@ uniform mat4 projectionMat;
 uniform mat4 viewMat;
 uniform mat4 modelMat;
 
-out vec3 worldPosition;
+out vec3 worldSpacePosition;
 out vec2 passUV;
 
 void main()
 {
     gl_Position = projectionMat * viewMat * modelMat * vec4(inPosition, 1.0);
 
-    worldPosition = vec3(modelMat * vec4(inPosition, 1.0));
+    worldSpacePosition = vec3(modelMat * vec4(inPosition, 1.0));
     passUV = inUV;
 }
 ";
 
         private const string fragmentCode = @"#version 150
 
-in vec3 worldPosition;
+in vec3 worldSpacePosition;
 in vec2 passUV;
 
 uniform sampler2D tex;
@@ -41,7 +41,7 @@ out vec4 outColor;
 
 void main()
 {
-    vec4 v = vec4(worldPosition, 1) * clipPlane;
+    vec4 v = vec4(worldSpacePosition, 1) * clipPlane;
     float sum = v.x + v.y + v.z + v.w;
     if ((keepGreater && (sum > 0))
         || ((!keepGreater) && (sum < 0)))

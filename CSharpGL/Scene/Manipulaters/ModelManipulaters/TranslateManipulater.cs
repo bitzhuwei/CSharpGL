@@ -130,9 +130,9 @@ namespace CSharpGL
                 vec3 windowPos = glm.project(position, view * model, projection, viewport);
                 var newWindowPos = new vec3(windowPos.x + differenceOnScreen.X, windowPos.y + differenceOnScreen.Y, windowPos.z);
                 vec3 newPosition = glm.unProject(newWindowPos, view * model, projection, viewport);
-                var worldPosition = new vec3(model * new vec4(position, 1.0f));
+                var worldSpacePosition = new vec3(model * new vec4(position, 1.0f));
                 var newWorldPosition = new vec3(model * new vec4(newPosition, 1.0f));
-                this.renderer.WorldPosition += newWorldPosition - worldPosition;
+                this.renderer.WorldPosition += newWorldPosition - worldSpacePosition;
 
                 this._lastPosition = location;
 

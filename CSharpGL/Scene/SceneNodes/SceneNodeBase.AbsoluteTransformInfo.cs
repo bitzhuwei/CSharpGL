@@ -12,9 +12,9 @@ namespace CSharpGL
         /// <returns></returns>
         public vec3 GetAbsoluteWorldPosition()
         {
-            var position = new vec4(this.worldPosition, 1.0f);
-            var worldPosition = this.cascadeModelMatrix * position;
-            return new vec3(worldPosition);
+            var position = new vec4(this.worldSpacePosition, 1.0f);
+            var worldSpacePosition = this.cascadeModelMatrix * position;
+            return new vec3(worldSpacePosition);
         }
 
         /// <summary>
@@ -24,7 +24,7 @@ namespace CSharpGL
         /// <returns></returns>
         public vec3 GetAbsoluteViewPosition(mat4 viewMatrix)
         {
-            var position = new vec4(this.worldPosition, 1.0f);
+            var position = new vec4(this.worldSpacePosition, 1.0f);
             var viewPosition = viewMatrix * this.cascadeModelMatrix * position;
             return new vec3(viewPosition);
         }

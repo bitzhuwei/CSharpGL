@@ -70,24 +70,24 @@ void EmitOutline(vec3 StartVertex, vec3 EndVertex)
 
 void main()
 {
-    vec3 worldPos[6]; 
-	worldPos[0] = vec3(gWorld * vec4(PosL[0], 1.0));
-    worldPos[1] = vec3(gWorld * vec4(PosL[1], 1.0));
-    worldPos[2] = vec3(gWorld * vec4(PosL[2], 1.0));
-    worldPos[3] = vec3(gWorld * vec4(PosL[3], 1.0));
-    worldPos[4] = vec3(gWorld * vec4(PosL[4], 1.0));
-    worldPos[5] = vec3(gWorld * vec4(PosL[5], 1.0));
-    vec3 e1 = worldPos[2] - worldPos[0];
-    vec3 e2 = worldPos[4] - worldPos[0];
-    vec3 e3 = worldPos[1] - worldPos[0];
-    vec3 e4 = worldPos[3] - worldPos[2];
-    vec3 e5 = worldPos[4] - worldPos[2];
-    vec3 e6 = worldPos[5] - worldPos[0];
+    vec3 worldSpacePos[6]; 
+	worldSpacePos[0] = vec3(gWorld * vec4(PosL[0], 1.0));
+    worldSpacePos[1] = vec3(gWorld * vec4(PosL[1], 1.0));
+    worldSpacePos[2] = vec3(gWorld * vec4(PosL[2], 1.0));
+    worldSpacePos[3] = vec3(gWorld * vec4(PosL[3], 1.0));
+    worldSpacePos[4] = vec3(gWorld * vec4(PosL[4], 1.0));
+    worldSpacePos[5] = vec3(gWorld * vec4(PosL[5], 1.0));
+    vec3 e1 = worldSpacePos[2] - worldSpacePos[0];
+    vec3 e2 = worldSpacePos[4] - worldSpacePos[0];
+    vec3 e3 = worldSpacePos[1] - worldSpacePos[0];
+    vec3 e4 = worldSpacePos[3] - worldSpacePos[2];
+    vec3 e5 = worldSpacePos[4] - worldSpacePos[2];
+    vec3 e6 = worldSpacePos[5] - worldSpacePos[0];
 
     vec3 Normal = normalize(cross(e1,e2));
     vec3 LightDir;
     if (farAway) { LightDir = gLightPos; }
-    else { LightDir = normalize(gLightPos - worldPos[0]); }
+    else { LightDir = normalize(gLightPos - worldSpacePos[0]); }
 
     // Handle only light facing triangles
     if (dot(Normal, LightDir) > 0) {
@@ -95,28 +95,28 @@ void main()
         Normal = cross(e3,e1);
 
         if (dot(Normal, LightDir) <= 0) {
-            vec3 StartVertex = worldPos[0];
-            vec3 EndVertex = worldPos[2];
+            vec3 StartVertex = worldSpacePos[0];
+            vec3 EndVertex = worldSpacePos[2];
             EmitOutline(StartVertex, EndVertex);
         }
 
         Normal = cross(e4,e5);
         if (farAway) { LightDir = gLightPos; }
-        else { LightDir = normalize(gLightPos - worldPos[2]); }
+        else { LightDir = normalize(gLightPos - worldSpacePos[2]); }
 
         if (dot(Normal, LightDir) <= 0) {
-            vec3 StartVertex = worldPos[2];
-            vec3 EndVertex = worldPos[4];
+            vec3 StartVertex = worldSpacePos[2];
+            vec3 EndVertex = worldSpacePos[4];
             EmitOutline(StartVertex, EndVertex);
         }
 
         Normal = cross(e2,e6);
         if (farAway) { LightDir = gLightPos; }
-        else { LightDir = normalize(gLightPos - worldPos[4]); }
+        else { LightDir = normalize(gLightPos - worldSpacePos[4]); }
 
         if (dot(Normal, LightDir) <= 0) {
-            vec3 StartVertex = worldPos[4];
-            vec3 EndVertex = worldPos[0];
+            vec3 StartVertex = worldSpacePos[4];
+            vec3 EndVertex = worldSpacePos[0];
             EmitOutline(StartVertex, EndVertex);
         }
     }
@@ -150,8 +150,8 @@ uniform mat4 normalMat; // transpose(inverse(modelMat));
 
 void main() {
     gl_Position = mvpMat * vec4(inPosition, 1.0);
-    vec4 worldPos = modelMat * vec4(inPosition, 1.0);
-	v.position = worldPos.xyz;
+    vec4 worldSpacePos = modelMat * vec4(inPosition, 1.0);
+	v.position = worldSpacePos.xyz;
 	v.normal = (normalMat * vec4(inNormal, 0)).xyz;
 }
 ";

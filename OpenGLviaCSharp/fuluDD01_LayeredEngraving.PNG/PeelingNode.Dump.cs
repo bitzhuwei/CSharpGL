@@ -59,9 +59,9 @@
 //                        int index = 0;
 //                        for (int i = -1; i < 2; i++)
 //                        {
-//                            vec3 worldPosition = new vec3(i * 2, j * 2, k * 2);
+//                            vec3 worldSpacePosition = new vec3(i * 2, j * 2, k * 2);
 //                            var cubeNode = CubeNode.Create();
-//                            cubeNode.WorldPosition = worldPosition;
+//                            cubeNode.WorldPosition = worldSpacePosition;
 //                            cubeNode.Color = colors[index++];
 
 //                            this.Children.Add(cubeNode);

@@ -79,11 +79,11 @@ namespace fuluDD01_LayeredEngraving.PNG
                 {
                     for (int i = -1; i < 2; i++)
                     {
-                        vec3 worldPosition = new vec3(i * 2, j * 2, -2);// +new vec3(-2.375f, -1.75f, 0);
+                        vec3 worldSpacePosition = new vec3(i * 2, j * 2, -2);// +new vec3(-2.375f, -1.75f, 0);
                         //var cubeNode = CubeNode.Create(new CubeModel(), CubeModel.positions);
                         //var cubeNode = CubeNode.Create(new RectangleModel(), RectangleModel.strPosition);
                         var cubeNode = CubeNode.Create(new Sphere(0.5f), Sphere.strPosition);
-                        cubeNode.WorldPosition = worldPosition;
+                        cubeNode.WorldPosition = worldSpacePosition;
                         cubeNode.Color = colors[index++];
 
                         children.Add(cubeNode);

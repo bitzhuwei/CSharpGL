@@ -83,7 +83,7 @@ namespace CSharpGL
             vec3[] positions = this.Positions;
             if (positions == null) { positions = new vec3[0]; }
             uint[] indexes = this.VertexIds;
-            var worldPos = new vec4[positions.Length];
+            var worldSpacePos = new vec4[positions.Length];
             var viewPos = new vec4[positions.Length];
             var projectionPos = new vec4[positions.Length];
             var normalizedPos = new vec3[positions.Length];
@@ -95,9 +95,9 @@ namespace CSharpGL
             for (int i = 0; i < positions.Length; i++)
             {
                 var pos4 = new vec4(positions[i], 1);
-                worldPos[i] = model * pos4;
+                worldSpacePos[i] = model * pos4;
                 builder.Append("BigBuffer["); builder.Append(indexes[i]); builder.Append("]: ");
-                builder.Append(worldPos[i]);
+                builder.Append(worldSpacePos[i]);
                 builder.AppendLine();
             }
 
@@ -107,7 +107,7 @@ namespace CSharpGL
             for (int i = 0; i < positions.Length; i++)
             {
                 var pos4 = new vec4(positions[i], 1);
-                viewPos[i] = view * worldPos[i];
+                viewPos[i] = view * worldSpacePos[i];
                 builder.Append('['); builder.Append(indexes[i]); builder.Append("]: ");
                 builder.Append(viewPos[i]);
                 builder.AppendLine();
