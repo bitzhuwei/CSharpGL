@@ -32,7 +32,7 @@ out vec4 outColor;
 
 void main(void)
 {
-  outColor = vec4(passColor, 0.1);
+    outColor = vec4(passColor, 0.1);
 }
 ";
     }
