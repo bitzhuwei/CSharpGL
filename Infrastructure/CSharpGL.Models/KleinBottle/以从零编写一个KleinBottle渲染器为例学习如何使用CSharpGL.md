@@ -48,17 +48,17 @@
 
 下面这个fragment shader也是十分简单的。它的功能就是计算每个顶点的颜色。简单来说，这个fragment shader程序也会对KleinBottle模型上的每个顶点都执行一次。（这是最简单的情况，为了不分散精力，现在这样认为即可）
 
-Fragment shader里的`out_Color`你可以改成其他你喜欢的名字，其效果是一样的。
+Fragment shader里的`outColor`你可以改成其他你喜欢的名字，其效果是一样的。
 
 <div class="cnblogs_code">
 <pre><span style="color: #008080;">1</span> #version <span style="color: #800080;">150</span><span style="color: #000000;"> core
 </span><span style="color: #008080;">2</span> 
-<span style="color: #008080;">3</span> <span style="color: #0000ff;">out</span> vec4 out_Color;<span style="color: #008000;">//</span><span style="color: #008000;"> 输出到屏幕</span>
+<span style="color: #008080;">3</span> <span style="color: #0000ff;">out</span> vec4 outColor;<span style="color: #008000;">//</span><span style="color: #008000;"> 输出到屏幕</span>
 <span style="color: #008080;">4</span> 
 <span style="color: #008080;">5</span> uniform vec3 uniformColor = vec3(<span style="color: #800080;">1</span>, <span style="color: #800080;">1</span>, <span style="color: #800080;">1</span>);<span style="color: #008000;">//</span><span style="color: #008000;"> 颜色为白色</span>
 <span style="color: #008080;">6</span> 
 <span style="color: #008080;">7</span> <span style="color: #0000ff;">void</span> main(<span style="color: #0000ff;">void</span><span style="color: #000000;">) {
-</span><span style="color: #008080;">8</span>     out_Color = vec4(uniformColor, <span style="color: #800080;">1.0f</span>);<span style="color: #008000;">//</span><span style="color: #008000;"> 输出指定的颜色</span>
+</span><span style="color: #008080;">8</span>     outColor = vec4(uniformColor, <span style="color: #800080;">1.0f</span>);<span style="color: #008000;">//</span><span style="color: #008000;"> 输出指定的颜色</span>
 <span style="color: #008080;">9</span> }</pre>
 </div>
 

@@ -34,11 +34,11 @@ void main(void) {
 
 uniform vec3 " + color + @" = vec3(1, 1, 1);
 
-layout(location = 0) out vec4 out_Color;
-//out vec4 out_Color;
+layout(location = 0) out vec4 outColor;
+//out vec4 outColor;
 
 void main(void) {
-    out_Color = vec4(color, 1);
+    outColor = vec4(color, 1);
 }
 ";
 

@@ -57,8 +57,8 @@ in vec2 passUV;
 uniform sampler2D " + tex + @";
 uniform bool " + transparentBackground + @" = false;
 
-layout(location = 0) out vec4 out_Color;
-//out vec4 out_Color;
+layout(location = 0) out vec4 outColor;
+//out vec4 outColor;
 
 void main(void) {
     //if (int(gl_FragCoord.x + gl_FragCoord.y) % 2 == 1) discard;
@@ -67,11 +67,11 @@ void main(void) {
     if (transparentBackground)
     {
         if (color.a == 0) { discard; }
-        else { out_Color = color; }
+        else { outColor = color; }
     }
     else 
     {
-        out_Color = color;
+        outColor = color;
     }
 }
 ";

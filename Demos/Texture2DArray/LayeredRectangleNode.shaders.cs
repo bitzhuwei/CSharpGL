@@ -40,11 +40,11 @@ in vec2 passUV;
 uniform sampler2DArray " + tex + @";
 uniform int " + layerIndex + @";
 
-layout(location = 0) out vec4 out_Color;
-//out vec4 out_Color;
+layout(location = 0) out vec4 outColor;
+//out vec4 outColor;
 
 void main(void) {
-	out_Color = texture(tex, vec3(passUV, floor(layerIndex)));
+	outColor = texture(tex, vec3(passUV, floor(layerIndex)));
 }
 ";
     }

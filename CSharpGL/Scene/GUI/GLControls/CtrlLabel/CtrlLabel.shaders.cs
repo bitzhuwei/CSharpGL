@@ -36,13 +36,13 @@ in vec3 passSTR;
 uniform sampler2DArray " + glyphTexture + @";
 uniform vec3 " + textColor + @";
 
-out vec4 out_Color;
+out vec4 outColor;
 
 void main(void) {
-    //out_Color = vec4(passSTR, 1.0f);
-    //out_Color = texture(glyphTexture, vec3(passSTR.xy, floor(passSTR.z)));
+    //outColor = vec4(passSTR, 1.0f);
+    //outColor = texture(glyphTexture, vec3(passSTR.xy, floor(passSTR.z)));
     float a = texture(glyphTexture, vec3(passSTR.xy, floor(passSTR.z))).a;
-    out_Color = vec4(textColor, a);
+    outColor = vec4(textColor, a);
 }
 ";
     }

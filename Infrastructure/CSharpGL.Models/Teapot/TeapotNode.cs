@@ -43,16 +43,16 @@ void main(void) {
 in vec3 passColor;
 uniform bool renderWireframe = false;
 
-out vec4 out_Color;
+out vec4 outColor;
 
 void main(void) {
     if (renderWireframe)
     {
-	    out_Color = vec4(1.0, 1.0, 1.0, 1.0);
+	    outColor = vec4(1.0, 1.0, 1.0, 1.0);
     }
     else
     {
-	    out_Color = vec4(passColor, 1.0);
+	    outColor = vec4(passColor, 1.0);
     }
 }
 ";

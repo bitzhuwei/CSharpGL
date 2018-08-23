@@ -22,10 +22,10 @@ void main(void) {
 
 uniform vec3 ambientColor;
 
-out vec4 out_Color;
+out vec4 outColor;
 
 void main(void) {
-	out_Color = vec4(ambientColor, 0.1);
+	outColor = vec4(ambientColor, 0.1);
 }
 ";
 

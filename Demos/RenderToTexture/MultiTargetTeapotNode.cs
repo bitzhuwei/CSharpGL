@@ -44,7 +44,7 @@ void main(void) {
 in vec3 passColor;
 uniform bool renderWireframe = false;
 
-layout(location = 0) out vec4 out_Color;
+layout(location = 0) out vec4 outColor;
 layout(location = 1) out vec4 outRed;
 layout(location = 2) out vec4 outGreen;
 layout(location = 3) out vec4 outBlue;
@@ -52,14 +52,14 @@ layout(location = 3) out vec4 outBlue;
 void main(void) {
     if (renderWireframe)
     {
-	    out_Color = vec4(1.0, 1.0, 1.0, 1.0);
+	    outColor = vec4(1.0, 1.0, 1.0, 1.0);
 	    outRed = vec4(1.0, 0.0, 0.0, 1.0);
 	    outGreen = vec4(0.0, 1.0, 0.0, 1.0);
 	    outBlue = vec4(0.0, 0.0, 1.0, 1.0);
     }
     else
     {
-	    out_Color = vec4(passColor, 1.0);
+	    outColor = vec4(passColor, 1.0);
 	    outRed = vec4(passColor.x, 0.0, 0.0, 1.0);
 	    outGreen = vec4(0.0, passColor.y, 0.0, 1.0);
 	    outBlue = vec4(0.0, 0.0, passColor.z, 1.0);

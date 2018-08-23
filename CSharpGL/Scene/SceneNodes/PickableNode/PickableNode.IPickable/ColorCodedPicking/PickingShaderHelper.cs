@@ -51,10 +51,10 @@ void main(void) {
 
 flat in vec4 pass_Color; // glShadeMode(GL_FLAT); in legacy opengl.
 
-out vec4 out_Color;
+out vec4 outColor;
 
 void main(void) {
-	out_Color = pass_Color;
+	outColor = pass_Color;
 }
 ";
 

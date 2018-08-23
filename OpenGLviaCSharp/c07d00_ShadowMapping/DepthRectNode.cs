@@ -49,13 +49,13 @@ in vec2 passUV;
 
 uniform sampler2D " + tex + @";
 
-layout(location = 0) out vec4 out_Color;
-//out vec4 out_Color;
+layout(location = 0) out vec4 outColor;
+//out vec4 outColor;
 
 void main(void) {
     float Depth = texture(tex, passUV).x;
     Depth = 1.0 - (1.0 - Depth) * 25.0;
-    out_Color = vec4(Depth);
+    outColor = vec4(Depth);
 }
 ";
 

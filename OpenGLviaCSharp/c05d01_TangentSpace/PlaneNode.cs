@@ -33,13 +33,13 @@ void main(void) {
 
 uniform vec4 " + color + @";
 
-layout(location = 0) out vec4 out_Color;
-//out vec4 out_Color;
+layout(location = 0) out vec4 outColor;
+//out vec4 outColor;
 
 void main(void) {
     if (int(gl_FragCoord.x + gl_FragCoord.y) % 2 == 1) discard;
 
-    out_Color = color;
+    outColor = color;
 }
 ";
         /// <summary>

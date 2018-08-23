@@ -31,10 +31,10 @@ void main(void) {
 
 in vec3 passColor;
 
-out vec4 out_Color;
+out vec4 outColor;
 
 void main(void) {
-	out_Color = vec4(passColor, 1.0);
+	outColor = vec4(passColor, 1.0);
 }
 ";
 
@@ -61,10 +61,10 @@ void main(void) {
 
 flat in vec3 passColor;
 
-out vec4 out_Color;
+out vec4 outColor;
 
 void main(void) {
-	out_Color = vec4(passColor, 1.0);
+	outColor = vec4(passColor, 1.0);
 }
 ";
     }

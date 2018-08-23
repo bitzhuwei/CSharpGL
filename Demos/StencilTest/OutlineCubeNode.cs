@@ -41,16 +41,16 @@ uniform sampler2D " + tex + @";
 uniform float " + alpha + @";
 uniform vec4 color;
 
-out vec4 out_Color;
+out vec4 outColor;
 
 void main(void) {
     if (alpha >= 0)
     {
-        out_Color = vec4(texture(tex, passUV).xyz, alpha);
+        outColor = vec4(texture(tex, passUV).xyz, alpha);
     }
     else 
     {
-        out_Color = color;
+        outColor = color;
     }
 }
 ";

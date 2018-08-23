@@ -47,12 +47,12 @@ void main(void) {
 
 uniform vec4 color = vec4(1, 1, 1, 1) * 0.5;
 
-out vec4 out_Color;
+out vec4 outColor;
 
 void main(void) {
     if (int(gl_FragCoord.x + gl_FragCoord.y) % 2 == 1) discard;
 
-    out_Color = color;
+    outColor = color;
 }
 ";
 

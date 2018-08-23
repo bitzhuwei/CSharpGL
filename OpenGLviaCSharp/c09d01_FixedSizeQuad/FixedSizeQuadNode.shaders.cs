@@ -36,10 +36,10 @@ in vec2 passUV;
 
 uniform sampler2D tex;
 
-out vec4 out_Color;
+out vec4 outColor;
 
 void main(void) {
-	out_Color = texture(tex, passUV);
+	outColor = texture(tex, passUV);
 }
 ";
 

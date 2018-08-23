@@ -30,7 +30,7 @@ uniform float time;
 uniform float rainDrop = 1.0f;
 uniform sampler1D sunColor;
 
-out vec4 out_Color;
+out vec4 outColor;
 
 //
 // Description : Array and textureless GLSL 2D/3D/4D simplex 
@@ -153,7 +153,7 @@ void main(void)
   float maximum = (0.5 + 0.25 + 0.125 + 0.0625 + 0.03125);
   n = n / (maximum - minimum) - minimum;// make n to (0 ~ 1)
   // A hot colormap - cheesy but effective 
-  out_Color = texture(sunColor, n);
+  outColor = texture(sunColor, n);
 }
 ";
     }

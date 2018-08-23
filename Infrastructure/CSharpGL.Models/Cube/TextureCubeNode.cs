@@ -42,10 +42,10 @@ in vec2 passUV;
 uniform sampler2D " + tex + @";
 uniform float " + alpha + @";
 
-out vec4 out_Color;
+out vec4 outColor;
 
 void main(void) {
-    out_Color = vec4(texture(tex, passUV).xyz, alpha);
+    outColor = vec4(texture(tex, passUV).xyz, alpha);
 }
 ";
 

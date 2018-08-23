@@ -24,10 +24,10 @@ void main(void) {
         private const string fragmentCode =
             @"#version 150 core
 
-out vec4 out_Color;
+out vec4 outColor;
 
 void main(void) {
-    out_Color = vec4(0, 0, 0, 0);
+    outColor = vec4(0, 0, 0, 0);
 }
 ";
     }

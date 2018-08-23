@@ -56,11 +56,11 @@ uniform vec3 " + textColor + @";
 
 in vec3 passSTR;
 
-out vec4 out_Color;
+out vec4 outColor;
 
 void main(void) {
     float a = texture(glyphTexture, vec3(passSTR.xy, floor(passSTR.z))).a;
-    out_Color = vec4(textColor, a);
+    outColor = vec4(textColor, a);
 }
 ";
 
