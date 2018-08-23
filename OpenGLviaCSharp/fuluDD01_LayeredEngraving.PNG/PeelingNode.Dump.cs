@@ -15,7 +15,7 @@
 //        private Query query;
 //        private bool bUseOQ = false;
 //        private QuadNode fullscreenQuad;
-//        private const int NUM_PASSES = 5;
+//        private const int maxPassCount = 5;
 //        private DepthTestSwitch depthTest = new DepthTestSwitch(enableCapacity: false);
 //        private BlendSwitch blend = new BlendSwitch(BlendEquationMode.Add, BlendSrcFactor.DstAlpha, BlendDestFactor.One, BlendSrcFactor.Zero, BlendDestFactor.OneMinusSrcAlpha);
 
@@ -114,7 +114,7 @@
 //                    }
 //                }
 
-//                int numLayers = (NUM_PASSES - 1) * 2;
+//                int numLayers = (maxPassCount - 1) * 2;
 //                // for each pass
 //                for (int layer = 1; bUseOQ || layer < numLayers; layer++)
 //                {

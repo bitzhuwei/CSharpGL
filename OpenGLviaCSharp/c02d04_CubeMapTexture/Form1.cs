@@ -161,23 +161,6 @@ namespace c02d04_CubeMapTexture
             return result;
         }
 
-        private Texture GetTexture()
-        {
-            string folder = System.Windows.Forms.Application.StartupPath;
-            var bmp = new Bitmap(System.IO.Path.Combine(folder, @"Crate.bmp"));
-            TexStorageBase storage = new TexImageBitmap(bmp);
-            var texture = new Texture(storage,
-                new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP_TO_EDGE),
-                new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_CLAMP_TO_EDGE),
-                new TexParameteri(TexParameter.PropertyName.TextureWrapR, (int)GL.GL_CLAMP_TO_EDGE),
-                new TexParameteri(TexParameter.PropertyName.TextureMinFilter, (int)GL.GL_LINEAR),
-                new TexParameteri(TexParameter.PropertyName.TextureMagFilter, (int)GL.GL_LINEAR));
-            texture.Initialize();
-            bmp.Dispose();
-
-            return texture;
-        }
-
         private void winGLCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
         {
             ActionList list = this.actionList;
