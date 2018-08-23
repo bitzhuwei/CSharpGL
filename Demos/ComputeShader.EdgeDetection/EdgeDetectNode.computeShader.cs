@@ -13,7 +13,7 @@ namespace ComputeShader.EdgeDetection
 layout (local_size_x = 512) in;
 
 layout (rgba32f, binding = 0) uniform image2D input_image;
-layout (rgba32f, binding = 1) uniform image2D output_image;
+layout (rgba32f, binding = 1) uniform image2D outImage;
 
 shared vec4 scanline[512];
 
@@ -24,7 +24,7 @@ void main(void)
     barrier();
 	// Compute our result and write it back to the image
 	vec4 result = scanline[min(pos.x + 1, 511)] - scanline[max(pos.x - 1, 0)];
-    imageStore(output_image, pos.yx, result);
+    imageStore(outImage, pos.yx, result);
 }
 ";
     }

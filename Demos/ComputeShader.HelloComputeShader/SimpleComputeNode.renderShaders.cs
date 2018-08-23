@@ -23,11 +23,11 @@ void main(void)
 
 layout (location = 0) out vec4 color;
 
-uniform sampler2D output_image;
+uniform sampler2D outImage;
 
 void main(void)
 {
-    color = texture(output_image, vec2(gl_FragCoord.xy) / vec2(textureSize(output_image, 0)));
+    color = texture(outImage, vec2(gl_FragCoord.xy) / vec2(textureSize(outImage, 0)));
 }
 ";
     }
