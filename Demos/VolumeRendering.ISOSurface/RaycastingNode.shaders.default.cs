@@ -20,7 +20,7 @@ smooth out vec3 passUV; //3D texture coordinates for texture lookup in the fragm
 void main()
 {  
 	//get the clipspace position 
-	gl_Position = mvpMat*vec4(inPosition.xyz, 1);
+	gl_Position = mvpMat * vec4(inPosition.xyz, 1);
 
 	//get the 3D texture coordinates by adding (0.5,0.5,0.5) to the object space 
 	//vertex position. Since the unit cube is at origin (min: (-0.5,-0.5,-0.5) and max: (0.5,0.5,0.5))
@@ -55,7 +55,7 @@ void main()
 	//get the object space position by subracting 0.5 from the
 	//3D texture coordinates. Then subtraact it from camera position
 	//and normalize to get the ray marching direction
-	vec3 geomDir = normalize((passUV-vec3(0.5)) - camPos); 
+	vec3 geomDir = normalize((passUV - vec3(0.5)) - camPos); 
 
 	//multiply the raymarching direction with the step size to get the
 	//sub-step size we need to take at each raymarching step
@@ -83,7 +83,7 @@ void main()
 		//So to be within the dataset limits, the dot product will return a 
 		//value less than 3. If it is greater than 3, we are already out of 
 		//the volume dataset
-		stop = dot(sign(dataPos-texMin),sign(texMax-dataPos)) < 3.0;
+		stop = dot(sign(dataPos - texMin), sign(texMax - dataPos)) < 3.0;
 
 		//if the stopping condition is true we brek out of the ray marching loop
 		if (stop) 
@@ -107,7 +107,7 @@ void main()
 		//early ray termination
 		//if the currently composited colour alpha is already fully saturated
 		//we terminated the loop
-		if( outColor.a>0.99)
+		if(outColor.a > 0.99)
 			break;
 	} 
     
