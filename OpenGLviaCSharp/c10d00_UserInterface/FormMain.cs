@@ -27,6 +27,9 @@ namespace c10d00_UserInterface
             this.Load += FormMain_Load;
             this.winGLCanvas1.OpenGLDraw += winGLCanvas1_OpenGLDraw;
             this.winGLCanvas1.Resize += winGLCanvas1_Resize;
+
+            this.trvSceneObject.AfterSelect += trvScene_AfterSelect;
+            this.trvSceneGUI.AfterSelect += trvScene_AfterSelect;
         }
 
         private void FormMain_Load(object sender, EventArgs e)
