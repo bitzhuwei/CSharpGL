@@ -53,9 +53,10 @@ namespace c08d04_DrawModes
 
             this.pickingAction = new Picking(scene);
 
-            var manipulater = new FirstPerspectiveManipulater();
-            manipulater.Bind(camera, this.winGLCanvas1);
+            //var manipulater = new FirstPerspectiveManipulater();
+            //manipulater.Bind(camera, this.winGLCanvas1);
 
+            this.cmbDrawMode.SelectedIndex = 0;
         }
 
         private SceneNodeBase GetRootNode()
