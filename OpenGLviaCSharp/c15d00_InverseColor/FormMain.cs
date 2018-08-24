@@ -54,6 +54,8 @@ namespace c15d00_InverseColor
             var manipulater = new FirstPerspectiveManipulater();
             manipulater.Bind(camera, this.winGLCanvas1);
             manipulater.StepLength = 0.1f;
+
+            MessageBox.Show("Press 'n' to switch config!");
         }
 
         private void winGLCanvas1_OpenGLDraw(object sender, PaintEventArgs e)

@@ -7,7 +7,6 @@ namespace c15d00_InverseColor
 {
     partial class ComputeShaderNode
     {
-
         private const string inPosition = "inPosition";
         private const string inUV = "inUV";
         private const string projectionMat = "projectionMat";
