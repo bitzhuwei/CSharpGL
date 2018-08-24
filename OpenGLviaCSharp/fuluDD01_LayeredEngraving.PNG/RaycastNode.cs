@@ -22,8 +22,8 @@ namespace fuluDD01_LayeredEngraving.PNG
                 var fs = new FragmentShader(backfaceFrag);
                 var provider = new ShaderArray(vs, fs);
                 var map = new AttributeMap();
-                map.Add("position", BoundingBoxModel.strPosition);
-                map.Add("boundingBox", BoundingBoxModel.strColor);
+                map.Add("inPosition", BoundingBoxModel.strPosition);
+                map.Add("inBoundingBox", BoundingBoxModel.strColor);
                 backfaceBuilder = new RenderMethodBuilder(provider, map, new CullFaceSwitch(CullFaceMode.Front, true));
             }
             {
@@ -31,8 +31,8 @@ namespace fuluDD01_LayeredEngraving.PNG
                 var fs = new FragmentShader(raycastingFrag);
                 var provider = new ShaderArray(vs, fs);
                 var map = new AttributeMap();
-                map.Add("position", BoundingBoxModel.strPosition);
-                map.Add("boundingBox", BoundingBoxModel.strColor);
+                map.Add("inPosition", BoundingBoxModel.strPosition);
+                map.Add("inBoundingBox", BoundingBoxModel.strColor);
                 raycastingBuilder = new RenderMethodBuilder(provider, map, new CullFaceSwitch(CullFaceMode.Back, true));
             }
 

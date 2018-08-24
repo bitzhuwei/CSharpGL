@@ -54,7 +54,6 @@
     </Compile>
     <Compile Include="IVolumeData.cs" />
     <Compile Include="PeelingNode.cs" />
-    <Compile Include="PeelingNode.Dump.cs" />
     <Compile Include="PeelingNode.EngraveComp.cs" />
     <Compile Include="PeelingNode.Framebuffers.cs" />
     <Compile Include="Program.cs" />

@@ -19,7 +19,7 @@ namespace fuluDD01_LayeredEngraving.PNG
             //6, 5, 2, 2, 5, 1 
         };
 
-        public const string positions = "positions";
+        public const string strPosition = "positions";
         private VertexBuffer positionBuffer;
 
         private IDrawCommand drawCmd;
@@ -28,7 +28,7 @@ namespace fuluDD01_LayeredEngraving.PNG
 
         public IEnumerable<VertexBuffer> GetVertexAttribute(string bufferName)
         {
-            if (positions == bufferName)
+            if (strPosition == bufferName)
             {
                 if (this.positionBuffer == null)
                 {
