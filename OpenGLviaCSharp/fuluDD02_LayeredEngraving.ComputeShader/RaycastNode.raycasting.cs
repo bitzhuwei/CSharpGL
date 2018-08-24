@@ -10,9 +10,8 @@ namespace fuluDD02_LayeredEngraving.ComputeShader
     {
         private const string raycastingVert = @"#version 150
 
-in vec3 position;
-// have to use this variable!!!, or it will be very hard to debug for AMD video card
-in vec3 boundingBox;  
+in vec3 inPosition;
+in vec3 inBoundingBox;  
 
 out vec3 passEntryPoint;
 
@@ -20,8 +19,9 @@ uniform mat4 mvpMat;
 
 void main()
 {
-    passEntryPoint = boundingBox;
-    gl_Position = mvpMat * vec4(position, 1.0);
+    gl_Position = mvpMat * vec4(inPosition, 1.0);
+
+    passEntryPoint = inBoundingBox;
 }
 ";
         private const string raycastingFrag = @"#version 150
@@ -32,7 +32,7 @@ uniform sampler2D texExitPoint;
 uniform sampler3D texVolume;
 
 uniform float     stepLength = 0.001f;
-uniform vec2      ScreenSize;
+uniform vec2      canvasSize;
 uniform vec4      backgroundColor = vec4(0, 0, 0, 0);// value in glClearColor(value);
 uniform int       cycle = 1600;
 
@@ -41,7 +41,7 @@ out vec4 FragColor;
 void main()
 {
     // ExitPointCoord is normalized device coordinate
-    vec3 exitPoint = texture(texExitPoint, gl_FragCoord.st / ScreenSize).xyz;
+    vec3 exitPoint = texture(texExitPoint, gl_FragCoord.st / canvasSize).xyz;
     // that will actually give you clip-space coordinates rather than
     // normalised device coordinates, since you're not performing the perspective
     // division which happens during the rasterisation process (between the vertex

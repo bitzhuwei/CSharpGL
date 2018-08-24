@@ -43,7 +43,7 @@ namespace fuluDD01_LayeredEngraving.PNG
             {
                 RenderMethod method = this.RenderUnit.Methods[1];
                 ShaderProgram program = method.Program;
-                program.SetUniform("ScreenSize", new vec2(width, height));
+                program.SetUniform("canvasSize", new vec2(width, height));
                 program.SetUniform("texExitPoint", this.backface2DTexture);
             }
         }

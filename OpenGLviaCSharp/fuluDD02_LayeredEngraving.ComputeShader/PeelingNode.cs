@@ -47,7 +47,7 @@ namespace fuluDD02_LayeredEngraving.ComputeShader
                 this.outBuffer = data.GenVertexBuffer(VBOConfig.UInt, BufferUsage.DynamicCopy);
             }
             {
-                this.InitializePeelingResource(vWidth, vHeight);
+                this.InitializePeelingResource(width, height);
             }
         }
 
@@ -78,9 +78,9 @@ namespace fuluDD02_LayeredEngraving.ComputeShader
             set { firstRun = value; }
         }
 
-        const int vWidth = 256;
-        const int vHeight = 256;
-        const int vDepth = 256;
+        const int width = 256;
+        const int height = 256;
+        const int depth = 256;
         private byte[] volumeData;// = new byte[vWidth * vHeight * vDepth];
 
         public byte[] VolumeData
@@ -88,9 +88,9 @@ namespace fuluDD02_LayeredEngraving.ComputeShader
             get { return volumeData; }
         }
 
-        public int Width { get { return vWidth; } }
-        public int Height { get { return vHeight; } }
-        public int Depth { get { return vDepth; } }
+        public int Width { get { return width; } }
+        public int Height { get { return height; } }
+        public int Depth { get { return depth; } }
 
         public unsafe void RenderBeforeChildren(RenderEventArgs arg)
         {
@@ -109,9 +109,9 @@ namespace fuluDD02_LayeredEngraving.ComputeShader
                 //var data = new Voxel[vWidth * vHeight * vDepth];
                 VertexBuffer data = this.outBuffer; // which is a uint[vWidth * vHeight * vDepth];
 
-                EngraveX(arg, data, vWidth, vHeight, vDepth);
-                EngraveY(arg, data, vWidth, vHeight, vDepth);
-                EngraveZ(arg, data, vWidth, vHeight, vDepth);
+                EngraveX(arg, data, width, height, depth);
+                EngraveY(arg, data, width, height, depth);
+                EngraveZ(arg, data, width, height, depth);
 
                 using (var fs = new FileStream(filename, FileMode.Create, FileAccess.Write))
                 using (var bw = new BinaryWriter(fs))
@@ -155,7 +155,7 @@ namespace fuluDD02_LayeredEngraving.ComputeShader
                 var center = new vec3(-1, 0, 0);
                 //var center = new vec3(-3, -4, -5);
                 var up = new vec3(0, 1, 0);
-                var camera = new Camera(position, center, up, CameraType.Ortho, vWidth, vHeight);
+                var camera = new Camera(position, center, up, CameraType.Ortho, width, height);
                 {
                     vec3 size = this.ModelSize;
                     IOrthoViewCamera c = camera;
@@ -174,7 +174,7 @@ namespace fuluDD02_LayeredEngraving.ComputeShader
             var clearColor = new float[4];
             GL.Instance.GetFloatv((uint)GetTarget.ColorClearValue, clearColor);
 
-            GL.Instance.Viewport(0, 0, vWidth, vHeight);
+            GL.Instance.Viewport(0, 0, width, height);
 
             List<Bitmap> bitmapList = LayeredEngraving(arg, "X");
 
@@ -187,7 +187,7 @@ namespace fuluDD02_LayeredEngraving.ComputeShader
             foreach (var bitmap in bitmapList)
             {
                 Texture texture = GetTexture(bitmap);
-                ComputeShaderEngrave(this.engraveXComp, texture, volumeData, vWidth, vHeight);
+                ComputeShaderEngrave(this.engraveXComp, texture, volumeData, width, height);
                 bitmap.Dispose();
                 texture.Dispose();
             }
@@ -201,7 +201,7 @@ namespace fuluDD02_LayeredEngraving.ComputeShader
                 var center = new vec3(0, -1, 0);
                 //var center = new vec3(-3, -4, -5);
                 var up = new vec3(0, 0, -1);
-                var camera = new Camera(position, center, up, CameraType.Ortho, vWidth, vHeight);
+                var camera = new Camera(position, center, up, CameraType.Ortho, width, height);
                 {
                     vec3 size = this.ModelSize;
                     IOrthoViewCamera c = camera;
@@ -220,7 +220,7 @@ namespace fuluDD02_LayeredEngraving.ComputeShader
             var clearColor = new float[4];
             GL.Instance.GetFloatv((uint)GetTarget.ColorClearValue, clearColor);
 
-            GL.Instance.Viewport(0, 0, vWidth, vHeight);
+            GL.Instance.Viewport(0, 0, width, height);
 
             List<Bitmap> bitmapList = LayeredEngraving(arg, "Y");
 
@@ -233,7 +233,7 @@ namespace fuluDD02_LayeredEngraving.ComputeShader
             foreach (var bitmap in bitmapList)
             {
                 Texture texture = GetTexture(bitmap);
-                ComputeShaderEngrave(this.engraveYComp, texture, volumeData, vWidth, vHeight);
+                ComputeShaderEngrave(this.engraveYComp, texture, volumeData, width, height);
                 bitmap.Dispose();
                 texture.Dispose();
             }
@@ -246,7 +246,7 @@ namespace fuluDD02_LayeredEngraving.ComputeShader
                 var center = new vec3(0, 0, -1);
                 //var center = new vec3(-3, -4, -5);
                 var up = new vec3(0, 1, 0);
-                var camera = new Camera(position, center, up, CameraType.Ortho, vWidth, vHeight);
+                var camera = new Camera(position, center, up, CameraType.Ortho, width, height);
                 {
                     vec3 size = this.ModelSize;
                     IOrthoViewCamera c = camera;
@@ -265,7 +265,7 @@ namespace fuluDD02_LayeredEngraving.ComputeShader
             var clearColor = new float[4];
             GL.Instance.GetFloatv((uint)GetTarget.ColorClearValue, clearColor);
 
-            GL.Instance.Viewport(0, 0, vWidth, vHeight);
+            GL.Instance.Viewport(0, 0, width, height);
 
             List<Bitmap> bitmapList = LayeredEngraving(arg, "Z");
 
@@ -278,7 +278,7 @@ namespace fuluDD02_LayeredEngraving.ComputeShader
             foreach (var bitmap in bitmapList)
             {
                 Texture texture = GetTexture(bitmap);
-                ComputeShaderEngrave(this.engraveZComp, texture, volumeData, vWidth, vHeight);
+                ComputeShaderEngrave(this.engraveZComp, texture, volumeData, width, height);
                 bitmap.Dispose();
                 texture.Dispose();
             }
@@ -303,7 +303,7 @@ namespace fuluDD02_LayeredEngraving.ComputeShader
 
                 if (firstRun)
                 {
-                    var bitmap = targetTexture.GetImage(vWidth, vHeight);
+                    var bitmap = targetTexture.GetImage(width, height);
                     bitmap.RotateFlip(RotateFlipType.Rotate180FlipX);
                     bitmap.Save(string.Format("{0}.0.init.png", prefix));
                     //var image = (Bitmap)bitmap.GetThumbnailImage(vWidth, vHeight, null, IntPtr.Zero);
@@ -342,7 +342,7 @@ namespace fuluDD02_LayeredEngraving.ComputeShader
 
                     if (firstRun && sampled)
                     {
-                        var bitmap = targetTexture.GetImage(vWidth, vHeight);
+                        var bitmap = targetTexture.GetImage(width, height);
                         bitmap.RotateFlip(RotateFlipType.Rotate180FlipX);
                         bitmap.Save(string.Format("{0}{1}.peel.png", prefix, layer * 2 - 1));
                         //var image = (Bitmap)bitmap.GetThumbnailImage(vWidth, vHeight, null, IntPtr.Zero);

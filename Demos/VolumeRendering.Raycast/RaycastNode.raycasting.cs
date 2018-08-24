@@ -33,7 +33,7 @@ uniform sampler2D texExitPoint;
 uniform sampler3D texVolume;
 
 uniform float     stepLength = 0.001f;
-uniform vec2      ScreenSize;
+uniform vec2      canvasSize;
 uniform vec4      backgroundColor = vec4(0, 0, 0, 0);// value in glClearColor(value);
 uniform int       cycle = 1600;
 
@@ -42,7 +42,7 @@ out vec4 FragColor;
 void main()
 {
     // ExitPointCoord is normalized device coordinate
-    vec3 exitPoint = texture(texExitPoint, gl_FragCoord.st / ScreenSize).xyz;
+    vec3 exitPoint = texture(texExitPoint, gl_FragCoord.st / canvasSize).xyz;
     // that will actually give you clip-space coordinates rather than
     // normalised device coordinates, since you're not performing the perspective
     // division which happens during the rasterisation process (between the vertex
