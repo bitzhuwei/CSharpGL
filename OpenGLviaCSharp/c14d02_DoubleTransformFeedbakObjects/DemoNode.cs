@@ -25,9 +25,9 @@ namespace c14d02_DoubleTransformFeedbakObjects
                 var feedbackVaryings = new string[] { outPosition, };
                 IShaderProgramProvider updateProvider = new ShaderArray(feedbackVaryings, ShaderProgram.BufferMode.Separate, vs);
                 var map = new AttributeMap();
-                map.Add(inPosition, DemoModel.inPosition);
+                map.Add(inPosition, DemoModel.strPosition);
                 var map2 = new AttributeMap();
-                map2.Add(inPosition, DemoModel.inPosition2);
+                map2.Add(inPosition, DemoModel.strPosition2);
                 updateBuilder = new RenderMethodBuilder(updateProvider, map);
                 updateBuilder2 = new RenderMethodBuilder(updateProvider, map2);
             }
@@ -39,9 +39,9 @@ namespace c14d02_DoubleTransformFeedbakObjects
                 var fs = new FragmentShader(renderFrag);
                 renderProvider = new ShaderArray(vs, fs);
                 var map = new AttributeMap();
-                map.Add(inPosition, DemoModel.inPosition);
+                map.Add(inPosition, DemoModel.strPosition);
                 var map2 = new AttributeMap();
-                map2.Add(inPosition, DemoModel.inPosition2);
+                map2.Add(inPosition, DemoModel.strPosition2);
                 renderBuilder = new RenderMethodBuilder(renderProvider, map);
                 renderBuilder2 = new RenderMethodBuilder(renderProvider, map2);
             }
@@ -64,15 +64,15 @@ namespace c14d02_DoubleTransformFeedbakObjects
 
             for (int i = 0; i < 2; i++)
             {
-                var tf = new TransformFeedbackObject();
+                var tfo = new TransformFeedbackObject();
                 RenderMethod method = this.RenderUnit.Methods[i];
                 VertexArrayObject vao = method.VertexArrayObjects[0]; // only one element here.
                 VertexShaderAttribute[] attributes = vao.VertexAttributes;
-                for (uint t = 0; t < attributes.Length; t++)
+                for (uint bindingPointIndex = 0; bindingPointIndex < attributes.Length; bindingPointIndex++)
                 {
-                    tf.BindBuffer(t, attributes[t].Buffer);
+                    tfo.BindBuffer(bindingPointIndex, attributes[bindingPointIndex].Buffer);
                 }
-                this.transformFeedbackObjects[i] = tf;
+                this.transformFeedbackObjects[i] = tfo;
             }
         }
 
@@ -92,7 +92,7 @@ namespace c14d02_DoubleTransformFeedbakObjects
 
         public void RenderBeforeChildren(RenderEventArgs arg)
         {
-            TransformFeedbackObject tf = transformFeedbackObjects[(currentIndex + 1) % 2];
+            TransformFeedbackObject tfo = transformFeedbackObjects[(currentIndex + 1) % 2];
             // update content at (currentIndex + 1)
             {
                 GL.Instance.Enable(GL.GL_RASTERIZER_DISCARD);
@@ -100,7 +100,7 @@ namespace c14d02_DoubleTransformFeedbakObjects
                 RenderMethod method = this.RenderUnit.Methods[currentIndex];
                 ShaderProgram program = method.Program;
                 //program.SetUniform("xxx", value);
-                method.Render(tf); // update buffers and record output to tf's binding.
+                method.Render(tfo); // update buffers and record output to tf's binding.
 
                 GL.Instance.Disable(GL.GL_RASTERIZER_DISCARD);
             }
@@ -115,7 +115,7 @@ namespace c14d02_DoubleTransformFeedbakObjects
 
                 program.SetUniform(mvpMat, projection * view * model);
                 //unit.Render(); // this method must specify vertex count.
-                tf.Draw(method); // render updated buffers without specifying vertex count.
+                tfo.Draw(method); // render updated buffers without specifying vertex count.
             }
             // exchange
             {
