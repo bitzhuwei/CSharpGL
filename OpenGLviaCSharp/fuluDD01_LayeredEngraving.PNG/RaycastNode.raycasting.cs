@@ -31,7 +31,7 @@ in vec3 passEntryPoint;
 uniform sampler2D texExitPoint;
 uniform sampler3D texVolume;
 
-uniform float     StepSize = 0.001f;
+uniform float     stepLength = 0.001f;
 uniform vec2      ScreenSize;
 uniform vec4      backgroundColor = vec4(0, 0, 0, 0);// value in glClearColor(value);
 uniform int       cycle = 1600;
@@ -54,7 +54,7 @@ void main()
 
     vec3 direction = exitPoint - passEntryPoint;
     float directionLength = length(direction); // the length from front to back is calculated and used to terminate the ray
-    vec3 deltaDirection = direction * (StepSize / directionLength);
+    vec3 deltaDirection = direction * (stepLength / directionLength);
 
     vec3 voxelCoord = passEntryPoint;
     vec3 colorAccumulator = vec3(0.0); // The dest color
@@ -73,12 +73,12 @@ void main()
         // front-to-back integration
         if (colorSample.r > 0.0 || colorSample.g > 0.0 || colorSample.b > 0.0) {
             // accomodate for variable sampling rates (base interval defined by mod_compositing.frag)
-            colorSample.a = 1.0 - pow(1.0 - colorSample.a, StepSize * 200.0f);
+            colorSample.a = 1.0 - pow(1.0 - colorSample.a, stepLength * 200.0f);
             colorAccumulator += (1.0 - alphaAccumulator) * colorSample.rgb * colorSample.a;
             alphaAccumulator += (1.0 - alphaAccumulator) * colorSample.a;
         }
         voxelCoord += deltaDirection;
-        lengthAccumulator += StepSize;
+        lengthAccumulator += stepLength;
         if (lengthAccumulator >= directionLength)
         {    
             colorAccumulator = colorAccumulator * alphaAccumulator 
