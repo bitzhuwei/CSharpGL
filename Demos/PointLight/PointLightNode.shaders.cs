@@ -13,7 +13,7 @@ namespace PointLight
 in vec3 inPosition;
 in vec3 inNormal;
 
-uniform mat4 projectionMatrix;
+uniform mat4 projectionMat;
 uniform mat4 viewMatrix;
 uniform mat4 modelMatrix;
 uniform mat4 normalMatrix;
@@ -23,7 +23,7 @@ out vec3 passNormal; // normal in eye space.
 
 void main(void)
 {
-    gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(inPosition, 1.0f);
+    gl_Position = projectionMat * viewMatrix * modelMatrix * vec4(inPosition, 1.0f);
 
     passPosition = (viewMatrix * modelMatrix * vec4(inPosition, 1.0f)).xyz;
     passNormal = (normalMatrix * vec4(inNormal, 0)).xyz;

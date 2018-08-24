@@ -147,13 +147,13 @@ void main()
             if (!this.IsInitialized) { this.Initialize(); }
 
             ICamera camera = arg.Camera;
-            mat4 projectionMatrix = camera.GetProjectionMatrix();
+            mat4 projectionMat = camera.GetProjectionMatrix();
             mat4 viewMatrix = camera.GetViewMatrix();
             mat4 modelMatrix = this.GetModelMatrix();
 
             RenderMethod method = this.RenderUnit.Methods[0];
             ShaderProgram program = method.Program;
-            program.SetUniform(mvpMat, projectionMatrix * viewMatrix * modelMatrix);
+            program.SetUniform(mvpMat, projectionMat * viewMatrix * modelMatrix);
             program.SetUniform(skybox, this.texture);
 
             method.Render();

@@ -13,7 +13,7 @@ namespace PointLight
     public class LightPositionNode : PickableNode, IRenderable
     {
         private const string inPosition = "inPosition";
-        private const string projectionMatrix = "projectionMatrix";
+        private const string projectionMat = "projectionMat";
         private const string viewMatrix = "viewMatrix";
         private const string modelMatrix = "modelMatrix";
         private const string color = "color";
@@ -22,12 +22,12 @@ namespace PointLight
 
 in vec3 " + inPosition + @";
 
-uniform mat4 " + projectionMatrix + @";
+uniform mat4 " + projectionMat + @";
 uniform mat4 " + viewMatrix + @";
 uniform mat4 " + modelMatrix + @";
 
 void main(void) {
-	gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(inPosition, 1.0);
+	gl_Position = projectionMat * viewMatrix * modelMatrix * vec4(inPosition, 1.0);
 }
 ";
         private const string fragmentCode =
@@ -115,7 +115,7 @@ void main(void) {
 
             var method = this.RenderUnit.Methods[0]; // the only render unit in this node.
             ShaderProgram program = method.Program;
-            program.SetUniform(projectionMatrix, projection);
+            program.SetUniform(projectionMat, projection);
             program.SetUniform(viewMatrix, view);
             program.SetUniform(modelMatrix, model);
 

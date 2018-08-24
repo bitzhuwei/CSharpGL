@@ -15,12 +15,12 @@ in float inTexCoord;
 
 out float passTexCoord;
 
-uniform mat4 projectionMatrix;
+uniform mat4 projectionMat;
 uniform mat4 viewMatrix;
 uniform mat4 modelMatrix;
 
 void main(void) {
-	gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(inPosition, 1.0);
+	gl_Position = projectionMat * viewMatrix * modelMatrix * vec4(inPosition, 1.0);
 
 	passTexCoord = inTexCoord;
 }

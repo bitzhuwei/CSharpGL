@@ -10,13 +10,13 @@ namespace ComputeShader.HelloComputeShader
 
 in vec3 position;
 
-uniform mat4 projectionMatrix;
+uniform mat4 projectionMat;
 uniform mat4 viewMatrix;
 uniform mat4 modelMatrix;
 
 void main(void)
 {
-    gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(position, 1.0f);
+    gl_Position = projectionMat * viewMatrix * modelMatrix * vec4(position, 1.0f);
 }
 ";
         private const string renderFrag = @"#version 430 core

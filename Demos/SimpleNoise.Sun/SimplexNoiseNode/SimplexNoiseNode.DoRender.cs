@@ -66,7 +66,7 @@ namespace SimpleNoise.Sun
             RenderMethod method = this.RenderUnit.Methods[0];
             ShaderProgram program = method.Program;
             // setup uniforms
-            program.SetUniform("projectionMatrix", projection);
+            program.SetUniform("projectionMat", projection);
             program.SetUniform("viewMatrix", view);
             program.SetUniform("modelMatrix", model);
             program.SetUniform("time", time * timeElapsingSpeed);

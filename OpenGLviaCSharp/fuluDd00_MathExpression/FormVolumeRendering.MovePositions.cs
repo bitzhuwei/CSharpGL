@@ -33,10 +33,10 @@ namespace fuluDd00_MathExpression
                 //    IGLCanvas canvas = this.winGLCanvas1;
                 //    var viewport = new vec4(0, 0, canvas.Width, canvas.Height);
                 //    var lastWindowSpacePos = new vec3(e.X, this.winGLCanvas1.Height - e.Y - 1, pickedGeometry.PickedPosition.z);
-                //    mat4 projectionMatrix = this.scene.Camera.GetProjectionMatrix();
+                //    mat4 projectionMat = this.scene.Camera.GetProjectionMatrix();
                 //    mat4 viewMatrix = this.scene.Camera.GetViewMatrix();
                 //    mat4 modelMatrix = (pickedGeometry.FromObject as PickableNode).GetModelMatrix();
-                //    var lastModelSpacePos = glm.unProject(lastWindowSpacePos, viewMatrix * modelMatrix, projectionMatrix, viewport);
+                //    var lastModelSpacePos = glm.unProject(lastWindowSpacePos, viewMatrix * modelMatrix, projectionMat, viewport);
 
                 //    var dragParam = new DragParam(
                 //        lastModelSpacePos,
@@ -67,7 +67,7 @@ namespace fuluDd00_MathExpression
             //    {
             //        var node = this.pickedGeometry.FromObject as PickableNode;
             //        var currentWindowSpacePos = new vec3(e.X, this.winGLCanvas1.Height - e.Y - 1, this.pickedGeometry.PickedPosition.z);
-            //        var currentModelSpacePos = glm.unProject(currentWindowSpacePos, dragParam.viewMatrix * node.GetModelMatrix(), dragParam.projectionMatrix, dragParam.viewport);
+            //        var currentModelSpacePos = glm.unProject(currentWindowSpacePos, dragParam.viewMatrix * node.GetModelMatrix(), dragParam.projectionMat, dragParam.viewport);
             //        var modelSpacePositionDiff = currentModelSpacePos - dragParam.lastModelSpacePos;
             //        dragParam.lastModelSpacePos = currentModelSpacePos;
             //        IList<vec3> newPositions = node.MovePositions(

@@ -15,7 +15,7 @@ namespace PointLight
         private const string inPosition = "inPosition";
         private const string inNormal = "inNormal";
 
-        private const string projectionMatrix = "projectionMatrix";
+        private const string projectionMat = "projectionMat";
         private const string viewMatrix = "viewMatrix";
         private const string modelMatrix = "modelMatrix";
         private const string normalMatrix = "normalMatrix";
@@ -82,7 +82,7 @@ namespace PointLight
             mat4 view = camera.GetViewMatrix();
             mat4 model = this.GetModelMatrix();
             mat4 normal = glm.transpose(glm.inverse(view * model));
-            program.SetUniform(projectionMatrix, projection);
+            program.SetUniform(projectionMat, projection);
             program.SetUniform(viewMatrix, view);
             program.SetUniform(modelMatrix, model);
             program.SetUniform(normalMatrix, normal);

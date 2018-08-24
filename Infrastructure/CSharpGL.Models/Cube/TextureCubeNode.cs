@@ -13,7 +13,7 @@ namespace CSharpGL
     {
         private const string inPosition = "inPosition";
         private const string inUV = "inUV";
-        private const string projectionMatrix = "projectionMatrix";
+        private const string projectionMat = "projectionMat";
         private const string viewMatrix = "viewMatrix";
         private const string modelMatrix = "modelMatrix";
         private const string tex = "tex";
@@ -24,14 +24,14 @@ namespace CSharpGL
 in vec3 " + inPosition + @";
 in vec2 " + inUV + @";
 
-uniform mat4 " + projectionMatrix + @";
+uniform mat4 " + projectionMat + @";
 uniform mat4 " + viewMatrix + @";
 uniform mat4 " + modelMatrix + @";
 
 out vec2 passUV;
 
 void main(void) {
-	gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(inPosition, 1.0);
+	gl_Position = projectionMat * viewMatrix * modelMatrix * vec4(inPosition, 1.0);
     passUV = inUV;
 }
 ";
@@ -107,7 +107,7 @@ void main(void) {
 
             var method = this.RenderUnit.Methods[0]; // the only render unit in this node.
             ShaderProgram program = method.Program;
-            program.SetUniform(projectionMatrix, projection);
+            program.SetUniform(projectionMat, projection);
             program.SetUniform(viewMatrix, view);
             program.SetUniform(modelMatrix, model);
             program.SetUniform(tex, this.texture);

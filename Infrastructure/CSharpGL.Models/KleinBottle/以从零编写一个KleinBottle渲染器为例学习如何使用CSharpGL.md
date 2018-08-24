@@ -28,13 +28,13 @@
 <pre><span style="color: #008080;"> 1</span> #version <span style="color: #800080;">150</span><span style="color: #000000;"> core
 </span><span style="color: #008080;"> 2</span> 
 <span style="color: #008080;"> 3</span> <span style="color: #0000ff;">in</span> vec3 inPosition;<span style="color: #008000;">//</span><span style="color: #008000;"> 一个顶点</span>
-<span style="color: #008080;"> 4</span> uniform mat4 projectionMatrix;<span style="color: #008000;">//</span><span style="color: #008000;"> 投影矩阵</span>
+<span style="color: #008080;"> 4</span> uniform mat4 projectionMat;<span style="color: #008000;">//</span><span style="color: #008000;"> 投影矩阵</span>
 <span style="color: #008080;"> 5</span> uniform mat4 viewMatrix;<span style="color: #008000;">//</span><span style="color: #008000;"> 视图矩阵</span>
 <span style="color: #008080;"> 6</span> uniform mat4 modelMatrix;<span style="color: #008000;">//</span><span style="color: #008000;"> 模型矩阵</span>
 <span style="color: #008080;"> 7</span> 
 <span style="color: #008080;"> 8</span> <span style="color: #0000ff;">void</span> main(<span style="color: #0000ff;">void</span><span style="color: #000000;">) {
 </span><span style="color: #008080;"> 9</span>     <span style="color: #008000;">//</span><span style="color: #008000;"> 计算顶点位置</span>
-<span style="color: #008080;">10</span>     gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(inPosition, <span style="color: #800080;">1.0</span><span style="color: #000000;">);
+<span style="color: #008080;">10</span>     gl_Position = projectionMat * viewMatrix * modelMatrix * vec4(inPosition, <span style="color: #800080;">1.0</span><span style="color: #000000;">);
 </span><span style="color: #008080;">11</span> }</pre>
 </div>
 
@@ -313,7 +313,7 @@ Klein Bottle是个著名的三维模型，可以用一个公式来计算它的�
 </span><span style="color: #008080;"> 7</span>             mat4 projection =<span style="color: #000000;"> arg.Camera.GetProjectionMatrix();
 </span><span style="color: #008080;"> 8</span>             mat4 view =<span style="color: #000000;"> arg.Camera.GetViewMatrix();
 </span><span style="color: #008080;"> 9</span>             mat4 model = <span style="color: #0000ff;">this</span><span style="color: #000000;">.GetModelMatrix();
-</span><span style="color: #008080;">10</span>             <span style="color: #0000ff;">this</span>.SetUniform(<span style="color: #800000;">"</span><span style="color: #800000;">projectionMatrix</span><span style="color: #800000;">"</span>, <span style="color: #008000;">//</span><span style="color: #008000;"> variable name in shader.</span>
+</span><span style="color: #008080;">10</span>             <span style="color: #0000ff;">this</span>.SetUniform(<span style="color: #800000;">"</span><span style="color: #800000;">projectionMat</span><span style="color: #800000;">"</span>, <span style="color: #008000;">//</span><span style="color: #008000;"> variable name in shader.</span>
 <span style="color: #008080;">11</span> <span style="color: #000000;">projection);
 </span><span style="color: #008080;">12</span>             <span style="color: #0000ff;">this</span>.SetUniform(<span style="color: #800000;">"</span><span style="color: #800000;">viewMatrix</span><span style="color: #800000;">"</span>, <span style="color: #008000;">//</span><span style="color: #008000;"> variable name in shader.</span>
 <span style="color: #008080;">13</span> <span style="color: #000000;">view);
