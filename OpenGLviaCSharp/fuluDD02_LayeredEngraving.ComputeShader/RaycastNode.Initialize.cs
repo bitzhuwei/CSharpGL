@@ -10,7 +10,6 @@ namespace fuluDD02_LayeredEngraving.ComputeShader
 {
     public partial class RaycastNode
     {
-        private Texture transferFunc1DTexture;
         private Texture backface2DTexture;
         private int width;
         private int height;

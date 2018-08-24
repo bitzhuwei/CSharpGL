@@ -12,33 +12,30 @@ namespace fuluDD02_LayeredEngraving.ComputeShader
 
 in vec3 inPosition;
 
-//uniform
 uniform mat4 mvpMat;
 
 void main()
 {  
-    //get the clipspace vertex position
     gl_Position = mvpMat * vec4(inPosition, 1);
 }
 ";
         public const string peelFrag = @"#version 330 core
 
-out vec4 outColor;
-
-//uniforms
 uniform vec4 color;
 uniform sampler2DRect  depthTexture;
 
+out vec4 outColor;
+
 void main()
 {
-    //read the depth value from the depth texture
+    //read the depth value from the depth texture.
     float frontDepth = texture(depthTexture, gl_FragCoord.xy).r;
 
-    //compare the current fragment depth with the depth in the depth texture
-    //if it is less, discard the current fragment
+    //compare the current fragment depth with the depth in the depth texture.
+    //if it is less, discard the current fragment.
     if(gl_FragCoord.z <= frontDepth) discard;
 	
-    //otherwise set the given color uniform as the final output
+    //otherwise set the given color uniform as the final output.
     outColor = vec4(color.rgb, gl_FragCoord.z);
 }
 ";

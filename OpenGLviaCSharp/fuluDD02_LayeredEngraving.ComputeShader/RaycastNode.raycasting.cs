@@ -31,12 +31,12 @@ in vec3 passEntryPoint;
 uniform sampler2D texExitPoint;
 uniform sampler3D texVolume;
 
-uniform float     stepLength = 0.001f;
-uniform vec2      canvasSize;
-uniform vec4      backgroundColor = vec4(0, 0, 0, 0);// value in glClearColor(value);
-uniform int       cycle = 1600;
+uniform float stepLength = 0.001f;
+uniform vec2 canvasSize;
+uniform vec4 backgroundColor = vec4(0, 0, 0, 0);// value in glClearColor(value);
+uniform int cycle = 1600;
 
-out vec4 FragColor;
+out vec4 outColor;
 
 void main()
 {
@@ -78,7 +78,8 @@ void main()
             break;
         }
     }
-    FragColor = vec4(colorAccumulator, alphaAccumulator);
+
+    outColor = vec4(colorAccumulator, alphaAccumulator);
 }
 ";
     }
