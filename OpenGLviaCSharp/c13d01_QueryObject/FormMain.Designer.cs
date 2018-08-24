@@ -118,6 +118,7 @@
             // 
             this.lblSampleCount.AutoSize = true;
             this.lblSampleCount.Font = new System.Drawing.Font("宋体", 14F);
+            this.lblSampleCount.ForeColor = System.Drawing.Color.Red;
             this.lblSampleCount.Location = new System.Drawing.Point(12, 500);
             this.lblSampleCount.Name = "lblSampleCount";
             this.lblSampleCount.Size = new System.Drawing.Size(209, 19);

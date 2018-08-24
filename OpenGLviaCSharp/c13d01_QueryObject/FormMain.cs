@@ -60,6 +60,8 @@ namespace c13d01_QueryObject
 
             var manipulater = new FirstPerspectiveManipulater();
             manipulater.Bind(camera, this.winGLCanvas1);
+
+            this.cmbDrawMode.SelectedIndex = 0;
         }
 
         private SceneNodeBase GetRootNode()
