@@ -12,7 +12,6 @@ namespace c12d02_SlicingSituations
 {
     public partial class Form1 : Form
     {
-
         private Scene scene;
         private ActionList actionList;
         private SceneNodeBase rootNode;
