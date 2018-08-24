@@ -25,7 +25,6 @@ namespace c13d00_SkipFragCoord
             this.winGLCanvas1.OpenGLDraw += winGLCanvas1_OpenGLDraw;
             // resize event.
             this.winGLCanvas1.Resize += winGLCanvas1_Resize;
-
         }
 
         private void FormMain_Load(object sender, EventArgs e)
