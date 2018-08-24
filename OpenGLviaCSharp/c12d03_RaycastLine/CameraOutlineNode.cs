@@ -67,7 +67,6 @@ namespace c12d03_RaycastLine
             //set value for 'uniform mat4 mvpMat'; in shader.
             program.SetUniform("mvpMat", mvpMat);
             {
-
                 program.SetUniform("halfTransparent", false);
                 this.polygonModeSwitch.On();
                 this.lineWidthSwitch.On();

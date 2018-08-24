@@ -36,7 +36,7 @@ namespace c12d03_RaycastLine
 
         PolygonModeSwitch polygonModeSwitch = new PolygonModeSwitch(PolygonMode.Line);
         LineWidthSwitch lineWidthSwitch = new LineWidthSwitch(1);
-        
+
         #region IRenderable 成员
 
         // render this before render children. Call RenderBeforeChildren();
@@ -66,14 +66,12 @@ namespace c12d03_RaycastLine
             ShaderProgram program = method.Program;
             //set value for 'uniform mat4 mvpMat'; in shader.
             program.SetUniform("mvpMat", mvpMat);
-
             {
                 program.SetUniform("halfTransparent", true);
                 // render the cube model via OpenGL.
                 method.Render();
             }
             {
-
                 program.SetUniform("halfTransparent", false);
                 this.polygonModeSwitch.On();
                 this.lineWidthSwitch.On();
