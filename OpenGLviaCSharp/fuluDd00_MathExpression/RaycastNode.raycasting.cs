@@ -11,7 +11,6 @@ namespace fuluDd00_MathExpression
         private const string raycastingVert = @"#version 150
 
 in vec3 inPosition;
-// have to use this variable!!!, or it will be very hard to debug for AMD video card
 in vec3 inBoundingBox;  
 
 out vec3 passEntryPoint;
@@ -20,8 +19,9 @@ uniform mat4 mvpMat;
 
 void main()
 {
-    passEntryPoint = inBoundingBox;
     gl_Position = mvpMat * vec4(inPosition, 1.0);
+
+    passEntryPoint = inBoundingBox;
 }
 ";
         private const string raycastingFrag = @"#version 150
@@ -31,12 +31,12 @@ in vec3 passEntryPoint;
 uniform sampler2D texExitPoint;
 uniform sampler3D texVolume;
 
-uniform float     stepLength = 0.001f;
-uniform vec2      ScreenSize;
-uniform vec4      backgroundColor = vec4(0, 0, 0, 0);// value in glClearColor(value);
-uniform int       cycle = 1600;
+uniform float stepLength = 0.001f;
+uniform vec2 ScreenSize;
+uniform vec4 backgroundColor = vec4(0, 0, 0, 0);// value in glClearColor(value);
+uniform int cycle = 1600;
 
-out vec4 FragColor;
+out vec4 outColor;
 
 void main()
 {
@@ -91,11 +91,8 @@ void main()
             break;
         }
     }
-    FragColor = vec4(colorAccumulator, alphaAccumulator);
-    // for test
-    // FragColor = vec4(passEntryPoint, 1.0);
-    // FragColor = vec4(exitPoint, 1.0);
-   
+
+    outColor = vec4(colorAccumulator, alphaAccumulator);
 }
 ";
     }
