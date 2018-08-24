@@ -14,7 +14,7 @@ namespace CSharpGL
         private const string inPosition = "inPosition";
         private const string inColor = "inColor";
         private const string projectionMat = "projectionMat";
-        private const string viewMatrix = "viewMatrix";
+        private const string viewMat = "viewMat";
         private const string modelMatrix = "modelMatrix";
         private const string passColor = "passColor";
         private const string vertexCode =
@@ -24,13 +24,13 @@ in vec3 " + inPosition + @";
 in vec3 " + inColor + @";
 
 uniform mat4 " + projectionMat + @";
-uniform mat4 " + viewMatrix + @";
+uniform mat4 " + viewMat + @";
 uniform mat4 " + modelMatrix + @";
 
 out vec3 passColor;
 
 void main(void) {
-	gl_Position = projectionMat * viewMatrix * modelMatrix * vec4(inPosition, 1.0);
+	gl_Position = projectionMat * viewMat * modelMatrix * vec4(inPosition, 1.0);
     passColor = inColor;
 }
 ";
@@ -142,7 +142,7 @@ void main(void) {
             var method = this.RenderUnit.Methods[0]; // the only render unit in this node.
             ShaderProgram program = method.Program;
             program.SetUniform(projectionMat, projection);
-            program.SetUniform(viewMatrix, view);
+            program.SetUniform(viewMat, view);
             program.SetUniform(modelMatrix, model);
 
             if (this.RenderWireframe)

@@ -13,7 +13,7 @@ namespace CSharpGL
     {
         private const string inPosition = "inPosition";
         private const string projectionMat = "projectionMat";
-        private const string viewMatrix = "viewMatrix";
+        private const string viewMat = "viewMat";
         private const string modelMatrix = "modelMatrix";
         private const string color = "color";
         private const string vertexCode =
@@ -22,11 +22,11 @@ namespace CSharpGL
 in vec3 " + inPosition + @";
 
 uniform mat4 " + projectionMat + @";
-uniform mat4 " + viewMatrix + @";
+uniform mat4 " + viewMat + @";
 uniform mat4 " + modelMatrix + @";
 
 void main(void) {
-	gl_Position = projectionMat * viewMatrix * modelMatrix * vec4(inPosition, 1.0);
+	gl_Position = projectionMat * viewMat * modelMatrix * vec4(inPosition, 1.0);
 }
 ";
         private const string fragmentCode =
@@ -98,7 +98,7 @@ void main(void) {
             var method = this.RenderUnit.Methods[0]; // renderBuilder
             ShaderProgram program = method.Program;
             program.SetUniform(projectionMat, projection);
-            program.SetUniform(viewMatrix, view);
+            program.SetUniform(viewMat, view);
             program.SetUniform(modelMatrix, model);
             program.SetUniform(color, this.Color);
 

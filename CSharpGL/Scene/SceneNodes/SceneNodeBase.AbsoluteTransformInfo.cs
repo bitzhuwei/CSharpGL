@@ -20,12 +20,12 @@ namespace CSharpGL
         /// <summary>
         /// Gets this node's abolute position in specified view space.
         /// </summary>
-        /// <param name="viewMatrix">specifies the view space transform.</param>
+        /// <param name="viewMat">specifies the view space transform.</param>
         /// <returns></returns>
-        public vec3 GetAbsoluteViewPosition(mat4 viewMatrix)
+        public vec3 GetAbsoluteViewPosition(mat4 viewMat)
         {
             var position = new vec4(this.worldSpacePosition, 1.0f);
-            var viewPosition = viewMatrix * this.cascadeModelMatrix * position;
+            var viewPosition = viewMat * this.cascadeModelMatrix * position;
             return new vec3(viewPosition);
         }
     }

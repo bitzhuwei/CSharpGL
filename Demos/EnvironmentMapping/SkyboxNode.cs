@@ -110,12 +110,12 @@ void main()
 
             ICamera camera = arg.Camera;
             mat4 projectionMat = camera.GetProjectionMatrix();
-            mat4 viewMatrix = camera.GetViewMatrix();
+            mat4 viewMat = camera.GetViewMatrix();
             mat4 modelMatrix = this.GetModelMatrix();
 
             RenderMethod method = this.RenderUnit.Methods[0];
             ShaderProgram program = method.Program;
-            program.SetUniform(mvpMat, projectionMat * viewMatrix * modelMatrix);
+            program.SetUniform(mvpMat, projectionMat * viewMat * modelMatrix);
             program.SetUniform(skybox, this.texture);
 
             method.Render();

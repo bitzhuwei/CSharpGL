@@ -179,7 +179,7 @@ namespace c15d00_InverseColor
                 ShaderProgram program = method.Program;
                 program.SetUniform(tex, this.outTexture);
                 program.SetUniform(projectionMat, projection);
-                program.SetUniform(viewMatrix, view);
+                program.SetUniform(viewMat, view);
                 program.SetUniform(modelMatrix, model);
 
                 method.Render();

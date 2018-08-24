@@ -67,7 +67,7 @@ namespace SimpleNoise.Sun
             ShaderProgram program = method.Program;
             // setup uniforms
             program.SetUniform("projectionMat", projection);
-            program.SetUniform("viewMatrix", view);
+            program.SetUniform("viewMat", view);
             program.SetUniform("modelMatrix", model);
             program.SetUniform("time", time * timeElapsingSpeed);
             program.SetUniform("rainDrop", this.rainDrop);

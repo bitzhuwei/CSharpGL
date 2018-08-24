@@ -53,8 +53,8 @@ namespace CSharpGL
             this.depthList.Clear();
             this.billboardList.Clear();
 
-            mat4 viewMatrix = this.camera.GetViewMatrix();
-            this.Sort(this.rootNode, viewMatrix);
+            mat4 viewMat = this.camera.GetViewMatrix();
+            this.Sort(this.rootNode, viewMat);
 
             if (!this.Far2Near)
             {
@@ -63,19 +63,19 @@ namespace CSharpGL
             }
         }
 
-        private void Sort(SceneNodeBase sceneElement, mat4 viewMatrix)
+        private void Sort(SceneNodeBase sceneElement, mat4 viewMat)
         {
             if (sceneElement != null)
             {
                 var billboard = sceneElement as TextBillboardNode;
                 if (billboard != null)
                 {
-                    Insert(billboard, viewMatrix);
+                    Insert(billboard, viewMat);
                 }
 
                 foreach (var item in sceneElement.Children)
                 {
-                    this.Sort(item, viewMatrix);
+                    this.Sort(item, viewMat);
                 }
             }
         }
@@ -84,10 +84,10 @@ namespace CSharpGL
         /// binary insertion sort.
         /// </summary>
         /// <param name="billboard"></param>
-        /// <param name="viewMatrix"></param>
-        private void Insert(TextBillboardNode billboard, mat4 viewMatrix)
+        /// <param name="viewMat"></param>
+        private void Insert(TextBillboardNode billboard, mat4 viewMat)
         {
-            vec3 viewPosition = billboard.GetAbsoluteViewPosition(viewMatrix);
+            vec3 viewPosition = billboard.GetAbsoluteViewPosition(viewMat);
             int left = 0, right = this.depthList.Count - 1;
             while (left <= right)
             {

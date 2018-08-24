@@ -55,7 +55,7 @@ namespace Accumulation
             ShaderProgram program = method.Program;
             // setup uniforms
             program.SetUniform("projectionMat", projection);
-            program.SetUniform("viewMatrix", view);
+            program.SetUniform("viewMat", view);
 
             GL.Instance.Clear(GL.GL_ACCUM_BUFFER_BIT);
             for (int i = 0; i < 3; i++)

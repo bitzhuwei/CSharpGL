@@ -11,7 +11,7 @@ namespace ComputeShader.EdgeDetection
         private const string inPosition = "inPosition";
         private const string inUV = "inUV";
         private const string projectionMat = "projectionMat";
-        private const string viewMatrix = "viewMatrix";
+        private const string viewMat = "viewMat";
         private const string modelMatrix = "modelMatrix";
         private const string tex = "tex";
         private const string vertexCode =
@@ -21,13 +21,13 @@ in vec3 " + inPosition + @";
 in vec2 " + inUV + @";
 
 uniform mat4 " + projectionMat + @";
-uniform mat4 " + viewMatrix + @";
+uniform mat4 " + viewMat + @";
 uniform mat4 " + modelMatrix + @";
 
 out vec2 passUV;
 
 void main(void) {
-	gl_Position = projectionMat * viewMatrix * modelMatrix * vec4(inPosition, 1.0);
+	gl_Position = projectionMat * viewMat * modelMatrix * vec4(inPosition, 1.0);
 	passUV = inUV;
 }
 ";

@@ -6,7 +6,7 @@ namespace CSharpGL
     {
         #region IViewCamera
 
-        private UpdatingRecord viewMatrixRecord = new UpdatingRecord(true);
+        private UpdatingRecord viewMatRecord = new UpdatingRecord(true);
 
         private vec3 target;
 
@@ -23,7 +23,7 @@ namespace CSharpGL
                 if (target != value)
                 {
                     target = value;
-                    viewMatrixRecord.Mark();
+                    viewMatRecord.Mark();
                 }
             }
         }
@@ -46,7 +46,7 @@ namespace CSharpGL
                 if (upVector != value)
                 {
                     upVector = value;
-                    viewMatrixRecord.Mark();
+                    viewMatRecord.Mark();
                 }
             }
         }
@@ -69,12 +69,12 @@ namespace CSharpGL
                 if (position != value)
                 {
                     position = value;
-                    viewMatrixRecord.Mark();
+                    viewMatRecord.Mark();
                 }
             }
         }
 
-        private mat4 viewMatrix;
+        private mat4 viewMat;
 
         /// <summary>
         ///
@@ -82,13 +82,13 @@ namespace CSharpGL
         /// <returns></returns>
         public mat4 GetViewMatrix()
         {
-            if (this.viewMatrixRecord.IsMarked())
+            if (this.viewMatRecord.IsMarked())
             {
-                this.viewMatrix = glm.lookAt(this.position, this.target, this.upVector);
-                this.viewMatrixRecord.CancelMark();
+                this.viewMat = glm.lookAt(this.position, this.target, this.upVector);
+                this.viewMatRecord.CancelMark();
             }
 
-            return this.viewMatrix;
+            return this.viewMat;
         }
 
         #endregion IViewCamera

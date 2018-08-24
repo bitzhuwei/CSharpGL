@@ -70,7 +70,7 @@ namespace CSharpGL
             var method = this.RenderUnit.Methods[0];
             ShaderProgram program = method.Program;
             program.SetUniform("projectionMat", projection);
-            program.SetUniform("viewMatrix", view);
+            program.SetUniform("viewMat", view);
             program.SetUniform("modelMatrix", model);
 
             method.Render();

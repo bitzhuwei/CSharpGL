@@ -73,23 +73,23 @@ namespace CSharpGL
             // camera's up in world space coordinate system
             vec3 standardUp = back.cross(right);
 
-            mat4 viewMatrix = new mat4(1);
-            viewMatrix.col0.x = right.x;
-            viewMatrix.col1.x = right.y;
-            viewMatrix.col2.x = right.z;
-            viewMatrix.col0.y = standardUp.x;
-            viewMatrix.col1.y = standardUp.y;
-            viewMatrix.col2.y = standardUp.z;
-            viewMatrix.col0.z = back.x;
-            viewMatrix.col1.z = back.y;
-            viewMatrix.col2.z = back.z;
+            mat4 viewMat = new mat4(1);
+            viewMat.col0.x = right.x;
+            viewMat.col1.x = right.y;
+            viewMat.col2.x = right.z;
+            viewMat.col0.y = standardUp.x;
+            viewMat.col1.y = standardUp.y;
+            viewMat.col2.y = standardUp.z;
+            viewMat.col0.z = back.x;
+            viewMat.col1.z = back.y;
+            viewMat.col2.z = back.z;
 
             // Translation in world space coordinate system
-            viewMatrix.col3.x = -eye.dot(right);
-            viewMatrix.col3.y = -eye.dot(standardUp);
-            viewMatrix.col3.z = -eye.dot(back);
+            viewMat.col3.x = -eye.dot(right);
+            viewMat.col3.y = -eye.dot(standardUp);
+            viewMat.col3.z = -eye.dot(back);
 
-            return viewMatrix;
+            return viewMat;
         }
 
         /// <summary>

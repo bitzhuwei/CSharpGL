@@ -9,7 +9,7 @@ namespace CSharpGL
         #region shaders
 
         private const string projectionMat = "projectionMat";
-        private const string viewMatrix = "viewMatrix";
+        private const string viewMat = "viewMat";
         private const string modelMatrix = "modelMatrix";
         private const string width = "width";
         private const string height = "height";
@@ -23,7 +23,7 @@ namespace CSharpGL
             @"#version 330 core
 
 uniform mat4 " + projectionMat + @";
-uniform mat4 " + viewMatrix + @";
+uniform mat4 " + viewMat + @";
 uniform mat4 " + modelMatrix + @";
 uniform ivec2 " + screenSize + @";
 
@@ -38,7 +38,7 @@ out vec3 passSTR;
 const float value = 0.1;
 
 void main(void) {
-	vec4 position = projectionMat * viewMatrix * modelMatrix * vec4(0, 0, 0, 1);
+	vec4 position = projectionMat * viewMat * modelMatrix * vec4(0, 0, 0, 1);
     position = position / position.w;
     float deltaX = (inPosition.x * height - width) / screenSize.x;
     float deltaY = (inPosition.y * height - height) / screenSize.y;
