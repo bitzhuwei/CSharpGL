@@ -63,7 +63,7 @@ namespace fuluDd00_MathExpression
                 RenderMethod method = this.RenderUnit.Methods[1];
                 ShaderProgram program = method.Program;
                 program.SetUniform("ScreenSize", new vec2(width, height));
-                program.SetUniform("ExitPoints", this.backface2DTexture);
+                program.SetUniform("texExitPoint", this.backface2DTexture);
             }
         }
 

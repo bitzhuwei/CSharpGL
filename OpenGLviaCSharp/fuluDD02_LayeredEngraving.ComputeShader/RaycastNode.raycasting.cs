@@ -28,7 +28,7 @@ void main()
 
 in vec3 passEntryPoint;
 
-uniform sampler2D ExitPoints;
+uniform sampler2D texExitPoint;
 uniform sampler3D texVolume;
 
 uniform float     StepSize = 0.001f;
@@ -41,13 +41,13 @@ out vec4 FragColor;
 void main()
 {
     // ExitPointCoord is normalized device coordinate
-    vec3 exitPoint = texture(ExitPoints, gl_FragCoord.st / ScreenSize).xyz;
+    vec3 exitPoint = texture(texExitPoint, gl_FragCoord.st / ScreenSize).xyz;
     // that will actually give you clip-space coordinates rather than
     // normalised device coordinates, since you're not performing the perspective
     // division which happens during the rasterisation process (between the vertex
     // shader and fragment shader
     // vec2 exitFragCoord = (ExitPointCoord.xy / ExitPointCoord.w + 1.0)/2.0;
-    // vec3 exitPoint  = texture(ExitPoints, exitFragCoord).xyz;
+    // vec3 exitPoint  = texture(texExitPoint, exitFragCoord).xyz;
 
     //background need no raycasting
     if (passEntryPoint == exitPoint) { discard; }
