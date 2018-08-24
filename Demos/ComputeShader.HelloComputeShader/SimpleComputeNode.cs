@@ -158,7 +158,7 @@ namespace ComputeShader.HelloComputeShader
                 ShaderProgram program = method.Program;
                 program.SetUniform("projectionMat", projection);
                 program.SetUniform("viewMat", view);
-                program.SetUniform("modelMatrix", model);
+                program.SetUniform("modelMat", model);
                 program.SetUniform("outImage", this.outputTexture);
 
                 method.Render();

@@ -180,7 +180,7 @@ namespace c15d00_InverseColor
                 program.SetUniform(tex, this.outTexture);
                 program.SetUniform(projectionMat, projection);
                 program.SetUniform(viewMat, view);
-                program.SetUniform(modelMatrix, model);
+                program.SetUniform(modelMat, model);
 
                 method.Render();
             }

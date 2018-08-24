@@ -12,11 +12,11 @@ in vec3 position;
 
 uniform mat4 projectionMat;
 uniform mat4 viewMat;
-uniform mat4 modelMatrix;
+uniform mat4 modelMat;
 
 void main(void)
 {
-    gl_Position = projectionMat * viewMat * modelMatrix * vec4(position, 1.0f);
+    gl_Position = projectionMat * viewMat * modelMat * vec4(position, 1.0f);
 }
 ";
         private const string renderFrag = @"#version 430 core

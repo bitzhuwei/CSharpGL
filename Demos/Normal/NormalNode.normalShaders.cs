@@ -30,7 +30,7 @@ uniform vec3 vertexColor = vec3(1, 1, 1);
 uniform vec3 pointerColor = vec3(0.5, 0.5, 0.5);
 uniform mat4 projectionMat;
 uniform mat4 viewMat;
-uniform mat4 modelMatrix;
+uniform mat4 modelMat;
 
 in vec3 passNormal[];
 
@@ -43,12 +43,12 @@ void main(void)
 		vec4 position = gl_in[i].gl_Position;
 		
 		passColor = vertexColor;
-        gl_Position = projectionMat * viewMat * modelMatrix * position;
+        gl_Position = projectionMat * viewMat * modelMat * position;
 		EmitVertex();
         
 		passColor = pointerColor;
 		vec4 target = vec4(position.xyz + normalize(passNormal[i]) * normalLength, 1.0f);
-        gl_Position = projectionMat * viewMat * modelMatrix * target;
+        gl_Position = projectionMat * viewMat * modelMat * target;
 		EmitVertex();
 
 		EndPrimitive();

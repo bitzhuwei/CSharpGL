@@ -12,7 +12,7 @@ namespace Texture2DArray
         private const string inUV = "inUV";
         private const string projectionMat = "projectionMat";
         private const string viewMat = "viewMat";
-        private const string modelMatrix = "modelMatrix";
+        private const string modelMat = "modelMat";
         private const string tex = "tex";
         private const string layerIndex = "layerIndex";
         private const string vertexCode =
@@ -23,12 +23,12 @@ in vec2 " + inUV + @";
 
 uniform mat4 " + projectionMat + @";
 uniform mat4 " + viewMat + @";
-uniform mat4 " + modelMatrix + @";
+uniform mat4 " + modelMat + @";
 
 out vec2 passUV;
 
 void main(void) {
-	gl_Position = projectionMat * viewMat * modelMatrix * vec4(inPosition, 1.0);
+	gl_Position = projectionMat * viewMat * modelMat * vec4(inPosition, 1.0);
 	passUV = inUV;
 }
 ";

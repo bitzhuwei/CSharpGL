@@ -119,10 +119,10 @@ namespace CSharpGL
         //        var parent = node.Parent as RendererBase;
         //        if (parent != null)
         //        {
-        //            matrix = parent.modelMatrix * matrix;
+        //            matrix = parent.modelMat * matrix;
         //        }
 
-        //        node.modelMatrix = matrix;
+        //        node.modelMat = matrix;
         //    }
 
         //    return matrix;

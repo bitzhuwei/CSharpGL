@@ -71,7 +71,7 @@ namespace CSharpGL
             ShaderProgram program = method.Program;
             program.SetUniform("projectionMat", projection);
             program.SetUniform("viewMat", view);
-            program.SetUniform("modelMatrix", model);
+            program.SetUniform("modelMat", model);
 
             method.Render();
         }

@@ -38,8 +38,8 @@ namespace ColorCodedPicking
                         var lastWindowSpacePos = new vec3(e.X, this.winGLCanvas1.Height - e.Y - 1, pickedGeometry.PickedPosition.z);
                         mat4 projectionMat = this.scene.Camera.GetProjectionMatrix();
                         mat4 viewMat = this.scene.Camera.GetViewMatrix();
-                        mat4 modelMatrix = (pickedGeometry.FromObject as PickableNode).GetModelMatrix();
-                        var lastModelSpacePos = glm.unProject(lastWindowSpacePos, viewMat * modelMatrix, projectionMat, viewport);
+                        mat4 modelMat = (pickedGeometry.FromObject as PickableNode).GetModelMatrix();
+                        var lastModelSpacePos = glm.unProject(lastWindowSpacePos, viewMat * modelMat, projectionMat, viewport);
 
                         var dragParam = new DragParam(
                             lastModelSpacePos,

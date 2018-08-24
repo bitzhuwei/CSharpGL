@@ -64,7 +64,7 @@ namespace Accumulation
                 matrix = glm.scale(matrix, this.Scale);
                 matrix = glm.rotate(matrix, this.RotationAngle, this.RotationAxis);
 
-                program.SetUniform("modelMatrix", matrix);
+                program.SetUniform("modelMat", matrix);
                 method.Render();
 
                 if (i == 0)

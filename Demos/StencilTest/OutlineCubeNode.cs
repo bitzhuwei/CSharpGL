@@ -13,7 +13,7 @@ namespace StencilTest
         private const string inUV = "inUV";
         private const string projectionMat = "projectionMat";
         private const string viewMat = "viewMat";
-        private const string modelMatrix = "modelMatrix";
+        private const string modelMat = "modelMat";
         private const string tex = "tex";
         private const string alpha = "alpha";
         private const string vertexCode =
@@ -24,12 +24,12 @@ in vec2 " + inUV + @";
 
 uniform mat4 " + projectionMat + @";
 uniform mat4 " + viewMat + @";
-uniform mat4 " + modelMatrix + @";
+uniform mat4 " + modelMat + @";
 
 out vec2 passUV;
 
 void main(void) {
-	gl_Position = projectionMat * viewMat * modelMatrix * vec4(inPosition, 1.0);
+	gl_Position = projectionMat * viewMat * modelMat * vec4(inPosition, 1.0);
     passUV = inUV;
 }
 ";
@@ -115,7 +115,7 @@ void main(void) {
             ShaderProgram program = method.Program;
             program.SetUniform(projectionMat, projection);
             program.SetUniform(viewMat, view);
-            program.SetUniform(modelMatrix, model);
+            program.SetUniform(modelMat, model);
             program.SetUniform(tex, this.texture);
             program.SetUniform(alpha, this.Alpha);
 
@@ -146,7 +146,7 @@ void main(void) {
                 mat4 matrix = glm.translate(mat4.identity(), this.WorldPosition);
                 matrix = glm.scale(matrix, this.Scale * 1.1f);
                 matrix = glm.rotate(matrix, this.RotationAngle, this.RotationAxis);
-                program.SetUniform(modelMatrix, parentMat * matrix);
+                program.SetUniform(modelMat, parentMat * matrix);
                 program.SetUniform(alpha, -1.0f);
                 program.SetUniform("color", new vec4(0.04f, 0.28f, 0.26f, 1.0f));
                 method.Render();

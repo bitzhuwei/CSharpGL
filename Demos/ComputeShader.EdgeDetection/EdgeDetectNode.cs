@@ -161,7 +161,7 @@ namespace ComputeShader.EdgeDetection
                 program.SetUniform(tex, this.finalTexture);
                 program.SetUniform(projectionMat, projection);
                 program.SetUniform(viewMat, view);
-                program.SetUniform(modelMatrix, model);
+                program.SetUniform(modelMat, model);
 
                 method.Render();
             }

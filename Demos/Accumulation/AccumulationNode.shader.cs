@@ -15,12 +15,12 @@ in vec3 inColor;
 
 uniform mat4 projectionMat;
 uniform mat4 viewMat;
-uniform mat4 modelMatrix;
+uniform mat4 modelMat;
 
 out vec3 passColor;
 
 void main(void) {
-	gl_Position = projectionMat * viewMat * modelMatrix * vec4(inPosition, 1.0);
+	gl_Position = projectionMat * viewMat * modelMat * vec4(inPosition, 1.0);
     passColor = inColor;
 }
 ";

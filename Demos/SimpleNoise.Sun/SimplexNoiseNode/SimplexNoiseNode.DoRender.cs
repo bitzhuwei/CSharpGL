@@ -68,7 +68,7 @@ namespace SimpleNoise.Sun
             // setup uniforms
             program.SetUniform("projectionMat", projection);
             program.SetUniform("viewMat", view);
-            program.SetUniform("modelMatrix", model);
+            program.SetUniform("modelMat", model);
             program.SetUniform("time", time * timeElapsingSpeed);
             program.SetUniform("rainDrop", this.rainDrop);
             program.SetUniform("granularity", this.granularity);

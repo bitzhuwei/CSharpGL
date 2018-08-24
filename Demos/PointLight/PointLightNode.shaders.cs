@@ -15,7 +15,7 @@ in vec3 inNormal;
 
 uniform mat4 projectionMat;
 uniform mat4 viewMat;
-uniform mat4 modelMatrix;
+uniform mat4 modelMat;
 uniform mat4 normalMatrix;
 
 out vec3 passPosition; // position in eye space.
@@ -23,9 +23,9 @@ out vec3 passNormal; // normal in eye space.
 
 void main(void)
 {
-    gl_Position = projectionMat * viewMat * modelMatrix * vec4(inPosition, 1.0f);
+    gl_Position = projectionMat * viewMat * modelMat * vec4(inPosition, 1.0f);
 
-    passPosition = (viewMat * modelMatrix * vec4(inPosition, 1.0f)).xyz;
+    passPosition = (viewMat * modelMat * vec4(inPosition, 1.0f)).xyz;
     passNormal = (normalMatrix * vec4(inNormal, 0)).xyz;
 }
 ";

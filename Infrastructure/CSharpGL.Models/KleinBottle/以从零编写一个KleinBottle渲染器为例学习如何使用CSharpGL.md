@@ -30,11 +30,11 @@
 <span style="color: #008080;"> 3</span> <span style="color: #0000ff;">in</span> vec3 inPosition;<span style="color: #008000;">//</span><span style="color: #008000;"> 一个顶点</span>
 <span style="color: #008080;"> 4</span> uniform mat4 projectionMat;<span style="color: #008000;">//</span><span style="color: #008000;"> 投影矩阵</span>
 <span style="color: #008080;"> 5</span> uniform mat4 viewMat;<span style="color: #008000;">//</span><span style="color: #008000;"> 视图矩阵</span>
-<span style="color: #008080;"> 6</span> uniform mat4 modelMatrix;<span style="color: #008000;">//</span><span style="color: #008000;"> 模型矩阵</span>
+<span style="color: #008080;"> 6</span> uniform mat4 modelMat;<span style="color: #008000;">//</span><span style="color: #008000;"> 模型矩阵</span>
 <span style="color: #008080;"> 7</span> 
 <span style="color: #008080;"> 8</span> <span style="color: #0000ff;">void</span> main(<span style="color: #0000ff;">void</span><span style="color: #000000;">) {
 </span><span style="color: #008080;"> 9</span>     <span style="color: #008000;">//</span><span style="color: #008000;"> 计算顶点位置</span>
-<span style="color: #008080;">10</span>     gl_Position = projectionMat * viewMat * modelMatrix * vec4(inPosition, <span style="color: #800080;">1.0</span><span style="color: #000000;">);
+<span style="color: #008080;">10</span>     gl_Position = projectionMat * viewMat * modelMat * vec4(inPosition, <span style="color: #800080;">1.0</span><span style="color: #000000;">);
 </span><span style="color: #008080;">11</span> }</pre>
 </div>
 
@@ -317,7 +317,7 @@ Klein Bottle是个著名的三维模型，可以用一个公式来计算它的�
 <span style="color: #008080;">11</span> <span style="color: #000000;">projection);
 </span><span style="color: #008080;">12</span>             <span style="color: #0000ff;">this</span>.SetUniform(<span style="color: #800000;">"</span><span style="color: #800000;">viewMat</span><span style="color: #800000;">"</span>, <span style="color: #008000;">//</span><span style="color: #008000;"> variable name in shader.</span>
 <span style="color: #008080;">13</span> <span style="color: #000000;">view);
-</span><span style="color: #008080;">14</span>             <span style="color: #0000ff;">this</span>.SetUniform(<span style="color: #800000;">"</span><span style="color: #800000;">modelMatrix</span><span style="color: #800000;">"</span>, <span style="color: #008000;">//</span><span style="color: #008000;"> variable name in shader.</span>
+</span><span style="color: #008080;">14</span>             <span style="color: #0000ff;">this</span>.SetUniform(<span style="color: #800000;">"</span><span style="color: #800000;">modelMat</span><span style="color: #800000;">"</span>, <span style="color: #008000;">//</span><span style="color: #008000;"> variable name in shader.</span>
 <span style="color: #008080;">15</span> <span style="color: #000000;">model);
 </span><span style="color: #008080;">16</span>             <span style="color: #0000ff;">this</span>.SetUniform(<span style="color: #800000;">"</span><span style="color: #800000;">uniformColor</span><span style="color: #800000;">"</span>, <span style="color: #008000;">//</span><span style="color: #008000;"> variable name in shader.</span>
 <span style="color: #008080;">17</span> <span style="color: #0000ff;">this</span><span style="color: #000000;">.uniformColor);
