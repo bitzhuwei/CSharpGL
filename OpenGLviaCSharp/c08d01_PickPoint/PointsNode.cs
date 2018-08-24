@@ -47,6 +47,7 @@ namespace c08d01_PickPoint
         }
 
         public int HighlightIndex { get; set; }
+
         #region IRenderable 成员
 
         public ThreeFlags EnableRendering { get; set; }
