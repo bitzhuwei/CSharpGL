@@ -10,7 +10,7 @@ namespace VolumeRendering.Raycast
 {
     public partial class RaycastNode
     {
-        private Texture transferFunc1DTexture;
+        private Texture texTransfer;
         private Texture backface2DTexture;
         private int width;
         private int height;
@@ -25,7 +25,7 @@ namespace VolumeRendering.Raycast
             string folder = System.Windows.Forms.Application.StartupPath;
             {
                 string tff = "tff.png";
-                this.transferFunc1DTexture = InitTFF1DTexture(tff);
+                this.texTransfer = InitTFF1DTexture(tff);
             }
 
             //{
@@ -47,11 +47,8 @@ namespace VolumeRendering.Raycast
             {
                 RenderMethod method = this.RenderUnit.Methods[1];
                 ShaderProgram program = method.Program;
-                program.SetUniform("TransferFunc", this.transferFunc1DTexture);
+                program.SetUniform("texTansfer", this.texTransfer);
                 program.SetUniform("texVolume", this.volume3DTexture);
-                var clearColor = new float[4];
-                //GL.Instance.GetFloatv((uint)GetTarget.ColorClearValue, clearColor);
-                //program.SetUniform("backgroundColor", new vec4(clearColor[0], clearColor[1], clearColor[2], clearColor[3]));
                 program.SetUniform("backgroundColor", System.Drawing.Color.SkyBlue.ToVec4());
             }
         }

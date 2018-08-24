@@ -70,7 +70,7 @@ namespace VolumeRendering.Slicing
             { g.DrawString(text, font, Brushes.White, 0, 0); }
             Texture volume = AmberLoader.Load(bitmap);
             volume.TextureUnitIndex = 0;
-            Texture lut = TransferFunctionLoader.Load();
+            Texture lut = texTansfertionLoader.Load();
             lut.TextureUnitIndex = 1;
 
             {

@@ -167,7 +167,6 @@ namespace VolumeRendering.Raycast
                     default:
                         throw new NotDealWithNewEnumItemException(typeof(GeometryType));
                 }
-
             }
             else
             {

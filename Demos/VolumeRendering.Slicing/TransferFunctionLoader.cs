@@ -7,7 +7,7 @@ using System.Text;
 
 namespace VolumeRendering.Slicing
 {
-    class TransferFunctionLoader
+    class texTansfertionLoader
     {
         //transfer function (lookup table) color values
         private static readonly vec4[] jet_values = new vec4[9]{	
