@@ -6,21 +6,6 @@ using CSharpGL;
 
 namespace c12d03_RaycastLine
 {
-    /// <summary>
-    ///        Y
-    ///        |
-    ///        5___________1
-    ///       /|          /|
-    ///      / |         / |
-    ///     4--+--------0  |
-    ///     |  7_ _ _ _ |_ 3____ X
-    ///     |  /        |  /
-    ///     | /         | /
-    ///     |/__________|/
-    ///     6           2
-    ///    /
-    ///   Z
-    /// </summary>
     class CameraOutlineModel : IBufferSource
     {
         private const float halfWidth = 0.8f;

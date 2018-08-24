@@ -5,21 +5,6 @@ using System.Text;
 
 namespace CSharpGL
 {
-    /// <summary>
-    ///        Y
-    ///        |
-    ///        5___________1
-    ///       /|          /|
-    ///      / |         / |
-    ///     4--+--------0  |
-    ///     |  7_ _ _ _ |_ 3____ X
-    ///     |  /        |  /
-    ///     | /         | /
-    ///     |/__________|/
-    ///     6           2
-    ///    /
-    ///   Z
-    /// </summary>
     public class PrismoidModel : IBufferSource, IObjFormat
     {
         private vec3 modelSize;

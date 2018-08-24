@@ -6,21 +6,6 @@ using CSharpGL;
 
 namespace c03d02_ViewSpace
 {
-    /// <summary>
-    ///        Y
-    ///        |
-    ///        5___________1
-    ///       /|          /|
-    ///      / |         / |
-    ///     4--+--------0  |
-    ///     |  7_ _ _ _ |_ 3____ X
-    ///     |  /        |  /
-    ///     | /         | /
-    ///     |/__________|/
-    ///     6           2
-    ///    /
-    ///   Z
-    /// </summary>
     class CameraModel : IBufferSource
     {
         private const float halfWidth = 0.8f;
