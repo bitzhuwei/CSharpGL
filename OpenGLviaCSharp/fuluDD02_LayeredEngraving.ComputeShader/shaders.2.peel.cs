@@ -10,10 +10,10 @@ namespace fuluDD02_LayeredEngraving.ComputeShader
     {
         public const string peelVert = @"#version 330 core
 
-in vec3 inPosition; //object space vertex position
+in vec3 inPosition;
 
 //uniform
-uniform mat4 mvpMat;  //combined modelview projection matrix
+uniform mat4 mvpMat;
 
 void main()
 {  
@@ -23,11 +23,11 @@ void main()
 ";
         public const string peelFrag = @"#version 330 core
 
-out vec4 outColor;	//fragment shader output
+out vec4 outColor;
 
 //uniforms
-uniform vec4 color;						//solid color 
-uniform sampler2DRect  depthTexture;		//depth texture 
+uniform vec4 color;
+uniform sampler2DRect  depthTexture;
 
 void main()
 {

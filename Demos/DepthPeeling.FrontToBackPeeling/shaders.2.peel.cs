@@ -10,10 +10,10 @@ namespace DepthPeeling.FrontToBackPeeling
     {
         public const string peelVert = @"#version 330 core
   
-layout(location = 0) in vec3 inPosition; //object space vertex position
+layout(location = 0) in vec3 inPosition;
 
 //uniform
-uniform mat4 mvpMat;  //combined modelview projection matrix
+uniform mat4 mvpMat;
 
 void main()
 {  
@@ -23,11 +23,11 @@ void main()
 ";
         public const string peelFrag = @"#version 330 core
 
-layout(location = 0) out vec4 outColor;	//fragment shader output
+layout(location = 0) out vec4 outColor;
 
 //uniforms
-uniform vec4 vColor;						//solid color 
-uniform sampler2DRect  depthTexture;		//depth texture 
+uniform vec4 vColor;
+uniform sampler2DRect  depthTexture;
 
 void main()
 {

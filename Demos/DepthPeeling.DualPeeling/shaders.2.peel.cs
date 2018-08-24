@@ -10,10 +10,10 @@ namespace DepthPeeling.DualPeeling
     {
         public const string peelVert = @"#version 330 core
   
-layout(location = 0) in vec3 inPosition; //object space vertex position
+layout(location = 0) in vec3 inPosition;
 
 //uniform
-uniform mat4 mvpMat;  //combined modelview projection matrix
+uniform mat4 mvpMat;
 
 void main()
 {  
@@ -26,7 +26,7 @@ void main()
 uniform sampler2DRect DepthBlenderTex;
 uniform sampler2DRect FrontBlenderTex;
 
-uniform vec4 vColor;						//solid color 
+uniform vec4 vColor;
 
 #define maxDepth 1.0
 

@@ -10,10 +10,10 @@ namespace fuluDD02_LayeredEngraving.ComputeShader
     {
         public const string initVert = @"#version 330 core
 
-in vec3 inPosition; //object space vertex position
+in vec3 inPosition;
 
 //uniform
-uniform mat4 mvpMat;  //combined modelview projection matrix
+uniform mat4 mvpMat;
 
 void main()
 {  

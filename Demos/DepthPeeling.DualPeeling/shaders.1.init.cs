@@ -10,10 +10,10 @@ namespace DepthPeeling.DualPeeling
     {
         public const string initVert = @"#version 330 core
   
-layout(location = 0) in vec3 inPosition; //object space vertex position
+layout(location = 0) in vec3 inPosition;
 
 //uniform
-uniform mat4 mvpMat;  //combined modelview projection matrix
+uniform mat4 mvpMat;
 
 void main()
 {  

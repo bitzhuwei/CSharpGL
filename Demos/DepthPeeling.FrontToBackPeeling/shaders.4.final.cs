@@ -10,7 +10,7 @@ namespace DepthPeeling.FrontToBackPeeling
     {
         public const string finalVert = @"#version 330 core 
   
-layout(location = 0) in vec2 inPosition; //object space vertex position
+layout(location = 0) in vec2 inPosition;
  
 void main()
 {  
@@ -20,7 +20,7 @@ void main()
 ";
         public const string finalFrag = @"#version 330 core
 
-layout(location = 0) out vec4 outColor;	//fragment shader output
+layout(location = 0) out vec4 outColor;
 
 //uniforms
 uniform sampler2DRect colorTexture;	//color texture from previous pass

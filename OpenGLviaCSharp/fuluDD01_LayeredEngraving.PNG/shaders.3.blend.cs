@@ -10,11 +10,10 @@ namespace fuluDD01_LayeredEngraving.PNG
     {
         public const string blendVert = @"#version 330 core 
 
-in vec2 inPosition; //object space vertex position
+in vec2 inPosition;
  
 void main()
 {  
-    //get the clip space position from the object space position
     gl_Position = vec4(inPosition * 2 - 1.0, 0, 1);
 }
 ";
@@ -22,13 +21,13 @@ void main()
 
 uniform sampler2DRect tempTexture; //intermediate blending result
 
-out vec4 outColor; //fragment shader output
+out vec4 outColor;
 
 void main()
 {
     //return the intermediate blending result
     outColor = texture(tempTexture, gl_FragCoord.xy); 
-    // for occlusion query.
+
     if (outColor.a == 0) discard;
 }
 ";

@@ -10,7 +10,7 @@ namespace fuluDD02_LayeredEngraving.ComputeShader
     {
         public const string blendVert = @"#version 330 core 
 
-in vec2 inPosition; //object space vertex position
+in vec2 inPosition;
  
 void main()
 {  

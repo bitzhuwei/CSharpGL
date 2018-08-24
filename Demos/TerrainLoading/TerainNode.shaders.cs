@@ -31,7 +31,7 @@ void main()
 
         private const string frag = @"#version 330 core
  
-layout (location=0) out vec4 outColor;	//fragment shader output
+layout (location=0) out vec4 outColor;
 
 void main()
 {

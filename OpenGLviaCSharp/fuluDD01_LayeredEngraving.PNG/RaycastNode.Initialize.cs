@@ -10,7 +10,6 @@ namespace fuluDD01_LayeredEngraving.PNG
 {
     public partial class RaycastNode
     {
-        private Texture transferFunc1DTexture;
         private Texture backface2DTexture;
         private int width;
         private int height;
@@ -21,13 +20,9 @@ namespace fuluDD01_LayeredEngraving.PNG
         protected override void DoInitialize()
         {
             base.DoInitialize();
-
             {
                 RenderMethod method = this.RenderUnit.Methods[1];
                 ShaderProgram program = method.Program;
-                //var clearColor = new float[4];
-                //GL.Instance.GetFloatv((uint)GetTarget.ColorClearValue, clearColor);
-                //program.SetUniform("backgroundColor", new vec4(clearColor[0], clearColor[1], clearColor[2], clearColor[3]));
                 program.SetUniform("backgroundColor", System.Drawing.Color.SkyBlue.ToVec4());
             }
         }

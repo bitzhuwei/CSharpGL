@@ -10,26 +10,24 @@ namespace fuluDD01_LayeredEngraving.PNG
     {
         public const string finalVert = @"#version 330 core 
   
-in vec2 inPosition; //object space vertex position
+in vec2 inPosition;
  
 void main()
 {  
-    //get the clip space position from the object space position
     gl_Position = vec4(inPosition.xy * 2 - 1.0,0,1);
 }
 ";
         public const string finalFrag = @"#version 330 core
 
-out vec4 outColor;	//fragment shader output
-
-//uniforms
 uniform sampler2DRect colorTexture;	//color texture from previous pass
-uniform vec4 backgroundColor;		//background color
+uniform vec4 backgroundColor;
 uniform bool useBackground = true;
+
+out vec4 outColor;
 
 void main()
 {
-    //get the color from the color buffer
+    //get the color from the color buffer.
     vec4 color = texture(colorTexture, gl_FragCoord.xy);
     //combine the color read from the color texture with the background color
     //by multiplying the color alpha with the background color and adding the 

@@ -10,10 +10,10 @@ namespace VolumeRendering.ISOSurface
     {
         private const string defaultVert = @"#version 330 core
   
-layout(location = 0) in vec3 inPosition; //object space vertex position
+layout(location = 0) in vec3 inPosition;
 
 //uniform
-uniform mat4 mvpMat;   //combined modelview projection matrix
+uniform mat4 mvpMat; 
 
 smooth out vec3 passUV; //3D texture coordinates for texture lookup in the fragment shader
 
@@ -31,7 +31,7 @@ void main()
 ";
         private const string defaultFrag = @"#version 330 core
 
-layout(location = 0) out vec4 outColor;	//fragment shader output
+layout(location = 0) out vec4 outColor;
 
 smooth in vec3 passUV;				//3D texture coordinates form vertex shader 
 								//interpolated by rasterizer

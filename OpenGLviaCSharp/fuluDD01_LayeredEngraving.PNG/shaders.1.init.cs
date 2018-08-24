@@ -10,22 +10,20 @@ namespace fuluDD01_LayeredEngraving.PNG
     {
         public const string initVert = @"#version 330 core
 
-in vec3 inPosition; //object space vertex position
+in vec3 inPosition;
 
-//uniform
-uniform mat4 mvpMat;  //combined modelview projection matrix
+uniform mat4 mvpMat;
 
 void main()
 {  
-	//get the clipspace vertex position
 	gl_Position = mvpMat * vec4(inPosition, 1);
 }
 ";
         public const string initFrag = @"#version 330 core
 
-out vec4 outColor; //output fragment color
+uniform vec4 color;
 
-uniform vec4 color;	//color uniform
+out vec4 outColor;
 
 void main()
 {

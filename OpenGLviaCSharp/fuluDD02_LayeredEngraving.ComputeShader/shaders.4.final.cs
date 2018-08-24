@@ -10,7 +10,7 @@ namespace fuluDD02_LayeredEngraving.ComputeShader
     {
         public const string finalVert = @"#version 330 core 
   
-in vec2 inPosition; //object space vertex position
+in vec2 inPosition;
  
 void main()
 {  
@@ -20,7 +20,7 @@ void main()
 ";
         public const string finalFrag = @"#version 330 core
 
-out vec4 outColor;	//fragment shader output
+out vec4 outColor;
 
 //uniforms
 uniform sampler2DRect colorTexture;	//color texture from previous pass
