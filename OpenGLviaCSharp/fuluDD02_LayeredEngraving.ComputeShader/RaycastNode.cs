@@ -78,7 +78,7 @@ namespace fuluDD02_LayeredEngraving.ComputeShader
 
                 RenderMethod method = this.RenderUnit.Methods[1];
                 ShaderProgram program = method.Program;
-                program.SetUniform("VolumeTex", this.volume3DTexture);
+                program.SetUniform("texVolume", this.volume3DTexture);
             }
 
             Viewport viewport = arg.Param.Viewport;

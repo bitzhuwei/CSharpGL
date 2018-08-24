@@ -29,7 +29,7 @@ void main()
 in vec3 passEntryPoint;
 
 uniform sampler2D ExitPoints;
-uniform sampler3D VolumeTex;
+uniform sampler3D texVolume;
 
 uniform float     StepSize = 0.001f;
 uniform vec2      ScreenSize;
@@ -66,7 +66,7 @@ void main()
     for(int i = 0; i < cycle; i++)
     {
         // get scaler value in the volume data
-        intensity = texture(VolumeTex, voxelCoord).rgb;
+        intensity = texture(texVolume, voxelCoord).rgb;
         // get mapped color from 1-D texture
         colorSample = vec4(intensity, 0.05);
         // modulate the value of colorSample.a

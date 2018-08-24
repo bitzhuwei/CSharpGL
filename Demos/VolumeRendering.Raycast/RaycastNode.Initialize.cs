@@ -28,19 +28,9 @@ namespace VolumeRendering.Raycast
                 this.transferFunc1DTexture = InitTFF1DTexture(tff);
             }
 
-            {
-                //string head256 = System.IO.Path.Combine(folder + @"\..\..\..\..\Infrastructure\CSharpGL.Models", "head256.raw");
-                //byte[] volumeData = GetVolumeData(head256);
-                //this.volume3DTexture = InitVolume3DTexture(volumeData, 256,256,225);
-            }
-            {
-                //string head256 = System.IO.Path.Combine(folder + @"\..\..\..\..\Infrastructure\CSharpGL.Models", "heart125-154-145.raw");
-                //byte[] volumeData = GetVolumeData(head256);
-                //this.volume3DTexture = InitVolume3DTexture(volumeData, 125,154,145);
-            }
             //{
-            //    string head256 = System.IO.Path.Combine(folder + @"\..\..\..\..\Infrastructure\CSharpGL.Models", "harmonic16-16-16.raw");
-            //    byte[] volumeData = GetVolumeData(head256);
+            //    string filename = System.IO.Path.Combine(folder + @"\..\..\..\..\Infrastructure\CSharpGL.Models", "filename.raw");
+            //    byte[] volumeData = GetVolumeData(filename);
             //    this.volume3DTexture = InitVolume3DTexture(volumeData, 16, 16, 16);
             //}
             {
@@ -55,17 +45,10 @@ namespace VolumeRendering.Raycast
                 this.volume3DTexture = InitVolume3DTexture(volumeData, width, height, depth);
             }
             {
-                // setting uniforms such as
-                // ScreenSize
-                // StepSize
-                // TransferFunc
-                // ExitPoints i.e. the backface, the backface hold the ExitPoints of ray casting
-                // VolumeTex the texture that hold the volume data i.e. head256.raw
                 RenderMethod method = this.RenderUnit.Methods[1];
                 ShaderProgram program = method.Program;
-                //program.SetUniform("StepSize", this.g_stepSize);
                 program.SetUniform("TransferFunc", this.transferFunc1DTexture);
-                program.SetUniform("VolumeTex", this.volume3DTexture);
+                program.SetUniform("texVolume", this.volume3DTexture);
                 var clearColor = new float[4];
                 //GL.Instance.GetFloatv((uint)GetTarget.ColorClearValue, clearColor);
                 //program.SetUniform("backgroundColor", new vec4(clearColor[0], clearColor[1], clearColor[2], clearColor[3]));
