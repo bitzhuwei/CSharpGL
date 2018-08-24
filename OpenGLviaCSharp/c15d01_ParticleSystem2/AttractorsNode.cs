@@ -28,6 +28,7 @@ namespace c15d01_ParticleSystem2
         private ParticlesNode attractorsSource;
 
         private AttractorsNode(IBufferSource model, params RenderMethodBuilder[] builders) : base(model, builders) { }
+
         #region IRenderable 成员
 
         private ThreeFlags enableRendering = ThreeFlags.BeforeChildren | ThreeFlags.Children;

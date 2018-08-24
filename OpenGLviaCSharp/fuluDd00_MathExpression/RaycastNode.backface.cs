@@ -27,12 +27,12 @@ void main()
         private const string backfaceFrag = @"#version 150
 
 in vec3 passExitPoint;
-out vec4 FragColor;
+out vec4 outColor;
 
 
 void main()
 {
-    FragColor = vec4(passExitPoint, 1.0);
+    outColor = vec4(passExitPoint, 1.0);
 }
 ";
     }

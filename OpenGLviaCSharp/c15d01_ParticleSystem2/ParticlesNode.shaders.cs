@@ -63,7 +63,7 @@ void main(void)
 
         private const string vertexCode = @"#version 430 core
 
-in vec4 position;
+in vec4 inPosition;
 
 uniform mat4 mvp;
 
@@ -71,8 +71,8 @@ out float intensity;
 
 void main(void)
 {
-    intensity = position.w;// life cycle (0 - 1).
-    gl_Position = mvp * vec4(position.xyz, 1.0);
+    intensity = inPosition.w;// life cycle (0 - 1).
+    gl_Position = mvp * vec4(inPosition.xyz, 1.0);
 }
 ";
 

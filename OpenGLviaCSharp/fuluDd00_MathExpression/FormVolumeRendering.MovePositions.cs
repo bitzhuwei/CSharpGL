@@ -167,7 +167,6 @@ namespace fuluDd00_MathExpression
                     default:
                         throw new NotDealWithNewEnumItemException(typeof(GeometryType));
                 }
-
             }
             else
             {
