@@ -45,8 +45,7 @@ namespace ColorCodedPicking
                             lastModelSpacePos,
                             this.scene.Camera.GetProjectionMatrix(),
                             this.scene.Camera.GetViewMatrix(),
-                            viewport,
-                            new ivec2(e.X, this.winGLCanvas1.Height - e.Y - 1));
+                            viewport);
                         dragParam.pickedVertexIds.AddRange(pickedGeometry.VertexIds);
                         this.dragParam = dragParam;
                     }

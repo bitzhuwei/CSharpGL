@@ -10,35 +10,29 @@ namespace ColorCodedPicking
         public List<uint> pickedVertexIds = new List<uint>();
         public mat4 projectionMat;
         public mat4 viewMat;
-        public ivec2 lastMousePositionOnScreen;
         public vec4 viewport;
 
-        public DragParam(vec3 lastModelPos, mat4 projectionMat, mat4 viewMat, vec4 viewport, ivec2 lastMousePositionOnScreen)
+        public DragParam(vec3 lastModelPos, mat4 projectionMat, mat4 viewMat, vec4 viewport)
         {
             this.lastModelSpacePos = lastModelPos;
             this.projectionMat = projectionMat;
             this.viewMat = viewMat;
-            this.lastMousePositionOnScreen = lastMousePositionOnScreen;
             this.viewport = viewport;
         }
 
-        public DragParam(vec3 lastModelPos, mat4 projectionMat, mat4 viewMat, vec4 viewport, ivec2 lastMousePositionOnScreen,
+        public DragParam(vec3 lastModelPos, mat4 projectionMat, mat4 viewMat, vec4 viewport,
            IEnumerable<uint> indexes)
-            : this(lastModelPos, projectionMat, viewMat, viewport, lastMousePositionOnScreen)
+            : this(lastModelPos, projectionMat, viewMat, viewport)
         {
             this.pickedVertexIds.AddRange(indexes);
         }
 
-        public DragParam(vec3 lastModelPos, mat4 projectionMat, mat4 viewMat, vec4 viewport, ivec2 lastMousePositionOnScreen,
+        public DragParam(vec3 lastModelPos, mat4 projectionMat, mat4 viewMat, vec4 viewport,
             params uint[] indexes)
-            : this(lastModelPos, projectionMat, viewMat, viewport, lastMousePositionOnScreen)
+            : this(lastModelPos, projectionMat, viewMat, viewport)
         {
             this.pickedVertexIds.AddRange(indexes);
         }
 
-        public override string ToString()
-        {
-            return string.Format("Last Mouse Position On Screen: [{0}]", this.lastMousePositionOnScreen);
-        }
     }
 }
