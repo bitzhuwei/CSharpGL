@@ -38,6 +38,8 @@ namespace NormalMapping
                 node.Scale *= 16.0f / max;
                 this.rootNode = node;
                 this.scene.RootNode = node;
+
+                (new FormProperyGrid(node)).Show();
             }
 
             var list = new ActionList();
