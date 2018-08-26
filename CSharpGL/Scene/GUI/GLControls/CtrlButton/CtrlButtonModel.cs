@@ -49,12 +49,12 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        public const string position = "position";
-        private VertexBuffer posiitonBuffer;
+        public const string strPosition = "position";
+        private VertexBuffer positionBuffer;
         /// <summary>
         /// 
         /// </summary>
-        public const string color = "color";
+        public const string strColor = "color";
         private VertexBuffer colorBuffer;
 
         private IDrawCommand drawCmd;
@@ -68,16 +68,16 @@ namespace CSharpGL
         /// <returns></returns>
         public IEnumerable<VertexBuffer> GetVertexAttribute(string bufferName)
         {
-            if (bufferName == position)
+            if (bufferName == strPosition)
             {
-                if (this.posiitonBuffer == null)
+                if (this.positionBuffer == null)
                 {
-                    this.posiitonBuffer = positions.GenVertexBuffer(VBOConfig.Vec2, BufferUsage.StaticDraw);
+                    this.positionBuffer = positions.GenVertexBuffer(VBOConfig.Vec2, BufferUsage.StaticDraw);
                 }
 
-                yield return this.posiitonBuffer;
+                yield return this.positionBuffer;
             }
-            else if (bufferName == color)
+            else if (bufferName == strColor)
             {
                 if (this.colorBuffer == null)
                 {

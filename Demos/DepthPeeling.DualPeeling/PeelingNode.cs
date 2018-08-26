@@ -137,9 +137,9 @@ namespace DepthPeeling.DualPeeling
                         image.Save(string.Format("0.init.2.backBlender.png"));
                     }
 
-                    const uint g_numPasses = 4;
+                    const uint passCount = 4;
 
-                    for (uint pass = 1; bUseOQ || pass < g_numPasses; pass++)
+                    for (uint pass = 1; bUseOQ || pass < passCount; pass++)
                     {
                         currId = pass % 2;
                         uint prevId = 1 - currId;

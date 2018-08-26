@@ -11,12 +11,11 @@ namespace VolumeRendering.Raycast
     public partial class RaycastNode
     {
         private Texture texTransfer;
-        private Texture backface2DTexture;
+        private Texture texBackface;
         private int width;
         private int height;
-        private Texture volume3DTexture;
+        private Texture texVolume;
         private Framebuffer framebuffer;
-        //private float g_stepSize = 0.001f;
 
         protected override void DoInitialize()
         {
@@ -42,30 +41,30 @@ namespace VolumeRendering.Raycast
                 //{
                 //    bw.Write(volumeData);
                 //}
-                this.volume3DTexture = InitVolume3DTexture(volumeData, width, height, depth);
+                this.texVolume = InitVolume3DTexture(volumeData, width, height, depth);
             }
             {
                 RenderMethod method = this.RenderUnit.Methods[1];
                 ShaderProgram program = method.Program;
                 program.SetUniform("texTansfer", this.texTransfer);
-                program.SetUniform("texVolume", this.volume3DTexture);
+                program.SetUniform("texVolume", this.texVolume);
                 program.SetUniform("backgroundColor", System.Drawing.Color.SkyBlue.ToVec4());
             }
         }
 
         private void Resize(int width, int height)
         {
-            if (this.backface2DTexture != null) { this.backface2DTexture.Dispose(); }
+            if (this.texBackface != null) { this.texBackface.Dispose(); }
             if (this.framebuffer != null) { this.framebuffer.Dispose(); }
 
-            this.backface2DTexture = InitFace2DTexture(width, height);
-            this.framebuffer = InitFramebuffer(width, height, this.backface2DTexture);
+            this.texBackface = InitFace2DTexture(width, height);
+            this.framebuffer = InitFramebuffer(width, height, this.texBackface);
 
             {
                 RenderMethod method = this.RenderUnit.Methods[1];
                 ShaderProgram program = method.Program;
                 program.SetUniform("canvasSize", new vec2(width, height));
-                program.SetUniform("texExitPoint", this.backface2DTexture);
+                program.SetUniform("texExitPoint", this.texBackface);
             }
         }
 

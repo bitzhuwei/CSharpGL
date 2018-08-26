@@ -10,12 +10,11 @@ namespace fuluDd00_MathExpression
 {
     public partial class RaycastNode
     {
-        private Texture backface2DTexture;
+        private Texture texBackface;
         private int width;
         private int height;
-        private Texture volume3DTexture;
+        private Texture texVolume;
         private Framebuffer framebuffer;
-        //private float g_stepSize = 0.001f;
 
         protected override void DoInitialize()
         {
@@ -38,12 +37,12 @@ namespace fuluDd00_MathExpression
                     }
                 }
                 byte[] volumeData = GetVolumeData(filename);
-                this.volume3DTexture = InitVolume3DTexture(volumeData, width, height, depth);
+                this.texVolume = InitVolume3DTexture(volumeData, width, height, depth);
             }
             {
                 RenderMethod method = this.RenderUnit.Methods[1];
                 ShaderProgram program = method.Program;
-                program.SetUniform("texVolume", this.volume3DTexture);
+                program.SetUniform("texVolume", this.texVolume);
                 //var clearColor = new float[4];
                 //GL.Instance.GetFloatv((uint)GetTarget.ColorClearValue, clearColor);
                 //program.SetUniform("backgroundColor", new vec4(clearColor[0], clearColor[1], clearColor[2], clearColor[3]));
@@ -53,17 +52,17 @@ namespace fuluDd00_MathExpression
 
         private void Resize(int width, int height)
         {
-            if (this.backface2DTexture != null) { this.backface2DTexture.Dispose(); }
+            if (this.texBackface != null) { this.texBackface.Dispose(); }
             if (this.framebuffer != null) { this.framebuffer.Dispose(); }
 
-            this.backface2DTexture = InitFace2DTexture(width, height);
-            this.framebuffer = InitFramebuffer(width, height, this.backface2DTexture);
+            this.texBackface = InitFace2DTexture(width, height);
+            this.framebuffer = InitFramebuffer(width, height, this.texBackface);
 
             {
                 RenderMethod method = this.RenderUnit.Methods[1];
                 ShaderProgram program = method.Program;
-                program.SetUniform("ScreenSize", new vec2(width, height));
-                program.SetUniform("texExitPoint", this.backface2DTexture);
+                program.SetUniform("cavnasSize", new vec2(width, height));
+                program.SetUniform("texExitPoint", this.texBackface);
             }
         }
 

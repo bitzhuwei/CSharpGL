@@ -21,8 +21,8 @@ namespace CSharpGL
             var fs = new FragmentShader(frag);
             var codes = new ShaderArray(vs, fs);
             var map = new AttributeMap();
-            map.Add(inPosition, CtrlButtonModel.position);
-            map.Add(inColor, CtrlButtonModel.color);
+            map.Add(inPosition, CtrlButtonModel.strPosition);
+            map.Add(inColor, CtrlButtonModel.strColor);
             var methodBuilder = new RenderMethodBuilder(codes, map, new PolygonModeSwitch(PolygonMode.Fill), new LineWidthSwitch(2));
             this.RenderUnit = new ModernRenderUnit(model, methodBuilder);
 
