@@ -38,7 +38,7 @@ namespace c01d01_PropertyGrid
 
         private static readonly uint[] indexes = new uint[]
         {
-            0, 2 ,1,  1, 2, 3,
+            0, 2, 1,  1, 2, 3,
             0, 1, 5,  0, 5, 4,
             0, 4, 2,  2, 4, 6,
             7, 6, 4,  7, 4, 5,

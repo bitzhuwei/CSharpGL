@@ -47,7 +47,7 @@ namespace c09d01_FixedSizeQuad
 
             var method = this.RenderUnit.Methods[0];
             ShaderProgram program = method.Program;
-            program.SetUniform("mvpMatrix", projection * view * model);
+            program.SetUniform("mvpMat", projection * view * model);
             program.SetUniform("tex", this.texture);
             var viewport = new int[4];
             GL.Instance.GetIntegerv((uint)GetTarget.Viewport, viewport);

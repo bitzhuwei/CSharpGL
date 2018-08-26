@@ -10,13 +10,12 @@ namespace VolumeRendering.Raycast
 {
     public partial class RaycastNode
     {
-        private Texture transferFunc1DTexture;
-        private Texture backface2DTexture;
+        private Texture texTransfer;
+        private Texture texBackface;
         private int width;
         private int height;
-        private Texture volume3DTexture;
+        private Texture texVolume;
         private Framebuffer framebuffer;
-        //private float g_stepSize = 0.001f;
 
         protected override void DoInitialize()
         {
@@ -25,22 +24,12 @@ namespace VolumeRendering.Raycast
             string folder = System.Windows.Forms.Application.StartupPath;
             {
                 string tff = "tff.png";
-                this.transferFunc1DTexture = InitTFF1DTexture(tff);
+                this.texTransfer = InitTFF1DTexture(tff);
             }
 
-            {
-                //string head256 = System.IO.Path.Combine(folder + @"\..\..\..\..\Infrastructure\CSharpGL.Models", "head256.raw");
-                //byte[] volumeData = GetVolumeData(head256);
-                //this.volume3DTexture = InitVolume3DTexture(volumeData, 256,256,225);
-            }
-            {
-                //string head256 = System.IO.Path.Combine(folder + @"\..\..\..\..\Infrastructure\CSharpGL.Models", "heart125-154-145.raw");
-                //byte[] volumeData = GetVolumeData(head256);
-                //this.volume3DTexture = InitVolume3DTexture(volumeData, 125,154,145);
-            }
             //{
-            //    string head256 = System.IO.Path.Combine(folder + @"\..\..\..\..\Infrastructure\CSharpGL.Models", "harmonic16-16-16.raw");
-            //    byte[] volumeData = GetVolumeData(head256);
+            //    string filename = System.IO.Path.Combine(folder + @"\..\..\..\..\Infrastructure\CSharpGL.Models", "filename.raw");
+            //    byte[] volumeData = GetVolumeData(filename);
             //    this.volume3DTexture = InitVolume3DTexture(volumeData, 16, 16, 16);
             //}
             {
@@ -52,40 +41,30 @@ namespace VolumeRendering.Raycast
                 //{
                 //    bw.Write(volumeData);
                 //}
-                this.volume3DTexture = InitVolume3DTexture(volumeData, width, height, depth);
+                this.texVolume = InitVolume3DTexture(volumeData, width, height, depth);
             }
             {
-                // setting uniforms such as
-                // ScreenSize
-                // StepSize
-                // TransferFunc
-                // ExitPoints i.e. the backface, the backface hold the ExitPoints of ray casting
-                // VolumeTex the texture that hold the volume data i.e. head256.raw
                 RenderMethod method = this.RenderUnit.Methods[1];
                 ShaderProgram program = method.Program;
-                //program.SetUniform("StepSize", this.g_stepSize);
-                program.SetUniform("TransferFunc", this.transferFunc1DTexture);
-                program.SetUniform("VolumeTex", this.volume3DTexture);
-                var clearColor = new float[4];
-                //GL.Instance.GetFloatv((uint)GetTarget.ColorClearValue, clearColor);
-                //program.SetUniform("backgroundColor", new vec4(clearColor[0], clearColor[1], clearColor[2], clearColor[3]));
+                program.SetUniform("texTansfer", this.texTransfer);
+                program.SetUniform("texVolume", this.texVolume);
                 program.SetUniform("backgroundColor", System.Drawing.Color.SkyBlue.ToVec4());
             }
         }
 
         private void Resize(int width, int height)
         {
-            if (this.backface2DTexture != null) { this.backface2DTexture.Dispose(); }
+            if (this.texBackface != null) { this.texBackface.Dispose(); }
             if (this.framebuffer != null) { this.framebuffer.Dispose(); }
 
-            this.backface2DTexture = InitFace2DTexture(width, height);
-            this.framebuffer = InitFramebuffer(width, height, this.backface2DTexture);
+            this.texBackface = InitFace2DTexture(width, height);
+            this.framebuffer = InitFramebuffer(width, height, this.texBackface);
 
             {
                 RenderMethod method = this.RenderUnit.Methods[1];
                 ShaderProgram program = method.Program;
-                program.SetUniform("ScreenSize", new vec2(width, height));
-                program.SetUniform("ExitPoints", this.backface2DTexture);
+                program.SetUniform("canvasSize", new vec2(width, height));
+                program.SetUniform("texExitPoint", this.texBackface);
             }
         }
 

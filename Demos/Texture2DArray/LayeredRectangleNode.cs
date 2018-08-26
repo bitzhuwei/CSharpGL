@@ -71,9 +71,9 @@ namespace Texture2DArray
             mat4 projection = camera.GetProjectionMatrix();
             mat4 view = camera.GetViewMatrix();
             mat4 model = this.GetModelMatrix();
-            program.SetUniform(projectionMatrix, projection);
-            program.SetUniform(viewMatrix, view);
-            program.SetUniform(modelMatrix, model);
+            program.SetUniform(projectionMat, projection);
+            program.SetUniform(viewMat, view);
+            program.SetUniform(modelMat, model);
             //program.SetUniform(tex, texture);
             program.SetUniform(layerIndex, this.LayerIndex);
 

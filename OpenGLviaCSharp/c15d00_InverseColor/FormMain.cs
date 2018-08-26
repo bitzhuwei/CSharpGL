@@ -38,7 +38,7 @@ namespace c15d00_InverseColor
             var position = new vec3(0, 0, 0.9f);
             var center = new vec3(0, 0, 0);
             var up = new vec3(0, 1, 0);
-            var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
+            var camera = new Camera(position, center, up, CameraType.Perspective, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
             this.scene = new Scene(camera);
             {
                 this.computeShaderNode = ComputeShaderNode.Create();
@@ -54,6 +54,8 @@ namespace c15d00_InverseColor
             var manipulater = new FirstPerspectiveManipulater();
             manipulater.Bind(camera, this.winGLCanvas1);
             manipulater.StepLength = 0.1f;
+
+            MessageBox.Show("Press 'n' to switch config!");
         }
 
         private void winGLCanvas1_OpenGLDraw(object sender, PaintEventArgs e)

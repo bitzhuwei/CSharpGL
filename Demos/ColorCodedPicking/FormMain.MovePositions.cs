@@ -36,17 +36,16 @@ namespace ColorCodedPicking
                         IGLCanvas canvas = this.winGLCanvas1;
                         var viewport = new vec4(0, 0, canvas.Width, canvas.Height);
                         var lastWindowSpacePos = new vec3(e.X, this.winGLCanvas1.Height - e.Y - 1, pickedGeometry.PickedPosition.z);
-                        mat4 projectionMatrix = this.scene.Camera.GetProjectionMatrix();
-                        mat4 viewMatrix = this.scene.Camera.GetViewMatrix();
-                        mat4 modelMatrix = (pickedGeometry.FromObject as PickableNode).GetModelMatrix();
-                        var lastModelSpacePos = glm.unProject(lastWindowSpacePos, viewMatrix * modelMatrix, projectionMatrix, viewport);
+                        mat4 projectionMat = this.scene.Camera.GetProjectionMatrix();
+                        mat4 viewMat = this.scene.Camera.GetViewMatrix();
+                        mat4 modelMat = (pickedGeometry.FromObject as PickableNode).GetModelMatrix();
+                        var lastModelSpacePos = glm.unProject(lastWindowSpacePos, viewMat * modelMat, projectionMat, viewport);
 
                         var dragParam = new DragParam(
                             lastModelSpacePos,
                             this.scene.Camera.GetProjectionMatrix(),
                             this.scene.Camera.GetViewMatrix(),
-                            viewport,
-                            new ivec2(e.X, this.winGLCanvas1.Height - e.Y - 1));
+                            viewport);
                         dragParam.pickedVertexIds.AddRange(pickedGeometry.VertexIds);
                         this.dragParam = dragParam;
                     }
@@ -74,7 +73,7 @@ namespace ColorCodedPicking
                     {
                         var node = this.pickedGeometry.FromObject as PickableNode;
                         var currentWindowSpacePos = new vec3(e.X, this.winGLCanvas1.Height - e.Y - 1, this.pickedGeometry.PickedPosition.z);
-                        var currentModelSpacePos = glm.unProject(currentWindowSpacePos, dragParam.viewMatrix * node.GetModelMatrix(), dragParam.projectionMatrix, dragParam.viewport);
+                        var currentModelSpacePos = glm.unProject(currentWindowSpacePos, dragParam.viewMat * node.GetModelMatrix(), dragParam.projectionMat, dragParam.viewport);
                         var modelSpacePositionDiff = currentModelSpacePos - dragParam.lastModelSpacePos;
                         dragParam.lastModelSpacePos = currentModelSpacePos;
                         IList<vec3> newPositions = node.MovePositions(

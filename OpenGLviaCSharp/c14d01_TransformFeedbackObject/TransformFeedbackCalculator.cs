@@ -27,7 +27,7 @@ void main()
             var program = new ShaderProgram();
             //program.Initialize(varyings, ShaderProgram.BufferMode.InterLeaved, vertexShader);
             var varyings = new string[] { "outValue" };
-            glTransformFeedbackVaryings(program.ProgramId, 1, varyings, GL.GL_INTERLEAVED_ATTRIBS);
+            glTransformFeedbackVaryings(program.ProgramId, varyings.Length, varyings, GL.GL_INTERLEAVED_ATTRIBS);
             var vertexShader = new VertexShader(vertexCode);
             vertexShader.Initialize();
             glAttachShader(program.ProgramId, vertexShader.ShaderId);

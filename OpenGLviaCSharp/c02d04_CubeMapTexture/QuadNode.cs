@@ -63,7 +63,7 @@ namespace c02d04_CubeMapTexture
                 var fs = new FragmentShader(Shaders.blendFrag);
                 var provider = new ShaderArray(vs, fs);
                 var map = new AttributeMap();
-                map.Add("vVertex", QuadModel.positions);
+                map.Add("inPosition", QuadModel.strPositions);
                 blendBuilder = new RenderMethodBuilder(provider, map);
             }
             {
@@ -71,7 +71,7 @@ namespace c02d04_CubeMapTexture
                 var fs = new FragmentShader(Shaders.finalFrag);
                 var provider = new ShaderArray(vs, fs);
                 var map = new AttributeMap();
-                map.Add("vVertex", QuadModel.positions);
+                map.Add("inPosition", QuadModel.strPositions);
                 finalBuilder = new RenderMethodBuilder(provider, map);
             }
 
@@ -113,7 +113,7 @@ namespace c02d04_CubeMapTexture
                 var clearColor = new float[4];
                 GL.Instance.GetFloatv((uint)GetTarget.ColorClearValue, clearColor);
                 var value = new vec4(clearColor[0], clearColor[1], clearColor[2], clearColor[3]);
-                program.SetUniform("vBackgroundColor", value);
+                program.SetUniform("backgroundColor", value);
             }
 
             method.Render();

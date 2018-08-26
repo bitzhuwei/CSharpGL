@@ -8,9 +8,9 @@ namespace CSharpGL
     {
         #region shaders
 
-        private const string projectionMatrix = "projectionMatrix";
-        private const string viewMatrix = "viewMatrix";
-        private const string modelMatrix = "modelMatrix";
+        private const string projectionMat = "projectionMat";
+        private const string viewMat = "viewMat";
+        private const string modelMat = "modelMat";
         private const string width = "width";
         private const string height = "height";
         private const string screenSize = "screenSize";
@@ -22,9 +22,9 @@ namespace CSharpGL
         private const string vertexCode =
             @"#version 330 core
 
-uniform mat4 " + projectionMatrix + @";
-uniform mat4 " + viewMatrix + @";
-uniform mat4 " + modelMatrix + @";
+uniform mat4 " + projectionMat + @";
+uniform mat4 " + viewMat + @";
+uniform mat4 " + modelMat + @";
 uniform ivec2 " + screenSize + @";
 
 uniform int " + width + @";
@@ -38,7 +38,7 @@ out vec3 passSTR;
 const float value = 0.1;
 
 void main(void) {
-	vec4 position = projectionMatrix * viewMatrix * modelMatrix * vec4(0, 0, 0, 1);
+	vec4 position = projectionMat * viewMat * modelMat * vec4(0, 0, 0, 1);
     position = position / position.w;
     float deltaX = (inPosition.x * height - width) / screenSize.x;
     float deltaY = (inPosition.y * height - height) / screenSize.y;
@@ -56,11 +56,11 @@ uniform vec3 " + textColor + @";
 
 in vec3 passSTR;
 
-out vec4 out_Color;
+out vec4 outColor;
 
 void main(void) {
     float a = texture(glyphTexture, vec3(passSTR.xy, floor(passSTR.z))).a;
-    out_Color = vec4(textColor, a);
+    outColor = vec4(textColor, a);
 }
 ";
 

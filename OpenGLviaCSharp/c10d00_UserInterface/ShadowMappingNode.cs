@@ -89,7 +89,7 @@ namespace c10d00_UserInterface
 
             var method = this.RenderUnit.Methods[1];
             ShaderProgram program = method.Program;
-            program.SetUniform("mvpMatrix", projection * view * model);
+            program.SetUniform("mvpMat", projection * view * model);
 
             method.Render();
         }
@@ -116,14 +116,14 @@ namespace c10d00_UserInterface
             //program.SetUniform("viewMat", view);
             program.SetUniform("modelMat", model);
             program.SetUniform("normalMat", glm.transpose(glm.inverse(model)));
-            program.SetUniform("shadow_matrix", lightBias * lightProjection * lightView);
+            program.SetUniform("shadowMat", lightBias * lightProjection * lightView);
             // light info.
             light.SetBlinnPhongUniforms(program);
             // material.
             program.SetUniform("material.diffuse", this.Color);
             program.SetUniform("material.specular", this.Color);
             program.SetUniform("material.shiness", this.Shiness);
-            program.SetUniform("depth_texture", arg.ShadowMap);
+            program.SetUniform("depthTexture", arg.ShadowMap);
             // eye pos.
             program.SetUniform("eyePos", camera.Position); // camera's position in world space.
             // use blinn phong or not?

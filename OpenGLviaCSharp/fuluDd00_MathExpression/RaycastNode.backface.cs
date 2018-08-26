@@ -10,8 +10,8 @@ namespace fuluDd00_MathExpression
     {
         private const string backfaceVert = @"#version 150
 
-in vec3 position;
-in vec3 boundingBox;
+in vec3 inPosition;
+in vec3 inBoundingBox;
 
 out vec3 passExitPoint;
 
@@ -20,19 +20,19 @@ uniform mat4 mvpMat;
 
 void main()
 {
-    passExitPoint = boundingBox;
-    gl_Position = mvpMat * vec4(position, 1.0);
+    passExitPoint = inBoundingBox;
+    gl_Position = mvpMat * vec4(inPosition, 1.0);
 }
 ";
         private const string backfaceFrag = @"#version 150
 
 in vec3 passExitPoint;
-out vec4 FragColor;
+out vec4 outColor;
 
 
 void main()
 {
-    FragColor = vec4(passExitPoint, 1.0);
+    outColor = vec4(passExitPoint, 1.0);
 }
 ";
     }

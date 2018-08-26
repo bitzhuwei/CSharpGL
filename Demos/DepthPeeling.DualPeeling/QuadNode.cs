@@ -94,7 +94,7 @@ namespace DepthPeeling.DualPeeling
                 var fs = new FragmentShader(Shaders.blendFrag);
                 var provider = new ShaderArray(vs, fs);
                 var map = new AttributeMap();
-                map.Add("vVertex", QuadModel.positions);
+                map.Add("inPosition", QuadModel.positions);
                 blendBuilder = new RenderMethodBuilder(provider, map);
             }
             {
@@ -102,7 +102,7 @@ namespace DepthPeeling.DualPeeling
                 var fs = new FragmentShader(Shaders.finalFrag);
                 var provider = new ShaderArray(vs, fs);
                 var map = new AttributeMap();
-                map.Add("vVertex", QuadModel.positions);
+                map.Add("inPosition", QuadModel.positions);
                 finalBuilder = new RenderMethodBuilder(provider, map);
             }
 
@@ -144,7 +144,7 @@ namespace DepthPeeling.DualPeeling
                 var clearColor = new float[4];
                 GL.Instance.GetFloatv((uint)GetTarget.ColorClearValue, clearColor);
                 var value = new vec4(clearColor[0], clearColor[1], clearColor[2], clearColor[3]);
-                program.SetUniform("vBackgroundColor", value);
+                program.SetUniform("backgroundColor", value);
             }
 
             method.Render();

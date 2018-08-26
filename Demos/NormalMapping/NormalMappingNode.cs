@@ -33,10 +33,10 @@ namespace NormalMapping
         {
         }
 
-        private DirectionalLight m_dirLight;
-        private Texture m_pTexture;
-        private Texture m_pNormalMap;
-        private Texture m_pNotNormalMap;
+        private DirectionalLight directionalLight;
+        private Texture texColor;
+        private Texture texNormal;
+        private Texture texNoNormal;
 
         private bool normalMapping = true;
         public bool NormalMapping
@@ -48,10 +48,22 @@ namespace NormalMapping
 
                 RenderMethod method = this.RenderUnit.Methods[0];
                 ShaderProgram program = method.Program;
-                program.SetUniform("texNormal", value ? this.m_pNormalMap : this.m_pNotNormalMap);
+                program.SetUniform("texNormal", value ? this.texNormal : this.texNoNormal);
             }
         }
 
+        public vec3 LightDirection
+        {
+            get { return this.directionalLight.Direction; }
+            set
+            {
+                var dirLight = this.directionalLight;
+                dirLight.Direction = value;
+                RenderMethod method = this.RenderUnit.Methods[0];
+                ShaderProgram program = method.Program;
+                program.SetUniform("light.direction", value.normalize());
+            }
+        }
         protected override void DoInitialize()
         {
             base.DoInitialize();
@@ -59,19 +71,19 @@ namespace NormalMapping
             RenderMethod method = this.RenderUnit.Methods[0];
             ShaderProgram program = method.Program;
             {
-                var dirLight = new DirectionalLight(new vec3(1.0f, 0.0f, 0.0f));
-                dirLight.Diffuse = new vec3(0.8f);
-                dirLight.Specular = new vec3(0.8f);
-                program.SetUniform("light.color", dirLight.Diffuse);
+                var light = new DirectionalLight(new vec3(5, 5, -0.5f));
+                light.Diffuse = new vec3(0.8f);
+                light.Specular = new vec3(0.8f);
+                program.SetUniform("light.color", light.Diffuse);
                 program.SetUniform("light.ambient", 0.2f);
                 program.SetUniform("light.diffuse", 0.8f);
-                program.SetUniform("light.direction", dirLight.Direction.normalize());
+                program.SetUniform("light.direction", light.Direction.normalize());
 
-                this.m_dirLight = dirLight;
+                this.directionalLight = light;
             }
             {
                 string folder = System.Windows.Forms.Application.StartupPath;
-                var bmp = new Bitmap(System.IO.Path.Combine(folder, @"bricks.jpg"));
+                var bmp = new Bitmap(System.IO.Path.Combine(folder, @"color.jpg"));
                 var storage = new TexImageBitmap(bmp);
                 var texture = new Texture(storage,
                     new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP_TO_EDGE),
@@ -83,11 +95,11 @@ namespace NormalMapping
                 texture.Initialize();
                 bmp.Dispose();
                 program.SetUniform("texColor", texture);
-                this.m_pTexture = texture;
+                this.texColor = texture;
             }
             {
                 string folder = System.Windows.Forms.Application.StartupPath;
-                var bmp = new Bitmap(System.IO.Path.Combine(folder, @"normal_map.jpg"));
+                var bmp = new Bitmap(System.IO.Path.Combine(folder, @"normal.jpg"));
                 var storage = new TexImageBitmap(bmp);
                 var texture = new Texture(storage,
                     new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP_TO_EDGE),
@@ -99,11 +111,11 @@ namespace NormalMapping
                 texture.Initialize();
                 bmp.Dispose();
                 program.SetUniform("texNormal", texture);
-                this.m_pNormalMap = texture;
+                this.texNormal = texture;
             }
             {
                 string folder = System.Windows.Forms.Application.StartupPath;
-                var bmp = new Bitmap(System.IO.Path.Combine(folder, @"normal_up.jpg"));
+                var bmp = new Bitmap(System.IO.Path.Combine(folder, @"noNormal.jpg"));
                 var storage = new TexImageBitmap(bmp);
                 var texture = new Texture(storage,
                     new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP_TO_EDGE),
@@ -115,7 +127,7 @@ namespace NormalMapping
                 texture.Initialize();
                 bmp.Dispose();
                 //program.SetUniform("texNormal", texture);
-                this.m_pNotNormalMap = texture;
+                this.texNoNormal = texture;
             }
         }
 

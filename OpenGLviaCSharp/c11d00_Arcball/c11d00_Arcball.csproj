@@ -108,7 +108,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Canvas.png">
+    <Content Include="form-border.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

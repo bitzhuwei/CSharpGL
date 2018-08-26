@@ -14,7 +14,7 @@ namespace DepthPeeling.DualPeeling
         private Query query;
         private bool bUseOQ = false;
         private QuadNode fullscreenQuad;
-        private const int NUM_PASSES = 16;
+        private const int maxPassCount = 16;
         private DepthTestSwitch depthTest = new DepthTestSwitch(enableCapacity: false);
         private BlendSwitch blend = new BlendSwitch(BlendEquationMode.Add, BlendSrcFactor.SrcAlpha, BlendDestFactor.OneMinusSrcAlpha);
         private BlendSwitch blendMax = new BlendSwitch(BlendEquationMode.Max, BlendSrcFactor.SrcAlpha, BlendDestFactor.OneMinusSrcAlpha);
@@ -35,9 +35,9 @@ namespace DepthPeeling.DualPeeling
         /// <summary>
         /// max step needed to render everything.
         /// </summary>
-        private const int maxStep = 1 + ((NUM_PASSES - 1) * 2 - 1) * 2;
+        private const int maxStep = 1 + ((maxPassCount - 1) * 2 - 1) * 2;
 
-        private int renderStep = 1 + ((NUM_PASSES - 1) * 2 - 1) * 2;
+        private int renderStep = 1 + ((maxPassCount - 1) * 2 - 1) * 2;
         /// <summary>
         /// How many steps will be performed?
         /// </summary>
@@ -58,7 +58,7 @@ namespace DepthPeeling.DualPeeling
 
         public ThreeFlags EnableRendering { get { return ThreeFlags.BeforeChildren; } set { } }
 
-        private const float MAX_DEPTH = 1.0f;
+        private const float maxDepth = 1.0f;
         public void RenderBeforeChildren(RenderEventArgs arg)
         {
             var viewport = new int[4]; GL.Instance.GetIntegerv((uint)GetTarget.Viewport, viewport);
@@ -107,7 +107,7 @@ namespace DepthPeeling.DualPeeling
                     }
                     // Render target 0 stores (-minDepth, maxDepth, alphaMultiplier)
                     fbo.SetDrawBuffer(GL.GL_COLOR_ATTACHMENT0);
-                    GL.Instance.ClearColor(-MAX_DEPTH, -MAX_DEPTH, 0, 0);
+                    GL.Instance.ClearColor(-maxDepth, -maxDepth, 0, 0);
                     GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT);
                     if (dump)
                     {
@@ -137,9 +137,9 @@ namespace DepthPeeling.DualPeeling
                         image.Save(string.Format("0.init.2.backBlender.png"));
                     }
 
-                    const uint g_numPasses = 4;
+                    const uint passCount = 4;
 
-                    for (uint pass = 1; bUseOQ || pass < g_numPasses; pass++)
+                    for (uint pass = 1; bUseOQ || pass < passCount; pass++)
                     {
                         currId = pass % 2;
                         uint prevId = 1 - currId;
@@ -151,7 +151,7 @@ namespace DepthPeeling.DualPeeling
                         GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT);
 
                         fbo.SetDrawBuffer(GL.GL_COLOR_ATTACHMENT0 + bufId);
-                        GL.Instance.ClearColor(-MAX_DEPTH, -MAX_DEPTH, 0, 0);
+                        GL.Instance.ClearColor(-maxDepth, -maxDepth, 0, 0);
                         GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT);
 
                         // Render target 0: RG32F MAX blending

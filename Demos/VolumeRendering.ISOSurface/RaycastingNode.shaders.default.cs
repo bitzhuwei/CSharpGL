@@ -10,56 +10,56 @@ namespace VolumeRendering.ISOSurface
     {
         private const string defaultVert = @"#version 330 core
   
-layout(location = 0) in vec3 vVertex; //object space vertex position
+layout(location = 0) in vec3 inPosition;
 
 //uniform
-uniform mat4 MVP;   //combined modelview projection matrix
+uniform mat4 mvpMat; 
 
-smooth out vec3 vUV; //3D texture coordinates for texture lookup in the fragment shader
+smooth out vec3 passUV; //3D texture coordinates for texture lookup in the fragment shader
 
 void main()
 {  
 	//get the clipspace position 
-	gl_Position = MVP*vec4(vVertex.xyz,1);
+	gl_Position = mvpMat * vec4(inPosition.xyz, 1);
 
 	//get the 3D texture coordinates by adding (0.5,0.5,0.5) to the object space 
 	//vertex position. Since the unit cube is at origin (min: (-0.5,-0.5,-0.5) and max: (0.5,0.5,0.5))
 	//adding (0.5,0.5,0.5) to the unit cube object space position gives us values from (0,0,0) to 
 	//(1,1,1)
-	vUV = vVertex + vec3(0.5);
+	passUV = inPosition + vec3(0.5);
 }
 ";
         private const string defaultFrag = @"#version 330 core
 
-layout(location = 0) out vec4 vFragColor;	//fragment shader output
+layout(location = 0) out vec4 outColor;
 
-smooth in vec3 vUV;				//3D texture coordinates form vertex shader 
+smooth in vec3 passUV;				//3D texture coordinates form vertex shader 
 								//interpolated by rasterizer
 
 //uniforms
 uniform sampler3D	volume;		//volume dataset
 uniform vec3		camPos;		//camera position
-uniform vec3		step_size;	//ray step size 
+uniform vec3		stepSize;	//ray step size 
 
 //constants
-const int MAX_SAMPLES = 300;	//total samples for each ray march step
+const int maxSampleCount = 300;	//total samples for each ray march step
 const vec3 texMin = vec3(0);	//minimum texture access coordinate
 const vec3 texMax = vec3(1);	//maximum texture access coordinate
 
 void main()
 { 
 	//get the 3D texture coordinates for lookup into the volume dataset
-	vec3 dataPos = vUV;
+	vec3 dataPos = passUV;
 
 	//Getting the ray marching direction:
 	//get the object space position by subracting 0.5 from the
 	//3D texture coordinates. Then subtraact it from camera position
 	//and normalize to get the ray marching direction
-	vec3 geomDir = normalize((vUV-vec3(0.5)) - camPos); 
+	vec3 geomDir = normalize((passUV - vec3(0.5)) - camPos); 
 
 	//multiply the raymarching direction with the step size to get the
 	//sub-step size we need to take at each raymarching step
-	vec3 dirStep = geomDir * step_size; 
+	vec3 dirStep = geomDir * stepSize; 
 	 
 	//flag to indicate if the raymarch loop should terminate
 	bool stop = false; 
@@ -67,7 +67,7 @@ void main()
     bool isDiscard = true;
 
 	//for all samples along the ray
-	for (int i = 0; i < MAX_SAMPLES; i++) {
+	for (int i = 0; i < maxSampleCount; i++) {
 		// advance ray by dirstep
 		dataPos = dataPos + dirStep;
 		
@@ -83,7 +83,7 @@ void main()
 		//So to be within the dataset limits, the dot product will return a 
 		//value less than 3. If it is greater than 3, we are already out of 
 		//the volume dataset
-		stop = dot(sign(dataPos-texMin),sign(texMax-dataPos)) < 3.0;
+		stop = dot(sign(dataPos - texMin), sign(texMax - dataPos)) < 3.0;
 
 		//if the stopping condition is true we brek out of the ray marching loop
 		if (stop) 
@@ -96,18 +96,18 @@ void main()
 		//here we use front to back compositing scheme whereby the current sample
 		//value is multiplied to the currently accumulated alpha and then this product
 		//is subtracted from the sample value to get the alpha from the previous steps.
-		//Next, this alpha is multiplied with the current sample colour and accumulated
-		//to the composited colour. The alpha value from the previous steps is then 
-		//accumulated to the composited colour alpha.
-		float prev_alpha = sample - (sample * vFragColor.a);
-		vFragColor.rgb = prev_alpha * vec3(sample) + vFragColor.rgb; 
-		vFragColor.a += prev_alpha; 
+		//Next, this alpha is multiplied with the current sample color and accumulated
+		//to the composited color. The alpha value from the previous steps is then 
+		//accumulated to the composited color alpha.
+		float prev_alpha = sample - (sample * outColor.a);
+		outColor.rgb = prev_alpha * vec3(sample) + outColor.rgb; 
+		outColor.a += prev_alpha; 
         isDiscard = false;
 			
 		//early ray termination
-		//if the currently composited colour alpha is already fully saturated
+		//if the currently composited color alpha is already fully saturated
 		//we terminated the loop
-		if( vFragColor.a>0.99)
+		if(outColor.a > 0.99)
 			break;
 	} 
     

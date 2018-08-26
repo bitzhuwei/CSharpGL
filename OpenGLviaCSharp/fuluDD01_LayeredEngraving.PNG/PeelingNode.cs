@@ -14,7 +14,7 @@ namespace fuluDD01_LayeredEngraving.PNG
         private PeelingResource resources;
         private Query query;
         private bool bUseOQ = true;
-        private const int NUM_PASSES = 16;
+        private const int maxPassCount = 16;
         private DepthTestSwitch depthTest = new DepthTestSwitch(enableCapacity: false);
 
         public PeelingNode(vec3 size, params SceneNodeBase[] children)
@@ -29,9 +29,9 @@ namespace fuluDD01_LayeredEngraving.PNG
         /// <summary>
         /// max step needed to render everything.
         /// </summary>
-        private const int maxStep = 1 + ((NUM_PASSES - 1) * 2 - 1) * 2;
+        private const int maxStep = 1 + ((maxPassCount - 1) * 2 - 1) * 2;
 
-        private int renderStep = 1 + ((NUM_PASSES - 1) * 2 - 1) * 2;
+        private int renderStep = 1 + ((maxPassCount - 1) * 2 - 1) * 2;
         /// <summary>
         /// How many steps will be performed?
         /// </summary>
@@ -318,7 +318,7 @@ namespace fuluDD01_LayeredEngraving.PNG
                 }
             }
 
-            int numLayers = (NUM_PASSES - 1) * 2;
+            int numLayers = (maxPassCount - 1) * 2;
             int finalId = 2;
             // for each pass
             for (int layer = 1; (bUseOQ || layer < numLayers) && (currentStep <= totalStep); layer++)

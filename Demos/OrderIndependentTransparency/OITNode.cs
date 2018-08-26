@@ -8,9 +8,9 @@ namespace OrderIndependentTransparency
 {
     public partial class OITNode : PickableNode, IRenderable
     {
-        private const string vPosition = "vPosition";
-        private const string vNormal = "vNormal";
-        private const string mvpMatrix = "mvpMatrix";
+        private const string inPosition = "inPosition";
+        private const string inNormal = "inNormal";
+        private const string mvpMat = "mvpMat";
 
         const int buildLists = 0;
         const int resolveLists = 1;
@@ -31,8 +31,8 @@ namespace OrderIndependentTransparency
                 var fs = new FragmentShader(buildListsFrag);
                 var provider = new ShaderArray(vs, fs);
                 var map = new AttributeMap();
-                map.Add(vPosition, position);
-                map.Add(vNormal, normal);
+                map.Add(inPosition, position);
+                map.Add(inNormal, normal);
                 builders[buildLists] = new RenderMethodBuilder(provider, map);
             }
             {
@@ -40,7 +40,7 @@ namespace OrderIndependentTransparency
                 var fs = new FragmentShader(resolveListsFrag);
                 var provider = new ShaderArray(vs, fs);
                 var map = new AttributeMap();
-                map.Add(vPosition, position);
+                map.Add(inPosition, position);
                 builders[resolveLists] = new RenderMethodBuilder(provider, map);
             }
             var node = new OITNode(model, position, builders);
@@ -205,14 +205,14 @@ namespace OrderIndependentTransparency
                     // first pass
                     RenderMethod method = this.RenderUnit.Methods[buildLists];
                     ShaderProgram program = method.Program;
-                    program.SetUniform(mvpMatrix, projection * view * model);
+                    program.SetUniform(mvpMat, projection * view * model);
                     method.Render();
                 }
                 {
                     // second pass
                     RenderMethod method = this.RenderUnit.Methods[resolveLists];
                     ShaderProgram program = method.Program;
-                    program.SetUniform(mvpMatrix, projection * view * model);
+                    program.SetUniform(mvpMat, projection * view * model);
                     method.Render();
                 }
             }

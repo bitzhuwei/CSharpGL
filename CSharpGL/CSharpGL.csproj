@@ -308,6 +308,7 @@
     <Compile Include="Scene\SceneNodes\CameraNode\CameraNode.cs" />
     <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\ColorCodedPicking\PrimivitiveRecognizers\LinesAdjacencyRecognizer.cs" />
     <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\ColorCodedPicking\PrimivitiveRecognizers\TrianglesAdjacencyRecognizer.cs" />
+    <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\Pickers\+DrawElementsPicker\PointSearcher\DrawElementsPointInTriangle+Searcher.cs" />
     <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.MovePosition.cs" />
     <Compile Include="Scene\SceneNodes\RenderUnits\IPickableRenderUnit\IPickableRenderUnit.cs" />
     <Compile Include="Scene\SceneNodes\RenderUnits\ModenrRenderUnit\ModernRenderUnit.cs" />
@@ -349,7 +350,7 @@
     <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\Pickers\+DrawElementsPicker\DrawElementsPicker.GetLastIndexId.cs" />
     <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\Pickers\+DrawElementsPicker\PointSearcher\DrawElementsPointInPolygonSearcher.cs" />
     <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\Pickers\+DrawElementsPicker\PointSearcher\DrawElementsPointInQuad+Searcher.cs" />
-    <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\Pickers\+DrawElementsPicker\PointSearcher\DrawElementsPointInTriangle+Searcher.cs" />
+    <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\Pickers\+DrawElementsPicker\PointSearcher\DrawElementsPointInLine+Searcher.cs" />
     <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\Pickers\+DrawElementsPicker\PointSearcher\DrawElementsPointSearcher.cs" />
     <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\Pickers\+DrawArraysPicker\DrawArraysPicker.cs" />
     <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\Pickers\PickerBase.cs" />

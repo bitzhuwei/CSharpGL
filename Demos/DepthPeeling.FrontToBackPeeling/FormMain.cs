@@ -39,7 +39,7 @@ namespace DepthPeeling.FrontToBackPeeling
             var position = new vec3(5, 3, 4) * 1f;
             var center = new vec3(0, 0, 0);
             var up = new vec3(0, 1, 0);
-            var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
+            var camera = new Camera(position, center, up, CameraType.Perspective, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
             var scene = new Scene(camera);
             var rootElement = GetTree(scene);
             scene.RootNode = rootElement;
@@ -94,9 +94,9 @@ namespace DepthPeeling.FrontToBackPeeling
                         int index = 0;
                         for (int i = -1; i < 2; i++)
                         {
-                            vec3 worldPosition = new vec3(i * 2, j * 2, k * 2);
+                            vec3 worldSpacePosition = new vec3(i * 2, j * 2, k * 2);
                             var cubeNode = CubeNode.Create(new CubeModel(), CubeModel.positions);
-                            cubeNode.WorldPosition = worldPosition;
+                            cubeNode.WorldPosition = worldSpacePosition;
                             cubeNode.Color = colors[index++];
                             cubeNode.Name = string.Format("{0},{1},{2}:{3}", k, j, i, cubeNode.Color);
 

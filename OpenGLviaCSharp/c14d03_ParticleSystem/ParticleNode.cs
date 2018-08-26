@@ -81,18 +81,18 @@ namespace c14d03_ParticleSystem
 
             for (int i = 0; i < 2; i++)
             {
-                var tf = new TransformFeedbackObject();
+                var tfo = new TransformFeedbackObject();
                 RenderMethod method = this.RenderUnit.Methods[i];
                 // make sure there is only one vao in this case.
                 foreach (var vao in method.VertexArrayObjects)
                 {
                     VertexShaderAttribute[] attributes = vao.VertexAttributes;
-                    for (uint t = 0; t < attributes.Length; t++)
+                    for (uint bingdingPointIndex = 0; bingdingPointIndex < attributes.Length; bingdingPointIndex++)
                     {
-                        tf.BindBuffer(t, attributes[t].Buffer);
+                        tfo.BindBuffer(bingdingPointIndex, attributes[bingdingPointIndex].Buffer);
                     }
                 }
-                this.transformFeedbackObjects[i] = tf;
+                this.transformFeedbackObjects[i] = tfo;
             }
         }
 
@@ -114,7 +114,7 @@ namespace c14d03_ParticleSystem
 
         public void RenderBeforeChildren(RenderEventArgs arg)
         {
-            TransformFeedbackObject tf = transformFeedbackObjects[(currentIndex + 1) % 2];
+            TransformFeedbackObject tfo = transformFeedbackObjects[(currentIndex + 1) % 2];
             // update
             {
                 if (this.firstRendering)
@@ -134,7 +134,7 @@ namespace c14d03_ParticleSystem
                 // set the uniforms 
                 program.SetUniform("gravity", gravity);
                 program.SetUniform("deltaTime", seconds);
-                method.Render(tf); // update buffers and record output to tf's binding.
+                method.Render(tfo); // update buffers and record output to tf's binding.
 
                 GL.Instance.Disable(GL.GL_RASTERIZER_DISCARD);
             }
@@ -150,7 +150,7 @@ namespace c14d03_ParticleSystem
                 program.SetUniform("projectionMat", projection);
                 program.SetUniform("viewMat", view * model);
                 //unit.Render(); // this method requires specified vertes count.
-                tf.Draw(method); // render updated buffers without specifying vertex count.
+                tfo.Draw(method); // render updated buffers without specifying vertex count.
             }
             // exchange
             {

@@ -31,7 +31,7 @@ namespace c05d00_AmbientDiffuseSpecular
             var position = new vec3(1, 0.6f, 1) * 14;
             var center = new vec3(0, 0, 0);
             var up = new vec3(0, 1, 0);
-            var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
+            var camera = new Camera(position, center, up, CameraType.Perspective, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
             this.scene = new Scene(camera);
             (new FormProperyGrid(this.scene)).Show();
             {

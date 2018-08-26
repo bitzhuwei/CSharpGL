@@ -11,77 +11,77 @@ namespace CSharpGL
     public partial class ObjVNFNode : PickableNode, IRenderable
     {
         private const string inPosition = "position";
-        private const string inNormal = "normal";
-        private const string model_matrix = "model_matrix";
-        private const string view_matrix = "view_matrix";
-        private const string projection_matrix = "projection_matrix";
-        private const string material_ambient = "material_ambient";
-        private const string material_diffuse = "material_diffuse";
-        private const string material_specular = "material_specular";
-        private const string material_specular_power = "material_specular_power";
-        private const string light_position = "light_position";
+        private const string inNormal = "inNormal";
+        private const string modelMat = "modelMat";
+        private const string viewMat = "viewMat";
+        private const string projectionMat = "projectionMat";
+        private const string materialAmbient = "materialAmbient";
+        private const string materialDiffuse = "materialDiffuse";
+        private const string materialSpecular = "materialSpecular";
+        private const string materialSpecularPower = "materialSpecularPower";
+        private const string lightPosition = "lightPosition";
 
         private const string vertexCode =
             @"#version 330
 
-uniform mat4 " + model_matrix + @";
-uniform mat4 " + view_matrix + @";
-uniform mat4 " + projection_matrix + @";
+uniform mat4 " + modelMat + @";
+uniform mat4 " + viewMat + @";
+uniform mat4 " + projectionMat + @";
 
 layout (location = 0) in vec4 " + inPosition + @";
 layout (location = 1) in vec3 " + inNormal + @";
 
-out VS_FS_INTERFACE
+out _Vertex
 {
-	vec3 world_coord;
-	vec3 eye_coord;
-	vec3 normal;
-} vertex;
+	vec3 worldSpacePos;
+	vec3 eyeSpacePos;
+	vec3 eyeSpaceNormal;
+} v;
 
 void main(void)
 {
-	vec4 world_pos = model_matrix * position;
-	vec4 eye_pos = view_matrix * world_pos;
-	vec4 clip_pos = projection_matrix * eye_pos;
+	vec4 worldPos = modelMat * position;
+	vec4 eyePos = viewMat * worldPos;
+	vec4 clipPos = projectionMat * eyePos;
 	
-	vertex.world_coord = world_pos.xyz;
-	vertex.eye_coord = eye_pos.xyz;
-	vertex.normal = normalize(mat3(view_matrix * model_matrix) * normal);
+	v.worldSpacePos = worldPos.xyz;
+	v.eyeSpacePos = eyePos.xyz;
+	v.eyeSpaceNormal = normalize(mat3(viewMat * modelMat) * inNormal);
 	
-	gl_Position = clip_pos;
+	gl_Position = clipPos;
 }
 ";
         private const string fragmentCode =
             @"#version 330
 
-uniform vec3 " + material_ambient + @" = vec3(0.2, 0.2, 0.2);
-uniform vec3 " + material_diffuse + @";
-uniform vec3 " + material_specular + @";
-uniform float " + material_specular_power + @";
+uniform vec3 " + materialAmbient + @" = vec3(0.2, 0.2, 0.2);
+uniform vec3 " + materialDiffuse + @";
+uniform vec3 " + materialSpecular + @";
+uniform float " + materialSpecularPower + @";
 
-uniform vec3 " + light_position + @";
+uniform vec3 " + lightPosition + @";
 
 layout (location = 0) out vec4 color;
 
-in VS_FS_INTERFACE
+in _Vertex
 {
-	vec3 world_coord;
-	vec3 eye_coord;
-	vec3 normal;
-} fragment;
+	vec3 worldSpacePos;
+	vec3 eyeSpacePos;
+	vec3 eyeSpaceNormal;
+} fsVertex;
 
 void main(void)
 {
-	vec3 N = normalize(fragment.normal);
-	vec3 L = normalize(light_position - fragment.eye_coord);
+	vec3 N = normalize(fsVertex.eyeSpaceNormal);
+	vec3 L = normalize(lightPosition - fsVertex.eyeSpacePos);
 	vec3 R = reflect(L, N);
-	vec3 E = normalize(fragment.eye_coord);
+	vec3 E = normalize(fsVertex.eyeSpacePos);
 	float NdotL = dot(N, L);
 	float EdotR = dot(E, R);
 	float diffuse = max(NdotL, 0.0);
-	float specular = 0;//max(pow(EdotR, material_specular_power), 0.0);
+	float specular = 0;//max(pow(EdotR, materialSpecularPower), 0.0);
 	
-	color = vec4(material_ambient + material_diffuse * diffuse + material_specular * specular, 1.0);
+	color = vec4(materialAmbient + materialDiffuse * diffuse + materialSpecular * specular, 1.0);
 }
 ";
 
@@ -133,7 +133,7 @@ void main(void)
                 {
                     var method = this.RenderUnit.Methods[0];
                     ShaderProgram program = method.Program;
-                    program.GetUniformValue(material_ambient, out value);
+                    program.GetUniformValue(materialAmbient, out value);
                 }
                 return value;
             }
@@ -143,7 +143,7 @@ void main(void)
                 {
                     var method = this.RenderUnit.Methods[0];
                     ShaderProgram program = method.Program;
-                    program.SetUniform(material_ambient, value);
+                    program.SetUniform(materialAmbient, value);
                 }
             }
         }
@@ -178,14 +178,14 @@ void main(void)
 
             var method = this.RenderUnit.Methods[0];
             ShaderProgram program = method.Program;
-            program.SetUniform(model_matrix, model);
-            program.SetUniform(view_matrix, view);
-            program.SetUniform(projection_matrix, projection);
-            program.SetUniform(light_position, new vec3(view * new vec4(LightPosition, 1.0f)));
-            //program.SetUniform(material_ambient, this.Ambient);
-            program.SetUniform(material_diffuse, this.Diffuse);
-            program.SetUniform(material_specular, this.Specular);
-            program.SetUniform(material_specular_power, this.SpecularPower);
+            program.SetUniform(modelMat, model);
+            program.SetUniform(viewMat, view);
+            program.SetUniform(projectionMat, projection);
+            program.SetUniform(lightPosition, new vec3(view * new vec4(LightPosition, 1.0f)));
+            //program.SetUniform(materialAmbient, this.Ambient);
+            program.SetUniform(materialDiffuse, this.Diffuse);
+            program.SetUniform(materialSpecular, this.Specular);
+            program.SetUniform(materialSpecularPower, this.SpecularPower);
 
             method.Render();
         }

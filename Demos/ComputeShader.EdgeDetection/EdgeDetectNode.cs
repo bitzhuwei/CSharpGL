@@ -159,9 +159,9 @@ namespace ComputeShader.EdgeDetection
                 var method = this.RenderUnit.Methods[1]; // the only render unit in this node.
                 ShaderProgram program = method.Program;
                 program.SetUniform(tex, this.finalTexture);
-                program.SetUniform(projectionMatrix, projection);
-                program.SetUniform(viewMatrix, view);
-                program.SetUniform(modelMatrix, model);
+                program.SetUniform(projectionMat, projection);
+                program.SetUniform(viewMat, view);
+                program.SetUniform(modelMat, model);
 
                 method.Render();
             }

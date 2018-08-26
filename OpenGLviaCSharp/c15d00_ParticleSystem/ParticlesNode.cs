@@ -21,9 +21,7 @@ namespace c15d00_ParticleSystem
             var map = new AttributeMap();
             map.Add("inPosition", ParticlesModel.strPosition);
             var builder = new RenderMethodBuilder(array, map,
-                new BlendSwitch(BlendEquationMode.Add, BlendSrcFactor.One, BlendDestFactor.One)
-
-                );
+                new BlendSwitch(BlendEquationMode.Add, BlendSrcFactor.One, BlendDestFactor.One));
             var node = new ParticlesNode(model, builder);
             node.groupCount = groupCount;
             node.Initialize();

@@ -13,17 +13,17 @@ namespace c12d01_SliceAndCamera
 
 in vec3 inPosition;
 
-uniform mat4 mvpMatrix;
+uniform mat4 mvpMat;
 
 void main() {
-    gl_Position = mvpMatrix * vec4(inPosition, 1.0); 
+    gl_Position = mvpMat * vec4(inPosition, 1.0); 
 }
 ";
 
         private const string fragmentCode = @"
 #version 150
 
-uniform vec4 color = vec4(1,0,0,1); // default: red color.
+uniform vec4 color = vec4(1, 0, 0, 1); // default: red color.
 
 uniform bool halfTransparent = false;
 

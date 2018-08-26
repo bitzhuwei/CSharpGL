@@ -16,10 +16,10 @@ in vec3 inColor;
 
 out vec3 passColor;
 
-uniform mat4 mvpMatrix;
+uniform mat4 mvpMat;
 
 void main() {
-    gl_Position = mvpMatrix * vec4(inPosition, 1.0); 
+    gl_Position = mvpMat * vec4(inPosition, 1.0); 
 
     passColor = inColor;
 }

@@ -46,7 +46,7 @@ namespace c11d00_Arcball
             var position = new vec3(0, 5, 4);
             var center = new vec3(0, 0, 0);
             var up = new vec3(0, 1, 0);
-            var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
+            var camera = new Camera(position, center, up, CameraType.Perspective, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
             this.scene = new Scene(camera);
             this.scene.ClearColor = new vec4(0, 0, 0, 1);
             var light = new DirectionalLight(new vec3(4, 5, 3));
@@ -186,28 +186,23 @@ namespace c11d00_Arcball
                     group.Children.Add(node);
                     this.fanNode = node;
                 }
+                // form border.
+                {
+                    var node = RectangleNode.Create();
+                    node.TextureSource = new FormBorderTextureSource();
+                    node.Scale = new vec3(6.27f, 1.0f, 6.56f);
+                    node.RotationAxis = new vec3(1, 0, 0);
+                    node.RotationAngle = 90;
+                    node.WorldPosition = new vec3(0.0f, -0.1f, -0.21f);
+                    //(new FormProperyGrid(node)).Show();
+                    group.Children.Add(node);
+                }
+
                 root.Children.Add(group);
                 this.groupNode = group;
             }
             return root;
         }
-
-        //private Texture GetTexture()
-        //{
-        //    string folder = System.Windows.Forms.Application.StartupPath;
-        //    var bmp = new Bitmap(System.IO.Path.Combine(folder, @"Canvas.png"));
-        //    TexStorageBase storage = new TexImageBitmap(bmp);
-        //    var texture = new Texture(storage,
-        //        new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP_TO_EDGE),
-        //        new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_CLAMP_TO_EDGE),
-        //        new TexParameteri(TexParameter.PropertyName.TextureWrapR, (int)GL.GL_CLAMP_TO_EDGE),
-        //        new TexParameteri(TexParameter.PropertyName.TextureMinFilter, (int)GL.GL_LINEAR),
-        //        new TexParameteri(TexParameter.PropertyName.TextureMagFilter, (int)GL.GL_LINEAR));
-        //    texture.Initialize();
-        //    bmp.Dispose();
-
-        //    return texture;
-        //}
 
         private void winGLCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
         {
@@ -228,5 +223,41 @@ namespace c11d00_Arcball
         }
 
 
+    }
+
+    class FormBorderTextureSource : ITextureSource
+    {
+        private Texture texture;
+
+        private Texture GetTexture()
+        {
+            string folder = System.Windows.Forms.Application.StartupPath;
+            var bmp = new Bitmap(System.IO.Path.Combine(folder, @"form-border.png"));
+            TexStorageBase storage = new TexImageBitmap(bmp);
+            var texture = new Texture(storage,
+                new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP_TO_EDGE),
+                new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_CLAMP_TO_EDGE),
+                new TexParameteri(TexParameter.PropertyName.TextureWrapR, (int)GL.GL_CLAMP_TO_EDGE),
+                new TexParameteri(TexParameter.PropertyName.TextureMinFilter, (int)GL.GL_LINEAR),
+                new TexParameteri(TexParameter.PropertyName.TextureMagFilter, (int)GL.GL_LINEAR));
+            texture.Initialize();
+            bmp.Dispose();
+
+            return texture;
+        }
+
+        public FormBorderTextureSource()
+        {
+            this.texture = GetTexture();
+        }
+
+        #region ITextureSource 成员
+
+        public Texture BindingTexture
+        {
+            get { return this.texture; }
+        }
+
+        #endregion
     }
 }

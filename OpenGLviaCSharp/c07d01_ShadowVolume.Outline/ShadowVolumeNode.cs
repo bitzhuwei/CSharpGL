@@ -65,17 +65,17 @@ namespace Lighting.ShadowVolume
 
             var method = this.RenderUnit.Methods[(int)MethodName.extrudeShadow];
             ShaderProgram program = method.Program;
-            program.SetUniform("gProjectionView", projection * view);
-            program.SetUniform("gWorld", model);
+            program.SetUniform("vpMat", projection * view);
+            program.SetUniform("modelMat", model);
             if (light is DirectionalLight)
             {
                 var d = light as DirectionalLight;
-                program.SetUniform("gLightPos", d.Direction);
+                program.SetUniform("lightPosition", d.Direction);
                 program.SetUniform("farAway", true);
             }
             else
             {
-                program.SetUniform("gLightPos", light.Position);
+                program.SetUniform("lightPosition", light.Position);
                 program.SetUniform("farAway", false);
             }
 

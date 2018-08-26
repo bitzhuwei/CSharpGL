@@ -12,21 +12,21 @@ namespace c05d01_TangentSpace
     public class SphereNode : PickableNode, IRenderable
     {
         private const string inPosition = "inPosition";
-        private const string projectionMatrix = "projectionMatrix";
-        private const string viewMatrix = "viewMatrix";
-        private const string modelMatrix = "modelMatrix";
+        private const string projectionMat = "projectionMat";
+        private const string viewMat = "viewMat";
+        private const string modelMat = "modelMat";
         private const string color = "color";
         private const string vertexCode =
             @"#version 330 core
 
 in vec3 " + inPosition + @";
 
-uniform mat4 " + projectionMatrix + @";
-uniform mat4 " + viewMatrix + @";
-uniform mat4 " + modelMatrix + @";
+uniform mat4 " + projectionMat + @";
+uniform mat4 " + viewMat + @";
+uniform mat4 " + modelMat + @";
 
 void main(void) {
-	gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(inPosition, 1.0);
+	gl_Position = projectionMat * viewMat * modelMat * vec4(inPosition, 1.0);
 }
 ";
         private const string fragmentCode =
@@ -34,11 +34,11 @@ void main(void) {
 
 uniform vec3 " + color + @" = vec3(1, 1, 1);
 
-layout(location = 0) out vec4 out_Color;
-//out vec4 out_Color;
+layout(location = 0) out vec4 outColor;
+//out vec4 outColor;
 
 void main(void) {
-    out_Color = vec4(color, 1);
+    outColor = vec4(color, 1);
 }
 ";
 
@@ -95,9 +95,9 @@ void main(void) {
 
             var method = this.RenderUnit.Methods[0]; // the only render unit in this node.
             ShaderProgram program = method.Program;
-            program.SetUniform(projectionMatrix, projection);
-            program.SetUniform(viewMatrix, view);
-            program.SetUniform(modelMatrix, model);
+            program.SetUniform(projectionMat, projection);
+            program.SetUniform(viewMat, view);
+            program.SetUniform(modelMat, model);
 
             method.Render();
         }

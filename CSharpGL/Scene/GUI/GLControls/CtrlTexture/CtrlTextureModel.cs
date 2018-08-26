@@ -17,7 +17,7 @@ namespace CSharpGL
         /// 
         /// </summary>
         public const string position = "position";
-        private VertexBuffer posiitonBuffer;
+        private VertexBuffer positionBuffer;
 
         /// <summary>
         /// 
@@ -38,12 +38,12 @@ namespace CSharpGL
         {
             if (bufferName == position)
             {
-                if (this.posiitonBuffer == null)
+                if (this.positionBuffer == null)
                 {
-                    this.posiitonBuffer = positions.GenVertexBuffer(VBOConfig.Vec2, BufferUsage.StaticDraw);
+                    this.positionBuffer = positions.GenVertexBuffer(VBOConfig.Vec2, BufferUsage.StaticDraw);
                 }
 
-                yield return this.posiitonBuffer;
+                yield return this.positionBuffer;
             }
             else if (bufferName == uv)
             {

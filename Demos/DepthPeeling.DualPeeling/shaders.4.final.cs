@@ -10,17 +10,17 @@ namespace DepthPeeling.DualPeeling
     {
         public const string finalVert = @"#version 330 core 
   
-layout(location = 0) in vec2 vVertex; //object space vertex position
+layout(location = 0) in vec2 inPosition;
  
 void main()
 {  
     //get the clip space position from the object space position
-    gl_Position = vec4(vVertex.xy*2 - 1.0,0,1);
+    gl_Position = vec4(inPosition.xy * 2 - 1.0, 0, 1);
 }
 ";
         public const string finalFrag = @"#version 330 core
 
-layout(location = 0) out vec4 vFragColor;	//fragment shader output
+layout(location = 0) out vec4 outColor;
 
 uniform sampler2DRect DepthBlenderTex;
 uniform sampler2DRect FrontBlenderTex;
@@ -42,7 +42,7 @@ void main(void)
     // back blender
     //color = backColor;
     
-    vFragColor = vec4(color, frontColor.a);
+    outColor = vec4(color, frontColor.a);
 }
 
 ";

@@ -174,7 +174,7 @@ namespace VolumeRendering.Slicing
             float[] dL = new float[12];
 
             int count = 0;
-            vec3* vTextureSlices = (vec3*)this.vVertexBuffer.MapBuffer(MapBufferAccess.WriteOnly);
+            vec3* vTextureSlices = (vec3*)this.inPositionBuffer.MapBuffer(MapBufferAccess.WriteOnly);
             //loop through all slices
             for (int i = num_slices - 1; i >= 0; i--)
             {
@@ -287,7 +287,7 @@ namespace VolumeRendering.Slicing
             }
 
             ////update buffer object with the new vertices
-            this.vVertexBuffer.UnmapBuffer();
+            this.inPositionBuffer.UnmapBuffer();
         }
     }
 }

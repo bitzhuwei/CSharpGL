@@ -11,10 +11,10 @@ namespace SimpleParticleSystem
 
         private const string vert = @"#version 330 core
   
-out vec4 vSmoothColor;	//output to fragment shader
+out vec4 passColor;	//output to fragment shader
 
 //shader uniforms
-uniform mat4 MVP;				//combined modelview matrix 
+uniform mat4 mvpMat;				//combined modelview matrix 
 uniform float time;				//current time
  
 //particle attributes
@@ -28,7 +28,7 @@ const float life = 2;			//life of particle
 const float PI = 3.14159;
 const float TWO_PI = 2*PI;
 
-//colormap colours
+//colormap colors
 const vec3 RED = vec3(1,0,0);
 const vec3 GREEN = vec3(0,1,0);
 const vec3 YELLOW = vec3(1,1,0); 
@@ -85,41 +85,41 @@ void main()
 		alpha = 1.0 - (dt/life);	  
 	}
    
-	//linearly interpolate between red and yellow colour
-	vSmoothColor = vec4(mix(RED,YELLOW,alpha),alpha);
+	//linearly interpolate between red and yellow color
+	passColor = vec4(mix(RED,YELLOW,alpha),alpha);
 	//get clipspace position
-	gl_Position = MVP*vec4(pos,1);
+	gl_Position = mvpMat*vec4(pos,1);
 }
 ";
 
         private const string frag = @"#version 330 core
 
-layout(location=0) out vec4 vFragColor; // fragment shader output
+layout(location=0) out vec4 outColor; // fragment shader output
 
 //input from the vertex shader
-in vec4 vSmoothColor;	//lienarly interpolated particle colour
+in vec4 passColor;	//lienarly interpolated particle color
 
 
 void main()
 {
-	//use the particle smooth colour as fragment output
-	vFragColor = vSmoothColor; 
+	//use the particle smooth color as fragment output
+	outColor = passColor; 
 }
 ";
         private const string texturedFrag = @"#version 330 core
 
-layout(location=0) out vec4 vFragColor; // fragment shader output
+layout(location=0) out vec4 outColor; // fragment shader output
 
 //input from the vertex shader
-in vec4 vSmoothColor;	//lienarly interpolated particle colour
+in vec4 passColor;	//lienarly interpolated particle color
 
 uniform sampler2D textureMap;	//particle texture 
 
 void main()
 { 
-	//use the particle smooth colour alpha value to fade the colour obtained
+	//use the particle smooth color alpha value to fade the color obtained
 	//from the texture lookup 
-	vFragColor = vec4(texture(textureMap, gl_PointCoord).rgb, 1.0) * vSmoothColor.a;  
+	outColor = vec4(texture(textureMap, gl_PointCoord).rgb, 1.0) * passColor.a;  
 }
 ";
     }

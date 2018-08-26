@@ -22,8 +22,8 @@ namespace fuluDD01_LayeredEngraving.PNG
                 var fs = new FragmentShader(backfaceFrag);
                 var provider = new ShaderArray(vs, fs);
                 var map = new AttributeMap();
-                map.Add("position", BoundingBoxModel.strPosition);
-                map.Add("boundingBox", BoundingBoxModel.strColor);
+                map.Add("inPosition", BoundingBoxModel.strPosition);
+                map.Add("inBoundingBox", BoundingBoxModel.strColor);
                 backfaceBuilder = new RenderMethodBuilder(provider, map, new CullFaceSwitch(CullFaceMode.Front, true));
             }
             {
@@ -31,8 +31,8 @@ namespace fuluDD01_LayeredEngraving.PNG
                 var fs = new FragmentShader(raycastingFrag);
                 var provider = new ShaderArray(vs, fs);
                 var map = new AttributeMap();
-                map.Add("position", BoundingBoxModel.strPosition);
-                map.Add("boundingBox", BoundingBoxModel.strColor);
+                map.Add("inPosition", BoundingBoxModel.strPosition);
+                map.Add("inBoundingBox", BoundingBoxModel.strColor);
                 raycastingBuilder = new RenderMethodBuilder(provider, map, new CullFaceSwitch(CullFaceMode.Back, true));
             }
 
@@ -78,7 +78,7 @@ namespace fuluDD01_LayeredEngraving.PNG
 
                 RenderMethod method = this.RenderUnit.Methods[1];
                 ShaderProgram program = method.Program;
-                program.SetUniform("VolumeTex", this.volume3DTexture);
+                program.SetUniform("texVolume", this.volume3DTexture);
             }
 
             Viewport viewport = arg.Param.Viewport;

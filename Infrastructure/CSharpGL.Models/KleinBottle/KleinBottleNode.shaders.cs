@@ -10,19 +10,19 @@ namespace CSharpGL
     {
         private const string vertexShaderCode = @"#version 150 core
 
-in vec3 in_Position;
-in float in_TexCoord;
+in vec3 inPosition;
+in float inTexCoord;
 
 out float passTexCoord;
 
-uniform mat4 projectionMatrix;
-uniform mat4 viewMatrix;
-uniform mat4 modelMatrix;
+uniform mat4 projectionMat;
+uniform mat4 viewMat;
+uniform mat4 modelMat;
 
 void main(void) {
-	gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(in_Position, 1.0);
+	gl_Position = projectionMat * viewMat * modelMat * vec4(inPosition, 1.0);
 
-	passTexCoord = in_TexCoord;
+	passTexCoord = inTexCoord;
 }
 ";
         private const string fragmentShaderCode = @"#version 150 core
@@ -31,10 +31,10 @@ in float passTexCoord;
 
 uniform sampler1D tex;
 
-out vec4 out_Color;
+out vec4 outColor;
 
 void main(void) {
-	out_Color = texture(tex, passTexCoord);
+	outColor = texture(tex, passTexCoord);
 }
 ";
     }

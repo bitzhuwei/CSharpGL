@@ -60,7 +60,7 @@ namespace DepthPeeling.FrontToBackPeeling
                 var fs = new FragmentShader(Shaders.initFrag);
                 var provider = new ShaderArray(vs, fs);
                 var map = new AttributeMap();
-                map.Add("vVertex", positionNameInIBufferSource);
+                map.Add("inPosition", positionNameInIBufferSource);
                 initBuilder = new RenderMethodBuilder(provider, map);
             }
             {
@@ -68,7 +68,7 @@ namespace DepthPeeling.FrontToBackPeeling
                 var fs = new FragmentShader(Shaders.peelFrag);
                 var provider = new ShaderArray(vs, fs);
                 var map = new AttributeMap();
-                map.Add("vVertex", positionNameInIBufferSource);
+                map.Add("inPosition", positionNameInIBufferSource);
                 peelBuilder = new RenderMethodBuilder(provider, map);
             }
 
@@ -103,7 +103,7 @@ namespace DepthPeeling.FrontToBackPeeling
 
             RenderMethod method = this.RenderUnit.Methods[(int)this.Mode];
             ShaderProgram program = method.Program;
-            program.SetUniform("MVP", projection * view * model);
+            program.SetUniform("mvpMat", projection * view * model);
 
             method.Render();
         }

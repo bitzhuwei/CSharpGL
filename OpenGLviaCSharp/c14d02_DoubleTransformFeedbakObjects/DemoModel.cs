@@ -8,8 +8,8 @@ namespace c14d02_DoubleTransformFeedbakObjects
 {
     partial class DemoModel : IBufferSource
     {
-        public const string inPosition = "inPosition";
-        public const string inPosition2 = "inPosition2";
+        public const string strPosition = "position";
+        public const string strPosition2 = "position2";
         private VertexBuffer positionBuffer;
         private VertexBuffer positionBuffer2;
 
@@ -21,7 +21,7 @@ namespace c14d02_DoubleTransformFeedbakObjects
 
         public IEnumerable<VertexBuffer> GetVertexAttribute(string bufferName)
         {
-            if (bufferName == inPosition)
+            if (bufferName == strPosition)
             {
                 if (this.positionBuffer == null)
                 {
@@ -30,7 +30,7 @@ namespace c14d02_DoubleTransformFeedbakObjects
 
                 yield return this.positionBuffer;
             }
-            else if (bufferName == inPosition2)
+            else if (bufferName == strPosition2)
             {
                 if (this.positionBuffer2 == null)
                 {

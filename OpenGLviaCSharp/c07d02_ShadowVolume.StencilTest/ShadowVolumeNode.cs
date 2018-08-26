@@ -98,17 +98,17 @@ namespace c07d02_ShadowVolume.StencilTest
 
             var method = this.RenderUnit.Methods[(int)MethodName.extrudeShadow];
             ShaderProgram program = method.Program;
-            program.SetUniform("gProjectionView", projection * view);
-            program.SetUniform("gWorld", model);
+            program.SetUniform("vpMat", projection * view);
+            program.SetUniform("modelMat", model);
             if (arg.Light is DirectionalLight)
             {
                 var light = arg.Light as DirectionalLight;
-                program.SetUniform("gLightPos", light.Direction);
+                program.SetUniform("lightPosition", light.Direction);
                 program.SetUniform("farAway", true);
             }
             else
             {
-                program.SetUniform("gLightPos", arg.Light.Position);
+                program.SetUniform("lightPosition", arg.Light.Position);
                 program.SetUniform("farAway", false);
             }
 

@@ -10,24 +10,24 @@ namespace ComputeShader.HelloComputeShader
 
 in vec3 position;
 
-uniform mat4 projectionMatrix;
-uniform mat4 viewMatrix;
-uniform mat4 modelMatrix;
+uniform mat4 projectionMat;
+uniform mat4 viewMat;
+uniform mat4 modelMat;
 
 void main(void)
 {
-    gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(position, 1.0f);
+    gl_Position = projectionMat * viewMat * modelMat * vec4(position, 1.0f);
 }
 ";
         private const string renderFrag = @"#version 430 core
 
 layout (location = 0) out vec4 color;
 
-uniform sampler2D output_image;
+uniform sampler2D outImage;
 
 void main(void)
 {
-    color = texture(output_image, vec2(gl_FragCoord.xy) / vec2(textureSize(output_image, 0)));
+    color = texture(outImage, vec2(gl_FragCoord.xy) / vec2(textureSize(outImage, 0)));
 }
 ";
     }

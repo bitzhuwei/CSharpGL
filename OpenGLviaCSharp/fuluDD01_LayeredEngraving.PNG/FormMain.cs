@@ -32,7 +32,7 @@ namespace fuluDD01_LayeredEngraving.PNG
             var position = new vec3(5, 4, 3) * 0.3f;
             var center = new vec3(0, 0, 0);
             var up = new vec3(0, 1, 0);
-            var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
+            var camera = new Camera(position, center, up, CameraType.Perspective, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
             var scene = new Scene(camera);
             var rootElement = GetTree(scene);
             scene.RootNode = rootElement;
@@ -79,11 +79,11 @@ namespace fuluDD01_LayeredEngraving.PNG
                 {
                     for (int i = -1; i < 2; i++)
                     {
-                        vec3 worldPosition = new vec3(i * 2, j * 2, -2);// +new vec3(-2.375f, -1.75f, 0);
+                        vec3 worldSpacePosition = new vec3(i * 2, j * 2, -2);// +new vec3(-2.375f, -1.75f, 0);
                         //var cubeNode = CubeNode.Create(new CubeModel(), CubeModel.positions);
                         //var cubeNode = CubeNode.Create(new RectangleModel(), RectangleModel.strPosition);
                         var cubeNode = CubeNode.Create(new Sphere(0.5f), Sphere.strPosition);
-                        cubeNode.WorldPosition = worldPosition;
+                        cubeNode.WorldPosition = worldSpacePosition;
                         cubeNode.Color = colors[index++];
 
                         children.Add(cubeNode);

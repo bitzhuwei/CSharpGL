@@ -19,7 +19,7 @@ namespace CSharpGL
 
         public DesignModeAssist(WinGLCanvas canvas, bool designMode, System.ComponentModel.LicenseUsageMode licenseUsageMode)
         {
-            var camera = new Camera(new vec3(0, 0, 4), new vec3(0, 0, 0), new vec3(0, 1, 0), CameraType.Perspecitive, canvas.Width, canvas.Height);
+            var camera = new Camera(new vec3(0, 0, 4), new vec3(0, 0, 0), new vec3(0, 1, 0), CameraType.Perspective, canvas.Width, canvas.Height);
             GroupNode group;
             {
                 group = new GroupNode();

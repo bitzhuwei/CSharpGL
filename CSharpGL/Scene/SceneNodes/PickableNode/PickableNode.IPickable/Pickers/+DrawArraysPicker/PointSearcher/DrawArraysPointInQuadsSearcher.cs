@@ -8,29 +8,28 @@ namespace CSharpGL
         ///
         /// </summary>
         /// <param name="arg"></param>
-        /// <param name="flatColorVertexId"></param>
+        /// <param name="singleNodeVertexId"></param>
+        /// <param name="stageVertexId"></param>
         /// <param name="picker"></param>
         /// <returns></returns>
         internal override uint Search(PickingEventArgs arg,
-            uint flatColorVertexId, DrawArraysPicker picker)
+            uint singleNodeVertexId, uint stageVertexId, DrawArraysPicker picker)
         {
-            IndexBuffer buffer = GLBuffer.Create(IndexBufferElementType.UInt, 4, BufferUsage.StaticDraw);
-            unsafe
-            {
-                var array = (uint*)buffer.MapBuffer(MapBufferAccess.WriteOnly);
-                array[0] = flatColorVertexId - 0;
-                array[1] = flatColorVertexId - 1;
-                array[2] = flatColorVertexId - 2;
-                array[3] = flatColorVertexId - 3;
-                buffer.UnmapBuffer();
-            }
+            var array = new uint[] 
+            { 
+                singleNodeVertexId - 0,
+                singleNodeVertexId - 1,
+                singleNodeVertexId - 2,
+                singleNodeVertexId - 3,
+            };
+            IndexBuffer buffer = array.GenIndexBuffer(BufferUsage.StaticDraw);
             var cmd = new DrawElementsCmd(buffer, DrawMode.Points);
             picker.Node.Render4InnerPicking(arg,  cmd);
             uint id = ColorCodedPicking.ReadStageVertexId(arg.X, arg.Y);
 
             buffer.Dispose();
 
-            if (flatColorVertexId - 3 <= id && id <= flatColorVertexId - 0)
+            if (stageVertexId - 3 <= id && id <= stageVertexId - 0)
             { return id; }
             else
             { throw new Exception("This should not happen!"); }

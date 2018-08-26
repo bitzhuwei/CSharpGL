@@ -52,8 +52,9 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StaticSlicesModel.cs" />
-    <Compile Include="StaticSlicesNode shaders.cs" />
+    <Compile Include="StaticSlicesNode.shaders.cs" />
     <Compile Include="StaticSlicesNode.cs" />
+    <Compile Include="VolumeDataGenerator.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

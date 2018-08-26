@@ -48,7 +48,7 @@ namespace c15d00_ParticleSystem
             foreach (var item in this.attractorsSource.Attractors)
             {
                 mat4 model = glm.translate(mat4.identity(), new vec3(item));
-                program.SetUniform("mvp", projection * view * model);
+                program.SetUniform("mvpMat", projection * view * model);
 
                 method.Render();
             }

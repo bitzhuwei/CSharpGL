@@ -59,7 +59,7 @@ namespace CSharpGL
 
             // make sure labelModel only returns once.
             this.positionBuffer = (from item in this.labelModel.GetVertexAttribute(GlyphsModel.position) select item).First();
-            this.strBuffer = (from item in this.labelModel.GetVertexAttribute(GlyphsModel.STR) select item).First();
+            this.stringBuffer = (from item in this.labelModel.GetVertexAttribute(GlyphsModel.STR) select item).First();
             this.drawCmd = (from item in this.labelModel.GetDrawCommand() select item).First() as DrawArraysCmd;
 
             GlyphServer server = GlyphServer.DefaultServer;

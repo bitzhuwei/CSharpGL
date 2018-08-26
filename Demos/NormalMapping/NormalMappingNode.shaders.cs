@@ -40,7 +40,7 @@ in vec3 passNormal;
 in vec3 passWorldPos;
 in vec3 passTangent;
 
-out vec4 fragColor;
+out vec4 outColor;
 
 struct DirectionalLight
 {
@@ -99,7 +99,7 @@ void main()
     vec4 lightColor = CalcDirectionalLight(normal);
 
     vec4 sampledColor = texture2D(texColor, passTexCoord.xy);
-    fragColor = sampledColor * lightColor;
+    outColor = sampledColor * lightColor;
 }
 ";
     }

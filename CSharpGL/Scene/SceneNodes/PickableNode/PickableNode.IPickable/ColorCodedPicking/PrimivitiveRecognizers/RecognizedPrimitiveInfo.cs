@@ -23,7 +23,7 @@ namespace CSharpGL
         /// <param name="vertexIds">All vertexs' ids of picked geometry.</param>
         public RecognizedPrimitiveInfo(uint index, params uint[] vertexIds)
         {
-            if (vertexIds.Length < 1) { throw new Exception("This should not happen!"); }
+            if (vertexIds.Length < 1) { throw new ArgumentException("There should be at least 1 vertexId!", "vertexIds"); }
 
             this.index = index;
             this.VertexIds = vertexIds;
@@ -35,7 +35,7 @@ namespace CSharpGL
         public uint LastVertexId { get { return this.VertexIds[this.VertexIds.Length - 1]; } }
 
         /// <summary>
-        /// All vertexs' ids of picked geometry.
+        /// All vertexs' ids in the 'big VertexBuffer' of picked geometry.
         /// </summary>
         public uint[] VertexIds { get; private set; }
 

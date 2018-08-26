@@ -16,8 +16,8 @@ namespace ImageProcessing.GrayFilter
             var fs = new FragmentShader(renderFrag);
             var provider = new ShaderArray(vs, fs);
             var map = new AttributeMap();
-            map.Add("a_vertex", GrayFilterModel.position);
-            map.Add("a_texCoord", GrayFilterModel.texCoord);
+            map.Add("inPosition", GrayFilterModel.position);
+            map.Add("inTexCoord", GrayFilterModel.texCoord);
             var builder = new RenderMethodBuilder(provider, map);
 
             var node = new GrayFilterNode(model, GrayFilterModel.position, builder);
@@ -61,7 +61,7 @@ namespace ImageProcessing.GrayFilter
 
             RenderMethod method = this.RenderUnit.Methods[0];
             ShaderProgram program = method.Program;
-            program.SetUniform("u_texture", texture);
+            program.SetUniform("tex", texture);
         }
 
         private ThreeFlags enableRendering = ThreeFlags.BeforeChildren | ThreeFlags.Children | ThreeFlags.AfterChildren;
@@ -84,7 +84,7 @@ namespace ImageProcessing.GrayFilter
 
             RenderMethod method = this.RenderUnit.Methods[0];
             ShaderProgram program = method.Program;
-            program.SetUniform("mvpMatrix", projection * view * model);
+            program.SetUniform("mvpMat", projection * view * model);
 
             method.Render();
         }

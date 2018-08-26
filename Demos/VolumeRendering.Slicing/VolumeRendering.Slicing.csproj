@@ -58,7 +58,7 @@
     <Compile Include="SlicesNode.SliceVolume.cs" />
     <Compile Include="SlicesNode.shaders.default.cs" />
     <Compile Include="SlicesNode.cs" />
-    <Compile Include="TransferFunctionLoader.cs" />
+    <Compile Include="TransferTextureLoader.cs" />
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>

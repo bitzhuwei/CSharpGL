@@ -75,7 +75,7 @@ namespace CSharpGL
             var pickingVAOs = new VertexArrayObject[cmdCount];
             for (int b = 0; b < cmdCount; b++)
             {
-                var vertexAttributeBuffers = new VertexShaderAttribute(positionBuffers[b], PickingShaderHelper.in_Position);
+                var vertexAttributeBuffers = new VertexShaderAttribute(positionBuffers[b], PickingShaderHelper.inPosition);
                 pickingVAOs[b] = new VertexArrayObject(allDrawCommands[b], pickProgram, vertexAttributeBuffers);
             }
 

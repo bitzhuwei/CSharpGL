@@ -27,9 +27,9 @@ namespace CSharpGL
     {
         private const string inPosition = "inPosition";
         private const string inUV = "inUV";
-        private const string projectionMatrix = "projectionMatrix";
-        private const string viewMatrix = "viewMatrix";
-        private const string modelMatrix = "modelMatrix";
+        private const string projectionMat = "projectionMat";
+        private const string viewMat = "viewMat";
+        private const string modelMat = "modelMat";
         private const string tex = "tex";
         private const string transparentBackground = "transparentBackground";
         private const string vertexCode =
@@ -38,14 +38,14 @@ namespace CSharpGL
 in vec3 " + inPosition + @";
 in vec2 " + inUV + @";
 
-uniform mat4 " + projectionMatrix + @";
-uniform mat4 " + viewMatrix + @";
-uniform mat4 " + modelMatrix + @";
+uniform mat4 " + projectionMat + @";
+uniform mat4 " + viewMat + @";
+uniform mat4 " + modelMat + @";
 
 out vec2 passUV;
 
 void main(void) {
-	gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(inPosition, 1.0);
+	gl_Position = projectionMat * viewMat * modelMat * vec4(inPosition, 1.0);
 	passUV = inUV;
 }
 ";
@@ -57,8 +57,8 @@ in vec2 passUV;
 uniform sampler2D " + tex + @";
 uniform bool " + transparentBackground + @" = false;
 
-layout(location = 0) out vec4 out_Color;
-//out vec4 out_Color;
+layout(location = 0) out vec4 outColor;
+//out vec4 outColor;
 
 void main(void) {
     //if (int(gl_FragCoord.x + gl_FragCoord.y) % 2 == 1) discard;
@@ -67,11 +67,11 @@ void main(void) {
     if (transparentBackground)
     {
         if (color.a == 0) { discard; }
-        else { out_Color = color; }
+        else { outColor = color; }
     }
     else 
     {
-        out_Color = color;
+        outColor = color;
     }
 }
 ";
@@ -133,9 +133,9 @@ void main(void) {
             mat4 projection = camera.GetProjectionMatrix();
             mat4 view = camera.GetViewMatrix();
             mat4 model = this.GetModelMatrix();
-            program.SetUniform(projectionMatrix, projection);
-            program.SetUniform(viewMatrix, view);
-            program.SetUniform(modelMatrix, model);
+            program.SetUniform(projectionMat, projection);
+            program.SetUniform(viewMat, view);
+            program.SetUniform(modelMat, model);
             program.SetUniform(transparentBackground, this.TransparentBackground);
 
             method.Render();

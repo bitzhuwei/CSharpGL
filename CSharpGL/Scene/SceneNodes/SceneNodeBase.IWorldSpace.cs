@@ -22,7 +22,7 @@ namespace CSharpGL
 
         #region IWorldSpace 成员
 
-        private vec3 worldPosition;
+        private vec3 worldSpacePosition;
         /// <summary>
         /// Position in world space relative to parent node.
         /// </summary>
@@ -30,12 +30,12 @@ namespace CSharpGL
         [Description("Position in world space relative to parent node.")]
         public vec3 WorldPosition
         {
-            get { return worldPosition; }
+            get { return worldSpacePosition; }
             set
             {
-                if (worldPosition != value)
+                if (worldSpacePosition != value)
                 {
-                    worldPosition = value;
+                    worldSpacePosition = value;
                     worldSpacePropertyUpdated = true;
                 }
             }

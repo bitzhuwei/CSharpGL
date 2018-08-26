@@ -47,6 +47,7 @@ namespace c08d01_PickPoint
         }
 
         public int HighlightIndex { get; set; }
+
         #region IRenderable 成员
 
         public ThreeFlags EnableRendering { get; set; }
@@ -60,7 +61,7 @@ namespace c08d01_PickPoint
 
             var method = this.RenderUnit.Methods[(int)this.Method];
             ShaderProgram program = method.Program;
-            program.SetUniform("mvpMatrix", projection * view * model);
+            program.SetUniform("mvpMat", projection * view * model);
             program.SetUniform("highlightIndex", this.HighlightIndex);
             GL.Instance.Enable(GL.GL_VERTEX_PROGRAM_POINT_SIZE);
             method.Render();

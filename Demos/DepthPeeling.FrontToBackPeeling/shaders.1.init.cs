@@ -10,26 +10,26 @@ namespace DepthPeeling.FrontToBackPeeling
     {
         public const string initVert = @"#version 330 core
   
-layout(location = 0) in vec3 vVertex; //object space vertex position
+layout(location = 0) in vec3 inPosition;
 
 //uniform
-uniform mat4 MVP;  //combined modelview projection matrix
+uniform mat4 mvpMat;
 
 void main()
 {  
 	//get the clipspace vertex position
-	gl_Position = MVP*vec4(vVertex.xyz,1);
+	gl_Position = mvpMat * vec4(inPosition.xyz, 1);
 }
 ";
         public const string initFrag = @"#version 330 core
 
-layout(location = 0) out vec4 vFragColor; //output fragment colour
+layout(location = 0) out vec4 outColor; //output fragment color
 
-uniform vec4 vColor;	//colour uniform
+uniform vec4 vColor;	//color uniform
 
 void main()
 {
-    vFragColor = vec4(vColor.rgb * vColor.a, 1.0 - vColor.a);
+    outColor = vec4(vColor.rgb * vColor.a, 1.0 - vColor.a);
 }
 ";
 

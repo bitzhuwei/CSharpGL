@@ -10,7 +10,7 @@ namespace CSharpGL
         private string text = string.Empty;
         private GlyphsModel labelModel;
         private VertexBuffer positionBuffer;
-        private VertexBuffer strBuffer;
+        private VertexBuffer stringBuffer;
         private DrawArraysCmd drawCmd;
 
         /// <summary>
@@ -64,7 +64,7 @@ namespace CSharpGL
         /// <param name="server"></param>
         unsafe private void UVPass(string text, GlyphServer server)
         {
-            VertexBuffer buffer = this.strBuffer;
+            VertexBuffer buffer = this.stringBuffer;
             var textureIndexArray = (QuadSTRStruct*)buffer.MapBuffer(MapBufferAccess.WriteOnly);
             int index = 0;
             foreach (var c in text)

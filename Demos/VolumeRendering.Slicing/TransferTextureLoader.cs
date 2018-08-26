@@ -7,9 +7,9 @@ using System.Text;
 
 namespace VolumeRendering.Slicing
 {
-    class TransferFunctionLoader
+    class TransferTextureLoader
     {
-        //transfer function (lookup table) colour values
+        //transfer function (lookup table) color values
         private static readonly vec4[] jet_values = new vec4[9]{	
             new vec4(0,0,0.5f,0),
             new vec4(0,0,1f,0.1f),
@@ -25,7 +25,7 @@ namespace VolumeRendering.Slicing
         public static Texture Load()
         {
 
-            //function to generate interpolated colours from the set of colour values (jet_values)
+            //function to generate interpolated colors from the set of color values (jet_values)
             //this function first calculates the amount of increments for each component and the
             //index difference. Then it linearly interpolates the adjacent values to get the 
             //interpolated result.
@@ -33,7 +33,7 @@ namespace VolumeRendering.Slicing
 
             int[] indices = new int[9];
 
-            //fill the colour values at the place where the colour should be after interpolation
+            //fill the color values at the place where the color should be after interpolation
             for (int i = 0; i < 9; i++)
             {
                 int index = i * 28;
@@ -44,7 +44,7 @@ namespace VolumeRendering.Slicing
                 indices[i] = index;
             }
 
-            //for each adjacent pair of colours, find the difference in the rgba values and then interpolate
+            //for each adjacent pair of colors, find the difference in the rgba values and then interpolate
             for (int j = 0; j < 9 - 1; j++)
             {
                 float dDataR = (pData[indices[j + 1]][0] - pData[indices[j]][0]);

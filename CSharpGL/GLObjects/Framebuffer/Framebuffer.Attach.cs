@@ -46,7 +46,7 @@ namespace CSharpGL
         ///// <param name="height"></param>
         //public void Resize(int width, int height)
         //{
-        //    //glBindRenderbuffer(GL.GL_RENDERBUFFER, colourRenderBufferId);
+        //    //glBindRenderbuffer(GL.GL_RENDERBUFFER, colorRenderBufferId);
         //    //glRenderbufferStorage(GL.GL_RENDERBUFFER, GL.GL_RGBA, width, height);
         //    //glBindRenderbuffer(GL.GL_RENDERBUFFER, depthRenderBufferId);
         //    //glRenderbufferStorage(GL.GL_RENDERBUFFER, GL.GL_DEPTH_ATTACHMENT, width, height);

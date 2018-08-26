@@ -13,13 +13,13 @@ namespace c15d00_ParticleSystem
 in vec3 inPosition;
 in vec3 inColor;
 
-uniform mat4 mvp;
+uniform mat4 mvpMat;
 
 out vec3 passColor;
 
 void main(void)
 {
-    gl_Position = mvp * vec4(inPosition, 1.0);
+    gl_Position = mvpMat * vec4(inPosition, 1.0);
 
     passColor = inColor;
 }
@@ -27,13 +27,13 @@ void main(void)
 
         private const string fragmentCode = @"#version 150 core
 
-out vec4 color;
+out vec4 outColor;
 
 in vec3 passColor;
 
 void main(void)
 {
-    color = vec4(passColor, 1.0);
+    outColor = vec4(passColor, 1.0);
 }
 ";
     }

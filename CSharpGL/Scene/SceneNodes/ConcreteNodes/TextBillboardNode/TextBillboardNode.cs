@@ -131,9 +131,9 @@ namespace CSharpGL
 
             var method = this.RenderUnit.Methods[0]; // the only render unit in this node.
             ShaderProgram program = method.Program;
-            program.SetUniform(projectionMatrix, projection);
-            program.SetUniform(viewMatrix, view);
-            program.SetUniform(modelMatrix, model);
+            program.SetUniform(projectionMat, projection);
+            program.SetUniform(viewMat, view);
+            program.SetUniform(modelMat, model);
             program.SetUniform(screenSize, new ivec2(viewport[2], viewport[3]));
 
             method.Render();

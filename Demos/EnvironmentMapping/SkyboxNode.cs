@@ -10,34 +10,34 @@ namespace EnvironmentMapping
     class SkyboxNode : PickableNode, IRenderable
     {
         private const string inPosition = "inPosition";
-        private const string mvpMatrix = "mvpMatrix";
+        private const string mvpMat = "mvpMat";
         private const string skybox = "skybox";
         private const string vertexCode = @"#version 330 core
 
 layout(location = 0) in vec3 " + inPosition + @";
 
-uniform mat4 " + mvpMatrix + @";
+uniform mat4 " + mvpMat + @";
 
-out vec3 texCoord;
+out vec3 passTexCoord;
 
 void main()
 {
-    vec4 position = mvpMatrix * vec4(inPosition, 1.0); 
+    vec4 position = mvpMat * vec4(inPosition, 1.0); 
     gl_Position = position.xyww;
-    texCoord = inPosition;
+    passTexCoord = inPosition;
 }
 ";
         private const string fragmentCode = @"#version 330 core
 
 uniform samplerCube " + skybox + @";
 
-in vec3 texCoord;
+in vec3 passTexCoord;
 
 out vec4 color;
 
 void main()
 {
-    color = texture(skybox, texCoord);
+    color = texture(skybox, passTexCoord);
 }
 ";
         private Texture texture;
@@ -109,13 +109,13 @@ void main()
             if (!this.IsInitialized) { this.Initialize(); }
 
             ICamera camera = arg.Camera;
-            mat4 projectionMatrix = camera.GetProjectionMatrix();
-            mat4 viewMatrix = camera.GetViewMatrix();
-            mat4 modelMatrix = this.GetModelMatrix();
+            mat4 projectionMat = camera.GetProjectionMatrix();
+            mat4 viewMat = camera.GetViewMatrix();
+            mat4 modelMat = this.GetModelMatrix();
 
             RenderMethod method = this.RenderUnit.Methods[0];
             ShaderProgram program = method.Program;
-            program.SetUniform(mvpMatrix, projectionMatrix * viewMatrix * modelMatrix);
+            program.SetUniform(mvpMat, projectionMat * viewMat * modelMat);
             program.SetUniform(skybox, this.texture);
 
             method.Render();

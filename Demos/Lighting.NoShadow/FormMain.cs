@@ -33,7 +33,7 @@ namespace Lighting.NoShadow
             var position = new vec3(1, 0.6f, 1) * 16;
             var center = new vec3(0, 0, 0);
             var up = new vec3(0, 1, 0);
-            var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
+            var camera = new Camera(position, center, up, CameraType.Perspective, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
             this.scene = new Scene(camera);
             this.scene.RootNode = GetRootNode();
             // add lights.
@@ -85,7 +85,7 @@ namespace Lighting.NoShadow
         private SceneNodeBase GetRootNode()
         {
             var group = new GroupNode();
-            var filenames = new string[] { "floor.obj_", "bunny.obj_", };
+            var filenames = new string[] { "floor.obj_", "vnfHanoiTower.obj_" };
             for (int i = 0; i < filenames.Length; i++)
             {
                 string folder = System.Windows.Forms.Application.StartupPath;
@@ -106,6 +106,32 @@ namespace Lighting.NoShadow
                     group.Children.Add(node);
                 }
             }
+            //{
+            //    var list = new List<IObjFormat>();
+            //    list.Add(new AnnulusModel(1.5f + 0.4f, 0.7f, 37, 37));
+            //    list.Add(new CylinderModel(0.5f, 6, 37));
+            //    foreach (var item in list)
+            //    {
+            //        item.DumpObjFile("tmp.obj", "tmp");
+            //        var parser = new ObjVNFParser(false);
+            //        ObjVNFResult result = parser.Parse("tmp.obj");
+            //        if (result.Error != null)
+            //        {
+            //            Console.WriteLine("Error: {0}", result.Error);
+            //        }
+            //        else
+            //        {
+            //            ObjVNFMesh mesh = result.Mesh;
+            //            var model = new ObjVNF(mesh);
+            //            var node = NoShadowNode.Create(model, ObjVNF.strPosition, ObjVNF.strNormal, model.GetSize());
+            //            node.WorldPosition = new vec3(0, 2, 0);
+            //            node.Color = new vec3(1, 1, 1);
+            //            node.Name = item.GetType().Name;
+            //            group.Children.Add(node);
+            //        }
+            //    }
+            //}
+
 
             return group;
         }

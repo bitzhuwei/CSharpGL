@@ -15,7 +15,7 @@
 //        private Query query;
 //        private bool bUseOQ = false;
 //        private QuadNode fullscreenQuad;
-//        private const int NUM_PASSES = 5;
+//        private const int maxPassCount = 5;
 //        private DepthTestSwitch depthTest = new DepthTestSwitch(enableCapacity: false);
 //        private BlendSwitch blend = new BlendSwitch(BlendEquationMode.Add, BlendSrcFactor.DstAlpha, BlendDestFactor.One, BlendSrcFactor.Zero, BlendDestFactor.OneMinusSrcAlpha);
 
@@ -59,9 +59,9 @@
 //                        int index = 0;
 //                        for (int i = -1; i < 2; i++)
 //                        {
-//                            vec3 worldPosition = new vec3(i * 2, j * 2, k * 2);
+//                            vec3 worldSpacePosition = new vec3(i * 2, j * 2, k * 2);
 //                            var cubeNode = CubeNode.Create();
-//                            cubeNode.WorldPosition = worldPosition;
+//                            cubeNode.WorldPosition = worldSpacePosition;
 //                            cubeNode.Color = colors[index++];
 
 //                            this.Children.Add(cubeNode);
@@ -114,7 +114,7 @@
 //                    }
 //                }
 
-//                int numLayers = (NUM_PASSES - 1) * 2;
+//                int numLayers = (maxPassCount - 1) * 2;
 //                // for each pass
 //                for (int layer = 1; bUseOQ || layer < numLayers; layer++)
 //                {

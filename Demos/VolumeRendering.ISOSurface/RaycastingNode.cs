@@ -29,7 +29,7 @@ namespace VolumeRendering.ISOSurface
                 var fs = new FragmentShader(defaultFrag);
                 var provider = new ShaderArray(vs, fs);
                 var map = new AttributeMap();
-                map.Add("vVertex", RaycastingModel.position);
+                map.Add("inPosition", RaycastingModel.position);
                 defaultBuilder = new RenderMethodBuilder(provider, map, new BlendFuncSwitch(BlendSrcFactor.SrcAlpha, BlendDestFactor.OneMinusSrcAlpha));
             }
             {
@@ -37,7 +37,7 @@ namespace VolumeRendering.ISOSurface
                 var fs = new FragmentShader(isosurfaceFrag);
                 var provider = new ShaderArray(vs, fs);
                 var map = new AttributeMap();
-                map.Add("vVertex", RaycastingModel.position);
+                map.Add("inPosition", RaycastingModel.position);
                 isosurfaceBuilder = new RenderMethodBuilder(provider, map, new BlendFuncSwitch(BlendSrcFactor.SrcAlpha, BlendDestFactor.OneMinusSrcAlpha));
             }
 
@@ -73,7 +73,7 @@ namespace VolumeRendering.ISOSurface
                 RenderMethod method = this.RenderUnit.Methods[i];
                 ShaderProgram program = method.Program;
                 program.SetUniform("volume", volume);
-                program.SetUniform("step_size", new vec3(1.0f / AmberLoader.length, 1.0f / AmberLoader.length, 1.0f / AmberLoader.length));
+                program.SetUniform("stepSize", new vec3(1.0f / AmberLoader.length, 1.0f / AmberLoader.length, 1.0f / AmberLoader.length));
             }
         }
 
@@ -100,7 +100,7 @@ namespace VolumeRendering.ISOSurface
 
             RenderMethod method = this.RenderUnit.Methods[(int)this.CurrentMode];
             ShaderProgram program = method.Program;
-            program.SetUniform("MVP", projection * view * model);
+            program.SetUniform("mvpMat", projection * view * model);
             program.SetUniform("camPos", cameraPos);
 
             method.Render();

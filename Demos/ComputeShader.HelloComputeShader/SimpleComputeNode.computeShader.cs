@@ -11,7 +11,7 @@ namespace ComputeShader.HelloComputeShader
 layout (local_size_x = 32, local_size_y = 16) in;
 
 
-layout (binding = 0, rgba32f) uniform image2D output_image;
+layout (binding = 0, rgba32f) uniform image2D outImage;
 
 uniform bool reset = false;
 
@@ -19,13 +19,13 @@ void main(void)
 {
     if (reset) 
     {
-        imageStore(output_image,
+        imageStore(outImage,
 		    ivec2(gl_GlobalInvocationID.xy),
             vec4(1,1,1,1));
     }
     else 
     {
-        imageStore(output_image,
+        imageStore(outImage,
 		    ivec2(gl_GlobalInvocationID.xy),
             vec4(vec2(gl_LocalInvocationID.xy) / vec2(gl_WorkGroupSize.xy), 0.0, 0.0));
     }

@@ -10,28 +10,28 @@ namespace DeferredShading
     {
         private const string regularVert = @"#version 330 core
 
-in vec3 vPosition; // per-vertex position
-in vec3 vColor; // per-vertex normal
+in vec3 inPosition; // per-vertex position
+in vec3 inColor; // per-vertex normal
 
-uniform mat4 MVP; // combined model view projection matrix
+uniform mat4 mvpMat; // combined model view projection matrix
 
 out vec3 passColor;
 
 void main()
 {
-	gl_Position = MVP * vec4(vPosition, 1);
-    passColor = vColor;
+	gl_Position = mvpMat * vec4(inPosition, 1);
+    passColor = inColor;
 }
 ";
         private const string regularFrag = @"#version 330 core
 
 in vec3 passColor;
 
-layout (location = 0) out vec3 vFragColor;
+layout (location = 0) out vec3 outColor;
 
 void main()
 {
-    vFragColor = passColor;
+    outColor = passColor;
 }
 ";
     }

@@ -10,24 +10,24 @@ namespace DepthPeeling.FrontToBackPeeling
     {
         public const string peelVert = @"#version 330 core
   
-layout(location = 0) in vec3 vVertex; //object space vertex position
+layout(location = 0) in vec3 inPosition;
 
 //uniform
-uniform mat4 MVP;  //combined modelview projection matrix
+uniform mat4 mvpMat;
 
 void main()
 {  
     //get the clipspace vertex position
-    gl_Position = MVP*vec4(vVertex.xyz,1);
+    gl_Position = mvpMat * vec4(inPosition.xyz, 1);
 }
 ";
         public const string peelFrag = @"#version 330 core
 
-layout(location = 0) out vec4 vFragColor;	//fragment shader output
+layout(location = 0) out vec4 outColor;
 
 //uniforms
-uniform vec4 vColor;						//solid colour 
-uniform sampler2DRect  depthTexture;		//depth texture 
+uniform vec4 vColor;
+uniform sampler2DRect  depthTexture;
 
 void main()
 {
@@ -39,7 +39,7 @@ void main()
     if(gl_FragCoord.z <= frontDepth) discard;
 	
     //otherwise set the given color uniform as the final output
-    vFragColor = vec4(vColor.rgb * vColor.a, vColor.a);
+    outColor = vec4(vColor.rgb * vColor.a, vColor.a);
 }
 ";
     }

@@ -35,14 +35,14 @@ namespace CSharpGL
 in vec3 inPosition;
 in vec3 inColor;
 
-uniform mat4 projectionMatrix;
-uniform mat4 viewMatrix;
-uniform mat4 modelMatrix;
+uniform mat4 projectionMat;
+uniform mat4 viewMat;
+uniform mat4 modelMat;
 
 out vec3 passColor;
 
 void main(void) {
-	gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(inPosition, 1.0);
+	gl_Position = projectionMat * viewMat * modelMat * vec4(inPosition, 1.0);
 	passColor = inColor;
 }
 ";
@@ -51,10 +51,10 @@ void main(void) {
 
 in vec3 passColor;
 
-out vec4 out_Color;
+out vec4 outColor;
 
 void main(void) {
-	out_Color = vec4(passColor, 1.0);
+	outColor = vec4(passColor, 1.0);
 }
 ";
 
@@ -121,9 +121,9 @@ void main(void) {
 
             var method = this.RenderUnit.Methods[0]; // the only render unit in this node.
             ShaderProgram program = method.Program;
-            program.SetUniform("projectionMatrix", projection);
-            program.SetUniform("viewMatrix", view);
-            program.SetUniform("modelMatrix", model);
+            program.SetUniform("projectionMat", projection);
+            program.SetUniform("viewMat", view);
+            program.SetUniform("modelMat", model);
 
             method.Render();
         }

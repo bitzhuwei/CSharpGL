@@ -10,13 +10,13 @@ namespace OrderIndependentTransparency
     {
         private const string resolveListsVert = @"#version 420 core
 
-in vec3 vPosition;
+in vec3 inPosition;
 
-uniform mat4 mvpMatrix;
+uniform mat4 mvpMat;
 
 void main(void)
 {
-    gl_Position = mvpMatrix * vec4(vPosition, 1.0f);
+    gl_Position = mvpMat * vec4(inPosition, 1.0f);
 }
 ";
         private const string resolveListsFrag = @"#version 420 core
@@ -28,9 +28,9 @@ void main(void)
  */
 
 // The per-pixel image containing the head pointers
-layout (binding = 0, r32ui) uniform uimage2D head_pointer_image;
+layout (binding = 0, r32ui) uniform uimage2D heads;
 // Buffer containing linked lists of fragments
-layout (binding = 1, rgba32ui) uniform uimageBuffer list_buffer;
+layout (binding = 1, rgba32ui) uniform uimageBuffer lstBuffer;
 
 // This is the output color
 layout (location = 0) out vec4 color;
@@ -46,11 +46,11 @@ void main(void)
     uint current_index;
     uint fragment_count = 0;
 
-    current_index = imageLoad(head_pointer_image, ivec2(gl_FragCoord).xy).x;
+    current_index = imageLoad(heads, ivec2(gl_FragCoord).xy).x;
 
     while (current_index != 0 && fragment_count < MAX_FRAGMENTS)
     {
-        uvec4 fragment = imageLoad(list_buffer, int(current_index));
+        uvec4 fragment = imageLoad(lstBuffer, int(current_index));
         fragment_list[fragment_count] = fragment;
         current_index = fragment.x;
         fragment_count++;

@@ -32,7 +32,7 @@ namespace c02d04_CubeMapTexture
             var position = new vec3(5, 3, 4) * 0.5f;
             var center = new vec3(0, 0, 0);
             var up = new vec3(0, 1, 0);
-            var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
+            var camera = new Camera(position, center, up, CameraType.Perspective, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
             var scene = new Scene(camera);
             scene.RootNode = GetTree();
             this.scene = scene;
@@ -161,23 +161,6 @@ namespace c02d04_CubeMapTexture
             return result;
         }
 
-        private Texture GetTexture()
-        {
-            string folder = System.Windows.Forms.Application.StartupPath;
-            var bmp = new Bitmap(System.IO.Path.Combine(folder, @"Crate.bmp"));
-            TexStorageBase storage = new TexImageBitmap(bmp);
-            var texture = new Texture(storage,
-                new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP_TO_EDGE),
-                new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_CLAMP_TO_EDGE),
-                new TexParameteri(TexParameter.PropertyName.TextureWrapR, (int)GL.GL_CLAMP_TO_EDGE),
-                new TexParameteri(TexParameter.PropertyName.TextureMinFilter, (int)GL.GL_LINEAR),
-                new TexParameteri(TexParameter.PropertyName.TextureMagFilter, (int)GL.GL_LINEAR));
-            texture.Initialize();
-            bmp.Dispose();
-
-            return texture;
-        }
-
         private void winGLCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
         {
             ActionList list = this.actionList;
@@ -199,11 +182,15 @@ namespace c02d04_CubeMapTexture
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            var node = this.scene.RootNode;
-            if (node != null)
+            Scene scene = this.scene;
+            if (scene != null)
             {
-                node.RotationAxis = new vec3(0, 1, 0);
-                node.RotationAngle += 1.3f;
+                var node = scene.RootNode;
+                if (node != null)
+                {
+                    node.RotationAxis = new vec3(0, 1, 0);
+                    node.RotationAngle += 1.3f;
+                }
             }
         }
     }

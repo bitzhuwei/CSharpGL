@@ -18,7 +18,7 @@ namespace c15d01_ParticleSystem2
             var fs = new FragmentShader(fragmentCode);
             var array = new ShaderArray(vs, fs);
             var map = new AttributeMap();
-            map.Add("position", ParticlesModel.strPosition);
+            map.Add("inPosition", ParticlesModel.strPosition);
             var builder = new RenderMethodBuilder(array, map, new BlendSwitch(BlendEquationMode.Add, BlendSrcFactor.One, BlendDestFactor.One));
             var node = new ParticlesNode(model, builder);
             node.groupCount = groupCount;

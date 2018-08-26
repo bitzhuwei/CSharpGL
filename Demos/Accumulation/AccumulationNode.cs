@@ -54,8 +54,8 @@ namespace Accumulation
             RenderMethod method = this.RenderUnit.Methods[0];
             ShaderProgram program = method.Program;
             // setup uniforms
-            program.SetUniform("projectionMatrix", projection);
-            program.SetUniform("viewMatrix", view);
+            program.SetUniform("projectionMat", projection);
+            program.SetUniform("viewMat", view);
 
             GL.Instance.Clear(GL.GL_ACCUM_BUFFER_BIT);
             for (int i = 0; i < 3; i++)
@@ -64,7 +64,7 @@ namespace Accumulation
                 matrix = glm.scale(matrix, this.Scale);
                 matrix = glm.rotate(matrix, this.RotationAngle, this.RotationAxis);
 
-                program.SetUniform("modelMatrix", matrix);
+                program.SetUniform("modelMat", matrix);
                 method.Render();
 
                 if (i == 0)

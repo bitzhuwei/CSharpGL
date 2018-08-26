@@ -14,8 +14,8 @@ namespace CSharpGL
             var fs = new FragmentShader(fragmentShaderCode);
             var provider = new ShaderArray(vs, fs);
             var map = new AttributeMap();
-            map.Add("in_Position", KleinBottleModel.strPosition);
-            map.Add("in_TexCoord", KleinBottleModel.strTexCoord);
+            map.Add("inPosition", KleinBottleModel.strPosition);
+            map.Add("inTexCoord", KleinBottleModel.strTexCoord);
             var builder = new RenderMethodBuilder(provider, map, new LineWidthSwitch(3));
             var node = new KleinBottleNode(model, KleinBottleModel.strPosition, builder);
             node.ModelSize = model.Size;
@@ -69,9 +69,9 @@ namespace CSharpGL
 
             var method = this.RenderUnit.Methods[0];
             ShaderProgram program = method.Program;
-            program.SetUniform("projectionMatrix", projection);
-            program.SetUniform("viewMatrix", view);
-            program.SetUniform("modelMatrix", model);
+            program.SetUniform("projectionMat", projection);
+            program.SetUniform("viewMat", view);
+            program.SetUniform("modelMat", model);
 
             method.Render();
         }

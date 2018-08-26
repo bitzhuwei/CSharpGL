@@ -1,4 +1,5 @@
-﻿namespace CSharpGL
+﻿using System;
+namespace CSharpGL
 {
     internal class DrawArraysLineInTriangleSearcher : DrawArraysLineSearcher
     {
@@ -6,22 +7,21 @@
         /// 在三角形图元中拾取指定位置的Line
         /// </summary>
         /// <param name="arg"></param>
-        /// <param name="flatColorVertexId">三角形图元的最后一个顶点</param>
+        /// <param name="singleNodeVertexId">三角形图元的最后一个顶点</param>
+        /// <param name="stageVertexId"></param>
         /// <param name="picker"></param>
         /// <returns></returns>
         internal override uint[] Search(PickingEventArgs arg,
-            uint flatColorVertexId, DrawArraysPicker picker)
+            uint singleNodeVertexId, uint stageVertexId, DrawArraysPicker picker)
         {
             // 创建临时索引
-            IndexBuffer buffer = GLBuffer.Create(IndexBufferElementType.UInt, 6, BufferUsage.StaticDraw);
-            unsafe
-            {
-                var array = (uint*)buffer.MapBuffer(MapBufferAccess.WriteOnly);
-                array[0] = flatColorVertexId - 1; array[1] = flatColorVertexId - 0;
-                array[2] = flatColorVertexId - 2; array[3] = flatColorVertexId - 1;
-                array[4] = flatColorVertexId - 0; array[5] = flatColorVertexId - 2;
-                buffer.UnmapBuffer();
-            }
+            var array = new uint[] 
+            { 
+                singleNodeVertexId - 1, singleNodeVertexId - 0, 
+                singleNodeVertexId - 2, singleNodeVertexId - 1, 
+                singleNodeVertexId - 0, singleNodeVertexId - 2 
+            };
+            IndexBuffer buffer = array.GenIndexBuffer(BufferUsage.StaticDraw);
             var cmd = new DrawElementsCmd(buffer, DrawMode.Lines);
             // 用临时索引渲染此三角形图元（仅渲染此三角形图元）
             picker.Node.Render4InnerPicking(arg, cmd);
@@ -31,10 +31,14 @@
             buffer.Dispose();
 
             // 对比临时索引，找到那个Line
-            if (id + 2 == flatColorVertexId)
+            if (id + 2 == stageVertexId)
             { return new uint[] { id + 2, id, }; }
-            else
+            else if (id + 1 == stageVertexId)
             { return new uint[] { id - 1, id, }; }
+            else if (id + 0 == stageVertexId)
+            { return new uint[] { id - 1, id, }; }
+            else
+            { throw new Exception("This should not happen!"); }
         }
     }
 }

@@ -10,34 +10,33 @@ namespace c02d04_CubeMapTexture
     {
         public const string initVert = @"#version 330 core
   
-in vec3 vVertex; //object space vertex position
+in vec3 inPosition; //object space vertex position.
 
-//uniform
-uniform mat4 MVP;  //combined modelview projection matrix
+uniform mat4 mvpMat;  //combined modelview projection matrix.
 
 out vec3 passTexCoord;
 
 void main()
 {  
-	//get the clipspace vertex position
-	gl_Position = MVP*vec4(vVertex.xyz,1);
+	//get the clipspace vertex position.
+	gl_Position = mvpMat * vec4(inPosition.xyz, 1);
 
-    passTexCoord = vVertex; // Special property for the Cube model.
+    passTexCoord = inPosition; // Special property for the Cube model.
 }
 ";
         public const string initFrag = @"#version 330 core
 
 in vec3 passTexCoord;
 
-uniform samplerCube cubeTex;	//texture uniform
+uniform samplerCube cubeTex;
 uniform float alpha = 0.25;
 
-out vec4 vFragColor; //output fragment colour
+out vec4 outColor;
 
 void main()
 {
     vec4 vColor = texture(cubeTex, passTexCoord);
-    vFragColor = vec4(vColor.rgb * alpha, 1.0 - alpha);
+    outColor = vec4(vColor.rgb * alpha, 1.0 - alpha);
 }
 ";
     }

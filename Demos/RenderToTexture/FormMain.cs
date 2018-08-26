@@ -51,7 +51,7 @@ namespace RenderToTexture
 
             var framebufferProvider = new MultiTargetFramebufferProvider();
             this.framebufferProvider = framebufferProvider;
-            var rtt = new RenderToTextureNode(width, height, new Camera(new vec3(0, 0, 5), new vec3(0, 0, 0), new vec3(0, 1, 0), CameraType.Perspecitive, width, height), framebufferProvider);
+            var rtt = new RenderToTextureNode(width, height, new Camera(new vec3(0, 0, 5), new vec3(0, 0, 0), new vec3(0, 1, 0), CameraType.Perspective, width, height), framebufferProvider);
             rtt.Children.Add(teapot);// rendered to framebuffer, then to texture.
             //this.rtt = rtt;
 
@@ -68,7 +68,7 @@ namespace RenderToTexture
             var position = new vec3(5, 1, 4);
             var center = new vec3(0, 0, 0);
             var up = new vec3(0, 1, 0);
-            var camera = new Camera(position, center, up, CameraType.Perspecitive, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
+            var camera = new Camera(position, center, up, CameraType.Perspective, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
             this.scene = new Scene(camera)
 
             {

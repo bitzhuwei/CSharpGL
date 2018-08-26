@@ -59,7 +59,7 @@ namespace c08d00_gl_VertexID
 
             var method = this.RenderUnit.Methods[(int)this.Method];
             ShaderProgram program = method.Program;
-            program.SetUniform("mvpMatrix", projection * view * model);
+            program.SetUniform("mvpMat", projection * view * model);
             method.Render();
         }
 

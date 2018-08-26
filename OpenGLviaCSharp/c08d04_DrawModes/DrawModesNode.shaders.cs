@@ -13,13 +13,13 @@ namespace c08d04_DrawModes
 in vec3 inPosition;
 in vec3 inColor;
 
-uniform mat4 mvpMatrix;
+uniform mat4 mvpMat;
 
 out vec3 passColor;
 
 void main(void) {
     // transform vertex' position from model space to clip space.
-    gl_Position = mvpMatrix * vec4(inPosition, 1.0);
+    gl_Position = mvpMat * vec4(inPosition, 1.0);
 
     passColor = inColor;
 
@@ -31,10 +31,10 @@ void main(void) {
 
 in vec3 passColor;
 
-out vec4 out_Color;
+out vec4 outColor;
 
 void main(void) {
-	out_Color = vec4(passColor, 1.0);
+	outColor = vec4(passColor, 1.0);
 }
 ";
 
@@ -43,13 +43,13 @@ void main(void) {
 in vec3 inPosition;
 in vec3 inColor;
 
-uniform mat4 mvpMatrix;
+uniform mat4 mvpMat;
 
 flat out vec3 passColor;
 
 void main(void) {
     // transform vertex' position from model space to clip space.
-    gl_Position = mvpMatrix * vec4(inPosition, 1.0);
+    gl_Position = mvpMat * vec4(inPosition, 1.0);
 
     passColor = inColor;
 
@@ -61,10 +61,10 @@ void main(void) {
 
 flat in vec3 passColor;
 
-out vec4 out_Color;
+out vec4 outColor;
 
 void main(void) {
-	out_Color = vec4(passColor, 1.0);
+	outColor = vec4(passColor, 1.0);
 }
 ";
     }

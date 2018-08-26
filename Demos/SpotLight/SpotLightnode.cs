@@ -12,12 +12,12 @@ namespace SpotLight
     /// </summary>
     public partial class SpotLightNode : PickableNode, IRenderable
     {
-        private const string vPosition = "vPosition";
-        private const string vNormal = "vNormal";
+        private const string inPosition = "inPosition";
+        private const string inNormal = "inNormal";
 
-        private const string projectionMatrix = "projectionMatrix";
-        private const string viewMatrix = "viewMatrix";
-        private const string modelMatrix = "modelMatrix";
+        private const string projectionMat = "projectionMat";
+        private const string viewMat = "viewMat";
+        private const string modelMat = "modelMat";
         private const string normalMatrix = "normalMatrix";
         private const string lightPosition = "lightPosition";
         private const string lightColor = "lightColor";
@@ -44,8 +44,8 @@ namespace SpotLight
             var fs = new FragmentShader(spotLightFrag);
             var provider = new ShaderArray(vs, fs);
             var map = new AttributeMap();
-            map.Add(vPosition, position);
-            map.Add(vNormal, normal);
+            map.Add(inPosition, position);
+            map.Add(inNormal, normal);
             var builder = new RenderMethodBuilder(provider, map);
 
             var node = new SpotLightNode(model, position, builder);
@@ -83,9 +83,9 @@ namespace SpotLight
             mat4 view = camera.GetViewMatrix();
             mat4 model = this.GetModelMatrix();
             mat4 normal = glm.transpose(glm.inverse(view * model));
-            program.SetUniform(projectionMatrix, projection);
-            program.SetUniform(viewMatrix, view);
-            program.SetUniform(modelMatrix, model);
+            program.SetUniform(projectionMat, projection);
+            program.SetUniform(viewMat, view);
+            program.SetUniform(modelMat, model);
             program.SetUniform(normalMatrix, normal);
             program.SetUniform(lightPosition, new vec3(view * new vec4(light.Position, 1.0f)));
             program.SetUniform(lightColor, this.light.Diffuse);

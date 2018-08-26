@@ -12,9 +12,9 @@ namespace DirectionalLight
     /// </summary>
     public partial class DirectionalLightNode : PickableNode, IRenderable
     {
-        private const string vPosition = "vPosition";
-        private const string vNormal = "vNormal";
-        private const string MVP = "MVP";
+        private const string inPosition = "inPosition";
+        private const string inNormal = "inNormal";
+        private const string mvpMat = "mvpMat";
         private const string normalMatrix = "normalMatrix";
         private const string halfVector = "halfVector";
         private const string shiness = "shiness";
@@ -43,8 +43,8 @@ namespace DirectionalLight
             var fs = new FragmentShader(directionalLightFrag);
             var provider = new ShaderArray(vs, fs);
             var map = new AttributeMap();
-            map.Add(vPosition, position);
-            map.Add(vNormal, normal);
+            map.Add(inPosition, position);
+            map.Add(inNormal, normal);
             var builder = new RenderMethodBuilder(provider, map);
 
             var node = new DirectionalLightNode(model, position, builder);
@@ -82,7 +82,7 @@ namespace DirectionalLight
             mat4 view = camera.GetViewMatrix();
             mat4 model = this.GetModelMatrix();
             mat3 normal = new mat3(glm.transpose(glm.inverse(view * model)));
-            program.SetUniform(MVP, projection * view * model);
+            program.SetUniform(mvpMat, projection * view * model);
             program.SetUniform(normalMatrix, normal);
             vec3 lightDir = new vec3(view * new vec4(this.Light.Direction, 0.0f));
             program.SetUniform(lightDirection, lightDir);

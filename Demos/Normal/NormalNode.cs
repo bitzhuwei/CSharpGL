@@ -14,9 +14,9 @@ namespace Normal
     {
         private const string inPosition = "inPosition";
         private const string inNormal = "inNormal";
-        private const string projectionMatrix = "projectionMatrix";
-        private const string viewMatrix = "viewMatrix";
-        private const string modelMatrix = "modelMatrix";
+        private const string projectionMat = "projectionMat";
+        private const string viewMat = "viewMat";
+        private const string modelMat = "modelMat";
         private const string normalMatrix = "normalMatrix";
         private const string diffuseColor = "diffuseColor";
         private const string vertexColor = "vertexColor";
@@ -93,9 +93,9 @@ namespace Normal
             {
                 RenderMethod method = this.RenderUnit.Methods[0];
                 ShaderProgram program = method.Program;
-                program.SetUniform(projectionMatrix, projection);
-                program.SetUniform(viewMatrix, view);
-                program.SetUniform(modelMatrix, model);
+                program.SetUniform(projectionMat, projection);
+                program.SetUniform(viewMat, view);
+                program.SetUniform(modelMat, model);
                 program.SetUniform(normalMatrix, normal);
 
                 method.Render();
@@ -105,9 +105,9 @@ namespace Normal
             {
                 RenderMethod method = this.RenderUnit.Methods[1];
                 ShaderProgram program = method.Program;
-                program.SetUniform(projectionMatrix, projection);
-                program.SetUniform(viewMatrix, view);
-                program.SetUniform(modelMatrix, model);
+                program.SetUniform(projectionMat, projection);
+                program.SetUniform(viewMat, view);
+                program.SetUniform(modelMat, model);
 
                 method.Render();
             }

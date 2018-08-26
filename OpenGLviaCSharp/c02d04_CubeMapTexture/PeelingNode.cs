@@ -14,7 +14,7 @@ namespace c02d04_CubeMapTexture
         private Query query;
         private bool bUseOQ = true;
         private QuadNode fullscreenQuad;
-        private const int NUM_PASSES = 16;
+        private const int maxPassCount = 16;
         private DepthTestSwitch depthTest = new DepthTestSwitch(enableCapacity: false);
         private BlendSwitch blend = new BlendSwitch(BlendEquationMode.Add, BlendSrcFactor.DstAlpha, BlendDestFactor.One, BlendSrcFactor.Zero, BlendDestFactor.OneMinusSrcAlpha);
 
@@ -46,9 +46,9 @@ namespace c02d04_CubeMapTexture
         /// <summary>
         /// max step needed to render everything.
         /// </summary>
-        private const int maxStep = 1 + ((NUM_PASSES - 1) * 2 - 1) * 2;
+        private const int maxStep = 1 + ((maxPassCount - 1) * 2 - 1) * 2;
 
-        private int renderStep = 1 + ((NUM_PASSES - 1) * 2 - 1) * 2;
+        private int renderStep = 1 + ((maxPassCount - 1) * 2 - 1) * 2;
         /// <summary>
         /// How many steps will be performed?
         /// </summary>
@@ -99,7 +99,7 @@ namespace c02d04_CubeMapTexture
                     targetTexture = this.resources.blenderColorTexture;
                 }
 
-                int numLayers = (NUM_PASSES - 1) * 2;
+                int numLayers = (maxPassCount - 1) * 2;
                 // for each pass
                 for (int layer = 1; bUseOQ || layer < numLayers; layer++)
                 {

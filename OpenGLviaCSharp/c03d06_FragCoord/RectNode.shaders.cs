@@ -23,11 +23,11 @@ in vec3 passColor;
 uniform float width;
 uniform float height;
 
-out vec4 out_Color;
+out vec4 outColor;
 
 void main(void) {
     vec4 coord = gl_FragCoord;
-	out_Color = vec4(coord.x / width, coord.y / height, 0, 1);
+	outColor = vec4(coord.x / width, coord.y / height, 0, 1);
 }
 ";
     }

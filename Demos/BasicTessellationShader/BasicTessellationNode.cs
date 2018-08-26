@@ -22,9 +22,9 @@ namespace BasicTessellationShader
             var fs = new FragmentShader(renderFrag);
             var provider = new ShaderArray(vs, tc, te, fs);
             var map = new AttributeMap();
-            map.Add("Position_VS_in", ObjVNF.strPosition);
-            map.Add("TexCoord_VS_in", ObjVNF.strTexCoord);
-            map.Add("Normal_VS_in", ObjVNF.strNormal);
+            map.Add("inPosition", ObjVNF.strPosition);
+            map.Add("inTexCoord", ObjVNF.strTexCoord);
+            map.Add("inNormal", ObjVNF.strNormal);
             var builder = new RenderMethodBuilder(provider, map);
 
             var node = new BasicTessellationNode(model, builder);
@@ -117,8 +117,8 @@ namespace BasicTessellationShader
             RenderMethod method = this.RenderUnit.Methods[0];
             ShaderProgram program = method.Program;
             //program.SetUniform()
-            //uniform mat4 gWorld;                                                                           
-            program.SetUniform("gWorld", model);
+            //uniform mat4 modelMat;                                                                           
+            program.SetUniform("modelMat", model);
             //uniform vec3 gEyeWorldPos;
             program.SetUniform("gEyeWorldPos", camera.Position);
             //uniform mat4 gVP;

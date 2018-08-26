@@ -10,7 +10,6 @@ namespace fuluDD02_LayeredEngraving.ComputeShader
 {
     public partial class RaycastNode
     {
-        private Texture transferFunc1DTexture;
         private Texture backface2DTexture;
         private int width;
         private int height;
@@ -43,8 +42,8 @@ namespace fuluDD02_LayeredEngraving.ComputeShader
             {
                 RenderMethod method = this.RenderUnit.Methods[1];
                 ShaderProgram program = method.Program;
-                program.SetUniform("ScreenSize", new vec2(width, height));
-                program.SetUniform("ExitPoints", this.backface2DTexture);
+                program.SetUniform("canvasSize", new vec2(width, height));
+                program.SetUniform("texExitPoint", this.backface2DTexture);
             }
         }
 

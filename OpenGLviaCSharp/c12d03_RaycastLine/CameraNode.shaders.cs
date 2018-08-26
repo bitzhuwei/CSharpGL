@@ -13,10 +13,10 @@ namespace c12d03_RaycastLine
 
 in vec3 inPosition;
 
-uniform mat4 mvpMatrix;
+uniform mat4 mvpMat;
 
 void main() {
-    gl_Position = mvpMatrix * vec4(inPosition, 1.0); 
+    gl_Position = mvpMat * vec4(inPosition, 1.0); 
 }
 ";
 

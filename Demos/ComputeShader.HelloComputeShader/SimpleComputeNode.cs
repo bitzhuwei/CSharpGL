@@ -68,7 +68,7 @@ namespace ComputeShader.HelloComputeShader
             {
                 RenderMethod method = this.RenderUnit.Methods[1];
                 ShaderProgram program = method.Program;
-                program.SetUniform("output_image", this.outputTexture);
+                program.SetUniform("outImage", this.outputTexture);
             }
         }
 
@@ -156,10 +156,10 @@ namespace ComputeShader.HelloComputeShader
 
                 RenderMethod method = this.RenderUnit.Methods[1];
                 ShaderProgram program = method.Program;
-                program.SetUniform("projectionMatrix", projection);
-                program.SetUniform("viewMatrix", view);
-                program.SetUniform("modelMatrix", model);
-                program.SetUniform("output_image", this.outputTexture);
+                program.SetUniform("projectionMat", projection);
+                program.SetUniform("viewMat", view);
+                program.SetUniform("modelMat", model);
+                program.SetUniform("outImage", this.outputTexture);
 
                 method.Render();
             }

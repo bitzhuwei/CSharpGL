@@ -26,12 +26,12 @@ void main() {
 
 in vec3 passColor;
 
-out vec4 fragColor;
+out vec4 outColor;
 
 void main() {
     if (int(gl_FragCoord.x + gl_FragCoord.y) % 2 == 1) discard;
 
-    fragColor = vec4(passColor, 1.0);
+    outColor = vec4(passColor, 1.0);
 }
 ";
 

@@ -6,10 +6,11 @@
         ///
         /// </summary>
         /// <param name="arg"></param>
-        /// <param name="flatColorVertexId"></param>
+        /// <param name="singleNodeVertexId">identify location inside this node.</param>
+        /// <param name="stageVertexId">identify location when rendering multiple nodes.</param>
         /// <param name="picker"></param>
         /// <returns></returns>
         internal abstract uint Search(PickingEventArgs arg,
-            uint flatColorVertexId, DrawArraysPicker picker);
+            uint singleNodeVertexId, uint stageVertexId, DrawArraysPicker picker);
     }
 }

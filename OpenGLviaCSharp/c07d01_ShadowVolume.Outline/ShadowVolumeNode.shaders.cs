@@ -22,10 +22,10 @@ void main(void) {
 
 uniform vec3 ambientColor;
 
-out vec4 out_Color;
+out vec4 outColor;
 
 void main(void) {
-	out_Color = vec4(ambientColor, 0.1);
+	outColor = vec4(ambientColor, 0.1);
 }
 ";
 
@@ -33,11 +33,11 @@ void main(void) {
 
 in vec3 inPosition;                                             
 
-out vec3 PosL;
+out vec3 passPosition;
                                                                                     
 void main()                                                                         
 {                                                                                   
-    PosL = inPosition;
+    passPosition = inPosition;
 }
 ";
 
@@ -46,22 +46,22 @@ void main()
 layout (triangles_adjacency) in;    // six vertices in
 layout (line_strip, max_vertices = 6) out; // 4 per quad * 3 triangle vertices + 6 for near/far caps
 
-in vec3 PosL[]; // an array of 6 vertices (triangle with adjacency)
+in vec3 passPosition[]; // an array of 6 vertices (triangle with adjacency)
 
 uniform bool farAway = false; // light's position is infinitly far away.
-uniform vec3 gLightPos; // if farAway is true, gLightPos means direction to light source; otherwise, it means light's position.
-uniform mat4 gProjectionView;
-uniform mat4 gWorld;
+uniform vec3 lightPosition; // if farAway is true, lightPosition means direction to light source; otherwise, it means light's position.
+uniform mat4 vpMat;
+uniform mat4 modelMat;
 
 float EPSILON = 0.0001;
 
 // Emit a line using a triangle strip
-void EmitOutline(vec3 StartVertex, vec3 EndVertex)
+void EmitOutline(vec3 startPos, vec3 endPos)
 {    
-    gl_Position = gProjectionView * vec4(StartVertex, 1.0);
+    gl_Position = vpMat * vec4(startPos, 1.0);
     EmitVertex();
  
-    gl_Position = gProjectionView * vec4(EndVertex, 1.0);
+    gl_Position = vpMat * vec4(endPos, 1.0);
     EmitVertex();
     
     EndPrimitive();            
@@ -70,65 +70,65 @@ void EmitOutline(vec3 StartVertex, vec3 EndVertex)
 
 void main()
 {
-    vec3 worldPos[6]; 
-	worldPos[0] = vec3(gWorld * vec4(PosL[0], 1.0));
-    worldPos[1] = vec3(gWorld * vec4(PosL[1], 1.0));
-    worldPos[2] = vec3(gWorld * vec4(PosL[2], 1.0));
-    worldPos[3] = vec3(gWorld * vec4(PosL[3], 1.0));
-    worldPos[4] = vec3(gWorld * vec4(PosL[4], 1.0));
-    worldPos[5] = vec3(gWorld * vec4(PosL[5], 1.0));
-    vec3 e1 = worldPos[2] - worldPos[0];
-    vec3 e2 = worldPos[4] - worldPos[0];
-    vec3 e3 = worldPos[1] - worldPos[0];
-    vec3 e4 = worldPos[3] - worldPos[2];
-    vec3 e5 = worldPos[4] - worldPos[2];
-    vec3 e6 = worldPos[5] - worldPos[0];
+    vec3 worldSpacePos[6]; 
+	worldSpacePos[0] = vec3(modelMat * vec4(passPosition[0], 1.0));
+    worldSpacePos[1] = vec3(modelMat * vec4(passPosition[1], 1.0));
+    worldSpacePos[2] = vec3(modelMat * vec4(passPosition[2], 1.0));
+    worldSpacePos[3] = vec3(modelMat * vec4(passPosition[3], 1.0));
+    worldSpacePos[4] = vec3(modelMat * vec4(passPosition[4], 1.0));
+    worldSpacePos[5] = vec3(modelMat * vec4(passPosition[5], 1.0));
+    vec3 e1 = worldSpacePos[2] - worldSpacePos[0];
+    vec3 e2 = worldSpacePos[4] - worldSpacePos[0];
+    vec3 e3 = worldSpacePos[1] - worldSpacePos[0];
+    vec3 e4 = worldSpacePos[3] - worldSpacePos[2];
+    vec3 e5 = worldSpacePos[4] - worldSpacePos[2];
+    vec3 e6 = worldSpacePos[5] - worldSpacePos[0];
 
     vec3 Normal = normalize(cross(e1,e2));
-    vec3 LightDir;
-    if (farAway) { LightDir = gLightPos; }
-    else { LightDir = normalize(gLightPos - worldPos[0]); }
+    vec3 lightDirection;
+    if (farAway) { lightDirection = lightPosition; }
+    else { lightDirection = normalize(lightPosition - worldSpacePos[0]); }
 
     // Handle only light facing triangles
-    if (dot(Normal, LightDir) > 0) {
+    if (dot(Normal, lightDirection) > 0) {
 
         Normal = cross(e3,e1);
 
-        if (dot(Normal, LightDir) <= 0) {
-            vec3 StartVertex = worldPos[0];
-            vec3 EndVertex = worldPos[2];
-            EmitOutline(StartVertex, EndVertex);
+        if (dot(Normal, lightDirection) <= 0) {
+            vec3 startPos = worldSpacePos[0];
+            vec3 endPos = worldSpacePos[2];
+            EmitOutline(startPos, endPos);
         }
 
         Normal = cross(e4,e5);
-        if (farAway) { LightDir = gLightPos; }
-        else { LightDir = normalize(gLightPos - worldPos[2]); }
+        if (farAway) { lightDirection = lightPosition; }
+        else { lightDirection = normalize(lightPosition - worldSpacePos[2]); }
 
-        if (dot(Normal, LightDir) <= 0) {
-            vec3 StartVertex = worldPos[2];
-            vec3 EndVertex = worldPos[4];
-            EmitOutline(StartVertex, EndVertex);
+        if (dot(Normal, lightDirection) <= 0) {
+            vec3 startPos = worldSpacePos[2];
+            vec3 endPos = worldSpacePos[4];
+            EmitOutline(startPos, endPos);
         }
 
         Normal = cross(e2,e6);
-        if (farAway) { LightDir = gLightPos; }
-        else { LightDir = normalize(gLightPos - worldPos[4]); }
+        if (farAway) { lightDirection = lightPosition; }
+        else { lightDirection = normalize(lightPosition - worldSpacePos[4]); }
 
-        if (dot(Normal, LightDir) <= 0) {
-            vec3 StartVertex = worldPos[4];
-            vec3 EndVertex = worldPos[0];
-            EmitOutline(StartVertex, EndVertex);
+        if (dot(Normal, lightDirection) <= 0) {
+            vec3 startPos = worldSpacePos[4];
+            vec3 endPos = worldSpacePos[0];
+            EmitOutline(startPos, endPos);
         }
     }
 }
 ";
         private const string extrudeFrag = @"#version 330
 
-out vec4 fragColor;
+out vec4 outColor;
 
 void main()
 {
-    fragColor = vec4(1);
+    outColor = vec4(1);
 }
 ";
 
@@ -139,10 +139,10 @@ in vec3 inPosition;
 in vec3 inNormal;
 
 // Declare an interface block.
-out VS_OUT {
+out _Vertex {
     vec3 position;
 	vec3 normal;
-} vs_out;
+} v;
 
 uniform mat4 mvpMat;
 uniform mat4 modelMat;
@@ -150,9 +150,9 @@ uniform mat4 normalMat; // transpose(inverse(modelMat));
 
 void main() {
     gl_Position = mvpMat * vec4(inPosition, 1.0);
-    vec4 worldPos = modelMat * vec4(inPosition, 1.0);
-	vs_out.position = worldPos.xyz;
-	vs_out.normal = (normalMat * vec4(inNormal, 0)).xyz;
+    vec4 worldSpacePos = modelMat * vec4(inPosition, 1.0);
+	v.position = worldSpacePos.xyz;
+	v.normal = (normalMat * vec4(inNormal, 0)).xyz;
 }
 ";
         private const string blinnPhongFrag = @"// Blinn-Phong-WorldSpace.frag
@@ -187,10 +187,10 @@ uniform vec3 eyePos;
 
 uniform bool blinn = true;
 
-in VS_OUT {
+in _Vertex {
     vec3 position;
 	vec3 normal;
-} fs_in;
+} fsVertex;
 
 void LightUp(vec3 lightDir, vec3 normal, vec3 ePos, vec3 vPos, float shiness, out float diffuse, out float specular) {
     // Diffuse factor
@@ -214,13 +214,13 @@ void LightUp(vec3 lightDir, vec3 normal, vec3 ePos, vec3 vPos, float shiness, ou
 }
 
 void PointLightUp(Light light, out float diffuse, out float specular) {
-    vec3 Distance = light.position - fs_in.position;
+    vec3 Distance = light.position - fsVertex.position;
     vec3 lightDir = normalize(Distance);
-    vec3 normal = normalize(fs_in.normal); 
+    vec3 normal = normalize(fsVertex.normal); 
     float distance = length(Distance);
     float attenuation = 1.0 / (light.constant + light.linear * distance + light.quadratic * distance * distance);
     
-    LightUp(lightDir, normal, eyePos, fs_in.position, material.shiness, diffuse, specular);
+    LightUp(lightDir, normal, eyePos, fsVertex.position, material.shiness, diffuse, specular);
     
     diffuse = diffuse * attenuation;
     specular = specular * attenuation;
@@ -228,13 +228,13 @@ void PointLightUp(Light light, out float diffuse, out float specular) {
 
 void DirectionalLightUp(Light light, out float diffuse, out float specular) {
     vec3 lightDir = normalize(light.direction);
-    vec3 normal = normalize(fs_in.normal); 
-    LightUp(lightDir, normal, eyePos, fs_in.position, material.shiness, diffuse, specular);
+    vec3 normal = normalize(fsVertex.normal); 
+    LightUp(lightDir, normal, eyePos, fsVertex.position, material.shiness, diffuse, specular);
 }
 
 // Note: We assume that spot light's angle ranges from 0 to 180 degrees.
 void SpotLightUp(Light light, out float diffuse, out float specular) {
-    vec3 Distance = light.position - fs_in.position;
+    vec3 Distance = light.position - fsVertex.position;
     vec3 lightDir = normalize(Distance);
     vec3 centerDir = normalize(light.direction);
     float c = dot(lightDir, centerDir);// cut off at this point.
@@ -242,18 +242,18 @@ void SpotLightUp(Light light, out float diffuse, out float specular) {
         diffuse = 0; specular = 0;
     }
     else {
-        vec3 normal = normalize(fs_in.normal); 
+        vec3 normal = normalize(fsVertex.normal); 
         float distance = length(Distance);
         float attenuation = 1.0 / (light.constant + light.linear * distance + light.quadratic * distance * distance);
 
-        LightUp(lightDir, normal, eyePos, fs_in.position, material.shiness, diffuse, specular);
+        LightUp(lightDir, normal, eyePos, fsVertex.position, material.shiness, diffuse, specular);
     
         diffuse = diffuse * attenuation;
         specular = specular * attenuation;
     }
 }
 
-out vec4 fragColor;
+out vec4 outColor;
 
 void main() {
     float diffuse = 0;
@@ -263,7 +263,7 @@ void main() {
 	else if (lightUpRoutine == 2) { SpotLightUp(light, diffuse, specular); }
     else { diffuse = 0; specular = 0; }
 
-	fragColor = vec4(diffuse * light.diffuse * material.diffuse + specular * light.specular * material.specular, 1.0);
+	outColor = vec4(diffuse * light.diffuse * material.diffuse + specular * light.specular * material.specular, 1.0);
 }
 ";
     }

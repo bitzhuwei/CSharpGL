@@ -10,12 +10,12 @@ namespace PointLight
     {
         private const string pointLightVert = @"#version 150 core
 
-in vec3 vPosition;
-in vec3 vNormal;
+in vec3 inPosition;
+in vec3 inNormal;
 
-uniform mat4 projectionMatrix;
-uniform mat4 viewMatrix;
-uniform mat4 modelMatrix;
+uniform mat4 projectionMat;
+uniform mat4 viewMat;
+uniform mat4 modelMat;
 uniform mat4 normalMatrix;
 
 out vec3 passPosition; // position in eye space.
@@ -23,10 +23,10 @@ out vec3 passNormal; // normal in eye space.
 
 void main(void)
 {
-    gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(vPosition, 1.0f);
+    gl_Position = projectionMat * viewMat * modelMat * vec4(inPosition, 1.0f);
 
-    passPosition = (viewMatrix * modelMatrix * vec4(vPosition, 1.0f)).xyz;
-    passNormal = (normalMatrix * vec4(vNormal, 0)).xyz;
+    passPosition = (viewMat * modelMat * vec4(inPosition, 1.0f)).xyz;
+    passNormal = (normalMatrix * vec4(inNormal, 0)).xyz;
 }
 ";
         private const string pointLightFrag = @"#version 150 core
@@ -44,7 +44,7 @@ uniform float quadraticAttenuation = 0.0001;
 in vec3 passPosition;
 in vec3 passNormal;
 
-out vec4 vFragColor;
+out vec4 outColor;
 
 void main(void)
 {
@@ -63,7 +63,7 @@ void main(void)
         specular = pow(specular, shiness) * strength;
     }
 	
-    vFragColor = vec4(((ambientColor + diffuse) * diffuseColor + specular) * lightColor, 1);
+    outColor = vec4(((ambientColor + diffuse) * diffuseColor + specular) * lightColor, 1);
 }
 ";
 

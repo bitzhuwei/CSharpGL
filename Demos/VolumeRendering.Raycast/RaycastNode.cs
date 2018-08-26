@@ -21,8 +21,8 @@ namespace VolumeRendering.Raycast
                 var fs = new FragmentShader(backfaceFrag);
                 var provider = new ShaderArray(vs, fs);
                 var map = new AttributeMap();
-                map.Add("position", BoundingBoxModel.strPosition);
-                map.Add("boundingBox", BoundingBoxModel.strColor);
+                map.Add("inPosition", BoundingBoxModel.strPosition);
+                map.Add("inBoundingBox", BoundingBoxModel.strColor);
                 backfaceBuilder = new RenderMethodBuilder(provider, map, new CullFaceSwitch(CullFaceMode.Front, true));
             }
             {
@@ -30,8 +30,8 @@ namespace VolumeRendering.Raycast
                 var fs = new FragmentShader(raycastingFrag);
                 var provider = new ShaderArray(vs, fs);
                 var map = new AttributeMap();
-                map.Add("position", BoundingBoxModel.strPosition);
-                map.Add("boundingBox", BoundingBoxModel.strColor);
+                map.Add("inPosition", BoundingBoxModel.strPosition);
+                map.Add("inBoundingBox", BoundingBoxModel.strColor);
                 raycastingBuilder = new RenderMethodBuilder(provider, map, new CullFaceSwitch(CullFaceMode.Back, true));
             }
 
@@ -76,7 +76,7 @@ namespace VolumeRendering.Raycast
             {
                 RenderMethod method = this.RenderUnit.Methods[0];// backface.
                 ShaderProgram program = method.Program;
-                program.SetUniform("MVP", mvp);
+                program.SetUniform("mvpMat", mvp);
 
                 // render to texture
                 this.framebuffer.Bind(FramebufferTarget.Framebuffer);
@@ -89,7 +89,7 @@ namespace VolumeRendering.Raycast
             {
                 RenderMethod method = this.RenderUnit.Methods[1];// raycasting.
                 ShaderProgram program = method.Program;
-                program.SetUniform("MVP", mvp);
+                program.SetUniform("mvpMat", mvp);
 
                 method.Render();
             }

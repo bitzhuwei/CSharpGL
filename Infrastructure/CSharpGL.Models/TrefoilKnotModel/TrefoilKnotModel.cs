@@ -133,10 +133,10 @@ namespace CSharpGL
                     array[index++] = position;
                 }
                 //this.Lengths = max - min;
-                vec3 worldPosition = max / 2.0f + min / 2.0f;
+                vec3 worldSpacePosition = max / 2.0f + min / 2.0f;
                 for (int i = 0; i < index; i++)
                 {
-                    array[i] = array[i] - worldPosition;
+                    array[i] = array[i] - worldSpacePosition;
                 }
                 buffer.UnmapBuffer();
             }

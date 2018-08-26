@@ -15,7 +15,7 @@ namespace CSharpGL
 
             switch (camera.CameraType)
             {
-                case CameraType.Perspecitive:
+                case CameraType.Perspective:
                     ((IPerspectiveViewCamera)camera).ZoomCamera(boundingBox);
                     break;
 

@@ -22,10 +22,10 @@ void main() {
 
 uniform vec3 ambientColor;
 
-out vec4 fragColor;
+out vec4 outColor;
 
 void main() {
-	fragColor = vec4(ambientColor, 1.0);
+	outColor = vec4(ambientColor, 1.0);
 }
 ";
 
@@ -36,10 +36,10 @@ in vec3 inPosition;
 in vec3 inNormal;
 
 // Declare an interface block.
-out VS_OUT {
+out _Vertex {
     vec3 position;
 	vec3 normal;
-} vs_out;
+} v;
 
 uniform mat4 mvpMat;
 uniform mat4 modelMat;
@@ -47,9 +47,9 @@ uniform mat4 normalMat; // transpose(inverse(modelMat));
 
 void main() {
     gl_Position = mvpMat * vec4(inPosition, 1.0);
-    vec4 worldPos = modelMat * vec4(inPosition, 1.0);
-	vs_out.position = worldPos.xyz;
-	vs_out.normal = (normalMat * vec4(inNormal, 0)).xyz;
+    vec4 worldSpacePos = modelMat * vec4(inPosition, 1.0);
+	v.position = worldSpacePos.xyz;
+	v.normal = (normalMat * vec4(inNormal, 0)).xyz;
 }
 ";
         private const string blinnPhongFrag = @"// Blinn-Phong-WorldSpace.frag
@@ -84,10 +84,10 @@ uniform vec3 eyePos;
 
 uniform bool blinn = true;
 
-in VS_OUT {
+in _Vertex {
     vec3 position;
 	vec3 normal;
-} fs_in;
+} fsVertex;
 
 void LightUp(vec3 lightDir, vec3 normal, vec3 ePos, vec3 vPos, float shiness, out float diffuse, out float specular) {
     // Diffuse factor
@@ -111,13 +111,13 @@ void LightUp(vec3 lightDir, vec3 normal, vec3 ePos, vec3 vPos, float shiness, ou
 }
 
 void PointLightUp(Light light, out float diffuse, out float specular) {
-    vec3 Distance = light.position - fs_in.position;
+    vec3 Distance = light.position - fsVertex.position;
     vec3 lightDir = normalize(Distance);
-    vec3 normal = normalize(fs_in.normal); 
+    vec3 normal = normalize(fsVertex.normal); 
     float distance = length(Distance);
     float attenuation = 1.0 / (light.constant + light.linear * distance + light.quadratic * distance * distance);
     
-    LightUp(lightDir, normal, eyePos, fs_in.position, material.shiness, diffuse, specular);
+    LightUp(lightDir, normal, eyePos, fsVertex.position, material.shiness, diffuse, specular);
     
     diffuse = diffuse * attenuation;
     specular = specular * attenuation;
@@ -125,13 +125,13 @@ void PointLightUp(Light light, out float diffuse, out float specular) {
 
 void DirectionalLightUp(Light light, out float diffuse, out float specular) {
     vec3 lightDir = normalize(light.direction);
-    vec3 normal = normalize(fs_in.normal); 
-    LightUp(lightDir, normal, eyePos, fs_in.position, material.shiness, diffuse, specular);
+    vec3 normal = normalize(fsVertex.normal); 
+    LightUp(lightDir, normal, eyePos, fsVertex.position, material.shiness, diffuse, specular);
 }
 
 // Note: We assume that spot light's angle ranges from 0 to 180 degrees.
 void SpotLightUp(Light light, out float diffuse, out float specular) {
-    vec3 Distance = light.position - fs_in.position;
+    vec3 Distance = light.position - fsVertex.position;
     vec3 lightDir = normalize(Distance);
     vec3 centerDir = normalize(light.direction);
     float c = dot(lightDir, centerDir);// cut off at this point.
@@ -139,18 +139,18 @@ void SpotLightUp(Light light, out float diffuse, out float specular) {
         diffuse = 0; specular = 0;
     }
     else {
-        vec3 normal = normalize(fs_in.normal); 
+        vec3 normal = normalize(fsVertex.normal); 
         float distance = length(Distance);
         float attenuation = 1.0 / (light.constant + light.linear * distance + light.quadratic * distance * distance);
 
-        LightUp(lightDir, normal, eyePos, fs_in.position, material.shiness, diffuse, specular);
+        LightUp(lightDir, normal, eyePos, fsVertex.position, material.shiness, diffuse, specular);
     
         diffuse = diffuse * attenuation;
         specular = specular * attenuation;
     }
 }
 
-out vec4 fragColor;
+out vec4 outColor;
 
 void main() {
     float diffuse = 0;
@@ -160,7 +160,7 @@ void main() {
 	else if (lightUpRoutine == 2) { SpotLightUp(light, diffuse, specular); }
     else { diffuse = 0; specular = 0; }
 
-	fragColor = vec4(diffuse * light.diffuse * material.diffuse + specular * light.specular * material.specular, 1.0);
+	outColor = vec4(diffuse * light.diffuse * material.diffuse + specular * light.specular * material.specular, 1.0);
 }
 ";
 

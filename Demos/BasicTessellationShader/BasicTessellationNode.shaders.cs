@@ -8,23 +8,23 @@ namespace BasicTessellationShader
 {
     public partial class BasicTessellationNode
     {
-        private const string renderVert = @"#version 410 core                                                                               
+        private const string renderVert = @"#version 410 core
                                                                                                 
-layout (location = 0) in vec3 Position_VS_in;                                                   
-layout (location = 1) in vec2 TexCoord_VS_in;                                                   
-layout (location = 2) in vec3 Normal_VS_in;                                                     
+layout (location = 0) in vec3 inPosition;                                                   
+layout (location = 1) in vec2 inTexCoord;                                                   
+layout (location = 2) in vec3 inNormal;                                                     
                                                                                                 
-uniform mat4 gWorld;                                                                            
+uniform mat4 modelMat;                                                                            
                                                                                                 
-out vec3 WorldPos_CS_in;                                                                        
-out vec2 TexCoord_CS_in;                                                                        
-out vec3 Normal_CS_in;                                                                          
+out vec3 passPos;                                                                        
+out vec2 passTexCoord;                                                                        
+out vec3 passNormal;                                                                          
                                                                                                 
 void main()                                                                                     
 {                                                                                               
-    WorldPos_CS_in = (gWorld * vec4(Position_VS_in, 1.0)).xyz;                                  
-    TexCoord_CS_in = TexCoord_VS_in;                                                            
-    Normal_CS_in   = (gWorld * vec4(Normal_VS_in, 0.0)).xyz;                                    
+    passPos      = (modelMat * vec4(inPosition, 1.0)).xyz;                                  
+    passTexCoord = inTexCoord;                                                            
+    passNormal   = (modelMat * vec4(inNormal, 0.0)).xyz;                                    
 }
 ";
         private const string renderTesc = @"#version 410 core                                                                               
@@ -35,9 +35,9 @@ layout (vertices = 3) out;
 uniform vec3 gEyeWorldPos;                                                                      
                                                                                                 
 // attributes of the input CPs                                                                  
-in vec3 WorldPos_CS_in[];                                                                       
-in vec2 TexCoord_CS_in[];                                                                       
-in vec3 Normal_CS_in[];                                                                         
+in vec3 passPos[];                                                                       
+in vec2 passTexCoord[];                                                                       
+in vec3 passNormal[];                                                                         
                                                                                                 
 // attributes of the output CPs                                                                 
 out vec3 WorldPos_ES_in[];                                                                      
@@ -62,9 +62,9 @@ float GetTessLevel(float Distance0, float Distance1)
 void main()                                                                                     
 {                                                                                               
     // Set the control points of the output patch                                               
-    TexCoord_ES_in[gl_InvocationID] = TexCoord_CS_in[gl_InvocationID];                          
-    Normal_ES_in[gl_InvocationID]   = Normal_CS_in[gl_InvocationID];                            
-    WorldPos_ES_in[gl_InvocationID] = WorldPos_CS_in[gl_InvocationID];                          
+    TexCoord_ES_in[gl_InvocationID] = passTexCoord[gl_InvocationID];                          
+    Normal_ES_in[gl_InvocationID]   = passNormal[gl_InvocationID];                            
+    WorldPos_ES_in[gl_InvocationID] = passPos[gl_InvocationID];                          
                                                                                                 
     // Calculate the distance from the camera to the three control points                       
     float EyeToVertexDistance0 = distance(gEyeWorldPos, WorldPos_ES_in[0]);                     
