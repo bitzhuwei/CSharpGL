@@ -53,7 +53,7 @@ namespace Texture2DArray
 
         private SceneNodeBase GetRootElement()
         {
-            var bmps = new Bitmap[5];
+            var bmps = new Bitmap[3];
             string folder = System.Windows.Forms.Application.StartupPath;
             for (int i = 0; i < bmps.Length; i++)
             {
@@ -107,7 +107,7 @@ namespace Texture2DArray
             if (e.KeyChar == 'n')
             {
                 this.node.LayerIndex++;
-                if (this.node.LayerIndex >= 5)
+                if (this.node.LayerIndex >= 3)
                 {
                     this.node.LayerIndex = 0;
                 }
