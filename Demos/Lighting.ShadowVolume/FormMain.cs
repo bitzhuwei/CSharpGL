@@ -108,8 +108,9 @@ namespace Lighting.ShadowVolume
                 }
             }
             {
-                var parser = new ObjVNFParser(false);
+                var parser = new ObjVNFParser(true);
                 var hanoiTower = new GroupNode();
+                hanoiTower.Name = "hanoiTower Group";
                 ObjItem[] items = HanoiTower.GetDataSource();
                 foreach (var item in items)
                 {
@@ -124,7 +125,7 @@ namespace Lighting.ShadowVolume
                     else
                     {
                         ObjVNFMesh mesh = result.Mesh;
-                        var model = new ObjVNF(mesh);
+                        var model = new AdjacentTriangleModel(mesh);
                         var node = ShadowVolumeNode.Create(model, ObjVNF.strPosition, ObjVNF.strNormal, model.GetSize());
                         node.WorldPosition = item.position;
                         node.Color = item.color;

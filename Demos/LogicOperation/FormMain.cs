@@ -56,6 +56,7 @@ namespace LogicOperation
             {
                 this.cmbLogicOperation.Items.Add(item);
             }
+            this.cmbLogicOperation.SelectedIndex = 12;
         }
 
 

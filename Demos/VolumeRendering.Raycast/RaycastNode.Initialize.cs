@@ -24,7 +24,7 @@ namespace VolumeRendering.Raycast
             string folder = System.Windows.Forms.Application.StartupPath;
             {
                 string tff = "tff.png";
-                this.texTransfer = InitTFF1DTexture(tff);
+                this.texTransfer = InitTransferFuncTexture(tff);
             }
 
             //{
@@ -41,7 +41,7 @@ namespace VolumeRendering.Raycast
                 //{
                 //    bw.Write(volumeData);
                 //}
-                this.texVolume = InitVolume3DTexture(volumeData, width, height, depth);
+                this.texVolume = InitVolumeTexture(volumeData, width, height, depth);
             }
             {
                 RenderMethod method = this.RenderUnit.Methods[1];
@@ -114,7 +114,7 @@ namespace VolumeRendering.Raycast
             return data;
         }
 
-        private Texture InitVolume3DTexture(byte[] data, int width, int height, int depth)
+        private Texture InitVolumeTexture(byte[] data, int width, int height, int depth)
         {
             var storage = new TexImage3D(TexImage3D.Target.Texture3D, GL.GL_RED, width, height, depth, GL.GL_RED, GL.GL_UNSIGNED_BYTE, new ArrayDataProvider<byte>(data));
             //var texture = new Texture(storage,
@@ -152,7 +152,7 @@ namespace VolumeRendering.Raycast
             return texture;
         }
 
-        private Texture InitTFF1DTexture(string filename)
+        private Texture InitTransferFuncTexture(string filename)
         {
             var bitmap = new System.Drawing.Bitmap(filename);
             const int width = 256;

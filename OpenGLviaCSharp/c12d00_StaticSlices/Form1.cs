@@ -78,13 +78,13 @@ namespace c12d00_StaticSlices
             group.RotationAxis = new vec3(-0.8343f, -0.0144f, -0.5512f);
             group.RotationAngle = 179.260315f;
             {
-                Texture tffTexture = InitTFF1DTexture("tff.png");
+                Texture texTransferFunc = InitTransferFuncTexture("tff.png");
                 int width = 128, height = 128, depth = 128;
                 byte[] volumeData = VolumeDataGenerator.GetData(width, height, depth);
-                Texture volumeTexture = InitVolume3DTexture(volumeData, width, height, depth);
+                Texture texVolume = InitVolumeTexture(volumeData, width, height, depth);
 
                 int sliceCount = 512;
-                StaticSlicesNode node = StaticSlicesNode.Create(sliceCount, tffTexture, volumeTexture);
+                StaticSlicesNode node = StaticSlicesNode.Create(sliceCount, texTransferFunc, texVolume);
                 node.Scale = new vec3(1, 1, 225.0f / 256.0f);
                 (new FormProperyGrid(node)).Show();
                 group.Children.Add(node);
@@ -111,7 +111,7 @@ namespace c12d00_StaticSlices
             return data;
         }
 
-        private Texture InitVolume3DTexture(byte[] data, int width, int height, int depth)
+        private Texture InitVolumeTexture(byte[] data, int width, int height, int depth)
         {
             var storage = new TexImage3D(TexImage3D.Target.Texture3D, GL.GL_RED, width, height, depth, GL.GL_RED, GL.GL_UNSIGNED_BYTE, new ArrayDataProvider<byte>(data));
             var texture = new Texture(storage, new MipmapBuilder(),
@@ -128,7 +128,7 @@ namespace c12d00_StaticSlices
             return texture;
         }
 
-        private Texture InitTFF1DTexture(string filename)
+        private Texture InitTransferFuncTexture(string filename)
         {
             var bitmap = new System.Drawing.Bitmap(filename);
             const int width = 256;

@@ -53,8 +53,8 @@
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="OITNode.resolve_lists.cs" />
-    <Compile Include="OITNode.build_lists.cs" />
+    <Compile Include="OITNode.resolveLists.cs" />
+    <Compile Include="OITNode.buildLists.cs" />
     <Compile Include="OITNode.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
