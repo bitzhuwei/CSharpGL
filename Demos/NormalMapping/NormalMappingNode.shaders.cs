@@ -98,7 +98,7 @@ void main()
     vec3 normal = CalcBumpedNormal();
     vec4 lightColor = CalcDirectionalLight(normal);
 
-    vec4 sampledColor = texture2D(texColor, passTexCoord.xy);
+    vec4 sampledColor = texture(texColor, passTexCoord.xy);
     outColor = sampledColor * lightColor;
 }
 ";
