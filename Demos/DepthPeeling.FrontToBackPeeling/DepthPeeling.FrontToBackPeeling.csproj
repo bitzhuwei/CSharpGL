@@ -60,7 +60,6 @@
     <Compile Include="QuadModel.cs" />
     <Compile Include="shaders.3.blend.cs" />
     <Compile Include="shaders.1.init.cs" />
-    <Content Include="front2backPeeling.cpp" />
     <None Include="readme.md" />
     <Compile Include="shaders.2.peel.cs" />
     <Compile Include="shaders.4.final.cs" />

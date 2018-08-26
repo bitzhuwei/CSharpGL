@@ -92,7 +92,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Lighting.ShadowVolume.png" />
-    <Content Include="StencilShadowVolume.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
