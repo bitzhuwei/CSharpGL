@@ -52,6 +52,7 @@ namespace c07d02_ShadowVolume.StencilTest
             var list = new ActionList();
             list.Add(new TransformAction(scene));
             var action = (new ShadowVolumeAction(scene));
+            action.DisplayShadowVolume = true;
             list.Add(action);
             (new FormProperyGrid(action)).Show();
             list.Add(new RenderAction(scene));
@@ -88,6 +89,7 @@ namespace c07d02_ShadowVolume.StencilTest
             var group = new GroupNode();
             var filenames = new string[] { "floor.obj_", "cube.obj_", };
             var colors = new Color[] { Color.Green, Color.White, };
+            var extrude = new bool[] { false, true };
             for (int i = 0; i < filenames.Length; i++)
             {
                 string folder = System.Windows.Forms.Application.StartupPath;
@@ -104,6 +106,7 @@ namespace c07d02_ShadowVolume.StencilTest
                     var model = new AdjacentTriangleModel(mesh);
                     var node = ShadowVolumeNode.Create(model, ObjVNF.strPosition, ObjVNF.strNormal, model.GetSize());
                     node.Color = colors[i].ToVec3();
+                    node.EnableExtrude = extrude[i] ? TwoFlags.BeforeChildren | TwoFlags.Children : TwoFlags.None;
                     node.WorldPosition = new vec3(0, i * 5, 0);
                     node.Name = filename;
                     group.Children.Add(node);
