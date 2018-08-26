@@ -95,10 +95,6 @@
       <Project>{2e22168c-14fb-4b53-bc21-2183a4a40955}</Project>
       <Name>CSharpGL.TestHelpers</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ComputeShader.HelloComputeShader\ComputeShader.HelloComputeShader.csproj">
-      <Project>{9cca31e6-75fc-4803-b637-59946b0c488d}</Project>
-      <Name>ComputeShader.HelloComputeShader</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="flower.png">
