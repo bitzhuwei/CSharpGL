@@ -46,7 +46,7 @@ void main() {
     vec4 c1 = texture(texture1, texCoord);
     vec4 c2 = texture(texture2, passTexCoord);
 
-    outColor = vec4((c0 + c2).xyz / 3, 1);
+    outColor = vec4((c0 + c2).xyz / 2, 1);
 }
 ";
     }
