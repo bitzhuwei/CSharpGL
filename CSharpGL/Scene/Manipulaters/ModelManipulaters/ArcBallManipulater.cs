@@ -153,9 +153,8 @@ namespace CSharpGL
                     mat4 newRotation = glm.rotate(angle, _normalVector);
                     this.totalRotation = newRotation * this.totalRotation;
 
-
                     {
-                        var rotated = this.Rotated;
+                        GLEventHandler<Rotation> rotated = this.Rotated;
                         if (rotated != null)
                         {
                             Quaternion quaternion = this.totalRotation.ToQuaternion();

@@ -273,7 +273,7 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        /// <param name="angleDegree">ANgle in Degree.</param>
+        /// <param name="angleDegree">Angle in Degree.</param>
         /// <param name="v"></param>
         /// <returns></returns>
         public static mat4 rotate(float angleDegree, vec3 v)
