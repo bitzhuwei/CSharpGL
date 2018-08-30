@@ -40,7 +40,7 @@ namespace CSharpGL
         /// <param name="indexBuffer"></param>
         /// <param name="mode"></param>
         /// <param name="firstVertex">要渲染的第一个顶点的位置。<para>Index of first vertex to be rendered.</para></param>
-        /// <param name="vertexCount">要渲染多少个顶点？<para>How many vertexes to be rendered?</para></param>
+        /// <param name="vertexCount">要渲染多少个(顶点次)？<para>How many vertexes to be rendered?</para></param>
         /// <param name="primitiveRestartIndex">usually uint.MaxValue, ushort.MaxValue or byte.MaxValue. 0 means not need to use `glPrimitiveRestartIndex`.</param>
         public DrawElementsCmd(IndexBuffer indexBuffer, DrawMode mode, int firstVertex, int vertexCount, uint primitiveRestartIndex = 0)
         {
