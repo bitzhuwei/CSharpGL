@@ -1,5 +1,6 @@
 ﻿# CSharpGL
 This is the `CSharpGL` library. Compile it and you will get a CSharpGL.dll file.  
+`CSharpGL` is the abstract part of any OpenGL initialization projects.
 # What's in it?
 ## Basic data structures
 Event, matrix, vector, unmanaged array, bounding box, pixel, etc.
