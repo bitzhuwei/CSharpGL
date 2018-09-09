@@ -84,6 +84,18 @@ namespace CSharpGL
         }
 
         /// <summary>
+        /// Make render context in this Canvas the current one in the thread.
+        /// </summary>
+        public void MakeCurrent()
+        {
+            GLRenderContext renderContext = this.renderContext;
+            if (renderContext != null)
+            {
+                renderContext.MakeCurrent();
+            }
+        }
+
+        /// <summary>
         ///
         /// </summary>
         /// <param name="e"></param>
