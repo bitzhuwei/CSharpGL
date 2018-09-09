@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace d00_HelloSoftGL.Properties
+namespace MultipleContexts.Properties
 {
 
 

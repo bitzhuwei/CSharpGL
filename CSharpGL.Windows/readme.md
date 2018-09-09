@@ -1,2 +1,2 @@
 ﻿# CSharpGL.Windows
-This DLL is an implementation of OpenGL on Windows platform.
+This DLL is an initialization of OpenGL on Windows platform.
