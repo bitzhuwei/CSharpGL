@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Drawing;
 
 namespace CSharpGL
 {
@@ -253,9 +254,10 @@ namespace CSharpGL
         /// <summary>
         /// Blit the rendered data to the supplied device context.
         /// </summary>
-        /// <param name="deviceContext">The HDC.</param>
-        public override void Blit(IntPtr deviceContext)
+        /// <param name="graphics">graphics.</param>
+        public override void Blit(Graphics graphics)
         {
+            IntPtr deviceContext = graphics.GetHdc();
             //IntPtr dc = this.DeviceContextHandle;
             //if (dc != IntPtr.Zero || windowHandle != IntPtr.Zero)
             //{
@@ -279,6 +281,7 @@ namespace CSharpGL
                 Win32.BitBlt(deviceContext, 0, 0, this.Width, this.Height,
                     this.dibSection.MemoryDeviceContext, 0, 0, Win32.SRCCOPY);
             }
+            graphics.ReleaseHdc();
         }
 
         /// <summary>

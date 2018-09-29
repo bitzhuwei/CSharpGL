@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 
 namespace CSharpGL
 {
@@ -40,8 +41,8 @@ namespace CSharpGL
         /// <summary>
         /// Blit the rendered data to the supplied device context.
         /// </summary>
-        /// <param name="deviceContext">The HDC.</param>
-        public abstract void Blit(IntPtr deviceContext);
+        /// <param name="graphics">graphics.</param>
+        public abstract void Blit(Graphics graphics);
 
         /// <summary>
         /// Gets the render context handle.
