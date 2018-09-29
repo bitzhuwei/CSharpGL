@@ -34,7 +34,7 @@
             glGenRenderbuffers(1, renderbuffer);
             glBindRenderbuffer(GL.GL_RENDERBUFFER, renderbuffer[0]);
             glRenderbufferStorage(GL.GL_RENDERBUFFER,
-                internalformat,// TODO: add comment about GL.GL_DEPTH24_STENCIL8, GL.GL_RGBA,
+                internalformat, // TODO: add comment about GL.GL_DEPTH24_STENCIL8, GL.GL_RGBA,
                 width, height);
             glBindRenderbuffer(GL.GL_RENDERBUFFER, 0);
         }
