@@ -35,7 +35,7 @@ namespace CSharpGL
                 this.UpdateContextVersion(parameters);
             }
 
-            this.dibSection = new DIBSection(this.DeviceContextHandle, width, height, parameters);
+            //this.dibSection = new DIBSection(this.DeviceContextHandle, width, height, parameters);
         }
 
         /// <summary>
@@ -213,7 +213,7 @@ namespace CSharpGL
         protected override void DisposeUnmanagedResources()
         {
             //  Destroy the internal dc.
-            this.dibSection.Dispose();
+            //this.dibSection.Dispose();
 
             //	Release the device context.
             Win32.ReleaseDC(windowHandle, this.DeviceContextHandle);
@@ -248,41 +248,41 @@ namespace CSharpGL
                 SetWindowPosFlags.SWP_NOOWNERZORDER);
 
             //	Resize dib section.
-            this.dibSection.Resize(width, height, this.Parameters);
+            //this.dibSection.Resize(width, height, this.Parameters);
         }
 
-        /// <summary>
-        /// Blit the rendered data to the supplied device context.
-        /// </summary>
-        /// <param name="graphics">graphics.</param>
-        public override void Blit(Graphics graphics)
-        {
-            IntPtr deviceContext = graphics.GetHdc();
-            //IntPtr dc = this.DeviceContextHandle;
-            //if (dc != IntPtr.Zero || windowHandle != IntPtr.Zero)
-            //{
-            //    //	Swap the buffers.
-            //    Win32.SwapBuffers(dc);
+        ///// <summary>
+        ///// Blit the rendered data to the supplied device context.
+        ///// </summary>
+        ///// <param name="graphics">graphics.</param>
+        //public override void Blit(Graphics graphics)
+        //{
+        //    IntPtr deviceContext = graphics.GetHdc();
+        //    //IntPtr dc = this.DeviceContextHandle;
+        //    //if (dc != IntPtr.Zero || windowHandle != IntPtr.Zero)
+        //    //{
+        //    //    //	Swap the buffers.
+        //    //    Win32.SwapBuffers(dc);
 
-            //    //	Blit the DC (containing the DIB section) to the target DC.
-            //    Win32.BitBlt(deviceContext, 0, 0, this.Width, this.Height, dc, 0, 0, Win32.SRCCOPY);
-            //}
+        //    //    //	Blit the DC (containing the DIB section) to the target DC.
+        //    //    Win32.BitBlt(deviceContext, 0, 0, this.Width, this.Height, dc, 0, 0, Win32.SRCCOPY);
+        //    //}
 
-            if (this.DeviceContextHandle != IntPtr.Zero)
-            {
-                ////  Set the read buffer.
-                //GL.Instance.ReadBuffer(GL.GL_COLOR_ATTACHMENT0);
+        //    if (this.DeviceContextHandle != IntPtr.Zero)
+        //    {
+        //        ////  Set the read buffer.
+        //        //GL.Instance.ReadBuffer(GL.GL_COLOR_ATTACHMENT0);
 
-                //	Read the pixels into the DIB section.
-                GL.Instance.ReadPixels(0, 0, this.Width, this.Height, GL.GL_BGRA,
-                    GL.GL_UNSIGNED_BYTE, this.dibSection.Bits);
+        //        //	Read the pixels into the DIB section.
+        //        GL.Instance.ReadPixels(0, 0, this.Width, this.Height, GL.GL_BGRA,
+        //            GL.GL_UNSIGNED_BYTE, this.dibSection.Bits);
 
-                //	Blit the DC (containing the DIB section) to the target DC.
-                Win32.BitBlt(deviceContext, 0, 0, this.Width, this.Height,
-                    this.dibSection.MemoryDeviceContext, 0, 0, Win32.SRCCOPY);
-            }
-            graphics.ReleaseHdc();
-        }
+        //        //	Blit the DC (containing the DIB section) to the target DC.
+        //        Win32.BitBlt(deviceContext, 0, 0, this.Width, this.Height,
+        //            this.dibSection.MemoryDeviceContext, 0, 0, Win32.SRCCOPY);
+        //    }
+        //    graphics.ReleaseHdc();
+        //}
 
         /// <summary>
         /// Makes the render context current.
@@ -299,13 +299,13 @@ namespace CSharpGL
         protected IntPtr windowHandle = IntPtr.Zero;
 
 
+        /////// <summary>
+        ///////
+        /////// </summary>
+        ////private IntPtr dibSectionDeviceContext = IntPtr.Zero;
         ///// <summary>
         /////
         ///// </summary>
-        //private IntPtr dibSectionDeviceContext = IntPtr.Zero;
-        /// <summary>
-        ///
-        /// </summary>
-        private DIBSection dibSection;
+        //private DIBSection dibSection;
     }
 }

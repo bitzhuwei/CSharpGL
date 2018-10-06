@@ -38,11 +38,11 @@ namespace CSharpGL
         /// </summary>
         public abstract void MakeCurrent();
 
-        /// <summary>
-        /// Blit the rendered data to the supplied device context.
-        /// </summary>
-        /// <param name="graphics">graphics.</param>
-        public abstract void Blit(Graphics graphics);
+        ///// <summary>
+        ///// Blit the rendered data to the supplied device context.
+        ///// </summary>
+        ///// <param name="graphics">graphics.</param>
+        //public abstract void Blit(Graphics graphics);
 
         /// <summary>
         /// Gets the render context handle.
