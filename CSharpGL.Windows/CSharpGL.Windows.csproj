@@ -77,8 +77,6 @@
     <Compile Include="WinGLCanvas\WinGLCanvas.Designer.cs">
       <DependentUpon>WinGLCanvas.cs</DependentUpon>
     </Compile>
-    <Compile Include="RenderContexts\DIBSection.cs" />
-    <Compile Include="RenderContexts\DIBSection.IDisposable.cs" />
     <Compile Include="RenderContexts\WinGLRenderContext.cs" />
     <Compile Include="GLAPI\FontBitmapEntry.cs" />
     <Compile Include="GLAPI\FontBitmaps.cs" />
