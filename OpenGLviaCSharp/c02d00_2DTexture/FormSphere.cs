@@ -44,7 +44,7 @@ namespace c02d00_2DTexture
             scene.RootNode = sphereNode;
             this.scene = scene;
 
-            (new FormProperyGrid(this.sphereNode)).Show();
+            (new FormPropertyGrid(this.sphereNode)).Show();
 
             var list = new ActionList();
             var transformAction = new TransformAction(scene);

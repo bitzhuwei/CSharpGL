@@ -73,7 +73,7 @@ namespace c13d01_QueryObject
                 group.Children.Add(node);
 
                 this.drawModeNode = node;
-                (new FormProperyGrid(node)).Show();
+                (new FormPropertyGrid(node)).Show();
             }
 
             return group;

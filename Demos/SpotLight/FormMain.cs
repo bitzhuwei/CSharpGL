@@ -56,7 +56,7 @@ namespace SpotLight
                 lightNode.WorldPosition = new vec3(1, 1, 1) * 4;
                 var groupNode = new GroupNode(node, lightNode);
                 this.scene.RootNode = groupNode;
-                (new FormProperyGrid(groupNode)).Show();
+                (new FormPropertyGrid(groupNode)).Show();
             }
 
             var list = new ActionList();

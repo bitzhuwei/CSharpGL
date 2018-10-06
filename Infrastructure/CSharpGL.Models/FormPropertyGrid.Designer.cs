@@ -1,6 +1,6 @@
 ﻿namespace CSharpGL
 {
-    partial class FormProperyGrid
+    partial class FormPropertyGrid
     {
         /// <summary>
         /// Required designer variable.

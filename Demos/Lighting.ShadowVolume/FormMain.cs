@@ -53,7 +53,7 @@ namespace Lighting.ShadowVolume
             list.Add(new TransformAction(scene));
             var action = (new ShadowVolumeAction(scene));
             list.Add(action);
-            (new FormProperyGrid(action)).Show();
+            (new FormPropertyGrid(action)).Show();
             list.Add(new RenderAction(scene));
             this.actionList = list;
 

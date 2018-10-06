@@ -33,7 +33,7 @@ namespace c05d00_AmbientDiffuseSpecular
             var up = new vec3(0, 1, 0);
             var camera = new Camera(position, center, up, CameraType.Perspective, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
             this.scene = new Scene(camera);
-            (new FormProperyGrid(this.scene)).Show();
+            (new FormPropertyGrid(this.scene)).Show();
             {
                 var light = new DirectionalLight(new vec3(1, 1, 1));
                 this.scene.Lights.Add(light);
@@ -54,7 +54,7 @@ namespace c05d00_AmbientDiffuseSpecular
                 float max = node.ModelSize.max();
                 node.Scale *= 16.0f / max;
                 this.scene.RootNode = node;
-                (new FormProperyGrid(node)).Show();
+                (new FormPropertyGrid(node)).Show();
             }
 
             var list = new ActionList();

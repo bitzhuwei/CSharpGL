@@ -71,7 +71,7 @@ namespace c05d01_TangentSpace
                 var model = new ObjVNF(mesh);
                 model.DumpObjFile("vnf" + filename, "sphere");
                 var sphereNode = ObjVNFNode.Create(mesh);
-                (new FormProperyGrid(sphereNode)).Show();
+                (new FormPropertyGrid(sphereNode)).Show();
                 group.Children.Add(sphereNode);
                 {
                     var planeNode = PlaneNode.Create();

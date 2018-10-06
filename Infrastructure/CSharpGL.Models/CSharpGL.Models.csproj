@@ -64,11 +64,11 @@
     <Compile Include="Faces\Edge.cs" />
     <Compile Include="Faces\Face.cs" />
     <Compile Include="Ground\GroundNode.cs" />
-    <Compile Include="FormProperyGrid.cs">
+    <Compile Include="FormPropertyGrid.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormProperyGrid.Designer.cs">
-      <DependentUpon>FormProperyGrid.cs</DependentUpon>
+    <Compile Include="FormPropertyGrid.Designer.cs">
+      <DependentUpon>FormPropertyGrid.cs</DependentUpon>
     </Compile>
     <Compile Include="HanoiTower\HanoiTower.cs" />
     <Compile Include="HanoiTower\AnnulusModel.cs" />
@@ -140,8 +140,8 @@
     <Content Include="Teapot\Teapot.png" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="FormProperyGrid.resx">
-      <DependentUpon>FormProperyGrid.cs</DependentUpon>
+    <EmbeddedResource Include="FormPropertyGrid.resx">
+      <DependentUpon>FormPropertyGrid.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

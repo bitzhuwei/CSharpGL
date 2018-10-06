@@ -50,7 +50,7 @@ namespace WorldSpaceBillboard
             var transformAction = new TransformAction(scene);
             list.Add(transformAction);
             var billboardSortAction = new BillboardSortAction(scene.RootNode, scene.Camera);
-            (new FormProperyGrid(billboardSortAction)).Show();
+            (new FormPropertyGrid(billboardSortAction)).Show();
             list.Add(billboardSortAction);
             var renderAction = new RenderAction(scene);
             list.Add(renderAction);

@@ -86,7 +86,7 @@ namespace c12d00_StaticSlices
                 int sliceCount = 512;
                 StaticSlicesNode node = StaticSlicesNode.Create(sliceCount, tffTexture, volumeTexture);
                 node.Scale = new vec3(1, 1, 225.0f / 256.0f);
-                (new FormProperyGrid(node)).Show();
+                (new FormPropertyGrid(node)).Show();
                 group.Children.Add(node);
             }
             {

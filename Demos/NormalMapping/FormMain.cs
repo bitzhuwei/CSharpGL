@@ -39,7 +39,7 @@ namespace NormalMapping
                 this.rootNode = node;
                 this.scene.RootNode = node;
 
-                (new FormProperyGrid(node)).Show();
+                (new FormPropertyGrid(node)).Show();
             }
 
             var list = new ActionList();

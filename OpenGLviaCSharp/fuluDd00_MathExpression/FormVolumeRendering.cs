@@ -57,7 +57,7 @@ namespace fuluDd00_MathExpression
                 manipulater.Rotated += manipulater_Rotated;
                 var node = RaycastNode.Create();
                 this.scene.RootNode = node;
-                (new FormProperyGrid(node)).Show();
+                (new FormPropertyGrid(node)).Show();
             }
 
             var list = new ActionList();
