@@ -110,7 +110,7 @@ namespace SpotLight
                 var node = this.node as SpotLightNode;
                 if (node != null)
                 {
-                    node.DiffuseColor = color.ToVec3();
+                    node.MaterialColor = color.ToVec3();
                     this.lblColor.Text = string.Format("{0}", color);
                     this.lblColorDisply.BackColor = color;
                 }

@@ -32,9 +32,9 @@ void main(void)
         private const string spotLightFrag = @"#version 150 core
 
 uniform float shiness = 6;
-uniform float strength = 1;
+uniform float strength = 0.1;
 uniform vec3 ambientColor = vec3(0.2, 0.2, 0.2);
-uniform vec3 diffuseColor = vec3(1, 0.8431, 0);
+uniform vec3 materialColor = vec3(1, 0.8431, 0);
 uniform vec3 lightPosition = vec3(0, 0, 0); // light's position in eye space.
 uniform vec3 lightColor = vec3(1, 1, 1); // white light.
 uniform float constantAttenuation = 1.0;
@@ -73,11 +73,11 @@ void main(void)
             specular *= attenuationAmount;
 	    }
 
-        outColor = vec4(((ambientColor + diffuse) * diffuseColor + specular) * lightColor, 1);
+        outColor = vec4(ambientColor * materialColor + diffuse * materialColor * lightColor + specular * lightColor, 1);
     }
 	else
     {
-        outColor = vec4((ambientColor * diffuseColor) * lightColor, 1.0);
+        outColor = vec4(ambientColor * materialColor, 1.0);
     }
 }
 ";
