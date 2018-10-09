@@ -22,7 +22,7 @@ namespace SpotLight
         private const string lightPosition = "lightPosition";
         private const string lightColor = "lightColor";
         private const string spotDirection = "spotDirection";
-        private const string diffuseColor = "diffuseColor";
+        private const string materialColor = "materialColor";
         private const string ambientColor = "ambientColor";
         //private const string constantAttenuation = "constantAttenuation";
         //private const string linearAttenuation = "linearAttenuation";
@@ -98,7 +98,7 @@ namespace SpotLight
         {
         }
 
-        public vec3 DiffuseColor
+        public vec3 MaterialColor
         {
             get
             {
@@ -107,7 +107,7 @@ namespace SpotLight
                 {
                     RenderMethod method = this.RenderUnit.Methods[0];
                     ShaderProgram program = method.Program;
-                    program.GetUniformValue(diffuseColor, out value);
+                    program.GetUniformValue(materialColor, out value);
                 }
 
                 return value;
@@ -118,7 +118,7 @@ namespace SpotLight
                 {
                     RenderMethod method = this.RenderUnit.Methods[0];
                     ShaderProgram program = method.Program;
-                    program.SetUniform(diffuseColor, value);
+                    program.SetUniform(materialColor, value);
                 }
             }
         }

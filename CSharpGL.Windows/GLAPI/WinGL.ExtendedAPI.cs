@@ -7,7 +7,6 @@ namespace CSharpGL
 {
     public partial class WinGL
     {
-
         public override Delegate GetDelegateFor(string functionName, Type functionDeclaration)
         {
             // ftlPhysicsGuy - Better way
