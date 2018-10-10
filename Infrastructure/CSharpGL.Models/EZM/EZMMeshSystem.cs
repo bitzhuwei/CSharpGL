@@ -36,8 +36,8 @@ namespace CSharpGL.EZM
                     if (attr != null) { result.AssetVersion = attr.Value; }
                 }
                 {
-                    var skeletionRoot = xElement.ElementElement("Skeletons");
-                    if (xSkeletions != null)
+                    var skeletionRoot = xElement.Element("Skeletons");
+                    if (skeletionRoot != null)
                     {
                         var xSkeletons = skeletionRoot.Elements("Skeleton");
                         var skeletons = new EZMSkeleton[xSkeletons.Count()];
@@ -50,7 +50,7 @@ namespace CSharpGL.EZM
                     }
                 }
                 {
-                    var animationRoot = xElement.ElementElement("Animations");
+                    var animationRoot = xElement.Element("Animations");
                     if (animationRoot != null)
                     {
                         var xAnimations = animationRoot.Elements("Animation");
@@ -64,7 +64,7 @@ namespace CSharpGL.EZM
                     }
                 }
                 {
-                    var materialsRoot = xElement.ElementElement("Materials");
+                    var materialsRoot = xElement.Element("Materials");
                     if (materialsRoot != null)
                     {
                         var xMaterials = materialsRoot.Elements("Maaterial");
@@ -78,7 +78,7 @@ namespace CSharpGL.EZM
                     }
                 }
                 {
-                    var meshesRoot = xElement.ElementElement("Meshes");
+                    var meshesRoot = xElement.Element("Meshes");
                     if (meshesRoot != null)
                     {
                         var xMeshes = meshesRoot.Elements("Mesh");
