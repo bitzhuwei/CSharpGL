@@ -24,6 +24,24 @@ namespace CSharpGL.EZM
                 result.Version = xElement.Attribute("mesh_system_version").Value;
                 result.AssetVersion = xElement.Attribute("mesh_system_asset_version").Value;
                 {
+                    var xSkeletions = xElement.Element("Skeletions").Elements("Skeletion");
+                    var skeletions = new EZMSkeleton[xSkeletions.Count()];
+                    int index = 0;
+                    foreach (var xSkeletion in xSkeletions)
+                    {
+                        skeletions[index++] = EZMSkeleton.Parse(xSkeletion);
+                    }
+                }
+                {
+                    var xAnimations = xElement.Element("Animations").Elements("Animation");
+                    var animations = new EZMAnimation[xAnimations.Count()];
+                    int index = 0;
+                    foreach (var xAnimation in xAnimations)
+                    {
+                        animations[index++] = EZMAnimation.Parse(xAnimation);
+                    }
+                }
+                {
                     var xMaterials = xElement.Element("Materials").Elements("Maaterial");
                     var materials = new EZMMaterial[xMaterials.Count()];
                     int index = 0;
@@ -55,6 +73,10 @@ namespace CSharpGL.EZM
         public string Version { get; private set; }
 
         public string AssetVersion { get; private set; }
+
+        public EZMSkeleton[] Skeletions { get; private set; }
+
+        public EZMAnimation[] Animations { get; private set; }
 
         public EZMMaterial[] Materials { get; private set; }
 
