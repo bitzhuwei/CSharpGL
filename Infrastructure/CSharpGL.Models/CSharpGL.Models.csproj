@@ -46,6 +46,12 @@
     <Compile Include="Axis\AxisModel.cs" />
     <Compile Include="Axis\AxisNode.cs" />
     <Compile Include="Axis\AxisNode.shaders.cs" />
+    <Compile Include="EZM\EZMFile.cs" />
+    <Compile Include="EZM\EZMMaterial.cs" />
+    <Compile Include="EZM\EZMMesh.cs" />
+    <Compile Include="EZM\EZMMeshSection.cs" />
+    <Compile Include="EZM\EZMMeshSystem.cs" />
+    <Compile Include="EZM\EZMVertexbuffer.cs" />
     <Compile Include="HighlightPick\HighlightGeometryModel.cs" />
     <Compile Include="HighlightPick\HighlightGeometryNode.shaders.cs" />
     <Compile Include="HighlightPick\HighlightGeometryNode.cs" />
