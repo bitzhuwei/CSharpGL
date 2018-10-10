@@ -8,7 +8,7 @@ using CSharpGL.EZM;
 
 namespace CSharpGL
 {
-    class EZMFile
+    public class EZMFile
     {
         public static EZMFile Load(string filename)
         {

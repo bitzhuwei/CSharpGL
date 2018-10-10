@@ -6,7 +6,7 @@ using System.Xml.Linq;
 
 namespace CSharpGL.EZM
 {
-    class EZMMesh
+    public class EZMMesh
     {
         // <Mesh name="him" skeleton="null" submesh_count="5">
         /// <summary>
@@ -20,9 +20,18 @@ namespace CSharpGL.EZM
             if (xElement.Name == "Mesh")
             {
                 result = new EZMMesh();
-                result.Name = xElement.Attribute("name").Value;
+                {
+                    var attr = xElement.Attribute("name");
+                    if (attr != null) { result.Name = attr.Value; }
+                }
                 result.Skeleton = xElement.Attribute("skeleton").Value;
-                result.Vertexbuffer = EZMVertexbuffer.Parse(xElement.Element("vertexbuffer"));
+                {
+                    var attr = xElement.Attribute("skeleton");
+                    if (attr != null) { result.Name = attr.Value; }
+                }
+                {
+                    result.Vertexbuffer = EZMVertexbuffer.Parse(xElement.Element("vertexbuffer"));
+                }
                 {
                     var xMeshSections = xElement.Elements("MeshSection");
                     var meshSections = new EZMMeshSection[xMeshSections.Count()];

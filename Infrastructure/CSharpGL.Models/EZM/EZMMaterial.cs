@@ -6,7 +6,7 @@ using System.Xml.Linq;
 
 namespace CSharpGL.EZM
 {
-    class EZMMaterial
+    public class EZMMaterial
     {
         // <Material name="character_anim:eyeBallM" meta_data="diffuse=%20upBodyC.jpg%20"/>
         /// <summary>
@@ -20,8 +20,14 @@ namespace CSharpGL.EZM
             if (xElement.Name == "Material")
             {
                 result = new EZMMaterial();
-                result.Name = xElement.Attribute("name").Value;
-                result.MataData = xElement.Attribute("meta_data").Value;
+                {
+                    var name = xElement.Attribute("name");
+                    if (name != null) { result.Name = name.Value; }
+                }
+                {
+                    var meta_data = xElement.Attribute("meta_data");
+                    if (meta_data != null) { result.MataData = meta_data.Value; }
+                }
             }
 
             return result;

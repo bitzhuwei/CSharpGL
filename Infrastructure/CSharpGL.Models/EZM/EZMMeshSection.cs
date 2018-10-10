@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CSharpGL.EZM
 {
-    class EZMMeshSection
+    public class EZMMeshSection
     {
         // <MeshSection material="character_anim:headM" ctype="fff fff ff ff ff ffff hhhh" semantic="position normal texcoord1 texcoord2 texcoord3 blendweights blendindices">
         /// <summary>
@@ -13,16 +13,27 @@ namespace CSharpGL.EZM
         /// </summary>
         /// <param name="xMeshSection"></param>
         /// <returns></returns>
-        internal static EZMMeshSection Parse(System.Xml.Linq.XElement xElement)
+        public static EZMMeshSection Parse(System.Xml.Linq.XElement xElement)
         {
             EZMMeshSection result = null;
             if (xElement.Name == "MeshSection")
             {
                 result = new EZMMeshSection();
-                result.Material = xElement.Attribute("material").Value;
-                result.Ctype = xElement.Attribute("ctype").Value;
-                result.Semantic = xElement.Attribute("semantic").Value;
-                result.Indexbuffer = ParseIndexbuffer(xElement.Element("indexbuffer"));
+                {
+                    var attr = xElement.Attribute("material");
+                    if (attr != null) { result.Material = attr.Value; }
+                }
+                {
+                    var attr = xElement.Attribute("ctype");
+                    if (attr != null) { result.Ctype = attr.Value; }
+                }
+                {
+                    var attr = xElement.Attribute("semantic");
+                    if (attr != null) { result.Semantic = attr.Value; }
+                }
+                {
+                    result.Indexbuffer = ParseIndexbuffer(xElement.Element("indexbuffer"));
+                }
             }
 
             return result;
@@ -34,10 +45,10 @@ namespace CSharpGL.EZM
             uint[] result = null;
             if (xElement.Name == "indexbuffer")
             {
-                int triangleCount = int.Parse(xElement.Attribute("triangle_count").Value);
-                result = new uint[triangleCount * 3];
+                //int triangleCount = int.Parse(xElement.Attribute("triangle_count").Value);
                 string[] parts = xElement.Value.Split(separators, StringSplitOptions.RemoveEmptyEntries);
                 if (parts.Length != result.Length) { throw new Exception(string.Format("EZMMeshSection: parts [{0}] != result [{1}]", parts.Length, result.Length)); }
+                result = new uint[parts.Length];
                 for (int i = 0; i < result.Length; i++)
                 {
                     result[i] = uint.Parse(parts[i]);

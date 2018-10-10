@@ -6,7 +6,7 @@ using System.Text;
 
 namespace CSharpGL.EZM
 {
-    class EZMVertexbuffer
+    public class EZMVertexbuffer
     {
         private static readonly char[] separators = new char[] { ' ', ',' };
         // <vertexbuffer count="13114" ctype="fff fff ff ff ff ffff hhhh" semantic="position normal texcoord1 texcoord2 texcoord3 blendweights blendindices">
@@ -15,7 +15,7 @@ namespace CSharpGL.EZM
         /// </summary>
         /// <param name="xElement"></param>
         /// <returns></returns>
-        internal static unsafe EZMVertexbuffer Parse(System.Xml.Linq.XElement xElement)
+        public static unsafe EZMVertexbuffer Parse(System.Xml.Linq.XElement xElement)
         {
             EZMVertexbuffer result = null;
             if (xElement.Name == "vertexbuffer")
@@ -93,7 +93,7 @@ namespace CSharpGL.EZM
         public Passbuffer[] Buffers { get; private set; }
     }
 
-    class Passbuffer
+    public class Passbuffer
     {
         public readonly PassType type;
 
@@ -154,7 +154,7 @@ namespace CSharpGL.EZM
         }
     }
 
-    enum PassType
+    public enum PassType
     {
         vec4,
         vec3,

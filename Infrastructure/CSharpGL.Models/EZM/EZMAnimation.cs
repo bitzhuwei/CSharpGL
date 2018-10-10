@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CSharpGL.EZM
 {
-    class EZMAnimation
+    public class EZMAnimation
     {
         // <Animation name="Take 001" trackcount="60" framecount="61" duration="1.199999928" dtime="4">
         /// <summary>
@@ -13,15 +13,24 @@ namespace CSharpGL.EZM
         /// </summary>
         /// <param name="xAnimation"></param>
         /// <returns></returns>
-        internal static EZMAnimation Parse(System.Xml.Linq.XElement xElement)
+        public static EZMAnimation Parse(System.Xml.Linq.XElement xElement)
         {
             EZMAnimation result = null;
             if (xElement.Name == "Animation")
             {
                 result = new EZMAnimation();
-                result.Name = xElement.Attribute("name").Value;
-                result.duration = float.Parse(xElement.Attribute("duration").Value);
-                result.dtime = float.Parse(xElement.Attribute("dtime").Value);
+                {
+                    var name = xElement.Attribute("name");
+                    if (name != null) { result.Name = name.Value; }
+                }
+                {
+                    var duration = xElement.Attribute("duration");
+                    if (duration != null) { result.duration = float.Parse(duration.Value); }
+                }
+                {
+                    var dtime = xElement.Attribute("dtime");
+                    if (dtime != null) { result.dtime = float.Parse(dtime.Value); }
+                }
                 {
                     var xAnimTracks = xElement.Elements("AnimTrack");
                     var animTracks = new EZMAnimTrack[xAnimTracks.Count()];

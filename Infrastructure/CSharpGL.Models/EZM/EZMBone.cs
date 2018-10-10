@@ -5,42 +5,61 @@ using System.Text;
 
 namespace CSharpGL.EZM
 {
-    class EZMBone
+    public class EZMBone
     {
-        // <Bone name="RootNode" orientation="0 0 0 1" position="0 0 0" scale="1 1 1"/>
+        // <Bone name="RootNode" parent="xx" orientation="0 0 0 1" position="0 0 0" scale="1 1 1"/>
         /// <summary>
         /// 
         /// </summary>
         /// <param name="xBone"></param>
         /// <returns></returns>
-        internal static EZMBone Parse(System.Xml.Linq.XElement xElement)
+        public static EZMBone Parse(System.Xml.Linq.XElement xElement)
         {
             EZMBone result = null;
             if (xElement.Name == "Bone")
             {
                 result = new EZMBone();
-                result.Name = xElement.Attribute("name").Value;
                 {
-                    string[] parts = xElement.Attribute("orientation").Value.Split(' ');
-                    float x = float.Parse(parts[0]);
-                    float y = float.Parse(parts[1]);
-                    float z = float.Parse(parts[2]);
-                    float w = float.Parse(parts[3]);
-                    result.Orientation = new vec4(x, y, z, w);
+                    var name = xElement.Attribute("name");
+                    if (name != null) { result.Name = name.Value; }
                 }
                 {
-                    string[] parts = xElement.Attribute("position").Value.Split(' ');
-                    float x = float.Parse(parts[0]);
-                    float y = float.Parse(parts[1]);
-                    float z = float.Parse(parts[2]);
-                    result.Position = new vec3(x, y, z);
+                    var parent = xElement.Attribute("parent");
+                    if (parent != null) { result.Parent = parent.Value; }
                 }
                 {
-                    string[] parts = xElement.Attribute("scale").Value.Split(' ');
-                    float x = float.Parse(parts[0]);
-                    float y = float.Parse(parts[1]);
-                    float z = float.Parse(parts[2]);
-                    result.Scale = new vec3(x, y, z);
+                    var orientation = xElement.Attribute("orientation");
+                    if (orientation != null)
+                    {
+                        string[] parts = orientation.Value.Split(' ');
+                        float x = float.Parse(parts[0]);
+                        float y = float.Parse(parts[1]);
+                        float z = float.Parse(parts[2]);
+                        float w = float.Parse(parts[3]);
+                        result.Orientation = new vec4(x, y, z, w);
+                    }
+                }
+                {
+                    var position = xElement.Attribute("position");
+                    if (position != null)
+                    {
+                        string[] parts = position.Value.Split(' ');
+                        float x = float.Parse(parts[0]);
+                        float y = float.Parse(parts[1]);
+                        float z = float.Parse(parts[2]);
+                        result.Position = new vec3(x, y, z);
+                    }
+                }
+                {
+                    var scale = xElement.Attribute("scale");
+                    if (scale != null)
+                    {
+                        string[] parts = scale.Value.Split(' ');
+                        float x = float.Parse(parts[0]);
+                        float y = float.Parse(parts[1]);
+                        float z = float.Parse(parts[2]);
+                        result.Scale = new vec3(x, y, z);
+                    }
                 }
             }
 
@@ -48,6 +67,8 @@ namespace CSharpGL.EZM
         }
 
         public string Name { get; private set; }
+
+        public string Parent { get; private set; }
 
         public vec4 Orientation { get; private set; }
 

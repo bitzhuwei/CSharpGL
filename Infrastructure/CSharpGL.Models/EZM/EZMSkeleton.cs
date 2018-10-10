@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CSharpGL.EZM
 {
-    class EZMSkeleton
+    public class EZMSkeleton
     {
         // <Skeleton name="skeleton" count="60">
         /// <summary>
@@ -13,13 +13,16 @@ namespace CSharpGL.EZM
         /// </summary>
         /// <param name="xSkeletion"></param>
         /// <returns></returns>
-        internal static EZMSkeleton Parse(System.Xml.Linq.XElement xElement)
+        public static EZMSkeleton Parse(System.Xml.Linq.XElement xElement)
         {
             EZMSkeleton result = null;
             if (xElement.Name == "Skeleton")
             {
                 result = new EZMSkeleton();
-                result.Name = xElement.Attribute("name").Value;
+                {
+                    var attr = xElement.Attribute("name");
+                    if (attr != null) { result.Name = attr.Value; }
+                }
                 {
                     var xBones = xElement.Elements("Bone");
                     var bones = new EZMBone[xBones.Count()];

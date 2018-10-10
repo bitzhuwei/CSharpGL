@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CSharpGL.EZM
 {
-    class EZMMeshSystem
+    public class EZMMeshSystem
     {
         // <MeshSystem asset_name="dude.fbx" asset_info="null" mesh_system_version="1" mesh_system_asset_version="0">
         /// <summary>
@@ -13,53 +13,83 @@ namespace CSharpGL.EZM
         /// </summary>
         /// <param name="xElement"></param>
         /// <returns></returns>
-        internal static EZMMeshSystem Parse(System.Xml.Linq.XElement xElement)
+        public static EZMMeshSystem Parse(System.Xml.Linq.XElement xElement)
         {
             EZMMeshSystem result = null;
             if (xElement.Name == "MeshSystem")
             {
                 result = new EZMMeshSystem();
-                result.AssetName = xElement.Attribute("asset_name").Value;
-                result.AssetInfo = xElement.Attribute("asset_info").Value;
-                result.Version = xElement.Attribute("mesh_system_version").Value;
-                result.AssetVersion = xElement.Attribute("mesh_system_asset_version").Value;
                 {
-                    var xSkeletions = xElement.Element("Skeletions").Elements("Skeletion");
-                    var skeletions = new EZMSkeleton[xSkeletions.Count()];
-                    int index = 0;
-                    foreach (var xSkeletion in xSkeletions)
+                    var attr = xElement.Attribute("asset_name");
+                    if (attr != null) { result.AssetName = attr.Value; }
+                }
+                {
+                    var attr = xElement.Attribute("asset_info");
+                    if (attr != null) { result.AssetInfo = attr.Value; }
+                }
+                {
+                    var attr = xElement.Attribute("mesh_system_version");
+                    if (attr != null) { result.Version = attr.Value; }
+                }
+                {
+                    var attr = xElement.Attribute("mesh_system_asset_version");
+                    if (attr != null) { result.AssetVersion = attr.Value; }
+                }
+                {
+                    var skeletionRoot = xElement.ElementElement("Skeletons");
+                    if (xSkeletions != null)
                     {
-                        skeletions[index++] = EZMSkeleton.Parse(xSkeletion);
+                        var xSkeletons = skeletionRoot.Elements("Skeleton");
+                        var skeletons = new EZMSkeleton[xSkeletons.Count()];
+                        int index = 0;
+                        foreach (var xSkeletion in xSkeletons)
+                        {
+                            skeletons[index++] = EZMSkeleton.Parse(xSkeletion);
+                        }
+                        result.Skeletions = skeletons;
                     }
                 }
                 {
-                    var xAnimations = xElement.Element("Animations").Elements("Animation");
-                    var animations = new EZMAnimation[xAnimations.Count()];
-                    int index = 0;
-                    foreach (var xAnimation in xAnimations)
+                    var animationRoot = xElement.ElementElement("Animations");
+                    if (animationRoot != null)
                     {
-                        animations[index++] = EZMAnimation.Parse(xAnimation);
+                        var xAnimations = animationRoot.Elements("Animation");
+                        var animations = new EZMAnimation[xAnimations.Count()];
+                        int index = 0;
+                        foreach (var xAnimation in xAnimations)
+                        {
+                            animations[index++] = EZMAnimation.Parse(xAnimation);
+                        }
+                        result.Animations = animations;
                     }
                 }
                 {
-                    var xMaterials = xElement.Element("Materials").Elements("Maaterial");
-                    var materials = new EZMMaterial[xMaterials.Count()];
-                    int index = 0;
-                    foreach (var xMaterial in xMaterials)
+                    var materialsRoot = xElement.ElementElement("Materials");
+                    if (materialsRoot != null)
                     {
-                        materials[index++] = EZMMaterial.Parse(xMaterial);
+                        var xMaterials = materialsRoot.Elements("Maaterial");
+                        var materials = new EZMMaterial[xMaterials.Count()];
+                        int index = 0;
+                        foreach (var xMaterial in xMaterials)
+                        {
+                            materials[index++] = EZMMaterial.Parse(xMaterial);
+                        }
+                        result.Materials = materials;
                     }
-                    result.Materials = materials;
                 }
                 {
-                    var xMeshes = xElement.Element("Meshes").Elements("Mesh");
-                    var meshes = new EZMMesh[xMeshes.Count()];
-                    int index = 0;
-                    foreach (var xMesh in xMeshes)
+                    var meshesRoot = xElement.ElementElement("Meshes");
+                    if (meshesRoot != null)
                     {
-                        meshes[index++] = EZMMesh.Parse(xMesh);
+                        var xMeshes = meshesRoot.Elements("Mesh");
+                        var meshes = new EZMMesh[xMeshes.Count()];
+                        int index = 0;
+                        foreach (var xMesh in xMeshes)
+                        {
+                            meshes[index++] = EZMMesh.Parse(xMesh);
+                        }
+                        result.Meshes = meshes;
                     }
-                    result.Meshes = meshes;
                 }
             }
 
