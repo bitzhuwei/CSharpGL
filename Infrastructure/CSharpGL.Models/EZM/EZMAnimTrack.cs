@@ -7,8 +7,6 @@ namespace CSharpGL.EZM
 {
     public class EZMAnimTrack
     {
-        private static readonly char[] separators = new char[] { ' ', ',' };
-
         // <AnimTrack name="RootNode" count="61" has_scale="true">
         /// <summary>
         /// 
@@ -34,7 +32,7 @@ namespace CSharpGL.EZM
                     if (h != null) { hasScale = bool.Parse(h.Value); }
                 }
                 {
-                    string[] parts = xElement.Value.Split(separators, StringSplitOptions.RemoveEmptyEntries);
+                    string[] parts = xElement.Value.Split(Separator.separators, StringSplitOptions.RemoveEmptyEntries);
                     var values = new float[parts.Length];
                     for (int i = 0; i < parts.Length; i++)
                     {
@@ -51,5 +49,9 @@ namespace CSharpGL.EZM
 
         public float[] Values { get; private set; }
 
+        public override string ToString()
+        {
+            return string.Format("{0} {1} Values.", this.Name, this.Values.Count);
+        }
     }
 }

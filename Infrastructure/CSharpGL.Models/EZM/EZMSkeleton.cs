@@ -41,5 +41,10 @@ namespace CSharpGL.EZM
         public string Name { get; private set; }
 
         public EZMBone[] Bones { get; private set; }
+
+        public override string ToString()
+        {
+            return string.Format("{0} {1} bones", this.Name, this.Bones.Length);
+        }
     }
 }

@@ -8,7 +8,6 @@ namespace CSharpGL.EZM
 {
     public class EZMVertexbuffer
     {
-        private static readonly char[] separators = new char[] { ' ', ',' };
         // <vertexbuffer count="13114" ctype="fff fff ff ff ff ffff hhhh" semantic="position normal texcoord1 texcoord2 texcoord3 blendweights blendindices">
         /// <summary>
         /// 
@@ -26,9 +25,10 @@ namespace CSharpGL.EZM
                 result.Semantics = xElement.Attribute("semantic").Value.Split(' ');
                 if (result.Ctypes.Length != result.Semantics.Length) { throw new Exception("EZMVertexbuffer.Ctypes.Length != EZMVertexbuffer.Semantics.Length"); }
                 int groupSize = result.Ctypes.Length; // how many elements in a group.
-                string[] parts = xElement.Value.Split(separators, StringSplitOptions.RemoveEmptyEntries);
+                string[] parts = xElement.Value.Split(Separator.separators, StringSplitOptions.RemoveEmptyEntries);
+                var lineLength = result.Ctypes[0].Length;
                 var charCounts = new int[groupSize];
-                for (int i = 1; i < groupSize; i++) { charCounts[i] = charCounts[i - 1] + result.Ctypes[i - 1].Length; }
+                for (int i = 1; i < groupSize; i++) { charCounts[i] = charCounts[i - 1] + result.Ctypes[i - 1].Length; lineLength += result.Ctypes[i].Length; }
                 var buffers = new Passbuffer[groupSize];
                 var pointers = new void*[groupSize];
                 for (int i = 0; i < groupSize; i++)
@@ -36,46 +36,47 @@ namespace CSharpGL.EZM
                     int index = charCounts[i];
                     buffers[i] = new Passbuffer(result.Ctypes[i], groupCount);
                     pointers[i] = buffers[i].Mapbuffer().ToPointer();
-                    for (int t = 0; t < groupCount; t++)
+                    switch (buffers[i].type)
                     {
-                        switch (buffers[i].type)
+                    case PassType.vec4:
+                        for (int t = 0; t < groupCount; t++)
                         {
-                        case PassType.vec4:
-                            {
-                                float x = float.Parse(parts[t * groupSize + index + 0]);
-                                float y = float.Parse(parts[t * groupSize + index + 1]);
-                                float z = float.Parse(parts[t * groupSize + index + 2]);
-                                float w = float.Parse(parts[t * groupSize + index + 3]);
-                                var array = (vec4*)pointers[i];
-                                array[t] = new vec4(x, y, z, w);
-                            } break;
-                        case PassType.vec3:
-                            {
-                                float x = float.Parse(parts[t * groupSize + index + 0]);
-                                float y = float.Parse(parts[t * groupSize + index + 1]);
-                                float z = float.Parse(parts[t * groupSize + index + 2]);
-                                var array = (vec3*)pointers[i];
-                                array[t] = new vec3(x, y, z);
-                            } break;
-                        case PassType.vec2:
-                            {
-                                float x = float.Parse(parts[t * groupSize + index + 0]);
-                                float y = float.Parse(parts[t * groupSize + index + 1]);
-                                var array = (vec2*)pointers[i];
-                                array[t] = new vec2(x, y);
-                            } break;
-                        case PassType.uvec4:
-                            {
-                                uint x = uint.Parse(parts[t * groupSize + index + 0]);
-                                uint y = uint.Parse(parts[t * groupSize + index + 1]);
-                                uint z = uint.Parse(parts[t * groupSize + index + 2]);
-                                uint w = uint.Parse(parts[t * groupSize + index + 3]);
-                                var array = (uvec4*)pointers[i];
-                                array[t] = new uvec4(x, y, z, w);
-                            } break;
-                        default:
-                            break;
-                        }
+                            float x = float.Parse(parts[t * lineLength + index + 0]);
+                            float y = float.Parse(parts[t * lineLength + index + 1]);
+                            float z = float.Parse(parts[t * lineLength + index + 2]);
+                            float w = float.Parse(parts[t * lineLength + index + 3]);
+                            var array = (vec4*)pointers[i];
+                            array[t] = new vec4(x, y, z, w);
+                        } break;
+                    case PassType.vec3:
+                        for (int t = 0; t < groupCount; t++)
+                        {
+                            float x = float.Parse(parts[t * lineLength + index + 0]);
+                            float y = float.Parse(parts[t * lineLength + index + 1]);
+                            float z = float.Parse(parts[t * lineLength + index + 2]);
+                            var array = (vec3*)pointers[i];
+                            array[t] = new vec3(x, y, z);
+                        } break;
+                    case PassType.vec2:
+                        for (int t = 0; t < groupCount; t++)
+                        {
+                            float x = float.Parse(parts[t * lineLength + index + 0]);
+                            float y = float.Parse(parts[t * lineLength + index + 1]);
+                            var array = (vec2*)pointers[i];
+                            array[t] = new vec2(x, y);
+                        } break;
+                    case PassType.uvec4:
+                        for (int t = 0; t < groupCount; t++)
+                        {
+                            uint x = uint.Parse(parts[t * lineLength + index + 0]);
+                            uint y = uint.Parse(parts[t * lineLength + index + 1]);
+                            uint z = uint.Parse(parts[t * lineLength + index + 2]);
+                            uint w = uint.Parse(parts[t * lineLength + index + 3]);
+                            var array = (uvec4*)pointers[i];
+                            array[t] = new uvec4(x, y, z, w);
+                        } break;
+                    default:
+                        break;
                     }
                     buffers[i].Unmapbuffer();
                 }
@@ -91,6 +92,11 @@ namespace CSharpGL.EZM
         public string[] Semantics { get; private set; }
 
         public Passbuffer[] Buffers { get; private set; }
+
+        public override string ToString()
+        {
+            return string.Format("{0} ctypes {1} semantics {2} buffers", this.Ctypes.Length, this.Semantics.Length, this.Buffers.Length);
+        }
     }
 
     public class Passbuffer
@@ -114,7 +120,7 @@ namespace CSharpGL.EZM
 
         public IntPtr Mapbuffer()
         {
-            this.pin = GCHandle.Alloc(this.array);
+            this.pin = GCHandle.Alloc(this.array, GCHandleType.Pinned);
             return pin.AddrOfPinnedObject();
         }
 
@@ -151,6 +157,11 @@ namespace CSharpGL.EZM
             }
 
             return result;
+        }
+
+        public override string ToString()
+        {
+            return string.Format("{0} {1} bytes", this.type, this.array.Length);
         }
     }
 

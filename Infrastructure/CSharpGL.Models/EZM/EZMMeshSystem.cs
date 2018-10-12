@@ -67,7 +67,7 @@ namespace CSharpGL.EZM
                     var materialsRoot = xElement.Element("Materials");
                     if (materialsRoot != null)
                     {
-                        var xMaterials = materialsRoot.Elements("Maaterial");
+                        var xMaterials = materialsRoot.Elements("Material");
                         var materials = new EZMMaterial[xMaterials.Count()];
                         int index = 0;
                         foreach (var xMaterial in xMaterials)
@@ -112,5 +112,9 @@ namespace CSharpGL.EZM
 
         public EZMMesh[] Meshes { get; private set; }
 
+        public override string ToString()
+        {
+            return string.Format("{0} {1} {2} {3} {4} skeletions {5} animations {6} materials {7} meshes.", this.AssetName, this.AssetInfo, this.Version, this.AssetVersion, this.Skeletions.Length, this.Animations.Length, this.Materials.Length, this.Meshes.Length);
+        }
     }
 }

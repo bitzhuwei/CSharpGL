@@ -26,7 +26,7 @@ namespace CSharpGL.EZM
                 }
                 {
                     var meta_data = xElement.Attribute("meta_data");
-                    if (meta_data != null) { result.MataData = meta_data.Value; }
+                    if (meta_data != null) { result.MetaData = meta_data.Value; }
                 }
             }
 
@@ -35,7 +35,12 @@ namespace CSharpGL.EZM
 
         public string Name { get; private set; }
 
-        public string MataData { get; private set; }
+        public string MetaData { get; private set; }
 
+
+        public override string ToString()
+        {
+            return string.Format("{0} Metadata:{1}", this.Name, this.MetaData);
+        }
     }
 }

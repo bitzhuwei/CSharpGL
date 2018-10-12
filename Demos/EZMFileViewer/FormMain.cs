@@ -23,6 +23,7 @@ namespace EZMFileViewer
             {
                 string filename = this.openFileDialog1.FileName;
                 EZMFile ezmFile = EZMFile.Load(filename);
+                Console.WriteLine(ezmFile);
             }
         }
     }

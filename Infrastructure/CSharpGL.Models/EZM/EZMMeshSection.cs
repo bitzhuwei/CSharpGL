@@ -39,15 +39,13 @@ namespace CSharpGL.EZM
             return result;
         }
 
-        private static readonly char[] separators = new char[] { ' ', ',' };
         private static uint[] ParseIndexbuffer(System.Xml.Linq.XElement xElement)
         {
             uint[] result = null;
             if (xElement.Name == "indexbuffer")
             {
                 //int triangleCount = int.Parse(xElement.Attribute("triangle_count").Value);
-                string[] parts = xElement.Value.Split(separators, StringSplitOptions.RemoveEmptyEntries);
-                if (parts.Length != result.Length) { throw new Exception(string.Format("EZMMeshSection: parts [{0}] != result [{1}]", parts.Length, result.Length)); }
+                string[] parts = xElement.Value.Split(Separator.separators, StringSplitOptions.RemoveEmptyEntries);
                 result = new uint[parts.Length];
                 for (int i = 0; i < result.Length; i++)
                 {
@@ -65,5 +63,10 @@ namespace CSharpGL.EZM
         public string Semantic { get; private set; }
 
         public uint[] Indexbuffer { get; private set; }
+
+        public override string ToString()
+        {
+            return string.Format("{0} {1} {2} {3}", this.Material, this.Ctype, this.Semantic, this.Indexbuffer.Count);
+        }
     }
 }

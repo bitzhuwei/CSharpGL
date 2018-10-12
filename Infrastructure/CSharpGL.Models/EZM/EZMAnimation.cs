@@ -53,5 +53,10 @@ namespace CSharpGL.EZM
         public float dtime { get; private set; }
 
         public EZMAnimTrack[] AnimTrack { get; private set; }
+
+        public override string ToString()
+        {
+            return string.Format("{0}, {1} AnimTracks", this.Name, this.AnimTrack.Count);
+        }
     }
 }

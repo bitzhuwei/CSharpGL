@@ -75,5 +75,10 @@ namespace CSharpGL.EZM
         public vec3 Position { get; private set; }
 
         public vec3 Scale { get; private set; }
+
+        public override string ToString()
+        {
+            return string.Format("{0}: Parent:{1} Orientation:{2} Pos:{3} Scale:{4}.", this.Name, this.Parent, this.Orientation, this.Position, this.Scale);
+        }
     }
 }
