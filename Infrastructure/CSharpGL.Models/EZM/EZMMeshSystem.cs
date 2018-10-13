@@ -42,11 +42,11 @@ namespace CSharpGL.EZM
                         var xSkeletons = skeletionRoot.Elements("Skeleton");
                         var skeletons = new EZMSkeleton[xSkeletons.Count()];
                         int index = 0;
-                        foreach (var xSkeletion in xSkeletons)
+                        foreach (var xSkeleton in xSkeletons)
                         {
-                            skeletons[index++] = EZMSkeleton.Parse(xSkeletion);
+                            skeletons[index++] = EZMSkeleton.Parse(xSkeleton);
                         }
-                        result.Skeletions = skeletons;
+                        result.Skeletons = skeletons;
                     }
                 }
                 {
@@ -61,15 +61,16 @@ namespace CSharpGL.EZM
                             var animation = EZMAnimation.Parse(xAnimation);
                             foreach (var animTrack in animation.AnimTracks)
                             {
-                                string name = animTrack.Name;
+                                string name = animTrack.BoneName;
                                 if (name != null)
                                 {
-                                    foreach (var skeleton in result.Skeletions)
+                                    foreach (var skeleton in result.Skeletons)
                                     {
                                         EZMBone bone = null;
                                         if (skeleton.nameBoneDict.TryGetValue(name, out bone))
                                         {
-                                            animTrack.RefBoneList.Add(bone);
+                                            animTrack.Bone = bone;
+                                            break;
                                         }
                                     }
                                 }
@@ -133,7 +134,7 @@ namespace CSharpGL.EZM
 
         public string AssetVersion { get; private set; }
 
-        public EZMSkeleton[] Skeletions { get; private set; }
+        public EZMSkeleton[] Skeletons { get; private set; }
 
         public EZMAnimation[] Animations { get; private set; }
 
@@ -143,7 +144,7 @@ namespace CSharpGL.EZM
 
         public override string ToString()
         {
-            return string.Format("{0} {1} {2} {3} {4} skeletions {5} animations {6} materials {7} meshes.", this.AssetName, this.AssetInfo, this.Version, this.AssetVersion, this.Skeletions.Length, this.Animations.Length, this.Materials.Length, this.Meshes.Length);
+            return string.Format("{0} {1} {2} {3} {4} skeletions {5} animations {6} materials {7} meshes.", this.AssetName, this.AssetInfo, this.Version, this.AssetVersion, this.Skeletons.Length, this.Animations.Length, this.Materials.Length, this.Meshes.Length);
         }
     }
 }

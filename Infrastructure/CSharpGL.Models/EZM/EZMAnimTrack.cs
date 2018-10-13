@@ -7,11 +7,6 @@ namespace CSharpGL.EZM
 {
     public class EZMAnimTrack
     {
-        public EZMAnimTrack()
-        {
-            this.RefBoneList = new List<EZMBone>();
-        }
-
         // <AnimTrack name="RootNode" count="61" has_scale="true">
         /// <summary>
         /// 
@@ -26,7 +21,7 @@ namespace CSharpGL.EZM
                 result = new EZMAnimTrack();
                 {
                     var name = xElement.Attribute("name");
-                    if (name != null) { result.Name = name.Value; }
+                    if (name != null) { result.BoneName = name.Value; }
                 }
                 int count = 0;
                 bool hasScale = false;
@@ -74,15 +69,15 @@ namespace CSharpGL.EZM
             return result;
         }
 
-        public string Name { get; private set; }
+        public string BoneName { get; private set; }
 
-        public List<EZMBone> RefBoneList { get; private set; }
+        public EZMBone Bone { get; internal set; }
 
         public EZMBoneState[] States { get; private set; }
 
         public override string ToString()
         {
-            return string.Format("{0} {1} states.", this.Name, this.States.Length);
+            return string.Format("{0} {1} states.", this.BoneName, this.States.Length);
         }
     }
 }
