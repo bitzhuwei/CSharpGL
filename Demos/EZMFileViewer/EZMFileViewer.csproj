@@ -43,8 +43,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EZMNode.cs" />
-    <Compile Include="EZModel.cs" />
+    <Compile Include="EZMDummyNode.shaders.cs" />
+    <Compile Include="EZMDummyNode.IRenderable.cs" />
+    <Compile Include="EZMDummyNode.cs" />
+    <Compile Include="EZMDummyModel.cs" />
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
