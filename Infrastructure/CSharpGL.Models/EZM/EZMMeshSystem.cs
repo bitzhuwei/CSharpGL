@@ -69,8 +69,13 @@ namespace CSharpGL.EZM
                                         EZMBone bone = null;
                                         if (skeleton.nameBoneDict.TryGetValue(name, out bone))
                                         {
+                                            if (animTrack.Bone != null)
+                                            {
+                                                throw new Exception("More than 1 bone for the animTrack!");
+                                            }
+
                                             animTrack.Bone = bone;
-                                            break;
+                                            //break;
                                         }
                                     }
                                 }
