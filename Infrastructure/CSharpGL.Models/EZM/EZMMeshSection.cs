@@ -33,23 +33,26 @@ namespace CSharpGL.EZM
                 }
                 {
                     var aabb = xElement.Element("MeshAABB");
-                    var xMin = aabb.Attribute("min");
-                    if (xMin != null)
+                    if (aabb != null)
                     {
-                        string[] parts = xMin.Value.Split(Separator.separators, StringSplitOptions.RemoveEmptyEntries);
-                        var x = float.Parse(parts[0]);
-                        var y = float.Parse(parts[1]);
-                        var z = float.Parse(parts[2]);
-                        result.Min = new vec3(x, y, z);
-                    }
-                    var xMax = aabb.Attribute("max");
-                    if (xMax != null)
-                    {
-                        string[] parts = xMax.Value.Split(Separator.separators, StringSplitOptions.RemoveEmptyEntries);
-                        var x = float.Parse(parts[0]);
-                        var y = float.Parse(parts[1]);
-                        var z = float.Parse(parts[2]);
-                        result.Max = new vec3(x, y, z);
+                        var xMin = aabb.Attribute("min");
+                        if (xMin != null)
+                        {
+                            string[] parts = xMin.Value.Split(Separator.separators, StringSplitOptions.RemoveEmptyEntries);
+                            var x = float.Parse(parts[0]);
+                            var y = float.Parse(parts[1]);
+                            var z = float.Parse(parts[2]);
+                            result.Min = new vec3(x, y, z);
+                        }
+                        var xMax = aabb.Attribute("max");
+                        if (xMax != null)
+                        {
+                            string[] parts = xMax.Value.Split(Separator.separators, StringSplitOptions.RemoveEmptyEntries);
+                            var x = float.Parse(parts[0]);
+                            var y = float.Parse(parts[1]);
+                            var z = float.Parse(parts[2]);
+                            result.Max = new vec3(x, y, z);
+                        }
                     }
                 }
                 {
