@@ -25,7 +25,7 @@ namespace CSharpGL.EZM
                 }
                 {
                     var parent = xElement.Attribute("parent");
-                    if (parent != null) { result.Parent = parent.Value; }
+                    if (parent != null) { result.ParentName = parent.Value; }
                 }
                 {
                     vec3 p = new vec3(); vec4 o = new vec4(); vec3 s = new vec3();
@@ -67,13 +67,15 @@ namespace CSharpGL.EZM
 
         public string Name { get; private set; }
 
-        public string Parent { get; private set; }
+        internal string ParentName { get; private set; }
+
+        public EZMBone Parent { get; internal set; }
 
         public EZMBoneState State { get; private set; }
 
         public override string ToString()
         {
-            return string.Format("{0}: Parent:{1} {2}.", this.Name, this.Parent, this.State);
+            return string.Format("{0}: Parent:{1} {2}.", this.Name, this.ParentName, this.State);
         }
     }
 }

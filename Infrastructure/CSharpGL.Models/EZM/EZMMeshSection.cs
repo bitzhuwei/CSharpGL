@@ -21,7 +21,7 @@ namespace CSharpGL.EZM
                 result = new EZMMeshSection();
                 {
                     var attr = xElement.Attribute("material");
-                    if (attr != null) { result.Material = attr.Value; }
+                    if (attr != null) { result.MaterialName = attr.Value; }
                 }
                 {
                     var attr = xElement.Attribute("ctype");
@@ -30,6 +30,27 @@ namespace CSharpGL.EZM
                 {
                     var attr = xElement.Attribute("semantic");
                     if (attr != null) { result.Semantic = attr.Value; }
+                }
+                {
+                    var aabb = xElement.Element("MeshAABB");
+                    var xMin = aabb.Attribute("min");
+                    if (xMin != null)
+                    {
+                        string[] parts = xMin.Value.Split(Separator.separators, StringSplitOptions.RemoveEmptyEntries);
+                        var x = float.Parse(parts[0]);
+                        var y = float.Parse(parts[1]);
+                        var z = float.Parse(parts[2]);
+                        result.Min = new vec3(x, y, z);
+                    }
+                    var xMax = aabb.Attribute("max");
+                    if (xMax != null)
+                    {
+                        string[] parts = xMax.Value.Split(Separator.separators, StringSplitOptions.RemoveEmptyEntries);
+                        var x = float.Parse(parts[0]);
+                        var y = float.Parse(parts[1]);
+                        var z = float.Parse(parts[2]);
+                        result.Max = new vec3(x, y, z);
+                    }
                 }
                 {
                     result.Indexbuffer = ParseIndexbuffer(xElement.Element("indexbuffer"));
@@ -56,7 +77,9 @@ namespace CSharpGL.EZM
             return result;
         }
 
-        public string Material { get; private set; }
+        public string MaterialName { get; private set; }
+
+        public EZMMaterial Material { get; internal set; }
 
         public string Ctype { get; private set; }
 
@@ -64,9 +87,13 @@ namespace CSharpGL.EZM
 
         public uint[] Indexbuffer { get; private set; }
 
+        public vec3 Min { get; private set; }
+
+        public vec3 Max { get; private set; }
+
         public override string ToString()
         {
-            return string.Format("{0} {1} {2} {3}", this.Material, this.Ctype, this.Semantic, this.Indexbuffer.Length);
+            return string.Format("{0} {1} {2} {3}", this.MaterialName, this.Ctype, this.Semantic, this.Indexbuffer.Length);
         }
     }
 }

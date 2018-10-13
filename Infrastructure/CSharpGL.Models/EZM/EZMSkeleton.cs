@@ -27,9 +27,21 @@ namespace CSharpGL.EZM
                     var xBones = xElement.Elements("Bone");
                     var bones = new EZMBone[xBones.Count()];
                     int index = 0;
+                    var dict = new Dictionary<string, EZMBone>();
                     foreach (var xBone in xBones)
                     {
-                        bones[index++] = EZMBone.Parse(xBone);
+                        var bone = EZMBone.Parse(xBone);
+                        dict.Add(bone.Name, bone);
+                        bones[index++] = bone;
+                    }
+                    result.nameBoneDict = dict;
+                    foreach (var item in bones)
+                    {
+                        string parent = item.ParentName;
+                        if (parent != null)
+                        {
+                            item.Parent = dict[parent];
+                        }
                     }
                     result.Bones = bones;
                 }
@@ -41,6 +53,8 @@ namespace CSharpGL.EZM
         public string Name { get; private set; }
 
         public EZMBone[] Bones { get; private set; }
+
+        internal Dictionary<string, EZMBone> nameBoneDict = new Dictionary<string, EZMBone>();
 
         public override string ToString()
         {

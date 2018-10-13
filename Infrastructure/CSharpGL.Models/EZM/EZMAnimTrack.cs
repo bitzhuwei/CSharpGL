@@ -7,6 +7,11 @@ namespace CSharpGL.EZM
 {
     public class EZMAnimTrack
     {
+        public EZMAnimTrack()
+        {
+            this.RefBoneList = new List<EZMBone>();
+        }
+
         // <AnimTrack name="RootNode" count="61" has_scale="true">
         /// <summary>
         /// 
@@ -70,6 +75,8 @@ namespace CSharpGL.EZM
         }
 
         public string Name { get; private set; }
+
+        public List<EZMBone> RefBoneList { get; private set; }
 
         public EZMBoneState[] States { get; private set; }
 

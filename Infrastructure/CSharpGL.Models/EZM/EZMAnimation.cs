@@ -39,7 +39,7 @@ namespace CSharpGL.EZM
                     {
                         animTracks[index++] = EZMAnimTrack.Parse(xAnimTrack);
                     }
-                    result.AnimTrack = animTracks;
+                    result.AnimTracks = animTracks;
                 }
             }
 
@@ -52,11 +52,11 @@ namespace CSharpGL.EZM
 
         public float dtime { get; private set; }
 
-        public EZMAnimTrack[] AnimTrack { get; private set; }
+        public EZMAnimTrack[] AnimTracks { get; private set; }
 
         public override string ToString()
         {
-            return string.Format("{0}, {1} AnimTracks", this.Name, this.AnimTrack.Length);
+            return string.Format("{0}, {1} AnimTracks", this.Name, this.AnimTracks.Length);
         }
     }
 }

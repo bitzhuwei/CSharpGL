@@ -17,7 +17,9 @@ namespace CSharpGL
             {
                 XElement xElement = XElement.Load(filename);
                 EZMMeshSystem meshSystem = EZMMeshSystem.Parse(xElement);
-                file = new EZMFile() { MeshSystem = meshSystem };
+                file = new EZMFile();
+                file.MeshSystem = meshSystem;
+                file.Fullname = filename;
             }
 
             return file;
@@ -25,9 +27,12 @@ namespace CSharpGL
 
         public EZMMeshSystem MeshSystem { get; private set; }
 
+        public string Fullname { get; private set; }
+
         public override string ToString()
         {
-            return string.Format("{0}", this.MeshSystem);
+            return string.Format("{0}, {1}", this.Fullname, this.MeshSystem);
         }
+
     }
 }

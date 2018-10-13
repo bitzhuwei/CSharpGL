@@ -58,11 +58,28 @@ namespace CSharpGL.EZM
                         int index = 0;
                         foreach (var xAnimation in xAnimations)
                         {
-                            animations[index++] = EZMAnimation.Parse(xAnimation);
+                            var animation = EZMAnimation.Parse(xAnimation);
+                            foreach (var animTrack in animation.AnimTracks)
+                            {
+                                string name = animTrack.Name;
+                                if (name != null)
+                                {
+                                    foreach (var skeleton in result.Skeletions)
+                                    {
+                                        EZMBone bone = null;
+                                        if (skeleton.nameBoneDict.TryGetValue(name, out bone))
+                                        {
+                                            animTrack.RefBoneList.Add(bone);
+                                        }
+                                    }
+                                }
+                            }
+                            animations[index++] = animation;
                         }
                         result.Animations = animations;
                     }
                 }
+                var nameMaterialDict = new Dictionary<string, EZMMaterial>();
                 {
                     var materialsRoot = xElement.Element("Materials");
                     if (materialsRoot != null)
@@ -72,7 +89,9 @@ namespace CSharpGL.EZM
                         int index = 0;
                         foreach (var xMaterial in xMaterials)
                         {
-                            materials[index++] = EZMMaterial.Parse(xMaterial);
+                            var material = EZMMaterial.Parse(xMaterial);
+                            nameMaterialDict.Add(material.Name, material);
+                            materials[index++] = material;
                         }
                         result.Materials = materials;
                     }
@@ -86,7 +105,17 @@ namespace CSharpGL.EZM
                         int index = 0;
                         foreach (var xMesh in xMeshes)
                         {
-                            meshes[index++] = EZMMesh.Parse(xMesh);
+                            var mesh = EZMMesh.Parse(xMesh);
+                            foreach (var meshSection in mesh.MeshSections)
+                            {
+                                string name = meshSection.MaterialName;
+                                EZMMaterial material = null;
+                                if (nameMaterialDict.TryGetValue(name, out material))
+                                {
+                                    meshSection.Material = material;
+                                }
+                            }
+                            meshes[index++] = mesh;
                         }
                         result.Meshes = meshes;
                     }
