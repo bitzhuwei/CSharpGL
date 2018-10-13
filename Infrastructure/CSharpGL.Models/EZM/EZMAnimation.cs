@@ -56,7 +56,7 @@ namespace CSharpGL.EZM
 
         public override string ToString()
         {
-            return string.Format("{0}, {1} AnimTracks", this.Name, this.AnimTrack.Count);
+            return string.Format("{0}, {1} AnimTracks", this.Name, this.AnimTrack.Length);
         }
     }
 }

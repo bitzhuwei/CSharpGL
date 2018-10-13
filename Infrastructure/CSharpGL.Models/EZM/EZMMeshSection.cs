@@ -66,7 +66,7 @@ namespace CSharpGL.EZM
 
         public override string ToString()
         {
-            return string.Format("{0} {1} {2} {3}", this.Material, this.Ctype, this.Semantic, this.Indexbuffer.Count);
+            return string.Format("{0} {1} {2} {3}", this.Material, this.Ctype, this.Semantic, this.Indexbuffer.Length);
         }
     }
 }

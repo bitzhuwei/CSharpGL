@@ -46,6 +46,7 @@
     <Compile Include="Axis\AxisModel.cs" />
     <Compile Include="Axis\AxisNode.cs" />
     <Compile Include="Axis\AxisNode.shaders.cs" />
+    <Compile Include="EZM\EZMBoneState.cs" />
     <Compile Include="EZM\EZMAnimation.cs" />
     <Compile Include="EZM\Separator.cs" />
     <Compile Include="EZM\EZMAnimTrack.cs" />

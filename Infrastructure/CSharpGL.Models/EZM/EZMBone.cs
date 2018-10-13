@@ -28,6 +28,7 @@ namespace CSharpGL.EZM
                     if (parent != null) { result.Parent = parent.Value; }
                 }
                 {
+                    vec3 p = new vec3(); vec4 o = new vec4(); vec3 s = new vec3();
                     var orientation = xElement.Attribute("orientation");
                     if (orientation != null)
                     {
@@ -36,10 +37,8 @@ namespace CSharpGL.EZM
                         float y = float.Parse(parts[1]);
                         float z = float.Parse(parts[2]);
                         float w = float.Parse(parts[3]);
-                        result.Orientation = new vec4(x, y, z, w);
+                        o = new vec4(x, y, z, w);
                     }
-                }
-                {
                     var position = xElement.Attribute("position");
                     if (position != null)
                     {
@@ -47,10 +46,8 @@ namespace CSharpGL.EZM
                         float x = float.Parse(parts[0]);
                         float y = float.Parse(parts[1]);
                         float z = float.Parse(parts[2]);
-                        result.Position = new vec3(x, y, z);
+                        p = new vec3(x, y, z);
                     }
-                }
-                {
                     var scale = xElement.Attribute("scale");
                     if (scale != null)
                     {
@@ -58,8 +55,10 @@ namespace CSharpGL.EZM
                         float x = float.Parse(parts[0]);
                         float y = float.Parse(parts[1]);
                         float z = float.Parse(parts[2]);
-                        result.Scale = new vec3(x, y, z);
+                        s = new vec3(x, y, z);
                     }
+
+                    result.State = new EZMBoneState(p, o, s);
                 }
             }
 
@@ -70,15 +69,11 @@ namespace CSharpGL.EZM
 
         public string Parent { get; private set; }
 
-        public vec4 Orientation { get; private set; }
-
-        public vec3 Position { get; private set; }
-
-        public vec3 Scale { get; private set; }
+        public EZMBoneState State { get; private set; }
 
         public override string ToString()
         {
-            return string.Format("{0}: Parent:{1} Orientation:{2} Pos:{3} Scale:{4}.", this.Name, this.Parent, this.Orientation, this.Position, this.Scale);
+            return string.Format("{0}: Parent:{1} {2}.", this.Name, this.Parent, this.State);
         }
     }
 }

@@ -56,7 +56,7 @@ namespace CSharpGL.EZM
 
         public override string ToString()
         {
-            return string.Format("{0} Skeleton:{1} ctype:{2} {3} mesh sections.", this.Name, this.Skeleton, this.Vertexbuffer.Ctypes, this.MeshSections.Count);
+            return string.Format("{0} Skeleton:{1} ctype:{2} {3} mesh sections.", this.Name, this.Skeleton, this.Vertexbuffer.Ctypes, this.MeshSections.Length);
         }
     }
 }
