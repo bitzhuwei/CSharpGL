@@ -10,20 +10,20 @@ namespace EZMFileViewer
     {
 
         private EZMMesh ezmMesh;
-        private int sectionIndex;
 
-        public string TextureFilename { get { return this.ezmMesh.MeshSections[sectionIndex].Material.MetaData; } }
-
-        public EZMTextureModel(EZMMesh ezmMesh, int sectionIndex)
+        public EZMTextureModel(EZMMesh ezmMesh)
         {
             this.ezmMesh = ezmMesh;
-            this.sectionIndex = sectionIndex;
         }
 
         public const string strPosition = "position";
         private VertexBuffer positionBuffer;
+        public const string strNormal = "normal";
+        private VertexBuffer normalBuffer;
+        public const string strUV = "UV";
+        private VertexBuffer uvBuffer;
 
-        private IDrawCommand drawCommand;
+        private IDrawCommand[] drawCommands;
 
         #region IBufferSource 成员
 
@@ -33,10 +33,40 @@ namespace EZMFileViewer
             {
                 if (this.positionBuffer == null)
                 {
-                    this.positionBuffer = this.positions.GenVertexBuffer(VBOConfig.Vec3, BufferUsage.StaticDraw);
+                    this.positionBuffer = this.ezmMesh.Vertexbuffer.Buffers[0].array.GenVertexBuffer(VBOConfig.Vec3, BufferUsage.StaticDraw);
                 }
 
-                yield return this.positionBuffer;
+                int count = this.ezmMesh.MeshSections.Length;
+                for (int i = 0; i < count; i++)
+                {
+                    yield return this.positionBuffer;
+                }
+            }
+            else if (bufferName == strNormal)
+            {
+                if (this.normalBuffer == null)
+                {
+                    this.normalBuffer = this.ezmMesh.Vertexbuffer.Buffers[1].array.GenVertexBuffer(VBOConfig.Vec3, BufferUsage.StaticDraw);
+                }
+
+                int count = this.ezmMesh.MeshSections.Length;
+                for (int i = 0; i < count; i++)
+                {
+                    yield return this.normalBuffer;
+                }
+            }
+            else if (bufferName == strUV)
+            {
+                if (this.uvBuffer == null)
+                {
+                    this.uvBuffer = this.ezmMesh.Vertexbuffer.Buffers[2].array.GenVertexBuffer(VBOConfig.Vec2, BufferUsage.StaticDraw);
+                }
+
+                int count = this.ezmMesh.MeshSections.Length;
+                for (int i = 0; i < count; i++)
+                {
+                    yield return this.uvBuffer;
+                }
             }
             else
             {
@@ -46,13 +76,23 @@ namespace EZMFileViewer
 
         public IEnumerable<IDrawCommand> GetDrawCommand()
         {
-            if (this.drawCommand == null)
+            if (this.drawCommands == null)
             {
-                var indexBuffer = this.indexes.GenIndexBuffer(BufferUsage.StaticDraw);
-                this.drawCommand = new DrawElementsCmd(indexBuffer, DrawMode.Triangles);
+                var sections = this.ezmMesh.MeshSections;
+                var cmds = new IDrawCommand[sections.Length];
+                for (int i = 0; i < sections.Length; i++)
+                {
+                    var indexBuffer = sections[i].Indexbuffer.GenIndexBuffer(BufferUsage.StaticDraw);
+                    cmds[i] = new DrawElementsCmd(indexBuffer, DrawMode.Triangles);
+                }
+
+                this.drawCommands = cmds;
             }
 
-            yield return this.drawCommand;
+            foreach (var item in this.drawCommands)
+            {
+                yield return item;
+            }
         }
 
         #endregion

@@ -43,10 +43,11 @@ namespace CSharpGL
 
         public string MetaData { get; private set; }
 
+        public object Tag { get; set; }
 
         public override string ToString()
         {
-            return string.Format("{0} Metadata:{1}", this.Name, this.MetaData);
+            return string.Format("{0} {1}", this.MetaData, this.Tag);
         }
     }
 }

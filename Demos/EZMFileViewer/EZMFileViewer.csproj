@@ -51,6 +51,7 @@
     <Compile Include="EZMDummyNode.IRenderable.cs" />
     <Compile Include="EZMDummyNode.cs" />
     <Compile Include="EZMDummyModel.cs" />
+    <Compile Include="EZMTextureModel.cs" />
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
