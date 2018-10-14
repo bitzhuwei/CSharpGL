@@ -69,31 +69,57 @@ namespace EZMFileViewer
         {
             if (this.openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                var random = new Random();
                 string filename = this.openFileDialog1.FileName;
-                EZMFile ezmFile = EZMFile.Load(filename);
-                var rootElement = this.scene.RootNode;
-                rootElement.Children.Clear();
-                var mesh = ezmFile.MeshSystem.Meshes[0];
-                byte[] positionBuffer = mesh.Vertexbuffer.Buffers[0].array;
-                for (int i = 0; i < mesh.MeshSections.Length; i++)
-                {
-                    var model = new EZMDummyModel(positionBuffer,
-                        mesh.MeshSections[i].Indexbuffer
-                        );
-                    var node = EZMDummyNode.Create(model);
-                    node.Color = Color.FromArgb(
-                        (byte)random.Next(0, 256),
-                        (byte)random.Next(0, 256),
-                        (byte)random.Next(0, 256),
-                        (byte)random.Next(0, 256)
-                        );
-                    //float max = node.ModelSize.max();
-                    //node.Scale *= 16.0f / max;
-                    //node.WorldPosition = new vec3(0, 0, 0);
-                    rootElement.Children.Add(node);
-                }
+                //CreateDummyNodes(filename);
+                CreateSectionNode(filename);
 
+            }
+        }
+
+        private void CreateSectionNode(string filename)
+        {
+            var random = new Random();
+            EZMFile ezmFile = EZMFile.Load(filename);
+            var rootElement = this.scene.RootNode;
+            rootElement.Children.Clear();
+            var model = new EZMSectionModel(ezmFile);
+            var node = EZMSectionNode.Create(model);
+            node.Color = Color.FromArgb(
+                (byte)random.Next(0, 256),
+                (byte)random.Next(0, 256),
+                (byte)random.Next(0, 256),
+                (byte)random.Next(0, 256)
+                );
+            //float max = node.ModelSize.max();
+            //node.Scale *= 16.0f / max;
+            //node.WorldPosition = new vec3(0, 0, 0);
+            rootElement.Children.Add(node);
+        }
+
+        private void CreateDummyNodes(string filename)
+        {
+            var random = new Random();
+            EZMFile ezmFile = EZMFile.Load(filename);
+            var rootElement = this.scene.RootNode;
+            rootElement.Children.Clear();
+            var mesh = ezmFile.MeshSystem.Meshes[0];
+            byte[] positionBuffer = mesh.Vertexbuffer.Buffers[0].array;
+            for (int i = 0; i < mesh.MeshSections.Length; i++)
+            {
+                var model = new EZMDummyModel(positionBuffer,
+                    mesh.MeshSections[i].Indexbuffer
+                    );
+                var node = EZMDummyNode.Create(model);
+                node.Color = Color.FromArgb(
+                    (byte)random.Next(0, 256),
+                    (byte)random.Next(0, 256),
+                    (byte)random.Next(0, 256),
+                    (byte)random.Next(0, 256)
+                    );
+                //float max = node.ModelSize.max();
+                //node.Scale *= 16.0f / max;
+                //node.WorldPosition = new vec3(0, 0, 0);
+                rootElement.Children.Add(node);
             }
         }
     }

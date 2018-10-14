@@ -43,6 +43,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EZMSectionNode.cs" />
+    <Compile Include="EZMSectionNode.IRenderable.cs" />
+    <Compile Include="EZMSectionNode.shaders.cs" />
+    <Compile Include="EZMSectionModel.cs" />
     <Compile Include="EZMDummyNode.shaders.cs" />
     <Compile Include="EZMDummyNode.IRenderable.cs" />
     <Compile Include="EZMDummyNode.cs" />
