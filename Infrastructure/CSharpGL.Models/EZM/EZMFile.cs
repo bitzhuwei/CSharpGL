@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Xml.Linq;
-using CSharpGL.EZM;
+using CSharpGL;
 
 namespace CSharpGL
 {

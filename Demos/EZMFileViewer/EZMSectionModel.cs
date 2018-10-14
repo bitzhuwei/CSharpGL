@@ -9,7 +9,7 @@ namespace EZMFileViewer
     class EZMSectionModel : IBufferSource
     {
         private byte[] positions;
-        private CSharpGL.EZM.EZMMeshSection[] indexSections;
+        private CSharpGL.EZMMeshSection[] indexSections;
         public EZMSectionModel(EZMFile ezmFile)
         {
             var mesh = ezmFile.MeshSystem.Meshes[0];
