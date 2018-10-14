@@ -43,6 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DDSLoader.cs" />
+    <Compile Include="DDSStorage.cs" />
     <Compile Include="EZMLoadTextures.cs" />
     <Compile Include="EZMSectionNode.cs" />
     <Compile Include="EZMSectionNode.IRenderable.cs" />

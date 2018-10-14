@@ -8,11 +8,11 @@ namespace CSharpGL
     /// <summary>
     /// glTexParameterf();
     /// </summary>
-    public class TexParameterfv : TexParameter
+    public class TexParameteriv : TexParameter
     {
-        private float[] pValue;
+        private int[] pValue;
 
-        public float[] PValue
+        public int[] PValue
         {
             get { return pValue; }
         }
@@ -23,7 +23,7 @@ namespace CSharpGL
         /// <param name="pname"></param>
         /// <param name="pnameString"></param>
         /// <param name="pValue"></param>
-        public TexParameterfv(uint pname, string pnameString, params float[] pValue)
+        public TexParameteriv(uint pname, string pnameString, params int[] pValue)
             : base(pname, pnameString)
         {
             this.pValue = pValue;
@@ -34,7 +34,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="pname"></param>
         /// <param name="pValue"></param>
-        public TexParameterfv(PropertyName pname, params float[] pValue)
+        public TexParameteriv(PropertyName pname, params int[] pValue)
             : base((uint)pname, pname.ToString())
         {
             this.pValue = pValue;
@@ -46,7 +46,7 @@ namespace CSharpGL
         /// <param name="target"></param>
         public override void Apply(TextureTarget target)
         {
-            GL.Instance.TexParameterfv((uint)target, PName, PValue);
+            GL.Instance.TexParameteriv((uint)target, PName, PValue);
         }
 
         /// <summary>
@@ -55,7 +55,7 @@ namespace CSharpGL
         /// <returns></returns>
         public override string ToString()
         {
-            return string.Format("glTexParameterfv({0}, {1}, {2});", " ", this.PNameString, this.PValue);
+            return string.Format("glTexParameteriv({0}, {1}, {2});", " ", this.PNameString, this.PValue);
         }
     }
 }
