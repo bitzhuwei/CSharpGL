@@ -31,19 +31,19 @@ namespace CSharpGL
         /////
         ///// </summary>
         //public const uint GL_DEPTH_COMPONENT16 = 0x81A5;
-        /// <summary>
-        ///
-        /// </summary>
-        public const uint GL_DEPTH_COMPONENT24 = 0x81A6;
+        ///// <summary>
+        /////
+        ///// </summary>
+        //public const uint GL_DEPTH_COMPONENT24 = 0x81A6;
 
-        /// <summary>
-        ///
-        /// </summary>
-        public const uint GL_DEPTH_COMPONENT32 = 0x81A7;
-        /// <summary>
-        ///
-        /// </summary>
-        public const uint GL_MIRRORED_REPEAT = 0x8370;
+        ///// <summary>
+        /////
+        ///// </summary>
+        //public const uint GL_DEPTH_COMPONENT32 = 0x81A7;
+        ///// <summary>
+        /////
+        ///// </summary>
+        //public const uint GL_MIRRORED_REPEAT = 0x8370;
 
         ///// <summary>
         /////

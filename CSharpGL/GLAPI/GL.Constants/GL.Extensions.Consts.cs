@@ -787,31 +787,31 @@ namespace CSharpGL
 
         //#endregion
 
-        //#region GL_depth_texture
+        #region GL_depth_texture
 
-        ////  Constants
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_DEPTH_COMPONENT16 = 0x81A5;
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_DEPTH_COMPONENT24 = 0x81A6;
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_DEPTH_COMPONENT32 = 0x81A7;
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_TEXTURE_DEPTH_SIZE = 0x884A;
+        //  Constants
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_DEPTH_COMPONENT16 = 0x81A5;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_DEPTH_COMPONENT24 = 0x81A6;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_DEPTH_COMPONENT32 = 0x81A7;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_TEXTURE_DEPTH_SIZE = 0x884A;
         /// <summary>
         ///
         /// </summary>
         public const uint GL_DEPTH_TEXTURE_MODE = 0x884B;
 
-        //#endregion
+        #endregion
 
         //#region GL_shadow
 
@@ -935,15 +935,15 @@ namespace CSharpGL
 
         //#endregion
 
-        //#region GL_texture_mirrored_repeat
+        #region GL_texture_mirrored_repeat
 
-        ////  Constants
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_MIRRORED_REPEAT = 0x8370;
+        //  Constants
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_MIRRORED_REPEAT = 0x8370;
 
-        //#endregion
+        #endregion
 
         //#region GL_vertex_buffer_object
 
@@ -3148,43 +3148,43 @@ namespace CSharpGL
         /// </summary>
         public const uint GL_DEPTH24_STENCIL8 = 0x88F0;
 
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_COMPRESSED_RGB_BPTC_UNSIGNED_FLOAT = 0x8E8F;
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_COMPRESSED_RGB_BPTC_SIGNED_FLOAT = 0x8E8E;
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_COMPRESSED_RGBA_BPTC_UNORM = 0x8E8C;
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_COMPRESSED_SRGB_ALPHA_BPTC_UNORM = 0x8E8D;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_COMPRESSED_RGB_BPTC_UNSIGNED_FLOAT = 0x8E8F;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_COMPRESSED_RGB_BPTC_SIGNED_FLOAT = 0x8E8E;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_COMPRESSED_RGBA_BPTC_UNORM = 0x8E8C;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_COMPRESSED_SRGB_ALPHA_BPTC_UNORM = 0x8E8D;
 
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_TEXTURE_SWIZZLE_R = 0x8E42;
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_TEXTURE_SWIZZLE_G = 0x8E43;
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_TEXTURE_SWIZZLE_B = 0x8E44;
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_TEXTURE_SWIZZLE_A = 0x8E45;
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_TEXTURE_SWIZZLE_RGBA = 0x8E46;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_TEXTURE_SWIZZLE_R = 0x8E42;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_TEXTURE_SWIZZLE_G = 0x8E43;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_TEXTURE_SWIZZLE_B = 0x8E44;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_TEXTURE_SWIZZLE_A = 0x8E45;
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_TEXTURE_SWIZZLE_RGBA = 0x8E46;
         #endregion
     }
 }
