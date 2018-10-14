@@ -8,6 +8,7 @@ namespace CSharpGL
 {
     public class EZMMaterial
     {
+        private static readonly string[] materialSeparator = new string[] { "diffuse=", "%20" };
         // <Material name="character_anim:eyeBallM" meta_data="diffuse=%20upBodyC.jpg%20"/>
         /// <summary>
         /// 
@@ -26,7 +27,12 @@ namespace CSharpGL
                 }
                 {
                     var meta_data = xElement.Attribute("meta_data");
-                    if (meta_data != null) { result.MetaData = meta_data.Value; }
+                    if (meta_data != null)
+                    {
+                        string value = meta_data.Value;
+                        string[] parts = value.Split(materialSeparator, StringSplitOptions.RemoveEmptyEntries);
+                        if (parts.Length > 0) { result.MetaData = parts[0]; }
+                    }
                 }
             }
 
