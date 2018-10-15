@@ -8,6 +8,11 @@ namespace EZMFileViewer
 {
     public static class DDSLoader
     {
+        /// <summary>
+        /// Load a dds file and return the texture.
+        /// </summary>
+        /// <param name="fullname"></param>
+        /// <returns></returns>
         public static Texture LoadDDS(string fullname)
         {
             vglImageData imageData = new vglImageData();
