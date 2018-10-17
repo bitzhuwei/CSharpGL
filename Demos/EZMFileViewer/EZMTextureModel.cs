@@ -9,90 +9,59 @@ namespace EZMFileViewer
     class EZMTextureModel : IBufferSource
     {
 
-        private EZMMesh ezmMesh;
+        private EZMVertexBufferContainer container;
+        private EZMMeshSection section;
 
-        public EZMTextureModel(EZMMesh ezmMesh)
+        public EZMTextureModel(EZMVertexBufferContainer container, EZMMeshSection section)
         {
-            this.ezmMesh = ezmMesh;
+            this.container = container;
+            this.section = section;
         }
 
-        public const string strPosition = "position";
-        private VertexBuffer positionBuffer;
-        public const string strNormal = "normal";
-        private VertexBuffer normalBuffer;
-        public const string strUV = "UV";
-        private VertexBuffer uvBuffer;
+        public Texture Texture
+        {
+            get
+            {
+                var tex = this.section.Material.Tag as Texture;
+                return tex;
+            }
+        }
 
-        private IDrawCommand[] drawCommands;
+        public mat4[] BoneMatrixes
+        {
+            get
+            {
+                return this.container.BoneMatrixes;
+            }
+        }
+
+        public int BoneCount { get { return this.container.BoneCount; } }
+
+        public const string strPosition = "position";
+        public const string strNormal = "normal";
+        public const string strUV = "UV";
+
+        private IDrawCommand drawCommand;
 
         #region IBufferSource 成员
 
         public IEnumerable<VertexBuffer> GetVertexAttribute(string bufferName)
         {
-            if (bufferName == strPosition)
+            foreach (var item in this.container.GetVertexAttribute(bufferName))
             {
-                if (this.positionBuffer == null)
-                {
-                    this.positionBuffer = this.ezmMesh.Vertexbuffer.Buffers[0].array.GenVertexBuffer(VBOConfig.Vec3, BufferUsage.StaticDraw);
-                }
-
-                int count = this.ezmMesh.MeshSections.Length;
-                for (int i = 0; i < count; i++)
-                {
-                    yield return this.positionBuffer;
-                }
-            }
-            else if (bufferName == strNormal)
-            {
-                if (this.normalBuffer == null)
-                {
-                    this.normalBuffer = this.ezmMesh.Vertexbuffer.Buffers[1].array.GenVertexBuffer(VBOConfig.Vec3, BufferUsage.StaticDraw);
-                }
-
-                int count = this.ezmMesh.MeshSections.Length;
-                for (int i = 0; i < count; i++)
-                {
-                    yield return this.normalBuffer;
-                }
-            }
-            else if (bufferName == strUV)
-            {
-                if (this.uvBuffer == null)
-                {
-                    this.uvBuffer = this.ezmMesh.Vertexbuffer.Buffers[2].array.GenVertexBuffer(VBOConfig.Vec2, BufferUsage.StaticDraw);
-                }
-
-                int count = this.ezmMesh.MeshSections.Length;
-                for (int i = 0; i < count; i++)
-                {
-                    yield return this.uvBuffer;
-                }
-            }
-            else
-            {
-                throw new ArgumentException();
+                yield return item;
             }
         }
 
         public IEnumerable<IDrawCommand> GetDrawCommand()
         {
-            if (this.drawCommands == null)
+            if (this.drawCommand == null)
             {
-                var sections = this.ezmMesh.MeshSections;
-                var cmds = new IDrawCommand[sections.Length];
-                for (int i = 0; i < sections.Length; i++)
-                {
-                    var indexBuffer = sections[i].Indexbuffer.GenIndexBuffer(BufferUsage.StaticDraw);
-                    cmds[i] = new DrawElementsCmd(indexBuffer, DrawMode.Triangles);
-                }
-
-                this.drawCommands = cmds;
+                var indexBuffer = this.section.Indexbuffer.GenIndexBuffer(BufferUsage.StaticDraw);
+                this.drawCommand = new DrawElementsCmd(indexBuffer, DrawMode.Triangles);
             }
 
-            foreach (var item in this.drawCommands)
-            {
-                yield return item;
-            }
+            yield return this.drawCommand;
         }
 
         #endregion

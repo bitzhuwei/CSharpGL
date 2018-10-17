@@ -28,7 +28,7 @@ namespace CSharpGL
                     if (parent != null) { result.ParentName = parent.Value; }
                 }
                 {
-                    vec3 p = new vec3(); vec4 o = new vec4(); vec3 s = new vec3();
+                    vec3 p = new vec3(); Quaternion o = new Quaternion(); vec3 s = new vec3();
                     var orientation = xElement.Attribute("orientation");
                     if (orientation != null)
                     {
@@ -37,7 +37,7 @@ namespace CSharpGL
                         float y = float.Parse(parts[1]);
                         float z = float.Parse(parts[2]);
                         float w = float.Parse(parts[3]);
-                        o = new vec4(x, y, z, w);
+                        o = new Quaternion(w, x, y, z);
                     }
                     var position = xElement.Attribute("position");
                     if (position != null)
@@ -59,6 +59,7 @@ namespace CSharpGL
                     }
 
                     result.State = new EZMBoneState(p, o, s);
+                    result.OriginalState = result.State.Clone() as EZMBoneState;
                 }
             }
 
@@ -71,7 +72,13 @@ namespace CSharpGL
 
         public EZMBone Parent { get; internal set; }
 
+        internal List<EZMBone> children = new List<EZMBone>();
+
         public EZMBoneState State { get; private set; }
+
+        public EZMBoneState OriginalState { get; private set; }
+
+        public mat4 AbsBoneMat { get; set; }
 
         public override string ToString()
         {

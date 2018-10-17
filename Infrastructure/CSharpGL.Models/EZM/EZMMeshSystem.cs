@@ -111,7 +111,7 @@ namespace CSharpGL
                         int index = 0;
                         foreach (var xMesh in xMeshes)
                         {
-                            var mesh = EZMMesh.Parse(xMesh);
+                            EZMMesh mesh = EZMMesh.Parse(xMesh);
                             foreach (var meshSection in mesh.MeshSections)
                             {
                                 string name = meshSection.MaterialName;
@@ -119,6 +119,19 @@ namespace CSharpGL
                                 if (nameMaterialDict.TryGetValue(name, out material))
                                 {
                                     meshSection.Material = material;
+                                }
+                            }
+                            EZMSkeleton[] skeletons = result.Skeletons;
+                            if (skeletons.Length > 0)
+                            {
+                                if (string.IsNullOrEmpty(mesh.SkeletonName)) { mesh.Skeleton = skeletons[0]; }
+                                foreach (var skeleton in skeletons)
+                                {
+                                    if (mesh.SkeletonName == skeleton.Name)
+                                    {
+                                        mesh.Skeleton = skeleton;
+                                        break;
+                                    }
                                 }
                             }
                             meshes[index++] = mesh;

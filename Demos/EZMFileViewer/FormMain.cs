@@ -45,6 +45,10 @@ namespace EZMFileViewer
 
             var manipulater = new FirstPerspectiveManipulater();
             manipulater.Bind(camera, this.winGLCanvas1);
+
+            //string filename = @"D:\GitHub\CSharpGL\Demos\EZMFileViewer\media\dwarf_anim.ezm";
+            //CreateTextureNode(filename);
+
         }
 
         private void winGLCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
@@ -71,8 +75,28 @@ namespace EZMFileViewer
             {
                 string filename = this.openFileDialog1.FileName;
                 //CreateDummyNodes(filename);
-                CreateSectionNode(filename);
+                //CreateSectionNode(filename);
+                CreateTextureNode(filename);
+            }
+        }
 
+        private void CreateTextureNode(string filename)
+        {
+            var random = new Random();
+            EZMFile ezmFile = EZMFile.Load(filename);
+            ezmFile.LoadTextures();
+            var rootElement = this.scene.RootNode;
+            rootElement.Children.Clear();
+            for (int i = 0; i < ezmFile.MeshSystem.Meshes.Length; i++)
+            {
+                EZMMesh mesh = ezmFile.MeshSystem.Meshes[i];
+                var container = new EZMVertexBufferContainer(mesh);
+                for (int j = 0; j < mesh.MeshSections.Length; j++)
+                {
+                    var model = new EZMTextureModel(container, mesh.MeshSections[j]);
+                    var node = EZMTextureNode.Create(model);
+                    rootElement.Children.Add(node);
+                }
             }
         }
 

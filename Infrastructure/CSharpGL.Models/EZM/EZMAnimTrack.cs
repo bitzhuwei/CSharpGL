@@ -37,7 +37,7 @@ namespace CSharpGL
                     var values = new float[parts.Length];
                     var states = new EZMBoneState[parts.Length / 10];
                     int index = 0;
-                    vec3 p = new vec3(); vec4 o = new vec4(); vec3 s = new vec3();
+                    vec3 p = new vec3(); Quaternion o = new Quaternion(); vec3 s = new vec3();
                     while (index < parts.Length)
                     {
                         {
@@ -51,7 +51,7 @@ namespace CSharpGL
                             var y = float.Parse(parts[index++]);
                             var z = float.Parse(parts[index++]);
                             var w = float.Parse(parts[index++]);
-                            o = new vec4(x, y, z, w);
+                            o = new Quaternion(x, y, z, w);
                         }
                         {
                             var x = float.Parse(parts[index++]);

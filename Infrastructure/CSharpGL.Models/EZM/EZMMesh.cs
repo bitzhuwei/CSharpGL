@@ -26,7 +26,7 @@ namespace CSharpGL
                 }
                 {
                     var attr = xElement.Attribute("skeleton");
-                    if (attr != null) { result.Skeleton = attr.Value; }
+                    if (attr != null) { result.SkeletonName = attr.Value; }
                 }
                 {
                     result.Vertexbuffer = EZMVertexbuffer.Parse(xElement.Element("vertexbuffer"));
@@ -48,7 +48,9 @@ namespace CSharpGL
 
         public string Name { get; private set; }
 
-        public string Skeleton { get; private set; }
+        public string SkeletonName { get; private set; }
+
+        public EZMSkeleton Skeleton { get; internal set; }
 
         public EZMVertexbuffer Vertexbuffer { get; private set; }
 
@@ -56,7 +58,7 @@ namespace CSharpGL
 
         public override string ToString()
         {
-            return string.Format("{0} Skeleton:{1} ctype:{2} {3} mesh sections.", this.Name, this.Skeleton, this.Vertexbuffer.Ctypes, this.MeshSections.Length);
+            return string.Format("{0} Skeleton:{1} ctype:{2} {3} mesh sections.", this.Name, this.SkeletonName, this.Vertexbuffer.Ctypes, this.MeshSections.Length);
         }
     }
 }

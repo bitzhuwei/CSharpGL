@@ -35,7 +35,7 @@ namespace CSharpGL
         /// <param name="x"></param>
         /// <param name="y"></param>
         /// <param name="z"></param>
-        internal Quaternion(float w, float x, float y, float z)
+        public Quaternion(float w, float x, float y, float z)
         {
             this.w = w;
             if (x == 0.0f && y == 0.0f && z == 0.0f)
@@ -65,6 +65,42 @@ namespace CSharpGL
             this.x = sin * normalized.x;
             this.y = sin * normalized.y;
             this.z = sin * normalized.z;
+        }
+
+        /// <summary>
+        /// Transform this quaternion to equivalent matrix.
+        /// </summary>
+        /// <returns></returns>
+        public mat4 ToMat4()
+        {
+            float ww = w * w;
+            float xx = x * x;
+            float yy = y * y;
+            float zz = z * z;
+            float wx = w * x;
+            float wy = w * y;
+            float wz = w * z;
+            float xy = x * y;
+            float xz = x * z;
+            float yz = y * z;
+            vec4 col0 = new vec4(
+                2 * (xx + ww) - 1,
+                2 * (xy + wz),
+                2 * (xz - wy),
+                0);
+            vec4 col1 = new vec4(
+                2 * (xy - wz),
+                2 * (yy + ww) - 1,
+                2 * (yz + wx),
+                0);
+            vec4 col2 = new vec4(
+                2 * (xz + wy),
+                2 * (yz - wx),
+                2 * (zz + ww) - 1,
+                0);
+            vec4 col3 = new vec4(0, 0, 0, 1);
+
+            return new mat4(col0, col1, col2, col3);
         }
 
         /// <summary>
