@@ -46,8 +46,8 @@ namespace EZMFileViewer
             var manipulater = new FirstPerspectiveManipulater();
             manipulater.Bind(camera, this.winGLCanvas1);
 
-            //string filename = @"D:\GitHub\CSharpGL\Demos\EZMFileViewer\media\dwarf_anim.ezm";
-            //CreateTextureNode(filename);
+            string filename = @"D:\GitHub\CSharpGL\Demos\EZMFileViewer\media\dwarf_anim.ezm";
+            CreateTextureNode(filename);
 
         }
 

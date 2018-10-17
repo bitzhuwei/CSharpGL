@@ -40,6 +40,8 @@ namespace EZMFileViewer
         public const string strPosition = "position";
         public const string strNormal = "normal";
         public const string strUV = "UV";
+        public const string strBlendWeights = "blendWeights";
+        public const string strBlendIndices = "blendIndices";
 
         private IDrawCommand drawCommand;
 

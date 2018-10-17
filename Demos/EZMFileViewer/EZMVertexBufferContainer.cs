@@ -57,6 +57,8 @@ namespace EZMFileViewer
         private VertexBuffer positionBuffer;
         private VertexBuffer normalBuffer;
         private VertexBuffer uvBuffer;
+        private VertexBuffer blendWeightsBuffer;
+        private VertexBuffer blendIndicesBuffer;
 
         public IEnumerable<VertexBuffer> GetVertexAttribute(string bufferName)
         {
@@ -86,6 +88,24 @@ namespace EZMFileViewer
                 }
 
                 yield return this.uvBuffer;
+            }
+            else if (bufferName == EZMTextureModel.strBlendWeights)
+            {
+                if (this.blendWeightsBuffer == null)
+                {
+                    this.blendWeightsBuffer = this.ezmMesh.Vertexbuffer.Buffers[3].array.GenVertexBuffer(VBOConfig.Vec4, BufferUsage.StaticDraw);
+                }
+
+                yield return this.blendWeightsBuffer;
+            }
+            else if (bufferName == EZMTextureModel.strBlendIndices)
+            {
+                if (this.blendIndicesBuffer == null)
+                {
+                    this.blendIndicesBuffer = this.ezmMesh.Vertexbuffer.Buffers[4].array.GenVertexBuffer(VBOConfig.IVec4, BufferUsage.StaticDraw);
+                }
+
+                yield return this.blendIndicesBuffer;
             }
             else
             {

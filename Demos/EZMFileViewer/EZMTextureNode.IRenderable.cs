@@ -9,6 +9,19 @@ namespace EZMFileViewer
 {
     partial class EZMTextureNode
     {
+        private bool useBones = true;
+        public bool UseBones
+        {
+            get { return this.useBones; }
+            set
+            {
+                this.useBones = value;
+                ModernRenderUnit unit = this.RenderUnit;
+                RenderMethod method = unit.Methods[0];
+                ShaderProgram program = method.Program;
+                program.SetUniform("useBones", value);
+            }
+        }
 
         #region IRenderable 成员
 
@@ -38,8 +51,8 @@ namespace EZMFileViewer
             if (boneMatrixes != null) { program.SetUniform("bones", boneMatrixes); }
             Texture tex = this.textureModel.Texture;
             if (tex != null) { program.SetUniform("textureMap", tex); }
-            program.SetUniform("useDefault", 0.0f);
-            program.SetUniform("light_position", new vec3(1, 1, 1));
+            program.SetUniform("useDefault", tex != null ? 0.0f : 1.0f);
+            program.SetUniform("light_position", new vec3(1, 1, 1) * 10);
 
             method.Render();
         }

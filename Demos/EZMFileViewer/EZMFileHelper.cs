@@ -29,6 +29,7 @@ namespace EZMFileViewer
                           new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_REPEAT),
                           new TexParameteri(TexParameter.PropertyName.TextureMinFilter, (int)GL.GL_LINEAR),
                           new TexParameteri(TexParameter.PropertyName.TextureMagFilter, (int)GL.GL_LINEAR));
+                    texture.Initialize();
                     material.Tag = texture;
                 }
             }

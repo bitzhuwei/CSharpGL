@@ -124,13 +124,17 @@ namespace CSharpGL
                             EZMSkeleton[] skeletons = result.Skeletons;
                             if (skeletons.Length > 0)
                             {
-                                if (string.IsNullOrEmpty(mesh.SkeletonName)) { mesh.Skeleton = skeletons[0]; }
-                                foreach (var skeleton in skeletons)
+                                if (string.IsNullOrEmpty(mesh.SkeletonName)
+                                    || mesh.SkeletonName == "null") { mesh.Skeleton = skeletons[0]; }
+                                else
                                 {
-                                    if (mesh.SkeletonName == skeleton.Name)
+                                    foreach (var skeleton in skeletons)
                                     {
-                                        mesh.Skeleton = skeleton;
-                                        break;
+                                        if (mesh.SkeletonName == skeleton.Name)
+                                        {
+                                            mesh.Skeleton = skeleton;
+                                            break;
+                                        }
                                     }
                                 }
                             }

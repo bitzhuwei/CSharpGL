@@ -7,6 +7,11 @@ namespace CSharpGL
 {
     public class EZMBone
     {
+        private static int idCounter = 0;
+        public int Id { get; private set; }
+
+        public EZMBone() { Id = idCounter++; }
+
         // <Bone name="RootNode" parent="xx" orientation="0 0 0 1" position="0 0 0" scale="1 1 1"/>
         /// <summary>
         /// 
