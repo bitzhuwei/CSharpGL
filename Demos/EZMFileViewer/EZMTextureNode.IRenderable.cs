@@ -9,7 +9,7 @@ namespace EZMFileViewer
 {
     partial class EZMTextureNode
     {
-        private bool useBones = true;
+        private bool useBones = false;
         public bool UseBones
         {
             get { return this.useBones; }

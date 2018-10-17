@@ -23,6 +23,7 @@ namespace EZMFileViewer
                 {
                     string filename = Path.Combine(directory, material.MetaData);
                     var bitmap = new Bitmap(filename);
+                    bitmap.RotateFlip(RotateFlipType.Rotate180FlipX);
                     var storage = new TexImageBitmap(bitmap);
                     var texture = new Texture(storage,
                           new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_REPEAT),

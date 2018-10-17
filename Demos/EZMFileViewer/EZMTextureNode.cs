@@ -18,10 +18,10 @@ namespace EZMFileViewer
             var map = new AttributeMap();
             map.Add("inPosition", EZMTextureModel.strPosition);
             //map.Add("inNormal", EZMTextureModel.strNormal);
-            //map.Add("inUV", EZMTextureModel.strUV);
+            map.Add("inUV", EZMTextureModel.strUV);
             map.Add("inBlendWeights", EZMTextureModel.strBlendWeights);
             map.Add("inBlendIndices", EZMTextureModel.strBlendIndices);
-            var builder = new RenderMethodBuilder(array, map, new PolygonModeSwitch(PolygonMode.Line));
+            var builder = new RenderMethodBuilder(array, map);//, new PolygonModeSwitch(PolygonMode.Line));
             var node = new EZMTextureNode(model, builder);
             node.Initialize();
 

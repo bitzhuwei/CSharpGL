@@ -67,6 +67,7 @@ namespace EZMFileViewer
                 if (this.positionBuffer == null)
                 {
                     this.positionBuffer = this.ezmMesh.Vertexbuffer.Buffers[0].array.GenVertexBuffer(VBOConfig.Vec3, BufferUsage.StaticDraw);
+                    this.positionBuffer = this.ezmMesh.Vertexbuffer.GetBuffer(bufferName).array.GenVertexBuffer(VBOConfig.Vec3, BufferUsage.StaticDraw);
                 }
 
                 yield return this.positionBuffer;
@@ -75,7 +76,7 @@ namespace EZMFileViewer
             {
                 if (this.normalBuffer == null)
                 {
-                    this.normalBuffer = this.ezmMesh.Vertexbuffer.Buffers[1].array.GenVertexBuffer(VBOConfig.Vec3, BufferUsage.StaticDraw);
+                    this.normalBuffer = this.ezmMesh.Vertexbuffer.GetBuffer(bufferName).array.GenVertexBuffer(VBOConfig.Vec3, BufferUsage.StaticDraw);
                 }
 
                 yield return this.normalBuffer;
@@ -84,7 +85,7 @@ namespace EZMFileViewer
             {
                 if (this.uvBuffer == null)
                 {
-                    this.uvBuffer = this.ezmMesh.Vertexbuffer.Buffers[2].array.GenVertexBuffer(VBOConfig.Vec2, BufferUsage.StaticDraw);
+                    this.uvBuffer = this.ezmMesh.Vertexbuffer.GetBuffer(bufferName).array.GenVertexBuffer(VBOConfig.Vec2, BufferUsage.StaticDraw);
                 }
 
                 yield return this.uvBuffer;
@@ -93,7 +94,7 @@ namespace EZMFileViewer
             {
                 if (this.blendWeightsBuffer == null)
                 {
-                    this.blendWeightsBuffer = this.ezmMesh.Vertexbuffer.Buffers[3].array.GenVertexBuffer(VBOConfig.Vec4, BufferUsage.StaticDraw);
+                    this.blendWeightsBuffer = this.ezmMesh.Vertexbuffer.GetBuffer(bufferName).array.GenVertexBuffer(VBOConfig.Vec4, BufferUsage.StaticDraw);
                 }
 
                 yield return this.blendWeightsBuffer;
@@ -102,7 +103,7 @@ namespace EZMFileViewer
             {
                 if (this.blendIndicesBuffer == null)
                 {
-                    this.blendIndicesBuffer = this.ezmMesh.Vertexbuffer.Buffers[4].array.GenVertexBuffer(VBOConfig.IVec4, BufferUsage.StaticDraw);
+                    this.blendIndicesBuffer = this.ezmMesh.Vertexbuffer.GetBuffer(bufferName).array.GenVertexBuffer(VBOConfig.IVec4, BufferUsage.StaticDraw);
                 }
 
                 yield return this.blendIndicesBuffer;

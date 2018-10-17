@@ -65,15 +65,15 @@ namespace CSharpGL
                             var array = (vec2*)pointers[i];
                             array[t] = new vec2(x, y);
                         } break;
-                    case PassType.uvec4:
+                    case PassType.ivec4:
                         for (int t = 0; t < groupCount; t++)
                         {
-                            uint x = uint.Parse(parts[t * lineLength + index + 0]);
-                            uint y = uint.Parse(parts[t * lineLength + index + 1]);
-                            uint z = uint.Parse(parts[t * lineLength + index + 2]);
-                            uint w = uint.Parse(parts[t * lineLength + index + 3]);
-                            var array = (uvec4*)pointers[i];
-                            array[t] = new uvec4(x, y, z, w);
+                            int x = int.Parse(parts[t * lineLength + index + 0]);
+                            int y = int.Parse(parts[t * lineLength + index + 1]);
+                            int z = int.Parse(parts[t * lineLength + index + 2]);
+                            int w = int.Parse(parts[t * lineLength + index + 3]);
+                            var array = (vec4*)pointers[i];
+                            array[t] = new vec4(x, y, z, w);
                         } break;
                     default:
                         break;
@@ -92,6 +92,22 @@ namespace CSharpGL
         public string[] Semantics { get; private set; }
 
         public Passbuffer[] Buffers { get; private set; }
+
+        public Passbuffer GetBuffer(string semantics)
+        {
+            Passbuffer buffer = null;
+            for (int i = 0; i < this.Buffers.Length; i++)
+            {
+                string s = this.Semantics[i];
+                if (s == semantics)
+                {
+                    buffer = this.Buffers[i];
+                    break;
+                }
+            }
+
+            return buffer;
+        }
 
         public override string ToString()
         {
@@ -137,7 +153,7 @@ namespace CSharpGL
             case "ffff": passType = PassType.vec4; break;
             case "fff": passType = PassType.vec3; break;
             case "ff": passType = PassType.vec2; break;
-            case "hhhh": passType = PassType.uvec4; break;
+            case "hhhh": passType = PassType.ivec4; break;
             default: throw new NotImplementedException();
             }
 
@@ -152,7 +168,7 @@ namespace CSharpGL
             case PassType.vec4: result = sizeof(float) * 4; break;
             case PassType.vec3: result = sizeof(float) * 3; break;
             case PassType.vec2: result = sizeof(float) * 2; break;
-            case PassType.uvec4: result = sizeof(uint) * 4; break;
+            case PassType.ivec4: result = sizeof(int) * 4; break;
             default: throw new NotDealWithNewEnumItemException(typeof(PassType));
             }
 
@@ -170,6 +186,6 @@ namespace CSharpGL
         vec4,
         vec3,
         vec2,
-        uvec4,
+        ivec4,
     }
 }

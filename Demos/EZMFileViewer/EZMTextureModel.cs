@@ -37,11 +37,12 @@ namespace EZMFileViewer
 
         public int BoneCount { get { return this.container.BoneCount; } }
 
+        //vertexbuffer count="13114" ctype="fff fff ff ff ff ffff hhhh" semantic="position normal texcoord1 texcoord2 texcoord3 blendweights blendindices">
         public const string strPosition = "position";
         public const string strNormal = "normal";
-        public const string strUV = "UV";
-        public const string strBlendWeights = "blendWeights";
-        public const string strBlendIndices = "blendIndices";
+        public const string strUV = "texcoord1";
+        public const string strBlendWeights = "blendweights";
+        public const string strBlendIndices = "blendindices";
 
         private IDrawCommand drawCommand;
 
