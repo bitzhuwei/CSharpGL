@@ -72,8 +72,8 @@ namespace CSharpGL
                             int y = int.Parse(parts[t * lineLength + index + 1]);
                             int z = int.Parse(parts[t * lineLength + index + 2]);
                             int w = int.Parse(parts[t * lineLength + index + 3]);
-                            var array = (vec4*)pointers[i];
-                            array[t] = new vec4(x, y, z, w);
+                            var array = (ivec4*)pointers[i];
+                            array[t] = new ivec4(x, y, z, w);
                         } break;
                     default:
                         break;
