@@ -89,19 +89,18 @@ namespace EZMFileViewer
                 {
                     EZMBoneState animState = animTrack.States[this.currentFrame];
                     EZMBone bone = animTrack.Bone;
-                    bone.State = animState;
-                    bone.State.UpdateCache();
+                    bone.state = animState;
                 }
                 foreach (EZMBone bone in this.ezmMesh.Skeleton.OrderedBones)
                 {
                     EZMBone parent = bone.Parent;
                     if (parent == null)
                     {
-                        bone.combinedBoneMat = bone.State.matrix;
+                        bone.combinedBoneMat = bone.state.matrix;
                     }
                     else
                     {
-                        bone.combinedBoneMat = parent.combinedBoneMat * bone.State.matrix;
+                        bone.combinedBoneMat = parent.combinedBoneMat * bone.state.matrix;
                     }
                 }
                 for (int i = 0; i < result.Length; i++)
@@ -109,7 +108,6 @@ namespace EZMFileViewer
                     EZMAnimTrack animTrack = animation.AnimTracks[i];
                     EZMBone bone = animTrack.Bone;
                     result[i] = bone.combinedBoneMat;
-                    //result[i] = bone.combinedBoneMat * bone.State.inverseMatrix;
                 }
             }
 

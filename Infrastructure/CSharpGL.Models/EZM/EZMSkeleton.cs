@@ -74,15 +74,15 @@ namespace CSharpGL
                         for (int i = 0; i < orderedBones.Length; i++)
                         {
                             EZMBone bone = orderedBones[i];
-                            bone.State.UpdateCache();
+                            //bone.State.UpdateCache();
                             EZMBone parent = bone.Parent;
                             if (parent == null)
                             {
-                                bone.combinedBoneMat = bone.State.matrix;
+                                bone.combinedBoneMat = bone.state.matrix;
                             }
                             else
                             {
-                                bone.combinedBoneMat = parent.combinedBoneMat * bone.State.matrix;
+                                bone.combinedBoneMat = parent.combinedBoneMat * bone.state.matrix;
                             }
                         }
                         result.OrderedBones = orderedBones;

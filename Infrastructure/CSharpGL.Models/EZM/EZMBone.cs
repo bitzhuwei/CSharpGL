@@ -63,8 +63,8 @@ namespace CSharpGL
                         s = new vec3(x, y, z);
                     }
 
-                    result.State = new EZMBoneState(p, o, s);
-                    result.OriginalState = result.State.Clone() as EZMBoneState;
+                    result.state = new EZMBoneState(p, o, s);
+                    result.OriginalState = result.state;
                 }
             }
 
@@ -79,7 +79,7 @@ namespace CSharpGL
 
         internal List<EZMBone> children = new List<EZMBone>();
 
-        public EZMBoneState State { get; set; }
+        public EZMBoneState state;
 
         public EZMBoneState OriginalState { get; private set; }
 
@@ -87,7 +87,7 @@ namespace CSharpGL
 
         public override string ToString()
         {
-            return string.Format("{0}: Parent:{1} {2}.", this.Name, this.ParentName, this.State);
+            return string.Format("{0}: Parent:{1} {2}.", this.Name, this.ParentName, this.state);
         }
     }
 }
