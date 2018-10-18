@@ -9,7 +9,7 @@ namespace CSharpGL
     {
         // <AnimTrack name="RootNode" count="61" has_scale="true">
         /// <summary>
-        /// 
+        /// Tracks a bone's states of all frames in one pose.
         /// </summary>
         /// <param name="xAnimTrack"></param>
         /// <returns></returns>
