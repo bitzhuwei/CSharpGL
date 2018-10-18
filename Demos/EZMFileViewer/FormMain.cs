@@ -90,7 +90,8 @@ namespace EZMFileViewer
             for (int i = 0; i < ezmFile.MeshSystem.Meshes.Length; i++)
             {
                 EZMMesh mesh = ezmFile.MeshSystem.Meshes[i];
-                var container = new EZMVertexBufferContainer(mesh);
+                EZMAnimation animation = ezmFile.MeshSystem.Animations.Length > 0 ? ezmFile.MeshSystem.Animations[0] : null;
+                var container = new EZMVertexBufferContainer(mesh, animation);
                 for (int j = 0; j < mesh.MeshSections.Length; j++)
                 {
                     var model = new EZMTextureModel(container, mesh.MeshSections[j]);

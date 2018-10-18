@@ -36,6 +36,8 @@ namespace EZMFileViewer
 
         public void RenderBeforeChildren(RenderEventArgs arg)
         {
+
+
             ICamera camera = arg.Camera;
             mat4 projectionMat = camera.GetProjectionMatrix();
             mat4 viewMat = camera.GetViewMatrix();
@@ -47,7 +49,7 @@ namespace EZMFileViewer
             program.SetUniform("projectionMat", projectionMat);
             program.SetUniform("mvMat", viewMat * modelMat);
             program.SetUniform("normalMat", glm.transpose(glm.inverse(viewMat * modelMat)));
-            mat4[] boneMatrixes = this.textureModel.BoneMatrixes;
+            mat4[] boneMatrixes = this.textureModel.GetBoneMatrixes();
             if (boneMatrixes != null) { program.SetUniform("bones", boneMatrixes); }
             Texture tex = this.textureModel.Texture;
             if (tex != null) { program.SetUniform("textureMap", tex); }

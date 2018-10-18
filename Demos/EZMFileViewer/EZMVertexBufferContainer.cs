@@ -9,9 +9,10 @@ namespace EZMFileViewer
     public class EZMVertexBufferContainer
     {
         private EZMMesh ezmMesh;
-        public EZMVertexBufferContainer(EZMMesh ezmMesh)
+        public EZMVertexBufferContainer(EZMMesh ezmMesh, EZMAnimation animation)
         {
             this.ezmMesh = ezmMesh;
+            this.animation = animation;
         }
 
         public int BoneCount
@@ -32,26 +33,87 @@ namespace EZMFileViewer
             }
         }
 
-        public mat4[] BoneMatrixes
+        public mat4[] DefaultBoneMatrixes()
         {
-            get
+            mat4[] result = null;
+            EZMSkeleton skeleton = this.ezmMesh.Skeleton;
+            if (skeleton != null)
             {
-                mat4[] result = null;
-                EZMSkeleton skeleton = this.ezmMesh.Skeleton;
-                if (skeleton != null)
+                EZMBone[] bones = skeleton.Bones;
+                if (bones != null)
                 {
-                    EZMBone[] bones = skeleton.Bones;
-                    if (bones != null)
+                    result = new mat4[bones.Length];
+                    for (int i = 0; i < result.Length; i++)
                     {
-                        result = new mat4[bones.Length];
-                        for (int i = 0; i < result.Length; i++)
-                        {
-                            result[i] = bones[i].AbsBoneMat;
-                        }
+                        result[i] = bones[i].combinedBoneMat;
                     }
                 }
-                return result;
             }
+            return result;
+        }
+
+        private bool firstRun = true;
+        private DateTime lastTime;
+        private double passedTime = 0;
+        private int currentFrame = 0;
+
+        public mat4[] GetBoneMatrixes()
+        {
+            mat4[] result = null;
+
+            EZMAnimation animation = this.animation;
+            if (animation == null)
+            {
+                result = DefaultBoneMatrixes();
+            }
+            else
+            {
+                if (this.firstRun)
+                {
+                    lastTime = DateTime.Now;
+                    this.firstRun = false;
+                }
+
+                DateTime now = DateTime.Now;
+                var deltaTime = now.Subtract(this.lastTime).TotalSeconds;
+                float frameDuration = animation.duration / animation.FrameCount;
+                if (deltaTime + passedTime > frameDuration)
+                {
+                    this.currentFrame = (this.currentFrame + 1) % animation.FrameCount;
+                    passedTime = deltaTime - frameDuration;
+                }
+                this.lastTime = now;
+
+                result = new mat4[animation.AnimTracks.Length];
+                foreach (EZMAnimTrack animTrack in animation.AnimTracks)
+                {
+                    EZMBoneState animState = animTrack.States[this.currentFrame];
+                    EZMBone bone = animTrack.Bone;
+                    bone.State = animState;
+                    bone.State.UpdateCache();
+                }
+                foreach (EZMBone bone in this.ezmMesh.Skeleton.OrderedBones)
+                {
+                    EZMBone parent = bone.Parent;
+                    if (parent == null)
+                    {
+                        bone.combinedBoneMat = bone.State.matrix;
+                    }
+                    else
+                    {
+                        bone.combinedBoneMat = parent.combinedBoneMat * bone.State.matrix;
+                    }
+                }
+                for (int i = 0; i < result.Length; i++)
+                {
+                    EZMAnimTrack animTrack = animation.AnimTracks[i];
+                    EZMBone bone = animTrack.Bone;
+                    result[i] = bone.combinedBoneMat;
+                    //result[i] = bone.combinedBoneMat * bone.State.inverseMatrix;
+                }
+            }
+
+            return result;
         }
 
         private VertexBuffer positionBuffer;
@@ -59,6 +121,7 @@ namespace EZMFileViewer
         private VertexBuffer uvBuffer;
         private VertexBuffer blendWeightsBuffer;
         private VertexBuffer blendIndicesBuffer;
+        private EZMAnimation animation;
 
         public IEnumerable<VertexBuffer> GetVertexAttribute(string bufferName)
         {

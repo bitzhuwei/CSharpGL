@@ -20,16 +20,34 @@ namespace CSharpGL
 
         public vec3 Scale { get; private set; }
 
-        public mat4 ToMat4()
+        /// <summary>
+        /// cache matrix from Position, Orientation and Scale.
+        /// </summary>
+        public mat4 matrix;
+        /// <summary>
+        /// cache inversed matrix.
+        /// </summary>
+        public mat4 inverseMatrix;
+
+        public void UpdateCache()
         {
             mat4 S = glm.scale(mat4.identity(), this.Scale);
             mat4 R = this.Orientation.ToMat4();
             mat4 T = glm.translate(mat4.identity(), this.Position);
-
-            mat4 result = T * R * S;
-
-            return result;
+            this.matrix = T * R * S;
+            this.inverseMatrix = glm.inverse(this.matrix);
         }
+
+        //public mat4 ToMat4()
+        //{
+        //    mat4 S = glm.scale(mat4.identity(), this.Scale);
+        //    mat4 R = this.Orientation.ToMat4();
+        //    mat4 T = glm.translate(mat4.identity(), this.Position);
+
+        //    mat4 result = T * R * S;
+
+        //    return result;
+        //}
 
         public override string ToString()
         {

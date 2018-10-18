@@ -27,12 +27,14 @@ namespace EZMFileViewer
             }
         }
 
-        public mat4[] BoneMatrixes
+        public mat4[] DefaultBoneMatrixes()
         {
-            get
-            {
-                return this.container.BoneMatrixes;
-            }
+            return this.container.DefaultBoneMatrixes();
+        }
+
+        public mat4[] GetBoneMatrixes()
+        {
+            return this.container.GetBoneMatrixes();
         }
 
         public int BoneCount { get { return this.container.BoneCount; } }

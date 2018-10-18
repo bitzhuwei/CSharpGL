@@ -79,11 +79,11 @@ namespace CSharpGL
 
         internal List<EZMBone> children = new List<EZMBone>();
 
-        public EZMBoneState State { get; private set; }
+        public EZMBoneState State { get; set; }
 
         public EZMBoneState OriginalState { get; private set; }
 
-        public mat4 AbsBoneMat { get; set; }
+        public mat4 combinedBoneMat;
 
         public override string ToString()
         {

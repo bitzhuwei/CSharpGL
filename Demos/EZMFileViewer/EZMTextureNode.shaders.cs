@@ -21,7 +21,7 @@ uniform mat4 mvMat;
 // glm.transpose(glm.inverse(mvMat))
 uniform mat3 normalMat;
 uniform mat4 bones[UNDEFINED_BONE_COUNT];
-uniform bool useBones = false;
+uniform bool useBones = true;
 
 // position in eye space.
 out vec3 passPosition;

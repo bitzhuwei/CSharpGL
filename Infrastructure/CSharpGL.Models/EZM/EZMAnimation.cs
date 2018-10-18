@@ -20,16 +20,24 @@ namespace CSharpGL
             {
                 result = new EZMAnimation();
                 {
-                    var name = xElement.Attribute("name");
-                    if (name != null) { result.Name = name.Value; }
+                    var xAttr = xElement.Attribute("name");
+                    if (xAttr != null) { result.Name = xAttr.Value; }
                 }
                 {
-                    var duration = xElement.Attribute("duration");
-                    if (duration != null) { result.duration = float.Parse(duration.Value); }
+                    var xAttr = xElement.Attribute("trackcount");
+                    if (xAttr != null) { result.TrackCount = int.Parse(xAttr.Value); }
                 }
                 {
-                    var dtime = xElement.Attribute("dtime");
-                    if (dtime != null) { result.dtime = float.Parse(dtime.Value); }
+                    var xAttr = xElement.Attribute("framecount");
+                    if (xAttr != null) { result.FrameCount = int.Parse(xAttr.Value); }
+                }
+                {
+                    var xAttr = xElement.Attribute("duration");
+                    if (xAttr != null) { result.duration = float.Parse(xAttr.Value); }
+                }
+                {
+                    var xAttr = xElement.Attribute("dtime");
+                    if (xAttr != null) { result.dtime = float.Parse(xAttr.Value); }
                 }
                 {
                     var xAnimTracks = xElement.Elements("AnimTrack");
@@ -47,6 +55,10 @@ namespace CSharpGL
         }
 
         public string Name { get; private set; }
+
+        public int TrackCount { get; private set; }
+
+        public int FrameCount { get; private set; }
 
         public float duration { get; private set; }
 
