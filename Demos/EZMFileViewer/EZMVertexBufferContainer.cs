@@ -45,7 +45,12 @@ namespace EZMFileViewer
                     result = new mat4[bones.Length];
                     for (int i = 0; i < result.Length; i++)
                     {
-                        result[i] = bones[i].combinedBoneMat;
+                        //result[i] = bones[i].combinedMat * bones[i].inverseCombinedMatrix;
+                        //result[i] = bones[i].combinedMat;
+                        //result[i] = bones[i].OriginalState.matrix;
+                        //result[i] = bones[i].state.matrix;
+                        //result[i] = bones[i].inverseCombinedMatrix;
+                        result[i] = mat4.identity();
                     }
                 }
             }
@@ -96,18 +101,18 @@ namespace EZMFileViewer
                     EZMBone parent = bone.Parent;
                     if (parent == null)
                     {
-                        bone.combinedBoneMat = bone.state.matrix;
+                        bone.combinedMat = bone.state.matrix;
                     }
                     else
                     {
-                        bone.combinedBoneMat = parent.combinedBoneMat * bone.state.matrix;
+                        bone.combinedMat = parent.combinedMat * bone.state.matrix;
                     }
                 }
                 for (int i = 0; i < result.Length; i++)
                 {
                     EZMAnimTrack animTrack = animation.AnimTracks[i];
                     EZMBone bone = animTrack.Bone;
-                    result[i] = bone.combinedBoneMat;
+                    result[i] = bone.combinedMat * bone.inverseCombinedMatrix;
                 }
             }
 
