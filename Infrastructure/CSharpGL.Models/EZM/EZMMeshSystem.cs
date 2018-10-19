@@ -85,6 +85,7 @@ namespace CSharpGL
                         result.Animations = animations;
                     }
                 }
+
                 var nameMaterialDict = new Dictionary<string, EZMMaterial>();
                 {
                     var materialsRoot = xElement.Element("Materials");
