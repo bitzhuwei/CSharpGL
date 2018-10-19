@@ -83,7 +83,15 @@ namespace CSharpGL
 
         public EZMBoneState OriginalState { get; private set; }
 
-        public mat4 combinedBoneMat;
+        /// <summary>
+        /// cache combined matrix.
+        /// </summary>
+        public mat4 combinedMat;
+
+        /// <summary>
+        /// cache inversed combined matrix.
+        /// </summary>
+        public mat4 inverseCombinedMatrix;
 
         public override string ToString()
         {
