@@ -10,31 +10,24 @@ namespace CSharpGL
         public EZMBoneState(vec3 position, Quaternion orientation, vec3 scale)
             : this()
         {
-            this.Position = position;
-            this.Orientation = orientation;
-            this.Scale = scale;
+            this.position = position;
+            this.orientation = orientation;
+            this.scale = scale;
 
-            mat4 S = glm.scale(mat4.identity(), this.Scale);
-            mat4 R = this.Orientation.ToMat4();
-            mat4 T = glm.translate(mat4.identity(), this.Position);
+            mat4 S = glm.scale(mat4.identity(), this.scale);
+            mat4 R = this.orientation.ToMat4();
+            mat4 T = glm.translate(mat4.identity(), this.position);
             this.matrix = T * R * S;
-            this.inverseMatrix = glm.inverse(this.matrix);
         }
 
-        public vec3 Position { get; private set; }
-
-        public Quaternion Orientation { get; private set; }
-
-        public vec3 Scale { get; private set; }
+        public readonly vec3 position;
+        public readonly Quaternion orientation;
+        public readonly vec3 scale;
 
         /// <summary>
         /// cache matrix from Position, Orientation and Scale.
         /// </summary>
-        public mat4 matrix;
-        /// <summary>
-        /// cache inversed matrix.
-        /// </summary>
-        public mat4 inverseMatrix;
+        public readonly mat4 matrix;
 
         //public void UpdateCache()
         //{
@@ -58,7 +51,7 @@ namespace CSharpGL
 
         public override string ToString()
         {
-            return string.Format("Orientation:{0} Pos:{1} Scale:{2}.", this.Orientation, this.Position, this.Scale);
+            return string.Format("Orientation:{0} Pos:{1} Scale:{2}.", this.orientation, this.position, this.scale);
         }
 
     }
