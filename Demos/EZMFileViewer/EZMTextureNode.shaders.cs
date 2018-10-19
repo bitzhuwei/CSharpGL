@@ -65,6 +65,8 @@ out vec4 outColor;
 
 void main()
 {
+    if (int(gl_FragCoord.x + gl_FragCoord.y) % 2 == 1) discard;
+
     outColor = texture(textureMap, passUV);
 }
 ";
