@@ -11,22 +11,22 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        private float w;
+        public float w;
 
         /// <summary>
         ///
         /// </summary>
-        private float x;
+        public float x;
 
         /// <summary>
         ///
         /// </summary>
-        private float y;
+        public float y;
 
         /// <summary>
         ///
         /// </summary>
-        private float z;
+        public float z;
 
         /// <summary>
         /// Quaternion
@@ -144,6 +144,16 @@ namespace CSharpGL
         {
             angleInDegree = (float)(Math.Acos(w) * 2 * 180.0 / Math.PI);
             axis = (new vec3(x, y, z)).normalize();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="right"></param>
+        /// <returns></returns>
+        public float dot(Quaternion right)
+        {
+            return (this.w * right.w + this.x * right.x + this.y * right.y + this.z * right.z);
         }
 
         /// <summary>
