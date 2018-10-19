@@ -78,12 +78,14 @@ namespace CSharpGL
                             EZMBone parent = bone.Parent;
                             if (parent == null)
                             {
-                                bone.combinedBoneMat = bone.state.matrix;
+                                bone.combinedMat = bone.state.matrix;
                             }
                             else
                             {
-                                bone.combinedBoneMat = parent.combinedBoneMat * bone.state.matrix;
+                                bone.combinedMat = parent.combinedMat * bone.state.matrix;
                             }
+
+                            bone.inverseCombinedMatrix = glm.inverse(bone.combinedMat);
                         }
                         result.OrderedBones = orderedBones;
                     }
