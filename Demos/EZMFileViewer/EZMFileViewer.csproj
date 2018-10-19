@@ -43,12 +43,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BoneModel.cs" />
+    <Compile Include="BoneNode.shaders.cs" />
+    <Compile Include="BoneNode.cs" />
     <Compile Include="DDSLoader.cs" />
     <Compile Include="DDSStorage.cs" />
+    <Compile Include="DualQuaternion.cs" />
     <Compile Include="EZMFileHelper.cs" />
     <Compile Include="EZMLoadTextures.cs" />
+    <Compile Include="EZMDualQuatModel.cs" />
+    <Compile Include="EZMDualQuatNode.cs" />
     <Compile Include="EZMTextureNode.cs" />
+    <Compile Include="EZMDualQuatNode.IRenderable.cs" />
     <Compile Include="EZMTextureNode.IRenderable.cs" />
+    <Compile Include="EZMDualQuatNode.shaders.cs" />
     <Compile Include="EZMTextureNode.shaders.cs" />
     <Compile Include="EZMVertexBufferContainer.cs" />
     <Compile Include="EZMSectionNode.cs" />
