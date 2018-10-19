@@ -46,8 +46,11 @@ namespace EZMFileViewer
             var manipulater = new FirstPerspectiveManipulater();
             manipulater.Bind(camera, this.winGLCanvas1);
 
+            var rootElement = this.scene.RootNode;
+            rootElement.Children.Clear();
             string filename = @"D:\GitHub\CSharpGL\Demos\EZMFileViewer\media\dwarf_anim.ezm";
             CreateTextureNode(filename);
+            CreateBoneNode(filename);
 
         }
 
@@ -73,25 +76,39 @@ namespace EZMFileViewer
         {
             if (this.openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
+                var rootElement = this.scene.RootNode;
+                rootElement.Children.Clear();
                 string filename = this.openFileDialog1.FileName;
                 //CreateDummyNodes(filename);
                 //CreateSectionNode(filename);
                 CreateTextureNode(filename);
+                CreateBoneNode(filename);
+            }
+        }
+
+        private void CreateBoneNode(string filename)
+        {
+            EZMFile ezmFile = EZMFile.Load(filename);
+            ezmFile.LoadTextures();
+            var rootElement = this.scene.RootNode;
+            for (int i = 0; i < ezmFile.MeshSystem.Meshes.Length; i++)
+            {
+                EZMMesh mesh = ezmFile.MeshSystem.Meshes[i];
+                var node = BoneNode.Create(mesh.Skeleton.Bones);
+                rootElement.Children.Add(node);
             }
         }
 
         private void CreateTextureNode(string filename)
         {
-            var random = new Random();
             EZMFile ezmFile = EZMFile.Load(filename);
             ezmFile.LoadTextures();
             var rootElement = this.scene.RootNode;
-            rootElement.Children.Clear();
             for (int i = 0; i < ezmFile.MeshSystem.Meshes.Length; i++)
             {
                 EZMMesh mesh = ezmFile.MeshSystem.Meshes[i];
                 EZMAnimation animation = ezmFile.MeshSystem.Animations.Length > 0 ? ezmFile.MeshSystem.Animations[0] : null;
-                var container = new EZMVertexBufferContainer(mesh, animation);
+                var container = new EZMVertexBufferContainer(mesh, null);
                 for (int j = 0; j < mesh.MeshSections.Length; j++)
                 {
                     var model = new EZMTextureModel(container, mesh.MeshSections[j]);
@@ -106,7 +123,6 @@ namespace EZMFileViewer
             var random = new Random();
             EZMFile ezmFile = EZMFile.Load(filename);
             var rootElement = this.scene.RootNode;
-            rootElement.Children.Clear();
             var model = new EZMSectionModel(ezmFile);
             var node = EZMSectionNode.Create(model);
             node.Color = Color.FromArgb(
@@ -126,7 +142,6 @@ namespace EZMFileViewer
             var random = new Random();
             EZMFile ezmFile = EZMFile.Load(filename);
             var rootElement = this.scene.RootNode;
-            rootElement.Children.Clear();
             var mesh = ezmFile.MeshSystem.Meshes[0];
             byte[] positionBuffer = mesh.Vertexbuffer.Buffers[0].array;
             for (int i = 0; i < mesh.MeshSections.Length; i++)
