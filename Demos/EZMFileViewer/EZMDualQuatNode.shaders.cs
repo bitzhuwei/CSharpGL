@@ -11,46 +11,77 @@ namespace EZMFileViewer
         private const string vertexCode = @"#version 150
 
 in vec3 inPosition;
-//in vec3 inNormal;
 in vec2 inUV;
 in vec4 inBlendWeights;
 in ivec4 inBlendIndices;
 
 uniform mat4 projectionMat;
-uniform mat4 mvMat;
-// glm.transpose(glm.inverse(mvMat))
-uniform mat3 normalMat;
-uniform vec4 bones[UNDEFINED_BONE_COUNT];
-uniform bool useBones = true;
+uniform mat4 viewMat;
+uniform mat4 modelMat;
+uniform vec4 Bones[UNDEFINED_BONE_COUNT];
 
-// position in eye space.
-out vec3 passPosition;
-// normal in eye space.
-out vec3 passNormal;
 out vec2 passUV;
+
+mat4 dualQuatToMatrix(vec4 Qn, vec4 Qd)
+{
+    float len2 = dot(Qn, Qn);
+    float w = Qn.w, x = Qn.x, y = Qn.y, z = Qn.z;
+    float t0 = Qd.w, t1 = Qd.x, t2 = Qd.y, t3 = Qd.z;
+    vec4 col0 = vec4(w * w + x * x - y * y - z * z,
+        2 * x * y + 2 * w * z,
+        2 * x * z - 2 * w * y,
+        0) / len2;
+    vec4 col1 = vec4(2 * x * y - 2 * w * z,
+        w * w + y * y - x * x - z * z,
+        2 * y * z + 2 * w * x,
+        0) / len2;
+    vec4 col2 = vec4(2 * x * z + 2 * w * y,
+        2 * y * z - 2 * w * x,
+        w * w + z * z - x * x - y * y,
+        0) / len2;
+    vec4 col3 = vec4(-2 * t0 * x + 2 * w * t1 - 2 * t2 * z + 2 * y * t3,
+        -2 * t0 * y + 2 * t1 * z - 2 * x * t3 + 2 * w * t2,
+        -2 * t0 * z + 2 * x * t2 + 2 * w * t3 - 2 * t1 * y,
+        len2) / len2;
+    mat4 m = mat4(col0, col1, col2, col3);
+
+    return m;
+}
 
 void main()
 {
     vec4 blendPosition = vec4(0);
     vec3 blendNormal = vec3(0);
-    vec4 inPos = vec4(inPosition, 1.0);
+    vec4 blendDQ[2];
+
+    //here we check the dot product between the two quaternions
+    float yc = 1.0, zc = 1.0, wc = 1.0;
+
+    //if the dot product is < 0 they are opposite to each other
+    //hence we multiply the -1 which would subtract the blended result
+    if (dot(Bones[inBlendIndices.x * 2], Bones[inBlendIndices.y * 2]) < 0.0)
+        yc = -1.0;
+
+    if (dot(Bones[inBlendIndices.x * 2], Bones[inBlendIndices.z * 2]) < 0.0)
+        zc = -1.0;
+
+    if (dot(Bones[inBlendIndices.x * 2], Bones[inBlendIndices.w * 2]) < 0.0)
+        wc = -1.0;
 
     for (int i = 0; i < 4; i++)
     {
         int index = inBlendIndices[i];
-        blendPosition += (bones[index] * inPos) * inBlendWeights[i];
-//        blendNormal += (bones[index] * vec4(inNormal, 0.0)).xyz * inBlendWeights[i];
+        blendDQ[0] += (Bones[index * 2]) * inBlendWeights[i];
+        blendDQ[1] += (Bones[index * 2 + 1]) * inBlendWeights[i];
     }
 
-    if (useBones) {
-        // transform vertex' position from model space to clip space.
-        gl_Position = projectionMat * vec4((mvMat * blendPosition).xyz, 1.0);
-    }
-    else {
-        gl_Position = projectionMat * mvMat * inPos;
-    }
+    //get the skinning matrix from the dual quaternion
+    mat4 skinTransform = dualQuatToMatrix(blendDQ[0], blendDQ[1]);
+    blendPosition = skinTransform * vec4(inPosition, 1.0);
 
-//    passNormal = normalize(normalMat * blendNormal);
+    // transform vertex' position from model space to clip space.
+    gl_Position = projectionMat * vec4((viewMat * modelMat * blendPosition).xyz, 1.0);
+
     passUV = inUV;
 }
 ";
