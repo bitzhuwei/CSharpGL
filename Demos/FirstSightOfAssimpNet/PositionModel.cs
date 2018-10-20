@@ -9,6 +9,7 @@ namespace FirstSightOfAssimpNet
     class PositionModel : IBufferSource
     {
         private Assimp.Mesh mesh;
+
         public PositionModel(Assimp.Mesh mesh)
         {
             this.mesh = mesh;

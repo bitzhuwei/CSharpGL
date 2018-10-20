@@ -14,6 +14,7 @@ namespace FirstSightOfAssimpNet
     {
         private Scene scene;
         private ActionList actionList;
+        private FirstPerspectiveManipulater manipulater;
 
         public FormMain()
         {
@@ -26,7 +27,7 @@ namespace FirstSightOfAssimpNet
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-            var position = new vec3(-5, 6, 4) * 3;
+            var position = new vec3(5, 4, 3) * 3;
             var center = new vec3(0, 0, 0);
             var up = new vec3(0, 1, 0);
             var camera = new Camera(position, center, up, CameraType.Perspective, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
@@ -45,11 +46,11 @@ namespace FirstSightOfAssimpNet
 
             var manipulater = new FirstPerspectiveManipulater();
             manipulater.Bind(camera, this.winGLCanvas1);
-            manipulater.StepLength = 10;
+            this.manipulater = manipulater;
 
             var rootElement = this.scene.RootNode;
             rootElement.Children.Clear();
-            string filename = @"skull.obj_";
+            string filename = @"jeep.obj_";
             CreateDummyNodes(filename);
             //CreateTextureNode(filename);
             //CreateBoneNode(filename);
@@ -60,12 +61,20 @@ namespace FirstSightOfAssimpNet
         private void CreateDummyNodes(string filename)
         {
             var importer = new Assimp.AssimpImporter();
-            Assimp.Scene aiScene = importer.ImportFile(filename);
+            Assimp.Scene aiScene = null;
+            try
+            {
+                aiScene = importer.ImportFile(filename, Assimp.PostProcessSteps.GenerateSmoothNormals | Assimp.PostProcessSteps.Triangulate | Assimp.PostProcessSteps.FlipUVs);
+            }
+            catch (Exception ex) { MessageBox.Show(ex.ToString()); }
+
             if (aiScene == null) { return; }
             var rootElement = this.scene.RootNode;
             var random = new Random();
+            bool first = true; vec3 max = new vec3(); vec3 min = new vec3();
             foreach (Assimp.Mesh mesh in aiScene.Meshes)
             {
+                GetBound(mesh, ref max, ref min, ref first);
                 var model = new PositionModel(mesh);
                 var node = PositionNode.Create(model);
                 node.DiffuseColor = Color.FromArgb(
@@ -75,6 +84,37 @@ namespace FirstSightOfAssimpNet
                     (byte)random.Next(0, 256)
                     );
                 rootElement.Children.Add(node);
+            }
+            max = max.Abs(); min = min.Abs();
+            float v = max.x;
+            if (v < max.y) { v = max.y; } if (v < max.z) { v = max.z; }
+            if (v < min.x) { v = min.x; } if (v < min.y) { v = min.y; } if (v < min.z) { v = min.z; }
+            this.scene.Camera.Position = new vec3(5, 4, 3) * v / 4.0f;
+            this.scene.Camera.Target = new vec3();
+            this.manipulater.StepLength = v / 10.0f;
+        }
+
+
+        private void GetBound(Assimp.Mesh mesh, ref vec3 max, ref vec3 min, ref bool first)
+        {
+            foreach (var item in mesh.Vertices)
+            {
+                if (first)
+                {
+                    max = new vec3(item.X, item.Y, item.Z);
+                    min = max;
+                    first = false;
+                }
+                else
+                {
+                    if (max.x < item.X) { max.x = item.X; }
+                    if (max.y < item.Y) { max.y = item.Y; }
+                    if (max.z < item.Z) { max.z = item.Z; }
+
+                    if (item.X < min.x) { min.x = item.X; }
+                    if (item.Y < min.y) { min.y = item.Y; }
+                    if (item.Z < min.z) { min.z = item.Z; }
+                }
             }
         }
 
@@ -94,6 +134,17 @@ namespace FirstSightOfAssimpNet
         void winGLCanvas1_Resize(object sender, EventArgs e)
         {
             this.scene.Camera.AspectRatio = ((float)this.winGLCanvas1.Width) / ((float)this.winGLCanvas1.Height);
+        }
+
+        private void 打开OToolStripButton_Click(object sender, EventArgs e)
+        {
+            if (this.openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                var rootElement = this.scene.RootNode;
+                rootElement.Children.Clear();
+                string filename = this.openFileDialog1.FileName;
+                CreateDummyNodes(filename);
+            }
         }
 
     }

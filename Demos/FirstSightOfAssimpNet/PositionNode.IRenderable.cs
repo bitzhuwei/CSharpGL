@@ -30,7 +30,7 @@ namespace FirstSightOfAssimpNet
             set { this.polygonModeSwitch.Mode = value; }
         }
 
-        private PolygonModeSwitch polygonModeSwitch = new PolygonModeSwitch(PolygonMode.Line);
+        private PolygonModeSwitch polygonModeSwitch = new PolygonModeSwitch(PolygonMode.Fill);
 
         #region IRenderable 成员
 
