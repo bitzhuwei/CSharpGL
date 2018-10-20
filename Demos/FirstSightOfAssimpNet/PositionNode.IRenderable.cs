@@ -9,20 +9,28 @@ namespace FirstSightOfAssimpNet
 {
     partial class PositionNode
     {
-        private vec3 color = new vec3();
-        public Color Color
+        private vec3 diffuseColor = new vec3();
+        public Color DiffuseColor
         {
-            get { return this.color.ToColor(); }
+            get { return this.diffuseColor.ToColor(); }
             set
             {
                 vec3 c = value.ToVec3();
-                this.color = c;
+                this.diffuseColor = c;
                 ModernRenderUnit unit = this.RenderUnit;
                 RenderMethod method = unit.Methods[0];
                 ShaderProgram program = method.Program;
-                program.SetUniform("color", c);
+                program.SetUniform("diffuseColor", c);
             }
         }
+
+        public PolygonMode PolygonMode
+        {
+            get { return this.polygonModeSwitch.Mode; }
+            set { this.polygonModeSwitch.Mode = value; }
+        }
+
+        private PolygonModeSwitch polygonModeSwitch = new PolygonModeSwitch(PolygonMode.Line);
 
         #region IRenderable 成员
 
@@ -46,7 +54,10 @@ namespace FirstSightOfAssimpNet
             RenderMethod method = unit.Methods[0];
             ShaderProgram program = method.Program;
             program.SetUniform("mvpMat", projectionMat * viewMat * modelMat);
+            program.SetUniform("normalMat", glm.transpose(glm.inverse(modelMat)));
+            this.polygonModeSwitch.On();
             method.Render();
+            this.polygonModeSwitch.Off();
         }
 
         public void RenderAfterChildren(RenderEventArgs arg)

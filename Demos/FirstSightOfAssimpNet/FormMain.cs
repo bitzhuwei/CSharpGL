@@ -68,7 +68,7 @@ namespace FirstSightOfAssimpNet
             {
                 var model = new PositionModel(mesh);
                 var node = PositionNode.Create(model);
-                node.Color = Color.FromArgb(
+                node.DiffuseColor = Color.FromArgb(
                     (byte)random.Next(0, 256),
                     (byte)random.Next(0, 256),
                     (byte)random.Next(0, 256),

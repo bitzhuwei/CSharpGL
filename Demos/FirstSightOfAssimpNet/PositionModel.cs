@@ -16,6 +16,8 @@ namespace FirstSightOfAssimpNet
 
         public const string strPosition = "position";
         private VertexBuffer positionBuffer;
+        public const string strNormal = "normal";
+        private VertexBuffer normalBuffer;
 
         private IDrawCommand drawCommand;
 
@@ -31,6 +33,15 @@ namespace FirstSightOfAssimpNet
                 }
 
                 yield return this.positionBuffer;
+            }
+            else if (strNormal == bufferName)
+            {
+                if (this.normalBuffer == null)
+                {
+                    this.normalBuffer = this.mesh.Normals.GenVertexBuffer(VBOConfig.Vec3, BufferUsage.StaticDraw);
+                }
+
+                yield return this.normalBuffer;
             }
             else
             {
