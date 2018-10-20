@@ -69,6 +69,7 @@ namespace FirstSightOfAssimpNet
             catch (Exception ex) { MessageBox.Show(ex.ToString()); }
 
             if (aiScene == null) { return; }
+            if (aiScene.AnimationCount > 0) { Console.WriteLine("Animations!"); }
             var rootElement = this.scene.RootNode;
             var random = new Random();
             bool first = true; vec3 max = new vec3(); vec3 min = new vec3();
@@ -89,7 +90,7 @@ namespace FirstSightOfAssimpNet
             vec3 size = max - min;
             float v = size.x;
             if (v < size.y) { v = size.y; } if (v < size.z) { v = size.z; }
-            this.scene.Camera.Position = new vec3(5, 4, 3) * v / 6.0f;
+            this.scene.Camera.Position = new vec3(0, 4, 5) * v / 6.0f;
             this.scene.Camera.Target = center;
             this.manipulater.StepLength = v / 10.0f;
         }
