@@ -48,7 +48,7 @@ namespace FirstSightOfAssimpNet
                 {
                     for (int t = 0; t < 3; t++)
                     {
-                        indexes[i * 3 + t] = this.mesh.Faces[faceCount].Indices[t];
+                        indexes[i * 3 + t] = this.mesh.Faces[i].Indices[t];
                     }
                 }
                 IndexBuffer indexBuffer = indexes.GenIndexBuffer(BufferUsage.StaticDraw);

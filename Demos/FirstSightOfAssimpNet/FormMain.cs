@@ -45,14 +45,37 @@ namespace FirstSightOfAssimpNet
 
             var manipulater = new FirstPerspectiveManipulater();
             manipulater.Bind(camera, this.winGLCanvas1);
+            manipulater.StepLength = 10;
 
             var rootElement = this.scene.RootNode;
             rootElement.Children.Clear();
             string filename = @"skull.obj_";
+            CreateDummyNodes(filename);
             //CreateTextureNode(filename);
             //CreateBoneNode(filename);
             //CreateDualQuatNode(filename);
 
+        }
+
+        private void CreateDummyNodes(string filename)
+        {
+            var importer = new Assimp.AssimpImporter();
+            Assimp.Scene aiScene = importer.ImportFile(filename);
+            if (aiScene == null) { return; }
+            var rootElement = this.scene.RootNode;
+            var random = new Random();
+            foreach (Assimp.Mesh mesh in aiScene.Meshes)
+            {
+                var model = new PositionModel(mesh);
+                var node = PositionNode.Create(model);
+                node.Color = Color.FromArgb(
+                    (byte)random.Next(0, 256),
+                    (byte)random.Next(0, 256),
+                    (byte)random.Next(0, 256),
+                    (byte)random.Next(0, 256)
+                    );
+                rootElement.Children.Add(node);
+            }
         }
 
         private void winGLCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
