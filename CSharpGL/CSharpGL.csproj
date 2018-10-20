@@ -722,7 +722,14 @@
     <Content Include="GLObjects\GLBuffers\readme.md" />
     <Content Include="GLObjects\GLBuffers\VertexBuffers\readme.md" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="BasicDataStructures\PropertyGrid\UITypeEditors\FormPropertyGridEditor.resx">
+      <DependentUpon>FormPropertyGridEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BasicDataStructures\PropertyGrid\UITypeEditors\FormUniformVariableDictEditor.resx">
+      <DependentUpon>FormUniformVariableDictEditor.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
