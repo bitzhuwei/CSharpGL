@@ -14,9 +14,12 @@ namespace CSharpGL
             this.orientation = orientation;
             this.scale = scale;
 
-            mat4 S = glm.scale(mat4.identity(), this.scale);
-            mat4 R = this.orientation.ToMat4();
-            mat4 T = glm.translate(mat4.identity(), this.position);
+            mat4 S = glm.scale(mat4.identity(), scale);
+            //mat4 S = mat4.identity();
+            mat4 R = orientation.ToMat4();
+            //mat4 R = mat4.identity();
+            mat4 T = glm.translate(mat4.identity(), position);
+            //mat4 T = mat4.identity();
             this.matrix = T * R * S;
         }
 

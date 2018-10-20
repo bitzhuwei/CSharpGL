@@ -47,6 +47,10 @@ namespace CSharpGL
                             float w = float.Parse(parts[t * lineLength + index + 3]);
                             var array = (vec4*)pointers[i];
                             array[t] = new vec4(x, y, z, w);
+                            if (!(0 <= x && x <= 1)) { Console.WriteLine("Error"); }
+                            if (!(0 <= y && y <= 1)) { Console.WriteLine("Error"); }
+                            if (!(0 <= z && z <= 1)) { Console.WriteLine("Error"); }
+                            if (!(0 <= w && w <= 1)) { Console.WriteLine("Error"); }
                         } break;
                     case PassType.vec3:
                         for (int t = 0; t < groupCount; t++)
@@ -58,14 +62,23 @@ namespace CSharpGL
                             array[t] = new vec3(x, y, z);
                         } break;
                     case PassType.vec2:
+                        var vec2xList = new List<float>();
+                        var vec2yList = new List<float>();
                         for (int t = 0; t < groupCount; t++)
                         {
                             float x = float.Parse(parts[t * lineLength + index + 0]);
+                            if (x < 0) { x = 0; } if (1 < x) { x = 1; }
                             float y = float.Parse(parts[t * lineLength + index + 1]);
+                            if (y < 0) { y = 0; } if (1 < y) { y = 1; }
                             var array = (vec2*)pointers[i];
                             array[t] = new vec2(x, y);
-                        } break;
+                            if (!(0 <= x && x <= 1)) { vec2xList.Add(x); }
+                            if (!(0 <= y && y <= 1)) { vec2yList.Add(y); }
+                        }
+                        if (vec2xList.Count > 0 || vec2yList.Count > 0) { Console.WriteLine("Error"); }
+                        break;
                     case PassType.ivec4:
+                        var list = new List<int>();
                         for (int t = 0; t < groupCount; t++)
                         {
                             int x = int.Parse(parts[t * lineLength + index + 0]);
@@ -74,6 +87,10 @@ namespace CSharpGL
                             int w = int.Parse(parts[t * lineLength + index + 3]);
                             var array = (ivec4*)pointers[i];
                             array[t] = new ivec4(x, y, z, w);
+                            if (!list.Contains(x)) { list.Add(x); }
+                            if (!list.Contains(y)) { list.Add(y); }
+                            if (!list.Contains(z)) { list.Add(z); }
+                            if (!list.Contains(w)) { list.Add(w); }
                         } break;
                     default:
                         break;
