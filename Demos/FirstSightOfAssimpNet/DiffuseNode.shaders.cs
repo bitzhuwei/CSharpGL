@@ -6,7 +6,7 @@ using System.Text;
 
 namespace FirstSightOfAssimpNet
 {
-    partial class PositionNode
+    partial class DiffuseNode
     {
         private const string vertexCode = @"#version 150
 

@@ -57,16 +57,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PositionNode.IRenderable.cs" />
-    <Compile Include="PositionNode.shaders.cs" />
+    <Compile Include="DiffuseNode.IRenderable.cs" />
+    <Compile Include="DiffuseNode.shaders.cs" />
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="PositionModel.cs" />
-    <Compile Include="PositionNode.cs" />
+    <Compile Include="DiffuseModel.cs" />
+    <Compile Include="DiffuseNode.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormMain.resx">

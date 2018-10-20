@@ -75,8 +75,8 @@ namespace FirstSightOfAssimpNet
             foreach (Assimp.Mesh mesh in aiScene.Meshes)
             {
                 GetBound(mesh, ref max, ref min, ref first);
-                var model = new PositionModel(mesh);
-                var node = PositionNode.Create(model);
+                var model = new DiffuseModel(mesh);
+                var node = DiffuseNode.Create(model);
                 node.DiffuseColor = Color.FromArgb(
                     (byte)random.Next(0, 256),
                     (byte)random.Next(0, 256),

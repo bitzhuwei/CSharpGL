@@ -6,11 +6,11 @@ using System.Text;
 
 namespace FirstSightOfAssimpNet
 {
-    class PositionModel : IBufferSource
+    class DiffuseModel : IBufferSource
     {
         private Assimp.Mesh mesh;
 
-        public PositionModel(Assimp.Mesh mesh)
+        public DiffuseModel(Assimp.Mesh mesh)
         {
             this.mesh = mesh;
         }
