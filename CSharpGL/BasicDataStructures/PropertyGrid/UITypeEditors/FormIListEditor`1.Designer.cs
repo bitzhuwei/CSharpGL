@@ -65,7 +65,7 @@
             this.lstMember.Location = new System.Drawing.Point(2, 22);
             this.lstMember.Margin = new System.Windows.Forms.Padding(2);
             this.lstMember.Name = "lstMember";
-            this.lstMember.Size = new System.Drawing.Size(252, 324);
+            this.lstMember.Size = new System.Drawing.Size(252, 500);
             this.lstMember.TabIndex = 1;
             this.lstMember.SelectedIndexChanged += new System.EventHandler(this.lstMember_SelectedIndexChanged);
             // 
@@ -73,7 +73,7 @@
             // 
             this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnAdd.Font = new System.Drawing.Font("宋体", 12F);
-            this.btnAdd.Location = new System.Drawing.Point(11, 374);
+            this.btnAdd.Location = new System.Drawing.Point(11, 558);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(2);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(68, 30);
@@ -86,7 +86,7 @@
             // 
             this.btnRemove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnRemove.Font = new System.Drawing.Font("宋体", 12F);
-            this.btnRemove.Location = new System.Drawing.Point(83, 374);
+            this.btnRemove.Location = new System.Drawing.Point(83, 558);
             this.btnRemove.Margin = new System.Windows.Forms.Padding(2);
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.Size = new System.Drawing.Size(68, 30);
@@ -141,7 +141,7 @@
             this.propertyGrid.Location = new System.Drawing.Point(5, 34);
             this.propertyGrid.Margin = new System.Windows.Forms.Padding(2);
             this.propertyGrid.Name = "propertyGrid";
-            this.propertyGrid.Size = new System.Drawing.Size(325, 321);
+            this.propertyGrid.Size = new System.Drawing.Size(325, 505);
             this.propertyGrid.TabIndex = 3;
             // 
             // btnClose
@@ -149,14 +149,14 @@
             this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnClose.Font = new System.Drawing.Font("宋体", 12F);
-            this.btnClose.Location = new System.Drawing.Point(567, 374);
+            this.btnClose.Location = new System.Drawing.Point(567, 558);
             this.btnClose.Margin = new System.Windows.Forms.Padding(2);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(68, 30);
             this.btnClose.TabIndex = 2;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.btnOK_Click);
+            this.btnClose.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // splitContainer1
             // 
@@ -177,7 +177,7 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.lblSelectedType);
             this.splitContainer1.Panel2.Controls.Add(this.propertyGrid);
-            this.splitContainer1.Size = new System.Drawing.Size(623, 357);
+            this.splitContainer1.Size = new System.Drawing.Size(623, 541);
             this.splitContainer1.SplitterDistance = 287;
             this.splitContainer1.TabIndex = 4;
             // 
@@ -187,7 +187,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnClose;
-            this.ClientSize = new System.Drawing.Size(646, 415);
+            this.ClientSize = new System.Drawing.Size(646, 599);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnRemove);

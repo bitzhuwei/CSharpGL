@@ -85,12 +85,12 @@ namespace FirstSightOfAssimpNet
                     );
                 rootElement.Children.Add(node);
             }
-            max = max.Abs(); min = min.Abs();
-            float v = max.x;
-            if (v < max.y) { v = max.y; } if (v < max.z) { v = max.z; }
-            if (v < min.x) { v = min.x; } if (v < min.y) { v = min.y; } if (v < min.z) { v = min.z; }
-            this.scene.Camera.Position = new vec3(5, 4, 3) * v / 4.0f;
-            this.scene.Camera.Target = new vec3();
+            vec3 center = max / 2.0f + min / 2.0f;
+            vec3 size = max - min;
+            float v = size.x;
+            if (v < size.y) { v = size.y; } if (v < size.z) { v = size.z; }
+            this.scene.Camera.Position = new vec3(5, 4, 3) * v / 6.0f;
+            this.scene.Camera.Target = center;
             this.manipulater.StepLength = v / 10.0f;
         }
 
