@@ -26,7 +26,7 @@ namespace EZMFileViewer
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-            var position = new vec3(5, 6, 4) * 3;
+            var position = new vec3(-5, 6, 4) * 3;
             var center = new vec3(0, 0, 0);
             var up = new vec3(0, 1, 0);
             var camera = new Camera(position, center, up, CameraType.Perspective, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
@@ -50,7 +50,8 @@ namespace EZMFileViewer
             rootElement.Children.Clear();
             string filename = @"D:\GitHub\CSharpGL\Demos\EZMFileViewer\media\dwarf_anim.ezm";
             CreateTextureNode(filename);
-            CreateBoneNode(filename);
+            //CreateBoneNode(filename);
+            //CreateDualQuatNode(filename);
 
         }
 
@@ -82,7 +83,27 @@ namespace EZMFileViewer
                 //CreateDummyNodes(filename);
                 //CreateSectionNode(filename);
                 CreateTextureNode(filename);
-                CreateBoneNode(filename);
+                //CreateBoneNode(filename);
+                //CreateDualQuatNode(filename);
+            }
+        }
+
+        private void CreateDualQuatNode(string filename)
+        {
+            EZMFile ezmFile = EZMFile.Load(filename);
+            ezmFile.LoadTextures();
+            var rootElement = this.scene.RootNode;
+            for (int i = 0; i < ezmFile.MeshSystem.Meshes.Length; i++)
+            {
+                EZMMesh mesh = ezmFile.MeshSystem.Meshes[i];
+                EZMAnimation animation = ezmFile.MeshSystem.Animations.Length > 0 ? ezmFile.MeshSystem.Animations[0] : null;
+                var container = new EZMVertexBufferContainer(mesh, null);
+                for (int j = 0; j < mesh.MeshSections.Length; j++)
+                {
+                    var model = new EZMDualQuatModel(container, mesh.MeshSections[j]);
+                    var node = EZMDualQuatNode.Create(model);
+                    rootElement.Children.Add(node);
+                }
             }
         }
 
@@ -108,7 +129,7 @@ namespace EZMFileViewer
             {
                 EZMMesh mesh = ezmFile.MeshSystem.Meshes[i];
                 EZMAnimation animation = ezmFile.MeshSystem.Animations.Length > 0 ? ezmFile.MeshSystem.Animations[0] : null;
-                var container = new EZMVertexBufferContainer(mesh, null);
+                var container = new EZMVertexBufferContainer(mesh, animation);
                 for (int j = 0; j < mesh.MeshSections.Length; j++)
                 {
                     var model = new EZMTextureModel(container, mesh.MeshSections[j]);

@@ -112,7 +112,9 @@ namespace EZMFileViewer
                 {
                     EZMAnimTrack animTrack = animation.AnimTracks[i];
                     EZMBone bone = animTrack.Bone;
-                    result[i] = bone.combinedMat * bone.inverseCombinedMatrix;
+                    result[i] = bone.combinedMat;
+                    //result[i] = bone.combinedMat * bone.inverseCombinedMatrix;
+                    //result[i] = bone.combinedMat * glm.inverse(bone.state.matrix);
                 }
             }
 

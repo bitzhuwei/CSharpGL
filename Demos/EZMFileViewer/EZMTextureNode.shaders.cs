@@ -33,21 +33,26 @@ void main()
 {
     vec4 blendPosition = vec4(0);
     vec3 blendNormal = vec3(0);
-    vec4 inPos = vec4(inPosition, 1.0);
 
+    mat4 boneMat = mat4(0);
     for (int i = 0; i < 4; i++)
     {
         int index = inBlendIndices[i];
-        blendPosition += (bones[index] * inPos) * inBlendWeights[i];
-//        blendNormal += (bones[index] * vec4(inNormal, 0.0)).xyz * inBlendWeights[i];
+        boneMat += bones[index] * inBlendWeights[i];
     }
 
     if (useBones) {
         // transform vertex' position from model space to clip space.
-        gl_Position = projectionMat * vec4((mvMat * blendPosition).xyz, 1.0);
+//        gl_Position = projectionMat * vec4((mvMat * blendPosition).xyz, 1.0);
+//        gl_Position = projectionMat * mvMat * boneMat * vec4(inPosition, 1.0);
+        vec3 inPos = vec3(boneMat * vec4(0, 0, 0, 1) + vec4(inPosition, 0));
+        gl_Position = projectionMat * mvMat * vec4(inPos, 1.0);
+//        vec4 inPos = boneMat * vec4(0, 0, 0, 1) + vec4(inPosition, 0);
+//        inPos.w = 1;
+//        gl_Position = projectionMat * mvMat * inPos;
     }
     else {
-        gl_Position = projectionMat * mvMat * inPos;
+        gl_Position = projectionMat * mvMat * vec4(inPosition, 1.0);
     }
 
 //    passNormal = normalize(normalMat * blendNormal);
@@ -65,7 +70,7 @@ out vec4 outColor;
 
 void main()
 {
-    if (int(gl_FragCoord.x + gl_FragCoord.y) % 2 == 1) discard;
+//    if (int(gl_FragCoord.x + gl_FragCoord.y) % 2 == 1) discard;
 
     outColor = texture(textureMap, passUV);
 }
