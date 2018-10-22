@@ -8,14 +8,14 @@ namespace FirstSightOfAssimpNet
 {
     public class AssimpSceneContainer
     {
-        private Assimp.Scene aiScene;
+        public readonly Assimp.Scene aiScene;
         public AssimpSceneContainer(Assimp.Scene aiScene)
         {
             this.aiScene = aiScene;
         }
 
-        private BonesInfo bonesInfo = null;
-        public BonesInfo GetBones()
+        private AllBones bonesInfo = null;
+        public AllBones GetAllBones()
         {
             if (this.bonesInfo == null)
             {
@@ -25,10 +25,10 @@ namespace FirstSightOfAssimpNet
             return this.bonesInfo;
         }
 
-        private BonesInfo InitBonesInfo(Assimp.Scene aiScene)
+        private AllBones InitBonesInfo(Assimp.Scene aiScene)
         {
             List<BoneInfo> bones = new List<BoneInfo>();
-            Dictionary<string, int> nameIndexDict = new Dictionary<string, int>();
+            var nameIndexDict = new Dictionary<string, uint>();
             for (int i = 0; i < aiScene.MeshCount; i++)
             {
                 Assimp.Mesh mesh = aiScene.Meshes[i];
@@ -39,37 +39,38 @@ namespace FirstSightOfAssimpNet
                     if (!nameIndexDict.ContainsKey(boneName))
                     {
                         var boneInfo = new BoneInfo();
-                        boneInfo.BoneOffset = bone.OffsetMatrix;
+                        boneInfo.Bone = bone;
                         bones.Add(boneInfo);
-                        nameIndexDict.Add(boneName, bones.Count - 1);
+                        nameIndexDict.Add(boneName, (uint)(bones.Count - 1));
                     }
                 }
             }
 
-            return new BonesInfo(bones.ToArray(), nameIndexDict);
+            return new AllBones(bones.ToArray(), nameIndexDict);
         }
+
     }
 
     public struct BoneInfo
     {
-        public Assimp.Matrix4x4 BoneOffset;
+        public Assimp.Bone Bone;
         public Assimp.Matrix4x4 FinalTransformation;
     }
 
-    public class BonesInfo
+    public class AllBones
     {
-        public readonly BoneInfo[] bones;
-        public readonly Dictionary<string, int> nameIndexDict;
+        public readonly BoneInfo[] boneInfos;
+        public readonly Dictionary<string, uint> nameIndexDict;
 
-        public BonesInfo(BoneInfo[] bones, Dictionary<string, int> nameIndexDict)
+        public AllBones(BoneInfo[] boneInfos, Dictionary<string, uint> nameIndexDict)
         {
-            this.bones = bones;
+            this.boneInfos = boneInfos;
             this.nameIndexDict = nameIndexDict;
         }
 
         public override string ToString()
         {
-            return string.Format("{0} bones, {1} dict items", bones.Length, nameIndexDict.Count);
+            return string.Format("{0} bones, {1} dict items", boneInfos.Length, nameIndexDict.Count);
         }
     }
 }

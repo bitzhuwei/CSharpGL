@@ -8,6 +8,7 @@ namespace FirstSightOfAssimpNet
 {
     partial class BoneNode : ModernNode, IRenderable
     {
+        private BoneModel boneModel;
         public static BoneNode Create(BoneModel model)
         {
             var vs = new VertexShader(vertexCode);
@@ -25,7 +26,7 @@ namespace FirstSightOfAssimpNet
             return node;
         }
 
-        private BoneNode(IBufferSource model, params RenderMethodBuilder[] builders) : base(model, builders) { }
+        private BoneNode(BoneModel model, params RenderMethodBuilder[] builders) : base(model, builders) { this.boneModel = model; }
 
 
     }

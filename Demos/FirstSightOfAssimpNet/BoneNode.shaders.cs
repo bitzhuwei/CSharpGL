@@ -12,7 +12,7 @@ namespace FirstSightOfAssimpNet
 
 in vec3 inPosiiton;
 in vec2 inTexCoord;
-in vec4 inBoneIDs;
+in uvec4 inBoneIDs;
 in vec4 inWeights;
 
 uniform mat4 mvpMat;

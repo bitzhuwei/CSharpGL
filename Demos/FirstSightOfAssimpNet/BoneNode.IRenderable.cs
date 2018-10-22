@@ -54,7 +54,10 @@ namespace FirstSightOfAssimpNet
             RenderMethod method = unit.Methods[0];
             ShaderProgram program = method.Program;
             program.SetUniform("mvpMat", projectionMat * viewMat * modelMat);
-            program.SetUniform("normalMat", glm.transpose(glm.inverse(modelMat)));
+            mat4[] boneMatrixes = this.boneModel.GetBoneMatrixes(0);
+            if (boneMatrixes != null) { program.SetUniform("bones", boneMatrixes); }
+            Texture tex = this.boneModel.Texture;
+            if (tex != null) { program.SetUniform("textureMap", tex); }
             this.polygonModeSwitch.On();
             method.Render();
             this.polygonModeSwitch.Off();
