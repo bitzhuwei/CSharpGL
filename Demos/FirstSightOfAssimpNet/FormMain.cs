@@ -55,7 +55,8 @@ namespace FirstSightOfAssimpNet
             string filename = @"D:\(TODO) - openGLStepbyStep\ogldev-source\Content\boblampclean.md5mesh";
             //CreateDummyNodes(filename);
             CreateBoneNodes(filename);
-
+            rootElement.RotationAxis = new vec3(1, 0, 0);
+            rootElement.RotationAngle = 270;
         }
 
         private void CreateBoneNodes(string filename)
@@ -96,8 +97,9 @@ namespace FirstSightOfAssimpNet
             vec3 size = max - min;
             float v = size.x;
             if (v < size.y) { v = size.y; } if (v < size.z) { v = size.z; }
-            this.scene.Camera.Position = new vec3(0, 4, 5) * v / 6.0f;
+            this.scene.Camera.Position = size;
             this.scene.Camera.Target = center;
+            rootElement.WorldPosition = center;
             this.manipulater.StepLength = v / 10.0f;
         }
 
