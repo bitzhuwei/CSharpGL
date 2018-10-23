@@ -10,7 +10,7 @@ namespace FirstSightOfAssimpNet
     {
         private Assimp.Mesh mesh;
         private AssimpSceneContainer container;
-        private Assimp.Matrix4x4 m_GlobalInverseTransform;
+        private mat4 m_GlobalInverseTransform;
 
         private uvec4[] boneIDs;
         private vec4[] boneWeights;
@@ -19,8 +19,9 @@ namespace FirstSightOfAssimpNet
         {
             this.mesh = mesh;
             this.container = container;
-            this.m_GlobalInverseTransform = container.aiScene.RootNode.Transform;
-            this.m_GlobalInverseTransform.Inverse();
+            Assimp.Matrix4x4 matrix = container.aiScene.RootNode.Transform;
+            matrix.Inverse();
+            this.m_GlobalInverseTransform = matrix.ToMat4();
             InitBoneInfo(mesh, container);
         }
 
@@ -105,79 +106,56 @@ namespace FirstSightOfAssimpNet
             double timeInTicks = TimeInSeconds * ticksPerSecond;
             float animationTime = (float)(timeInTicks % scene.Animations[0].DurationInTicks);
 
-            Assimp.Matrix4x4 identity = Assimp.Matrix4x4.Identity;
+            mat4 identity = mat4.identity();
             ReadNodeHeirarchy(animationTime, scene.RootNode, identity);
 
             AllBones allBones = this.container.GetAllBones();
             int boneCount = allBones.boneInfos.Length;
             var result = new mat4[boneCount];
-            {
-                var builder = new StringBuilder();
-                for (int i = 0; i < boneCount; i++)
-                {
-                    var matrix = allBones.boneInfos[i].FinalTransformation;
-                    builder.Append("matrix: "); builder.Append(i); builder.AppendLine();
-                    builder.Append(matrix.A1); builder.Append(' '); builder.Append(matrix.A2); builder.Append(' '); builder.Append(matrix.A3); builder.Append(' '); builder.Append(matrix.A4); builder.AppendLine();
-                    builder.Append(matrix.B1); builder.Append(' '); builder.Append(matrix.B2); builder.Append(' '); builder.Append(matrix.B3); builder.Append(' '); builder.Append(matrix.B4); builder.AppendLine();
-                    builder.Append(matrix.C1); builder.Append(' '); builder.Append(matrix.C2); builder.Append(' '); builder.Append(matrix.C3); builder.Append(' '); builder.Append(matrix.C4); builder.AppendLine();
-                    builder.Append(matrix.D1); builder.Append(' '); builder.Append(matrix.D2); builder.Append(' '); builder.Append(matrix.D3); builder.Append(' '); builder.Append(matrix.D4); builder.AppendLine();
-                    builder.AppendLine();
-                }
-                string x = builder.ToString();
-            }
-            {
-                var builder = new StringBuilder();
-                foreach (var item in allBones.nameIndexDict)
-                {
-                    builder.Append(item.Key); builder.Append(' '); builder.Append(item.Value); builder.Append('|');
-                }
-                string x = builder.ToString();
-                x = builder.ToString();
-            }
+
             for (int i = 0; i < boneCount; i++)
             {
-                result[i] = allBones.boneInfos[i].FinalTransformation.ToMat4();
+                result[i] = allBones.boneInfos[i].FinalTransformation;
             }
 
             return result;
         }
 
-        private void ReadNodeHeirarchy(float animationTime, Assimp.Node node, Assimp.Matrix4x4 parentTransform)
+        private void ReadNodeHeirarchy(float animationTime, Assimp.Node node, mat4 parentTransform)
         {
             var allBones = this.container.GetAllBones();
             string nodeName = node.Name;
             Assimp.Scene scene = this.container.aiScene;
             var animation = scene.Animations[0];
-            Assimp.Matrix4x4 nodeTransform = node.Transform;
+            mat4 nodeTransform = node.Transform.ToMat4();
             Assimp.NodeAnimationChannel nodeAnim = FineNodeAnim(animation, nodeName);
             if (nodeAnim != null)
             {
                 mat4 mat = mat4.identity();
                 // Interpolate scaling and generate scaling transformation matrix
                 Assimp.Vector3D Scaling = CalcInterpolatedScaling(animationTime, nodeAnim);
-                Assimp.Matrix4x4 ScalingM = glm.scale(mat, new vec3(Scaling.X, Scaling.Y, Scaling.Z)).ToMatrix();
+                mat4 ScalingM = glm.scale(mat, new vec3(Scaling.X, Scaling.Y, Scaling.Z));
 
                 // Interpolate rotation and generate rotation transformation matrix
                 Assimp.Quaternion RotationQ = CalcInterpolatedRotation(animationTime, nodeAnim);
-                Assimp.Matrix4x4 RotationM = new Assimp.Matrix4x4(RotationQ.GetMatrix());
+                mat4 RotationM = new Assimp.Matrix4x4(RotationQ.GetMatrix()).ToMat4();
 
                 // Interpolate translation and generate translation transformation matrix
                 Assimp.Vector3D Translation = CalcInterpolatedPosition(animationTime, nodeAnim);
-                Assimp.Matrix4x4 TranslationM = glm.translate(mat4.identity(), new vec3(Translation.X, Translation.Y, Translation.Z)).ToMatrix();
+                mat4 TranslationM = glm.translate(mat4.identity(), new vec3(Translation.X, Translation.Y, Translation.Z));
 
                 // Combine the above transformations
-                //nodeTransform = TranslationM * RotationM * ScalingM;
-                nodeTransform = ScalingM * RotationM * TranslationM;
+                nodeTransform = TranslationM * RotationM * ScalingM;
             }
 
-            Assimp.Matrix4x4 GlobalTransformation = nodeTransform * parentTransform;
-            //Assimp.Matrix4x4 GlobalTransformation = parentTransform * nodeTransform;
+            //Assimp.Matrix4x4 GlobalTransformation = nodeTransform * parentTransform;
+            mat4 GlobalTransformation = parentTransform * nodeTransform;
 
             if (allBones.nameIndexDict.ContainsKey(nodeName))
             {
                 uint BoneIndex = allBones.nameIndexDict[nodeName];
-                allBones.boneInfos[BoneIndex].FinalTransformation = allBones.boneInfos[BoneIndex].Bone.OffsetMatrix * GlobalTransformation * m_GlobalInverseTransform;
-                //allBones.boneInfos[BoneIndex].FinalTransformation = m_GlobalInverseTransform * GlobalTransformation * allBones.boneInfos[BoneIndex].Bone.OffsetMatrix;
+                //allBones.boneInfos[BoneIndex].FinalTransformation = allBones.boneInfos[BoneIndex].Bone.OffsetMatrix * GlobalTransformation * m_GlobalInverseTransform;
+                allBones.boneInfos[BoneIndex].FinalTransformation = m_GlobalInverseTransform * GlobalTransformation * allBones.boneInfos[BoneIndex].Bone.OffsetMatrix.ToMat4();
             }
 
             for (int i = 0; i < node.ChildCount; i++)

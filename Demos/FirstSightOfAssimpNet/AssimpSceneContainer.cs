@@ -91,7 +91,7 @@ namespace FirstSightOfAssimpNet
     public struct BoneInfo
     {
         public Assimp.Bone Bone;
-        public Assimp.Matrix4x4 FinalTransformation;
+        public mat4 FinalTransformation;
     }
 
     public class AllBones
