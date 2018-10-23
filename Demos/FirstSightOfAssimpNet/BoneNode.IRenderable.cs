@@ -42,6 +42,8 @@ namespace FirstSightOfAssimpNet
             set { enableRendering = value; }
         }
 
+        private bool firstRun = true;
+        private DateTime lastTime;
 
         public void RenderBeforeChildren(RenderEventArgs arg)
         {
@@ -54,8 +56,20 @@ namespace FirstSightOfAssimpNet
             RenderMethod method = unit.Methods[0];
             ShaderProgram program = method.Program;
             program.SetUniform("mvpMat", projectionMat * viewMat * modelMat);
-            mat4[] boneMatrixes = this.boneModel.GetBoneMatrixes(0);
-            if (boneMatrixes != null) { program.SetUniform("bones", boneMatrixes); }
+            {
+                if (this.firstRun)
+                {
+                    lastTime = DateTime.Now;
+                    this.firstRun = false;
+                }
+
+                DateTime now = DateTime.Now;
+                float timeInSeconds = (float)(now.Subtract(this.lastTime).TotalSeconds);
+                //this.lastTime = now;
+
+                mat4[] boneMatrixes = this.boneModel.GetBoneMatrixes(timeInSeconds);
+                if (boneMatrixes != null) { program.SetUniform("bones", boneMatrixes); }
+            }
             Texture tex = this.boneModel.Texture;
             if (tex != null) { program.SetUniform("textureMap", tex); }
             this.polygonModeSwitch.On();

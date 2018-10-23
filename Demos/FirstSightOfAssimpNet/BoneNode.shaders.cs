@@ -10,7 +10,7 @@ namespace FirstSightOfAssimpNet
     {
         private const string vertexCode = @"#version 150
 
-in vec3 inPosiiton;
+in vec3 inPosition;
 in vec2 inTexCoord;
 in uvec4 inBoneIDs;
 in vec4 inWeights;
@@ -28,7 +28,7 @@ void main()
     boneMat += bones[inBoneIDs[2]] * inWeights[2];
     boneMat += bones[inBoneIDs[3]] * inWeights[3];
 
-    gl_Position = mvpMat * boneMat * vec4(inPosiiton, 1.0);
+    gl_Position = mvpMat * boneMat * vec4(inPosition, 1.0);
     passTexCoord = inTexCoord;
 }
 ";

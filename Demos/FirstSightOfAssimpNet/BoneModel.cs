@@ -58,7 +58,12 @@ namespace FirstSightOfAssimpNet
 
         public Texture Texture
         {
-            get { throw new NotImplementedException(); }
+            get
+            {
+                int index = this.mesh.MaterialIndex;
+                var texture = this.container.textures[index];
+                return texture;
+            }
         }
 
         public int BoneCount
@@ -91,13 +96,9 @@ namespace FirstSightOfAssimpNet
             //return result;
         }
 
-        private bool firstRun = true;
-        private DateTime lastTime;
-        private double passedTime = 0;
-        private int currentFrame = 0;
-
         public mat4[] GetBoneMatrixes(float TimeInSeconds)
         {
+            //TimeInSeconds = 0;
             Assimp.Scene scene = this.container.aiScene;
             double ticksPerSecond = scene.Animations[0].TicksPerSecond;
             if (ticksPerSecond == 0) { ticksPerSecond = 25.0; }
@@ -107,9 +108,32 @@ namespace FirstSightOfAssimpNet
             Assimp.Matrix4x4 identity = Assimp.Matrix4x4.Identity;
             ReadNodeHeirarchy(animationTime, scene.RootNode, identity);
 
-            var allBones = this.container.GetAllBones();
+            AllBones allBones = this.container.GetAllBones();
             int boneCount = allBones.boneInfos.Length;
             var result = new mat4[boneCount];
+            {
+                var builder = new StringBuilder();
+                for (int i = 0; i < boneCount; i++)
+                {
+                    var matrix = allBones.boneInfos[i].FinalTransformation;
+                    builder.Append("matrix: "); builder.Append(i); builder.AppendLine();
+                    builder.Append(matrix.A1); builder.Append(' '); builder.Append(matrix.A2); builder.Append(' '); builder.Append(matrix.A3); builder.Append(' '); builder.Append(matrix.A4); builder.AppendLine();
+                    builder.Append(matrix.B1); builder.Append(' '); builder.Append(matrix.B2); builder.Append(' '); builder.Append(matrix.B3); builder.Append(' '); builder.Append(matrix.B4); builder.AppendLine();
+                    builder.Append(matrix.C1); builder.Append(' '); builder.Append(matrix.C2); builder.Append(' '); builder.Append(matrix.C3); builder.Append(' '); builder.Append(matrix.C4); builder.AppendLine();
+                    builder.Append(matrix.D1); builder.Append(' '); builder.Append(matrix.D2); builder.Append(' '); builder.Append(matrix.D3); builder.Append(' '); builder.Append(matrix.D4); builder.AppendLine();
+                    builder.AppendLine();
+                }
+                string x = builder.ToString();
+            }
+            {
+                var builder = new StringBuilder();
+                foreach (var item in allBones.nameIndexDict)
+                {
+                    builder.Append(item.Key); builder.Append(' '); builder.Append(item.Value); builder.Append('|');
+                }
+                string x = builder.ToString();
+                x = builder.ToString();
+            }
             for (int i = 0; i < boneCount; i++)
             {
                 result[i] = allBones.boneInfos[i].FinalTransformation.ToMat4();
@@ -128,21 +152,197 @@ namespace FirstSightOfAssimpNet
             Assimp.NodeAnimationChannel nodeAnim = FineNodeAnim(animation, nodeName);
             if (nodeAnim != null)
             {
+                mat4 mat = mat4.identity();
+                // Interpolate scaling and generate scaling transformation matrix
+                Assimp.Vector3D Scaling = CalcInterpolatedScaling(animationTime, nodeAnim);
+                Assimp.Matrix4x4 ScalingM = glm.scale(mat, new vec3(Scaling.X, Scaling.Y, Scaling.Z)).ToMatrix();
 
+                // Interpolate rotation and generate rotation transformation matrix
+                Assimp.Quaternion RotationQ = CalcInterpolatedRotation(animationTime, nodeAnim);
+                Assimp.Matrix4x4 RotationM = new Assimp.Matrix4x4(RotationQ.GetMatrix());
+
+                // Interpolate translation and generate translation transformation matrix
+                Assimp.Vector3D Translation = CalcInterpolatedPosition(animationTime, nodeAnim);
+                Assimp.Matrix4x4 TranslationM = glm.translate(mat4.identity(), new vec3(Translation.X, Translation.Y, Translation.Z)).ToMatrix();
+
+                // Combine the above transformations
+                //nodeTransform = TranslationM * RotationM * ScalingM;
+                nodeTransform = ScalingM * RotationM * TranslationM;
             }
 
-            Assimp.Matrix4x4 GlobalTransformation = parentTransform * nodeTransform;
+            Assimp.Matrix4x4 GlobalTransformation = nodeTransform * parentTransform;
+            //Assimp.Matrix4x4 GlobalTransformation = parentTransform * nodeTransform;
 
             if (allBones.nameIndexDict.ContainsKey(nodeName))
             {
                 uint BoneIndex = allBones.nameIndexDict[nodeName];
-                allBones.boneInfos[BoneIndex].FinalTransformation = m_GlobalInverseTransform * GlobalTransformation * allBones.boneInfos[BoneIndex].Bone.OffsetMatrix;
+                allBones.boneInfos[BoneIndex].FinalTransformation = allBones.boneInfos[BoneIndex].Bone.OffsetMatrix * GlobalTransformation * m_GlobalInverseTransform;
+                //allBones.boneInfos[BoneIndex].FinalTransformation = m_GlobalInverseTransform * GlobalTransformation * allBones.boneInfos[BoneIndex].Bone.OffsetMatrix;
             }
 
             for (int i = 0; i < node.ChildCount; i++)
             {
                 ReadNodeHeirarchy(animationTime, node.Children[i], GlobalTransformation);
             }
+        }
+
+        private Assimp.Vector3D CalcInterpolatedPosition(float animationTime, Assimp.NodeAnimationChannel nodeAnim)
+        {
+            Assimp.Vector3D Out;
+            if (nodeAnim.PositionKeyCount == 1)
+            {
+                Out = nodeAnim.PositionKeys[0].Value;
+                return Out;
+            }
+
+            uint PositionIndex = FindPosition(animationTime, nodeAnim);
+            uint NextPositionIndex = (PositionIndex + 1);
+            //assert(NextPositionIndex < nodeAnim->mNumPositionKeys);
+            float DeltaTime = (float)(nodeAnim.PositionKeys[NextPositionIndex].Time - nodeAnim.PositionKeys[PositionIndex].Time);
+            float Factor = (animationTime - (float)nodeAnim.PositionKeys[PositionIndex].Time) / DeltaTime;
+            //assert(Factor >= 0.0f && Factor <= 1.0f);
+            Assimp.Vector3D Start = nodeAnim.PositionKeys[PositionIndex].Value;
+            Assimp.Vector3D End = nodeAnim.PositionKeys[NextPositionIndex].Value;
+            Assimp.Vector3D Delta = End - Start;
+            Out = Start + Factor * Delta;
+            return Out;
+        }
+
+        private uint FindPosition(float animationTime, Assimp.NodeAnimationChannel nodeAnim)
+        {
+            for (uint i = 0; i < nodeAnim.PositionKeyCount - 1; i++)
+            {
+                if (animationTime < (float)nodeAnim.PositionKeys[i + 1].Time)
+                {
+                    return i;
+                }
+            }
+
+            //assert(0);
+
+            return 0;
+        }
+
+        private Assimp.Quaternion CalcInterpolatedRotation(float animationTime, Assimp.NodeAnimationChannel nodeAnim)
+        {
+            Assimp.Quaternion Out;
+            // we need at least two values to interpolate...
+            if (nodeAnim.RotationKeyCount == 1)
+            {
+                Out = nodeAnim.RotationKeys[0].Value;
+                return Out;
+            }
+
+            uint RotationIndex = FindRotation(animationTime, nodeAnim);
+            uint NextRotationIndex = (RotationIndex + 1);
+            //assert(NextRotationIndex < nodeAnim.RotationKeyCount);
+            float DeltaTime = (float)(nodeAnim.RotationKeys[NextRotationIndex].Time - nodeAnim.RotationKeys[RotationIndex].Time);
+            float Factor = (animationTime - (float)nodeAnim.RotationKeys[RotationIndex].Time) / DeltaTime;
+            //assert(Factor >= 0.0f && Factor <= 1.0f);
+            Assimp.Quaternion StartRotationQ = nodeAnim.RotationKeys[RotationIndex].Value;
+            Assimp.Quaternion EndRotationQ = nodeAnim.RotationKeys[NextRotationIndex].Value;
+            Out = Interpolate(StartRotationQ, EndRotationQ, Factor);
+            Out.Normalize();
+            return Out;
+        }
+
+        private uint FindRotation(float animationTime, Assimp.NodeAnimationChannel nodeAnim)
+        {
+            //assert(pNodeAnim->mNumRotationKeys > 0);
+
+            for (uint i = 0; i < nodeAnim.RotationKeyCount - 1; i++)
+            {
+                if (animationTime < (float)nodeAnim.RotationKeys[i + 1].Time)
+                {
+                    return i;
+                }
+            }
+
+            //assert(0);
+
+            return 0;
+        }
+
+        private Assimp.Quaternion Interpolate(Assimp.Quaternion pStart, Assimp.Quaternion pEnd, float pFactor)
+        {
+            Assimp.Quaternion pOut;
+            // calc cosine theta
+            float cosom = pStart.X * pEnd.X + pStart.Y * pEnd.Y + pStart.Z * pEnd.Z + pStart.W * pEnd.W;
+
+            // adjust signs (if necessary)
+            Assimp.Quaternion end = pEnd;
+            if (cosom < 0.0f)
+            {
+                cosom = -cosom;
+                end.X = -end.X;   // Reverse all signs
+                end.Y = -end.Y;
+                end.Z = -end.Z;
+                end.W = -end.W;
+            }
+
+            // Calculate coefficients
+            float sclp, sclq;
+            if (((1.0f) - cosom) > (0.0001f)) // 0.0001 -> some epsillon
+            {
+                // Standard case (slerp)
+                float omega, sinom;
+                omega = (float)Math.Acos(cosom); // extract theta from dot product's cos theta
+                sinom = (float)Math.Sin(omega);
+                sclp = (float)Math.Sin(((1.0f) - pFactor) * omega) / sinom;
+                sclq = (float)Math.Sin(pFactor * omega) / sinom;
+            }
+            else
+            {
+                // Very close, do linear interp (because it's faster)
+                sclp = (1.0f) - pFactor;
+                sclq = pFactor;
+            }
+
+            pOut.X = sclp * pStart.X + sclq * end.X;
+            pOut.Y = sclp * pStart.Y + sclq * end.Y;
+            pOut.Z = sclp * pStart.Z + sclq * end.Z;
+            pOut.W = sclp * pStart.W + sclq * end.W;
+
+            return pOut;
+        }
+
+        private Assimp.Vector3D CalcInterpolatedScaling(float animationTime, Assimp.NodeAnimationChannel nodeAnim)
+        {
+            Assimp.Vector3D Out;
+            if (nodeAnim.ScalingKeyCount == 1)
+            {
+                Out = nodeAnim.ScalingKeys[0].Value;
+                return Out;
+            }
+
+            uint ScalingIndex = FindScaling(animationTime, nodeAnim);
+            uint NextScalingIndex = (ScalingIndex + 1);
+            //assert(NextScalingIndex < nodeAnim->mNumScalingKeys);
+            float DeltaTime = (float)(nodeAnim.ScalingKeys[NextScalingIndex].Time - nodeAnim.ScalingKeys[ScalingIndex].Time);
+            float Factor = (animationTime - (float)nodeAnim.ScalingKeys[ScalingIndex].Time) / DeltaTime;
+            //assert(Factor >= 0.0f && Factor <= 1.0f);
+            Assimp.Vector3D Start = nodeAnim.ScalingKeys[ScalingIndex].Value;
+            Assimp.Vector3D End = nodeAnim.ScalingKeys[NextScalingIndex].Value;
+            Assimp.Vector3D Delta = End - Start;
+            Out = Start + Factor * Delta;
+            return Out;
+        }
+
+        private uint FindScaling(float animationTime, Assimp.NodeAnimationChannel nodeAnim)
+        {
+            //assert(pNodeAnim->mNumScalingKeys > 0);
+
+            for (uint i = 0; i < nodeAnim.ScalingKeyCount - 1; i++)
+            {
+                if (animationTime < (float)nodeAnim.ScalingKeys[i + 1].Time)
+                {
+                    return i;
+                }
+            }
+
+            //assert(0);
+
+            return 0;
         }
 
         private Assimp.NodeAnimationChannel FineNodeAnim(Assimp.Animation animation, string nodeName)

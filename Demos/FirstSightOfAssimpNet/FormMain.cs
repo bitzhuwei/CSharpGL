@@ -51,7 +51,8 @@ namespace FirstSightOfAssimpNet
 
             var rootElement = this.scene.RootNode;
             rootElement.Children.Clear();
-            string filename = @"jeep.obj_";
+            //string filename = @"jeep.obj_";
+            string filename = @"D:\(TODO) - openGLStepbyStep\ogldev-source\Content\boblampclean.md5mesh";
             //CreateDummyNodes(filename);
             CreateBoneNodes(filename);
 
@@ -77,7 +78,7 @@ namespace FirstSightOfAssimpNet
             var rootElement = this.scene.RootNode;
             var random = new Random();
             bool first = true; vec3 max = new vec3(); vec3 min = new vec3();
-            var container = new AssimpSceneContainer(aiScene);
+            var container = new AssimpSceneContainer(aiScene, filename);
             foreach (Assimp.Mesh mesh in aiScene.Meshes)
             {
                 GetBound(mesh, ref max, ref min, ref first);
@@ -120,7 +121,7 @@ namespace FirstSightOfAssimpNet
             var rootElement = this.scene.RootNode;
             var random = new Random();
             bool first = true; vec3 max = new vec3(); vec3 min = new vec3();
-            var container = new AssimpSceneContainer(aiScene);
+            var container = new AssimpSceneContainer(aiScene, filename);
             foreach (Assimp.Mesh mesh in aiScene.Meshes)
             {
                 GetBound(mesh, ref max, ref min, ref first);
@@ -191,7 +192,8 @@ namespace FirstSightOfAssimpNet
                 var rootElement = this.scene.RootNode;
                 rootElement.Children.Clear();
                 string filename = this.openFileDialog1.FileName;
-                CreateDummyNodes(filename);
+                //CreateDummyNodes(filename);
+                CreateBoneNodes(filename);
             }
         }
 
