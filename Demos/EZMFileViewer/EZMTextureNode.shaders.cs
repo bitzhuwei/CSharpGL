@@ -41,15 +41,9 @@ void main()
         boneMat += bones[index] * inBlendWeights[i];
     }
 
+    // transform vertex' position from model space to clip space.
     if (useBones) {
-        // transform vertex' position from model space to clip space.
-//        gl_Position = projectionMat * vec4((mvMat * blendPosition).xyz, 1.0);
-//        gl_Position = projectionMat * mvMat * boneMat * vec4(inPosition, 1.0);
-        vec3 inPos = vec3(boneMat * vec4(0, 0, 0, 1) + vec4(inPosition, 0));
-        gl_Position = projectionMat * mvMat * vec4(inPos, 1.0);
-//        vec4 inPos = boneMat * vec4(0, 0, 0, 1) + vec4(inPosition, 0);
-//        inPos.w = 1;
-//        gl_Position = projectionMat * mvMat * inPos;
+        gl_Position = projectionMat * mvMat * boneMat * vec4(inPosition, 1.0);
     }
     else {
         gl_Position = projectionMat * mvMat * vec4(inPosition, 1.0);

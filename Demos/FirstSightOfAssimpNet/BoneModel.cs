@@ -99,8 +99,8 @@ namespace FirstSightOfAssimpNet
 
         public mat4[] GetBoneMatrixes(float TimeInSeconds)
         {
-            //TimeInSeconds = 0;
             Assimp.Scene scene = this.container.aiScene;
+            if (scene.AnimationCount <= 0) { return null; }
             double ticksPerSecond = scene.Animations[0].TicksPerSecond;
             if (ticksPerSecond == 0) { ticksPerSecond = 25.0; }
             double timeInTicks = TimeInSeconds * ticksPerSecond;
@@ -341,8 +341,8 @@ namespace FirstSightOfAssimpNet
 
         public const string strPosition = "position";
         private VertexBuffer positionBuffer;
-        //public const string strNormal = "normal";
-        //private VertexBuffer normalBuffer;
+        public const string strNormal = "normal";
+        private VertexBuffer normalBuffer;
         public const string strTexCoord = "texCoord";
         private VertexBuffer texCoordBuffer;
         public const string strBoneIDs = "boneIDs";
@@ -365,11 +365,29 @@ namespace FirstSightOfAssimpNet
 
                 yield return this.positionBuffer;
             }
+            else if (strNormal == bufferName)
+            {
+                if (this.normalBuffer == null)
+                {
+                    this.normalBuffer = this.mesh.Normals.GenVertexBuffer(VBOConfig.Vec3, BufferUsage.StaticDraw);
+                }
+
+                yield return this.normalBuffer;
+            }
             else if (strTexCoord == bufferName)
             {
                 if (this.texCoordBuffer == null)
                 {
-                    this.texCoordBuffer = this.mesh.GetTextureCoords(0).GenVertexBuffer(VBOConfig.Vec3, BufferUsage.StaticDraw);
+                    Assimp.Vector3D[] texCoords = this.mesh.GetTextureCoords(0);
+                    if (texCoords == null)
+                    {
+                        texCoords = new Assimp.Vector3D[this.mesh.VertexCount];
+                        for (int i = 0; i < texCoords.Length; i++)
+                        {
+                            texCoords[i] = new Assimp.Vector3D(-1, -1, -1);
+                        }
+                    }
+                    this.texCoordBuffer = texCoords.GenVertexBuffer(VBOConfig.Vec3, BufferUsage.StaticDraw);
                 }
 
                 yield return this.texCoordBuffer;

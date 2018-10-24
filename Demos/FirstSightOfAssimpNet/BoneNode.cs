@@ -16,6 +16,7 @@ namespace FirstSightOfAssimpNet
             var array = new ShaderArray(vs, fs);
             var map = new AttributeMap();
             map.Add("inPosition", BoneModel.strPosition);
+            map.Add("inNormal", BoneModel.strNormal);
             map.Add("inTexCoord", BoneModel.strTexCoord);
             map.Add("inBoneIDs", BoneModel.strBoneIDs);
             map.Add("inWeights", BoneModel.strWeights);

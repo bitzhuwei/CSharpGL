@@ -55,8 +55,8 @@ namespace FirstSightOfAssimpNet
             string filename = @"D:\(TODO) - openGLStepbyStep\ogldev-source\Content\boblampclean.md5mesh";
             //CreateDummyNodes(filename);
             CreateBoneNodes(filename);
-            rootElement.RotationAxis = new vec3(1, 0, 0);
-            rootElement.RotationAngle = 270;
+            //rootElement.RotationAxis = new vec3(1, 0, 0);
+            //rootElement.RotationAngle = 270;
         }
 
         private void CreateBoneNodes(string filename)
@@ -67,15 +67,8 @@ namespace FirstSightOfAssimpNet
             {
                 aiScene = importer.ImportFile(filename, Assimp.PostProcessSteps.GenerateSmoothNormals | Assimp.PostProcessSteps.Triangulate | Assimp.PostProcessSteps.FlipUVs);
             }
-            catch (Exception ex) { MessageBox.Show(ex.ToString()); }
+            catch (Exception ex) { MessageBox.Show(ex.Message); return; }
 
-            if (aiScene == null) { return; }
-            //if (aiScene.AnimationCount > 0) { Console.WriteLine("Animations!"); }
-            //{
-            //    m_GlobalInverseTransform = aiScene.RootNode.Transform;
-            //    m_GlobalInverseTransform.Inverse();
-            //    //bool Ret = InitFromScene(aiScene, filename);
-            //}
             var rootElement = this.scene.RootNode;
             var random = new Random();
             bool first = true; vec3 max = new vec3(); vec3 min = new vec3();
@@ -97,53 +90,10 @@ namespace FirstSightOfAssimpNet
             vec3 size = max - min;
             float v = size.x;
             if (v < size.y) { v = size.y; } if (v < size.z) { v = size.z; }
-            this.scene.Camera.Position = size;
+            this.scene.Camera.Position = center + size;
             this.scene.Camera.Target = center;
-            rootElement.WorldPosition = center;
-            this.manipulater.StepLength = v / 10.0f;
-        }
-
-        private void CreateDummyNodes(string filename)
-        {
-            var importer = new Assimp.AssimpImporter();
-            Assimp.Scene aiScene = null;
-            try
-            {
-                aiScene = importer.ImportFile(filename, Assimp.PostProcessSteps.GenerateSmoothNormals | Assimp.PostProcessSteps.Triangulate | Assimp.PostProcessSteps.FlipUVs);
-            }
-            catch (Exception ex) { MessageBox.Show(ex.ToString()); }
-
-            if (aiScene == null) { return; }
-            if (aiScene.AnimationCount > 0) { Console.WriteLine("Animations!"); }
-            {
-                m_GlobalInverseTransform = aiScene.RootNode.Transform;
-                m_GlobalInverseTransform.Inverse();
-                //bool Ret = InitFromScene(aiScene, filename);
-            }
-            var rootElement = this.scene.RootNode;
-            var random = new Random();
-            bool first = true; vec3 max = new vec3(); vec3 min = new vec3();
-            var container = new AssimpSceneContainer(aiScene, filename);
-            foreach (Assimp.Mesh mesh in aiScene.Meshes)
-            {
-                GetBound(mesh, ref max, ref min, ref first);
-                var model = new DiffuseModel(mesh);
-                var node = DiffuseNode.Create(model);
-                node.DiffuseColor = Color.FromArgb(
-                    (byte)random.Next(0, 256),
-                    (byte)random.Next(0, 256),
-                    (byte)random.Next(0, 256),
-                    (byte)random.Next(0, 256)
-                    );
-                rootElement.Children.Add(node);
-            }
-            vec3 center = max / 2.0f + min / 2.0f;
-            vec3 size = max - min;
-            float v = size.x;
-            if (v < size.y) { v = size.y; } if (v < size.z) { v = size.z; }
-            this.scene.Camera.Position = new vec3(0, 4, 5) * v / 6.0f;
-            this.scene.Camera.Target = center;
-            this.manipulater.StepLength = v / 10.0f;
+            //rootElement.WorldPosition = center;
+            this.manipulater.StepLength = v / 30.0f;
         }
 
         private void GetBound(Assimp.Mesh mesh, ref vec3 max, ref vec3 min, ref bool first)
