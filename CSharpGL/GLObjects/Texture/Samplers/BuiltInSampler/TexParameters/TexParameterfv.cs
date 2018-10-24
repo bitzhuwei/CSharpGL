@@ -55,7 +55,7 @@ namespace CSharpGL
         /// <returns></returns>
         public override string ToString()
         {
-            return string.Format("glTexParameterf({0}, {1}, {2});", " ", this.PNameString, this.PValue);
+            return string.Format("glTexParameterfv({0}, {1}, {2});", " ", this.PNameString, this.PValue);
         }
     }
 }

@@ -168,6 +168,7 @@
     <Compile Include="GLObjects\Shaders\Shaders\TessControlShader.cs" />
     <Compile Include="GLObjects\Texture\MipmapBuilder.cs" />
     <Compile Include="GLObjects\Texture\Samplers\BuiltInSampler\TexParameters\TexParameterfv.cs" />
+    <Compile Include="GLObjects\Texture\Samplers\BuiltInSampler\TexParameters\TexParameteriv.cs" />
     <Compile Include="GLObjects\Texture\Storages\TexImages.FromBitmap\TexImageBitmaps.cs" />
     <Compile Include="GLObjects\Texture\Storages\TexImages.FromBitmap\TexImageBitmap.cs" />
     <Compile Include="GLObjects\Texture\Storages\TexImages\CubemapTexImage2D.cs" />
@@ -721,7 +722,14 @@
     <Content Include="GLObjects\GLBuffers\readme.md" />
     <Content Include="GLObjects\GLBuffers\VertexBuffers\readme.md" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="BasicDataStructures\PropertyGrid\UITypeEditors\FormPropertyGridEditor.resx">
+      <DependentUpon>FormPropertyGridEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BasicDataStructures\PropertyGrid\UITypeEditors\FormUniformVariableDictEditor.resx">
+      <DependentUpon>FormUniformVariableDictEditor.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

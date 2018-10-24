@@ -45,8 +45,8 @@
             // 
             // propertyGrid
             // 
-            this.propertyGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.propertyGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.propertyGrid.Font = new System.Drawing.Font("宋体", 12F);
             this.propertyGrid.Location = new System.Drawing.Point(5, 21);
@@ -121,8 +121,8 @@
             // 
             // lstMember
             // 
-            this.lstMember.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.lstMember.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lstMember.Font = new System.Drawing.Font("宋体", 12F);
             this.lstMember.FormattingEnabled = true;
@@ -158,8 +158,8 @@
             // 
             // splitContainer1
             // 
-            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.splitContainer1.Location = new System.Drawing.Point(10, 12);
             this.splitContainer1.Name = "splitContainer1";
@@ -179,17 +179,18 @@
             this.splitContainer1.SplitterDistance = 303;
             this.splitContainer1.TabIndex = 13;
             // 
-            // FormUniformVariableListEditor
+            // FormUniformVariableDictEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnClose;
             this.ClientSize = new System.Drawing.Size(681, 430);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnRemove);
             this.Controls.Add(this.btnAdd);
             this.Margin = new System.Windows.Forms.Padding(2);
-            this.Name = "FormUniformVariableListEditor";
+            this.Name = "FormUniformVariableDictEditor";
             this.Text = "UniformVariable List Editor";
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();

@@ -67,9 +67,9 @@ namespace CSharpGL
             }
         }
 
-        private void btnOK_Click(object sender, EventArgs e)
+        private void btnCancel_Click(object sender, EventArgs e)
         {
-            this.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
         }
 
         private void lstMember_SelectedIndexChanged(object sender, EventArgs e)

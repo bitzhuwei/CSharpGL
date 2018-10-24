@@ -1,0 +1,2 @@
+dwarf_anim.ezm is a modified version of the model shipped with the Quaternion demo in the NVIDIA DirectX 10 sdk.
+http://developer.download.nvidia.com/SDK/10.5/Samples/QuaternionSkinning.zip

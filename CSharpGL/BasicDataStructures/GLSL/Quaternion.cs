@@ -11,22 +11,22 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        private float w;
+        public float w;
 
         /// <summary>
         ///
         /// </summary>
-        private float x;
+        public float x;
 
         /// <summary>
         ///
         /// </summary>
-        private float y;
+        public float y;
 
         /// <summary>
         ///
         /// </summary>
-        private float z;
+        public float z;
 
         /// <summary>
         /// Quaternion
@@ -35,7 +35,7 @@ namespace CSharpGL
         /// <param name="x"></param>
         /// <param name="y"></param>
         /// <param name="z"></param>
-        internal Quaternion(float w, float x, float y, float z)
+        public Quaternion(float w, float x, float y, float z)
         {
             this.w = w;
             if (x == 0.0f && y == 0.0f && z == 0.0f)
@@ -71,30 +71,53 @@ namespace CSharpGL
         /// Transform this quaternion to equivalent matrix.
         /// </summary>
         /// <returns></returns>
-        public mat3 ToRotationMatrix()
+        public mat4 ToMat4()
         {
-            float ww = w * w;
+            float x = this.x;
+            float y = this.y;
+            float z = this.z;
+            float w = this.w;
+
             float xx = x * x;
-            float yy = y * y;
-            float zz = z * z;
-            float wx = w * x;
-            float wy = w * y;
-            float wz = w * z;
             float xy = x * y;
             float xz = x * z;
+            float xw = x * w;
+            float yy = y * y;
             float yz = y * z;
-            vec3 col0 = new vec3(
-                2 * (xx + ww) - 1,
-                2 * (xy + wz),
-                2 * (xz - wy));
-            vec3 col1 = new vec3(
-                2 * (xy - wz),
-                2 * (yy + ww) - 1,
-                2 * (yz + wx));
-            vec3 col2 = new vec3(
-                2 * (xz + wy),
-                2 * (yz - wx),
-                2 * (zz + ww) - 1);
+            float yw = y * w;
+            float zz = z * z;
+            float zw = z * w;
+            vec4 col0 = new vec4(1 - 2 * (yy + zz), 2 * (xy - zw), 2 * (xz + yw), 0);
+            vec4 col1 = new vec4(2 * (xy + zw), 1 - 2 * (xx + zz), 2 * (yz - xw), 0);
+            vec4 col2 = new vec4(2 * (xz - yw), 2 * (yz + xw), 1 - 2 * (xx + yy), 0);
+            vec4 col3 = new vec4(0, 0, 0, 1);
+
+            return new mat4(col0, col1, col2, col3);
+        }
+
+        /// <summary>
+        /// Transform this quaternion to equivalent matrix.
+        /// </summary>
+        /// <returns></returns>
+        public mat3 ToRotationMatrix()
+        {
+            float x = this.x;
+            float y = this.y;
+            float z = this.z;
+            float w = this.w;
+
+            float xx = x * x;
+            float xy = x * y;
+            float xz = x * z;
+            float xw = x * w;
+            float yy = y * y;
+            float yz = y * z;
+            float yw = y * w;
+            float zz = z * z;
+            float zw = z * w;
+            vec3 col0 = new vec3(1 - 2 * (yy + zz), 2 * (xy - zw), 2 * (xz + yw));
+            vec3 col1 = new vec3(2 * (xy + zw), 1 - 2 * (xx + zz), 2 * (yz - xw));
+            vec3 col2 = new vec3(2 * (xz - yw), 2 * (yz + xw), 1 - 2 * (xx + yy));
 
             return new mat3(col0, col1, col2);
         }
@@ -108,6 +131,16 @@ namespace CSharpGL
         {
             angleInDegree = (float)(Math.Acos(w) * 2 * 180.0 / Math.PI);
             axis = (new vec3(x, y, z)).normalize();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="right"></param>
+        /// <returns></returns>
+        public float dot(Quaternion right)
+        {
+            return (this.w * right.w + this.x * right.x + this.y * right.y + this.z * right.z);
         }
 
         /// <summary>
