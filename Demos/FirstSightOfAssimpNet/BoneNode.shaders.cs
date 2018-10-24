@@ -56,7 +56,7 @@ out vec4 outColor;
 
 void main()
 {
-    if (passTexCoord == vec2(-1, -1)) {
+    if (passTexCoord == vec2(-1, -1)) { // when texture coordinate not exists..
         float diffuse = max(dot(normalize(lihtDirection), normalize(passNormal)), 0);
         outColor = vec4(diffuseColor * diffuse, 1.0);
     }

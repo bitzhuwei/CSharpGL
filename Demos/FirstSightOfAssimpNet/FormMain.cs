@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -53,10 +54,12 @@ namespace FirstSightOfAssimpNet
             rootElement.Children.Clear();
             //string filename = @"jeep.obj_";
             string filename = @"D:\(TODO) - openGLStepbyStep\ogldev-source\Content\boblampclean.md5mesh";
-            //CreateDummyNodes(filename);
-            CreateBoneNodes(filename);
-            //rootElement.RotationAxis = new vec3(1, 0, 0);
-            //rootElement.RotationAngle = 270;
+            if (File.Exists(filename))
+            {
+                CreateBoneNodes(filename);
+                //rootElement.RotationAxis = new vec3(1, 0, 0);
+                //rootElement.RotationAngle = 270;
+            }
         }
 
         private void CreateBoneNodes(string filename)
@@ -144,7 +147,6 @@ namespace FirstSightOfAssimpNet
                 var rootElement = this.scene.RootNode;
                 rootElement.Children.Clear();
                 string filename = this.openFileDialog1.FileName;
-                //CreateDummyNodes(filename);
                 CreateBoneNodes(filename);
             }
         }

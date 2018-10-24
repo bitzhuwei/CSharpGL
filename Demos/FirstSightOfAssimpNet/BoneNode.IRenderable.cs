@@ -44,6 +44,7 @@ namespace FirstSightOfAssimpNet
 
         private bool firstRun = true;
         private DateTime lastTime;
+        private double angle;
 
         public void RenderBeforeChildren(RenderEventArgs arg)
         {
@@ -72,8 +73,16 @@ namespace FirstSightOfAssimpNet
                 if (boneMatrixes != null) { program.SetUniform("bones", boneMatrixes); }
                 program.SetUniform("animation", boneMatrixes != null);
             }
-            Texture tex = this.boneModel.Texture;
-            if (tex != null) { program.SetUniform("textureMap", tex); }
+            {
+                Texture tex = this.boneModel.Texture;
+                if (tex != null) { program.SetUniform("textureMap", tex); }
+            }
+            {
+                angle += 0.01f;
+                vec3 lightDirection = new vec3(
+                    (float)Math.Cos(angle), (float)Math.Sin(angle), 1);
+                program.SetUniform("lihtDirection", lightDirection);
+            }
             this.polygonModeSwitch.On();
             method.Render();
             this.polygonModeSwitch.Off();
