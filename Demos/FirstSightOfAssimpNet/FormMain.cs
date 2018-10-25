@@ -56,13 +56,13 @@ namespace FirstSightOfAssimpNet
             string filename = @"D:\(TODO) - openGLStepbyStep\ogldev-source\Content\boblampclean.md5mesh";
             if (File.Exists(filename))
             {
-                CreateBoneNodes(filename);
+                CreateAnimationNodes(filename);
                 //rootElement.RotationAxis = new vec3(1, 0, 0);
                 //rootElement.RotationAngle = 270;
             }
         }
 
-        private void CreateBoneNodes(string filename)
+        private void CreateAnimationNodes(string filename)
         {
             var importer = new Assimp.AssimpImporter();
             Assimp.Scene aiScene = null;
@@ -79,8 +79,8 @@ namespace FirstSightOfAssimpNet
             foreach (Assimp.Mesh mesh in aiScene.Meshes)
             {
                 GetBound(mesh, ref max, ref min, ref first);
-                var model = new BoneModel(mesh, container);
-                var node = BoneNode.Create(model);
+                var model = new AnimationModel(mesh, container);
+                var node = AnimationNode.Create(model);
                 node.DiffuseColor = Color.FromArgb(
                     (byte)random.Next(0, 256),
                     (byte)random.Next(0, 256),
@@ -147,7 +147,7 @@ namespace FirstSightOfAssimpNet
                 var rootElement = this.scene.RootNode;
                 rootElement.Children.Clear();
                 string filename = this.openFileDialog1.FileName;
-                CreateBoneNodes(filename);
+                CreateAnimationNodes(filename);
             }
         }
 
