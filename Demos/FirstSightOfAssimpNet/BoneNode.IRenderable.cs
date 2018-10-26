@@ -57,7 +57,6 @@ namespace FirstSightOfAssimpNet
             RenderMethod method = unit.Methods[0];
             ShaderProgram program = method.Program;
             program.SetUniform("mvpMat", projectionMat * viewMat * modelMat);
-            program.SetUniform("normalMat", glm.transpose(glm.inverse(modelMat)));
             {
                 if (this.firstRun)
                 {
@@ -72,16 +71,6 @@ namespace FirstSightOfAssimpNet
                 mat4[] boneMatrixes = this.boneModel.GetBoneMatrixes(timeInSeconds);
                 if (boneMatrixes != null) { program.SetUniform("bones", boneMatrixes); }
                 program.SetUniform("animation", boneMatrixes != null);
-            }
-            {
-                Texture tex = this.boneModel.Texture;
-                if (tex != null) { program.SetUniform("textureMap", tex); }
-            }
-            {
-                angle += 0.01f;
-                vec3 lightDirection = new vec3(
-                    (float)Math.Cos(angle), (float)Math.Sin(angle), 1);
-                program.SetUniform("lihtDirection", lightDirection);
             }
             this.polygonModeSwitch.On();
             method.Render();

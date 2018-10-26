@@ -16,11 +16,7 @@ namespace FirstSightOfAssimpNet
             var array = new ShaderArray(vs, fs);
             var map = new AttributeMap();
             map.Add("inPosition", BoneModel.strPosition);
-            map.Add("inNormal", BoneModel.strNormal);
-            map.Add("inTexCoord", BoneModel.strTexCoord);
-            map.Add("inBoneIDs", BoneModel.strBoneIDs);
-            map.Add("inWeights", BoneModel.strWeights);
-            var builder = new RenderMethodBuilder(array, map);//, new PolygonModeSwitch(PolygonMode.Line));
+            var builder = new RenderMethodBuilder(array, map, new LineWidthSwitch(6));//, new PolygonModeSwitch(PolygonMode.Line));
             var node = new BoneNode(model, builder);
             node.Initialize();
 

@@ -57,9 +57,47 @@ namespace FirstSightOfAssimpNet
             if (File.Exists(filename))
             {
                 CreateAnimationNodes(filename);
+                CreateBoneNodes(filename);
                 //rootElement.RotationAxis = new vec3(1, 0, 0);
                 //rootElement.RotationAngle = 270;
             }
+        }
+
+        private void CreateBoneNodes(string filename)
+        {
+            var importer = new Assimp.AssimpImporter();
+            Assimp.Scene aiScene = null;
+            try
+            {
+                aiScene = importer.ImportFile(filename, Assimp.PostProcessSteps.GenerateSmoothNormals | Assimp.PostProcessSteps.Triangulate | Assimp.PostProcessSteps.FlipUVs);
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message); return; }
+
+            var rootElement = this.scene.RootNode;
+            var random = new Random();
+            bool first = true; vec3 max = new vec3(); vec3 min = new vec3();
+            var container = new AssimpSceneContainer(aiScene, filename);
+            foreach (Assimp.Mesh mesh in aiScene.Meshes)
+            {
+                GetBound(mesh, ref max, ref min, ref first);
+                var model = new BoneModel(mesh, container);
+                var node = BoneNode.Create(model);
+                node.DiffuseColor = Color.FromArgb(
+                    (byte)random.Next(0, 256),
+                    (byte)random.Next(0, 256),
+                    (byte)random.Next(0, 256),
+                    (byte)random.Next(0, 256)
+                    );
+                rootElement.Children.Add(node);
+            }
+            vec3 center = max / 2.0f + min / 2.0f;
+            vec3 size = max - min;
+            float v = size.x;
+            if (v < size.y) { v = size.y; } if (v < size.z) { v = size.z; }
+            this.scene.Camera.Position = center + size;
+            this.scene.Camera.Target = center;
+            //rootElement.WorldPosition = center;
+            this.manipulater.StepLength = v / 30.0f;
         }
 
         private void CreateAnimationNodes(string filename)
