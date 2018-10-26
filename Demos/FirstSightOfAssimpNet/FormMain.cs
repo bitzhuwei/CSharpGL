@@ -56,11 +56,39 @@ namespace FirstSightOfAssimpNet
             string filename = @"D:\(TODO) - openGLStepbyStep\ogldev-source\Content\boblampclean.md5mesh";
             if (File.Exists(filename))
             {
+                {
+                    var cubeNode = CubeNode.Create();
+                    rootElement.Children.Add(cubeNode);
+                }
                 CreateAnimationNodes(filename);
-                CreateBoneNodes(filename);
+                //CreateBoneNodes(filename);
+                CreateNodeNode(filename);
                 //rootElement.RotationAxis = new vec3(1, 0, 0);
                 //rootElement.RotationAngle = 270;
             }
+        }
+
+        private void CreateNodeNode(string filename)
+        {
+            var importer = new Assimp.AssimpImporter();
+            Assimp.Scene aiScene = null;
+            try
+            {
+                aiScene = importer.ImportFile(filename, Assimp.PostProcessSteps.GenerateSmoothNormals | Assimp.PostProcessSteps.Triangulate | Assimp.PostProcessSteps.FlipUVs);
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message); return; }
+
+            var rootElement = this.scene.RootNode;
+            var model = new NodeModel(aiScene);
+            var node = NodeNode.Create(model);
+            rootElement.Children.Add(node);
+            var random = new Random();
+            node.DiffuseColor = Color.FromArgb(
+                (byte)random.Next(0, 256),
+                (byte)random.Next(0, 256),
+                (byte)random.Next(0, 256),
+                (byte)random.Next(0, 256)
+                );
         }
 
         private void CreateBoneNodes(string filename)
@@ -125,7 +153,7 @@ namespace FirstSightOfAssimpNet
                     (byte)random.Next(0, 256),
                     (byte)random.Next(0, 256)
                     );
-                rootElement.Children.Add(node);
+                //rootElement.Children.Add(node);
             }
             vec3 center = max / 2.0f + min / 2.0f;
             vec3 size = max - min;

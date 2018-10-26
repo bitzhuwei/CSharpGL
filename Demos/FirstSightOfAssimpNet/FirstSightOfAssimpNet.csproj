@@ -59,12 +59,16 @@
   <ItemGroup>
     <Compile Include="AssimpSceneContainer.cs" />
     <Compile Include="AnimationModel.cs" />
+    <Compile Include="NodeModel.cs" />
     <Compile Include="BoneModel.cs" />
     <Compile Include="AnimationNode.cs" />
+    <Compile Include="NodeNode.cs" />
     <Compile Include="BoneNode.cs" />
     <Compile Include="AnimationNode.IRenderable.cs" />
+    <Compile Include="NodeNode.IRenderable.cs" />
     <Compile Include="BoneNode.IRenderable.cs" />
     <Compile Include="AnimationNode.shaders.cs" />
+    <Compile Include="NodeNode.shaders.cs" />
     <Compile Include="BoneNode.shaders.cs" />
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
