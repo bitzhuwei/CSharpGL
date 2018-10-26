@@ -7,12 +7,12 @@ namespace CSharpGL
     /// <summary>
     /// 用在<see cref="IndexBuffer"/>类型的属性上。
     /// </summary>
-    internal class DrawElementsCmdEditor : UITypeEditor
+    internal class IDrawCommandEditor : UITypeEditor
     {
         public override object EditValue(ITypeDescriptorContext context, IServiceProvider provider, object value)
         {
             //打开属性编辑器修改数据
-            var editor = new FormDrawCommandBoard(value as DrawElementsCmd);
+            var editor = new FormDrawCommandBoard(value as IDrawCommand);
             editor.ShowDialog();
 
             return value;

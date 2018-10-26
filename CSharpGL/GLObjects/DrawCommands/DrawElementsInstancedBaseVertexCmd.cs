@@ -7,7 +7,7 @@ namespace CSharpGL
     /// <summary>
     /// Wraps glDrawElementsInstancedBaseVertex(uint mode, int vertexCount, uint type, IntPtr offset, int instanceCount, int baseVertex);
     /// </summary>
-    [Editor(typeof(DrawElementsCmdEditor), typeof(UITypeEditor))]
+    [Editor(typeof(IDrawCommandEditor), typeof(UITypeEditor))]
     public class DrawElementsInstancedBaseVertexCmd : IDrawCommand//, IHasIndexBuffer
     {
         private const string strDrawElementsInstancedBaseVertexCmd = "DrawElementsInstancedBaseVertexCmd";
