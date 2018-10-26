@@ -56,10 +56,6 @@ namespace FirstSightOfAssimpNet
             string filename = @"D:\(TODO) - openGLStepbyStep\ogldev-source\Content\boblampclean.md5mesh";
             if (File.Exists(filename))
             {
-                {
-                    var cubeNode = CubeNode.Create();
-                    rootElement.Children.Add(cubeNode);
-                }
                 CreateAnimationNodes(filename);
                 //CreateBoneNodes(filename);
                 CreateNodeNode(filename);
