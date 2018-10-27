@@ -372,6 +372,7 @@ namespace CSharpGL
         #endregion Multiplication
 
         // https://blog.csdn.net/hunter_wwq/article/details/21473519
+        // https://blog.csdn.net/lql0716/article/details/72597719
         /// <summary>
         /// Parse <paramref name="rotation"/>, <paramref name="scale"/> and <paramref name="worldPosition"/>(Translation) inside this matrix.
         /// <paramref name="rotation"/>.xyz is axis, <paramref name="rotation"/>.w is rotation angle in degrees.
