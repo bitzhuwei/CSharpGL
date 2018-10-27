@@ -8,7 +8,7 @@ namespace FirstSightOfAssimpNet
 {
     class AnimationModel : IBufferSource
     {
-        private Assimp.Mesh mesh;
+        public readonly Assimp.Mesh mesh;
         private AssimpSceneContainer container;
         private mat4 m_GlobalInverseTransform;
 

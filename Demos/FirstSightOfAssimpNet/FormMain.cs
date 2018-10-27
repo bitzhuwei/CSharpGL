@@ -138,19 +138,34 @@ namespace FirstSightOfAssimpNet
             var random = new Random();
             bool first = true; vec3 max = new vec3(); vec3 min = new vec3();
             var container = new AssimpSceneContainer(aiScene, filename);
-            foreach (Assimp.Mesh mesh in aiScene.Meshes)
+            var models = new AnimationModel[aiScene.MeshCount];
             {
-                GetBound(mesh, ref max, ref min, ref first);
-                var model = new AnimationModel(mesh, container);
-                var node = AnimationNode.Create(model);
-                node.DiffuseColor = Color.FromArgb(
-                    (byte)random.Next(0, 256),
-                    (byte)random.Next(0, 256),
-                    (byte)random.Next(0, 256),
-                    (byte)random.Next(0, 256)
-                    );
-                //rootElement.Children.Add(node);
+                int index = 0;
+                foreach (Assimp.Mesh mesh in aiScene.Meshes)
+                {
+                    models[index++] = new AnimationModel(mesh, container);
+                }
             }
+            if (aiScene.RootNode != null)
+            {
+                mat4 parentTransform = mat4.identity();
+                BuildNode(aiScene.RootNode, parentTransform, models, rootElement, ref max, ref min, ref first);
+            }
+
+
+            //foreach (Assimp.Mesh mesh in aiScene.Meshes)
+            //{
+            //    //GetBound(mesh, ref max, ref min, ref first);
+            //    var model = new AnimationModel(mesh, container);
+            //    var node = AnimationNode.Create(model);
+            //    node.DiffuseColor = Color.FromArgb(
+            //        (byte)random.Next(0, 256),
+            //        (byte)random.Next(0, 256),
+            //        (byte)random.Next(0, 256),
+            //        (byte)random.Next(0, 256)
+            //        );
+            //    rootElement.Children.Add(node);
+            //}
             vec3 center = max / 2.0f + min / 2.0f;
             vec3 size = max - min;
             float v = size.x;
@@ -159,6 +174,42 @@ namespace FirstSightOfAssimpNet
             this.scene.Camera.Target = center;
             //rootElement.WorldPosition = center;
             this.manipulater.StepLength = v / 30.0f;
+        }
+
+        private void BuildNode(Assimp.Node aiNode, mat4 parentTransform, AnimationModel[] models, SceneNodeBase rootElement, ref vec3 max, ref vec3 min, ref bool first)
+        {
+            mat4 thisTransform = parentTransform * aiNode.Transform.ToMat4();
+            if (aiNode.HasMeshes)
+            {
+                vec3 worldPosition, scale; vec4 rotation;
+                thisTransform.ParseRST(out worldPosition, out scale, out rotation);
+                foreach (int meshIndex in aiNode.MeshIndices)
+                {
+                    AnimationModel model = models[meshIndex];
+                    GetBound(model.mesh, ref max, ref min, ref first);
+                    var node = AnimationNode.Create(model);
+                    var random = new Random();
+                    node.DiffuseColor = Color.FromArgb(
+                        (byte)random.Next(0, 256),
+                        (byte)random.Next(0, 256),
+                        (byte)random.Next(0, 256),
+                        (byte)random.Next(0, 256)
+                        );
+                    node.WorldPosition = worldPosition;
+                    node.Scale = scale;
+                    node.RotationAxis = new vec3(rotation.x, rotation.y, rotation.z);
+                    node.RotationAngle = rotation.w;
+                    rootElement.Children.Add(node);
+                }
+            }
+
+            if (aiNode.HasChildren)
+            {
+                foreach (Assimp.Node child in aiNode.Children)
+                {
+                    BuildNode(child, thisTransform, models, rootElement, ref max, ref min, ref first);
+                }
+            }
         }
 
         private void GetBound(Assimp.Mesh mesh, ref vec3 max, ref vec3 min, ref bool first)
