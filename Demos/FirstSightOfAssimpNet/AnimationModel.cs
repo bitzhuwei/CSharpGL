@@ -9,8 +9,8 @@ namespace FirstSightOfAssimpNet
     class AnimationModel : IBufferSource
     {
         public readonly Assimp.Mesh mesh;
-        private AssimpSceneContainer container;
-        private mat4 m_GlobalInverseTransform;
+        public readonly AssimpSceneContainer container;
+        public readonly mat4 m_GlobalInverseTransform;
 
         private uvec4[] boneIDs;
         private vec4[] boneWeights;

@@ -59,6 +59,17 @@ namespace FirstSightOfAssimpNet
             program.SetUniform("mvpMat", projectionMat * viewMat * modelMat);
             program.SetUniform("normalMat", glm.transpose(glm.inverse(modelMat)));
             {
+                Texture tex = this.boneModel.Texture;
+                if (tex != null) { program.SetUniform("textureMap", tex); }
+            }
+            {
+                angle += 0.01f;
+                vec3 lightDirection = new vec3(
+                    (float)Math.Cos(angle), (float)Math.Sin(angle), 1);
+                program.SetUniform("lihtDirection", lightDirection);
+            }
+            if (this.boneModel.container.aiScene.HasAnimations)
+            {
                 if (this.firstRun)
                 {
                     lastTime = DateTime.Now;
@@ -70,22 +81,38 @@ namespace FirstSightOfAssimpNet
                 //this.lastTime = now;
 
                 mat4[] boneMatrixes = this.boneModel.GetBoneMatrixes(timeInSeconds);
-                if (boneMatrixes != null) { program.SetUniform("bones", boneMatrixes); }
-                program.SetUniform("animation", boneMatrixes != null);
+                if (boneMatrixes != null)
+                {
+                    program.SetUniform("animation", false);
+                    program.SetUniform("transparent", true);
+                    this.polygonModeSwitch.On();
+                    method.Render();
+                    this.polygonModeSwitch.Off();
+
+                    program.SetUniform("animation", boneMatrixes != null);
+                    program.SetUniform("transparent", false);
+                    program.SetUniform("bones", boneMatrixes);
+                    this.polygonModeSwitch.On();
+                    method.Render();
+                    this.polygonModeSwitch.Off();
+                }
+                else
+                {
+                    program.SetUniform("animation", false);
+
+                    this.polygonModeSwitch.On();
+                    method.Render();
+                    this.polygonModeSwitch.Off();
+                }
             }
+            else
             {
-                Texture tex = this.boneModel.Texture;
-                if (tex != null) { program.SetUniform("textureMap", tex); }
+                program.SetUniform("animation", false);
+
+                this.polygonModeSwitch.On();
+                method.Render();
+                this.polygonModeSwitch.Off();
             }
-            {
-                angle += 0.01f;
-                vec3 lightDirection = new vec3(
-                    (float)Math.Cos(angle), (float)Math.Sin(angle), 1);
-                program.SetUniform("lihtDirection", lightDirection);
-            }
-            this.polygonModeSwitch.On();
-            method.Render();
-            this.polygonModeSwitch.Off();
         }
 
         public void RenderAfterChildren(RenderEventArgs arg)

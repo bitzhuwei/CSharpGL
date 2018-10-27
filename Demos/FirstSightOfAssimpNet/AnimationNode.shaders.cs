@@ -51,11 +51,16 @@ in vec2 passTexCoord;
 uniform sampler2D textureMap;
 uniform vec3 lihtDirection = vec3(1, 1, 1);
 uniform vec3 diffuseColor;
+uniform bool transparent = false;
 
 out vec4 outColor;
 
 void main()
 {
+    if (transparent) {
+        if (int(gl_FragCoord.x + gl_FragCoord.y) % 2 == 1) discard;
+    }
+
     if (passTexCoord == vec2(-1, -1)) { // when texture coordinate not exists..
         float diffuse = max(dot(normalize(lihtDirection), normalize(passNormal)), 0);
         outColor = vec4(diffuseColor * diffuse, 1.0);
