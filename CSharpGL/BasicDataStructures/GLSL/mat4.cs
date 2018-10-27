@@ -373,7 +373,8 @@ namespace CSharpGL
 
         // https://blog.csdn.net/hunter_wwq/article/details/21473519
         /// <summary>
-        /// 
+        /// Parse <paramref name="rotation"/>, <paramref name="scale"/> and <paramref name="worldPosition"/>(Translation) inside this matrix.
+        /// <paramref name="rotation"/>.xyz is axis, <paramref name="rotation"/>.w is rotation angle in degrees.
         /// </summary>
         /// <param name="worldPosition"></param>
         /// <param name="scale"></param>
