@@ -389,8 +389,8 @@ namespace CSharpGL
             scale = new vec3(l0, l1, l2);
 
             vec3 col0 = new vec3(this.col0.x / l0, this.col0.y / l0, this.col0.z / l0);
-            vec3 col1 = new vec3(this.col0.x / l1, this.col0.y / l1, this.col0.z / l1);
-            vec3 col2 = new vec3(this.col0.x / l2, this.col0.y / l2, this.col0.z / l2);
+            vec3 col1 = new vec3(this.col1.x / l1, this.col1.y / l1, this.col1.z / l1);
+            vec3 col2 = new vec3(this.col2.x / l2, this.col2.y / l2, this.col2.z / l2);
             /*
             col0 is vec3(1 - 2 * (yy + zz), 2 * (xy - zw), 2 * (xz + yw));
             col1 is vec3(2 * (xy + zw), 1 - 2 * (xx + zz), 2 * (yz - xw));
@@ -429,8 +429,8 @@ namespace CSharpGL
                 y = (col1.z + col2.y) * 0.25f / z;
                 break;
             }
-            var quaternion = new Quaternion(w, x, y, z);
-            float angle; vec3 axis;
+            // from quaternion to axis+angle.
+            vec3 axis; float angle;
             quaternion.Parse(out angle, out axis);
             rotation = new vec4(axis, angle);
         }
