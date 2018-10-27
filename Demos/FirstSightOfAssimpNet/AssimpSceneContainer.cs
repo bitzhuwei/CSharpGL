@@ -35,7 +35,16 @@ namespace FirstSightOfAssimpNet
                     Assimp.TextureSlot slot = material.GetTexture(Assimp.TextureType.Diffuse, 0);
                     string fullname = Path.Combine(directory, slot.FilePath);
                     if (fullname.EndsWith(".tga")) { fullname = fullname.Substring(0, fullname.Length - ".tga".Length) + ".png"; }
-                    var bitmap = new Bitmap(fullname);
+                    Bitmap bitmap;
+                    try
+                    {
+                        bitmap = new Bitmap(fullname);
+                    }
+                    catch (Exception ex)
+                    {
+                        var name = fullname.Substring(0, fullname.LastIndexOf('.')) + ".png";
+                        bitmap = new Bitmap(name);
+                    }
                     //bitmap.RotateFlip(RotateFlipType.Rotate180FlipX);
                     var storage = new TexImageBitmap(bitmap);
                     var texture = new Texture(storage,
