@@ -34,7 +34,6 @@ namespace FirstSightOfAssimpNet
                 {
                     Assimp.TextureSlot slot = material.GetTexture(Assimp.TextureType.Diffuse, 0);
                     string fullname = Path.Combine(directory, slot.FilePath);
-                    if (fullname.EndsWith(".tga")) { fullname = fullname.Substring(0, fullname.Length - ".tga".Length) + ".png"; }
                     Bitmap bitmap;
                     try
                     {
