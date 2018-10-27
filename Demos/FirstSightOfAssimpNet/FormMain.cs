@@ -261,6 +261,7 @@ namespace FirstSightOfAssimpNet
                 rootElement.Children.Clear();
                 string filename = this.openFileDialog1.FileName;
                 CreateAnimationNodes(filename);
+                CreateNodeNode(filename);
             }
         }
 

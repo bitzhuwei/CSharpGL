@@ -21,7 +21,7 @@ namespace FirstSightOfAssimpNet
         {
             var list = new List<vec3>();
             var current = new vec3(0, 0, 0);
-            list.Add(current);
+            //list.Add(current);
             ParseNode(scene.RootNode, list, mat4.identity());
 
             return list.ToArray();
@@ -29,16 +29,15 @@ namespace FirstSightOfAssimpNet
 
         private void ParseNode(Assimp.Node node, List<vec3> list, mat4 parentTransform)
         {
-            mat4 mat = node.Transform.ToMat4();
-            mat4 newTransform = parentTransform * mat;
-            var position = new vec3(newTransform * new vec4(0, 0, 0, 1));
+            mat4 thisTransform = parentTransform * node.Transform.ToMat4();
+            var position = new vec3(thisTransform * new vec4(0, 0, 0, 1));
             list.Add(position);
             //list.Add(position);
             if (node.HasChildren)
             {
                 foreach (Assimp.Node child in node.Children)
                 {
-                    ParseNode(child, list, newTransform);
+                    ParseNode(child, list, thisTransform);
                 }
             }
         }

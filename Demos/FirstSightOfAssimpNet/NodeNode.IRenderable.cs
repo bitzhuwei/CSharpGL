@@ -58,6 +58,7 @@ namespace FirstSightOfAssimpNet
             ShaderProgram program = method.Program;
             program.SetUniform("mvpMat", projectionMat * viewMat * modelMat);
 
+            GL.Instance.Clear(GL.GL_DEPTH_BUFFER_BIT); // push this node to top front.
             this.polygonModeSwitch.On();
             method.Render();
             this.polygonModeSwitch.Off();

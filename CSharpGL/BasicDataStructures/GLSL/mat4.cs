@@ -431,6 +431,7 @@ namespace CSharpGL
             }
             // from quaternion to axis+angle.
             vec3 axis; float angle;
+            var quaternion = new Quaternion(w, x, y, z);
             quaternion.Parse(out angle, out axis);
             rotation = new vec4(axis, angle);
         }
