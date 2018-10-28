@@ -52,7 +52,6 @@
     <Compile Include="EZMTextureNode.IRenderable.cs" />
     <Compile Include="EZMTextureNode.shaders.cs" />
     <Compile Include="EZMVertexBufferContainer.cs" />
-    <Compile Include="EZMSectionNode.shaders.cs" />
     <Compile Include="EZMTextureModel.cs" />
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
