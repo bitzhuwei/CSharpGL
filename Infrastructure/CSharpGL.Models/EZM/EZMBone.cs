@@ -89,9 +89,9 @@ namespace CSharpGL
         public mat4 combinedMat;
 
         /// <summary>
-        /// cache inversed combined matrix.
+        /// inversed combined matrix.
         /// </summary>
-        public mat4 inverseCombinedMatrix;
+        public mat4 offsetMat;
 
         public override string ToString()
         {

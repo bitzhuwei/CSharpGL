@@ -85,7 +85,7 @@ namespace CSharpGL
                                 bone.combinedMat = parent.combinedMat * bone.state.matrix;
                             }
 
-                            bone.inverseCombinedMatrix = glm.inverse(bone.combinedMat);
+                            bone.offsetMat = glm.inverse(bone.combinedMat);
                         }
                         result.OrderedBones = orderedBones;
                     }
