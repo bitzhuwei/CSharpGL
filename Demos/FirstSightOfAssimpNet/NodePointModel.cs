@@ -44,9 +44,10 @@ namespace FirstSightOfAssimpNet
             this.offsetMats = offsetMats;
             this.multiplys = new mat4[this.offsetMats.Length];
             this.inverseMutiplys = new mat4[this.offsetMats.Length];
+            mat4 rootTransform = glm.inverse(scene.RootNode.Transform.ToMat4());
             for (int i = 0; i < this.offsetMats.Length; i++)
             {
-                this.multiplys[i] = this.transforms[i] * this.offsetMats[i];
+                this.multiplys[i] = rootTransform * this.transforms[i] * this.offsetMats[i];
                 this.inverseMutiplys[i] = this.inversedTransforms[i] * this.offsetMats[i];
             }
 
@@ -56,7 +57,7 @@ namespace FirstSightOfAssimpNet
         private mat4[] GetTransforms(Assimp.Scene scene)
         {
             var list = new List<mat4>();
-            ParseNodeTransform(scene.RootNode, list, glm.inverse(scene.RootNode.Transform.ToMat4()));
+            ParseNodeTransform(scene.RootNode, list, mat4.identity());
 
             return list.ToArray();
         }
