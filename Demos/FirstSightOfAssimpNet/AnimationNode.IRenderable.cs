@@ -59,7 +59,7 @@ namespace FirstSightOfAssimpNet
             program.SetUniform("mvpMat", projectionMat * viewMat * modelMat);
             program.SetUniform("normalMat", glm.transpose(glm.inverse(modelMat)));
             {
-                Texture tex = this.boneModel.Texture;
+                Texture tex = this.model.Texture;
                 if (tex != null) { program.SetUniform("textureMap", tex); }
             }
             {
@@ -68,7 +68,7 @@ namespace FirstSightOfAssimpNet
                     (float)Math.Cos(angle), (float)Math.Sin(angle), 1);
                 program.SetUniform("lihtDirection", lightDirection);
             }
-            if (this.boneModel.container.aiScene.HasAnimations)
+            if (this.model.container.aiScene.HasAnimations)
             {
                 if (this.firstRun)
                 {
@@ -80,7 +80,10 @@ namespace FirstSightOfAssimpNet
                 float timeInSeconds = (float)(now.Subtract(this.lastTime).TotalSeconds);
                 //this.lastTime = now;
 
-                mat4[] boneMatrixes = this.boneModel.GetBoneMatrixes(timeInSeconds);
+                Assimp.Scene scene = this.model.container.aiScene;
+                Assimp.Matrix4x4 transform = scene.RootNode.Transform;
+                transform.Inverse();
+                mat4[] boneMatrixes = scene.GetBoneMatrixes(timeInSeconds, transform.ToMat4(), this.model.container.GetAllBones());
                 if (boneMatrixes != null)
                 {
                     program.SetUniform("animation", false);

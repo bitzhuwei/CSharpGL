@@ -8,7 +8,7 @@ namespace FirstSightOfAssimpNet
 {
     partial class AnimationNode : ModernNode, IRenderable
     {
-        private AnimationModel boneModel;
+        private AnimationModel model;
         public static AnimationNode Create(AnimationModel model)
         {
             var vs = new VertexShader(vertexCode);
@@ -27,7 +27,7 @@ namespace FirstSightOfAssimpNet
             return node;
         }
 
-        private AnimationNode(AnimationModel model, params RenderMethodBuilder[] builders) : base(model, builders) { this.boneModel = model; }
+        private AnimationNode(AnimationModel model, params RenderMethodBuilder[] builders) : base(model, builders) { this.model = model; }
 
 
     }

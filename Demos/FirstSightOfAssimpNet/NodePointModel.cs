@@ -8,8 +8,8 @@ namespace FirstSightOfAssimpNet
 {
     class NodePointModel : IBufferSource
     {
-        private Assimp.Scene scene;
-        private AssimpSceneContainer container;
+        public readonly Assimp.Scene scene;
+        public readonly AssimpSceneContainer container;
         private vec3[] positions;
         private int[] boneIndexes;
 

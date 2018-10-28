@@ -8,7 +8,7 @@ namespace FirstSightOfAssimpNet
 {
     partial class NodePointNode : ModernNode, IRenderable
     {
-        private NodePointModel boneModel;
+        private NodePointModel nodePointModel;
         public static NodePointNode Create(NodePointModel model)
         {
             var vs = new VertexShader(vertexCode);
@@ -16,6 +16,7 @@ namespace FirstSightOfAssimpNet
             var array = new ShaderArray(vs, fs);
             var map = new AttributeMap();
             map.Add("inPosition", NodePointModel.strPosition);
+            map.Add("inBoneIndex", NodePointModel.strBoneIndex);
             var builder = new RenderMethodBuilder(array, map);
             var node = new NodePointNode(model, builder);
             node.Initialize();
@@ -23,7 +24,7 @@ namespace FirstSightOfAssimpNet
             return node;
         }
 
-        private NodePointNode(NodePointModel model, params RenderMethodBuilder[] builders) : base(model, builders) { this.boneModel = model; }
+        private NodePointNode(NodePointModel model, params RenderMethodBuilder[] builders) : base(model, builders) { this.nodePointModel = model; }
 
 
     }

@@ -34,6 +34,10 @@ namespace FirstSightOfAssimpNet
             set { enableRendering = value; }
         }
 
+        private bool firstRun = true;
+        private DateTime lastTime;
+        private double angle;
+
         public void RenderBeforeChildren(RenderEventArgs arg)
         {
             ICamera camera = arg.Camera;
@@ -45,6 +49,26 @@ namespace FirstSightOfAssimpNet
             RenderMethod method = unit.Methods[0];
             ShaderProgram program = method.Program;
             program.SetUniform("mvpMat", projectionMat * viewMat * modelMat);
+            if (this.firstRun)
+            {
+                lastTime = DateTime.Now;
+                this.firstRun = false;
+            }
+
+            DateTime now = DateTime.Now;
+            float timeInSeconds = (float)(now.Subtract(this.lastTime).TotalSeconds);
+            //this.lastTime = now;
+
+            Assimp.Scene scene = this.nodePointModel.scene;
+            Assimp.Matrix4x4 transform = scene.RootNode.Transform;
+            transform.Inverse();
+            //mat4[] boneMatrixes = scene.GetBoneMatrixes(timeInSeconds, transform.ToMat4(), this.nodePointModel.container.GetAllBones());
+            mat4[] boneMatrixes = null;
+            program.SetUniform("animation", boneMatrixes != null);
+            if (boneMatrixes != null)
+            {
+                program.SetUniform("bones", boneMatrixes);
+            }
 
             GL.Instance.Enable(GL.GL_VERTEX_PROGRAM_POINT_SIZE);
             GL.Instance.Clear(GL.GL_DEPTH_BUFFER_BIT); // push this node to top front.
