@@ -81,9 +81,7 @@ namespace FirstSightOfAssimpNet
                 //this.lastTime = now;
 
                 Assimp.Scene scene = this.model.container.aiScene;
-                Assimp.Matrix4x4 transform = scene.RootNode.Transform;
-                transform.Inverse();
-                mat4[] boneMatrixes = scene.GetBoneMatrixes(timeInSeconds, transform.ToMat4(), this.model.container.GetAllBones());
+                mat4[] boneMatrixes = scene.GetBoneMatrixes(timeInSeconds, this.model.container.GetAllBones());
                 if (boneMatrixes != null)
                 {
                     program.SetUniform("animation", false);

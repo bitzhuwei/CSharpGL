@@ -14,7 +14,7 @@ namespace FirstSightOfAssimpNet
         /// <param name="aiScene"></param>
         /// <param name="TimeInSeconds"></param>
         /// <returns></returns>
-        public static mat4[] GetBoneMatrixes(this Assimp.Scene aiScene, float TimeInSeconds, mat4 globalInverseTransform, AllBones allBones)
+        public static mat4[] GetBoneMatrixes(this Assimp.Scene aiScene, float TimeInSeconds, AllBones allBones)
         {
             if (aiScene.AnimationCount <= 0) { return null; }
             double ticksPerSecond = aiScene.Animations[0].TicksPerSecond;
@@ -22,7 +22,9 @@ namespace FirstSightOfAssimpNet
             double timeInTicks = TimeInSeconds * ticksPerSecond;
             float animationTime = (float)(timeInTicks % aiScene.Animations[0].DurationInTicks);
 
-            ReadNodeHeirarchy(animationTime, aiScene.RootNode, aiScene.Animations[0], globalInverseTransform, allBones);
+            Assimp.Matrix4x4 transform = aiScene.RootNode.Transform;
+            transform.Inverse();
+            ReadNodeHeirarchy(animationTime, aiScene.RootNode, aiScene.Animations[0], transform.ToMat4(), allBones);
 
             int boneCount = allBones.boneInfos.Length;
             var result = new mat4[boneCount];
