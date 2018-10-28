@@ -51,6 +51,7 @@ namespace EZMFileViewer
             string filename = @"D:\GitHub\CSharpGL\Demos\EZMFileViewer\media\dwarf_anim.ezm";
             CreateTextureNode(filename);
             CreateBonePointNode(filename);
+            CreateBoneLineNode(filename);
         }
 
         private void winGLCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
@@ -83,7 +84,7 @@ namespace EZMFileViewer
             }
         }
 
-        private void CreateDualQuatNode(string filename)
+        private void CreateBoneLineNode(string filename)
         {
             EZMFile ezmFile = EZMFile.Load(filename);
             ezmFile.LoadTextures();
@@ -91,14 +92,9 @@ namespace EZMFileViewer
             for (int i = 0; i < ezmFile.MeshSystem.Meshes.Length; i++)
             {
                 EZMMesh mesh = ezmFile.MeshSystem.Meshes[i];
-                EZMAnimation animation = ezmFile.MeshSystem.Animations.Length > 0 ? ezmFile.MeshSystem.Animations[0] : null;
-                var container = new EZMVertexBufferContainer(mesh, null);
-                for (int j = 0; j < mesh.MeshSections.Length; j++)
-                {
-                    var model = new EZMDualQuatModel(container, mesh.MeshSections[j]);
-                    var node = EZMDualQuatNode.Create(model);
-                    rootElement.Children.Add(node);
-                }
+                var model = new NodeLineModel(mesh.Skeleton.Bones);
+                var node = NodeLineNode.Create(model);
+                rootElement.Children.Add(node);
             }
         }
 

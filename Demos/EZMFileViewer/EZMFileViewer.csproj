@@ -48,22 +48,11 @@
     <Compile Include="DualQuaternion.cs" />
     <Compile Include="EZMFileHelper.cs" />
     <Compile Include="EZMLoadTextures.cs" />
-    <Compile Include="EZMDualQuatModel.cs" />
-    <Compile Include="EZMDualQuatNode.cs" />
     <Compile Include="EZMTextureNode.cs" />
-    <Compile Include="EZMDualQuatNode.IRenderable.cs" />
     <Compile Include="EZMTextureNode.IRenderable.cs" />
-    <Compile Include="EZMDualQuatNode.shaders.cs" />
     <Compile Include="EZMTextureNode.shaders.cs" />
     <Compile Include="EZMVertexBufferContainer.cs" />
-    <Compile Include="EZMSectionNode.cs" />
-    <Compile Include="EZMSectionNode.IRenderable.cs" />
     <Compile Include="EZMSectionNode.shaders.cs" />
-    <Compile Include="EZMSectionModel.cs" />
-    <Compile Include="EZMDummyNode.shaders.cs" />
-    <Compile Include="EZMDummyNode.IRenderable.cs" />
-    <Compile Include="EZMDummyNode.cs" />
-    <Compile Include="EZMDummyModel.cs" />
     <Compile Include="EZMTextureModel.cs" />
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
@@ -71,9 +60,13 @@
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="NodeLineModel.cs" />
     <Compile Include="NodePointModel.cs" />
+    <Compile Include="NodeLineNode.cs" />
     <Compile Include="NodePointNode.cs" />
+    <Compile Include="NodeLineNode.IRenderable.cs" />
     <Compile Include="NodePointNode.IRenderable.cs" />
+    <Compile Include="NodeLineNode.shaders.cs" />
     <Compile Include="NodePointNode.shaders.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

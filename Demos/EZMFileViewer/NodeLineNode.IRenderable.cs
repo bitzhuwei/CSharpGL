@@ -7,22 +7,8 @@ using System.Text;
 
 namespace EZMFileViewer
 {
-    partial class EZMSectionNode
+    partial class NodeLineNode
     {
-        private vec3 color = new vec3();
-        public Color Color
-        {
-            get { return this.color.ToColor(); }
-            set
-            {
-                vec3 c = value.ToVec3();
-                this.color = c;
-                ModernRenderUnit unit = this.RenderUnit;
-                RenderMethod method = unit.Methods[0];
-                ShaderProgram program = method.Program;
-                program.SetUniform("color", c);
-            }
-        }
         #region IRenderable 成员
 
         private ThreeFlags enableRendering = ThreeFlags.BeforeChildren | ThreeFlags.Children;
@@ -32,7 +18,6 @@ namespace EZMFileViewer
             get { return enableRendering; }
             set { enableRendering = value; }
         }
-
 
         public void RenderBeforeChildren(RenderEventArgs arg)
         {
@@ -45,6 +30,7 @@ namespace EZMFileViewer
             RenderMethod method = unit.Methods[0];
             ShaderProgram program = method.Program;
             program.SetUniform("mvpMat", projectionMat * viewMat * modelMat);
+            GL.Instance.Clear(GL.GL_DEPTH_BUFFER_BIT); // push this node to top front.
             method.Render();
         }
 
