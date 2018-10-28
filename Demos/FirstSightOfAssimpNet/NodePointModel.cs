@@ -9,12 +9,47 @@ namespace FirstSightOfAssimpNet
     class NodePointModel : IBufferSource
     {
         private Assimp.Scene scene;
+        private AssimpSceneContainer container;
         private vec3[] positions;
+        private int[] boneIndexes;
 
-        public NodePointModel(Assimp.Scene scene)
+        public NodePointModel(Assimp.Scene scene, AssimpSceneContainer container)
         {
             this.scene = scene;
+            this.container = container;
             this.positions = GetPositions(scene);
+            this.boneIndexes = GetIndexes(scene, container);
+        }
+
+        private int[] GetIndexes(Assimp.Scene scene, AssimpSceneContainer container)
+        {
+            AllBones allBones = container.GetAllBones();
+            Dictionary<string, uint> nameIndexDict = allBones.nameIndexDict;
+            var list = new List<int>();
+            ParseNodeIndexes(scene.RootNode, list, nameIndexDict);
+
+            return list.ToArray();
+        }
+
+        private void ParseNodeIndexes(Assimp.Node node, List<int> list, Dictionary<string, uint> nameIndexDict)
+        {
+            uint index;
+            if (nameIndexDict.TryGetValue(node.Name, out index))
+            {
+                list.Add((int)index);
+            }
+            else
+            {
+                list.Add(-1);
+            }
+
+            if (node.HasChildren)
+            {
+                foreach (Assimp.Node child in node.Children)
+                {
+                    ParseNodeIndexes(child, list, nameIndexDict);
+                }
+            }
         }
 
         private vec3[] GetPositions(Assimp.Scene scene)
@@ -32,7 +67,6 @@ namespace FirstSightOfAssimpNet
             mat4 thisTransform = parentTransform * node.Transform.ToMat4();
             var position = new vec3(thisTransform * new vec4(0, 0, 0, 1));
             list.Add(position);
-            //list.Add(position);
             if (node.HasChildren)
             {
                 foreach (Assimp.Node child in node.Children)
@@ -44,6 +78,8 @@ namespace FirstSightOfAssimpNet
 
         public const string strPosition = "position";
         private VertexBuffer positionBuffer;
+        public const string strBoneIndex = "boneIndex";
+        private VertexBuffer boneIndexBuffer;
 
         private IDrawCommand drawCommand;
 
@@ -59,6 +95,15 @@ namespace FirstSightOfAssimpNet
                 }
 
                 yield return this.positionBuffer;
+            }
+            else if (strBoneIndex == bufferName)
+            {
+                if (this.boneIndexBuffer == null)
+                {
+                    this.boneIndexBuffer = this.boneIndexes.GenVertexBuffer(VBOConfig.Int, BufferUsage.StaticDraw);
+                }
+
+                yield return this.boneIndexBuffer;
             }
             else
             {

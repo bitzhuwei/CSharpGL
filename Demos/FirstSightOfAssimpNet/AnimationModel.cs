@@ -30,13 +30,12 @@ namespace FirstSightOfAssimpNet
             var boneIDs = new uvec4[mesh.VertexCount];
             var boneWeights = new vec4[mesh.VertexCount];
             List<BoneInfo> bones = new List<BoneInfo>();
-            var nameIndexDict = new Dictionary<string, uint>();
             AllBones allBones = container.GetAllBones();
-            Dictionary<string, uint> dict = allBones.nameIndexDict;
+            Dictionary<string, uint> nameIndexDict = allBones.nameIndexDict;
             for (int i = 0; i < mesh.BoneCount; i++)
             {
                 Assimp.Bone bone = mesh.Bones[i];
-                uint boneIndex = dict[bone.Name];
+                uint boneIndex = nameIndexDict[bone.Name];
 
                 for (int j = 0; j < bone.VertexWeightCount; j++)
                 {
