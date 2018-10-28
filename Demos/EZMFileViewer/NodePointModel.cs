@@ -23,15 +23,7 @@ namespace EZMFileViewer
             for (int i = 0; i < bones.Length; i++)
             {
                 EZMBone bone = bones[i];
-                EZMBone parent = bone.Parent;
-                if (parent != null)
-                {
-                    positions[i] = new vec3(parent.state.matrix * bone.state.matrix * new vec4(0, 0, 0, 1));
-                }
-                else
-                {
-                    positions[i] = new vec3(bone.state.matrix * new vec4(0, 0, 0, 1));
-                }
+                positions[i] = new vec3(bone.combinedMat * new vec4(0, 0, 0, 1));
             }
 
             return positions;
