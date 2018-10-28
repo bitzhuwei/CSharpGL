@@ -16,7 +16,7 @@ namespace FirstSightOfAssimpNet
             var array = new ShaderArray(vs, fs);
             var map = new AttributeMap();
             map.Add("inPosition", NodePointModel.strPosition);
-            var builder = new RenderMethodBuilder(array, map, new PointSizeSwitch(6), new LineWidthSwitch(6));//, new PolygonModeSwitch(PolygonMode.Line));
+            var builder = new RenderMethodBuilder(array, map);
             var node = new NodePointNode(model, builder);
             node.Initialize();
 

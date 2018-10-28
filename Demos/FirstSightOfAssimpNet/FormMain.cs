@@ -56,11 +56,28 @@ namespace FirstSightOfAssimpNet
             if (File.Exists(filename))
             {
                 CreateAnimationNodes(filename);
-                CreateNodeNode(filename);
+                CreateNodePointNode(filename);
+                CreateNodeLineNode(filename);
             }
         }
 
-        private void CreateNodeNode(string filename)
+        private void CreateNodeLineNode(string filename)
+        {
+            var importer = new Assimp.AssimpImporter();
+            Assimp.Scene aiScene = null;
+            try
+            {
+                aiScene = importer.ImportFile(filename, Assimp.PostProcessSteps.GenerateSmoothNormals | Assimp.PostProcessSteps.Triangulate | Assimp.PostProcessSteps.FlipUVs);
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message); return; }
+
+            var rootElement = this.scene.RootNode;
+            var model = new NodeLineModel(aiScene);
+            var node = NodeLineNode.Create(model);
+            rootElement.Children.Add(node);
+        }
+
+        private void CreateNodePointNode(string filename)
         {
             var importer = new Assimp.AssimpImporter();
             Assimp.Scene aiScene = null;
@@ -200,7 +217,8 @@ namespace FirstSightOfAssimpNet
                 rootElement.Children.Clear();
                 string filename = this.openFileDialog1.FileName;
                 CreateAnimationNodes(filename);
-                CreateNodeNode(filename);
+                CreateNodePointNode(filename);
+                CreateNodeLineNode(filename);
             }
         }
 

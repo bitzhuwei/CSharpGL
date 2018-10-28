@@ -6,30 +6,33 @@ using System.Text;
 
 namespace FirstSightOfAssimpNet
 {
-    partial class NodePointNode
+    partial class NodeLineNode
     {
         private const string vertexCode = @"#version 150
 
 in vec3 inPosition;
+in vec3 inColor;
 
 uniform mat4 mvpMat;
+
+out vec3 passColor;
 
 void main()
 {
     gl_Position = mvpMat * vec4(inPosition, 1.0);
-    gl_PointSize = 16;
+    passColor = inColor;
 }
 ";
 
         private const string fragmentCode = @"#version 150
 
-uniform vec3 diffuseColor;
+in vec3 passColor;
 
 out vec4 outColor;
 
 void main()
 {
-    outColor = vec4(diffuseColor, 1.0);
+    outColor = vec4(passColor, 1.0);
 }
 ";
 

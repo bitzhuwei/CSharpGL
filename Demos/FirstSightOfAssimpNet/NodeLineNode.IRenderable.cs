@@ -7,23 +7,8 @@ using System.Text;
 
 namespace FirstSightOfAssimpNet
 {
-    partial class NodePointNode
+    partial class NodeLineNode
     {
-        private vec3 diffuseColor = new vec3();
-        public Color DiffuseColor
-        {
-            get { return this.diffuseColor.ToColor(); }
-            set
-            {
-                vec3 c = value.ToVec3();
-                this.diffuseColor = c;
-                ModernRenderUnit unit = this.RenderUnit;
-                RenderMethod method = unit.Methods[0];
-                ShaderProgram program = method.Program;
-                program.SetUniform("diffuseColor", c);
-            }
-        }
-
         #region IRenderable 成员
 
         private ThreeFlags enableRendering = ThreeFlags.BeforeChildren | ThreeFlags.Children;
@@ -33,6 +18,10 @@ namespace FirstSightOfAssimpNet
             get { return enableRendering; }
             set { enableRendering = value; }
         }
+
+        private bool firstRun = true;
+        private DateTime lastTime;
+        private double angle;
 
         public void RenderBeforeChildren(RenderEventArgs arg)
         {
@@ -46,7 +35,6 @@ namespace FirstSightOfAssimpNet
             ShaderProgram program = method.Program;
             program.SetUniform("mvpMat", projectionMat * viewMat * modelMat);
 
-            GL.Instance.Enable(GL.GL_VERTEX_PROGRAM_POINT_SIZE);
             GL.Instance.Clear(GL.GL_DEPTH_BUFFER_BIT); // push this node to top front.
             method.Render();
         }
