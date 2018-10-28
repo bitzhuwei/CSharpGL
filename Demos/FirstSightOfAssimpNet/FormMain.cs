@@ -109,6 +109,7 @@ namespace FirstSightOfAssimpNet
             bool first = true; vec3 max = new vec3(); vec3 min = new vec3();
             var container = new AssimpSceneContainer(aiScene, filename);
             var models = new AnimationModel[aiScene.MeshCount];
+            if (aiScene.HasMeshes)
             {
                 int index = 0;
                 foreach (Assimp.Mesh mesh in aiScene.Meshes)
