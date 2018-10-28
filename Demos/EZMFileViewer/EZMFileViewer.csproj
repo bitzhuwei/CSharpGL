@@ -43,9 +43,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BoneModel.cs" />
-    <Compile Include="BoneNode.shaders.cs" />
-    <Compile Include="BoneNode.cs" />
     <Compile Include="DDSLoader.cs" />
     <Compile Include="DDSStorage.cs" />
     <Compile Include="DualQuaternion.cs" />
@@ -74,6 +71,10 @@
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="NodePointModel.cs" />
+    <Compile Include="NodePointNode.cs" />
+    <Compile Include="NodePointNode.IRenderable.cs" />
+    <Compile Include="NodePointNode.shaders.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormMain.resx">

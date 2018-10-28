@@ -1,30 +1,28 @@
-﻿using System;
+﻿using CSharpGL;
+using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
-using CSharpGL;
 
 namespace EZMFileViewer
 {
-    partial class BoneNode : ModernNode, IRenderable
+    partial class NodePointNode
     {
-        public static BoneNode Create(EZMBone[] bones)
+        private vec3 diffuseColor = new vec3();
+        public Color DiffuseColor
         {
-            var model = new BoneModel(bones);
-            var vs = new VertexShader(vertexCode);
-            var fs = new FragmentShader(fragmentCode);
-            var array = new ShaderArray(vs, fs);
-            var map = new AttributeMap();
-            map.Add("inPosition", BoneModel.strPosition);
-            map.Add("inColor", BoneModel.strColor);
-            var builder = new RenderMethodBuilder(array, map, new LineWidthSwitch(5));
-            var node = new BoneNode(model, builder);
-            node.Initialize();
-
-            return node;
+            get { return this.diffuseColor.ToColor(); }
+            set
+            {
+                vec3 c = value.ToVec3();
+                this.diffuseColor = c;
+                ModernRenderUnit unit = this.RenderUnit;
+                RenderMethod method = unit.Methods[0];
+                ShaderProgram program = method.Program;
+                program.SetUniform("diffuseColor", c);
+            }
         }
-
-        private BoneNode(IBufferSource model, params RenderMethodBuilder[] builders) : base(model, builders) { }
 
         #region IRenderable 成员
 
@@ -47,6 +45,8 @@ namespace EZMFileViewer
             RenderMethod method = unit.Methods[0];
             ShaderProgram program = method.Program;
             program.SetUniform("mvpMat", projectionMat * viewMat * modelMat);
+            GL.Instance.Enable(GL.GL_VERTEX_PROGRAM_POINT_SIZE);
+            GL.Instance.Clear(GL.GL_DEPTH_BUFFER_BIT); // push this node to top front.
             method.Render();
         }
 

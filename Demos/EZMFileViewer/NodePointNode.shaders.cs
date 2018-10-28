@@ -1,37 +1,36 @@
-﻿using System;
+﻿using CSharpGL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using CSharpGL;
 
 namespace EZMFileViewer
 {
-    partial class BoneNode
+    partial class NodePointNode
     {
         private const string vertexCode = @"#version 150
 
 in vec3 inPosition;
-in vec3 inColor;
 
 uniform mat4 mvpMat;
 
-out vec3 passColor;
-
-void main() {
+void main()
+{
     gl_Position = mvpMat * vec4(inPosition, 1.0);
-//    gl_Position.z = 0;
-    passColor = inColor;
+
+    gl_PointSize = 16;
 }
 ";
 
         private const string fragmentCode = @"#version 150
 
-in vec3 passColor;
+uniform vec3 diffuseColor;
 
 out vec4 outColor;
 
-void main() {
-    outColor = vec4(passColor, 1.0);
+void main()
+{
+    outColor = vec4(diffuseColor, 1.0);
 }
 ";
 
