@@ -11,14 +11,67 @@ namespace FirstSightOfAssimpNet
         public readonly Assimp.Scene scene;
         public readonly AssimpSceneContainer container;
         private vec3[] positions;
+        private mat4[] transforms;
+        private mat4[] inversedTransforms;
         private int[] boneIndexes;
+        private mat4[] offsetMats;
+        private mat4[] multiplys; // all [0] or [1](identity matrix).
+        private mat4[] inverseMutiplys;
 
         public NodePointModel(Assimp.Scene scene, AssimpSceneContainer container)
         {
             this.scene = scene;
             this.container = container;
             this.positions = GetPositions(scene);
+            this.transforms = GetTransforms(scene);
+            this.inversedTransforms = new mat4[this.transforms.Length];
+            for (int i = 0; i < this.transforms.Length; i++)
+            {
+                this.inversedTransforms[i] = glm.inverse(this.transforms[i]);
+            }
             this.boneIndexes = GetIndexes(scene, container);
+            AllBones allBones = container.GetAllBones();
+            BoneInfo[] boneInfos = allBones.boneInfos;
+            mat4[] offsetMats = new mat4[this.boneIndexes.Length];
+            for (int i = 0; i < this.boneIndexes.Length; i++)
+            {
+                int index = this.boneIndexes[i];
+                if (index >= 0)
+                {
+                    offsetMats[i] = boneInfos[index].Bone.OffsetMatrix.ToMat4();
+                }
+            }
+            this.offsetMats = offsetMats;
+            this.multiplys = new mat4[this.offsetMats.Length];
+            this.inverseMutiplys = new mat4[this.offsetMats.Length];
+            for (int i = 0; i < this.offsetMats.Length; i++)
+            {
+                this.multiplys[i] = this.transforms[i] * this.offsetMats[i];
+                this.inverseMutiplys[i] = this.inversedTransforms[i] * this.offsetMats[i];
+            }
+
+            Console.WriteLine("af");
+        }
+
+        private mat4[] GetTransforms(Assimp.Scene scene)
+        {
+            var list = new List<mat4>();
+            ParseNodeTransform(scene.RootNode, list, glm.inverse(scene.RootNode.Transform.ToMat4()));
+
+            return list.ToArray();
+        }
+
+        private void ParseNodeTransform(Assimp.Node node, List<mat4> list, mat4 parentTransform)
+        {
+            mat4 thisTransform = parentTransform * node.Transform.ToMat4();
+            list.Add(thisTransform);
+            if (node.HasChildren)
+            {
+                foreach (Assimp.Node child in node.Children)
+                {
+                    ParseNodeTransform(child, list, thisTransform);
+                }
+            }
         }
 
         private int[] GetIndexes(Assimp.Scene scene, AssimpSceneContainer container)
@@ -55,8 +108,6 @@ namespace FirstSightOfAssimpNet
         private vec3[] GetPositions(Assimp.Scene scene)
         {
             var list = new List<vec3>();
-            var current = new vec3(0, 0, 0);
-            //list.Add(current);
             ParseNode(scene.RootNode, list, mat4.identity());
 
             return list.ToArray();
