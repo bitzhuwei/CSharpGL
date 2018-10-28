@@ -71,8 +71,8 @@ namespace FirstSightOfAssimpNet
             catch (Exception ex) { MessageBox.Show(ex.Message); return; }
 
             var rootElement = this.scene.RootNode;
-            var model = new NodeModel(aiScene);
-            var node = NodeNode.Create(model);
+            var model = new NodePointModel(aiScene);
+            var node = NodePointNode.Create(model);
             rootElement.Children.Add(node);
             node.DiffuseColor = Color.Red;
         }

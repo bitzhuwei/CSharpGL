@@ -6,12 +6,12 @@ using System.Text;
 
 namespace FirstSightOfAssimpNet
 {
-    class NodeModel : IBufferSource
+    class NodePointModel : IBufferSource
     {
         private Assimp.Scene scene;
         private vec3[] positions;
 
-        public NodeModel(Assimp.Scene scene)
+        public NodePointModel(Assimp.Scene scene)
         {
             this.scene = scene;
             this.positions = GetPositions(scene);

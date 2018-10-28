@@ -7,7 +7,7 @@ using System.Text;
 
 namespace FirstSightOfAssimpNet
 {
-    partial class NodeNode
+    partial class NodePointNode
     {
         private vec3 diffuseColor = new vec3();
         public Color DiffuseColor

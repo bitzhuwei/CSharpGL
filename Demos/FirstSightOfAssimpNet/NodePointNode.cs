@@ -6,24 +6,24 @@ using CSharpGL;
 
 namespace FirstSightOfAssimpNet
 {
-    partial class NodeNode : ModernNode, IRenderable
+    partial class NodePointNode : ModernNode, IRenderable
     {
-        private NodeModel boneModel;
-        public static NodeNode Create(NodeModel model)
+        private NodePointModel boneModel;
+        public static NodePointNode Create(NodePointModel model)
         {
             var vs = new VertexShader(vertexCode);
             var fs = new FragmentShader(fragmentCode);
             var array = new ShaderArray(vs, fs);
             var map = new AttributeMap();
-            map.Add("inPosition", NodeModel.strPosition);
+            map.Add("inPosition", NodePointModel.strPosition);
             var builder = new RenderMethodBuilder(array, map, new PointSizeSwitch(6), new LineWidthSwitch(6));//, new PolygonModeSwitch(PolygonMode.Line));
-            var node = new NodeNode(model, builder);
+            var node = new NodePointNode(model, builder);
             node.Initialize();
 
             return node;
         }
 
-        private NodeNode(NodeModel model, params RenderMethodBuilder[] builders) : base(model, builders) { this.boneModel = model; }
+        private NodePointNode(NodePointModel model, params RenderMethodBuilder[] builders) : base(model, builders) { this.boneModel = model; }
 
 
     }
