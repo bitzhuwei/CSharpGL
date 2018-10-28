@@ -24,34 +24,34 @@ namespace FirstSightOfAssimpNet
             this.container = container;
             this.positions = GetPositions(scene);
             this.transforms = GetTransforms(scene);
-            this.inversedTransforms = new mat4[this.transforms.Length];
-            for (int i = 0; i < this.transforms.Length; i++)
-            {
-                this.inversedTransforms[i] = glm.inverse(this.transforms[i]);
-            }
             this.boneIndexes = GetIndexes(scene, container);
-            AllBones allBones = container.GetAllBones();
-            BoneInfo[] boneInfos = allBones.boneInfos;
-            mat4[] offsetMats = new mat4[this.boneIndexes.Length];
-            for (int i = 0; i < this.boneIndexes.Length; i++)
-            {
-                int index = this.boneIndexes[i];
-                if (index >= 0)
-                {
-                    offsetMats[i] = boneInfos[index].Bone.OffsetMatrix.ToMat4();
-                }
-            }
-            this.offsetMats = offsetMats;
-            this.multiplys = new mat4[this.offsetMats.Length];
-            this.inverseMutiplys = new mat4[this.offsetMats.Length];
-            mat4 rootTransform = glm.inverse(scene.RootNode.Transform.ToMat4());
-            for (int i = 0; i < this.offsetMats.Length; i++)
-            {
-                this.multiplys[i] = rootTransform * this.transforms[i] * this.offsetMats[i];
-                this.inverseMutiplys[i] = this.inversedTransforms[i] * this.offsetMats[i];
-            }
+            //this.inversedTransforms = new mat4[this.transforms.Length];
+            //for (int i = 0; i < this.transforms.Length; i++)
+            //{
+            //    this.inversedTransforms[i] = glm.inverse(this.transforms[i]);
+            //}
+            //AllBones allBones = container.GetAllBones();
+            //BoneInfo[] boneInfos = allBones.boneInfos;
+            //mat4[] offsetMats = new mat4[this.boneIndexes.Length];
+            //for (int i = 0; i < this.boneIndexes.Length; i++)
+            //{
+            //    int index = this.boneIndexes[i];
+            //    if (index >= 0)
+            //    {
+            //        offsetMats[i] = boneInfos[index].Bone.OffsetMatrix.ToMat4();
+            //    }
+            //}
+            //this.offsetMats = offsetMats;
+            //this.multiplys = new mat4[this.offsetMats.Length];
+            //this.inverseMutiplys = new mat4[this.offsetMats.Length];
+            //mat4 rootTransform = glm.inverse(scene.RootNode.Transform.ToMat4());
+            //for (int i = 0; i < this.offsetMats.Length; i++)
+            //{
+            //    this.multiplys[i] = rootTransform * this.transforms[i] * this.offsetMats[i];
+            //    this.inverseMutiplys[i] = this.inversedTransforms[i] * this.offsetMats[i];
+            //}
 
-            Console.WriteLine("af");
+            //Console.WriteLine("af");
         }
 
         private mat4[] GetTransforms(Assimp.Scene scene)

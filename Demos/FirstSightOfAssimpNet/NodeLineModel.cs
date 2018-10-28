@@ -8,45 +8,93 @@ namespace FirstSightOfAssimpNet
 {
     class NodeLineModel : IBufferSource
     {
-        private Assimp.Scene scene;
+        public readonly Assimp.Scene scene;
+        public readonly AllBones allBones;
         private vec3[] positions;
         private vec3[] colors;
+        private Assimp.Node[] nodes;
+        private int[] boneIndexes;
 
-        public NodeLineModel(Assimp.Scene scene)
+        public NodeLineModel(Assimp.Scene scene, AllBones allBones)
         {
             this.scene = scene;
+            this.allBones = allBones;
             GeneratePositions(scene);
+            GenerateBoneIndexes(this.nodes, allBones);
+        }
+
+        private void GenerateBoneIndexes(Assimp.Node[] nodes, AllBones allBones)
+        {
+            Dictionary<string, uint> nameIndexDict = allBones.nameIndexDict;
+            var boneIndexes = new int[nodes.Length];
+            for (int i = 0; i < nodes.Length; i++)
+            {
+                Assimp.Node node = nodes[i];
+                uint index;
+                if (nameIndexDict.TryGetValue(node.Name, out index))
+                {
+                    boneIndexes[i] = (int)index;
+                }
+                else
+                {
+                    boneIndexes[i] = -1;
+                }
+            }
+            this.boneIndexes = boneIndexes;
+        }
+
+        private void ParseNodeIndexes(Assimp.Node node, List<int> list, Dictionary<string, uint> nameIndexDict)
+        {
+            uint index;
+            if (nameIndexDict.TryGetValue(node.Name, out index))
+            {
+                list.Add((int)index);
+            }
+            else
+            {
+                list.Add(-1);
+            }
+
+            if (node.HasChildren)
+            {
+                foreach (Assimp.Node child in node.Children)
+                {
+                    ParseNodeIndexes(child, list, nameIndexDict);
+                }
+            }
         }
 
         private void GeneratePositions(Assimp.Scene scene)
         {
             var lstPosition = new List<vec3>();
             var lstColor = new List<vec3>();
+            var lstNode = new List<Assimp.Node>();
             if (scene.RootNode != null && scene.RootNode.HasChildren)
             {
                 mat4 mat = scene.RootNode.Transform.ToMat4();
                 foreach (Assimp.Node child in scene.RootNode.Children)
                 {
-                    ParseNode(child, lstPosition, lstColor, mat);
+                    ParseNode(child, lstPosition, lstColor, lstNode, mat);
                 }
             }
 
             this.positions = lstPosition.ToArray();
             this.colors = lstColor.ToArray();
+            this.nodes = lstNode.ToArray();
         }
 
-        private void ParseNode(Assimp.Node node, List<vec3> lstPosition, List<vec3> lstColor, mat4 parentTransform)
+        private void ParseNode(Assimp.Node node, List<vec3> lstPosition, List<vec3> lstColor, List<Assimp.Node> lstNode, mat4 parentTransform)
         {
             var parentPosition = new vec3(parentTransform * new vec4(0, 0, 0, 1));
-            lstPosition.Add(parentPosition); lstColor.Add(new vec3(1, 0, 0));
+            lstPosition.Add(parentPosition); lstColor.Add(new vec3(1, 0, 0)); lstNode.Add(node.Parent);
             mat4 thisTransform = parentTransform * node.Transform.ToMat4();
             var position = new vec3(thisTransform * new vec4(0, 0, 0, 1));
-            lstPosition.Add(position); lstColor.Add(new vec3(1, 1, 1));
+            lstPosition.Add(position); lstColor.Add(new vec3(1, 1, 1)); lstNode.Add(node);
             if (node.HasChildren)
             {
                 foreach (Assimp.Node child in node.Children)
                 {
-                    ParseNode(child, lstPosition, lstColor, thisTransform);
+                    ParseNode(child, lstPosition, lstColor, lstNode, thisTransform);
                 }
             }
         }
@@ -55,6 +103,8 @@ namespace FirstSightOfAssimpNet
         private VertexBuffer positionBuffer;
         public const string strColor = "color";
         private VertexBuffer colorBuffer;
+        public const string strBoneIndex = "boneIndex";
+        private VertexBuffer boneIndexBuffer;
 
         private IDrawCommand drawCommand;
 
@@ -79,6 +129,15 @@ namespace FirstSightOfAssimpNet
                 }
 
                 yield return this.colorBuffer;
+            }
+            else if (strBoneIndex == bufferName)
+            {
+                if (this.boneIndexBuffer == null)
+                {
+                    this.boneIndexBuffer = this.boneIndexes.GenVertexBuffer(VBOConfig.Int, BufferUsage.StaticDraw);
+                }
+
+                yield return this.boneIndexBuffer;
             }
             else
             {

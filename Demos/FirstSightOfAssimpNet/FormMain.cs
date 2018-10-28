@@ -56,8 +56,8 @@ namespace FirstSightOfAssimpNet
             if (File.Exists(filename))
             {
                 CreateAnimationNodes(filename);
-                CreateNodePointNode(filename);
                 CreateNodeLineNode(filename);
+                CreateNodePointNode(filename);
             }
         }
 
@@ -72,7 +72,8 @@ namespace FirstSightOfAssimpNet
             catch (Exception ex) { MessageBox.Show(ex.Message); return; }
 
             var rootElement = this.scene.RootNode;
-            var model = new NodeLineModel(aiScene);
+            var container = new AssimpSceneContainer(aiScene, filename);
+            var model = new NodeLineModel(aiScene, container.GetAllBones());
             var node = NodeLineNode.Create(model);
             rootElement.Children.Add(node);
         }
@@ -219,8 +220,8 @@ namespace FirstSightOfAssimpNet
                 rootElement.Children.Clear();
                 string filename = this.openFileDialog1.FileName;
                 CreateAnimationNodes(filename);
-                CreateNodePointNode(filename);
                 CreateNodeLineNode(filename);
+                CreateNodePointNode(filename);
             }
         }
 
