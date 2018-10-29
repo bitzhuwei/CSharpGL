@@ -61,11 +61,6 @@ namespace FirstSightOfAssimpNet
             }
         }
 
-        public int BoneCount
-        {
-            get { return this.container.GetAllBones().boneInfos.Length; }
-        }
-
         public const string strPosition = "position";
         private VertexBuffer positionBuffer;
         public const string strNormal = "normal";
