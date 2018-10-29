@@ -23,12 +23,13 @@ namespace CSharpGL
             // meshes.
             {
                 EZMMesh[] ezmMeshes = ezmFile.MeshSystem.Meshes;
-                var aiMeshes = new AiMesh[ezmMeshes.Length];
-                for (int i = 0; i < aiMeshes.Length; i++)
+                var lstAiMesh = new List<AiMesh>();
+                for (int i = 0; i < ezmMeshes.Length; i++)
                 {
-                    aiMeshes[i] = Parse(ezmMeshes[i]);
+                    AiMesh[] aiMeshes = Parse(ezmMeshes[i]);
+                    lstAiMesh.AddRange(aiMeshes);
                 }
-                aiScene.Meshes = aiMeshes;
+                aiScene.Meshes = lstAiMesh.ToArray();
             }
             // materials.
             {
@@ -49,6 +50,21 @@ namespace CSharpGL
                     aiAnimations[i] = Parse(ezmAnimations[i]);
                 }
                 aiScene.Animations = aiAnimations;
+            }
+            {
+                // init material indexes in mesh.
+                foreach (AiMesh aiMesh in aiScene.Meshes)
+                {
+                    string name = aiMesh.materialName;
+                    for (int i = 0; i < aiScene.Materials; i++)
+                    {
+                        if (aiScene.Materials[i].Name == name)
+                        {
+                            aiMesh.MaterialIndex = i;
+                            break;
+                        }
+                    }
+                }
             }
 
             return aiScene;

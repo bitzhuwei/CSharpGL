@@ -7,9 +7,14 @@ namespace CSharpGL
 {
     public static partial class EZMFile2AiScene
     {
-        private static AiMaterial Parse(EZMMaterial eZMMaterial)
+        private static AiMaterial Parse(EZMMaterial ezmMaterial)
         {
-            throw new NotImplementedException();
+            var aiMaterial = new AiMaterial();
+            aiMaterial.Name = ezmMaterial.Name;
+            aiMaterial.MetaData = ezmMaterial.MetaData;
+            aiMaterial.Tag = ezmMaterial.Tag;
+
+            return new aiMaterial;
         }
 
     }

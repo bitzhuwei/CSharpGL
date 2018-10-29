@@ -7,5 +7,10 @@ namespace CSharpGL
 {
     public class AiMaterial
     {
+        public string Name { get; set; }
+
+        public string MetaData { get; set; }
+
+        public object Tag { get; set; }
     }
 }

@@ -9,6 +9,7 @@ namespace CSharpGL
     {
         private static AiAnimation Parse(EZMAnimation eZMAnimation)
         {
+
             throw new NotImplementedException();
         }
 

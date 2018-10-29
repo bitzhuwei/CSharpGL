@@ -19,5 +19,15 @@ namespace CSharpGL
 
         public uint[] indexes { get; internal set; }
 
+        public int MaterialIndex { get; internal set; }
+        internal string materialName;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public AiMesh()
+        {
+            this.MaterialIndex = -1;
+        }
     }
 }
