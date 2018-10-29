@@ -68,6 +68,10 @@
     <Compile Include="EZM\Assimp\AiMaterial.cs" />
     <Compile Include="EZM\Assimp\AiMesh.cs" />
     <Compile Include="EZM\Assimp\AiNode.cs" />
+    <Compile Include="EZM\Assimp\EZMFile2AiScene.AiAnimation.cs" />
+    <Compile Include="EZM\Assimp\EZMFile2AiScene.AiMaterial.cs" />
+    <Compile Include="EZM\Assimp\EZMFile2AiScene.AiMesh.cs" />
+    <Compile Include="EZM\Assimp\EZMFile2AiScene.AiNode.cs" />
     <Compile Include="EZM\Assimp\EZMFile2AiScene.cs" />
     <Compile Include="EZM\Assimp\AiScene.cs" />
     <Compile Include="EZM\EZMBoneState.cs" />

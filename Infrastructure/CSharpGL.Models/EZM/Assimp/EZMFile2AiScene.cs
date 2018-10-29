@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CSharpGL
 {
-    public static class EZMFile2AiScene
+    public static partial class EZMFile2AiScene
     {
         public static AiScene Parse(this EZMFile ezmFile)
         {
@@ -20,7 +20,7 @@ namespace CSharpGL
                 aiScene.RootNode = Parse(bones[0]);
                 Match(aiScene.RootNode, bones[0]);
             }
-            // meshes
+            // meshes.
             {
                 EZMMesh[] ezmMeshes = ezmFile.MeshSystem.Meshes;
                 var aiMeshes = new AiMesh[ezmMeshes.Length];
@@ -54,38 +54,5 @@ namespace CSharpGL
             return aiScene;
         }
 
-        private static AiAnimation Parse(EZMAnimation eZMAnimation)
-        {
-            throw new NotImplementedException();
-        }
-
-        private static AiMaterial Parse(EZMMaterial eZMMaterial)
-        {
-            throw new NotImplementedException();
-        }
-
-        private static AiMesh Parse(EZMMesh ezmMesh)
-        {
-            throw new NotImplementedException();
-        }
-
-        private static void Match(AiNode aiNode, EZMBone ezmBone)
-        {
-            foreach (var childBone in ezmBone.children)
-            {
-                var childNode = Parse(childBone);
-                aiNode.Children.Add(childNode);
-                Match(childNode, childBone);
-            }
-        }
-
-        private static AiNode Parse(EZMBone ezmBone)
-        {
-            var aiNode = new AiNode();
-            aiNode.Name = ezmBone.Name;
-            aiNode.Transform = ezmBone.state.matrix;
-
-            return aiNode;
-        }
     }
 }
