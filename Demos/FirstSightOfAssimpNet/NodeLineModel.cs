@@ -15,12 +15,12 @@ namespace FirstSightOfAssimpNet
         private Assimp.Node[] nodes;
         private int[] boneIndexes;
 
-        public NodeLineModel(Assimp.Scene scene, AllBoneInfos allBones)
+        public NodeLineModel(Assimp.Scene scene, AllBoneInfos allBoneInfos)
         {
             this.scene = scene;
-            this.allBones = allBones;
+            this.allBones = allBoneInfos;
             GeneratePositions(scene);
-            GenerateBoneIndexes(this.nodes, allBones);
+            GenerateBoneIndexes(this.nodes, allBoneInfos);
         }
 
         private void GenerateBoneIndexes(Assimp.Node[] nodes, AllBoneInfos allBones)

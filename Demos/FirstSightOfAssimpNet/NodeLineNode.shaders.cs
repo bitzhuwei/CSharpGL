@@ -25,7 +25,7 @@ out vec3 passColor;
 void main()
 {
     if (inBoneIndex >= 0 && animation) {
-        gl_Position = mvpMat * bones[inBoneIndex] * vec4(0,0,0, 1.0);
+        gl_Position = mvpMat * bones[inBoneIndex] * vec4(0, 0, 0, 1.0);
     }
     else {
         gl_Position = mvpMat * vec4(inPosition, 1.0);
