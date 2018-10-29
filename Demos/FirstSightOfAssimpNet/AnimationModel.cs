@@ -18,19 +18,18 @@ namespace FirstSightOfAssimpNet
         {
             this.mesh = mesh;
             this.container = container;
-            InitBoneInfo(mesh, container);
+            InitSkinInfo(mesh, container);
         }
 
-        private void InitBoneInfo(Assimp.Mesh mesh, AssimpSceneContainer container)
+        private void InitSkinInfo(Assimp.Mesh mesh, AssimpSceneContainer container)
         {
             var boneIDs = new uvec4[mesh.VertexCount];
             var boneWeights = new vec4[mesh.VertexCount];
-            List<BoneInfo> bones = new List<BoneInfo>();
             AllBones allBones = container.GetAllBones();
             Dictionary<string, uint> nameIndexDict = allBones.nameIndexDict;
             for (int i = 0; i < mesh.BoneCount; i++)
             {
-                Assimp.Bone bone = mesh.Bones[i];
+                Assimp.Bone bone = mesh.Bones[i]; // bones that influence this mesh.
                 uint boneIndex = nameIndexDict[bone.Name];
 
                 for (int j = 0; j < bone.VertexWeightCount; j++)
@@ -39,7 +38,7 @@ namespace FirstSightOfAssimpNet
                     uint vertexID = vertexWeight.VertexID;
                     for (int t = 0; t < 4; t++)
                     {
-                        if (boneWeights[vertexID][t] == 0.0f)
+                        if (boneWeights[vertexID][t] == 0.0f) // fill in x y z w.
                         {
                             boneIDs[vertexID][t] = boneIndex;
                             boneWeights[vertexID][t] = vertexWeight.Weight;
