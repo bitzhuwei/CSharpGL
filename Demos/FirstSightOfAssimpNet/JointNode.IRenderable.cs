@@ -62,7 +62,7 @@ namespace FirstSightOfAssimpNet
             Assimp.Scene scene = this.nodePointModel.scene;
             Assimp.Matrix4x4 transform = scene.RootNode.Transform;
             transform.Inverse();
-            mat4[] boneMatrixes = GetBoneMatrixes(scene, timeInSeconds, this.nodePointModel.container.GetAllBoneInfos());
+            mat4[] boneMatrixes = GetBoneMatrixes(scene, timeInSeconds, this.nodePointModel.allBoneInfos);
             //mat4[] boneMatrixes = null;
             program.SetUniform("animation", boneMatrixes != null);
             if (boneMatrixes != null)
@@ -88,7 +88,7 @@ namespace FirstSightOfAssimpNet
         /// <param name="aiScene"></param>
         /// <param name="TimeInSeconds"></param>
         /// <returns></returns>
-        private static mat4[] GetBoneMatrixes(Assimp.Scene aiScene, float TimeInSeconds, AllBoneInfos allBones)
+        private static mat4[] GetBoneMatrixes(Assimp.Scene aiScene, float TimeInSeconds, AllBoneInfos allBoneInfos)
         {
             if (aiScene.AnimationCount <= 0) { return null; }
             double ticksPerSecond = aiScene.Animations[0].TicksPerSecond;
@@ -98,14 +98,14 @@ namespace FirstSightOfAssimpNet
 
             Assimp.Matrix4x4 transform = aiScene.RootNode.Transform;
             transform.Inverse();
-            ReadNodeHeirarchy(animationTime, aiScene.RootNode, aiScene.Animations[0], mat4.identity(), allBones);
+            ReadNodeHeirarchy(animationTime, aiScene.RootNode, aiScene.Animations[0], mat4.identity(), allBoneInfos);
 
-            int boneCount = allBones.boneInfos.Length;
+            int boneCount = allBoneInfos.boneInfos.Length;
             var result = new mat4[boneCount];
 
             for (int i = 0; i < boneCount; i++)
             {
-                result[i] = allBones.boneInfos[i].finalTransformation;
+                result[i] = allBoneInfos.boneInfos[i].finalTransformation;
             }
 
             return result;

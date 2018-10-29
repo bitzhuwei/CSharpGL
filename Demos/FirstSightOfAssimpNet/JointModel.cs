@@ -9,7 +9,7 @@ namespace FirstSightOfAssimpNet
     class JointModel : IBufferSource
     {
         public readonly Assimp.Scene scene;
-        public readonly AssimpSceneContainer container;
+        public readonly AllBoneInfos allBoneInfos;
         private vec3[] positions;
         private mat4[] transforms;
         private mat4[] inversedTransforms;
@@ -18,13 +18,13 @@ namespace FirstSightOfAssimpNet
         private mat4[] multiplys; // all [0] or [1](identity matrix).
         private mat4[] inverseMutiplys;
 
-        public JointModel(Assimp.Scene scene, AssimpSceneContainer container)
+        public JointModel(Assimp.Scene scene, AllBoneInfos allBoneInfos)
         {
             this.scene = scene;
-            this.container = container;
+            this.allBoneInfos = allBoneInfos;
             this.positions = GetPositions(scene);
             this.transforms = GetTransforms(scene);
-            this.boneIndexes = GetIndexes(scene, container);
+            this.boneIndexes = GetIndexes(scene, allBoneInfos);
             //this.inversedTransforms = new mat4[this.transforms.Length];
             //for (int i = 0; i < this.transforms.Length; i++)
             //{
@@ -75,10 +75,9 @@ namespace FirstSightOfAssimpNet
             }
         }
 
-        private int[] GetIndexes(Assimp.Scene scene, AssimpSceneContainer container)
+        private int[] GetIndexes(Assimp.Scene scene, AllBoneInfos allBoneInfos)
         {
-            AllBoneInfos allBones = container.GetAllBoneInfos();
-            Dictionary<string, uint> nameIndexDict = allBones.nameIndexDict;
+            Dictionary<string, uint> nameIndexDict = allBoneInfos.nameIndexDict;
             var list = new List<int>();
             ParseNodeIndexes(scene.RootNode, list, nameIndexDict);
 

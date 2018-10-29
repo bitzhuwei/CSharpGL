@@ -37,7 +37,7 @@ namespace FirstSightOfAssimpNet
             return result;
         }
 
-        private static void ReadNodeHeirarchy(float animationTime, Assimp.Node node, Assimp.Animation animation, mat4 parentTransform, AllBoneInfos allBones)
+        private static void ReadNodeHeirarchy(float animationTime, Assimp.Node node, Assimp.Animation animation, mat4 parentTransform, AllBoneInfos allBoneInfos)
         {
             string nodeName = node.Name;
             mat4 nodeTransform = node.Transform.ToMat4();
@@ -63,15 +63,15 @@ namespace FirstSightOfAssimpNet
 
             mat4 globalTransformation = parentTransform * nodeTransform;
 
-            if (allBones.nameIndexDict.ContainsKey(nodeName))
+            if (allBoneInfos.nameIndexDict.ContainsKey(nodeName))
             {
-                uint BoneIndex = allBones.nameIndexDict[nodeName];
-                allBones.boneInfos[BoneIndex].finalTransformation = globalTransformation * allBones.boneInfos[BoneIndex].bone.OffsetMatrix.ToMat4();
+                uint BoneIndex = allBoneInfos.nameIndexDict[nodeName];
+                allBoneInfos.boneInfos[BoneIndex].finalTransformation = globalTransformation * allBoneInfos.boneInfos[BoneIndex].bone.OffsetMatrix.ToMat4();
             }
 
             for (int i = 0; i < node.ChildCount; i++)
             {
-                ReadNodeHeirarchy(animationTime, node.Children[i], animation, globalTransformation, allBones);
+                ReadNodeHeirarchy(animationTime, node.Children[i], animation, globalTransformation, allBoneInfos);
             }
         }
 

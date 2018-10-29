@@ -90,7 +90,7 @@ namespace FirstSightOfAssimpNet
 
             var rootElement = this.scene.RootNode;
             var container = new AssimpSceneContainer(aiScene, filename);
-            var model = new JointModel(aiScene, container);
+            var model = new JointModel(aiScene, container.GetAllBoneInfos());
             var node = JointNode.Create(model);
             rootElement.Children.Add(node);
             node.DiffuseColor = Color.Red;
