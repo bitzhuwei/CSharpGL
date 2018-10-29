@@ -55,13 +55,11 @@ namespace FirstSightOfAssimpNet
             string filename = @"D:\(TODO) - openGLStepbyStep\ogldev-source\Content\boblampclean.md5mesh";
             if (File.Exists(filename))
             {
-                CreateAnimationNodes(filename);
-                CreateSkeletonNode(filename);
-                CreateJointNode(filename);
+                this.OpenFile(filename);
             }
         }
 
-        private void CreateSkeletonNode(string filename)
+        private void OpenFile(string filename)
         {
             var importer = new Assimp.AssimpImporter();
             Assimp.Scene aiScene = null;
@@ -71,45 +69,33 @@ namespace FirstSightOfAssimpNet
             }
             catch (Exception ex) { MessageBox.Show(ex.Message); return; }
 
-            var rootElement = this.scene.RootNode;
             var container = new AssimpSceneContainer(aiScene, filename);
+            CreateAnimationNodes(aiScene, container);
+            CreateSkeletonNode(aiScene, container);
+            CreateJointNode(aiScene, container);
+        }
+
+        private void CreateSkeletonNode(Assimp.Scene aiScene, AssimpSceneContainer container)
+        {
+            var rootElement = this.scene.RootNode;
             var model = new SkeletonModel(aiScene, container.GetAllBoneInfos());
             var node = SkeletonNode.Create(model);
             rootElement.Children.Add(node);
         }
 
-        private void CreateJointNode(string filename)
+        private void CreateJointNode(Assimp.Scene aiScene, AssimpSceneContainer container)
         {
-            var importer = new Assimp.AssimpImporter();
-            Assimp.Scene aiScene = null;
-            try
-            {
-                aiScene = importer.ImportFile(filename, Assimp.PostProcessSteps.GenerateSmoothNormals | Assimp.PostProcessSteps.Triangulate | Assimp.PostProcessSteps.FlipUVs);
-            }
-            catch (Exception ex) { MessageBox.Show(ex.Message); return; }
-
             var rootElement = this.scene.RootNode;
-            var container = new AssimpSceneContainer(aiScene, filename);
             var model = new JointModel(aiScene, container.GetAllBoneInfos());
             var node = JointNode.Create(model);
             rootElement.Children.Add(node);
             node.DiffuseColor = Color.Red;
         }
 
-        private void CreateAnimationNodes(string filename)
+        private void CreateAnimationNodes(Assimp.Scene aiScene, AssimpSceneContainer container)
         {
-            var importer = new Assimp.AssimpImporter();
-            Assimp.Scene aiScene = null;
-            try
-            {
-                aiScene = importer.ImportFile(filename, Assimp.PostProcessSteps.GenerateSmoothNormals | Assimp.PostProcessSteps.Triangulate | Assimp.PostProcessSteps.FlipUVs);
-            }
-            catch (Exception ex) { MessageBox.Show(ex.Message); return; }
-
             var rootElement = this.scene.RootNode;
-            var random = new Random();
             bool first = true; vec3 max = new vec3(); vec3 min = new vec3();
-            var container = new AssimpSceneContainer(aiScene, filename);
             var models = new AnimationModel[aiScene.MeshCount];
             if (aiScene.HasMeshes)
             {
@@ -219,9 +205,7 @@ namespace FirstSightOfAssimpNet
                 var rootElement = this.scene.RootNode;
                 rootElement.Children.Clear();
                 string filename = this.openFileDialog1.FileName;
-                CreateAnimationNodes(filename);
-                CreateSkeletonNode(filename);
-                CreateJointNode(filename);
+                this.OpenFile(filename);
             }
         }
 
