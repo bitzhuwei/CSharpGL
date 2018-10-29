@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using CSharpGL.EZM.Assimp;
 
 namespace CSharpGL
 {
@@ -44,7 +43,7 @@ namespace CSharpGL
             // animations.
             {
                 EZMAnimation[] ezmAnimations = ezmFile.MeshSystem.Animations;
-                var aiAnimations = new AiAnimation[ezmMaterials.Length];
+                var aiAnimations = new AiAnimation[ezmAnimations.Length];
                 for (int i = 0; i < ezmAnimations.Length; i++)
                 {
                     aiAnimations[i] = Parse(ezmAnimations[i]);

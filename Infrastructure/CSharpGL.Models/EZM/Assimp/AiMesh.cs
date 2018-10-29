@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CSharpGL
 {
-    class AiMesh
+    public class AiMesh
     {
     }
 }

@@ -2,21 +2,20 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using CSharpGL.EZM.Assimp;
 
 namespace CSharpGL
 {
     public class AiScene
     {
-        public string Fullname { get; private set; }
+        public string Fullname { get; internal set; }
 
-        public AiNode RootNode { get; private set; }
+        public AiNode RootNode { get; internal set; }
 
-        public AiMesh[] Meshes { get; private set; }
+        public AiMesh[] Meshes { get; internal set; }
 
-        public AiMaterial[] Materials { get; private set; }
+        public AiMaterial[] Materials { get; internal set; }
 
-        public AiAnimation[] Animations { get; private set; }
+        public AiAnimation[] Animations { get; internal set; }
 
         internal AiScene() { }
 

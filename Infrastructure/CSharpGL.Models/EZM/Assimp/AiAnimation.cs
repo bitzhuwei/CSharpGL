@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CSharpGL
 {
-    class AiAnimation
+    public class AiAnimation
     {
     }
 }
