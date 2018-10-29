@@ -8,6 +8,8 @@ namespace CSharpGL
 {
     public class AiScene
     {
+        public string Fullname { get; private set; }
+
         public AiNode RootNode { get; private set; }
 
         public AiMesh[] Meshes { get; private set; }
@@ -16,15 +18,7 @@ namespace CSharpGL
 
         public AiAnimation[] Animations { get; private set; }
 
+        internal AiScene() { }
 
-        /// <summary>
-        /// from ezm file to AiScene.
-        /// </summary>
-        /// <param name="ezmFile"></param>
-        /// <returns></returns>
-        public static AiScene Parse(EZMFile ezmFile)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
