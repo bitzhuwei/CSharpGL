@@ -132,7 +132,6 @@ namespace EZMFileViewer
             {
                 if (this.positionBuffer == null)
                 {
-                    this.positionBuffer = this.ezmMesh.Vertexbuffer.Buffers[0].array.GenVertexBuffer(VBOConfig.Vec3, BufferUsage.StaticDraw);
                     this.positionBuffer = this.ezmMesh.Vertexbuffer.GetBuffer(bufferName).array.GenVertexBuffer(VBOConfig.Vec3, BufferUsage.StaticDraw);
                 }
 
