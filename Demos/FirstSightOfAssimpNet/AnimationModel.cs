@@ -67,32 +67,6 @@ namespace FirstSightOfAssimpNet
             get { return this.container.GetAllBones().boneInfos.Length; }
         }
 
-        public mat4[] DefaultBoneMatrixes()
-        {
-            throw new NotImplementedException();
-            //mat4[] result = null;
-            //EZMSkeleton skeleton = this.ezmMesh.Skeleton;
-            //if (skeleton != null)
-            //{
-            //    EZMBone[] bones = skeleton.Bones;
-            //    if (bones != null)
-            //    {
-            //        result = new mat4[bones.Length];
-            //        for (int i = 0; i < result.Length; i++)
-            //        {
-            //            //result[i] = bones[i].combinedMat * bones[i].inverseCombinedMatrix;
-            //            //result[i] = bones[i].combinedMat;
-            //            //result[i] = bones[i].OriginalState.matrix;
-            //            //result[i] = bones[i].state.matrix;
-            //            //result[i] = bones[i].inverseCombinedMatrix;
-            //            result[i] = mat4.identity();
-            //        }
-            //    }
-            //}
-            //return result;
-        }
-
-
         public const string strPosition = "position";
         private VertexBuffer positionBuffer;
         public const string strNormal = "normal";
