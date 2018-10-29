@@ -17,6 +17,7 @@ uniform mat4 mvpMat;
 const int MAX_BONES = 100;
 uniform mat4 bones[MAX_BONES];
 uniform bool animation;
+uniform int pointSize = 14;
 
 void main()
 {
@@ -27,7 +28,7 @@ void main()
         gl_Position = mvpMat * vec4(inPosition, 1.0);
     }
 
-    gl_PointSize = 16;
+    gl_PointSize = pointSize;
 }
 ";
 
