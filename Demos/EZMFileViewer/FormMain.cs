@@ -50,8 +50,8 @@ namespace EZMFileViewer
             rootElement.Children.Clear();
             string filename = @"D:\GitHub\CSharpGL\Demos\EZMFileViewer\media\dwarf_anim.ezm";
             CreateTextureNode(filename);
-            CreateBonePointNode(filename);
             CreateBoneLineNode(filename);
+            CreateBonePointNode(filename);
         }
 
         private void winGLCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
@@ -80,6 +80,7 @@ namespace EZMFileViewer
                 rootElement.Children.Clear();
                 string filename = this.openFileDialog1.FileName;
                 CreateTextureNode(filename);
+                CreateBoneLineNode(filename);
                 CreateBonePointNode(filename);
             }
         }
