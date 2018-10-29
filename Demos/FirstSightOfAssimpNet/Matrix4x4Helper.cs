@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace FirstSightOfAssimpNet
 {
-    public static class MatrixHelper
+    public static class Matrix4x4Helper
     {
         public static mat4 ToMat4(this Assimp.Matrix4x4 matrix)
         {
