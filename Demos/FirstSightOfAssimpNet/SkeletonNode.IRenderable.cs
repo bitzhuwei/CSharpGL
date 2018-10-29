@@ -7,7 +7,7 @@ using System.Text;
 
 namespace FirstSightOfAssimpNet
 {
-    partial class NodeLineNode
+    partial class SkeletonNode
     {
         #region IRenderable 成员
 

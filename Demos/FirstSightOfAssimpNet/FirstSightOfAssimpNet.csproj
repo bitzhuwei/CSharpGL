@@ -57,16 +57,16 @@
     <Compile Include="AssimpSceneContainer.cs" />
     <Compile Include="AnimationModel.cs" />
     <Compile Include="BoneMatrixHelper.cs" />
-    <Compile Include="NodeLineModel.cs" />
+    <Compile Include="SkeletonModel.cs" />
     <Compile Include="NodePointModel.cs" />
     <Compile Include="AnimationNode.cs" />
-    <Compile Include="NodeLineNode.cs" />
+    <Compile Include="SkeletonNode.cs" />
     <Compile Include="NodePointNode.cs" />
     <Compile Include="AnimationNode.IRenderable.cs" />
-    <Compile Include="NodeLineNode.IRenderable.cs" />
+    <Compile Include="SkeletonNode.IRenderable.cs" />
     <Compile Include="NodePointNode.IRenderable.cs" />
     <Compile Include="AnimationNode.shaders.cs" />
-    <Compile Include="NodeLineNode.shaders.cs" />
+    <Compile Include="SkeletonNode.shaders.cs" />
     <Compile Include="NodePointNode.shaders.cs" />
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>

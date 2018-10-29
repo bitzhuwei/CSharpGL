@@ -6,7 +6,7 @@ using System.Text;
 
 namespace FirstSightOfAssimpNet
 {
-    class NodeLineModel : IBufferSource
+    class SkeletonModel : IBufferSource
     {
         public readonly Assimp.Scene scene;
         public readonly AllBoneInfos allBones;
@@ -15,7 +15,7 @@ namespace FirstSightOfAssimpNet
         private Assimp.Node[] nodes;
         private int[] boneIndexes;
 
-        public NodeLineModel(Assimp.Scene scene, AllBoneInfos allBoneInfos)
+        public SkeletonModel(Assimp.Scene scene, AllBoneInfos allBoneInfos)
         {
             this.scene = scene;
             this.allBones = allBoneInfos;
