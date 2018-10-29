@@ -25,7 +25,7 @@ namespace FirstSightOfAssimpNet
         {
             var boneIDs = new uvec4[mesh.VertexCount];
             var boneWeights = new vec4[mesh.VertexCount];
-            AllBones allBones = container.GetAllBones();
+            AllBoneInfos allBones = container.GetAllBoneInfos();
             Dictionary<string, uint> nameIndexDict = allBones.nameIndexDict;
             for (int i = 0; i < mesh.BoneCount; i++)
             {

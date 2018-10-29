@@ -73,7 +73,7 @@ namespace FirstSightOfAssimpNet
 
             var rootElement = this.scene.RootNode;
             var container = new AssimpSceneContainer(aiScene, filename);
-            var model = new NodeLineModel(aiScene, container.GetAllBones());
+            var model = new NodeLineModel(aiScene, container.GetAllBoneInfos());
             var node = NodeLineNode.Create(model);
             rootElement.Children.Add(node);
         }

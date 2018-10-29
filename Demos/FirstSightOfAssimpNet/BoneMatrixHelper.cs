@@ -14,7 +14,7 @@ namespace FirstSightOfAssimpNet
         /// <param name="aiScene"></param>
         /// <param name="TimeInSeconds"></param>
         /// <returns></returns>
-        public static mat4[] GetBoneMatrixes(this Assimp.Scene aiScene, float TimeInSeconds, AllBones allBones)
+        public static mat4[] GetBoneMatrixes(this Assimp.Scene aiScene, float TimeInSeconds, AllBoneInfos allBones)
         {
             if (!aiScene.HasAnimations) { return null; }
             double ticksPerSecond = aiScene.Animations[0].TicksPerSecond;
@@ -31,13 +31,13 @@ namespace FirstSightOfAssimpNet
 
             for (int i = 0; i < boneCount; i++)
             {
-                result[i] = allBones.boneInfos[i].FinalTransformation;
+                result[i] = allBones.boneInfos[i].finalTransformation;
             }
 
             return result;
         }
 
-        private static void ReadNodeHeirarchy(float animationTime, Assimp.Node node, Assimp.Animation animation, mat4 parentTransform, AllBones allBones)
+        private static void ReadNodeHeirarchy(float animationTime, Assimp.Node node, Assimp.Animation animation, mat4 parentTransform, AllBoneInfos allBones)
         {
             string nodeName = node.Name;
             mat4 nodeTransform = node.Transform.ToMat4();
@@ -66,7 +66,7 @@ namespace FirstSightOfAssimpNet
             if (allBones.nameIndexDict.ContainsKey(nodeName))
             {
                 uint BoneIndex = allBones.nameIndexDict[nodeName];
-                allBones.boneInfos[BoneIndex].FinalTransformation = globalTransformation * allBones.boneInfos[BoneIndex].Bone.OffsetMatrix.ToMat4();
+                allBones.boneInfos[BoneIndex].finalTransformation = globalTransformation * allBones.boneInfos[BoneIndex].bone.OffsetMatrix.ToMat4();
             }
 
             for (int i = 0; i < node.ChildCount; i++)

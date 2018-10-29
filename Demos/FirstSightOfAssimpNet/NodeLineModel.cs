@@ -9,13 +9,13 @@ namespace FirstSightOfAssimpNet
     class NodeLineModel : IBufferSource
     {
         public readonly Assimp.Scene scene;
-        public readonly AllBones allBones;
+        public readonly AllBoneInfos allBones;
         private vec3[] positions;
         private vec3[] colors;
         private Assimp.Node[] nodes;
         private int[] boneIndexes;
 
-        public NodeLineModel(Assimp.Scene scene, AllBones allBones)
+        public NodeLineModel(Assimp.Scene scene, AllBoneInfos allBones)
         {
             this.scene = scene;
             this.allBones = allBones;
@@ -23,7 +23,7 @@ namespace FirstSightOfAssimpNet
             GenerateBoneIndexes(this.nodes, allBones);
         }
 
-        private void GenerateBoneIndexes(Assimp.Node[] nodes, AllBones allBones)
+        private void GenerateBoneIndexes(Assimp.Node[] nodes, AllBoneInfos allBones)
         {
             Dictionary<string, uint> nameIndexDict = allBones.nameIndexDict;
             var boneIndexes = new int[nodes.Length];

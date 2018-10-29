@@ -73,7 +73,7 @@ namespace FirstSightOfAssimpNet
                 float timeInSeconds = (float)(now.Subtract(this.lastTime).TotalSeconds);
 
                 Assimp.Scene scene = this.model.container.aiScene;
-                mat4[] boneMatrixes = scene.GetBoneMatrixes(timeInSeconds, this.model.container.GetAllBones());
+                mat4[] boneMatrixes = scene.GetBoneMatrixes(timeInSeconds, this.model.container.GetAllBoneInfos());
                 if (boneMatrixes != null)
                 {
                     // default pose.

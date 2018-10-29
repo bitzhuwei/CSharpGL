@@ -8,11 +8,19 @@ using System.IO;
 
 namespace FirstSightOfAssimpNet
 {
+    /// <summary>
+    /// manage textures and bones.
+    /// </summary>
     public class AssimpSceneContainer
     {
         public readonly Assimp.Scene aiScene;
         public readonly Texture[] textures;
 
+        /// <summary>
+        /// manage textures and bones.
+        /// </summary>
+        /// <param name="aiScene"></param>
+        /// <param name="filename"></param>
         public AssimpSceneContainer(Assimp.Scene aiScene, string filename)
         {
             this.aiScene = aiScene;
@@ -59,20 +67,20 @@ namespace FirstSightOfAssimpNet
             return textures;
         }
 
-        private AllBones bonesInfo = null;
-        public AllBones GetAllBones()
+        private AllBoneInfos allBoneInfos = null;
+        public AllBoneInfos GetAllBoneInfos()
         {
-            if (this.bonesInfo == null)
+            if (this.allBoneInfos == null)
             {
-                this.bonesInfo = InitBonesInfo(aiScene);
+                this.allBoneInfos = InitBonesInfo(aiScene);
             }
 
-            return this.bonesInfo;
+            return this.allBoneInfos;
         }
 
-        private AllBones InitBonesInfo(Assimp.Scene aiScene)
+        private AllBoneInfos InitBonesInfo(Assimp.Scene aiScene)
         {
-            List<BoneInfo> bones = new List<BoneInfo>();
+            List<BoneInfo> boneInfos = new List<BoneInfo>();
             var nameIndexDict = new Dictionary<string, uint>();
             for (int i = 0; i < aiScene.MeshCount; i++)
             {
@@ -83,31 +91,41 @@ namespace FirstSightOfAssimpNet
                     string boneName = bone.Name;
                     if (!nameIndexDict.ContainsKey(boneName))
                     {
-                        var boneInfo = new BoneInfo();
-                        boneInfo.Bone = bone;
-                        bones.Add(boneInfo);
-                        nameIndexDict.Add(boneName, (uint)(bones.Count - 1));
+                        var boneInfo = new BoneInfo(bone);
+                        boneInfos.Add(boneInfo);
+                        nameIndexDict.Add(boneName, (uint)(boneInfos.Count - 1));
                     }
                 }
             }
 
-            return new AllBones(bones.ToArray(), nameIndexDict);
+            return new AllBoneInfos(boneInfos.ToArray(), nameIndexDict);
         }
 
     }
 
     public struct BoneInfo
     {
-        public Assimp.Bone Bone;
-        public mat4 FinalTransformation;
+        public readonly Assimp.Bone bone;
+        public mat4 finalTransformation;
+
+        public BoneInfo(Assimp.Bone bone)
+        {
+            this.bone = bone;
+            this.finalTransformation = mat4.identity();
+        }
+
+        public override string ToString()
+        {
+            return string.Format("{0} I {1}", this.bone, this.finalTransformation);
+        }
     }
 
-    public class AllBones
+    public class AllBoneInfos
     {
         public readonly BoneInfo[] boneInfos;
         public readonly Dictionary<string, uint> nameIndexDict;
 
-        public AllBones(BoneInfo[] boneInfos, Dictionary<string, uint> nameIndexDict)
+        public AllBoneInfos(BoneInfo[] boneInfos, Dictionary<string, uint> nameIndexDict)
         {
             this.boneInfos = boneInfos;
             this.nameIndexDict = nameIndexDict;

@@ -77,7 +77,7 @@ namespace FirstSightOfAssimpNet
 
         private int[] GetIndexes(Assimp.Scene scene, AssimpSceneContainer container)
         {
-            AllBones allBones = container.GetAllBones();
+            AllBoneInfos allBones = container.GetAllBoneInfos();
             Dictionary<string, uint> nameIndexDict = allBones.nameIndexDict;
             var list = new List<int>();
             ParseNodeIndexes(scene.RootNode, list, nameIndexDict);
