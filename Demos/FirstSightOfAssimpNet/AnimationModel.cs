@@ -143,7 +143,7 @@ namespace FirstSightOfAssimpNet
             if (this.drawCommand == null)
             {
                 int faceCount = this.mesh.FaceCount;
-                var indexes = new uint[faceCount * 3];
+                var indexes = new uint[faceCount * 3]; // assume this is a triangle face.
                 for (int i = 0; i < faceCount; i++)
                 {
                     for (int t = 0; t < 3; t++)
