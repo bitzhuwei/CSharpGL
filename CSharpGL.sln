@@ -207,6 +207,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultipleContexts", "Demos\M
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FirstSightOfAssimpNet", "Demos\FirstSightOfAssimpNet\FirstSightOfAssimpNet.csproj", "{35AEAA5B-052E-4E9E-BD64-C83B5BFF98D8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EZMFileViewer", "Demos\EZMFileViewer\EZMFileViewer.csproj", "{C01DF891-4ABB-43FD-B35C-F47E92036120}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -609,6 +611,10 @@ Global
 		{35AEAA5B-052E-4E9E-BD64-C83B5BFF98D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{35AEAA5B-052E-4E9E-BD64-C83B5BFF98D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{35AEAA5B-052E-4E9E-BD64-C83B5BFF98D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C01DF891-4ABB-43FD-B35C-F47E92036120}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C01DF891-4ABB-43FD-B35C-F47E92036120}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C01DF891-4ABB-43FD-B35C-F47E92036120}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C01DF891-4ABB-43FD-B35C-F47E92036120}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -711,5 +717,6 @@ Global
 		{93290866-6A4D-4043-8E70-44E1801DE25F} = {E800BE67-00FE-4C05-9F0F-640DC7134E7D}
 		{9DC3FF85-F319-4C93-A70C-AED0DB2D6852} = {772765C9-9DD4-487B-8FEB-5EAACA9F955B}
 		{35AEAA5B-052E-4E9E-BD64-C83B5BFF98D8} = {772765C9-9DD4-487B-8FEB-5EAACA9F955B}
+		{C01DF891-4ABB-43FD-B35C-F47E92036120} = {772765C9-9DD4-487B-8FEB-5EAACA9F955B}
 	EndGlobalSection
 EndGlobal

@@ -64,6 +64,11 @@
     <Compile Include="DDS\vgl_DDSHeaderToImageDataHeader.cs" />
     <Compile Include="DDS\vgl_GetDDSStride.cs" />
     <Compile Include="DDS\vgl_GetTargetFromDDSHeader.cs" />
+    <Compile Include="EZM\Assimp\AiAnimation.cs" />
+    <Compile Include="EZM\Assimp\AiMaterial.cs" />
+    <Compile Include="EZM\Assimp\AiMesh.cs" />
+    <Compile Include="EZM\Assimp\AiNode.cs" />
+    <Compile Include="EZM\Assimp\AiScene.cs" />
     <Compile Include="EZM\EZMBoneState.cs" />
     <Compile Include="EZM\EZMAnimation.cs" />
     <Compile Include="EZM\Separator.cs" />
