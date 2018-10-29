@@ -16,7 +16,7 @@ namespace FirstSightOfAssimpNet
         /// <returns></returns>
         public static mat4[] GetBoneMatrixes(this Assimp.Scene aiScene, float TimeInSeconds, AllBones allBones)
         {
-            if (aiScene.AnimationCount <= 0) { return null; }
+            if (!aiScene.HasAnimations) { return null; }
             double ticksPerSecond = aiScene.Animations[0].TicksPerSecond;
             if (ticksPerSecond == 0) { ticksPerSecond = 25.0; }
             double timeInTicks = TimeInSeconds * ticksPerSecond;
@@ -46,57 +46,55 @@ namespace FirstSightOfAssimpNet
             {
                 mat4 mat = mat4.identity();
                 // Interpolate scaling and generate scaling transformation matrix
-                Assimp.Vector3D Scaling = CalcInterpolatedScaling(animationTime, nodeAnim);
-                mat4 ScalingM = glm.scale(mat, new vec3(Scaling.X, Scaling.Y, Scaling.Z));
+                Assimp.Vector3D scaling = CalcInterpolatedScaling(animationTime, nodeAnim);
+                mat4 scalingMat = glm.scale(mat, new vec3(scaling.X, scaling.Y, scaling.Z));
 
                 // Interpolate rotation and generate rotation transformation matrix
-                Assimp.Quaternion RotationQ = CalcInterpolatedRotation(animationTime, nodeAnim);
-                mat4 RotationM = new Assimp.Matrix4x4(RotationQ.GetMatrix()).ToMat4();
+                Assimp.Quaternion rotation = CalcInterpolatedRotation(animationTime, nodeAnim);
+                mat4 rotationMat = new Assimp.Matrix4x4(rotation.GetMatrix()).ToMat4();
 
                 // Interpolate translation and generate translation transformation matrix
-                Assimp.Vector3D Translation = CalcInterpolatedPosition(animationTime, nodeAnim);
-                mat4 TranslationM = glm.translate(mat4.identity(), new vec3(Translation.X, Translation.Y, Translation.Z));
+                Assimp.Vector3D translation = CalcInterpolatedPosition(animationTime, nodeAnim);
+                mat4 translationMat = glm.translate(mat4.identity(), new vec3(translation.X, translation.Y, translation.Z));
 
                 // Combine the above transformations
-                nodeTransform = TranslationM * RotationM * ScalingM;
+                nodeTransform = translationMat * rotationMat * scalingMat;
             }
 
-            //Assimp.Matrix4x4 GlobalTransformation = nodeTransform * parentTransform;
-            mat4 GlobalTransformation = parentTransform * nodeTransform;
+            mat4 globalTransformation = parentTransform * nodeTransform;
 
             if (allBones.nameIndexDict.ContainsKey(nodeName))
             {
                 uint BoneIndex = allBones.nameIndexDict[nodeName];
-                //allBones.boneInfos[BoneIndex].FinalTransformation = allBones.boneInfos[BoneIndex].Bone.OffsetMatrix * GlobalTransformation * m_GlobalInverseTransform;
-                allBones.boneInfos[BoneIndex].FinalTransformation = GlobalTransformation * allBones.boneInfos[BoneIndex].Bone.OffsetMatrix.ToMat4();
+                allBones.boneInfos[BoneIndex].FinalTransformation = globalTransformation * allBones.boneInfos[BoneIndex].Bone.OffsetMatrix.ToMat4();
             }
 
             for (int i = 0; i < node.ChildCount; i++)
             {
-                ReadNodeHeirarchy(animationTime, node.Children[i], animation, GlobalTransformation, allBones);
+                ReadNodeHeirarchy(animationTime, node.Children[i], animation, globalTransformation, allBones);
             }
         }
 
         private static Assimp.Vector3D CalcInterpolatedPosition(float animationTime, Assimp.NodeAnimationChannel nodeAnim)
         {
-            Assimp.Vector3D Out;
+            Assimp.Vector3D result;
             if (nodeAnim.PositionKeyCount == 1)
             {
-                Out = nodeAnim.PositionKeys[0].Value;
-                return Out;
+                result = nodeAnim.PositionKeys[0].Value;
+                return result;
             }
 
-            uint PositionIndex = FindPosition(animationTime, nodeAnim);
-            uint NextPositionIndex = (PositionIndex + 1);
+            uint index = FindPosition(animationTime, nodeAnim);
+            uint nextIndex = (index + 1);
             //assert(NextPositionIndex < nodeAnim->mNumPositionKeys);
-            float DeltaTime = (float)(nodeAnim.PositionKeys[NextPositionIndex].Time - nodeAnim.PositionKeys[PositionIndex].Time);
-            float Factor = (animationTime - (float)nodeAnim.PositionKeys[PositionIndex].Time) / DeltaTime;
+            float deltaTime = (float)(nodeAnim.PositionKeys[nextIndex].Time - nodeAnim.PositionKeys[index].Time);
+            float factor = (animationTime - (float)nodeAnim.PositionKeys[index].Time) / deltaTime;
             //assert(Factor >= 0.0f && Factor <= 1.0f);
-            Assimp.Vector3D Start = nodeAnim.PositionKeys[PositionIndex].Value;
-            Assimp.Vector3D End = nodeAnim.PositionKeys[NextPositionIndex].Value;
-            Assimp.Vector3D Delta = End - Start;
-            Out = Start + Factor * Delta;
-            return Out;
+            Assimp.Vector3D start = nodeAnim.PositionKeys[index].Value;
+            Assimp.Vector3D end = nodeAnim.PositionKeys[nextIndex].Value;
+            Assimp.Vector3D delta = end - start;
+            result = start + factor * delta;
+            return result;
         }
 
         private static uint FindPosition(float animationTime, Assimp.NodeAnimationChannel nodeAnim)
@@ -109,32 +107,30 @@ namespace FirstSightOfAssimpNet
                 }
             }
 
-            //assert(0);
-
             return 0;
         }
 
         private static Assimp.Quaternion CalcInterpolatedRotation(float animationTime, Assimp.NodeAnimationChannel nodeAnim)
         {
-            Assimp.Quaternion Out;
+            Assimp.Quaternion result;
             // we need at least two values to interpolate...
             if (nodeAnim.RotationKeyCount == 1)
             {
-                Out = nodeAnim.RotationKeys[0].Value;
-                return Out;
+                result = nodeAnim.RotationKeys[0].Value;
+                return result;
             }
 
-            uint RotationIndex = FindRotation(animationTime, nodeAnim);
-            uint NextRotationIndex = (RotationIndex + 1);
+            uint index = FindRotation(animationTime, nodeAnim);
+            uint nextIndex = (index + 1);
             //assert(NextRotationIndex < nodeAnim.RotationKeyCount);
-            float DeltaTime = (float)(nodeAnim.RotationKeys[NextRotationIndex].Time - nodeAnim.RotationKeys[RotationIndex].Time);
-            float Factor = (animationTime - (float)nodeAnim.RotationKeys[RotationIndex].Time) / DeltaTime;
+            float deltaTime = (float)(nodeAnim.RotationKeys[nextIndex].Time - nodeAnim.RotationKeys[index].Time);
+            float factor = (animationTime - (float)nodeAnim.RotationKeys[index].Time) / deltaTime;
             //assert(Factor >= 0.0f && Factor <= 1.0f);
-            Assimp.Quaternion StartRotationQ = nodeAnim.RotationKeys[RotationIndex].Value;
-            Assimp.Quaternion EndRotationQ = nodeAnim.RotationKeys[NextRotationIndex].Value;
-            Out = Interpolate(StartRotationQ, EndRotationQ, Factor);
-            Out.Normalize();
-            return Out;
+            Assimp.Quaternion start = nodeAnim.RotationKeys[index].Value;
+            Assimp.Quaternion end = nodeAnim.RotationKeys[nextIndex].Value;
+            result = Interpolate(start, end, factor);
+            result.Normalize();
+            return result;
         }
 
         private static uint FindRotation(float animationTime, Assimp.NodeAnimationChannel nodeAnim)
@@ -154,14 +150,13 @@ namespace FirstSightOfAssimpNet
             return 0;
         }
 
-        private static Assimp.Quaternion Interpolate(Assimp.Quaternion pStart, Assimp.Quaternion pEnd, float pFactor)
+        private static Assimp.Quaternion Interpolate(Assimp.Quaternion start, Assimp.Quaternion end, float factor)
         {
-            Assimp.Quaternion pOut;
+            Assimp.Quaternion result;
             // calc cosine theta
-            float cosom = pStart.X * pEnd.X + pStart.Y * pEnd.Y + pStart.Z * pEnd.Z + pStart.W * pEnd.W;
+            float cosom = start.X * end.X + start.Y * end.Y + start.Z * end.Z + start.W * end.W;
 
             // adjust signs (if necessary)
-            Assimp.Quaternion end = pEnd;
             if (cosom < 0.0f)
             {
                 cosom = -cosom;
@@ -179,44 +174,44 @@ namespace FirstSightOfAssimpNet
                 float omega, sinom;
                 omega = (float)Math.Acos(cosom); // extract theta from dot product's cos theta
                 sinom = (float)Math.Sin(omega);
-                sclp = (float)Math.Sin(((1.0f) - pFactor) * omega) / sinom;
-                sclq = (float)Math.Sin(pFactor * omega) / sinom;
+                sclp = (float)Math.Sin(((1.0f) - factor) * omega) / sinom;
+                sclq = (float)Math.Sin(factor * omega) / sinom;
             }
             else
             {
                 // Very close, do linear interp (because it's faster)
-                sclp = (1.0f) - pFactor;
-                sclq = pFactor;
+                sclp = (1.0f) - factor;
+                sclq = factor;
             }
 
-            pOut.X = sclp * pStart.X + sclq * end.X;
-            pOut.Y = sclp * pStart.Y + sclq * end.Y;
-            pOut.Z = sclp * pStart.Z + sclq * end.Z;
-            pOut.W = sclp * pStart.W + sclq * end.W;
+            result.X = sclp * start.X + sclq * end.X;
+            result.Y = sclp * start.Y + sclq * end.Y;
+            result.Z = sclp * start.Z + sclq * end.Z;
+            result.W = sclp * start.W + sclq * end.W;
 
-            return pOut;
+            return result;
         }
 
         private static Assimp.Vector3D CalcInterpolatedScaling(float animationTime, Assimp.NodeAnimationChannel nodeAnim)
         {
-            Assimp.Vector3D Out;
+            Assimp.Vector3D result;
             if (nodeAnim.ScalingKeyCount == 1)
             {
-                Out = nodeAnim.ScalingKeys[0].Value;
-                return Out;
+                result = nodeAnim.ScalingKeys[0].Value;
+                return result;
             }
 
-            uint ScalingIndex = FindScaling(animationTime, nodeAnim);
-            uint NextScalingIndex = (ScalingIndex + 1);
+            uint index = FindScaling(animationTime, nodeAnim);
+            uint nextIndex = (index + 1);
             //assert(NextScalingIndex < nodeAnim->mNumScalingKeys);
-            float DeltaTime = (float)(nodeAnim.ScalingKeys[NextScalingIndex].Time - nodeAnim.ScalingKeys[ScalingIndex].Time);
-            float Factor = (animationTime - (float)nodeAnim.ScalingKeys[ScalingIndex].Time) / DeltaTime;
+            float deltaTime = (float)(nodeAnim.ScalingKeys[nextIndex].Time - nodeAnim.ScalingKeys[index].Time);
+            float factor = (animationTime - (float)nodeAnim.ScalingKeys[index].Time) / deltaTime;
             //assert(Factor >= 0.0f && Factor <= 1.0f);
-            Assimp.Vector3D Start = nodeAnim.ScalingKeys[ScalingIndex].Value;
-            Assimp.Vector3D End = nodeAnim.ScalingKeys[NextScalingIndex].Value;
-            Assimp.Vector3D Delta = End - Start;
-            Out = Start + Factor * Delta;
-            return Out;
+            Assimp.Vector3D start = nodeAnim.ScalingKeys[index].Value;
+            Assimp.Vector3D end = nodeAnim.ScalingKeys[nextIndex].Value;
+            Assimp.Vector3D delta = end - start;
+            result = start + factor * delta;
+            return result;
         }
 
         private static uint FindScaling(float animationTime, Assimp.NodeAnimationChannel nodeAnim)

@@ -20,7 +20,7 @@ namespace FirstSightOfAssimpNet
             map.Add("inTexCoord", AnimationModel.strTexCoord);
             map.Add("inBoneIDs", AnimationModel.strBoneIDs);
             map.Add("inWeights", AnimationModel.strWeights);
-            var builder = new RenderMethodBuilder(array, map);//, new PolygonModeSwitch(PolygonMode.Line));
+            var builder = new RenderMethodBuilder(array, map);
             var node = new AnimationNode(model, builder);
             node.Initialize();
 

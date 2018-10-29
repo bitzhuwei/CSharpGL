@@ -13,15 +13,7 @@ namespace FirstSightOfAssimpNet
         public Color DiffuseColor
         {
             get { return this.diffuseColor.ToColor(); }
-            set
-            {
-                vec3 c = value.ToVec3();
-                this.diffuseColor = c;
-                ModernRenderUnit unit = this.RenderUnit;
-                RenderMethod method = unit.Methods[0];
-                ShaderProgram program = method.Program;
-                program.SetUniform("diffuseColor", c);
-            }
+            set { this.diffuseColor = value.ToVec3(); }
         }
 
         public PolygonMode PolygonMode
@@ -58,6 +50,7 @@ namespace FirstSightOfAssimpNet
             ShaderProgram program = method.Program;
             program.SetUniform("mvpMat", projectionMat * viewMat * modelMat);
             program.SetUniform("normalMat", glm.transpose(glm.inverse(modelMat)));
+            program.SetUniform("diffuseColor", this.diffuseColor);
             {
                 Texture tex = this.model.Texture;
                 if (tex != null) { program.SetUniform("textureMap", tex); }
@@ -78,18 +71,19 @@ namespace FirstSightOfAssimpNet
 
                 DateTime now = DateTime.Now;
                 float timeInSeconds = (float)(now.Subtract(this.lastTime).TotalSeconds);
-                //this.lastTime = now;
 
                 Assimp.Scene scene = this.model.container.aiScene;
                 mat4[] boneMatrixes = scene.GetBoneMatrixes(timeInSeconds, this.model.container.GetAllBones());
                 if (boneMatrixes != null)
                 {
+                    // default pose.
                     program.SetUniform("animation", false);
                     program.SetUniform("transparent", true);
                     this.polygonModeSwitch.On();
                     method.Render();
                     this.polygonModeSwitch.Off();
 
+                    // animation pose.
                     program.SetUniform("animation", boneMatrixes != null);
                     program.SetUniform("transparent", false);
                     program.SetUniform("bones", boneMatrixes);
@@ -99,6 +93,7 @@ namespace FirstSightOfAssimpNet
                 }
                 else
                 {
+                    // no animation found.
                     program.SetUniform("animation", false);
 
                     this.polygonModeSwitch.On();
