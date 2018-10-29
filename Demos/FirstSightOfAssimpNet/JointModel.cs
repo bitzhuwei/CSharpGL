@@ -6,7 +6,7 @@ using System.Text;
 
 namespace FirstSightOfAssimpNet
 {
-    class NodePointModel : IBufferSource
+    class JointModel : IBufferSource
     {
         public readonly Assimp.Scene scene;
         public readonly AssimpSceneContainer container;
@@ -18,7 +18,7 @@ namespace FirstSightOfAssimpNet
         private mat4[] multiplys; // all [0] or [1](identity matrix).
         private mat4[] inverseMutiplys;
 
-        public NodePointModel(Assimp.Scene scene, AssimpSceneContainer container)
+        public JointModel(Assimp.Scene scene, AssimpSceneContainer container)
         {
             this.scene = scene;
             this.container = container;

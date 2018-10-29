@@ -57,7 +57,7 @@ namespace FirstSightOfAssimpNet
             {
                 CreateAnimationNodes(filename);
                 CreateSkeletonNode(filename);
-                CreateNodePointNode(filename);
+                CreateJointNode(filename);
             }
         }
 
@@ -78,7 +78,7 @@ namespace FirstSightOfAssimpNet
             rootElement.Children.Add(node);
         }
 
-        private void CreateNodePointNode(string filename)
+        private void CreateJointNode(string filename)
         {
             var importer = new Assimp.AssimpImporter();
             Assimp.Scene aiScene = null;
@@ -90,8 +90,8 @@ namespace FirstSightOfAssimpNet
 
             var rootElement = this.scene.RootNode;
             var container = new AssimpSceneContainer(aiScene, filename);
-            var model = new NodePointModel(aiScene, container);
-            var node = NodePointNode.Create(model);
+            var model = new JointModel(aiScene, container);
+            var node = JointNode.Create(model);
             rootElement.Children.Add(node);
             node.DiffuseColor = Color.Red;
         }
@@ -221,7 +221,7 @@ namespace FirstSightOfAssimpNet
                 string filename = this.openFileDialog1.FileName;
                 CreateAnimationNodes(filename);
                 CreateSkeletonNode(filename);
-                CreateNodePointNode(filename);
+                CreateJointNode(filename);
             }
         }
 
