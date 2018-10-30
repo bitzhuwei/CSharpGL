@@ -51,12 +51,11 @@ namespace FirstSightOfAssimpNet
 
             var rootElement = this.scene.RootNode;
             rootElement.Children.Clear();
-            //string filename = @"jeep.obj_";
-            string filename = @"D:\(TODO) - openGLStepbyStep\ogldev-source\Content\boblampclean.md5mesh";
-            if (File.Exists(filename))
-            {
-                this.OpenFile(filename);
-            }
+            //string filename = @"boblampclean.md5mesh";
+            //if (File.Exists(filename))
+            //{
+            //    this.OpenFile(filename);
+            //}
         }
 
         private void OpenFile(string filename)
