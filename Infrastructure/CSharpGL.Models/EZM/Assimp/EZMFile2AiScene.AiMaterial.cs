@@ -14,7 +14,7 @@ namespace CSharpGL
             aiMaterial.MetaData = ezmMaterial.MetaData;
             aiMaterial.Tag = ezmMaterial.Tag;
 
-            return new aiMaterial;
+            return aiMaterial;
         }
 
     }
