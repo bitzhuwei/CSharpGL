@@ -56,7 +56,7 @@ namespace CSharpGL
                 foreach (AiMesh aiMesh in aiScene.Meshes)
                 {
                     string name = aiMesh.materialName;
-                    for (int i = 0; i < aiScene.Materials; i++)
+                    for (int i = 0; i < aiScene.Materials.Length; i++)
                     {
                         if (aiScene.Materials[i].Name == name)
                         {
@@ -66,7 +66,21 @@ namespace CSharpGL
                     }
                 }
             }
-
+            {
+                // bones.
+                EZMSkeleton skeleton = ezmFile.MeshSystem.Skeletons[0];
+                EZMBone[] bones = skeleton.Bones;
+                var aiBones = new AiBone[bones.Length];
+                for (int i = 0; i < bones.Length; i++)
+                {
+                    var aiBone = new AiBone();
+                    var bone = bones[i];
+                    //bone.
+                    aiBones[i] = aiBone;
+                }
+                aiScene.RootNode = Parse(bones[0]);
+                Match(aiScene.RootNode, bones[0]);
+            }
             return aiScene;
         }
 

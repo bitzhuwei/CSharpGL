@@ -7,5 +7,12 @@ namespace CSharpGL
 {
     public class AiAnimation
     {
+        public int TicksPerSecond { get; internal set; }
+
+        public float DurationInTicks { get; internal set; }
+
+        public AiNodeAnimationChannel[] NodeAnimationChannels { get; internal set; }
+
+        public string Name { get; set; }
     }
 }

@@ -22,6 +22,8 @@ namespace CSharpGL
         public int MaterialIndex { get; internal set; }
         internal string materialName;
 
+        public AiBone[] Bones { get; internal set; }
+
         /// <summary>
         /// 
         /// </summary>
