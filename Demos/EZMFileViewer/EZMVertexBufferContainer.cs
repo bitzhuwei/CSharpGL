@@ -87,6 +87,7 @@ namespace EZMFileViewer
                     this.currentFrame = (this.currentFrame + 1) % animation.FrameCount;
                     passedTime = deltaTime - frameDuration;
                 }
+                this.currentFrame = 0;
                 this.lastTime = now;
 
                 result = new mat4[animation.AnimTracks.Length];
@@ -96,6 +97,8 @@ namespace EZMFileViewer
                     EZMBone bone = animTrack.Bone;
                     bone.state = animState;
                 }
+                EZMBone rootBone = this.ezmMesh.Skeleton.OrderedBones[0];
+                mat4 inverse = glm.inverse(rootBone.OriginalState.matrix);
                 foreach (EZMBone bone in this.ezmMesh.Skeleton.OrderedBones)
                 {
                     EZMBone parent = bone.Parent;

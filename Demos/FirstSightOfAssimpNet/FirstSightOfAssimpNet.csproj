@@ -54,6 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="readme.md" />
     <Compile Include="AssimpSceneContainer.cs" />
     <Compile Include="AnimationModel.cs" />
     <Compile Include="BoneMatrixHelper.cs" />

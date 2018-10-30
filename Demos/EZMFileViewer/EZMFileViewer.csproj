@@ -67,6 +67,7 @@
     <Compile Include="NodePointNode.IRenderable.cs" />
     <Compile Include="NodeLineNode.shaders.cs" />
     <Compile Include="NodePointNode.shaders.cs" />
+    <None Include="readme.md" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormMain.resx">
