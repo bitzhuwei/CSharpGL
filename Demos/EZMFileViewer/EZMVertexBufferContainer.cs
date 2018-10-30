@@ -87,6 +87,7 @@ namespace EZMFileViewer
                     this.currentFrame = (this.currentFrame + 1) % animation.FrameCount;
                     passedTime = deltaTime - frameDuration;
                 }
+                this.currentFrame = 0;
                 this.lastTime = now;
 
                 result = new mat4[animation.AnimTracks.Length];
@@ -96,6 +97,8 @@ namespace EZMFileViewer
                     EZMBone bone = animTrack.Bone;
                     bone.state = animState;
                 }
+                EZMBone rootBone = this.ezmMesh.Skeleton.OrderedBones[0];
+                mat4 inverse = glm.inverse(rootBone.OriginalState.matrix);
                 foreach (EZMBone bone in this.ezmMesh.Skeleton.OrderedBones)
                 {
                     EZMBone parent = bone.Parent;
@@ -112,9 +115,7 @@ namespace EZMFileViewer
                 {
                     EZMAnimTrack animTrack = animation.AnimTracks[i];
                     EZMBone bone = animTrack.Bone;
-                    result[i] = bone.combinedMat * bone.inverseCombinedMatrix;
-                    //result[i] = bone.combinedMat * bone.inverseCombinedMatrix;
-                    //result[i] = bone.combinedMat * glm.inverse(bone.state.matrix);
+                    result[i] = bone.combinedMat * bone.offsetMat;
                 }
             }
 
@@ -134,7 +135,6 @@ namespace EZMFileViewer
             {
                 if (this.positionBuffer == null)
                 {
-                    this.positionBuffer = this.ezmMesh.Vertexbuffer.Buffers[0].array.GenVertexBuffer(VBOConfig.Vec3, BufferUsage.StaticDraw);
                     this.positionBuffer = this.ezmMesh.Vertexbuffer.GetBuffer(bufferName).array.GenVertexBuffer(VBOConfig.Vec3, BufferUsage.StaticDraw);
                 }
 

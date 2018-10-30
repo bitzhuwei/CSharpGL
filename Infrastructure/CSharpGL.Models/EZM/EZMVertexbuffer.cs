@@ -162,6 +162,11 @@ namespace CSharpGL
             this.pin.Free();
         }
 
+        public int Length()
+        {
+            return this.array.Length / ByteSize(this.type);
+        }
+
         static PassType ToPassType(string type)
         {
             PassType passType;

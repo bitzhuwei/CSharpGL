@@ -8,7 +8,7 @@ namespace CSharpGL
     /// <summary>
     /// Wraps glDrawElements(uint mode, int count, uint type, IntPtr indices).
     /// </summary>
-    [Editor(typeof(DrawElementsCmdEditor), typeof(UITypeEditor))]
+    [Editor(typeof(IDrawCommandEditor), typeof(UITypeEditor))]
     public class DrawElementsCmd : IDrawCommand//, IHasIndexBuffer
     {
         private const string strDrawElementsCmd = "DrawElementsCmd";

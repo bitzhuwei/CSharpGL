@@ -7,7 +7,7 @@ namespace CSharpGL
     /// <summary>
     /// Wraps glDrawElementsInstanced(uint mode, int vertexCount, uint type, IntPtr offset, int primCount);
     /// </summary>
-    [Editor(typeof(DrawElementsCmdEditor), typeof(UITypeEditor))]
+    [Editor(typeof(IDrawCommandEditor), typeof(UITypeEditor))]
     public class DrawElementsInstancedCmd : IDrawCommand//, IHasIndexBuffer
     {
         private const string strDrawElementsInstancedCmd = "DrawElementsInstancedCmd";

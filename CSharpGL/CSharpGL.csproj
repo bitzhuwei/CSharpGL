@@ -419,7 +419,7 @@
       <DependentUpon>FormUniformVariableType.cs</DependentUpon>
     </Compile>
     <Compile Include="BasicDataStructures\PropertyGrid\UITypeEditors\IListEditor.cs" />
-    <Compile Include="BasicDataStructures\PropertyGrid\UITypeEditors\DrawElementsCmdEditor.cs" />
+    <Compile Include="BasicDataStructures\PropertyGrid\UITypeEditors\IDrawCommandEditor.cs" />
     <Compile Include="BasicDataStructures\PropertyGrid\UITypeEditors\PropertyGridEditor.cs" />
     <Compile Include="BasicDataStructures\PropertyGrid\UITypeEditors\UniformVariableListEditor.cs" />
     <Compile Include="Scene\SceneNodes\RenderUnits\IPickableRenderUnit\IPickableRenderMethodBuilder.cs" />

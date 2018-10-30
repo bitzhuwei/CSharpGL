@@ -71,6 +71,8 @@ namespace CSharpGL
                             }
                         }
                         // update absolute bone matrix.
+                        EZMBone rootBone = orderedBones[0];
+                        mat4 inverse = glm.inverse(rootBone.OriginalState.matrix);
                         for (int i = 0; i < orderedBones.Length; i++)
                         {
                             EZMBone bone = orderedBones[i];
@@ -85,7 +87,7 @@ namespace CSharpGL
                                 bone.combinedMat = parent.combinedMat * bone.state.matrix;
                             }
 
-                            bone.inverseCombinedMatrix = glm.inverse(bone.combinedMat);
+                            bone.offsetMat = glm.inverse(bone.combinedMat);
                         }
                         result.OrderedBones = orderedBones;
                     }

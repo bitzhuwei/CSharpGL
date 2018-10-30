@@ -370,5 +370,81 @@ namespace CSharpGL
         }
 
         #endregion Multiplication
+
+        // https://blog.csdn.net/hunter_wwq/article/details/21473519
+        // https://blog.csdn.net/lql0716/article/details/72597719
+        /// <summary>
+        /// Parse <paramref name="rotation"/>, <paramref name="scale"/> and <paramref name="worldPosition"/>(Translation) inside this matrix.
+        /// <paramref name="rotation"/>.xyz is axis, <paramref name="rotation"/>.w is rotation angle in degrees.
+        /// </summary>
+        /// <param name="worldPosition"></param>
+        /// <param name="scale"></param>
+        /// <param name="rotation"></param>
+        public void ParseRST(out vec3 worldPosition, out vec3 scale, out vec4 rotation)
+        {
+            worldPosition = new vec3(this.col3.x, this.col3.y, this.col3.z);
+
+            float l0 = this.col0.length();
+            float l1 = this.col1.length();
+            float l2 = this.col2.length();
+            scale = new vec3(l0, l1, l2);
+
+            vec3 col0 = new vec3(this.col0.x / l0, this.col0.y / l0, this.col0.z / l0);
+            vec3 col1 = new vec3(this.col1.x / l1, this.col1.y / l1, this.col1.z / l1);
+            vec3 col2 = new vec3(this.col2.x / l2, this.col2.y / l2, this.col2.z / l2);
+            /*
+            col0 is vec3(1 - 2 * (yy + zz), 2 * (xy - zw), 2 * (xz + yw));
+            col1 is vec3(2 * (xy + zw), 1 - 2 * (xx + zz), 2 * (yz - xw));
+            col2 is vec3(2 * (xz - yw), 2 * (yz + xw), 1 - 2 * (xx + yy));
+             */
+            float w, x, y, z;
+            //+col0.x + col1.y + col2.z = 4ww - 1
+            w = (float)(Math.Sqrt(+col0.x + col1.y + col2.z + 1) / 2.0);
+            //+col0.x - col1.y - col2.z = 4xx - 1
+            x = (float)(Math.Sqrt(+col0.x - col1.y - col2.z + 1) / 2.0);
+            //-col0.x + col1.y - col2.z = 4yy - 1
+            y = (float)(Math.Sqrt(-col0.x + col1.y - col2.z + 1) / 2.0);
+            //-col0.x - col1.y + col2.z = 4zz - 1
+            z = (float)(Math.Sqrt(-col0.x - col1.y + col2.z + 1) / 2.0);
+            int maxIndex = GetMaxIndex(w, x, y, z);
+            switch (maxIndex)
+            {
+            case 0: // based on w
+                x = (col1.z - col2.y) * 0.25f / w;
+                y = (col2.x - col0.z) * 0.25f / w;
+                z = (col0.y - col1.x) * 0.25f / w;
+                break;
+            case 1: // based on x
+                w = (col1.z - col2.y) * 0.25f / x;
+                y = (col0.y + col1.x) * 0.25f / x;
+                z = (col2.x + col0.z) * 0.25f / x;
+                break;
+            case 2: // based on y
+                w = (col2.x - col0.z) * 0.25f / y;
+                x = (col0.y + col1.x) * 0.25f / y;
+                z = (col1.z + col2.y) * 0.25f / y;
+                break;
+            case 3: // based on z
+                w = (col0.y - col1.x) * 0.25f / z;
+                x = (col2.x + col0.z) * 0.25f / z;
+                y = (col1.z + col2.y) * 0.25f / z;
+                break;
+            }
+            // from quaternion to axis+angle.
+            vec3 axis; float angle;
+            var quaternion = new Quaternion(w, x, y, z);
+            quaternion.Parse(out angle, out axis);
+            rotation = new vec4(axis, angle);
+        }
+
+        private int GetMaxIndex(float w, float x, float y, float z)
+        {
+            float max = w; int maxIndex = 0;
+            if (max < x) { max = x; maxIndex = 1; }
+            if (max < y) { max = y; maxIndex = 2; }
+            if (max < z) { max = z; maxIndex = 3; }
+
+            return maxIndex;
+        }
     }
 }
