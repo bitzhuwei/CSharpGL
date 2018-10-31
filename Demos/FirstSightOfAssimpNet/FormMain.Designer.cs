@@ -123,6 +123,7 @@
             this.打印预览VToolStripMenuItem,
             this.toolStripSeparator2,
             this.退出XToolStripMenuItem});
+            this.文件FToolStripMenuItem.Enabled = false;
             this.文件FToolStripMenuItem.Name = "文件FToolStripMenuItem";
             this.文件FToolStripMenuItem.Size = new System.Drawing.Size(58, 21);
             this.文件FToolStripMenuItem.Text = "文件(&F)";
@@ -209,6 +210,7 @@
             this.粘贴PToolStripMenuItem,
             this.toolStripSeparator4,
             this.全选AToolStripMenuItem});
+            this.编辑EToolStripMenuItem.Enabled = false;
             this.编辑EToolStripMenuItem.Name = "编辑EToolStripMenuItem";
             this.编辑EToolStripMenuItem.Size = new System.Drawing.Size(59, 21);
             this.编辑EToolStripMenuItem.Text = "编辑(&E)";
@@ -275,6 +277,7 @@
             this.工具TToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.自定义CToolStripMenuItem,
             this.选项OToolStripMenuItem});
+            this.工具TToolStripMenuItem.Enabled = false;
             this.工具TToolStripMenuItem.Name = "工具TToolStripMenuItem";
             this.工具TToolStripMenuItem.Size = new System.Drawing.Size(59, 21);
             this.工具TToolStripMenuItem.Text = "工具(&T)";
@@ -299,6 +302,7 @@
             this.搜索SToolStripMenuItem,
             this.toolStripSeparator5,
             this.关于AToolStripMenuItem});
+            this.帮助HToolStripMenuItem.Enabled = false;
             this.帮助HToolStripMenuItem.Name = "帮助HToolStripMenuItem";
             this.帮助HToolStripMenuItem.Size = new System.Drawing.Size(61, 21);
             this.帮助HToolStripMenuItem.Text = "帮助(&H)";
@@ -362,6 +366,7 @@
             // 新建NToolStripButton
             // 
             this.新建NToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.新建NToolStripButton.Enabled = false;
             this.新建NToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("新建NToolStripButton.Image")));
             this.新建NToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.新建NToolStripButton.Name = "新建NToolStripButton";
@@ -381,6 +386,7 @@
             // 保存SToolStripButton
             // 
             this.保存SToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.保存SToolStripButton.Enabled = false;
             this.保存SToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("保存SToolStripButton.Image")));
             this.保存SToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.保存SToolStripButton.Name = "保存SToolStripButton";
@@ -390,6 +396,7 @@
             // 打印PToolStripButton
             // 
             this.打印PToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.打印PToolStripButton.Enabled = false;
             this.打印PToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("打印PToolStripButton.Image")));
             this.打印PToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.打印PToolStripButton.Name = "打印PToolStripButton";
@@ -404,6 +411,7 @@
             // 剪切UToolStripButton
             // 
             this.剪切UToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.剪切UToolStripButton.Enabled = false;
             this.剪切UToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("剪切UToolStripButton.Image")));
             this.剪切UToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.剪切UToolStripButton.Name = "剪切UToolStripButton";
@@ -413,6 +421,7 @@
             // 复制CToolStripButton
             // 
             this.复制CToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.复制CToolStripButton.Enabled = false;
             this.复制CToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("复制CToolStripButton.Image")));
             this.复制CToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.复制CToolStripButton.Name = "复制CToolStripButton";
@@ -422,6 +431,7 @@
             // 粘贴PToolStripButton
             // 
             this.粘贴PToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.粘贴PToolStripButton.Enabled = false;
             this.粘贴PToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("粘贴PToolStripButton.Image")));
             this.粘贴PToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.粘贴PToolStripButton.Name = "粘贴PToolStripButton";
@@ -436,6 +446,7 @@
             // 帮助LToolStripButton
             // 
             this.帮助LToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.帮助LToolStripButton.Enabled = false;
             this.帮助LToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("帮助LToolStripButton.Image")));
             this.帮助LToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.帮助LToolStripButton.Name = "帮助LToolStripButton";
