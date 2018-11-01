@@ -17,7 +17,7 @@ in uvec4 inBoneIDs;
 in vec4 inWeights;
 
 uniform mat4 mvpMat;
-uniform mat4 normalMat; // transpose(inverse(modelMat))
+uniform mat4 normalMat; // transpose(inverse(viewMat * modelMat))
 const int MAX_BONES = 100;
 uniform mat4 bones[MAX_BONES];
 uniform bool animation = true;
@@ -49,11 +49,13 @@ in vec3 passNormal;
 in vec2 passTexCoord;
 
 uniform sampler2D textureMap;
-uniform vec3 lihtDirection = vec3(1, 1, 1);
 uniform vec3 diffuseColor;
 uniform bool transparent = false;
+uniform bool textureExists = true;
 
 out vec4 outColor;
+
+const vec3 lihtDirection = vec3(0, 0, 1);
 
 void main()
 {
@@ -61,7 +63,7 @@ void main()
         if (int(gl_FragCoord.x + gl_FragCoord.y) % 2 == 1) discard;
     }
 
-    if (passTexCoord == vec2(-1, -1)) { // when texture coordinate not exists..
+    if ((!textureExists) || passTexCoord == vec2(-1, -1)) { // when texture coordinate not exists..
         float diffuse = max(dot(normalize(lihtDirection), normalize(passNormal)), 0);
         outColor = vec4(diffuseColor * diffuse, 1.0);
     }

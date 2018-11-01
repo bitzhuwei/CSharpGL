@@ -49,17 +49,12 @@ namespace FirstSightOfAssimpNet
             RenderMethod method = unit.Methods[0];
             ShaderProgram program = method.Program;
             program.SetUniform("mvpMat", projectionMat * viewMat * modelMat);
-            program.SetUniform("normalMat", glm.transpose(glm.inverse(modelMat)));
+            program.SetUniform("normalMat", glm.transpose(glm.inverse(viewMat * modelMat)));
             program.SetUniform("diffuseColor", this.diffuseColor);
             {
                 Texture tex = this.model.Texture;
                 if (tex != null) { program.SetUniform("textureMap", tex); }
-            }
-            {
-                angle += 0.01f;
-                vec3 lightDirection = new vec3(
-                    (float)Math.Cos(angle), (float)Math.Sin(angle), 1);
-                program.SetUniform("lihtDirection", lightDirection);
+                program.SetUniform("textureExists", tex != null);
             }
             if (this.model.container.aiScene.HasAnimations)
             {
