@@ -5,6 +5,8 @@ More than 30 simple demonstration projects show how to use CSharpGL. And there w
 Here are some of them.
 ## Stencil Shadow Volume.
 ![StencilShadowVolume.gif](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/Lighting.ShadowVolume/StencilShadowVolume.gif?raw=true)
+## Skeleton Animation.
+![SkeletonAnimation.gif](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/FirstSightOfAssimpNet/SkeletalAnimation.gif?raw=true)
 ## WorldSpace Billboard.
 ![WorldSpaceBillboard](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/WorldSpaceBillboard/WorldSpaceBillboard.png?raw=true)
 ## Picking.
