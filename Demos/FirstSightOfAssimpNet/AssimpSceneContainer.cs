@@ -49,8 +49,17 @@ namespace FirstSightOfAssimpNet
                     }
                     catch (Exception ex)
                     {
-                        var name = fullname.Substring(0, fullname.LastIndexOf('.')) + ".png";
-                        bitmap = new Bitmap(name);
+                        try
+                        {
+                            var name = fullname.Substring(0, fullname.LastIndexOf('.')) + ".png";
+                            bitmap = new Bitmap(name);
+                        }
+                        catch (Exception ex2)
+                        {
+                            bitmap = new Bitmap(1, 1);
+                            using (var g = Graphics.FromImage(bitmap))
+                            { g.FillRectangle(Brushes.White, 0, 0, 1, 1); }
+                        }
                     }
                     //bitmap.RotateFlip(RotateFlipType.Rotate180FlipX);
                     var storage = new TexImageBitmap(bitmap);
