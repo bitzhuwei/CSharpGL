@@ -56,7 +56,7 @@ namespace FirstSightOfAssimpNet
             get
             {
                 int index = this.mesh.MaterialIndex;
-                var texture = this.container.textures[index];
+                var texture = this.container.TextureProviders[index].BindingTexture;
                 return texture;
             }
         }

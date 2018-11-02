@@ -5,16 +5,26 @@ using System.Text;
 using CSharpGL;
 using System.Drawing;
 using System.IO;
+using System.ComponentModel;
+using System.Drawing.Design;
 
 namespace FirstSightOfAssimpNet
 {
     /// <summary>
     /// manage textures and bones.
     /// </summary>
+    [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
     public class AssimpSceneContainer
     {
         public readonly Assimp.Scene aiScene;
-        public readonly Texture[] textures;
+
+        private TextureProvider[] textureProviders;
+
+        [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
+        public TextureProvider[] TextureProviders
+        {
+            get { return textureProviders; }
+        }
 
         /// <summary>
         /// manage textures and bones.
@@ -24,12 +34,12 @@ namespace FirstSightOfAssimpNet
         public AssimpSceneContainer(Assimp.Scene aiScene, string filename)
         {
             this.aiScene = aiScene;
-            this.textures = InitTextures(aiScene, filename);
+            this.textureProviders = InitTextures(aiScene, filename);
         }
 
-        private Texture[] InitTextures(Assimp.Scene aiScene, string filename)
+        private TextureProvider[] InitTextures(Assimp.Scene aiScene, string filename)
         {
-            var textures = new Texture[aiScene.MaterialCount];
+            var textureProviders = new TextureProvider[aiScene.MaterialCount];
             // Extract the directory part from the file name
             string directory = new FileInfo(filename).DirectoryName;
 
@@ -42,38 +52,12 @@ namespace FirstSightOfAssimpNet
                 {
                     Assimp.TextureSlot slot = material.GetTexture(Assimp.TextureType.Diffuse, 0);
                     string fullname = Path.Combine(directory, slot.FilePath);
-                    Bitmap bitmap;
-                    try
-                    {
-                        bitmap = new Bitmap(fullname);
-                    }
-                    catch (Exception ex)
-                    {
-                        try
-                        {
-                            var name = fullname.Substring(0, fullname.LastIndexOf('.')) + ".png";
-                            bitmap = new Bitmap(name);
-                        }
-                        catch (Exception ex2)
-                        {
-                            bitmap = new Bitmap(1, 1);
-                            using (var g = Graphics.FromImage(bitmap))
-                            { g.FillRectangle(Brushes.White, 0, 0, 1, 1); }
-                        }
-                    }
-                    //bitmap.RotateFlip(RotateFlipType.Rotate180FlipX);
-                    var storage = new TexImageBitmap(bitmap);
-                    var texture = new Texture(storage,
-                          new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_REPEAT),
-                          new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_REPEAT),
-                          new TexParameteri(TexParameter.PropertyName.TextureMinFilter, (int)GL.GL_LINEAR),
-                          new TexParameteri(TexParameter.PropertyName.TextureMagFilter, (int)GL.GL_LINEAR));
-                    texture.Initialize();
-                    textures[i] = texture;
+                    var provider = new TextureProvider(fullname);
+                    textureProviders[i] = provider;
                 }
             }
 
-            return textures;
+            return textureProviders;
         }
 
         private AllBoneInfos allBoneInfos = null;
@@ -143,6 +127,75 @@ namespace FirstSightOfAssimpNet
         public override string ToString()
         {
             return string.Format("{0} bones, {1} dict items", boneInfos.Length, nameIndexDict.Count);
+        }
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
+    public class TextureProvider : ITextureSource
+    {
+        private Texture texture;
+        private string filename;
+
+        public string Filename
+        {
+            get { return filename; }
+            set
+            {
+                if (filename != value && File.Exists(value))
+                {
+                    Bitmap bitmap;
+                    try
+                    {
+                        bitmap = new Bitmap(value);
+                    }
+                    catch (Exception ex)
+                    {
+                        try
+                        {
+                            var name = value.Substring(0, value.LastIndexOf('.')) + ".png";
+                            bitmap = new Bitmap(name);
+                        }
+                        catch (Exception ex2)
+                        {
+                            bitmap = new Bitmap(1, 1);
+                            using (var g = Graphics.FromImage(bitmap))
+                            { g.FillRectangle(Brushes.White, 0, 0, 1, 1); }
+                        }
+                    }
+                    //bitmap.RotateFlip(RotateFlipType.Rotate180FlipX);
+                    var storage = new TexImageBitmap(bitmap);
+                    var texture = new Texture(storage,
+                          new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_REPEAT),
+                          new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_REPEAT),
+                          new TexParameteri(TexParameter.PropertyName.TextureMinFilter, (int)GL.GL_LINEAR),
+                          new TexParameteri(TexParameter.PropertyName.TextureMagFilter, (int)GL.GL_LINEAR));
+                    texture.Initialize();
+                    this.texture = texture;
+                    filename = value;
+                }
+            }
+        }
+
+        public TextureProvider(string filename)
+        {
+            this.Filename = filename;
+        }
+
+        #region ITextureSource 成员
+
+        public Texture BindingTexture
+        {
+            get { return this.texture; }
+        }
+
+        #endregion
+
+        public override string ToString()
+        {
+            return string.Format("{0}", this.filename);
         }
     }
 }

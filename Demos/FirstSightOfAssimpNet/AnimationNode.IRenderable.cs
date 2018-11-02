@@ -42,6 +42,8 @@ namespace FirstSightOfAssimpNet
 
         public int AnimationCount { get { return this.model.container.aiScene.AnimationCount; } }
 
+        public AssimpSceneContainer Container { get { return this.model.container; } }
+
         public void RenderBeforeChildren(RenderEventArgs arg)
         {
             ICamera camera = arg.Camera;
