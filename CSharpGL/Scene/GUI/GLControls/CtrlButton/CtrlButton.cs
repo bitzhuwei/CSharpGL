@@ -16,16 +16,6 @@ namespace CSharpGL
         public CtrlButton()
             : base(GUIAnchorStyles.Left | GUIAnchorStyles.Top)
         {
-            var model = new CtrlButtonModel();
-            var vs = new VertexShader(vert);
-            var fs = new FragmentShader(frag);
-            var codes = new ShaderArray(vs, fs);
-            var map = new AttributeMap();
-            map.Add(inPosition, CtrlButtonModel.strPosition);
-            map.Add(inColor, CtrlButtonModel.strColor);
-            var methodBuilder = new RenderMethodBuilder(codes, map, new PolygonModeSwitch(PolygonMode.Fill), new LineWidthSwitch(2));
-            this.RenderUnit = new ModernRenderUnit(model, methodBuilder);
-
             this.Initialize();
 
             this.MouseDown += CtrlButton_MouseDown;
@@ -59,15 +49,8 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        public ModernRenderUnit RenderUnit { get; private set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
         protected override void DoInitialize()
         {
-            this.RenderUnit.Initialize();
-
             var label = new CtrlLabel(100, GUIAnchorStyles.None);
             //label.RenderBackground = true; // for debug purpose.
             label.Initialize();
@@ -97,11 +80,8 @@ namespace CSharpGL
         /// <param name="arg"></param>
         public override void RenderGUIBeforeChildren(GUIRenderEventArgs arg)
         {
-            base.RenderGUIBeforeChildren(arg);
-
-            ModernRenderUnit unit = this.RenderUnit;
-            RenderMethod method = unit.Methods[0];
-            method.Render();
+            GLButtonRenderer renderer = GLButtonRenderer.Instance;
+            renderer.Render(this);
         }
     }
 }

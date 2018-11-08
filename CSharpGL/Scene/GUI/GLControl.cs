@@ -22,7 +22,7 @@ namespace CSharpGL
         /// <summary>
         /// this control's width.
         /// </summary>
-        private int width;
+        internal int width;
 
         /// <summary>
         /// distance to parent's bottom border.
@@ -42,17 +42,17 @@ namespace CSharpGL
         /// <summary>
         /// this control's height.
         /// </summary>
-        private int height;
+        internal int height;
 
         /// <summary>
         /// distance to root control's left border.
         /// </summary>
-        protected int absLeft;
+        internal int absLeft;
 
         /// <summary>
         /// distance to root control's bottom border.
         /// </summary>
-        protected int absBottom;
+        internal int absBottom;
 
         //private static readonly GUIAnchorStyles noneAnchor = GUIAnchorStyles.None;
         private static readonly GUIAnchorStyles leftAnchor = GUIAnchorStyles.Left;
