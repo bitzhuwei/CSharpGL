@@ -38,6 +38,12 @@ namespace FirstSightOfAssimpNet
         private DateTime lastTime;
         private double angle;
 
+        public int AnimationIndex { get; set; }
+
+        public int AnimationCount { get { return this.model.container.aiScene.AnimationCount; } }
+
+        public AssimpSceneContainer Container { get { return this.model.container; } }
+
         public void RenderBeforeChildren(RenderEventArgs arg)
         {
             ICamera camera = arg.Camera;
@@ -68,7 +74,7 @@ namespace FirstSightOfAssimpNet
                 float timeInSeconds = (float)(now.Subtract(this.lastTime).TotalSeconds);
 
                 Assimp.Scene scene = this.model.container.aiScene;
-                mat4[] boneMatrixes = scene.GetBoneMatrixes(timeInSeconds, this.model.container.GetAllBoneInfos());
+                mat4[] boneMatrixes = scene.GetBoneMatrixes(timeInSeconds, this.model.container.GetAllBoneInfos(), this.AnimationIndex);
                 if (boneMatrixes != null)
                 {
                     // default pose.

@@ -13,11 +13,16 @@ namespace FirstSightOfAssimpNet
         /// </summary>
         /// <param name="aiScene"></param>
         /// <param name="TimeInSeconds"></param>
+        /// <param name="animationIndex"></param>
         /// <returns></returns>
-        public static mat4[] GetBoneMatrixes(this Assimp.Scene aiScene, float TimeInSeconds, AllBoneInfos allBones)
+        public static mat4[] GetBoneMatrixes(this Assimp.Scene aiScene, float TimeInSeconds, AllBoneInfos allBones, int animationIndex)
         {
             if (!aiScene.HasAnimations) { return null; }
-            double ticksPerSecond = aiScene.Animations[0].TicksPerSecond;
+
+            if (animationIndex < 0) { animationIndex = 0; }
+            else if (animationIndex >= aiScene.AnimationCount) { animationIndex = aiScene.AnimationCount - 1; }
+
+            double ticksPerSecond = aiScene.Animations[animationIndex].TicksPerSecond;
             if (ticksPerSecond == 0) { ticksPerSecond = 25.0; }
             double timeInTicks = TimeInSeconds * ticksPerSecond;
             float animationTime = (float)(timeInTicks % aiScene.Animations[0].DurationInTicks);
