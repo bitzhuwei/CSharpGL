@@ -85,8 +85,8 @@
             this.winGLCanvas1.AccumBlueBits = ((byte)(0));
             this.winGLCanvas1.AccumGreenBits = ((byte)(0));
             this.winGLCanvas1.AccumRedBits = ((byte)(0));
-            this.winGLCanvas1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.winGLCanvas1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.winGLCanvas1.Location = new System.Drawing.Point(0, 52);
             this.winGLCanvas1.Name = "winGLCanvas1";
@@ -468,7 +468,7 @@
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "FormMain";
-            this.Text = "First Sight of AssimpNet";
+            this.Text = "CSharpGL - First Sight of AssimpNet";
             ((System.ComponentModel.ISupportInitialize)(this.winGLCanvas1)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
