@@ -226,6 +226,36 @@ namespace FirstSightOfAssimpNet
             node.PolygonMode = PolygonMode.Fill;
         }
 
+        private void txtPointSize_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                float value = float.Parse(this.txtPointSize.Text);
+                var node = this.scene.RootNode as AssimpGroupNode;
+                node.PointSize = value;
+                this.txtPointSize.Text = node.PointSize.ToString();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void txtLineWidth_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                float value = float.Parse(this.txtLineWidth.Text);
+                var node = this.scene.RootNode as AssimpGroupNode;
+                node.LineWidth = value;
+                this.txtLineWidth.Text = node.LineWidth.ToString();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
     }
 
     class AssimpGroupNode : GroupNode, IRenderable
@@ -235,6 +265,20 @@ namespace FirstSightOfAssimpNet
         {
             get { return this.polygonModeSwitch.Mode; }
             set { this.polygonModeSwitch.Mode = value; }
+        }
+
+        private PointSizeSwitch pointSizeSwitch = new PointSizeSwitch(1);
+        public float PointSize
+        {
+            get { return this.pointSizeSwitch.PointSize; }
+            set { this.pointSizeSwitch.PointSize = value; }
+        }
+
+        private LineWidthSwitch lineWdithSwitch = new LineWidthSwitch(1);
+        public float LineWidth
+        {
+            get { return this.lineWdithSwitch.LineWidth; }
+            set { this.lineWdithSwitch.LineWidth = value; }
         }
 
         public AssimpGroupNode(params SceneNodeBase[] nodes)
@@ -254,10 +298,14 @@ namespace FirstSightOfAssimpNet
         public void RenderBeforeChildren(RenderEventArgs arg)
         {
             this.polygonModeSwitch.On();
+            this.pointSizeSwitch.On();
+            this.lineWdithSwitch.On();
         }
 
         public void RenderAfterChildren(RenderEventArgs arg)
         {
+            this.lineWdithSwitch.Off();
+            this.pointSizeSwitch.Off();
             this.polygonModeSwitch.Off();
         }
 
