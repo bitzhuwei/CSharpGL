@@ -16,14 +16,6 @@ namespace FirstSightOfAssimpNet
             set { this.diffuseColor = value.ToVec3(); }
         }
 
-        public PolygonMode PolygonMode
-        {
-            get { return this.polygonModeSwitch.Mode; }
-            set { this.polygonModeSwitch.Mode = value; }
-        }
-
-        private PolygonModeSwitch polygonModeSwitch = new PolygonModeSwitch(PolygonMode.Fill);
-
         #region IRenderable 成员
 
         private ThreeFlags enableRendering = ThreeFlags.BeforeChildren | ThreeFlags.Children;
@@ -80,35 +72,27 @@ namespace FirstSightOfAssimpNet
                     // default pose.
                     program.SetUniform("animation", false);
                     program.SetUniform("transparent", true);
-                    this.polygonModeSwitch.On();
                     method.Render();
-                    this.polygonModeSwitch.Off();
 
                     // animation pose.
                     program.SetUniform("animation", boneMatrixes != null);
                     program.SetUniform("transparent", false);
                     program.SetUniform("bones", boneMatrixes);
-                    this.polygonModeSwitch.On();
                     method.Render();
-                    this.polygonModeSwitch.Off();
                 }
                 else
                 {
                     // no animation found.
                     program.SetUniform("animation", false);
 
-                    this.polygonModeSwitch.On();
                     method.Render();
-                    this.polygonModeSwitch.Off();
                 }
             }
             else
             {
                 program.SetUniform("animation", false);
 
-                this.polygonModeSwitch.On();
                 method.Render();
-                this.polygonModeSwitch.Off();
             }
         }
 

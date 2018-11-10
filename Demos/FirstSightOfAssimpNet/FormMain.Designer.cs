@@ -73,9 +73,14 @@
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.帮助LToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.rdoFill = new System.Windows.Forms.RadioButton();
+            this.rdoLine = new System.Windows.Forms.RadioButton();
+            this.rdoPoint = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.winGLCanvas1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // winGLCanvas1
@@ -85,13 +90,13 @@
             this.winGLCanvas1.AccumBlueBits = ((byte)(0));
             this.winGLCanvas1.AccumGreenBits = ((byte)(0));
             this.winGLCanvas1.AccumRedBits = ((byte)(0));
-            this.winGLCanvas1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.winGLCanvas1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.winGLCanvas1.Location = new System.Drawing.Point(0, 52);
+            this.winGLCanvas1.Location = new System.Drawing.Point(213, 52);
             this.winGLCanvas1.Name = "winGLCanvas1";
             this.winGLCanvas1.RenderTrigger = CSharpGL.RenderTrigger.TimerBased;
-            this.winGLCanvas1.Size = new System.Drawing.Size(853, 547);
+            this.winGLCanvas1.Size = new System.Drawing.Size(640, 547);
             this.winGLCanvas1.StencilBits = ((byte)(0));
             this.winGLCanvas1.TabIndex = 0;
             this.winGLCanvas1.TimerTriggerInterval = 40;
@@ -457,11 +462,59 @@
             // 
             this.openFileDialog1.Filter = "*.*|*.*";
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.rdoFill);
+            this.groupBox1.Controls.Add(this.rdoLine);
+            this.groupBox1.Controls.Add(this.rdoPoint);
+            this.groupBox1.Location = new System.Drawing.Point(12, 53);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(195, 48);
+            this.groupBox1.TabIndex = 4;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Polygon Mode";
+            // 
+            // rdoFill
+            // 
+            this.rdoFill.AutoSize = true;
+            this.rdoFill.Checked = true;
+            this.rdoFill.Location = new System.Drawing.Point(130, 20);
+            this.rdoFill.Name = "rdoFill";
+            this.rdoFill.Size = new System.Drawing.Size(47, 16);
+            this.rdoFill.TabIndex = 0;
+            this.rdoFill.TabStop = true;
+            this.rdoFill.Text = "Fill";
+            this.rdoFill.UseVisualStyleBackColor = true;
+            this.rdoFill.CheckedChanged += new System.EventHandler(this.rdoFill_CheckedChanged);
+            // 
+            // rdoLine
+            // 
+            this.rdoLine.AutoSize = true;
+            this.rdoLine.Location = new System.Drawing.Point(71, 20);
+            this.rdoLine.Name = "rdoLine";
+            this.rdoLine.Size = new System.Drawing.Size(47, 16);
+            this.rdoLine.TabIndex = 0;
+            this.rdoLine.Text = "Line";
+            this.rdoLine.UseVisualStyleBackColor = true;
+            this.rdoLine.CheckedChanged += new System.EventHandler(this.rdoLine_CheckedChanged);
+            // 
+            // rdoPoint
+            // 
+            this.rdoPoint.AutoSize = true;
+            this.rdoPoint.Location = new System.Drawing.Point(6, 20);
+            this.rdoPoint.Name = "rdoPoint";
+            this.rdoPoint.Size = new System.Drawing.Size(53, 16);
+            this.rdoPoint.TabIndex = 0;
+            this.rdoPoint.Text = "Point";
+            this.rdoPoint.UseVisualStyleBackColor = true;
+            this.rdoPoint.CheckedChanged += new System.EventHandler(this.rdoPoint_CheckedChanged);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(853, 624);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.winGLCanvas1);
@@ -474,6 +527,8 @@
             this.menuStrip1.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -525,6 +580,10 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
         private System.Windows.Forms.ToolStripButton 帮助LToolStripButton;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.RadioButton rdoFill;
+        private System.Windows.Forms.RadioButton rdoLine;
+        private System.Windows.Forms.RadioButton rdoPoint;
     }
 }
 

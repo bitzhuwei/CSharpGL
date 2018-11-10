@@ -35,7 +35,7 @@ namespace FirstSightOfAssimpNet
 
             this.scene = new Scene(camera);
 
-            this.scene.RootNode = new GroupNode();
+            this.scene.RootNode = new AssimpGroupNode();
             (new FormPropertyGrid(scene)).Show();
 
             var list = new ActionList();
@@ -208,5 +208,59 @@ namespace FirstSightOfAssimpNet
             }
         }
 
+        private void rdoPoint_CheckedChanged(object sender, EventArgs e)
+        {
+            var node = this.scene.RootNode as AssimpGroupNode;
+            node.PolygonMode = PolygonMode.Point;
+        }
+
+        private void rdoLine_CheckedChanged(object sender, EventArgs e)
+        {
+            var node = this.scene.RootNode as AssimpGroupNode;
+            node.PolygonMode = PolygonMode.Line;
+        }
+
+        private void rdoFill_CheckedChanged(object sender, EventArgs e)
+        {
+            var node = this.scene.RootNode as AssimpGroupNode;
+            node.PolygonMode = PolygonMode.Fill;
+        }
+
+    }
+
+    class AssimpGroupNode : GroupNode, IRenderable
+    {
+        private PolygonModeSwitch polygonModeSwitch = new PolygonModeSwitch();
+        public PolygonMode PolygonMode
+        {
+            get { return this.polygonModeSwitch.Mode; }
+            set { this.polygonModeSwitch.Mode = value; }
+        }
+
+        public AssimpGroupNode(params SceneNodeBase[] nodes)
+            : base(nodes)
+        {
+        }
+
+        #region IRenderable 成员
+
+        public ThreeFlags enableRendering = ThreeFlags.BeforeChildren | ThreeFlags.Children | ThreeFlags.AfterChildren;
+        public ThreeFlags EnableRendering
+        {
+            get { return this.enableRendering; }
+            set { this.enableRendering = value; }
+        }
+
+        public void RenderBeforeChildren(RenderEventArgs arg)
+        {
+            this.polygonModeSwitch.On();
+        }
+
+        public void RenderAfterChildren(RenderEventArgs arg)
+        {
+            this.polygonModeSwitch.Off();
+        }
+
+        #endregion
     }
 }
