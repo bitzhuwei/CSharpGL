@@ -81,10 +81,14 @@
             this.rdoFill = new System.Windows.Forms.RadioButton();
             this.rdoLine = new System.Windows.Forms.RadioButton();
             this.rdoPoint = new System.Windows.Forms.RadioButton();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.cmbAnimationIndex = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.winGLCanvas1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // winGLCanvas1
@@ -553,11 +557,43 @@
             this.rdoPoint.UseVisualStyleBackColor = true;
             this.rdoPoint.CheckedChanged += new System.EventHandler(this.rdoPoint_CheckedChanged);
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBox2.Controls.Add(this.cmbAnimationIndex);
+            this.groupBox2.Controls.Add(this.label3);
+            this.groupBox2.Location = new System.Drawing.Point(12, 161);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(195, 438);
+            this.groupBox2.TabIndex = 5;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Animation";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(4, 27);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(101, 12);
+            this.label3.TabIndex = 1;
+            this.label3.Text = "Which Animation?";
+            // 
+            // cmbAnimationIndex
+            // 
+            this.cmbAnimationIndex.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbAnimationIndex.FormattingEnabled = true;
+            this.cmbAnimationIndex.Location = new System.Drawing.Point(6, 42);
+            this.cmbAnimationIndex.Name = "cmbAnimationIndex";
+            this.cmbAnimationIndex.Size = new System.Drawing.Size(183, 20);
+            this.cmbAnimationIndex.TabIndex = 2;
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(853, 624);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.statusStrip1);
@@ -573,6 +609,8 @@
             this.toolStrip1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -632,6 +670,9 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtPointSize;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.ComboBox cmbAnimationIndex;
+        private System.Windows.Forms.Label label3;
     }
 }
 
