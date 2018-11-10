@@ -74,13 +74,13 @@
             this.帮助LToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtLineWidth = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtPointSize = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.rdoFill = new System.Windows.Forms.RadioButton();
             this.rdoLine = new System.Windows.Forms.RadioButton();
             this.rdoPoint = new System.Windows.Forms.RadioButton();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtPointSize = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtLineWidth = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.winGLCanvas1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -482,6 +482,42 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Polygon Mode";
             // 
+            // txtLineWidth
+            // 
+            this.txtLineWidth.Location = new System.Drawing.Point(81, 69);
+            this.txtLineWidth.Name = "txtLineWidth";
+            this.txtLineWidth.Size = new System.Drawing.Size(106, 21);
+            this.txtLineWidth.TabIndex = 2;
+            this.txtLineWidth.Text = "1";
+            this.txtLineWidth.TextChanged += new System.EventHandler(this.txtLineWidth_TextChanged);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(4, 72);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(71, 12);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Line Width:";
+            // 
+            // txtPointSize
+            // 
+            this.txtPointSize.Location = new System.Drawing.Point(81, 42);
+            this.txtPointSize.Name = "txtPointSize";
+            this.txtPointSize.Size = new System.Drawing.Size(108, 21);
+            this.txtPointSize.TabIndex = 2;
+            this.txtPointSize.Text = "1";
+            this.txtPointSize.TextChanged += new System.EventHandler(this.txtPointSize_TextChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(4, 45);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(71, 12);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Point Size:";
+            // 
             // rdoFill
             // 
             this.rdoFill.AutoSize = true;
@@ -516,40 +552,6 @@
             this.rdoPoint.Text = "Point";
             this.rdoPoint.UseVisualStyleBackColor = true;
             this.rdoPoint.CheckedChanged += new System.EventHandler(this.rdoPoint_CheckedChanged);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(4, 45);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(71, 12);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Point Size:";
-            // 
-            // txtPointSize
-            // 
-            this.txtPointSize.Location = new System.Drawing.Point(81, 42);
-            this.txtPointSize.Name = "txtPointSize";
-            this.txtPointSize.Size = new System.Drawing.Size(108, 21);
-            this.txtPointSize.TabIndex = 2;
-            this.txtPointSize.TextChanged += new System.EventHandler(this.txtPointSize_TextChanged);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(4, 72);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(71, 12);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Line Width:";
-            // 
-            // txtLineWidth
-            // 
-            this.txtLineWidth.Location = new System.Drawing.Point(81, 69);
-            this.txtLineWidth.Name = "txtLineWidth";
-            this.txtLineWidth.Size = new System.Drawing.Size(106, 21);
-            this.txtLineWidth.TabIndex = 2;
-            this.txtLineWidth.TextChanged += new System.EventHandler(this.txtLineWidth_TextChanged);
             // 
             // FormMain
             // 
