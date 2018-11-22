@@ -82,8 +82,8 @@
             this.rdoLine = new System.Windows.Forms.RadioButton();
             this.rdoPoint = new System.Windows.Forms.RadioButton();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.cmbAnimationIndex = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.winGLCanvas1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -570,15 +570,6 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Animation";
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(4, 27);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(101, 12);
-            this.label3.TabIndex = 1;
-            this.label3.Text = "Which Animation?";
-            // 
             // cmbAnimationIndex
             // 
             this.cmbAnimationIndex.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -587,6 +578,16 @@
             this.cmbAnimationIndex.Name = "cmbAnimationIndex";
             this.cmbAnimationIndex.Size = new System.Drawing.Size(183, 20);
             this.cmbAnimationIndex.TabIndex = 2;
+            this.cmbAnimationIndex.SelectedIndexChanged += new System.EventHandler(this.cmbAnimationIndex_SelectedIndexChanged);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(4, 27);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(101, 12);
+            this.label3.TabIndex = 1;
+            this.label3.Text = "Which Animation?";
             // 
             // FormMain
             // 

@@ -5,6 +5,8 @@ using System.Text;
 
 namespace CSharpGL
 {
+    // http://www.iskdy.com/?s=vod-play-id-49676-sid-0-pid-3.html
+
     public partial class CtrlButton
     {
         private CtrlLabel label;

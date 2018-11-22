@@ -16,6 +16,8 @@ namespace FirstSightOfAssimpNet
         private Scene scene;
         private ActionList actionList;
         private FirstPerspectiveManipulater manipulater;
+        private JointNode jointNode;
+        private SkeletonNode skeletonNode;
 
         public FormMain()
         {
@@ -72,14 +74,15 @@ namespace FirstSightOfAssimpNet
             CreateAnimationNodes(aiScene, container);
             CreateSkeletonNode(aiScene, container);
             CreateJointNode(aiScene, container);
-        }
 
-        private void CreateSkeletonNode(Assimp.Scene aiScene, AssimpSceneContainer container)
-        {
-            var rootElement = this.scene.RootNode;
-            var model = new SkeletonModel(aiScene, container.GetAllBoneInfos());
-            var node = SkeletonNode.Create(model);
-            rootElement.Children.Add(node);
+            {
+                this.cmbAnimationIndex.Items.Clear();
+                int count = container.aiScene.AnimationCount;
+                for (int i = 0; i < count; i++)
+                {
+                    this.cmbAnimationIndex.Items.Add(string.Format("Animation {0}", i));
+                }
+            }
         }
 
         private void CreateJointNode(Assimp.Scene aiScene, AssimpSceneContainer container)
@@ -87,8 +90,18 @@ namespace FirstSightOfAssimpNet
             var rootElement = this.scene.RootNode;
             var model = new JointModel(aiScene, container.GetAllBoneInfos());
             var node = JointNode.Create(model);
-            rootElement.Children.Add(node);
             node.DiffuseColor = Color.Red;
+            this.jointNode = node;
+            rootElement.Children.Add(node);
+        }
+
+        private void CreateSkeletonNode(Assimp.Scene aiScene, AssimpSceneContainer container)
+        {
+            var rootElement = this.scene.RootNode;
+            var model = new SkeletonModel(aiScene, container.GetAllBoneInfos());
+            var node = SkeletonNode.Create(model);
+            this.skeletonNode = node;
+            rootElement.Children.Add(node);
         }
 
         private void CreateAnimationNodes(Assimp.Scene aiScene, AssimpSceneContainer container)
@@ -253,6 +266,26 @@ namespace FirstSightOfAssimpNet
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void cmbAnimationIndex_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int index = this.cmbAnimationIndex.SelectedIndex;
+            UpdateAnimationIndex(this.scene.RootNode, index);
+        }
+
+        private void UpdateAnimationIndex(SceneNodeBase sceneNodeBase, int index)
+        {
+            var node = sceneNodeBase as AnimationNode;
+            if (node != null)
+            {
+                node.AnimationIndex = index;
+            }
+
+            foreach (var item in sceneNodeBase.Children)
+            {
+                UpdateAnimationIndex(item, index);
             }
         }
 
