@@ -73,9 +73,24 @@
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.帮助LToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtLineWidth = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtPointSize = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.rdoFill = new System.Windows.Forms.RadioButton();
+            this.rdoLine = new System.Windows.Forms.RadioButton();
+            this.rdoPoint = new System.Windows.Forms.RadioButton();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.cmbAnimationIndex = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.chkSkeleton = new System.Windows.Forms.CheckBox();
+            this.chkDefaultPose = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.winGLCanvas1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // winGLCanvas1
@@ -85,13 +100,13 @@
             this.winGLCanvas1.AccumBlueBits = ((byte)(0));
             this.winGLCanvas1.AccumGreenBits = ((byte)(0));
             this.winGLCanvas1.AccumRedBits = ((byte)(0));
-            this.winGLCanvas1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.winGLCanvas1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.winGLCanvas1.Location = new System.Drawing.Point(0, 52);
+            this.winGLCanvas1.Location = new System.Drawing.Point(213, 52);
             this.winGLCanvas1.Name = "winGLCanvas1";
             this.winGLCanvas1.RenderTrigger = CSharpGL.RenderTrigger.TimerBased;
-            this.winGLCanvas1.Size = new System.Drawing.Size(853, 547);
+            this.winGLCanvas1.Size = new System.Drawing.Size(640, 547);
             this.winGLCanvas1.StencilBits = ((byte)(0));
             this.winGLCanvas1.TabIndex = 0;
             this.winGLCanvas1.TimerTriggerInterval = 40;
@@ -457,11 +472,160 @@
             // 
             this.openFileDialog1.Filter = "*.*|*.*";
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.txtLineWidth);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.txtPointSize);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.rdoFill);
+            this.groupBox1.Controls.Add(this.rdoLine);
+            this.groupBox1.Controls.Add(this.rdoPoint);
+            this.groupBox1.Location = new System.Drawing.Point(12, 75);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(195, 102);
+            this.groupBox1.TabIndex = 4;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Polygon Mode";
+            // 
+            // txtLineWidth
+            // 
+            this.txtLineWidth.Location = new System.Drawing.Point(81, 69);
+            this.txtLineWidth.Name = "txtLineWidth";
+            this.txtLineWidth.Size = new System.Drawing.Size(106, 21);
+            this.txtLineWidth.TabIndex = 2;
+            this.txtLineWidth.Text = "1";
+            this.txtLineWidth.TextChanged += new System.EventHandler(this.txtLineWidth_TextChanged);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(4, 72);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(71, 12);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Line Width:";
+            // 
+            // txtPointSize
+            // 
+            this.txtPointSize.Location = new System.Drawing.Point(81, 42);
+            this.txtPointSize.Name = "txtPointSize";
+            this.txtPointSize.Size = new System.Drawing.Size(108, 21);
+            this.txtPointSize.TabIndex = 2;
+            this.txtPointSize.Text = "1";
+            this.txtPointSize.TextChanged += new System.EventHandler(this.txtPointSize_TextChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(4, 45);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(71, 12);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Point Size:";
+            // 
+            // rdoFill
+            // 
+            this.rdoFill.AutoSize = true;
+            this.rdoFill.Checked = true;
+            this.rdoFill.Location = new System.Drawing.Point(130, 20);
+            this.rdoFill.Name = "rdoFill";
+            this.rdoFill.Size = new System.Drawing.Size(47, 16);
+            this.rdoFill.TabIndex = 0;
+            this.rdoFill.TabStop = true;
+            this.rdoFill.Text = "Fill";
+            this.rdoFill.UseVisualStyleBackColor = true;
+            this.rdoFill.CheckedChanged += new System.EventHandler(this.rdoFill_CheckedChanged);
+            // 
+            // rdoLine
+            // 
+            this.rdoLine.AutoSize = true;
+            this.rdoLine.Location = new System.Drawing.Point(71, 20);
+            this.rdoLine.Name = "rdoLine";
+            this.rdoLine.Size = new System.Drawing.Size(47, 16);
+            this.rdoLine.TabIndex = 0;
+            this.rdoLine.Text = "Line";
+            this.rdoLine.UseVisualStyleBackColor = true;
+            this.rdoLine.CheckedChanged += new System.EventHandler(this.rdoLine_CheckedChanged);
+            // 
+            // rdoPoint
+            // 
+            this.rdoPoint.AutoSize = true;
+            this.rdoPoint.Location = new System.Drawing.Point(6, 20);
+            this.rdoPoint.Name = "rdoPoint";
+            this.rdoPoint.Size = new System.Drawing.Size(53, 16);
+            this.rdoPoint.TabIndex = 0;
+            this.rdoPoint.Text = "Point";
+            this.rdoPoint.UseVisualStyleBackColor = true;
+            this.rdoPoint.CheckedChanged += new System.EventHandler(this.rdoPoint_CheckedChanged);
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBox2.Controls.Add(this.cmbAnimationIndex);
+            this.groupBox2.Controls.Add(this.label3);
+            this.groupBox2.Location = new System.Drawing.Point(12, 183);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(195, 416);
+            this.groupBox2.TabIndex = 5;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Animation";
+            // 
+            // cmbAnimationIndex
+            // 
+            this.cmbAnimationIndex.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbAnimationIndex.FormattingEnabled = true;
+            this.cmbAnimationIndex.Location = new System.Drawing.Point(6, 42);
+            this.cmbAnimationIndex.Name = "cmbAnimationIndex";
+            this.cmbAnimationIndex.Size = new System.Drawing.Size(183, 20);
+            this.cmbAnimationIndex.TabIndex = 2;
+            this.cmbAnimationIndex.SelectedIndexChanged += new System.EventHandler(this.cmbAnimationIndex_SelectedIndexChanged);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(4, 27);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(101, 12);
+            this.label3.TabIndex = 1;
+            this.label3.Text = "Which Animation?";
+            // 
+            // chkSkeleton
+            // 
+            this.chkSkeleton.AutoSize = true;
+            this.chkSkeleton.Checked = true;
+            this.chkSkeleton.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkSkeleton.Location = new System.Drawing.Point(12, 53);
+            this.chkSkeleton.Name = "chkSkeleton";
+            this.chkSkeleton.Size = new System.Drawing.Size(72, 16);
+            this.chkSkeleton.TabIndex = 6;
+            this.chkSkeleton.Text = "Skeleton";
+            this.chkSkeleton.UseVisualStyleBackColor = true;
+            this.chkSkeleton.CheckedChanged += new System.EventHandler(this.chkSkeleton_CheckedChanged);
+            // 
+            // chkDefaultPose
+            // 
+            this.chkDefaultPose.AutoSize = true;
+            this.chkDefaultPose.Checked = true;
+            this.chkDefaultPose.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkDefaultPose.Location = new System.Drawing.Point(93, 53);
+            this.chkDefaultPose.Name = "chkDefaultPose";
+            this.chkDefaultPose.Size = new System.Drawing.Size(96, 16);
+            this.chkDefaultPose.TabIndex = 6;
+            this.chkDefaultPose.Text = "default pose";
+            this.chkDefaultPose.UseVisualStyleBackColor = true;
+            this.chkDefaultPose.CheckedChanged += new System.EventHandler(this.chkDefaultPose_CheckedChanged);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(853, 624);
+            this.Controls.Add(this.chkDefaultPose);
+            this.Controls.Add(this.chkSkeleton);
+            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.winGLCanvas1);
@@ -474,6 +638,10 @@
             this.menuStrip1.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -525,6 +693,19 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
         private System.Windows.Forms.ToolStripButton 帮助LToolStripButton;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.RadioButton rdoFill;
+        private System.Windows.Forms.RadioButton rdoLine;
+        private System.Windows.Forms.RadioButton rdoPoint;
+        private System.Windows.Forms.TextBox txtLineWidth;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox txtPointSize;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.ComboBox cmbAnimationIndex;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.CheckBox chkSkeleton;
+        private System.Windows.Forms.CheckBox chkDefaultPose;
     }
 }
 

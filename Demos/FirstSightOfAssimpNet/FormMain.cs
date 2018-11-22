@@ -16,6 +16,8 @@ namespace FirstSightOfAssimpNet
         private Scene scene;
         private ActionList actionList;
         private FirstPerspectiveManipulater manipulater;
+        private JointNode jointNode;
+        private SkeletonNode skeletonNode;
 
         public FormMain()
         {
@@ -35,7 +37,7 @@ namespace FirstSightOfAssimpNet
 
             this.scene = new Scene(camera);
 
-            this.scene.RootNode = new GroupNode();
+            this.scene.RootNode = new AssimpGroupNode();
             (new FormPropertyGrid(scene)).Show();
 
             var list = new ActionList();
@@ -72,14 +74,15 @@ namespace FirstSightOfAssimpNet
             CreateAnimationNodes(aiScene, container);
             CreateSkeletonNode(aiScene, container);
             CreateJointNode(aiScene, container);
-        }
 
-        private void CreateSkeletonNode(Assimp.Scene aiScene, AssimpSceneContainer container)
-        {
-            var rootElement = this.scene.RootNode;
-            var model = new SkeletonModel(aiScene, container.GetAllBoneInfos());
-            var node = SkeletonNode.Create(model);
-            rootElement.Children.Add(node);
+            {
+                this.cmbAnimationIndex.Items.Clear();
+                int count = container.aiScene.AnimationCount;
+                for (int i = 0; i < count; i++)
+                {
+                    this.cmbAnimationIndex.Items.Add(string.Format("Animation {0}", i));
+                }
+            }
         }
 
         private void CreateJointNode(Assimp.Scene aiScene, AssimpSceneContainer container)
@@ -87,8 +90,18 @@ namespace FirstSightOfAssimpNet
             var rootElement = this.scene.RootNode;
             var model = new JointModel(aiScene, container.GetAllBoneInfos());
             var node = JointNode.Create(model);
-            rootElement.Children.Add(node);
             node.DiffuseColor = Color.Red;
+            this.jointNode = node;
+            rootElement.Children.Add(node);
+        }
+
+        private void CreateSkeletonNode(Assimp.Scene aiScene, AssimpSceneContainer container)
+        {
+            var rootElement = this.scene.RootNode;
+            var model = new SkeletonModel(aiScene, container.GetAllBoneInfos());
+            var node = SkeletonNode.Create(model);
+            this.skeletonNode = node;
+            rootElement.Children.Add(node);
         }
 
         private void CreateAnimationNodes(Assimp.Scene aiScene, AssimpSceneContainer container)
@@ -208,5 +221,160 @@ namespace FirstSightOfAssimpNet
             }
         }
 
+        private void rdoPoint_CheckedChanged(object sender, EventArgs e)
+        {
+            var node = this.scene.RootNode as AssimpGroupNode;
+            node.PolygonMode = PolygonMode.Point;
+        }
+
+        private void rdoLine_CheckedChanged(object sender, EventArgs e)
+        {
+            var node = this.scene.RootNode as AssimpGroupNode;
+            node.PolygonMode = PolygonMode.Line;
+        }
+
+        private void rdoFill_CheckedChanged(object sender, EventArgs e)
+        {
+            var node = this.scene.RootNode as AssimpGroupNode;
+            node.PolygonMode = PolygonMode.Fill;
+        }
+
+        private void txtPointSize_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                float value = float.Parse(this.txtPointSize.Text);
+                var node = this.scene.RootNode as AssimpGroupNode;
+                node.PointSize = value;
+                this.txtPointSize.Text = node.PointSize.ToString();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void txtLineWidth_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                float value = float.Parse(this.txtLineWidth.Text);
+                var node = this.scene.RootNode as AssimpGroupNode;
+                node.LineWidth = value;
+                this.txtLineWidth.Text = node.LineWidth.ToString();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void cmbAnimationIndex_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int index = this.cmbAnimationIndex.SelectedIndex;
+            UpdateAnimationIndex(this.scene.RootNode, index);
+        }
+
+        private void UpdateAnimationIndex(SceneNodeBase sceneNodeBase, int index)
+        {
+            var node = sceneNodeBase as AnimationNode;
+            if (node != null)
+            {
+                node.AnimationIndex = index;
+            }
+
+            foreach (var item in sceneNodeBase.Children)
+            {
+                UpdateAnimationIndex(item, index);
+            }
+        }
+
+        private void chkSkeleton_CheckedChanged(object sender, EventArgs e)
+        {
+            if (this.chkSkeleton.Checked)
+            {
+                this.jointNode.EnableRendering = ThreeFlags.BeforeChildren | ThreeFlags.Children;
+                this.skeletonNode.EnableRendering = ThreeFlags.BeforeChildren | ThreeFlags.Children;
+            }
+            else
+            {
+                this.jointNode.EnableRendering = ThreeFlags.None;
+                this.skeletonNode.EnableRendering = ThreeFlags.None;
+            }
+        }
+
+        private void chkDefaultPose_CheckedChanged(object sender, EventArgs e)
+        {
+            UpdateAnimationDefaultPose(this.scene.RootNode, this.chkDefaultPose.Checked);
+        }
+
+        private void UpdateAnimationDefaultPose(SceneNodeBase sceneNodeBase, bool defaultPose)
+        {
+            var node = sceneNodeBase as AnimationNode;
+            if (node != null)
+            {
+                node.DefaultPose = defaultPose;
+            }
+
+            foreach (var item in sceneNodeBase.Children)
+            {
+                UpdateAnimationDefaultPose(item, defaultPose);
+            }
+        }
+
+    }
+
+    class AssimpGroupNode : GroupNode, IRenderable
+    {
+        private PolygonModeSwitch polygonModeSwitch = new PolygonModeSwitch();
+        public PolygonMode PolygonMode
+        {
+            get { return this.polygonModeSwitch.Mode; }
+            set { this.polygonModeSwitch.Mode = value; }
+        }
+
+        private PointSizeSwitch pointSizeSwitch = new PointSizeSwitch(1);
+        public float PointSize
+        {
+            get { return this.pointSizeSwitch.PointSize; }
+            set { this.pointSizeSwitch.PointSize = value; }
+        }
+
+        private LineWidthSwitch lineWdithSwitch = new LineWidthSwitch(1);
+        public float LineWidth
+        {
+            get { return this.lineWdithSwitch.LineWidth; }
+            set { this.lineWdithSwitch.LineWidth = value; }
+        }
+
+        public AssimpGroupNode(params SceneNodeBase[] nodes)
+            : base(nodes)
+        {
+        }
+
+        #region IRenderable 成员
+
+        public ThreeFlags enableRendering = ThreeFlags.BeforeChildren | ThreeFlags.Children | ThreeFlags.AfterChildren;
+        public ThreeFlags EnableRendering
+        {
+            get { return this.enableRendering; }
+            set { this.enableRendering = value; }
+        }
+
+        public void RenderBeforeChildren(RenderEventArgs arg)
+        {
+            this.polygonModeSwitch.On();
+            this.pointSizeSwitch.On();
+            this.lineWdithSwitch.On();
+        }
+
+        public void RenderAfterChildren(RenderEventArgs arg)
+        {
+            this.lineWdithSwitch.Off();
+            this.pointSizeSwitch.Off();
+            this.polygonModeSwitch.Off();
+        }
+
+        #endregion
     }
 }

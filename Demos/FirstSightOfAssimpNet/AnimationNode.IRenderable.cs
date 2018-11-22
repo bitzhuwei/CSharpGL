@@ -16,14 +16,6 @@ namespace FirstSightOfAssimpNet
             set { this.diffuseColor = value.ToVec3(); }
         }
 
-        public PolygonMode PolygonMode
-        {
-            get { return this.polygonModeSwitch.Mode; }
-            set { this.polygonModeSwitch.Mode = value; }
-        }
-
-        private PolygonModeSwitch polygonModeSwitch = new PolygonModeSwitch(PolygonMode.Fill);
-
         #region IRenderable 成员
 
         private ThreeFlags enableRendering = ThreeFlags.BeforeChildren | ThreeFlags.Children;
@@ -36,7 +28,14 @@ namespace FirstSightOfAssimpNet
 
         private bool firstRun = true;
         private DateTime lastTime;
-        private double angle;
+
+        private bool defaultPose = true;
+
+        public bool DefaultPose
+        {
+            get { return defaultPose; }
+            set { defaultPose = value; }
+        }
 
         public int AnimationIndex { get; set; }
 
@@ -78,37 +77,32 @@ namespace FirstSightOfAssimpNet
                 if (boneMatrixes != null)
                 {
                     // default pose.
-                    program.SetUniform("animation", false);
-                    program.SetUniform("transparent", true);
-                    this.polygonModeSwitch.On();
-                    method.Render();
-                    this.polygonModeSwitch.Off();
+                    if (this.defaultPose)
+                    {
+                        program.SetUniform("animation", false);
+                        program.SetUniform("transparent", true);
+                        method.Render();
+                    }
 
                     // animation pose.
                     program.SetUniform("animation", boneMatrixes != null);
                     program.SetUniform("transparent", false);
                     program.SetUniform("bones", boneMatrixes);
-                    this.polygonModeSwitch.On();
                     method.Render();
-                    this.polygonModeSwitch.Off();
                 }
                 else
                 {
                     // no animation found.
                     program.SetUniform("animation", false);
 
-                    this.polygonModeSwitch.On();
                     method.Render();
-                    this.polygonModeSwitch.Off();
                 }
             }
             else
             {
                 program.SetUniform("animation", false);
 
-                this.polygonModeSwitch.On();
                 method.Render();
-                this.polygonModeSwitch.Off();
             }
         }
 

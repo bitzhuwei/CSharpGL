@@ -204,9 +204,8 @@
     </Compile>
     <Compile Include="Scene\GUI\GLControlChildren.cs" />
     <Compile Include="Scene\GUI\GLControls\CtrlButton\CtrlButton.cs" />
-    <Compile Include="Scene\GUI\GLControls\CtrlButton\CtrlButton.shaders.cs" />
     <Compile Include="Scene\GUI\GLControls\CtrlButton\CtrlButton.Text.cs" />
-    <Compile Include="Scene\GUI\GLControls\CtrlButton\CtrlButtonModel.cs" />
+    <Compile Include="Scene\GUI\GUIRenderer\CtrlButtonModel.cs" />
     <Compile Include="Scene\GUI\GLControls\CtrlImage\CtrlImage.cs" />
     <Compile Include="Scene\GUI\GLControls\CtrlImage\CtrlImage.shaders.cs" />
     <Compile Include="Scene\GUI\GLControls\CtrlImage\CtrlImageModel.cs" />
@@ -219,6 +218,7 @@
     <Compile Include="Scene\GUI\GLControls\CtrlTexture\CtrlTexture.cs" />
     <Compile Include="Scene\GUI\GLControls\CtrlTexture\CtrlTexture.shaders.cs" />
     <Compile Include="Scene\GUI\GLControls\CtrlTexture\CtrlTextureModel.cs" />
+    <Compile Include="Scene\GUI\GUIRenderer\CtrlButtonRenderer.cs" />
     <Compile Include="Scene\GUI\Structs\GUIAnchorStyles.cs" />
     <Compile Include="Scene\GUI\Structs\GUIPoint.cs" />
     <Compile Include="Scene\GUI\Structs\GUIPointF.cs" />
