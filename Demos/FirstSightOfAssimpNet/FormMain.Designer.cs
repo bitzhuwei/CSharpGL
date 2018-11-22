@@ -84,6 +84,8 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.cmbAnimationIndex = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.chkSkeleton = new System.Windows.Forms.CheckBox();
+            this.chkDefaultPose = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.winGLCanvas1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -479,7 +481,7 @@
             this.groupBox1.Controls.Add(this.rdoFill);
             this.groupBox1.Controls.Add(this.rdoLine);
             this.groupBox1.Controls.Add(this.rdoPoint);
-            this.groupBox1.Location = new System.Drawing.Point(12, 53);
+            this.groupBox1.Location = new System.Drawing.Point(12, 75);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(195, 102);
             this.groupBox1.TabIndex = 4;
@@ -563,9 +565,9 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBox2.Controls.Add(this.cmbAnimationIndex);
             this.groupBox2.Controls.Add(this.label3);
-            this.groupBox2.Location = new System.Drawing.Point(12, 161);
+            this.groupBox2.Location = new System.Drawing.Point(12, 183);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(195, 438);
+            this.groupBox2.Size = new System.Drawing.Size(195, 416);
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Animation";
@@ -589,11 +591,39 @@
             this.label3.TabIndex = 1;
             this.label3.Text = "Which Animation?";
             // 
+            // chkSkeleton
+            // 
+            this.chkSkeleton.AutoSize = true;
+            this.chkSkeleton.Checked = true;
+            this.chkSkeleton.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkSkeleton.Location = new System.Drawing.Point(12, 53);
+            this.chkSkeleton.Name = "chkSkeleton";
+            this.chkSkeleton.Size = new System.Drawing.Size(72, 16);
+            this.chkSkeleton.TabIndex = 6;
+            this.chkSkeleton.Text = "Skeleton";
+            this.chkSkeleton.UseVisualStyleBackColor = true;
+            this.chkSkeleton.CheckedChanged += new System.EventHandler(this.chkSkeleton_CheckedChanged);
+            // 
+            // chkDefaultPose
+            // 
+            this.chkDefaultPose.AutoSize = true;
+            this.chkDefaultPose.Checked = true;
+            this.chkDefaultPose.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkDefaultPose.Location = new System.Drawing.Point(93, 53);
+            this.chkDefaultPose.Name = "chkDefaultPose";
+            this.chkDefaultPose.Size = new System.Drawing.Size(96, 16);
+            this.chkDefaultPose.TabIndex = 6;
+            this.chkDefaultPose.Text = "default pose";
+            this.chkDefaultPose.UseVisualStyleBackColor = true;
+            this.chkDefaultPose.CheckedChanged += new System.EventHandler(this.chkDefaultPose_CheckedChanged);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(853, 624);
+            this.Controls.Add(this.chkDefaultPose);
+            this.Controls.Add(this.chkSkeleton);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.toolStrip1);
@@ -674,6 +704,8 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.ComboBox cmbAnimationIndex;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.CheckBox chkSkeleton;
+        private System.Windows.Forms.CheckBox chkDefaultPose;
     }
 }
 

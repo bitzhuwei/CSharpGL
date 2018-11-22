@@ -28,7 +28,14 @@ namespace FirstSightOfAssimpNet
 
         private bool firstRun = true;
         private DateTime lastTime;
-        private double angle;
+
+        private bool defaultPose = true;
+
+        public bool DefaultPose
+        {
+            get { return defaultPose; }
+            set { defaultPose = value; }
+        }
 
         public int AnimationIndex { get; set; }
 
@@ -70,9 +77,12 @@ namespace FirstSightOfAssimpNet
                 if (boneMatrixes != null)
                 {
                     // default pose.
-                    program.SetUniform("animation", false);
-                    program.SetUniform("transparent", true);
-                    method.Render();
+                    if (this.defaultPose)
+                    {
+                        program.SetUniform("animation", false);
+                        program.SetUniform("transparent", true);
+                        method.Render();
+                    }
 
                     // animation pose.
                     program.SetUniform("animation", boneMatrixes != null);

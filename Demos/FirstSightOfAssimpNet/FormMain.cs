@@ -289,6 +289,39 @@ namespace FirstSightOfAssimpNet
             }
         }
 
+        private void chkSkeleton_CheckedChanged(object sender, EventArgs e)
+        {
+            if (this.chkSkeleton.Checked)
+            {
+                this.jointNode.EnableRendering = ThreeFlags.BeforeChildren | ThreeFlags.Children;
+                this.skeletonNode.EnableRendering = ThreeFlags.BeforeChildren | ThreeFlags.Children;
+            }
+            else
+            {
+                this.jointNode.EnableRendering = ThreeFlags.None;
+                this.skeletonNode.EnableRendering = ThreeFlags.None;
+            }
+        }
+
+        private void chkDefaultPose_CheckedChanged(object sender, EventArgs e)
+        {
+            UpdateAnimationDefaultPose(this.scene.RootNode, this.chkDefaultPose.Checked);
+        }
+
+        private void UpdateAnimationDefaultPose(SceneNodeBase sceneNodeBase, bool defaultPose)
+        {
+            var node = sceneNodeBase as AnimationNode;
+            if (node != null)
+            {
+                node.DefaultPose = defaultPose;
+            }
+
+            foreach (var item in sceneNodeBase.Children)
+            {
+                UpdateAnimationDefaultPose(item, defaultPose);
+            }
+        }
+
     }
 
     class AssimpGroupNode : GroupNode, IRenderable
