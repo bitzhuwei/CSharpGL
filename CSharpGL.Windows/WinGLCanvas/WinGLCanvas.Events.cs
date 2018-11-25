@@ -58,18 +58,22 @@ namespace CSharpGL
             {
                 // way #2.
                 int width = this.Width, height = this.Height;
-                Bitmap bitmap = this.bitmap;
-                if (bitmap == null)
+                if (width > 0 && height > 0)
                 {
-                    bitmap = new Bitmap(width, height);
-                    this.bitmap = bitmap;
-                }
+                    Bitmap bitmap = this.bitmap;
+                    if (bitmap == null || bitmap.Width != width || bitmap.Height != height)
+                    {
+                        if (bitmap != null) { bitmap.Dispose(); }
+                        bitmap = new Bitmap(width, height);
+                        this.bitmap = bitmap;
+                    }
 
-                var bmpData = bitmap.LockBits(new Rectangle(0, 0, width, height), System.Drawing.Imaging.ImageLockMode.ReadWrite, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
-                GL.Instance.ReadPixels(0, 0, width, height, GL.GL_BGRA, GL.GL_UNSIGNED_BYTE, bmpData.Scan0);
-                bitmap.UnlockBits(bmpData);
-                bitmap.RotateFlip(RotateFlipType.Rotate180FlipX);
-                graphics.DrawImage(bitmap, 0, 0);
+                    var bmpData = bitmap.LockBits(new Rectangle(0, 0, width, height), System.Drawing.Imaging.ImageLockMode.ReadWrite, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+                    GL.Instance.ReadPixels(0, 0, width, height, GL.GL_BGRA, GL.GL_UNSIGNED_BYTE, bmpData.Scan0);
+                    bitmap.UnlockBits(bmpData);
+                    bitmap.RotateFlip(RotateFlipType.Rotate180FlipX);
+                    graphics.DrawImage(bitmap, 0, 0);
+                }
             }
 
             stopWatch.Stop();
@@ -140,9 +144,9 @@ namespace CSharpGL
                     }
                     else
                     {
-                        Bitmap bitmap = this.bitmap;
-                        this.bitmap = new Bitmap(width, height);
-                        if (bitmap != null) { bitmap.Dispose(); }
+                        //Bitmap bitmap = this.bitmap;
+                        //this.bitmap = new Bitmap(width, height);
+                        //if (bitmap != null) { bitmap.Dispose(); }
                     }
 
                     this.Invalidate();

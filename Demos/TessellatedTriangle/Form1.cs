@@ -14,7 +14,7 @@ namespace TessellatedTriangle
     {
         private Scene scene;
         private ActionList actionList;
-        private TrianglePatchNode cubeNode;
+        private TrianglePatchNode mainNode;
 
         public Form1()
         {
@@ -34,9 +34,9 @@ namespace TessellatedTriangle
             var center = new vec3(0, 0, 0);
             var up = new vec3(0, 1, 0);
             var camera = new Camera(position, center, up, CameraType.Perspective, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
-            this.cubeNode = TrianglePatchNode.Create();
+            this.mainNode = TrianglePatchNode.Create();
             var scene = new Scene(camera);
-            scene.RootNode = cubeNode;
+            scene.RootNode = mainNode;
             this.scene = scene;
 
             var list = new ActionList();
@@ -73,8 +73,60 @@ namespace TessellatedTriangle
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            this.cubeNode.RotationAxis = new vec3(0, 1, 0);
-            this.cubeNode.RotationAngle += 7f;
+            this.mainNode.RotationAxis = new vec3(0, 1, 0);
+            this.mainNode.RotationAngle += 7f;
+        }
+
+        private void txtInner0_TextChanged(object sender, EventArgs e)
+        {
+            float value;
+            if (float.TryParse(this.txtInner0.Text, out value))
+            {
+                this.mainNode.Inner0 = value;
+            }
+            else
+            {
+                MessageBox.Show("Please type in a valid float number!");
+            }
+        }
+
+        private void txtOuter0_TextChanged(object sender, EventArgs e)
+        {
+            float value;
+            if (float.TryParse(this.txtOuter0.Text, out value))
+            {
+                this.mainNode.Outer0 = value;
+            }
+            else
+            {
+                MessageBox.Show("Please type in a valid float number!");
+            }
+        }
+
+        private void txtOuter1_TextChanged(object sender, EventArgs e)
+        {
+            float value;
+            if (float.TryParse(this.txtOuter1.Text, out value))
+            {
+                this.mainNode.Outer1 = value;
+            }
+            else
+            {
+                MessageBox.Show("Please type in a valid float number!");
+            }
+        }
+
+        private void txtOuter2_TextChanged(object sender, EventArgs e)
+        {
+            float value;
+            if (float.TryParse(this.txtOuter2.Text, out value))
+            {
+                this.mainNode.Outer2 = value;
+            }
+            else
+            {
+                MessageBox.Show("Please type in a valid float number!");
+            }
         }
     }
 }
