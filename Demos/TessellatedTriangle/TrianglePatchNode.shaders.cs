@@ -91,11 +91,14 @@ vec3 interpolate3D(vec3 v0, vec3 v1, vec3 v2)
     return vec3(gl_TessCoord.x) * v0 + vec3(gl_TessCoord.y) * v1 + vec3(gl_TessCoord.z) * v2;
 }
 
+vec4 interpolate4D(vec4 v0, vec4 v1, vec4 v2)
+{
+    return vec4(gl_TessCoord.x) * v0 + vec4(gl_TessCoord.y) * v1 + vec4(gl_TessCoord.z) * v2;
+}
+
 void main()
 {
-    gl_Position = (gl_TessCoord.x * gl_in[0].gl_Position) +
-        (gl_TessCoord.y * gl_in[1].gl_Position) +
-        (gl_TessCoord.z * gl_in[2].gl_Position);
+    gl_Position = interpolate4D(gl_in[0].gl_Position, gl_in[1].gl_Position, gl_in[2].gl_Position);
     vertexOut.color = interpolate3D(vertexIn[0].color, vertexIn[1].color, vertexIn[2].color);
 }
 ";
