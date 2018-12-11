@@ -14,6 +14,7 @@ namespace DistanceFieldFont
     {
         private Scene scene;
         private ActionList actionList;
+        private SingleLineNode singleLineNode;
 
         public FormMain()
         {
@@ -76,6 +77,7 @@ namespace DistanceFieldFont
                 node.TextColor = Color.Red;
                 node.Text = "The quick brown fox jumps over a lazy dog!";
                 group.Children.Add(node);
+                this.singleLineNode = node;
             }
             {
                 var axis = AxisNode.Create();
@@ -103,6 +105,24 @@ namespace DistanceFieldFont
             if (this.scene != null)
             {
                 this.scene.Camera.AspectRatio = ((float)this.winGLCanvas1.Width) / ((float)this.winGLCanvas1.Height);
+            }
+        }
+
+        private void txtText_TextChanged(object sender, EventArgs e)
+        {
+            SingleLineNode node = this.singleLineNode;
+            if (node != null)
+            {
+                node.Text = txtText.Text;
+            }
+        }
+
+        private void numFontSize_ValueChanged(object sender, EventArgs e)
+        {
+            SingleLineNode node = this.singleLineNode;
+            if (node != null)
+            {
+                node.FontSize = (int)numFontSize.Value;
             }
         }
     }

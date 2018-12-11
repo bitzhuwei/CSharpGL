@@ -24,6 +24,16 @@ namespace DistanceFieldFont
             return node;
         }
 
+        private int fontSize = 32;
+        /// <summary>
+        /// font size in pixel.
+        /// </summary>
+        public int FontSize
+        {
+            get { return fontSize; }
+            set { fontSize = value; }
+        }
+
         private vec4 textColor = new vec4(1, 1, 1, 1);
 
         public Color TextColor
@@ -82,6 +92,7 @@ namespace DistanceFieldFont
             program.SetUniform("lineSize", new vec2(lineModel.LineWidth, lineModel.LineHeight));
             program.SetUniform("textColor", this.textColor);
             program.SetUniform("backgroundColor", Color.SkyBlue.ToVec4());
+            program.SetUniform("fontSize", this.fontSize);
 
             method.Render();
         }

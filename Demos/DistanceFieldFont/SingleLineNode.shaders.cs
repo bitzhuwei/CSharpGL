@@ -13,6 +13,7 @@ namespace DistanceFieldFont
 uniform mat4 mvpMat;
 uniform ivec2 screenSize;
 uniform vec2 lineSize;
+uniform int fontSize; // font size in pixel.
 
 in vec2 inPosition;// character's quad's position(in pixels) relative to left bottom(0, 0).
 in vec2 inTexCoord;// character's quad's texture coordinate.
@@ -26,6 +27,8 @@ void main(void) {
     position = position / position.w;
 	float x = (inPosition.x - lineSize.x / 2.0);
 	float y = (-inPosition.y + lineSize.y / 2.0);
+    float scale = fontSize / lineSize.y;
+    x *= scale; y *= scale;
 	float deltaX = x / (screenSize.x / 2.0);
 	float deltaY = y / (screenSize.y / 2.0);
     position.x += deltaX; 
