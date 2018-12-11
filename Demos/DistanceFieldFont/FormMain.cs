@@ -51,17 +51,37 @@ namespace DistanceFieldFont
             manipulater.StepLength = 0.1f;
         }
 
+        //private SceneNodeBase GetRootElement()
+        //{
+        //    var rectangle = DistanceFieldNode.Create();
+        //    rectangle.Scale *= 3;
+        //    string folder = System.Windows.Forms.Application.StartupPath;
+        //    rectangle.TextureSource = new TextureSource(System.IO.Path.Combine(folder, @"texture2D.png"));
+
+        //    var group = new GroupNode(rectangle);//, blend, blend2);
+
+        //    var axis = AxisNode.Create();
+        //    group.Children.Add(axis);
+        //    return group;
+        //}
+
         private SceneNodeBase GetRootElement()
         {
-            var rectangle = DistanceFieldNode.Create();
-            rectangle.Scale *= 3;
-            string folder = System.Windows.Forms.Application.StartupPath;
-            rectangle.TextureSource = new TextureSource(System.IO.Path.Combine(folder, @"texture2D.png"));
+            var group = new GroupNode();
+            {
+                string dictFilename = "VeraMoBI.ttf_sdf.txt";
+                string glyphsFilename = "VeraMoBI.ttf_sdf.png";
+                GlyphServer server = GlyphServer.Load(dictFilename, glyphsFilename);
+                var node = SingleLineNode.Create(100, server);
+                node.TextColor = Color.Red;
+                node.Text = "The quick brown fox jumps over a lazy dog!";
+                group.Children.Add(node);
+            }
+            {
+                var axis = AxisNode.Create();
+                group.Children.Add(axis);
+            }
 
-            var group = new GroupNode(rectangle);//, blend, blend2);
-
-            var axis = AxisNode.Create();
-            group.Children.Add(axis);
             return group;
         }
 

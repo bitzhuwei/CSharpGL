@@ -40,7 +40,6 @@ namespace WorldSpaceBillboard
             var up = new vec3(0, 1, 0);
             var camera = new Camera(position, center, up, CameraType.Perspective, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
             this.scene = new Scene(camera)
-
             {
                 RootNode = rootElement,
                 ClearColor = Color.SkyBlue.ToVec4(),
