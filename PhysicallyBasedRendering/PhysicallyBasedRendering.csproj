@@ -46,7 +46,13 @@
     <Compile Include="AnimationModel.cs" />
     <Compile Include="AnimationNode.cs" />
     <Compile Include="AnimationNode.IRenderable.cs" />
-    <Compile Include="AnimationNode.shaders.cs" />
+    <Compile Include="AnimationNode.shaders.brdf.cs" />
+    <Compile Include="AnimationNode.shaders.equirectangularToCubeMap.cs" />
+    <Compile Include="AnimationNode.shaders.irradiance.cs" />
+    <Compile Include="AnimationNode.shaders.pbr.cs" />
+    <Compile Include="AnimationNode.shaders.background.cs" />
+    <Compile Include="AnimationNode.shaders.DebugWindow.cs" />
+    <Compile Include="AnimationNode.shaders.prefliter.cs" />
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
