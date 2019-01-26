@@ -10,6 +10,14 @@ namespace PhysicallyBasedRendering
     partial class PBRNode : ModernNode, IRenderable
     {
         private SphereModel model;
+        private Texture aoMap;
+        private Texture roughnessMap;
+        private Texture metallicMap;
+        private Texture normalMap;
+        private Texture albedoMap;
+        private ShaderProgram backgroundProgram;
+        private ShaderProgram pbrProgram;
+        private ShaderProgram debugProgram;
         public static PBRNode Create()
         {
             var model = new SphereModel();
@@ -80,6 +88,30 @@ namespace PhysicallyBasedRendering
         protected override void DoInitialize()
         {
             base.DoInitialize();
+
+            // get references of shader programs.
+            this.backgroundProgram = this.RenderUnit.Methods[0].Program;
+            this.pbrProgram = this.RenderUnit.Methods[1].Program;
+            this.debugProgram = this.RenderUnit.Methods[6].Program;
+
+            // init textures.
+            this.albedoMap = LoadTexture(@"Texture\agedplanks1-albedo.png");
+            this.albedoMap.TextureUnitIndex = 3;
+            this.normalMap = LoadTexture(@"Texture\agedplanks1-normal4-ue.png");
+            this.normalMap.TextureUnitIndex = 4;
+            this.metallicMap = LoadTexture(@"Texture\agedplanks1-ao.png");
+            this.metallicMap.TextureUnitIndex = 5;
+            this.roughnessMap = LoadTexture(@"Texture\agedplanks1-roughness.png");
+            this.roughnessMap.TextureUnitIndex = 6;
+            this.aoMap = LoadTexture(@"Texture\agedplanks1-ao.png");
+            this.aoMap.TextureUnitIndex = 7;
+
+            this.pbrProgram.SetUniform("albedoMap", this.albedoMap);
+            this.pbrProgram.SetUniform("normalMap", this.normalMap);
+            this.pbrProgram.SetUniform("metallicMap", this.metallicMap);
+            this.pbrProgram.SetUniform("roughnessMap", this.roughnessMap);
+            this.pbrProgram.SetUniform("aoMap", this.aoMap);
+
 
         }
 
