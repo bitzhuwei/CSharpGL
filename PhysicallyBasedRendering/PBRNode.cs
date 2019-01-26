@@ -133,7 +133,36 @@ namespace PhysicallyBasedRendering
             this.pbrProgram.SetUniform("roughnessMap", this.roughnessMap);
             this.pbrProgram.SetUniform("aoMap", this.aoMap);
 
+            {
+                //创建渲染到CubeMap的FBO
+                var captureFBO = new Framebuffer(512, 512);
+                var captureRBO = new Renderbuffer(512, 512, GL.GL_DEPTH_COMPONENT24);
+                captureFBO.Attach(FramebufferTarget.Framebuffer, captureRBO, AttachmentLocation.Depth);
+                //設置CubeMap
+                var dataProvider = new CubemapDataProvider(null, null, null, null, null, null);
+                var storage = new CubemapTexImage2D(GL.GL_RGB16F, 512, 512, GL.GL_RGB, GL.GL_FLOAT, dataProvider);
+                var envCubeMap = new Texture(storage,
+                    new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP_TO_EDGE),
+                    new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_CLAMP_TO_EDGE),
+                    new TexParameteri(TexParameter.PropertyName.TextureWrapR, (int)GL.GL_CLAMP_TO_EDGE),
+                    new TexParameteri(TexParameter.PropertyName.TextureMinFilter, (int)GL.GL_LINEAR),
+                    new TexParameteri(TexParameter.PropertyName.TextureMagFilter, (int)GL.GL_LINEAR));
 
+
+            }
+        }
+
+        private Texture LoadHdrEnvironmentMap(string filename)
+        {
+            var bitmap = new Bitmap(filename);
+            var storage = new TexImageBitmap(bitmap, GL.GL_RGB16F);
+            var texture = new Texture(storage,
+                new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP_TO_EDGE),
+                new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_CLAMP_TO_EDGE),
+                new TexParameteri(TexParameter.PropertyName.TextureMinFilter, (int)GL.GL_LINEAR),
+                new TexParameteri(TexParameter.PropertyName.TextureMagFilter, (int)GL.GL_LINEAR));
+
+            return texture;
         }
 
         private Texture LoadTexture(string filename)

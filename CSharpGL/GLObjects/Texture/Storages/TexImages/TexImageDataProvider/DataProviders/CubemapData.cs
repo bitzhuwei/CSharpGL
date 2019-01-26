@@ -43,8 +43,15 @@ namespace CSharpGL
         /// <returns></returns>
         public IntPtr LockData()
         {
-            this.bmpData = this.bitmap.LockBits(new Rectangle(0, 0, this.bitmap.Width, this.bitmap.Height), System.Drawing.Imaging.ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
-            return bmpData.Scan0;
+            Bitmap bitmap = this.bitmap;
+            IntPtr result = IntPtr.Zero;
+            if (bitmap != null)
+            {
+                this.bmpData = bitmap.LockBits(new Rectangle(0, 0, this.bitmap.Width, this.bitmap.Height), System.Drawing.Imaging.ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+                result = bmpData.Scan0;
+            }
+
+            return result;
         }
 
         /// <summary>
@@ -52,7 +59,11 @@ namespace CSharpGL
         /// </summary>
         public void FreeData()
         {
-            this.bitmap.UnlockBits(this.bmpData);
+            Bitmap bitmap = this.bitmap;
+            if (bitmap != null)
+            {
+                bitmap.UnlockBits(this.bmpData);
+            }
         }
 
         /// <summary>

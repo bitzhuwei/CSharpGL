@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HDRFile.cs" />
     <Compile Include="SphereModel.cs" />
     <Compile Include="PBRNode.cs" />
     <Compile Include="PBRNode.IRenderable.cs" />
