@@ -43,16 +43,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AnimationModel.cs" />
-    <Compile Include="AnimationNode.cs" />
-    <Compile Include="AnimationNode.IRenderable.cs" />
-    <Compile Include="AnimationNode.shaders.brdf.cs" />
-    <Compile Include="AnimationNode.shaders.equirectangularToCubeMap.cs" />
-    <Compile Include="AnimationNode.shaders.irradiance.cs" />
-    <Compile Include="AnimationNode.shaders.pbr.cs" />
-    <Compile Include="AnimationNode.shaders.background.cs" />
-    <Compile Include="AnimationNode.shaders.DebugWindow.cs" />
-    <Compile Include="AnimationNode.shaders.prefliter.cs" />
+    <Compile Include="SphereModel.cs" />
+    <Compile Include="PBRNode.cs" />
+    <Compile Include="PBRNode.IRenderable.cs" />
+    <Compile Include="PBRNode.shaders.brdf.cs" />
+    <Compile Include="PBRNode.shaders.equirectangularToCubeMap.cs" />
+    <Compile Include="PBRNode.shaders.irradiance.cs" />
+    <Compile Include="PBRNode.shaders.pbr.cs" />
+    <Compile Include="PBRNode.shaders.background.cs" />
+    <Compile Include="PBRNode.shaders.DebugWindow.cs" />
+    <Compile Include="PBRNode.shaders.prefliter.cs" />
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>

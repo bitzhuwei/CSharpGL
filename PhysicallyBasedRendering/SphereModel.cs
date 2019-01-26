@@ -6,9 +6,9 @@ using System.Text;
 
 namespace PhysicallyBasedRendering
 {
-    class PBRModel : IBufferSource
+    class SphereModel : IBufferSource
     {
-        public PBRModel()
+        public SphereModel()
         {
         }
 
