@@ -43,6 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CubemapBuffers.cs" />
+    <Compile Include="CubemapModel.cs" />
     <Compile Include="HDRFile.cs" />
     <Compile Include="SphereModel.cs" />
     <Compile Include="PBRNode.cs" />

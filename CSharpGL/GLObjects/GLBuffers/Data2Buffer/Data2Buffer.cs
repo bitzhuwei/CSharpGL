@@ -5,19 +5,8 @@
     /// </summary>
     public static partial class Data2Buffer
     {
-        /// <summary>
-        ///
-        /// </summary>
         private static GLDelegates.void_int_uintN glGenBuffers;
-
-        /// <summary>
-        ///
-        /// </summary>
         private static GLDelegates.void_uint_uint glBindBuffer;
-
-        /// <summary>
-        ///
-        /// </summary>
         private static GLDelegates.void_uint_int_IntPtr_uint glBufferData;
 
         static Data2Buffer()

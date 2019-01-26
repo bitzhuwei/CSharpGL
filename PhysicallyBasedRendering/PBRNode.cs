@@ -182,7 +182,8 @@ namespace PhysicallyBasedRendering
                 {
                     program.SetUniform("ViewMatrix", captureView[i]);
                     captureFBO.Attach(FramebufferTarget.Framebuffer, envCubeMap, 0u, 0, (CubemapFace)(CubemapFace.PositiveX + i));
-                    GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT); renderCube();
+                    GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
+                    renderCube();
                 }
                 viewportSwitch.Off();
                 captureFBO.Unbind();
@@ -191,6 +192,7 @@ namespace PhysicallyBasedRendering
 
         private void renderCube()
         {
+
             throw new NotImplementedException();
         }
 
