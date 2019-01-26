@@ -23,6 +23,13 @@ namespace PhysicallyBasedRendering
         }
 
         Pixel[] colors;
+
+        public Pixel[] Colors
+        {
+            get { return colors; }
+            set { colors = value; }
+        }
+
         public Format format;
         public Compression compression;
         public int Width { get; private set; }
@@ -33,11 +40,6 @@ namespace PhysicallyBasedRendering
             this.Width = width;
             this.Height = height;
             colors = new Pixel[width * height];
-        }
-
-        public void SetColors(Pixel[] c)
-        {
-            colors = c;
         }
 
         //public Texture2D ToTexture(bool mipmap, bool linear)
@@ -147,7 +149,7 @@ namespace PhysicallyBasedRendering
                         cursor++;
                     }
 
-                    hdr.SetColors(buffer);
+                    hdr.Colors = buffer;
                 }
             }
             return hdr;

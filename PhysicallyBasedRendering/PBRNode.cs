@@ -17,7 +17,9 @@ namespace PhysicallyBasedRendering
         private Texture albedoMap;
         private ShaderProgram backgroundProgram;
         private ShaderProgram pbrProgram;
+        private ShaderProgram equiRectangular2CubemapProgram;
         private ShaderProgram debugProgram;
+
         public static PBRNode Create()
         {
             var model = new SphereModel();
@@ -105,6 +107,7 @@ namespace PhysicallyBasedRendering
         int nrRows = 7;
         int nrColumns = 7;
         float spacing = 2.3f;
+        private Texture hdrTexture;
 
         protected override void DoInitialize()
         {
@@ -113,6 +116,7 @@ namespace PhysicallyBasedRendering
             // get references of shader programs.
             this.backgroundProgram = this.RenderUnit.Methods[0].Program;
             this.pbrProgram = this.RenderUnit.Methods[1].Program;
+            this.equiRectangular2CubemapProgram = this.RenderUnit.Methods[3].Program;
             this.debugProgram = this.RenderUnit.Methods[6].Program;
 
             // init textures.
@@ -133,29 +137,70 @@ namespace PhysicallyBasedRendering
             this.pbrProgram.SetUniform("roughnessMap", this.roughnessMap);
             this.pbrProgram.SetUniform("aoMap", this.aoMap);
 
+            //创建渲染到CubeMap的FBO
+            var captureFBO = new Framebuffer(512, 512);
+            captureFBO.Bind(FramebufferTarget.Framebuffer);
+            var captureRBO = new Renderbuffer(512, 512, GL.GL_DEPTH_COMPONENT24);
+            captureFBO.Attach(FramebufferTarget.Framebuffer, captureRBO, AttachmentLocation.Depth);
+            captureFBO.CheckCompleteness();
+            captureFBO.Unbind();
+
+            //設置CubeMap
+            var dataProvider = new CubemapDataProvider(null, null, null, null, null, null);
+            var storage = new CubemapTexImage2D(GL.GL_RGB16F, 512, 512, GL.GL_RGB, GL.GL_FLOAT, dataProvider);
+            var envCubeMap = new Texture(storage,
+                new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP_TO_EDGE),
+                new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_CLAMP_TO_EDGE),
+                new TexParameteri(TexParameter.PropertyName.TextureWrapR, (int)GL.GL_CLAMP_TO_EDGE),
+                new TexParameteri(TexParameter.PropertyName.TextureMinFilter, (int)GL.GL_LINEAR),
+                new TexParameteri(TexParameter.PropertyName.TextureMagFilter, (int)GL.GL_LINEAR));
+
+            Texture hdrEnvirmentTexture = LoadHdrEnvironmentMap(@"Texture\hdr\newport_loft.hdr");
+            this.hdrTexture = hdrEnvirmentTexture;
+            //设置投影矩阵
+            mat4 captureProjection = glm.perspective((float)(Math.PI / 2), 1.0f, 0.1f, 20.0f);
+            mat4[] captureView =
+	        {
+				glm.lookAt(new vec3(0, 0, 0), new vec3(1.0f, 0.0f, 0.0f), new vec3(0.0f, -1.0f, 0.0f)),
+				glm.lookAt(new vec3(0, 0, 0), new vec3(-1.0f, 0.0f, 0.0f), new vec3(0.0f, -1.0f, 0.0f)),
+				glm.lookAt(new vec3(0, 0, 0), new vec3(0.0f, 1.0f, 0.0f), new vec3(0.0f, 0.0f, 1.0f)),
+				glm.lookAt(new vec3(0, 0, 0), new vec3(0.0f, -1.0f, 0.0f), new vec3(0.0f, 0.0f, -1.0f)),
+				glm.lookAt(new vec3(0, 0, 0), new vec3(0.0f, 0.0f, 1.0f), new vec3(0.0f, -1.0f, 0.0f)),
+				glm.lookAt(new vec3(0, 0, 0), new vec3(0.0f, 0.0f, -1.0f), new vec3(0.0f, -1.0f, 0.0f)),
+	        };
+
+            ViewportSwitch viewportSwitch = new ViewportSwitch(0, 0, 512, 512);
+            //转换HDR Equirectangular environmentMap 为 HDR cubeMap
             {
-                //创建渲染到CubeMap的FBO
-                var captureFBO = new Framebuffer(512, 512);
-                var captureRBO = new Renderbuffer(512, 512, GL.GL_DEPTH_COMPONENT24);
-                captureFBO.Attach(FramebufferTarget.Framebuffer, captureRBO, AttachmentLocation.Depth);
-                //設置CubeMap
-                var dataProvider = new CubemapDataProvider(null, null, null, null, null, null);
-                var storage = new CubemapTexImage2D(GL.GL_RGB16F, 512, 512, GL.GL_RGB, GL.GL_FLOAT, dataProvider);
-                var envCubeMap = new Texture(storage,
-                    new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP_TO_EDGE),
-                    new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_CLAMP_TO_EDGE),
-                    new TexParameteri(TexParameter.PropertyName.TextureWrapR, (int)GL.GL_CLAMP_TO_EDGE),
-                    new TexParameteri(TexParameter.PropertyName.TextureMinFilter, (int)GL.GL_LINEAR),
-                    new TexParameteri(TexParameter.PropertyName.TextureMagFilter, (int)GL.GL_LINEAR));
-
-
+                captureFBO.Bind();
+                viewportSwitch.On();
+                ShaderProgram program = this.equiRectangular2CubemapProgram;
+                program.SetUniform("equirectangularMap", this.hdrTexture);
+                program.SetUniform("ProjMatrix", captureProjection);
+                program.Bind();
+                for (uint i = 0; i < 6; ++i)
+                {
+                    program.SetUniform("ViewMatrix", captureView[i]);
+                    captureFBO.Attach(FramebufferTarget.Framebuffer, envCubeMap, 0u, 0, (CubemapFace)(CubemapFace.PositiveX + i));
+                    GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT); renderCube();
+                }
+                viewportSwitch.Off();
+                captureFBO.Unbind();
             }
         }
 
+        private void renderCube()
+        {
+            throw new NotImplementedException();
+        }
+
+
         private Texture LoadHdrEnvironmentMap(string filename)
         {
+            HdrFile hdrFile = HdrAssetImporter.ReadHdrFile(filename);
+            Pixel[] pixels = hdrFile.Colors;
             var bitmap = new Bitmap(filename);
-            var storage = new TexImageBitmap(bitmap, GL.GL_RGB16F);
+            var storage = new TexImage2D(TexImage2D.Target.Texture2D, GL.GL_RGB16F, hdrFile.Width, hdrFile.Height, GL.GL_RGBA, GL.GL_BYTE, new ArrayDataProvider<Pixel>(pixels));
             var texture = new Texture(storage,
                 new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP_TO_EDGE),
                 new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_CLAMP_TO_EDGE),
