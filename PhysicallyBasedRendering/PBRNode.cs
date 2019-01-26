@@ -85,6 +85,23 @@ namespace PhysicallyBasedRendering
 
         private PBRNode(SphereModel model, params RenderMethodBuilder[] builders) : base(model, builders) { this.model = model; }
 
+
+        //lights
+        vec3[] lightPositions =
+	    {
+	    	new vec3(-10.0f, 10.0f, 10.0f),
+	    	new vec3(10.0f, 10.0f, 10.0f),
+	    	new vec3(-10.0f, -10.0f, 10.0f),
+	    	new vec3(10.0f, -10.0f, 10.0f)
+	    };
+        vec3[] lightColors =
+	    {
+	    	new vec3(300.0f, 300.0f, 300.0f),
+	    	new vec3(300.0f, 300.0f, 300.0f),
+	    	new vec3(300.0f, 300.0f, 300.0f),
+	    	new vec3(300.0f, 300.0f, 300.0f),
+	    };
+
         protected override void DoInitialize()
         {
             base.DoInitialize();
