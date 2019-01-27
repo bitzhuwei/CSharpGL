@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 
 namespace PhysicallyBasedRendering
 {
-    class CubemapBuffers
+    class QuadBuffers
     {
         private static readonly GLDelegates.void_int_uintN glGenVertexArrays;
         private static readonly GLDelegates.void_uint glBindVertexArray;
@@ -18,7 +18,7 @@ namespace PhysicallyBasedRendering
         private static readonly GLDelegates.void_uint_int_uint_bool_int_IntPtr glVertexAttribPointer;
         internal static readonly GLDelegates.void_uint glEnableVertexAttribArray;
 
-        static CubemapBuffers()
+        static QuadBuffers()
         {
             glGenVertexArrays = GL.Instance.GetDelegateFor("glGenVertexArrays", GLDelegates.typeof_void_int_uintN) as GLDelegates.void_int_uintN;
             glBindVertexArray = GL.Instance.GetDelegateFor("glBindVertexArray", GLDelegates.typeof_void_uint) as GLDelegates.void_uint;
@@ -33,9 +33,9 @@ namespace PhysicallyBasedRendering
         private uint[] cubeVAOs = new uint[1];
         private uint[] cubeVBOs = new uint[1];
 
-        public CubemapBuffers()
+        public QuadBuffers()
         {
-            this.Init(CubemapModel.vertices);
+            this.Init(QuadModel.vertices);
         }
 
         public void Init(float[] vertices)
@@ -53,11 +53,9 @@ namespace PhysicallyBasedRendering
             // link vertex attributes
             glBindVertexArray(cubeVAOs[0]);
             glEnableVertexAttribArray(0);
-            glVertexAttribPointer(0, 3, GL.GL_FLOAT, false, 8 * sizeof(float), IntPtr.Zero);
+            glVertexAttribPointer(0, 3, GL.GL_FLOAT, false, 5 * sizeof(float), IntPtr.Zero);
             glEnableVertexAttribArray(1);
-            glVertexAttribPointer(1, 3, GL.GL_FLOAT, false, 8 * sizeof(float), new IntPtr(3 * sizeof(float)));
-            glEnableVertexAttribArray(2);
-            glVertexAttribPointer(2, 2, GL.GL_FLOAT, false, 8 * sizeof(float), new IntPtr(6 * sizeof(float)));
+            glVertexAttribPointer(1, 2, GL.GL_FLOAT, false, 5 * sizeof(float), new IntPtr(3 * sizeof(float)));
             glBindBuffer(GL.GL_ARRAY_BUFFER, 0);
             glBindVertexArray(0);
             pinned.Free();
@@ -67,7 +65,7 @@ namespace PhysicallyBasedRendering
         {
             // render Cube
             glBindVertexArray(cubeVAOs[0]);
-            GL.Instance.DrawArrays(GL.GL_TRIANGLES, 0, 36);
+            GL.Instance.DrawArrays(GL.GL_TRIANGLE_STRIP, 0, 4);
             glBindVertexArray(0);
         }
     }

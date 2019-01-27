@@ -43,10 +43,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PBRNode.Init.cs" />
+    <Compile Include="SphereBuffers.cs" />
+    <Compile Include="QuadBuffers.cs" />
     <Compile Include="CubemapBuffers.cs" />
+    <Compile Include="SphereModel.cs" />
+    <Compile Include="QuadModel.cs" />
     <Compile Include="CubemapModel.cs" />
     <Compile Include="HDRFile.cs" />
-    <Compile Include="SphereModel.cs" />
     <Compile Include="PBRNode.cs" />
     <Compile Include="PBRNode.IRenderable.cs" />
     <Compile Include="PBRNode.shaders.brdf.cs" />
