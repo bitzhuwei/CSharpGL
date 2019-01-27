@@ -10,6 +10,7 @@ namespace PhysicallyBasedRendering
     partial class PBRNode : ModernNode, IRenderable
     {
         private SphereModel model;
+        private Texture hdrTexture;
         private Texture aoMap;
         private Texture roughnessMap;
         private Texture metallicMap;
@@ -17,8 +18,16 @@ namespace PhysicallyBasedRendering
         private Texture albedoMap;
         private ShaderProgram backgroundProgram;
         private ShaderProgram pbrProgram;
+        private ShaderProgram irradianceProgram;
         private ShaderProgram equiRectangular2CubemapProgram;
+        private ShaderProgram prdfProgram;
+        private ShaderProgram prefliterProgram;
         private ShaderProgram debugProgram;
+        private CubemapBuffers cubemapBuffers;
+
+        private int nrRows = 7;
+        private int nrColumns = 7;
+        private float spacing = 2.3f;
 
         public static PBRNode Create()
         {
@@ -104,10 +113,6 @@ namespace PhysicallyBasedRendering
 	    	new vec3(300.0f, 300.0f, 300.0f),
 	    };
 
-        int nrRows = 7;
-        int nrColumns = 7;
-        float spacing = 2.3f;
-        private Texture hdrTexture;
 
         protected override void DoInitialize()
         {
@@ -116,7 +121,10 @@ namespace PhysicallyBasedRendering
             // get references of shader programs.
             this.backgroundProgram = this.RenderUnit.Methods[0].Program;
             this.pbrProgram = this.RenderUnit.Methods[1].Program;
+            this.irradianceProgram = this.RenderUnit.Methods[2].Program;
             this.equiRectangular2CubemapProgram = this.RenderUnit.Methods[3].Program;
+            this.prdfProgram = this.RenderUnit.Methods[4].Program;
+            this.prefliterProgram = this.RenderUnit.Methods[5].Program;
             this.debugProgram = this.RenderUnit.Methods[6].Program;
 
             // init textures.
@@ -139,22 +147,24 @@ namespace PhysicallyBasedRendering
 
             //创建渲染到CubeMap的FBO
             var captureFBO = new Framebuffer(512, 512);
-            captureFBO.Bind(FramebufferTarget.Framebuffer);
+            captureFBO.Bind();
             var captureRBO = new Renderbuffer(512, 512, GL.GL_DEPTH_COMPONENT24);
             captureFBO.Attach(FramebufferTarget.Framebuffer, captureRBO, AttachmentLocation.Depth);
             captureFBO.CheckCompleteness();
             captureFBO.Unbind();
 
             //設置CubeMap
-            var dataProvider = new CubemapDataProvider(null, null, null, null, null, null);
-            var storage = new CubemapTexImage2D(GL.GL_RGB16F, 512, 512, GL.GL_RGB, GL.GL_FLOAT, dataProvider);
-            var envCubeMap = new Texture(storage,
-                new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP_TO_EDGE),
-                new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_CLAMP_TO_EDGE),
-                new TexParameteri(TexParameter.PropertyName.TextureWrapR, (int)GL.GL_CLAMP_TO_EDGE),
-                new TexParameteri(TexParameter.PropertyName.TextureMinFilter, (int)GL.GL_LINEAR),
-                new TexParameteri(TexParameter.PropertyName.TextureMagFilter, (int)GL.GL_LINEAR));
-
+            Texture envCubeMap;
+            {
+                var dataProvider = new CubemapDataProvider(null, null, null, null, null, null);
+                var storage = new CubemapTexImage2D(GL.GL_RGB16F, 512, 512, GL.GL_RGB, GL.GL_FLOAT, dataProvider);
+                envCubeMap = new Texture(storage,
+                   new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP_TO_EDGE),
+                   new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_CLAMP_TO_EDGE),
+                   new TexParameteri(TexParameter.PropertyName.TextureWrapR, (int)GL.GL_CLAMP_TO_EDGE),
+                   new TexParameteri(TexParameter.PropertyName.TextureMinFilter, (int)GL.GL_LINEAR),
+                   new TexParameteri(TexParameter.PropertyName.TextureMagFilter, (int)GL.GL_LINEAR));
+            }
             Texture hdrEnvirmentTexture = LoadHdrEnvironmentMap(@"Texture\hdr\newport_loft.hdr");
             this.hdrTexture = hdrEnvirmentTexture;
             //设置投影矩阵
@@ -187,29 +197,95 @@ namespace PhysicallyBasedRendering
                 }
                 viewportSwitch.Off();
                 captureFBO.Unbind();
+                captureFBO.Dispose();
             }
             //创建一个irradianceMap
             {
                 var fbo = new Framebuffer(32, 32);
                 fbo.Bind();
+                var rbo = new Renderbuffer(32, 32, GL.GL_DEPTH_COMPONENT24);
+                fbo.Attach(FramebufferTarget.Framebuffer, rbo, AttachmentLocation.Depth);
+                fbo.CheckCompleteness();
+                fbo.Unbind();
+
+                var dataProvider = new CubemapDataProvider(null, null, null, null, null, null);
+                var storage = new CubemapTexImage2D(GL.GL_RGB16F, 32, 32, GL.GL_RGB, GL.GL_FLOAT, dataProvider);
+                var irradianceMap = new Texture(storage,
+                    new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP_TO_EDGE),
+                    new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_CLAMP_TO_EDGE),
+                    new TexParameteri(TexParameter.PropertyName.TextureWrapR, (int)GL.GL_CLAMP_TO_EDGE),
+                    new TexParameteri(TexParameter.PropertyName.TextureMinFilter, (int)GL.GL_LINEAR),
+                    new TexParameteri(TexParameter.PropertyName.TextureMagFilter, (int)GL.GL_LINEAR));
+                //pbr:通过卷积来创建一张irradianceMap来解决diffueIntegral
+                fbo.Bind();
+                viewportSwitch.Width = 32; viewportSwitch.Height = 32;
                 viewportSwitch.On();
-                ShaderProgram program = this.equiRectangular2CubemapProgram;
-                program.SetUniform("equirectangularMap", this.hdrTexture);
+                ShaderProgram program = this.irradianceProgram;
+                program.SetUniform("environmentMap", envCubeMap);
                 program.SetUniform("ProjMatrix", captureProjection);
                 program.Bind();
                 for (uint i = 0; i < 6; ++i)
                 {
                     program.SetUniform("ViewMatrix", captureView[i]);
-                    captureFBO.Attach(FramebufferTarget.Framebuffer, envCubeMap, 0u, 0, (CubemapFace)(CubemapFace.PositiveX + i));
+                    captureFBO.Attach(FramebufferTarget.Framebuffer, irradianceMap, 0u, 0, (CubemapFace)(CubemapFace.PositiveX + i));
                     GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
                     renderCube();
                 }
                 viewportSwitch.Off();
                 fbo.Unbind();
+                fbo.Dispose();
+            }
+            //prefilter CubeMap
+            Texture prefliterMap;
+            {
+                var dataProvider = new CubemapDataProvider(null, null, null, null, null, null);
+                var storage = new CubemapTexImage2D(GL.GL_RGB16F, 128, 128, GL.GL_RGB, GL.GL_FLOAT, dataProvider);
+                prefliterMap = new Texture(storage, new MipmapBuilder(),
+                   new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP_TO_EDGE),
+                   new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_CLAMP_TO_EDGE),
+                   new TexParameteri(TexParameter.PropertyName.TextureWrapR, (int)GL.GL_CLAMP_TO_EDGE),
+                   new TexParameteri(TexParameter.PropertyName.TextureMinFilter, (int)GL.GL_LINEAR_MIPMAP_LINEAR),
+                   new TexParameteri(TexParameter.PropertyName.TextureMagFilter, (int)GL.GL_LINEAR));
+            }
+            //对环境光用蒙特卡洛积分来创建一个prefliterMap贴图
+            {
+                ShaderProgram program = this.prefliterProgram;
+                program.SetUniform("environmentMap", envCubeMap);
+                program.SetUniform("ProjMatrix", captureProjection);
+                program.Bind();
+                const int maxMipLevels = 5;
+                for (int i = 0; i < maxMipLevels; i++)
+                {
+                    int mipWidth = (int)(128 * Math.Pow(0.5, i));
+                    int mipHeight = (int)(128 * Math.Pow(0.5, i));
+                    var fbo = new Framebuffer(mipWidth, mipHeight);
+                    fbo.Bind();
+                    var rbo = new Renderbuffer(mipWidth, mipHeight, GL.GL_DEPTH_COMPONENT24);
+                    fbo.Attach(FramebufferTarget.Framebuffer, rbo, AttachmentLocation.Depth);
+                    fbo.CheckCompleteness();
+                    //fbo.Unbind();
+                    viewportSwitch.Width = mipWidth; viewportSwitch.Height = mipHeight;
+                    viewportSwitch.On();
+                    float roughness = (float)i / (float)(maxMipLevels - 1);
+                    program.SetUniform("roughness", roughness);
+                    for (uint j = 0; j < 6; j++)
+                    {
+                        program.SetUniform("ViewMatrix", captureView[i]);
+                        captureFBO.Attach(FramebufferTarget.Framebuffer, prefliterMap, 0u, 0, (CubemapFace)(CubemapFace.PositiveX + j), i);
+                        GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
+                        renderCube();
+                    }
+                    viewportSwitch.Off();
+                    fbo.Unbind();
+                    fbo.Dispose();
+                }
+                //從BRDF方程式中生成一張2D LUT
+                {
+
+                }
+
             }
         }
-
-        private CubemapBuffers cubemapBuffers;
 
         private void renderCube()
         {
