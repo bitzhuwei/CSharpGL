@@ -30,8 +30,8 @@ namespace PhysicallyBasedRendering
             var normals = new List<vec3>();
             var indices = new List<uint>();
 
-            const uint X_SEGMENTS = 64;
-            const uint Y_SEGMENTS = 64;
+            const int X_SEGMENTS = 64;
+            const int Y_SEGMENTS = 64;
             const float PI = 3.14159265359f;
             for (uint y = 0; y <= Y_SEGMENTS; ++y)
             {
@@ -50,22 +50,26 @@ namespace PhysicallyBasedRendering
             }
 
             bool oddRow = false;
-            for (uint y = 0; y < Y_SEGMENTS; ++y)
+            for (int y = 0; y < Y_SEGMENTS; ++y)
             {
                 if (!oddRow) // even rows: y == 0, y == 2; and so on
                 {
-                    for (uint x = 0; x <= X_SEGMENTS; ++x)
+                    for (int x = 0; x <= X_SEGMENTS; ++x)
                     {
-                        indices.Add(y * (X_SEGMENTS + 1u) + x);
-                        indices.Add((y + 1) * (X_SEGMENTS + 1u) + x);
+                        var a = y * (X_SEGMENTS + 1) + x;
+                        var b = (y + 1) * (X_SEGMENTS + 1) + x;
+                        indices.Add((uint)a);
+                        indices.Add((uint)b);
                     }
                 }
                 else
                 {
-                    for (uint x = X_SEGMENTS; x >= 0; --x)
+                    for (int x = X_SEGMENTS; x >= 0; --x)
                     {
-                        indices.Add((y + 1u) * (X_SEGMENTS + 1u) + x);
-                        indices.Add(y * (X_SEGMENTS + 1u) + x);
+                        var a = (y + 1) * (X_SEGMENTS + 1) + x;
+                        var b = y * (X_SEGMENTS + 1) + x;
+                        indices.Add((uint)a);
+                        indices.Add((uint)b);
                     }
                 }
                 oddRow = !oddRow;

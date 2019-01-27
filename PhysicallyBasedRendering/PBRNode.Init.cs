@@ -120,6 +120,7 @@ namespace PhysicallyBasedRendering
                     GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
                     renderCube();
                 }
+                program.Unbind();
                 viewportSwitch.Off();
                 fbo.Unbind();
                 fbo.Dispose();
@@ -158,6 +159,7 @@ namespace PhysicallyBasedRendering
                     viewportSwitch.On();
                     float roughness = (float)i / (float)(maxMipLevels - 1);
                     program.SetUniform("roughness", roughness);
+                    program.Bind();
                     for (uint j = 0; j < 6; j++)
                     {
                         program.SetUniform("ViewMatrix", captureView[i]);
@@ -165,6 +167,7 @@ namespace PhysicallyBasedRendering
                         GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
                         renderCube();
                     }
+                    program.Unbind();
                     viewportSwitch.Off();
                     fbo.Unbind();
                     fbo.Dispose();
@@ -239,7 +242,6 @@ namespace PhysicallyBasedRendering
         {
             HdrFile hdrFile = HdrAssetImporter.ReadHdrFile(filename);
             Pixel[] pixels = hdrFile.Colors;
-            var bitmap = new Bitmap(filename);
             var storage = new TexImage2D(TexImage2D.Target.Texture2D, GL.GL_RGB16F, hdrFile.Width, hdrFile.Height, GL.GL_RGBA, GL.GL_BYTE, new ArrayDataProvider<Pixel>(pixels));
             var texture = new Texture(storage,
                 new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP_TO_EDGE),

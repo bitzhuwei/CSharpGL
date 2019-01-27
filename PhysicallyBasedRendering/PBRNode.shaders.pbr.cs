@@ -55,8 +55,6 @@ const float	PI=3.14159265359;
 
 out vec4 fColor;
 
-
-//法线分布函数
 float DistributionGGX(vec3 N, vec3 H, float roughness)
 {
     float a = roughness * roughness;
@@ -69,8 +67,6 @@ float DistributionGGX(vec3 N, vec3 H, float roughness)
     return nom / denom;
 }
 
-
-//幾何函数
 float GeometrySchlickGGX(float NdotV, float roughness)
 {
     float r = (roughness + 1.0);
@@ -89,7 +85,6 @@ float GeometrySmith(vec3 N, vec3 V, vec3 L, float k)
     return ggx1 * ggx2;
 }
 
-//菲涅貳函數,F0为金属反射率
 vec3 fresnelSchlick(float cosTheta, vec3 F0)
 {
     return F0 + (1.0 - F0) * pow(1.0 - cosTheta, 5.0);
@@ -101,7 +96,6 @@ vec3 fresnelSchlickRoughness(float cosTheta, vec3 F0, float roughness)
 }   
 
 
-//求法线贴图的法线向量
 vec3 getNormalFromMap()
 {
     vec3 tangentNormal = texture(normalMap, TexCoords).xyz * 2.0 - 1.0;
@@ -118,7 +112,6 @@ vec3 getNormalFromMap()
     return normalize(TBN * tangentNormal);
 }
 
-
 void main()
 {
     vec3 N = getNormalFromMap();
@@ -134,7 +127,6 @@ void main()
     F0 = mix(F0, albedo, metallic);
     
     
-    //反射方程式
     vec3 Lo = vec3(0.0);
     for(int i = 0; i < 4; ++i)
     {

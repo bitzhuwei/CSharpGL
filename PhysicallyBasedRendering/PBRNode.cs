@@ -97,7 +97,6 @@ namespace PhysicallyBasedRendering
 
         public PBRNode()
         {
-            var model = new SphereModel();
             RenderMethodBuilder background, pbr, irradiance, equiRectangular2Cubemap, brdf, prefliter, debug;
             {
                 var vs = new VertexShader(backgroundVertexCode);

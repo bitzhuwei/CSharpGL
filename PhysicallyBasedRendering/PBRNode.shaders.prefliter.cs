@@ -53,7 +53,7 @@ float RadicalInverse_Vdc(uint bits)
      bits = ((bits & 0x33333333u) << 2u) | ((bits & 0xCCCCCCCCu) >> 2u);
      bits = ((bits & 0x0F0F0F0Fu) << 4u) | ((bits & 0xF0F0F0F0u) >> 4u);
      bits = ((bits & 0x00FF00FFu) << 8u) | ((bits & 0xFF00FF00u) >> 8u);
-     return float(bits) * 2.3283064365386963e-10; // / 0x100000000
+     return float(bits) * 2.3283064365386963e-10;
 }
 
 vec2 Hammersley(uint i,uint N)
@@ -69,13 +69,11 @@ vec3 ImportanceSampleGGX(vec2 Xi,vec3 N,float roughness)
 	float cosTheta=sqrt((1.0-Xi.y)/(1.0+(a*a-1.0)*Xi.y));
 	float sinTheta=sqrt(1.0-cosTheta*cosTheta);
 
-	//从球面坐标系到笛卡尔坐标系
 	vec3 H;
 	H.x=cos(phi)*sinTheta;
 	H.y=sin(phi)*sinTheta;
 	H.z=cosTheta;
 
-	//从切线空间向量到世界空间采样向量
 	vec3 up=abs(N.z)<0.999 ? vec3(0.0,0.0,1.0):vec3(1.0,0.0,0.0);
 	vec3 tangent=normalize(cross(up,N));
 	vec3 bitangent=cross(N,tangent);

@@ -86,7 +86,9 @@ namespace PhysicallyBasedRendering
                             0.0f
                             ));
                         program.SetUniform("ModelMatrix", modelMatrix);
+                        program.Bind();
                         renderSphere();
+                        program.Unbind();
                     }
                 }
             }
@@ -97,7 +99,9 @@ namespace PhysicallyBasedRendering
                 program.SetUniform("ProjMatrix", projectionMat);
                 this.envCubeMap.TextureUnitIndex = 0;
                 program.SetUniform("backgroundCubeMap", this.envCubeMap);
+                program.Bind();
                 renderCube();
+                program.Unbind();
             }
         }
 
