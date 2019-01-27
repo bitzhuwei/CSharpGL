@@ -20,7 +20,7 @@ namespace PhysicallyBasedRendering
         private ShaderProgram pbrProgram;
         private ShaderProgram irradianceProgram;
         private ShaderProgram equiRectangular2CubemapProgram;
-        private ShaderProgram prdfProgram;
+        private ShaderProgram brdfProgram;
         private ShaderProgram prefliterProgram;
         private ShaderProgram debugProgram;
         private CubemapBuffers cubemapBuffers;
@@ -123,7 +123,7 @@ namespace PhysicallyBasedRendering
             this.pbrProgram = this.RenderUnit.Methods[1].Program;
             this.irradianceProgram = this.RenderUnit.Methods[2].Program;
             this.equiRectangular2CubemapProgram = this.RenderUnit.Methods[3].Program;
-            this.prdfProgram = this.RenderUnit.Methods[4].Program;
+            this.brdfProgram = this.RenderUnit.Methods[4].Program;
             this.prefliterProgram = this.RenderUnit.Methods[5].Program;
             this.debugProgram = this.RenderUnit.Methods[6].Program;
 
@@ -281,10 +281,39 @@ namespace PhysicallyBasedRendering
                 }
                 //從BRDF方程式中生成一張2D LUT
                 {
+                    var storage = new TexImage2D(TexImage2D.Target.Texture2D, GL.GL_RG16F, 512, 512, GL.GL_RG, GL.GL_FLOAT);
+                    var brdfLUTTexture = new Texture(storage,
+                        new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP_TO_EDGE),
+                        new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_CLAMP_TO_EDGE),
+                        new TexParameteri(TexParameter.PropertyName.TextureMinFilter, (int)GL.GL_LINEAR),
+                        new TexParameteri(TexParameter.PropertyName.TextureMagFilter, (int)GL.GL_LINEAR));
+                    var fbo = new Framebuffer(512, 512);
+                    fbo.Bind();
+                    var rbo = new Renderbuffer(512, 512, GL.GL_DEPTH_COMPONENT24);
+                    fbo.Attach(FramebufferTarget.Framebuffer, rbo, AttachmentLocation.Depth);
+                    fbo.Attach(FramebufferTarget.Framebuffer, brdfLUTTexture, 0u);
+                    fbo.CheckCompleteness();
+                    fbo.Unbind();
 
+                    fbo.Bind();
+                    viewportSwitch.Width = 512; viewportSwitch.Height = 512;
+                    viewportSwitch.On();
+                    ShaderProgram brdfProgram = this.brdfProgram;
+                    brdfProgram.Bind();
+                    GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
+                    renderQuad();
+                    brdfProgram.Unbind();
+                    viewportSwitch.Off();
+                    fbo.Unbind();
+                    fbo.Dispose();
                 }
 
             }
+        }
+
+        private void renderQuad()
+        {
+            throw new NotImplementedException();
         }
 
         private void renderCube()
