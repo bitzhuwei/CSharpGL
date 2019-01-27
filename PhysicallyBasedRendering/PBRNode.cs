@@ -188,12 +188,37 @@ namespace PhysicallyBasedRendering
                 viewportSwitch.Off();
                 captureFBO.Unbind();
             }
+            //创建一个irradianceMap
+            {
+                var fbo = new Framebuffer(32, 32);
+                fbo.Bind();
+                viewportSwitch.On();
+                ShaderProgram program = this.equiRectangular2CubemapProgram;
+                program.SetUniform("equirectangularMap", this.hdrTexture);
+                program.SetUniform("ProjMatrix", captureProjection);
+                program.Bind();
+                for (uint i = 0; i < 6; ++i)
+                {
+                    program.SetUniform("ViewMatrix", captureView[i]);
+                    captureFBO.Attach(FramebufferTarget.Framebuffer, envCubeMap, 0u, 0, (CubemapFace)(CubemapFace.PositiveX + i));
+                    GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
+                    renderCube();
+                }
+                viewportSwitch.Off();
+                fbo.Unbind();
+            }
         }
+
+        private CubemapBuffers cubemapBuffers;
 
         private void renderCube()
         {
+            if (this.cubemapBuffers == null)
+            {
+                this.cubemapBuffers = new CubemapBuffers();
+            }
 
-            throw new NotImplementedException();
+            this.cubemapBuffers.Render();
         }
 
 
