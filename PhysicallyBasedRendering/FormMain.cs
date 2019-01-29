@@ -46,10 +46,10 @@ namespace PhysicallyBasedRendering
             list.Add(renderAction);
             this.actionList = list;
 
-            //// uncomment these lines to enable manipualter of camera!
-            //var manipulater = new FirstPerspectiveManipulater();
-            //manipulater.BindingMouseButtons = System.Windows.Forms.MouseButtons.Right;
-            //manipulater.Bind(camera, this.winGLCanvas1);
+            // uncomment these lines to enable manipualter of camera!
+            var manipulater = new FirstPerspectiveManipulater();
+            manipulater.BindingMouseButtons = GLMouseButtons.Right;
+            manipulater.Bind(camera, this.winGLCanvas1);
         }
 
         private void winGLCanvas1_OpenGLDraw(object sender, PaintEventArgs e)

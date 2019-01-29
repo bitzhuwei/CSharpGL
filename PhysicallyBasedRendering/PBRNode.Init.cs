@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using CSharpGL;
 using System.Drawing;
+using System.IO;
 
 namespace PhysicallyBasedRendering
 {
@@ -72,9 +73,10 @@ namespace PhysicallyBasedRendering
                 for (uint i = 0; i < 6; ++i)
                 {
                     fbo.Bind();
+                    CubemapFace face = (CubemapFace)(GL.GL_TEXTURE_CUBE_MAP_POSITIVE_X + i);
                     uint location = 0;
                     int level = 0;
-                    fbo.Attach(FramebufferTarget.Framebuffer, location, (CubemapFace)(GL.GL_TEXTURE_CUBE_MAP_POSITIVE_X + i), envCubeMap, level);
+                    fbo.Attach(FramebufferTarget.Framebuffer, location, face, envCubeMap, level);
                     fbo.CheckCompleteness();
                     fbo.Unbind();
 
@@ -86,6 +88,9 @@ namespace PhysicallyBasedRendering
                     renderCube();
                     program.Unbind();
                     fbo.Unbind();
+
+                    envCubeMap.GetImage(face, fbo.Width, fbo.Height).Save(
+                        string.Format("envCubeMap.{0}.png", face));
                 }
                 viewportSwitch.Off();
                 fbo.Dispose();
@@ -99,7 +104,6 @@ namespace PhysicallyBasedRendering
                 fbo.CheckCompleteness();
                 fbo.Unbind();
 
-
                 //pbr:通过卷积来创建一张irradianceMap来解决diffueIntegral
                 viewportSwitch.Width = 32; viewportSwitch.Height = 32;
                 viewportSwitch.On();
@@ -110,9 +114,10 @@ namespace PhysicallyBasedRendering
                 {
                     program.SetUniform("ViewMatrix", captureView[i]);
                     fbo.Bind();
+                    CubemapFace face = (CubemapFace)(GL.GL_TEXTURE_CUBE_MAP_POSITIVE_X + i);
                     uint location = 0;
                     int level = 0;
-                    fbo.Attach(FramebufferTarget.Framebuffer, location, (CubemapFace)(GL.GL_TEXTURE_CUBE_MAP_POSITIVE_X + i), irradianceMap, level);
+                    fbo.Attach(FramebufferTarget.Framebuffer, location, face, irradianceMap, level);
                     fbo.CheckCompleteness();
                     fbo.Unbind();
 
@@ -123,6 +128,9 @@ namespace PhysicallyBasedRendering
                     renderCube();
                     program.Unbind();
                     fbo.Unbind();
+
+                    irradianceMap.GetImage(face, fbo.Width, fbo.Height).Save(
+                        string.Format("irradianceMap.{0}.png", face));
                 }
                 viewportSwitch.Off();
                 fbo.Dispose();
@@ -153,8 +161,9 @@ namespace PhysicallyBasedRendering
                         program.SetUniform("ViewMatrix", captureView[level]);
 
                         fbo.Bind();
+                        CubemapFace face = (CubemapFace)(GL.GL_TEXTURE_CUBE_MAP_POSITIVE_X + j);
                         uint location = 0;
-                        fbo.Attach(FramebufferTarget.Framebuffer, location, (CubemapFace)(GL.GL_TEXTURE_CUBE_MAP_POSITIVE_X + j), prefliterMap, level);
+                        fbo.Attach(FramebufferTarget.Framebuffer, location, face, prefliterMap, level);
                         fbo.CheckCompleteness();
                         fbo.Unbind();
 
@@ -165,6 +174,9 @@ namespace PhysicallyBasedRendering
                         renderCube();
                         program.Unbind();
                         fbo.Unbind();
+
+                        prefliterMap.GetImage(face, fbo.Width, fbo.Height, level).Save(
+                            string.Format("prefliterMap.{0}.{1}.png", level, face));
                     }
                     viewportSwitch.Off();
                     fbo.Dispose();
@@ -192,6 +204,9 @@ namespace PhysicallyBasedRendering
                 viewportSwitch.Off();
                 fbo.Unbind();
                 fbo.Dispose();
+
+                brdfLUTTexture.GetImage(fbo.Width, fbo.Height).Save(
+                    string.Format("BRDF.GetImage.png"));
             }
         }
 
@@ -210,7 +225,7 @@ namespace PhysicallyBasedRendering
         private Texture LoadPrefliterMap()
         {
             var dataProvider = new CubemapDataProvider(null, null, null, null, null, null);
-            var storage = new CubemapTexImage2D(GL.GL_RGB16F, 128, 128, GL.GL_RGB, GL.GL_FLOAT, dataProvider);
+            var storage = new CubemapTexImage2D(GL.GL_RGB16F, 128, 128, GL.GL_RGB, GL.GL_FLOAT, dataProvider, 6);
             var prefliterMap = new Texture(storage, new MipmapBuilder(),
                new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP_TO_EDGE),
                new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_CLAMP_TO_EDGE),
@@ -292,6 +307,10 @@ namespace PhysicallyBasedRendering
                 new TexParameteri(TexParameter.PropertyName.TextureMagFilter, (int)GL.GL_LINEAR));
             texture.Initialize();
 
+            var file = new FileInfo(filename);
+            texture.GetImage(hdrFile.Width, hdrFile.Height).Save(
+                string.Format("{0}.GetImage.png", file.Name));
+
             return texture;
         }
 
@@ -305,6 +324,10 @@ namespace PhysicallyBasedRendering
                 new TexParameteri(TexParameter.PropertyName.TextureMinFilter, (int)GL.GL_LINEAR),
                 new TexParameteri(TexParameter.PropertyName.TextureMagFilter, (int)GL.GL_LINEAR));
             texture.Initialize();
+
+            var file = new FileInfo(filename);
+            texture.GetImage(bitmap.Width, bitmap.Height).Save(
+                string.Format("{0}.GetImage.png", file.Name));
 
             return texture;
         }

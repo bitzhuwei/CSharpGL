@@ -15,8 +15,8 @@ namespace PhysicallyBasedRendering
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new FormMain());
-            Application.Run(new FormCubemapViewer());
+            Application.Run(new FormMain());
+            //Application.Run(new FormCubemapViewer());
         }
     }
 }
