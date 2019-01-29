@@ -25,6 +25,7 @@ namespace CSharpGL
             glFramebufferTexture((uint)target, GL.GL_COLOR_ATTACHMENT0 + colorAtttachmentLocation, texture != null ? texture.Id : 0u, mipmapLevel);
         }
 
+        // TODO: attach a total layer or a single image?
         /// <summary>
         /// Attach a single layer of a <paramref name="cubemapArrayTexture"/> to the currently bound framebuffer object's color attachment point.
         /// <para>Bind() this framebuffer before invoking this method.</para>
