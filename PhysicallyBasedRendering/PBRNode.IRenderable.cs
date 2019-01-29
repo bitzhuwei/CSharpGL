@@ -47,7 +47,7 @@ namespace PhysicallyBasedRendering
             //{
             //    ShaderProgram program = this.equiRectangular2CubemapProgram;
             //    program.SetUniform("ProjMatrix", projectionMat);
-            //    program.SetUniform("ViewMatrix", viewMat);
+            //    program.SetUniform("ViewMatrix", viewMat * modelMat);
             //    program.Bind();
             //    program.PushUniforms();
             //    GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
@@ -103,18 +103,18 @@ namespace PhysicallyBasedRendering
                     }
                 }
             }
-            {
-                // 渲染天空盒子
-                ShaderProgram program = this.backgroundProgram;
-                program.SetUniform("ViewMatrix", viewMat);
-                program.SetUniform("ProjMatrix", projectionMat);
-                this.envCubeMap.TextureUnitIndex = 0;
-                program.SetUniform("backgroundCubeMap", this.envCubeMap);
-                program.Bind();
-                program.PushUniforms();
-                renderCube();
-                program.Unbind();
-            }
+            //{
+            //    // 渲染天空盒子
+            //    ShaderProgram program = this.backgroundProgram;
+            //    program.SetUniform("ViewMatrix", viewMat);
+            //    program.SetUniform("ProjMatrix", projectionMat);
+            //    this.envCubeMap.TextureUnitIndex = 0;
+            //    program.SetUniform("backgroundCubeMap", this.envCubeMap);
+            //    program.Bind();
+            //    program.PushUniforms();
+            //    renderCube();
+            //    program.Unbind();
+            //}
         }
 
         public void RenderAfterChildren(RenderEventArgs arg)

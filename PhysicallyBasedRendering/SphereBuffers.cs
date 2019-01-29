@@ -45,12 +45,12 @@ namespace PhysicallyBasedRendering
             this.indexCount = indices.Length;
 
             glGenVertexArrays(1, vaos);
-            glGenBuffers(1, vbos);
             // fill buffer
             {
                 GCHandle pinned = GCHandle.Alloc(bufferData, GCHandleType.Pinned);
                 IntPtr header = Marshal.UnsafeAddrOfPinnedArrayElement(bufferData, 0);
                 var array = new TempUnmanagedArray<float>(header, bufferData.Length);// It's not necessary to call Dispose() for this unmanaged array.
+                glGenBuffers(1, vbos);
                 glBindBuffer(GL.GL_ARRAY_BUFFER, vbos[0]);
                 glBufferData(GL.GL_ARRAY_BUFFER, array.ByteLength, array.Header, GL.GL_STATIC_DRAW);
                 pinned.Free();
@@ -59,29 +59,34 @@ namespace PhysicallyBasedRendering
                 GCHandle pinned = GCHandle.Alloc(indices, GCHandleType.Pinned);
                 IntPtr header = Marshal.UnsafeAddrOfPinnedArrayElement(indices, 0);
                 var array = new TempUnmanagedArray<uint>(header, indices.Length);// It's not necessary to call Dispose() for this unmanaged array.
+                glGenBuffers(1, ibos);
                 glBindBuffer(GL.GL_ELEMENT_ARRAY_BUFFER, ibos[0]);
                 glBufferData(GL.GL_ELEMENT_ARRAY_BUFFER, array.ByteLength, array.Header, GL.GL_STATIC_DRAW);
                 pinned.Free();
             }
-            int stride = (3 + 2 + 3) * sizeof(float);
-            // link vertex attributes
-            glBindVertexArray(vaos[0]);
-            glEnableVertexAttribArray(0);
-            glVertexAttribPointer(0, 3, GL.GL_FLOAT, false, stride, IntPtr.Zero);
-            glEnableVertexAttribArray(1);
-            glVertexAttribPointer(1, 2, GL.GL_FLOAT, false, stride, new IntPtr(3 * sizeof(float)));
-            glEnableVertexAttribArray(1);
-            glVertexAttribPointer(2, 3, GL.GL_FLOAT, false, stride, new IntPtr(5 * sizeof(float)));
-            glBindBuffer(GL.GL_ARRAY_BUFFER, 0);
-            glBindVertexArray(0);
+            {
+                int stride = (3 + 2 + 3) * sizeof(float);
+                // link vertex attributes
+                glBindVertexArray(vaos[0]);
+                glBindBuffer(GL.GL_ARRAY_BUFFER, vbos[0]);
+                glEnableVertexAttribArray(0);
+                glVertexAttribPointer(0, 3, GL.GL_FLOAT, false, stride, IntPtr.Zero);
+                glEnableVertexAttribArray(1);
+                glVertexAttribPointer(1, 2, GL.GL_FLOAT, false, stride, new IntPtr(3 * sizeof(float)));
+                glEnableVertexAttribArray(1);
+                glVertexAttribPointer(2, 3, GL.GL_FLOAT, false, stride, new IntPtr(5 * sizeof(float)));
+                glBindBuffer(GL.GL_ARRAY_BUFFER, 0);
+                glBindVertexArray(0);
+            }
         }
 
         public void Render()
         {
-            // render Cube
-
             glBindVertexArray(vaos[0]);
+            glBindBuffer(GL.GL_ELEMENT_ARRAY_BUFFER, this.ibos[0]);
             GL.Instance.DrawElements(GL.GL_TRIANGLE_STRIP, this.indexCount, GL.GL_UNSIGNED_INT, IntPtr.Zero);
+            glBindBuffer(GL.GL_ELEMENT_ARRAY_BUFFER, 0);
+            glBindVertexArray(0);
         }
     }
 }
