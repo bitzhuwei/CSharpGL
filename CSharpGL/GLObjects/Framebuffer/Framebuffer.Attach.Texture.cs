@@ -32,12 +32,12 @@ namespace CSharpGL
         /// <param name="target">GL_FRAMEBUFFER is equivalent to GL_DRAW_FRAMEBUFFER</param>
         /// <param name="cubemapArrayTexture">texture​ must either be null or an existing cube map array texture.</param>
         /// <param name="colorAtttachmentLocation">attachment point.</param>
-        /// <param name="layer">Specifies the layer of <paramref name="cubemapArrayTexture"/>​ to attach.</param>
+        /// <param name="index">Specifies the index of <paramref name="cubemapArrayTexture"/>​ to attach. It's the third parameter of texture coordinate in sampler2DArray.</param>
         /// <param name="face">Specifies the face of <paramref name="cubemapArrayTexture"/>​ to attach.</param>
         /// <param name="mipmapLevel">Specifies the mipmap level of <paramref name="cubemapArrayTexture"/>​ to attach.</param>
-        public void Attach(FramebufferTarget target, Texture cubemapArrayTexture, uint colorAtttachmentLocation, int layer, CubemapFace face, int mipmapLevel = 0)
+        public void Attach(FramebufferTarget target, Texture cubemapArrayTexture, uint colorAtttachmentLocation, int index, CubemapFace face, int mipmapLevel = 0)
         {
-            this.Attach(target, cubemapArrayTexture, colorAtttachmentLocation, (layer * 6 + (int)((uint)face - GL.GL_TEXTURE_CUBE_MAP_POSITIVE_X)), mipmapLevel);
+            this.Attach(target, cubemapArrayTexture, colorAtttachmentLocation, (index * 6 + (int)((uint)face - GL.GL_TEXTURE_CUBE_MAP_POSITIVE_X)), mipmapLevel);
         }
 
         /// <summary>
