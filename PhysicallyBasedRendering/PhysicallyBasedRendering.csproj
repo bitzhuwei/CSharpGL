@@ -43,6 +43,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormCubemapViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCubemapViewer.Designer.cs">
+      <DependentUpon>FormCubemapViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CubemapViewerModel.cs" />
+    <Compile Include="CubemapViewerNode.cs" />
     <Compile Include="PBRNode.Init.cs" />
     <Compile Include="SphereBuffers.cs" />
     <Compile Include="QuadBuffers.cs" />
@@ -68,6 +76,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FormCubemapViewer.resx">
+      <DependentUpon>FormCubemapViewer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>

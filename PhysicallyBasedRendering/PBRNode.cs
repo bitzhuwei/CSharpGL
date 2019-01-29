@@ -9,12 +9,12 @@ namespace PhysicallyBasedRendering
 {
     partial class PBRNode : SceneNodeBase, IRenderable
     {
-        private Texture hdrTexture;
-        private Texture aoMap;
-        private Texture roughnessMap;
-        private Texture metallicMap;
-        private Texture normalMap;
-        private Texture albedoMap;
+        internal Texture hdrTexture;
+        internal Texture aoMap;
+        internal Texture roughnessMap;
+        internal Texture metallicMap;
+        internal Texture normalMap;
+        internal Texture albedoMap;
         private ShaderProgram backgroundProgram;
         private ShaderProgram pbrProgram;
         private ShaderProgram irradianceProgram;
@@ -160,10 +160,10 @@ namespace PhysicallyBasedRendering
 	    	new vec3(300.0f, 300.0f, 300.0f),
 	    };
 
-        private Texture irradianceMap;
-        private Texture prefliterMap;
-        private Texture brdfLUTTexture;
-        private Texture envCubeMap;
+        internal Texture irradianceMap;
+        internal Texture prefliterMap;
+        internal Texture brdfLUTTexture;
+        internal Texture envCubeMap;
 
     }
 }

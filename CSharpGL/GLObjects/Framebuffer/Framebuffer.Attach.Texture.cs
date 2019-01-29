@@ -54,7 +54,29 @@ namespace CSharpGL
             if (colorAtttachmentLocation >= Framebuffer.maxColorAttachmentCount)
             { throw new IndexOutOfRangeException(string.Format("Invalid color attachment point[{0}]!", colorAtttachmentLocation)); }
 
-            glFramebufferTextureLayer((uint)target, GL.GL_COLOR_ATTACHMENT0 + colorAtttachmentLocation, texture != null ? texture.Id : 0u, mipmapLevel, layer);
+            glFramebufferTextureLayer((uint)target,
+                GL.GL_COLOR_ATTACHMENT0 + colorAtttachmentLocation,
+                texture != null ? texture.Id : 0u,
+                mipmapLevel,
+                layer);
+        }
+
+        /// <summary>
+        /// Attach a single image of a <paramref name="cubemapTexture"/> to the currently bound framebuffer object's color attachment point.
+        /// <para>Bind() this framebuffer before invoking this method.</para>
+        /// </summary>
+        /// <param name="target">GL_FRAMEBUFFER is equivalent to GL_DRAW_FRAMEBUFFER</param>
+        /// <param name="colorAtttachmentLocation">attachment point.(0, 1, 2, ..)</param>
+        /// <param name="face">Specifies the face of <paramref name="cubemapTexture"/>​ to attach.</param>
+        /// <param name="cubemapTexture">texture​ must either be null or an existing cube map texture.</param>
+        /// <param name="mipmapLevel">Specifies the mipmap level of <paramref name="cubemapTexture"/>​ to attach.</param>
+        public void Attach(FramebufferTarget target, uint colorAtttachmentLocation, CubemapFace face, Texture cubemapTexture, int mipmapLevel = 0)
+        {
+            glFramebufferTexture2D((uint)target,
+                GL.GL_COLOR_ATTACHMENT0 + colorAtttachmentLocation,
+                (uint)face,
+                cubemapTexture.Id,
+                mipmapLevel);
         }
 
         /// <summary>
