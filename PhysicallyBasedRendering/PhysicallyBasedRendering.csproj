@@ -76,6 +76,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="stb_image.cs" />
     <EmbeddedResource Include="FormCubemapViewer.resx">
       <DependentUpon>FormCubemapViewer.cs</DependentUpon>
     </EmbeddedResource>
