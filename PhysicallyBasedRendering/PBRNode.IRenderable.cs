@@ -35,7 +35,7 @@ namespace PhysicallyBasedRendering
             {
                 var now = DateTime.Now;
                 TimeSpan span = now.Subtract(lastTime);
-                lastTime = now;
+                //lastTime = now;
                 interval = (float)span.TotalMilliseconds;
             }
 
@@ -60,7 +60,7 @@ namespace PhysicallyBasedRendering
                 for (int i = 0; i < lightPositions.Length; i++)
                 {
                     vec3 lightPos = lightPositions[i] + new vec3((float)Math.Sin(interval * 5.0) * 5.0f, 0.0f, 0.0f);
-                    program.SetUniform(string.Format("lightPositions[{0}]", i), lightPositions[i]);
+                    program.SetUniform(string.Format("lightPositions[{0}]", i), lightPos);
                     program.SetUniform(string.Format("lightColors[{0}]", i), lightColors[i]);
                 }
                 program.SetUniform("ViewMatrix", viewMat);

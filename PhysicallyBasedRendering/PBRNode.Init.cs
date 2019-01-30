@@ -294,12 +294,28 @@ namespace PhysicallyBasedRendering
             this.cubemapBuffers.Render();
         }
 
+        /*
+        #?RADIANCE
+        # Made with FreeImage 3.9.3
+        FORMAT=32-bit_rle_rgbe
+        GAMMA=1
+        EXPOSURE=0
 
+        -Y 800 +X 1600
+        */
         private Texture LoadHdrEnvironmentMap(string filename)
         {
             HdrFile hdrFile = HdrAssetImporter.ReadHdrFile(filename);
             Pixel[] pixels = hdrFile.Colors;
-            var storage = new TexImage2D(TexImage2D.Target.Texture2D, GL.GL_RGB16F, hdrFile.Width, hdrFile.Height, GL.GL_RGBA, GL.GL_BYTE, new ArrayDataProvider<Pixel>(pixels));
+            byte[] bytes = new byte[pixels.Length * 4];
+            for (int i = 0; i < pixels.Length; i++)
+            {
+                //bytes[i * 4 + 0] = pixels[i].r;
+                //bytes[i * 4 + 1] = pixels[i].g;
+                //bytes[i * 4 + 2] = pixels[i].b;
+                //bytes[i * 4 + 3] = pixels[i].a;
+            }
+            var storage = new TexImage2D(TexImage2D.Target.Texture2D, GL.GL_RGB16F, hdrFile.Width, hdrFile.Height, GL.GL_RGBA, GL.GL_BYTE, new ArrayDataProvider<byte>(bytes));
             var texture = new Texture(storage,
                 new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP_TO_EDGE),
                 new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_CLAMP_TO_EDGE),
