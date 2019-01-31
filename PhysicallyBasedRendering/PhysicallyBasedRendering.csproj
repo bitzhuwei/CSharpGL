@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -51,6 +52,79 @@
     </Compile>
     <Compile Include="CubemapViewerModel.cs" />
     <Compile Include="CubemapViewerNode.cs" />
+    <Compile Include="Library\Classes\FreeImageBitmap.cs" />
+    <Compile Include="Library\Classes\FreeImageEngine.cs" />
+    <Compile Include="Library\Classes\FreeImagePlugin.cs" />
+    <Compile Include="Library\Classes\FreeImageStreamIO.cs" />
+    <Compile Include="Library\Classes\GifInformation.cs" />
+    <Compile Include="Library\Classes\ImageMetadata.cs" />
+    <Compile Include="Library\Classes\LocalPlugin.cs" />
+    <Compile Include="Library\Classes\MemoryArray.cs" />
+    <Compile Include="Library\Classes\MetadataModel.cs" />
+    <Compile Include="Library\Classes\MetadataModels.cs" />
+    <Compile Include="Library\Classes\MetadataTag.cs" />
+    <Compile Include="Library\Classes\Palette.cs" />
+    <Compile Include="Library\Classes\PluginRepository.cs" />
+    <Compile Include="Library\Classes\Scanline.cs" />
+    <Compile Include="Library\Classes\StreamWrapper.cs" />
+    <Compile Include="Library\Delegates.cs" />
+    <Compile Include="Library\Drawing\Color.cs" />
+    <Compile Include="Library\Drawing\ImageFlags.cs" />
+    <Compile Include="Library\Drawing\PixelFormat.cs" />
+    <Compile Include="Library\Drawing\Point.cs" />
+    <Compile Include="Library\Drawing\Rectangle.cs" />
+    <Compile Include="Library\Drawing\RectangleF.cs" />
+    <Compile Include="Library\Drawing\RotateFlipType.cs" />
+    <Compile Include="Library\Drawing\Size.cs" />
+    <Compile Include="Library\Drawing\SizeF.cs" />
+    <Compile Include="Library\Enumerations\DisposalMethodType.cs" />
+    <Compile Include="Library\Enumerations\FREE_IMAGE_COLOR_CHANNEL.cs" />
+    <Compile Include="Library\Enumerations\FREE_IMAGE_COLOR_DEPTH.cs" />
+    <Compile Include="Library\Enumerations\FREE_IMAGE_COLOR_OPTIONS.cs" />
+    <Compile Include="Library\Enumerations\FREE_IMAGE_COLOR_TYPE.cs" />
+    <Compile Include="Library\Enumerations\FREE_IMAGE_COMPARE_FLAGS.cs" />
+    <Compile Include="Library\Enumerations\FREE_IMAGE_DITHER.cs" />
+    <Compile Include="Library\Enumerations\FREE_IMAGE_FILTER.cs" />
+    <Compile Include="Library\Enumerations\FREE_IMAGE_FORMAT.cs" />
+    <Compile Include="Library\Enumerations\FREE_IMAGE_JPEG_OPERATION.cs" />
+    <Compile Include="Library\Enumerations\FREE_IMAGE_LOAD_FLAGS.cs" />
+    <Compile Include="Library\Enumerations\FREE_IMAGE_MDMODEL.cs" />
+    <Compile Include="Library\Enumerations\FREE_IMAGE_MDTYPE.cs" />
+    <Compile Include="Library\Enumerations\FREE_IMAGE_METADATA_COPY.cs" />
+    <Compile Include="Library\Enumerations\FREE_IMAGE_QUANTIZE.cs" />
+    <Compile Include="Library\Enumerations\FREE_IMAGE_SAVE_FLAGS.cs" />
+    <Compile Include="Library\Enumerations\FREE_IMAGE_TMO.cs" />
+    <Compile Include="Library\Enumerations\FREE_IMAGE_TYPE.cs" />
+    <Compile Include="Library\Enumerations\ICC_FLAGS.cs" />
+    <Compile Include="Library\Enumerations\MD_SEARCH_FLAGS.cs" />
+    <Compile Include="Library\FreeImageStaticImports.cs" />
+    <Compile Include="Library\FreeImageWrapper.cs" />
+    <Compile Include="Library\MonoPInvokeCallbackAttribute.cs" />
+    <Compile Include="Library\Structs\BITMAP.cs" />
+    <Compile Include="Library\Structs\BITMAPINFO.cs" />
+    <Compile Include="Library\Structs\BITMAPINFOHEADER.cs" />
+    <Compile Include="Library\Structs\FI16RGB555.cs" />
+    <Compile Include="Library\Structs\FI16RGB565.cs" />
+    <Compile Include="Library\Structs\FI1BIT.cs" />
+    <Compile Include="Library\Structs\FI4BIT.cs" />
+    <Compile Include="Library\Structs\FIBITMAP.cs" />
+    <Compile Include="Library\Structs\FICOMPLEX.cs" />
+    <Compile Include="Library\Structs\FIICCPROFILE.cs" />
+    <Compile Include="Library\Structs\FIMEMORY.cs" />
+    <Compile Include="Library\Structs\FIMETADATA.cs" />
+    <Compile Include="Library\Structs\FIMULTIBITMAP.cs" />
+    <Compile Include="Library\Structs\FIRational.cs" />
+    <Compile Include="Library\Structs\FIRGB16.cs" />
+    <Compile Include="Library\Structs\FIRGBA16.cs" />
+    <Compile Include="Library\Structs\FIRGBAF.cs" />
+    <Compile Include="Library\Structs\FIRGBF.cs" />
+    <Compile Include="Library\Structs\FITAG.cs" />
+    <Compile Include="Library\Structs\FIURational.cs" />
+    <Compile Include="Library\Structs\fi_handle.cs" />
+    <Compile Include="Library\Structs\FreeImageIO.cs" />
+    <Compile Include="Library\Structs\Plugin.cs" />
+    <Compile Include="Library\Structs\RGBQUAD.cs" />
+    <Compile Include="Library\Structs\RGBTRIPLE.cs" />
     <Compile Include="PBRNode.Init.cs" />
     <Compile Include="SphereBuffers.cs" />
     <Compile Include="QuadBuffers.cs" />
@@ -76,7 +150,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="stb_image.cs" />
     <EmbeddedResource Include="FormCubemapViewer.resx">
       <DependentUpon>FormCubemapViewer.cs</DependentUpon>
     </EmbeddedResource>
@@ -92,6 +165,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="FreeImage.lib">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -120,6 +196,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="FreeImage.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Texture\agedplanks1-albedo.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
