@@ -1,0 +1,223 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A519971E-F963-4F23-A3CE-79413D101879}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PhysicallyBasedRendering</RootNamespace>
+    <AssemblyName>PhysicallyBasedRendering</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="FormCubemapViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCubemapViewer.Designer.cs">
+      <DependentUpon>FormCubemapViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CubemapViewerModel.cs" />
+    <Compile Include="CubemapViewerNode.cs" />
+    <Compile Include="Library\Classes\FreeImageBitmap.cs" />
+    <Compile Include="Library\Classes\FreeImageEngine.cs" />
+    <Compile Include="Library\Classes\FreeImagePlugin.cs" />
+    <Compile Include="Library\Classes\FreeImageStreamIO.cs" />
+    <Compile Include="Library\Classes\GifInformation.cs" />
+    <Compile Include="Library\Classes\ImageMetadata.cs" />
+    <Compile Include="Library\Classes\LocalPlugin.cs" />
+    <Compile Include="Library\Classes\MemoryArray.cs" />
+    <Compile Include="Library\Classes\MetadataModel.cs" />
+    <Compile Include="Library\Classes\MetadataModels.cs" />
+    <Compile Include="Library\Classes\MetadataTag.cs" />
+    <Compile Include="Library\Classes\Palette.cs" />
+    <Compile Include="Library\Classes\PluginRepository.cs" />
+    <Compile Include="Library\Classes\Scanline.cs" />
+    <Compile Include="Library\Classes\StreamWrapper.cs" />
+    <Compile Include="Library\Delegates.cs" />
+    <Compile Include="Library\Drawing\Color.cs" />
+    <Compile Include="Library\Drawing\ImageFlags.cs" />
+    <Compile Include="Library\Drawing\PixelFormat.cs" />
+    <Compile Include="Library\Drawing\Point.cs" />
+    <Compile Include="Library\Drawing\Rectangle.cs" />
+    <Compile Include="Library\Drawing\RectangleF.cs" />
+    <Compile Include="Library\Drawing\RotateFlipType.cs" />
+    <Compile Include="Library\Drawing\Size.cs" />
+    <Compile Include="Library\Drawing\SizeF.cs" />
+    <Compile Include="Library\Enumerations\DisposalMethodType.cs" />
+    <Compile Include="Library\Enumerations\FREE_IMAGE_COLOR_CHANNEL.cs" />
+    <Compile Include="Library\Enumerations\FREE_IMAGE_COLOR_DEPTH.cs" />
+    <Compile Include="Library\Enumerations\FREE_IMAGE_COLOR_OPTIONS.cs" />
+    <Compile Include="Library\Enumerations\FREE_IMAGE_COLOR_TYPE.cs" />
+    <Compile Include="Library\Enumerations\FREE_IMAGE_COMPARE_FLAGS.cs" />
+    <Compile Include="Library\Enumerations\FREE_IMAGE_DITHER.cs" />
+    <Compile Include="Library\Enumerations\FREE_IMAGE_FILTER.cs" />
+    <Compile Include="Library\Enumerations\FREE_IMAGE_FORMAT.cs" />
+    <Compile Include="Library\Enumerations\FREE_IMAGE_JPEG_OPERATION.cs" />
+    <Compile Include="Library\Enumerations\FREE_IMAGE_LOAD_FLAGS.cs" />
+    <Compile Include="Library\Enumerations\FREE_IMAGE_MDMODEL.cs" />
+    <Compile Include="Library\Enumerations\FREE_IMAGE_MDTYPE.cs" />
+    <Compile Include="Library\Enumerations\FREE_IMAGE_METADATA_COPY.cs" />
+    <Compile Include="Library\Enumerations\FREE_IMAGE_QUANTIZE.cs" />
+    <Compile Include="Library\Enumerations\FREE_IMAGE_SAVE_FLAGS.cs" />
+    <Compile Include="Library\Enumerations\FREE_IMAGE_TMO.cs" />
+    <Compile Include="Library\Enumerations\FREE_IMAGE_TYPE.cs" />
+    <Compile Include="Library\Enumerations\ICC_FLAGS.cs" />
+    <Compile Include="Library\Enumerations\MD_SEARCH_FLAGS.cs" />
+    <Compile Include="Library\FreeImageStaticImports.cs" />
+    <Compile Include="Library\FreeImageWrapper.cs" />
+    <Compile Include="Library\MonoPInvokeCallbackAttribute.cs" />
+    <Compile Include="Library\Structs\BITMAP.cs" />
+    <Compile Include="Library\Structs\BITMAPINFO.cs" />
+    <Compile Include="Library\Structs\BITMAPINFOHEADER.cs" />
+    <Compile Include="Library\Structs\FI16RGB555.cs" />
+    <Compile Include="Library\Structs\FI16RGB565.cs" />
+    <Compile Include="Library\Structs\FI1BIT.cs" />
+    <Compile Include="Library\Structs\FI4BIT.cs" />
+    <Compile Include="Library\Structs\FIBITMAP.cs" />
+    <Compile Include="Library\Structs\FICOMPLEX.cs" />
+    <Compile Include="Library\Structs\FIICCPROFILE.cs" />
+    <Compile Include="Library\Structs\FIMEMORY.cs" />
+    <Compile Include="Library\Structs\FIMETADATA.cs" />
+    <Compile Include="Library\Structs\FIMULTIBITMAP.cs" />
+    <Compile Include="Library\Structs\FIRational.cs" />
+    <Compile Include="Library\Structs\FIRGB16.cs" />
+    <Compile Include="Library\Structs\FIRGBA16.cs" />
+    <Compile Include="Library\Structs\FIRGBAF.cs" />
+    <Compile Include="Library\Structs\FIRGBF.cs" />
+    <Compile Include="Library\Structs\FITAG.cs" />
+    <Compile Include="Library\Structs\FIURational.cs" />
+    <Compile Include="Library\Structs\fi_handle.cs" />
+    <Compile Include="Library\Structs\FreeImageIO.cs" />
+    <Compile Include="Library\Structs\Plugin.cs" />
+    <Compile Include="Library\Structs\RGBQUAD.cs" />
+    <Compile Include="Library\Structs\RGBTRIPLE.cs" />
+    <Compile Include="PBRNode.Init.cs" />
+    <Compile Include="SphereBuffers.cs" />
+    <Compile Include="QuadBuffers.cs" />
+    <Compile Include="CubemapBuffers.cs" />
+    <Compile Include="SphereModel.cs" />
+    <Compile Include="QuadModel.cs" />
+    <Compile Include="CubemapModel.cs" />
+    <Compile Include="HDRFile.cs" />
+    <Compile Include="PBRNode.cs" />
+    <Compile Include="PBRNode.IRenderable.cs" />
+    <Compile Include="PBRNode.shaders.brdf.cs" />
+    <Compile Include="PBRNode.shaders.equirectangularToCubeMap.cs" />
+    <Compile Include="PBRNode.shaders.irradiance.cs" />
+    <Compile Include="PBRNode.shaders.pbr.cs" />
+    <Compile Include="PBRNode.shaders.background.cs" />
+    <Compile Include="PBRNode.shaders.DebugWindow.cs" />
+    <Compile Include="PBRNode.shaders.prefliter.cs" />
+    <Compile Include="FormMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMain.Designer.cs">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FormCubemapViewer.resx">
+      <DependentUpon>FormCubemapViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMain.resx">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="FreeImage.lib">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="Texture\hdr\newport_loft.hdr">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CSharpGL.Windows\CSharpGL.Windows.csproj">
+      <Project>{704921fb-e30a-4c8a-bc73-f343ab2eb690}</Project>
+      <Name>CSharpGL.Windows</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CSharpGL\CSharpGL.csproj">
+      <Project>{a03cffff-433c-4a6e-8bd1-3a60ef9817a5}</Project>
+      <Name>CSharpGL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infrastructure\CSharpGL.Models\CSharpGL.Models.csproj">
+      <Project>{3798671c-d1a4-43aa-a4ae-edfef21cad34}</Project>
+      <Name>CSharpGL.Models</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="FreeImage.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Texture\agedplanks1-albedo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Texture\agedplanks1-ao.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Texture\agedplanks1-normal4-ue.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Texture\agedplanks1-roughness.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
