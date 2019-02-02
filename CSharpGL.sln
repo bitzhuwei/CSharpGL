@@ -213,7 +213,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TessellatedTriangle", "Demo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DistanceFieldFont", "Demos\DistanceFieldFont\DistanceFieldFont.csproj", "{EF3B34E7-7B74-499A-9ED2-C4B1C964A4AC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhysicallyBasedRendering", "PhysicallyBasedRendering\PhysicallyBasedRendering.csproj", "{A519971E-F963-4F23-A3CE-79413D101879}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhysicallyBasedRendering", "Demos\PhysicallyBasedRendering\PhysicallyBasedRendering.csproj", "{A519971E-F963-4F23-A3CE-79413D101879}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
