@@ -8,22 +8,18 @@ using System.IO;
 using FreeImageAPI;
 using System.Runtime.InteropServices;
 
-namespace PhysicallyBasedRendering
-{
-    partial class PBRNode
-    {
+namespace PhysicallyBasedRendering {
+    partial class PBRNode {
         private static GLDelegates.void_uint_uint_uint_uint_int glFramebufferTexture2D;
 
-        static PBRNode()
-        {
+        static PBRNode() {
             glFramebufferTexture2D = GL.Instance.GetDelegateFor("glFramebufferTexture2D", GLDelegates.typeof_void_uint_uint_uint_uint_int) as GLDelegates.void_uint_uint_uint_uint_int;
 
         }
 
-        const int irradianceMapLength = 1024; // 32
+        const int irradianceMapLength = 32;
 
-        protected override void DoInitialize()
-        {
+        protected override void DoInitialize() {
             // init textures.
             this.envCubeMap = LoadEnvCubeMap();
             this.irradianceMap = LoadIrradianceMap();
@@ -86,8 +82,7 @@ namespace PhysicallyBasedRendering
                 ShaderProgram program = this.equiRectangular2CubemapProgram;
                 program.SetUniform("equirectangularMap", this.hdrTexture);
                 program.SetUniform("ProjMatrix", captureProjection);
-                for (uint i = 0; i < 6; ++i)
-                {
+                for (uint i = 0; i < 6; ++i) {
                     fbo.Bind();
                     CubemapFace face = (CubemapFace)(GL.GL_TEXTURE_CUBE_MAP_POSITIVE_X + i);
                     uint location = 0;
@@ -126,8 +121,7 @@ namespace PhysicallyBasedRendering
                 ShaderProgram program = this.irradianceProgram;
                 program.SetUniform("environmentMap", envCubeMap);
                 program.SetUniform("ProjMatrix", captureProjection);
-                for (uint i = 0; i < 6; ++i)
-                {
+                for (uint i = 0; i < 6; ++i) {
                     fbo.Bind();
                     CubemapFace face = (CubemapFace)(GL.GL_TEXTURE_CUBE_MAP_POSITIVE_X + i);
                     uint location = 0;
@@ -136,17 +130,33 @@ namespace PhysicallyBasedRendering
                     fbo.CheckCompleteness();
                     fbo.Unbind();
 
+                    //vec3 color = System.Drawing.Color.SkyBlue.ToVec3();
+                    vec3 color = System.Drawing.Color.Red.ToVec3();
+                    //fbo.Bind();
+                    //program.Bind();
+                    //program.SetUniform("ViewMatrix", captureView[i]);
+                    //program.PushUniforms();
+                    //GL.Instance.ClearColor(color.x, color.y, color.z, 1);
+                    //GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
+                    ////renderCube();
+                    //program.Unbind();
+                    //fbo.Unbind();
+
+                    //irradianceMap.GetImage(face, fbo.Width, fbo.Height).Save(
+                    //    string.Format("irradianceMap.clear.{0}.png", face));
+
                     fbo.Bind();
                     program.Bind();
                     program.SetUniform("ViewMatrix", captureView[i]);
                     program.PushUniforms();
+                    GL.Instance.ClearColor(color.x, color.y, color.z, 1);
                     GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
                     renderCube();
                     program.Unbind();
                     fbo.Unbind();
 
                     irradianceMap.GetImage(face, fbo.Width, fbo.Height).Save(
-                        string.Format("irradianceMap.{0}.png", face));
+                        string.Format("irradianceMap.fill.{0}.png", face));
                 }
                 viewportSwitch.Off();
                 fbo.Dispose();
@@ -157,8 +167,7 @@ namespace PhysicallyBasedRendering
                 program.SetUniform("environmentMap", envCubeMap);
                 program.SetUniform("ProjMatrix", captureProjection);
                 const int maxMipLevels = 5;
-                for (int level = 0; level < maxMipLevels; level++)
-                {
+                for (int level = 0; level < maxMipLevels; level++) {
                     int mipWidth = (int)(128 * Math.Pow(0.5, level));
                     int mipHeight = (int)(128 * Math.Pow(0.5, level));
                     var fbo = new Framebuffer(mipWidth, mipHeight);
@@ -172,8 +181,7 @@ namespace PhysicallyBasedRendering
                     viewportSwitch.On();
                     float roughness = (float)level / (float)(maxMipLevels - 1);
                     program.SetUniform("roughness", roughness);
-                    for (uint j = 0; j < 6; j++)
-                    {
+                    for (uint j = 0; j < 6; j++) {
                         program.SetUniform("ViewMatrix", captureView[level]);
 
                         fbo.Bind();
@@ -226,8 +234,7 @@ namespace PhysicallyBasedRendering
             }
         }
 
-        private Texture LoadBRDFTexture()
-        {
+        private Texture LoadBRDFTexture() {
             var storage = new TexImage2D(TexImage2D.Target.Texture2D, GL.GL_RG16F, 512, 512, GL.GL_RG, GL.GL_FLOAT);
             var brdfLUTTexture = new Texture(storage,
                 new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP_TO_EDGE),
@@ -238,8 +245,7 @@ namespace PhysicallyBasedRendering
             return brdfLUTTexture;
         }
 
-        private Texture LoadPrefliterMap()
-        {
+        private Texture LoadPrefliterMap() {
             var dataProvider = new CubemapDataProvider(null, null, null, null, null, null);
             var storage = new CubemapTexImage2D(GL.GL_RGB16F, 128, 128, GL.GL_RGB, GL.GL_FLOAT, dataProvider, 6);
             var prefliterMap = new Texture(storage, new MipmapBuilder(),
@@ -252,8 +258,7 @@ namespace PhysicallyBasedRendering
             return prefliterMap;
         }
 
-        private Texture LoadIrradianceMap()
-        {
+        private Texture LoadIrradianceMap() {
             var dataProvider = new CubemapDataProvider(null, null, null, null, null, null);
             var storage = new CubemapTexImage2D(GL.GL_RGB16F, irradianceMapLength, irradianceMapLength, GL.GL_RGB, GL.GL_FLOAT, dataProvider);
             var irradianceMap = new Texture(storage,
@@ -266,8 +271,7 @@ namespace PhysicallyBasedRendering
             return irradianceMap;
         }
 
-        private Texture LoadEnvCubeMap()
-        {
+        private Texture LoadEnvCubeMap() {
             var dataProvider = new CubemapDataProvider(null, null, null, null, null, null);
             var storage = new CubemapTexImage2D(GL.GL_RGB16F, 512, 512, GL.GL_RGB, GL.GL_FLOAT, dataProvider);
             var envCubeMap = new Texture(storage,
@@ -280,30 +284,24 @@ namespace PhysicallyBasedRendering
             return envCubeMap;
         }
 
-        private void renderSphere()
-        {
-            if (this.sphereBuffers == null)
-            {
+        private void renderSphere() {
+            if (this.sphereBuffers == null) {
                 this.sphereBuffers = new SphereBuffers();
             }
 
             this.sphereBuffers.Render();
         }
 
-        private void renderQuad()
-        {
-            if (this.quadBuffers == null)
-            {
+        private void renderQuad() {
+            if (this.quadBuffers == null) {
                 this.quadBuffers = new QuadBuffers();
             }
 
             this.quadBuffers.Render();
         }
 
-        private void renderCube()
-        {
-            if (this.cubemapBuffers == null)
-            {
+        private void renderCube() {
+            if (this.cubemapBuffers == null) {
                 this.cubemapBuffers = new CubemapBuffers();
             }
 
@@ -319,13 +317,11 @@ namespace PhysicallyBasedRendering
 
         -Y 800 +X 1600
         */
-        private Texture LoadHdrEnvironmentMap(string filename)
-        {
+        private Texture LoadHdrEnvironmentMap(string filename) {
             HdrFile hdrFile = HdrAssetImporter.ReadHdrFile(filename);
             Pixel[] pixels = hdrFile.Colors;
             byte[] bytes = new byte[pixels.Length * 4];
-            for (int i = 0; i < pixels.Length; i++)
-            {
+            for (int i = 0; i < pixels.Length; i++) {
                 //bytes[i * 4 + 0] = pixels[i].r;
                 //bytes[i * 4 + 1] = pixels[i].g;
                 //bytes[i * 4 + 2] = pixels[i].b;
@@ -346,23 +342,19 @@ namespace PhysicallyBasedRendering
             return texture;
         }
 
-        public unsafe Bitmap LoadHdrFormFreeImage(string FileName)
-        {
+        public unsafe Bitmap LoadHdrFormFreeImage(string FileName) {
             Bitmap Bmp = null;
             FREE_IMAGE_FORMAT fif = FREE_IMAGE_FORMAT.FIF_UNKNOWN;
-            if (FreeImage.IsAvailable() == true)
-            {
+            if (FreeImage.IsAvailable() == true) {
                 fif = FreeImage.GetFileType(FileName, 0);
-                if (fif != FREE_IMAGE_FORMAT.FIF_HDR)
-                {
+                if (fif != FREE_IMAGE_FORMAT.FIF_HDR) {
                     throw new Exception("不是Hdr格式的图像.");
                 }
                 fif = FreeImage.GetFIFFromFilename(FileName);
                 FIBITMAP Dib = FreeImage.Load(fif, FileName, FREE_IMAGE_LOAD_FLAGS.DEFAULT);
                 uint Bpp = FreeImage.GetBPP(Dib);
 
-                if (Bpp != 96)
-                {
+                if (Bpp != 96) {
                     FreeImage.Unload(Dib);
                     throw new Exception("无法支持的Hdr格式.");
                 }
@@ -384,12 +376,10 @@ namespace PhysicallyBasedRendering
                 System.Drawing.Imaging.BitmapData BmpData = Bmp.LockBits(new System.Drawing.Rectangle(0, 0, Bmp.Width, Bmp.Height), System.Drawing.Imaging.ImageLockMode.ReadWrite, System.Drawing.Imaging.PixelFormat.Format24bppRgb);
                 Pixel = (byte*)BmpData.Scan0;
 
-                for (int Y = 0; Y < Height; Y++)
-                {
+                for (int Y = 0; Y < Height; Y++) {
                     Speed = Y * BmpData.Stride;
                     Index = Y * (int)Width * 3;
-                    for (int X = 0; X < Width; X++)
-                    {
+                    for (int X = 0; X < Width; X++) {
                         Value = (Data[Index + 2] * 255);
                         if (Value > 255)
                             Value = 255;
@@ -421,8 +411,7 @@ namespace PhysicallyBasedRendering
                 return null;
         }
 
-        private Texture LoadTexture(string filename)
-        {
+        private Texture LoadTexture(string filename) {
             var bitmap = new Bitmap(filename);
             var storage = new TexImageBitmap(bitmap, GL.GL_RGB);
             var texture = new Texture(storage,
