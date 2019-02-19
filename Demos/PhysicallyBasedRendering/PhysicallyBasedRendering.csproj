@@ -150,6 +150,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="stb_Image\rgbe.cs" />
     <EmbeddedResource Include="FormCubemapViewer.resx">
       <DependentUpon>FormCubemapViewer.cs</DependentUpon>
     </EmbeddedResource>
@@ -199,6 +200,9 @@
     <Content Include="FreeImage.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="stb_Image\rgbe.cpp" />
+    <Content Include="stb_Image\rgbe.h" />
+    <Content Include="stb_Image\std_image.h" />
     <Content Include="Texture\agedplanks1-albedo.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -212,6 +216,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
