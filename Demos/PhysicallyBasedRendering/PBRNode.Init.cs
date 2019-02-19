@@ -131,19 +131,7 @@ namespace PhysicallyBasedRendering {
                     fbo.Unbind();
 
                     //vec3 color = System.Drawing.Color.SkyBlue.ToVec3();
-                    vec3 color = System.Drawing.Color.Red.ToVec3();
-                    //fbo.Bind();
-                    //program.Bind();
-                    //program.SetUniform("ViewMatrix", captureView[i]);
-                    //program.PushUniforms();
-                    //GL.Instance.ClearColor(color.x, color.y, color.z, 1);
-                    //GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
-                    ////renderCube();
-                    //program.Unbind();
-                    //fbo.Unbind();
-
-                    //irradianceMap.GetImage(face, fbo.Width, fbo.Height).Save(
-                    //    string.Format("irradianceMap.clear.{0}.png", face));
+                    vec3 color = System.Drawing.Color.Black.ToVec3();
 
                     fbo.Bind();
                     program.Bind();
