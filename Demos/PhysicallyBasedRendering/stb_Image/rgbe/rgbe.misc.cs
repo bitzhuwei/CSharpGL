@@ -5,7 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace stb_Image {
+namespace CSharpGL {
     public static partial class rgbe {
 
         /* default error routine.  change this to change error handling */

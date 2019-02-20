@@ -5,7 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace stb_Image {
+namespace CSharpGL {
     public static partial class rgbe {
         /* The code below is only needed for the run-length encoded files. */
         /* Run length encoding adds considerable complexity but does */

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace stb_Image {
+namespace CSharpGL {
     public static partial class rgbe {
         /* read or write headers */
         /* you may set rgbe_header_info to null if you want to */

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace stb_Image {
+namespace CSharpGL {
     public static partial class rgbe {
         /* standard conversion from float pixels to rgbe pixels */
         /* note: you can remove the "inline"s if your compiler complains about it */

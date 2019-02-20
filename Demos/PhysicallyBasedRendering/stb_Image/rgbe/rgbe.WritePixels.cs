@@ -5,7 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace stb_Image {
+namespace CSharpGL {
     public static partial class rgbe {
         /* read or write pixels */
         /* can read or write pixels in chunks of any size including single pixels*/

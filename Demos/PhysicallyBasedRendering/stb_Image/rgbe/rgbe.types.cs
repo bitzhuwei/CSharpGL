@@ -5,7 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace stb_Image {
+namespace CSharpGL {
     public struct rgbe_header_info {
         /// <summary>
         /// indicate which fields are valid.
