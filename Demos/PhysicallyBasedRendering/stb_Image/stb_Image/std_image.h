@@ -765,58 +765,10 @@ typedef struct
 	int channel_order;
 } stbi__result_info;
 
-#ifndef STBI_NO_JPEG
-static int      stbi__jpeg_test(stbi__context *s);
-static void    *stbi__jpeg_load(stbi__context *s, int *x, int *y, int *comp, int req_comp, stbi__result_info *ri);
-static int      stbi__jpeg_info(stbi__context *s, int *x, int *y, int *comp);
-#endif
-
-#ifndef STBI_NO_PNG
-static int      stbi__png_test(stbi__context *s);
-static void    *stbi__png_load(stbi__context *s, int *x, int *y, int *comp, int req_comp, stbi__result_info *ri);
-static int      stbi__png_info(stbi__context *s, int *x, int *y, int *comp);
-#endif
-
-#ifndef STBI_NO_BMP
-static int      stbi__bmp_test(stbi__context *s);
-static void    *stbi__bmp_load(stbi__context *s, int *x, int *y, int *comp, int req_comp, stbi__result_info *ri);
-static int      stbi__bmp_info(stbi__context *s, int *x, int *y, int *comp);
-#endif
-
-#ifndef STBI_NO_TGA
-static int      stbi__tga_test(stbi__context *s);
-static void    *stbi__tga_load(stbi__context *s, int *x, int *y, int *comp, int req_comp, stbi__result_info *ri);
-static int      stbi__tga_info(stbi__context *s, int *x, int *y, int *comp);
-#endif
-
-#ifndef STBI_NO_PSD
-static int      stbi__psd_test(stbi__context *s);
-static void    *stbi__psd_load(stbi__context *s, int *x, int *y, int *comp, int req_comp, stbi__result_info *ri, int bpc);
-static int      stbi__psd_info(stbi__context *s, int *x, int *y, int *comp);
-#endif
-
 #ifndef STBI_NO_HDR
 static int      stbi__hdr_test(stbi__context *s);
 static float   *stbi__hdr_load(stbi__context *s, int *x, int *y, int *comp, int req_comp, stbi__result_info *ri);
 static int      stbi__hdr_info(stbi__context *s, int *x, int *y, int *comp);
-#endif
-
-#ifndef STBI_NO_PIC
-static int      stbi__pic_test(stbi__context *s);
-static void    *stbi__pic_load(stbi__context *s, int *x, int *y, int *comp, int req_comp, stbi__result_info *ri);
-static int      stbi__pic_info(stbi__context *s, int *x, int *y, int *comp);
-#endif
-
-#ifndef STBI_NO_GIF
-static int      stbi__gif_test(stbi__context *s);
-static void    *stbi__gif_load(stbi__context *s, int *x, int *y, int *comp, int req_comp, stbi__result_info *ri);
-static int      stbi__gif_info(stbi__context *s, int *x, int *y, int *comp);
-#endif
-
-#ifndef STBI_NO_PNM
-static int      stbi__pnm_test(stbi__context *s);
-static void    *stbi__pnm_load(stbi__context *s, int *x, int *y, int *comp, int req_comp, stbi__result_info *ri);
-static int      stbi__pnm_info(stbi__context *s, int *x, int *y, int *comp);
 #endif
 
 // this is not threadsafe
@@ -951,39 +903,11 @@ static void *stbi__load_main(stbi__context *s, int *x, int *y, int *comp, int re
 	ri->channel_order = STBI_ORDER_RGB; // all current input & output are this, but this is here so we can add BGR order
 	ri->num_channels = 0;
 
-#ifndef STBI_NO_JPEG
-	if (stbi__jpeg_test(s)) return stbi__jpeg_load(s, x, y, comp, req_comp, ri);
-#endif
-#ifndef STBI_NO_PNG
-	if (stbi__png_test(s))  return stbi__png_load(s, x, y, comp, req_comp, ri);
-#endif
-#ifndef STBI_NO_BMP
-	if (stbi__bmp_test(s))  return stbi__bmp_load(s, x, y, comp, req_comp, ri);
-#endif
-#ifndef STBI_NO_GIF
-	if (stbi__gif_test(s))  return stbi__gif_load(s, x, y, comp, req_comp, ri);
-#endif
-#ifndef STBI_NO_PSD
-	if (stbi__psd_test(s))  return stbi__psd_load(s, x, y, comp, req_comp, ri, bpc);
-#endif
-#ifndef STBI_NO_PIC
-	if (stbi__pic_test(s))  return stbi__pic_load(s, x, y, comp, req_comp, ri);
-#endif
-#ifndef STBI_NO_PNM
-	if (stbi__pnm_test(s))  return stbi__pnm_load(s, x, y, comp, req_comp, ri);
-#endif
-
 #ifndef STBI_NO_HDR
 	if (stbi__hdr_test(s)) {
 		float *hdr = stbi__hdr_load(s, x, y, comp, req_comp, ri);
 		return stbi__hdr_to_ldr(hdr, *x, *y, req_comp ? req_comp : *comp);
 	}
-#endif
-
-#ifndef STBI_NO_TGA
-	// test tga last because it's a crappy test!
-	if (stbi__tga_test(s))
-		return stbi__tga_load(s, x, y, comp, req_comp, ri);
 #endif
 
 	return stbi__errpuc("unknown image type", "Image not of any known type, or corrupt");
@@ -2255,14 +2179,14 @@ static void stbi__idct_simd(unsigned char *out, int out_stride, short data[64])
 
 	// butterfly a/b, add bias, then shift by "s" and pack
 #define dct_bfly32o(out0, out1, a,b,bias,s) \
-					      { \
+						      { \
          __m128i abiased_l = _mm_add_epi32(a##_l, bias); \
          __m128i abiased_h = _mm_add_epi32(a##_h, bias); \
          dct_wadd(sum, abiased, b); \
          dct_wsub(dif, abiased, b); \
          out0 = _mm_packs_epi32(_mm_srai_epi32(sum_l, s), _mm_srai_epi32(sum_h, s)); \
          out1 = _mm_packs_epi32(_mm_srai_epi32(dif_l, s), _mm_srai_epi32(dif_h, s)); \
-					      }
+						      }
 
 	// 8-bit interleave step (for transposes)
 #define dct_interleave8(a, b) \
@@ -2277,7 +2201,7 @@ static void stbi__idct_simd(unsigned char *out, int out_stride, short data[64])
       b = _mm_unpackhi_epi16(tmp, b)
 
 #define dct_pass(bias,shift) \
-					      { \
+						      { \
          /* even part */ \
          dct_rot(t2e,t3e, row2,row6, rot0_0,rot0_1); \
          __m128i sum04 = _mm_add_epi16(row0, row4); \
@@ -2302,7 +2226,7 @@ static void stbi__idct_simd(unsigned char *out, int out_stride, short data[64])
          dct_bfly32o(row1,row6, x1,x6,bias,shift); \
          dct_bfly32o(row2,row5, x2,x5,bias,shift); \
          dct_bfly32o(row3,row4, x3,x4,bias,shift); \
-					      }
+						      }
 
 	__m128i rot0_0 = dct_const(stbi__f2f(0.5411961f), stbi__f2f(0.5411961f) + stbi__f2f(-1.847759065f));
 	__m128i rot0_1 = dct_const(stbi__f2f(0.5411961f) + stbi__f2f(0.765366865f), stbi__f2f(0.5411961f));
@@ -2441,15 +2365,15 @@ static void stbi__idct_simd(unsigned char *out, int out_stride, short data[64])
 
 	// butterfly a/b, then shift using "shiftop" by "s" and pack
 #define dct_bfly32o(out0,out1, a,b,shiftop,s) \
-					   { \
+						   { \
       dct_wadd(sum, a, b); \
       dct_wsub(dif, a, b); \
       out0 = vcombine_s16(shiftop(sum_l, s), shiftop(sum_h, s)); \
       out1 = vcombine_s16(shiftop(dif_l, s), shiftop(dif_h, s)); \
-					   }
+						   }
 
 #define dct_pass(shiftop, shift) \
-					   { \
+						   { \
       /* even part */ \
       int16x8_t sum26 = vaddq_s16(row2, row6); \
       dct_long_mul(p1e, sum26, rot0_0); \
@@ -2486,7 +2410,7 @@ static void stbi__idct_simd(unsigned char *out, int out_stride, short data[64])
       dct_bfly32o(row1,row6, x1,x6,shiftop,shift); \
       dct_bfly32o(row2,row5, x2,x5,shiftop,shift); \
       dct_bfly32o(row3,row4, x3,x4,shiftop,shift); \
-					   }
+						   }
 
 	// load
 	row0 = vld1q_s16(data + 0 * 8);
