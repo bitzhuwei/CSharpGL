@@ -152,6 +152,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="stb_Image\rgbe.float2rgbe.cs" />
     <Compile Include="stb_Image\rgbe,consts.cs" />
+    <Compile Include="stb_Image\rgbe.rgbe2float.cs" />
     <Compile Include="stb_Image\rgbe.types.cs" />
     <Compile Include="stb_Image\rgbe.misc.cs" />
     <EmbeddedResource Include="FormCubemapViewer.resx">
