@@ -96,40 +96,63 @@ namespace stb_Image {
         }
 
         [StructLayout(LayoutKind.Explicit, Size = sizeof(double))]
-        struct U {
+        unsafe struct U2 {
             [FieldOffset(0)]
             public double d;
             [FieldOffset(0)]
-            public byte c0;
-            [FieldOffset(1)]
-            public byte c1;
-            [FieldOffset(2)]
-            public byte c2;
-            [FieldOffset(3)]
-            public byte c3;
-            [FieldOffset(4)]
-            public byte c4;
-            [FieldOffset(5)]
-            public byte c5;
-            [FieldOffset(6)]
-            public byte c6;
-            [FieldOffset(7)]
-            public byte c7;
+            public fixed byte c[8];
         }
 
-        public static double frexp(double x, out int exp) {
-            U u = new U(); u.d = x;
+        public static unsafe double frexp(double x, out int exp) {
+            U2 u = new U2(); u.d = x;
             //得到移码，并减去1022得到指数值。
-            exp = (int)(((u.c7 & 0x7f) << 4) | (u.c6 >> 4)) - 1022;
+            exp = (int)(((u.c[7] & 0x7f) << 4) | (u.c[6] >> 4)) - 1022;
             //把指数部分置为0x03FE
-            u.c7 &= 0x80;
-            u.c7 |= 0x3f;
-            u.c6 &= 0x0f;
-            u.c6 |= 0xe0;
+            u.c[7] &= 0x80;
+            u.c[7] |= 0x3f;
+            u.c[6] &= 0x0f;
+            u.c[6] |= 0xe0;
 
             return u.d;
         }
 
+        // this works too.
+        //[StructLayout(LayoutKind.Explicit, Size = sizeof(double))]
+        //struct U {
+        //    [FieldOffset(0)]
+        //    public double d;
+        //    [FieldOffset(0)]
+        //    public byte c0;
+        //    [FieldOffset(1)]
+        //    public byte c1;
+        //    [FieldOffset(2)]
+        //    public byte c2;
+        //    [FieldOffset(3)]
+        //    public byte c3;
+        //    [FieldOffset(4)]
+        //    public byte c4;
+        //    [FieldOffset(5)]
+        //    public byte c5;
+        //    [FieldOffset(6)]
+        //    public byte c6;
+        //    [FieldOffset(7)]
+        //    public byte c7;
+        //}
+
+        //public static double frexp(double x, out int exp) {
+        //    U u = new U(); u.d = x;
+        //    //得到移码，并减去1022得到指数值。
+        //    exp = (int)(((u.c7 & 0x7f) << 4) | (u.c6 >> 4)) - 1022;
+        //    //把指数部分置为0x03FE
+        //    u.c7 &= 0x80;
+        //    u.c7 |= 0x3f;
+        //    u.c6 &= 0x0f;
+        //    u.c6 |= 0xe0;
+
+        //    return u.d;
+        //}
+
+        // this failed.
         //public static double frexp(double x, out int exp) {
         //    //得到移码，并减去1022得到指数值。
         //    long l = BitConverter.DoubleToInt64Bits(x);
