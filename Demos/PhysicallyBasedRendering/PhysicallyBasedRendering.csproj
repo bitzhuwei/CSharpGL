@@ -162,6 +162,7 @@
     <Compile Include="stb_Image\rgbe\rgbe.rgbe2float.cs" />
     <Compile Include="stb_Image\rgbe\rgbe.types.cs" />
     <Compile Include="stb_Image\rgbe\rgbe.misc.cs" />
+    <Compile Include="stb_Image\stb_Image\stb_Image.LoadHDR.cs" />
     <Compile Include="stb_Image\stb_Image\stb_Image.cs" />
     <EmbeddedResource Include="FormCubemapViewer.resx">
       <DependentUpon>FormCubemapViewer.cs</DependentUpon>
