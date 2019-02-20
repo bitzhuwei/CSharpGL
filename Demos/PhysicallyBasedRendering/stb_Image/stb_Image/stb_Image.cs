@@ -22,7 +22,7 @@ namespace CSharpGL {
         delegate int delRead(object user, char* data, int size);
         delegate void delSkip(object user, int n);
         delegate int delEof(object user);
-        struct stbi_io_callbacks {
+        class stbi_io_callbacks {
             // fill 'data' with 'size' bytes.  return number of bytes actually read
             public delRead read;
 
@@ -31,20 +31,24 @@ namespace CSharpGL {
 
             // returns nonzero if we are at end of file/data
             public delEof eof;
+
+            public stbi_io_callbacks(delRead read, delSkip skip, delEof eof) {
+                this.read = read; this.skip = skip; this.eof = eof;
+            }
         }
 
         // stbi__context structure is our basic context used by all images, so it
         // contains all the IO context, plus some basic image information
-        unsafe struct stbi__context {
+        unsafe class stbi__context {
             public UInt32 img_x, img_y;
             public int img_n, img_out_n;
 
             public stbi_io_callbacks io;
-            public void* io_user_data;
+            public object io_user_data;
 
             public int read_from_callbacks;
             public int buflen;
-            public char* buffer_start;//=new char[128];
+            public char* buffer_start;// = stackalloc char[128];
 
             public char* img_buffer;
             public char* img_buffer_end;
