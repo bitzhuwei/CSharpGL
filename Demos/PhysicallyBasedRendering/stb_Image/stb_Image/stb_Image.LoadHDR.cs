@@ -33,7 +33,7 @@ namespace CSharpGL {
 
         private static char* stbi__load_and_postprocess_8bit(stbi__context s, int* x, int* y, int* comp, int req_comp) {
             stbi__result_info ri;
-            void* result = stbi__load_main(ref s, x, y, comp, req_comp, &ri, 8);
+            void* result = stbi__load_main(s, x, y, comp, req_comp, &ri, 8);
 
             if (result == null) { return null; }
 
@@ -162,7 +162,7 @@ namespace CSharpGL {
             }
         }
 
-        private static void* stbi__load_main(ref stbi__context s, int* x, int* y, int* comp, int req_comp, stbi__result_info* ri, int bpc) {
+        private static void* stbi__load_main(stbi__context s, int* x, int* y, int* comp, int req_comp, stbi__result_info* ri, int bpc) {
             // make sure it's initialized if we add new fields
             ri->num_channels = 0; ri->channel_order = 0;
             ri->bits_per_channel = 8; // default is 8 so most paths don't have to be changed
@@ -170,7 +170,7 @@ namespace CSharpGL {
             ri->num_channels = 0;
 
             //if (stbi__hdr_test(s)) {
-            float* hdr = stbi__hdr_load(ref s, x, y, comp, req_comp, ri);
+            float* hdr = stbi__hdr_load(s, x, y, comp, req_comp, ri);
             return stbi__hdr_to_ldr(hdr, *x, *y, req_comp != 0 ? req_comp : *comp);
             //}
 
@@ -236,9 +236,301 @@ namespace CSharpGL {
             return a <= int.MaxValue / b;
         }
 
-        private static float* stbi__hdr_load(ref stbi__context s, int* x, int* y, int* comp, int req_comp, stbi__result_info* ri) {
-            throw new NotImplementedException();
+        const int STBI__HDR_BUFLEN = 1024;
+        private static float* stbi__hdr_load(stbi__context s, int* x, int* y, int* comp, int req_comp, stbi__result_info* ri) {
+            char* buffer = stackalloc char[STBI__HDR_BUFLEN];
+            char* token;
+            bool valid = false;
+            int width, height;
+            char* scanline;
+            float* hdr_data;
+            int len;
+            char count, value;
+            int i, j, k, c1, c2, z;
+            char* headerToken;
+            // Check identifier
+            headerToken = stbi__hdr_gettoken(s, buffer);
+            if (strcmp(headerToken, "#?RADIANCE") && strcmp(headerToken, "#?RGBE")) { stbi__errpf("Corrupt HDR image"); return null; }
+
+            // Parse header
+            for (; ; ) {
+                token = stbi__hdr_gettoken(s, buffer);
+                if (token[0] == 0) break;
+                if (!strcmp(token, "FORMAT=32-bit_rle_rgbe")) { valid = true; }
+            }
+
+            if (!valid) { stbi__errpf("Unsupported HDR format"); return null; }
+
+            // Parse width and height
+            // can't use sscanf() if we're not using stdio!
+            token = stbi__hdr_gettoken(s, buffer);
+            if (strncmp(token, "-Y ", 3)) { stbi__errpf("Unsupported HDR format"); return null; }
+            token += 3;
+            height = (int)strtol(token, &token, 10);
+            while (*token == ' ') ++token;
+            if (strncmp(token, "+X ", 3)) { stbi__errpf("Unsupported HDR format"); return null; }
+            token += 3;
+            width = (int)strtol(token, null, 10);
+
+            *x = width;
+            *y = height;
+
+            if (comp != null) *comp = 3;
+            if (req_comp == 0) req_comp = 3;
+
+            if (!stbi__mad4sizes_valid(width, height, req_comp, sizeof(float), 0)) { stbi__errpf("HDR image is too large"); return null; }
+            // Read data
+            hdr_data = (float*)stbi__malloc_mad4(width, height, req_comp, sizeof(float), 0);
+            if (hdr_data == null) { stbi__errpf("Out of memory"); return null; }
+
+            // Load image data
+            // image data is stored as some number of sca
+            if (width < 8 || width >= 32768) {
+                // Read flat data
+                for (j = 0; j < height; ++j) {
+                    for (i = 0; i < width; ++i) {
+                        char* rgbe = stackalloc char[4];
+                        //main_decode_loop:
+                        stbi__getn(s, rgbe, 4);
+                        stbi__hdr_convert(hdr_data + j * width * req_comp + i * req_comp, rgbe, req_comp);
+                    }
+                }
+            }
+            else {
+                // Read RLE-encoded data
+                scanline = null;
+
+                for (j = 0; j < height; ++j) {
+                    c1 = stbi__get8(s);
+                    c2 = stbi__get8(s);
+                    len = stbi__get8(s);
+                    if (c1 != (char)2 || c2 != (char)2 || ((len & 0x80) != 0)) {
+                        // not run-length encoded, so we have to actually use THIS data as a decoded
+                        // pixel (note this can't be a valid pixel--one of RGB must be >= 128)
+                        char* rgbe = stackalloc char[4];
+                        rgbe[0] = (char)c1;
+                        rgbe[1] = (char)c2;
+                        rgbe[2] = (char)len;
+                        rgbe[3] = (char)stbi__get8(s);
+                        stbi__hdr_convert(hdr_data, rgbe, req_comp);
+                        i = 1;
+                        j = 0;
+                        if (scanline != null) { STBI_FREE(scanline); scanline = null; }
+                        //goto main_decode_loop; // yes, this makes no sense
+                        // this replaced goto statement.
+                        stbi__getn(s, rgbe, 4);
+                        stbi__hdr_convert(hdr_data + j * width * req_comp + i * req_comp, rgbe, req_comp);
+                        ++j; ++i;
+                        // Read flat data
+                        for (; j < height; ++j) {
+                            for (; i < width; ++i) {
+                                stbi__getn(s, rgbe, 4);
+                                stbi__hdr_convert(hdr_data + j * width * req_comp + i * req_comp, rgbe, req_comp);
+                            }
+                        }
+                        break;
+                        // end of goto.
+                    }
+                    len <<= 8;
+                    len |= stbi__get8(s);
+                    if (len != width) { STBI_FREE(hdr_data); STBI_FREE(scanline); stbi__errpf("invalid decoded scanline length | corrupt HDR"); return null; }
+                    if (scanline == null) {
+                        scanline = (char*)stbi__malloc_mad2(width, 4, 0);
+                        if (scanline == null) {
+                            STBI_FREE(hdr_data);
+                            stbi__errpf("Out of memory");
+                            return null;
+                        }
+                    }
+
+                    for (k = 0; k < 4; ++k) {
+                        int nleft;
+                        i = 0;
+                        while ((nleft = width - i) > 0) {
+                            count = stbi__get8(s);
+                            if (count > 128) {
+                                // Run
+                                value = stbi__get8(s);
+                                count -= (char)128;
+                                if (count > nleft) { STBI_FREE(hdr_data); STBI_FREE(scanline); stbi__errpf("corrupt | bad RLE data in HDR"); return null; }
+                                for (z = 0; z < count; ++z)
+                                    scanline[i++ * 4 + k] = value;
+                            }
+                            else {
+                                // Dump
+                                if (count > nleft) { STBI_FREE(hdr_data); STBI_FREE(scanline); stbi__errpf("corrupt | bad RLE data in HDR"); return null; }
+                                for (z = 0; z < count; ++z)
+                                    scanline[i++ * 4 + k] = stbi__get8(s);
+                            }
+                        }
+                    }
+                    for (i = 0; i < width; ++i)
+                        stbi__hdr_convert(hdr_data + (j * width + i) * req_comp, scanline + i * 4, req_comp);
+                }
+                if (scanline != null) { STBI_FREE(scanline); scanline = null; }
+            }
+
+            return hdr_data;
         }
 
+        // mallocs with size overflow checking
+        static void* stbi__malloc_mad2(int a, int b, int add) {
+            if (!stbi__mad2sizes_valid(a, b, add)) return null;
+            return (void*)Marshal.AllocHGlobal(a * b + add);
+        }
+
+        // returns 1 if "a*b + add" has no negative terms/factors and doesn't overflow
+        static bool stbi__mad2sizes_valid(int a, int b, int add) {
+            return stbi__mul2sizes_valid(a, b) && stbi__addsizes_valid(a * b, add);
+        }
+
+        static void STBI_FREE(void* ptr) {
+            Marshal.FreeHGlobal((IntPtr)ptr);
+        }
+        static void stbi__hdr_convert(float* output, char* input, int req_comp) {
+            if (input[3] != 0) {
+                float f1;
+                // Exponent
+                f1 = (float)ldexp(1.0f, input[3] - (int)(128 + 8));
+                if (req_comp <= 2)
+                    output[0] = (input[0] + input[1] + input[2]) * f1 / 3;
+                else {
+                    output[0] = input[0] * f1;
+                    output[1] = input[1] * f1;
+                    output[2] = input[2] * f1;
+                }
+                if (req_comp == 2) output[1] = 1;
+                if (req_comp == 4) output[3] = 1;
+            }
+            else {
+                switch (req_comp) {
+                    case 4: output[3] = 1; output[0] = output[1] = output[2] = 0; break;
+                    case 3: output[0] = output[1] = output[2] = 0; break;
+                    case 2: output[1] = 1; output[0] = 0; break;
+                    case 1: output[0] = 0; break;
+                }
+            }
+        }
+
+        private static double ldexp(double x, int exponent) {
+            return x * Math.Pow(2, exponent);
+        }
+
+        static bool stbi__getn(stbi__context s, char* buffer, int n) {
+            if (s.io.read != null) {
+                int blen = (int)(s.img_buffer_end - s.img_buffer);
+                if (blen < n) {
+                    bool res;
+                    int count;
+
+                    memcpy(buffer, s.img_buffer, blen);
+
+                    count = s.io.read(s.io_user_data, (char*)buffer + blen, n - blen);
+                    res = (count == (n - blen));
+                    s.img_buffer = s.img_buffer_end;
+                    return res;
+                }
+            }
+
+            if (s.img_buffer + n <= s.img_buffer_end) {
+                memcpy(buffer, s.img_buffer, n);
+                s.img_buffer += n;
+                return true;
+            }
+            else
+                return false;
+        }
+
+        static void* stbi__malloc_mad4(int a, int b, int c, int d, int add) {
+            if (!stbi__mad4sizes_valid(a, b, c, d, add)) return null;
+            return (void*)Marshal.AllocHGlobal(a * b * c * d + add);
+        }
+
+        // returns 1 if "a*b*c*d + add" has no negative terms/factors and doesn't overflow
+        static bool stbi__mad4sizes_valid(int a, int b, int c, int d, int add) {
+            return stbi__mul2sizes_valid(a, b) && stbi__mul2sizes_valid(a * b, c) &&
+                stbi__mul2sizes_valid(a * b * c, d) && stbi__addsizes_valid(a * b * c * d, add);
+        }
+
+        /// <summary>
+        /// Different
+        /// </summary>
+        /// <param name="str1"></param>
+        /// <param name="p1"></param>
+        /// <param name="maxNum"></param>
+        /// <returns></returns>
+        private static bool strncmp(char* str1, string str2, int maxNum) {
+            bool result = false;
+            for (int i = 0; i < str2.Length && i < maxNum; i++) {
+                char c = str1[i];
+                if (c == '\0') { result = true; break; }
+                if (c != str2[i]) { result = true; break; }
+            }
+
+            return result;
+        }
+
+        private static void stbi__errpf(string msg) {
+            stbi__g_failure_reason = msg;
+        }
+
+        /// <summary>
+        /// Different
+        /// </summary>
+        /// <param name="str1"></param>
+        /// <param name="str2"></param>
+        /// <returns></returns>
+        private static bool strcmp(char* str1, string str2) {
+            bool result = false;
+            for (int i = 0; i < str2.Length; i++) {
+                char c = str1[i];
+                if (c == '\0') { result = true; break; }
+                if (c != str2[i]) { result = true; break; }
+            }
+
+            return result;
+        }
+
+        static char* stbi__hdr_gettoken(stbi__context z, char* buffer) {
+            int len = 0;
+            char c = '\0';
+
+            c = (char)stbi__get8(z);
+
+            while (!stbi__at_eof(z) && c != '\n') {
+                buffer[len++] = c;
+                if (len == STBI__HDR_BUFLEN - 1) {
+                    // flush to end of line
+                    while (!stbi__at_eof(z) && stbi__get8(z) != '\n')
+                        ;
+                    break;
+                }
+                c = (char)stbi__get8(z);
+            }
+
+            buffer[len] = '\0';
+            return buffer;
+        }
+
+        static bool stbi__at_eof(stbi__context s) {
+            if (s.io.read != null) {
+                if (s.io.eof(s.io_user_data) != 0) return false;
+                // if feof() is true, check if buffer = end
+                // special case: we've only got the special 0 character at the end
+                if (s.read_from_callbacks == 0) return true;
+            }
+
+            return s.img_buffer >= s.img_buffer_end;
+        }
+
+        static char stbi__get8(stbi__context s) {
+            if (s.img_buffer < s.img_buffer_end)
+                return *s.img_buffer++;
+            if (s.read_from_callbacks != 0) {
+                stbi__refill_buffer(s);
+                return *s.img_buffer++;
+            }
+            return '\0';
+        }
     }
 }
