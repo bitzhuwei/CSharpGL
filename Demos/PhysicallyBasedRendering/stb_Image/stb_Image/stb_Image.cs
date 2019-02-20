@@ -32,5 +32,23 @@ namespace CSharpGL {
             public delEof eof;
         }
 
+        // stbi__context structure is our basic context used by all images, so it
+        // contains all the IO context, plus some basic image information
+        public unsafe struct stbi__context {
+            UInt32 img_x, img_y;
+            int img_n, img_out_n;
+
+            stbi_io_callbacks io;
+            void* io_user_data;
+
+            int read_from_callbacks;
+            int buflen;
+            char* buffer_start;//=new char[128];
+
+            char* img_buffer;
+            char* img_buffer_end;
+            char* img_buffer_original;
+            char* img_buffer_original_end;
+        }
     }
 }
