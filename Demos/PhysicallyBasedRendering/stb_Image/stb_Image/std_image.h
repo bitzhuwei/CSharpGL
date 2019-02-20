@@ -1,103 +1,103 @@
 /* stb_image - v2.16 - public domain image loader - http://nothings.org/stb_image.h
-									 no warranty implied; use at your own risk
+ no warranty implied; use at your own risk
 
-									 Do this:
-									 #define STB_IMAGE_IMPLEMENTATION
-									 before you include this file in *one* C or C++ file to create the implementation.
+ Do this:
+ #define STB_IMAGE_IMPLEMENTATION
+ before you include this file in *one* C or C++ file to create the implementation.
 
-									 // i.e. it should look like this:
-									 #include ...
-									 #include ...
-									 #include ...
-									 #define STB_IMAGE_IMPLEMENTATION
-									 #include "stb_image.h"
+ // i.e. it should look like this:
+ #include ...
+ #include ...
+ #include ...
+ #define STB_IMAGE_IMPLEMENTATION
+ #include "stb_image.h"
 
-									 You can #define STBI_ASSERT(x) before the #include to avoid using assert.h.
-									 And #define STBI_MALLOC, STBI_REALLOC, and STBI_FREE to avoid using malloc,realloc,free
-
-
-									 QUICK NOTES:
-									 Primarily of interest to game developers and other people who can
-									 avoid problematic images and only need the trivial interface
-
-									 JPEG baseline & progressive (12 bpc/arithmetic not supported, same as stock IJG lib)
-									 PNG 1/2/4/8/16-bit-per-channel
-
-									 TGA (not sure what subset, if a subset)
-									 BMP non-1bpp, non-RLE
-									 PSD (composited view only, no extra channels, 8/16 bit-per-channel)
-
-									 GIF (*comp always reports as 4-channel)
-									 HDR (radiance rgbE format)
-									 PIC (Softimage PIC)
-									 PNM (PPM and PGM binary only)
-
-									 Animated GIF still needs a proper API, but here's one way to do it:
-									 http://gist.github.com/urraka/685d9a6340b26b830d49
-
-									 - decode from memory or through FILE (define STBI_NO_STDIO to remove code)
-									 - decode from arbitrary I/O callbacks
-									 - SIMD acceleration on x86/x64 (SSE2) and ARM (NEON)
-
-									 Full documentation under "DOCUMENTATION" below.
+ You can #define STBI_ASSERT(x) before the #include to avoid using assert.h.
+ And #define STBI_MALLOC, STBI_REALLOC, and STBI_FREE to avoid using malloc,realloc,free
 
 
-									 LICENSE
+ QUICK NOTES:
+ Primarily of interest to game developers and other people who can
+ avoid problematic images and only need the trivial interface
 
-									 See end of file for license information.
+ JPEG baseline & progressive (12 bpc/arithmetic not supported, same as stock IJG lib)
+ PNG 1/2/4/8/16-bit-per-channel
 
-									 RECENT REVISION HISTORY:
+ TGA (not sure what subset, if a subset)
+ BMP non-1bpp, non-RLE
+ PSD (composited view only, no extra channels, 8/16 bit-per-channel)
 
-									 2.16  (2017-07-23) all functions have 16-bit variants; optimizations; bugfixes
-									 2.15  (2017-03-18) fix png-1,2,4; all Imagenet JPGs; no runtime SSE detection on GCC
-									 2.14  (2017-03-03) remove deprecated STBI_JPEG_OLD; fixes for Imagenet JPGs
-									 2.13  (2016-12-04) experimental 16-bit API, only for PNG so far; fixes
-									 2.12  (2016-04-02) fix typo in 2.11 PSD fix that caused crashes
-									 2.11  (2016-04-02) 16-bit PNGS; enable SSE2 in non-gcc x64
-									 RGB-format JPEG; remove white matting in PSD;
-									 allocate large structures on the stack;
-									 correct channel count for PNG & BMP
-									 2.10  (2016-01-22) avoid warning introduced in 2.09
-									 2.09  (2016-01-16) 16-bit TGA; comments in PNM files; STBI_REALLOC_SIZED
+ GIF (*comp always reports as 4-channel)
+ HDR (radiance rgbE format)
+ PIC (Softimage PIC)
+ PNM (PPM and PGM binary only)
 
-									 See end of file for full revision history.
+ Animated GIF still needs a proper API, but here's one way to do it:
+ http://gist.github.com/urraka/685d9a6340b26b830d49
+
+ - decode from memory or through FILE (define STBI_NO_STDIO to remove code)
+ - decode from arbitrary I/O callbacks
+ - SIMD acceleration on x86/x64 (SSE2) and ARM (NEON)
+
+ Full documentation under "DOCUMENTATION" below.
 
 
-									 ============================    Contributors    =========================
+ LICENSE
 
-									 Image formats                          Extensions, features
-									 Sean Barrett (jpeg, png, bmp)          Jetro Lauha (stbi_info)
-									 Nicolas Schulz (hdr, psd)              Martin "SpartanJ" Golini (stbi_info)
-									 Jonathan Dummer (tga)                  James "moose2000" Brown (iPhone PNG)
-									 Jean-Marc Lienher (gif)                Ben "Disch" Wenger (io callbacks)
-									 Tom Seddon (pic)                       Omar Cornut (1/2/4-bit PNG)
-									 Thatcher Ulrich (psd)                  Nicolas Guillemot (vertical flip)
-									 Ken Miller (pgm, ppm)                  Richard Mitton (16-bit PSD)
-									 github:urraka (animated gif)           Junggon Kim (PNM comments)
-									 Daniel Gibson (16-bit TGA)
-									 socks-the-fox (16-bit PNG)
-									 Jeremy Sawicki (handle all ImageNet JPGs)
-									 Optimizations & bugfixes
-									 Fabian "ryg" Giesen
-									 Arseny Kapoulkine
-									 John-Mark Allen
+ See end of file for license information.
 
-									 Bug & warning fixes
-									 Marc LeBlanc            David Woo          Guillaume George   Martins Mozeiko
-									 Christpher Lloyd        Jerry Jansson      Joseph Thomson     Phil Jordan
-									 Dave Moore              Roy Eltham         Hayaki Saito       Nathan Reed
-									 Won Chun                Luke Graham        Johan Duparc       Nick Verigakis
-									 the Horde3D community   Thomas Ruf         Ronny Chevalier    Baldur Karlsson
-									 Janez Zemva             John Bartholomew   Michal Cichon      github:rlyeh
-									 Jonathan Blow           Ken Hamada         Tero Hanninen      github:romigrou
-									 Laurent Gomila          Cort Stratton      Sergio Gonzalez    github:svdijk
-									 Aruelien Pocheville     Thibault Reuille   Cass Everitt       github:snagar
-									 Ryamond Barbiero        Paul Du Bois       Engin Manap        github:Zelex
-									 Michaelangel007@github  Philipp Wiesemann  Dale Weiler        github:grim210
-									 Oriol Ferrer Mesia      Josh Tobin         Matthew Gregan     github:sammyhw
-									 Blazej Dariusz Roszkowski                  Gregory Mullen     github:phprus
-									 Christian Floisand      Kevin Schmidt                         github:poppolopoppo
-									 */
+ RECENT REVISION HISTORY:
+
+ 2.16  (2017-07-23) all functions have 16-bit variants; optimizations; bugfixes
+ 2.15  (2017-03-18) fix png-1,2,4; all Imagenet JPGs; no runtime SSE detection on GCC
+ 2.14  (2017-03-03) remove deprecated STBI_JPEG_OLD; fixes for Imagenet JPGs
+ 2.13  (2016-12-04) experimental 16-bit API, only for PNG so far; fixes
+ 2.12  (2016-04-02) fix typo in 2.11 PSD fix that caused crashes
+ 2.11  (2016-04-02) 16-bit PNGS; enable SSE2 in non-gcc x64
+ RGB-format JPEG; remove white matting in PSD;
+ allocate large structures on the stack;
+ correct channel count for PNG & BMP
+ 2.10  (2016-01-22) avoid warning introduced in 2.09
+ 2.09  (2016-01-16) 16-bit TGA; comments in PNM files; STBI_REALLOC_SIZED
+
+ See end of file for full revision history.
+
+
+ ============================    Contributors    =========================
+
+ Image formats                          Extensions, features
+ Sean Barrett (jpeg, png, bmp)          Jetro Lauha (stbi_info)
+ Nicolas Schulz (hdr, psd)              Martin "SpartanJ" Golini (stbi_info)
+ Jonathan Dummer (tga)                  James "moose2000" Brown (iPhone PNG)
+ Jean-Marc Lienher (gif)                Ben "Disch" Wenger (io callbacks)
+ Tom Seddon (pic)                       Omar Cornut (1/2/4-bit PNG)
+ Thatcher Ulrich (psd)                  Nicolas Guillemot (vertical flip)
+ Ken Miller (pgm, ppm)                  Richard Mitton (16-bit PSD)
+ github:urraka (animated gif)           Junggon Kim (PNM comments)
+ Daniel Gibson (16-bit TGA)
+ socks-the-fox (16-bit PNG)
+ Jeremy Sawicki (handle all ImageNet JPGs)
+ Optimizations & bugfixes
+ Fabian "ryg" Giesen
+ Arseny Kapoulkine
+ John-Mark Allen
+
+ Bug & warning fixes
+ Marc LeBlanc            David Woo          Guillaume George   Martins Mozeiko
+ Christpher Lloyd        Jerry Jansson      Joseph Thomson     Phil Jordan
+ Dave Moore              Roy Eltham         Hayaki Saito       Nathan Reed
+ Won Chun                Luke Graham        Johan Duparc       Nick Verigakis
+ the Horde3D community   Thomas Ruf         Ronny Chevalier    Baldur Karlsson
+ Janez Zemva             John Bartholomew   Michal Cichon      github:rlyeh
+ Jonathan Blow           Ken Hamada         Tero Hanninen      github:romigrou
+ Laurent Gomila          Cort Stratton      Sergio Gonzalez    github:svdijk
+ Aruelien Pocheville     Thibault Reuille   Cass Everitt       github:snagar
+ Ryamond Barbiero        Paul Du Bois       Engin Manap        github:Zelex
+ Michaelangel007@github  Philipp Wiesemann  Dale Weiler        github:grim210
+ Oriol Ferrer Mesia      Josh Tobin         Matthew Gregan     github:sammyhw
+ Blazej Dariusz Roszkowski                  Gregory Mullen     github:phprus
+ Christian Floisand      Kevin Schmidt                         github:poppolopoppo
+ */
 
 #ifndef STBI_INCLUDE_STB_IMAGE_H
 #define STBI_INCLUDE_STB_IMAGE_H
@@ -2264,14 +2264,14 @@ static void stbi__idct_simd(stbi_uc *out, int out_stride, short data[64])
 
 	// butterfly a/b, add bias, then shift by "s" and pack
 #define dct_bfly32o(out0, out1, a,b,bias,s) \
-		      { \
+			      { \
          __m128i abiased_l = _mm_add_epi32(a##_l, bias); \
          __m128i abiased_h = _mm_add_epi32(a##_h, bias); \
          dct_wadd(sum, abiased, b); \
          dct_wsub(dif, abiased, b); \
          out0 = _mm_packs_epi32(_mm_srai_epi32(sum_l, s), _mm_srai_epi32(sum_h, s)); \
          out1 = _mm_packs_epi32(_mm_srai_epi32(dif_l, s), _mm_srai_epi32(dif_h, s)); \
-		      }
+			      }
 
 	// 8-bit interleave step (for transposes)
 #define dct_interleave8(a, b) \
@@ -2286,7 +2286,7 @@ static void stbi__idct_simd(stbi_uc *out, int out_stride, short data[64])
       b = _mm_unpackhi_epi16(tmp, b)
 
 #define dct_pass(bias,shift) \
-		      { \
+			      { \
          /* even part */ \
          dct_rot(t2e,t3e, row2,row6, rot0_0,rot0_1); \
          __m128i sum04 = _mm_add_epi16(row0, row4); \
@@ -2311,7 +2311,7 @@ static void stbi__idct_simd(stbi_uc *out, int out_stride, short data[64])
          dct_bfly32o(row1,row6, x1,x6,bias,shift); \
          dct_bfly32o(row2,row5, x2,x5,bias,shift); \
          dct_bfly32o(row3,row4, x3,x4,bias,shift); \
-		      }
+			      }
 
 	__m128i rot0_0 = dct_const(stbi__f2f(0.5411961f), stbi__f2f(0.5411961f) + stbi__f2f(-1.847759065f));
 	__m128i rot0_1 = dct_const(stbi__f2f(0.5411961f) + stbi__f2f(0.765366865f), stbi__f2f(0.5411961f));
@@ -2450,15 +2450,15 @@ static void stbi__idct_simd(stbi_uc *out, int out_stride, short data[64])
 
 	// butterfly a/b, then shift using "shiftop" by "s" and pack
 #define dct_bfly32o(out0,out1, a,b,shiftop,s) \
-		   { \
+			   { \
       dct_wadd(sum, a, b); \
       dct_wsub(dif, a, b); \
       out0 = vcombine_s16(shiftop(sum_l, s), shiftop(sum_h, s)); \
       out1 = vcombine_s16(shiftop(dif_l, s), shiftop(dif_h, s)); \
-		   }
+			   }
 
 #define dct_pass(shiftop, shift) \
-		   { \
+			   { \
       /* even part */ \
       int16x8_t sum26 = vaddq_s16(row2, row6); \
       dct_long_mul(p1e, sum26, rot0_0); \
@@ -2495,7 +2495,7 @@ static void stbi__idct_simd(stbi_uc *out, int out_stride, short data[64])
       dct_bfly32o(row1,row6, x1,x6,shiftop,shift); \
       dct_bfly32o(row2,row5, x2,x5,shiftop,shift); \
       dct_bfly32o(row3,row4, x3,x4,shiftop,shift); \
-		   }
+			   }
 
 	// load
 	row0 = vld1q_s16(data + 0 * 8);
