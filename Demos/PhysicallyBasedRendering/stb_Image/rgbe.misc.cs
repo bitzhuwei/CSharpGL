@@ -32,10 +32,6 @@ namespace stb_Image {
 
         /* read or write pixels */
         /* can read or write pixels in chunks of any size including single pixels*/
-        public static int RGBE_WritePixels(FileStream fp, out float[] data, int numpixels) {
-            throw new NotImplementedException();
-
-        }
         public static int RGBE_ReadPixels(FileStream fp, out float[] data, int numpixels) {
             throw new NotImplementedException();
 

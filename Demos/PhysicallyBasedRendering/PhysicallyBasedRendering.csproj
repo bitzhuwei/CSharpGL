@@ -152,6 +152,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="stb_Image\rgbe.float2rgbe.cs" />
     <Compile Include="stb_Image\rgbe,consts.cs" />
+    <Compile Include="stb_Image\rgbe.WritePixels.cs" />
+    <Compile Include="stb_Image\rgbe.ReadHeader.cs" />
     <Compile Include="stb_Image\rgbe.WriteHeader.cs" />
     <Compile Include="stb_Image\rgbe.rgbe2float.cs" />
     <Compile Include="stb_Image\rgbe.types.cs" />
