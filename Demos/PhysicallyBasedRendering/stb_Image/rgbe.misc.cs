@@ -30,24 +30,5 @@ namespace stb_Image {
             return RGBE_RETURN_FAILURE;
         }
 
-        /* read or write pixels */
-        /* can read or write pixels in chunks of any size including single pixels*/
-        public static int RGBE_ReadPixels(FileStream fp, out float[] data, int numpixels) {
-            throw new NotImplementedException();
-
-        }
-
-        /* read or write run length encoded files */
-        /* must be called to read or write whole scanlines */
-        public static int RGBE_WritePixels_RLE(FileStream fp, out float[] data, int scanline_width,
-                     int num_scanlines) {
-            throw new NotImplementedException();
-
-        }
-        public static int RGBE_ReadPixels_RLE(FileStream fp, out float[] data, int scanline_width,
-                    int num_scanlines) {
-            throw new NotImplementedException();
-
-        }
     }
 }
