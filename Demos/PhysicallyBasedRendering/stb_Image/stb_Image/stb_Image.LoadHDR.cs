@@ -31,7 +31,7 @@ namespace CSharpGL {
             return result;
         }
 
-        private static unsafe char* stbi__load_and_postprocess_8bit(stbi__context s, int* x, int* y, int* comp, int req_comp) {
+        private static char* stbi__load_and_postprocess_8bit(stbi__context s, int* x, int* y, int* comp, int req_comp) {
             stbi__result_info ri;
             void* result = stbi__load_main(ref s, x, y, comp, req_comp, &ri, 8);
 
@@ -52,7 +52,7 @@ namespace CSharpGL {
             return (char*)result;
         }
 
-        private static unsafe void stbi__vertical_flip(void* image, int w, int h, int bytes_per_pixel) {
+        private static void stbi__vertical_flip(void* image, int w, int h, int bytes_per_pixel) {
             int row;
             int bytes_per_row = w * bytes_per_pixel;
             char[] temp = new char[2048];
@@ -76,25 +76,25 @@ namespace CSharpGL {
             }
         }
 
-        private static unsafe void memcpy(char[] dst, char* src, int count) {
+        private static void memcpy(char[] dst, char* src, int count) {
             for (int i = 0; i < count; i++) {
                 dst[i] = src[i];
             }
         }
 
-        private static unsafe void memcpy(char* dst, char* src, int count) {
+        private static void memcpy(char* dst, char* src, int count) {
             for (int i = 0; i < count; i++) {
                 dst[i] = src[i];
             }
         }
 
-        private static unsafe void memcpy(char* dst, char[] src, int count) {
+        private static void memcpy(char* dst, char[] src, int count) {
             for (int i = 0; i < count; i++) {
                 dst[i] = src[i];
             }
         }
 
-        private static unsafe void* stbi__convert_16_to_8(UInt16* orig, int w, int h, int channels) {
+        private static void* stbi__convert_16_to_8(UInt16* orig, int w, int h, int channels) {
             int i;
             int img_len = w * h * channels;
             char* reduced = (char*)Marshal.AllocHGlobal(img_len * sizeof(char));
@@ -106,7 +106,7 @@ namespace CSharpGL {
             return reduced;
         }
 
-        private static unsafe void stbi__start_file(stbi__context s, StreamReader f) {
+        private static void stbi__start_file(stbi__context s, StreamReader f) {
             stbi__start_callbacks(s, stbi__stdio_callbacks, f);
         }
 
@@ -136,7 +136,7 @@ namespace CSharpGL {
         static stbi_io_callbacks stbi__stdio_callbacks = new stbi_io_callbacks(stbi__stdio_read, stbi__stdio_skip, stbi__stdio_eof);
 
         // initialize a callback-based context
-        private static unsafe void stbi__start_callbacks(stbi__context s, stbi_io_callbacks c, object user) {
+        private static void stbi__start_callbacks(stbi__context s, stbi_io_callbacks c, object user) {
             s.io = c;
             s.io_user_data = user;
             s.buflen = 128; // sizeof(s.buffer_start);
@@ -146,7 +146,7 @@ namespace CSharpGL {
             s.img_buffer_original_end = s.img_buffer_end;
         }
 
-        private static unsafe void stbi__refill_buffer(stbi__context s) {
+        private static void stbi__refill_buffer(stbi__context s) {
             int n = s.io.read(s.io_user_data, s.buffer_start, s.buflen);
             if (n == 0) {
                 // at end of file, treat same as if from memory, but need to handle case
@@ -171,17 +171,72 @@ namespace CSharpGL {
 
             //if (stbi__hdr_test(s)) {
             float* hdr = stbi__hdr_load(ref s, x, y, comp, req_comp, ri);
-            return stbi__hdr_to_ldr(hdr, out x, out y, req_comp != 0 ? req_comp : *comp);
+            return stbi__hdr_to_ldr(hdr, *x, *y, req_comp != 0 ? req_comp : *comp);
             //}
 
             //return stbi__errpuc("unknown image type", "Image not of any known type, or corrupt");
         }
 
-        private static unsafe void* stbi__hdr_to_ldr(float* hdr, out int* x, out int* y, int p) {
-            throw new NotImplementedException();
+        private static char* stbi__hdr_to_ldr(float* data, int x, int y, int comp) {
+            int i, k, n;
+            char* output;
+            if (data == null) { return null; }
+
+            output = (char*)stbi__malloc_mad3(x, y, comp, 0);
+            // compute number of non-alpha components
+            if ((comp & 1) != 0) { n = comp; } else { n = comp - 1; }
+
+            for (i = 0; i < x * y; ++i) {
+                for (k = 0; k < n; ++k) {
+                    float z = (float)Math.Pow(data[i * comp + k] * stbi__h2l_scale_i, stbi__h2l_gamma_i) * 255 + 0.5f;
+                    if (z < 0) z = 0;
+                    if (z > 255) z = 255;
+                    output[i * comp + k] = (char)((int)z);
+                }
+                if (k < comp) {
+                    float z = data[i * comp + k] * 255 + 0.5f;
+                    if (z < 0) z = 0;
+                    if (z > 255) z = 255;
+                    output[i * comp + k] = (char)((int)z);
+                }
+            }
+            //STBI_FREE(data);
+            return output;
         }
 
-        private static unsafe float* stbi__hdr_load(ref stbi__context s, int* x, int* y, int* comp, int req_comp, stbi__result_info* ri) {
+        static void* stbi__malloc_mad3(int a, int b, int c, int add) {
+            if (stbi__mad3sizes_valid(a, b, c, add)) return null;
+            return (void*)Marshal.AllocHGlobal(a * b * c + add);
+        }
+
+        // returns 1 if "a*b*c + add" has no negative terms/factors and doesn't overflow
+        static bool stbi__mad3sizes_valid(int a, int b, int c, int add) {
+            return (stbi__mul2sizes_valid(a, b))
+                && (stbi__mul2sizes_valid(a * b, c))
+                && (stbi__addsizes_valid(a * b * c, add));
+        }
+
+        // return 1 if the sum is valid, 0 on overflow.
+        // negative terms are considered invalid.
+        static bool stbi__addsizes_valid(int a, int b) {
+            if (b < 0) return false;
+            // now 0 <= b <= INT_MAX, hence also
+            // 0 <= INT_MAX - b <= INTMAX.
+            // And "a + b <= INT_MAX" (which might overflow) is the
+            // same as a <= INT_MAX - b (no overflow)
+            return a <= int.MaxValue - b;
+        }
+
+        // returns 1 if the product is valid, 0 on overflow.
+        // negative factors are considered invalid.
+        static bool stbi__mul2sizes_valid(int a, int b) {
+            if (a < 0 || b < 0) return false;
+            if (b == 0) return true; // mul-by-0 is always safe
+            // portable way to check for no overflows in a*b
+            return a <= int.MaxValue / b;
+        }
+
+        private static float* stbi__hdr_load(ref stbi__context s, int* x, int* y, int* comp, int req_comp, stbi__result_info* ri) {
             throw new NotImplementedException();
         }
 

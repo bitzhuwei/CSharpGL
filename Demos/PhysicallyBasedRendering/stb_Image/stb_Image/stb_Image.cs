@@ -63,6 +63,7 @@ namespace CSharpGL {
         }
 
         static bool stbi__vertically_flip_on_load = false;
-
+        static float stbi__h2l_gamma_i = 1.0f / 2.2f;
+        static float stbi__h2l_scale_i = 1.0f;
     }
 }
