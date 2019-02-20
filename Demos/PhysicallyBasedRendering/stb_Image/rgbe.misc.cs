@@ -30,14 +30,6 @@ namespace stb_Image {
             return RGBE_RETURN_FAILURE;
         }
 
-        /* read or write headers */
-        /* you may set rgbe_header_info to null if you want to */
-        //int RGBE_WriteHeader(FILE* fp, int width, int height, rgbe_header_info* info);
-        public static int RGBE_ReadHeader(FileStream fp, out int width, out int height, ref rgbe_header_info info) {
-            throw new NotImplementedException();
-
-        }
-
         /* read or write pixels */
         /* can read or write pixels in chunks of any size including single pixels*/
         public static int RGBE_WritePixels(FileStream fp, out float[] data, int numpixels) {
