@@ -33,9 +33,6 @@ namespace stb_Image {
         /* read or write headers */
         /* you may set rgbe_header_info to null if you want to */
         //int RGBE_WriteHeader(FILE* fp, int width, int height, rgbe_header_info* info);
-        public static int RGBE_WriteHeader(FileStream fp, int width, int height, ref rgbe_header_info info) {
-            throw new NotImplementedException();
-        }
         public static int RGBE_ReadHeader(FileStream fp, out int width, out int height, ref rgbe_header_info info) {
             throw new NotImplementedException();
 
