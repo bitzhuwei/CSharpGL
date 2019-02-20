@@ -6,17 +6,18 @@ using System.Text;
 namespace CSharpGL {
     public static unsafe partial class stb_Image {
 
-        enum STBI {
-            /// <summary>
-            /// only used for desired_channels
-            /// </summary>
-            STBI_default = 0,
+        /// <summary>
+        /// only used for desired_channels
+        /// </summary>
+        const int STBI_default = 0;
 
-            STBI_grey = 1,
-            STBI_grey_alpha = 2,
-            STBI_rgb = 3,
-            STBI_rgb_alpha = 4
-        }
+        const int STBI_grey = 1;
+        const int STBI_grey_alpha = 2;
+        const int STBI_rgb = 3;
+        const int STBI_rgb_alpha = 4;
+
+        const int STBI_ORDER_RGB = 0;
+        const int STBI_ORDER_BGR = 1;
 
         delegate int delRead(object user, char* data, int size);
         delegate void delSkip(object user, int n);
@@ -57,7 +58,7 @@ namespace CSharpGL {
             public int channel_order;
         }
 
-        static int stbi__vertically_flip_on_load = 0;
+        static bool stbi__vertically_flip_on_load = false;
 
     }
 }
