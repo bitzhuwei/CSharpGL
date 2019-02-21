@@ -5,16 +5,16 @@ using System.Text;
 
 namespace CSharpGL {
     public static unsafe partial class stb_Image {
-        static char TOLOWER(char x) { return (char)(x | 0X20); }
-        static bool isxdigit(char c) {
+        static char TOLOWER(byte x) { return (char)(x | 0X20); }
+        static bool isxdigit(byte c) {
             return (('0' <= (c) && (c) <= '9')
              || ('a' <= (c) && (c) <= 'f')
              || ('A' <= (c) && (c) <= 'F'));
         }
 
-        static bool isdigit(char c) { return ('0' <= (c) && (c) <= '9'); }
+        static bool isdigit(byte c) { return ('0' <= (c) && (c) <= '9'); }
 
-        static ulong strtoul(char* cp, char** endp, int _base) {
+        static ulong strtoul(byte* cp, byte** endp, int _base) {
             ulong result = 0, value;
 
             if (_base == 0) {
@@ -38,11 +38,11 @@ namespace CSharpGL {
                 cp++;
             }
             if (endp != null)
-                *endp = (char*)cp;
+                *endp = (byte*)cp;
             return result;
         }
 
-        static long strtol(char* cp, char** endp, int _base) {
+        static long strtol(byte* cp, byte** endp, int _base) {
             if (*cp == '-')
                 return -((long)strtoul(cp + 1, endp, _base));
             return (long)strtoul(cp, endp, _base);

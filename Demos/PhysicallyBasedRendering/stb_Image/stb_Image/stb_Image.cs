@@ -19,7 +19,7 @@ namespace CSharpGL {
         const int STBI_ORDER_RGB = 0;
         const int STBI_ORDER_BGR = 1;
 
-        delegate int delRead(object user, char* data, int size);
+        delegate int delRead(object user, byte* data, int size);
         delegate void delSkip(object user, int n);
         delegate int delEof(object user);
         class stbi_io_callbacks {
@@ -48,12 +48,12 @@ namespace CSharpGL {
 
             public int read_from_callbacks;
             public int buflen;
-            public char* buffer_start;// = stackalloc char[128];
+            public byte* buffer_start;// = stackalloc byte[128];
 
-            public char* img_buffer;
-            public char* img_buffer_end;
-            public char* img_buffer_original;
-            public char* img_buffer_original_end;
+            public byte* img_buffer;
+            public byte* img_buffer_end;
+            public byte* img_buffer_original;
+            public byte* img_buffer_original_end;
         }
 
         struct stbi__result_info {
@@ -67,5 +67,7 @@ namespace CSharpGL {
         static float stbi__h2l_scale_i = 1.0f;
         // this is not threadsafe
         static string stbi__g_failure_reason;
+        static float stbi__l2h_gamma = 2.2f;
+        static float stbi__l2h_scale = 1.0f;
     }
 }
