@@ -26,17 +26,18 @@ namespace PhysicallyBasedRendering {
             this.prefliterMap = LoadPrefliterMap();
             this.brdfLUTTexture = LoadBRDFTexture();
             //this.hdrTexture = LoadHdrEnvironmentMap(@"Texture\hdr\newport_loft.hdr");
-            {
-                Bitmap bitmap = LoadHdrFormFreeImage(@"Texture\hdr\newport_loft.hdr");
-                var storage = new TexImageBitmap(bitmap, GL.GL_RGB16F);
-                var texture = new Texture(storage,
-                    new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP_TO_EDGE),
-                    new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_CLAMP_TO_EDGE),
-                    new TexParameteri(TexParameter.PropertyName.TextureMinFilter, (int)GL.GL_LINEAR),
-                    new TexParameteri(TexParameter.PropertyName.TextureMagFilter, (int)GL.GL_LINEAR));
-                texture.Initialize();
-                this.hdrTexture = texture;
-            }
+            this.hdrTexture = LoadHDRTexture(@"Texture\hdr\newport_loft.hdr");
+            //{
+            //    Bitmap bitmap = LoadHdrFormFreeImage(@"Texture\hdr\newport_loft.hdr");
+            //    var storage = new TexImageBitmap(bitmap, GL.GL_RGB16F);
+            //    var texture = new Texture(storage,
+            //        new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP_TO_EDGE),
+            //        new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_CLAMP_TO_EDGE),
+            //        new TexParameteri(TexParameter.PropertyName.TextureMinFilter, (int)GL.GL_LINEAR),
+            //        new TexParameteri(TexParameter.PropertyName.TextureMagFilter, (int)GL.GL_LINEAR));
+            //    texture.Initialize();
+            //    this.hdrTexture = texture;
+            //}
 
             this.albedoMap = LoadTexture(@"Texture\agedplanks1-albedo.png");
             this.albedoMap.TextureUnitIndex = 3;
@@ -330,80 +331,113 @@ namespace PhysicallyBasedRendering {
             return texture;
         }
 
-        public unsafe Bitmap LoadHdrFormFreeImage(string FileName) {
-            int width, height, nrComponents;
-            float* data = stb_Image.stbi_loadf(FileName, &width, &height, &nrComponents, 0);
-            var bmp = new Bitmap(width, height, 19200, System.Drawing.Imaging.PixelFormat.Format24bppRgb, new IntPtr(data));
-            return bmp;
+        class PointerData : LeveledData {
+            private IntPtr pointer;
+
+            public PointerData(IntPtr pointer) {
+                this.pointer = pointer;
+            }
+            public override IntPtr LockData() {
+                return this.pointer;
+            }
         }
-        //public unsafe Bitmap LoadHdrFormFreeImage(string FileName) {
-        //    Bitmap Bmp = null;
-        //    FREE_IMAGE_FORMAT fif = FREE_IMAGE_FORMAT.FIF_UNKNOWN;
-        //    if (FreeImage.IsAvailable() == true) {
-        //        fif = FreeImage.GetFileType(FileName, 0);
-        //        if (fif != FREE_IMAGE_FORMAT.FIF_HDR) {
-        //            throw new Exception("不是Hdr格式的图像.");
-        //        }
-        //        fif = FreeImage.GetFIFFromFilename(FileName);
-        //        FIBITMAP Dib = FreeImage.Load(fif, FileName, FREE_IMAGE_LOAD_FLAGS.DEFAULT);
-        //        uint Bpp = FreeImage.GetBPP(Dib);
 
-        //        if (Bpp != 96) {
-        //            FreeImage.Unload(Dib);
-        //            throw new Exception("无法支持的Hdr格式.");
-        //        }
-        //        uint Width = FreeImage.GetWidth(Dib);                        //  图像宽度
-        //        uint Height = FreeImage.GetHeight(Dib);                      //  图像高度
-        //        uint Stride = FreeImage.GetPitch(Dib);                       //  图像扫描行的大小,必然是4的整数倍
-        //        IntPtr Bits = FreeImage.GetBits(Dib);
+        class PointerDataProvider : LeveledDataProvider {
+            private PointerData data;
+            public PointerDataProvider(PointerData data) {
+                this.data = data;
+            }
 
-        //        float* Data = (float*)Bits;
-        //        int Speed, Index;
-        //        byte* Pixel;
-        //        float Value;
+            public override IEnumerator<LeveledData> GetEnumerator() {
+                yield return this.data;
+            }
+        }
 
-        //        //if (RawData != null) Marshal.FreeHGlobal((IntPtr)RawData);
-        //        //IntPtr RawData = (float*)Marshal.AllocHGlobal((int)Width * (int)Height * 3 * sizeof(float));
-        //        //CopyMemory(RawData, Data, (int)Width * (int)Height * 3 * sizeof(float));
+        private unsafe Texture LoadHDRTexture(string filename) {
+            int width, height, nrComponents;
+            float* data = stb_Image.stbi_loadf(filename, &width, &height, &nrComponents, 0);
+            var dataProvider = new PointerDataProvider(new PointerData(new IntPtr(data)));
+            var storage = new TexImage2D(TexImage2D.Target.Texture2D, GL.GL_RGB16F, width, height, GL.GL_RGB, GL.GL_FLOAT, dataProvider);
+            var texture = new Texture(storage,
+                new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP_TO_EDGE),
+                new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_CLAMP_TO_EDGE),
+                new TexParameteri(TexParameter.PropertyName.TextureMinFilter, (int)GL.GL_LINEAR),
+                new TexParameteri(TexParameter.PropertyName.TextureMagFilter, (int)GL.GL_LINEAR));
+            texture.Initialize();
 
-        //        Bmp = new Bitmap((int)Width, (int)Height, System.Drawing.Imaging.PixelFormat.Format24bppRgb);
-        //        System.Drawing.Imaging.BitmapData BmpData = Bmp.LockBits(new System.Drawing.Rectangle(0, 0, Bmp.Width, Bmp.Height), System.Drawing.Imaging.ImageLockMode.ReadWrite, System.Drawing.Imaging.PixelFormat.Format24bppRgb);
-        //        Pixel = (byte*)BmpData.Scan0;
+            texture.GetImage(width, height).Save(string.Format("HDR.Texture.png"));
 
-        //        for (int Y = 0; Y < Height; Y++) {
-        //            Speed = Y * BmpData.Stride;
-        //            Index = Y * (int)Width * 3;
-        //            for (int X = 0; X < Width; X++) {
-        //                Value = (Data[Index + 2] * 255);
-        //                if (Value > 255)
-        //                    Value = 255;
-        //                else if (Value < 0)
-        //                    Value = 0;
-        //                Pixel[Speed] = (byte)Value;
-        //                Value = (Data[Index + 1] * 255);
-        //                if (Value > 255)
-        //                    Value = 255;
-        //                else if (Value < 0)
-        //                    Value = 0;
-        //                Pixel[Speed + 1] = (byte)Value;
-        //                Value = (Data[Index + 0] * 255);
-        //                if (Value > 255)
-        //                    Value = 255;
-        //                else if (Value < 0)
-        //                    Value = 0;
-        //                Pixel[Speed + 2] = (byte)Value;
-        //                Index += 3;
-        //                Speed += 3;
-        //            }
-        //        }
-        //        FreeImage.Unload(Dib);
-        //        Bmp.UnlockBits(BmpData);
-        //        Bmp.RotateFlip(System.Drawing.RotateFlipType.RotateNoneFlipY);
-        //        return Bmp;
-        //    }
-        //    else
-        //        return null;
-        //}
+            return texture;
+        }
+
+        public unsafe Bitmap LoadHdrFormFreeImage(string FileName) {
+            Bitmap Bmp = null;
+            FREE_IMAGE_FORMAT fif = FREE_IMAGE_FORMAT.FIF_UNKNOWN;
+            if (FreeImage.IsAvailable() == true) {
+                fif = FreeImage.GetFileType(FileName, 0);
+                if (fif != FREE_IMAGE_FORMAT.FIF_HDR) {
+                    throw new Exception("不是Hdr格式的图像.");
+                }
+                fif = FreeImage.GetFIFFromFilename(FileName);
+                FIBITMAP Dib = FreeImage.Load(fif, FileName, FREE_IMAGE_LOAD_FLAGS.DEFAULT);
+                uint Bpp = FreeImage.GetBPP(Dib);
+
+                if (Bpp != 96) {
+                    FreeImage.Unload(Dib);
+                    throw new Exception("无法支持的Hdr格式.");
+                }
+                uint Width = FreeImage.GetWidth(Dib);                        //  图像宽度
+                uint Height = FreeImage.GetHeight(Dib);                      //  图像高度
+                uint Stride = FreeImage.GetPitch(Dib);                       //  图像扫描行的大小,必然是4的整数倍
+                IntPtr Bits = FreeImage.GetBits(Dib);
+
+                float* Data = (float*)Bits;
+                int Speed, Index;
+                byte* Pixel;
+                float Value;
+
+                //if (RawData != null) Marshal.FreeHGlobal((IntPtr)RawData);
+                //IntPtr RawData = (float*)Marshal.AllocHGlobal((int)Width * (int)Height * 3 * sizeof(float));
+                //CopyMemory(RawData, Data, (int)Width * (int)Height * 3 * sizeof(float));
+
+                Bmp = new Bitmap((int)Width, (int)Height, System.Drawing.Imaging.PixelFormat.Format24bppRgb);
+                System.Drawing.Imaging.BitmapData BmpData = Bmp.LockBits(new System.Drawing.Rectangle(0, 0, Bmp.Width, Bmp.Height), System.Drawing.Imaging.ImageLockMode.ReadWrite, System.Drawing.Imaging.PixelFormat.Format24bppRgb);
+                Pixel = (byte*)BmpData.Scan0;
+
+                for (int Y = 0; Y < Height; Y++) {
+                    Speed = Y * BmpData.Stride;
+                    Index = Y * (int)Width * 3;
+                    for (int X = 0; X < Width; X++) {
+                        Value = (Data[Index + 2] * 255);
+                        if (Value > 255)
+                            Value = 255;
+                        else if (Value < 0)
+                            Value = 0;
+                        Pixel[Speed] = (byte)Value;
+                        Value = (Data[Index + 1] * 255);
+                        if (Value > 255)
+                            Value = 255;
+                        else if (Value < 0)
+                            Value = 0;
+                        Pixel[Speed + 1] = (byte)Value;
+                        Value = (Data[Index + 0] * 255);
+                        if (Value > 255)
+                            Value = 255;
+                        else if (Value < 0)
+                            Value = 0;
+                        Pixel[Speed + 2] = (byte)Value;
+                        Index += 3;
+                        Speed += 3;
+                    }
+                }
+                FreeImage.Unload(Dib);
+                Bmp.UnlockBits(BmpData);
+                Bmp.RotateFlip(System.Drawing.RotateFlipType.RotateNoneFlipY);
+                return Bmp;
+            }
+            else
+                return null;
+        }
 
         private Texture LoadTexture(string filename) {
             var bitmap = new Bitmap(filename);
