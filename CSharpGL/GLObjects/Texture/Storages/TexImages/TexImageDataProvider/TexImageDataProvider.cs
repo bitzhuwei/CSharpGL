@@ -3,14 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CSharpGL
-{
+namespace CSharpGL {
     /// <summary>
     /// 
     /// </summary>
     /// <typeparam name="T">data type.</typeparam>
-    public abstract class TexImageDataProvider<T> : IEnumerable<T>
-    {
+    public abstract class TexImageDataProvider<T> : IEnumerable<T> {
         #region IEnumerable<T> 成员
 
         /// <summary>
@@ -23,8 +21,7 @@ namespace CSharpGL
 
         #region IEnumerable 成员
 
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
-        {
+        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() {
             return this.GetEnumerator();
         }
 

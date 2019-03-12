@@ -150,6 +150,21 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="stb_Image\rgbe\rgbe.float2rgbe.cs" />
+    <Compile Include="stb_Image\rgbe\rgbe,consts.cs" />
+    <Compile Include="stb_Image\rgbe\rgbe.ReadPixels_RLE.cs" />
+    <Compile Include="stb_Image\rgbe\rgbe.WriteBytes_RLE.cs" />
+    <Compile Include="stb_Image\rgbe\rgbe.WritePixels_RLE.cs" />
+    <Compile Include="stb_Image\rgbe\rgbe.ReadPixels.cs" />
+    <Compile Include="stb_Image\rgbe\rgbe.WritePixels.cs" />
+    <Compile Include="stb_Image\rgbe\rgbe.ReadHeader.cs" />
+    <Compile Include="stb_Image\rgbe\rgbe.WriteHeader.cs" />
+    <Compile Include="stb_Image\rgbe\rgbe.rgbe2float.cs" />
+    <Compile Include="stb_Image\rgbe\rgbe.types.cs" />
+    <Compile Include="stb_Image\rgbe\rgbe.misc.cs" />
+    <Compile Include="stb_Image\stb_Image\stb_Image.strtol.cs" />
+    <Compile Include="stb_Image\stb_Image\stb_Image.LoadHDR.cs" />
+    <Compile Include="stb_Image\stb_Image\stb_Image.cs" />
     <EmbeddedResource Include="FormCubemapViewer.resx">
       <DependentUpon>FormCubemapViewer.cs</DependentUpon>
     </EmbeddedResource>
@@ -199,6 +214,9 @@
     <Content Include="FreeImage.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="stb_Image\rgbe\rgbe.cpp" />
+    <Content Include="stb_Image\rgbe\rgbe.h" />
+    <Content Include="stb_Image\stb_Image\std_image.h" />
     <Content Include="Texture\agedplanks1-albedo.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -212,6 +230,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

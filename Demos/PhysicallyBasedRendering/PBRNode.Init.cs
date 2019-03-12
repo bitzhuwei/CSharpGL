@@ -26,17 +26,18 @@ namespace PhysicallyBasedRendering {
             this.prefliterMap = LoadPrefliterMap();
             this.brdfLUTTexture = LoadBRDFTexture();
             //this.hdrTexture = LoadHdrEnvironmentMap(@"Texture\hdr\newport_loft.hdr");
-            {
-                Bitmap bitmap = LoadHdrFormFreeImage(@"Texture\hdr\newport_loft.hdr");
-                var storage = new TexImageBitmap(bitmap, GL.GL_RGB16F);
-                var texture = new Texture(storage,
-                    new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP_TO_EDGE),
-                    new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_CLAMP_TO_EDGE),
-                    new TexParameteri(TexParameter.PropertyName.TextureMinFilter, (int)GL.GL_LINEAR),
-                    new TexParameteri(TexParameter.PropertyName.TextureMagFilter, (int)GL.GL_LINEAR));
-                texture.Initialize();
-                this.hdrTexture = texture;
-            }
+            this.hdrTexture = LoadHDRTexture(@"Texture\hdr\newport_loft.hdr");
+            //{
+            //    Bitmap bitmap = LoadHdrFormFreeImage(@"Texture\hdr\newport_loft.hdr");
+            //    var storage = new TexImageBitmap(bitmap, GL.GL_RGB16F);
+            //    var texture = new Texture(storage,
+            //        new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP_TO_EDGE),
+            //        new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_CLAMP_TO_EDGE),
+            //        new TexParameteri(TexParameter.PropertyName.TextureMinFilter, (int)GL.GL_LINEAR),
+            //        new TexParameteri(TexParameter.PropertyName.TextureMagFilter, (int)GL.GL_LINEAR));
+            //    texture.Initialize();
+            //    this.hdrTexture = texture;
+            //}
 
             this.albedoMap = LoadTexture(@"Texture\agedplanks1-albedo.png");
             this.albedoMap.TextureUnitIndex = 3;
@@ -131,19 +132,7 @@ namespace PhysicallyBasedRendering {
                     fbo.Unbind();
 
                     //vec3 color = System.Drawing.Color.SkyBlue.ToVec3();
-                    vec3 color = System.Drawing.Color.Red.ToVec3();
-                    //fbo.Bind();
-                    //program.Bind();
-                    //program.SetUniform("ViewMatrix", captureView[i]);
-                    //program.PushUniforms();
-                    //GL.Instance.ClearColor(color.x, color.y, color.z, 1);
-                    //GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
-                    ////renderCube();
-                    //program.Unbind();
-                    //fbo.Unbind();
-
-                    //irradianceMap.GetImage(face, fbo.Width, fbo.Height).Save(
-                    //    string.Format("irradianceMap.clear.{0}.png", face));
+                    vec3 color = System.Drawing.Color.Black.ToVec3();
 
                     fbo.Bind();
                     program.Bind();
@@ -338,6 +327,45 @@ namespace PhysicallyBasedRendering {
             var file = new FileInfo(filename);
             texture.GetImage(hdrFile.Width, hdrFile.Height).Save(
                 string.Format("{0}.GetImage.png", file.Name));
+
+            return texture;
+        }
+
+        class PointerData : LeveledData {
+            private IntPtr pointer;
+
+            public PointerData(IntPtr pointer) {
+                this.pointer = pointer;
+            }
+            public override IntPtr LockData() {
+                return this.pointer;
+            }
+        }
+
+        class PointerDataProvider : LeveledDataProvider {
+            private PointerData data;
+            public PointerDataProvider(PointerData data) {
+                this.data = data;
+            }
+
+            public override IEnumerator<LeveledData> GetEnumerator() {
+                yield return this.data;
+            }
+        }
+
+        private unsafe Texture LoadHDRTexture(string filename) {
+            int width, height, nrComponents;
+            float* data = stb_Image.stbi_loadf(filename, &width, &height, &nrComponents, 0);
+            var dataProvider = new PointerDataProvider(new PointerData(new IntPtr(data)));
+            var storage = new TexImage2D(TexImage2D.Target.Texture2D, GL.GL_RGB16F, width, height, GL.GL_RGB, GL.GL_FLOAT, dataProvider);
+            var texture = new Texture(storage,
+                new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP_TO_EDGE),
+                new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_CLAMP_TO_EDGE),
+                new TexParameteri(TexParameter.PropertyName.TextureMinFilter, (int)GL.GL_LINEAR),
+                new TexParameteri(TexParameter.PropertyName.TextureMagFilter, (int)GL.GL_LINEAR));
+            texture.Initialize();
+
+            texture.GetImage(width, height).Save(string.Format("HDR.Texture.png"));
 
             return texture;
         }
