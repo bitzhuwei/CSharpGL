@@ -64,7 +64,6 @@ namespace IntroductionVideo {
             this.scene.Camera.AspectRatio = ((float)this.winGLCanvas1.Width) / ((float)this.winGLCanvas1.Height);
         }
 
-        private List<int> list;
         private List<VideoScript> scriptList = new List<VideoScript>();
         private bool allScriptsDone = true;
         private List<VideoScript>.Enumerator enumerator;
