@@ -6,39 +6,8 @@ using System.Text;
 
 namespace IntroductionVideo {
     /// <summary>
-    /// Displays and updates light's position.
     /// </summary>
-    public class SphereNode : PickableNode, IRenderable {
-        private const string inPosition = "inPosition";
-        private const string projectionMatrix = "projectionMatrix";
-        private const string viewMatrix = "viewMatrix";
-        private const string modelMatrix = "modelMatrix";
-        private const string color = "color";
-        private const string vertexCode =
-            @"#version 330 core
-
-in vec3 " + inPosition + @";
-
-uniform mat4 " + projectionMatrix + @";
-uniform mat4 " + viewMatrix + @";
-uniform mat4 " + modelMatrix + @";
-
-void main(void) {
-	gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(inPosition, 1.0);
-}
-";
-        private const string fragmentCode =
-            @"#version 330 core
-
-uniform vec3 " + color + @" = vec3(1, 1, 1);
-
-layout(location = 0) out vec4 outColor;
-//out vec4 outColor;
-
-void main(void) {
-    outColor = vec4(color, 1);
-}
-";
+    public partial class SphereNode : PickableNode, IRenderable {
 
         /// <summary>
         /// Creates a <see cref="LightPositionNode"/> which displays and updates light's position.
@@ -52,7 +21,7 @@ void main(void) {
             var fs = new FragmentShader(fragmentCode);
             var provider = new ShaderArray(vs, fs);
             var map = new AttributeMap();
-            map.Add(inPosition, Sphere.strPosition);
+            map.Add("inPosition", Sphere.strPosition);
             var builder = new RenderMethodBuilder(provider, map, new PolygonModeSwitch(PolygonMode.Line));
             var node = new SphereNode(model, Sphere.strPosition, builder);
             node.Initialize();
@@ -89,9 +58,9 @@ void main(void) {
 
             var method = this.RenderUnit.Methods[0]; // the only render unit in this node.
             ShaderProgram program = method.Program;
-            program.SetUniform(projectionMatrix, projection);
-            program.SetUniform(viewMatrix, view);
-            program.SetUniform(modelMatrix, model);
+            program.SetUniform("projectionMatrix", projection);
+            program.SetUniform("viewMatrix", view);
+            program.SetUniform("modelMatrix", model);
 
             method.Render();
         }
