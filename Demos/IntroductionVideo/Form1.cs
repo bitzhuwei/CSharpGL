@@ -12,7 +12,8 @@ namespace IntroductionVideo {
     public partial class Form1 : Form {
         private Scene scene;
         private ActionList actionList;
-        private CubeNode cubeNode;
+        //private CubeNode cubeNode;
+        private SphereNode sphereNode;
 
         public Form1() {
             InitializeComponent();
@@ -30,9 +31,11 @@ namespace IntroductionVideo {
             var center = new vec3(0, 0, 0);
             var up = new vec3(0, 1, 0);
             var camera = new Camera(position, center, up, CameraType.Perspective, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
-            this.cubeNode = CubeNode.Create();
+            //this.cubeNode = CubeNode.Create();
+            this.sphereNode = SphereNode.Create();
             var scene = new Scene(camera);
-            scene.RootNode = cubeNode;
+            //scene.RootNode = cubeNode;
+            scene.RootNode = sphereNode;
             this.scene = scene;
 
             var list = new ActionList();
@@ -70,8 +73,10 @@ namespace IntroductionVideo {
         private VideoScript currentScript;
 
         private void timer1_Tick(object sender, EventArgs e) {
-            this.cubeNode.RotationAxis = new vec3(0, 1, 0);
-            this.cubeNode.RotationAngle += 7f;
+            //this.cubeNode.RotationAxis = new vec3(0, 1, 0);
+            //this.cubeNode.RotationAngle += 7f;
+            this.sphereNode.RotationAxis = new vec3(0, 1, 0);
+            this.sphereNode.RotationAngle += 7f;
 
             // how script executes.
             if (allScriptsDone) { return; }
