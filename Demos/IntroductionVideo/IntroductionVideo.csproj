@@ -54,7 +54,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SphereNode.Points.cs" />
+    <Compile Include="SphereNode.Line.cs" />
+    <Compile Include="SphereNode.Point.cs" />
     <Compile Include="SphereNode.cs" />
     <Compile Include="VideoScript.cs" />
     <EmbeddedResource Include="Form1.resx">

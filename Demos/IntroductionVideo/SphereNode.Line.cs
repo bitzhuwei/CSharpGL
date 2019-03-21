@@ -6,7 +6,7 @@ using System.Text;
 
 namespace IntroductionVideo {
     public partial class SphereNode {
-        private const string vertexCode =
+        private const string vsLine =
             @"#version 330 core
 
 in vec3 inPosition;
@@ -19,7 +19,7 @@ void main(void) {
 	gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(inPosition, 1.0);
 }
 ";
-        private const string fragmentCode =
+        private const string fsLine =
             @"#version 330 core
 
 uniform vec3 color = vec3(1, 1, 1);
