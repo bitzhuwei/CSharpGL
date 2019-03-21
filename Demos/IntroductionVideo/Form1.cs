@@ -52,19 +52,45 @@ namespace IntroductionVideo {
             {
                 var model = new Sphere(1, 20, 40);
                 var node = SpherePointNode.Create(model);
-                node.Name = "Point";
+                node.Name = "0 Point";
                 (new FormPropertyGrid(node)).Show();
                 groupNode.Children.Add(node);
             }
             {
                 var model = new Sphere(1, 20, 40);
                 var node = SphereLineNode.Create(model);
-                node.Name = "Line";
+                node.Name = "1 Line";
+                (new FormPropertyGrid(node)).Show();
+                groupNode.Children.Add(node);
+            }
+            {
+                var model = new Sphere(1, 20, 40);
+                var texture = GetTexture();
+                var node = SphereTextureNode.Create(model, texture);
+                node.Name = "2 Texture";
                 (new FormPropertyGrid(node)).Show();
                 groupNode.Children.Add(node);
             }
 
             return groupNode;
+        }
+
+
+        private Texture GetTexture() {
+            string folder = System.Windows.Forms.Application.StartupPath;
+            var bmp = new Bitmap(System.IO.Path.Combine(folder, @"earth.png"));
+            TexStorageBase storage = new TexImageBitmap(bmp, GL.GL_RGBA, 1, true);
+            var texture = new Texture(storage,
+                new TexParameterfv(TexParameter.PropertyName.TextureBorderColor, 1, 0, 0),
+                new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP_TO_EDGE),
+                new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_CLAMP_TO_EDGE),
+                new TexParameteri(TexParameter.PropertyName.TextureWrapR, (int)GL.GL_CLAMP_TO_EDGE),
+                new TexParameteri(TexParameter.PropertyName.TextureMinFilter, (int)GL.GL_LINEAR),
+                new TexParameteri(TexParameter.PropertyName.TextureMagFilter, (int)GL.GL_LINEAR));
+            texture.Initialize();
+            bmp.Dispose();
+
+            return texture;
         }
 
         private void winGLCanvas1_OpenGLDraw(object sender, PaintEventArgs e) {
