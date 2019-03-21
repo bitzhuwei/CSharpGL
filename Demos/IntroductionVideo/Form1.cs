@@ -45,6 +45,7 @@ namespace IntroductionVideo {
             list.Add(renderAction);
             this.actionList = list;
 
+            (new FormPropertyGrid(sphereNode)).Show();
             //// uncomment these lines to enable manipualter of camera!
             //var manipulater = new FirstPerspectiveManipulater();
             //manipulater.BindingMouseButtons = System.Windows.Forms.MouseButtons.Right;
