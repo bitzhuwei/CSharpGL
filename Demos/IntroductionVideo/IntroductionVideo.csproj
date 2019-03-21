@@ -60,6 +60,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShadowMappingNode.cs" />
     <Compile Include="ShadowMappingNode.shaders.cs" />
+    <Compile Include="ShadowVolumeNode.cs" />
+    <Compile Include="ShadowVolumeNode.shaders.cs" />
     <Compile Include="SphereTextureNode.cs" />
     <Compile Include="SphereTextureNode.shaders.cs" />
     <Compile Include="SpherePointNode.shaders.cs" />
@@ -91,6 +93,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="sphere.obj_">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\CSharpGL.Windows\CSharpGL.Windows.csproj">

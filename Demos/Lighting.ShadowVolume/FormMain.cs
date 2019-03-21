@@ -8,16 +8,13 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Lighting.ShadowVolume
-{
-    public partial class FormMain : Form
-    {
+namespace Lighting.ShadowVolume {
+    public partial class FormMain : Form {
         private Scene scene;
         private ActionList actionList;
         private List<LightBase> lights;
 
-        public FormMain(List<LightBase> lights, string text)
-        {
+        public FormMain(List<LightBase> lights, string text) {
             InitializeComponent();
 
             this.lights = lights;
@@ -28,8 +25,7 @@ namespace Lighting.ShadowVolume
             this.winGLCanvas1.Resize += winGLCanvas1_Resize;
         }
 
-        private void FormMain_Load(object sender, EventArgs e)
-        {
+        private void FormMain_Load(object sender, EventArgs e) {
             var position = new vec3(1, 0.6f, 1) * 16;
             var center = new vec3(0, 0, 0);
             var up = new vec3(0, 1, 0);
@@ -40,12 +36,12 @@ namespace Lighting.ShadowVolume
             {
                 var lightList = this.lights;
                 float angle = 0;
-                foreach (var light in lightList)
-                {
+                foreach (var light in lightList) {
                     this.scene.Lights.Add(light);
                     var node = LightPositionNode.Create(light, angle);
                     angle += 360.0f / lightList.Count;
                     this.scene.RootNode.Children.Add(node);
+                    break;
                 }
             }
 
@@ -65,40 +61,33 @@ namespace Lighting.ShadowVolume
 
         }
 
-        private void Match(TreeView treeView, SceneNodeBase nodeBase)
-        {
+        private void Match(TreeView treeView, SceneNodeBase nodeBase) {
             treeView.Nodes.Clear();
             var node = new TreeNode(nodeBase.ToString()) { Tag = nodeBase };
             treeView.Nodes.Add(node);
             Match(node, nodeBase);
         }
 
-        private void Match(TreeNode node, SceneNodeBase nodeBase)
-        {
-            foreach (var item in nodeBase.Children)
-            {
+        private void Match(TreeNode node, SceneNodeBase nodeBase) {
+            foreach (var item in nodeBase.Children) {
                 var child = new TreeNode(item.ToString()) { Tag = item };
                 node.Nodes.Add(child);
                 Match(child, item);
             }
         }
 
-        private SceneNodeBase GetRootNode()
-        {
+        private SceneNodeBase GetRootNode() {
             var group = new GroupNode();
             var filenames = new string[] { "floor.obj_", };
-            for (int i = 0; i < filenames.Length; i++)
-            {
+            for (int i = 0; i < filenames.Length; i++) {
                 string folder = System.Windows.Forms.Application.StartupPath;
                 string filename = System.IO.Path.Combine(folder + @"\..\..\..\..\Infrastructure\CSharpGL.Models", filenames[i]);
                 var parser = new ObjVNFParser(true);
                 ObjVNFResult result = parser.Parse(filename);
-                if (result.Error != null)
-                {
+                if (result.Error != null) {
                     MessageBox.Show(result.Error.ToString());
                 }
-                else
-                {
+                else {
                     ObjVNFMesh mesh = result.Mesh;
                     var model = new AdjacentTriangleModel(mesh);
                     var node = ShadowVolumeNode.Create(model, ObjVNF.strPosition, ObjVNF.strNormal, model.GetSize());
@@ -111,18 +100,15 @@ namespace Lighting.ShadowVolume
                 var parser = new ObjVNFParser(false);
                 var hanoiTower = new GroupNode();
                 ObjItem[] items = HanoiTower.GetDataSource();
-                foreach (var item in items)
-                {
+                foreach (var item in items) {
                     var objFormat = item.model;
                     var filename = item.GetType().Name;
                     objFormat.DumpObjFile(filename, filename);
                     ObjVNFResult result = parser.Parse(filename);
-                    if (result.Error != null)
-                    {
+                    if (result.Error != null) {
                         Console.WriteLine("Error: {0}", result.Error);
                     }
-                    else
-                    {
+                    else {
                         ObjVNFMesh mesh = result.Mesh;
                         var model = new ObjVNF(mesh);
                         var node = ShadowVolumeNode.Create(model, ObjVNF.strPosition, ObjVNF.strNormal, model.GetSize());
@@ -138,11 +124,9 @@ namespace Lighting.ShadowVolume
             return group;
         }
 
-        private void winGLCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
-        {
+        private void winGLCanvas1_OpenGLDraw(object sender, PaintEventArgs e) {
             ActionList list = this.actionList;
-            if (list != null)
-            {
+            if (list != null) {
                 vec4 clearColor = this.scene.ClearColor;
                 GL.Instance.ClearColor(clearColor.x, clearColor.y, clearColor.z, clearColor.w);
                 GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT | GL.GL_STENCIL_BUFFER_BIT);
@@ -151,14 +135,12 @@ namespace Lighting.ShadowVolume
             }
         }
 
-        void winGLCanvas1_Resize(object sender, EventArgs e)
-        {
+        void winGLCanvas1_Resize(object sender, EventArgs e) {
             this.scene.Camera.AspectRatio = ((float)this.winGLCanvas1.Width) / ((float)this.winGLCanvas1.Height);
         }
 
 
-        private void trvScene_AfterSelect(object sender, TreeViewEventArgs e)
-        {
+        private void trvScene_AfterSelect(object sender, TreeViewEventArgs e) {
             this.propGrid.SelectedObject = e.Node.Tag;
         }
     }

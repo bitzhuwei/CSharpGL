@@ -85,31 +85,34 @@ namespace IntroductionVideo {
             //    (new FormPropertyGrid(node)).Show();
             //    groupNode.Children.Add(node);
             //}
+            //{
+            //    var model = new Sphere(1, 20, 40);
+            //    var texture = GetTexture();
+            //    var node = ShadowMappingNode.Create(model, Sphere.strPosition, Sphere.strNormal, model.Size);
+            //    node.Name = "3 Light/Shadow";
+            //    (new FormPropertyGrid(node)).Show();
+            //    groupNode.Children.Add(node);
+            //}
+            //{
+            //    string folder = System.Windows.Forms.Application.StartupPath;
+            //    string filename = System.IO.Path.Combine(folder, "floor.obj_");
+            //    var parser = new ObjVNFParser(true);
+            //    ObjVNFResult result = parser.Parse(filename);
+            //    if (result.Error != null) {
+            //        MessageBox.Show(result.Error.ToString());
+            //    }
+            //    else {
+            //        ObjVNFMesh mesh = result.Mesh;
+            //        var model = new ObjVNF(mesh);
+            //        var node = ShadowMappingNode.Create(model, ObjVNF.strPosition, ObjVNF.strNormal, model.GetSize());
+            //        node.WorldPosition = new vec3(0, -2, 0);
+            //        node.Color = Color.Green.ToVec3();
+            //        node.Name = filename;
+            //        groupNode.Children.Add(node);
+            //    }
+            //}
             {
-                var model = new Sphere(1, 20, 40);
-                var texture = GetTexture();
-                var node = ShadowMappingNode.Create(model, Sphere.strPosition, Sphere.strNormal, model.Size);
-                node.Name = "3 Light/Shadow";
-                (new FormPropertyGrid(node)).Show();
-                groupNode.Children.Add(node);
-            }
-            {
-                string folder = System.Windows.Forms.Application.StartupPath;
-                string filename = System.IO.Path.Combine(folder, "floor.obj_");
-                var parser = new ObjVNFParser(true);
-                ObjVNFResult result = parser.Parse(filename);
-                if (result.Error != null) {
-                    MessageBox.Show(result.Error.ToString());
-                }
-                else {
-                    ObjVNFMesh mesh = result.Mesh;
-                    var model = new ObjVNF(mesh);
-                    var node = ShadowMappingNode.Create(model, ObjVNF.strPosition, ObjVNF.strNormal, model.GetSize());
-                    node.WorldPosition = new vec3(0, -2, 0);
-                    node.Color = Color.Green.ToVec3();
-                    node.Name = filename;
-                    groupNode.Children.Add(node);
-                }
+
             }
 
             return groupNode;
