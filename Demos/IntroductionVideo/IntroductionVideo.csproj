@@ -54,6 +54,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ShadowMappingNode.cs" />
+    <Compile Include="ShadowMappingNode.shaders.cs" />
     <Compile Include="SphereTextureNode.cs" />
     <Compile Include="SphereTextureNode.shaders.cs" />
     <Compile Include="SpherePointNode.shaders.cs" />
@@ -73,6 +75,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="floor.obj_">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

@@ -32,44 +32,76 @@ namespace IntroductionVideo {
             var camera = new Camera(position, center, up, CameraType.Perspective, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
             var scene = new Scene(camera);
             scene.RootNode = GetNodes();
+            {
+                var light = new DirectionalLight(new vec3(1, 3, -1));
+                scene.Lights.Add(light);
+            }
             this.scene = scene;
 
             var list = new ActionList();
             var transformAction = new TransformAction(scene);
             list.Add(transformAction);
+            var shadowAction = new ShadowMappingAction(scene);
+            list.Add(shadowAction);
             var renderAction = new RenderAction(scene);
             list.Add(renderAction);
             this.actionList = list;
 
-            //// uncomment these lines to enable manipualter of camera!
-            //var manipulater = new FirstPerspectiveManipulater();
-            //manipulater.BindingMouseButtons = System.Windows.Forms.MouseButtons.Right;
-            //manipulater.Bind(camera, this.winGLCanvas1);
+            // uncomment these lines to enable manipualter of camera!
+            var manipulater = new FirstPerspectiveManipulater();
+            manipulater.BindingMouseButtons = GLMouseButtons.Right;
+            manipulater.Bind(camera, this.winGLCanvas1);
         }
 
         private GroupNode GetNodes() {
             var groupNode = new GroupNode();
-            {
-                var model = new Sphere(1, 20, 40);
-                var node = SpherePointNode.Create(model);
-                node.Name = "0 Point";
-                (new FormPropertyGrid(node)).Show();
-                groupNode.Children.Add(node);
-            }
-            {
-                var model = new Sphere(1, 20, 40);
-                var node = SphereLineNode.Create(model);
-                node.Name = "1 Line";
-                (new FormPropertyGrid(node)).Show();
-                groupNode.Children.Add(node);
-            }
+            //{
+            //    var model = new Sphere(1, 20, 40);
+            //    var node = SpherePointNode.Create(model);
+            //    node.Name = "0 Point";
+            //    (new FormPropertyGrid(node)).Show();
+            //    groupNode.Children.Add(node);
+            //}
+            //{
+            //    var model = new Sphere(1, 20, 40);
+            //    var node = SphereLineNode.Create(model);
+            //    node.Name = "1 Line";
+            //    (new FormPropertyGrid(node)).Show();
+            //    groupNode.Children.Add(node);
+            //}
+            //{
+            //    var model = new Sphere(1, 20, 40);
+            //    var texture = GetTexture();
+            //    var node = SphereTextureNode.Create(model, texture);
+            //    node.Name = "2 Texture";
+            //    (new FormPropertyGrid(node)).Show();
+            //    groupNode.Children.Add(node);
+            //}
             {
                 var model = new Sphere(1, 20, 40);
                 var texture = GetTexture();
-                var node = SphereTextureNode.Create(model, texture);
-                node.Name = "2 Texture";
+                var node = ShadowMappingNode.Create(model, Sphere.strPosition, Sphere.strNormal, model.Size);
+                node.Name = "3 Light/Shadow";
                 (new FormPropertyGrid(node)).Show();
                 groupNode.Children.Add(node);
+            }
+            {
+                string folder = System.Windows.Forms.Application.StartupPath;
+                string filename = System.IO.Path.Combine(folder, "floor.obj_");
+                var parser = new ObjVNFParser(true);
+                ObjVNFResult result = parser.Parse(filename);
+                if (result.Error != null) {
+                    MessageBox.Show(result.Error.ToString());
+                }
+                else {
+                    ObjVNFMesh mesh = result.Mesh;
+                    var model = new ObjVNF(mesh);
+                    var node = ShadowMappingNode.Create(model, ObjVNF.strPosition, ObjVNF.strNormal, model.GetSize());
+                    node.WorldPosition = new vec3(0, -2, 0);
+                    node.Color = Color.Green.ToVec3();
+                    node.Name = filename;
+                    groupNode.Children.Add(node);
+                }
             }
 
             return groupNode;
