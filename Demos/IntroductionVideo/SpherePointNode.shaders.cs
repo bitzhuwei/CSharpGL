@@ -5,8 +5,8 @@ using System.Linq;
 using System.Text;
 
 namespace IntroductionVideo {
-    public partial class SphereNode {
-        private const string vsPoint =
+    public partial class SpherePointNode {
+        private const string vsCode =
             @"#version 330 core
 
 in vec3 inPosition;
@@ -19,7 +19,7 @@ void main(void) {
 	gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(inPosition, 1.0);
 }
 ";
-        private const string fsPoint =
+        private const string fsCode =
             @"#version 330 core
 
 uniform vec3 color = vec3(1, 1, 1);

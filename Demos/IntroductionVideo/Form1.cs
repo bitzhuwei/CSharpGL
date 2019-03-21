@@ -13,7 +13,6 @@ namespace IntroductionVideo {
         private Scene scene;
         private ActionList actionList;
         //private CubeNode cubeNode;
-        private SphereNode sphereNode;
 
         public Form1() {
             InitializeComponent();
@@ -31,11 +30,8 @@ namespace IntroductionVideo {
             var center = new vec3(0, 0, 0);
             var up = new vec3(0, 1, 0);
             var camera = new Camera(position, center, up, CameraType.Perspective, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
-            //this.cubeNode = CubeNode.Create();
-            this.sphereNode = SphereNode.Create();
             var scene = new Scene(camera);
-            //scene.RootNode = cubeNode;
-            scene.RootNode = sphereNode;
+            scene.RootNode = GetNodes();
             this.scene = scene;
 
             var list = new ActionList();
@@ -45,11 +41,30 @@ namespace IntroductionVideo {
             list.Add(renderAction);
             this.actionList = list;
 
-            (new FormPropertyGrid(sphereNode)).Show();
             //// uncomment these lines to enable manipualter of camera!
             //var manipulater = new FirstPerspectiveManipulater();
             //manipulater.BindingMouseButtons = System.Windows.Forms.MouseButtons.Right;
             //manipulater.Bind(camera, this.winGLCanvas1);
+        }
+
+        private GroupNode GetNodes() {
+            var groupNode = new GroupNode();
+            {
+                var model = new Sphere(1, 20, 40);
+                var node = SpherePointNode.Create(model);
+                node.Name = "Point";
+                (new FormPropertyGrid(node)).Show();
+                groupNode.Children.Add(node);
+            }
+            {
+                var model = new Sphere(1, 20, 40);
+                var node = SphereLineNode.Create(model);
+                node.Name = "Line";
+                (new FormPropertyGrid(node)).Show();
+                groupNode.Children.Add(node);
+            }
+
+            return groupNode;
         }
 
         private void winGLCanvas1_OpenGLDraw(object sender, PaintEventArgs e) {
