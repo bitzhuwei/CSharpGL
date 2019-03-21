@@ -5,7 +5,7 @@ using System.Text;
 using CSharpGL;
 
 namespace IntroductionVideo {
-    partial class ShadowMappingNode : ModernNode, ISupportShadowMapping {
+    partial class ShadowMappingNode : PickableNode, ISupportShadowMapping {
         public static ShadowMappingNode Create(IBufferSource model, string position, string normal, vec3 size) {
             RenderMethodBuilder ambientBuilder, shadowBuilder, blinnPhongBuilder;
             {
@@ -33,15 +33,15 @@ namespace IntroductionVideo {
                 blinnPhongBuilder = new RenderMethodBuilder(array, map);
             }
 
-            var node = new ShadowMappingNode(model, ambientBuilder, shadowBuilder, blinnPhongBuilder);
+            var node = new ShadowMappingNode(model, position, ambientBuilder, shadowBuilder, blinnPhongBuilder);
             node.Initialize();
             node.ModelSize = size;
 
             return node;
         }
 
-        private ShadowMappingNode(IBufferSource model, params RenderMethodBuilder[] builders)
-            : base(model, builders) {
+        private ShadowMappingNode(IBufferSource model, string positionNameInIBufferSource, params RenderMethodBuilder[] builders)
+            : base(model, positionNameInIBufferSource, builders) {
             this.Color = new vec3(1, 1, 1);
             this.Shiness = 32;
             this.BlinnPhong = true;

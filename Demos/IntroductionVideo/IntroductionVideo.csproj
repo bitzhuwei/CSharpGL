@@ -46,6 +46,10 @@
     <Compile Include="CubeModel.cs" />
     <Compile Include="CubeNode.cs" />
     <Compile Include="CubeNode.shaders.cs" />
+    <Compile Include="DragParam.cs" />
+    <Compile Include="Form1.Picking.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -23,6 +23,9 @@ namespace IntroductionVideo {
             this.winGLCanvas1.OpenGLDraw += winGLCanvas1_OpenGLDraw;
             // resize event.
             this.winGLCanvas1.Resize += winGLCanvas1_Resize;
+            this.winGLCanvas1.MouseDown += glCanvas1_MouseDown;
+            this.winGLCanvas1.MouseMove += glCanvas1_MouseMove;
+            this.winGLCanvas1.MouseUp += glCanvas1_MouseUp;
         }
 
         private void FormMain_Load(object sender, EventArgs e) {
@@ -37,6 +40,11 @@ namespace IntroductionVideo {
                 scene.Lights.Add(light);
             }
             this.scene = scene;
+
+            this.pickingAction = new Picking(scene);
+
+            this.triangleTip = new LegacyTriangleNode();
+            this.quadTip = new LegacyQuadNode();
 
             var list = new ActionList();
             var transformAction = new TransformAction(scene);
