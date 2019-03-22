@@ -68,7 +68,6 @@
     <Compile Include="SpherePointNode.cs" />
     <Compile Include="SphereLineNode.shaders.cs" />
     <Compile Include="SphereLineNode.cs" />
-    <Compile Include="VideoScript.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -112,6 +111,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="earth-bump.png" />
     <Content Include="earth.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

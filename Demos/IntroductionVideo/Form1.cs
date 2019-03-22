@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace IntroductionVideo {
@@ -29,7 +30,7 @@ namespace IntroductionVideo {
         }
 
         private void FormMain_Load(object sender, EventArgs e) {
-            var position = new vec3(5, 3, 4) * 0.5f;
+            var position = new vec3(5, 3, 4) * 0.4f;
             var center = new vec3(0, 0, 0);
             var up = new vec3(0, 1, 0);
             var camera = new Camera(position, center, up, CameraType.Perspective, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
@@ -64,19 +65,21 @@ namespace IntroductionVideo {
         private GroupNode GetNodes() {
             var groupNode = new GroupNode();
             //{
-            //    var model = new Sphere(1, 20, 40);
+            //    var model = new Sphere(1, 10, 10);
             //    var node = SpherePointNode.Create(model);
             //    node.Name = "0 Point";
+            //    this.pointNode = node;
             //    (new FormPropertyGrid(node)).Show();
             //    groupNode.Children.Add(node);
             //}
-            //{
-            //    var model = new Sphere(1, 20, 40);
-            //    var node = SphereLineNode.Create(model);
-            //    node.Name = "1 Line";
-            //    (new FormPropertyGrid(node)).Show();
-            //    groupNode.Children.Add(node);
-            //}
+            {
+                var model = new Sphere(1, 10, 10);
+                var node = SphereLineNode.Create(model);
+                node.Name = "1 Line";
+                this.lineNode = node;
+                (new FormPropertyGrid(node)).Show();
+                groupNode.Children.Add(node);
+            }
             //{
             //    var model = new Sphere(1, 20, 40);
             //    var texture = GetTexture();
@@ -152,33 +155,129 @@ namespace IntroductionVideo {
             this.scene.Camera.AspectRatio = ((float)this.winGLCanvas1.Width) / ((float)this.winGLCanvas1.Height);
         }
 
-        private List<VideoScript> scriptList = new List<VideoScript>();
-        private bool allScriptsDone = true;
-        private List<VideoScript>.Enumerator enumerator;
-        private VideoScript currentScript;
-
         private void timer1_Tick(object sender, EventArgs e) {
             //this.cubeNode.RotationAxis = new vec3(0, 1, 0);
             //this.cubeNode.RotationAngle += 7f;
             //this.sphereNode.RotationAxis = new vec3(0, 1, 0);
             //this.sphereNode.RotationAngle += 7f;
 
-            // how script executes.
-            if (allScriptsDone) { return; }
-            if (currentScript == null) {
-                if (enumerator.MoveNext()) {
-                    currentScript = enumerator.Current;
+
+            if (this.currentButton == this.btnPoints) {
+                if (Points(this.btnPoints)) {
+                    this.timer1.Enabled = false;
                 }
-                else {
-                    allScriptsDone = true;
+            }
+            else if (this.currentButton == this.btnLines) {
+                if (Lines(this.btnLines)) {
+                    this.timer1.Enabled = false;
+                }
+            }
+        }
+
+        Button currentButton;
+
+        private bool Lines(Button button) {
+            if (increase) {
+                SphereLineNode node = this.lineNode;
+                var cmd = node.RenderUnit.Methods[0].VertexArrayObjects[0].DrawCommand as DrawElementsCmd;
+                cmd.VertexCount = currentIndex;
+            }
+            else {
+                DumpImage(string.Format("{0:0000}.png", currentIndex));
+
+                currentIndex++;
+                if (currentIndex > totalVertexCount) {
+                    currentIndex = 0;
+                    button.Enabled = true;
+                    return true;
                 }
             }
 
-            if (currentScript != null) {
-                if (!currentScript.Execute()) {
-                    currentScript = null;
+            increase = !increase;
+
+            return false;
+        }
+
+        private bool Points(Button button) {
+            if (increase) {
+                SpherePointNode node = this.pointNode;
+                var cmd = node.RenderUnit.Methods[0].VertexArrayObjects[0].DrawCommand as DrawElementsCmd;
+                cmd.VertexCount = currentIndex;
+            }
+            else {
+                DumpImage(string.Format("{0:0000}.png", currentIndex));
+
+                currentIndex++;
+                if (currentIndex > totalVertexCount) {
+                    currentIndex = 0;
+                    button.Enabled = true;
+                    return true;
                 }
             }
+
+            increase = !increase;
+
+            return false;
+        }
+
+        private void DumpImage(string filename) {
+            int width = this.winGLCanvas1.Width;
+            int height = this.winGLCanvas1.Height;
+            var final = new Bitmap(width, height);
+            var data = final.LockBits(new Rectangle(0, 0, width, height), System.Drawing.Imaging.ImageLockMode.ReadWrite, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+            //glGetTexImage((uint)texture.Target, 0, GL_BGRA, GL_UNSIGNED_BYTE, data.Scan0);
+            GL.Instance.ReadPixels(0, 0, width, height, GL.GL_BGRA, GL.GL_UNSIGNED_BYTE, data.Scan0);
+            final.UnlockBits(data);
+            final.RotateFlip(RotateFlipType.Rotate180FlipX);
+            final.Save(filename);
+        }
+
+        private SpherePointNode pointNode;
+        int currentIndex = 0;
+        int totalVertexCount = 0;
+        bool increase = true;
+        private SphereLineNode lineNode;
+        private void button1_Click(object sender, EventArgs e) {
+            SpherePointNode node = this.pointNode;
+            if (node == null) { return; }
+
+            currentIndex = 0;
+            var cmd = node.RenderUnit.Methods[0].VertexArrayObjects[0].DrawCommand as DrawElementsCmd;
+            totalVertexCount = cmd.VertexCount;
+            increase = true;
+
+            this.currentButton = this.btnPoints;
+            this.timer1.Enabled = true;
+            this.btnPoints.Enabled = false;
+        }
+
+        private void button2_Click(object sender, EventArgs e) {
+            SphereLineNode node = this.lineNode;
+            if (node == null) { return; }
+
+            currentIndex = 0;
+            var cmd = node.RenderUnit.Methods[0].VertexArrayObjects[0].DrawCommand as DrawElementsCmd;
+            totalVertexCount = cmd.VertexCount;
+            increase = true;
+
+            this.currentButton = this.btnLines;
+            this.timer1.Enabled = true;
+            this.btnLines.Enabled = false;
+        }
+
+        private void btnPrintCanvas_Click(object sender, EventArgs e) {
+            this.btnPrintCanvas.Enabled = false;
+            int width = this.winGLCanvas1.Width;
+            int height = this.winGLCanvas1.Height;
+            var final = new Bitmap(width, height);
+            var data = final.LockBits(new Rectangle(0, 0, width, height), System.Drawing.Imaging.ImageLockMode.ReadWrite, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+            //glGetTexImage((uint)texture.Target, 0, GL_BGRA, GL_UNSIGNED_BYTE, data.Scan0);
+            GL.Instance.ReadPixels(0, 0, width, height, GL.GL_BGRA, GL.GL_UNSIGNED_BYTE, data.Scan0);
+            final.UnlockBits(data);
+            final.RotateFlip(RotateFlipType.Rotate180FlipX);
+            string filename = string.Format("PrintCanvas{0:yyyyMMdd-HHmmss}.png", DateTime.Now);
+            final.Save(filename);
+            this.btnPrintCanvas.Enabled = true;
         }
     }
 }
