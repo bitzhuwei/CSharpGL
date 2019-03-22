@@ -50,6 +50,8 @@ namespace IntroductionVideo {
             var list = new ActionList();
             var transformAction = new TransformAction(scene);
             list.Add(transformAction);
+            var lightAction = new BlinnPhongAction(scene);
+            list.Add(lightAction);
             var shadowAction = new ShadowMappingAction(scene);
             list.Add(shadowAction);
             var renderAction = new RenderAction(scene);
@@ -73,10 +75,17 @@ namespace IntroductionVideo {
             //    groupNode.Children.Add(node);
             //}
             {
-                var model = new Sphere(1, 10, 10);
+                var model = new Sphere(1, 20, 40);
                 var node = SphereLineNode.Create(model);
                 node.Name = "1 Line";
                 this.lineNode = node;
+                (new FormPropertyGrid(node)).Show();
+                groupNode.Children.Add(node);
+            }
+            {
+                var model = new Sphere(1, 20, 40);
+                var node = SphereLightNode.Create(model, Sphere.strPosition, Sphere.strNormal, model.Size);
+                node.Name = "1 Line";
                 (new FormPropertyGrid(node)).Show();
                 groupNode.Children.Add(node);
             }
