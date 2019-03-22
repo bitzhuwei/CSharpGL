@@ -37,7 +37,8 @@ namespace IntroductionVideo {
             var scene = new Scene(camera);
             scene.RootNode = GetNodes();
             {
-                var light = new DirectionalLight(new vec3(1, 3, -1));
+                //var light = new DirectionalLight(new vec3(1, 3, -1));
+                var light = new SpotLight(new vec3(1, 3, -1) * 0.5f, new vec3(), (float)Math.Cos(120.0 / 180.0 * Math.PI));
                 scene.Lights.Add(light);
             }
             this.scene = scene;
@@ -58,10 +59,21 @@ namespace IntroductionVideo {
             list.Add(renderAction);
             this.actionList = list;
 
-            // uncomment these lines to enable manipualter of camera!
-            var manipulater = new FirstPerspectiveManipulater();
-            manipulater.BindingMouseButtons = GLMouseButtons.Right;
-            manipulater.Bind(camera, this.winGLCanvas1);
+            //// uncomment these lines to enable manipualter of camera!
+            //var manipulater = new FirstPerspectiveManipulater();
+            //manipulater.BindingMouseButtons = GLMouseButtons.Right;
+            //manipulater.Bind(camera, this.winGLCanvas1);
+            var arcball = new ArcBallManipulater(GLMouseButtons.Right);
+            arcball.Bind(camera, this.winGLCanvas1);
+            arcball.Rotated += arcball_Rotated;
+        }
+
+        void arcball_Rotated(object sender, ArcBallManipulater.Rotation e) {
+            var node = this.shadowMappingNode;
+            if (node != null) {
+                node.RotationAngle = e.angleInDegree;
+                node.RotationAxis = e.axis;
+            }
         }
 
         private GroupNode GetNodes() {
@@ -74,21 +86,21 @@ namespace IntroductionVideo {
             //    (new FormPropertyGrid(node)).Show();
             //    groupNode.Children.Add(node);
             //}
-            {
-                var model = new Sphere(1, 20, 40);
-                var node = SphereLineNode.Create(model);
-                node.Name = "1 Line";
-                this.lineNode = node;
-                (new FormPropertyGrid(node)).Show();
-                groupNode.Children.Add(node);
-            }
-            {
-                var model = new Sphere(1, 20, 40);
-                var node = SphereLightNode.Create(model, Sphere.strPosition, Sphere.strNormal, model.Size);
-                node.Name = "1 Line";
-                (new FormPropertyGrid(node)).Show();
-                groupNode.Children.Add(node);
-            }
+            //{
+            //    var model = new Sphere(1, 20, 40);
+            //    var node = SphereLineNode.Create(model);
+            //    node.Name = "1 Line";
+            //    this.lineNode = node;
+            //    (new FormPropertyGrid(node)).Show();
+            //    groupNode.Children.Add(node);
+            //}
+            //{
+            //    var model = new Sphere(0.3f, 20, 40);
+            //    var node = SphereLightNode.Create(model, Sphere.strPosition, Sphere.strNormal, model.Size);
+            //    node.Name = "1 Line";
+            //    (new FormPropertyGrid(node)).Show();
+            //    groupNode.Children.Add(node);
+            //}
             //{
             //    var model = new Sphere(1, 20, 40);
             //    var texture = GetTexture();
@@ -97,32 +109,33 @@ namespace IntroductionVideo {
             //    (new FormPropertyGrid(node)).Show();
             //    groupNode.Children.Add(node);
             //}
-            //{
-            //    var model = new Sphere(1, 20, 40);
-            //    var texture = GetTexture();
-            //    var node = ShadowMappingNode.Create(model, Sphere.strPosition, Sphere.strNormal, model.Size);
-            //    node.Name = "3 Light/Shadow";
-            //    (new FormPropertyGrid(node)).Show();
-            //    groupNode.Children.Add(node);
-            //}
-            //{
-            //    string folder = System.Windows.Forms.Application.StartupPath;
-            //    string filename = System.IO.Path.Combine(folder, "floor.obj_");
-            //    var parser = new ObjVNFParser(true);
-            //    ObjVNFResult result = parser.Parse(filename);
-            //    if (result.Error != null) {
-            //        MessageBox.Show(result.Error.ToString());
-            //    }
-            //    else {
-            //        ObjVNFMesh mesh = result.Mesh;
-            //        var model = new ObjVNF(mesh);
-            //        var node = ShadowMappingNode.Create(model, ObjVNF.strPosition, ObjVNF.strNormal, model.GetSize());
-            //        node.WorldPosition = new vec3(0, -2, 0);
-            //        node.Color = Color.Green.ToVec3();
-            //        node.Name = filename;
-            //        groupNode.Children.Add(node);
-            //    }
-            //}
+            {
+                var model = new Sphere(0.3f, 30, 60);
+                var texture = GetTexture();
+                var node = ShadowMappingNode.Create(model, Sphere.strPosition, Sphere.strNormal, model.Size);
+                node.Name = "3 Light/Shadow";
+                this.shadowMappingNode = node;
+                (new FormPropertyGrid(node)).Show();
+                groupNode.Children.Add(node);
+            }
+            {
+                string folder = System.Windows.Forms.Application.StartupPath;
+                string filename = System.IO.Path.Combine(folder, "floor.obj_");
+                var parser = new ObjVNFParser(true);
+                ObjVNFResult result = parser.Parse(filename);
+                if (result.Error != null) {
+                    MessageBox.Show(result.Error.ToString());
+                }
+                else {
+                    ObjVNFMesh mesh = result.Mesh;
+                    var model = new ObjVNF(mesh);
+                    var node = ShadowMappingNode.Create(model, ObjVNF.strPosition, ObjVNF.strNormal, model.GetSize());
+                    node.WorldPosition = new vec3(0, -1.2f, 0);
+                    node.Color = Color.Green.ToVec3();
+                    node.Name = filename;
+                    groupNode.Children.Add(node);
+                }
+            }
             {
 
             }
@@ -246,6 +259,7 @@ namespace IntroductionVideo {
         int totalVertexCount = 0;
         bool increase = true;
         private SphereLineNode lineNode;
+        private ShadowMappingNode shadowMappingNode;
         private void button1_Click(object sender, EventArgs e) {
             SpherePointNode node = this.pointNode;
             if (node == null) { return; }
