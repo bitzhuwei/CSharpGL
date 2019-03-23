@@ -8,15 +8,12 @@ using System.Text;
 using System.Windows.Forms;
 using CSharpGL;
 
-namespace c15d00_ParticleSystem
-{
-    public partial class Form1 : Form
-    {
+namespace c15d00_ParticleSystem {
+    public partial class Form1 : Form {
         private Scene scene;
         private ActionList actionList;
 
-        public Form1()
-        {
+        public Form1() {
             InitializeComponent();
 
             this.winGLCanvas1.TimerTriggerInterval = 1 + (int)(1000.0f / 60.0f);
@@ -25,8 +22,7 @@ namespace c15d00_ParticleSystem
             this.winGLCanvas1.Resize += winGLCanvas1_Resize;
         }
 
-        private void FormMain_Load(object sender, EventArgs e)
-        {
+        private void FormMain_Load(object sender, EventArgs e) {
             var position = new vec3(5, 3, 4) * 1.6f;
             var center = new vec3(0, 0, 0);
             var up = new vec3(0, 1, 0);
@@ -45,12 +41,10 @@ namespace c15d00_ParticleSystem
                     string filename = System.IO.Path.Combine(folder + @"\..\..\..\..\Infrastructure\CSharpGL.Models", "floor.obj_");
                     var parser = new ObjVNFParser(true);
                     ObjVNFResult result = parser.Parse(filename);
-                    if (result.Error != null)
-                    {
+                    if (result.Error != null) {
                         MessageBox.Show(result.Error.ToString());
                     }
-                    else
-                    {
+                    else {
                         ObjVNFMesh mesh = result.Mesh;
                         var model = new ObjVNF(mesh);
                         var node = NoShadowNode.Create(model, ObjVNF.strPosition, ObjVNF.strNormal, model.GetSize());
@@ -86,11 +80,9 @@ namespace c15d00_ParticleSystem
             manipulater.Bind(camera, this.winGLCanvas1);
         }
 
-        private void winGLCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
-        {
+        private void winGLCanvas1_OpenGLDraw(object sender, PaintEventArgs e) {
             ActionList list = this.actionList;
-            if (list != null)
-            {
+            if (list != null) {
                 vec4 clearColor = this.scene.ClearColor;
                 GL.Instance.ClearColor(clearColor.x, clearColor.y, clearColor.z, clearColor.w);
                 GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT | GL.GL_STENCIL_BUFFER_BIT);
@@ -99,10 +91,30 @@ namespace c15d00_ParticleSystem
             }
         }
 
-        void winGLCanvas1_Resize(object sender, EventArgs e)
-        {
+        void winGLCanvas1_Resize(object sender, EventArgs e) {
             this.scene.Camera.AspectRatio = ((float)this.winGLCanvas1.Width) / ((float)this.winGLCanvas1.Height);
         }
 
+        private List<Bitmap> printScreens = new List<Bitmap>();
+
+        private void DumpImage() {
+            int width = this.winGLCanvas1.Width;
+            int height = this.winGLCanvas1.Height;
+            var final = new Bitmap(width, height);
+            var data = final.LockBits(new Rectangle(0, 0, width, height), System.Drawing.Imaging.ImageLockMode.ReadWrite, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+            //glGetTexImage((uint)texture.Target, 0, GL_BGRA, GL_UNSIGNED_BYTE, data.Scan0);
+            GL.Instance.ReadPixels(0, 0, width, height, GL.GL_BGRA, GL.GL_UNSIGNED_BYTE, data.Scan0);
+            final.UnlockBits(data);
+            final.RotateFlip(RotateFlipType.Rotate180FlipX);
+            printScreens.Add(final);
+        }
+
+        protected override void OnClosing(CancelEventArgs e) {
+            for (int i = 0; i < printScreens.Count; i++) {
+                printScreens[i].Save(string.Format("p{0:0000}.png", i));
+            }
+
+            base.OnClosing(e);
+        }
     }
 }
