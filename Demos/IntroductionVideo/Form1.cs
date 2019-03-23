@@ -203,31 +203,31 @@ namespace IntroductionVideo {
                 (new FormPropertyGrid(node)).Show();
                 groupNode.Children.Add(node);
                 {
-                    TextBillboardNode billboard = CreateText("Asia", new vec3(-0.7f, 0.75f, 0.1f) * 1.1f);
+                    TextBillboardNode billboard = CreateText("亚洲", new vec3(-0.7f, 0.75f, 0.1f) * 1.1f);
                     node.Children.Add(billboard);
                 }
                 {
-                    TextBillboardNode billboard = CreateText("Africa", new vec3(-0.3f, 0.1f, -0.9f) * 1.1f);
+                    TextBillboardNode billboard = CreateText("非洲", new vec3(-0.3f, 0.1f, -0.9f) * 1.1f);
                     node.Children.Add(billboard);
                 }
                 {
-                    TextBillboardNode billboard = CreateText("Europe", new vec3(-0.11f, 0.7f, -0.7f) * 1.1f);
+                    TextBillboardNode billboard = CreateText("欧洲", new vec3(-0.11f, 0.7f, -0.7f) * 1.1f);
                     node.Children.Add(billboard);
                 }
                 {
-                    TextBillboardNode billboard = CreateText("North America", new vec3(0.76f, 0.59f, 0.25f) * 1.1f);
+                    TextBillboardNode billboard = CreateText("北美洲", new vec3(0.76f, 0.59f, 0.25f) * 1.1f);
                     node.Children.Add(billboard);
                 }
                 {
-                    TextBillboardNode billboard = CreateText("South America", new vec3(0.88f, -0.15f, -0.45f) * 1.1f);
+                    TextBillboardNode billboard = CreateText("南美洲", new vec3(0.88f, -0.15f, -0.45f) * 1.1f);
                     node.Children.Add(billboard);
                 }
                 {//南极洲
-                    TextBillboardNode billboard = CreateText("Antarctica", new vec3(0, -1, 0) * 1.1f);
+                    TextBillboardNode billboard = CreateText("南极洲", new vec3(0, -1, 0) * 1.1f);
                     node.Children.Add(billboard);
                 }
                 {
-                    TextBillboardNode billboard = CreateText("Australia", new vec3(-0.63f, -0.45f, 0.63f) * 1.1f);
+                    TextBillboardNode billboard = CreateText("澳洲", new vec3(-0.63f, -0.45f, 0.63f) * 1.1f);
                     node.Children.Add(billboard);
                 }
             }
@@ -267,7 +267,8 @@ namespace IntroductionVideo {
 
         private TextBillboardNode CreateText(string text, vec3 position) {
             int width = 100, height = 40, capacity = 100;
-            var billboard = TextBillboardNode.Create(width, height, capacity);
+            GlyphServer server = GlyphServer.Create(new Font("华文行楷", 32), text.Distinct());
+            var billboard = TextBillboardNode.Create(width, height, capacity, server);
             billboard.Text = text;
             billboard.Color = Color.White.ToVec3();
             billboard.EnableRendering = ThreeFlags.None;// we don't render it in RenderAction. we render it in BillboardRenderAction.
