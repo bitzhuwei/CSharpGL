@@ -5,7 +5,7 @@ using System.Text;
 using CSharpGL;
 
 namespace IntroductionVideo {
-    partial class SphereTextureNode : ModernNode, IRenderable {
+    partial class SphereTextureNode : PickableNode, IRenderable {
         public static SphereTextureNode Create(Sphere model, Texture texture) {
             // vertex shader and fragment shader.
             var vs = new VertexShader(vertexCode);
@@ -18,7 +18,7 @@ namespace IntroductionVideo {
             // build a render method.
             var builder = new RenderMethodBuilder(array, map);
             // create node.
-            var node = new SphereTextureNode(model, builder);
+            var node = new SphereTextureNode(model, Sphere.strPosition, builder);
             node.SetTexture(texture);
             // initialize node.
             node.Initialize();
@@ -31,8 +31,8 @@ namespace IntroductionVideo {
             this.texture = texture;
         }
 
-        private SphereTextureNode(IBufferSource model, params RenderMethodBuilder[] builders)
-            : base(model, builders) {
+        private SphereTextureNode(IBufferSource model, string positionNameInIBufferSource, params RenderMethodBuilder[] builders)
+            : base(model, positionNameInIBufferSource, builders) {
         }
 
         private PolygonModeSwitch polygonMode = new PolygonModeSwitch(PolygonMode.Line);

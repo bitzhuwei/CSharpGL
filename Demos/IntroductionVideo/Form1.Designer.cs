@@ -31,6 +31,7 @@
             this.btnPrintCanvas = new System.Windows.Forms.Button();
             this.btnAutoPrintCanvas = new System.Windows.Forms.Button();
             this.btnTexture = new System.Windows.Forms.Button();
+            this.txtInfo = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.winGLCanvas1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -104,11 +105,21 @@
             this.btnTexture.UseVisualStyleBackColor = true;
             this.btnTexture.Click += new System.EventHandler(this.btnTexture_Click);
             // 
+            // txtInfo
+            // 
+            this.txtInfo.Font = new System.Drawing.Font("宋体", 14F);
+            this.txtInfo.Location = new System.Drawing.Point(818, 279);
+            this.txtInfo.Multiline = true;
+            this.txtInfo.Name = "txtInfo";
+            this.txtInfo.Size = new System.Drawing.Size(435, 206);
+            this.txtInfo.TabIndex = 2;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1265, 623);
+            this.Controls.Add(this.txtInfo);
             this.Controls.Add(this.btnTexture);
             this.Controls.Add(this.btnLines);
             this.Controls.Add(this.btnAutoPrintCanvas);
@@ -119,6 +130,7 @@
             this.Text = "Cube - CSharpGL";
             ((System.ComponentModel.ISupportInitialize)(this.winGLCanvas1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -131,6 +143,7 @@
         private System.Windows.Forms.Button btnPrintCanvas;
         private System.Windows.Forms.Button btnAutoPrintCanvas;
         private System.Windows.Forms.Button btnTexture;
+        private System.Windows.Forms.TextBox txtInfo;
     }
 }
 

@@ -75,13 +75,15 @@ namespace IntroductionVideo {
             else {
                 int x = e.X;
                 int y = this.winGLCanvas1.Height - e.Y - 1;
-                this.pickedGeometry = this.pickingAction.Pick(x, y, PickingGeometryTypes.Point, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
+                this.pickedGeometry = this.pickingAction.Pick(x, y, PickingGeometryTypes.Triangle, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
 
                 if (this.pickedGeometry != null) {
-                    var text = string.Format("picked: {0}", this.pickedGeometry.FromObject);
+                    var text = string.Format("picked: {0}", this.pickedGeometry);
+                    this.txtInfo.Text = text;
                 }
                 else {
                     var text = string.Format("picked: nothing");
+                    this.txtInfo.Text = text;
                 }
 
                 this.UpdateHightlight();

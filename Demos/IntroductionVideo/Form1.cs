@@ -65,6 +65,10 @@ namespace IntroductionVideo {
             list.Add(shadowAction);
             var renderAction = new RenderAction(scene);
             list.Add(renderAction);
+            var billboardSortAction = new BillboardSortAction(scene.RootNode, camera);
+            list.Add(billboardSortAction);
+            var billboardRenderAction = new BillboardRenderAction(camera, billboardSortAction);
+            list.Add(billboardRenderAction);
             //var guiRenderAction = new GUIRenderAction(scene.RootControl);
             //list.Add(guiRenderAction);
 
@@ -80,11 +84,21 @@ namespace IntroductionVideo {
         }
 
         void arcball_Rotated(object sender, ArcBallManipulater.Rotation e) {
-            var node = this.shadowMappingNode;
-            if (node != null) {
-                node.RotationAngle = e.angleInDegree;
-                node.RotationAxis = e.axis;
+            {
+                var node = this.shadowMappingNode;
+                if (node != null) {
+                    node.RotationAngle = e.angleInDegree;
+                    node.RotationAxis = e.axis;
+                }
             }
+            {
+                var node = this.textureNode;
+                if (node != null) {
+                    node.RotationAngle = e.angleInDegree;
+                    node.RotationAxis = e.axis;
+                }
+            }
+
         }
 
         private WinCtrlRoot GetRootControl() {
@@ -188,6 +202,34 @@ namespace IntroductionVideo {
                 this.textureNode = node;
                 (new FormPropertyGrid(node)).Show();
                 groupNode.Children.Add(node);
+                {
+                    TextBillboardNode billboard = CreateText("Asia", new vec3(-0.7f, 0.75f, 0.1f) * 1.1f);
+                    node.Children.Add(billboard);
+                }
+                {
+                    TextBillboardNode billboard = CreateText("Africa", new vec3(-0.3f, 0.1f, -0.9f) * 1.1f);
+                    node.Children.Add(billboard);
+                }
+                {
+                    TextBillboardNode billboard = CreateText("Europe", new vec3(-0.11f, 0.7f, -0.7f) * 1.1f);
+                    node.Children.Add(billboard);
+                }
+                {
+                    TextBillboardNode billboard = CreateText("North America", new vec3(0.76f, 0.59f, 0.25f) * 1.1f);
+                    node.Children.Add(billboard);
+                }
+                {
+                    TextBillboardNode billboard = CreateText("South America", new vec3(0.88f, -0.15f, -0.45f) * 1.1f);
+                    node.Children.Add(billboard);
+                }
+                {//南极洲
+                    TextBillboardNode billboard = CreateText("Antarctica", new vec3(0, -1, 0) * 1.1f);
+                    node.Children.Add(billboard);
+                }
+                {
+                    TextBillboardNode billboard = CreateText("Australia", new vec3(-0.63f, -0.45f, 0.63f) * 1.1f);
+                    node.Children.Add(billboard);
+                }
             }
             //{
             //    var model = new Sphere(0.3f, 30, 60);
@@ -223,7 +265,15 @@ namespace IntroductionVideo {
             return groupNode;
         }
 
-
+        private TextBillboardNode CreateText(string text, vec3 position) {
+            int width = 100, height = 40, capacity = 100;
+            var billboard = TextBillboardNode.Create(width, height, capacity);
+            billboard.Text = text;
+            billboard.Color = Color.White.ToVec3();
+            billboard.EnableRendering = ThreeFlags.None;// we don't render it in RenderAction. we render it in BillboardRenderAction.
+            billboard.WorldPosition = position;
+            return billboard;
+        }
         private Texture GetTexture() {
             string folder = System.Windows.Forms.Application.StartupPath;
             var bmp = new Bitmap(System.IO.Path.Combine(folder, @"earth.png"));
