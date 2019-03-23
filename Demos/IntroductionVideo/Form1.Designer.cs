@@ -29,6 +29,8 @@
             this.btnPoints = new System.Windows.Forms.Button();
             this.btnLines = new System.Windows.Forms.Button();
             this.btnPrintCanvas = new System.Windows.Forms.Button();
+            this.btnAutoPrintCanvas = new System.Windows.Forms.Button();
+            this.btnTexture = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.winGLCanvas1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -60,7 +62,7 @@
             this.btnPoints.TabIndex = 1;
             this.btnPoints.Text = "Point";
             this.btnPoints.UseVisualStyleBackColor = true;
-            this.btnPoints.Click += new System.EventHandler(this.button1_Click);
+            this.btnPoints.Click += new System.EventHandler(this.btnPoint_Click);
             // 
             // btnLines
             // 
@@ -70,7 +72,7 @@
             this.btnLines.TabIndex = 1;
             this.btnLines.Text = "Lines";
             this.btnLines.UseVisualStyleBackColor = true;
-            this.btnLines.Click += new System.EventHandler(this.button2_Click);
+            this.btnLines.Click += new System.EventHandler(this.btnLine_Click);
             // 
             // btnPrintCanvas
             // 
@@ -82,12 +84,34 @@
             this.btnPrintCanvas.UseVisualStyleBackColor = true;
             this.btnPrintCanvas.Click += new System.EventHandler(this.btnPrintCanvas_Click);
             // 
+            // btnAutoPrintCanvas
+            // 
+            this.btnAutoPrintCanvas.Location = new System.Drawing.Point(818, 221);
+            this.btnAutoPrintCanvas.Name = "btnAutoPrintCanvas";
+            this.btnAutoPrintCanvas.Size = new System.Drawing.Size(145, 23);
+            this.btnAutoPrintCanvas.TabIndex = 1;
+            this.btnAutoPrintCanvas.Text = "Auto Print Canvas";
+            this.btnAutoPrintCanvas.UseVisualStyleBackColor = true;
+            this.btnAutoPrintCanvas.Click += new System.EventHandler(this.btnAutoPrintCanvas_Click);
+            // 
+            // btnTexture
+            // 
+            this.btnTexture.Location = new System.Drawing.Point(980, 12);
+            this.btnTexture.Name = "btnTexture";
+            this.btnTexture.Size = new System.Drawing.Size(75, 23);
+            this.btnTexture.TabIndex = 1;
+            this.btnTexture.Text = "Texture";
+            this.btnTexture.UseVisualStyleBackColor = true;
+            this.btnTexture.Click += new System.EventHandler(this.btnTexture_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1265, 623);
+            this.Controls.Add(this.btnTexture);
             this.Controls.Add(this.btnLines);
+            this.Controls.Add(this.btnAutoPrintCanvas);
             this.Controls.Add(this.btnPrintCanvas);
             this.Controls.Add(this.btnPoints);
             this.Controls.Add(this.winGLCanvas1);
@@ -105,6 +129,8 @@
         private System.Windows.Forms.Button btnPoints;
         private System.Windows.Forms.Button btnLines;
         private System.Windows.Forms.Button btnPrintCanvas;
+        private System.Windows.Forms.Button btnAutoPrintCanvas;
+        private System.Windows.Forms.Button btnTexture;
     }
 }
 

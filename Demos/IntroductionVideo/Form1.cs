@@ -27,7 +27,12 @@ namespace IntroductionVideo {
             this.winGLCanvas1.MouseDown += glCanvas1_MouseDown;
             this.winGLCanvas1.MouseMove += glCanvas1_MouseMove;
             this.winGLCanvas1.MouseUp += glCanvas1_MouseUp;
+
+            this.winGLCanvas1.MouseDown += winGLCanvas1_MouseDown;
+            this.winGLCanvas1.MouseMove += winGLCanvas1_MouseMove;
+            this.winGLCanvas1.MouseUp += winGLCanvas1_MouseUp;
         }
+
 
         private void FormMain_Load(object sender, EventArgs e) {
             var position = new vec3(5, 3, 4) * 0.4f;
@@ -42,6 +47,9 @@ namespace IntroductionVideo {
                 scene.Lights.Add(light);
             }
             this.scene = scene;
+            //WinCtrlRoot rootControl = GetRootControl();
+            //scene.RootControl = rootControl;
+            //rootControl.Bind(this.winGLCanvas1);
 
             this.pickingAction = new Picking(scene);
 
@@ -57,6 +65,9 @@ namespace IntroductionVideo {
             list.Add(shadowAction);
             var renderAction = new RenderAction(scene);
             list.Add(renderAction);
+            //var guiRenderAction = new GUIRenderAction(scene.RootControl);
+            //list.Add(guiRenderAction);
+
             this.actionList = list;
 
             //// uncomment these lines to enable manipualter of camera!
@@ -73,6 +84,74 @@ namespace IntroductionVideo {
             if (node != null) {
                 node.RotationAngle = e.angleInDegree;
                 node.RotationAxis = e.axis;
+            }
+        }
+
+        private WinCtrlRoot GetRootControl() {
+            var root = new WinCtrlRoot(this.winGLCanvas1.Width, this.winGLCanvas1.Height);
+
+            string folder = System.Windows.Forms.Application.StartupPath;
+            {
+                var bmp = new Bitmap(System.IO.Path.Combine(folder, @"mouseUp.png"));
+                var control = new CtrlImage(bmp, false) { Anchor = GUIAnchorStyles.Left | GUIAnchorStyles.Bottom };
+                control.Location = new GUIPoint(10, 10);
+                control.Width = 25; control.Height = 25;
+                bmp.Dispose();
+                root.Children.Add(control);
+                this.ctrlMouseUp = control;
+            }
+            {
+                var bmp = new Bitmap(System.IO.Path.Combine(folder, @"leftDown.png"));
+                var control = new CtrlImage(bmp, false) { Anchor = GUIAnchorStyles.Left | GUIAnchorStyles.Bottom };
+                control.Location = new GUIPoint(10, 10);
+                control.Width = 25; control.Height = 25;
+                bmp.Dispose();
+                root.Children.Add(control);
+                control.EnableGUIRendering = ThreeFlags.None;
+                this.ctrlLeftDown = control;
+            }
+            {
+                var bmp = new Bitmap(System.IO.Path.Combine(folder, @"rightDown.png"));
+                var control = new CtrlImage(bmp, false) { Anchor = GUIAnchorStyles.Left | GUIAnchorStyles.Bottom };
+                control.Location = new GUIPoint(10, 10);
+                control.Width = 25; control.Height = 25;
+                bmp.Dispose();
+                root.Children.Add(control);
+                control.EnableGUIRendering = ThreeFlags.None;
+                this.ctrlRightDown = control;
+            }
+
+            return root;
+        }
+
+        void winGLCanvas1_MouseUp(object sender, MouseEventArgs e) {
+            if (this.ctrlMouseUp == null) { return; }
+
+            this.ctrlMouseUp.EnableGUIRendering = ThreeFlags.BeforeChildren;
+            this.ctrlLeftDown.EnableGUIRendering = ThreeFlags.None;
+            this.ctrlRightDown.EnableGUIRendering = ThreeFlags.None;
+        }
+
+        void winGLCanvas1_MouseMove(object sender, MouseEventArgs e) {
+            if (this.ctrlMouseUp == null) { return; }
+
+            var p = e.Location;
+            this.ctrlMouseUp.Location = new GUIPoint(p.X, this.winGLCanvas1.Height - p.Y - 1 - this.ctrlMouseUp.Height);
+            this.ctrlLeftDown.Location = new GUIPoint(p.X, this.winGLCanvas1.Height - p.Y - 1 - this.ctrlLeftDown.Height);
+            this.ctrlRightDown.Location = new GUIPoint(p.X, this.winGLCanvas1.Height - p.Y - 1 - this.ctrlRightDown.Height);
+        }
+
+        void winGLCanvas1_MouseDown(object sender, MouseEventArgs e) {
+            if (this.ctrlMouseUp == null) { return; }
+
+            this.ctrlMouseUp.EnableGUIRendering = ThreeFlags.None;
+            if (e.Button == System.Windows.Forms.MouseButtons.Left) {
+                this.ctrlLeftDown.EnableGUIRendering = ThreeFlags.BeforeChildren;
+                this.ctrlRightDown.EnableGUIRendering = ThreeFlags.None;
+            }
+            else {
+                this.ctrlLeftDown.EnableGUIRendering = ThreeFlags.None;
+                this.ctrlRightDown.EnableGUIRendering = ThreeFlags.BeforeChildren;
             }
         }
 
@@ -101,41 +180,42 @@ namespace IntroductionVideo {
             //    (new FormPropertyGrid(node)).Show();
             //    groupNode.Children.Add(node);
             //}
-            //{
-            //    var model = new Sphere(1, 20, 40);
-            //    var texture = GetTexture();
-            //    var node = SphereTextureNode.Create(model, texture);
-            //    node.Name = "2 Texture";
-            //    (new FormPropertyGrid(node)).Show();
-            //    groupNode.Children.Add(node);
-            //}
             {
-                var model = new Sphere(0.3f, 30, 60);
+                var model = new Sphere(1, 20, 40);
                 var texture = GetTexture();
-                var node = ShadowMappingNode.Create(model, Sphere.strPosition, Sphere.strNormal, model.Size);
-                node.Name = "3 Light/Shadow";
-                this.shadowMappingNode = node;
+                var node = SphereTextureNode.Create(model, texture);
+                node.Name = "2 Texture";
+                this.textureNode = node;
                 (new FormPropertyGrid(node)).Show();
                 groupNode.Children.Add(node);
             }
-            {
-                string folder = System.Windows.Forms.Application.StartupPath;
-                string filename = System.IO.Path.Combine(folder, "floor.obj_");
-                var parser = new ObjVNFParser(true);
-                ObjVNFResult result = parser.Parse(filename);
-                if (result.Error != null) {
-                    MessageBox.Show(result.Error.ToString());
-                }
-                else {
-                    ObjVNFMesh mesh = result.Mesh;
-                    var model = new ObjVNF(mesh);
-                    var node = ShadowMappingNode.Create(model, ObjVNF.strPosition, ObjVNF.strNormal, model.GetSize());
-                    node.WorldPosition = new vec3(0, -1.2f, 0);
-                    node.Color = Color.Green.ToVec3();
-                    node.Name = filename;
-                    groupNode.Children.Add(node);
-                }
-            }
+            //{
+            //    var model = new Sphere(0.3f, 30, 60);
+            //    var texture = GetTexture();
+            //    var node = ShadowMappingNode.Create(model, Sphere.strPosition, Sphere.strNormal, model.Size);
+            //    node.Name = "3 Light/Shadow";
+            //    this.shadowMappingNode = node;
+            //    (new FormPropertyGrid(node)).Show();
+            //    groupNode.Children.Add(node);
+            //}
+            //{
+            //    string folder = System.Windows.Forms.Application.StartupPath;
+            //    string filename = System.IO.Path.Combine(folder, "floor.obj_");
+            //    var parser = new ObjVNFParser(true);
+            //    ObjVNFResult result = parser.Parse(filename);
+            //    if (result.Error != null) {
+            //        MessageBox.Show(result.Error.ToString());
+            //    }
+            //    else {
+            //        ObjVNFMesh mesh = result.Mesh;
+            //        var model = new ObjVNF(mesh);
+            //        var node = ShadowMappingNode.Create(model, ObjVNF.strPosition, ObjVNF.strNormal, model.GetSize());
+            //        node.WorldPosition = new vec3(0, -1.2f, 0);
+            //        node.Color = Color.Green.ToVec3();
+            //        node.Name = filename;
+            //        groupNode.Children.Add(node);
+            //    }
+            //}
             {
 
             }
@@ -182,7 +262,21 @@ namespace IntroductionVideo {
             //this.cubeNode.RotationAngle += 7f;
             //this.sphereNode.RotationAxis = new vec3(0, 1, 0);
             //this.sphereNode.RotationAngle += 7f;
-
+            //if (this.lineNode != null) {
+            //    this.lineNode.RotationAxis = new vec3(0, 1, 0);
+            //    this.lineNode.RotationAngle += 31;
+            //}
+            //if (this.textureNode != null) {
+            //    this.textureNode.RotationAxis = new vec3(0, 1, 0);
+            //    this.textureNode.RotationAngle += 31;
+            //}
+            //{
+            //    var node = this.scene.RootNode;
+            //    if (node != null) {
+            //        node.RotationAxis = new vec3(0, 1, 0);
+            //        node.RotationAngle += 11;
+            //    }
+            //}
 
             if (this.currentButton == this.btnPoints) {
                 if (Points(this.btnPoints)) {
@@ -191,6 +285,16 @@ namespace IntroductionVideo {
             }
             else if (this.currentButton == this.btnLines) {
                 if (Lines(this.btnLines)) {
+                    this.timer1.Enabled = false;
+                }
+            }
+            else if (this.currentButton == this.btnTexture) {
+                if (Texture(this.btnTexture)) {
+                    this.timer1.Enabled = false;
+                }
+            }
+            else if (this.currentButton == this.btnAutoPrintCanvas) {
+                if (AutoPrintCanvas(this.btnAutoPrintCanvas)) {
                     this.timer1.Enabled = false;
                 }
             }
@@ -260,7 +364,10 @@ namespace IntroductionVideo {
         bool increase = true;
         private SphereLineNode lineNode;
         private ShadowMappingNode shadowMappingNode;
-        private void button1_Click(object sender, EventArgs e) {
+        private CtrlImage ctrlMouseUp;
+        private CtrlImage ctrlLeftDown;
+        private CtrlImage ctrlRightDown;
+        private void btnPoint_Click(object sender, EventArgs e) {
             SpherePointNode node = this.pointNode;
             if (node == null) { return; }
 
@@ -274,7 +381,7 @@ namespace IntroductionVideo {
             this.btnPoints.Enabled = false;
         }
 
-        private void button2_Click(object sender, EventArgs e) {
+        private void btnLine_Click(object sender, EventArgs e) {
             SphereLineNode node = this.lineNode;
             if (node == null) { return; }
 
@@ -290,6 +397,11 @@ namespace IntroductionVideo {
 
         private void btnPrintCanvas_Click(object sender, EventArgs e) {
             this.btnPrintCanvas.Enabled = false;
+            PrintScreen();
+            this.btnPrintCanvas.Enabled = true;
+        }
+
+        private void PrintScreen() {
             int width = this.winGLCanvas1.Width;
             int height = this.winGLCanvas1.Height;
             var final = new Bitmap(width, height);
@@ -300,7 +412,64 @@ namespace IntroductionVideo {
             final.RotateFlip(RotateFlipType.Rotate180FlipX);
             string filename = string.Format("PrintCanvas{0:yyyyMMdd-HHmmss}.png", DateTime.Now);
             final.Save(filename);
-            this.btnPrintCanvas.Enabled = true;
         }
+
+        private Point autoPrintCanvasPosition;
+        private SphereTextureNode textureNode;
+        private void btnAutoPrintCanvas_Click(object sender, EventArgs e) {
+            this.autoPrintCanvasPosition = Control.MousePosition;
+            this.currentButton = this.btnAutoPrintCanvas;
+
+            this.timer1.Enabled = !this.timer1.Enabled;
+            this.btnAutoPrintCanvas.Text = string.Format("Auto Print Canvas {0}",
+                this.timer1.Enabled ? "!" : ".");
+        }
+
+        private bool AutoPrintCanvas(Button button) {
+            if (Control.MousePosition != this.autoPrintCanvasPosition) {
+                PrintScreen();
+
+                this.autoPrintCanvasPosition = Control.MousePosition;
+            }
+
+            return false;
+        }
+
+        private void btnTexture_Click(object sender, EventArgs e) {
+            SphereTextureNode node = this.textureNode;
+            if (node == null) { return; }
+
+            var cmd = node.RenderUnit.Methods[0].VertexArrayObjects[0].DrawCommand as DrawElementsCmd;
+            currentIndex = cmd.VertexCount;
+            increase = true;
+
+            this.currentButton = this.btnTexture;
+            this.timer1.Enabled = true;
+            this.btnTexture.Enabled = false;
+        }
+
+        private bool Texture(Button button) {
+            if (increase) {
+                SphereTextureNode node = this.textureNode;
+                var cmd = node.RenderUnit.Methods[0].VertexArrayObjects[0].DrawCommand as DrawElementsCmd;
+                //cmd.VertexCount = currentIndex;
+                cmd.FirstVertex = currentIndex;
+            }
+            else {
+                DumpImage(string.Format("{0:0000}.png", currentIndex));
+
+                currentIndex--;
+                if (currentIndex < 0) {
+                    currentIndex = 0;
+                    button.Enabled = true;
+                    return true;
+                }
+            }
+
+            increase = !increase;
+
+            return false;
+        }
+
     }
 }
