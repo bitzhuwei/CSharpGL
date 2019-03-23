@@ -8,16 +8,13 @@ using System.Text;
 using System.Windows.Forms;
 using CSharpGL;
 
-namespace DepthPeeling.FrontToBackPeeling
-{
-    public partial class FormMain : Form
-    {
+namespace DepthPeeling.FrontToBackPeeling {
+    public partial class FormMain : Form {
         private Scene scene;
         private ActionList actionList;
         private PeelingNode peelingNode;
 
-        public FormMain()
-        {
+        public FormMain() {
             InitializeComponent();
 
             this.Load += FormMain_Load;
@@ -26,16 +23,13 @@ namespace DepthPeeling.FrontToBackPeeling
             this.winGLCanvas1.KeyPress += winGLCanvas1_KeyPress;
         }
 
-        void winGLCanvas1_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == 't')
-            {
+        void winGLCanvas1_KeyPress(object sender, KeyPressEventArgs e) {
+            if (e.KeyChar == 't') {
                 this.timer1.Enabled = !this.timer1.Enabled;
             }
         }
 
-        private void FormMain_Load(object sender, EventArgs e)
-        {
+        private void FormMain_Load(object sender, EventArgs e) {
             var position = new vec3(5, 3, 4) * 1f;
             var center = new vec3(0, 0, 0);
             var up = new vec3(0, 1, 0);
@@ -62,38 +56,31 @@ namespace DepthPeeling.FrontToBackPeeling
             //manipulater.Bind(camera, this.winGLCanvas1);
         }
 
-        private void Match(TreeView treeView, SceneNodeBase nodeBase)
-        {
+        private void Match(TreeView treeView, SceneNodeBase nodeBase) {
             treeView.Nodes.Clear();
             var node = new TreeNode(nodeBase.ToString()) { Tag = nodeBase };
             treeView.Nodes.Add(node);
             Match(node, nodeBase);
         }
 
-        private void Match(TreeNode node, SceneNodeBase nodeBase)
-        {
-            foreach (var item in nodeBase.Children)
-            {
+        private void Match(TreeNode node, SceneNodeBase nodeBase) {
+            foreach (var item in nodeBase.Children) {
                 var child = new TreeNode(item.ToString()) { Tag = item };
                 node.Nodes.Add(child);
                 Match(child, item);
             }
         }
 
-        private SceneNodeBase GetTree(Scene scene)
-        {
+        private SceneNodeBase GetTree(Scene scene) {
             var children = new List<SceneNodeBase>();
             {
                 const float alpha = 0.2f;
                 var colors = new vec4[] { new vec4(1, 0, 0, alpha), new vec4(0, 1, 0, alpha), new vec4(0, 0, 1, alpha) };
 
-                for (int k = -1; k < 2; k++)
-                {
-                    for (int j = -1; j < 2; j++)
-                    {
+                for (int k = -1; k < 2; k++) {
+                    for (int j = -1; j < 2; j++) {
                         int index = 0;
-                        for (int i = -1; i < 2; i++)
-                        {
+                        for (int i = -1; i < 2; i++) {
                             vec3 worldSpacePosition = new vec3(i * 2, j * 2, k * 2);
                             var cubeNode = CubeNode.Create(new CubeModel(), CubeModel.positions);
                             cubeNode.WorldPosition = worldSpacePosition;
@@ -110,11 +97,9 @@ namespace DepthPeeling.FrontToBackPeeling
             return this.peelingNode;
         }
 
-        private void winGLCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
-        {
+        private void winGLCanvas1_OpenGLDraw(object sender, PaintEventArgs e) {
             ActionList list = this.actionList;
-            if (list != null)
-            {
+            if (list != null) {
                 vec4 clearColor = this.scene.ClearColor;
                 GL.Instance.ClearColor(clearColor.x, clearColor.y, clearColor.z, clearColor.w);
                 GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT | GL.GL_STENCIL_BUFFER_BIT);
@@ -123,17 +108,14 @@ namespace DepthPeeling.FrontToBackPeeling
             }
         }
 
-        void winGLCanvas1_Resize(object sender, EventArgs e)
-        {
+        void winGLCanvas1_Resize(object sender, EventArgs e) {
             this.scene.Camera.AspectRatio = ((float)this.winGLCanvas1.Width) / ((float)this.winGLCanvas1.Height);
         }
 
         private CubeNode lastSelected;
 
-        private void trvScene_AfterSelect(object sender, TreeViewEventArgs e)
-        {
-            if (lastSelected != null)
-            {
+        private void trvScene_AfterSelect(object sender, TreeViewEventArgs e) {
+            if (lastSelected != null) {
                 vec4 color = lastSelected.Color;
                 float alpha = color.w;
                 lastSelected.Color = new vec4(color.x, color.y, color.z, alpha / 3.0f);
@@ -141,8 +123,7 @@ namespace DepthPeeling.FrontToBackPeeling
             }
 
             var cube = e.Node.Tag as CubeNode;
-            if (cube != null)
-            {
+            if (cube != null) {
                 vec4 color = cube.Color;
                 float alpha = color.w;
                 cube.Color = new vec4(color.x, color.y, color.z, alpha * 3.0f);
@@ -154,13 +135,35 @@ namespace DepthPeeling.FrontToBackPeeling
             this.lblState.Text = string.Format("{0} objects selected.", 1);
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
-        {
+        private void timer1_Tick(object sender, EventArgs e) {
             IWorldSpace node = this.scene.RootNode;
-            if (node != null)
-            {
+            if (node != null) {
                 node.RotationAngle += 1.3f;
             }
+
+            //DumpImage();
+        }
+
+        private List<Bitmap> printScreens = new List<Bitmap>();
+
+        private void DumpImage() {
+            int width = this.winGLCanvas1.Width;
+            int height = this.winGLCanvas1.Height;
+            var final = new Bitmap(width, height);
+            var data = final.LockBits(new Rectangle(0, 0, width, height), System.Drawing.Imaging.ImageLockMode.ReadWrite, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+            //glGetTexImage((uint)texture.Target, 0, GL_BGRA, GL_UNSIGNED_BYTE, data.Scan0);
+            GL.Instance.ReadPixels(0, 0, width, height, GL.GL_BGRA, GL.GL_UNSIGNED_BYTE, data.Scan0);
+            final.UnlockBits(data);
+            final.RotateFlip(RotateFlipType.Rotate180FlipX);
+            printScreens.Add(final);
+        }
+
+        protected override void OnClosing(CancelEventArgs e) {
+            for (int i = 0; i < printScreens.Count; i++) {
+                printScreens[i].Save(string.Format("p{0:0000}.png", i));
+            }
+            base.OnClosing(e);
+
         }
     }
 
