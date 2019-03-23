@@ -47,9 +47,9 @@ namespace IntroductionVideo {
                 scene.Lights.Add(light);
             }
             this.scene = scene;
-            //WinCtrlRoot rootControl = GetRootControl();
-            //scene.RootControl = rootControl;
-            //rootControl.Bind(this.winGLCanvas1);
+            WinCtrlRoot rootControl = GetRootControl();
+            scene.RootControl = rootControl;
+            rootControl.Bind(this.winGLCanvas1);
 
             this.pickingAction = new Picking(scene);
 
@@ -69,8 +69,8 @@ namespace IntroductionVideo {
             list.Add(billboardSortAction);
             var billboardRenderAction = new BillboardRenderAction(camera, billboardSortAction);
             list.Add(billboardRenderAction);
-            //var guiRenderAction = new GUIRenderAction(scene.RootControl);
-            //list.Add(guiRenderAction);
+            var guiRenderAction = new GUIRenderAction(scene.RootControl);
+            list.Add(guiRenderAction);
 
             this.actionList = list;
 
@@ -467,6 +467,7 @@ namespace IntroductionVideo {
 
         private Point autoPrintCanvasPosition;
         private SphereTextureNode textureNode;
+        private List<Bitmap> printCanvas = new List<Bitmap>();
         private void btnAutoPrintCanvas_Click(object sender, EventArgs e) {
             this.autoPrintCanvasPosition = Control.MousePosition;
             this.currentButton = this.btnAutoPrintCanvas;
@@ -474,11 +475,25 @@ namespace IntroductionVideo {
             this.timer1.Enabled = !this.timer1.Enabled;
             this.btnAutoPrintCanvas.Text = string.Format("Auto Print Canvas {0}",
                 this.timer1.Enabled ? "!" : ".");
+            if (!this.timer1.Enabled) {
+                for (int i = 0; i < printCanvas.Count; i++) {
+                    printCanvas[i].Save(string.Format("{0:0000}.png", i));
+                }
+            }
         }
 
         private bool AutoPrintCanvas(Button button) {
             if (Control.MousePosition != this.autoPrintCanvasPosition) {
-                PrintScreen();
+                //PrintScreen();
+                int width = this.winGLCanvas1.Width;
+                int height = this.winGLCanvas1.Height;
+                var final = new Bitmap(width, height);
+                var data = final.LockBits(new Rectangle(0, 0, width, height), System.Drawing.Imaging.ImageLockMode.ReadWrite, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+                //glGetTexImage((uint)texture.Target, 0, GL_BGRA, GL_UNSIGNED_BYTE, data.Scan0);
+                GL.Instance.ReadPixels(0, 0, width, height, GL.GL_BGRA, GL.GL_UNSIGNED_BYTE, data.Scan0);
+                final.UnlockBits(data);
+                final.RotateFlip(RotateFlipType.Rotate180FlipX);
+                this.printCanvas.Add(final);
 
                 this.autoPrintCanvasPosition = Control.MousePosition;
             }

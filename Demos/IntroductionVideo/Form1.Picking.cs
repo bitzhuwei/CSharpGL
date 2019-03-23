@@ -86,7 +86,7 @@ namespace IntroductionVideo {
                     this.txtInfo.Text = text;
                 }
 
-                this.UpdateHightlight();
+                //this.UpdateHightlight();
             }
 
             this.lastMousePosition = e.Location;
