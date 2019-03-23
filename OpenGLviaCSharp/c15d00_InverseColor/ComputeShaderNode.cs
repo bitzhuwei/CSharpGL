@@ -5,15 +5,12 @@ using System.Text;
 using CSharpGL;
 using System.Drawing;
 
-namespace c15d00_InverseColor
-{
-    partial class ComputeShaderNode : PickableNode, IRenderable
-    {
+namespace c15d00_InverseColor {
+    partial class ComputeShaderNode : PickableNode, IRenderable {
         private static readonly GLDelegates.void_uint glMemoryBarrier;
         private static readonly GLDelegates.void_uint_uint_int_bool_int_uint_uint glBindImageTexture;
         private static readonly GLDelegates.void_uint_uint_uint glDispatchCompute;
-        static ComputeShaderNode()
-        {
+        static ComputeShaderNode() {
             glMemoryBarrier = GL.Instance.GetDelegateFor("glMemoryBarrier", GLDelegates.typeof_void_uint) as GLDelegates.void_uint;
             glBindImageTexture = GL.Instance.GetDelegateFor("glBindImageTexture", GLDelegates.typeof_void_uint_uint_int_bool_int_uint_uint) as GLDelegates.void_uint_uint_int_bool_int_uint_uint;
             glDispatchCompute = GL.Instance.GetDelegateFor("glDispatchCompute", GLDelegates.typeof_void_uint_uint_uint) as GLDelegates.void_uint_uint_uint;
@@ -24,22 +21,19 @@ namespace c15d00_InverseColor
         private Texture inTexture;
         private Texture outTexture;
 
-        class Config
-        {
+        class Config {
             public readonly uint groupXCount;
             public readonly uint gropuYCount;
             public readonly int computeShaderIndex;
 
-            public Config(uint xCount, uint yCount, int index)
-            {
+            public Config(uint xCount, uint yCount, int index) {
                 this.groupXCount = xCount;
                 this.gropuYCount = yCount;
                 this.computeShaderIndex = index;
             }
         }
 
-        public static ComputeShaderNode Create()
-        {
+        public static ComputeShaderNode Create() {
             var list = new List<Config>();
             list.Add(new Config(1, height, 0));// fuzzy
             list.Add(new Config(1, height, 1));// inverseColor
@@ -81,26 +75,22 @@ namespace c15d00_InverseColor
         }
 
         private ComputeShaderNode(Config[] configs, IBufferSource model, string positionNameInIBufferSource, params RenderMethodBuilder[] builders)
-            : base(model, positionNameInIBufferSource, builders)
-        {
+            : base(model, positionNameInIBufferSource, builders) {
             this.configs = configs;
         }
 
-        public int ConfigCount()
-        {
+        public int ConfigCount() {
             return this.configs.Length;
         }
 
         public int CurrentConfig { get; set; }
 
-        protected override void DoInitialize()
-        {
+        protected override void DoInitialize() {
             base.DoInitialize();
 
             {
                 var bitmap = new Bitmap(width, height);
-                using (var g = Graphics.FromImage(bitmap))
-                {
+                using (var g = Graphics.FromImage(bitmap)) {
                     g.Clear(Color.Red);
                     g.DrawString("CSharpGL", new Font("宋体", 88F), new SolidBrush(Color.Gold), new PointF(0, height / 2));
                 }
@@ -119,8 +109,7 @@ namespace c15d00_InverseColor
             }
         }
 
-        private Texture GetTexture(Bitmap bitmap)
-        {
+        private Texture GetTexture(Bitmap bitmap) {
             bitmap.RotateFlip(RotateFlipType.Rotate180FlipX);
 
             var texture = new Texture(new TexImageBitmap(bitmap, GL.GL_RGBA32F));
@@ -143,14 +132,12 @@ namespace c15d00_InverseColor
         /// Render before/after children? Render children? 
         /// RenderAction cares about this property. Other actions, maybe, maybe not, your choice.
         /// </summary>
-        public ThreeFlags EnableRendering
-        {
+        public ThreeFlags EnableRendering {
             get { return this.enableRendering; }
             set { this.enableRendering = value; }
         }
 
-        public void RenderBeforeChildren(RenderEventArgs arg)
-        {
+        public void RenderBeforeChildren(RenderEventArgs arg) {
             int current = this.CurrentConfig;
             if (current < 0) { current = 0; }
             if (current >= this.configs.Length) { current = this.configs.Length - 1; }
@@ -186,23 +173,19 @@ namespace c15d00_InverseColor
             }
         }
 
-        public void RenderAfterChildren(RenderEventArgs arg)
-        {
+        public void RenderAfterChildren(RenderEventArgs arg) {
         }
 
         #endregion
 
-        public void SetTexture(Bitmap bitmap)
-        {
+        public void SetTexture(Bitmap bitmap) {
             var bmp = new Bitmap(bitmap, width, height);
             this.inTexture = GetTexture(bmp);
         }
 
-        public void NextConfig()
-        {
+        public void NextConfig() {
             this.CurrentConfig++;
-            if (this.configs.Length <= this.CurrentConfig)
-            {
+            if (this.configs.Length <= this.CurrentConfig) {
                 this.CurrentConfig = 0;
             }
         }

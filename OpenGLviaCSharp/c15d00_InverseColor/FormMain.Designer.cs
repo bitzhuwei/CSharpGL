@@ -31,20 +31,28 @@
             this.winGLCanvas1 = new CSharpGL.WinGLCanvas();
             this.btnOpenImage = new System.Windows.Forms.Button();
             this.openImageDlg = new System.Windows.Forms.OpenFileDialog();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.winGLCanvas1)).BeginInit();
             this.SuspendLayout();
             // 
             // winGLCanvas1
             // 
-            this.winGLCanvas1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.winGLCanvas1.AccumAlphaBits = ((byte)(0));
+            this.winGLCanvas1.AccumBits = ((byte)(0));
+            this.winGLCanvas1.AccumBlueBits = ((byte)(0));
+            this.winGLCanvas1.AccumGreenBits = ((byte)(0));
+            this.winGLCanvas1.AccumRedBits = ((byte)(0));
+            this.winGLCanvas1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.winGLCanvas1.Location = new System.Drawing.Point(12, 41);
             this.winGLCanvas1.Name = "winGLCanvas1";
             this.winGLCanvas1.RenderTrigger = CSharpGL.RenderTrigger.TimerBased;
-            this.winGLCanvas1.Size = new System.Drawing.Size(679, 631);
+            this.winGLCanvas1.Size = new System.Drawing.Size(800, 600);
+            this.winGLCanvas1.StencilBits = ((byte)(0));
             this.winGLCanvas1.TabIndex = 0;
             this.winGLCanvas1.TimerTriggerInterval = 40;
+            this.winGLCanvas1.UpdateContextVersion = true;
             // 
             // btnOpenImage
             // 
@@ -60,11 +68,22 @@
             // 
             this.openImageDlg.Filter = "*.*|*.*";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(829, 259);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(110, 23);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "Open Image ...";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(703, 684);
+            this.ClientSize = new System.Drawing.Size(1033, 708);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnOpenImage);
             this.Controls.Add(this.winGLCanvas1);
             this.Name = "FormMain";
@@ -79,5 +98,6 @@
         private CSharpGL.WinGLCanvas winGLCanvas1;
         private System.Windows.Forms.Button btnOpenImage;
         private System.Windows.Forms.OpenFileDialog openImageDlg;
+        private System.Windows.Forms.Button button1;
     }
 }

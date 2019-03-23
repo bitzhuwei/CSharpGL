@@ -4,10 +4,8 @@ using System.Linq;
 using System.Text;
 using CSharpGL;
 
-namespace c15d00_InverseColor
-{
-    partial class ComputeShaderNode
-    {
+namespace c15d00_InverseColor {
+    partial class ComputeShaderNode {
         private const string inverseColorComp = @"#version 430 core
 
 layout (local_size_x = 512) in;
@@ -19,7 +17,7 @@ void main(void)
 {
     ivec2 pos = ivec2(gl_GlobalInvocationID.xy);
     vec4 color = imageLoad(inImage, pos);
-    vec4 inversedColor = vec4(1.0) - color;
+    vec4 inversedColor = vec4(1.0 - color.rgb, 1.0);
     imageStore(outImage, pos, inversedColor);
 }
 ";

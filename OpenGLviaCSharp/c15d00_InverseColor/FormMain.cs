@@ -8,15 +8,12 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace c15d00_InverseColor
-{
-    public partial class FormMain : Form
-    {
+namespace c15d00_InverseColor {
+    public partial class FormMain : Form {
         private Scene scene;
         private ActionList actionList;
         private ComputeShaderNode computeShaderNode;
-        public FormMain()
-        {
+        public FormMain() {
             InitializeComponent();
 
             this.Load += FormMain_Load;
@@ -25,16 +22,13 @@ namespace c15d00_InverseColor
             this.winGLCanvas1.KeyPress += winGLCanvas1_KeyPress;
         }
 
-        void winGLCanvas1_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == 'n')
-            {
+        void winGLCanvas1_KeyPress(object sender, KeyPressEventArgs e) {
+            if (e.KeyChar == 'n') {
                 this.computeShaderNode.NextConfig();
             }
         }
 
-        private void FormMain_Load(object sender, EventArgs e)
-        {
+        private void FormMain_Load(object sender, EventArgs e) {
             var position = new vec3(0, 0, 0.9f);
             var center = new vec3(0, 0, 0);
             var up = new vec3(0, 1, 0);
@@ -58,11 +52,9 @@ namespace c15d00_InverseColor
             MessageBox.Show("Press 'n' to switch config!");
         }
 
-        private void winGLCanvas1_OpenGLDraw(object sender, PaintEventArgs e)
-        {
+        private void winGLCanvas1_OpenGLDraw(object sender, PaintEventArgs e) {
             ActionList list = this.actionList;
-            if (list != null)
-            {
+            if (list != null) {
                 vec4 clearColor = this.scene.ClearColor;
                 GL.Instance.ClearColor(clearColor.x, clearColor.y, clearColor.z, clearColor.w);
                 GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT | GL.GL_STENCIL_BUFFER_BIT);
@@ -71,31 +63,50 @@ namespace c15d00_InverseColor
             }
         }
 
-        void winGLCanvas1_Resize(object sender, EventArgs e)
-        {
+        void winGLCanvas1_Resize(object sender, EventArgs e) {
             this.scene.Camera.AspectRatio = ((float)this.winGLCanvas1.Width) / ((float)this.winGLCanvas1.Height);
         }
 
-        private void btnOpenImage_Click(object sender, EventArgs e)
-        {
-            if (this.openImageDlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                try
-                {
+        private void btnOpenImage_Click(object sender, EventArgs e) {
+            if (this.openImageDlg.ShowDialog() == System.Windows.Forms.DialogResult.OK) {
+                try {
                     string filename = this.openImageDlg.FileName;
                     var bitmap = new Bitmap(filename);
                     var node = this.computeShaderNode;
-                    if (node != null)
-                    {
+                    if (node != null) {
                         node.SetTexture(bitmap);
                     }
                     bitmap.Dispose();
                 }
-                catch (Exception ex)
-                {
+                catch (Exception ex) {
                     MessageBox.Show(ex.ToString());
                 }
             }
+        }
+
+        private List<Bitmap> printScreens = new List<Bitmap>();
+
+        private void PrintScreen() {
+            int width = this.winGLCanvas1.Width;
+            int height = this.winGLCanvas1.Height;
+            var final = new Bitmap(width, height);
+            var data = final.LockBits(new Rectangle(0, 0, width, height), System.Drawing.Imaging.ImageLockMode.ReadWrite, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+            //glGetTexImage((uint)texture.Target, 0, GL_BGRA, GL_UNSIGNED_BYTE, data.Scan0);
+            GL.Instance.ReadPixels(0, 0, width, height, GL.GL_BGRA, GL.GL_UNSIGNED_BYTE, data.Scan0);
+            final.UnlockBits(data);
+            final.RotateFlip(RotateFlipType.Rotate180FlipX);
+            printScreens.Add(final);
+        }
+
+        protected override void OnClosing(CancelEventArgs e) {
+            for (int i = 0; i < this.printScreens.Count; i++) {
+                printScreens[i].Save(string.Format("c{0:0000}.png", i + 1));
+            }
+            base.OnClosing(e);
+        }
+
+        private void button1_Click(object sender, EventArgs e) {
+            PrintScreen();
         }
     }
 }
