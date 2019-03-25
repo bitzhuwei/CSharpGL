@@ -93,6 +93,7 @@
     <Compile Include="HighlightPick\HighlightGeometryModel.cs" />
     <Compile Include="HighlightPick\HighlightGeometryNode.shaders.cs" />
     <Compile Include="HighlightPick\HighlightGeometryNode.cs" />
+    <Compile Include="SimpleObjFileFormat\PartParsers\TangentParser.cs" />
     <Compile Include="Utilities.cs" />
     <Compile Include="VolumeData.cs" />
     <None Include="Amber\readme.md" />

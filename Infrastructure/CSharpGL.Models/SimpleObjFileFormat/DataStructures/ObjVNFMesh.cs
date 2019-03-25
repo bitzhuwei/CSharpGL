@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CSharpGL
-{
-    public class ObjVNFMesh
-    {
+namespace CSharpGL {
+    public class ObjVNFMesh {
         public vec3[] vertexes;
         public vec3[] normals;
         public vec2[] texCoords;
+        public vec3[] tangents;
         public ObjVNFFace[] faces;
 
         /// <summary>

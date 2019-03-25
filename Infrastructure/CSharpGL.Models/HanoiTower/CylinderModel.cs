@@ -3,30 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CSharpGL
-{
+namespace CSharpGL {
 
-    public class CylinderModel : IBufferSource, IObjFormat
-    {
+    public class CylinderModel : IBufferSource, IObjFormat {
         private vec3 modelSize;
-        public vec3 ModelSize()
-        {
+        public vec3 ModelSize() {
             return this.modelSize;
         }
 
-        public CylinderModel(float radius, float height, uint sliceCount)
-        {
+        public CylinderModel(float radius, float height, uint sliceCount) {
             {
                 var positions = new vec3[1 + sliceCount + sliceCount + 1];
                 int t = 0;
                 positions[t++] = new vec3(0, height / 2, 0);
-                for (int i = 1; i < sliceCount + 1; i++)
-                {
+                for (int i = 1; i < sliceCount + 1; i++) {
                     double d = 2 * Math.PI * i / (sliceCount);
                     positions[t++] = new vec3((float)Math.Sin(d) * radius, height / 2, (float)Math.Cos(d) * radius);
                 }
-                for (int i = 1; i < sliceCount + 1; i++)
-                {
+                for (int i = 1; i < sliceCount + 1; i++) {
                     double d = 2 * Math.PI * i / (sliceCount);
                     positions[t++] = new vec3((float)Math.Sin(d) * radius, -height / 2, (float)Math.Cos(d) * radius);
                 }
@@ -38,14 +32,12 @@ namespace CSharpGL
             {
                 var indexes = new uint[3 * (sliceCount + sliceCount * 2 + sliceCount)];
                 uint t = 0;
-                for (uint i = 0; i < sliceCount; i++)
-                {
+                for (uint i = 0; i < sliceCount; i++) {
                     indexes[t++] = 0;
                     indexes[t++] = i + 1;
                     indexes[t++] = (i + 1) % sliceCount + 1;
                 }
-                for (uint i = 0; i < sliceCount; i++)
-                {
+                for (uint i = 0; i < sliceCount; i++) {
                     indexes[t++] = (i + 1) % sliceCount + 1;
                     indexes[t++] = (i + 1);
                     indexes[t++] = sliceCount + (i + 1) % sliceCount + 1;
@@ -54,8 +46,7 @@ namespace CSharpGL
                     indexes[t++] = sliceCount + (i + 1);
                     indexes[t++] = sliceCount + (i + 1) % sliceCount + 1;
                 }
-                for (uint i = 0; i < sliceCount; i++)
-                {
+                for (uint i = 0; i < sliceCount; i++) {
                     indexes[t++] = sliceCount + sliceCount + 1;
                     indexes[t++] = sliceCount + (i + 1) % sliceCount + 1;
                     indexes[t++] = sliceCount + (i + 1);
@@ -75,27 +66,22 @@ namespace CSharpGL
 
         #region IBufferSource 成员
 
-        public IEnumerable<VertexBuffer> GetVertexAttribute(string bufferName)
-        {
+        public IEnumerable<VertexBuffer> GetVertexAttribute(string bufferName) {
             if (strPosition == bufferName) // requiring position buffer.
             {
-                if (this.positionBuffer == null)
-                {
+                if (this.positionBuffer == null) {
                     this.positionBuffer = positions.GenVertexBuffer(VBOConfig.Vec3, BufferUsage.StaticDraw);
                 }
 
                 yield return this.positionBuffer;
             }
-            else
-            {
+            else {
                 throw new ArgumentException("bufferName");
             }
         }
 
-        public IEnumerable<IDrawCommand> GetDrawCommand()
-        {
-            if (this.drawCommand == null)
-            {
+        public IEnumerable<IDrawCommand> GetDrawCommand() {
+            if (this.drawCommand == null) {
                 IndexBuffer indexBuffer = indexes.GenIndexBuffer(BufferUsage.StaticDraw);
                 this.drawCommand = new DrawElementsCmd(indexBuffer, DrawMode.Triangles);
             }
@@ -107,13 +93,15 @@ namespace CSharpGL
 
         #region IObjFormat 成员
 
-        public vec3[] GetPositions()
-        {
+        public vec3[] GetPositions() {
             return this.positions;
         }
 
-        public uint[] GetIndexes()
-        {
+        public vec2[] GetTexCoords() {
+            return new vec2[] { };
+        }
+
+        public uint[] GetIndexes() {
             return this.indexes;
         }
 
