@@ -32,12 +32,6 @@ namespace CSharpGL {
         /// <returns></returns>
         public abstract IEnumerable<uint> TangentIndexes();
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        public abstract IEnumerable<uint> BinormalIndexes();
-
     }
 
     /// <summary>
@@ -48,7 +42,6 @@ namespace CSharpGL {
         public readonly uint[] normalIndexes = new uint[3];
         public readonly uint[] texCoordIndexes = new uint[3];
         public readonly uint[] tangentIndexes = new uint[3];
-        public readonly uint[] binormalIndexes = new uint[3];
 
         /// <summary>
         /// 
@@ -89,12 +82,6 @@ namespace CSharpGL {
             }
         }
 
-        public override IEnumerable<uint> BinormalIndexes() {
-            foreach (var item in binormalIndexes) {
-                yield return item;
-            }
-        }
-
         public override string ToString() {
             return string.Format("v:{0}, {1}, {2}, n:{3}, {4}, {5}",
                 vertexIndexes[0], vertexIndexes[1], vertexIndexes[2],
@@ -110,7 +97,6 @@ namespace CSharpGL {
         public readonly uint[] normalIndexes = new uint[4];
         public readonly uint[] texCoordIndexes = new uint[4];
         public readonly uint[] tangentIndexes = new uint[4];
-        public readonly uint[] binormalIndexes = new uint[4];
 
         /// <summary>
         /// 
@@ -149,12 +135,6 @@ namespace CSharpGL {
 
         public override IEnumerable<uint> TangentIndexes() {
             foreach (var item in tangentIndexes) {
-                yield return item;
-            }
-        }
-
-        public override IEnumerable<uint> BinormalIndexes() {
-            foreach (var item in binormalIndexes) {
                 yield return item;
             }
         }
