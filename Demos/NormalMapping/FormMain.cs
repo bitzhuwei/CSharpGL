@@ -29,40 +29,30 @@ namespace NormalMapping {
             var up = new vec3(0, 1, 0);
             var camera = new Camera(position, center, up, CameraType.Perspective, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
             this.scene = new Scene(camera);
-            //{
-            //    var model = new NormalMappingModel();
-            //    var node = NormalMappingNode.Create(model, new vec3(2, 2, 0.1f),
-            //        NormalMappingModel.strPosition,
-            //        NormalMappingModel.strTexCoord,
-            //        NormalMappingModel.strNormal,
-            //        NormalMappingModel.strTangent);
-            //    float max = node.ModelSize.max();
-            //    node.Scale *= 16.0f / max;
-            //    this.rootNode = node;
-            //    this.scene.RootNode = node;
 
-            //    (new FormPropertyGrid(node)).Show();
-            //}
-            var sphere = new Sphere(1, 40, 80);
-            var filename = Path.Combine(System.Windows.Forms.Application.StartupPath, "sphere.obj_");
-            sphere.DumpObjFile(filename, "sphere");
-            var parser = new ObjVNFParser(false);
-            ObjVNFResult result = parser.Parse(filename);
-            if (result.Error != null) {
-                Console.WriteLine("Error: {0}", result.Error);
-            }
-            else {
-                ObjVNFMesh mesh = result.Mesh;
-                var model = new ObjVNF(mesh);
-                var node = NormalMappingNode.Create(model, model.GetSize(),
-                    ObjVNF.strPosition,
-                    ObjVNF.strTexCoord,
-                    ObjVNF.strNormal,
-                    ObjVNF.strTangent);
-                float max = node.ModelSize.max();
-                node.Scale *= 16.0f / max;
-                this.rootNode = node;
-                this.scene.RootNode = node;
+            {
+                var sphere = new Sphere(1, 40, 80);
+                var filename = Path.Combine(System.Windows.Forms.Application.StartupPath, "sphere.obj_");
+                sphere.DumpObjFile(filename, "sphere");
+                var parser = new ObjVNFParser(false);
+                ObjVNFResult result = parser.Parse(filename);
+                if (result.Error != null) {
+                    Console.WriteLine("Error: {0}", result.Error);
+                }
+                else {
+                    ObjVNFMesh mesh = result.Mesh;
+                    var model = new ObjVNF(mesh);
+                    var node = NormalMappingNode.Create(model, model.GetSize(),
+                        ObjVNF.strPosition,
+                        ObjVNF.strTexCoord,
+                        ObjVNF.strNormal,
+                        ObjVNF.strTangent);
+                    float max = node.ModelSize.max();
+                    node.Scale *= 16.0f / max;
+                    this.rootNode = node;
+                    this.scene.RootNode = node;
+                    (new FormPropertyGrid(node)).Show();
+                }
             }
 
             var list = new ActionList();

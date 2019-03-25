@@ -78,7 +78,7 @@ namespace NormalMapping {
             }
             {
                 string folder = System.Windows.Forms.Application.StartupPath;
-                var bmp = new Bitmap(System.IO.Path.Combine(folder, @"color.jpg"));
+                var bmp = new Bitmap(System.IO.Path.Combine(folder, @"earth.png"));
                 var storage = new TexImageBitmap(bmp);
                 var texture = new Texture(storage,
                     new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP_TO_EDGE),
@@ -94,7 +94,7 @@ namespace NormalMapping {
             }
             {
                 string folder = System.Windows.Forms.Application.StartupPath;
-                var bmp = new Bitmap(System.IO.Path.Combine(folder, @"normal.jpg"));
+                var bmp = new Bitmap(System.IO.Path.Combine(folder, @"earth-bump.png"));
                 var storage = new TexImageBitmap(bmp);
                 var texture = new Texture(storage,
                     new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP_TO_EDGE),
@@ -110,7 +110,7 @@ namespace NormalMapping {
             }
             {
                 string folder = System.Windows.Forms.Application.StartupPath;
-                var bmp = new Bitmap(System.IO.Path.Combine(folder, @"noNormal.jpg"));
+                var bmp = new Bitmap(System.IO.Path.Combine(folder, @"earth-nobump.png"));
                 var storage = new TexImageBitmap(bmp);
                 var texture = new Texture(storage,
                     new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP_TO_EDGE),
@@ -148,6 +148,7 @@ namespace NormalMapping {
             program.SetUniform("mvpMat", projection * view * model);
             program.SetUniform("modelMat", model);
             program.SetUniform("eyeWorldPos", camera.Position);
+            program.SetUniform("light.direction", -(camera.Position - camera.Target).normalize());
 
             method.Render();
         }
