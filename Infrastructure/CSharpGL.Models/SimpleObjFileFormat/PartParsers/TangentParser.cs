@@ -40,13 +40,14 @@ namespace CSharpGL {
                 vec3 q0 = p1 - p0, q1 = p2 - p0;
                 float u0 = uv0.x, v0 = uv0.y, u1 = uv1.x, v1 = uv1.y, u2 = uv2.x, v2 = uv2.y;
                 float coefficient = 1.0f / ((u1 - u0) * (v2 - v0) - (v1 - v0) * (u2 - u0));
-                vec3 tangentFace, binormalFace;
+                vec3 tangentFace;
                 tangentFace.x = (v2 - v0) * q0.x + (v0 - v1) * q1.x;
                 tangentFace.y = (v2 - v0) * q0.y + (v0 - v1) * q1.y;
                 tangentFace.z = (v2 - v0) * q0.z + (v0 - v1) * q1.z;
-                binormalFace.x = (u0 - u2) * q0.x + (u1 - u0) * q1.x;
-                binormalFace.y = (u0 - u2) * q0.y + (u1 - u0) * q1.y;
-                binormalFace.z = (u0 - u2) * q0.z + (u1 - u0) * q1.z;
+                //vec3 binormalFace;
+                //binormalFace.x = (u0 - u2) * q0.x + (u1 - u0) * q1.x;
+                //binormalFace.y = (u0 - u2) * q0.y + (u1 - u0) * q1.y;
+                //binormalFace.z = (u0 - u2) * q0.z + (u1 - u0) * q1.z;
                 for (int t = 0; t < vertexIndexes.Length; t++) {
                     vec3 n = normals[normalIndexes[t]].normalize();
                     tangents[vertexIndexes[t]] = tangentFace - tangentFace.dot(n) * n;
