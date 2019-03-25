@@ -12,25 +12,25 @@ namespace CSharpGL {
         /// 
         /// </summary>
         /// <returns></returns>
-        public abstract IEnumerable<uint> VertexIndexes();
+        public abstract uint[] VertexIndexes();
 
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        public abstract IEnumerable<uint> NormalIndexes();
+        public abstract uint[] NormalIndexes();
 
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        public abstract IEnumerable<uint> TexCoordIndexes();
+        public abstract uint[] TexCoordIndexes();
 
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        public abstract IEnumerable<uint> TangentIndexes();
+        public abstract uint[] TangentIndexes();
 
     }
 
@@ -58,28 +58,20 @@ namespace CSharpGL {
             texCoordIndexes[0] = t0; texCoordIndexes[1] = t1; texCoordIndexes[2] = t2;
         }
 
-        public override IEnumerable<uint> VertexIndexes() {
-            foreach (var item in vertexIndexes) {
-                yield return item;
-            }
+        public override uint[] VertexIndexes() {
+            return this.vertexIndexes;
         }
 
-        public override IEnumerable<uint> NormalIndexes() {
-            foreach (var item in normalIndexes) {
-                yield return item;
-            }
+        public override uint[] NormalIndexes() {
+            return this.normalIndexes;
         }
 
-        public override IEnumerable<uint> TexCoordIndexes() {
-            foreach (var item in texCoordIndexes) {
-                yield return item;
-            }
+        public override uint[] TexCoordIndexes() {
+            return this.texCoordIndexes;
         }
 
-        public override IEnumerable<uint> TangentIndexes() {
-            foreach (var item in tangentIndexes) {
-                yield return item;
-            }
+        public override uint[] TangentIndexes() {
+            return this.tangentIndexes;
         }
 
         public override string ToString() {
@@ -115,28 +107,20 @@ namespace CSharpGL {
             texCoordIndexes[0] = t0; texCoordIndexes[1] = t1; texCoordIndexes[2] = t2; texCoordIndexes[3] = t3;
         }
 
-        public override IEnumerable<uint> VertexIndexes() {
-            foreach (var item in vertexIndexes) {
-                yield return item;
-            }
+        public override uint[] VertexIndexes() {
+            return this.vertexIndexes;
         }
 
-        public override IEnumerable<uint> NormalIndexes() {
-            foreach (var item in normalIndexes) {
-                yield return item;
-            }
+        public override uint[] NormalIndexes() {
+            return this.normalIndexes;
         }
 
-        public override IEnumerable<uint> TexCoordIndexes() {
-            foreach (var item in texCoordIndexes) {
-                yield return item;
-            }
+        public override uint[] TexCoordIndexes() {
+            return this.texCoordIndexes;
         }
 
-        public override IEnumerable<uint> TangentIndexes() {
-            foreach (var item in tangentIndexes) {
-                yield return item;
-            }
+        public override uint[] TangentIndexes() {
+            return this.tangentIndexes;
         }
 
         public override string ToString() {

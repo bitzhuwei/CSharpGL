@@ -3,18 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CSharpGL
-{
-    public class PrismoidModel : IBufferSource, IObjFormat
-    {
+namespace CSharpGL {
+    public class PrismoidModel : IBufferSource, IObjFormat {
         private vec3 modelSize;
-        public vec3 ModelSize()
-        {
+        public vec3 ModelSize() {
             return this.modelSize;
         }
 
-        public PrismoidModel(float topXLength, float topZLength, float bottomXLength, float bottomZLength, float height)
-        {
+        public PrismoidModel(float topXLength, float topZLength, float bottomXLength, float bottomZLength, float height) {
             float xDiff = (bottomXLength - topXLength) / 2;
             float zDiff = (bottomZLength - topZLength) / 2;
             var positions = new vec3[8];
@@ -50,27 +46,22 @@ namespace CSharpGL
 
         #region IBufferSource 成员
 
-        public IEnumerable<VertexBuffer> GetVertexAttribute(string bufferName)
-        {
+        public IEnumerable<VertexBuffer> GetVertexAttribute(string bufferName) {
             if (strPosition == bufferName) // requiring position buffer.
             {
-                if (this.positionBuffer == null)
-                {
+                if (this.positionBuffer == null) {
                     this.positionBuffer = positions.GenVertexBuffer(VBOConfig.Vec3, BufferUsage.StaticDraw);
                 }
 
                 yield return this.positionBuffer;
             }
-            else
-            {
+            else {
                 throw new ArgumentException("bufferName");
             }
         }
 
-        public IEnumerable<IDrawCommand> GetDrawCommand()
-        {
-            if (this.drawCommand == null)
-            {
+        public IEnumerable<IDrawCommand> GetDrawCommand() {
+            if (this.drawCommand == null) {
                 IndexBuffer indexBuffer = indexes.GenIndexBuffer(BufferUsage.StaticDraw);
                 this.drawCommand = new DrawElementsCmd(indexBuffer, DrawMode.Triangles);
             }
@@ -82,13 +73,15 @@ namespace CSharpGL
 
         #region IObjFormat 成员
 
-        public vec3[] GetPositions()
-        {
+        public vec3[] GetPositions() {
             return this.positions;
         }
 
-        public uint[] GetIndexes()
-        {
+        public vec2[] GetTexCoords() {
+            return new vec2[] { };
+        }
+
+        public uint[] GetIndexes() {
             return indexes;
         }
 

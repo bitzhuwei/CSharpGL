@@ -7,7 +7,7 @@ using System.Drawing;
 
 namespace NormalMapping {
     partial class NormalMappingNode : ModernNode, IRenderable {
-        public static NormalMappingNode Create(IBufferSource model, string position, string texCoord, string normal, string tangent) {
+        public static NormalMappingNode Create(IBufferSource model, vec3 size, string position, string texCoord, string normal, string tangent) {
             //var model = new NormalMappingModel();
             var vs = new VertexShader(vertexCode);
             var fs = new FragmentShader(fragmentCode);
@@ -23,7 +23,7 @@ namespace NormalMapping {
             map.Add("inTangent", tangent);
             var builder = new RenderMethodBuilder(array, map);
             var node = new NormalMappingNode(model, builder);
-            node.ModelSize = new vec3(2, 2, 0.1f);
+            node.ModelSize = size;
             node.Initialize();
 
             return node;
