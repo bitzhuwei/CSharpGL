@@ -3,13 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CSharpGL
-{
+namespace CSharpGL {
     /// <summary>
     /// 
     /// </summary>
-    public abstract class ObjVNFFace
-    {
+    public abstract class ObjVNFFace {
         /// <summary>
         /// 
         /// </summary>
@@ -28,16 +26,29 @@ namespace CSharpGL
         /// <returns></returns>
         public abstract IEnumerable<uint> TexCoordIndexes();
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public abstract IEnumerable<uint> TangentIndexes();
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public abstract IEnumerable<uint> BinormalIndexes();
+
     }
 
     /// <summary>
     /// 
     /// </summary>
-    public class ObjVNFTriangle : ObjVNFFace
-    {
+    public class ObjVNFTriangle : ObjVNFFace {
         public readonly uint[] vertexIndexes = new uint[3];
         public readonly uint[] normalIndexes = new uint[3];
         public readonly uint[] texCoordIndexes = new uint[3];
+        public readonly uint[] tangentIndexes = new uint[3];
+        public readonly uint[] binormalIndexes = new uint[3];
 
         /// <summary>
         /// 
@@ -48,39 +59,43 @@ namespace CSharpGL
         /// <param name="n0"></param>
         /// <param name="n1"></param>
         /// <param name="n2"></param>
-        public ObjVNFTriangle(uint v0, uint v1, uint v2, uint n0, uint n1, uint n2, uint t0, uint t1, uint t2)
-        {
+        public ObjVNFTriangle(uint v0, uint v1, uint v2, uint n0, uint n1, uint n2, uint t0, uint t1, uint t2) {
             vertexIndexes[0] = v0; vertexIndexes[1] = v1; vertexIndexes[2] = v2;
             normalIndexes[0] = n0; normalIndexes[1] = n1; normalIndexes[2] = n2;
             texCoordIndexes[0] = t0; texCoordIndexes[1] = t1; texCoordIndexes[2] = t2;
         }
 
-        public override IEnumerable<uint> VertexIndexes()
-        {
-            foreach (var item in vertexIndexes)
-            {
+        public override IEnumerable<uint> VertexIndexes() {
+            foreach (var item in vertexIndexes) {
                 yield return item;
             }
         }
 
-        public override IEnumerable<uint> NormalIndexes()
-        {
-            foreach (var item in normalIndexes)
-            {
+        public override IEnumerable<uint> NormalIndexes() {
+            foreach (var item in normalIndexes) {
                 yield return item;
             }
         }
 
-        public override IEnumerable<uint> TexCoordIndexes()
-        {
-            foreach (var item in texCoordIndexes)
-            {
+        public override IEnumerable<uint> TexCoordIndexes() {
+            foreach (var item in texCoordIndexes) {
                 yield return item;
             }
         }
 
-        public override string ToString()
-        {
+        public override IEnumerable<uint> TangentIndexes() {
+            foreach (var item in tangentIndexes) {
+                yield return item;
+            }
+        }
+
+        public override IEnumerable<uint> BinormalIndexes() {
+            foreach (var item in binormalIndexes) {
+                yield return item;
+            }
+        }
+
+        public override string ToString() {
             return string.Format("v:{0}, {1}, {2}, n:{3}, {4}, {5}",
                 vertexIndexes[0], vertexIndexes[1], vertexIndexes[2],
                 normalIndexes[0], normalIndexes[1], normalIndexes[2]);
@@ -90,11 +105,12 @@ namespace CSharpGL
     /// <summary>
     /// 
     /// </summary>
-    public class ObjVNFQuad : ObjVNFFace
-    {
+    public class ObjVNFQuad : ObjVNFFace {
         public readonly uint[] vertexIndexes = new uint[4];
         public readonly uint[] normalIndexes = new uint[4];
         public readonly uint[] texCoordIndexes = new uint[4];
+        public readonly uint[] tangentIndexes = new uint[4];
+        public readonly uint[] binormalIndexes = new uint[4];
 
         /// <summary>
         /// 
@@ -107,39 +123,43 @@ namespace CSharpGL
         /// <param name="n1"></param>
         /// <param name="n2"></param>
         /// <param name="n3"></param>
-        public ObjVNFQuad(uint v0, uint v1, uint v2, uint v3, uint n0, uint n1, uint n2, uint n3, uint t0, uint t1, uint t2, uint t3)
-        {
+        public ObjVNFQuad(uint v0, uint v1, uint v2, uint v3, uint n0, uint n1, uint n2, uint n3, uint t0, uint t1, uint t2, uint t3) {
             vertexIndexes[0] = v0; vertexIndexes[1] = v1; vertexIndexes[2] = v2; vertexIndexes[3] = v3;
             normalIndexes[0] = n0; normalIndexes[1] = n1; normalIndexes[2] = n2; normalIndexes[3] = n3;
             texCoordIndexes[0] = t0; texCoordIndexes[1] = t1; texCoordIndexes[2] = t2; texCoordIndexes[3] = t3;
         }
 
-        public override IEnumerable<uint> VertexIndexes()
-        {
-            foreach (var item in vertexIndexes)
-            {
+        public override IEnumerable<uint> VertexIndexes() {
+            foreach (var item in vertexIndexes) {
                 yield return item;
             }
         }
 
-        public override IEnumerable<uint> NormalIndexes()
-        {
-            foreach (var item in normalIndexes)
-            {
+        public override IEnumerable<uint> NormalIndexes() {
+            foreach (var item in normalIndexes) {
                 yield return item;
             }
         }
 
-        public override IEnumerable<uint> TexCoordIndexes()
-        {
-            foreach (var item in texCoordIndexes)
-            {
+        public override IEnumerable<uint> TexCoordIndexes() {
+            foreach (var item in texCoordIndexes) {
                 yield return item;
             }
         }
 
-        public override string ToString()
-        {
+        public override IEnumerable<uint> TangentIndexes() {
+            foreach (var item in tangentIndexes) {
+                yield return item;
+            }
+        }
+
+        public override IEnumerable<uint> BinormalIndexes() {
+            foreach (var item in binormalIndexes) {
+                yield return item;
+            }
+        }
+
+        public override string ToString() {
             return string.Format("v:{0}, {1}, {2}, {3}, n:{4}, {5}, {6}, {7}",
                 vertexIndexes[0], vertexIndexes[1], vertexIndexes[2], vertexIndexes[3],
                 normalIndexes[0], normalIndexes[1], normalIndexes[2], normalIndexes[3]);
