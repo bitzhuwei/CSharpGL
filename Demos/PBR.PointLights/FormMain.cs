@@ -36,10 +36,10 @@ namespace PBR.PointLights {
             var rootNode = new GroupNode();
             this.scene.RootNode = rootNode;
             {
-                var sphere = new Sphere(1, 40, 80);
-                var filename = Path.Combine(System.Windows.Forms.Application.StartupPath, "sphere.obj_");
-                sphere.DumpObjFile(filename, "sphere");
-                var parser = new ObjVNFParser(false);
+                var sphere = new Sphere2();//(1, 40, 80);
+                var filename = Path.Combine(System.Windows.Forms.Application.StartupPath, "sphere2.obj_");
+                sphere.DumpObjFile(filename, "sphere2");
+                var parser = new ObjVNFParser(false, true);
                 ObjVNFResult result = parser.Parse(filename);
                 if (result.Error != null) {
                     Console.WriteLine("Error: {0}", result.Error);
