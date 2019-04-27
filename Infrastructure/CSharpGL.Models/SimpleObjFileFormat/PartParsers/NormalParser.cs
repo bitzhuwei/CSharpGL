@@ -5,6 +5,11 @@ using System.Text;
 
 namespace CSharpGL {
     public class NormalParser : ObjParserBase {
+        private bool reverseNormal;
+
+        public NormalParser(bool reverseNormal = false) {
+            this.reverseNormal = reverseNormal;
+        }
         public override void Parse(ObjVNFContext context) {
             vec3[] normals = null;
             ObjVNFMesh mesh = context.Mesh;
@@ -34,8 +39,8 @@ namespace CSharpGL {
 
 
                 for (int t = 0; t < vertexIndexes.Length; t++) {
-                    normals[vertexIndexes[t]] = mesh.normals[normalIndexes[t]];
-
+                    normals[vertexIndexes[t]] =
+                        reverseNormal ? -mesh.normals[normalIndexes[t]] : mesh.normals[normalIndexes[t]];
                 }
             }
 
@@ -75,7 +80,7 @@ namespace CSharpGL {
             }
             for (int i = 0; i < normals.Length; i++) {
                 if (counters[i] > 0) {
-                    normals[i] = normals[i].normalize();
+                    normals[i] = reverseNormal ? -normals[i].normalize() : normals[i].normalize();
                 }
             }
 
