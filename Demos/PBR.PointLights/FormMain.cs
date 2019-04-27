@@ -47,16 +47,6 @@ namespace PBR.PointLights {
                 else {
                     ObjVNFMesh mesh = result.Mesh;
                     var model = new ObjVNF(mesh);
-                    //var node = NormalMappingNode.Create(model, model.GetSize(),
-                    //    ObjVNF.strPosition,
-                    //    ObjVNF.strTexCoord,
-                    //    ObjVNF.strNormal,
-                    //    ObjVNF.strTangent);
-                    //float max = node.ModelSize.max();
-                    //node.Scale *= 16.0f / max;
-                    //this.rootNode = node;
-                    //this.scene.RootNode = node;
-                    //(new FormPropertyGrid(node)).Show();
                     // render rows*column number of spheres with varying metallic/roughness values scaled by rows and columns respectively
                     for (int row = 0; row < nrRows; ++row) {
 
