@@ -1,11 +1,8 @@
 ﻿using System;
 
-namespace CSharpGL
-{
-    public static partial class glm
-    {
-        public static uint packUnorm4x8(this vec4 v)
-        {
+namespace CSharpGL {
+    public static partial class glm {
+        public static uint packUnorm4x8(this vec4 v) {
             uint A = (uint)(Math.Round(clamp(v.x, 0.0f, 1.0f) * 255.0));
             uint B = (uint)(Math.Round(clamp(v.y, 0.0f, 1.0f) * 255.0));
             uint C = (uint)(Math.Round(clamp(v.z, 0.0f, 1.0f) * 255.0));
@@ -16,8 +13,7 @@ namespace CSharpGL
             return result;
         }
 
-        public static vec4 unpackUnorm4x8(this uint p)
-        {
+        public static vec4 unpackUnorm4x8(this uint p) {
             const uint mask8 = (1 << 8) - 1;
             uint A = (p >> 0) & mask8;
             uint B = (p >> 8) & mask8;
@@ -29,12 +25,5 @@ namespace CSharpGL
             return result;
         }
 
-        private static float clamp(float value, float min, float max)
-        {
-            if (value < min) { return min; }
-            if (max < value) { return max; }
-
-            return value;
-        }
     }
 }

@@ -52,6 +52,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="BasicDataStructures\FullDictionary.cs" />
+    <Compile Include="BasicDataStructures\GLSL\glm_clamp.cs" />
     <Compile Include="BasicDataStructures\GLSL\glm_unorm4x8.cs" />
     <Compile Include="BasicDataStructures\IBoundingBox\BoundingBox.cs" />
     <Compile Include="BasicDataStructures\IBoundingBox\IBoundingBox.cs" />

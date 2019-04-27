@@ -215,6 +215,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DistanceFieldFont", "Demos\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhysicallyBasedRendering", "Demos\PhysicallyBasedRendering\PhysicallyBasedRendering.csproj", "{A519971E-F963-4F23-A3CE-79413D101879}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PBR.PointLights", "Demos\PBR.PointLights\PBR.PointLights.csproj", "{8E94F52A-EABB-40C1-A0DA-ADAEBCD9D1E7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -633,6 +635,10 @@ Global
 		{A519971E-F963-4F23-A3CE-79413D101879}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A519971E-F963-4F23-A3CE-79413D101879}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A519971E-F963-4F23-A3CE-79413D101879}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E94F52A-EABB-40C1-A0DA-ADAEBCD9D1E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E94F52A-EABB-40C1-A0DA-ADAEBCD9D1E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E94F52A-EABB-40C1-A0DA-ADAEBCD9D1E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E94F52A-EABB-40C1-A0DA-ADAEBCD9D1E7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -739,5 +745,6 @@ Global
 		{27B63D29-F2C2-416A-8D1E-E077665BC19A} = {772765C9-9DD4-487B-8FEB-5EAACA9F955B}
 		{EF3B34E7-7B74-499A-9ED2-C4B1C964A4AC} = {772765C9-9DD4-487B-8FEB-5EAACA9F955B}
 		{A519971E-F963-4F23-A3CE-79413D101879} = {772765C9-9DD4-487B-8FEB-5EAACA9F955B}
+		{8E94F52A-EABB-40C1-A0DA-ADAEBCD9D1E7} = {772765C9-9DD4-487B-8FEB-5EAACA9F955B}
 	EndGlobalSection
 EndGlobal
