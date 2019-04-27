@@ -7,14 +7,14 @@ using System.Drawing;
 
 namespace PBR.Textured {
     partial class PBRNode : ModernNode, IRenderable {
-        public static PBRNode Create(IBufferSource model, vec3 size, string position, string texCoord, string normal, string tangent) {
+        public static PBRNode Create(IBufferSource model, vec3 size, string position, string texCoord, string normal) {
             //var model = new NormalMappingModel();
             var vs = new VertexShader(vertexCode);
             var fs = new FragmentShader(fragmentCode);
             var array = new ShaderArray(vs, fs);
             var map = new AttributeMap();
             map.Add("aPos", position);
-            //map.Add("aTexCoords", texCoord);
+            map.Add("aTexCoords", texCoord);
             map.Add("aNormal", normal);
             //map.Add("inTangent", tangent);
             var builder = new RenderMethodBuilder(array, map);
@@ -29,16 +29,6 @@ namespace PBR.Textured {
             : base(model, builders) {
         }
 
-        private ThreeFlags enableRendering = ThreeFlags.BeforeChildren | ThreeFlags.Children | ThreeFlags.AfterChildren;
-        /// <summary>
-        /// Render before/after children? Render children? 
-        /// RenderAction cares about this property. Other actions, maybe, maybe not, your choice.
-        /// </summary>
-        public ThreeFlags EnableRendering {
-            get { return this.enableRendering; }
-            set { this.enableRendering = value; }
-        }
-
         private vec3 albedo = new vec3(0.5f, 0.0f, 0.0f);
         public vec3 Albedo {
             get { return albedo; }
@@ -51,20 +41,30 @@ namespace PBR.Textured {
             get { return ao; }
             set { ao = value; }
         }
+        //
+        public Texture AlbedoMap { get; set; }
+        public Texture NormalMap { get; set; }
+        public Texture MetallicMap { get; set; }
+        public Texture RoughnessMap { get; set; }
+        public Texture AOMap { get; set; }
+
+        private ThreeFlags enableRendering = ThreeFlags.BeforeChildren | ThreeFlags.Children | ThreeFlags.AfterChildren;
+        /// <summary>
+        /// Render before/after children? Render children? 
+        /// RenderAction cares about this property. Other actions, maybe, maybe not, your choice.
+        /// </summary>
+        public ThreeFlags EnableRendering {
+            get { return this.enableRendering; }
+            set { this.enableRendering = value; }
+        }
 
         // lights
         // ------
         vec3[] lightPositions = {
-            new vec3(-10.0f,  10.0f, 10.0f),
-            new vec3( 10.0f,  10.0f, 10.0f),
-            new vec3(-10.0f, -10.0f, 10.0f),
-            new vec3( 10.0f, -10.0f, 10.0f),
+            new vec3(0.0f, 0.0f, 10.0f),
         };
         vec3[] lightColors = {
-            new vec3(300.0f, 300.0f, 300.0f),
-            new vec3(300.0f, 300.0f, 300.0f),
-            new vec3(300.0f, 300.0f, 300.0f),
-            new vec3(300.0f, 300.0f, 300.0f)
+            new vec3(150.0f, 150.0f, 150.0f),
         };
 
         public void RenderBeforeChildren(RenderEventArgs arg) {
@@ -79,10 +79,27 @@ namespace PBR.Textured {
             program.SetUniform("projection", projection);
             program.SetUniform("view", view);
             program.SetUniform("model", model);
-            program.SetUniform("albedo", Albedo);
-            program.SetUniform("metallic", Metallic);
-            program.SetUniform("roughness", Roughness);
-            program.SetUniform("ao", AO);
+            if (this.AlbedoMap != null) {
+                program.SetUniform("albedoMap", this.AlbedoMap);
+            }
+            if (this.NormalMap != null) {
+                program.SetUniform("normalMap", this.NormalMap);
+            }
+            if (this.MetallicMap != null) {
+                program.SetUniform("metallicMap", this.MetallicMap);
+            }
+            if (this.RoughnessMap != null) {
+                program.SetUniform("roughnessMap", this.RoughnessMap);
+            }
+            if (this.AOMap != null) {
+                program.SetUniform("aoMap", this.AOMap);
+            }
+            {
+                program.SetUniform("albedo", Albedo);
+                program.SetUniform("metallic", Metallic);
+                program.SetUniform("roughness", Roughness);
+                program.SetUniform("ao", AO);
+            }
             program.SetUniform("lightPositions", lightPositions);
             program.SetUniform("lightColors", lightColors);
             program.SetUniform("camPos", camera.Position);
