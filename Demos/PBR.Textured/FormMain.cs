@@ -42,10 +42,10 @@ namespace PBR.Textured {
             Texture aoMap = GetTexture(@"Textures\ao.png", 4);
 
             {
-                var sphere = new Sphere(1, 40, 80);
-                var filename = Path.Combine(System.Windows.Forms.Application.StartupPath, "sphere.obj_");
-                sphere.DumpObjFile(filename, "sphere");
-                var parser = new ObjVNFParser(false);
+                var sphere = new Sphere2();//(1, 40, 80);
+                var filename = Path.Combine(System.Windows.Forms.Application.StartupPath, "sphere2.obj_");
+                sphere.DumpObjFile(filename, "sphere2");
+                var parser = new ObjVNFParser(false, true);
                 ObjVNFResult result = parser.Parse(filename);
                 if (result.Error != null) {
                     Console.WriteLine("Error: {0}", result.Error);
@@ -98,6 +98,19 @@ namespace PBR.Textured {
             texture.Initialize();
             bmp.Dispose();
             return texture;
+            //
+            //var bmp = new Bitmap(filename);
+            //TexStorageBase storage = new TexImageBitmap(bmp, GL.GL_RGBA, 1, false);
+            //var texture = new Texture(storage,
+            //    new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_REPEAT),
+            //    new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_REPEAT),
+            //    new TexParameteri(TexParameter.PropertyName.TextureWrapR, (int)GL.GL_REPEAT),
+            //    new TexParameteri(TexParameter.PropertyName.TextureMinFilter, (int)GL.GL_LINEAR),
+            //    new TexParameteri(TexParameter.PropertyName.TextureMagFilter, (int)GL.GL_LINEAR));
+            //texture.Initialize();
+            //bmp.Dispose();
+
+            //return texture;
         }
 
         class PointerData : LeveledData {
