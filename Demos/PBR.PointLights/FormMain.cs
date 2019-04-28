@@ -13,7 +13,6 @@ namespace PBR.PointLights {
     public partial class FormMain : Form {
         private Scene scene;
         private ActionList actionList;
-        private SceneNodeBase rootNode;
 
         public FormMain() {
             InitializeComponent();
@@ -93,11 +92,5 @@ namespace PBR.PointLights {
             this.scene.Camera.AspectRatio = ((float)this.winGLCanvas1.Width) / ((float)this.winGLCanvas1.Height);
         }
 
-        private void rdoNormalMapping_CheckedChanged(object sender, EventArgs e) {
-            var node = this.rootNode;
-            if (node != null) {
-                //node.NormalMapping = this.rdoNormalMapping.Checked;
-            }
-        }
     }
 }
