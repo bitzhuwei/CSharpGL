@@ -13,7 +13,6 @@ namespace PBR.Textured {
     public partial class FormMain : Form {
         private Scene scene;
         private ActionList actionList;
-        private SceneNodeBase rootNode;
 
         public FormMain() {
             InitializeComponent();
@@ -42,7 +41,7 @@ namespace PBR.Textured {
             Texture aoMap = GetTexture(@"Textures\ao.png", 4);
 
             {
-                var sphere = new Sphere2();//(1, 40, 80);
+                var sphere = new Sphere2(); // Sphere(1, 40, 80);
                 var filename = Path.Combine(System.Windows.Forms.Application.StartupPath, "sphere2.obj_");
                 sphere.DumpObjFile(filename, "sphere2");
                 var parser = new ObjVNFParser(false, true);
@@ -92,36 +91,13 @@ namespace PBR.Textured {
                 new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_REPEAT),
                 new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_REPEAT),
                 new TexParameteri(TexParameter.PropertyName.TextureWrapR, (int)GL.GL_REPEAT),
-                new TexParameteri(TexParameter.PropertyName.TextureMinFilter, (int)GL.GL_TEXTURE_MIN_FILTER),
+                // NOTE: when I use 'GL_LINEAR_MIPMAP_LINEAR' in below line, it went wrong...
+                new TexParameteri(TexParameter.PropertyName.TextureMinFilter, (int)GL.GL_LINEAR),
                 new TexParameteri(TexParameter.PropertyName.TextureMagFilter, (int)GL.GL_LINEAR));
             texture.TextureUnitIndex = unitIndex;
             texture.Initialize();
             bmp.Dispose();
             return texture;
-            //
-            //var bmp = new Bitmap(filename);
-            //TexStorageBase storage = new TexImageBitmap(bmp, GL.GL_RGBA, 1, false);
-            //var texture = new Texture(storage,
-            //    new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_REPEAT),
-            //    new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_REPEAT),
-            //    new TexParameteri(TexParameter.PropertyName.TextureWrapR, (int)GL.GL_REPEAT),
-            //    new TexParameteri(TexParameter.PropertyName.TextureMinFilter, (int)GL.GL_LINEAR),
-            //    new TexParameteri(TexParameter.PropertyName.TextureMagFilter, (int)GL.GL_LINEAR));
-            //texture.Initialize();
-            //bmp.Dispose();
-
-            //return texture;
-        }
-
-        class PointerData : LeveledData {
-            private IntPtr pointer;
-
-            public PointerData(IntPtr pointer) {
-                this.pointer = pointer;
-            }
-            public override IntPtr LockData() {
-                return this.pointer;
-            }
         }
 
         private void winGLCanvas1_OpenGLDraw(object sender, PaintEventArgs e) {
@@ -139,11 +115,5 @@ namespace PBR.Textured {
             this.scene.Camera.AspectRatio = ((float)this.winGLCanvas1.Width) / ((float)this.winGLCanvas1.Height);
         }
 
-        private void rdoNormalMapping_CheckedChanged(object sender, EventArgs e) {
-            var node = this.rootNode;
-            if (node != null) {
-                //node.NormalMapping = this.rdoNormalMapping.Checked;
-            }
-        }
     }
 }

@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 namespace CSharpGL {
     /// <summary>
-    /// Sphere.
+    /// Sphere from https://github.com/JoeyDeVries/LearnOpenGL/blob/master/src/6.pbr/1.2.lighting_textured/lighting_textured.cpp
     /// <para>Uses <see cref="DrawElementsCmd"/></para>
     /// </summary>
     public class Sphere2 : IBufferSource, IObjFormat {
         private SphereModel2 model;
 
         /// <summary>
-        /// 
+        /// Sphere from https://github.com/JoeyDeVries/LearnOpenGL/blob/master/src/6.pbr/1.2.lighting_textured/lighting_textured.cpp
         /// </summary>
         /// <param name="radius"></param>
         /// <param name="X_SEGMENTS"></param>
