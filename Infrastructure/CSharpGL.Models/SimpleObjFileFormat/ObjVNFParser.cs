@@ -14,19 +14,24 @@ namespace CSharpGL {
         /// 
         /// </summary>
         /// <param name="quad2triangle"></param>
-        public ObjVNFParser(bool quad2triangle) {
+        /// <param name="reverseNormal"></param>
+        public ObjVNFParser(bool quad2triangle = true, bool reverseNormal = false) {
             var generalityParser = new GeneralityParser();
             var meshParser = new MeshParser();
             var normalParser = new NormalParser();
             var texCoordParser = new TexCoordParser();
             var tangentParser = new TangentParser();
             var locationParser = new LocationParser();
-            if (quad2triangle) {
-                this.parserList = new ObjParserBase[] { generalityParser, meshParser, normalParser, texCoordParser, new Quad2TriangleParser(), tangentParser, locationParser, };
-            }
-            else {
-                this.parserList = new ObjParserBase[] { generalityParser, meshParser, normalParser, texCoordParser, tangentParser, locationParser, };
-            }
+            var list = new List<ObjParserBase>();
+            list.Add(new GeneralityParser());
+            list.Add(new MeshParser());
+            list.Add(new NormalParser(reverseNormal));
+            list.Add(new TexCoordParser());
+            if (quad2triangle) { list.Add(new Quad2TriangleParser()); }
+            list.Add(new TangentParser());
+            list.Add(new LocationParser());
+
+            this.parserList = list.ToArray();
         }
 
         /// <summary>

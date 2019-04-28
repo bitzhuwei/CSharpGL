@@ -13,7 +13,6 @@ namespace PBR.PointLights {
     public partial class FormMain : Form {
         private Scene scene;
         private ActionList actionList;
-        private SceneNodeBase rootNode;
 
         public FormMain() {
             InitializeComponent();
@@ -36,10 +35,10 @@ namespace PBR.PointLights {
             var rootNode = new GroupNode();
             this.scene.RootNode = rootNode;
             {
-                var sphere = new Sphere(1, 40, 80);
-                var filename = Path.Combine(System.Windows.Forms.Application.StartupPath, "sphere.obj_");
-                sphere.DumpObjFile(filename, "sphere");
-                var parser = new ObjVNFParser(false);
+                var sphere = new Sphere2();//(1, 40, 80);
+                var filename = Path.Combine(System.Windows.Forms.Application.StartupPath, "sphere2.obj_");
+                sphere.DumpObjFile(filename, "sphere2");
+                var parser = new ObjVNFParser(false, true);
                 ObjVNFResult result = parser.Parse(filename);
                 if (result.Error != null) {
                     Console.WriteLine("Error: {0}", result.Error);
@@ -47,16 +46,6 @@ namespace PBR.PointLights {
                 else {
                     ObjVNFMesh mesh = result.Mesh;
                     var model = new ObjVNF(mesh);
-                    //var node = NormalMappingNode.Create(model, model.GetSize(),
-                    //    ObjVNF.strPosition,
-                    //    ObjVNF.strTexCoord,
-                    //    ObjVNF.strNormal,
-                    //    ObjVNF.strTangent);
-                    //float max = node.ModelSize.max();
-                    //node.Scale *= 16.0f / max;
-                    //this.rootNode = node;
-                    //this.scene.RootNode = node;
-                    //(new FormPropertyGrid(node)).Show();
                     // render rows*column number of spheres with varying metallic/roughness values scaled by rows and columns respectively
                     for (int row = 0; row < nrRows; ++row) {
 
@@ -103,11 +92,5 @@ namespace PBR.PointLights {
             this.scene.Camera.AspectRatio = ((float)this.winGLCanvas1.Width) / ((float)this.winGLCanvas1.Height);
         }
 
-        private void rdoNormalMapping_CheckedChanged(object sender, EventArgs e) {
-            var node = this.rootNode;
-            if (node != null) {
-                //node.NormalMapping = this.rdoNormalMapping.Checked;
-            }
-        }
     }
 }
