@@ -61,6 +61,7 @@ namespace PBR.IrradianceConversion {
                 CubemapFace face = (CubemapFace)(GL.GL_TEXTURE_CUBE_MAP_POSITIVE_X + i);
                 uint location = 0;
                 int level = 0;
+                captureFBO.Bind();
                 captureFBO.Attach(FramebufferTarget.Framebuffer, location, face, this.texEnvCubemap, level);
                 captureFBO.CheckCompleteness();
                 captureFBO.Unbind();
@@ -69,9 +70,6 @@ namespace PBR.IrradianceConversion {
                 GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
                 method.Render();
                 captureFBO.Unbind();
-
-                //this.texEnvCubemap.GetImage(face, captureFBO.Width, captureFBO.Height).Save(
-                //string.Format("envCubeMap.{0}.png", face));
             }
             viewportSwitch.Off();
             captureFBO.Dispose();

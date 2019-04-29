@@ -33,46 +33,12 @@ namespace PBR.IrradianceConversion {
             this.scene = new Scene(camera);
             var rootNode = new GroupNode();
             this.scene.RootNode = rootNode;
-
-            Texture albedoMap = GetTexture(@"Textures\albedo.png", 0);
-            Texture normalMap = GetTexture(@"Textures\normal.png", 1);
-            Texture metallicMap = GetTexture(@"Textures\metallic.png", 2);
-            Texture roughnessMap = GetTexture(@"Textures\roughness.png", 3);
-            Texture aoMap = GetTexture(@"Textures\ao.png", 4);
-
             {
-                var sphere = new Sphere2(); // Sphere(1, 40, 80);
-                var filename = Path.Combine(System.Windows.Forms.Application.StartupPath, "sphere2.obj_");
-                sphere.DumpObjFile(filename, "sphere2");
-                var parser = new ObjVNFParser(false, true);
-                ObjVNFResult result = parser.Parse(filename);
-                if (result.Error != null) {
-                    Console.WriteLine("Error: {0}", result.Error);
-                }
-                else {
-                    ObjVNFMesh mesh = result.Mesh;
-                    var model = new ObjVNF(mesh);
-                    // render rows*column number of spheres with varying metallic/roughness values scaled by rows and columns respectively
-                    for (int row = 0; row < nrRows; ++row) {
-
-                        for (int col = 0; col < nrColumns; ++col) {
-                            var node = PBRNode.Create(model, model.GetSize(),
-                                ObjVNF.strPosition, ObjVNF.strTexCoord, ObjVNF.strNormal);
-                            node.AlbedoMap = albedoMap;
-                            node.NormalMap = normalMap;
-                            node.MetallicMap = metallicMap;
-                            node.RoughnessMap = roughnessMap;
-                            node.AOMap = aoMap;
-                            node.WorldPosition = new vec3(
-                                (col - (nrColumns / 2)) * spacing,
-                                (row - (nrRows / 2)) * spacing,
-                                0.0f);
-                            rootNode.Children.Add(node);
-                        }
-                    }
-                }
+                Texture texEnvCubemap = LoadEnvCubeMap();
+                Texture texHDR = LoadHDRTexture("newport_loft.hdr");
+                var cubemapNode = CubemapNode.Create(texEnvCubemap, texHDR);
+                rootNode.Children.Add(cubemapNode);
             }
-
             var list = new ActionList();
             var transformAction = new TransformAction(scene);
             list.Add(transformAction);
@@ -106,6 +72,7 @@ namespace PBR.IrradianceConversion {
         }
         private unsafe Texture LoadHDRTexture(string filename) {
             // pbr: load the HDR environment map
+            stb_Image.stbi_set_flip_vertically_on_load(true);
             int width, height, nrComponents;
             float* data = stb_Image.stbi_loadf(filename, &width, &height, &nrComponents, 0);
             var dataProvider = new PointerDataProvider(new PointerData(new IntPtr(data)));
