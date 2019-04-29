@@ -5,7 +5,7 @@ using System.Text;
 using CSharpGL;
 using System.Drawing;
 
-namespace PBR.PointLights {
+namespace PBR.IrradianceConversion {
     partial class PBRNode : ModernNode, IRenderable {
         public static PBRNode Create(IBufferSource model, vec3 size, string position, string texCoord, string normal) {
             //var model = new NormalMappingModel();
@@ -28,16 +28,6 @@ namespace PBR.PointLights {
             : base(model, builders) {
         }
 
-        private ThreeFlags enableRendering = ThreeFlags.BeforeChildren | ThreeFlags.Children | ThreeFlags.AfterChildren;
-        /// <summary>
-        /// Render before/after children? Render children? 
-        /// RenderAction cares about this property. Other actions, maybe, maybe not, your choice.
-        /// </summary>
-        public ThreeFlags EnableRendering {
-            get { return this.enableRendering; }
-            set { this.enableRendering = value; }
-        }
-
         private vec3 albedo = new vec3(0.5f, 0.0f, 0.0f);
         public vec3 Albedo {
             get { return albedo; }
@@ -49,6 +39,22 @@ namespace PBR.PointLights {
         public float AO {
             get { return ao; }
             set { ao = value; }
+        }
+        //
+        public Texture AlbedoMap { get; set; }
+        public Texture NormalMap { get; set; }
+        public Texture MetallicMap { get; set; }
+        public Texture RoughnessMap { get; set; }
+        public Texture AOMap { get; set; }
+
+        private ThreeFlags enableRendering = ThreeFlags.BeforeChildren | ThreeFlags.Children | ThreeFlags.AfterChildren;
+        /// <summary>
+        /// Render before/after children? Render children? 
+        /// RenderAction cares about this property. Other actions, maybe, maybe not, your choice.
+        /// </summary>
+        public ThreeFlags EnableRendering {
+            get { return this.enableRendering; }
+            set { this.enableRendering = value; }
         }
 
         // lights
@@ -78,10 +84,12 @@ namespace PBR.PointLights {
             program.SetUniform("projection", projection);
             program.SetUniform("view", view);
             program.SetUniform("model", model);
-            program.SetUniform("albedo", Albedo);
-            program.SetUniform("metallic", Metallic);
-            program.SetUniform("roughness", Roughness);
-            program.SetUniform("ao", AO);
+            {
+                program.SetUniform("albedo", Albedo);
+                program.SetUniform("metallic", Metallic);
+                program.SetUniform("roughness", Roughness);
+                program.SetUniform("ao", AO);
+            }
             program.SetUniform("lightPositions", lightPositions);
             program.SetUniform("lightColors", lightColors);
             program.SetUniform("camPos", camera.Position);

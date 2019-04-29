@@ -62,6 +62,9 @@ namespace CSharpGL {
             public int channel_order;
         }
 
+        public static void stbi_set_flip_vertically_on_load(bool flag_true_if_should_flip) {
+            stbi__vertically_flip_on_load = flag_true_if_should_flip;
+        }
         static bool stbi__vertically_flip_on_load = false;
         static float stbi__h2l_gamma_i = 1.0f / 2.2f;
         static float stbi__h2l_scale_i = 1.0f;
