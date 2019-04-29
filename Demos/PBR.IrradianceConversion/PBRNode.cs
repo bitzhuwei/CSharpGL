@@ -61,10 +61,16 @@ namespace PBR.IrradianceConversion {
         // lights
         // ------
         vec3[] lightPositions = {
-            new vec3(0.0f, 0.0f, 10.0f),
+            new vec3(-10.0f,  10.0f, 10.0f),
+            new vec3( 10.0f,  10.0f, 10.0f),
+            new vec3(-10.0f, -10.0f, 10.0f),
+            new vec3( 10.0f, -10.0f, 10.0f),
         };
         vec3[] lightColors = {
-            new vec3(150.0f, 150.0f, 150.0f),
+            new vec3(300.0f, 300.0f, 300.0f),
+            new vec3(300.0f, 300.0f, 300.0f),
+            new vec3(300.0f, 300.0f, 300.0f),
+            new vec3(300.0f, 300.0f, 300.0f)
         };
 
         public void RenderBeforeChildren(RenderEventArgs arg) {

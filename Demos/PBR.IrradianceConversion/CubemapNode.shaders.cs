@@ -6,8 +6,7 @@ using CSharpGL;
 
 namespace PBR.IrradianceConversion {
     partial class CubemapNode {
-        private const string vertexCode = @"    
-#version 330 core
+        private const string vertexCode = @"#version 330 core
 layout (location = 0) in vec3 aPos;
 
 out vec3 WorldPos;
