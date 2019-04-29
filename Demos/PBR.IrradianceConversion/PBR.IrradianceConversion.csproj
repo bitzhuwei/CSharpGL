@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -44,12 +45,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CubemapNode.shaders.cs" />
+    <Compile Include="CubeModel.cs" />
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="CubemapNode.cs" />
     <Compile Include="PBRNode.cs" />
     <Compile Include="BackgroundNode.shaders.cs" />
     <Compile Include="PBRNode.shaders.cs" />

@@ -84,20 +84,55 @@ namespace PBR.IrradianceConversion {
             manipulater.Bind(camera, this.winGLCanvas1);
         }
 
-        private Texture GetTexture(string filename, uint unitIndex) {
-            var bmp = new Bitmap(filename);
-            var storage = new TexImageBitmap(bmp);
+        class PointerData : LeveledData {
+            private IntPtr pointer;
+
+            public PointerData(IntPtr pointer) {
+                this.pointer = pointer;
+            }
+            public override IntPtr LockData() {
+                return this.pointer;
+            }
+        }
+        class PointerDataProvider : LeveledDataProvider {
+            private PointerData data;
+            public PointerDataProvider(PointerData data) {
+                this.data = data;
+            }
+
+            public override IEnumerator<LeveledData> GetEnumerator() {
+                yield return this.data;
+            }
+        }
+        private unsafe Texture LoadHDRTexture(string filename) {
+            // pbr: load the HDR environment map
+            int width, height, nrComponents;
+            float* data = stb_Image.stbi_loadf(filename, &width, &height, &nrComponents, 0);
+            var dataProvider = new PointerDataProvider(new PointerData(new IntPtr(data)));
+            // note how we specify the texture's data value to be float
+            var storage = new TexImage2D(TexImage2D.Target.Texture2D, GL.GL_RGB16F, width, height, GL.GL_RGB, GL.GL_FLOAT, dataProvider);
             var texture = new Texture(storage,
-                new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_REPEAT),
-                new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_REPEAT),
-                new TexParameteri(TexParameter.PropertyName.TextureWrapR, (int)GL.GL_REPEAT),
-                // NOTE: when I use 'GL_LINEAR_MIPMAP_LINEAR' in below line, it went wrong...
+                new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP_TO_EDGE),
+                new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_CLAMP_TO_EDGE),
                 new TexParameteri(TexParameter.PropertyName.TextureMinFilter, (int)GL.GL_LINEAR),
                 new TexParameteri(TexParameter.PropertyName.TextureMagFilter, (int)GL.GL_LINEAR));
-            texture.TextureUnitIndex = unitIndex;
             texture.Initialize();
-            bmp.Dispose();
+
             return texture;
+        }
+
+        // pbr: setup cubemap to render to and attach to framebuffer
+        private Texture LoadEnvCubeMap() {
+            var dataProvider = new CubemapDataProvider(null, null, null, null, null, null);
+            var storage = new CubemapTexImage2D(GL.GL_RGB16F, 512, 512, GL.GL_RGB, GL.GL_FLOAT, dataProvider);
+            var envCubeMap = new Texture(storage,
+               new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP_TO_EDGE),
+               new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_CLAMP_TO_EDGE),
+               new TexParameteri(TexParameter.PropertyName.TextureWrapR, (int)GL.GL_CLAMP_TO_EDGE),
+               new TexParameteri(TexParameter.PropertyName.TextureMinFilter, (int)GL.GL_LINEAR),
+               new TexParameteri(TexParameter.PropertyName.TextureMagFilter, (int)GL.GL_LINEAR));
+            envCubeMap.Initialize();
+            return envCubeMap;
         }
 
         private void winGLCanvas1_OpenGLDraw(object sender, PaintEventArgs e) {
