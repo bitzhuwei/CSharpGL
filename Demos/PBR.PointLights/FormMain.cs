@@ -51,7 +51,7 @@ namespace PBR.PointLights {
 
                         for (int col = 0; col < nrColumns; ++col) {
                             var node = PBRNode.Create(model, model.GetSize(),
-                                ObjVNF.strPosition, ObjVNF.strTexCoord, ObjVNF.strNormal, ObjVNF.strTangent);
+                                ObjVNF.strPosition, ObjVNF.strTexCoord, ObjVNF.strNormal);
                             node.Metallic = (float)row / (float)nrRows;
                             // we clamp the roughness to 0.025 - 1.0 as perfectly smooth surfaces (roughness of 0.0) tend to look a bit off
                             // on direct lighting.

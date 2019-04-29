@@ -14,9 +14,8 @@ namespace PBR.IrradianceConversion {
             var array = new ShaderArray(vs, fs);
             var map = new AttributeMap();
             map.Add("aPos", position);
-            map.Add("aTexCoords", texCoord);
+            //map.Add("aTexCoords", texCoord);
             map.Add("aNormal", normal);
-            //map.Add("inTangent", tangent);
             var builder = new RenderMethodBuilder(array, map);
             var node = new PBRNode(model, builder);
             node.ModelSize = size;
@@ -85,21 +84,6 @@ namespace PBR.IrradianceConversion {
             program.SetUniform("projection", projection);
             program.SetUniform("view", view);
             program.SetUniform("model", model);
-            if (this.AlbedoMap != null) {
-                program.SetUniform("albedoMap", this.AlbedoMap);
-            }
-            if (this.NormalMap != null) {
-                program.SetUniform("normalMap", this.NormalMap);
-            }
-            if (this.MetallicMap != null) {
-                program.SetUniform("metallicMap", this.MetallicMap);
-            }
-            if (this.RoughnessMap != null) {
-                program.SetUniform("roughnessMap", this.RoughnessMap);
-            }
-            if (this.AOMap != null) {
-                program.SetUniform("aoMap", this.AOMap);
-            }
             {
                 program.SetUniform("albedo", Albedo);
                 program.SetUniform("metallic", Metallic);

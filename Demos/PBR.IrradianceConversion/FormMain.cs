@@ -33,12 +33,50 @@ namespace PBR.IrradianceConversion {
             this.scene = new Scene(camera);
             var rootNode = new GroupNode();
             this.scene.RootNode = rootNode;
+
+            Texture texEnvCubemap = LoadEnvCubeMap();
+            Texture texHDR = LoadHDRTexture("newport_loft.hdr");
+
             {
-                Texture texEnvCubemap = LoadEnvCubeMap();
-                Texture texHDR = LoadHDRTexture("newport_loft.hdr");
                 var cubemapNode = CubemapNode.Create(texEnvCubemap, texHDR);
                 rootNode.Children.Add(cubemapNode);
             }
+            {
+                var sphere = new Sphere2();//(1, 40, 80);
+                var filename = Path.Combine(System.Windows.Forms.Application.StartupPath, "sphere2.obj_");
+                sphere.DumpObjFile(filename, "sphere2");
+                var parser = new ObjVNFParser(false, true);
+                ObjVNFResult result = parser.Parse(filename);
+                if (result.Error != null) {
+                    Console.WriteLine("Error: {0}", result.Error);
+                }
+                else {
+                    ObjVNFMesh mesh = result.Mesh;
+                    var model = new ObjVNF(mesh);
+                    // render rows*column number of spheres with varying metallic/roughness values scaled by rows and columns respectively
+                    for (int row = 0; row < nrRows; ++row) {
+
+                        for (int col = 0; col < nrColumns; ++col) {
+                            var node = PBRNode.Create(model, model.GetSize(),
+                                ObjVNF.strPosition, ObjVNF.strTexCoord, ObjVNF.strNormal);
+                            node.Metallic = (float)row / (float)nrRows;
+                            // we clamp the roughness to 0.025 - 1.0 as perfectly smooth surfaces (roughness of 0.0) tend to look a bit off
+                            // on direct lighting.
+                            node.Roughness = glm.clamp((float)col / (float)nrColumns, 0.05f, 1.0f);
+                            node.WorldPosition = new vec3(
+                                (col - (nrColumns / 2)) * spacing,
+                                (row - (nrRows / 2)) * spacing,
+                                0.0f);
+                            rootNode.Children.Add(node);
+                        }
+                    }
+                }
+            }
+            {
+                var backgroundNode = BackgroundNode.Create(texEnvCubemap);
+                rootNode.Children.Add(backgroundNode);
+            }
+
             var list = new ActionList();
             var transformAction = new TransformAction(scene);
             list.Add(transformAction);

@@ -7,7 +7,7 @@ using System.Drawing;
 
 namespace PBR.PointLights {
     partial class PBRNode : ModernNode, IRenderable {
-        public static PBRNode Create(IBufferSource model, vec3 size, string position, string texCoord, string normal, string tangent) {
+        public static PBRNode Create(IBufferSource model, vec3 size, string position, string texCoord, string normal) {
             //var model = new NormalMappingModel();
             var vs = new VertexShader(vertexCode);
             var fs = new FragmentShader(fragmentCode);
@@ -16,7 +16,6 @@ namespace PBR.PointLights {
             map.Add("aPos", position);
             //map.Add("aTexCoords", texCoord);
             map.Add("aNormal", normal);
-            //map.Add("inTangent", tangent);
             var builder = new RenderMethodBuilder(array, map);
             var node = new PBRNode(model, builder);
             node.ModelSize = size;
