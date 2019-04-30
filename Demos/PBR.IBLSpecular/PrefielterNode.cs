@@ -7,7 +7,7 @@ using System.Drawing;
 
 namespace PBR.IBLSpecular {
     partial class PrefielterNode : ModernNode, IRenderable {
-        public static PrefielterNode Create(Texture texIrradianceMap, Texture envCubemap) {
+        public static PrefielterNode Create(Texture prefilterMap, Texture envCubemap) {
             var model = new CubeModel();
             var vs = new VertexShader(vertexCode);
             var fs = new FragmentShader(fragmentCode);
@@ -17,7 +17,7 @@ namespace PBR.IBLSpecular {
             var builder = new RenderMethodBuilder(array, map);
             var node = new PrefielterNode(model, builder);
             node.ModelSize = new vec3(2, 2, 2);
-            node.texIrradianceMap = texIrradianceMap;
+            node.prefilterMap = prefilterMap;
             node.envCubemap = envCubemap;
             node.Initialize();
 
@@ -41,41 +41,49 @@ namespace PBR.IBLSpecular {
 		};
         protected unsafe override void DoInitialize() {
             base.DoInitialize();
-            ViewportSwitch viewportSwitch = new ViewportSwitch(0, 0, 32, 32);
-            // pbr: setup framebuffer
-            var captureFBO = new Framebuffer(32, 32);
-            captureFBO.Bind();
-            var captureRBO = new Renderbuffer(32, 32, GL.GL_DEPTH_COMPONENT24);
-            captureFBO.Attach(FramebufferTarget.Framebuffer, captureRBO, AttachmentLocation.Depth);
-            captureFBO.CheckCompleteness();
-            captureFBO.Unbind();
-
-            // pbr: convert HDR equirectangular environment map to cubemap equivalent
-            RenderMethod method = this.RenderUnit.Methods[0];
-            ShaderProgram program = method.Program;
-            program.SetUniform("environmentMap", this.envCubemap);
-            program.SetUniform("projection", captureProjection);
-            viewportSwitch.On();
-            for (uint i = 0; i < 6; ++i) {
-                program.SetUniform("view", captureViews[i]);
-                CubemapFace face = (CubemapFace)(GL.GL_TEXTURE_CUBE_MAP_POSITIVE_X + i);
-                uint location = 0;
-                int level = 0;
+            // pbr: run a quasi monte-carlo simulation on the environment lighting to create a prefilter (cube)map.
+            const uint maxMipLevels = 5;
+            var viewport = new ViewportSwitch();
+            for (uint mip = 0; mip < maxMipLevels; ++mip) {
+                // reisze framebuffer according to mip-level size.
+                int mipWidth = (int)(128 * Math.Pow(0.5, mip));
+                int mipHeight = (int)(128 * Math.Pow(0.5, mip));
+                var captureFBO = new Framebuffer(mipWidth, mipHeight);
                 captureFBO.Bind();
-                captureFBO.Attach(FramebufferTarget.Framebuffer, location, face, this.texIrradianceMap, level);
+                var captureRBO = new Renderbuffer(mipWidth, mipHeight, GL.GL_DEPTH_COMPONENT24);
+                captureFBO.Attach(FramebufferTarget.Framebuffer, captureRBO, AttachmentLocation.Depth);
                 captureFBO.CheckCompleteness();
                 captureFBO.Unbind();
+                viewport.Width = mipWidth; viewport.Height = mipHeight;
+                viewport.On();
+                float roughness = (float)mip / (float)(maxMipLevels - 1);
+                RenderMethod method = this.RenderUnit.Methods[0];
+                ShaderProgram program = method.Program;
+                program.SetUniform("roughness", roughness);
+                program.SetUniform("projection", captureProjection);
+                program.SetUniform("environmentMap", this.envCubemap);
+                for (uint i = 0; i < 6; ++i) {
+                    program.SetUniform("view", captureViews[i]);
+                    CubemapFace face = (CubemapFace)(GL.GL_TEXTURE_CUBE_MAP_POSITIVE_X + i);
+                    uint location = 0;
+                    int level = 0;
+                    captureFBO.Bind();
+                    captureFBO.Attach(FramebufferTarget.Framebuffer, location, face, this.prefilterMap, level);
+                    captureFBO.CheckCompleteness();
+                    captureFBO.Unbind();
 
-                captureFBO.Bind();
-                GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
-                method.Render();
-                captureFBO.Unbind();
+                    captureFBO.Bind();
+                    GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
+                    method.Render();
+                    captureFBO.Unbind();
+                }
+
+                viewport.Off();
+                captureFBO.Dispose();
             }
-            viewportSwitch.Off();
-            captureFBO.Dispose();
         }
 
-        private Texture texIrradianceMap;
+        private Texture prefilterMap;
         private Texture envCubemap;
 
         private ThreeFlags enableRendering = ThreeFlags.None;//  ThreeFlags.BeforeChildren | ThreeFlags.Children | ThreeFlags.AfterChildren;

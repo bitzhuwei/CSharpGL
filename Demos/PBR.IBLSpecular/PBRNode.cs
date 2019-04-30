@@ -42,6 +42,8 @@ namespace PBR.IBLSpecular {
         }
         //
         public Texture IrradianceMap { get; set; }
+        public Texture PrefilterMap { get; set; }
+        public Texture texBRDF { get; set; }
 
         public Texture AlbedoMap { get; set; }
         public Texture NormalMap { get; set; }
@@ -94,6 +96,8 @@ namespace PBR.IBLSpecular {
             }
             {
                 program.SetUniform("irradianceMap", this.IrradianceMap);
+                program.SetUniform("prefilterMap", this.PrefilterMap);
+                program.SetUniform("brdfLUT", this.texBRDF);
             }
             program.SetUniform("lightPositions", lightPositions);
             program.SetUniform("lightColors", lightColors);
