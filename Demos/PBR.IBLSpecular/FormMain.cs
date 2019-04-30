@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace PBR.IBLIrradiance {
+namespace PBR.IBLSpecular {
     public partial class FormMain : Form {
         private Scene scene;
         private ActionList actionList;
@@ -34,16 +34,22 @@ namespace PBR.IBLIrradiance {
             var rootNode = new GroupNode();
             this.scene.RootNode = rootNode;
 
-            Texture texIrradianceMap = LoadIrradianceMap();
-            Texture texEnvCubemap = LoadEnvCubeMap();
+            Texture texBRDF = LoadBRDFTexture();
+            Texture prefilterMap = LoadPrefilterMap();
+            Texture irradianceMap = LoadIrradianceMap();
+            Texture envCubemap = LoadEnvCubeMap();
             Texture texHDR = LoadHDRTexture("newport_loft.hdr");
 
             {
-                var node = CubemapNode.Create(texEnvCubemap, texHDR);
+                var node = CubemapNode.Create(envCubemap, texHDR);
                 rootNode.Children.Add(node);
             }
             {
-                var node = IrradianceNode.Create(texIrradianceMap, texEnvCubemap);
+                var node = IrradianceNode.Create(irradianceMap, envCubemap);
+                rootNode.Children.Add(node);
+            }
+            {
+                var node = BRDFNode.Create(texBRDF);
                 rootNode.Children.Add(node);
             }
             {
@@ -64,7 +70,9 @@ namespace PBR.IBLIrradiance {
                         for (int col = 0; col < nrColumns; ++col) {
                             var node = PBRNode.Create(model, model.GetSize(),
                                 ObjVNF.strPosition, ObjVNF.strTexCoord, ObjVNF.strNormal);
-                            node.IrradianceMap = texIrradianceMap;
+                            node.IrradianceMap = irradianceMap;
+                            node.PrefilterMap = prefilterMap;
+                            node.texBRDF = texBRDF;
                             node.Metallic = (float)row / (float)nrRows;
                             // we clamp the roughness to 0.025 - 1.0 as perfectly smooth surfaces (roughness of 0.0) tend to look a bit off
                             // on direct lighting.
@@ -79,7 +87,7 @@ namespace PBR.IBLIrradiance {
                 }
             }
             {
-                var backgroundNode = BackgroundNode.Create(texEnvCubemap);
+                var backgroundNode = BackgroundNode.Create(envCubemap);
                 rootNode.Children.Add(backgroundNode);
             }
 
@@ -92,6 +100,18 @@ namespace PBR.IBLIrradiance {
 
             var manipulater = new FirstPerspectiveManipulater();
             manipulater.Bind(camera, this.winGLCanvas1);
+        }
+
+        private Texture LoadBRDFTexture() {
+            var storage = new TexImage2D(TexImage2D.Target.Texture2D, GL.GL_RG16F, 512, 512, GL.GL_RG, GL.GL_FLOAT);
+            var texture = new Texture(storage,
+                // be sure to set wrapping mode to GL_CLAMP_TO_EDGE
+                new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP_TO_EDGE),
+                new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_CLAMP_TO_EDGE),
+                new TexParameteri(TexParameter.PropertyName.TextureMinFilter, (int)GL.GL_LINEAR),
+                new TexParameteri(TexParameter.PropertyName.TextureMagFilter, (int)GL.GL_LINEAR));
+            texture.Initialize();
+            return texture;
         }
 
         class PointerData : LeveledData {
@@ -137,11 +157,11 @@ namespace PBR.IBLIrradiance {
             var dataProvider = new CubemapDataProvider(null, null, null, null, null, null);
             var storage = new CubemapTexImage2D(GL.GL_RGB16F, 512, 512, GL.GL_RGB, GL.GL_FLOAT, dataProvider);
             var envCubeMap = new Texture(storage,
-               new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP_TO_EDGE),
-               new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_CLAMP_TO_EDGE),
-               new TexParameteri(TexParameter.PropertyName.TextureWrapR, (int)GL.GL_CLAMP_TO_EDGE),
-               new TexParameteri(TexParameter.PropertyName.TextureMinFilter, (int)GL.GL_LINEAR),
-               new TexParameteri(TexParameter.PropertyName.TextureMagFilter, (int)GL.GL_LINEAR));
+                new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP_TO_EDGE),
+                new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_CLAMP_TO_EDGE),
+                new TexParameteri(TexParameter.PropertyName.TextureWrapR, (int)GL.GL_CLAMP_TO_EDGE),
+                new TexParameteri(TexParameter.PropertyName.TextureMinFilter, (int)GL.GL_LINEAR),
+                new TexParameteri(TexParameter.PropertyName.TextureMagFilter, (int)GL.GL_LINEAR));
             envCubeMap.Initialize();
             return envCubeMap;
         }
@@ -151,11 +171,28 @@ namespace PBR.IBLIrradiance {
             var dataProvider = new CubemapDataProvider(null, null, null, null, null, null);
             var storage = new CubemapTexImage2D(GL.GL_RGB16F, 32, 32, GL.GL_RGB, GL.GL_FLOAT, dataProvider);
             var envCubeMap = new Texture(storage,
-               new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP_TO_EDGE),
-               new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_CLAMP_TO_EDGE),
-               new TexParameteri(TexParameter.PropertyName.TextureWrapR, (int)GL.GL_CLAMP_TO_EDGE),
-               new TexParameteri(TexParameter.PropertyName.TextureMinFilter, (int)GL.GL_LINEAR),
-               new TexParameteri(TexParameter.PropertyName.TextureMagFilter, (int)GL.GL_LINEAR));
+                new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP_TO_EDGE),
+                new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_CLAMP_TO_EDGE),
+                new TexParameteri(TexParameter.PropertyName.TextureWrapR, (int)GL.GL_CLAMP_TO_EDGE),
+                new TexParameteri(TexParameter.PropertyName.TextureMinFilter, (int)GL.GL_LINEAR),
+                new TexParameteri(TexParameter.PropertyName.TextureMagFilter, (int)GL.GL_LINEAR));
+            envCubeMap.Initialize();
+            return envCubeMap;
+        }
+
+        // pbr: create a pre-filter cubemap.
+        private Texture LoadPrefilterMap() {
+            var dataProvider = new CubemapDataProvider(null, null, null, null, null, null);
+            var storage = new CubemapTexImage2D(GL.GL_RGB16F, 128, 128, GL.GL_RGB, GL.GL_FLOAT, dataProvider);
+            var envCubeMap = new Texture(storage,
+                // generate mipmaps for the cubemap so OpenGL automatically allocates the required memory.
+                new MipmapBuilder(),
+                new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP_TO_EDGE),
+                new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_CLAMP_TO_EDGE),
+                new TexParameteri(TexParameter.PropertyName.TextureWrapR, (int)GL.GL_CLAMP_TO_EDGE),
+                // be sure to set minifcation filter to mip_linear 
+                new TexParameteri(TexParameter.PropertyName.TextureMinFilter, (int)GL.GL_LINEAR_MIPMAP_LINEAR),
+                new TexParameteri(TexParameter.PropertyName.TextureMagFilter, (int)GL.GL_LINEAR));
             envCubeMap.Initialize();
             return envCubeMap;
         }
