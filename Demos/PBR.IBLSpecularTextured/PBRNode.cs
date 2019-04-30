@@ -8,13 +8,12 @@ using System.Drawing;
 namespace PBR.IBLSpecularTextured {
     partial class PBRNode : ModernNode, IRenderable {
         public static PBRNode Create(IBufferSource model, vec3 size, string position, string texCoord, string normal) {
-            //var model = new NormalMappingModel();
             var vs = new VertexShader(vertexCode);
             var fs = new FragmentShader(fragmentCode);
             var array = new ShaderArray(vs, fs);
             var map = new AttributeMap();
             map.Add("aPos", position);
-            //map.Add("aTexCoords", texCoord);
+            map.Add("aTexCoords", texCoord);
             map.Add("aNormal", normal);
             var builder = new RenderMethodBuilder(array, map);
             var node = new PBRNode(model, builder);

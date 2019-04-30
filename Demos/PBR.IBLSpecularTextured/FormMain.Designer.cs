@@ -53,7 +53,7 @@
             this.ClientSize = new System.Drawing.Size(682, 436);
             this.Controls.Add(this.winGLCanvas1);
             this.Name = "FormMain";
-            this.Text = "CSharpGL - PBR - IBL Specular";
+            this.Text = "CSharpGL - PBR - IBL Specular Textured";
             ((System.ComponentModel.ISupportInitialize)(this.winGLCanvas1)).EndInit();
             this.ResumeLayout(false);
 
