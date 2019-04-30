@@ -44,7 +44,7 @@ namespace PBR.IBLSpecularTextured {
             // pbr: run a quasi monte-carlo simulation on the environment lighting to create a prefilter (cube)map.
             const uint maxMipLevels = 5;
             var viewport = new ViewportSwitch();
-            for (uint mip = 0; mip < maxMipLevels; ++mip) {
+            for (int mip = 0; mip < maxMipLevels; ++mip) {
                 // reisze framebuffer according to mip-level size.
                 int mipWidth = (int)(128 * Math.Pow(0.5, mip));
                 int mipHeight = (int)(128 * Math.Pow(0.5, mip));
@@ -56,7 +56,8 @@ namespace PBR.IBLSpecularTextured {
                 captureFBO.Unbind();
                 viewport.Width = mipWidth; viewport.Height = mipHeight;
                 viewport.On();
-                float roughness = (float)mip / (float)(maxMipLevels - 1);
+                // NOTE: I added '/ 10' to make it a clearer visual effect.
+                float roughness = (float)mip / (float)(maxMipLevels - 1) / 10;
                 RenderMethod method = this.RenderUnit.Methods[0];
                 ShaderProgram program = method.Program;
                 program.SetUniform("roughness", roughness);
@@ -66,9 +67,9 @@ namespace PBR.IBLSpecularTextured {
                     program.SetUniform("view", captureViews[i]);
                     CubemapFace face = (CubemapFace)(GL.GL_TEXTURE_CUBE_MAP_POSITIVE_X + i);
                     uint location = 0;
-                    int level = 0;
+                    //int level = 0;
                     captureFBO.Bind();
-                    captureFBO.Attach(FramebufferTarget.Framebuffer, location, face, this.prefilterMap, level);
+                    captureFBO.Attach(FramebufferTarget.Framebuffer, location, face, this.prefilterMap, mip);
                     captureFBO.CheckCompleteness();
                     captureFBO.Unbind();
 

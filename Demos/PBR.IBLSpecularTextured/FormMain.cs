@@ -50,6 +50,10 @@ namespace PBR.IBLSpecularTextured {
                 rootNode.Children.Add(node);
             }
             {
+                var node = PrefilterNode.Create(prefilterMap, envCubemap);
+                rootNode.Children.Add(node);
+            }
+            {
                 var node = BRDFNode.Create(texBRDF);
                 rootNode.Children.Add(node);
             }
