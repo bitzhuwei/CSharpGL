@@ -34,12 +34,17 @@ namespace PBR.IBLIrradiance {
             var rootNode = new GroupNode();
             this.scene.RootNode = rootNode;
 
+            Texture texIrradianceMap = LoadIrradianceMap();
             Texture texEnvCubemap = LoadEnvCubeMap();
             Texture texHDR = LoadHDRTexture("newport_loft.hdr");
 
             {
-                var cubemapNode = CubemapNode.Create(texEnvCubemap, texHDR);
-                rootNode.Children.Add(cubemapNode);
+                var node = CubemapNode.Create(texEnvCubemap, texHDR);
+                rootNode.Children.Add(node);
+            }
+            {
+                var node = IrradianceNode.Create(texIrradianceMap, texEnvCubemap);
+                rootNode.Children.Add(node);
             }
             {
                 var sphere = new Sphere2();//(1, 40, 80);
@@ -59,6 +64,7 @@ namespace PBR.IBLIrradiance {
                         for (int col = 0; col < nrColumns; ++col) {
                             var node = PBRNode.Create(model, model.GetSize(),
                                 ObjVNF.strPosition, ObjVNF.strTexCoord, ObjVNF.strNormal);
+                            node.IrradianceMap = texIrradianceMap;
                             node.Metallic = (float)row / (float)nrRows;
                             // we clamp the roughness to 0.025 - 1.0 as perfectly smooth surfaces (roughness of 0.0) tend to look a bit off
                             // on direct lighting.
@@ -128,6 +134,20 @@ namespace PBR.IBLIrradiance {
 
         // pbr: setup cubemap to render to and attach to framebuffer
         private Texture LoadEnvCubeMap() {
+            var dataProvider = new CubemapDataProvider(null, null, null, null, null, null);
+            var storage = new CubemapTexImage2D(GL.GL_RGB16F, 512, 512, GL.GL_RGB, GL.GL_FLOAT, dataProvider);
+            var envCubeMap = new Texture(storage,
+               new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP_TO_EDGE),
+               new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_CLAMP_TO_EDGE),
+               new TexParameteri(TexParameter.PropertyName.TextureWrapR, (int)GL.GL_CLAMP_TO_EDGE),
+               new TexParameteri(TexParameter.PropertyName.TextureMinFilter, (int)GL.GL_LINEAR),
+               new TexParameteri(TexParameter.PropertyName.TextureMagFilter, (int)GL.GL_LINEAR));
+            envCubeMap.Initialize();
+            return envCubeMap;
+        }
+
+        // pbr: create an irradiance cubemap.
+        private Texture LoadIrradianceMap() {
             var dataProvider = new CubemapDataProvider(null, null, null, null, null, null);
             var storage = new CubemapTexImage2D(GL.GL_RGB16F, 512, 512, GL.GL_RGB, GL.GL_FLOAT, dataProvider);
             var envCubeMap = new Texture(storage,

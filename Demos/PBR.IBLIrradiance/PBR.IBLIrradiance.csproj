@@ -55,6 +55,8 @@
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="IrradianceNode.cs" />
+    <Compile Include="IrradianceNode.shaders.cs" />
     <Compile Include="PBRNode.cs" />
     <Compile Include="PBRNode.shaders.cs" />
     <Compile Include="Program.cs" />

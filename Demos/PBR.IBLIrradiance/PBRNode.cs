@@ -41,6 +41,8 @@ namespace PBR.IBLIrradiance {
             set { ao = value; }
         }
         //
+        public Texture IrradianceMap { get; set; }
+
         public Texture AlbedoMap { get; set; }
         public Texture NormalMap { get; set; }
         public Texture MetallicMap { get; set; }
@@ -89,6 +91,9 @@ namespace PBR.IBLIrradiance {
                 program.SetUniform("metallic", Metallic);
                 program.SetUniform("roughness", Roughness);
                 program.SetUniform("ao", AO);
+            }
+            {
+                program.SetUniform("irradianceMap", this.IrradianceMap);
             }
             program.SetUniform("lightPositions", lightPositions);
             program.SetUniform("lightColors", lightColors);
