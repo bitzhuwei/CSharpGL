@@ -35,8 +35,11 @@ namespace PBR.IBLSpecular {
             this.scene.RootNode = rootNode;
 
             Texture texBRDF = LoadBRDFTexture();
+            texBRDF.TextureUnitIndex = 2;
             Texture prefilterMap = LoadPrefilterMap();
+            prefilterMap.TextureUnitIndex = 1;
             Texture irradianceMap = LoadIrradianceMap();
+            irradianceMap.TextureUnitIndex = 0;
             Texture envCubemap = LoadEnvCubeMap();
             Texture texHDR = LoadHDRTexture("newport_loft.hdr");
 
@@ -170,21 +173,22 @@ namespace PBR.IBLSpecular {
         private Texture LoadIrradianceMap() {
             var dataProvider = new CubemapDataProvider(null, null, null, null, null, null);
             var storage = new CubemapTexImage2D(GL.GL_RGB16F, 32, 32, GL.GL_RGB, GL.GL_FLOAT, dataProvider);
-            var envCubeMap = new Texture(storage,
+            var texture = new Texture(storage,
                 new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP_TO_EDGE),
                 new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_CLAMP_TO_EDGE),
                 new TexParameteri(TexParameter.PropertyName.TextureWrapR, (int)GL.GL_CLAMP_TO_EDGE),
                 new TexParameteri(TexParameter.PropertyName.TextureMinFilter, (int)GL.GL_LINEAR),
                 new TexParameteri(TexParameter.PropertyName.TextureMagFilter, (int)GL.GL_LINEAR));
-            envCubeMap.Initialize();
-            return envCubeMap;
+            texture.Initialize();
+
+            return texture;
         }
 
         // pbr: create a pre-filter cubemap.
         private Texture LoadPrefilterMap() {
             var dataProvider = new CubemapDataProvider(null, null, null, null, null, null);
             var storage = new CubemapTexImage2D(GL.GL_RGB16F, 128, 128, GL.GL_RGB, GL.GL_FLOAT, dataProvider);
-            var envCubeMap = new Texture(storage,
+            var texture = new Texture(storage,
                 // generate mipmaps for the cubemap so OpenGL automatically allocates the required memory.
                 new MipmapBuilder(),
                 new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP_TO_EDGE),
@@ -193,8 +197,9 @@ namespace PBR.IBLSpecular {
                 // be sure to set minifcation filter to mip_linear 
                 new TexParameteri(TexParameter.PropertyName.TextureMinFilter, (int)GL.GL_LINEAR_MIPMAP_LINEAR),
                 new TexParameteri(TexParameter.PropertyName.TextureMagFilter, (int)GL.GL_LINEAR));
-            envCubeMap.Initialize();
-            return envCubeMap;
+            texture.Initialize();
+
+            return texture;
         }
 
         private void winGLCanvas1_OpenGLDraw(object sender, PaintEventArgs e) {
