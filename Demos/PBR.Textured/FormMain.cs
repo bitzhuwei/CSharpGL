@@ -88,11 +88,12 @@ namespace PBR.Textured {
             var bmp = new Bitmap(filename);
             var storage = new TexImageBitmap(bmp);
             var texture = new Texture(storage,
+                new MipmapBuilder(),
                 new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_REPEAT),
                 new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_REPEAT),
                 new TexParameteri(TexParameter.PropertyName.TextureWrapR, (int)GL.GL_REPEAT),
-                // NOTE: when I use 'GL_LINEAR_MIPMAP_LINEAR' in below line, it went wrong...
-                new TexParameteri(TexParameter.PropertyName.TextureMinFilter, (int)GL.GL_LINEAR),
+                // NOTE: use 'GL_LINEAR_MIPMAP_LINEAR' along with 'new MipmapBuilder(),'!
+                new TexParameteri(TexParameter.PropertyName.TextureMinFilter, (int)GL.GL_LINEAR_MIPMAP_LINEAR),
                 new TexParameteri(TexParameter.PropertyName.TextureMagFilter, (int)GL.GL_LINEAR));
             texture.TextureUnitIndex = unitIndex;
             texture.Initialize();
