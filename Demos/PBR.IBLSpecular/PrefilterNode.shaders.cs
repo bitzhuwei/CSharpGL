@@ -5,7 +5,7 @@ using System.Text;
 using CSharpGL;
 
 namespace PBR.IBLSpecular {
-    partial class PrefielterNode {
+    partial class PrefilterNode {
         private const string vertexCode = @"#version 330 core
 layout (location = 0) in vec3 aPos;
 

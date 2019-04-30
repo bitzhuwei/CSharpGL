@@ -34,6 +34,7 @@ namespace PBR.IBLSpecular {
             var rootNode = new GroupNode();
             this.scene.RootNode = rootNode;
 
+            Texture texBRDF = LoadBRDFTexture();
             Texture prefilterMap = LoadPrefilterMap();
             Texture irradianceMap = LoadIrradianceMap();
             Texture envCubemap = LoadEnvCubeMap();
@@ -45,6 +46,10 @@ namespace PBR.IBLSpecular {
             }
             {
                 var node = IrradianceNode.Create(irradianceMap, envCubemap);
+                rootNode.Children.Add(node);
+            }
+            {
+                var node = BRDFNode.Create(texBRDF);
                 rootNode.Children.Add(node);
             }
             {
@@ -66,6 +71,8 @@ namespace PBR.IBLSpecular {
                             var node = PBRNode.Create(model, model.GetSize(),
                                 ObjVNF.strPosition, ObjVNF.strTexCoord, ObjVNF.strNormal);
                             node.IrradianceMap = irradianceMap;
+                            node.PrefilterMap = prefilterMap;
+                            node.texBRDF = texBRDF;
                             node.Metallic = (float)row / (float)nrRows;
                             // we clamp the roughness to 0.025 - 1.0 as perfectly smooth surfaces (roughness of 0.0) tend to look a bit off
                             // on direct lighting.
@@ -93,6 +100,18 @@ namespace PBR.IBLSpecular {
 
             var manipulater = new FirstPerspectiveManipulater();
             manipulater.Bind(camera, this.winGLCanvas1);
+        }
+
+        private Texture LoadBRDFTexture() {
+            var storage = new TexImage2D(TexImage2D.Target.Texture2D, GL.GL_RG16F, 512, 512, GL.GL_RG, GL.GL_FLOAT);
+            var texture = new Texture(storage,
+                // be sure to set wrapping mode to GL_CLAMP_TO_EDGE
+                new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP_TO_EDGE),
+                new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_CLAMP_TO_EDGE),
+                new TexParameteri(TexParameter.PropertyName.TextureMinFilter, (int)GL.GL_LINEAR),
+                new TexParameteri(TexParameter.PropertyName.TextureMagFilter, (int)GL.GL_LINEAR));
+            texture.Initialize();
+            return texture;
         }
 
         class PointerData : LeveledData {

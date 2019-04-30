@@ -7,18 +7,18 @@ using System.Drawing;
 
 namespace PBR.IBLSpecular {
     partial class BRDFNode : ModernNode, IRenderable {
-        public static BRDFNode Create(Texture texIrradianceMap, Texture envCubemap) {
-            var model = new CubeModel();
+        public static BRDFNode Create(Texture texBRDF) {
+            var model = new QuadModel();
             var vs = new VertexShader(vertexCode);
             var fs = new FragmentShader(fragmentCode);
             var array = new ShaderArray(vs, fs);
             var map = new AttributeMap();
-            map.Add("aPos", CubeModel.strPosition);
+            map.Add("aPos", QuadModel.strPosition);
+            map.Add("aTexCoords", QuadModel.strTexCoord);
             var builder = new RenderMethodBuilder(array, map);
             var node = new BRDFNode(model, builder);
             node.ModelSize = new vec3(2, 2, 2);
-            node.texIrradianceMap = texIrradianceMap;
-            node.envCubemap = envCubemap;
+            node.texBRDF = texBRDF;
             node.Initialize();
 
             return node;
@@ -41,42 +41,29 @@ namespace PBR.IBLSpecular {
 		};
         protected unsafe override void DoInitialize() {
             base.DoInitialize();
-            ViewportSwitch viewportSwitch = new ViewportSwitch(0, 0, 32, 32);
+            // pbr: generate a 2D LUT from the BRDF equations used.
+            // then re-configure capture framebuffer object and render screen-space quad with BRDF shader.
             // pbr: setup framebuffer
-            var captureFBO = new Framebuffer(32, 32);
+            var captureFBO = new Framebuffer(512, 512);
             captureFBO.Bind();
-            var captureRBO = new Renderbuffer(32, 32, GL.GL_DEPTH_COMPONENT24);
+            var captureRBO = new Renderbuffer(512, 512, GL.GL_DEPTH_COMPONENT24);
             captureFBO.Attach(FramebufferTarget.Framebuffer, captureRBO, AttachmentLocation.Depth);
+            captureFBO.Attach(FramebufferTarget.Framebuffer, this.texBRDF, 0u);
             captureFBO.CheckCompleteness();
             captureFBO.Unbind();
 
-            // pbr: convert HDR equirectangular environment map to cubemap equivalent
             RenderMethod method = this.RenderUnit.Methods[0];
-            ShaderProgram program = method.Program;
-            program.SetUniform("environmentMap", this.envCubemap);
-            program.SetUniform("projection", captureProjection);
+            ViewportSwitch viewportSwitch = new ViewportSwitch(0, 0, 512, 512);
             viewportSwitch.On();
-            for (uint i = 0; i < 6; ++i) {
-                program.SetUniform("view", captureViews[i]);
-                CubemapFace face = (CubemapFace)(GL.GL_TEXTURE_CUBE_MAP_POSITIVE_X + i);
-                uint location = 0;
-                int level = 0;
-                captureFBO.Bind();
-                captureFBO.Attach(FramebufferTarget.Framebuffer, location, face, this.texIrradianceMap, level);
-                captureFBO.CheckCompleteness();
-                captureFBO.Unbind();
-
-                captureFBO.Bind();
-                GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
-                method.Render();
-                captureFBO.Unbind();
-            }
+            captureFBO.Bind();
+            GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
+            method.Render();
+            captureFBO.Unbind();
             viewportSwitch.Off();
             captureFBO.Dispose();
         }
 
-        private Texture texIrradianceMap;
-        private Texture envCubemap;
+        private Texture texBRDF;
 
         private ThreeFlags enableRendering = ThreeFlags.None;//  ThreeFlags.BeforeChildren | ThreeFlags.Children | ThreeFlags.AfterChildren;
         /// <summary>
@@ -97,9 +84,6 @@ namespace PBR.IBLSpecular {
 
             RenderMethod method = this.RenderUnit.Methods[0];
             ShaderProgram program = method.Program;
-            program.SetUniform("projection", projection);
-            program.SetUniform("view", view * model);
-            program.SetUniform("environmentMap", this.envCubemap);
 
             method.Render();
         }

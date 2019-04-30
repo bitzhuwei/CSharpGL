@@ -6,8 +6,8 @@ using CSharpGL;
 using System.Drawing;
 
 namespace PBR.IBLSpecular {
-    partial class PrefielterNode : ModernNode, IRenderable {
-        public static PrefielterNode Create(Texture prefilterMap, Texture envCubemap) {
+    partial class PrefilterNode : ModernNode, IRenderable {
+        public static PrefilterNode Create(Texture prefilterMap, Texture envCubemap) {
             var model = new CubeModel();
             var vs = new VertexShader(vertexCode);
             var fs = new FragmentShader(fragmentCode);
@@ -15,7 +15,7 @@ namespace PBR.IBLSpecular {
             var map = new AttributeMap();
             map.Add("aPos", CubeModel.strPosition);
             var builder = new RenderMethodBuilder(array, map);
-            var node = new PrefielterNode(model, builder);
+            var node = new PrefilterNode(model, builder);
             node.ModelSize = new vec3(2, 2, 2);
             node.prefilterMap = prefilterMap;
             node.envCubemap = envCubemap;
@@ -24,7 +24,7 @@ namespace PBR.IBLSpecular {
             return node;
         }
 
-        private PrefielterNode(IBufferSource model, params RenderMethodBuilder[] builders)
+        private PrefilterNode(IBufferSource model, params RenderMethodBuilder[] builders)
             : base(model, builders) {
         }
 
