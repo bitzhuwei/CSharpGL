@@ -61,7 +61,11 @@
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="BRDFNode.cs" />
+    <Compile Include="PrefielterNode.cs" />
     <Compile Include="IrradianceNode.cs" />
+    <Compile Include="BRDFNode.shaders.cs" />
+    <Compile Include="PrefielterNode.shaders.cs" />
     <Compile Include="IrradianceNode.shaders.cs" />
     <Compile Include="PBRNode.cs" />
     <Compile Include="PBRNode.shaders.cs" />
