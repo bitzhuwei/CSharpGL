@@ -441,11 +441,11 @@ namespace PhysicallyBasedRendering {
 
         private Texture LoadTexture(string filename) {
             var bitmap = new Bitmap(filename);
-            var storage = new TexImageBitmap(bitmap, GL.GL_RGB);
-            var texture = new Texture(storage,
+            var storage = new TexImageBitmap(bitmap);//, GL.GL_RGB);
+            var texture = new Texture(storage, new MipmapBuilder(),
                 new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_REPEAT),
                 new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_REPEAT),
-                new TexParameteri(TexParameter.PropertyName.TextureMinFilter, (int)GL.GL_LINEAR),
+                new TexParameteri(TexParameter.PropertyName.TextureMinFilter, (int)GL.GL_LINEAR_MIPMAP_LINEAR),
                 new TexParameteri(TexParameter.PropertyName.TextureMagFilter, (int)GL.GL_LINEAR));
             texture.Initialize();
 
