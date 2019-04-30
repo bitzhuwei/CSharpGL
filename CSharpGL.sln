@@ -221,6 +221,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PBR.Textured", "Demos\PBR.T
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PBR.IrradianceConversion", "Demos\PBR.IrradianceConversion\PBR.IrradianceConversion.csproj", "{E7DF925D-8A22-463E-94CE-7DDC9B178814}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PBR.IBLIrradiance", "Demos\PBR.IBLIrradiance\PBR.IBLIrradiance.csproj", "{4E9110FF-68BA-4E7E-B7F8-EEB13B783593}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -651,6 +653,10 @@ Global
 		{E7DF925D-8A22-463E-94CE-7DDC9B178814}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E7DF925D-8A22-463E-94CE-7DDC9B178814}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E7DF925D-8A22-463E-94CE-7DDC9B178814}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E9110FF-68BA-4E7E-B7F8-EEB13B783593}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E9110FF-68BA-4E7E-B7F8-EEB13B783593}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E9110FF-68BA-4E7E-B7F8-EEB13B783593}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E9110FF-68BA-4E7E-B7F8-EEB13B783593}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -760,5 +766,6 @@ Global
 		{8E94F52A-EABB-40C1-A0DA-ADAEBCD9D1E7} = {772765C9-9DD4-487B-8FEB-5EAACA9F955B}
 		{3EEDC2F5-459C-436F-8648-34FF24DA1B88} = {772765C9-9DD4-487B-8FEB-5EAACA9F955B}
 		{E7DF925D-8A22-463E-94CE-7DDC9B178814} = {772765C9-9DD4-487B-8FEB-5EAACA9F955B}
+		{4E9110FF-68BA-4E7E-B7F8-EEB13B783593} = {772765C9-9DD4-487B-8FEB-5EAACA9F955B}
 	EndGlobalSection
 EndGlobal
