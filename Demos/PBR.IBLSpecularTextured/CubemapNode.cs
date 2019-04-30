@@ -74,15 +74,15 @@ namespace PBR.IBLSpecularTextured {
             viewportSwitch.Off();
             captureFBO.Dispose();
 
-            this.texEnvCubemap.Bind();
-            glGenerateMipmap(GL.GL_TEXTURE_CUBE_MAP);
-            this.texEnvCubemap.Unbind();
+            //this.texEnvCubemap.Bind();
+            //glGenerateMipmap(GL.GL_TEXTURE_CUBE_MAP);
+            //this.texEnvCubemap.Unbind();
         }
-        private static readonly GLDelegates.void_uint glGenerateMipmap;
+        //private static readonly GLDelegates.void_uint glGenerateMipmap;
 
-        static CubemapNode() {
-            glGenerateMipmap = GL.Instance.GetDelegateFor("glGenerateMipmap", GLDelegates.typeof_void_uint) as GLDelegates.void_uint;
-        }
+        //static CubemapNode() {
+        //    glGenerateMipmap = GL.Instance.GetDelegateFor("glGenerateMipmap", GLDelegates.typeof_void_uint) as GLDelegates.void_uint;
+        //}
 
         private Texture texEnvCubemap;
         private Texture texHDR;

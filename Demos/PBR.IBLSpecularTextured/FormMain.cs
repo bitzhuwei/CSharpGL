@@ -179,7 +179,7 @@ namespace PBR.IBLSpecularTextured {
             var dataProvider = new CubemapDataProvider(null, null, null, null, null, null);
             var storage = new CubemapTexImage2D(GL.GL_RGB16F, 512, 512, GL.GL_RGB, GL.GL_FLOAT, dataProvider);
             var envCubeMap = new Texture(storage,
-                //new MipmapBuilder(), This is done inside CubemapNode.DoInitialize().
+                new MipmapBuilder(), // This is can also be done inside CubemapNode.DoInitialize().
                 new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP_TO_EDGE),
                 new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_CLAMP_TO_EDGE),
                 new TexParameteri(TexParameter.PropertyName.TextureWrapR, (int)GL.GL_CLAMP_TO_EDGE),
