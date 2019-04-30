@@ -73,10 +73,7 @@ namespace PBR.IBLSpecularTextured {
                             node.IrradianceMap = irradianceMap;
                             node.PrefilterMap = prefilterMap;
                             node.texBRDF = texBRDF;
-                            node.Metallic = (float)row / (float)nrRows;
-                            // we clamp the roughness to 0.025 - 1.0 as perfectly smooth surfaces (roughness of 0.0) tend to look a bit off
-                            // on direct lighting.
-                            node.Roughness = glm.clamp((float)col / (float)nrColumns, 0.05f, 1.0f);
+
                             node.WorldPosition = new vec3(
                                 (col - (nrColumns / 2)) * spacing,
                                 (row - (nrRows / 2)) * spacing,

@@ -28,23 +28,9 @@ namespace PBR.IBLSpecularTextured {
             : base(model, builders) {
         }
 
-        private vec3 albedo = new vec3(0.5f, 0.0f, 0.0f);
-        public vec3 Albedo {
-            get { return albedo; }
-            set { albedo = value; }
-        }
-        public float Metallic { get; set; }
-        public float Roughness { get; set; }
-        private float ao = 1.0f;
-        public float AO {
-            get { return ao; }
-            set { ao = value; }
-        }
-        //
         public Texture IrradianceMap { get; set; }
         public Texture PrefilterMap { get; set; }
         public Texture texBRDF { get; set; }
-
         public Texture AlbedoMap { get; set; }
         public Texture NormalMap { get; set; }
         public Texture MetallicMap { get; set; }
@@ -89,15 +75,14 @@ namespace PBR.IBLSpecularTextured {
             program.SetUniform("view", view);
             program.SetUniform("model", model);
             {
-                program.SetUniform("albedo", Albedo);
-                program.SetUniform("metallic", Metallic);
-                program.SetUniform("roughness", Roughness);
-                program.SetUniform("ao", AO);
-            }
-            {
                 program.SetUniform("irradianceMap", this.IrradianceMap);
                 program.SetUniform("prefilterMap", this.PrefilterMap);
                 program.SetUniform("brdfLUT", this.texBRDF);
+                program.SetUniform("albedoMap", this.AlbedoMap);
+                program.SetUniform("normalMap", this.NormalMap);
+                program.SetUniform("metallicMap", this.MetallicMap);
+                program.SetUniform("roughnessMap", this.RoughnessMap);
+                program.SetUniform("aoMap", this.AOMap);
             }
             program.SetUniform("lightPositions", lightPositions);
             program.SetUniform("lightColors", lightColors);
