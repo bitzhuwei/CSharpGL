@@ -170,7 +170,7 @@
     <Content Include="Textures\wall\albedo.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Textures\wall\ao png.png">
+    <Content Include="Textures\wall\ao.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Textures\wall\metallic.png">

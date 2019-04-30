@@ -22,8 +22,6 @@ namespace PBR.IBLSpecularTextured {
             this.winGLCanvas1.Resize += winGLCanvas1_Resize;
         }
 
-        int nrRows = 7;
-        int nrColumns = 7;
         float spacing = 2.5f;
         private void FormMain_Load(object sender, EventArgs e) {
             var position = new vec3(-0.2f, 0, 1) * 14;
@@ -35,8 +33,11 @@ namespace PBR.IBLSpecularTextured {
             this.scene.RootNode = rootNode;
 
             Texture texBRDF = LoadBRDFTexture();
+            texBRDF.TextureUnitIndex = 2;
             Texture prefilterMap = LoadPrefilterMap();
+            prefilterMap.TextureUnitIndex = 1;
             Texture irradianceMap = LoadIrradianceMap();
+            irradianceMap.TextureUnitIndex = 0;
             Texture envCubemap = LoadEnvCubeMap();
             Texture texHDR = LoadHDRTexture("newport_loft.hdr");
 
@@ -64,22 +65,29 @@ namespace PBR.IBLSpecularTextured {
                 else {
                     ObjVNFMesh mesh = result.Mesh;
                     var model = new ObjVNF(mesh);
-                    // render rows*column number of spheres with varying metallic/roughness values scaled by rows and columns respectively
-                    for (int row = 0; row < nrRows; ++row) {
-
-                        for (int col = 0; col < nrColumns; ++col) {
-                            var node = PBRNode.Create(model, model.GetSize(),
-                                ObjVNF.strPosition, ObjVNF.strTexCoord, ObjVNF.strNormal);
-                            node.IrradianceMap = irradianceMap;
-                            node.PrefilterMap = prefilterMap;
-                            node.texBRDF = texBRDF;
-
-                            node.WorldPosition = new vec3(
-                                (col - (nrColumns / 2)) * spacing,
-                                (row - (nrRows / 2)) * spacing,
-                                0.0f);
-                            rootNode.Children.Add(node);
-                        }
+                    var textureGroups = new string[] { "gold", "grass", "plastic", "rusted_iron", "wall" };
+                    for (int i = 0; i < textureGroups.Length; i++) {
+                        var node = PBRNode.Create(model, model.GetSize(),
+                            ObjVNF.strPosition, ObjVNF.strTexCoord, ObjVNF.strNormal);
+                        node.IrradianceMap = irradianceMap;
+                        node.PrefilterMap = prefilterMap;
+                        node.texBRDF = texBRDF;
+                        string group = textureGroups[i];
+                        Texture albedo = GetTexture(string.Format(@"Textures\{0}\albedo.png", group), 3);
+                        node.AlbedoMap = albedo;
+                        Texture ao = GetTexture(string.Format(@"Textures\{0}\ao.png", group), 4);
+                        node.AOMap = ao;
+                        Texture metallic = GetTexture(string.Format(@"Textures\{0}\metallic.png", group), 5);
+                        node.MetallicMap = metallic;
+                        Texture normal = GetTexture(string.Format(@"Textures\{0}\normal.png", group), 6);
+                        node.NormalMap = normal;
+                        Texture roughness = GetTexture(string.Format(@"Textures\{0}\roughness.png", group), 7);
+                        node.RoughnessMap = roughness;
+                        node.WorldPosition = new vec3(
+                            (i - (textureGroups.Length / 2.0f)) * spacing,
+                            0.0f,
+                            0.0f);
+                        rootNode.Children.Add(node);
                     }
                 }
             }
@@ -97,6 +105,23 @@ namespace PBR.IBLSpecularTextured {
 
             var manipulater = new FirstPerspectiveManipulater();
             manipulater.Bind(camera, this.winGLCanvas1);
+        }
+
+        private Texture GetTexture(string filename, uint unitIndex) {
+            var bmp = new Bitmap(filename);
+            var storage = new TexImageBitmap(bmp);
+            var texture = new Texture(storage,
+                new MipmapBuilder(),
+                new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_REPEAT),
+                new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_REPEAT),
+                new TexParameteri(TexParameter.PropertyName.TextureWrapR, (int)GL.GL_REPEAT),
+                // NOTE: use 'GL_LINEAR_MIPMAP_LINEAR' along with 'new MipmapBuilder(),'!
+                new TexParameteri(TexParameter.PropertyName.TextureMinFilter, (int)GL.GL_LINEAR_MIPMAP_LINEAR),
+                new TexParameteri(TexParameter.PropertyName.TextureMagFilter, (int)GL.GL_LINEAR));
+            texture.TextureUnitIndex = unitIndex;
+            texture.Initialize();
+            bmp.Dispose();
+            return texture;
         }
 
         private Texture LoadBRDFTexture() {
