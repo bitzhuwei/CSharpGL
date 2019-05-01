@@ -9,7 +9,7 @@ More than 30 simple demonstration projects show how to use CSharpGL. And there w
 ## Skeleton Animation.
 ![SkeletonAnimation.gif](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/FirstSightOfAssimpNet/SkeletalAnimation.gif?raw=true)
 ## Physically Based Rendering.
-![PBR.IBLSpecularTextured](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/PBR.IBLSpecularTextured/PBR.IBLSpecularTextured.png?raw=true)
+![PBR.IBLSpecularTextured](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/PBR.IBLSpecularTextured/PBR.IBLSpecularTextured.gif?raw=true)
 ## WorldSpace Billboard.
 ![WorldSpaceBillboard](https://github.com/bitzhuwei/CSharpGL/blob/master/Demos/WorldSpaceBillboard/WorldSpaceBillboard.png?raw=true)
 ## Picking.

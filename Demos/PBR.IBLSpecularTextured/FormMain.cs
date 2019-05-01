@@ -24,8 +24,8 @@ namespace PBR.IBLSpecularTextured {
 
         float spacing = 2.5f;
         private void FormMain_Load(object sender, EventArgs e) {
-            var position = new vec3(1, 0, 0.2f) * 14;
-            var center = new vec3(0, 0, 0);
+            var position = new vec3(9.3968f, -0.7408f, 2.9288f);
+            var center = new vec3(-0.0710f, -2.2829f, 1.3023f);
             var up = new vec3(0, 1, 0);
             var camera = new Camera(position, center, up, CameraType.Perspective, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
             this.scene = new Scene(camera);
