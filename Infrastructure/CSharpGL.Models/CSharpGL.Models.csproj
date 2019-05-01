@@ -111,6 +111,7 @@
     <Compile Include="stb_Image\stb_Image\stb_Image.cs" />
     <Compile Include="stb_Image\stb_Image\stb_Image.LoadHDR.cs" />
     <Compile Include="stb_Image\stb_Image\stb_Image.strtol.cs" />
+    <Compile Include="TexCoordAnalyzer.cs" />
     <Compile Include="Utilities.cs" />
     <Compile Include="VolumeData.cs" />
     <None Include="Amber\readme.md" />

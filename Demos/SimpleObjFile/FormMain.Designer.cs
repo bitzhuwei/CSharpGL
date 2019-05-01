@@ -40,8 +40,10 @@
             this.旋转RToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.winGLCanvas1 = new CSharpGL.WinGLCanvas();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.openModelDlg = new System.Windows.Forms.OpenFileDialog();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.纹理TToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openTextureDlg = new System.Windows.Forms.OpenFileDialog();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.winGLCanvas1)).BeginInit();
             this.SuspendLayout();
@@ -93,7 +95,8 @@
             // 
             this.工具TToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.选项OToolStripMenuItem,
-            this.旋转RToolStripMenuItem});
+            this.旋转RToolStripMenuItem,
+            this.纹理TToolStripMenuItem});
             this.工具TToolStripMenuItem.Name = "工具TToolStripMenuItem";
             this.工具TToolStripMenuItem.Size = new System.Drawing.Size(59, 21);
             this.工具TToolStripMenuItem.Text = "工具(&T)";
@@ -101,14 +104,14 @@
             // 选项OToolStripMenuItem
             // 
             this.选项OToolStripMenuItem.Name = "选项OToolStripMenuItem";
-            this.选项OToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
+            this.选项OToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.选项OToolStripMenuItem.Text = "属性(&P)";
             this.选项OToolStripMenuItem.Click += new System.EventHandler(this.选项OToolStripMenuItem_Click);
             // 
             // 旋转RToolStripMenuItem
             // 
             this.旋转RToolStripMenuItem.Name = "旋转RToolStripMenuItem";
-            this.旋转RToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
+            this.旋转RToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.旋转RToolStripMenuItem.Text = "旋转(&R)";
             this.旋转RToolStripMenuItem.Click += new System.EventHandler(this.旋转RToolStripMenuItem_Click);
             // 
@@ -122,21 +125,40 @@
             // 
             // winGLCanvas1
             // 
+            this.winGLCanvas1.AccumAlphaBits = ((byte)(0));
+            this.winGLCanvas1.AccumBits = ((byte)(0));
+            this.winGLCanvas1.AccumBlueBits = ((byte)(0));
+            this.winGLCanvas1.AccumGreenBits = ((byte)(0));
+            this.winGLCanvas1.AccumRedBits = ((byte)(0));
             this.winGLCanvas1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.winGLCanvas1.Location = new System.Drawing.Point(0, 25);
             this.winGLCanvas1.Name = "winGLCanvas1";
             this.winGLCanvas1.RenderTrigger = CSharpGL.RenderTrigger.TimerBased;
             this.winGLCanvas1.Size = new System.Drawing.Size(751, 438);
+            this.winGLCanvas1.StencilBits = ((byte)(0));
             this.winGLCanvas1.TabIndex = 2;
+            this.winGLCanvas1.TimerTriggerInterval = 40;
+            this.winGLCanvas1.UpdateContextVersion = true;
             // 
             // openFileDialog1
             // 
-            this.openFileDialog1.Filter = "*.obj|*.obj|*.obj_|*.obj_";
+            this.openModelDlg.Filter = "*.obj|*.obj|*.obj_|*.obj_";
             // 
             // timer1
             // 
             this.timer1.Interval = 40;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // 纹理TToolStripMenuItem
+            // 
+            this.纹理TToolStripMenuItem.Name = "纹理TToolStripMenuItem";
+            this.纹理TToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.纹理TToolStripMenuItem.Text = "纹理...(&T)";
+            this.纹理TToolStripMenuItem.Click += new System.EventHandler(this.纹理TToolStripMenuItem_Click);
+            // 
+            // openTextureDlg
+            // 
+            this.openTextureDlg.Filter = "*.*|*.*";
             // 
             // FormMain
             // 
@@ -167,8 +189,10 @@
         private System.Windows.Forms.ToolStripMenuItem 选项OToolStripMenuItem;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private CSharpGL.WinGLCanvas winGLCanvas1;
-        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.OpenFileDialog openModelDlg;
         private System.Windows.Forms.ToolStripMenuItem 旋转RToolStripMenuItem;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.ToolStripMenuItem 纹理TToolStripMenuItem;
+        private System.Windows.Forms.OpenFileDialog openTextureDlg;
     }
 }

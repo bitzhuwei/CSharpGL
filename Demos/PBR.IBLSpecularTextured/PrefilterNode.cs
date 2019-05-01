@@ -57,7 +57,7 @@ namespace PBR.IBLSpecularTextured {
                 viewport.Width = mipWidth; viewport.Height = mipHeight;
                 viewport.On();
                 // NOTE: I added '/ 10' to make it a clearer visual effect.
-                float roughness = (float)mip / (float)(maxMipLevels - 1) / 10;
+                float roughness = (float)mip / (float)(maxMipLevels - 1) / 5;
                 RenderMethod method = this.RenderUnit.Methods[0];
                 ShaderProgram program = method.Program;
                 program.SetUniform("roughness", roughness);
