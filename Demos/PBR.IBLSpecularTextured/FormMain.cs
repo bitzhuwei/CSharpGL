@@ -39,7 +39,7 @@ namespace PBR.IBLSpecularTextured {
             Texture irradianceMap = LoadIrradianceMap();
             irradianceMap.TextureUnitIndex = 0;
             Texture envCubemap = LoadEnvCubeMap();
-            Texture texHDR = LoadHDRTexture("newport_loft.hdr");
+            Texture texHDR = LoadHDRTexture("environment.hdr");
 
             {
                 var node = CubemapNode.Create(envCubemap, texHDR);
@@ -58,41 +58,74 @@ namespace PBR.IBLSpecularTextured {
                 rootNode.Children.Add(node);
             }
             {
-                var sphere = new Sphere2();//(1, 40, 80);
-                var filename = Path.Combine(System.Windows.Forms.Application.StartupPath, "sphere2.obj_");
-                sphere.DumpObjFile(filename, "sphere2");
-                var parser = new ObjVNFParser(false, true);
-                ObjVNFResult result = parser.Parse(filename);
-                if (result.Error != null) {
-                    Console.WriteLine("Error: {0}", result.Error);
+                var textureGroups = new string[] { "cerberus", "cerberus", "gold", "grass", "plastic", "rock", "rusted_iron", "wall", "wood" };
+                var models = new ObjVNF[textureGroups.Length];
+                {
+                    var filename = Path.Combine(System.Windows.Forms.Application.StartupPath, "cerberus.obj_");
+                    var parser = new ObjVNFParser(false, true);
+                    ObjVNFResult result = parser.Parse(filename);
+                    if (result.Error != null) {
+                        MessageBox.Show(string.Format("Error: {0}", result.Error));
+                        return;
+                    }
+                    ObjVNFMesh mesh = result.Mesh;
+                    // Dump texture coordinates' layout.
+                    //{
+                    //    vec2[] texCoords = mesh.texCoords;
+                    //    int polygon = (mesh.faces[0] is ObjVNFTriangle) ? 3 : 4;
+                    //    int index = 0;
+                    //    var indices = new uint[polygon * mesh.faces.Length];
+                    //    foreach (var face in mesh.faces) {
+                    //        foreach (var vertexIndex in face.VertexIndexes()) {
+                    //            indices[index++] = vertexIndex;
+                    //        }
+                    //    }
+                    //    var bmp = TexCoordAnalyzer.DumpLines(texCoords, indices, 1024);
+                    //    bmp.Save("cerberus.texCoords.png");
+                    //}
+                    var model = new ObjVNF(mesh);
+                    models[0] = model;
                 }
-                else {
+                {
+                    var sphere = new Sphere2();//(1, 40, 80);
+                    var filename = Path.Combine(System.Windows.Forms.Application.StartupPath, "sphere2.obj_");
+                    sphere.DumpObjFile(filename, "sphere2");
+                    var parser = new ObjVNFParser(false, true);
+                    ObjVNFResult result = parser.Parse(filename);
+                    if (result.Error != null) {
+                        MessageBox.Show(string.Format("Error: {0}", result.Error));
+                        return;
+                    }
                     ObjVNFMesh mesh = result.Mesh;
                     var model = new ObjVNF(mesh);
-                    var textureGroups = new string[] { "gold", "grass", "plastic", "rusted_iron", "wall" };
-                    for (int i = 0; i < textureGroups.Length; i++) {
-                        var node = PBRNode.Create(model, model.GetSize(),
-                            ObjVNF.strPosition, ObjVNF.strTexCoord, ObjVNF.strNormal);
-                        node.IrradianceMap = irradianceMap;
-                        node.PrefilterMap = prefilterMap;
-                        node.texBRDF = texBRDF;
-                        string group = textureGroups[i];
-                        Texture albedo = GetTexture(string.Format(@"Textures\{0}\albedo.png", group), 3);
-                        node.AlbedoMap = albedo;
-                        Texture ao = GetTexture(string.Format(@"Textures\{0}\ao.png", group), 4);
-                        node.AOMap = ao;
-                        Texture metallic = GetTexture(string.Format(@"Textures\{0}\metallic.png", group), 5);
-                        node.MetallicMap = metallic;
-                        Texture normal = GetTexture(string.Format(@"Textures\{0}\normal.png", group), 6);
-                        node.NormalMap = normal;
-                        Texture roughness = GetTexture(string.Format(@"Textures\{0}\roughness.png", group), 7);
-                        node.RoughnessMap = roughness;
-                        node.WorldPosition = new vec3(
-                            (i - (textureGroups.Length / 2.0f)) * spacing,
-                            0.0f,
-                            0.0f);
-                        rootNode.Children.Add(node);
+                    for (int i = 1; i < textureGroups.Length; i++) {
+                        models[i] = model;
                     }
+                }
+
+                for (int i = 0; i < textureGroups.Length; i++) {
+                    ObjVNF model = models[i];
+                    string group = textureGroups[i];
+                    var node = PBRNode.Create(model, model.GetSize(),
+                        ObjVNF.strPosition, ObjVNF.strTexCoord, ObjVNF.strNormal);
+                    node.IrradianceMap = irradianceMap;
+                    node.PrefilterMap = prefilterMap;
+                    node.texBRDF = texBRDF;
+                    Texture albedo = GetTexture(string.Format(@"Textures\{0}\albedo.png", group), 3);
+                    node.AlbedoMap = albedo;
+                    Texture ao = GetTexture(string.Format(@"Textures\{0}\ao.png", group), 4);
+                    node.AOMap = ao;
+                    Texture metallic = GetTexture(string.Format(@"Textures\{0}\metallic.png", group), 5);
+                    node.MetallicMap = metallic;
+                    Texture normal = GetTexture(string.Format(@"Textures\{0}\normal.png", group), 6);
+                    node.NormalMap = normal;
+                    Texture roughness = GetTexture(string.Format(@"Textures\{0}\roughness.png", group), 7);
+                    node.RoughnessMap = roughness;
+                    node.WorldPosition = new vec3(
+                        (i - (textureGroups.Length / 2.0f)) * spacing,
+                        0.0f,
+                        0.0f);
+                    rootNode.Children.Add(node);
                 }
             }
             {
@@ -113,6 +146,7 @@ namespace PBR.IBLSpecularTextured {
 
         private Texture GetTexture(string filename, uint unitIndex) {
             var bmp = new Bitmap(filename);
+            bmp.RotateFlip(RotateFlipType.Rotate180FlipX);
             var storage = new TexImageBitmap(bmp);
             var texture = new Texture(storage,
                 new MipmapBuilder(),
