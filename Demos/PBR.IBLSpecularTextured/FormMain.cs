@@ -24,7 +24,7 @@ namespace PBR.IBLSpecularTextured {
 
         float spacing = 2.5f;
         private void FormMain_Load(object sender, EventArgs e) {
-            var position = new vec3(-0.2f, 0, 1) * 14;
+            var position = new vec3(1, 0, 0.2f) * 14;
             var center = new vec3(0, 0, 0);
             var up = new vec3(0, 1, 0);
             var camera = new Camera(position, center, up, CameraType.Perspective, this.winGLCanvas1.Width, this.winGLCanvas1.Height);
@@ -62,14 +62,18 @@ namespace PBR.IBLSpecularTextured {
                 var models = new ObjVNF[textureGroups.Length];
                 {
                     var filename = Path.Combine(System.Windows.Forms.Application.StartupPath, "cerberus.obj_");
-                    var parser = new ObjVNFParser(false, true);
+                    var parser = new ObjVNFParser(false, false);
                     ObjVNFResult result = parser.Parse(filename);
                     if (result.Error != null) {
                         MessageBox.Show(string.Format("Error: {0}", result.Error));
                         return;
                     }
                     ObjVNFMesh mesh = result.Mesh;
-                    // Dump texture coordinates' layout.
+                    // scale it to 0.1 percent.
+                    for (int i = 0; i < mesh.vertexes.Length; i++) {
+                        mesh.vertexes[i] = mesh.vertexes[i] / 10;
+                    }
+                    //// Dump texture coordinates' layout.
                     //{
                     //    vec2[] texCoords = mesh.texCoords;
                     //    int polygon = (mesh.faces[0] is ObjVNFTriangle) ? 3 : 4;
@@ -121,10 +125,15 @@ namespace PBR.IBLSpecularTextured {
                     node.NormalMap = normal;
                     Texture roughness = GetTexture(string.Format(@"Textures\{0}\roughness.png", group), 7);
                     node.RoughnessMap = roughness;
-                    node.WorldPosition = new vec3(
-                        (i - (textureGroups.Length / 2.0f)) * spacing,
-                        0.0f,
-                        0.0f);
+                    if (i == 0) {
+                        node.WorldPosition = new vec3(0, -5, 0);
+                    }
+                    else {
+                        node.WorldPosition = new vec3(
+                            0.0f,
+                            0.0f,
+                            ((textureGroups.Length / 2.0f) - i) * spacing);
+                    }
                     rootNode.Children.Add(node);
                 }
             }
