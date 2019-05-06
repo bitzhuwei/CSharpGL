@@ -39,7 +39,7 @@ namespace PBR.IBLSpecularTextured {
             Texture irradianceMap = LoadIrradianceMap();
             irradianceMap.TextureUnitIndex = 0;
             Texture envCubemap = LoadEnvCubeMap();
-            Texture texHDR = LoadHDRTexture("environment.hdr");
+            Texture texHDR = LoadHDRTexture("newport_loft.hdr");
 
             {
                 var node = CubemapNode.Create(envCubemap, texHDR);

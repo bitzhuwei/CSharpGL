@@ -61,6 +61,8 @@ namespace PBR.IBLSpecularTextured {
             captureFBO.Unbind();
             viewportSwitch.Off();
             captureFBO.Dispose();
+
+            this.texBRDF.GetImage(512, 512).Save(string.Format("texBRDF.png"));
         }
 
         private Texture texBRDF;

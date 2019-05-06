@@ -70,6 +70,8 @@ namespace PBR.IBLSpecularTextured {
                 GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
                 method.Render();
                 captureFBO.Unbind();
+
+                this.texEnvCubemap.GetImage(face, 512, 512).Save(string.Format("texEnvCubemap.{0}.mip{1}.png", face, 0));
             }
             viewportSwitch.Off();
             captureFBO.Dispose();

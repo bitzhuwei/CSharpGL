@@ -77,6 +77,8 @@ namespace PBR.IBLSpecularTextured {
                     GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
                     method.Render();
                     captureFBO.Unbind();
+
+                    this.prefilterMap.GetImage(face, mipWidth, mipHeight, mip).Save(string.Format("prefilter.{0}.mip{1}.png", face, mip));
                 }
 
                 viewport.Off();

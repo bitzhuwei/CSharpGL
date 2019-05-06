@@ -39,13 +39,16 @@ namespace PBR.IBLSpecularTextured {
 			glm.lookAt(new vec3(0.0f, 0.0f, 0.0f), new vec3( 0.0f,  0.0f,  1.0f), new vec3(0.0f, -1.0f,  0.0f)),
 			glm.lookAt(new vec3(0.0f, 0.0f, 0.0f), new vec3( 0.0f,  0.0f, -1.0f), new vec3(0.0f, -1.0f,  0.0f))
 		};
+
+        int length = 32;
+
         protected unsafe override void DoInitialize() {
             base.DoInitialize();
-            ViewportSwitch viewportSwitch = new ViewportSwitch(0, 0, 32, 32);
+            ViewportSwitch viewportSwitch = new ViewportSwitch(0, 0, length, length);
             // pbr: setup framebuffer
-            var captureFBO = new Framebuffer(32, 32);
+            var captureFBO = new Framebuffer(length, length);
             captureFBO.Bind();
-            var captureRBO = new Renderbuffer(32, 32, GL.GL_DEPTH_COMPONENT24);
+            var captureRBO = new Renderbuffer(length, length, GL.GL_DEPTH_COMPONENT24);
             captureFBO.Attach(FramebufferTarget.Framebuffer, captureRBO, AttachmentLocation.Depth);
             captureFBO.CheckCompleteness();
             captureFBO.Unbind();
@@ -70,6 +73,8 @@ namespace PBR.IBLSpecularTextured {
                 GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
                 method.Render();
                 captureFBO.Unbind();
+
+                this.texIrradianceMap.GetImage(face, length, length).Save(string.Format("irradianceMap.{0}.mip{1}.png", face, 0));
             }
             viewportSwitch.Off();
             captureFBO.Dispose();
