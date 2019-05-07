@@ -7,7 +7,7 @@ using System.Drawing;
 
 namespace PBR.IBLSpecularTextured {
     partial class IrradianceNode : ModernNode, IRenderable {
-        public static IrradianceNode Create(Texture texIrradianceMap, Texture envCubemap) {
+        public static IrradianceNode Create(Texture texIrradianceMap, Texture environmentMap) {
             var model = new CubeModel();
             var vs = new VertexShader(vertexCode);
             var fs = new FragmentShader(fragmentCode);
@@ -18,7 +18,7 @@ namespace PBR.IBLSpecularTextured {
             var node = new IrradianceNode(model, builder);
             node.ModelSize = new vec3(2, 2, 2);
             node.texIrradianceMap = texIrradianceMap;
-            node.envCubemap = envCubemap;
+            node.environmentMap = environmentMap;
             node.Initialize();
 
             return node;
@@ -56,7 +56,7 @@ namespace PBR.IBLSpecularTextured {
             // pbr: convert HDR equirectangular environment map to cubemap equivalent
             RenderMethod method = this.RenderUnit.Methods[0];
             ShaderProgram program = method.Program;
-            program.SetUniform("environmentMap", this.envCubemap);
+            program.SetUniform("environmentMap", this.environmentMap);
             program.SetUniform("projection", captureProjection);
             viewportSwitch.On();
             for (uint i = 0; i < 6; ++i) {
@@ -81,7 +81,7 @@ namespace PBR.IBLSpecularTextured {
         }
 
         private Texture texIrradianceMap;
-        private Texture envCubemap;
+        private Texture environmentMap;
 
         private ThreeFlags enableRendering = ThreeFlags.None;//  ThreeFlags.BeforeChildren | ThreeFlags.Children | ThreeFlags.AfterChildren;
         /// <summary>
@@ -104,7 +104,7 @@ namespace PBR.IBLSpecularTextured {
             ShaderProgram program = method.Program;
             program.SetUniform("projection", projection);
             program.SetUniform("view", view * model);
-            program.SetUniform("environmentMap", this.envCubemap);
+            program.SetUniform("environmentMap", this.environmentMap);
 
             method.Render();
         }
