@@ -38,19 +38,19 @@ namespace PBR.IBLSpecularTextured {
             prefilterMap.TextureUnitIndex = 1;
             Texture irradianceMap = LoadIrradianceMap();
             irradianceMap.TextureUnitIndex = 0;
-            Texture envCubemap = LoadEnvCubeMap();
+            Texture environmentMap = LoadEnvironmentMap();
             Texture texHDR = LoadHDRTexture("newport_loft.hdr");
 
             {
-                var node = CubemapNode.Create(envCubemap, texHDR);
+                var node = CubemapNode.Create(environmentMap, texHDR);
                 rootNode.Children.Add(node);
             }
             {
-                var node = IrradianceNode.Create(irradianceMap, envCubemap);
+                var node = IrradianceNode.Create(irradianceMap, environmentMap);
                 rootNode.Children.Add(node);
             }
             {
-                var node = PrefilterNode.Create(prefilterMap, envCubemap);
+                var node = PrefilterNode.Create(prefilterMap, environmentMap);
                 rootNode.Children.Add(node);
             }
             {
@@ -138,7 +138,7 @@ namespace PBR.IBLSpecularTextured {
                 }
             }
             {
-                var backgroundNode = BackgroundNode.Create(envCubemap);
+                var backgroundNode = BackgroundNode.Create(environmentMap);
                 rootNode.Children.Add(backgroundNode);
             }
 
@@ -222,7 +222,7 @@ namespace PBR.IBLSpecularTextured {
         }
 
         // pbr: setup cubemap to render to and attach to framebuffer
-        private Texture LoadEnvCubeMap() {
+        private Texture LoadEnvironmentMap() {
             var dataProvider = new CubemapDataProvider(null, null, null, null, null, null);
             var storage = new CubemapTexImage2D(GL.GL_RGB16F, 512, 512, GL.GL_RGB, GL.GL_FLOAT, dataProvider);
             var envCubeMap = new Texture(storage,

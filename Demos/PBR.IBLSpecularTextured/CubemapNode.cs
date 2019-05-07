@@ -7,7 +7,7 @@ using System.Drawing;
 
 namespace PBR.IBLSpecularTextured {
     partial class CubemapNode : ModernNode, IRenderable {
-        public static CubemapNode Create(Texture texEnvCubemap, Texture texHDR) {
+        public static CubemapNode Create(Texture environmentMap, Texture texHDR) {
             var model = new CubeModel();
             var vs = new VertexShader(vertexCode);
             var fs = new FragmentShader(fragmentCode);
@@ -17,7 +17,7 @@ namespace PBR.IBLSpecularTextured {
             var builder = new RenderMethodBuilder(array, map);
             var node = new CubemapNode(model, builder);
             node.ModelSize = new vec3(2, 2, 2);
-            node.texEnvCubemap = texEnvCubemap;
+            node.environmentMap = environmentMap;
             node.texHDR = texHDR;
             node.Initialize();
 
@@ -62,7 +62,7 @@ namespace PBR.IBLSpecularTextured {
                 uint location = 0;
                 int level = 0;
                 captureFBO.Bind();
-                captureFBO.Attach(FramebufferTarget.Framebuffer, location, face, this.texEnvCubemap, level);
+                captureFBO.Attach(FramebufferTarget.Framebuffer, location, face, this.environmentMap, level);
                 captureFBO.CheckCompleteness();
                 captureFBO.Unbind();
 
@@ -71,22 +71,22 @@ namespace PBR.IBLSpecularTextured {
                 method.Render();
                 captureFBO.Unbind();
 
-                this.texEnvCubemap.GetImage(face, 512, 512).Save(string.Format("texEnvCubemap.{0}.mip{1}.png", face, 0));
+                this.environmentMap.GetImage(face, 512, 512).Save(string.Format("texEnvCubemap.{0}.mip{1}.png", face, 0));
             }
             viewportSwitch.Off();
             captureFBO.Dispose();
 
-            //this.texEnvCubemap.Bind();
-            //glGenerateMipmap(GL.GL_TEXTURE_CUBE_MAP);
-            //this.texEnvCubemap.Unbind();
+            this.environmentMap.Bind();
+            glGenerateMipmap(GL.GL_TEXTURE_CUBE_MAP);
+            this.environmentMap.Unbind();
         }
-        //private static readonly GLDelegates.void_uint glGenerateMipmap;
+        private static readonly GLDelegates.void_uint glGenerateMipmap;
 
-        //static CubemapNode() {
-        //    glGenerateMipmap = GL.Instance.GetDelegateFor("glGenerateMipmap", GLDelegates.typeof_void_uint) as GLDelegates.void_uint;
-        //}
+        static CubemapNode() {
+            glGenerateMipmap = GL.Instance.GetDelegateFor("glGenerateMipmap", GLDelegates.typeof_void_uint) as GLDelegates.void_uint;
+        }
 
-        private Texture texEnvCubemap;
+        private Texture environmentMap;
         private Texture texHDR;
 
         private ThreeFlags enableRendering = ThreeFlags.None;//  ThreeFlags.BeforeChildren | ThreeFlags.Children | ThreeFlags.AfterChildren;
