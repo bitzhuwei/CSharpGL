@@ -3,9 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CSharpGL {
-    public class TangentParser : ObjParserBase {
-        public override void Parse(ObjVNFContext context) {
+namespace CSharpGL
+{
+    public class TangentParser : ObjParserBase
+    {
+        // https://www.cnblogs.com/bitzhuwei/p/opengl-Computing-Tangent-Space-Basis-Vectors.html
+        public override void Parse(ObjVNFContext context)
+        {
             ObjVNFMesh mesh = context.Mesh;
             vec3[] vertexes = mesh.vertexes;// positions
             vec2[] texCoords = mesh.texCoords;
@@ -19,34 +23,70 @@ namespace CSharpGL {
             if (faces[0].VertexIndexes().Count() != 3) { return; }
 
             var tangents = new vec3[normals.Length];
-            for (int i = 0; i < faces.Length; i++) {
+            var biTangents = new vec3[normals.Length];
+            for (int i = 0; i < faces.Length; i++)
+            {
                 var face = faces[i] as ObjVNFTriangle;
                 if (face == null) { return; } // no dealing with quad.
+
                 uint[] vertexIndexes = face.VertexIndexes();
-                vec3 p0 = vertexes[vertexIndexes[0]];
-                vec3 p1 = vertexes[vertexIndexes[1]];
-                vec3 p2 = vertexes[vertexIndexes[2]];
-                vec2 uv0 = texCoords[vertexIndexes[0]];
-                vec2 uv1 = texCoords[vertexIndexes[1]];
-                vec2 uv2 = texCoords[vertexIndexes[2]];
-                vec3 q0 = p1 - p0, q1 = p2 - p0;
-                float u0 = uv0.x, v0 = uv0.y, u1 = uv1.x, v1 = uv1.y, u2 = uv2.x, v2 = uv2.y;
-                float coefficient = 1.0f / ((u1 - u0) * (v2 - v0) - (v1 - v0) * (u2 - u0));
-                vec3 tangentFace;
-                tangentFace.x = (v2 - v0) * q0.x + (v0 - v1) * q1.x;
-                tangentFace.y = (v2 - v0) * q0.y + (v0 - v1) * q1.y;
-                tangentFace.z = (v2 - v0) * q0.z + (v0 - v1) * q1.z;
-                //vec3 binormalFace;
-                //binormalFace.x = (u0 - u2) * q0.x + (u1 - u0) * q1.x;
-                //binormalFace.y = (u0 - u2) * q0.y + (u1 - u0) * q1.y;
-                //binormalFace.z = (u0 - u2) * q0.z + (u1 - u0) * q1.z;
-                for (int t = 0; t < vertexIndexes.Length; t++) {
-                    vec3 n = normals[vertexIndexes[t]].normalize();
-                    tangents[vertexIndexes[t]] = tangentFace - tangentFace.dot(n) * n;
-                }
+                uint i0 = vertexIndexes[0];
+                uint i1 = vertexIndexes[1];
+                uint i2 = vertexIndexes[2];
+                vec3 p0 = vertexes[i0];
+                vec3 p1 = vertexes[i1];
+                vec3 p2 = vertexes[i2];
+                vec2 uv0 = texCoords[i0];
+                vec2 uv1 = texCoords[i1];
+                vec2 uv2 = texCoords[i2];
+
+                float x1 = p1.x - p0.x;
+                float y1 = p1.y - p0.y;
+                float z1 = p1.z - p0.z;
+                float x2 = p2.x - p0.x;
+                float y2 = p2.y - p0.y;
+                float z2 = p2.z - p0.z;
+
+                float s1 = uv1.x - uv0.x;
+                float t1 = uv1.y - uv0.y;
+                float s2 = uv2.x - uv0.x;
+                float t2 = uv2.y - uv0.y;
+
+                float r = 1.0F / (s1 * t2 - s2 * t1);
+                var sdir = new vec3((t2 * x1 - t1 * x2) * r, (t2 * y1 - t1 * y2) * r,
+                        (t2 * z1 - t1 * z2) * r);
+                var tdir = new vec3((s1 * x2 - s2 * x1) * r, (s1 * y2 - s2 * y1) * r,
+                        (s1 * z2 - s2 * z1) * r);
+
+                //tangents[i0] += sdir;
+                tangents[i0] = (float)i / (float)(i + 1) * tangents[i0] + sdir / (float)(i + 1);
+                //tangents[i1] += sdir;
+                tangents[i1] = (float)i / (float)(i + 1) * tangents[i1] + sdir / (float)(i + 1);
+                //tangents[i2] += sdir;
+                tangents[i2] = (float)i / (float)(i + 1) * tangents[i2] + sdir / (float)(i + 1);
+
+                //biTangents[i0] += tdir;
+                biTangents[i0] = (float)i / (float)(i + 1) * biTangents[i0] + sdir / (float)(i + 1);
+                //biTangents[i1] += tdir;
+                biTangents[i1] = (float)i / (float)(i + 1) * biTangents[i1] + sdir / (float)(i + 1);
+                //biTangents[i2] += tdir;
+                biTangents[i2] = (float)i / (float)(i + 1) * biTangents[i2] + sdir / (float)(i + 1);
             }
 
-            mesh.tangents = tangents;
+            var finalTangents = new vec4[normals.Length];
+            for (long a = 0; a < normals.Length; a++)
+            {
+                vec3 n = normals[a];
+                vec3 t = tangents[a];
+
+                // Calculate handedness
+                float w = (n.cross(t).dot(biTangents[a]) < 0.0F) ? -1.0F : 1.0F;
+
+                // Gram-Schmidt orthogonalize
+                finalTangents[a] = new vec4((t - n * n.dot(t)).normalize(), w);
+            }
+
+            mesh.tangents = finalTangents;
         }
 
     }
