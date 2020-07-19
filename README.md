@@ -1,4 +1,5 @@
 # Object Oriented OpenGL in C\#   
+![45个十分钟读懂《资本论》](https://github.com/bookcases/Capital-in-10x45-minutes/blob/master/Capital-in-10x45-minutes.jpg?raw=true)
 :green_apple:CSharpGL is an Object-Orinted OpenGL wrapper in pure C# wihtout any third party support.  
 It abstracts concepts(buffer, shader, state, matrix, vector, texture, canvas, scene, camera, light, picking, text, GUI ...) from OpenGL API and common requirements.  
 More than 30 simple demonstration projects show how to use CSharpGL. And there will be more.  
