@@ -176,7 +176,7 @@ namespace CSharpGL
 
                 if (before)
                 {
-                    pickable.PickingBaseId += arg.RenderedVertexCount;
+                    pickable.PickingBaseId = arg.RenderedVertexCount;
                     pickable.RenderForPicking(arg);
                     arg.RenderedVertexCount += pickable.GetVertexCount();
                 }
