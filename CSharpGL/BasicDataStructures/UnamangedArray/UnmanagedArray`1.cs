@@ -24,7 +24,7 @@ namespace CSharpGL
         }
 
         // Do not try to use less effitient way of accessing elements as we're using OpenGL.
-        // 既然要用OpenGL，就不要试图才用低效的方式了。
+        // 既然要用OpenGL，就不要试图采用低效的方式了。
         /// <summary>
         /// gets/sets element's value at specified <paramref name="index"/>.
         /// <para>Please use unsafe way when dealing with big data for efficiency purpose.</para>
