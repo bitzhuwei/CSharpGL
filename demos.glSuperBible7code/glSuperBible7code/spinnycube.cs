@@ -1,7 +1,5 @@
 ﻿
 using CSharpGL;
-using demos.glSuperBible7code;
-using SixLabors.ImageSharp.Memory;
 using System;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
