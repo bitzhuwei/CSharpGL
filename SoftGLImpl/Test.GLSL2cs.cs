@@ -69,7 +69,7 @@ namespace bitzhuwei.glTForm {
             bool x = XOR(XOR(XOR(a, b), c), d);
         }
     }
-    class GeomCode : GeometryCodeBase {
+    partial class GeomCode : GeometryCodeBase {
         // geom
         // [94] declaration : type_qualifier ';' ;
         [layout(points)][In] static int inDesc;
