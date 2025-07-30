@@ -1,5 +1,5 @@
 ﻿namespace demos.anything {
-    partial class FormAnyting {
+    partial class FormAnything {
         /// <summary>
         ///  Required designer variable.
         /// </summary>
@@ -36,15 +36,15 @@
             listBox1.TabIndex = 2;
             listBox1.SelectedIndexChanged += listBox1_SelectedIndexChanged;
             // 
-            // FormAnyting
+            // FormAnything
             // 
             AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(680, 410);
             Controls.Add(listBox1);
             Margin = new Padding(2);
-            Name = "FormAnyting";
-            Text = "demos.anyting - CSharpGL";
+            Name = "FormAnything";
+            Text = "demos.anything - CSharpGL";
             ResumeLayout(false);
         }
 
