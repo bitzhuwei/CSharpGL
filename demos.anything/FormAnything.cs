@@ -6,11 +6,9 @@ using System.Windows.Forms;
 using System.Xml;
 
 namespace demos.anything {
-    public unsafe partial class FormAnything
-     : Form {
+    public unsafe partial class FormAnything: Form {
 
-        public FormAnything
-        () {
+        public FormAnything() {
             InitializeComponent();
 
             // init resources.
