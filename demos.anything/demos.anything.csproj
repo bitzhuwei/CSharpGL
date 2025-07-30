@@ -73,7 +73,7 @@
 		<Compile Update="FormObjPropertyGrid.cs">
 			<SubType>Form</SubType>
 		</Compile>
-		<Compile Update="FormAnyting.cs">
+		<Compile Update="FormAnything.cs">
 			<SubType>Form</SubType>
 		</Compile>
 		<Compile Update="WindowsGLCanvas.cs">
