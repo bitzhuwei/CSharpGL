@@ -1,36 +1,31 @@
 ﻿using System.ComponentModel;
 using System.Drawing.Design;
 
-namespace CSharpGL
-{
+namespace CSharpGL {
     /// <summary>
     ///
     /// </summary>
-    [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
-    public abstract class GLSwitch : IGLSwitch
-    {
+
+    public abstract unsafe class GLSwitch : IGLSwitch {
         private bool inUse = false;
 
         /// <summary>
         /// You want to use this switch?
         /// </summary>
-        public bool Enabled { get; set; }
+        public bool enabled = true;
+
+        ///// <summary>
+        /////
+        ///// </summary>
+        //public GLSwitch() {
+        //    this.enabled = true;
+        //}
 
         /// <summary>
         ///
         /// </summary>
-        public GLSwitch()
-        {
-            this.Enabled = true;
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        public void On()
-        {
-            if (this.Enabled)
-            {
+        public void On() {
+            if (this.enabled) {
                 this.inUse = true;
                 this.StateOn();
             }
@@ -39,10 +34,8 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        public void Off()
-        {
-            if (this.inUse)
-            {
+        public void Off() {
+            if (this.inUse) {
                 this.inUse = false;
                 this.StateOff();
             }

@@ -3,14 +3,12 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Design;
 
-namespace CSharpGL
-{
+namespace CSharpGL {
     /// <summary>
     /// Supports shadow mapping.
     /// </summary>
-    [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
-    public interface ISupportShadowMapping
-    {
+
+    public interface ISupportShadowMapping {
         /// <summary>
         /// Is shadow mapping enabled for this object and its children?
         /// </summary>
@@ -49,8 +47,7 @@ namespace CSharpGL
     /// <summary>
     /// 
     /// </summary>
-    public class ShadowMappingAmbientEventArgs : RenderEventArgs
-    {
+    public class ShadowMappingAmbientEventArgs : RenderEventArgs {
         /// <summary>
         /// 
         /// </summary>
@@ -58,8 +55,7 @@ namespace CSharpGL
         /// <param name="camera"></param>
         /// <param name="ambient"></param>
         public ShadowMappingAmbientEventArgs(ActionParams param, ICamera camera, vec3 ambient)
-            : base(param, camera)
-        {
+            : base(param, camera) {
             this.Ambient = ambient;
         }
 
@@ -73,8 +69,7 @@ namespace CSharpGL
     /// <summary>
     /// Render event argument.
     /// </summary>
-    public class ShadowMappingCastShadowEventArgs : RenderEventArgs
-    {
+    public class ShadowMappingCastShadowEventArgs : RenderEventArgs {
         /// <summary>
         /// Initializes a new instance of the <see cref="ShadowMappingCastShadowEventArgs"/> class.
         /// </summary>
@@ -82,8 +77,7 @@ namespace CSharpGL
         /// <param name="camera"></param>
         /// <param name="light"></param>
         public ShadowMappingCastShadowEventArgs(ActionParams param, ICamera camera, LightBase light)
-            : base(param, camera)
-        {
+            : base(param, camera) {
             this.Light = light;
         }
 
@@ -96,14 +90,12 @@ namespace CSharpGL
     /// <summary>
     /// Render event argument.
     /// </summary>
-    public class ShadowMappingUnderLightEventArgs : RenderEventArgs
-    {
+    public class ShadowMappingUnderLightEventArgs : RenderEventArgs {
         /// <summary>
         /// Initializes a new instance of the <see cref="ShadowMappingUnderLightEventArgs"/> class.
         /// </summary>
         public ShadowMappingUnderLightEventArgs(ActionParams param, ICamera camera, Texture shadowMap, LightBase light)
-            : base(param, camera)
-        {
+            : base(param, camera) {
             this.ShadowMap = shadowMap;
             this.Light = light;
         }

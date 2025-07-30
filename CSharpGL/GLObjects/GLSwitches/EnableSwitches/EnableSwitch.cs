@@ -1,10 +1,8 @@
-﻿namespace CSharpGL
-{
+﻿namespace CSharpGL {
     /// <summary>
     /// GL.Enable(cap); or GL.Disable(cap);
     /// </summary>
-    public abstract class EnableSwitch : GLSwitch
-    {
+    public abstract unsafe class EnableSwitch : GLSwitch {
         /// <summary>
         ///
         /// </summary>
@@ -27,8 +25,7 @@
         /// </summary>
         /// <param name="capacity"></param>
         /// <param name="enableCapacity">Enable() or Disable() this capacity?</param>
-        public EnableSwitch(uint capacity, bool enableCapacity = true)
-        {
+        public EnableSwitch(uint capacity, bool enableCapacity = true) {
             this.Capacity = capacity;
             this.EnableCapacity = enableCapacity;
         }
@@ -36,47 +33,36 @@
         /// <summary>
         ///
         /// </summary>
-        public override string ToString()
-        {
-            if (this.EnableCapacity)
-            { return string.Format("OpenGL.Enable({0});", Capacity); }
-            else
-            { return string.Format("OpenGL.Disable({0});", Capacity); }
+        public override string ToString() {
+            if (this.EnableCapacity) { return string.Format("OpenGL.Enable({0});", Capacity); }
+            else { return string.Format("OpenGL.Disable({0});", Capacity); }
         }
 
         /// <summary>
         ///
         /// </summary>
-        protected override void StateOn()
-        {
+        protected override void StateOn() {
+            var gl = GL.current; if (gl == null) { return; }
             this.enableCapacityWhenStateOn = this.EnableCapacity;
-            this.originalEnableCapacity = GL.Instance.IsEnabled(this.Capacity) != 0;
-            if (this.enableCapacityWhenStateOn)
-            {
-                if (!this.originalEnableCapacity)
-                { GL.Instance.Enable(Capacity); }
+            this.originalEnableCapacity = gl.glIsEnabled(this.Capacity);
+            if (this.enableCapacityWhenStateOn) {
+                if (!this.originalEnableCapacity) { gl.glEnable(Capacity); }
             }
-            else
-            {
-                if (this.originalEnableCapacity)
-                { GL.Instance.Disable(Capacity); }
+            else {
+                if (this.originalEnableCapacity) { gl.glDisable(Capacity); }
             }
         }
 
         /// <summary>
         ///
         /// </summary>
-        protected override void StateOff()
-        {
-            if (this.enableCapacityWhenStateOn)
-            {
-                if (!this.originalEnableCapacity)
-                { GL.Instance.Disable(Capacity); }
+        protected override void StateOff() {
+            var gl = GL.current; if (gl == null) { return; }
+            if (this.enableCapacityWhenStateOn) {
+                if (!this.originalEnableCapacity) { gl.glDisable(Capacity); }
             }
-            else
-            {
-                if (this.originalEnableCapacity)
-                { GL.Instance.Enable(Capacity); }
+            else {
+                if (this.originalEnableCapacity) { gl.glEnable(Capacity); }
             }
         }
     }

@@ -1,12 +1,10 @@
 ﻿using System.ComponentModel;
 
-namespace CSharpGL
-{
+namespace CSharpGL {
     /// <summary>
     /// specify the logic operation.
     /// </summary>
-    public class LogicOpSwitch : EnableSwitch
-    {
+    public unsafe class LogicOpSwitch : EnableSwitch {
         // Activator needs a non-parameter constructor.
         /// <summary>
         /// specify the alpha logic operation.
@@ -19,22 +17,18 @@ namespace CSharpGL
         /// <param name="opCode"></param>
         /// <param name="enableCapacity"></param>
         public LogicOpSwitch(LogicOperationCode opCode, bool enableCapacity = true)
-            : base(GL.GL_COLOR_LOGIC_OP, enableCapacity)
-        {
+            : base(GL.GL_COLOR_LOGIC_OP, enableCapacity) {
             this.OpCode = opCode;
         }
 
         /// <summary>
         ///
         /// </summary>
-        public override string ToString()
-        {
-            if (this.EnableCapacity)
-            {
+        public override string ToString() {
+            if (this.EnableCapacity) {
                 return string.Format("glLogicOp({0});", this.OpCode);
             }
-            else
-            {
+            else {
                 return string.Format("Disabled glLogicOp({0});", this.OpCode);
             }
         }
@@ -42,13 +36,12 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        protected override void StateOn()
-        {
+        protected override void StateOn() {
+            var gl = GL.current; if (gl == null) { return; }
             base.StateOn();
 
-            if (this.enableCapacityWhenStateOn)
-            {
-                GL.Instance.LogicOp((uint)this.OpCode);
+            if (this.enableCapacityWhenStateOn) {
+                gl.glLogicOp((uint)this.OpCode);
             }
         }
 
@@ -63,8 +56,7 @@ namespace CSharpGL
     /// <summary>
     /// logic operations about source(new fragment color) and destination(current fragment color).
     /// </summary>
-    public enum LogicOperationCode : uint
-    {
+    public enum LogicOperationCode : GLuint {
         /// <summary>
         /// s.
         /// </summary>

@@ -1,0 +1,118 @@
+using System;
+using bitzhuwei.Compiler;
+
+namespace bitzhuwei.PreDirectiveFormat {
+    partial class CompilerPreDirective {
+        // you can remove this file if you don't need it.
+        /// <summary>
+        /// "sourceCode", // csName = index;
+        /// <para>use it like this: stArray[Vt] or stArray[Vn]</para>
+        /// <para>stArray[0] is '¥'</para>
+        /// </summary>
+        public static readonly IReadOnlyList<string> stArray = new string[] {
+            "'¥'", // @终 = 0;
+            "'inlineComment'", // @inlineComment行 = 1;
+            "'#define'", // @Pound符define = 2;
+            "'identifier'", // @identifier = 3;
+            "'('", // @LeftParenthesis符 = 4;
+            "')'", // @RightParenthesis符 = 5;
+            "'#undef'", // @Pound符undef = 6;
+            "','", // @Comma符 = 7;
+            "'intConstant'", // @intConstant = 8;
+            "'uintConstant'", // @uintConstant = 9;
+            "'floatConstant'", // @floatConstant = 10;
+            "'boolConstant'", // @boolConstant = 11;
+            "'doubleConstant'", // @doubleConstant = 12;
+            "';'", // @Semicolon符 = 13;
+            "'['", // @LeftBracket符 = 14;
+            "']'", // @RightBracket符 = 15;
+            "'.'", // @Dot符 = 16;
+            "'++'", // @Plus符Plus符 = 17;
+            "'--'", // @Dash符Dash符 = 18;
+            "'+'", // @Plus符 = 19;
+            "'-'", // @Dash符 = 20;
+            "'!'", // @Bang符 = 21;
+            "'~'", // @Tilde符 = 22;
+            "'*'", // @Asterisk符 = 23;
+            "'/'", // @Slash符 = 24;
+            "'%'", // @Percent符 = 25;
+            "'<<'", // @LeftAngle符LeftAngle符 = 26;
+            "'>>'", // @RightAngle符RightAngle符 = 27;
+            "'<'", // @LeftAngle符 = 28;
+            "'>'", // @RightAngle符 = 29;
+            "'<='", // @LeftAngle符Equal符 = 30;
+            "'>='", // @RightAngle符Equal符 = 31;
+            "'=='", // @Equal符Equal符 = 32;
+            "'!='", // @Bang符Equal符 = 33;
+            "'&'", // @And符 = 34;
+            "'^'", // @Caret符 = 35;
+            "'|'", // @Pipe符 = 36;
+            "'&&'", // @And符And符 = 37;
+            "'^^'", // @Caret符Caret符 = 38;
+            "'||'", // @Pipe符Pipe符 = 39;
+            "'?'", // @Question符 = 40;
+            "':'", // @Colon符 = 41;
+            "'='", // @Equal符 = 42;
+            "'*='", // @Asterisk符Equal符 = 43;
+            "'/='", // @Slash符Equal符 = 44;
+            "'%='", // @Percent符Equal符 = 45;
+            "'+='", // @Plus符Equal符 = 46;
+            "'-='", // @Dash符Equal符 = 47;
+            "'<<='", // @LeftAngle符LeftAngle符Equal符 = 48;
+            "'>>='", // @RightAngle符RightAngle符Equal符 = 49;
+            "'&='", // @And符Equal符 = 50;
+            "'^='", // @Caret符Equal符 = 51;
+            "'|='", // @Pipe符Equal符 = 52;
+            "'{'", // @LeftBrace符 = 53;
+            "'}'", // @RightBrace符 = 54;
+            "'##'", // @Pound符Pound符 = 55;
+            "'#if'", // @Pound符if = 56;
+            "'#ifdef'", // @Pound符ifdef = 57;
+            "'#ifndef'", // @Pound符ifndef = 58;
+            "'#else'", // @Pound符else = 59;
+            "'#elif'", // @Pound符elif = 60;
+            "'#endif'", // @Pound符endif = 61;
+            "'#error'", // @Pound符error = 62;
+            "'literalString'", // @literalString = 63;
+            "'#pragma'", // @Pound符pragma = 64;
+            "'#extension'", // @Pound符extension = 65;
+            "'#version'", // @Pound符version = 66;
+            "'number'", // @number = 67;
+            "'#line'", // @Pound符line = 68;
+            "'defined'", // @defined = 69;
+            // end of ('¥' + 69 Vt)
+
+            "PreDirective", // PreDirective枝 = 70;
+            "MicroDefinition", // MicroDefinition枝 = 71;
+            "ParameterList", // ParameterList枝 = 72;
+            "RandomTokens", // RandomTokens枝 = 73;
+            "RandomToken", // RandomToken枝 = 74;
+            "ConditionalCompilation", // ConditionalCompilation枝 = 75;
+            "IfGroup", // IfGroup枝 = 76;
+            "ElseGroup", // ElseGroup枝 = 77;
+            "ElifGroup", // ElifGroup枝 = 78;
+            "EndifGroup", // EndifGroup枝 = 79;
+            "ErrorDirective", // ErrorDirective枝 = 80;
+            "PragmaDirective", // PragmaDirective枝 = 81;
+            "ExtensionDirective", // ExtensionDirective枝 = 82;
+            "VersionDirective", // VersionDirective枝 = 83;
+            "LineDirective", // LineDirective枝 = 84;
+            "ConstExp", // ConstExp枝 = 85;
+            "OrOrExp", // OrOrExp枝 = 86;
+            "AndAndExp", // AndAndExp枝 = 87;
+            "OrExp", // OrExp枝 = 88;
+            "XorExp", // XorExp枝 = 89;
+            "AndExp", // AndExp枝 = 90;
+            "EqualExp", // EqualExp枝 = 91;
+            "RelationExp", // RelationExp枝 = 92;
+            "ShiftExp", // ShiftExp枝 = 93;
+            "AddExp", // AddExp枝 = 94;
+            "MultiExp", // MultiExp枝 = 95;
+            "UnaryExp", // UnaryExp枝 = 96;
+            "UnaryOp", // UnaryOp枝 = 97;
+            "PrimaryExp", // PrimaryExp枝 = 98;
+            // end of 29 Vn
+
+        };
+    }
+}

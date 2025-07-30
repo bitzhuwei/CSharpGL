@@ -1,0 +1,41 @@
+﻿using System;
+
+namespace CSharpGL {
+    public unsafe partial class GLTest {
+
+        //private static IntPtr? glGetError;
+        /// <summary>
+        /// 
+        /// </summary>
+        public unsafe void PrintError() {
+            var current = GL.Current; if (current == null) { return; }
+            var glGetError = current.glGetError;
+            if (glGetError == null) { return; } // can be true
+            if (glGetError == (delegate* unmanaged<uint>)IntPtr.Zero) { return; } // can be true
+
+            var errorCode = glGetError();
+            if (errorCode != 0/*GL_NO_ERROR*/) {
+                Console.WriteLine(errorCode);
+                Log.Write(errorCode);
+            }
+
+            //var a = new AAA();
+            //var x = a.b?.c?.x ?? 0;
+
+            //var y = GL.current?.glGetError;
+            //var y = GL.current?.glGetError ?? (delegate* unmanaged<uint>)IntPtr.Zero;
+        }
+
+        class AAA {
+            public BBB? b;
+        }
+
+        class BBB {
+            public CCC? c;
+        }
+
+        class CCC {
+            public int x;
+        }
+    }
+}

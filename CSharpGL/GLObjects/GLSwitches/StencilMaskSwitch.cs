@@ -3,22 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CSharpGL
-{
+namespace CSharpGL {
     /// <summary>
     /// glStencilMask
     /// </summary>
-    public class StencilMaskSwitch : GLSwitch
-    {
+    public unsafe class StencilMaskSwitch : GLSwitch {
         /// <summary>
         /// before sending drawing command to GPU.
         /// </summary>
-        public uint BeforeMask { get; set; }
+        public uint beforeMask;
 
         /// <summary>
         /// after sending drawing command to GPU.
         /// </summary>
-        public uint AfterMask { get; set; }
+        public uint afterMask;
 
         // Activator needs a non-parameter constructor.
         /// <summary>
@@ -31,10 +29,9 @@ namespace CSharpGL
         /// </summary>
         /// <param name="beforeMask"></param>
         /// <param name="afterMask"></param>
-        public StencilMaskSwitch(uint beforeMask, uint afterMask)
-        {
-            this.BeforeMask = beforeMask;
-            this.AfterMask = afterMask;
+        public StencilMaskSwitch(uint beforeMask, uint afterMask) {
+            this.beforeMask = beforeMask;
+            this.afterMask = afterMask;
         }
 
         private float[] original = new float[1];
@@ -42,25 +39,24 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        public override string ToString()
-        {
-            return string.Format("glStencilMask({0}) - glStencilMask({1})", BeforeMask, AfterMask);
+        public override string ToString() {
+            return string.Format("glStencilMask({0}) - glStencilMask({1})", beforeMask, afterMask);
         }
 
         /// <summary>
         ///
         /// </summary>
-        protected override void StateOn()
-        {
-            GL.Instance.StencilMask(this.BeforeMask);
+        protected override void StateOn() {
+            var gl = GL.current; if (gl == null) { return; }
+            gl.glStencilMask(this.beforeMask);
         }
 
         /// <summary>
         ///
         /// </summary>
-        protected override void StateOff()
-        {
-            GL.Instance.StencilMask(this.AfterMask);
+        protected override void StateOff() {
+            var gl = GL.current; if (gl == null) { return; }
+            gl.glStencilMask(this.afterMask);
         }
     }
 }

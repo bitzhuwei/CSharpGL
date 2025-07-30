@@ -1,12 +1,10 @@
 ﻿using System.ComponentModel;
 
-namespace CSharpGL
-{
+namespace CSharpGL {
     /// <summary>
     /// specify pixel arithmetic.
     /// </summary>
-    public class BlendFuncSwitch : EnableSwitch
-    {
+    public unsafe class BlendFuncSwitch : EnableSwitch {
         // Activator needs a non-parameter constructor.
         /// <summary>
         /// specify pixel arithmetic.
@@ -20,8 +18,7 @@ namespace CSharpGL
         /// <param name="destFactor">Specifies how the red, green, blue, and alpha destination blending factors are computed. The initial value is GL_ZERO.</param>
         /// <param name="enableCapacity"></param>
         public BlendFuncSwitch(BlendSrcFactor sourceFactor, BlendDestFactor destFactor, bool enableCapacity = true)
-            : base(GL.GL_BLEND, enableCapacity)
-        {
+            : base(GL.GL_BLEND, enableCapacity) {
             this.SourceFactor = sourceFactor;
             this.DestFactor = destFactor;
         }
@@ -29,15 +26,12 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        public override string ToString()
-        {
-            if (this.EnableCapacity)
-            {
+        public override string ToString() {
+            if (this.EnableCapacity) {
                 return string.Format("glBlendFunc({0}, {1});",
                     this.SourceFactor, this.DestFactor);
             }
-            else
-            {
+            else {
                 return string.Format("Disabled glBlendFunc({0}, {1});",
                     this.SourceFactor, this.DestFactor);
             }
@@ -46,13 +40,12 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        protected override void StateOn()
-        {
+        protected override void StateOn() {
+            var gl = GL.current; if (gl == null) { return; }
             base.StateOn();
 
-            if (this.enableCapacityWhenStateOn)
-            {
-                GL.Instance.BlendFunc((uint)this.SourceFactor, (uint)this.DestFactor);
+            if (this.enableCapacityWhenStateOn) {
+                gl.glBlendFunc((uint)this.SourceFactor, (uint)this.DestFactor);
             }
         }
 

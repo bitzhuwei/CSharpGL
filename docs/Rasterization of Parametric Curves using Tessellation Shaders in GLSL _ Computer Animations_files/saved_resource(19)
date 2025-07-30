@@ -1,0 +1,200 @@
+!function(){"use strict";var t={response:null,getEndpointURL:function(t){var e,s="undefined"!=typeof wp&&wp.customize&&wp.customize.settings&&wp.customize.settings.url&&wp.customize.settings.url.self;s?(e=document.createElement("a")).href=wp.customize.settings.url.self:e=document.location,"string"==typeof t&&t.match(/^https?:\/\//)&&((e=document.createElement("a")).href=t);var a="relatedposts=1",o=document.querySelector("#jp-relatedposts");if(!o)return!1;o.hasAttribute("data-exclude")&&(a+="&relatedposts_exclude="+o.getAttribute("data-exclude")),s&&(a+="&jetpackrpcustomize=1");var r=e.pathname;return"/"!==r[0]&&(r="/"+r),""===e.search?r+"?"+a:r+e.search+"&"+a},getAnchor:function(t,e){var s=t.title,a=document.createElement("a");a.setAttribute("class",e),a.setAttribute("href",t.url),a.setAttribute("title",s),a.setAttribute("data-origin",t.url_meta.origin),a.setAttribute("data-position",t.url_meta.position),""!==t.rel&&a.setAttribute("rel",t.rel);var o=document.createElement("div");o.appendChild(a);var r=o.innerHTML;return[r.substring(0,r.length-4),"</a>"]},generateMinimalHtml:function(t,e){var s=this,a="";return t.forEach((function(t,o){var r=s.getAnchor(t,"jp-relatedposts-post-a"),p="jp-relatedposts-post jp-relatedposts-post"+o;t.classes.length>0&&(p+=" "+t.classes.join(" ")),a+='<p class="'+p+'" data-post-id="'+t.id+'" data-post-format="'+t.format+'">',a+='<span class="jp-relatedposts-post-title">'+r[0]+t.title+r[1]+"</span>",e.showDate&&(a+='<time class="jp-relatedposts-post-date" datetime="'+t.date+'">'+t.date+"</time>"),e.showContext&&(a+='<span class="jp-relatedposts-post-context">'+t.context+"</span>"),a+="</p>"})),'<div class="jp-relatedposts-items jp-relatedposts-items-minimal jp-relatedposts-'+e.layout+' ">'+a+"</div>"},generateVisualHtml:function(t,e){var s=this,a="";return t.forEach((function(t,o){var r=s.getAnchor(t,"jp-relatedposts-post-a"),p="jp-relatedposts-post jp-relatedposts-post"+o;t.classes.length>0&&(p+=" "+t.classes.join(" ")),t.img.src?p+=" jp-relatedposts-post-thumbs":p+=" jp-relatedposts-post-nothumbs";var i=document.createElement("p");i.innerHTML=t.excerpt;var n=i.textContent;if(a+='<div class="'+p+'" data-post-id="'+t.id+'" data-post-format="'+t.format+'">',t.img.src)a+=r[0]+'<img class="jp-relatedposts-post-img" loading="lazy" src="'+t.img.src+'" width="'+t.img.width+'" height="'+t.img.height+(t.img.srcset?'" srcset="'+t.img.srcset:"")+(t.img.sizes?'" sizes="'+t.img.sizes:"")+'" alt="'+t.img.alt_text+'" />'+r[1];else{var l=s.getAnchor(t,"jp-relatedposts-post-a jp-relatedposts-post-aoverlay");a+=l[0]+l[1]}a+="<"+related_posts_js_options.post_heading+' class="jp-relatedposts-post-title">'+r[0]+t.title+r[1]+"</"+related_posts_js_options.post_heading+">",a+='<p class="jp-relatedposts-post-excerpt">'+n+"</p>",e.showDate&&(a+='<time class="jp-relatedposts-post-date" datetime="'+t.date+'">'+t.date+"</time>"),e.showContext&&(a+='<p class="jp-relatedposts-post-context">'+t.context+"</p>"),a+="</div>"})),'<div class="jp-relatedposts-items jp-relatedposts-items-visual jp-relatedposts-'+e.layout+' ">'+a+"</div>"},setVisualExcerptHeights:function(){var t=document.querySelectorAll("#jp-relatedposts .jp-relatedposts-post-nothumbs .jp-relatedposts-post-excerpt");if(t.length)for(var e=getComputedStyle(t[0]),s=parseInt(e.fontSize,10),a=parseInt(e.lineHeight,10),o=0;o<t.length;o++)t[o].style.maxHeight=5*a/s+"em"},getTrackedUrl:function(t){var e="relatedposts_hit=1";e+="&relatedposts_origin="+t.getAttribute("data-origin"),e+="&relatedposts_position="+t.getAttribute("data-position");var s=t.pathname;return"/"!==s[0]&&(s="/"+s),""===t.search?s+"?"+e:s+t.search+"&"+e},cleanupTrackedUrl:function(){if("function"==typeof history.replaceState){var t=document.location.search.replace(/\brelatedposts_[a-z]+=[0-9]*&?\b/gi,"");"?"===t&&(t=""),document.location.search!==t&&history.replaceState({},document.title,document.location.pathname+t)}}};function e(){t.setVisualExcerptHeights();var e=document.querySelectorAll("#jp-relatedposts a.jp-relatedposts-post-a");Array.prototype.forEach.call(e,(function(e){document.addEventListener("click",(function(){e.href=t.getTrackedUrl(e)}))}))}function s(){t.cleanupTrackedUrl();var s=t.getEndpointURL();if(s)if(document.querySelectorAll("#jp-relatedposts .jp-relatedposts-post").length)e();else{var a=document.querySelector("#jp-relatedposts"),o=new XMLHttpRequest;o.open("GET",s,!0),o.setRequestHeader("x-requested-with","XMLHttpRequest"),o.onreadystatechange=function(){if(this.readyState===XMLHttpRequest.DONE&&200===this.status)try{var s=JSON.parse(o.responseText);if(0===s.items.length||0===a.length)return;t.response=s;var r,p,i={};"undefined"!=typeof wp&&wp.customize?(p=wp.customize.instance("jetpack_relatedposts[show_thumbnails]").get(),i.showDate=wp.customize.instance("jetpack_relatedposts[show_date]").get(),i.showContext=wp.customize.instance("jetpack_relatedposts[show_context]").get(),i.layout=wp.customize.instance("jetpack_relatedposts[layout]").get()):(p=s.show_thumbnails,i.showDate=s.show_date,i.showContext=s.show_context,i.layout=s.layout),r=p?t.generateVisualHtml(s.items,i):t.generateMinimalHtml(s.items,i);var n=document.createElement("div");if(a.appendChild(n),n.outerHTML=r,i.showDate){var l=a.querySelectorAll(".jp-relatedposts-post-date");Array.prototype.forEach.call(l,(function(t){t.style.display="block"}))}a.style.display="block",e()}catch{}},o.send()}}function a(){"undefined"!=typeof wp&&wp.customize?(wp.customize.selectiveRefresh&&wp.customize.selectiveRefresh.bind("partial-content-rendered",(function(t){"jetpack_relatedposts"===t.partial.id&&s()})),wp.customize.bind("preview-ready",s)):s()}"loading"!==document.readyState?a():document.addEventListener("DOMContentLoaded",a)}();;
+// listen for rlt authentication events and pass them to children of this document.
+( function() {
+	var currentToken;
+	var parentOrigin;
+	var iframeOrigins;
+	var registeredIframes = [];
+	var initializationListeners = [];
+	var hasBeenInitialized = false;
+	var RLT_KEY = 'jetpack:wpcomRLT';
+
+	// should we inject RLT into this iframe?
+	function rltShouldAuthorizeIframe( frameOrigin ) {
+		if ( ! Array.isArray( iframeOrigins ) ) {
+			return false;
+		}
+		return iframeOrigins.includes( frameOrigin );
+	}
+
+	function rltInvalidateWindowToken( token, target, origin ) {
+		if ( target && typeof target.postMessage === 'function' ) {
+			try {
+				target.postMessage( JSON.stringify( {
+					type: 'rltMessage',
+					data: {
+						event: 'invalidate',
+						token: token,
+						sourceOrigin: window.location.origin,
+					},
+				} ), origin );
+			} catch ( err ) {
+				return;
+			}
+		}
+	}
+
+	/**
+	 * PUBLIC METHODS
+	 */
+	window.rltInvalidateToken = function( token, sourceOrigin ) {
+		// invalidate in current context
+		if ( token === currentToken ) {
+			currentToken = null;
+		}
+
+		// remove from localstorage, but only if in a top level window, not iframe
+		try {
+			if ( window.location === window.parent.location && window.localStorage ) {
+				if ( window.localStorage.getItem(RLT_KEY) === token ) {
+					window.localStorage.removeItem(RLT_KEY);
+				}
+			}
+		} catch( e ) {
+			console.info("localstorage access for invalidate denied - probably blocked third-party access", window.location.href);
+		}
+
+		// invalidate in registered iframes
+		for ( const [ frameOrigin, frameWindow ] of registeredIframes ) {
+			if ( frameOrigin !== sourceOrigin ) {
+				rltInvalidateWindowToken( token, frameWindow, frameOrigin );
+			}
+		}
+
+		// invalidate in parent
+		if ( parentOrigin && parentOrigin !== sourceOrigin && window.parent ) {
+			rltInvalidateWindowToken( token, window.parent, parentOrigin );
+		}
+	}
+
+	window.rltInjectToken = function( token, target, origin ) {
+		if ( target && typeof target.postMessage === 'function' ) {
+			try {
+				target.postMessage( JSON.stringify( {
+					type: 'loginMessage',
+					data: {
+						event: 'login',
+						success: true,
+						type: 'rlt',
+						token: token,
+						sourceOrigin: window.location.origin,
+					},
+				} ), origin );
+			} catch ( err ) {
+				return;
+			}
+		}
+	};
+
+	window.rltIsAuthenticated = function() {
+		return !! currentToken;
+	};
+
+	window.rltGetToken = function() {
+		return currentToken;
+	};
+
+	window.rltAddInitializationListener = function( listener ) {
+		// if RLT is already initialized, call the listener immediately
+		if ( hasBeenInitialized ) {
+			listener( currentToken );
+		} else {
+			initializationListeners.push( listener );
+		}
+	};
+
+	// store the token in localStorage
+	window.rltStoreToken = function( token ) {
+		currentToken = token;
+		try {
+			if ( window.location === window.parent.location && window.localStorage ) {
+				window.localStorage.setItem( RLT_KEY, token );
+			}
+		} catch( e ) {
+			console.info("localstorage access denied - probably blocked third-party access", window.location.href);
+		}
+	}
+
+	window.rltInitialize = function( config ) {
+		if ( ! config || typeof window.postMessage !== 'function' ) {
+			return;
+		}
+
+		currentToken  = config.token;
+		iframeOrigins = config.iframeOrigins;
+		parentOrigin  = config.parentOrigin; // needed?
+
+		// load token from localStorage if possible, but only in top level window
+		try {
+			if ( ! currentToken && window.location === window.parent.location && window.localStorage ) {
+				currentToken = window.localStorage.getItem(RLT_KEY);
+			}
+		} catch( e ) {
+			console.info("localstorage access denied - probably blocked third-party access", window.location.href);
+		}
+
+		// listen for RLT events from approved origins
+		window.addEventListener( 'message', function( e ) {
+			var message = e && e.data;
+			if ( typeof message === 'string' ) {
+				try {
+					message = JSON.parse( message );
+				} catch ( err ) {
+					return;
+				}
+			}
+
+			var type = message && message.type;
+			var data = message && message.data;
+
+			if ( type === 'loginMessage' ) {
+				if ( data && data.type === 'rlt' && data.token !== currentToken ) {
+					// put into localStorage if running in top-level window (not iframe)
+					rltStoreToken( data.token );
+
+					// send to registered iframes
+					for ( const [ frameOrigin, frameWindow ] of registeredIframes ) {
+						rltInjectToken( currentToken, frameWindow, frameOrigin );
+					}
+
+					// send to the parent, unless the event was sent _by_ the parent
+					if ( parentOrigin && parentOrigin !== data.sourceOrigin && window.parent ) {
+						rltInjectToken( currentToken, window.parent, parentOrigin );
+					}
+				}
+			}
+
+			if ( type === 'rltMessage' ) {
+				if ( data && data.event === 'invalidate' && data.token === currentToken ) {
+					rltInvalidateToken( data.token );
+				}
+
+				if ( data && data.event === 'register' ) {
+					if ( rltShouldAuthorizeIframe( e.origin ) ) {
+						registeredIframes.push( [ e.origin, e.source ] );
+						if ( currentToken ) {
+							rltInjectToken( currentToken, e.source, e.origin );
+						}
+					}
+				}
+			}
+		} );
+
+		initializationListeners.forEach( function( listener ) {
+			listener( currentToken );
+		} );
+
+		initializationListeners = [];
+
+		// inform the parent that we are ready to receive the RLT token
+		window.parent.postMessage( {
+			type: 'rltMessage',
+			data: {
+				event: 'register'
+			},
+		}, '*' );
+
+		hasBeenInitialized = true;
+	};
+} )();
+;

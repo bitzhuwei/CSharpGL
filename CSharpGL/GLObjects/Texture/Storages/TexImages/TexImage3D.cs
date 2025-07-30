@@ -3,18 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CSharpGL
-{
+namespace CSharpGL {
     /// <summary>
     /// Set up texture's content with 'glTexImage3D()'.
     /// </summary>
-    public class TexImage3D : TexStorageBase
-    {
-        internal static readonly GLDelegates.void_uint_int_uint_int_int_int_int_uint_uint_IntPtr glTexImage3D;
-        static TexImage3D()
-        {
-            glTexImage3D = GL.Instance.GetDelegateFor("glTexImage3D", GLDelegates.typeof_void_uint_int_uint_int_int_int_int_uint_uint_IntPtr) as GLDelegates.void_uint_int_uint_int_int_int_int_uint_uint_IntPtr;
-        }
+    public unsafe class TexImage3D : TexStorageBase {
+        //internal static readonly GLDelegates.void_uint_int_uint_int_int_int_int_uint_uint_IntPtr glTexImage3D;
+        //static TexImage3D() {
+        //    glTexImage3D = gl.glGetDelegateFor("glTexImage3D", GLDelegates.typeof_void_uint_int_uint_int_int_int_int_uint_uint_IntPtr) as GLDelegates.void_uint_int_uint_int_int_int_int_uint_uint_IntPtr;
+        //}
 
         private int width;
         private int height;
@@ -36,18 +33,15 @@ namespace CSharpGL
         /// <param name="dataProvider"></param>
         /// <param name="mipmapLevelCount"></param>
         /// <param name="border"></param>
-        public TexImage3D(Target target, uint internalFormat, int width, int height, int depth, uint format, uint type, LeveledDataProvider dataProvider = null, int mipmapLevelCount = 1, bool border = false)
-            : base((TextureTarget)target, internalFormat, mipmapLevelCount, border)
-        {
+        public TexImage3D(Target target, uint internalFormat, int width, int height, int depth, uint format, uint type, LeveledDataProvider? dataProvider = null, int mipmapLevelCount = 1, bool border = false)
+            : base((TextureTarget)target, internalFormat, mipmapLevelCount, border) {
             this.width = width; this.height = height; this.depth = depth;
             this.format = format;
             this.type = type;
-            if (dataProvider == null)
-            {
+            if (dataProvider == null) {
                 this.dataProvider = new LeveledDataProvider();
             }
-            else
-            {
+            else {
                 this.dataProvider = dataProvider;
             }
         }
@@ -55,14 +49,13 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        public override void Apply()
-        {
-            foreach (var item in dataProvider)
-            {
+        public override void Apply() {
+            var gl = GL.current; if (gl == null) { return; }
+            foreach (var item in dataProvider) {
                 int level = item.level;
                 IntPtr pixels = item.LockData();
 
-                glTexImage3D((uint)target, level, internalFormat, width, height, depth, border ? 1 : 0, format, type, pixels);
+                gl.glTexImage3D((GLenum)target, level, (GLint)internalFormat, width, height, depth, border ? 1 : 0, format, type, pixels);
 
                 item.FreeData();
             }
@@ -71,8 +64,7 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        public enum Target : uint
-        {
+        public enum Target : GLuint {
             /// <summary>
             /// 
             /// </summary>

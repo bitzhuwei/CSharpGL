@@ -1,0 +1,2 @@
+﻿# Blending.
+![Blending](Blending.png)

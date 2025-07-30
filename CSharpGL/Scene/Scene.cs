@@ -7,20 +7,18 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace CSharpGL
-{
+namespace CSharpGL {
     /// <summary>
     /// camera, canvas, nodes.
     /// rendering, picking.
     /// </summary>
-    [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
-    public partial class Scene
-    {
+
+    public partial class Scene {
         /// <summary>
         /// 
         /// </summary>
-        [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
-        public ICamera Camera { get; set; }
+
+        public ICamera camera;
 
         ///// <summary>
         ///// 
@@ -30,48 +28,37 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
-        public SceneNodeBase RootNode { get; set; }
 
-        private List<LightBase> lights = new List<LightBase>();
+        public SceneNodeBase? RootNode;
+
         /// <summary>
         /// All lights in the scene.
         /// </summary>
-        [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
-        public List<LightBase> Lights { get { return this.lights; } }
+
+        public readonly List<LightBase> lights = new();
 
         /// <summary>
         /// 
         /// </summary>
-        [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
-        public GLControl RootControl { get; set; }
 
-        private vec4 clearColor = Color.SkyBlue.ToVec4();
-        /// <summary>
-        /// 
-        /// </summary>
-        [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
-        public vec4 ClearColor
-        {
-            get { return clearColor; }
-            set { this.clearColor = value; }
-        }
+        public GLControl? RootControl;
+
+        public vec4 clearColor = Color.SkyBlue.ToVec4();
 
         /// <summary>
         /// Ambient color.
         /// </summary>
-        [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
-        public vec3 AmbientColor { get; set; }
+
+        public vec3 ambientColor;
 
         /// <summary>
         /// camera, canvas, nodes.
         /// rendering, picking. 
         /// </summary>
         /// <param name="camera"></param>
-        public Scene(ICamera camera)
-        {
-            this.Camera = camera;
-            this.AmbientColor = new vec3(1, 1, 1) * 0.2f;
+        public Scene(ICamera camera) {
+            this.camera = camera;
+            this.ambientColor = new vec3(1, 1, 1) * 0.2f;
         }
     }
 }

@@ -4,15 +4,13 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 
-namespace CSharpGL
-{
+namespace CSharpGL {
     //[Editor("System.Windows.Forms.Design.AnchorEditor, System.Design, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", typeof(UITypeEditor))]
     /// <summary>
     /// 指定控件如何锚定到其容器的边缘。
     /// </summary>
     [Flags]
-    public enum GUIAnchorStyles
-    {
+    public enum GUIAnchorStyles {
         /// <summary>
         /// 该控件未锚定到其容器的任何边缘。
         /// </summary>

@@ -1,0 +1,598 @@
+﻿<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/Article">
+<head>
+
+    <meta charset="utf-8">
+    <meta content="width=device-width, height=device-height, minimum-scale=1.0, initial-scale=1.0" name="viewport">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>
+        OpenGL Overview
+        - The Khronos Group Inc
+    </title>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#cc3333">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff">
+
+    <meta name="description" content="OpenGL is the most widely adopted 2D and 3D graphics API in the industry, bringing thousands of applications to a wide variety of computer platforms. It is window-system and operating-system independent as well as network-transparent.">
+    <meta itemprop="name" content="OpenGL - The Industry's Foundation for High Performance Graphics">
+    <meta itemprop="description" content="OpenGL is the most widely adopted 2D and 3D graphics API in the industry, bringing thousands of applications to a wide variety of computer platforms. It is window-system and operating-system independent as well as network-transparent.">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@thekhronosgroup">
+    <meta property="og:title" content="OpenGL - The Industry's Foundation for High Performance Graphics">
+    <meta property="og:description" content="OpenGL is the most widely adopted 2D and 3D graphics API in the industry, bringing thousands of applications to a wide variety of computer platforms. It is window-system and operating-system independent as well as network-transparent.">
+    <meta property="og:type" content="article">
+    <meta property="article:published_time" content="2011-07-19T12:47:00-07:00">
+    <meta property="article:section" content="API">
+    <meta property="article:tag" content="api,">
+    <meta property="og:url" content="https://www.khronos.org/opengl/">
+    <meta property="og:site_name" content="The Khronos Group">
+    <meta itemprop="image" content="https://www.khronos.org/assets/uploads/apis/OpenGL-Square.png">
+    <meta property="og:image" content="https://www.khronos.org/assets/uploads/apis/OpenGL-Square.png">
+    <link rel="alternate" type="application/rss+xml" title="Khronos News RSS Feed" href="https://www.khronos.org/feeds/news_feed">
+    <link rel="alternate" type="application/atom+xml" title="Khronos News RSS Feed" href="https://www.khronos.org/feeds/news_feed">
+    <link href="/assets/css/app.css?v159" rel="stylesheet">
+
+
+
+
+
+
+
+    <link rel='stylesheet' media='all' href='/themes/user/cookie_decline/css/cookie_decline.css'>
+    <script>
+function init() {
+			$('body').append('<div id="cookie_decline" role="alertdialog" aria-modal="true" aria-labelledby="cd_title" aria-describedby="cd_message"><p id="cd_title"><strong>Cookie Policy</strong></p><p id="cd_message">Cookies are in use to monitor anonymous usage of this site and give you the best possible experience. By continuing to use the site you consent to this.</p><p><a href="https://www.khronos.org/?ACT=168&amp;RET=api/index_2017/opengl" class="btn btn-sml btn-primary" role="button">Disallow cookies</a> <a href="https://www.khronos.org/?ACT=169&amp;RET=api/index_2017/opengl" class="btn btn-sml btn-primary cd_modal_close" role="button">Allow Cookies</a></div>');$('#cookie_decline').css({'bottom':'-'+$(this).height()}).animate({bottom: '20px'}, 250)}window.onload = init;</script>
+
+</head>
+<body>
+    <p class="sr-only"><a href="#khronosMainContent">Skip to main content</a></p>
+
+    <div id="backtop"></div>
+    <div class="wrapper">
+
+        <nav class="navbar khr-nav navbar-inverse">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#khronos_nav"
+                            aria-expanded="false" aria-controls="khronos_nav">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar top-bar"></span>
+                        <span class="icon-bar middle-bar"></span>
+                        <span class="icon-bar bottom-bar"></span>
+                    </button>
+                    <a href="https://www.khronos.org/" class="navbar-brand" aria-label="Khronos Group homepage">
+                        <img src="/assets/css/images/khronos-logo-2021.svg"
+                             alt="The Khronos Group: Connecting Software to Silicon">
+                    </a>
+                </div>
+
+                <div id="khronos_nav" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right nav-light">
+                        <li class="dropdown">
+                            <a href="#" data-toggle="dropdown" data-submenu role="menuItem">
+                                Developers <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="dropdown-submenu">
+                                    <a href="#">Active Standards</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="/3dcommerce">3D Commerce</a></li>
+                                        <li><a href="/anari">ANARI</a></li>
+                                        <li><a href="/collada">COLLADA</a></li>
+                                        <li><a href="/dataformat">Data Format</a></li>
+                                        <li><a href="/egl">EGL</a></li>
+                                        <li><a href="/gltf">glTF</a></li>
+                                        <li><a href="/gltf/pbr">glTF | PBR</a></li>
+                                        <li><a href="/kamaros/">Kamaros</a></li>
+                                        <li><a href="/ktx">KTX</a></li>
+                                        <li><a href="/nnef">NNEF</a></li>
+                                        <li><a href="/opencl">OpenCL</a></li>
+                                        <li><a href="/opengl">OpenGL</a></li>
+                                        <li><a href="/opengles">OpenGL ES</a></li>
+                                        <li><a href="/openglsc">OpenGL SC</a></li>
+                                        <li><a href="/openvg">OpenVG</a></li>
+                                        <li><a href="/openvx">OpenVX</a></li>
+                                        <li><a href="/openxr">OpenXR</a></li>
+                                        <li><a href="/slang">Slang</a></li>
+                                        <li><a href="/spir">SPIR</a></li>
+                                        <li><a href="/sycl">SYCL</a></li>
+                                        <li><a href="/syclsc">SYCL SC</a></li>
+                                        <li><a href="https://www.vulkan.org/">Vulkan</a></li>
+                                        <li><a href="/vulkansc">Vulkan SC</a></li>
+                                        <li><a href="/webgl">WebGL</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown-submenu">
+                                    <a href="#">Groups &amp; Forums</a>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a href="/exploratory/heterogeneous-communication/">Heterogeneous Communication</a>
+                                        </li>
+                                        <li><a href="/machine-learning">Machine Learning Forum</a></li>
+                                        <li><a href="/exploratory/">New Initiative Process</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown-submenu">
+                                    <a href="#">Inactive Standards</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="/openkcam">OpenKCAM</a></li>
+                                        <li><a href="/openkode">OpenKODE</a></li>
+                                        <li><a href="/openmax">OpenMAX</a></li>
+                                        <li><a href="/openml">OpenML</a></li>
+                                        <li><a href="/opensles">OpenSL ES</a></li>
+                                        <li><a href="/openwf">OpenWF</a></li>
+                                        <li><a href="/streaminput">StreamInput</a></li>
+                                        <li><a href="/webcl">WebCL</a></li>
+                                    </ul>
+                                </li>
+                                <li class="divider"></li>
+                                <li><a href="/registry">Registry</a></li>
+                                <li><a href="/advisors" rel="external">Advisors</a></li>
+                                <li><a href="https://github.khronos.org" rel="external">Github</a></li>
+                                <li><a href="https://community.khronos.org/" rel="external">Khronos Support Forums</a></li>
+                                <li><a href="https://discord.gg/vulkan" rel="external">Vulkan Discord</a></li>
+                                <li><a href="https://khr.io/khrdiscord" rel="external">Khronos Discord</a></li>
+                                <li class="divider"></li>
+                                <li><a href="/developers/library/">Videos &amp; Presentations</a></li>
+                                <li><a href="/developers/reference-cards/">Reference Guides</a></li>
+                                <li><a href="/developers/books/">Books</a></li>
+                                <li class="divider"></li>
+                                <li><a href="/rfp">Request for Proposals</a></li>
+                                <li><a href="/store/">Merchandise</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="/conformance" title="Conformance, Adopter and Implementer Information"
+                               data-toggle="dropdown" role="menuItem">Conformance <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/conformance/adopters/">Become an Adopter</a></li>
+                                <li><a href="/conformance/adopters/conformant-companies">API Adopters List</a></li>
+                                <li><a href="/conformance/adopters/conformant-products">Conformant Products</a></li>
+                                <li>
+                                    <a href="/conformance/adopters/file-format-adopter-program">File Format Adopter Program</a>
+                                </li>
+                                <li><a href="/conformance/adopters/file-format-adopters">File Format Adopters</a></li>
+                                <li><a href="/legal/khronos-trademark-guidelines">Trademark Guidelines</a></li>
+                                <li><a href="/members/ip-framework" title="">IP Framework Briefing</a></li>
+                                <li class="divider"></li>
+                                <li><a href="/conformance/adopters/login"><b>Adopter Login</b></a></li>
+                                <li class="divider"></li>
+                                <li><a href="/3dcommerce/certificants/">3D Commerce Certification</a></li>
+                                <li><a href="/3dcommerce/certificants/certified-viewers">Certified Viewers</a></li>
+                                <li class="divider"></li>
+                                <li><a href="/3dcommerce/certificants/login/"><b>Certificant Login</b></a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="/members" title="Membership information" data-toggle="dropdown" role="menuItem">
+                                Membership <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/members/">Join the Khronos Group</a></li>
+                                <li><a href="/members/list">Khronos Members</a></li>
+                                <li><a href="/members/liaisons">Khronos Liaisons</a></li>
+                                <li><a href="/members/ip-framework">IP Framework</a></li>
+                                <li class="divider"></li>
+                                <li><a href="/members/signup"><b>Create an account</b></a></li>
+                                <li><a href="https://members.khronos.org/"><b>Member Login</b></a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="/news/" title="Technology related news and events" data-toggle="dropdown"
+                               role="menuItem">News &amp; Events<b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/news/">Newsroom</a></li>
+                                <li><a href="/news/press">Press Releases</a></li>
+                                <li><a href="/blog/">Khronos Blog</a></li>
+                                <li><a href="/news/subscribe/">Newsletter</a></li>
+                                <li class="divider"></li>
+                                <li><a href="/events/">Events</a></li>
+                                <li><a href="/marketing/">Marketing with Khronos</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="/about/" title="Learn about the Khronos Group" data-toggle="dropdown" role="menuItem">
+                                About<b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/about/">Overview</a></li>
+                                <li><a href="/about/contact/">Contact Us</a></li>
+                                <li><a href="/logos">Logo Packs</a></li>
+                                <li><a href="/about/directors/">Directors &amp; Officers</a></li>
+                                <li><a href="/about/working-group-officers/">Working Group Officers</a></li>
+                                <li><a href="/about/deib/">Diversity at Khronos</a></li>
+                                <li><a href="/about/code-of-conduct">Code of Conduct</a></li>
+                                <li><a href="/about/technical-support/">Technical Support</a></li>
+                                <li><a href="/about/khronie-awards">Khronie Awards</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="https://members.khronos.org/" title="Account Login" aria-label="Account Login"
+                               role="menuItem">
+                                <i class="fa-regular fa-user hidden-xs"></i> <span class="visible-xs">
+                                    Member
+                                    Login
+                                </span>
+                            </a>
+                        </li>
+                        <li class="dropdown navbar_megamenu">
+                            <a href="#" id="search_dropdown" data-toggle="dropdown"
+                               role="menuItem" aria-haspopup="true" aria-expanded="false" aria-label="Access search field">
+                                <i class="fa fa-search hidden-xs" aria-hidden="true"></i> <span class="visible-xs">Search</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="text-center">
+                                    <form id="searchbox_017055583490642512057:_ak1bpok_no" action="/search/">
+                                        <div class="input-group">
+                                            <input type="hidden" name="cx" value="017055583490642512057:_ak1bpok_no">
+                                            <input type="hidden" name="cof" value="FORID:9">
+                                            <input name="q" type="text" class="form-control" placeholder="Search"
+                                                   aria-label="Search Query">
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-primary" type="submit"
+                                                        aria-label="Start website search">
+                                                    <i class="fa fa-search"
+                                                       aria-hidden="true"></i><span class="sr-only">Search</span>
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </form>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div id="khronosMainContent" role="main">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <div>
+                <section class="container">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h2>The Industry's Foundation for High Performance Graphics</h2>
+                            <p>OpenGL® is the most widely adopted 2D and 3D graphics API in the industry, bringing thousands of applications to a wide variety of computer platforms. It is window-system and operating-system independent as well as network-transparent. OpenGL enables developers of software for PC, workstation, and supercomputing hardware to create high-performance, visually compelling graphics software applications, in markets such as CAD, content creation, energy, entertainment, game development, manufacturing, medical, and virtual reality. OpenGL exposes all the features of the latest graphics hardware.</p>
+                            <h3>OpenGL 4.6 at a glance</h3>
+
+                            <p>The OpenGL 4.6 and OpenGL Shading Language 4.60 Specifications were released on July 31, 2017.</p>
+
+                            <p>New features of OpenGL 4.6 include:</p>
+
+                            <ul>
+                                <li>
+                                    <a href="https://www.khronos.org/registry/OpenGL/extensions/ARB/ARB_gl_spirv.txt"><em>GL_ARB_gl_spirv</em></a> and <a href="https://www.khronos.org/registry/OpenGL/extensions/ARB/ARB_spirv_extensions.txt"><em>GL_ARB_spirv_extensions</em></a>
+                                    to standardize SPIR-V support for OpenGL
+                                </li>
+                                <li>
+                                    <a href="https://www.khronos.org/registry/OpenGL/extensions/ARB/ARB_indirect_parameters.txt"><em>GL_ARB_indirect_parameters</em></a> and <a href="https://www.khronos.org/registry/OpenGL/extensions/ARB/ARB_shader_draw_parameters.txt"><em>GL_ARB_shader_draw_parameters</em></a>
+                                    for reducing the CPU overhead associated with rendering batches of geometry
+                                </li>
+                                <li>
+                                    <a href="https://www.khronos.org/registry/OpenGL/extensions/ARB/ARB_pipeline_statistics_query.txt"><em>GL_ARB_pipeline_statistics_query</em></a> and <a href="https://www.khronos.org/registry/OpenGL/extensions/ARB/ARB_transform_feedback_overflow_query.txt"><em>GL_ARB_transform_feedback_overflow_query</em></a>
+                                    standardize OpenGL support for features available in Direct3D
+                                </li>
+                                <li>
+                                    <a href="https://www.khronos.org/registry/OpenGL/extensions/ARB/ARB_texture_filter_anisotropic.txt"><em>GL_ARB_texture_filter_anisotropic</em></a>
+                                    (based on <a href="https://www.khronos.org/registry/OpenGL/extensions/EXT/EXT_texture_filter_anisotropic.txt">GL_EXT_texture_filter_anisotropic</a>) brings previously IP encumbered functionality into OpenGL to improve the visual quality of textured scenes
+                                </li>
+                                <li>
+                                    <a href="https://www.khronos.org/registry/OpenGL/extensions/ARB/ARB_polygon_offset_clamp.txt"><em>GL_ARB_polygon_offset_clamp</em></a>
+                                    (based on <a href="https://www.khronos.org/registry/OpenGL/extensions/EXT/EXT_polygon_offset_clamp.txt">GL_EXT_polygon_offset_clamp</a>) suppresses a common visual artifact known as a “light leak” associated with rendering shadows
+                                </li>
+                                <li>
+                                    <a href="https://www.khronos.org/registry/OpenGL/extensions/ARB/ARB_shader_atomic_counter_ops.txt"><em>GL_ARB_shader_atomic_counter_ops</em></a> and <a href="https://www.khronos.org/registry/OpenGL/extensions/ARB/ARB_shader_group_vote.txt"><em>GL_ARB_shader_group_vote</em></a>
+                                    add shader intrinsics supported by all desktop vendors to improve functionality and performance
+                                </li>
+                                <li>
+                                    <a href="https://www.khronos.org/registry/OpenGL/extensions/KHR/KHR_no_error.txt"><em>GL_KHR_no_error</em></a>
+                                    reduces driver overhead by allowing the application to indicate that it expects error-free operation so errors need not be generated
+                                </li>
+                            </ul>
+
+                            <p>New extensions to OpenGL 4.6 include:</p>
+
+                            <ul>
+                                <li><a href="https://www.khronos.org/registry/OpenGL/extensions/KHR/KHR_parallel_shader_compile.txt">GL_KHR_parallel_shader_compile</a></li>
+                                <li><a href="https://www.khronos.org/registry/OpenGL/extensions/ARB/ARB_create_context_no_error.txt">WGL_ARB_create_context_no_error</a></li>
+                                <li><a href="https://www.khronos.org/registry/OpenGL/extensions/ARB/ARB_create_context_no_error.txt">GLX_ARB_create_context_no_error</a></li>
+                                <li><a href="https://www.khronos.org/registry/OpenGL/extensions/EXT/EXT_external_objects.txt">GL_EXT_memory_object</a></li>
+                                <li><a href="https://www.khronos.org/registry/OpenGL/extensions/EXT/EXT_external_objects_fd.txt">GL_EXT_memory_object_fd</a></li>
+                                <li><a href="https://www.khronos.org/registry/OpenGL/extensions/EXT/EXT_external_objects_win32.txt">GL_EXT_memory_object_win32</a></li>
+                                <li><a href="https://www.khronos.org/registry/OpenGL/extensions/EXT/EXT_external_objects.txt">GL_EXT_semaphore</a></li>
+                                <li><a href="https://www.khronos.org/registry/OpenGL/extensions/EXT/EXT_external_objects_fd.txt">GL_EXT_semaphore_fd</a></li>
+                                <li><a href="https://www.khronos.org/registry/OpenGL/extensions/EXT/EXT_external_objects_win32.txt">GL_EXT_semaphore_win32</a></li>
+                                <li><a href="https://www.khronos.org/registry/OpenGL/extensions/EXT/EXT_win32_keyed_mutex.txt">GL_EXT_win32_keyed_mutex</a></li>
+                            </ul>
+
+                            <h3>API &amp; GLSL specifications</h3>
+
+                            <ul>
+                                <li><a href="https://www.khronos.org/registry/OpenGL/specs/gl/glspec46.core.pdf">OpenGL 4.6 Core Profile Specification</a></li>
+                                <li><a href="https://www.khronos.org/registry/OpenGL/specs/gl/glspec46.compatibility.pdf">OpenGL 4.6 Compatibility Profile Specification</a></li>
+                                <li><a href="https://www.khronos.org/registry/OpenGL/specs/gl/GLSLangSpec.4.60.pdf">OpenGL Shading Language 4.60 Specification</a></li>
+                            </ul>
+
+                            <h3>Additional Links</h3>
+
+                            <p>Specifications and documentation for the OpenGL API and OpenGL Shading Language, as well as related APIs such as GLX, are available from <a href="https://www.opengl.org/">OpenGL.org</a>:</p>
+
+                            <ul>
+                                <li><a href="https://www.khronos.org/registry/OpenGL/index_gl.php">OpenGL Registry</a></li>
+                                <li><a href="https://www.khronos.org/registry/OpenGL-Refpages">OpenGL Libraries, Tools, etc. (formerly "SDK")</a></li>
+                                <li><a href="https://www.khronos.org/registry/OpenGL-Refpages/gl4/">OpenGL Reference Pages</a></li>
+                                <li><a href="https://www.khronos.org/developers/reference-cards/">OpenGL Reference Cards</a></li>
+                                <li><a href="https://www.khronos.org/opengl/wiki">OpenGL Resources</a></li>
+                            </ul>
+
+
+                        </div>
+                    </div>
+                </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <section class="pageband pageband-blue">
+                    <h2 class="sr-only">Khronos Standard Additional links and information</h2>
+                    <div class="container">
+
+
+
+
+
+
+
+
+                        <div class="row">
+                            <article class="col-sm-4">
+                                <div>
+                                    <h2>Related Discussions</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                    <ul>
+
+                                        <li><a class="read_more" href="https://community.khronos.org/" rel="external">Visit Community Forums</a></li>
+                                        <li><a href="https://khr.io/khrdiscord">Visit Khronos Discord</a></li>
+                                        <li><a href="https://discord.gg/vulkan">Visit Vulkan Discord</a></li>
+
+                                    </ul>
+                                </div>
+                            </article>
+
+                            <article class="col-sm-4">
+                                <div>
+                                    <h2>Related News</h2>
+                                    <ul>
+                                    </ul>
+                                    <ul><li><a class="read_more" href="https://www.khronos.org/news/archives">More news</a></li></ul>
+                                </div>
+                            </article>
+
+                            <article class="col-sm-4">
+                                <div>
+                                    <h2>Related Press</h2>
+                                    <ul>
+                                    </ul>
+                                    <ul><li><a class="read_more" href="https://www.khronos.org/news/press">More Press Releases</a></li></ul>
+                                </div>
+                            </article>
+                        </div>
+
+
+
+
+                    </div>
+                </section>
+
+            </div>
+
+        </div>
+
+        <footer id="khronosFooter" class="footer">
+            <div class="container">
+                <p class="sr-only">Page footer starts here. <a href="#backtop">Return to main content</a></p>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-4 footer_branding">
+                        <figure><a href="https://www.khronos.org/"><img src="/assets/css/images/khronos-logo-inverted.svg" alt="Khronos Logo"></a></figure>
+                        <p>
+                            9450 SW Gemini Drive #45043<br>
+                            Beaverton, OR 97008-6018 USA<br>
+                            Office: +1 (415) 869-8627
+                        </p>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-8 footer_details">
+                        <div class="row">
+                            <div class="col-xs-12 col-md-5">
+                                <a href="http://eepurl.com/Xh4Q" class="btn btn-blue-dark text-uppercase">sign up for our newsletter</a>
+                            </div>
+                            <div class="col-xs-12 col-md-7" style="margin-top: 0;">
+                                <ul class="social_links list-unstyled social_icons">
+                                    <li>
+                                        <a rel="me" href="https://x.com/thekhronosgroup" aria-label="Khronos X Account">
+                                            <i class="fa-brands fa-2x fa-x-twitter" aria-hidden="true"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a rel="me" href="https://fosstodon.org/@thekhronosgroup" aria-label="Khronos Mastodon Account">
+                                            <i class="fa-brands fa-2x fa-mastodon" aria-hidden="true"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="https://khr.io/khrdiscord" aria-label="Khronos Discord Server">
+                                            <i class="fa-brands fa-2x fa-discord" aria-hidden="true"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.khronos.org/marketing/social-media/wechat" aria-label="Khronos WeChat">
+                                            <i class="fa-brands fa-2x fa-weixin" aria-hidden="true"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.youtube.com/user/khronosgroup" aria-label="Khronos YouTube Channel">
+                                            <i class="fa-brands fa-2x fa-youtube" aria-hidden="true"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.flickr.com/photos/khronos/" aria-label="Khronos Flickr page">
+                                            <i class="fa-brands fa-2x fa-flickr" aria-hidden="true"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.linkedin.com/groups?gid=121429" aria-label="Khronos LinkedIn Profile">
+                                            <i class="fa-brands fa-2x fa-linkedin" aria-hidden="true"></i>
+                                        </a>
+                                    </li>
+                                    <li class="hidden-xs">
+                                        <a href="https://www.khronos.org/feeds/" aria-label="Khronos News Feed page">
+                                            <i class="fa-solid fa-2x fa-rss" aria-hidden="true"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-md-6">
+                                <ul class="list-unstyled footer-policy">
+                                    <li>
+                                        <a href="https://www.khronos.org/about/diversity-and-inclusion/" rel="nofollow">
+                                            Diversity &amp;
+                                            Inclusion
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.khronos.org/legal/" rel="nofollow">Legal Notices</a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.khronos.org/legal/privacy" rel="nofollow">Privacy Policy</a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.khronos.org/about/code-of-conduct" rel="nofollow">Code of Conduct</a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.khronos.org/legal/trademarks/">Trademark Usage</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-xs-12 col-md-6 language">
+                                <div style="display: inline-block;">Language</div>
+                                :
+
+                                <a class="btn btn-sm btn-blue-dark" href="https://www.khronos.org/"
+                                   aria-label="Visit Khronos English Website">EN</a>
+                                <a class="btn btn-sm btn-blue-dark" href="https://cn.khronos.org/"
+                                   aria-label="Visit Khronos Chinese Website">CN</a>
+                                <a class="btn btn-sm btn-blue-dark" href="https://jp.khronos.org/"
+                                   aria-label="Visit Khronos Japanese Website">JP</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="copyright">&copy; The Khronos<sup>®</sup> Group Inc. 2024. All rights reserved. Hosting provided by <a href="https://www.digitalocean.com/?refcode=645028c23608&utm_campaign=Referral_Invite&utm_medium=Referral_Program&utm_source=link" style="text-decoration:underline;" aria-label="Hosted by Digital Ocean">DigitalOcean</a></div>
+                <div class="trademark">Khronos® and Vulkan® are registered trademarks, and ANARI™, WebGL™, glTF™, KTX™, NNEF™, OpenVX™, SPIR™, SPIR-V™, SYCL™, OpenVG™, Karamos™ and 3D Commerce™ are trademarks of The Khronos Group Inc. OpenXR™ is a trademark owned by The Khronos Group Inc. and is registered as a trademark in China, the European Union, Japan and the United Kingdom. OpenCL™ is a trademark of Apple Inc. and OpenGL® is a registered trademark and the OpenGL ES™ and OpenGL SC™ logos are trademarks of Hewlett Packard Enterprise used under license by Khronos. All other product names, trademarks, and/or company names are used solely for identification and belong to their respective owners.</div>
+            </div>
+        </footer>
+
+    </div>
+
+    <a class="scroll_to top_button" href="#backtop" aria-label="Scroll to top of current page"><i class="khricon fa-solid fa-2x fa-arrow-up"></i></a>
+    <script src="/assets/js/app.js?v14"></script>
+
+
+    <script>$(".member_logos img").each(function () {$(this).lazyload();});</script>
+
+
+    <div style="display: none;" aria-hidden="true"><a style="color:white" href="https://www.khronos.org/assets/utilities/holder.php">devilish</a></div>
+
+</body>
+</html>

@@ -1,0 +1,142 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net8.0-windows</TargetFramework>
+		<Nullable>enable</Nullable>
+		<UseWindowsForms>true</UseWindowsForms>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <None Remove="glGuide7code\aaindex.c" />
+	  <None Remove="glGuide7code\aaindex.cs_" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\CSharpGL.Windows\CSharpGL.Windows.csproj" />
+		<ProjectReference Include="..\CSharpGL\CSharpGL.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Update="FormDump.cs">
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Update="FormInstance.cs">
+		  <SubType>Form</SubType>
+		</Compile>
+		<Compile Update="FormGLGuide7.cs">
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Update="WindowsGLCanvas.cs">
+			<SubType>UserControl</SubType>
+		</Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Using Include="System.UInt32">
+			<Alias>GLenum</Alias>
+		</Using>
+		<Using Include="System.Boolean">
+			<Alias>GLboolean</Alias>
+		</Using>
+		<Using Include="System.UInt32">
+			<Alias>GLbitfield</Alias>
+		</Using>
+		<Using Include="System.SByte">
+			<Alias>GLbyte</Alias>
+		</Using>
+		<Using Include="System.Byte">
+			<Alias>GLubyte</Alias>
+		</Using>
+		<Using Include="System.Int16">
+			<Alias>GLshort</Alias>
+		</Using>
+		<Using Include="System.UInt16">
+			<Alias>GLushort</Alias>
+		</Using>
+		<Using Include="System.UInt16">
+			<Alias>GLhalfNV</Alias>
+		</Using>
+		<Using Include="System.Int32">
+			<Alias>GLint</Alias>
+		</Using>
+		<Using Include="System.UInt32">
+			<Alias>GLuint</Alias>
+		</Using>
+		<Using Include="System.Int32">
+			<Alias>GLclampx</Alias>
+		</Using>
+		<Using Include="System.Single">
+			<Alias>GLfloat</Alias>
+		</Using>
+		<Using Include="System.Single">
+			<Alias>GLclampf</Alias>
+		</Using>
+		<Using Include="System.Double">
+			<Alias>GLdouble</Alias>
+		</Using>
+		<Using Include="System.Double">
+			<Alias>GLclampd</Alias>
+		</Using>
+		<Using Include="System.IntPtr">
+			<Alias>GLeglClientBufferEXT</Alias>
+		</Using>
+		<Using Include="System.IntPtr">
+			<Alias>GLeglImageOES</Alias>
+		</Using>
+		<Using Include="System.IntPtr">
+			<Alias>GLvdpauSurfaceNV</Alias>
+		</Using>
+		<Using Include="System.Char">
+			<Alias>GLchar</Alias>
+		</Using>
+		<Using Include="System.Char">
+			<Alias>GLcharARB</Alias>
+		</Using>
+		<Using Include="System.UInt32">
+			<Alias>GLhandleARB</Alias>
+		</Using>
+		<Using Include="System.UInt16">
+			<Alias>GLhalf</Alias>
+		</Using>
+		<Using Include="System.UInt16">
+			<Alias>GLhalfARB</Alias>
+		</Using>
+		<Using Include="System.Int32">
+			<Alias>GLfixed</Alias>
+		</Using>
+		<Using Include="System.IntPtr">
+			<Alias>GLintptr</Alias>
+		</Using>
+		<Using Include="System.IntPtr">
+			<Alias>GLintptrARB</Alias>
+		</Using>
+		<Using Include="System.IntPtr">
+			<Alias>GLsync</Alias>
+		</Using>
+		<Using Include="System.Int32">
+			<Alias>GLsizei</Alias>
+		</Using>
+		<Using Include="System.Int32">
+			<Alias>GLsizeiptr</Alias>
+		</Using>
+		<Using Include="System.Int32">
+			<Alias>GLsizeiptrARB</Alias>
+		</Using>
+		<Using Include="System.Int64">
+			<Alias>GLint64</Alias>
+		</Using>
+		<Using Include="System.Int64">
+			<Alias>GLint64EXT</Alias>
+		</Using>
+		<Using Include="System.UInt64">
+			<Alias>GLuint64</Alias>
+		</Using>
+		<Using Include="System.UInt64">
+			<Alias>GLuint64EXT</Alias>
+		</Using>
+	</ItemGroup>
+
+</Project>

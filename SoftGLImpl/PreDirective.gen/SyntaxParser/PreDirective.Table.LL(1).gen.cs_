@@ -1,0 +1,775 @@
+using System;
+using bitzhuwei.Compiler;
+
+namespace bitzhuwei.PreDirectiveFormat {
+    partial class CompilerPreDirective {
+        // const int VnCount = 29;
+        // NOTE: choose only one from CompilerPreDirective.TableLL(1).cs, CompilerPreDirective.TableLR(0).cs, CompilerPreDirective.TableSLR(1).cs, CompilerPreDirective.TableLALR(1).cs, CompilerPreDirective.TableLR(1).cs
+        /// <summary>
+        /// LL(1) syntax parse table
+        /// </summary>
+        private static readonly Dictionary<string/*Vn*/, Dictionary<string/*Vt*/, Regulation>> LL1SyntaxParseTable = new Dictionary<string/*Vn*/, Dictionary<string/*Vt*/, Regulation>>();
+        /// <summary>
+        /// <see cref="Token"/> list to syntax tree(<see cref="Node"/>).
+        /// </summary>
+        private readonly LLSyntaxParser syntaxParser = new LLSyntaxParser(
+            st.PreDirective, LL1SyntaxParseTable,
+            new Token() { type = st.@终, value = "[EOT]" });
+
+        private static void InitializeSyntaxStates() {
+            var table = CompilerPreDirective.LL1SyntaxParseTable;
+            // 497 actions. 255 conflicts.
+            { // table[0]
+                var line = new Dictionary<string, Regulation>();
+                line.Add(st.@Pound符define, regulations[0]);/*Actions[0]*/
+                line.Add(st.@Pound符undef, regulations[0]);/*Actions[1]*/
+                line.Add(st.@Pound符elif, regulations[1]);/*Actions[2]*/
+                line.Add(st.@Pound符else, regulations[1]);/*Actions[3]*/
+                line.Add(st.@Pound符endif, regulations[1]);/*Actions[4]*/
+                line.Add(st.@Pound符if, regulations[1]);/*Actions[5]*/
+                line.Add(st.@Pound符ifdef, regulations[1]);/*Actions[6]*/
+                line.Add(st.@Pound符ifndef, regulations[1]);/*Actions[7]*/
+                line.Add(st.@Pound符error, regulations[2]);/*Actions[8]*/
+                line.Add(st.@Pound符pragma, regulations[3]);/*Actions[9]*/
+                line.Add(st.@Pound符extension, regulations[4]);/*Actions[10]*/
+                line.Add(st.@Pound符version, regulations[5]);/*Actions[11]*/
+                line.Add(st.@Pound符line, regulations[6]);/*Actions[12]*/
+                table.Add(st.PreDirective枝, line);
+            }
+            { // table[1]
+                var line = new Dictionary<string, Regulation>();
+                //'#define' repeated 3 times
+                line.Add(st.@Pound符define, regulations[7]);/*Actions[13]*/
+                line.Add(st.@Pound符define, regulations[8]);/*Actions[14]*/
+                line.Add(st.@Pound符define, regulations[9]);/*Actions[15]*/
+                line.Add(st.@Pound符undef, regulations[10]);/*Actions[16]*/
+                table.Add(st.MicroDefinition枝, line);
+            }
+            { // table[2]
+                var line = new Dictionary<string, Regulation>();
+                //'identifier' repeated 2 times
+                line.Add(st.@identifier, regulations[11]);/*Actions[17]*/
+                line.Add(st.@identifier, regulations[12]);/*Actions[18]*/
+                table.Add(st.ParameterList枝, line);
+            }
+            { // table[3]
+                var line = new Dictionary<string, Regulation>();
+                //'--' repeated 3 times
+                //'-' repeated 3 times
+                //'-=' repeated 3 times
+                //',' repeated 3 times
+                //';' repeated 3 times
+                //':' repeated 3 times
+                //'!' repeated 3 times
+                //'!=' repeated 3 times
+                //'?' repeated 3 times
+                //'.' repeated 3 times
+                //'(' repeated 3 times
+                //')' repeated 3 times
+                //'[' repeated 3 times
+                //']' repeated 3 times
+                //'{' repeated 3 times
+                //'}' repeated 3 times
+                //'*' repeated 3 times
+                //'*=' repeated 3 times
+                //'/' repeated 3 times
+                //'/=' repeated 3 times
+                //'&' repeated 3 times
+                //'&&' repeated 3 times
+                //'&=' repeated 3 times
+                //'##' repeated 3 times
+                //'%' repeated 3 times
+                //'%=' repeated 3 times
+                //'^' repeated 3 times
+                //'^^' repeated 3 times
+                //'^=' repeated 3 times
+                //'+' repeated 3 times
+                //'++' repeated 3 times
+                //'+=' repeated 3 times
+                //'<' repeated 3 times
+                //'<<' repeated 3 times
+                //'<<=' repeated 3 times
+                //'<=' repeated 3 times
+                //'=' repeated 3 times
+                //'==' repeated 3 times
+                //'>' repeated 3 times
+                //'>=' repeated 3 times
+                //'>>' repeated 3 times
+                //'>>=' repeated 3 times
+                //'|' repeated 3 times
+                //'|=' repeated 3 times
+                //'||' repeated 3 times
+                //'~' repeated 3 times
+                //'boolConstant' repeated 3 times
+                //'doubleConstant' repeated 3 times
+                //'floatConstant' repeated 3 times
+                //'identifier' repeated 3 times
+                //'intConstant' repeated 3 times
+                //'uintConstant' repeated 3 times
+                line.Add(st.@Dash符Dash符, regulations[13]);/*Actions[19]*/
+                line.Add(st.@Dash符Dash符, regulations[14]);/*Actions[20]*/
+                line.Add(st.@Dash符Dash符, regulations[15]);/*Actions[21]*/
+                line.Add(st.@Dash符, regulations[13]);/*Actions[22]*/
+                line.Add(st.@Dash符, regulations[14]);/*Actions[23]*/
+                line.Add(st.@Dash符, regulations[15]);/*Actions[24]*/
+                line.Add(st.@Dash符Equal符, regulations[13]);/*Actions[25]*/
+                line.Add(st.@Dash符Equal符, regulations[14]);/*Actions[26]*/
+                line.Add(st.@Dash符Equal符, regulations[15]);/*Actions[27]*/
+                line.Add(st.@Comma符, regulations[13]);/*Actions[28]*/
+                line.Add(st.@Comma符, regulations[14]);/*Actions[29]*/
+                line.Add(st.@Comma符, regulations[15]);/*Actions[30]*/
+                line.Add(st.@Semicolon符, regulations[13]);/*Actions[31]*/
+                line.Add(st.@Semicolon符, regulations[14]);/*Actions[32]*/
+                line.Add(st.@Semicolon符, regulations[15]);/*Actions[33]*/
+                line.Add(st.@Colon符, regulations[13]);/*Actions[34]*/
+                line.Add(st.@Colon符, regulations[14]);/*Actions[35]*/
+                line.Add(st.@Colon符, regulations[15]);/*Actions[36]*/
+                line.Add(st.@Bang符, regulations[13]);/*Actions[37]*/
+                line.Add(st.@Bang符, regulations[14]);/*Actions[38]*/
+                line.Add(st.@Bang符, regulations[15]);/*Actions[39]*/
+                line.Add(st.@Bang符Equal符, regulations[13]);/*Actions[40]*/
+                line.Add(st.@Bang符Equal符, regulations[14]);/*Actions[41]*/
+                line.Add(st.@Bang符Equal符, regulations[15]);/*Actions[42]*/
+                line.Add(st.@Question符, regulations[13]);/*Actions[43]*/
+                line.Add(st.@Question符, regulations[14]);/*Actions[44]*/
+                line.Add(st.@Question符, regulations[15]);/*Actions[45]*/
+                line.Add(st.@Dot符, regulations[13]);/*Actions[46]*/
+                line.Add(st.@Dot符, regulations[14]);/*Actions[47]*/
+                line.Add(st.@Dot符, regulations[15]);/*Actions[48]*/
+                line.Add(st.@LeftParenthesis符, regulations[13]);/*Actions[49]*/
+                line.Add(st.@LeftParenthesis符, regulations[14]);/*Actions[50]*/
+                line.Add(st.@LeftParenthesis符, regulations[15]);/*Actions[51]*/
+                line.Add(st.@RightParenthesis符, regulations[13]);/*Actions[52]*/
+                line.Add(st.@RightParenthesis符, regulations[14]);/*Actions[53]*/
+                line.Add(st.@RightParenthesis符, regulations[15]);/*Actions[54]*/
+                line.Add(st.@LeftBracket符, regulations[13]);/*Actions[55]*/
+                line.Add(st.@LeftBracket符, regulations[14]);/*Actions[56]*/
+                line.Add(st.@LeftBracket符, regulations[15]);/*Actions[57]*/
+                line.Add(st.@RightBracket符, regulations[13]);/*Actions[58]*/
+                line.Add(st.@RightBracket符, regulations[14]);/*Actions[59]*/
+                line.Add(st.@RightBracket符, regulations[15]);/*Actions[60]*/
+                line.Add(st.@LeftBrace符, regulations[13]);/*Actions[61]*/
+                line.Add(st.@LeftBrace符, regulations[14]);/*Actions[62]*/
+                line.Add(st.@LeftBrace符, regulations[15]);/*Actions[63]*/
+                line.Add(st.@RightBrace符, regulations[13]);/*Actions[64]*/
+                line.Add(st.@RightBrace符, regulations[14]);/*Actions[65]*/
+                line.Add(st.@RightBrace符, regulations[15]);/*Actions[66]*/
+                line.Add(st.@Asterisk符, regulations[13]);/*Actions[67]*/
+                line.Add(st.@Asterisk符, regulations[14]);/*Actions[68]*/
+                line.Add(st.@Asterisk符, regulations[15]);/*Actions[69]*/
+                line.Add(st.@Asterisk符Equal符, regulations[13]);/*Actions[70]*/
+                line.Add(st.@Asterisk符Equal符, regulations[14]);/*Actions[71]*/
+                line.Add(st.@Asterisk符Equal符, regulations[15]);/*Actions[72]*/
+                line.Add(st.@Slash符, regulations[13]);/*Actions[73]*/
+                line.Add(st.@Slash符, regulations[14]);/*Actions[74]*/
+                line.Add(st.@Slash符, regulations[15]);/*Actions[75]*/
+                line.Add(st.@Slash符Equal符, regulations[13]);/*Actions[76]*/
+                line.Add(st.@Slash符Equal符, regulations[14]);/*Actions[77]*/
+                line.Add(st.@Slash符Equal符, regulations[15]);/*Actions[78]*/
+                line.Add(st.@And符, regulations[13]);/*Actions[79]*/
+                line.Add(st.@And符, regulations[14]);/*Actions[80]*/
+                line.Add(st.@And符, regulations[15]);/*Actions[81]*/
+                line.Add(st.@And符And符, regulations[13]);/*Actions[82]*/
+                line.Add(st.@And符And符, regulations[14]);/*Actions[83]*/
+                line.Add(st.@And符And符, regulations[15]);/*Actions[84]*/
+                line.Add(st.@And符Equal符, regulations[13]);/*Actions[85]*/
+                line.Add(st.@And符Equal符, regulations[14]);/*Actions[86]*/
+                line.Add(st.@And符Equal符, regulations[15]);/*Actions[87]*/
+                line.Add(st.@Pound符Pound符, regulations[13]);/*Actions[88]*/
+                line.Add(st.@Pound符Pound符, regulations[14]);/*Actions[89]*/
+                line.Add(st.@Pound符Pound符, regulations[15]);/*Actions[90]*/
+                line.Add(st.@Percent符, regulations[13]);/*Actions[91]*/
+                line.Add(st.@Percent符, regulations[14]);/*Actions[92]*/
+                line.Add(st.@Percent符, regulations[15]);/*Actions[93]*/
+                line.Add(st.@Percent符Equal符, regulations[13]);/*Actions[94]*/
+                line.Add(st.@Percent符Equal符, regulations[14]);/*Actions[95]*/
+                line.Add(st.@Percent符Equal符, regulations[15]);/*Actions[96]*/
+                line.Add(st.@Caret符, regulations[13]);/*Actions[97]*/
+                line.Add(st.@Caret符, regulations[14]);/*Actions[98]*/
+                line.Add(st.@Caret符, regulations[15]);/*Actions[99]*/
+                line.Add(st.@Caret符Caret符, regulations[13]);/*Actions[100]*/
+                line.Add(st.@Caret符Caret符, regulations[14]);/*Actions[101]*/
+                line.Add(st.@Caret符Caret符, regulations[15]);/*Actions[102]*/
+                line.Add(st.@Caret符Equal符, regulations[13]);/*Actions[103]*/
+                line.Add(st.@Caret符Equal符, regulations[14]);/*Actions[104]*/
+                line.Add(st.@Caret符Equal符, regulations[15]);/*Actions[105]*/
+                line.Add(st.@Plus符, regulations[13]);/*Actions[106]*/
+                line.Add(st.@Plus符, regulations[14]);/*Actions[107]*/
+                line.Add(st.@Plus符, regulations[15]);/*Actions[108]*/
+                line.Add(st.@Plus符Plus符, regulations[13]);/*Actions[109]*/
+                line.Add(st.@Plus符Plus符, regulations[14]);/*Actions[110]*/
+                line.Add(st.@Plus符Plus符, regulations[15]);/*Actions[111]*/
+                line.Add(st.@Plus符Equal符, regulations[13]);/*Actions[112]*/
+                line.Add(st.@Plus符Equal符, regulations[14]);/*Actions[113]*/
+                line.Add(st.@Plus符Equal符, regulations[15]);/*Actions[114]*/
+                line.Add(st.@LeftAngle符, regulations[13]);/*Actions[115]*/
+                line.Add(st.@LeftAngle符, regulations[14]);/*Actions[116]*/
+                line.Add(st.@LeftAngle符, regulations[15]);/*Actions[117]*/
+                line.Add(st.@LeftAngle符LeftAngle符, regulations[13]);/*Actions[118]*/
+                line.Add(st.@LeftAngle符LeftAngle符, regulations[14]);/*Actions[119]*/
+                line.Add(st.@LeftAngle符LeftAngle符, regulations[15]);/*Actions[120]*/
+                line.Add(st.@LeftAngle符LeftAngle符Equal符, regulations[13]);/*Actions[121]*/
+                line.Add(st.@LeftAngle符LeftAngle符Equal符, regulations[14]);/*Actions[122]*/
+                line.Add(st.@LeftAngle符LeftAngle符Equal符, regulations[15]);/*Actions[123]*/
+                line.Add(st.@LeftAngle符Equal符, regulations[13]);/*Actions[124]*/
+                line.Add(st.@LeftAngle符Equal符, regulations[14]);/*Actions[125]*/
+                line.Add(st.@LeftAngle符Equal符, regulations[15]);/*Actions[126]*/
+                line.Add(st.@Equal符, regulations[13]);/*Actions[127]*/
+                line.Add(st.@Equal符, regulations[14]);/*Actions[128]*/
+                line.Add(st.@Equal符, regulations[15]);/*Actions[129]*/
+                line.Add(st.@Equal符Equal符, regulations[13]);/*Actions[130]*/
+                line.Add(st.@Equal符Equal符, regulations[14]);/*Actions[131]*/
+                line.Add(st.@Equal符Equal符, regulations[15]);/*Actions[132]*/
+                line.Add(st.@RightAngle符, regulations[13]);/*Actions[133]*/
+                line.Add(st.@RightAngle符, regulations[14]);/*Actions[134]*/
+                line.Add(st.@RightAngle符, regulations[15]);/*Actions[135]*/
+                line.Add(st.@RightAngle符Equal符, regulations[13]);/*Actions[136]*/
+                line.Add(st.@RightAngle符Equal符, regulations[14]);/*Actions[137]*/
+                line.Add(st.@RightAngle符Equal符, regulations[15]);/*Actions[138]*/
+                line.Add(st.@RightAngle符RightAngle符, regulations[13]);/*Actions[139]*/
+                line.Add(st.@RightAngle符RightAngle符, regulations[14]);/*Actions[140]*/
+                line.Add(st.@RightAngle符RightAngle符, regulations[15]);/*Actions[141]*/
+                line.Add(st.@RightAngle符RightAngle符Equal符, regulations[13]);/*Actions[142]*/
+                line.Add(st.@RightAngle符RightAngle符Equal符, regulations[14]);/*Actions[143]*/
+                line.Add(st.@RightAngle符RightAngle符Equal符, regulations[15]);/*Actions[144]*/
+                line.Add(st.@Pipe符, regulations[13]);/*Actions[145]*/
+                line.Add(st.@Pipe符, regulations[14]);/*Actions[146]*/
+                line.Add(st.@Pipe符, regulations[15]);/*Actions[147]*/
+                line.Add(st.@Pipe符Equal符, regulations[13]);/*Actions[148]*/
+                line.Add(st.@Pipe符Equal符, regulations[14]);/*Actions[149]*/
+                line.Add(st.@Pipe符Equal符, regulations[15]);/*Actions[150]*/
+                line.Add(st.@Pipe符Pipe符, regulations[13]);/*Actions[151]*/
+                line.Add(st.@Pipe符Pipe符, regulations[14]);/*Actions[152]*/
+                line.Add(st.@Pipe符Pipe符, regulations[15]);/*Actions[153]*/
+                line.Add(st.@Tilde符, regulations[13]);/*Actions[154]*/
+                line.Add(st.@Tilde符, regulations[14]);/*Actions[155]*/
+                line.Add(st.@Tilde符, regulations[15]);/*Actions[156]*/
+                line.Add(st.@boolConstant, regulations[13]);/*Actions[157]*/
+                line.Add(st.@boolConstant, regulations[14]);/*Actions[158]*/
+                line.Add(st.@boolConstant, regulations[15]);/*Actions[159]*/
+                line.Add(st.@doubleConstant, regulations[13]);/*Actions[160]*/
+                line.Add(st.@doubleConstant, regulations[14]);/*Actions[161]*/
+                line.Add(st.@doubleConstant, regulations[15]);/*Actions[162]*/
+                line.Add(st.@floatConstant, regulations[13]);/*Actions[163]*/
+                line.Add(st.@floatConstant, regulations[14]);/*Actions[164]*/
+                line.Add(st.@floatConstant, regulations[15]);/*Actions[165]*/
+                line.Add(st.@identifier, regulations[13]);/*Actions[166]*/
+                line.Add(st.@identifier, regulations[14]);/*Actions[167]*/
+                line.Add(st.@identifier, regulations[15]);/*Actions[168]*/
+                line.Add(st.@intConstant, regulations[13]);/*Actions[169]*/
+                line.Add(st.@intConstant, regulations[14]);/*Actions[170]*/
+                line.Add(st.@intConstant, regulations[15]);/*Actions[171]*/
+                line.Add(st.@uintConstant, regulations[13]);/*Actions[172]*/
+                line.Add(st.@uintConstant, regulations[14]);/*Actions[173]*/
+                line.Add(st.@uintConstant, regulations[15]);/*Actions[174]*/
+                line.Add(st.@终, regulations[15]);/*Actions[175]*/
+                table.Add(st.RandomTokens枝, line);
+            }
+            { // table[4]
+                var line = new Dictionary<string, Regulation>();
+                line.Add(st.@identifier, regulations[16]);/*Actions[176]*/
+                line.Add(st.@intConstant, regulations[17]);/*Actions[177]*/
+                line.Add(st.@uintConstant, regulations[18]);/*Actions[178]*/
+                line.Add(st.@floatConstant, regulations[19]);/*Actions[179]*/
+                line.Add(st.@boolConstant, regulations[20]);/*Actions[180]*/
+                line.Add(st.@doubleConstant, regulations[21]);/*Actions[181]*/
+                line.Add(st.@Semicolon符, regulations[22]);/*Actions[182]*/
+                line.Add(st.@LeftParenthesis符, regulations[23]);/*Actions[183]*/
+                line.Add(st.@RightParenthesis符, regulations[24]);/*Actions[184]*/
+                line.Add(st.@LeftBracket符, regulations[25]);/*Actions[185]*/
+                line.Add(st.@RightBracket符, regulations[26]);/*Actions[186]*/
+                line.Add(st.@Dot符, regulations[27]);/*Actions[187]*/
+                line.Add(st.@Plus符Plus符, regulations[28]);/*Actions[188]*/
+                line.Add(st.@Dash符Dash符, regulations[29]);/*Actions[189]*/
+                line.Add(st.@Comma符, regulations[30]);/*Actions[190]*/
+                line.Add(st.@Plus符, regulations[31]);/*Actions[191]*/
+                line.Add(st.@Dash符, regulations[32]);/*Actions[192]*/
+                line.Add(st.@Bang符, regulations[33]);/*Actions[193]*/
+                line.Add(st.@Tilde符, regulations[34]);/*Actions[194]*/
+                line.Add(st.@Asterisk符, regulations[35]);/*Actions[195]*/
+                line.Add(st.@Slash符, regulations[36]);/*Actions[196]*/
+                line.Add(st.@Percent符, regulations[37]);/*Actions[197]*/
+                line.Add(st.@LeftAngle符LeftAngle符, regulations[38]);/*Actions[198]*/
+                line.Add(st.@RightAngle符RightAngle符, regulations[39]);/*Actions[199]*/
+                line.Add(st.@LeftAngle符, regulations[40]);/*Actions[200]*/
+                line.Add(st.@RightAngle符, regulations[41]);/*Actions[201]*/
+                line.Add(st.@LeftAngle符Equal符, regulations[42]);/*Actions[202]*/
+                line.Add(st.@RightAngle符Equal符, regulations[43]);/*Actions[203]*/
+                line.Add(st.@Equal符Equal符, regulations[44]);/*Actions[204]*/
+                line.Add(st.@Bang符Equal符, regulations[45]);/*Actions[205]*/
+                line.Add(st.@And符, regulations[46]);/*Actions[206]*/
+                line.Add(st.@Caret符, regulations[47]);/*Actions[207]*/
+                line.Add(st.@Pipe符, regulations[48]);/*Actions[208]*/
+                line.Add(st.@And符And符, regulations[49]);/*Actions[209]*/
+                line.Add(st.@Caret符Caret符, regulations[50]);/*Actions[210]*/
+                line.Add(st.@Pipe符Pipe符, regulations[51]);/*Actions[211]*/
+                line.Add(st.@Question符, regulations[52]);/*Actions[212]*/
+                line.Add(st.@Colon符, regulations[53]);/*Actions[213]*/
+                line.Add(st.@Equal符, regulations[54]);/*Actions[214]*/
+                line.Add(st.@Asterisk符Equal符, regulations[55]);/*Actions[215]*/
+                line.Add(st.@Slash符Equal符, regulations[56]);/*Actions[216]*/
+                line.Add(st.@Percent符Equal符, regulations[57]);/*Actions[217]*/
+                line.Add(st.@Plus符Equal符, regulations[58]);/*Actions[218]*/
+                line.Add(st.@Dash符Equal符, regulations[59]);/*Actions[219]*/
+                line.Add(st.@LeftAngle符LeftAngle符Equal符, regulations[60]);/*Actions[220]*/
+                line.Add(st.@RightAngle符RightAngle符Equal符, regulations[61]);/*Actions[221]*/
+                line.Add(st.@And符Equal符, regulations[62]);/*Actions[222]*/
+                line.Add(st.@Caret符Equal符, regulations[63]);/*Actions[223]*/
+                line.Add(st.@Pipe符Equal符, regulations[64]);/*Actions[224]*/
+                line.Add(st.@LeftBrace符, regulations[65]);/*Actions[225]*/
+                line.Add(st.@RightBrace符, regulations[66]);/*Actions[226]*/
+                line.Add(st.@Pound符Pound符, regulations[67]);/*Actions[227]*/
+                table.Add(st.RandomToken枝, line);
+            }
+            { // table[5]
+                var line = new Dictionary<string, Regulation>();
+                line.Add(st.@Pound符if, regulations[68]);/*Actions[228]*/
+                line.Add(st.@Pound符ifdef, regulations[68]);/*Actions[229]*/
+                line.Add(st.@Pound符ifndef, regulations[68]);/*Actions[230]*/
+                line.Add(st.@Pound符else, regulations[69]);/*Actions[231]*/
+                line.Add(st.@Pound符elif, regulations[70]);/*Actions[232]*/
+                line.Add(st.@Pound符endif, regulations[71]);/*Actions[233]*/
+                table.Add(st.ConditionalCompilation枝, line);
+            }
+            { // table[6]
+                var line = new Dictionary<string, Regulation>();
+                line.Add(st.@Pound符if, regulations[72]);/*Actions[234]*/
+                line.Add(st.@Pound符ifdef, regulations[73]);/*Actions[235]*/
+                line.Add(st.@Pound符ifndef, regulations[74]);/*Actions[236]*/
+                table.Add(st.IfGroup枝, line);
+            }
+            { // table[7]
+                var line = new Dictionary<string, Regulation>();
+                line.Add(st.@Pound符else, regulations[75]);/*Actions[237]*/
+                table.Add(st.ElseGroup枝, line);
+            }
+            { // table[8]
+                var line = new Dictionary<string, Regulation>();
+                line.Add(st.@Pound符elif, regulations[76]);/*Actions[238]*/
+                table.Add(st.ElifGroup枝, line);
+            }
+            { // table[9]
+                var line = new Dictionary<string, Regulation>();
+                line.Add(st.@Pound符endif, regulations[77]);/*Actions[239]*/
+                table.Add(st.EndifGroup枝, line);
+            }
+            { // table[10]
+                var line = new Dictionary<string, Regulation>();
+                line.Add(st.@Pound符error, regulations[78]);/*Actions[240]*/
+                table.Add(st.ErrorDirective枝, line);
+            }
+            { // table[11]
+                var line = new Dictionary<string, Regulation>();
+                //'#pragma' repeated 3 times
+                line.Add(st.@Pound符pragma, regulations[79]);/*Actions[241]*/
+                line.Add(st.@Pound符pragma, regulations[80]);/*Actions[242]*/
+                line.Add(st.@Pound符pragma, regulations[81]);/*Actions[243]*/
+                table.Add(st.PragmaDirective枝, line);
+            }
+            { // table[12]
+                var line = new Dictionary<string, Regulation>();
+                line.Add(st.@Pound符extension, regulations[82]);/*Actions[244]*/
+                table.Add(st.ExtensionDirective枝, line);
+            }
+            { // table[13]
+                var line = new Dictionary<string, Regulation>();
+                //'#version' repeated 2 times
+                line.Add(st.@Pound符version, regulations[83]);/*Actions[245]*/
+                line.Add(st.@Pound符version, regulations[84]);/*Actions[246]*/
+                table.Add(st.VersionDirective枝, line);
+            }
+            { // table[14]
+                var line = new Dictionary<string, Regulation>();
+                //'#line' repeated 2 times
+                line.Add(st.@Pound符line, regulations[85]);/*Actions[247]*/
+                line.Add(st.@Pound符line, regulations[86]);/*Actions[248]*/
+                table.Add(st.LineDirective枝, line);
+            }
+            { // table[15]
+                var line = new Dictionary<string, Regulation>();
+                line.Add(st.@Dash符, regulations[87]);/*Actions[249]*/
+                line.Add(st.@Bang符, regulations[87]);/*Actions[250]*/
+                line.Add(st.@LeftParenthesis符, regulations[87]);/*Actions[251]*/
+                line.Add(st.@Plus符, regulations[87]);/*Actions[252]*/
+                line.Add(st.@Tilde符, regulations[87]);/*Actions[253]*/
+                line.Add(st.@defined, regulations[87]);/*Actions[254]*/
+                line.Add(st.@identifier, regulations[87]);/*Actions[255]*/
+                line.Add(st.@number, regulations[87]);/*Actions[256]*/
+                table.Add(st.ConstExp枝, line);
+            }
+            { // table[16]
+                var line = new Dictionary<string, Regulation>();
+                //'-' repeated 2 times
+                //'!' repeated 2 times
+                //'(' repeated 2 times
+                //'+' repeated 2 times
+                //'~' repeated 2 times
+                //'defined' repeated 2 times
+                //'identifier' repeated 2 times
+                //'number' repeated 2 times
+                line.Add(st.@Dash符, regulations[88]);/*Actions[257]*/
+                line.Add(st.@Dash符, regulations[89]);/*Actions[258]*/
+                line.Add(st.@Bang符, regulations[88]);/*Actions[259]*/
+                line.Add(st.@Bang符, regulations[89]);/*Actions[260]*/
+                line.Add(st.@LeftParenthesis符, regulations[88]);/*Actions[261]*/
+                line.Add(st.@LeftParenthesis符, regulations[89]);/*Actions[262]*/
+                line.Add(st.@Plus符, regulations[88]);/*Actions[263]*/
+                line.Add(st.@Plus符, regulations[89]);/*Actions[264]*/
+                line.Add(st.@Tilde符, regulations[88]);/*Actions[265]*/
+                line.Add(st.@Tilde符, regulations[89]);/*Actions[266]*/
+                line.Add(st.@defined, regulations[88]);/*Actions[267]*/
+                line.Add(st.@defined, regulations[89]);/*Actions[268]*/
+                line.Add(st.@identifier, regulations[88]);/*Actions[269]*/
+                line.Add(st.@identifier, regulations[89]);/*Actions[270]*/
+                line.Add(st.@number, regulations[88]);/*Actions[271]*/
+                line.Add(st.@number, regulations[89]);/*Actions[272]*/
+                table.Add(st.OrOrExp枝, line);
+            }
+            { // table[17]
+                var line = new Dictionary<string, Regulation>();
+                //'-' repeated 2 times
+                //'!' repeated 2 times
+                //'(' repeated 2 times
+                //'+' repeated 2 times
+                //'~' repeated 2 times
+                //'defined' repeated 2 times
+                //'identifier' repeated 2 times
+                //'number' repeated 2 times
+                line.Add(st.@Dash符, regulations[90]);/*Actions[273]*/
+                line.Add(st.@Dash符, regulations[91]);/*Actions[274]*/
+                line.Add(st.@Bang符, regulations[90]);/*Actions[275]*/
+                line.Add(st.@Bang符, regulations[91]);/*Actions[276]*/
+                line.Add(st.@LeftParenthesis符, regulations[90]);/*Actions[277]*/
+                line.Add(st.@LeftParenthesis符, regulations[91]);/*Actions[278]*/
+                line.Add(st.@Plus符, regulations[90]);/*Actions[279]*/
+                line.Add(st.@Plus符, regulations[91]);/*Actions[280]*/
+                line.Add(st.@Tilde符, regulations[90]);/*Actions[281]*/
+                line.Add(st.@Tilde符, regulations[91]);/*Actions[282]*/
+                line.Add(st.@defined, regulations[90]);/*Actions[283]*/
+                line.Add(st.@defined, regulations[91]);/*Actions[284]*/
+                line.Add(st.@identifier, regulations[90]);/*Actions[285]*/
+                line.Add(st.@identifier, regulations[91]);/*Actions[286]*/
+                line.Add(st.@number, regulations[90]);/*Actions[287]*/
+                line.Add(st.@number, regulations[91]);/*Actions[288]*/
+                table.Add(st.AndAndExp枝, line);
+            }
+            { // table[18]
+                var line = new Dictionary<string, Regulation>();
+                //'-' repeated 2 times
+                //'!' repeated 2 times
+                //'(' repeated 2 times
+                //'+' repeated 2 times
+                //'~' repeated 2 times
+                //'defined' repeated 2 times
+                //'identifier' repeated 2 times
+                //'number' repeated 2 times
+                line.Add(st.@Dash符, regulations[92]);/*Actions[289]*/
+                line.Add(st.@Dash符, regulations[93]);/*Actions[290]*/
+                line.Add(st.@Bang符, regulations[92]);/*Actions[291]*/
+                line.Add(st.@Bang符, regulations[93]);/*Actions[292]*/
+                line.Add(st.@LeftParenthesis符, regulations[92]);/*Actions[293]*/
+                line.Add(st.@LeftParenthesis符, regulations[93]);/*Actions[294]*/
+                line.Add(st.@Plus符, regulations[92]);/*Actions[295]*/
+                line.Add(st.@Plus符, regulations[93]);/*Actions[296]*/
+                line.Add(st.@Tilde符, regulations[92]);/*Actions[297]*/
+                line.Add(st.@Tilde符, regulations[93]);/*Actions[298]*/
+                line.Add(st.@defined, regulations[92]);/*Actions[299]*/
+                line.Add(st.@defined, regulations[93]);/*Actions[300]*/
+                line.Add(st.@identifier, regulations[92]);/*Actions[301]*/
+                line.Add(st.@identifier, regulations[93]);/*Actions[302]*/
+                line.Add(st.@number, regulations[92]);/*Actions[303]*/
+                line.Add(st.@number, regulations[93]);/*Actions[304]*/
+                table.Add(st.OrExp枝, line);
+            }
+            { // table[19]
+                var line = new Dictionary<string, Regulation>();
+                //'-' repeated 2 times
+                //'!' repeated 2 times
+                //'(' repeated 2 times
+                //'+' repeated 2 times
+                //'~' repeated 2 times
+                //'defined' repeated 2 times
+                //'identifier' repeated 2 times
+                //'number' repeated 2 times
+                line.Add(st.@Dash符, regulations[94]);/*Actions[305]*/
+                line.Add(st.@Dash符, regulations[95]);/*Actions[306]*/
+                line.Add(st.@Bang符, regulations[94]);/*Actions[307]*/
+                line.Add(st.@Bang符, regulations[95]);/*Actions[308]*/
+                line.Add(st.@LeftParenthesis符, regulations[94]);/*Actions[309]*/
+                line.Add(st.@LeftParenthesis符, regulations[95]);/*Actions[310]*/
+                line.Add(st.@Plus符, regulations[94]);/*Actions[311]*/
+                line.Add(st.@Plus符, regulations[95]);/*Actions[312]*/
+                line.Add(st.@Tilde符, regulations[94]);/*Actions[313]*/
+                line.Add(st.@Tilde符, regulations[95]);/*Actions[314]*/
+                line.Add(st.@defined, regulations[94]);/*Actions[315]*/
+                line.Add(st.@defined, regulations[95]);/*Actions[316]*/
+                line.Add(st.@identifier, regulations[94]);/*Actions[317]*/
+                line.Add(st.@identifier, regulations[95]);/*Actions[318]*/
+                line.Add(st.@number, regulations[94]);/*Actions[319]*/
+                line.Add(st.@number, regulations[95]);/*Actions[320]*/
+                table.Add(st.XorExp枝, line);
+            }
+            { // table[20]
+                var line = new Dictionary<string, Regulation>();
+                //'-' repeated 2 times
+                //'!' repeated 2 times
+                //'(' repeated 2 times
+                //'+' repeated 2 times
+                //'~' repeated 2 times
+                //'defined' repeated 2 times
+                //'identifier' repeated 2 times
+                //'number' repeated 2 times
+                line.Add(st.@Dash符, regulations[96]);/*Actions[321]*/
+                line.Add(st.@Dash符, regulations[97]);/*Actions[322]*/
+                line.Add(st.@Bang符, regulations[96]);/*Actions[323]*/
+                line.Add(st.@Bang符, regulations[97]);/*Actions[324]*/
+                line.Add(st.@LeftParenthesis符, regulations[96]);/*Actions[325]*/
+                line.Add(st.@LeftParenthesis符, regulations[97]);/*Actions[326]*/
+                line.Add(st.@Plus符, regulations[96]);/*Actions[327]*/
+                line.Add(st.@Plus符, regulations[97]);/*Actions[328]*/
+                line.Add(st.@Tilde符, regulations[96]);/*Actions[329]*/
+                line.Add(st.@Tilde符, regulations[97]);/*Actions[330]*/
+                line.Add(st.@defined, regulations[96]);/*Actions[331]*/
+                line.Add(st.@defined, regulations[97]);/*Actions[332]*/
+                line.Add(st.@identifier, regulations[96]);/*Actions[333]*/
+                line.Add(st.@identifier, regulations[97]);/*Actions[334]*/
+                line.Add(st.@number, regulations[96]);/*Actions[335]*/
+                line.Add(st.@number, regulations[97]);/*Actions[336]*/
+                table.Add(st.AndExp枝, line);
+            }
+            { // table[21]
+                var line = new Dictionary<string, Regulation>();
+                //'-' repeated 3 times
+                //'!' repeated 3 times
+                //'(' repeated 3 times
+                //'+' repeated 3 times
+                //'~' repeated 3 times
+                //'defined' repeated 3 times
+                //'identifier' repeated 3 times
+                //'number' repeated 3 times
+                line.Add(st.@Dash符, regulations[98]);/*Actions[337]*/
+                line.Add(st.@Dash符, regulations[99]);/*Actions[338]*/
+                line.Add(st.@Dash符, regulations[100]);/*Actions[339]*/
+                line.Add(st.@Bang符, regulations[98]);/*Actions[340]*/
+                line.Add(st.@Bang符, regulations[99]);/*Actions[341]*/
+                line.Add(st.@Bang符, regulations[100]);/*Actions[342]*/
+                line.Add(st.@LeftParenthesis符, regulations[98]);/*Actions[343]*/
+                line.Add(st.@LeftParenthesis符, regulations[99]);/*Actions[344]*/
+                line.Add(st.@LeftParenthesis符, regulations[100]);/*Actions[345]*/
+                line.Add(st.@Plus符, regulations[98]);/*Actions[346]*/
+                line.Add(st.@Plus符, regulations[99]);/*Actions[347]*/
+                line.Add(st.@Plus符, regulations[100]);/*Actions[348]*/
+                line.Add(st.@Tilde符, regulations[98]);/*Actions[349]*/
+                line.Add(st.@Tilde符, regulations[99]);/*Actions[350]*/
+                line.Add(st.@Tilde符, regulations[100]);/*Actions[351]*/
+                line.Add(st.@defined, regulations[98]);/*Actions[352]*/
+                line.Add(st.@defined, regulations[99]);/*Actions[353]*/
+                line.Add(st.@defined, regulations[100]);/*Actions[354]*/
+                line.Add(st.@identifier, regulations[98]);/*Actions[355]*/
+                line.Add(st.@identifier, regulations[99]);/*Actions[356]*/
+                line.Add(st.@identifier, regulations[100]);/*Actions[357]*/
+                line.Add(st.@number, regulations[98]);/*Actions[358]*/
+                line.Add(st.@number, regulations[99]);/*Actions[359]*/
+                line.Add(st.@number, regulations[100]);/*Actions[360]*/
+                table.Add(st.EqualExp枝, line);
+            }
+            { // table[22]
+                var line = new Dictionary<string, Regulation>();
+                //'-' repeated 5 times
+                //'!' repeated 5 times
+                //'(' repeated 5 times
+                //'+' repeated 5 times
+                //'~' repeated 5 times
+                //'defined' repeated 5 times
+                //'identifier' repeated 5 times
+                //'number' repeated 5 times
+                line.Add(st.@Dash符, regulations[101]);/*Actions[361]*/
+                line.Add(st.@Dash符, regulations[102]);/*Actions[362]*/
+                line.Add(st.@Dash符, regulations[103]);/*Actions[363]*/
+                line.Add(st.@Dash符, regulations[104]);/*Actions[364]*/
+                line.Add(st.@Dash符, regulations[105]);/*Actions[365]*/
+                line.Add(st.@Bang符, regulations[101]);/*Actions[366]*/
+                line.Add(st.@Bang符, regulations[102]);/*Actions[367]*/
+                line.Add(st.@Bang符, regulations[103]);/*Actions[368]*/
+                line.Add(st.@Bang符, regulations[104]);/*Actions[369]*/
+                line.Add(st.@Bang符, regulations[105]);/*Actions[370]*/
+                line.Add(st.@LeftParenthesis符, regulations[101]);/*Actions[371]*/
+                line.Add(st.@LeftParenthesis符, regulations[102]);/*Actions[372]*/
+                line.Add(st.@LeftParenthesis符, regulations[103]);/*Actions[373]*/
+                line.Add(st.@LeftParenthesis符, regulations[104]);/*Actions[374]*/
+                line.Add(st.@LeftParenthesis符, regulations[105]);/*Actions[375]*/
+                line.Add(st.@Plus符, regulations[101]);/*Actions[376]*/
+                line.Add(st.@Plus符, regulations[102]);/*Actions[377]*/
+                line.Add(st.@Plus符, regulations[103]);/*Actions[378]*/
+                line.Add(st.@Plus符, regulations[104]);/*Actions[379]*/
+                line.Add(st.@Plus符, regulations[105]);/*Actions[380]*/
+                line.Add(st.@Tilde符, regulations[101]);/*Actions[381]*/
+                line.Add(st.@Tilde符, regulations[102]);/*Actions[382]*/
+                line.Add(st.@Tilde符, regulations[103]);/*Actions[383]*/
+                line.Add(st.@Tilde符, regulations[104]);/*Actions[384]*/
+                line.Add(st.@Tilde符, regulations[105]);/*Actions[385]*/
+                line.Add(st.@defined, regulations[101]);/*Actions[386]*/
+                line.Add(st.@defined, regulations[102]);/*Actions[387]*/
+                line.Add(st.@defined, regulations[103]);/*Actions[388]*/
+                line.Add(st.@defined, regulations[104]);/*Actions[389]*/
+                line.Add(st.@defined, regulations[105]);/*Actions[390]*/
+                line.Add(st.@identifier, regulations[101]);/*Actions[391]*/
+                line.Add(st.@identifier, regulations[102]);/*Actions[392]*/
+                line.Add(st.@identifier, regulations[103]);/*Actions[393]*/
+                line.Add(st.@identifier, regulations[104]);/*Actions[394]*/
+                line.Add(st.@identifier, regulations[105]);/*Actions[395]*/
+                line.Add(st.@number, regulations[101]);/*Actions[396]*/
+                line.Add(st.@number, regulations[102]);/*Actions[397]*/
+                line.Add(st.@number, regulations[103]);/*Actions[398]*/
+                line.Add(st.@number, regulations[104]);/*Actions[399]*/
+                line.Add(st.@number, regulations[105]);/*Actions[400]*/
+                table.Add(st.RelationExp枝, line);
+            }
+            { // table[23]
+                var line = new Dictionary<string, Regulation>();
+                //'-' repeated 3 times
+                //'!' repeated 3 times
+                //'(' repeated 3 times
+                //'+' repeated 3 times
+                //'~' repeated 3 times
+                //'defined' repeated 3 times
+                //'identifier' repeated 3 times
+                //'number' repeated 3 times
+                line.Add(st.@Dash符, regulations[106]);/*Actions[401]*/
+                line.Add(st.@Dash符, regulations[107]);/*Actions[402]*/
+                line.Add(st.@Dash符, regulations[108]);/*Actions[403]*/
+                line.Add(st.@Bang符, regulations[106]);/*Actions[404]*/
+                line.Add(st.@Bang符, regulations[107]);/*Actions[405]*/
+                line.Add(st.@Bang符, regulations[108]);/*Actions[406]*/
+                line.Add(st.@LeftParenthesis符, regulations[106]);/*Actions[407]*/
+                line.Add(st.@LeftParenthesis符, regulations[107]);/*Actions[408]*/
+                line.Add(st.@LeftParenthesis符, regulations[108]);/*Actions[409]*/
+                line.Add(st.@Plus符, regulations[106]);/*Actions[410]*/
+                line.Add(st.@Plus符, regulations[107]);/*Actions[411]*/
+                line.Add(st.@Plus符, regulations[108]);/*Actions[412]*/
+                line.Add(st.@Tilde符, regulations[106]);/*Actions[413]*/
+                line.Add(st.@Tilde符, regulations[107]);/*Actions[414]*/
+                line.Add(st.@Tilde符, regulations[108]);/*Actions[415]*/
+                line.Add(st.@defined, regulations[106]);/*Actions[416]*/
+                line.Add(st.@defined, regulations[107]);/*Actions[417]*/
+                line.Add(st.@defined, regulations[108]);/*Actions[418]*/
+                line.Add(st.@identifier, regulations[106]);/*Actions[419]*/
+                line.Add(st.@identifier, regulations[107]);/*Actions[420]*/
+                line.Add(st.@identifier, regulations[108]);/*Actions[421]*/
+                line.Add(st.@number, regulations[106]);/*Actions[422]*/
+                line.Add(st.@number, regulations[107]);/*Actions[423]*/
+                line.Add(st.@number, regulations[108]);/*Actions[424]*/
+                table.Add(st.ShiftExp枝, line);
+            }
+            { // table[24]
+                var line = new Dictionary<string, Regulation>();
+                //'-' repeated 3 times
+                //'!' repeated 3 times
+                //'(' repeated 3 times
+                //'+' repeated 3 times
+                //'~' repeated 3 times
+                //'defined' repeated 3 times
+                //'identifier' repeated 3 times
+                //'number' repeated 3 times
+                line.Add(st.@Dash符, regulations[109]);/*Actions[425]*/
+                line.Add(st.@Dash符, regulations[110]);/*Actions[426]*/
+                line.Add(st.@Dash符, regulations[111]);/*Actions[427]*/
+                line.Add(st.@Bang符, regulations[109]);/*Actions[428]*/
+                line.Add(st.@Bang符, regulations[110]);/*Actions[429]*/
+                line.Add(st.@Bang符, regulations[111]);/*Actions[430]*/
+                line.Add(st.@LeftParenthesis符, regulations[109]);/*Actions[431]*/
+                line.Add(st.@LeftParenthesis符, regulations[110]);/*Actions[432]*/
+                line.Add(st.@LeftParenthesis符, regulations[111]);/*Actions[433]*/
+                line.Add(st.@Plus符, regulations[109]);/*Actions[434]*/
+                line.Add(st.@Plus符, regulations[110]);/*Actions[435]*/
+                line.Add(st.@Plus符, regulations[111]);/*Actions[436]*/
+                line.Add(st.@Tilde符, regulations[109]);/*Actions[437]*/
+                line.Add(st.@Tilde符, regulations[110]);/*Actions[438]*/
+                line.Add(st.@Tilde符, regulations[111]);/*Actions[439]*/
+                line.Add(st.@defined, regulations[109]);/*Actions[440]*/
+                line.Add(st.@defined, regulations[110]);/*Actions[441]*/
+                line.Add(st.@defined, regulations[111]);/*Actions[442]*/
+                line.Add(st.@identifier, regulations[109]);/*Actions[443]*/
+                line.Add(st.@identifier, regulations[110]);/*Actions[444]*/
+                line.Add(st.@identifier, regulations[111]);/*Actions[445]*/
+                line.Add(st.@number, regulations[109]);/*Actions[446]*/
+                line.Add(st.@number, regulations[110]);/*Actions[447]*/
+                line.Add(st.@number, regulations[111]);/*Actions[448]*/
+                table.Add(st.AddExp枝, line);
+            }
+            { // table[25]
+                var line = new Dictionary<string, Regulation>();
+                //'-' repeated 4 times
+                //'!' repeated 4 times
+                //'(' repeated 4 times
+                //'+' repeated 4 times
+                //'~' repeated 4 times
+                //'defined' repeated 4 times
+                //'identifier' repeated 4 times
+                //'number' repeated 4 times
+                line.Add(st.@Dash符, regulations[112]);/*Actions[449]*/
+                line.Add(st.@Dash符, regulations[113]);/*Actions[450]*/
+                line.Add(st.@Dash符, regulations[114]);/*Actions[451]*/
+                line.Add(st.@Dash符, regulations[115]);/*Actions[452]*/
+                line.Add(st.@Bang符, regulations[112]);/*Actions[453]*/
+                line.Add(st.@Bang符, regulations[113]);/*Actions[454]*/
+                line.Add(st.@Bang符, regulations[114]);/*Actions[455]*/
+                line.Add(st.@Bang符, regulations[115]);/*Actions[456]*/
+                line.Add(st.@LeftParenthesis符, regulations[112]);/*Actions[457]*/
+                line.Add(st.@LeftParenthesis符, regulations[113]);/*Actions[458]*/
+                line.Add(st.@LeftParenthesis符, regulations[114]);/*Actions[459]*/
+                line.Add(st.@LeftParenthesis符, regulations[115]);/*Actions[460]*/
+                line.Add(st.@Plus符, regulations[112]);/*Actions[461]*/
+                line.Add(st.@Plus符, regulations[113]);/*Actions[462]*/
+                line.Add(st.@Plus符, regulations[114]);/*Actions[463]*/
+                line.Add(st.@Plus符, regulations[115]);/*Actions[464]*/
+                line.Add(st.@Tilde符, regulations[112]);/*Actions[465]*/
+                line.Add(st.@Tilde符, regulations[113]);/*Actions[466]*/
+                line.Add(st.@Tilde符, regulations[114]);/*Actions[467]*/
+                line.Add(st.@Tilde符, regulations[115]);/*Actions[468]*/
+                line.Add(st.@defined, regulations[112]);/*Actions[469]*/
+                line.Add(st.@defined, regulations[113]);/*Actions[470]*/
+                line.Add(st.@defined, regulations[114]);/*Actions[471]*/
+                line.Add(st.@defined, regulations[115]);/*Actions[472]*/
+                line.Add(st.@identifier, regulations[112]);/*Actions[473]*/
+                line.Add(st.@identifier, regulations[113]);/*Actions[474]*/
+                line.Add(st.@identifier, regulations[114]);/*Actions[475]*/
+                line.Add(st.@identifier, regulations[115]);/*Actions[476]*/
+                line.Add(st.@number, regulations[112]);/*Actions[477]*/
+                line.Add(st.@number, regulations[113]);/*Actions[478]*/
+                line.Add(st.@number, regulations[114]);/*Actions[479]*/
+                line.Add(st.@number, regulations[115]);/*Actions[480]*/
+                table.Add(st.MultiExp枝, line);
+            }
+            { // table[26]
+                var line = new Dictionary<string, Regulation>();
+                line.Add(st.@LeftParenthesis符, regulations[116]);/*Actions[481]*/
+                line.Add(st.@identifier, regulations[116]);/*Actions[482]*/
+                line.Add(st.@number, regulations[116]);/*Actions[483]*/
+                line.Add(st.@Dash符, regulations[117]);/*Actions[484]*/
+                line.Add(st.@Bang符, regulations[117]);/*Actions[485]*/
+                line.Add(st.@Plus符, regulations[117]);/*Actions[486]*/
+                line.Add(st.@Tilde符, regulations[117]);/*Actions[487]*/
+                line.Add(st.@defined, regulations[117]);/*Actions[488]*/
+                table.Add(st.UnaryExp枝, line);
+            }
+            { // table[27]
+                var line = new Dictionary<string, Regulation>();
+                line.Add(st.@defined, regulations[118]);/*Actions[489]*/
+                line.Add(st.@Plus符, regulations[119]);/*Actions[490]*/
+                line.Add(st.@Dash符, regulations[120]);/*Actions[491]*/
+                line.Add(st.@Tilde符, regulations[121]);/*Actions[492]*/
+                line.Add(st.@Bang符, regulations[122]);/*Actions[493]*/
+                table.Add(st.UnaryOp枝, line);
+            }
+            { // table[28]
+                var line = new Dictionary<string, Regulation>();
+                line.Add(st.@number, regulations[123]);/*Actions[494]*/
+                line.Add(st.@identifier, regulations[124]);/*Actions[495]*/
+                line.Add(st.@LeftParenthesis符, regulations[125]);/*Actions[496]*/
+                table.Add(st.PrimaryExp枝, line);
+            }
+
+        }
+    }
+}

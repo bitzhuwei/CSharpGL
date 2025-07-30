@@ -1,0 +1,27 @@
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Reflection.Emit;
+using System.Text;
+using System.Threading.Tasks;
+using bitzhuwei.Compiler;
+
+namespace bitzhuwei.GLSLFormat {
+    /// <summary>
+    /// Correspond to the Vn node compound_statement_no_new_scope in the grammar(GLSL).
+    /// </summary>
+    partial class Vncompound_statement_no_new_scope : statement_no_new_scope {
+        private statement_list? statement_list1;
+
+        public Vncompound_statement_no_new_scope(statement_list? statement_list1) {
+            this.statement_list1 = statement_list1;
+        }
+
+        public override void Format(TextWriter writer, FormatContext context) {
+            writer.Write("{");
+            if (this.statement_list1 != null) { writer.Write(" "); this.statement_list1.Format(writer, context); }
+            writer.Write(" }");
+        }
+    }
+}

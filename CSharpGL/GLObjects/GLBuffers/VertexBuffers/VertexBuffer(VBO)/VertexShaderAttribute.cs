@@ -1,32 +1,25 @@
 ﻿using System;
 using System.ComponentModel;
 
-namespace CSharpGL
-{
+namespace CSharpGL {
     /// <summary>
     /// 
     /// </summary>
-    public class VertexShaderAttribute
-    {
+    public unsafe class VertexShaderAttribute {
+        public readonly VertexBuffer buffer;
         /// <summary>
-        /// 
+        /// in vec3 inPosition;
         /// </summary>
-        public VertexBuffer Buffer { get; private set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public string VarNameInVertexShader { get; private set; }
+        public readonly string inVar;
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="buffer"></param>
-        /// <param name="varNameInVertexShader"></param>
-        public VertexShaderAttribute(VertexBuffer buffer, string varNameInVertexShader)
-        {
-            this.Buffer = buffer;
-            this.VarNameInVertexShader = varNameInVertexShader;
+        /// <param name="inVar"></param>
+        public VertexShaderAttribute(VertexBuffer buffer, string inVar) {
+            this.buffer = buffer;
+            this.inVar = inVar;
         }
 
     }

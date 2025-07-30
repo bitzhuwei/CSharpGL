@@ -1,116 +1,169 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
-  <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{704921FB-E30A-4C8A-BC73-F343AB2EB690}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CSharpGL.Windows</RootNamespace>
-    <AssemblyName>CSharpGL.Windows</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <UseVSHostingProcess>false</UseVSHostingProcess>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Nodes\ClockNode\Clock.png" />
-    <Content Include="Nodes\Propeller\Propeller+4Flabellum.png" />
-    <None Include="WinGLCanvas\readme.md" />
-    <None Include="GLAPI\readme.md" />
-    <Compile Include="GLAPI\WinGL.ExtendedConsts.cs" />
-    <Compile Include="GLAPI\WinGL.DrawText.cs" />
-    <Compile Include="GUI\WinCtrlRoot\TranslateExtension.cs" />
-    <Compile Include="GUI\WinCtrlRoot\WinCtrlRoot.cs" />
-    <Compile Include="Nodes\ClockNode\ClockCircleNode.cs" />
-    <Compile Include="Nodes\ClockNode\ClockMarkNode.cs" />
-    <Compile Include="Nodes\ClockNode\ClockPinNode.cs" />
-    <Compile Include="Nodes\ClockNode\ClockNode.cs" />
-    <Compile Include="Nodes\Propeller\FlabellumRenderer.cs" />
-    <Compile Include="Nodes\Propeller\PropellerRenderer.cs" />
-    <Compile Include="WinGLCanvas\DesignModeAssist.cs" />
-    <Compile Include="WinGLCanvas\WinGLCanvas.ContextGenerationParameters.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="WinGLCanvas\WinGLCanvas.Events.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="WinGLCanvas\WinGLCanvas.ISupportInitialize.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="WinGLCanvas\WinGLCanvas.IGLCanvas.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="WinGLCanvas\WinGLCanvas.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="WinGLCanvas\WinGLCanvas.Designer.cs">
-      <DependentUpon>WinGLCanvas.cs</DependentUpon>
-    </Compile>
-    <Compile Include="RenderContexts\WinGLRenderContext.cs" />
-    <Compile Include="GLAPI\FontBitmapEntry.cs" />
-    <Compile Include="GLAPI\FontBitmaps.cs" />
-    <Compile Include="GLAPI\WinGL.ExtendedAPI.cs" />
-    <Compile Include="GLAPI\WinGL.BasicAPI.cs" />
-    <Compile Include="GLAPI\WinGL.cs" />
-    <Compile Include="GLAPI\WinGL.OpenGL32.DLL.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Win32API\BitmapInfo.cs" />
-    <Compile Include="Win32API\ClassStyles.cs" />
-    <Compile Include="Win32API\PixelFormatDescriptor.cs" />
-    <Compile Include="Win32API\SetWindowPosFlags.cs" />
-    <Compile Include="Win32API\Win32.Constants.cs" />
-    <Compile Include="Win32API\Win32.cs" />
-    <Compile Include="Win32API\Win32.OpenGL32Library.cs" />
-    <Compile Include="Win32API\WindowStyles.cs" />
-    <Compile Include="Win32API\WindowStylesEx.cs" />
-    <Compile Include="Win32API\WNDCLASSEX.cs" />
-    <Compile Include="Win32API\WndProc.cs" />
-    <Content Include="readme.md" />
-  </ItemGroup>
-  <ItemGroup />
-  <ItemGroup>
-    <ProjectReference Include="..\CSharpGL\CSharpGL.csproj">
-      <Project>{a03cffff-433c-4a6e-8bd1-3a60ef9817a5}</Project>
-      <Name>CSharpGL</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<IsTrimmable>False</IsTrimmable>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+		<IsTrimmable>False</IsTrimmable>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Compile Remove="GLAPI\**" />
+		<Compile Remove="Nodes\**" />
+		<Compile Remove="WinGLCanvas\**" />
+		<Compile Remove="WinGL\**" />
+		<Compile Remove="×GLAPI\**" />
+		<Compile Remove="×Nodes\**" />
+		<Compile Remove="×WinGLCanvas\**" />
+		<Compile Remove="×WinGL\**" />
+		<EmbeddedResource Remove="GLAPI\**" />
+		<EmbeddedResource Remove="Nodes\**" />
+		<EmbeddedResource Remove="WinGLCanvas\**" />
+		<EmbeddedResource Remove="WinGL\**" />
+		<EmbeddedResource Remove="×GLAPI\**" />
+		<EmbeddedResource Remove="×Nodes\**" />
+		<EmbeddedResource Remove="×WinGLCanvas\**" />
+		<EmbeddedResource Remove="×WinGL\**" />
+		<None Remove="GLAPI\**" />
+		<None Remove="Nodes\**" />
+		<None Remove="WinGLCanvas\**" />
+		<None Remove="WinGL\**" />
+		<None Remove="×GLAPI\**" />
+		<None Remove="×Nodes\**" />
+		<None Remove="×WinGLCanvas\**" />
+		<None Remove="×WinGL\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Remove="WinGLRenderContext\FBORenderContext.cs" />
+		<Compile Remove="Win32API\ClassStyles.cs" />
+		<Compile Remove="Win32API\SetWindowPosFlags.cs" />
+		<Compile Remove="Win32API\Win32.Constants.cs" />
+		<Compile Remove="Win32API\WindowStyles.cs" />
+		<Compile Remove="Win32API\WindowStylesEx.cs" />
+		<Compile Remove="Win32API\WNDCLASSEX.cs" />
+		<Compile Remove="Win32API\WndProc.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Remove="Win32API\Win32.Constants.cs_" />
+		<None Remove="WinGLRenderContext\FBORenderContext.cs_" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\CSharpGL\CSharpGL.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Using Include="System.UInt32">
+			<Alias>GLenum</Alias>
+		</Using>
+		<Using Include="System.Boolean">
+			<Alias>GLboolean</Alias>
+		</Using>
+		<Using Include="System.UInt32">
+			<Alias>GLbitfield</Alias>
+		</Using>
+		<Using Include="System.SByte">
+			<Alias>GLbyte</Alias>
+		</Using>
+		<Using Include="System.Byte">
+			<Alias>GLubyte</Alias>
+		</Using>
+		<Using Include="System.Int16">
+			<Alias>GLshort</Alias>
+		</Using>
+		<Using Include="System.UInt16">
+			<Alias>GLushort</Alias>
+		</Using>
+		<Using Include="System.UInt16">
+			<Alias>GLhalfNV</Alias>
+		</Using>
+		<Using Include="System.Int32">
+			<Alias>GLint</Alias>
+		</Using>
+		<Using Include="System.UInt32">
+			<Alias>GLuint</Alias>
+		</Using>
+		<Using Include="System.Int32">
+			<Alias>GLclampx</Alias>
+		</Using>
+		<Using Include="System.Single">
+			<Alias>GLfloat</Alias>
+		</Using>
+		<Using Include="System.Single">
+			<Alias>GLclampf</Alias>
+		</Using>
+		<Using Include="System.Double">
+			<Alias>GLdouble</Alias>
+		</Using>
+		<Using Include="System.Double">
+			<Alias>GLclampd</Alias>
+		</Using>
+		<Using Include="System.IntPtr">
+			<Alias>GLeglClientBufferEXT</Alias>
+		</Using>
+		<Using Include="System.IntPtr">
+			<Alias>GLeglImageOES</Alias>
+		</Using>
+		<Using Include="System.IntPtr">
+			<Alias>GLvdpauSurfaceNV</Alias>
+		</Using>
+		<Using Include="System.Char">
+			<Alias>GLchar</Alias>
+		</Using>
+		<Using Include="System.Char">
+			<Alias>GLcharARB</Alias>
+		</Using>
+		<Using Include="System.UInt32">
+			<Alias>GLhandleARB</Alias>
+		</Using>
+		<Using Include="System.UInt16">
+			<Alias>GLhalf</Alias>
+		</Using>
+		<Using Include="System.UInt16">
+			<Alias>GLhalfARB</Alias>
+		</Using>
+		<Using Include="System.Int32">
+			<Alias>GLfixed</Alias>
+		</Using>
+		<Using Include="System.IntPtr">
+			<Alias>GLintptr</Alias>
+		</Using>
+		<Using Include="System.IntPtr">
+			<Alias>GLintptrARB</Alias>
+		</Using>
+		<Using Include="System.IntPtr">
+			<Alias>GLsync</Alias>
+		</Using>
+		<Using Include="System.Int32">
+			<Alias>GLsizei</Alias>
+		</Using>
+		<Using Include="System.Int32">
+			<Alias>GLsizeiptr</Alias>
+		</Using>
+		<Using Include="System.Int32">
+			<Alias>GLsizeiptrARB</Alias>
+		</Using>
+		<Using Include="System.Int64">
+			<Alias>GLint64</Alias>
+		</Using>
+		<Using Include="System.Int64">
+			<Alias>GLint64EXT</Alias>
+		</Using>
+		<Using Include="System.UInt64">
+			<Alias>GLuint64</Alias>
+		</Using>
+		<Using Include="System.UInt64">
+			<Alias>GLuint64EXT</Alias>
+		</Using>
+	</ItemGroup>
 </Project>

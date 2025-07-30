@@ -4,14 +4,12 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 
-namespace CSharpGL
-{
+namespace CSharpGL {
     /// <summary>
     /// Provides specified bitmap's data as <see cref="Texture"/>'s image content.
     /// </summary>
-    public class ImageDataProvider : LeveledDataProvider
-    {
-        private readonly Bitmap bitmap;
+    public unsafe class ImageDataProvider : LeveledDataProvider {
+        private readonly IGLBitmap bitmap;
         private readonly bool autoDispose;
         private readonly int levelCount;
 
@@ -21,8 +19,7 @@ namespace CSharpGL
         /// <param name="bitmap"></param>
         /// <param name="autoDisose">dispose <paramref name="bitmap"/> when disposing this <see cref="ImageDataProvider"/> object.</param>
         /// <param name="levelCount">[1, 2, 3, 4, 5, 6, 7, 8]</param>
-        public ImageDataProvider(Bitmap bitmap, bool autoDisose = false, int levelCount = 1)
-        {
+        public ImageDataProvider(IGLBitmap bitmap, bool autoDisose = false, int levelCount = 1) {
             if (bitmap == null) { throw new ArgumentNullException("bitmap"); }
 
             this.bitmap = bitmap;
@@ -34,14 +31,12 @@ namespace CSharpGL
         /// 
         /// </summary>
         /// <returns></returns>
-        public override IEnumerator<LeveledData> GetEnumerator()
-        {
+        public override IEnumerator<LeveledData> GetEnumerator() {
             yield return new ImageData(this.bitmap, 0, false);
 
-            Bitmap bmp = this.bitmap;
-            for (int level = 1; level < levelCount; level++)
-            {
-                bmp = new Bitmap(bmp, bmp.Size);
+            IGLBitmap bmp = this.bitmap;
+            for (int level = 1; level < levelCount; level++) {
+                bmp = bmp.ZoomOut(0.5f, 0.5f);
                 yield return new ImageData(bmp, level, true);
             }
         }
@@ -51,17 +46,15 @@ namespace CSharpGL
         /// <summary>
         /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
         /// </summary>
-        public void Dispose()
-        {
+        public void Dispose() {
             this.Dispose(true);
             GC.SuppressFinalize(this);
         } // end sub
 
         /// <summary>
-        /// Destruct instance of the class.
+        /// Destruct instance of the unsafe class.
         /// </summary>
-        ~ImageDataProvider()
-        {
+        ~ImageDataProvider() {
             this.Dispose(false);
         }
 
@@ -74,22 +67,17 @@ namespace CSharpGL
         /// Dispose managed and unmanaged resources of this instance.
         /// </summary>
         /// <param name="disposing">If disposing equals true, managed and unmanaged resources can be disposed. If disposing equals false, only unmanaged resources can be disposed. </param>
-        private void Dispose(bool disposing)
-        {
-            if (this.disposedValue == false)
-            {
-                if (disposing)
-                {
+        private void Dispose(bool disposing) {
+            if (this.disposedValue == false) {
+                if (disposing) {
                     // Dispose managed resources.
 
                 } // end if
 
                 // Dispose unmanaged resources.
-                if (this.autoDispose)
-                {
+                if (this.autoDispose) {
                     var bitmap = this.bitmap;
-                    if (bitmap != null)
-                    {
+                    if (bitmap != null) {
                         bitmap.Dispose();
                     }
                 }

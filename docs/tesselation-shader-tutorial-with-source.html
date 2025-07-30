@@ -1,0 +1,1492 @@
+<!DOCTYPE html>
+<html dir='ltr' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
+<head>
+<link href='https://www.blogger.com/static/v1/widgets/55013136-widget_css_bundle.css' rel='stylesheet' type='text/css'/>
+<meta content='67w9eK4VsVgaHaFZaPq29ejKiiMZSpcRN5u3Ky-76Ew' name='google-site-verification'/>
+<meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
+<meta content='blogger' name='generator'/>
+<link href='https://voxels.blogspot.com/favicon.ico' rel='icon' type='image/x-icon'/>
+<link href='http://voxels.blogspot.com/2011/09/tesselation-shader-tutorial-with-source.html' rel='canonical'/>
+<link rel="alternate" type="application/atom+xml" title="Voxel Game Engine Development - Atom" href="https://voxels.blogspot.com/feeds/posts/default" />
+<link rel="alternate" type="application/rss+xml" title="Voxel Game Engine Development - RSS" href="https://voxels.blogspot.com/feeds/posts/default?alt=rss" />
+<link rel="service.post" type="application/atom+xml" title="Voxel Game Engine Development - Atom" href="https://draft.blogger.com/feeds/2324674317366173964/posts/default" />
+
+<link rel="alternate" type="application/atom+xml" title="Voxel Game Engine Development - Atom" href="https://voxels.blogspot.com/feeds/8743895723847303140/comments/default" />
+<!--Can't find substitution for tag [blog.ieCssRetrofitLinks]-->
+<link href='https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhP33zjX8_GSET-3My2xUDGNXGrNwp0eJIqEc3jT7oiMtrif9kl8TCfWpyHBmd6zWqaiFd-uaNeqgKzUPd2ou8iO0WT0HWMVKmjHlqOjhRFs2fDv6qK45DCsRMzzZ-P5hj6y6-I1oxirNnV/s200/Tesselation.png' rel='image_src'/>
+<meta content='http://voxels.blogspot.com/2011/09/tesselation-shader-tutorial-with-source.html' property='og:url'/>
+<meta content='Tessellation Shader Tutorial with Source Code C++' property='og:title'/>
+<meta content=' To make it easier to start with Tessellation Shaders, here a GL4.0 example. (VS9,C++).      The file can be downloaded from here:   http://...' property='og:description'/>
+<meta content='https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhP33zjX8_GSET-3My2xUDGNXGrNwp0eJIqEc3jT7oiMtrif9kl8TCfWpyHBmd6zWqaiFd-uaNeqgKzUPd2ou8iO0WT0HWMVKmjHlqOjhRFs2fDv6qK45DCsRMzzZ-P5hj6y6-I1oxirNnV/w1200-h630-p-k-no-nu/Tesselation.png' property='og:image'/>
+<title>Voxel Game Engine Development: Tessellation Shader Tutorial with Source Code C++</title>
+<style id='page-skin-1' type='text/css'><!--
+/*
+-----------------------------------------------
+Blogger Template Style
+Name:     Stretch Denim
+Designer: Darren Delaye
+URL:      www.DarrenDelaye.com
+Date:     11 Jul 2006
+-----------------------------------------------
+*/
+body {
+background: #cccccc;
+margin: 0;
+padding: 0px;
+font: x-small Verdana, Arial;
+text-align: center;
+color: #000000;
+font-size/* */:/**/small;
+font-size: /**/small;
+}
+a:link {
+color: #0000ff;
+}
+a:visited {
+color: #0000ff;
+}
+a img {
+border-width: 0;
+}
+#outer-wrapper {
+font: normal normal 14px Arial, Tahoma, Helvetica, FreeSans, sans-serif;
+}
+/* Header
+----------------------------------------------- */
+#header-wrapper {
+margin:0;
+padding: 0;
+background-color: #cccccc;
+text-align: left;
+}
+#header {
+margin: 0 2%;
+background-color: #ffffff;
+color: #ffffff;
+padding: 0;
+font: normal normal 210% Verdana, Arial, Sans-serif;;
+position: relative;
+}
+h1.title {
+padding-top: 38px;
+margin: 0 1% .1em;
+line-height: 1.2em;
+font-size: 100%;
+}
+h1.title a, h1.title a:visited {
+color: #ffffff;
+text-decoration: none;
+}
+#header .description {
+display: block;
+margin: 0 1%;
+padding: 0 0 40px;
+line-height: 1.4em;
+font-size: 50%;
+}
+/* Content
+----------------------------------------------- */
+.clear {
+clear: both;
+}
+#content-wrapper {
+margin: 0 2%;
+padding: 0 0 15px;
+text-align: left;
+background-color: #ffffff;
+border: 1px solid #000000;
+border-top: 0;
+}
+#main-wrapper {
+margin-left: 1%;
+width: 64%;
+float: left;
+background-color: #ffffff;
+display: inline;       /* fix for doubling margin in IE */
+word-wrap: break-word; /* fix for long text breaking sidebar float in IE */
+overflow: hidden;      /* fix for long non-text content breaking IE sidebar float */
+}
+#sidebar-wrapper {
+margin-right: 1%;
+width: 29%;
+float: right;
+background-color: #ffffff;
+display: inline;       /* fix for doubling margin in IE */
+word-wrap: break-word; /* fix for long text breaking sidebar float in IE */
+overflow: hidden;      /* fix for long non-text content breaking IE sidebar float */
+}
+/* Headings
+----------------------------------------------- */
+h2, h3 {
+margin: 0;
+}
+/* Posts
+----------------------------------------------- */
+.date-header {
+margin: 1.5em 0 0;
+font-weight: normal;
+color: #999999;
+font-size: 100%;
+}
+.post {
+margin: 0 0 1.5em;
+padding-bottom: 1.5em;
+}
+.post-title {
+margin: 0;
+padding: 0;
+font-size: 125%;
+font-weight: bold;
+line-height: 1.1em;
+}
+.post-title a, .post-title a:visited, .post-title strong {
+text-decoration: none;
+color: #000000;
+font-weight: bold;
+}
+.post div {
+margin: 0 0 .75em;
+line-height: 1.3em;
+}
+.post-footer {
+margin: -.25em 0 0;
+color: #000000;
+font-size: 87%;
+}
+.post-footer .span {
+margin-right: .3em;
+}
+.post img, table.tr-caption-container {
+padding: 4px;
+border: 1px solid #000000;
+}
+.tr-caption-container img {
+border: none;
+padding: 0;
+}
+.post blockquote {
+margin: 1em 20px;
+}
+.post blockquote p {
+margin: .75em 0;
+}
+/* Comments
+----------------------------------------------- */
+#comments h4 {
+margin: 1em 0;
+color: #999999;
+}
+#comments h4 strong {
+font-size: 110%;
+}
+#comments-block {
+margin: 1em 0 1.5em;
+line-height: 1.3em;
+}
+#comments-block dt {
+margin: .5em 0;
+}
+#comments-block dd {
+margin: .25em 0 0;
+}
+#comments-block dd.comment-footer {
+margin: -.25em 0 2em;
+line-height: 1.4em;
+font-size: 78%;
+}
+#comments-block dd p {
+margin: 0 0 .75em;
+}
+.deleted-comment {
+font-style:italic;
+color:gray;
+}
+.feed-links {
+clear: both;
+line-height: 2.5em;
+}
+#blog-pager-newer-link {
+float: left;
+}
+#blog-pager-older-link {
+float: right;
+}
+#blog-pager {
+text-align: center;
+}
+/* Sidebar Content
+----------------------------------------------- */
+.sidebar h2 {
+margin: 1.6em 0 .5em;
+padding: 4px 5px;
+background-color: #333333;
+font-size: 100%;
+color: #999999;
+}
+.sidebar ul {
+margin: 0;
+padding: 0;
+list-style: none;
+}
+.sidebar li {
+margin: 0;
+padding-top: 0;
+padding-right: 0;
+padding-bottom: .5em;
+padding-left: 15px;
+text-indent: -15px;
+line-height: 1.5em;
+}
+.sidebar {
+color: #000000;
+line-height:1.3em;
+}
+.sidebar .widget {
+margin-bottom: 1em;
+}
+.sidebar .widget-content {
+margin: 0 5px;
+}
+/* Profile
+----------------------------------------------- */
+.profile-img {
+float: left;
+margin-top: 0;
+margin-right: 5px;
+margin-bottom: 5px;
+margin-left: 0;
+padding: 4px;
+border: 1px solid #000000;
+}
+.profile-data {
+margin:0;
+text-transform:uppercase;
+letter-spacing:.1em;
+font-weight: bold;
+line-height: 1.6em;
+font-size: 78%;
+}
+.profile-datablock {
+margin:.5em 0 .5em;
+}
+.profile-textblock {
+margin: 0.5em 0;
+line-height: 1.6em;
+}
+/* Footer
+----------------------------------------------- */
+#footer {
+clear: both;
+text-align: center;
+color: #000000;
+}
+#footer .widget {
+margin:.5em;
+padding-top: 20px;
+font-size: 85%;
+line-height: 1.5em;
+text-align: left;
+}
+/** Page structure tweaks for layout editor wireframe */
+body#layout #header {
+width: 750px;
+}
+
+--></style>
+<link href="//alexgorbatchev.com/pub/sh/current/styles/shCore.css" rel="stylesheet" type="text/css">
+<link href="//alexgorbatchev.com/pub/sh/current/styles/shThemeDefault.css" rel="stylesheet" type="text/css">
+<script src="//alexgorbatchev.com/pub/sh/current/scripts/shCore.js" type="text/javascript"></script>
+<script src="//alexgorbatchev.com/pub/sh/current/scripts/shBrushCpp.js" type="text/javascript"></script>
+<script src="//alexgorbatchev.com/pub/sh/current/scripts/shBrushCSharp.js" type="text/javascript"></script>
+<script src="//alexgorbatchev.com/pub/sh/current/scripts/shBrushCss.js" type="text/javascript"></script>
+<script src="//alexgorbatchev.com/pub/sh/current/scripts/shBrushJava.js" type="text/javascript"></script>
+<script src="//alexgorbatchev.com/pub/sh/current/scripts/shBrushJScript.js" type="text/javascript"></script>
+<script src="//alexgorbatchev.com/pub/sh/current/scripts/shBrushPhp.js" type="text/javascript"></script>
+<script src="//alexgorbatchev.com/pub/sh/current/scripts/shBrushPython.js" type="text/javascript"></script>
+<script src="//alexgorbatchev.com/pub/sh/current/scripts/shBrushRuby.js" type="text/javascript"></script>
+<script src="//alexgorbatchev.com/pub/sh/current/scripts/shBrushSql.js" type="text/javascript"></script>
+<script src="//alexgorbatchev.com/pub/sh/current/scripts/shBrushVb.js" type="text/javascript"></script>
+<script src="//alexgorbatchev.com/pub/sh/current/scripts/shBrushXml.js" type="text/javascript"></script>
+<script src="//alexgorbatchev.com/pub/sh/current/scripts/shBrushPerl.js" type="text/javascript"></script>
+<script language='javascript'> 
+SyntaxHighlighter.config.bloggerMode = true;
+SyntaxHighlighter.config.clipboardSwf = 'http://alexgorbatchev.com/pub/sh/current/scripts/clipboard.swf';
+SyntaxHighlighter.all();
+</script>
+<link href='https://draft.blogger.com/dyn-css/authorization.css?targetBlogID=2324674317366173964&amp;zx=0fc77b01-b0ff-4432-96b5-32652e1f43b3' media='none' onload='if(media!=&#39;all&#39;)media=&#39;all&#39;' rel='stylesheet'/><noscript><link href='https://draft.blogger.com/dyn-css/authorization.css?targetBlogID=2324674317366173964&amp;zx=0fc77b01-b0ff-4432-96b5-32652e1f43b3' rel='stylesheet'/></noscript>
+<meta name='google-adsense-platform-account' content='ca-host-pub-1556223355139109'/>
+<meta name='google-adsense-platform-domain' content='blogspot.com'/>
+
+</head>
+<body>
+<div class='navbar section' id='navbar'><div class='widget Navbar' data-version='1' id='Navbar1'><script type="text/javascript">
+    function setAttributeOnload(object, attribute, val) {
+      if(window.addEventListener) {
+        window.addEventListener('load',
+          function(){ object[attribute] = val; }, false);
+      } else {
+        window.attachEvent('onload', function(){ object[attribute] = val; });
+      }
+    }
+  </script>
+<div id="navbar-iframe-container"></div>
+<script type="text/javascript" src="https://apis.google.com/js/platform.js"></script>
+<script type="text/javascript">
+      gapi.load("gapi.iframes:gapi.iframes.style.bubble", function() {
+        if (gapi.iframes && gapi.iframes.getContext) {
+          gapi.iframes.getContext().openChild({
+              url: 'https://draft.blogger.com/navbar/2324674317366173964?po\x3d8743895723847303140\x26origin\x3dhttps://voxels.blogspot.com',
+              where: document.getElementById("navbar-iframe-container"),
+              id: "navbar-iframe"
+          });
+        }
+      });
+    </script><script type="text/javascript">
+(function() {
+var script = document.createElement('script');
+script.type = 'text/javascript';
+script.src = '//pagead2.googlesyndication.com/pagead/js/google_top_exp.js';
+var head = document.getElementsByTagName('head')[0];
+if (head) {
+head.appendChild(script);
+}})();
+</script>
+</div></div>
+<div id='outer-wrapper'><div id='wrap2'>
+<!-- skip links for text browsers -->
+<span id='skiplinks' style='display:none;'>
+<a href='#main'>skip to main </a> |
+      <a href='#sidebar'>skip to sidebar</a>
+</span>
+<div id='header-wrapper'>
+<div class='header section' id='header'><div class='widget Header' data-version='1' id='Header1'>
+<div id='header-inner' style='background-image: url("https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhAifCrqwsFmlr7wbgmxJnSCJkXJk_VKThAqZkdOAl2pLXfr8dIDsKR0BimnY4mZ_fY5G2HFRrarCAqoj1ZfzfpspLW68jZiKpP4aUfFG0gF-7IawHGtr3IoSaeQBoa_1b-_EuxoPUyDqzX/s1600/24.png"); background-position: left; width: 1024px; min-height: 186px; _height: 186px; background-repeat: no-repeat; '>
+<div class='titlewrapper' style='background: transparent'>
+<h1 class='title' style='background: transparent; border-width: 0px'>
+<a href='https://voxels.blogspot.com/'>
+Voxel Game Engine Development
+</a>
+</h1>
+</div>
+<div class='descriptionwrapper'>
+<p class='description'><span>Sparse Voxel Octree Raycasting based Game Development.</span></p>
+</div>
+</div>
+</div></div>
+</div>
+<div id='content-wrapper'>
+<div id='crosscol-wrapper' style='text-align:center'>
+<div class='crosscol no-items section' id='crosscol'></div>
+</div>
+<div id='main-wrapper'>
+<div class='main section' id='main'><div class='widget Blog' data-version='1' id='Blog1'>
+<div class='blog-posts hfeed'>
+
+          <div class="date-outer">
+        
+<h2 class='date-header'><span>Samstag, 24. September 2011</span></h2>
+
+          <div class="date-posts">
+        
+<div class='post-outer'>
+<div class='post hentry uncustomized-post-template' itemprop='blogPost' itemscope='itemscope' itemtype='http://schema.org/BlogPosting'>
+<meta content='https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhP33zjX8_GSET-3My2xUDGNXGrNwp0eJIqEc3jT7oiMtrif9kl8TCfWpyHBmd6zWqaiFd-uaNeqgKzUPd2ou8iO0WT0HWMVKmjHlqOjhRFs2fDv6qK45DCsRMzzZ-P5hj6y6-I1oxirNnV/s200/Tesselation.png' itemprop='image_url'/>
+<meta content='2324674317366173964' itemprop='blogId'/>
+<meta content='8743895723847303140' itemprop='postId'/>
+<a name='8743895723847303140'></a>
+<h3 class='post-title entry-title' itemprop='name'>
+Tessellation Shader Tutorial with Source Code C++
+</h3>
+<div class='post-header'>
+<div class='post-header-line-1'></div>
+</div>
+<div class='post-body entry-content' id='post-body-8743895723847303140' itemprop='description articleBody'>
+<div class="separator" style="clear: both; text-align: left;">
+To make it easier to start with Tessellation Shaders, here a GL4.0 example.&nbsp;(VS9,C++).&nbsp;</div>
+<div class="separator" style="clear: both; text-align: left;">
+<br /></div>
+<div class="separator" style="clear: both; text-align: left;">
+The file can be downloaded from here:</div>
+<div class="separator" style="clear: both; text-align: left;">
+<u><a href="http://raycast.org/data/Tesselation_Tutorial.zip">http://raycast.org/data/Tesselation_Tutorial.zip</a></u></div>
+<div class="separator" style="clear: both; text-align: left;">
+<br /></div>
+<div class="separator" style="clear: both; text-align: left;">
+Update: a first performance benchmark gives around 266 Million Polygons/second using tesselation, which is slower than using a common VBO or OpenGL DisplayList (400 MPoly/s). However, its more flexible, so geometry can be rendered much more efficient.</div>
+<div class="separator" style="clear: both; text-align: left;">
+<br /></div>
+
+Source for the tessellation control shader:<br />
+<pre class="brush: csharp">
+#version 410 core
+
+layout(vertices = 4) out;
+
+void main(void)
+{
+ gl_TessLevelOuter[0] = 2.0;
+ gl_TessLevelOuter[1] = 4.0;
+ gl_TessLevelOuter[2] = 6.0;
+ gl_TessLevelOuter[3] = 8.0;
+
+ gl_TessLevelInner[0] = 8.0;
+ gl_TessLevelInner[1] = 8.0;
+
+ gl_out[gl_InvocationID].gl_Position = gl_in[gl_InvocationID].gl_Position;
+}
+</pre>
+<br />
+Source for the quad tessellation evaluation shader:<br />
+<br />
+<pre class="brush: csharp">
+#version 410 core
+
+layout(quads, equal_spacing, ccw) in;
+
+//quad interpol
+vec4 interpolate(in vec4 v0, in vec4 v1, in vec4 v2, in vec4 v3)
+{
+ vec4 a = mix(v0, v1, gl_TessCoord.x);
+ vec4 b = mix(v3, v2, gl_TessCoord.x);
+ return mix(a, b, gl_TessCoord.y);
+}
+
+void main()
+{ 
+ gl_Position = interpolate(
+  gl_in[0].gl_Position, 
+  gl_in[1].gl_Position, 
+  gl_in[2].gl_Position, 
+  gl_in[3].gl_Position);
+}
+</pre>
+
+<div class="separator" style="clear: both; text-align: left;">
+<a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhP33zjX8_GSET-3My2xUDGNXGrNwp0eJIqEc3jT7oiMtrif9kl8TCfWpyHBmd6zWqaiFd-uaNeqgKzUPd2ou8iO0WT0HWMVKmjHlqOjhRFs2fDv6qK45DCsRMzzZ-P5hj6y6-I1oxirNnV/s1600/Tesselation.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="155" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhP33zjX8_GSET-3My2xUDGNXGrNwp0eJIqEc3jT7oiMtrif9kl8TCfWpyHBmd6zWqaiFd-uaNeqgKzUPd2ou8iO0WT0HWMVKmjHlqOjhRFs2fDv6qK45DCsRMzzZ-P5hj6y6-I1oxirNnV/s200/Tesselation.png" width="200" /></a>&nbsp;</div>
+<div style='clear: both;'></div>
+</div>
+<div class='post-footer'>
+<div class='post-footer-line post-footer-line-1'>
+<span class='post-author vcard'>
+Eingestellt von
+<span class='fn' itemprop='author' itemscope='itemscope' itemtype='http://schema.org/Person'>
+<meta content='https://draft.blogger.com/profile/01007372171107150216' itemprop='url'/>
+<a class='g-profile' href='https://draft.blogger.com/profile/01007372171107150216' rel='author' title='author profile'>
+<span itemprop='name'>Spacerat</span>
+</a>
+</span>
+</span>
+<span class='post-timestamp'>
+um
+<meta content='http://voxels.blogspot.com/2011/09/tesselation-shader-tutorial-with-source.html' itemprop='url'/>
+<a class='timestamp-link' href='https://voxels.blogspot.com/2011/09/tesselation-shader-tutorial-with-source.html' rel='bookmark' title='permanent link'><abbr class='published' itemprop='datePublished' title='2011-09-24T14:37:00-07:00'>14:37</abbr></a>
+</span>
+<span class='post-comment-link'>
+</span>
+<span class='post-icons'>
+<span class='item-control blog-admin pid-288065739'>
+<a href='https://draft.blogger.com/post-edit.g?blogID=2324674317366173964&postID=8743895723847303140&from=pencil' title='Post bearbeiten'>
+<img alt='' class='icon-action' height='18' src='https://resources.blogblog.com/img/icon18_edit_allbkg.gif' width='18'/>
+</a>
+</span>
+</span>
+<div class='post-share-buttons goog-inline-block'>
+</div>
+</div>
+<div class='post-footer-line post-footer-line-2'>
+<span class='post-labels'>
+</span>
+</div>
+<div class='post-footer-line post-footer-line-3'>
+<span class='post-location'>
+</span>
+</div>
+</div>
+</div>
+<div class='comments' id='comments'>
+<a name='comments'></a>
+<h4>2 Kommentare:</h4>
+<div class='comments-content'>
+<script async='async' src='' type='text/javascript'></script>
+<script type='text/javascript'>
+    (function() {
+      var items = null;
+      var msgs = null;
+      var config = {};
+
+// <![CDATA[
+      var cursor = null;
+      if (items && items.length > 0) {
+        cursor = parseInt(items[items.length - 1].timestamp) + 1;
+      }
+
+      var bodyFromEntry = function(entry) {
+        var text = (entry &&
+                    ((entry.content && entry.content.$t) ||
+                     (entry.summary && entry.summary.$t))) ||
+            '';
+        if (entry && entry.gd$extendedProperty) {
+          for (var k in entry.gd$extendedProperty) {
+            if (entry.gd$extendedProperty[k].name == 'blogger.contentRemoved') {
+              return '<span class="deleted-comment">' + text + '</span>';
+            }
+          }
+        }
+        return text;
+      }
+
+      var parse = function(data) {
+        cursor = null;
+        var comments = [];
+        if (data && data.feed && data.feed.entry) {
+          for (var i = 0, entry; entry = data.feed.entry[i]; i++) {
+            var comment = {};
+            // comment ID, parsed out of the original id format
+            var id = /blog-(\d+).post-(\d+)/.exec(entry.id.$t);
+            comment.id = id ? id[2] : null;
+            comment.body = bodyFromEntry(entry);
+            comment.timestamp = Date.parse(entry.published.$t) + '';
+            if (entry.author && entry.author.constructor === Array) {
+              var auth = entry.author[0];
+              if (auth) {
+                comment.author = {
+                  name: (auth.name ? auth.name.$t : undefined),
+                  profileUrl: (auth.uri ? auth.uri.$t : undefined),
+                  avatarUrl: (auth.gd$image ? auth.gd$image.src : undefined)
+                };
+              }
+            }
+            if (entry.link) {
+              if (entry.link[2]) {
+                comment.link = comment.permalink = entry.link[2].href;
+              }
+              if (entry.link[3]) {
+                var pid = /.*comments\/default\/(\d+)\?.*/.exec(entry.link[3].href);
+                if (pid && pid[1]) {
+                  comment.parentId = pid[1];
+                }
+              }
+            }
+            comment.deleteclass = 'item-control blog-admin';
+            if (entry.gd$extendedProperty) {
+              for (var k in entry.gd$extendedProperty) {
+                if (entry.gd$extendedProperty[k].name == 'blogger.itemClass') {
+                  comment.deleteclass += ' ' + entry.gd$extendedProperty[k].value;
+                } else if (entry.gd$extendedProperty[k].name == 'blogger.displayTime') {
+                  comment.displayTime = entry.gd$extendedProperty[k].value;
+                }
+              }
+            }
+            comments.push(comment);
+          }
+        }
+        return comments;
+      };
+
+      var paginator = function(callback) {
+        if (hasMore()) {
+          var url = config.feed + '?alt=json&v=2&orderby=published&reverse=false&max-results=50';
+          if (cursor) {
+            url += '&published-min=' + new Date(cursor).toISOString();
+          }
+          window.bloggercomments = function(data) {
+            var parsed = parse(data);
+            cursor = parsed.length < 50 ? null
+                : parseInt(parsed[parsed.length - 1].timestamp) + 1
+            callback(parsed);
+            window.bloggercomments = null;
+          }
+          url += '&callback=bloggercomments';
+          var script = document.createElement('script');
+          script.type = 'text/javascript';
+          script.src = url;
+          document.getElementsByTagName('head')[0].appendChild(script);
+        }
+      };
+      var hasMore = function() {
+        return !!cursor;
+      };
+      var getMeta = function(key, comment) {
+        if ('iswriter' == key) {
+          var matches = !!comment.author
+              && comment.author.name == config.authorName
+              && comment.author.profileUrl == config.authorUrl;
+          return matches ? 'true' : '';
+        } else if ('deletelink' == key) {
+          return config.baseUri + '/comment/delete/'
+               + config.blogId + '/' + comment.id;
+        } else if ('deleteclass' == key) {
+          return comment.deleteclass;
+        }
+        return '';
+      };
+
+      var replybox = null;
+      var replyUrlParts = null;
+      var replyParent = undefined;
+
+      var onReply = function(commentId, domId) {
+        if (replybox == null) {
+          // lazily cache replybox, and adjust to suit this style:
+          replybox = document.getElementById('comment-editor');
+          if (replybox != null) {
+            replybox.height = '250px';
+            replybox.style.display = 'block';
+            replyUrlParts = replybox.src.split('#');
+          }
+        }
+        if (replybox && (commentId !== replyParent)) {
+          replybox.src = '';
+          document.getElementById(domId).insertBefore(replybox, null);
+          replybox.src = replyUrlParts[0]
+              + (commentId ? '&parentID=' + commentId : '')
+              + '#' + replyUrlParts[1];
+          replyParent = commentId;
+        }
+      };
+
+      var hash = (window.location.hash || '#').substring(1);
+      var startThread, targetComment;
+      if (/^comment-form_/.test(hash)) {
+        startThread = hash.substring('comment-form_'.length);
+      } else if (/^c[0-9]+$/.test(hash)) {
+        targetComment = hash.substring(1);
+      }
+
+      // Configure commenting API:
+      var configJso = {
+        'maxDepth': config.maxThreadDepth
+      };
+      var provider = {
+        'id': config.postId,
+        'data': items,
+        'loadNext': paginator,
+        'hasMore': hasMore,
+        'getMeta': getMeta,
+        'onReply': onReply,
+        'rendered': true,
+        'initComment': targetComment,
+        'initReplyThread': startThread,
+        'config': configJso,
+        'messages': msgs
+      };
+
+      var render = function() {
+        if (window.goog && window.goog.comments) {
+          var holder = document.getElementById('comment-holder');
+          window.goog.comments.render(holder, provider);
+        }
+      };
+
+      // render now, or queue to render when library loads:
+      if (window.goog && window.goog.comments) {
+        render();
+      } else {
+        window.goog = window.goog || {};
+        window.goog.comments = window.goog.comments || {};
+        window.goog.comments.loadQueue = window.goog.comments.loadQueue || [];
+        window.goog.comments.loadQueue.push(render);
+      }
+    })();
+// ]]>
+  </script>
+<div id='comment-holder'>
+<div class="comment-thread toplevel-thread"><ol id="top-ra"><li class="comment" id="c5004136619956267426"><div class="avatar-image-container"><img src="//resources.blogblog.com/img/blank.gif" alt=""/></div><div class="comment-block"><div class="comment-header"><cite class="user">XICO2KX</cite><span class="icon user "></span><span class="datetime secondary-text"><a rel="nofollow" href="https://voxels.blogspot.com/2011/09/tesselation-shader-tutorial-with-source.html?showComment=1316952395360#c5004136619956267426">25. September 2011 um 05:06</a></span></div><p class="comment-content">Cool! A blog update! :D<br>How&#39;s the progress on Voxelstein3D going, by the way? ;)</p><span class="comment-actions secondary-text"><a class="comment-reply" target="_self" data-comment-id="5004136619956267426">Antworten</a><span class="item-control blog-admin blog-admin pid-477804736"><a target="_self" href="https://draft.blogger.com/comment/delete/2324674317366173964/5004136619956267426">Löschen</a></span></span></div><div class="comment-replies"><div id="c5004136619956267426-rt" class="comment-thread inline-thread hidden"><span class="thread-toggle thread-expanded"><span class="thread-arrow"></span><span class="thread-count"><a target="_self">Antworten</a></span></span><ol id="c5004136619956267426-ra" class="thread-chrome thread-expanded"><div></div><div id="c5004136619956267426-continue" class="continue"><a class="comment-reply" target="_self" data-comment-id="5004136619956267426">Antworten</a></div></ol></div></div><div class="comment-replybox-single" id="c5004136619956267426-ce"></div></li><li class="comment" id="c5827199214356393238"><div class="avatar-image-container"><img src="//blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjgfX63uB8yYarFJ4rOCOdbKsOSCMcKMbFdnMrxHY1b5nLIftpj2_UseW-8z5raHQSyXUGriBfaF65ql1S7A3KsMXTns-uTGlY11U8k5N9okO6F52PF5YQhplj6c2oPM2U/s45-c/Clipboard01.png" alt=""/></div><div class="comment-block"><div class="comment-header"><cite class="user"><a href="https://draft.blogger.com/profile/01007372171107150216" rel="nofollow">Spacerat</a></cite><span class="icon user blog-author"></span><span class="datetime secondary-text"><a rel="nofollow" href="https://voxels.blogspot.com/2011/09/tesselation-shader-tutorial-with-source.html?showComment=1316954861363#c5827199214356393238">25. September 2011 um 05:47</a></span></div><p class="comment-content">Yes - the blog is still alive :P<br>As for Voxelstein3D, we are always looking for talented programmers ;)</p><span class="comment-actions secondary-text"><a class="comment-reply" target="_self" data-comment-id="5827199214356393238">Antworten</a><span class="item-control blog-admin blog-admin pid-288065739"><a target="_self" href="https://draft.blogger.com/comment/delete/2324674317366173964/5827199214356393238">Löschen</a></span></span></div><div class="comment-replies"><div id="c5827199214356393238-rt" class="comment-thread inline-thread hidden"><span class="thread-toggle thread-expanded"><span class="thread-arrow"></span><span class="thread-count"><a target="_self">Antworten</a></span></span><ol id="c5827199214356393238-ra" class="thread-chrome thread-expanded"><div></div><div id="c5827199214356393238-continue" class="continue"><a class="comment-reply" target="_self" data-comment-id="5827199214356393238">Antworten</a></div></ol></div></div><div class="comment-replybox-single" id="c5827199214356393238-ce"></div></li></ol><div id="top-continue" class="continue"><a class="comment-reply" target="_self">Kommentar hinzufügen</a></div><div class="comment-replybox-thread" id="top-ce"></div><div class="loadmore hidden" data-post-id="8743895723847303140"><a target="_self">Weitere laden...</a></div></div>
+</div>
+</div>
+<p class='comment-footer'>
+<div class='comment-form'>
+<a name='comment-form'></a>
+<p>
+</p>
+<a href='https://draft.blogger.com/comment/frame/2324674317366173964?po=8743895723847303140&hl=de&saa=47563' id='comment-editor-src'></a>
+<iframe allowtransparency='true' class='blogger-iframe-colorize blogger-comment-from-post' frameborder='0' height='410px' id='comment-editor' name='comment-editor' src='' width='100%'></iframe>
+<script src='https://www.blogger.com/static/v1/jsbin/681870030-comment_from_post_iframe.js' type='text/javascript'></script>
+<script type='text/javascript'>
+      BLOG_CMT_createIframe('https://draft.blogger.com/rpc_relay.html');
+    </script>
+</div>
+</p>
+<div id='backlinks-container'>
+<div id='Blog1_backlinks-container'>
+</div>
+</div>
+</div>
+</div>
+
+        </div></div>
+      
+</div>
+<div class='blog-pager' id='blog-pager'>
+<span id='blog-pager-newer-link'>
+<a class='blog-pager-newer-link' href='https://voxels.blogspot.com/2012/01/procedural-geometry-maps-tessellation.html' id='Blog1_blog-pager-newer-link' title='Neuerer Post'>Neuerer Post</a>
+</span>
+<span id='blog-pager-older-link'>
+<a class='blog-pager-older-link' href='https://voxels.blogspot.com/2011/06/voxel-sculpting-test.html' id='Blog1_blog-pager-older-link' title='Älterer Post'>Älterer Post</a>
+</span>
+<a class='home-link' href='https://voxels.blogspot.com/'>Startseite</a>
+</div>
+<div class='clear'></div>
+<div class='post-feeds'>
+<div class='feed-links'>
+Abonnieren
+<a class='feed-link' href='https://voxels.blogspot.com/feeds/8743895723847303140/comments/default' target='_blank' type='application/atom+xml'>Kommentare zum Post (Atom)</a>
+</div>
+</div>
+</div></div>
+</div>
+<div id='sidebar-wrapper'>
+<div class='sidebar section' id='sidebar'><div class='widget LinkList' data-version='1' id='LinkList1'>
+<h2>Links</h2>
+<div class='widget-content'>
+<ul>
+<li><a href='http://svenforstmann.com'>About me</a></li>
+<li><a href='http://raycast.org/'>Raycast.org - Games & Graphics News</a></li>
+<li><a href='http://raycast.org/data/VoxelDemos.v4.zip'>Download CUDA Voxel Engine Jan.2013</a></li>
+<li><a href='http://voxels.blogspot.jp/2014/03/skinned-skeletal-animation-tutorial.html'>Download Skeletal Animation Tutorial</a></li>
+<li><a href='http://voxels.blogspot.jp/2014/01/geometry-clipmaps-terrain-rendering.html'>Download Terrain Engine Source Code</a></li>
+<li><a href='http://raycast.org/powerup/publications.htm'>Publications</a></li>
+<li><a href='http://raycast.org/hvox/'>HVox Terrain Engine</a></li>
+<li><a href='http://christmasradio.org'>christmas radio</a></li>
+<li><a href='http://raycast.org/source.islands'>Source Islands</a></li>
+<li><a href='http://danielsdevblog.blogspot.com/'>DanielStrayer's SVO Raytracer</a></li>
+<li><a href='http://lugtug.blogspot.com'>MakeMake Voxel Engine</a></li>
+<li><a href='http://deftware.blogspot.de/'>DEFTWARE's DEVBLOG</a></li>
+<li><a href='http://donw.org/b/?d='>Transvoxel based planet renderer</a></li>
+<li><a href='https://code.google.com/p/efficient-sparse-voxel-octrees/'>NVIDIA's Efficient-SVO Raycaster</a></li>
+<li><a href='http://johnwhigham.blogspot.jp/'>John Whigham's SVO Raytracer</a></li>
+<li><a href='http://www.forceflow.be/'>Jeroen Baert's SVO Raytracer</a></li>
+<li><a href='http://ttic.uchicago.edu/~cotter/projects/voxel/'>Cotter's SVO Raytracer</a></li>
+<li><a href='http://voxelium.wordpress.com/'>Attila T. Voxel Research</a></li>
+<li><a href='http://raytracey.blogspot.com/'>Raytracey's blog</a></li>
+<li><a href='http://graphicsrunner.blogspot.com/'>Graphics Runner VolVis</a></li>
+<li><a href='http://www.petervenis.com/genova/index.htm'>Genova Terrain Library</a></li>
+<li><a href='http://atomontage.com/'>Branislav Siles Atomontage Engine</a></li>
+<li><a href='http://www.icare3d.org/'>Cyril Crassin Site</a></li>
+<li><a href='http://iquilezles.org/www/index.htm'>Inigo Quilez</a></li>
+<li><a href='http://igad2.nhtv.nl/ompf2/'>Ompf Forum</a></li>
+<li><a href='http://www.humus.name/index.php?page=3D'>Humus3D</a></li>
+</ul>
+<div class='clear'></div>
+</div>
+</div><div class='widget Followers' data-version='1' id='Followers2'>
+<h2 class='title'>Follower</h2>
+<div class='widget-content'>
+<div id='Followers2-wrapper'>
+<div style='margin-right:2px;'>
+<div><script type="text/javascript" src="https://apis.google.com/js/platform.js"></script>
+<div id="followers-iframe-container"></div>
+<script type="text/javascript">
+    window.followersIframe = null;
+    function followersIframeOpen(url) {
+      gapi.load("gapi.iframes", function() {
+        if (gapi.iframes && gapi.iframes.getContext) {
+          window.followersIframe = gapi.iframes.getContext().openChild({
+            url: url,
+            where: document.getElementById("followers-iframe-container"),
+            messageHandlersFilter: gapi.iframes.CROSS_ORIGIN_IFRAMES_FILTER,
+            messageHandlers: {
+              '_ready': function(obj) {
+                window.followersIframe.getIframeEl().height = obj.height;
+              },
+              'reset': function() {
+                window.followersIframe.close();
+                followersIframeOpen("https://draft.blogger.com/followers/frame/2324674317366173964?colors\x3dCgt0cmFuc3BhcmVudBILdHJhbnNwYXJlbnQaByMwMDAwMDAiByMwMDAwMDAqByNmZmZmZmYyByMwMDAwMDA6ByMwMDAwMDBCByMwMDAwMDBKByMwMDAwMDBSByNGRkZGRkZaC3RyYW5zcGFyZW50\x26pageSize\x3d21\x26hl\x3dde\x26origin\x3dhttps://voxels.blogspot.com");
+              },
+              'open': function(url) {
+                window.followersIframe.close();
+                followersIframeOpen(url);
+              }
+            }
+          });
+        }
+      });
+    }
+    followersIframeOpen("https://draft.blogger.com/followers/frame/2324674317366173964?colors\x3dCgt0cmFuc3BhcmVudBILdHJhbnNwYXJlbnQaByMwMDAwMDAiByMwMDAwMDAqByNmZmZmZmYyByMwMDAwMDA6ByMwMDAwMDBCByMwMDAwMDBKByMwMDAwMDBSByNGRkZGRkZaC3RyYW5zcGFyZW50\x26pageSize\x3d21\x26hl\x3dde\x26origin\x3dhttps://voxels.blogspot.com");
+  </script></div>
+</div>
+</div>
+<div class='clear'></div>
+</div>
+</div><div class='widget BlogArchive' data-version='1' id='BlogArchive2'>
+<h2>Blog-Archiv</h2>
+<div class='widget-content'>
+<div id='ArchiveList'>
+<div id='BlogArchive2_ArchiveList'>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='https://voxels.blogspot.com/2019/'>
+2019
+</a>
+<span class='post-count' dir='ltr'>(1)</span>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='https://voxels.blogspot.com/2019/01/'>
+Januar
+</a>
+<span class='post-count' dir='ltr'>(1)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='https://voxels.blogspot.com/2016/'>
+2016
+</a>
+<span class='post-count' dir='ltr'>(4)</span>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='https://voxels.blogspot.com/2016/06/'>
+Juni
+</a>
+<span class='post-count' dir='ltr'>(1)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='https://voxels.blogspot.com/2016/04/'>
+April
+</a>
+<span class='post-count' dir='ltr'>(1)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='https://voxels.blogspot.com/2016/03/'>
+März
+</a>
+<span class='post-count' dir='ltr'>(1)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='https://voxels.blogspot.com/2016/02/'>
+Februar
+</a>
+<span class='post-count' dir='ltr'>(1)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='https://voxels.blogspot.com/2015/'>
+2015
+</a>
+<span class='post-count' dir='ltr'>(7)</span>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='https://voxels.blogspot.com/2015/11/'>
+November
+</a>
+<span class='post-count' dir='ltr'>(1)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='https://voxels.blogspot.com/2015/07/'>
+Juli
+</a>
+<span class='post-count' dir='ltr'>(3)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='https://voxels.blogspot.com/2015/05/'>
+Mai
+</a>
+<span class='post-count' dir='ltr'>(2)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='https://voxels.blogspot.com/2015/04/'>
+April
+</a>
+<span class='post-count' dir='ltr'>(1)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='https://voxels.blogspot.com/2014/'>
+2014
+</a>
+<span class='post-count' dir='ltr'>(26)</span>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='https://voxels.blogspot.com/2014/05/'>
+Mai
+</a>
+<span class='post-count' dir='ltr'>(3)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='https://voxels.blogspot.com/2014/04/'>
+April
+</a>
+<span class='post-count' dir='ltr'>(8)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='https://voxels.blogspot.com/2014/03/'>
+März
+</a>
+<span class='post-count' dir='ltr'>(2)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='https://voxels.blogspot.com/2014/02/'>
+Februar
+</a>
+<span class='post-count' dir='ltr'>(7)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='https://voxels.blogspot.com/2014/01/'>
+Januar
+</a>
+<span class='post-count' dir='ltr'>(6)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='https://voxels.blogspot.com/2013/'>
+2013
+</a>
+<span class='post-count' dir='ltr'>(24)</span>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='https://voxels.blogspot.com/2013/12/'>
+Dezember
+</a>
+<span class='post-count' dir='ltr'>(5)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='https://voxels.blogspot.com/2013/11/'>
+November
+</a>
+<span class='post-count' dir='ltr'>(3)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='https://voxels.blogspot.com/2013/10/'>
+Oktober
+</a>
+<span class='post-count' dir='ltr'>(2)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='https://voxels.blogspot.com/2013/08/'>
+August
+</a>
+<span class='post-count' dir='ltr'>(3)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='https://voxels.blogspot.com/2013/07/'>
+Juli
+</a>
+<span class='post-count' dir='ltr'>(5)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='https://voxels.blogspot.com/2013/06/'>
+Juni
+</a>
+<span class='post-count' dir='ltr'>(1)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='https://voxels.blogspot.com/2013/05/'>
+Mai
+</a>
+<span class='post-count' dir='ltr'>(1)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='https://voxels.blogspot.com/2013/02/'>
+Februar
+</a>
+<span class='post-count' dir='ltr'>(4)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='https://voxels.blogspot.com/2012/'>
+2012
+</a>
+<span class='post-count' dir='ltr'>(5)</span>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='https://voxels.blogspot.com/2012/08/'>
+August
+</a>
+<span class='post-count' dir='ltr'>(3)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='https://voxels.blogspot.com/2012/07/'>
+Juli
+</a>
+<span class='post-count' dir='ltr'>(1)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='https://voxels.blogspot.com/2012/01/'>
+Januar
+</a>
+<span class='post-count' dir='ltr'>(1)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate expanded'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy toggle-open'>
+
+        &#9660;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='https://voxels.blogspot.com/2011/'>
+2011
+</a>
+<span class='post-count' dir='ltr'>(4)</span>
+<ul class='hierarchy'>
+<li class='archivedate expanded'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy toggle-open'>
+
+        &#9660;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='https://voxels.blogspot.com/2011/09/'>
+September
+</a>
+<span class='post-count' dir='ltr'>(1)</span>
+<ul class='posts'>
+<li><a href='https://voxels.blogspot.com/2011/09/tesselation-shader-tutorial-with-source.html'>Tessellation Shader Tutorial with Source Code C++</a></li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='https://voxels.blogspot.com/2011/06/'>
+Juni
+</a>
+<span class='post-count' dir='ltr'>(1)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='https://voxels.blogspot.com/2011/03/'>
+März
+</a>
+<span class='post-count' dir='ltr'>(2)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='https://voxels.blogspot.com/2009/'>
+2009
+</a>
+<span class='post-count' dir='ltr'>(33)</span>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='https://voxels.blogspot.com/2009/11/'>
+November
+</a>
+<span class='post-count' dir='ltr'>(2)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='https://voxels.blogspot.com/2009/06/'>
+Juni
+</a>
+<span class='post-count' dir='ltr'>(1)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='https://voxels.blogspot.com/2009/03/'>
+März
+</a>
+<span class='post-count' dir='ltr'>(16)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='https://voxels.blogspot.com/2009/02/'>
+Februar
+</a>
+<span class='post-count' dir='ltr'>(14)</span>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class='clear'></div>
+</div>
+</div><div class='widget Profile' data-version='1' id='Profile2'>
+<h2>Über mich</h2>
+<div class='widget-content'>
+<a href='https://draft.blogger.com/profile/01007372171107150216'><img alt='Mein Bild' class='profile-img' height='80' src='//blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjgfX63uB8yYarFJ4rOCOdbKsOSCMcKMbFdnMrxHY1b5nLIftpj2_UseW-8z5raHQSyXUGriBfaF65ql1S7A3KsMXTns-uTGlY11U8k5N9okO6F52PF5YQhplj6c2oPM2U/s220/Clipboard01.png' width='74'/></a>
+<dl class='profile-datablock'>
+<dt class='profile-data'>
+<a class='profile-name-link g-profile' href='https://draft.blogger.com/profile/01007372171107150216' rel='author' style='background-image: url(//draft.blogger.com/img/logo-16.png);'>
+Spacerat
+</a>
+</dt>
+</dl>
+<a class='profile-link' href='https://draft.blogger.com/profile/01007372171107150216' rel='author'>Mein Profil vollständig anzeigen</a>
+<div class='clear'></div>
+</div>
+</div><div class='widget Stats' data-version='1' id='Stats1'>
+<h2>Gesamtzahl der Seitenaufrufe</h2>
+<div class='widget-content'>
+<div id='Stats1_content' style='display: none;'>
+<script src='https://www.gstatic.com/charts/loader.js' type='text/javascript'></script>
+<span id='Stats1_sparklinespan' style='display:inline-block; width:75px; height:30px'></span>
+<span class='counter-wrapper text-counter-wrapper' id='Stats1_totalCount'>
+</span>
+<div class='clear'></div>
+</div>
+</div>
+</div></div>
+</div>
+<!-- spacer for skins that want sidebar and main to be the same height-->
+<div class='clear'>&#160;</div>
+</div>
+<!-- end content-wrapper -->
+<div id='footer-wrapper'>
+<div class='footer section' id='footer'><div class='widget HTML' data-version='1' id='HTML1'>
+<h2 class='title'>---</h2>
+<div class='widget-content'>
+
+<div style="overflow:hidden; width:2px; height:1px; position:absolute; left:2px; top:50px;">
+<!-- Site Meter -->
+<script src="//s10.sitemeter.com/js/counter.js?site=s10cudavoxel" type="text/javascript">
+</script>
+<noscript>
+<div align="right"><a href="http://s10.sitemeter.com/stats.asp?site=s10cudavoxel" target="_top">
+  <img border="0" alt="Site Meter" src="https://lh3.googleusercontent.com/blogger_img_proxy/AEn0k_vUhaZHR251ozId0Osa2oivKQ5_tKruQg3uuPehr4uAvitzM5jT1ZJbZ5av-1z0AmVX7JuWl9OX-ST9FaewH9eAE38Fa-Sy2ovNv_g6GlqPunzqirzaDfAw0eQ=s0-d"></a>
+</div>
+</noscript>
+<div align="right">
+<!-- Copyright (c)2006 Site Meter --></div></div>
+</div>
+<div class='clear'></div>
+</div></div>
+</div>
+</div></div>
+<!-- end outer-wrapper -->
+
+<script type="text/javascript" src="https://www.blogger.com/static/v1/widgets/1372322573-widgets.js"></script>
+<script type='text/javascript'>
+window['__wavt'] = 'AOuZoY7gBBwENYgcfJ-GJrost97iFYMgDg:1747612109705';_WidgetManager._Init('//draft.blogger.com/rearrange?blogID\x3d2324674317366173964','//voxels.blogspot.com/2011/09/tesselation-shader-tutorial-with-source.html','2324674317366173964');
+_WidgetManager._SetDataContext([{'name': 'blog', 'data': {'blogId': '2324674317366173964', 'title': 'Voxel Game Engine Development', 'url': 'https://voxels.blogspot.com/2011/09/tesselation-shader-tutorial-with-source.html', 'canonicalUrl': 'http://voxels.blogspot.com/2011/09/tesselation-shader-tutorial-with-source.html', 'homepageUrl': 'https://voxels.blogspot.com/', 'searchUrl': 'https://voxels.blogspot.com/search', 'canonicalHomepageUrl': 'http://voxels.blogspot.com/', 'blogspotFaviconUrl': 'https://voxels.blogspot.com/favicon.ico', 'bloggerUrl': 'https://draft.blogger.com', 'hasCustomDomain': false, 'httpsEnabled': true, 'enabledCommentProfileImages': true, 'gPlusViewType': 'FILTERED_POSTMOD', 'adultContent': false, 'analyticsAccountNumber': '', 'encoding': 'UTF-8', 'locale': 'de', 'localeUnderscoreDelimited': 'de', 'languageDirection': 'ltr', 'isPrivate': false, 'isMobile': false, 'isMobileRequest': false, 'mobileClass': '', 'isPrivateBlog': false, 'isDynamicViewsAvailable': true, 'feedLinks': '\x3clink rel\x3d\x22alternate\x22 type\x3d\x22application/atom+xml\x22 title\x3d\x22Voxel Game Engine Development - Atom\x22 href\x3d\x22https://voxels.blogspot.com/feeds/posts/default\x22 /\x3e\n\x3clink rel\x3d\x22alternate\x22 type\x3d\x22application/rss+xml\x22 title\x3d\x22Voxel Game Engine Development - RSS\x22 href\x3d\x22https://voxels.blogspot.com/feeds/posts/default?alt\x3drss\x22 /\x3e\n\x3clink rel\x3d\x22service.post\x22 type\x3d\x22application/atom+xml\x22 title\x3d\x22Voxel Game Engine Development - Atom\x22 href\x3d\x22https://draft.blogger.com/feeds/2324674317366173964/posts/default\x22 /\x3e\n\n\x3clink rel\x3d\x22alternate\x22 type\x3d\x22application/atom+xml\x22 title\x3d\x22Voxel Game Engine Development - Atom\x22 href\x3d\x22https://voxels.blogspot.com/feeds/8743895723847303140/comments/default\x22 /\x3e\n', 'meTag': '', 'adsenseHostId': 'ca-host-pub-1556223355139109', 'adsenseHasAds': false, 'adsenseAutoAds': false, 'boqCommentIframeForm': true, 'loginRedirectParam': '', 'view': '', 'dynamicViewsCommentsSrc': '//www.blogblog.com/dynamicviews/4224c15c4e7c9321/js/comments.js', 'dynamicViewsScriptSrc': '//www.blogblog.com/dynamicviews/834a042c9f4bbc2f', 'plusOneApiSrc': 'https://apis.google.com/js/platform.js', 'disableGComments': true, 'interstitialAccepted': false, 'sharing': {'platforms': [{'name': 'Link abrufen', 'key': 'link', 'shareMessage': 'Link abrufen', 'target': ''}, {'name': 'Facebook', 'key': 'facebook', 'shareMessage': '\xdcber Facebook teilen', 'target': 'facebook'}, {'name': 'BlogThis!', 'key': 'blogThis', 'shareMessage': 'BlogThis!', 'target': 'blog'}, {'name': 'X', 'key': 'twitter', 'shareMessage': '\xdcber X teilen', 'target': 'twitter'}, {'name': 'Pinterest', 'key': 'pinterest', 'shareMessage': '\xdcber Pinterest teilen', 'target': 'pinterest'}, {'name': 'E-Mail', 'key': 'email', 'shareMessage': 'E-Mail', 'target': 'email'}], 'disableGooglePlus': true, 'googlePlusShareButtonWidth': 0, 'googlePlusBootstrap': '\x3cscript type\x3d\x22text/javascript\x22\x3ewindow.___gcfg \x3d {\x27lang\x27: \x27de\x27};\x3c/script\x3e'}, 'hasCustomJumpLinkMessage': false, 'jumpLinkMessage': 'Mehr anzeigen', 'pageType': 'item', 'postId': '8743895723847303140', 'postImageThumbnailUrl': 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhP33zjX8_GSET-3My2xUDGNXGrNwp0eJIqEc3jT7oiMtrif9kl8TCfWpyHBmd6zWqaiFd-uaNeqgKzUPd2ou8iO0WT0HWMVKmjHlqOjhRFs2fDv6qK45DCsRMzzZ-P5hj6y6-I1oxirNnV/s72-c/Tesselation.png', 'postImageUrl': 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhP33zjX8_GSET-3My2xUDGNXGrNwp0eJIqEc3jT7oiMtrif9kl8TCfWpyHBmd6zWqaiFd-uaNeqgKzUPd2ou8iO0WT0HWMVKmjHlqOjhRFs2fDv6qK45DCsRMzzZ-P5hj6y6-I1oxirNnV/s200/Tesselation.png', 'pageName': 'Tessellation Shader Tutorial with Source Code C++', 'pageTitle': 'Voxel Game Engine Development: Tessellation Shader Tutorial with Source Code C++'}}, {'name': 'features', 'data': {}}, {'name': 'messages', 'data': {'edit': 'Bearbeiten', 'linkCopiedToClipboard': 'Link in Zwischenablage kopiert.', 'ok': 'Ok', 'postLink': 'Link zum Post'}}, {'name': 'template', 'data': {'name': 'custom', 'localizedName': 'Benutzerdefiniert', 'isResponsive': false, 'isAlternateRendering': false, 'isCustom': true}}, {'name': 'view', 'data': {'classic': {'name': 'classic', 'url': '?view\x3dclassic'}, 'flipcard': {'name': 'flipcard', 'url': '?view\x3dflipcard'}, 'magazine': {'name': 'magazine', 'url': '?view\x3dmagazine'}, 'mosaic': {'name': 'mosaic', 'url': '?view\x3dmosaic'}, 'sidebar': {'name': 'sidebar', 'url': '?view\x3dsidebar'}, 'snapshot': {'name': 'snapshot', 'url': '?view\x3dsnapshot'}, 'timeslide': {'name': 'timeslide', 'url': '?view\x3dtimeslide'}, 'isMobile': false, 'title': 'Tessellation Shader Tutorial with Source Code C++', 'description': ' To make it easier to start with Tessellation Shaders, here a GL4.0 example.\xa0(VS9,C++).\xa0     The file can be downloaded from here:   http://...', 'featuredImage': 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhP33zjX8_GSET-3My2xUDGNXGrNwp0eJIqEc3jT7oiMtrif9kl8TCfWpyHBmd6zWqaiFd-uaNeqgKzUPd2ou8iO0WT0HWMVKmjHlqOjhRFs2fDv6qK45DCsRMzzZ-P5hj6y6-I1oxirNnV/s200/Tesselation.png', 'url': 'https://voxels.blogspot.com/2011/09/tesselation-shader-tutorial-with-source.html', 'type': 'item', 'isSingleItem': true, 'isMultipleItems': false, 'isError': false, 'isPage': false, 'isPost': true, 'isHomepage': false, 'isArchive': false, 'isLabelSearch': false, 'postId': 8743895723847303140}}]);
+_WidgetManager._RegisterWidget('_NavbarView', new _WidgetInfo('Navbar1', 'navbar', document.getElementById('Navbar1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_HeaderView', new _WidgetInfo('Header1', 'header', document.getElementById('Header1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_BlogView', new _WidgetInfo('Blog1', 'main', document.getElementById('Blog1'), {'cmtInteractionsEnabled': false, 'lightboxEnabled': true, 'lightboxModuleUrl': 'https://www.blogger.com/static/v1/jsbin/274294243-lbx__de.js', 'lightboxCssUrl': 'https://www.blogger.com/static/v1/v-css/3681588378-lightbox_bundle.css'}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_LinkListView', new _WidgetInfo('LinkList1', 'sidebar', document.getElementById('LinkList1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_FollowersView', new _WidgetInfo('Followers2', 'sidebar', document.getElementById('Followers2'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_BlogArchiveView', new _WidgetInfo('BlogArchive2', 'sidebar', document.getElementById('BlogArchive2'), {'languageDirection': 'ltr', 'loadingMessage': 'Wird geladen\x26hellip;'}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_ProfileView', new _WidgetInfo('Profile2', 'sidebar', document.getElementById('Profile2'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_StatsView', new _WidgetInfo('Stats1', 'sidebar', document.getElementById('Stats1'), {'title': 'Gesamtzahl der Seitenaufrufe', 'showGraphicalCounter': false, 'showAnimatedCounter': false, 'showSparkline': true, 'statsUrl': '//voxels.blogspot.com/b/stats?style\x3dBLACK_TRANSPARENT\x26timeRange\x3dALL_TIME\x26token\x3dAPq4FmCSfsVDOX8f3fhLkc1DLl2HxSyBmwKPPV0DPAjDt5Es_L6tSbdrd3Tqb9yyggn-YhzPYDz8BJJ3CEn8zooxu8cjVfqR6A'}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_HTMLView', new _WidgetInfo('HTML1', 'footer', document.getElementById('HTML1'), {}, 'displayModeFull'));
+</script>
+</body>
+</html>

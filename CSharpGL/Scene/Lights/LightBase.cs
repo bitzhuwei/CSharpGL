@@ -5,14 +5,12 @@ using System.Drawing.Design;
 using System.Linq;
 using System.Text;
 
-namespace CSharpGL
-{
+namespace CSharpGL {
     /// <summary>
     /// Base type of directional light, point light and spot light.
     /// </summary>
-    [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
-    public abstract class LightBase
-    {
+
+    public abstract class LightBase {
         //private vec3 color = new vec3(1, 1, 1);
         ///// <summary>
         ///// Light's color.
@@ -39,24 +37,27 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
+
         public Attenuation Attenuation { get; set; }
 
         /// <summary>
         /// Base type of all lights.
         /// </summary>
         /// <param name="attenuation"></param>
-        public LightBase(Attenuation attenuation)
-        {
-            this.Attenuation = attenuation;
+        public LightBase(Attenuation? attenuation) {
+            if (attenuation == null) {
+                this.Attenuation = new Attenuation(0, 0, 0);
+            }
+            else {
+                this.Attenuation = attenuation;
+            }
         }
 
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        public override string ToString()
-        {
+        public override string ToString() {
             return string.Format("{0}: Color:{1}, {2}", this.GetType().Name, this.diffuse, this.specular);
         }
 

@@ -4,15 +4,13 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 
-namespace CSharpGL
-{
+namespace CSharpGL {
     /// <summary>
     /// Render To Texture.
     /// contains a framebuffer.
     /// </summary>
-    public class ColoredFramebufferProvider : IFramebufferProvider
-    {
-        private Framebuffer framebuffer;
+    public class ColoredFramebufferProvider : IFramebufferProvider {
+        private Framebuffer? framebuffer;
 
         /// <summary>
         /// Gets a framebuffer with specified <paramref name="width"/> and <paramref name="height"/>.
@@ -20,26 +18,20 @@ namespace CSharpGL
         /// <param name="width"></param>
         /// <param name="height"></param>
         /// <returns></returns>
-        public Framebuffer GetFramebuffer(int width, int height)
-        {
-            if (width <= 0)
-            {
+        public Framebuffer GetFramebuffer(int width, int height) {
+            if (width <= 0) {
                 throw new ArgumentOutOfRangeException("width");
             }
 
-            if (height <= 0)
-            {
+            if (height <= 0) {
                 throw new ArgumentOutOfRangeException("height");
             }
 
-            if (this.framebuffer == null)
-            {
+            if (this.framebuffer == null) {
                 this.framebuffer = CreateFramebuffer(width, height);
             }
-            else
-            {
-                if (this.framebuffer.Width != width || this.framebuffer.Height != height)
-                {
+            else {
+                if (this.framebuffer.width != width || this.framebuffer.height != height) {
                     this.framebuffer.Dispose();
                     this.framebuffer = CreateFramebuffer(width, height);
                 }
@@ -49,8 +41,7 @@ namespace CSharpGL
         }
 
 
-        private Framebuffer CreateFramebuffer(int width, int height)
-        {
+        private Framebuffer CreateFramebuffer(int width, int height) {
             var framebuffer = new Framebuffer(width, height);
             framebuffer.Bind();
             {
@@ -61,14 +52,14 @@ namespace CSharpGL
                     new TexParameteri(TexParameter.PropertyName.TextureMinFilter, (int)GL.GL_LINEAR),
                     new TexParameteri(TexParameter.PropertyName.TextureMagFilter, (int)GL.GL_LINEAR));
                 texture.Initialize();
-                framebuffer.Attach(FramebufferTarget.Framebuffer, texture, 0u);// 1
+                framebuffer.Attach(Framebuffer.Target.Framebuffer, texture, 0u);// 1
                 this.BindingTexture = texture;
             }
             {
                 var renderbuffer = new Renderbuffer(width, height, GL.GL_DEPTH_COMPONENT24);
-                framebuffer.Attach(FramebufferTarget.Framebuffer, renderbuffer, AttachmentLocation.Depth);// special
+                framebuffer.Attach(Framebuffer.Target.Framebuffer, renderbuffer, AttachmentLocation.Depth);// special
             }
-            //framebuffer.SetDrawBuffer(GL.GL_COLOR_ATTACHMENT0 + 1);// as in 1 in framebuffer.Attach(FramebufferTarget.Framebuffer, texture, 1u);// 1
+            //framebuffer.SetDrawBuffer(GL.GL_COLOR_ATTACHMENT0 + 1);// as in 1 in framebuffer.Attach(Framebuffer.Target.Framebuffer, texture, 1u);// 1
             framebuffer.CheckCompleteness();
             framebuffer.Unbind();
 

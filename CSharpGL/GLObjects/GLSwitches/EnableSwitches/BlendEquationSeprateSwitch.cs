@@ -1,17 +1,14 @@
 ﻿using System.ComponentModel;
 
-namespace CSharpGL
-{
+namespace CSharpGL {
     /// <summary>
     /// set the RGBA blend equation.
     /// </summary>
-    public class BlendEquationSeprateSwitch : EnableSwitch
-    {
-        private static readonly GLDelegates.void_uint_uint glBlendEquationSeparate;
-        static BlendEquationSeprateSwitch()
-        {
-            glBlendEquationSeparate = GL.Instance.GetDelegateFor("glBlendEquationSeparate", GLDelegates.typeof_void_uint_uint) as GLDelegates.void_uint_uint;
-        }
+    public unsafe class BlendEquationSeprateSwitch : EnableSwitch {
+        ////private static readonly GLDelegates.void_uint_uint glBlendEquationSeparate;
+        //static BlendEquationSeprateSwitch() {
+        //    glBlendEquationSeparate = gl.glGetDelegateFor("glBlendEquationSeparate", GLDelegates.typeof_void_uint_uint) as GLDelegates.void_uint_uint;
+        //}
 
         // Activator needs a non-parameter constructor.
         /// <summary>
@@ -26,8 +23,7 @@ namespace CSharpGL
         /// <param name="alphaMode">set the Alpha blend equation.</param>
         /// <param name="enableCapacity"></param>
         public BlendEquationSeprateSwitch(BlendEquationMode rgbMode, BlendEquationMode alphaMode, bool enableCapacity = true)
-            : base(GL.GL_BLEND, enableCapacity)
-        {
+            : base(GL.GL_BLEND, enableCapacity) {
             this.RGBMode = rgbMode;
             this.AlphaMode = alphaMode;
         }
@@ -35,14 +31,11 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        public override string ToString()
-        {
-            if (this.EnableCapacity)
-            {
+        public override string ToString() {
+            if (this.EnableCapacity) {
                 return string.Format("glBlendEquationSeparate((uint){0}, (uint){1});", this.RGBMode, this.AlphaMode);
             }
-            else
-            {
+            else {
                 return string.Format("Disabled glBlendEquationSeparate((uint){0}, (uint){1});", this.RGBMode, this.AlphaMode);
             }
         }
@@ -50,13 +43,12 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        protected override void StateOn()
-        {
+        protected override void StateOn() {
+            var gl = GL.current; if (gl == null) { return; }
             base.StateOn();
 
-            if (this.enableCapacityWhenStateOn)
-            {
-                glBlendEquationSeparate((uint)this.RGBMode, (uint)this.AlphaMode);
+            if (this.enableCapacityWhenStateOn) {
+                gl.glBlendEquationSeparate((uint)this.RGBMode, (uint)this.AlphaMode);
             }
         }
 

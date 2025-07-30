@@ -3,14 +3,12 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Design;
 
-namespace CSharpGL
-{
+namespace CSharpGL {
     /// <summary>
     /// Render something.
     /// </summary>
-    [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
-    public interface IGUIRenderable
-    {
+
+    public interface IGUIRenderable {
         /// <summary>
         /// 
         /// </summary>
@@ -32,8 +30,7 @@ namespace CSharpGL
     /// <summary>
     /// Render event argument.
     /// </summary>
-    public class GUIRenderEventArgs
-    {
+    public class GUIRenderEventArgs {
         /// <summary>
         /// 
         /// </summary>
@@ -42,8 +39,7 @@ namespace CSharpGL
         /// <summary>
         /// Initializes a new instance of the <see cref="GUIRenderEventArgs"/> class.
         /// </summary>
-        public GUIRenderEventArgs(ActionParams param)
-        {
+        public GUIRenderEventArgs(ActionParams param) {
             this.Param = param;
         }
 
@@ -51,8 +47,7 @@ namespace CSharpGL
         /// 
         /// </summary>
         /// <returns></returns>
-        public override string ToString()
-        {
+        public override string ToString() {
             return string.Format("{0}", this.Param);
         }
     }

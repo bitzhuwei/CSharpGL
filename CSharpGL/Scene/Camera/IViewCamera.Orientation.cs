@@ -1,16 +1,13 @@
-﻿namespace CSharpGL
-{
+﻿namespace CSharpGL {
     /// <summary>
     ///
     /// </summary>
-    public static partial class CameraHelper
-    {
+    public static partial class CameraHelper {
         /// <summary>
         /// Get front vector in world space.
         /// </summary>
         /// <returns></returns>
-        public static vec3 GetFront(this IViewCamera camera)
-        {
+        public static vec3 GetFront(this IViewCamera camera) {
             vec3 result = camera.Target - camera.Position;
             return result;
         }
@@ -19,8 +16,7 @@
         /// Get back vector in world space.
         /// </summary>
         /// <returns></returns>
-        public static vec3 GetBack(this IViewCamera camera)
-        {
+        public static vec3 GetBack(this IViewCamera camera) {
             vec3 result = camera.Position - camera.Target;
             return result;
         }
@@ -29,8 +25,7 @@
         /// Get left vector in world space.
         /// </summary>
         /// <returns></returns>
-        public static vec3 GetLeft(this IViewCamera camera)
-        {
+        public static vec3 GetLeft(this IViewCamera camera) {
             vec3 back = camera.Position - camera.Target;
             vec3 result = back.cross(camera.UpVector);
             return result;
@@ -40,8 +35,7 @@
         /// Get right vector in world space.
         /// </summary>
         /// <returns></returns>
-        public static vec3 GetRight(this IViewCamera camera)
-        {
+        public static vec3 GetRight(this IViewCamera camera) {
             vec3 back = camera.Position - camera.Target;
             vec3 result = camera.UpVector.cross(back);
             return result;
@@ -52,8 +46,7 @@
         /// </summary>
         /// <param name="camera"></param>
         /// <returns></returns>
-        public static vec3 GetUp(this IViewCamera camera)
-        {
+        public static vec3 GetUp(this IViewCamera camera) {
             vec3 back = camera.Position - camera.Target;
             vec3 right = camera.UpVector.cross(back);
             vec3 up = back.cross(right);
@@ -65,8 +58,7 @@
         /// </summary>
         /// <param name="camera"></param>
         /// <returns></returns>
-        public static vec3 GetDown(this IViewCamera camera)
-        {
+        public static vec3 GetDown(this IViewCamera camera) {
             vec3 back = camera.Position - camera.Target;
             vec3 right = camera.UpVector.cross(back);
             vec3 down = right.cross(back);

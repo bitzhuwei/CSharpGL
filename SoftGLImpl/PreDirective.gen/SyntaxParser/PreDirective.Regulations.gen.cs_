@@ -1,0 +1,266 @@
+using System;
+using bitzhuwei.Compiler;
+
+namespace bitzhuwei.PreDirectiveFormat {
+    partial class CompilerPreDirective {
+        /// <summary>
+        /// (regulations + VtRegexes + etc.) = grammar for this compiler.
+        /// </summary>
+        public static readonly IReadOnlyList<Regulation> regulations = new Regulation[] {
+            // [0] PreDirective = MicroDefinition ;
+            new(0, st.PreDirective枝, st.MicroDefinition枝), 
+            // [1] PreDirective = ConditionalCompilation ;
+            new(1, st.PreDirective枝, st.ConditionalCompilation枝), 
+            // [2] PreDirective = ErrorDirective ;
+            new(2, st.PreDirective枝, st.ErrorDirective枝), 
+            // [3] PreDirective = PragmaDirective ;
+            new(3, st.PreDirective枝, st.PragmaDirective枝), 
+            // [4] PreDirective = ExtensionDirective ;
+            new(4, st.PreDirective枝, st.ExtensionDirective枝), 
+            // [5] PreDirective = VersionDirective ;
+            new(5, st.PreDirective枝, st.VersionDirective枝), 
+            // [6] PreDirective = LineDirective ;
+            new(6, st.PreDirective枝, st.LineDirective枝), 
+            // [7] MicroDefinition = '#define' 'identifier' '(' ParameterList ')' RandomTokens ;
+            new(7, st.MicroDefinition枝, st.@Pound符define, st.@identifier, st.@LeftParenthesis符, st.ParameterList枝, st.@RightParenthesis符, st.RandomTokens枝), 
+            // [8] MicroDefinition = '#define' 'identifier' '(' ')' RandomTokens ;
+            new(8, st.MicroDefinition枝, st.@Pound符define, st.@identifier, st.@LeftParenthesis符, st.@RightParenthesis符, st.RandomTokens枝), 
+            // [9] MicroDefinition = '#define' 'identifier' RandomTokens ;
+            new(9, st.MicroDefinition枝, st.@Pound符define, st.@identifier, st.RandomTokens枝), 
+            // [10] MicroDefinition = '#undef' 'identifier' ;
+            new(10, st.MicroDefinition枝, st.@Pound符undef, st.@identifier), 
+            // [11] ParameterList = 'identifier' ;
+            new(11, st.ParameterList枝, st.@identifier), 
+            // [12] ParameterList = ParameterList ',' 'identifier' ;
+            new(12, st.ParameterList枝, st.ParameterList枝, st.@Comma符, st.@identifier), 
+            // [13] RandomTokens = RandomTokens RandomToken ;
+            new(13, st.RandomTokens枝, st.RandomTokens枝, st.RandomToken枝), 
+            // [14] RandomTokens = RandomToken ;
+            new(14, st.RandomTokens枝, st.RandomToken枝), 
+            // [15] RandomTokens = null ;
+            new(15, st.RandomTokens枝), 
+            // [16] RandomToken = 'identifier' ;
+            new(16, st.RandomToken枝, st.@identifier), 
+            // [17] RandomToken = 'intConstant' ;
+            new(17, st.RandomToken枝, st.@intConstant), 
+            // [18] RandomToken = 'uintConstant' ;
+            new(18, st.RandomToken枝, st.@uintConstant), 
+            // [19] RandomToken = 'floatConstant' ;
+            new(19, st.RandomToken枝, st.@floatConstant), 
+            // [20] RandomToken = 'boolConstant' ;
+            new(20, st.RandomToken枝, st.@boolConstant), 
+            // [21] RandomToken = 'doubleConstant' ;
+            new(21, st.RandomToken枝, st.@doubleConstant), 
+            // [22] RandomToken = ';' ;
+            new(22, st.RandomToken枝, st.@Semicolon符), 
+            // [23] RandomToken = '(' ;
+            new(23, st.RandomToken枝, st.@LeftParenthesis符), 
+            // [24] RandomToken = ')' ;
+            new(24, st.RandomToken枝, st.@RightParenthesis符), 
+            // [25] RandomToken = '[' ;
+            new(25, st.RandomToken枝, st.@LeftBracket符), 
+            // [26] RandomToken = ']' ;
+            new(26, st.RandomToken枝, st.@RightBracket符), 
+            // [27] RandomToken = '.' ;
+            new(27, st.RandomToken枝, st.@Dot符), 
+            // [28] RandomToken = '++' ;
+            new(28, st.RandomToken枝, st.@Plus符Plus符), 
+            // [29] RandomToken = '--' ;
+            new(29, st.RandomToken枝, st.@Dash符Dash符), 
+            // [30] RandomToken = ',' ;
+            new(30, st.RandomToken枝, st.@Comma符), 
+            // [31] RandomToken = '+' ;
+            new(31, st.RandomToken枝, st.@Plus符), 
+            // [32] RandomToken = '-' ;
+            new(32, st.RandomToken枝, st.@Dash符), 
+            // [33] RandomToken = '!' ;
+            new(33, st.RandomToken枝, st.@Bang符), 
+            // [34] RandomToken = '~' ;
+            new(34, st.RandomToken枝, st.@Tilde符), 
+            // [35] RandomToken = '*' ;
+            new(35, st.RandomToken枝, st.@Asterisk符), 
+            // [36] RandomToken = '/' ;
+            new(36, st.RandomToken枝, st.@Slash符), 
+            // [37] RandomToken = '%' ;
+            new(37, st.RandomToken枝, st.@Percent符), 
+            // [38] RandomToken = '<<' ;
+            new(38, st.RandomToken枝, st.@LeftAngle符LeftAngle符), 
+            // [39] RandomToken = '>>' ;
+            new(39, st.RandomToken枝, st.@RightAngle符RightAngle符), 
+            // [40] RandomToken = '<' ;
+            new(40, st.RandomToken枝, st.@LeftAngle符), 
+            // [41] RandomToken = '>' ;
+            new(41, st.RandomToken枝, st.@RightAngle符), 
+            // [42] RandomToken = '<=' ;
+            new(42, st.RandomToken枝, st.@LeftAngle符Equal符), 
+            // [43] RandomToken = '>=' ;
+            new(43, st.RandomToken枝, st.@RightAngle符Equal符), 
+            // [44] RandomToken = '==' ;
+            new(44, st.RandomToken枝, st.@Equal符Equal符), 
+            // [45] RandomToken = '!=' ;
+            new(45, st.RandomToken枝, st.@Bang符Equal符), 
+            // [46] RandomToken = '&' ;
+            new(46, st.RandomToken枝, st.@And符), 
+            // [47] RandomToken = '^' ;
+            new(47, st.RandomToken枝, st.@Caret符), 
+            // [48] RandomToken = '|' ;
+            new(48, st.RandomToken枝, st.@Pipe符), 
+            // [49] RandomToken = '&&' ;
+            new(49, st.RandomToken枝, st.@And符And符), 
+            // [50] RandomToken = '^^' ;
+            new(50, st.RandomToken枝, st.@Caret符Caret符), 
+            // [51] RandomToken = '||' ;
+            new(51, st.RandomToken枝, st.@Pipe符Pipe符), 
+            // [52] RandomToken = '?' ;
+            new(52, st.RandomToken枝, st.@Question符), 
+            // [53] RandomToken = ':' ;
+            new(53, st.RandomToken枝, st.@Colon符), 
+            // [54] RandomToken = '=' ;
+            new(54, st.RandomToken枝, st.@Equal符), 
+            // [55] RandomToken = '*=' ;
+            new(55, st.RandomToken枝, st.@Asterisk符Equal符), 
+            // [56] RandomToken = '/=' ;
+            new(56, st.RandomToken枝, st.@Slash符Equal符), 
+            // [57] RandomToken = '%=' ;
+            new(57, st.RandomToken枝, st.@Percent符Equal符), 
+            // [58] RandomToken = '+=' ;
+            new(58, st.RandomToken枝, st.@Plus符Equal符), 
+            // [59] RandomToken = '-=' ;
+            new(59, st.RandomToken枝, st.@Dash符Equal符), 
+            // [60] RandomToken = '<<=' ;
+            new(60, st.RandomToken枝, st.@LeftAngle符LeftAngle符Equal符), 
+            // [61] RandomToken = '>>=' ;
+            new(61, st.RandomToken枝, st.@RightAngle符RightAngle符Equal符), 
+            // [62] RandomToken = '&=' ;
+            new(62, st.RandomToken枝, st.@And符Equal符), 
+            // [63] RandomToken = '^=' ;
+            new(63, st.RandomToken枝, st.@Caret符Equal符), 
+            // [64] RandomToken = '|=' ;
+            new(64, st.RandomToken枝, st.@Pipe符Equal符), 
+            // [65] RandomToken = '{' ;
+            new(65, st.RandomToken枝, st.@LeftBrace符), 
+            // [66] RandomToken = '}' ;
+            new(66, st.RandomToken枝, st.@RightBrace符), 
+            // [67] RandomToken = '##' ;
+            new(67, st.RandomToken枝, st.@Pound符Pound符), 
+            // [68] ConditionalCompilation = IfGroup ;
+            new(68, st.ConditionalCompilation枝, st.IfGroup枝), 
+            // [69] ConditionalCompilation = ElseGroup ;
+            new(69, st.ConditionalCompilation枝, st.ElseGroup枝), 
+            // [70] ConditionalCompilation = ElifGroup ;
+            new(70, st.ConditionalCompilation枝, st.ElifGroup枝), 
+            // [71] ConditionalCompilation = EndifGroup ;
+            new(71, st.ConditionalCompilation枝, st.EndifGroup枝), 
+            // [72] IfGroup = '#if' ConstExp ;
+            new(72, st.IfGroup枝, st.@Pound符if, st.ConstExp枝), 
+            // [73] IfGroup = '#ifdef' ConstExp ;
+            new(73, st.IfGroup枝, st.@Pound符ifdef, st.ConstExp枝), 
+            // [74] IfGroup = '#ifndef' ConstExp ;
+            new(74, st.IfGroup枝, st.@Pound符ifndef, st.ConstExp枝), 
+            // [75] ElseGroup = '#else' ;
+            new(75, st.ElseGroup枝, st.@Pound符else), 
+            // [76] ElifGroup = '#elif' ConstExp ;
+            new(76, st.ElifGroup枝, st.@Pound符elif, st.ConstExp枝), 
+            // [77] EndifGroup = '#endif' ;
+            new(77, st.EndifGroup枝, st.@Pound符endif), 
+            // [78] ErrorDirective = '#error' 'literalString' ;
+            new(78, st.ErrorDirective枝, st.@Pound符error, st.@literalString), 
+            // [79] PragmaDirective = '#pragma' 'identifier' ;
+            new(79, st.PragmaDirective枝, st.@Pound符pragma, st.@identifier), 
+            // [80] PragmaDirective = '#pragma' 'identifier' '(' ParameterList ')' ;
+            new(80, st.PragmaDirective枝, st.@Pound符pragma, st.@identifier, st.@LeftParenthesis符, st.ParameterList枝, st.@RightParenthesis符), 
+            // [81] PragmaDirective = '#pragma' 'identifier' '(' ')' ;
+            new(81, st.PragmaDirective枝, st.@Pound符pragma, st.@identifier, st.@LeftParenthesis符, st.@RightParenthesis符), 
+            // [82] ExtensionDirective = '#extension' 'literalString' ':' 'literalString' ;
+            new(82, st.ExtensionDirective枝, st.@Pound符extension, st.@literalString, st.@Colon符, st.@literalString), 
+            // [83] VersionDirective = '#version' 'number' ;
+            new(83, st.VersionDirective枝, st.@Pound符version, st.@number), 
+            // [84] VersionDirective = '#version' 'number' 'identifier' ;
+            new(84, st.VersionDirective枝, st.@Pound符version, st.@number, st.@identifier), 
+            // [85] LineDirective = '#line' 'number' ;
+            new(85, st.LineDirective枝, st.@Pound符line, st.@number), 
+            // [86] LineDirective = '#line' 'number' 'number' ;
+            new(86, st.LineDirective枝, st.@Pound符line, st.@number, st.@number), 
+            // [87] ConstExp = OrOrExp ;
+            new(87, st.ConstExp枝, st.OrOrExp枝), 
+            // [88] OrOrExp = AndAndExp ;
+            new(88, st.OrOrExp枝, st.AndAndExp枝), 
+            // [89] OrOrExp = OrOrExp '||' AndAndExp ;
+            new(89, st.OrOrExp枝, st.OrOrExp枝, st.@Pipe符Pipe符, st.AndAndExp枝), 
+            // [90] AndAndExp = OrExp ;
+            new(90, st.AndAndExp枝, st.OrExp枝), 
+            // [91] AndAndExp = AndAndExp '&&' OrExp ;
+            new(91, st.AndAndExp枝, st.AndAndExp枝, st.@And符And符, st.OrExp枝), 
+            // [92] OrExp = XorExp ;
+            new(92, st.OrExp枝, st.XorExp枝), 
+            // [93] OrExp = OrExp '|' XorExp ;
+            new(93, st.OrExp枝, st.OrExp枝, st.@Pipe符, st.XorExp枝), 
+            // [94] XorExp = AndExp ;
+            new(94, st.XorExp枝, st.AndExp枝), 
+            // [95] XorExp = XorExp '^' AndExp ;
+            new(95, st.XorExp枝, st.XorExp枝, st.@Caret符, st.AndExp枝), 
+            // [96] AndExp = EqualExp ;
+            new(96, st.AndExp枝, st.EqualExp枝), 
+            // [97] AndExp = AndExp '&' EqualExp ;
+            new(97, st.AndExp枝, st.AndExp枝, st.@And符, st.EqualExp枝), 
+            // [98] EqualExp = RelationExp ;
+            new(98, st.EqualExp枝, st.RelationExp枝), 
+            // [99] EqualExp = EqualExp '==' RelationExp ;
+            new(99, st.EqualExp枝, st.EqualExp枝, st.@Equal符Equal符, st.RelationExp枝), 
+            // [100] EqualExp = EqualExp '!=' RelationExp ;
+            new(100, st.EqualExp枝, st.EqualExp枝, st.@Bang符Equal符, st.RelationExp枝), 
+            // [101] RelationExp = ShiftExp ;
+            new(101, st.RelationExp枝, st.ShiftExp枝), 
+            // [102] RelationExp = RelationExp '<' ShiftExp ;
+            new(102, st.RelationExp枝, st.RelationExp枝, st.@LeftAngle符, st.ShiftExp枝), 
+            // [103] RelationExp = RelationExp '>' ShiftExp ;
+            new(103, st.RelationExp枝, st.RelationExp枝, st.@RightAngle符, st.ShiftExp枝), 
+            // [104] RelationExp = RelationExp '<=' ShiftExp ;
+            new(104, st.RelationExp枝, st.RelationExp枝, st.@LeftAngle符Equal符, st.ShiftExp枝), 
+            // [105] RelationExp = RelationExp '>=' ShiftExp ;
+            new(105, st.RelationExp枝, st.RelationExp枝, st.@RightAngle符Equal符, st.ShiftExp枝), 
+            // [106] ShiftExp = AddExp ;
+            new(106, st.ShiftExp枝, st.AddExp枝), 
+            // [107] ShiftExp = ShiftExp '<<' AddExp ;
+            new(107, st.ShiftExp枝, st.ShiftExp枝, st.@LeftAngle符LeftAngle符, st.AddExp枝), 
+            // [108] ShiftExp = ShiftExp '>>' AddExp ;
+            new(108, st.ShiftExp枝, st.ShiftExp枝, st.@RightAngle符RightAngle符, st.AddExp枝), 
+            // [109] AddExp = MultiExp ;
+            new(109, st.AddExp枝, st.MultiExp枝), 
+            // [110] AddExp = AddExp '+' MultiExp ;
+            new(110, st.AddExp枝, st.AddExp枝, st.@Plus符, st.MultiExp枝), 
+            // [111] AddExp = AddExp '-' MultiExp ;
+            new(111, st.AddExp枝, st.AddExp枝, st.@Dash符, st.MultiExp枝), 
+            // [112] MultiExp = UnaryExp ;
+            new(112, st.MultiExp枝, st.UnaryExp枝), 
+            // [113] MultiExp = MultiExp '*' UnaryExp ;
+            new(113, st.MultiExp枝, st.MultiExp枝, st.@Asterisk符, st.UnaryExp枝), 
+            // [114] MultiExp = MultiExp '/' UnaryExp ;
+            new(114, st.MultiExp枝, st.MultiExp枝, st.@Slash符, st.UnaryExp枝), 
+            // [115] MultiExp = MultiExp '%' UnaryExp ;
+            new(115, st.MultiExp枝, st.MultiExp枝, st.@Percent符, st.UnaryExp枝), 
+            // [116] UnaryExp = PrimaryExp ;
+            new(116, st.UnaryExp枝, st.PrimaryExp枝), 
+            // [117] UnaryExp = UnaryOp UnaryExp ;
+            new(117, st.UnaryExp枝, st.UnaryOp枝, st.UnaryExp枝), 
+            // [118] UnaryOp = 'defined' ;
+            new(118, st.UnaryOp枝, st.@defined), 
+            // [119] UnaryOp = '+' ;
+            new(119, st.UnaryOp枝, st.@Plus符), 
+            // [120] UnaryOp = '-' ;
+            new(120, st.UnaryOp枝, st.@Dash符), 
+            // [121] UnaryOp = '~' ;
+            new(121, st.UnaryOp枝, st.@Tilde符), 
+            // [122] UnaryOp = '!' ;
+            new(122, st.UnaryOp枝, st.@Bang符), 
+            // [123] PrimaryExp = 'number' ;
+            new(123, st.PrimaryExp枝, st.@number), 
+            // [124] PrimaryExp = 'identifier' ;
+            new(124, st.PrimaryExp枝, st.@identifier), 
+            // [125] PrimaryExp = '(' ConstExp ')' ;
+            new(125, st.PrimaryExp枝, st.@LeftParenthesis符, st.ConstExp枝, st.@RightParenthesis符), 
+
+        };
+      
+    }
+}

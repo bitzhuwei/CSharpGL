@@ -1,0 +1,287 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Reflection;
+using System.Text;
+
+namespace SoftGLImpl {
+    unsafe class Fragment {
+        public bool discard = false;
+
+        //public bool depthTestFailed = false;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public readonly vec4 gl_FragCoord;
+
+        ///// <summary>
+        ///// Only contains data in this fragment.
+        ///// </summary>
+        //public readonly PassBuffer[] attributes;
+        // user-defined pass-data from previous shader stage
+        public readonly VertexCodeBase endpoints0;
+        public readonly VertexCodeBase? endpoints1;
+        public readonly VertexCodeBase? endpoints2;
+        public readonly float weights0;
+        public readonly float weights1;
+        public readonly float weights2;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public PassBuffer[]? outVariables;
+
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="fragCoord"></param>
+        ///// <param name="attributeLength"></param>
+        //public Fragment(vec3 fragCoord, int attributeLength) {
+        //    this.gl_FragCoord = new vec4(fragCoord, 1.0f);
+        //    this.attributes = new PassBuffer[attributeLength];
+        //}
+        public Fragment(vec3 fragCoord, VertexCodeBase endpoint) {
+            this.gl_FragCoord = new vec4(fragCoord, 1.0f);
+            this.endpoints0 = endpoint;
+            this.weights0 = 1;
+        }
+        public Fragment(vec3 fragCoord, VertexCodeBase endpoint0, VertexCodeBase endpoint1,
+            float weight0, float weight1) {
+            this.gl_FragCoord = new vec4(fragCoord, 1.0f);
+            this.endpoints0 = endpoint0;
+            this.endpoints1 = endpoint1;
+            this.weights0 = weight0;
+            this.weights1 = weight1;
+        }
+        public Fragment(vec3 fragCoord, VertexCodeBase endpoint0, VertexCodeBase endpoint1, VertexCodeBase endpoint2,
+            float weight0, float weight1, float weight2) {
+            this.gl_FragCoord = new vec4(fragCoord, 1.0f);
+            this.endpoints0 = endpoint0;
+            this.endpoints1 = endpoint1;
+            this.endpoints2 = endpoint2;
+            this.weights0 = weight0;
+            this.weights1 = weight1;
+            this.weights2 = weight2;
+        }
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="fragCoord"></param>
+        ///// <param name="attributeLength"></param>
+        //public Fragment(vec4 fragCoord, int attributeLength) {
+        //    this.gl_FragCoord = fragCoord;
+        //    this.attributes = new PassBuffer[attributeLength];
+        //}
+        public Fragment(vec4 fragCoord, VertexCodeBase endpoint) {
+            this.gl_FragCoord = fragCoord;
+            this.endpoints0 = endpoint;
+            this.weights0 = 1;
+        }
+        public Fragment(vec4 fragCoord, VertexCodeBase endpoint0, VertexCodeBase endpoint1,
+            float weight0, float weight1) {
+            this.gl_FragCoord = fragCoord;
+            this.endpoints0 = endpoint0;
+            this.endpoints1 = endpoint1;
+            this.weights0 = weight0;
+            this.weights1 = weight1;
+        }
+        public Fragment(vec4 fragCoord, VertexCodeBase endpoint0, VertexCodeBase endpoint1, VertexCodeBase endpoint2,
+            float weight0, float weight1, float weight2) {
+            this.gl_FragCoord = fragCoord;
+            this.endpoints0 = endpoint0;
+            this.endpoints1 = endpoint1;
+            this.endpoints2 = endpoint2;
+            this.weights0 = weight0;
+            this.weights1 = weight1;
+            this.weights2 = weight2;
+        }
+
+        public override string ToString() {
+            //return string.Format("{0}, {1} attributes.", this.gl_FragCoord, this.attributes.Length);
+            return string.Format("{0}, {1}*{2} ..", this.gl_FragCoord, this.endpoints0, this.weights0);
+        }
+
+        internal object GetValue(FieldInfo endpointField, PassType passType) {
+            switch (passType) {
+            case PassType.Float: {
+                var value = 0.0f;
+                {
+                    if (endpointField.GetValue(this.endpoints0) is float ai) {
+                        var weight = this.weights0;
+                        value += weight * ai;
+                    }
+                    else { throw new Exception("this should not happen!"); }
+                }
+                if (this.endpoints1 != null) {
+                    if (endpointField.GetValue(this.endpoints1) is float ai) {
+                        var weight = this.weights1;
+                        value += weight * ai;
+                    }
+                    else { throw new Exception("this should not happen!"); }
+                }
+                if (this.endpoints2 != null) {
+                    if (endpointField.GetValue(this.endpoints2) is float ai) {
+                        var weight = this.weights2;
+                        value += weight * ai;
+                    }
+                    else { throw new Exception("this should not happen!"); }
+                }
+                return value;
+            }
+            case PassType.Vec2: {
+                var value = new vec2(0, 0);
+                {
+                    if (endpointField.GetValue(this.endpoints0) is vec2 ai) {
+                        var weight = this.weights0;
+                        value += weight * ai;
+                    }
+                    else { throw new Exception("this should not happen!"); }
+                }
+                if (this.endpoints1 != null) {
+                    if (endpointField.GetValue(this.endpoints1) is vec2 ai) {
+                        var weight = this.weights1;
+                        value += weight * ai;
+                    }
+                    else { throw new Exception("this should not happen!"); }
+                }
+                if (this.endpoints2 != null) {
+                    if (endpointField.GetValue(this.endpoints2) is vec2 ai) {
+                        var weight = this.weights2;
+                        value += weight * ai;
+                    }
+                    else { throw new Exception("this should not happen!"); }
+                }
+                return value;
+            }
+            case PassType.Vec3: {
+                var value = new vec3(0, 0, 0);
+                {
+                    if (endpointField.GetValue(this.endpoints0) is vec3 ai) {
+                        var weight = this.weights0;
+                        value += weight * ai;
+                    }
+                    else { throw new Exception("this should not happen!"); }
+                }
+                if (this.endpoints1 != null) {
+                    if (endpointField.GetValue(this.endpoints1) is vec3 ai) {
+                        var weight = this.weights1;
+                        value += weight * ai;
+                    }
+                    else { throw new Exception("this should not happen!"); }
+                }
+                if (this.endpoints2 != null) {
+                    if (endpointField.GetValue(this.endpoints2) is vec3 ai) {
+                        var weight = this.weights2;
+                        value += weight * ai;
+                    }
+                    else { throw new Exception("this should not happen!"); }
+                }
+                return value;
+            }
+            case PassType.Vec4: {
+                var value = new vec4(0, 0, 0, 0);
+                {
+                    if (endpointField.GetValue(this.endpoints0) is vec4 ai) {
+                        var weight = this.weights0;
+                        value += weight * ai;
+                    }
+                    else { throw new Exception("this should not happen!"); }
+                }
+                if (this.endpoints1 != null) {
+                    if (endpointField.GetValue(this.endpoints1) is vec4 ai) {
+                        var weight = this.weights1;
+                        value += weight * ai;
+                    }
+                    else { throw new Exception("this should not happen!"); }
+                }
+                if (this.endpoints2 != null) {
+                    if (endpointField.GetValue(this.endpoints2) is vec4 ai) {
+                        var weight = this.weights2;
+                        value += weight * ai;
+                    }
+                    else { throw new Exception("this should not happen!"); }
+                }
+                return value;
+            }
+            case PassType.Mat2: {
+                var value = new mat2(0, 0, 0, 0);
+                {
+                    if (endpointField.GetValue(this.endpoints0) is mat2 ai) {
+                        var weight = this.weights0;
+                        value += weight * ai;
+                    }
+                    else { throw new Exception("this should not happen!"); }
+                }
+                if (this.endpoints1 != null) {
+                    if (endpointField.GetValue(this.endpoints1) is mat2 ai) {
+                        var weight = this.weights1;
+                        value += weight * ai;
+                    }
+                    else { throw new Exception("this should not happen!"); }
+                }
+                if (this.endpoints2 != null) {
+                    if (endpointField.GetValue(this.endpoints2) is mat2 ai) {
+                        var weight = this.weights2;
+                        value += weight * ai;
+                    }
+                    else { throw new Exception("this should not happen!"); }
+                }
+                return value;
+            }
+            case PassType.Mat3: {
+                var value = new mat3(0);
+                {
+                    if (endpointField.GetValue(this.endpoints0) is mat3 ai) {
+                        var weight = this.weights0;
+                        value += weight * ai;
+                    }
+                    else { throw new Exception("this should not happen!"); }
+                }
+                if (this.endpoints1 != null) {
+                    if (endpointField.GetValue(this.endpoints1) is mat3 ai) {
+                        var weight = this.weights1;
+                        value += weight * ai;
+                    }
+                    else { throw new Exception("this should not happen!"); }
+                }
+                if (this.endpoints2 != null) {
+                    if (endpointField.GetValue(this.endpoints2) is mat3 ai) {
+                        var weight = this.weights2;
+                        value += weight * ai;
+                    }
+                    else { throw new Exception("this should not happen!"); }
+                }
+                return value;
+            }
+            case PassType.Mat4: {
+                var value = new mat4(0);
+                {
+                    if (endpointField.GetValue(this.endpoints0) is mat4 ai) {
+                        var weight = this.weights0;
+                        value += weight * ai;
+                    }
+                    else { throw new Exception("this should not happen!"); }
+                }
+                if (this.endpoints1 != null) {
+                    if (endpointField.GetValue(this.endpoints1) is mat4 ai) {
+                        var weight = this.weights1;
+                        value += weight * ai;
+                    }
+                    else { throw new Exception("this should not happen!"); }
+                }
+                if (this.endpoints2 != null) {
+                    if (endpointField.GetValue(this.endpoints2) is mat4 ai) {
+                        var weight = this.weights2;
+                        value += weight * ai;
+                    }
+                    else { throw new Exception("this should not happen!"); }
+                }
+                return value;
+            }
+            default: throw new NotDealWithNewEnumItemException(typeof(PassType));
+            }
+        }
+    }
+}

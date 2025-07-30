@@ -1,22 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 
-namespace CSharpGL
-{
+namespace CSharpGL {
     /// <summary>
     /// Renders a label(string) as GUI.
     /// </summary>
-    public partial class CtrlLabel : GLControl
-    {
+    public partial class CtrlLabel : GLControl {
         /// <summary>
         /// 
         /// </summary>
         /// <param name="capacity"></param>
         public CtrlLabel(int capacity)
-            : this(capacity, GUIAnchorStyles.Left | GUIAnchorStyles.Top)
-        { }
+            : this(capacity, GUIAnchorStyles.Left | GUIAnchorStyles.Top) { }
 
         /// <summary>
         /// 
@@ -24,22 +22,19 @@ namespace CSharpGL
         /// <param name="capacity"></param>
         /// <param name="anchor"></param>
         public CtrlLabel(int capacity, GUIAnchorStyles anchor)
-            : base(anchor)
-        {
+            : base(anchor) {
             if (capacity < 0) { throw new ArgumentException("capacity"); }
 
             this.Size = new GUISize(20, 20);
 
             var model = new GlyphsModel(capacity);
             this.labelModel = model;
-            var vs = new VertexShader(vert);
-            var fs = new FragmentShader(frag);
-            var codes = new ShaderArray(vs, fs);
+            var program = GLProgram.Create(vert, frag); Debug.Assert(program != null);
             var map = new AttributeMap();
             map.Add(inPosition, GlyphsModel.position);
             map.Add(inSTR, GlyphsModel.STR);
             var blend = new BlendFuncSwitch(BlendSrcFactor.SrcAlpha, BlendDestFactor.OneMinusSrcAlpha);
-            var methodBuilder = new RenderMethodBuilder(codes, map, blend);
+            var methodBuilder = new RenderMethodBuilder(program, map, blend);
             this.RenderUnit = new ModernRenderUnit(model, methodBuilder);
 
             this.Initialize();
@@ -53,8 +48,7 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        protected override void DoInitialize()
-        {
+        protected override void DoInitialize() {
             this.RenderUnit.Initialize();
 
             // make sure labelModel only returns once.
@@ -63,7 +57,7 @@ namespace CSharpGL
             this.drawCmd = (from item in this.labelModel.GetDrawCommand() select item).First() as DrawArraysCmd;
 
             GlyphServer server = GlyphServer.DefaultServer;
-            Texture texture = server.GlyphTexture;
+            Texture texture = server.glyphTexture;
             string name = glyphTexture;
             this.RenderUnit.Methods[0].Program.SetUniform(name, texture);
         }
@@ -72,8 +66,7 @@ namespace CSharpGL
         /// 
         /// </summary>
         /// <param name="arg"></param>
-        public override void RenderGUIBeforeChildren(GUIRenderEventArgs arg)
-        {
+        public override void RenderGUIBeforeChildren(GUIRenderEventArgs arg) {
             base.RenderGUIBeforeChildren(arg);
 
             ModernRenderUnit unit = this.RenderUnit;

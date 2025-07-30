@@ -6,13 +6,13 @@ using System.Linq;
 using System.Text;
 using System.Xml.Linq;
 
-namespace CSharpGL
-{
+namespace CSharpGL {
     /// <summary>
     /// 一个要处理的单元（一个字符或一个字符串）。
     /// </summary>
-    class StringChunk : ChunkBase
-    {
+    class StringChunk : ChunkBase {
+        private static readonly Image unitImage = new Bitmap(1, 1);
+        public static readonly Graphics unitGraphics = Graphics.FromImage(unitImage);
 
         /// <summary>
         /// 一个要处理的单元（一个字符或一个字符串）。
@@ -20,25 +20,24 @@ namespace CSharpGL
         /// <param name="text"></param>
         /// <param name="font"></param>
         public StringChunk(string text, Font font)
-            : base(text, font)
-        {
+            : base(text, font) {
         }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="context"></param>
-        public override void Put(PagesContext context)
-        {
+        public override void Put(PagesContext context) {
             if (context == null) { throw new ArgumentNullException("context"); }
-            Graphics graphics = context.UnitGraphics;
+
+            Graphics graphics = unitGraphics;
             if (graphics == null) { throw new Exception("Context already disposed!"); }
             if (context.CurrentIndex >= context.PageList.Count) { return; } // 超过了允许的最多的页数。
 
             Page page = context.PageList[context.CurrentIndex];
             PointF leftTop = context.CurrentLeftTop;
-            SizeF bigSize = graphics.MeasureString("丨" + this.Text + "丨", this.TheFont);
-            SizeF emptySize = graphics.MeasureString("丨丨", this.TheFont);
+            SizeF bigSize = graphics.MeasureString("丨" + this.text + "丨", this.theFont);
+            SizeF emptySize = graphics.MeasureString("丨丨", this.theFont);
             var width = (bigSize.Width - emptySize.Width);
             var height = bigSize.Height;
             if (page.Width < leftTop.X + width) // 该换行了。
@@ -55,8 +54,8 @@ namespace CSharpGL
 
                     // 用下一页。（无论能否申请新页，都按能申请处理。）
                     {
-                        this.LeftTop = new PointF(0, 0);
-                        this.Size = new SizeF(width, height);
+                        this.leftTop = new PointF(0, 0);
+                        this.size = new SizeF(width, height);
                         this.PageIndex = context.CurrentIndex;
 
                         context.CurrentLeftTop = new PointF(width, 0);
@@ -66,8 +65,8 @@ namespace CSharpGL
                 else // 仅仅换行，不换页。
                 {
                     leftTop = new PointF(0, leftTop.Y + context.MaxLineHeight);
-                    this.LeftTop = leftTop;
-                    this.Size = new SizeF(width, height);
+                    this.leftTop = leftTop;
+                    this.size = new SizeF(width, height);
                     this.PageIndex = context.CurrentIndex;
 
                     context.CurrentLeftTop = new PointF(leftTop.X + width, leftTop.Y);
@@ -76,14 +75,13 @@ namespace CSharpGL
             }
             else // 当前行还可以放下此chunk。
             {
-                this.LeftTop = leftTop;
-                this.Size = new SizeF(width, height);
+                this.leftTop = leftTop;
+                this.size = new SizeF(width, height);
                 this.PageIndex = context.CurrentIndex;
 
                 context.CurrentLeftTop = new PointF(leftTop.X + width, leftTop.Y);
                 if (leftTop.X == 0 // 第一个字符（串）
-                    || context.MaxLineHeight < height)
-                {
+                    || context.MaxLineHeight < height) {
                     context.MaxLineHeight = height;
                 }
             }

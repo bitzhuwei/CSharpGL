@@ -1,16 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 
-namespace CSharpGL
-{
+namespace CSharpGL {
     /// <summary>
     /// A rectangle control that displays an image.
     /// </summary>
-    public partial class CtrlTexture : GLControl
-    {
+    public partial class CtrlTexture : GLControl {
         private ITextureSource textureSource;
 
         /// <summary>
@@ -18,16 +17,13 @@ namespace CSharpGL
         /// </summary>
         /// <param name="textureSource">source of texture.</param>
         public CtrlTexture(ITextureSource textureSource)
-            : base(GUIAnchorStyles.Left | GUIAnchorStyles.Top)
-        {
+            : base(GUIAnchorStyles.Left | GUIAnchorStyles.Top) {
             var model = new CtrlTextureModel();
-            var vs = new VertexShader(vert);
-            var fs = new FragmentShader(frag);
-            var codes = new ShaderArray(vs, fs);
+            var program = GLProgram.Create(vert, frag); Debug.Assert(program != null);
             var map = new AttributeMap();
             map.Add(inPosition, CtrlTextureModel.position);
             map.Add(inUV, CtrlTextureModel.uv);
-            var methodBuilder = new RenderMethodBuilder(codes, map, new BlendFuncSwitch(BlendSrcFactor.SrcAlpha, BlendDestFactor.OneMinusSrcAlpha));
+            var methodBuilder = new RenderMethodBuilder(program, map, new BlendFuncSwitch(BlendSrcFactor.SrcAlpha, BlendDestFactor.OneMinusSrcAlpha));
             this.RenderUnit = new ModernRenderUnit(model, methodBuilder);
             this.textureSource = textureSource;
 
@@ -37,8 +33,7 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        protected override void DoInitialize()
-        {
+        protected override void DoInitialize() {
             base.DoInitialize();
 
             this.RenderUnit.Initialize();
@@ -52,15 +47,13 @@ namespace CSharpGL
         /// 
         /// </summary>
         /// <param name="arg"></param>
-        public override void RenderGUIBeforeChildren(GUIRenderEventArgs arg)
-        {
+        public override void RenderGUIBeforeChildren(GUIRenderEventArgs arg) {
             base.RenderGUIBeforeChildren(arg);
 
             ModernRenderUnit unit = this.RenderUnit;
             RenderMethod method = unit.Methods[0];
             Texture texture = this.textureSource.BindingTexture;
-            if (texture != null)
-            {
+            if (texture != null) {
                 method.Program.SetUniform("tex", texture);
             }
             method.Render();

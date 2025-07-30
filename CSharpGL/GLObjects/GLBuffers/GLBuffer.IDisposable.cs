@@ -1,16 +1,13 @@
 ﻿using System;
 
-namespace CSharpGL
-{
-    public abstract partial class GLBuffer
-    {
+namespace CSharpGL {
+    unsafe partial class GLBuffer {
         private bool disposedValue = false;
 
         /// <summary>
         ///
         /// </summary>
-        public void Dispose()
-        {
+        public void Dispose() {
             this.Dispose(true);
             GC.SuppressFinalize(this);
         }
@@ -18,17 +15,13 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        ~GLBuffer()
-        {
+        ~GLBuffer() {
             this.Dispose(false);
         }
 
-        private void Dispose(bool disposing)
-        {
-            if (this.disposedValue == false)
-            {
-                if (disposing)
-                {
+        private void Dispose(bool disposing) {
+            if (this.disposedValue == false) {
+                if (disposing) {
                     // Dispose managed resources.
                     DisposeManagedResources();
                 }
@@ -40,27 +33,26 @@ namespace CSharpGL
             this.disposedValue = true;
         }
 
-        private static GLDelegates.void_int_uintN glDeleteBuffers;
+        //private static GLDelegates.void_int_uintN glDeleteBuffers;
         /// <summary>
         ///
         /// </summary>
-        protected virtual void DisposeUnmanagedResources()
-        {
-            IntPtr context = GL.Instance.GetCurrentContext();
-            if (context != IntPtr.Zero)
-            {
-                if (glDeleteBuffers == null) { glDeleteBuffers = GL.Instance.GetDelegateFor("glDeleteBuffers", GLDelegates.typeof_void_int_uintN) as GLDelegates.void_int_uintN; }
-                glDeleteBuffers(1, new uint[] { this.BufferId });
+        protected virtual void DisposeUnmanagedResources() {
+            //IntPtr context = gl.glGetCurrentContext();
+            var gl = GL.current;
+            if (gl != null) {
+                //if (glDeleteBuffers == null) { glDeleteBuffers = gl.glGetDelegateFor("glDeleteBuffers", GLDelegates.typeof_void_int_uintN) as GLDelegates.void_int_uintN; }
+                var name = this.bufferId;
+                gl.glDeleteBuffers(1, &name);
             }
 
-            this.BufferId = 0;
+            //this.bufferId = 0;
         }
 
         /// <summary>
         ///
         /// </summary>
-        protected virtual void DisposeManagedResources()
-        {
+        protected virtual void DisposeManagedResources() {
         }
     }
 }

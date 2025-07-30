@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 
-namespace CSharpGL
-{
-    public static partial class Data2Buffer
-    {
+namespace CSharpGL {
+    public static unsafe partial class Data2Buffer {
         /// <summary>
         /// 生成顶点属性Buffer。描述顶点的位置或颜色或UV等各种属性。
         /// <para>每个<see cref="VertexBuffer"/>仅描述其中一个属性。</para>
@@ -17,10 +15,9 @@ namespace CSharpGL
         /// <param name="instancedDivisor">0: not instanced. 1: instanced divisor is 1.</param>
         /// <param name="patchVertexes">How many vertexes makes a patch? No patch if <paramref name="patchVertexes"/> is 0.</param>
         /// <returns></returns>
-        public static VertexBuffer GenVertexBuffer<T>(this T data, VBOConfig config, BufferUsage usage, uint instancedDivisor = 0, int patchVertexes = 0) where T : struct
-        {
+        public static VertexBuffer GenVertexBuffer<T>(this T data, VBOConfig config, GLBuffer.Usage usage, uint instancedDivisor = 0, int patchVertexes = 0) where T : struct {
             var array = new T[] { data };
-            return GenVertexBuffer(array, config, usage, instancedDivisor, patchVertexes);
+            return GenVertexBuffer(array, config, usage, 0, 0, instancedDivisor, patchVertexes);
             // another way to do this:
             //using (UnmanagedArrayBase unmanagedArray = new UnmanagedArray<T>(1))
             //{

@@ -1,0 +1,42 @@
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Reflection.Emit;
+using System.Text;
+using System.Threading.Tasks;
+using bitzhuwei.Compiler;
+
+namespace bitzhuwei.GLSLFormat {
+    /// <summary>
+    /// Correspond to the Vn node if_statement in the grammar(GLSL).
+    /// </summary>
+    partial class Vnif_statement : statement {
+        private expression expression4;
+        private statement if_part;
+        private statement? else_part;
+
+        public Vnif_statement(expression expression4, statement if_part, statement? else_part) {
+            this.expression4 = expression4;
+            this.if_part = if_part;
+            this.else_part = else_part;
+        }
+
+        public override void Format(TextWriter writer, FormatContext context) {
+            context.PrintTab(writer);
+            writer.Write("if ("); this.expression4.Format(writer, context); writer.Write(") {"); writer.WriteLine();
+            context.IncreaseTab();
+            this.if_part.Format(writer, context);
+            context.DecreaseTab();
+            if (this.else_part != null) {
+                writer.WriteLine(); context.PrintTab(writer);
+                writer.Write("else {");
+                context.IncreaseTab();
+                this.else_part.Format(writer, context);
+                context.DecreaseTab();
+                writer.WriteLine(); context.PrintTab(writer);
+                writer.Write("}");
+            }
+        }
+    }
+}

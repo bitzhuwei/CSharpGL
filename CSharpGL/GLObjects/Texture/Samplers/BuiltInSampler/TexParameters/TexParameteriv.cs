@@ -3,19 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CSharpGL
-{
+namespace CSharpGL {
     /// <summary>
     /// glTexParameterf();
     /// </summary>
-    public class TexParameteriv : TexParameter
-    {
-        private int[] pValue;
+    public unsafe class TexParameteriv : TexParameter {
+        public readonly int[] pValue;
 
-        public int[] PValue
-        {
-            get { return pValue; }
-        }
 
         /// <summary>
         /// 
@@ -24,8 +18,7 @@ namespace CSharpGL
         /// <param name="pnameString"></param>
         /// <param name="pValue"></param>
         public TexParameteriv(uint pname, string pnameString, params int[] pValue)
-            : base(pname, pnameString)
-        {
+            : base(pname, pnameString) {
             this.pValue = pValue;
         }
 
@@ -35,8 +28,7 @@ namespace CSharpGL
         /// <param name="pname"></param>
         /// <param name="pValue"></param>
         public TexParameteriv(PropertyName pname, params int[] pValue)
-            : base((uint)pname, pname.ToString())
-        {
+            : base((uint)pname, pname.ToString()) {
             this.pValue = pValue;
         }
 
@@ -44,18 +36,19 @@ namespace CSharpGL
         /// 
         /// </summary>
         /// <param name="target"></param>
-        public override void Apply(TextureTarget target)
-        {
-            GL.Instance.TexParameteriv((uint)target, PName, PValue);
+        public override void Apply(TextureTarget target) {
+            var gl = GL.current; if (gl == null) { return; }
+            fixed (GLint* p = pValue) {
+                gl.glTexParameteriv((GLenum)target, PName, p);
+            }
         }
 
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        public override string ToString()
-        {
-            return string.Format("glTexParameteriv({0}, {1}, {2});", " ", this.PNameString, this.PValue);
+        public override string ToString() {
+            return string.Format("glTexParameteriv({0}, {1}, {2});", " ", this.PNameString, this.pValue);
         }
     }
 }

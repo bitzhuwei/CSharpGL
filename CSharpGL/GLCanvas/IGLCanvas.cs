@@ -3,15 +3,12 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Windows.Forms;
 
-namespace CSharpGL
-{
+namespace CSharpGL {
     /// <summary>
     /// 
     /// </summary>
-    public interface IGLCanvas
-    {
+    public interface IGLCanvas {
         /// <summary>
         /// 
         /// </summary>
@@ -22,15 +19,15 @@ namespace CSharpGL
         /// </summary>
         int Height { get; set; }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        void Repaint();
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //void Repaint();
 
         /// <summary>
         /// 
         /// </summary>
-        GLRenderContext RenderContext { get; }
+        GLRenderContext? RenderContext { get; }
 
         /// <summary>
         /// Gets or sets the render trigger.
@@ -42,49 +39,14 @@ namespace CSharpGL
         /// </summary>
         int TimerTriggerInterval { get; set; }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        event GLEventHandler<GLKeyPressEventArgs> KeyPress;
-
-        /// <summary>
-        /// 
-        /// </summary>
-        event GLEventHandler<GLMouseEventArgs> MouseDown;
-
-        /// <summary>
-        /// 
-        /// </summary>
-        event GLEventHandler<GLMouseEventArgs> MouseMove;
-
-        /// <summary>
-        /// 
-        /// </summary>
-        event GLEventHandler<GLMouseEventArgs> MouseUp;
-
-        /// <summary>
-        /// 
-        /// </summary>
-        event GLEventHandler<GLMouseEventArgs> MouseWheel;
-
-        /// <summary>
-        ///
-        /// </summary>
-        event GLEventHandler<GLKeyEventArgs> KeyDown;
-
-        /// <summary>
-        ///
-        /// </summary>
-        event GLEventHandler<GLKeyEventArgs> KeyUp;
-
-        /// <summary>
-        ///
-        /// </summary>
-        event EventHandler Resize;
-
-        /// <summary>
-        /// 
-        /// </summary>
+        event GLEventHandler<GLKeyPressEventArgs>? GLKeyPress;
+        event GLEventHandler<GLMouseEventArgs>? GLMouseDown;
+        event GLEventHandler<GLMouseEventArgs>? GLMouseMove;
+        event GLEventHandler<GLMouseEventArgs>? GLMouseUp;
+        event GLEventHandler<GLMouseEventArgs>? GLMouseWheel;
+        event GLEventHandler<GLKeyEventArgs>? GLKeyDown;
+        event GLEventHandler<GLKeyEventArgs>? GLKeyUp;
+        event EventHandler? Resize;
         bool IsDisposed { get; }
 
     }

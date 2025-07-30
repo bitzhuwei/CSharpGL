@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 
-namespace CSharpGL
-{
+namespace CSharpGL.Windows {
+    /// <summary>
+    /// pfd: pixel format descriptor
+    /// </summary>
     [StructLayout(LayoutKind.Explicit)]
-    internal class PixelFormatDescriptor
-    {
+    internal class PixelFormatDescriptor {
         [FieldOffset(0)]
-        public UInt16 nSize;
+        public readonly UInt16 nSize;
 
         [FieldOffset(2)]
         public UInt16 nVersion;
@@ -19,7 +20,7 @@ namespace CSharpGL
         public Byte iPixelType;
 
         [FieldOffset(9)]
-        public Byte cColorBits;
+        public Byte colorBits;
 
         [FieldOffset(10)]
         public Byte cRedBits;
@@ -46,25 +47,25 @@ namespace CSharpGL
         public Byte cAlphaShift;
 
         [FieldOffset(18)]
-        public Byte cAccumBits;
+        public Byte accumBits;
 
         [FieldOffset(19)]
-        public Byte cAccumRedBits;
+        public Byte accumRedBits;
 
         [FieldOffset(20)]
-        public Byte cAccumGreenBits;
+        public Byte accumGreenBits;
 
         [FieldOffset(21)]
-        public Byte cAccumBlueBits;
+        public Byte accumBlueBits;
 
         [FieldOffset(22)]
-        public Byte cAccumAlphaBits;
+        public Byte accumAlphaBits;
 
         [FieldOffset(23)]
-        public Byte cDepthBits;
+        public Byte depthBits;
 
         [FieldOffset(24)]
-        public Byte cStencilBits;
+        public Byte stencilBits;
 
         [FieldOffset(25)]
         public Byte cAuxBuffers;
@@ -84,14 +85,10 @@ namespace CSharpGL
         [FieldOffset(36)]
         public UInt32 dwDamageMask;
 
-        public void Init()
-        {
-            nSize = (ushort)Marshal.SizeOf(this);
-        }
+        public PixelFormatDescriptor() { nSize = (ushort)Marshal.SizeOf(this); }
 
-        public override string ToString()
-        {
-            return string.Concat(nSize, " ", nVersion, " ", dwFlags, " ", iPixelType, " ", cColorBits, " ", cRedBits, " ", cGreenBits, " ", cGreenShift, " ", cBlueBits, " ", cBlueShift, " ", cAlphaBits, " ", cAlphaShift, " ", cAccumBits, " ", cAccumRedBits, " ", cAccumGreenBits, " ", cAccumBlueBits, " ", cAccumAlphaBits, " ", cDepthBits, " ", cStencilBits, " ", cAuxBuffers, " ", iLayerType, " ", bReserved, " ", dwLayerMask, " ", dwVisibleMask, " ", dwDamageMask);
+        public override string ToString() {
+            return string.Concat(nSize, " ", nVersion, " ", dwFlags, " ", iPixelType, " ", colorBits, " ", cRedBits, " ", cGreenBits, " ", cGreenShift, " ", cBlueBits, " ", cBlueShift, " ", cAlphaBits, " ", cAlphaShift, " ", accumBits, " ", accumRedBits, " ", accumGreenBits, " ", accumBlueBits, " ", accumAlphaBits, " ", depthBits, " ", stencilBits, " ", cAuxBuffers, " ", iLayerType, " ", bReserved, " ", dwLayerMask, " ", dwVisibleMask, " ", dwDamageMask);
         }
     }
 }

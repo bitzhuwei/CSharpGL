@@ -1,0 +1,57 @@
+using System;
+using bitzhuwei.Compiler;
+
+namespace bitzhuwei.GLSLFormat {
+    partial class CompilerGLSL {
+
+#if noTableDFA
+        /// <summary>
+        /// lexicalState477
+        /// <para>CompilerGLSL.Lexical●[5 NFA States]</para>
+        /// </summary>
+        private static readonly Action<LexicalContext, char, CurrentStateWrap> lexicalState477 =
+        static (context, c, wrap) => {
+            if (false) { /* for simpler code generation purpose. */ }
+            /* auto-generated condition code */
+            /* [0-9][B-Z]_[a-z] */
+            else if (/* possible Vt : 'type_name' 'identifier' */
+            /* no possible signal */
+            /* RangeList */
+            (/* [xxx] scope */
+            '0'/*'\u0030'(48)*/ <= c && c <= '9'/*'\u0039'(57)*/)
+             || (/* [xxx] scope */
+            'B'/*'\u0042'(66)*/ <= c && c <= 'Z'/*'\u005A'(90)*/)
+             || (/* single char */
+            c == '_'/*'\u005F'(95)*/)
+             || (/* [xxx] scope */
+            'a'/*'\u0061'(97)*/ <= c && c <= 'z'/*'\u007A'(122)*/)) {
+                ExtendToken(context, st.@type_name, st.@type_name, st.@identifier);
+                wrap.currentState = lexicalState55;
+            }
+            /* auto-generated condition code */
+            /* A */
+            else if (/* possible Vt : 'usampler1DArray' 'type_name' 'identifier' */
+            /* no possible signal */
+            /* RangeList */
+            /* single char */
+            c == 'A'/*'\u0041'(65)*/) {
+                ExtendToken(context, st.@type_name, st.@type_name, st.@identifier);
+                wrap.currentState = lexicalState515;
+            }
+            /* deal with everything else. */
+            else {
+                AcceptToken2(context
+                , new("default", /*<'Vt'>*/st.@struct, st.@type_name)
+                , new("default", /*default preVt*/st.@终, st.@usampler1D)
+                , new("subroutine1", /*default preVt*/st.@终, st.@type_name)
+                , new("default", /*default preVt*/st.@终, st.@identifier));
+                wrap.currentState = lexicalState0;
+            }
+
+
+        };
+#endif
+
+    }
+}
+

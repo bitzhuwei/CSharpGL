@@ -4,16 +4,14 @@ using System.Linq;
 
 using System.Xml.Linq;
 
-namespace CSharpGL
-{
+namespace CSharpGL {
     /// <summary>
     /// 持有从<see cref="IBufferSource"/>到GLSL中in变量名的对应关系。
     /// 每个<see cref="IBufferSource"/>和每个<see cref="RenderMethod"/>都有一个Map关系。
     /// <para>Relations between vertex attribute buffers and 'in' variables in GLSL vertex shader.</para>
     /// <para>This relation map connects <see cref="IBufferSource"/> to <see cref="ModernNode"/>.</para>
     /// </summary>
-    public class AttributeMap : IEnumerable<AttributeMap.NamePair>
-    {
+    public class AttributeMap : IEnumerable<AttributeMap.NamePair> {
         private List<string> namesInShader = new List<string>();
         private List<string> namesInIBufferSource = new List<string>();
 
@@ -33,8 +31,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="nameInShader">'vPos' in vertex shader(in vec3 vPos;)</param>
         /// <param name="nameInIBufferSource">user defined identifier for a buffer.</param>
-        public AttributeMap(string nameInShader, string nameInIBufferSource)
-        {
+        public AttributeMap(string nameInShader, string nameInIBufferSource) {
             this.Add(nameInShader, nameInIBufferSource);
         }
 
@@ -46,14 +43,11 @@ namespace CSharpGL
         /// </summary>
         /// <param name="nameInShader">'vPos' in vertex shader(in vec3 vPos;)</param>
         /// <param name="nameInIBufferSource">user defined identifier for a buffer.</param>
-        public AttributeMap(string[] nameInShader, string[] nameInIBufferSource)
-        {
+        public AttributeMap(string[] nameInShader, string[] nameInIBufferSource) {
             if (nameInShader == null || nameInIBufferSource == null
-                || nameInShader.Length != nameInIBufferSource.Length)
-            { throw new ArgumentException(); }
+                || nameInShader.Length != nameInIBufferSource.Length) { throw new ArgumentException(); }
 
-            for (int i = 0; i < nameInShader.Length; i++)
-            {
+            for (int i = 0; i < nameInShader.Length; i++) {
                 this.Add(nameInShader[i], nameInIBufferSource[i]);
             }
         }
@@ -63,10 +57,8 @@ namespace CSharpGL
         /// </summary>
         /// <param name="nameInShader">'vPos' in vertex shader(in vec3 vPos;)</param>
         /// <param name="nameInIBufferSource">user defined identifier for a buffer.</param>
-        public void Add(string nameInShader, string nameInIBufferSource)
-        {
-            if (this.namesInShader.Contains(nameInShader))
-            { throw new ArgumentException(string.Format("name[{0}] in shader already registered!", nameInShader)); }
+        public void Add(string nameInShader, string nameInIBufferSource) {
+            if (this.namesInShader.Contains(nameInShader)) { throw new ArgumentException(string.Format("name[{0}] in shader already registered!", nameInShader)); }
 
             this.namesInShader.Add(nameInShader);
             this.namesInIBufferSource.Add(nameInIBufferSource);
@@ -113,26 +105,22 @@ namespace CSharpGL
         ///
         /// </summary>
         /// <returns></returns>
-        public IEnumerator<NamePair> GetEnumerator()
-        {
+        public IEnumerator<NamePair> GetEnumerator() {
             List<string> namesInShader = this.namesInShader;
             List<string> namesInIBufferSource = this.namesInIBufferSource;
-            for (int i = 0; i < namesInShader.Count; i++)
-            {
+            for (int i = 0; i < namesInShader.Count; i++) {
                 yield return new NamePair(namesInShader[i], namesInIBufferSource[i]);
             }
         }
 
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
-        {
+        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() {
             return this.GetEnumerator();
         }
 
         /// <summary>
         ///
         /// </summary>
-        public class NamePair
-        {
+        public class NamePair {
             private const string strVarNameInShader = "VarNameInShader";
 
             /// <summary>
@@ -152,8 +140,7 @@ namespace CSharpGL
             /// </summary>
             /// <param name="nameInShader"></param>
             /// <param name="nameInIBufferSource"></param>
-            public NamePair(string nameInShader, string nameInIBufferSource)
-            {
+            public NamePair(string nameInShader, string nameInIBufferSource) {
                 this.VarNameInShader = nameInShader;
                 this.NameInIBufferSource = nameInIBufferSource;
             }
@@ -162,8 +149,7 @@ namespace CSharpGL
             ///
             /// </summary>
             /// <returns></returns>
-            public XElement ToXElement()
-            {
+            public XElement ToXElement() {
                 return new XElement(typeof(NamePair).Name,
                     new XAttribute(strVarNameInShader, VarNameInShader),
                     new XAttribute(strNameInIBufferSource, NameInIBufferSource));
@@ -174,10 +160,8 @@ namespace CSharpGL
             /// </summary>
             /// <param name="xElement"></param>
             /// <returns></returns>
-            public static NamePair Parse(XElement xElement)
-            {
-                if (xElement.Name != typeof(NamePair).Name)
-                { throw new Exception(string.Format("name not match for {0}", typeof(NamePair).Name)); }
+            public static NamePair Parse(XElement xElement) {
+                if (xElement.Name != typeof(NamePair).Name) { throw new Exception(string.Format("name not match for {0}", typeof(NamePair).Name)); }
 
                 NamePair result = new NamePair(
                     xElement.Attribute(strVarNameInShader).Value,
@@ -190,8 +174,7 @@ namespace CSharpGL
             ///
             /// </summary>
             /// <returns></returns>
-            public override string ToString()
-            {
+            public override string ToString() {
                 return string.Format("shader [{0}] -> model [{1}]", VarNameInShader, NameInIBufferSource);
             }
         }

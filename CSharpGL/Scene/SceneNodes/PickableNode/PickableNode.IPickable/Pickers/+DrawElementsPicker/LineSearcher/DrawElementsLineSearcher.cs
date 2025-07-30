@@ -1,7 +1,5 @@
-﻿namespace CSharpGL
-{
-    internal abstract class DrawElementsLineSearcher
-    {
+﻿namespace CSharpGL {
+    internal abstract class DrawElementsLineSearcher {
         /// <summary>
         ///
         /// </summary>

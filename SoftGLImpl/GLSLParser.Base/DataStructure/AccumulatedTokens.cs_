@@ -1,0 +1,56 @@
+﻿using System;
+using System.Text;
+
+namespace bitzhuwei.Compiler {
+    /// <summary>
+    /// accumulated tokens from <see cref="LexicalAnalyzer.Begin"/>, <see cref="LexicalAnalyzer.Continue(string)"/>, <see cref="LexicalAnalyzer.Finish"/>
+    /// </summary>
+    public partial class AccumulatedTokens {
+        public readonly List<string> sourceSegments = new();
+        /*
+        seg[0]: var x = 123 + 456 ;
+        seg[1]: var y = x - 789 ;
+        seg[2]: var z = 0 ;
+        tillLenghts[0] is 0, total index of '+' in seg[0] is 0 + 12
+        tillLenghts[1] is 19, total index of '-' in seg[1] is 19 + 10
+        tillLenghts[2] is 19 + 17, total index of '0' in seg[2] is 19 + 17 + 8
+         */
+        /// <summary>
+        /// treat <see cref="sourceSegments"/> as one big string(source code).
+        /// <see cref="tillLengths"/>[i] is accumulated length from <see cref="tillLengths"/>[0] to <see cref="tillLengths"/>[i - 1]
+        /// </summary>
+        private readonly List<int> tillLengths = new();
+
+        public void Append(string segment, IReadOnlyList<Token> tokens) {
+            var preLength = 0; var count = this.tillLengths.Count;
+            if (count > 0) {
+                preLength = this.tillLengths[count - 1] + this.sourceSegments[count - 1].Length;
+            }
+            this.tillLengths.Add(preLength);
+            this.sourceSegments.Add(segment);
+            this.tokenLists.Add(tokens);
+        }
+
+        public readonly List<IReadOnlyList<Token>> tokenLists = new List<IReadOnlyList<Token>>();
+
+        public readonly Dictionary<Token, TokenErrorInfo> token2ErrorInfo = new();
+
+        public bool Error => this.token2ErrorInfo.Count > 0;
+
+
+        public override string ToString() {
+            if (this.token2ErrorInfo.Count > 0) {
+                var builder = new StringBuilder();
+                builder.AppendLine($"{this.token2ErrorInfo.Count} errors:");
+                foreach (var item in this.token2ErrorInfo) {
+                    builder.AppendLine(item.Value.ToString());
+                }
+                return builder.ToString();
+            }
+            else {
+                return $"{this.tokenLists.Count} token-list(s)";
+            }
+        }
+    }
+
+}

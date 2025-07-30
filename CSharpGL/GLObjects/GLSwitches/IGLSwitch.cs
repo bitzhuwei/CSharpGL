@@ -2,14 +2,12 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing.Design;
 
-namespace CSharpGL
-{
+namespace CSharpGL {
     /// <summary>
     ///
     /// </summary>
-    [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
-    public interface IGLSwitch
-    {
+
+    public interface IGLSwitch {
         /// <summary>
         /// 
         /// </summary>

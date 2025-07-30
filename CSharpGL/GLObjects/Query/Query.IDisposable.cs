@@ -1,23 +1,19 @@
 ﻿using System;
 
-namespace CSharpGL
-{
-    public partial class Query
-    {
+namespace CSharpGL {
+    public unsafe partial class Query {
         /// <summary>
         /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
         /// </summary>
-        public void Dispose()
-        {
+        public void Dispose() {
             this.Dispose(true);
             GC.SuppressFinalize(this);
         } // end sub
 
         /// <summary>
-        /// Destruct instance of the class.
+        /// Destruct instance of the unsafe class.
         /// </summary>
-        ~Query()
-        {
+        ~Query() {
             this.Dispose(false);
         }
 
@@ -30,21 +26,20 @@ namespace CSharpGL
         /// Dispose managed and unmanaged resources of this instance.
         /// </summary>
         /// <param name="disposing">If disposing equals true, managed and unmanaged resources can be disposed. If disposing equals false, only unmanaged resources can be disposed. </param>
-        private void Dispose(bool disposing)
-        {
-            if (this.disposedValue == false)
-            {
-                if (disposing)
-                {
+        private void Dispose(bool disposing) {
+            if (this.disposedValue == false) {
+                if (disposing) {
                     // Dispose managed resources.
                 } // end if
 
                 // Dispose unmanaged resources.
-                IntPtr context = GL.Instance.GetCurrentContext();
-                if (context != IntPtr.Zero)
-                {
-                    glDeleteQueries(this.ids.Length, this.ids);
+                //IntPtr context = gl.glGetCurrentContext();
+                //if (context != IntPtr.Zero) {
+                var gl = GL.current; if (gl != null) {
+                    var ids = stackalloc GLuint[1]; ids[0] = this.id;
+                    gl.glDeleteQueries(1, ids);
                 }
+                //}
             } // end if
 
             this.disposedValue = true;

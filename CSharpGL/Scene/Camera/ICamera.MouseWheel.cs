@@ -1,20 +1,16 @@
-﻿namespace CSharpGL
-{
-    public static partial class CameraHelper
-    {
+﻿namespace CSharpGL {
+    public static partial class CameraHelper {
         // TODO: This is not a good implemtation. rewrite it!
         /// <summary>
         /// 对摄像机执行一次缩放操作
         /// </summary>
         /// <param name="camera"></param>
         /// <param name="delta"></param>
-        public static void MouseWheel(this ICamera camera, int delta)
-        {
+        public static void MouseWheel(this ICamera camera, int delta) {
             //if (camera.CameraType == CameraTypes.Perspective)
             {
                 var target2Position = (camera.Position - camera.Target);
-                if (target2Position.length() < 0.01)
-                {
+                if (target2Position.length() < 0.01) {
                     target2Position = target2Position.normalize();
                     target2Position.x *= 0.01f;
                     target2Position.y *= 0.01f;

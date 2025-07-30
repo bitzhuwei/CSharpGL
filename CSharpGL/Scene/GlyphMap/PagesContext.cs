@@ -6,21 +6,17 @@ using System.Linq;
 using System.Text;
 using System.Xml.Linq;
 
-namespace CSharpGL
-{
+namespace CSharpGL {
     /// <summary>
     /// 布局状态。
     /// </summary>
-    class PagesContext : IDisposable
-    {
+    class PagesContext : IDisposable {
         private List<Page> pageList = new List<Page>();
-        private Image unitImage = new Bitmap(1, 1);
 
         /// <summary>
         /// 画布列表。
         /// </summary>
-        public List<Page> PageList
-        {
+        public List<Page> PageList {
             get { return pageList; }
         }
 
@@ -42,15 +38,13 @@ namespace CSharpGL
         /// <summary>
         /// 布局状态。
         /// </summary>
-        public PagesContext(float pageWidth, float pageHeight, int maxPageCount)
-        {
+        public PagesContext(float pageWidth, float pageHeight, int maxPageCount) {
             this.PageWidth = pageWidth;
             this.PageHeight = pageHeight;
 
             this.PageList.Add(new Page(PageWidth, PageHeight));
 
             this.MaxPageCount = maxPageCount;
-            this.UnitGraphics = Graphics.FromImage(this.unitImage);
         }
 
         private bool disposedValue = false;
@@ -58,8 +52,7 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        public void Dispose()
-        {
+        public void Dispose() {
             this.Dispose(true);
             GC.SuppressFinalize(this);
         }
@@ -67,34 +60,25 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        ~PagesContext()
-        {
+        ~PagesContext() {
             this.Dispose(false);
         }
 
-        private void Dispose(bool disposing)
-        {
-            if (this.disposedValue == false)
-            {
-                if (disposing)
-                {
+        private void Dispose(bool disposing) {
+            if (this.disposedValue == false) {
+                if (disposing) {
                     // Dispose managed resources.
                 }
 
                 // Dispose unmanaged resources.
-                this.UnitGraphics.Dispose();
-                this.UnitGraphics = null;
-                this.unitImage.Dispose();
-                this.unitImage = null;
+                //this.UnitGraphics.Dispose();
+                //this.UnitGraphics = null;
+                //this.unitImage.Dispose();
+                //this.unitImage = null;
             }
 
             this.disposedValue = true;
         }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public Graphics UnitGraphics { get; private set; }
 
         /// <summary>
         /// 
@@ -115,8 +99,7 @@ namespace CSharpGL
     /// <summary>
     /// 一页。将在上面写字（排列布局）。
     /// </summary>
-    public class Page
-    {
+    public class Page {
         /// <summary>
         /// 
         /// </summary>
@@ -139,8 +122,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="width"></param>
         /// <param name="height"></param>
-        public Page(float width, float height)
-        {
+        public Page(float width, float height) {
             this.Width = width;
             this.Height = height;
         }
@@ -149,8 +131,7 @@ namespace CSharpGL
         /// 
         /// </summary>
         /// <returns></returns>
-        public override string ToString()
-        {
+        public override string ToString() {
             return string.Format("left:{0}, top:{1}, width:{2}, height:{3}", this.Left, this.Top, this.Width, this.Height);
         }
     }

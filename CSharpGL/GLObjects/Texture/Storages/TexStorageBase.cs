@@ -3,13 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CSharpGL
-{
+namespace CSharpGL {
     /// <summary>
     /// 
     /// </summary>
-    public abstract class TexStorageBase
-    {
+    public abstract unsafe class TexStorageBase {
         /// <summary>
         /// 
         /// </summary>
@@ -34,8 +32,7 @@ namespace CSharpGL
         /// <param name="internalFormat"></param>
         /// <param name="mipmapLevelCount"></param>
         /// <param name="border"></param>
-        public TexStorageBase(TextureTarget target, uint internalFormat, int mipmapLevelCount = 1, bool border = false)
-        {
+        public TexStorageBase(TextureTarget target, uint internalFormat, int mipmapLevelCount = 1, bool border = false) {
             this.target = target;
             this.internalFormat = internalFormat;
             this.mipmapLevelCount = mipmapLevelCount;

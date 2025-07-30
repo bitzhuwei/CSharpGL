@@ -1,17 +1,14 @@
 ﻿using System;
 
-namespace CSharpGL
-{
+namespace CSharpGL {
     /// <summary>
     ///
     /// </summary>
-    public partial class Renderbuffer : IDisposable
-    {
+    public unsafe partial class Renderbuffer : IDisposable {
         /// <summary>
         ///
         /// </summary>
-        public void Dispose()
-        {
+        public void Dispose() {
             this.Dispose(true);
             GC.SuppressFinalize(this);
         }
@@ -19,28 +16,26 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        ~Renderbuffer()
-        {
+        ~Renderbuffer() {
             this.Dispose(false);
         }
 
         private bool disposedValue = false;
 
-        private void Dispose(bool disposing)
-        {
-            if (this.disposedValue == false)
-            {
-                if (disposing)
-                {
+        private void Dispose(bool disposing) {
+            if (this.disposedValue == false) {
+                if (disposing) {
                     // Dispose managed resources.
                 }
 
                 // Dispose unmanaged resources.
-                IntPtr context = GL.Instance.GetCurrentContext();
-                if (context != IntPtr.Zero)
-                {
-                    glDeleteRenderbuffers(this.renderbuffer.Length, this.renderbuffer);
-                    this.renderbuffer[0] = 0;
+                var gl = GL.current;
+                if (gl != null) {
+                    //IntPtr context = gl.glGetCurrentContext();
+                    //if (context != IntPtr.Zero) {
+                    var ids = stackalloc GLuint[1]; ids[0] = this.id;
+                    gl.glDeleteRenderbuffers(1, ids);
+                    //}
                 }
             }
 

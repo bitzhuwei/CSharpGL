@@ -1,0 +1,4 @@
+﻿FirstSightOfAssimpNet : set target to x86, then wired error about glShaderSource() occurs..
+
+OrderIndependentTransparency : not transparent on some computers !
+

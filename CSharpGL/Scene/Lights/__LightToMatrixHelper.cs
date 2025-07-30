@@ -3,41 +3,33 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CSharpGL
-{
+namespace CSharpGL {
     /// <summary>
     /// Helps in shadow mapping algorithm.
     /// </summary>
-    public static class __LightToMatrixHelper
-    {
+    public static class __LightToMatrixHelper {
         /// <summary>
         /// Helps in shadow mapping algorithm.
         /// </summary>
         /// <param name="light"></param>
         /// <returns></returns>
-        public static mat4 GetProjectionMatrix(this LightBase light)
-        {
-            if (light is TSpotLight)
-            {
-                return GetProjectionMatrix(light as TSpotLight);
+        public static mat4 GetProjectionMatrix(this LightBase light) {
+            if (light is TSpotLight tspotLight) {
+                return GetProjectionMatrix(tspotLight);
             }
-            else if (light is DirectionalLight)
-            {
-                return GetProjectionMatrix(light as DirectionalLight);
+            else if (light is DirectionalLight directionalLight) {
+                return GetProjectionMatrix(directionalLight);
             }
-            else if (light is SpotLight)
-            {
-                return GetProjectionMatrix(light as SpotLight);
+            else if (light is SpotLight spotLight) {
+                return GetProjectionMatrix(spotLight);
             }
-            else
-            {
+            else {
                 throw new System.Exception(string.Format("Not expected light type:[{0}].", light.GetType()));
             }
         }
 
-        private static mat4 GetProjectionMatrix(this TSpotLight light)
-        {
-            const double angle = 90.0 / 180.0 * Math.PI; // in radians
+        private static mat4 GetProjectionMatrix(this TSpotLight light) {
+            const double angle = 90.0 * Math.PI / 180.0; // in radians
             const float aspectRatio = 1.0f;
 
             // TODO: how to get a precise projection?
@@ -46,8 +38,7 @@ namespace CSharpGL
             return projection;
         }
 
-        private static mat4 GetProjectionMatrix(this DirectionalLight light)
-        {
+        private static mat4 GetProjectionMatrix(this DirectionalLight light) {
             // TODO: try this one.
             //var viewport = new int[4];
             //GL.Instance.GetIntegerv(GL.GL_VIEWPORT, viewport);
@@ -58,8 +49,7 @@ namespace CSharpGL
             return projection;
         }
 
-        private static mat4 GetProjectionMatrix(this SpotLight light)
-        {
+        private static mat4 GetProjectionMatrix(this SpotLight light) {
             var angle = Math.Acos(light.CutOff) * 2; // in radians
             const float aspectRatio = 1.0f;
 
@@ -74,72 +64,63 @@ namespace CSharpGL
         /// </summary>
         /// <param name="light"></param>
         /// <returns></returns>
-        public static mat4 GetViewMatrix(this LightBase light)
-        {
-            if (light is TSpotLight)
-            {
-                return GetViewMatrix(light as TSpotLight);
+        public static mat4 GetViewMatrix(this LightBase light) {
+            if (light is TSpotLight tspotLight) {
+                return GetViewMatrix(tspotLight);
             }
-            else if (light is DirectionalLight)
-            {
-                return GetViewMatrix(light as DirectionalLight);
+            else if (light is DirectionalLight directionalLight) {
+                return GetViewMatrix(directionalLight);
             }
-            else if (light is SpotLight)
-            {
-                return GetViewMatrix(light as SpotLight);
+            else if (light is SpotLight spotLight) {
+                return GetViewMatrix(spotLight);
             }
-            else
-            {
+            else {
                 throw new System.Exception(string.Format("Not expected light type:[{0}].", light.GetType()));
             }
         }
 
-        private static mat4 GetViewMatrix(this TSpotLight light)
-        {
+        private static mat4 GetViewMatrix(this TSpotLight light) {
             vec3 direction, up;
-            switch (light.Direction)
-            {
-                case TSpotLightDirection.X:
-                    direction = new vec3(-1, 0, 0);
-                    up = new vec3(0, 1, 0);
-                    break;
-                case TSpotLightDirection.NX:
-                    direction = new vec3(1, 0, 0);
-                    up = new vec3(0, 1, 0);
-                    break;
-                case TSpotLightDirection.Y:
-                    direction = new vec3(0, -1, 0);
-                    up = new vec3(0, 0, 1);
-                    break;
-                case TSpotLightDirection.NY:
-                    direction = new vec3(0, 1, 0);
-                    up = new vec3(0, 0, 1);
-                    break;
-                case TSpotLightDirection.Z:
-                    direction = new vec3(0, 0, -1);
-                    up = new vec3(0, 1, 0);
-                    break;
-                case TSpotLightDirection.NZ:
-                    direction = new vec3(0, 0, 1);
-                    up = new vec3(0, 1, 0);
-                    break;
-                default:
-                    throw new NotDealWithNewEnumItemException(typeof(TSpotLightDirection));
+            switch (light.Direction) {
+            case TSpotLightDirection.X:
+            direction = new vec3(-1, 0, 0);
+            up = new vec3(0, 1, 0);
+            break;
+            case TSpotLightDirection.NX:
+            direction = new vec3(1, 0, 0);
+            up = new vec3(0, 1, 0);
+            break;
+            case TSpotLightDirection.Y:
+            direction = new vec3(0, -1, 0);
+            up = new vec3(0, 0, 1);
+            break;
+            case TSpotLightDirection.NY:
+            direction = new vec3(0, 1, 0);
+            up = new vec3(0, 0, 1);
+            break;
+            case TSpotLightDirection.Z:
+            direction = new vec3(0, 0, -1);
+            up = new vec3(0, 1, 0);
+            break;
+            case TSpotLightDirection.NZ:
+            direction = new vec3(0, 0, 1);
+            up = new vec3(0, 1, 0);
+            break;
+            default:
+            throw new NotDealWithNewEnumItemException(typeof(TSpotLightDirection));
             }
 
             mat4 view = glm.lookAt(light.Position, light.Position - direction, up);
             return view;
         }
 
-        private static mat4 GetViewMatrix(this DirectionalLight light)
-        {
+        private static mat4 GetViewMatrix(this DirectionalLight light) {
             vec3 up = new vec3(0, 1, 0);
             mat4 view = glm.lookAt(new vec3(), -(light.Direction.normalize()), up);
             return view;
         }
 
-        private static mat4 GetViewMatrix(this SpotLight light)
-        {
+        private static mat4 GetViewMatrix(this SpotLight light) {
             vec3 up = new vec3(0, 1, 0);
             //if(light.Direction.dot(up) < 0.01f)
             {

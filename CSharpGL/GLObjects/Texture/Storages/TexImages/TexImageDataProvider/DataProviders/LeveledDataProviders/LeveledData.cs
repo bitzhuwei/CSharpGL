@@ -3,13 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CSharpGL
-{
+namespace CSharpGL {
     /// <summary>
     /// 
     /// </summary>
-    public class LeveledData
-    {
+    public unsafe class LeveledData {
         /// <summary>
         /// 
         /// </summary>
@@ -24,8 +22,7 @@ namespace CSharpGL
         /// 
         /// </summary>
         /// <param name="level"></param>
-        public LeveledData(int level)
-        {
+        public LeveledData(int level) {
             this.level = level;
         }
 
@@ -33,8 +30,7 @@ namespace CSharpGL
         /// 
         /// </summary>
         /// <returns></returns>
-        public virtual IntPtr LockData()
-        {
+        public virtual IntPtr LockData() {
             return IntPtr.Zero;
         }
 

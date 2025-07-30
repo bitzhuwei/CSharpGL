@@ -1,24 +1,28 @@
-﻿namespace CSharpGL
-{
+﻿namespace CSharpGL {
     /// <summary>
     /// Create, update, use and delete a renderbuffer object.
     /// </summary>
-    public partial class Renderbuffer
-    {
-        private static GLDelegates.void_int_uintN glGenRenderbuffers;
-        private static GLDelegates.void_uint_uint glBindRenderbuffer;
-        private static GLDelegates.void_uint_uint_int_int glRenderbufferStorage;
-        private static GLDelegates.void_int_uintN glDeleteRenderbuffers;
+    public unsafe partial class Renderbuffer {
+        //private static GLDelegates.void_int_uintN glGenRenderbuffers;
+        //private static GLDelegates.void_uint_uint glBindRenderbuffer;
+        //private static GLDelegates.void_uint_uint_int_int glRenderbufferStorage;
+        //private static GLDelegates.void_int_uintN glDeleteRenderbuffers;
 
-        static Renderbuffer()
-        {
-            glGenRenderbuffers = GL.Instance.GetDelegateFor("glGenRenderbuffers", GLDelegates.typeof_void_int_uintN) as GLDelegates.void_int_uintN;
-            glBindRenderbuffer = GL.Instance.GetDelegateFor("glBindRenderbuffer", GLDelegates.typeof_void_uint_uint) as GLDelegates.void_uint_uint;
-            glRenderbufferStorage = GL.Instance.GetDelegateFor("glRenderbufferStorage", GLDelegates.typeof_void_uint_uint_int_int) as GLDelegates.void_uint_uint_int_int;
-            glDeleteRenderbuffers = GL.Instance.GetDelegateFor("glDeleteRenderbuffers", GLDelegates.typeof_void_int_uintN) as GLDelegates.void_int_uintN;
-        }
+        //static Renderbuffer() {
+        //    glGenRenderbuffers = gl.glGetDelegateFor("glGenRenderbuffers", GLDelegates.typeof_void_int_uintN) as GLDelegates.void_int_uintN;
+        //    glBindRenderbuffer = gl.glGetDelegateFor("glBindRenderbuffer", GLDelegates.typeof_void_uint_uint) as GLDelegates.void_uint_uint;
+        //    glRenderbufferStorage = gl.glGetDelegateFor("glRenderbufferStorage", GLDelegates.typeof_void_uint_uint_int_int) as GLDelegates.void_uint_uint_int_int;
+        //    glDeleteRenderbuffers = gl.glGetDelegateFor("glDeleteRenderbuffers", GLDelegates.typeof_void_int_uintN) as GLDelegates.void_int_uintN;
+        //}
 
-        private uint[] renderbuffer = new uint[1];
+        /// <summary>
+        /// Framebuffer Id.
+        /// </summary>
+        public readonly uint id;
+
+        public readonly int width;
+        public readonly int height;
+
 
         /// <summary>
         /// Create, update, use and delete a renderbuffer object.
@@ -26,34 +30,20 @@
         /// <param name="width"></param>
         /// <param name="height"></param>
         /// <param name="internalformat"></param>
-        public Renderbuffer(int width, int height, uint internalformat)
-        {
-            this.Width = width;
-            this.Height = height;
+        public Renderbuffer(int width, int height, GLenum internalformat) {
+            this.width = width;
+            this.height = height;
 
-            glGenRenderbuffers(1, renderbuffer);
-            glBindRenderbuffer(GL.GL_RENDERBUFFER, renderbuffer[0]);
-            glRenderbufferStorage(GL.GL_RENDERBUFFER,
+            var gl = GL.current; if (gl == null) { return; }
+            var renderbufferIds = stackalloc GLuint[1];
+            gl.glGenRenderbuffers(1, renderbufferIds);
+            gl.glBindRenderbuffer(GL.GL_RENDERBUFFER, renderbufferIds[0]);
+            gl.glRenderbufferStorage(GL.GL_RENDERBUFFER,
                 internalformat, // TODO: add comment about GL.GL_DEPTH24_STENCIL8, GL.GL_RGBA,
                 width, height);
-            glBindRenderbuffer(GL.GL_RENDERBUFFER, 0);
+            gl.glBindRenderbuffer(GL.GL_RENDERBUFFER, 0);
+            this.id = renderbufferIds[0];
         }
-
-        /// <summary>
-        /// Framebuffer Id.
-        /// </summary>
-        public uint Id { get { return renderbuffer[0]; } }
-
-        /// <summary>
-        ///
-        /// </summary>
-        public int Height { get; set; }
-
-        /// <summary>
-        ///
-        /// </summary>
-        public int Width { get; set; }
-
         ///// <summary>
         ///// Bind a named renderbuffer object.
         ///// </summary>
@@ -95,9 +85,8 @@
         ///
         /// </summary>
         /// <returns></returns>
-        public override string ToString()
-        {
-            return string.Format("{0}: [w:{1}, h:{2}]", this.GetType().Name, this.Width, this.Height);
+        public override string ToString() {
+            return string.Format("{0}: [w:{1}, h:{2}]", this.GetType().Name, this.width, this.height);
         }
     }
 }

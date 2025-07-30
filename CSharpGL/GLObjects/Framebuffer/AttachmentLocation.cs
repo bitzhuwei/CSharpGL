@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace CSharpGL
-{
+namespace CSharpGL {
     /// <summary>
     /// 
     /// </summary>
-    public enum AttachmentLocation : uint
-    {
+    public enum AttachmentLocation : GLuint {
 
         /// <summary>
         ///

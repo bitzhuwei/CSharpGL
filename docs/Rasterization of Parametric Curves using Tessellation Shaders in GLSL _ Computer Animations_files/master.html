@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<!-- saved from url=(0066)https://widgets.wp.com/likes/master.html?ver=20250506#ver=20250506 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<script type="text/html" id="post-likes">
+	<div class="sd-content wpl-likebox">
+		<% if ( canReblog && canUserReblog ) { %>
+		<div class="wpl-button reblog">
+			<a href="#" title='<%- reblog_feedback_no_html %>' class='<%- reblog_css_state %> sd-button' rel='nofollow'>
+				<span><%= reblog_label %></span>
+			</a>
+		</div>
+		<% } %>
+		<% if ( canLike ) { %>
+		<div class="wpl-button <%- css_state %>">
+			<a href="#" title='<%- feedback_no_html %>' class='<%- css_state %> sd-button' rel='nofollow'>
+				<span><%= label %></span>
+			</a>
+		</div>
+
+		<% if ( hasLikes ) { %>
+		<ul class="wpl-avatars sd-like-gravatars">
+			<% likers.forEach( function( item, key ) { %>
+				<li class='<%- item.css_class %>' data-liker-id="<%- item.ID %>"><a href="<%= item.profile_URL %>" title="<%- item.name %>" class="wpl-liker" rel="nofollow" target="_parent">
+					<img src='<%= item.avatar_URL %>' class='avatar avatar-30' alt='<%- item.name %>' width='30' height='30' />
+				</a></li>
+			<% }); %>
+		</ul>
+		<% } %>
+		<div class="wpl-count sd-like-count">
+			<%= feedback %>
+		</div>
+		<% } %>
+	</div>
+</script>
+
+<script type="text/html" id="slim-likes">
+	<div class="sd-content wpl-likebox wpl-slim-likebox">
+		<div class="wpl-button <%- css_state %>">
+			<a href="#" title='<%- feedback_no_html %>' class='<%- css_state %> sd-button' rel='nofollow'>
+				<span><%= label %></span>
+			</a>
+		</div>
+
+		<div class="wpl-count sd-like-count">
+			<%= feedback %>
+		</div>
+	</div>
+</script>
+
+<script type="text/html" id="comment-likes">
+	<div class="wpl-likebox">
+		<div id="comment-like" class="comment-likes <%- css_state %>">
+			<a href="#" class="comment-like-link" rel="nofollow"><%= label %></a>
+		</div>
+	</div>
+</script>
+
+<script type="text/javascript" src="./rlt-proxy.js.&#19979;&#36733;"></script>
+<script type="text/javascript" src="./saved_resource"></script>
+
+<script type="text/javascript">
+	// compute origin from URL argument
+	var parentOrigin;
+	if (window.location.hash) {
+		var params = (window.location.hash.substr(1)).split("&");
+
+		for (i = 0; i < params.length; i++) {
+			var a = params[i].split("=");
+			// Now every parameter from the hash is beind handled this way
+			if (a[0] == "origin") {
+				parentOrigin = a[1];
+			}
+		}
+	}
+	rltInitialize( { rlt: null, iframeOrigins: ['https://public-api.wordpress.com'], parentOrigin: parentOrigin } );
+</script>
+</head>
+<body>
+
+<iframe src="./saved_resource.html" style="display: none;"></iframe></body></html>

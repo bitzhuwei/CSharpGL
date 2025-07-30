@@ -1,12 +1,10 @@
 ﻿using System.ComponentModel;
 
-namespace CSharpGL
-{
+namespace CSharpGL {
     /// <summary>
     /// specify the alpha test function.
     /// </summary>
-    public class AlphaFuncSwitch : EnableSwitch
-    {
+    public unsafe class AlphaFuncSwitch : EnableSwitch {
         // Activator needs a non-parameter constructor.
         /// <summary>
         /// specify the alpha test function.
@@ -22,8 +20,7 @@ namespace CSharpGL
         /// <param name="alphaTestReferenceValue"></param>
         /// <param name="enableCapacity"></param>
         public AlphaFuncSwitch(AlphaTestFunction alphaTestFunc, float alphaTestReferenceValue, bool enableCapacity = true)
-            : base(GL.GL_ALPHA_TEST, enableCapacity)
-        {
+            : base(GL.GL_ALPHA_TEST, enableCapacity) {
             this.AlphaTestFunc = alphaTestFunc;
             this.AlphaTestReferenceValue = alphaTestReferenceValue;
         }
@@ -31,15 +28,12 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        public override string ToString()
-        {
-            if (this.EnableCapacity)
-            {
+        public override string ToString() {
+            if (this.EnableCapacity) {
                 return string.Format("glAlphaFunc({0} {1});",
                     this.AlphaTestFunc, this.AlphaTestReferenceValue);
             }
-            else
-            {
+            else {
                 return string.Format("Disabled glAlphaFunc({0} {1});",
                     this.AlphaTestFunc, this.AlphaTestReferenceValue);
             }
@@ -48,13 +42,12 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        protected override void StateOn()
-        {
+        protected override void StateOn() {
+            var gl = GL.current; if (gl == null) { return; }
             base.StateOn();
 
-            if (this.enableCapacityWhenStateOn)
-            {
-                GL.Instance.AlphaFunc((uint)this.AlphaTestFunc, this.AlphaTestReferenceValue);
+            if (this.enableCapacityWhenStateOn) {
+                gl.glAlphaFunc((uint)this.AlphaTestFunc, this.AlphaTestReferenceValue);
             }
         }
 
@@ -74,8 +67,7 @@ namespace CSharpGL
     /// <summary>
     /// The alpha function
     /// </summary>
-    public enum AlphaTestFunction : uint
-    {
+    public enum AlphaTestFunction : GLuint {
         /// <summary>
         /// Never passes.
         /// </summary>

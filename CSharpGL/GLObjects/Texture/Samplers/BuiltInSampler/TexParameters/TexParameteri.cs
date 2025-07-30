@@ -3,17 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CSharpGL
-{
+namespace CSharpGL {
     /// <summary>
     /// glTexParameteri();
     /// </summary>
-    public class TexParameteri : TexParameter
-    {
+    public unsafe class TexParameteri : TexParameter {
         /// <summary>
         /// 
         /// </summary>
-        public int PValue { get; set; }
+        public int PValue;
 
         /// <summary>
         /// 
@@ -22,8 +20,7 @@ namespace CSharpGL
         /// <param name="pnameString"></param>
         /// <param name="pValue"></param>
         public TexParameteri(uint pname, string pnameString, int pValue)
-            : base(pname, pnameString)
-        {
+            : base(pname, pnameString) {
             this.PValue = pValue;
         }
 
@@ -33,8 +30,7 @@ namespace CSharpGL
         /// <param name="pname"></param>
         /// <param name="pValue"></param>
         public TexParameteri(PropertyName pname, int pValue)
-            : base((uint)pname, pname.ToString())
-        {
+            : base((uint)pname, pname.ToString()) {
             this.PValue = pValue;
         }
 
@@ -42,17 +38,16 @@ namespace CSharpGL
         /// 
         /// </summary>
         /// <param name="target"></param>
-        public override void Apply(TextureTarget target)
-        {
-            GL.Instance.TexParameteri((uint)target, PName, PValue);
+        public override void Apply(TextureTarget target) {
+            var gl = GL.current; if (gl == null) { return; }
+            gl.glTexParameteri((GLenum)target, PName, PValue);
         }
 
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        public override string ToString()
-        {
+        public override string ToString() {
             return string.Format("glTexParameteri({0}, {1}, {2});", " ", this.PNameString, this.PValue);
         }
     }

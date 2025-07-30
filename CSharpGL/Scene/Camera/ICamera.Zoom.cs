@@ -1,30 +1,26 @@
 ﻿using System;
 
-namespace CSharpGL
-{
-    public static partial class CameraHelper
-    {
+namespace CSharpGL {
+    public static partial class CameraHelper {
         /// <summary>
         /// Zoom camera to fit in specified <paramref name="boundingBox"/>.
         /// </summary>
         /// <param name="camera"></param>
         /// <param name="boundingBox"></param>
-        public static void ZoomCamera(this ICamera camera, IBoundingBox boundingBox)
-        {
+        public static void ZoomCamera(this ICamera camera, IBoundingBox boundingBox) {
             if (boundingBox == null || camera == null) { throw new ArgumentNullException(); }
 
-            switch (camera.CameraType)
-            {
-                case CameraType.Perspective:
-                    ((IPerspectiveViewCamera)camera).ZoomCamera(boundingBox);
-                    break;
+            switch (camera.CameraType) {
+            case CameraType.Perspective:
+            ((IPerspectiveViewCamera)camera).ZoomCamera(boundingBox);
+            break;
 
-                case CameraType.Ortho:
-                    ((IOrthoViewCamera)camera).ZoomCamera(boundingBox);
-                    break;
+            case CameraType.Ortho:
+            ((IOrthoViewCamera)camera).ZoomCamera(boundingBox);
+            break;
 
-                default:
-                    throw new NotDealWithNewEnumItemException(typeof(CameraType));
+            default:
+            throw new NotDealWithNewEnumItemException(typeof(CameraType));
             }
         }
 
@@ -34,8 +30,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="camera"></param>
         /// <param name="boundingBox"></param>
-        public static void ZoomCamera(this IPerspectiveViewCamera camera, IBoundingBox boundingBox)
-        {
+        public static void ZoomCamera(this IPerspectiveViewCamera camera, IBoundingBox boundingBox) {
             vec3 length = boundingBox.MaxPosition - boundingBox.MinPosition;
             float size = Math.Max(Math.Max(length.x, length.y), length.z);
 
@@ -58,8 +53,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="camera"></param>
         /// <param name="boundingBox"></param>
-        public static void ZoomCamera(this IOrthoViewCamera camera, IBoundingBox boundingBox)
-        {
+        public unsafe static void ZoomCamera(this IOrthoViewCamera camera, IBoundingBox boundingBox) {
             vec3 length = boundingBox.MaxPosition - boundingBox.MinPosition;
             float size = Math.Max(Math.Max(length.x, length.y), length.z);
 
@@ -76,19 +70,19 @@ namespace CSharpGL
             }
 
             {
-                int[] viewport = new int[4];
-                GL.Instance.GetIntegerv((uint)GetTarget.Viewport, viewport);
+                var viewport = stackalloc int[4];
+                var gl = GL.current; if (gl != null) {
+                    gl.glGetIntegerv((GLenum)GetTarget.Viewport, viewport);
+                }
                 int width = viewport[2]; int height = viewport[3];
 
-                if (width > height)
-                {
+                if (width > height) {
                     camera.Left = -size * width / height;
                     camera.Right = size * width / height;
                     camera.Bottom = -size;
                     camera.Top = size;
                 }
-                else
-                {
+                else {
                     camera.Left = -size;
                     camera.Right = size;
                     camera.Bottom = -size * height / width;

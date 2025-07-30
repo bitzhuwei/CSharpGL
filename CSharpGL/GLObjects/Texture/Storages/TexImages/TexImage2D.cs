@@ -3,13 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CSharpGL
-{
+namespace CSharpGL {
     /// <summary>
     /// Set up texture's content with 'glTexImage2D()'.
     /// </summary>
-    public class TexImage2D : TexStorageBase
-    {
+    public unsafe class TexImage2D : TexStorageBase {
         private int width;
         private int height;
         private uint format;
@@ -28,18 +26,15 @@ namespace CSharpGL
         /// <param name="dataProvider"></param>
         /// <param name="mipmapLevelCount"></param>
         /// <param name="border"></param>
-        public TexImage2D(Target target, uint internalFormat, int width, int height, uint format, uint type, LeveledDataProvider dataProvider = null, int mipmapLevelCount = 1, bool border = false)
-            : base((TextureTarget)target, internalFormat, mipmapLevelCount, border)
-        {
+        public TexImage2D(Target target, uint internalFormat, int width, int height, uint format, uint type, LeveledDataProvider? dataProvider = null, int mipmapLevelCount = 1, bool border = false)
+            : base((TextureTarget)target, internalFormat, mipmapLevelCount, border) {
             this.width = width; this.height = height;
             this.format = format;
             this.type = type;
-            if (dataProvider == null)
-            {
+            if (dataProvider == null) {
                 this.dataProvider = new LeveledDataProvider();
             }
-            else
-            {
+            else {
                 this.dataProvider = dataProvider;
             }
         }
@@ -47,14 +42,13 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        public override void Apply()
-        {
-            foreach (var item in dataProvider)
-            {
+        public override void Apply() {
+            var gl = GL.current; if (gl == null) { return; }
+            foreach (var item in dataProvider) {
                 int level = item.level;
                 IntPtr pixels = item.LockData();
 
-                GL.Instance.TexImage2D((uint)target, level, internalFormat, width, height, border ? 1 : 0, format, type, pixels);
+                gl.glTexImage2D((GLenum)target, level, (GLint)internalFormat, width, height, border ? 1 : 0, format, type, pixels);
 
                 item.FreeData();
             }
@@ -63,8 +57,7 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        public enum Target : uint
-        {
+        public enum Target : GLuint {
             /// <summary>
             /// 
             /// </summary>

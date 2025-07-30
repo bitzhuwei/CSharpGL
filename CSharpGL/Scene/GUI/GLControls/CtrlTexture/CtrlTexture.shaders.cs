@@ -3,13 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CSharpGL
-{
+namespace CSharpGL {
     /// <summary>
     /// A rectangle control that displays an image.
     /// </summary>
-    public partial class CtrlTexture
-    {
+    public partial class CtrlTexture {
         private const string inPosition = "inPosition";
         private const string inUV = "inUV";
         private const string tex = "tex";

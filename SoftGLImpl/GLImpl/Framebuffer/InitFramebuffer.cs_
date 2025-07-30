@@ -1,0 +1,37 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Drawing;
+using System.Runtime.InteropServices;
+using System.Threading;
+
+namespace SoftGLImpl {
+   unsafe partial class SoftGL {
+        private static unsafe void InitDefaultFramebuffer(int width, int height) {
+            // Create renderbuffer object for color attachment.
+            {
+                var name = stackalloc GLuint[1];
+                glGenRenderbuffers(1, name);
+                glBindRenderbuffer(GL.GL_RENDERBUFFER, name[0]);
+                glRenderbufferStorage(GL.GL_RENDERBUFFER, GL.GL_RGBA, width, height);
+                glBindRenderbuffer(GL.GL_RENDERBUFFER, 0);
+                glFramebufferRenderbuffer((uint)BindFramebufferTarget.Framebuffer, GL.GL_COLOR_ATTACHMENT0, GL.GL_RENDERBUFFER, name[0]);
+            }
+            // Create renderbuffer object for depth attachment.
+            {
+                var name = stackalloc GLuint[1];
+                glGenRenderbuffers(1, name);
+                glBindRenderbuffer(GL.GL_RENDERBUFFER, name[0]);
+                glRenderbufferStorage(GL.GL_RENDERBUFFER, GL.GL_DEPTH_COMPONENT, width, height);
+                glBindRenderbuffer(GL.GL_RENDERBUFFER, 0);
+                glFramebufferRenderbuffer((uint)BindFramebufferTarget.Framebuffer, GL.GL_DEPTH_ATTACHMENT, GL.GL_RENDERBUFFER, name[0]);
+            }
+            var buffer = GL.GL_FRONT_LEFT;
+            glDrawBuffers(1, &buffer); // GL_COLOR_ATTACHMENT0 use the same buffer in SoftGL.
+            glCheckFramebufferStatus((uint)BindFramebufferTarget.Framebuffer);
+            //glBindFramebuffer((uint)BindFramebufferTarget.Framebuffer, 0); // not needed.
+
+            //throw new NotImplementedException();
+        }
+    }
+}

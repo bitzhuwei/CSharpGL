@@ -1,9 +1,7 @@
 ﻿using System;
 
-namespace CSharpGL
-{
-    internal class DrawElementsPointInLineSearcher : DrawElementsPointSearcher
-    {
+namespace CSharpGL {
+    internal class DrawElementsPointInLineSearcher : DrawElementsPointSearcher {
         /// <summary>
         ///
         /// </summary>
@@ -16,12 +14,11 @@ namespace CSharpGL
         internal override uint Search(PickingEventArgs arg,
             RecognizedPrimitiveInfo primitiveInfo,
             uint singleNodeVertexId, uint stageVertexId,
-            DrawElementsPicker picker)
-        {
+            DrawElementsPicker picker) {
             uint[] indexList = primitiveInfo.VertexIds;
             if (indexList.Length != 2) { throw new ArgumentException(); }
 
-            IndexBuffer buffer = indexList.GenIndexBuffer(BufferUsage.StaticDraw);
+            IndexBuffer buffer = indexList.GenIndexBuffer(IndexBuffer.ElementType.UInt, GLBuffer.Usage.StaticDraw);
             var cmd = new DrawElementsCmd(buffer, DrawMode.Points);
             picker.Node.Render4InnerPicking(arg, cmd);
             uint id = ColorCodedPicking.ReadStageVertexId(arg.X, arg.Y);
@@ -29,12 +26,10 @@ namespace CSharpGL
             buffer.Dispose();
 
             uint baseId = stageVertexId - singleNodeVertexId;
-            if (id == baseId + indexList[0] || id == baseId + indexList[1])
-            { return id; }
+            if (id == baseId + indexList[0] || id == baseId + indexList[1]) { return id; }
             else if (id == uint.MaxValue) // Scene's changed before second rendering for picking>
             { return id; }
-            else
-            { throw new Exception("This should not happen!"); }
+            else { throw new Exception("This should not happen!"); }
         }
     }
 }

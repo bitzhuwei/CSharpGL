@@ -1,0 +1,9 @@
+﻿c02d04_CubeMapTexture is different from original.
+c06d00_TextureArray previous texture setup is override by next.
+fixed above bug: comment this line in UniformVariable.cs:
+```
+this.updated = false;
+```
+
+c14d02_DoubleTransformFeedbakObjects : invalid operation error !
+

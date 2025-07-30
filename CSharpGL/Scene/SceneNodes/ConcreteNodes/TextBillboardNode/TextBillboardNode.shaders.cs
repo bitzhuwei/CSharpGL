@@ -2,11 +2,8 @@
 using System.Drawing;
 using System.IO;
 
-namespace CSharpGL
-{
-    public partial class TextBillboardNode
-    {
-        #region shaders
+namespace CSharpGL {
+    public partial class TextBillboardNode {
 
         private const string projectionMat = "projectionMat";
         private const string viewMat = "viewMat";
@@ -64,6 +61,5 @@ void main(void) {
 }
 ";
 
-        #endregion shaders
     }
 }

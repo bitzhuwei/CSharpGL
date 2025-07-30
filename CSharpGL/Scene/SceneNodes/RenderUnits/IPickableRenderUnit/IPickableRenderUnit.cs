@@ -1,14 +1,11 @@
 ﻿using System.ComponentModel;
 using System.Drawing.Design;
-namespace CSharpGL
-{
+namespace CSharpGL {
     /// <summary>
     /// Rendering something using GLSL shader and VBO(VAO).
     /// </summary>
-    [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
-    public class IPickableRenderUnit
-    {
-        private const string strRenderUnit = "RenderUnit";
+
+    public class IPickableRenderUnit {
 
         // data structure for rendering.
         /// <summary>
@@ -32,8 +29,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="model">model data that can be transfermed into OpenGL Buffer's pointer.</param>
         ///<param name="builders">OpenGL switches.</param>
-        public IPickableRenderUnit(IBufferSource model, params IPickableRenderMethodBuilder[] builders)
-        {
+        public IPickableRenderUnit(IBufferSource model, params IPickableRenderMethodBuilder[] builders) {
             this.Model = model;
             this.builders = builders;
             this.Methods = new IPickableRenderMethod[builders.Length];
@@ -46,23 +42,17 @@ namespace CSharpGL
 
         private bool isInitialized = false;
         /// <summary>
-        /// Already initialized.
+        /// Is this node initialized or not?
         /// </summary>
-        [Category(strRenderUnit)]
-        [Description("Is this node initialized or not?")]
         public bool IsInitialized { get { return isInitialized; } }
 
         /// <summary>
         /// Initialize all stuff related to OpenGL.
         /// </summary>
-        public void Initialize()
-        {
-            if (!isInitialized)
-            {
-                lock (synObj)
-                {
-                    if (!isInitialized)
-                    {
+        public void Initialize() {
+            if (!isInitialized) {
+                lock (synObj) {
+                    if (!isInitialized) {
                         //initializing = true;
                         DoInitialize();
                         //initializing = false;
@@ -75,11 +65,9 @@ namespace CSharpGL
         /// <summary>
         /// This method should only be invoked once.
         /// </summary>
-        private void DoInitialize()
-        {
+        private void DoInitialize() {
             IBufferSource model = this.Model;
-            for (int i = 0; i < this.builders.Length; i++)
-            {
+            for (int i = 0; i < this.builders.Length; i++) {
                 IPickableRenderMethod method = this.builders[i].ToRenderMethod(model);
                 this.Methods[i] = method;
             }
@@ -92,8 +80,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="index"></param>
         /// <param name="transformFeedbackObj"></param>
-        public void Render(int index, TransformFeedbackObject transformFeedbackObj = null)
-        {
+        public void Render(int index, TransformFeedbackObject? transformFeedbackObj = null) {
             if (index < 0 || this.Methods.Length <= index) { throw new System.IndexOutOfRangeException(); }
 
             this.Methods[index].Render(transformFeedbackObj);
@@ -102,10 +89,8 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        public void Dispose()
-        {
-            foreach (var item in this.Methods)
-            {
+        public void Dispose() {
+            foreach (var item in this.Methods) {
                 item.Dispose();
             }
         }

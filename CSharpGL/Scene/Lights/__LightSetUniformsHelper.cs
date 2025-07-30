@@ -3,13 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CSharpGL
-{
+namespace CSharpGL {
     /// <summary>
     /// 
     /// </summary>
-    public static class __LightSetUniformsHelper
-    {
+    public static class __LightSetUniformsHelper {
         // lightUpRoutine:
         // 0: PointLight;  1: DirectionalLight; 
         // 2: SpotLight;
@@ -21,32 +19,25 @@ namespace CSharpGL
         /// </summary>
         /// <param name="light"></param>
         /// <param name="program"></param>
-        public static void SetBlinnPhongUniforms(this LightBase light, ShaderProgram program)
-        {
-            if (light is PointLight)
-            {
-                SetUniforms(light as PointLight, program);
+        public static void SetBlinnPhongUniforms(this LightBase light, GLProgram program) {
+            if (light is PointLight pointLight) {
+                SetUniforms(pointLight, program);
             }
-            else if (light is DirectionalLight)
-            {
-                SetUniforms(light as DirectionalLight, program);
+            else if (light is DirectionalLight directionalLight) {
+                SetUniforms(directionalLight, program);
             }
-            else if (light is SpotLight)
-            {
-                SetUniforms(light as SpotLight, program);
+            else if (light is SpotLight spotLight) {
+                SetUniforms(spotLight, program);
             }
-            else if (light is TSpotLight)
-            {
-                SetUniforms(light as TSpotLight, program);
+            else if (light is TSpotLight tspotLight) {
+                SetUniforms(tspotLight, program);
             }
-            else
-            {
+            else {
                 throw new System.Exception(string.Format("Not expected light type:[{0}].", light.GetType()));
             }
         }
 
-        private static void SetUniforms(this PointLight light, ShaderProgram program)
-        {
+        private static void SetUniforms(this PointLight light, GLProgram program) {
             program.SetUniform("light.position", light.Position);
             program.SetUniform("light.diffuse", light.Diffuse);
             program.SetUniform("light.specular", light.Specular);
@@ -60,8 +51,7 @@ namespace CSharpGL
             program.SetUniform("lightUpRoutine", lightUpRoutine);
         }
 
-        private static void SetUniforms(this DirectionalLight light, ShaderProgram program)
-        {
+        private static void SetUniforms(this DirectionalLight light, GLProgram program) {
             //program.SetUniform("light.position", light.Position);// for directional light, meaningless.
             program.SetUniform("light.diffuse", light.Diffuse);
             program.SetUniform("light.specular", light.Specular);
@@ -75,8 +65,7 @@ namespace CSharpGL
             program.SetUniform("lightUpRoutine", lightUpRoutine);
         }
 
-        private static void SetUniforms(this SpotLight light, ShaderProgram program)
-        {
+        private static void SetUniforms(this SpotLight light, GLProgram program) {
             program.SetUniform("light.position", light.Position);
             program.SetUniform("light.diffuse", light.Diffuse);
             program.SetUniform("light.specular", light.Specular);
@@ -90,8 +79,7 @@ namespace CSharpGL
             program.SetUniform("lightUpRoutine", lightUpRoutine);
         }
 
-        private static void SetUniforms(this TSpotLight light, ShaderProgram program)
-        {
+        private static void SetUniforms(this TSpotLight light, GLProgram program) {
             program.SetUniform("light.position", light.Position);
             program.SetUniform("light.diffuse", light.Diffuse);
             program.SetUniform("light.specular", light.Specular);

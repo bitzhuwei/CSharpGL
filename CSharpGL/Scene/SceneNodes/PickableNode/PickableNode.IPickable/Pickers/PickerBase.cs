@@ -4,20 +4,17 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 
-namespace CSharpGL
-{
+namespace CSharpGL {
     /// <summary>
     /// Get picked geometry.
     /// </summary>
-    abstract class PickerBase
-    {
+    abstract class PickerBase {
         /// <summary>
         /// Get picked geometry.
         /// </summary>
         /// <param name="node"></param>
         /// <param name="positionBuffer"></param>
-        public PickerBase(PickableNode node, VertexBuffer positionBuffer)
-        {
+        public PickerBase(PickableNode node, VertexBuffer positionBuffer) {
             this.Node = node;
             this.PositionBuffer = positionBuffer;
         }
@@ -31,7 +28,7 @@ namespace CSharpGL
         /// <param name="baseId">Index of first vertex of the buffer that The geometry belongs to.
         /// <para>This id is in scene's all <see cref="IPickable"/>s' order.</para></param>
         /// <returns></returns>
-        public abstract PickedGeometry GetPickedGeometry(PickingEventArgs arg, uint stageVertexId, uint baseId);
+        public abstract PickedGeometry? GetPickedGeometry(PickingEventArgs arg, uint stageVertexId, uint baseId);
 
         /// <summary>
         /// 
@@ -44,31 +41,25 @@ namespace CSharpGL
         public VertexBuffer PositionBuffer { get; set; }
 
 
-        protected vec3[] FillPickedGeometrysPosition(uint firstIndex, int indexCount)
-        {
+        protected vec3[] FillPickedGeometrysPosition(uint firstIndex, int indexCount) {
             var positionIndexes = new uint[indexCount];
-            for (uint i = 0; i < indexCount; i++)
-            {
+            for (uint i = 0; i < indexCount; i++) {
                 positionIndexes[i] = firstIndex + i;
             }
 
             return FillPickedGeometrysPosition(positionIndexes);
         }
 
-        protected vec3[] FillPickedGeometrysPosition(uint[] positionIndexes)
-        {
+        protected vec3[] FillPickedGeometrysPosition(uint[] positionIndexes) {
             VertexBuffer[] buffers = this.Node.PickingRenderMethod.PositionBuffers;
             IEnumerable<IndexesInBuffer> workItems = buffers.GetWorkItems(positionIndexes);
             var positions = new List<vec3>();
-            foreach (var item in workItems)
-            {
+            foreach (var item in workItems) {
                 VertexBuffer buffer = buffers[item.whichBuffer];
                 IntPtr pointer = buffer.MapBuffer(MapBufferAccess.ReadOnly);
-                unsafe
-                {
-                    var array = (vec3*)pointer.ToPointer();
-                    foreach (var indexInBuffer in item.indexesInBuffer)
-                    {
+                unsafe {
+                    var array = (vec3*)pointer;
+                    foreach (var indexInBuffer in item.indexesInBuffer) {
                         positions.Add(array[indexInBuffer]);
                     }
                 }

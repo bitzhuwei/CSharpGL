@@ -1,0 +1,28 @@
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Reflection.Emit;
+using System.Text;
+using System.Threading.Tasks;
+using bitzhuwei.Compiler;
+
+namespace bitzhuwei.GLSLFormat {
+    /// <summary>
+    /// Correspond to the Vn node statement_no_new_scope in the grammar(GLSL).
+    /// </summary>
+    partial class Vnstatement_no_new_scope {
+        // [319] statement_no_new_scope : compound_statement_no_new_scope ;
+        // [320] statement_no_new_scope : simple_statement ;
+        private simple_statement? simple_statement0;
+        private compound_statement_no_new_scope? compound_statement_no_new_scope0;
+
+        public Vnstatement_no_new_scope(simple_statement simple_statement0) {
+            this.simple_statement0 = simple_statement0;
+        }
+
+        public Vnstatement_no_new_scope(compound_statement_no_new_scope compound_statement_no_new_scope0) {
+            this.compound_statement_no_new_scope0 = compound_statement_no_new_scope0;
+        }
+    }
+}

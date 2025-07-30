@@ -4,14 +4,12 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 
-namespace CSharpGL
-{
+namespace CSharpGL {
     /// <summary>
     /// Control(widget) in OpenGL window.
     /// </summary>
     public abstract partial class GLControl : IGUIRenderable//, IDisposable
     {
-        private const string strGLControl = "GLControl";
         private static int idCounter = 0;
 
         /// <summary>
@@ -67,8 +65,7 @@ namespace CSharpGL
         /// <para>Initialize and render something with OpenGL.</para>
         /// </summary>
         /// <param name="anchor"></param>
-        public GLControl(GUIAnchorStyles anchor)
-        {
+        public GLControl(GUIAnchorStyles anchor) {
             this.Id = idCounter++;
             this.Children = new GLControlChildren(this);
 
@@ -79,8 +76,7 @@ namespace CSharpGL
         ///
         /// </summary>
         /// <returns></returns>
-        public override string ToString()
-        {
+        public override string ToString() {
             return string.Format("[{0}]: [{1}]", this.Id, this.GetType().Name);
         }
 

@@ -40,11 +40,11 @@
  * OpenGL(R) is a registered trademark of Silicon Graphics, Inc.
  */
 
-/*
- *  mvarray.c
- *  This program demonstrates multiple vertex arrays,
- *  specifically the OpenGL routine glMultiDrawElements().
- */
+ /*
+  *  mvarray.c
+  *  This program demonstrates multiple vertex arrays,
+  *  specifically the OpenGL routine glMultiDrawElements().
+  */
 #include <stdlib.h>  
 #include <stdio.h>  
 #include <GL/glew.h>          // 包含最新的gl.h,glu.h库  
@@ -83,7 +83,7 @@ void display_mvarray(void)
 	static GLubyte oneIndices[] = { 0, 1, 2, 3, 4, 5, 6 };
 	static GLubyte twoIndices[] = { 1, 7, 8, 9, 10, 11 };
 	static GLsizei count[] = { 7, 6 };
-	static GLvoid * indices[2] = { oneIndices, twoIndices };
+	static GLvoid* indices[2] = { oneIndices, twoIndices };
 
 	glClear(GL_COLOR_BUFFER_BIT);
 	glColor3f(1.0, 1.0, 1.0);
@@ -119,7 +119,7 @@ int g_main_mvarray(int argc, char** argv)
 	glutInitWindowPosition(100, 100);
 	glutCreateWindow(argv[0]);
 
-	err = glewInit();
+	err = gl.glewInit();
 	if (GLEW_OK != err)
 	{
 		return 0;

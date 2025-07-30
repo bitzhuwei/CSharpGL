@@ -3,19 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CSharpGL
-{
+namespace CSharpGL {
     /// <summary>
     /// glTexParameterf();
     /// </summary>
-    public class TexParameterfv : TexParameter
-    {
-        private float[] pValue;
-
-        public float[] PValue
-        {
-            get { return pValue; }
-        }
+    public unsafe class TexParameterfv : TexParameter {
+        public readonly float[] pValue;
 
         /// <summary>
         /// 
@@ -24,8 +17,7 @@ namespace CSharpGL
         /// <param name="pnameString"></param>
         /// <param name="pValue"></param>
         public TexParameterfv(uint pname, string pnameString, params float[] pValue)
-            : base(pname, pnameString)
-        {
+            : base(pname, pnameString) {
             this.pValue = pValue;
         }
 
@@ -35,8 +27,7 @@ namespace CSharpGL
         /// <param name="pname"></param>
         /// <param name="pValue"></param>
         public TexParameterfv(PropertyName pname, params float[] pValue)
-            : base((uint)pname, pname.ToString())
-        {
+            : base((uint)pname, pname.ToString()) {
             this.pValue = pValue;
         }
 
@@ -44,18 +35,17 @@ namespace CSharpGL
         /// 
         /// </summary>
         /// <param name="target"></param>
-        public override void Apply(TextureTarget target)
-        {
-            GL.Instance.TexParameterfv((uint)target, PName, PValue);
+        public override void Apply(TextureTarget target) {
+            var gl = GL.current; if (gl == null) { return; }
+            gl.glTexParameterfv((GLenum)target, PName, pValue);
         }
 
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        public override string ToString()
-        {
-            return string.Format("glTexParameterfv({0}, {1}, {2});", " ", this.PNameString, this.PValue);
+        public override string ToString() {
+            return string.Format("glTexParameterfv({0}, {1}, {2});", " ", this.PNameString, this.pValue);
         }
     }
 }

@@ -3,30 +3,27 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CSharpGL
-{
+namespace CSharpGL {
     /// <summary>
     /// glTexParameteri/f();
     /// </summary>
-    public abstract partial class TexParameter
-    {
+    public abstract unsafe partial class TexParameter {
         /// <summary>
         /// 
         /// </summary>
-        public string PNameString { get; private set; }
+        public readonly string PNameString;
 
         /// <summary>
         /// 
         /// </summary>
-        public uint PName { get; private set; }
+        public readonly uint PName;
 
         /// <summary>
         /// glTexParameteri/f();
         /// </summary>
         /// <param name="pname"></param>
         /// <param name="pnameString"></param>
-        protected TexParameter(uint pname, string pnameString)
-        {
+        protected TexParameter(uint pname, string pnameString) {
             this.PName = pname; this.PNameString = pnameString;
         }
 
@@ -37,8 +34,7 @@ namespace CSharpGL
         /// <param name="pnameString"></param>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static TexParameter Create(uint pname, string pnameString, int value)
-        {
+        public static TexParameter Create(uint pname, string pnameString, int value) {
             return new TexParameteri(pname, pnameString, value);
         }
 
@@ -48,8 +44,7 @@ namespace CSharpGL
         /// <param name="pname"></param>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static TexParameter Create(PropertyName pname, int value)
-        {
+        public static TexParameter Create(PropertyName pname, int value) {
             return new TexParameteri((uint)pname, pname.ToString(), value);
         }
 
@@ -60,8 +55,7 @@ namespace CSharpGL
         /// <param name="pnameString"></param>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static TexParameter Create(uint pname, string pnameString, float value)
-        {
+        public static TexParameter Create(uint pname, string pnameString, float value) {
             return new TexParameterf(pname, pnameString, value);
         }
 
@@ -71,8 +65,7 @@ namespace CSharpGL
         /// <param name="pname"></param>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static TexParameter Create(PropertyName pname, float value)
-        {
+        public static TexParameter Create(PropertyName pname, float value) {
             return new TexParameterf((uint)pname, pname.ToString(), value);
         }
 

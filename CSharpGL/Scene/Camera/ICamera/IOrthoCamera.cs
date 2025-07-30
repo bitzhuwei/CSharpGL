@@ -1,11 +1,9 @@
-﻿namespace CSharpGL
-{
+﻿namespace CSharpGL {
     /// <summary>
     /// Use this for ortho projection.
     /// <para>Typical usage: projection * view * model in GLSL.</para>
     /// </summary>
-    public interface IOrthoCamera
-    {
+    public interface IOrthoCamera {
         /// <summary>
         /// Gets or sets the left relative to camera's position.
         /// </summary>

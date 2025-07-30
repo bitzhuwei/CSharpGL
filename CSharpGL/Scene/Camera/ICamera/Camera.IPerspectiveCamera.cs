@@ -1,21 +1,16 @@
 ﻿using System;
 
-namespace CSharpGL
-{
-    public partial class Camera
-    {
+namespace CSharpGL {
+    public partial class Camera {
         #region IPerspectiveCamera 成员
 
         private UpdatingRecord perspectiveCameraRecord = new UpdatingRecord(true);
         private double fieldOfView;
 
-        double IPerspectiveCamera.FieldOfView
-        {
+        double IPerspectiveCamera.FieldOfView {
             get { return fieldOfView; }
-            set
-            {
-                if (fieldOfView != value)
-                {
+            set {
+                if (fieldOfView != value) {
                     fieldOfView = value;
                     perspectiveCameraRecord.Mark();
                 }
@@ -24,13 +19,10 @@ namespace CSharpGL
 
         private double aspectRatio;
 
-        double IPerspectiveCamera.AspectRatio
-        {
+        double IPerspectiveCamera.AspectRatio {
             get { return aspectRatio; }
-            set
-            {
-                if (aspectRatio != value)
-                {
+            set {
+                if (aspectRatio != value) {
                     aspectRatio = value;
                     perspectiveCameraRecord.Mark();
                 }
@@ -39,13 +31,10 @@ namespace CSharpGL
 
         private double perspectiveNear;
 
-        double IPerspectiveCamera.Near
-        {
+        double IPerspectiveCamera.Near {
             get { return perspectiveNear; }
-            set
-            {
-                if (perspectiveNear != value)
-                {
+            set {
+                if (perspectiveNear != value) {
                     perspectiveNear = value;
                     perspectiveCameraRecord.Mark();
                 }
@@ -54,13 +43,10 @@ namespace CSharpGL
 
         private double perspectiveFar;
 
-        double IPerspectiveCamera.Far
-        {
+        double IPerspectiveCamera.Far {
             get { return perspectiveFar; }
-            set
-            {
-                if (perspectiveFar != value)
-                {
+            set {
+                if (perspectiveFar != value) {
                     perspectiveFar = value;
                     perspectiveCameraRecord.Mark();
                 }
@@ -69,10 +55,8 @@ namespace CSharpGL
 
         private mat4 perspectiveProjectionMatrix;
 
-        mat4 IPerspectiveCamera.GetPerspectiveProjectionMatrix()
-        {
-            if (perspectiveCameraRecord.IsMarked())
-            {
+        mat4 IPerspectiveCamera.GetPerspectiveProjectionMatrix() {
+            if (perspectiveCameraRecord.IsMarked()) {
                 var camera = this as IPerspectiveCamera;
                 perspectiveProjectionMatrix = glm.perspective(
                     (float)(camera.FieldOfView * Math.PI / 180.0f),

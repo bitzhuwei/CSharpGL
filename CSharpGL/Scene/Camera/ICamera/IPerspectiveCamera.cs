@@ -1,11 +1,9 @@
-﻿namespace CSharpGL
-{
+﻿namespace CSharpGL {
     /// <summary>
     /// Use this for perspective projection * view matrix.
     /// <para>Typical usage: projection * view * model in GLSL.</para>
     /// </summary>
-    public interface IPerspectiveCamera
-    {
+    public interface IPerspectiveCamera {
         /// <summary>
         /// Gets or sets the field of view.
         /// <value>

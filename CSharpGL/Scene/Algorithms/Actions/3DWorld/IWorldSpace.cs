@@ -2,15 +2,13 @@
 using System.ComponentModel;
 using System.Drawing.Design;
 
-namespace CSharpGL
-{
+namespace CSharpGL {
     /// <summary>
     /// gets model's original size.
     /// transform a model from model's sapce to world's space.
     /// </summary>
-    [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
-    public interface IWorldSpace
-    {
+
+    public interface IWorldSpace {
         /// <summary>
         /// Position in world space.
         /// </summary>
@@ -50,13 +48,11 @@ namespace CSharpGL
     /// <summary>
     /// transform event argument.
     /// </summary>
-    public class TransformEventArgs
-    {
+    public class TransformEventArgs {
         /// <summary>
         /// Initializes a new instance of the <see cref="TransformEventArgs"/> class.
         /// </summary>
-        public TransformEventArgs()
-        {
+        public TransformEventArgs() {
             this.ModelMatrixStack = new Stack<mat4>();
             this.ModelMatrixStack.Push(mat4.identity());
         }
@@ -69,16 +65,14 @@ namespace CSharpGL
     /// <summary>
     ///
     /// </summary>
-    public static class IWorldSpaceHelper
-    {
+    public static class IWorldSpaceHelper {
         /// <summary>
         /// Gets max and min position of the AABB box that wraps specified <paramref name="model"/>.
         /// </summary>
         /// <param name="model"></param>
         /// <param name="maxPosition"></param>
         /// <param name="minPosition"></param>
-        public static void GetMaxMinPosition(this IWorldSpace model, out vec3 maxPosition, out vec3 minPosition)
-        {
+        public static void GetMaxMinPosition(this IWorldSpace model, out vec3 maxPosition, out vec3 minPosition) {
             if (model == null) { throw new System.ArgumentNullException(); }
 
             vec3 lengths = model.ModelSize * model.Scale;
@@ -91,8 +85,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="dest"></param>
         /// <param name="source"></param>
-        public static void CopyModelSpaceStateFrom(this IWorldSpace dest, IWorldSpace source)
-        {
+        public static void CopyModelSpaceStateFrom(this IWorldSpace dest, IWorldSpace source) {
             if (dest == null || source == null) { throw new System.ArgumentNullException(); }
 
             dest.ModelSize = source.ModelSize;
@@ -136,8 +129,7 @@ namespace CSharpGL
         /// <param name="model"></param>
         /// <param name="angleDegree">Angle in Degree.</param>
         /// <param name="axis"></param>
-        public static void Rotate(this IWorldSpace model, float angleDegree, vec3 axis)
-        {
+        public static void Rotate(this IWorldSpace model, float angleDegree, vec3 axis) {
             mat4 currentRotationMatrix = glm.rotate(model.RotationAngle, model.RotationAxis);
             mat4 newRotationMatrix = glm.rotate(angleDegree, axis);
             mat4 latestRotationMatrix = newRotationMatrix * currentRotationMatrix;
@@ -154,8 +146,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public static BoundingBox GetBoundingBox(this IWorldSpace model)
-        {
+        public static BoundingBox GetBoundingBox(this IWorldSpace model) {
             vec3 max, min;
             {
                 vec3 position = model.WorldPosition + model.ModelSize * model.Scale / 2;
@@ -173,11 +164,12 @@ namespace CSharpGL
         /// Run legacy model transform.(from model space to world space)
         /// </summary>
         /// <param name="model"></param>
-        public static void LegacyTransform(this IWorldSpace model)
-        {
-            GL.Instance.Translatef(model.WorldPosition.x, model.WorldPosition.y, model.WorldPosition.z);
-            GL.Instance.Scalef(model.Scale.x, model.Scale.y, model.Scale.z);
-            GL.Instance.Rotatef(model.RotationAngle, model.RotationAxis.x, model.RotationAxis.y, model.RotationAxis.z);
+        public unsafe static void LegacyTransform(this IWorldSpace model) {
+            var gl = GL.current; if (gl != null) {
+                gl.glTranslatef(model.WorldPosition.x, model.WorldPosition.y, model.WorldPosition.z);
+                gl.glScalef(model.Scale.x, model.Scale.y, model.Scale.z);
+                gl.glRotatef(model.RotationAngle, model.RotationAxis.x, model.RotationAxis.y, model.RotationAxis.z);
+            }
         }
     }
 }

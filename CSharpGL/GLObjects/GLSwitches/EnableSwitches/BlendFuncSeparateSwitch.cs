@@ -1,17 +1,14 @@
 ﻿using System.ComponentModel;
 
-namespace CSharpGL
-{
+namespace CSharpGL {
     /// <summary>
     /// specify pixel arithmetic for RGB and alpha components separately.
     /// </summary>
-    public class BlendFuncSeparateSwitch : EnableSwitch
-    {
-        private static readonly GLDelegates.void_uint_uint_uint_uint glBlendFuncSeparate;
-        static BlendFuncSeparateSwitch()
-        {
-            glBlendFuncSeparate = GL.Instance.GetDelegateFor("glBlendFuncSeparate", GLDelegates.typeof_void_uint_uint_uint_uint) as GLDelegates.void_uint_uint_uint_uint;
-        }
+    public unsafe class BlendFuncSeparateSwitch : EnableSwitch {
+        ////private static readonly GLDelegates.void_uint_uint_uint_uint glBlendFuncSeparate;
+        //static BlendFuncSeparateSwitch() {
+        //    glBlendFuncSeparate = gl.glGetDelegateFor("glBlendFuncSeparate", GLDelegates.typeof_void_uint_uint_uint_uint) as GLDelegates.void_uint_uint_uint_uint;
+        //}
 
         // Activator needs a non-parameter constructor.
         /// <summary>
@@ -28,8 +25,7 @@ namespace CSharpGL
         /// <param name="destAlphaFactor">Specifies how the alpha destination blending factors are computed. The initial value is GL_ZERO.</param>
         /// <param name="enableCapacity"></param>
         public BlendFuncSeparateSwitch(BlendSrcFactor sourceFactor, BlendDestFactor destFactor, BlendSrcFactor sourceAlphaFactor, BlendDestFactor destAlphaFactor, bool enableCapacity = true)
-            : base(GL.GL_BLEND, enableCapacity)
-        {
+            : base(GL.GL_BLEND, enableCapacity) {
             this.SourceFactor = sourceFactor;
             this.DestFactor = destFactor;
             this.SourceAlphaFactor = sourceAlphaFactor;
@@ -39,16 +35,13 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        public override string ToString()
-        {
-            if (this.EnableCapacity)
-            {
+        public override string ToString() {
+            if (this.EnableCapacity) {
                 return string.Format("glBlendFuncSeparate({0}, {1}, {2}, {3});",
                     this.SourceFactor, this.DestFactor,
                     this.SourceAlphaFactor, this.DestAlphaFactor);
             }
-            else
-            {
+            else {
                 return string.Format("Disabled glBlendFuncSeparate({0}, {1}, {2}, {3});",
                     this.SourceFactor, this.DestFactor,
                     this.SourceAlphaFactor, this.DestAlphaFactor);
@@ -58,13 +51,12 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        protected override void StateOn()
-        {
+        protected override void StateOn() {
+            var gl = GL.current; if (gl == null) { return; }
             base.StateOn();
 
-            if (this.enableCapacityWhenStateOn)
-            {
-                glBlendFuncSeparate((uint)this.SourceFactor, (uint)this.DestFactor, (uint)this.SourceAlphaFactor, (uint)this.DestAlphaFactor);
+            if (this.enableCapacityWhenStateOn) {
+                gl.glBlendFuncSeparate((uint)this.SourceFactor, (uint)this.DestFactor, (uint)this.SourceAlphaFactor, (uint)this.DestAlphaFactor);
             }
         }
 

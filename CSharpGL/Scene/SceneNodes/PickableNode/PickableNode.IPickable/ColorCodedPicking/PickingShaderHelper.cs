@@ -1,7 +1,6 @@
 ﻿using System;
 
-namespace CSharpGL
-{
+namespace CSharpGL {
     /// <summary>
     ///
     /// </summary>
@@ -16,10 +15,9 @@ namespace CSharpGL
         ///
         /// </summary>
         /// <returns></returns>
-        public static IShaderProgramProvider GetPickingShaderProgramProvider()
-        {
-            var vs = new VertexShader(pickVertexShader);
-            var fs = new FragmentShader(pickFragmentShader);
+        public static IGLProgramProvider GetPickingShaderProgramProvider() {
+            var vs = Shader.Create(Shader.Kind.vert, pickVertexShader, out var _);
+            var fs = Shader.Create(Shader.Kind.frag, pickFragmentShader, out var _);
             var provider = new ShaderArray(vs, fs);
             return provider;
         }

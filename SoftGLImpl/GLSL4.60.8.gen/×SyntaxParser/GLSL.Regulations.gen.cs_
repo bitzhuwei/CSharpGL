@@ -1,0 +1,708 @@
+using System;
+using bitzhuwei.Compiler;
+
+namespace bitzhuwei.GLSLFormat {
+    partial class CompilerGLSL {
+        /// <summary>
+        /// (regulations + VtRegexes + etc.) = grammar for this compiler.
+        /// </summary>
+        public static readonly IReadOnlyList<Regulation> regulations = new Regulation[] {
+            // [0] translation_unit = external_declaration ;
+            new(0, st.translation_unit枝, st.external_declaration枝), 
+            // [1] translation_unit = translation_unit external_declaration ;
+            new(1, st.translation_unit枝, st.translation_unit枝, st.external_declaration枝), 
+            // [2] external_declaration = function_definition ;
+            new(2, st.external_declaration枝, st.function_definition枝), 
+            // [3] external_declaration = declaration ;
+            new(3, st.external_declaration枝, st.declaration枝), 
+            // [4] external_declaration = ';' ;
+            new(4, st.external_declaration枝, st.@Semicolon符), 
+            // [5] function_definition = function_prototype compound_statement ;
+            new(5, st.function_definition枝, st.function_prototype枝, st.compound_statement枝), 
+            // [6] variable_identifier = 'identifier' ;
+            new(6, st.variable_identifier枝, st.@identifier), 
+            // [7] primary_expression = variable_identifier ;
+            new(7, st.primary_expression枝, st.variable_identifier枝), 
+            // [8] primary_expression = 'intConstant' ;
+            new(8, st.primary_expression枝, st.@intConstant), 
+            // [9] primary_expression = 'uintConstant' ;
+            new(9, st.primary_expression枝, st.@uintConstant), 
+            // [10] primary_expression = 'floatConstant' ;
+            new(10, st.primary_expression枝, st.@floatConstant), 
+            // [11] primary_expression = 'boolConstant' ;
+            new(11, st.primary_expression枝, st.@boolConstant), 
+            // [12] primary_expression = 'doubleConstant' ;
+            new(12, st.primary_expression枝, st.@doubleConstant), 
+            // [13] primary_expression = '(' expression ')' ;
+            new(13, st.primary_expression枝, st.@LeftParenthesis符, st.expression枝, st.@RightParenthesis符), 
+            // [14] postfix_expression = primary_expression ;
+            new(14, st.postfix_expression枝, st.primary_expression枝), 
+            // [15] postfix_expression = postfix_expression '[' integer_expression ']' ;
+            new(15, st.postfix_expression枝, st.postfix_expression枝, st.@LeftBracket符, st.integer_expression枝, st.@RightBracket符), 
+            // [16] postfix_expression = function_call ;
+            new(16, st.postfix_expression枝, st.function_call枝), 
+            // [17] postfix_expression = postfix_expression '.' 'identifier' ;
+            new(17, st.postfix_expression枝, st.postfix_expression枝, st.@Dot符, st.@identifier), 
+            // [18] postfix_expression = postfix_expression '++' ;
+            new(18, st.postfix_expression枝, st.postfix_expression枝, st.@Plus符Plus符), 
+            // [19] postfix_expression = postfix_expression '--' ;
+            new(19, st.postfix_expression枝, st.postfix_expression枝, st.@Dash符Dash符), 
+            // [20] integer_expression = expression ;
+            new(20, st.integer_expression枝, st.expression枝), 
+            // [21] function_call = function_call_or_method ;
+            new(21, st.function_call枝, st.function_call_or_method枝), 
+            // [22] function_call_or_method = function_call_generic ;
+            new(22, st.function_call_or_method枝, st.function_call_generic枝), 
+            // [23] function_call_generic = function_call_header_with_parameters ')' ;
+            new(23, st.function_call_generic枝, st.function_call_header_with_parameters枝, st.@RightParenthesis符), 
+            // [24] function_call_generic = function_call_header_no_parameters ')' ;
+            new(24, st.function_call_generic枝, st.function_call_header_no_parameters枝, st.@RightParenthesis符), 
+            // [25] function_call_header_no_parameters = function_call_header 'void' ;
+            new(25, st.function_call_header_no_parameters枝, st.function_call_header枝, st.@void), 
+            // [26] function_call_header_no_parameters = function_call_header ;
+            new(26, st.function_call_header_no_parameters枝, st.function_call_header枝), 
+            // [27] function_call_header_with_parameters = function_call_header assignment_expression ;
+            new(27, st.function_call_header_with_parameters枝, st.function_call_header枝, st.assignment_expression枝), 
+            // [28] function_call_header_with_parameters = function_call_header_with_parameters ',' assignment_expression ;
+            new(28, st.function_call_header_with_parameters枝, st.function_call_header_with_parameters枝, st.@Comma符, st.assignment_expression枝), 
+            // [29] function_call_header = function_identifier '(' ;
+            new(29, st.function_call_header枝, st.function_identifier枝, st.@LeftParenthesis符), 
+            // [30] function_identifier = type_specifier ;
+            new(30, st.function_identifier枝, st.type_specifier枝), 
+            // [31] function_identifier = postfix_expression ;
+            new(31, st.function_identifier枝, st.postfix_expression枝), 
+            // [32] unary_expression = postfix_expression ;
+            new(32, st.unary_expression枝, st.postfix_expression枝), 
+            // [33] unary_expression = '++' unary_expression ;
+            new(33, st.unary_expression枝, st.@Plus符Plus符, st.unary_expression枝), 
+            // [34] unary_expression = '--' unary_expression ;
+            new(34, st.unary_expression枝, st.@Dash符Dash符, st.unary_expression枝), 
+            // [35] unary_expression = unary_operator unary_expression ;
+            new(35, st.unary_expression枝, st.unary_operator枝, st.unary_expression枝), 
+            // [36] unary_operator = '+' ;
+            new(36, st.unary_operator枝, st.@Plus符), 
+            // [37] unary_operator = '-' ;
+            new(37, st.unary_operator枝, st.@Dash符), 
+            // [38] unary_operator = '!' ;
+            new(38, st.unary_operator枝, st.@Bang符), 
+            // [39] unary_operator = '~' ;
+            new(39, st.unary_operator枝, st.@Tilde符), 
+            // [40] multiplicative_expression = unary_expression ;
+            new(40, st.multiplicative_expression枝, st.unary_expression枝), 
+            // [41] multiplicative_expression = multiplicative_expression '*' unary_expression ;
+            new(41, st.multiplicative_expression枝, st.multiplicative_expression枝, st.@Asterisk符, st.unary_expression枝), 
+            // [42] multiplicative_expression = multiplicative_expression '/' unary_expression ;
+            new(42, st.multiplicative_expression枝, st.multiplicative_expression枝, st.@Slash符, st.unary_expression枝), 
+            // [43] multiplicative_expression = multiplicative_expression '%' unary_expression ;
+            new(43, st.multiplicative_expression枝, st.multiplicative_expression枝, st.@Percent符, st.unary_expression枝), 
+            // [44] additive_expression = multiplicative_expression ;
+            new(44, st.additive_expression枝, st.multiplicative_expression枝), 
+            // [45] additive_expression = additive_expression '+' multiplicative_expression ;
+            new(45, st.additive_expression枝, st.additive_expression枝, st.@Plus符, st.multiplicative_expression枝), 
+            // [46] additive_expression = additive_expression '-' multiplicative_expression ;
+            new(46, st.additive_expression枝, st.additive_expression枝, st.@Dash符, st.multiplicative_expression枝), 
+            // [47] shift_expression = additive_expression ;
+            new(47, st.shift_expression枝, st.additive_expression枝), 
+            // [48] shift_expression = shift_expression '<<' additive_expression ;
+            new(48, st.shift_expression枝, st.shift_expression枝, st.@LeftAngle符LeftAngle符, st.additive_expression枝), 
+            // [49] shift_expression = shift_expression '>>' additive_expression ;
+            new(49, st.shift_expression枝, st.shift_expression枝, st.@RightAngle符RightAngle符, st.additive_expression枝), 
+            // [50] relational_expression = shift_expression ;
+            new(50, st.relational_expression枝, st.shift_expression枝), 
+            // [51] relational_expression = relational_expression '<' shift_expression ;
+            new(51, st.relational_expression枝, st.relational_expression枝, st.@LeftAngle符, st.shift_expression枝), 
+            // [52] relational_expression = relational_expression '>' shift_expression ;
+            new(52, st.relational_expression枝, st.relational_expression枝, st.@RightAngle符, st.shift_expression枝), 
+            // [53] relational_expression = relational_expression '<=' shift_expression ;
+            new(53, st.relational_expression枝, st.relational_expression枝, st.@LeftAngle符Equal符, st.shift_expression枝), 
+            // [54] relational_expression = relational_expression '>=' shift_expression ;
+            new(54, st.relational_expression枝, st.relational_expression枝, st.@RightAngle符Equal符, st.shift_expression枝), 
+            // [55] equality_expression = relational_expression ;
+            new(55, st.equality_expression枝, st.relational_expression枝), 
+            // [56] equality_expression = equality_expression '==' relational_expression ;
+            new(56, st.equality_expression枝, st.equality_expression枝, st.@Equal符Equal符, st.relational_expression枝), 
+            // [57] equality_expression = equality_expression '!=' relational_expression ;
+            new(57, st.equality_expression枝, st.equality_expression枝, st.@Bang符Equal符, st.relational_expression枝), 
+            // [58] and_expression = equality_expression ;
+            new(58, st.and_expression枝, st.equality_expression枝), 
+            // [59] and_expression = and_expression '&' equality_expression ;
+            new(59, st.and_expression枝, st.and_expression枝, st.@And符, st.equality_expression枝), 
+            // [60] exclusive_or_expression = and_expression ;
+            new(60, st.exclusive_or_expression枝, st.and_expression枝), 
+            // [61] exclusive_or_expression = exclusive_or_expression '^' and_expression ;
+            new(61, st.exclusive_or_expression枝, st.exclusive_or_expression枝, st.@Caret符, st.and_expression枝), 
+            // [62] inclusive_or_expression = exclusive_or_expression ;
+            new(62, st.inclusive_or_expression枝, st.exclusive_or_expression枝), 
+            // [63] inclusive_or_expression = inclusive_or_expression '|' exclusive_or_expression ;
+            new(63, st.inclusive_or_expression枝, st.inclusive_or_expression枝, st.@Pipe符, st.exclusive_or_expression枝), 
+            // [64] logical_and_expression = inclusive_or_expression ;
+            new(64, st.logical_and_expression枝, st.inclusive_or_expression枝), 
+            // [65] logical_and_expression = logical_and_expression '&&' inclusive_or_expression ;
+            new(65, st.logical_and_expression枝, st.logical_and_expression枝, st.@And符And符, st.inclusive_or_expression枝), 
+            // [66] logical_xor_expression = logical_and_expression ;
+            new(66, st.logical_xor_expression枝, st.logical_and_expression枝), 
+            // [67] logical_xor_expression = logical_xor_expression '^^' logical_and_expression ;
+            new(67, st.logical_xor_expression枝, st.logical_xor_expression枝, st.@Caret符Caret符, st.logical_and_expression枝), 
+            // [68] logical_or_expression = logical_xor_expression ;
+            new(68, st.logical_or_expression枝, st.logical_xor_expression枝), 
+            // [69] logical_or_expression = logical_or_expression '||' logical_xor_expression ;
+            new(69, st.logical_or_expression枝, st.logical_or_expression枝, st.@Pipe符Pipe符, st.logical_xor_expression枝), 
+            // [70] conditional_expression = logical_or_expression ;
+            new(70, st.conditional_expression枝, st.logical_or_expression枝), 
+            // [71] conditional_expression = logical_or_expression '?' expression ':' assignment_expression ;
+            new(71, st.conditional_expression枝, st.logical_or_expression枝, st.@Question符, st.expression枝, st.@Colon符, st.assignment_expression枝), 
+            // [72] assignment_expression = conditional_expression ;
+            new(72, st.assignment_expression枝, st.conditional_expression枝), 
+            // [73] assignment_expression = unary_expression assignment_operator assignment_expression ;
+            new(73, st.assignment_expression枝, st.unary_expression枝, st.assignment_operator枝, st.assignment_expression枝), 
+            // [74] assignment_operator = '=' ;
+            new(74, st.assignment_operator枝, st.@Equal符), 
+            // [75] assignment_operator = '*=' ;
+            new(75, st.assignment_operator枝, st.@Asterisk符Equal符), 
+            // [76] assignment_operator = '/=' ;
+            new(76, st.assignment_operator枝, st.@Slash符Equal符), 
+            // [77] assignment_operator = '%=' ;
+            new(77, st.assignment_operator枝, st.@Percent符Equal符), 
+            // [78] assignment_operator = '+=' ;
+            new(78, st.assignment_operator枝, st.@Plus符Equal符), 
+            // [79] assignment_operator = '-=' ;
+            new(79, st.assignment_operator枝, st.@Dash符Equal符), 
+            // [80] assignment_operator = '<<=' ;
+            new(80, st.assignment_operator枝, st.@LeftAngle符LeftAngle符Equal符), 
+            // [81] assignment_operator = '>>=' ;
+            new(81, st.assignment_operator枝, st.@RightAngle符RightAngle符Equal符), 
+            // [82] assignment_operator = '&=' ;
+            new(82, st.assignment_operator枝, st.@And符Equal符), 
+            // [83] assignment_operator = '^=' ;
+            new(83, st.assignment_operator枝, st.@Caret符Equal符), 
+            // [84] assignment_operator = '|=' ;
+            new(84, st.assignment_operator枝, st.@Pipe符Equal符), 
+            // [85] expression = assignment_expression ;
+            new(85, st.expression枝, st.assignment_expression枝), 
+            // [86] expression = expression ',' assignment_expression ;
+            new(86, st.expression枝, st.expression枝, st.@Comma符, st.assignment_expression枝), 
+            // [87] constant_expression = conditional_expression ;
+            new(87, st.constant_expression枝, st.conditional_expression枝), 
+            // [88] declaration = function_prototype ';' ;
+            new(88, st.declaration枝, st.function_prototype枝, st.@Semicolon符), 
+            // [89] declaration = init_declarator_list ';' ;
+            new(89, st.declaration枝, st.init_declarator_list枝, st.@Semicolon符), 
+            // [90] declaration = 'precision' precision_qualifier type_specifier ';' ;
+            new(90, st.declaration枝, st.@precision, st.precision_qualifier枝, st.type_specifier枝, st.@Semicolon符), 
+            // [91] declaration = type_qualifier 'identifier' '{' struct_declaration_list '}' ';' ;
+            new(91, st.declaration枝, st.type_qualifier枝, st.@identifier, st.@LeftBrace符, st.struct_declaration_list枝, st.@RightBrace符, st.@Semicolon符), 
+            // [92] declaration = type_qualifier 'identifier' '{' struct_declaration_list '}' 'identifier' ';' ;
+            new(92, st.declaration枝, st.type_qualifier枝, st.@identifier, st.@LeftBrace符, st.struct_declaration_list枝, st.@RightBrace符, st.@identifier, st.@Semicolon符), 
+            // [93] declaration = type_qualifier 'identifier' '{' struct_declaration_list '}' 'identifier' array_specifier ';' ;
+            new(93, st.declaration枝, st.type_qualifier枝, st.@identifier, st.@LeftBrace符, st.struct_declaration_list枝, st.@RightBrace符, st.@identifier, st.array_specifier枝, st.@Semicolon符), 
+            // [94] declaration = type_qualifier ';' ;
+            new(94, st.declaration枝, st.type_qualifier枝, st.@Semicolon符), 
+            // [95] declaration = type_qualifier 'identifier' ';' ;
+            new(95, st.declaration枝, st.type_qualifier枝, st.@identifier, st.@Semicolon符), 
+            // [96] declaration = type_qualifier 'identifier' identifier_list ';' ;
+            new(96, st.declaration枝, st.type_qualifier枝, st.@identifier, st.identifier_list枝, st.@Semicolon符), 
+            // [97] identifier_list = ',' 'identifier' ;
+            new(97, st.identifier_list枝, st.@Comma符, st.@identifier), 
+            // [98] identifier_list = identifier_list ',' 'identifier' ;
+            new(98, st.identifier_list枝, st.identifier_list枝, st.@Comma符, st.@identifier), 
+            // [99] function_prototype = function_declarator ')' ;
+            new(99, st.function_prototype枝, st.function_declarator枝, st.@RightParenthesis符), 
+            // [100] function_declarator = function_header ;
+            new(100, st.function_declarator枝, st.function_header枝), 
+            // [101] function_declarator = function_header_with_parameters ;
+            new(101, st.function_declarator枝, st.function_header_with_parameters枝), 
+            // [102] function_header_with_parameters = function_header parameter_declaration ;
+            new(102, st.function_header_with_parameters枝, st.function_header枝, st.parameter_declaration枝), 
+            // [103] function_header_with_parameters = function_header_with_parameters ',' parameter_declaration ;
+            new(103, st.function_header_with_parameters枝, st.function_header_with_parameters枝, st.@Comma符, st.parameter_declaration枝), 
+            // [104] function_header = fully_specified_type 'identifier' '(' ;
+            new(104, st.function_header枝, st.fully_specified_type枝, st.@identifier, st.@LeftParenthesis符), 
+            // [105] parameter_declarator = type_specifier 'identifier' ;
+            new(105, st.parameter_declarator枝, st.type_specifier枝, st.@identifier), 
+            // [106] parameter_declarator = type_specifier 'identifier' array_specifier ;
+            new(106, st.parameter_declarator枝, st.type_specifier枝, st.@identifier, st.array_specifier枝), 
+            // [107] parameter_declaration = type_qualifier parameter_declarator ;
+            new(107, st.parameter_declaration枝, st.type_qualifier枝, st.parameter_declarator枝), 
+            // [108] parameter_declaration = parameter_declarator ;
+            new(108, st.parameter_declaration枝, st.parameter_declarator枝), 
+            // [109] parameter_declaration = type_qualifier parameter_type_specifier ;
+            new(109, st.parameter_declaration枝, st.type_qualifier枝, st.parameter_type_specifier枝), 
+            // [110] parameter_declaration = parameter_type_specifier ;
+            new(110, st.parameter_declaration枝, st.parameter_type_specifier枝), 
+            // [111] parameter_type_specifier = type_specifier ;
+            new(111, st.parameter_type_specifier枝, st.type_specifier枝), 
+            // [112] init_declarator_list = single_declaration ;
+            new(112, st.init_declarator_list枝, st.single_declaration枝), 
+            // [113] init_declarator_list = init_declarator_list ',' 'identifier' ;
+            new(113, st.init_declarator_list枝, st.init_declarator_list枝, st.@Comma符, st.@identifier), 
+            // [114] init_declarator_list = init_declarator_list ',' 'identifier' array_specifier ;
+            new(114, st.init_declarator_list枝, st.init_declarator_list枝, st.@Comma符, st.@identifier, st.array_specifier枝), 
+            // [115] init_declarator_list = init_declarator_list ',' 'identifier' array_specifier '=' initializer ;
+            new(115, st.init_declarator_list枝, st.init_declarator_list枝, st.@Comma符, st.@identifier, st.array_specifier枝, st.@Equal符, st.initializer枝), 
+            // [116] init_declarator_list = init_declarator_list ',' 'identifier' '=' initializer ;
+            new(116, st.init_declarator_list枝, st.init_declarator_list枝, st.@Comma符, st.@identifier, st.@Equal符, st.initializer枝), 
+            // [117] single_declaration = fully_specified_type ;
+            new(117, st.single_declaration枝, st.fully_specified_type枝), 
+            // [118] single_declaration = fully_specified_type 'identifier' ;
+            new(118, st.single_declaration枝, st.fully_specified_type枝, st.@identifier), 
+            // [119] single_declaration = fully_specified_type 'identifier' array_specifier ;
+            new(119, st.single_declaration枝, st.fully_specified_type枝, st.@identifier, st.array_specifier枝), 
+            // [120] single_declaration = fully_specified_type 'identifier' array_specifier '=' initializer ;
+            new(120, st.single_declaration枝, st.fully_specified_type枝, st.@identifier, st.array_specifier枝, st.@Equal符, st.initializer枝), 
+            // [121] single_declaration = fully_specified_type 'identifier' '=' initializer ;
+            new(121, st.single_declaration枝, st.fully_specified_type枝, st.@identifier, st.@Equal符, st.initializer枝), 
+            // [122] fully_specified_type = type_specifier ;
+            new(122, st.fully_specified_type枝, st.type_specifier枝), 
+            // [123] fully_specified_type = type_qualifier type_specifier ;
+            new(123, st.fully_specified_type枝, st.type_qualifier枝, st.type_specifier枝), 
+            // [124] invariant_qualifier = 'invariant' ;
+            new(124, st.invariant_qualifier枝, st.@invariant), 
+            // [125] interpolation_qualifier = 'smooth' ;
+            new(125, st.interpolation_qualifier枝, st.@smooth), 
+            // [126] interpolation_qualifier = 'flat' ;
+            new(126, st.interpolation_qualifier枝, st.@flat), 
+            // [127] interpolation_qualifier = 'noperspective' ;
+            new(127, st.interpolation_qualifier枝, st.@noperspective), 
+            // [128] layout_qualifier = 'layout' '(' layout_qualifier_id_list ')' ;
+            new(128, st.layout_qualifier枝, st.@layout, st.@LeftParenthesis符, st.layout_qualifier_id_list枝, st.@RightParenthesis符), 
+            // [129] layout_qualifier_id_list = layout_qualifier_id ;
+            new(129, st.layout_qualifier_id_list枝, st.layout_qualifier_id枝), 
+            // [130] layout_qualifier_id_list = layout_qualifier_id_list ',' layout_qualifier_id ;
+            new(130, st.layout_qualifier_id_list枝, st.layout_qualifier_id_list枝, st.@Comma符, st.layout_qualifier_id枝), 
+            // [131] layout_qualifier_id = 'identifier' ;
+            new(131, st.layout_qualifier_id枝, st.@identifier), 
+            // [132] layout_qualifier_id = 'identifier' '=' constant_expression ;
+            new(132, st.layout_qualifier_id枝, st.@identifier, st.@Equal符, st.constant_expression枝), 
+            // [133] layout_qualifier_id = 'shared' ;
+            new(133, st.layout_qualifier_id枝, st.@shared), 
+            // [134] precise_qualifier = 'precise' ;
+            new(134, st.precise_qualifier枝, st.@precise), 
+            // [135] type_qualifier = single_type_qualifier ;
+            new(135, st.type_qualifier枝, st.single_type_qualifier枝), 
+            // [136] type_qualifier = type_qualifier single_type_qualifier ;
+            new(136, st.type_qualifier枝, st.type_qualifier枝, st.single_type_qualifier枝), 
+            // [137] single_type_qualifier = storage_qualifier ;
+            new(137, st.single_type_qualifier枝, st.storage_qualifier枝), 
+            // [138] single_type_qualifier = layout_qualifier ;
+            new(138, st.single_type_qualifier枝, st.layout_qualifier枝), 
+            // [139] single_type_qualifier = precision_qualifier ;
+            new(139, st.single_type_qualifier枝, st.precision_qualifier枝), 
+            // [140] single_type_qualifier = interpolation_qualifier ;
+            new(140, st.single_type_qualifier枝, st.interpolation_qualifier枝), 
+            // [141] single_type_qualifier = invariant_qualifier ;
+            new(141, st.single_type_qualifier枝, st.invariant_qualifier枝), 
+            // [142] single_type_qualifier = precise_qualifier ;
+            new(142, st.single_type_qualifier枝, st.precise_qualifier枝), 
+            // [143] storage_qualifier = 'const' ;
+            new(143, st.storage_qualifier枝, st.@const), 
+            // [144] storage_qualifier = 'in' ;
+            new(144, st.storage_qualifier枝, st.@in), 
+            // [145] storage_qualifier = 'out' ;
+            new(145, st.storage_qualifier枝, st.@out), 
+            // [146] storage_qualifier = 'inout' ;
+            new(146, st.storage_qualifier枝, st.@inout), 
+            // [147] storage_qualifier = 'centroid' ;
+            new(147, st.storage_qualifier枝, st.@centroid), 
+            // [148] storage_qualifier = 'patch' ;
+            new(148, st.storage_qualifier枝, st.@patch), 
+            // [149] storage_qualifier = 'sample' ;
+            new(149, st.storage_qualifier枝, st.@sample), 
+            // [150] storage_qualifier = 'uniform' ;
+            new(150, st.storage_qualifier枝, st.@uniform), 
+            // [151] storage_qualifier = 'buffer' ;
+            new(151, st.storage_qualifier枝, st.@buffer), 
+            // [152] storage_qualifier = 'shared' ;
+            new(152, st.storage_qualifier枝, st.@shared), 
+            // [153] storage_qualifier = 'coherent' ;
+            new(153, st.storage_qualifier枝, st.@coherent), 
+            // [154] storage_qualifier = 'volatile' ;
+            new(154, st.storage_qualifier枝, st.@volatile), 
+            // [155] storage_qualifier = 'restrict' ;
+            new(155, st.storage_qualifier枝, st.@restrict), 
+            // [156] storage_qualifier = 'readonly' ;
+            new(156, st.storage_qualifier枝, st.@readonly), 
+            // [157] storage_qualifier = 'writeonly' ;
+            new(157, st.storage_qualifier枝, st.@writeonly), 
+            // [158] storage_qualifier = 'subroutine' ;
+            new(158, st.storage_qualifier枝, st.@subroutine), 
+            // [159] storage_qualifier = 'subroutine' '(' type_name_list ')' ;
+            new(159, st.storage_qualifier枝, st.@subroutine, st.@LeftParenthesis符, st.type_name_list枝, st.@RightParenthesis符), 
+            // [160] type_name_list = 'type_name' ;
+            new(160, st.type_name_list枝, st.@type_name), 
+            // [161] type_name_list = type_name_list ',' 'type_name' ;
+            new(161, st.type_name_list枝, st.type_name_list枝, st.@Comma符, st.@type_name), 
+            // [162] type_specifier = type_specifier_nonarray ;
+            new(162, st.type_specifier枝, st.type_specifier_nonarray枝), 
+            // [163] type_specifier = type_specifier_nonarray array_specifier ;
+            new(163, st.type_specifier枝, st.type_specifier_nonarray枝, st.array_specifier枝), 
+            // [164] array_specifier = '[' ']' ;
+            new(164, st.array_specifier枝, st.@LeftBracket符, st.@RightBracket符), 
+            // [165] array_specifier = '[' conditional_expression ']' ;
+            new(165, st.array_specifier枝, st.@LeftBracket符, st.conditional_expression枝, st.@RightBracket符), 
+            // [166] array_specifier = array_specifier '[' ']' ;
+            new(166, st.array_specifier枝, st.array_specifier枝, st.@LeftBracket符, st.@RightBracket符), 
+            // [167] array_specifier = array_specifier '[' conditional_expression ']' ;
+            new(167, st.array_specifier枝, st.array_specifier枝, st.@LeftBracket符, st.conditional_expression枝, st.@RightBracket符), 
+            // [168] type_specifier_nonarray = 'void' ;
+            new(168, st.type_specifier_nonarray枝, st.@void), 
+            // [169] type_specifier_nonarray = 'float' ;
+            new(169, st.type_specifier_nonarray枝, st.@float), 
+            // [170] type_specifier_nonarray = 'double' ;
+            new(170, st.type_specifier_nonarray枝, st.@double), 
+            // [171] type_specifier_nonarray = 'int' ;
+            new(171, st.type_specifier_nonarray枝, st.@int), 
+            // [172] type_specifier_nonarray = 'uint' ;
+            new(172, st.type_specifier_nonarray枝, st.@uint), 
+            // [173] type_specifier_nonarray = 'bool' ;
+            new(173, st.type_specifier_nonarray枝, st.@bool), 
+            // [174] type_specifier_nonarray = 'vec2' ;
+            new(174, st.type_specifier_nonarray枝, st.@vec2), 
+            // [175] type_specifier_nonarray = 'vec3' ;
+            new(175, st.type_specifier_nonarray枝, st.@vec3), 
+            // [176] type_specifier_nonarray = 'vec4' ;
+            new(176, st.type_specifier_nonarray枝, st.@vec4), 
+            // [177] type_specifier_nonarray = 'dvec2' ;
+            new(177, st.type_specifier_nonarray枝, st.@dvec2), 
+            // [178] type_specifier_nonarray = 'dvec3' ;
+            new(178, st.type_specifier_nonarray枝, st.@dvec3), 
+            // [179] type_specifier_nonarray = 'dvec4' ;
+            new(179, st.type_specifier_nonarray枝, st.@dvec4), 
+            // [180] type_specifier_nonarray = 'bvec2' ;
+            new(180, st.type_specifier_nonarray枝, st.@bvec2), 
+            // [181] type_specifier_nonarray = 'bvec3' ;
+            new(181, st.type_specifier_nonarray枝, st.@bvec3), 
+            // [182] type_specifier_nonarray = 'bvec4' ;
+            new(182, st.type_specifier_nonarray枝, st.@bvec4), 
+            // [183] type_specifier_nonarray = 'ivec2' ;
+            new(183, st.type_specifier_nonarray枝, st.@ivec2), 
+            // [184] type_specifier_nonarray = 'ivec3' ;
+            new(184, st.type_specifier_nonarray枝, st.@ivec3), 
+            // [185] type_specifier_nonarray = 'ivec4' ;
+            new(185, st.type_specifier_nonarray枝, st.@ivec4), 
+            // [186] type_specifier_nonarray = 'uvec2' ;
+            new(186, st.type_specifier_nonarray枝, st.@uvec2), 
+            // [187] type_specifier_nonarray = 'uvec3' ;
+            new(187, st.type_specifier_nonarray枝, st.@uvec3), 
+            // [188] type_specifier_nonarray = 'uvec4' ;
+            new(188, st.type_specifier_nonarray枝, st.@uvec4), 
+            // [189] type_specifier_nonarray = 'mat2' ;
+            new(189, st.type_specifier_nonarray枝, st.@mat2), 
+            // [190] type_specifier_nonarray = 'mat3' ;
+            new(190, st.type_specifier_nonarray枝, st.@mat3), 
+            // [191] type_specifier_nonarray = 'mat4' ;
+            new(191, st.type_specifier_nonarray枝, st.@mat4), 
+            // [192] type_specifier_nonarray = 'mat2x2' ;
+            new(192, st.type_specifier_nonarray枝, st.@mat2x2), 
+            // [193] type_specifier_nonarray = 'mat2x3' ;
+            new(193, st.type_specifier_nonarray枝, st.@mat2x3), 
+            // [194] type_specifier_nonarray = 'mat2x4' ;
+            new(194, st.type_specifier_nonarray枝, st.@mat2x4), 
+            // [195] type_specifier_nonarray = 'mat3x2' ;
+            new(195, st.type_specifier_nonarray枝, st.@mat3x2), 
+            // [196] type_specifier_nonarray = 'mat3x3' ;
+            new(196, st.type_specifier_nonarray枝, st.@mat3x3), 
+            // [197] type_specifier_nonarray = 'mat3x4' ;
+            new(197, st.type_specifier_nonarray枝, st.@mat3x4), 
+            // [198] type_specifier_nonarray = 'mat4x2' ;
+            new(198, st.type_specifier_nonarray枝, st.@mat4x2), 
+            // [199] type_specifier_nonarray = 'mat4x3' ;
+            new(199, st.type_specifier_nonarray枝, st.@mat4x3), 
+            // [200] type_specifier_nonarray = 'mat4x4' ;
+            new(200, st.type_specifier_nonarray枝, st.@mat4x4), 
+            // [201] type_specifier_nonarray = 'dmat2' ;
+            new(201, st.type_specifier_nonarray枝, st.@dmat2), 
+            // [202] type_specifier_nonarray = 'dmat3' ;
+            new(202, st.type_specifier_nonarray枝, st.@dmat3), 
+            // [203] type_specifier_nonarray = 'dmat4' ;
+            new(203, st.type_specifier_nonarray枝, st.@dmat4), 
+            // [204] type_specifier_nonarray = 'dmat2x2' ;
+            new(204, st.type_specifier_nonarray枝, st.@dmat2x2), 
+            // [205] type_specifier_nonarray = 'dmat2x3' ;
+            new(205, st.type_specifier_nonarray枝, st.@dmat2x3), 
+            // [206] type_specifier_nonarray = 'dmat2x4' ;
+            new(206, st.type_specifier_nonarray枝, st.@dmat2x4), 
+            // [207] type_specifier_nonarray = 'dmat3x2' ;
+            new(207, st.type_specifier_nonarray枝, st.@dmat3x2), 
+            // [208] type_specifier_nonarray = 'dmat3x3' ;
+            new(208, st.type_specifier_nonarray枝, st.@dmat3x3), 
+            // [209] type_specifier_nonarray = 'dmat3x4' ;
+            new(209, st.type_specifier_nonarray枝, st.@dmat3x4), 
+            // [210] type_specifier_nonarray = 'dmat4x2' ;
+            new(210, st.type_specifier_nonarray枝, st.@dmat4x2), 
+            // [211] type_specifier_nonarray = 'dmat4x3' ;
+            new(211, st.type_specifier_nonarray枝, st.@dmat4x3), 
+            // [212] type_specifier_nonarray = 'dmat4x4' ;
+            new(212, st.type_specifier_nonarray枝, st.@dmat4x4), 
+            // [213] type_specifier_nonarray = 'atomic_uint' ;
+            new(213, st.type_specifier_nonarray枝, st.@atomic_uint), 
+            // [214] type_specifier_nonarray = 'sampler2D' ;
+            new(214, st.type_specifier_nonarray枝, st.@sampler2D), 
+            // [215] type_specifier_nonarray = 'sampler3D' ;
+            new(215, st.type_specifier_nonarray枝, st.@sampler3D), 
+            // [216] type_specifier_nonarray = 'samplerCube' ;
+            new(216, st.type_specifier_nonarray枝, st.@samplerCube), 
+            // [217] type_specifier_nonarray = 'sampler2DShadow' ;
+            new(217, st.type_specifier_nonarray枝, st.@sampler2DShadow), 
+            // [218] type_specifier_nonarray = 'samplerCubeShadow' ;
+            new(218, st.type_specifier_nonarray枝, st.@samplerCubeShadow), 
+            // [219] type_specifier_nonarray = 'sampler2DArray' ;
+            new(219, st.type_specifier_nonarray枝, st.@sampler2DArray), 
+            // [220] type_specifier_nonarray = 'sampler2DArrayShadow' ;
+            new(220, st.type_specifier_nonarray枝, st.@sampler2DArrayShadow), 
+            // [221] type_specifier_nonarray = 'samplerCubeArray' ;
+            new(221, st.type_specifier_nonarray枝, st.@samplerCubeArray), 
+            // [222] type_specifier_nonarray = 'samplerCubeArrayShadow' ;
+            new(222, st.type_specifier_nonarray枝, st.@samplerCubeArrayShadow), 
+            // [223] type_specifier_nonarray = 'isampler2D' ;
+            new(223, st.type_specifier_nonarray枝, st.@isampler2D), 
+            // [224] type_specifier_nonarray = 'isampler3D' ;
+            new(224, st.type_specifier_nonarray枝, st.@isampler3D), 
+            // [225] type_specifier_nonarray = 'isamplerCube' ;
+            new(225, st.type_specifier_nonarray枝, st.@isamplerCube), 
+            // [226] type_specifier_nonarray = 'isampler2DArray' ;
+            new(226, st.type_specifier_nonarray枝, st.@isampler2DArray), 
+            // [227] type_specifier_nonarray = 'isamplerCubeArray' ;
+            new(227, st.type_specifier_nonarray枝, st.@isamplerCubeArray), 
+            // [228] type_specifier_nonarray = 'usampler2D' ;
+            new(228, st.type_specifier_nonarray枝, st.@usampler2D), 
+            // [229] type_specifier_nonarray = 'usampler3D' ;
+            new(229, st.type_specifier_nonarray枝, st.@usampler3D), 
+            // [230] type_specifier_nonarray = 'usamplerCube' ;
+            new(230, st.type_specifier_nonarray枝, st.@usamplerCube), 
+            // [231] type_specifier_nonarray = 'usampler2DArray' ;
+            new(231, st.type_specifier_nonarray枝, st.@usampler2DArray), 
+            // [232] type_specifier_nonarray = 'usamplerCubeArray' ;
+            new(232, st.type_specifier_nonarray枝, st.@usamplerCubeArray), 
+            // [233] type_specifier_nonarray = 'sampler1D' ;
+            new(233, st.type_specifier_nonarray枝, st.@sampler1D), 
+            // [234] type_specifier_nonarray = 'sampler1DShadow' ;
+            new(234, st.type_specifier_nonarray枝, st.@sampler1DShadow), 
+            // [235] type_specifier_nonarray = 'sampler1DArray' ;
+            new(235, st.type_specifier_nonarray枝, st.@sampler1DArray), 
+            // [236] type_specifier_nonarray = 'sampler1DArrayShadow' ;
+            new(236, st.type_specifier_nonarray枝, st.@sampler1DArrayShadow), 
+            // [237] type_specifier_nonarray = 'isampler1D' ;
+            new(237, st.type_specifier_nonarray枝, st.@isampler1D), 
+            // [238] type_specifier_nonarray = 'isampler1DArray' ;
+            new(238, st.type_specifier_nonarray枝, st.@isampler1DArray), 
+            // [239] type_specifier_nonarray = 'usampler1D' ;
+            new(239, st.type_specifier_nonarray枝, st.@usampler1D), 
+            // [240] type_specifier_nonarray = 'usampler1DArray' ;
+            new(240, st.type_specifier_nonarray枝, st.@usampler1DArray), 
+            // [241] type_specifier_nonarray = 'sampler2DRect' ;
+            new(241, st.type_specifier_nonarray枝, st.@sampler2DRect), 
+            // [242] type_specifier_nonarray = 'sampler2DRectShadow' ;
+            new(242, st.type_specifier_nonarray枝, st.@sampler2DRectShadow), 
+            // [243] type_specifier_nonarray = 'isampler2DRect' ;
+            new(243, st.type_specifier_nonarray枝, st.@isampler2DRect), 
+            // [244] type_specifier_nonarray = 'usampler2DRect' ;
+            new(244, st.type_specifier_nonarray枝, st.@usampler2DRect), 
+            // [245] type_specifier_nonarray = 'samplerBuffer' ;
+            new(245, st.type_specifier_nonarray枝, st.@samplerBuffer), 
+            // [246] type_specifier_nonarray = 'isamplerBuffer' ;
+            new(246, st.type_specifier_nonarray枝, st.@isamplerBuffer), 
+            // [247] type_specifier_nonarray = 'usamplerBuffer' ;
+            new(247, st.type_specifier_nonarray枝, st.@usamplerBuffer), 
+            // [248] type_specifier_nonarray = 'sampler2DMS' ;
+            new(248, st.type_specifier_nonarray枝, st.@sampler2DMS), 
+            // [249] type_specifier_nonarray = 'isampler2DMS' ;
+            new(249, st.type_specifier_nonarray枝, st.@isampler2DMS), 
+            // [250] type_specifier_nonarray = 'usampler2DMS' ;
+            new(250, st.type_specifier_nonarray枝, st.@usampler2DMS), 
+            // [251] type_specifier_nonarray = 'sampler2DMSArray' ;
+            new(251, st.type_specifier_nonarray枝, st.@sampler2DMSArray), 
+            // [252] type_specifier_nonarray = 'isampler2DMSArray' ;
+            new(252, st.type_specifier_nonarray枝, st.@isampler2DMSArray), 
+            // [253] type_specifier_nonarray = 'usampler2DMSArray' ;
+            new(253, st.type_specifier_nonarray枝, st.@usampler2DMSArray), 
+            // [254] type_specifier_nonarray = 'image2D' ;
+            new(254, st.type_specifier_nonarray枝, st.@image2D), 
+            // [255] type_specifier_nonarray = 'iimage2D' ;
+            new(255, st.type_specifier_nonarray枝, st.@iimage2D), 
+            // [256] type_specifier_nonarray = 'uimage2D' ;
+            new(256, st.type_specifier_nonarray枝, st.@uimage2D), 
+            // [257] type_specifier_nonarray = 'image3D' ;
+            new(257, st.type_specifier_nonarray枝, st.@image3D), 
+            // [258] type_specifier_nonarray = 'iimage3D' ;
+            new(258, st.type_specifier_nonarray枝, st.@iimage3D), 
+            // [259] type_specifier_nonarray = 'uimage3D' ;
+            new(259, st.type_specifier_nonarray枝, st.@uimage3D), 
+            // [260] type_specifier_nonarray = 'imageCube' ;
+            new(260, st.type_specifier_nonarray枝, st.@imageCube), 
+            // [261] type_specifier_nonarray = 'iimageCube' ;
+            new(261, st.type_specifier_nonarray枝, st.@iimageCube), 
+            // [262] type_specifier_nonarray = 'uimageCube' ;
+            new(262, st.type_specifier_nonarray枝, st.@uimageCube), 
+            // [263] type_specifier_nonarray = 'imageBuffer' ;
+            new(263, st.type_specifier_nonarray枝, st.@imageBuffer), 
+            // [264] type_specifier_nonarray = 'iimageBuffer' ;
+            new(264, st.type_specifier_nonarray枝, st.@iimageBuffer), 
+            // [265] type_specifier_nonarray = 'uimageBuffer' ;
+            new(265, st.type_specifier_nonarray枝, st.@uimageBuffer), 
+            // [266] type_specifier_nonarray = 'image1D' ;
+            new(266, st.type_specifier_nonarray枝, st.@image1D), 
+            // [267] type_specifier_nonarray = 'iimage1D' ;
+            new(267, st.type_specifier_nonarray枝, st.@iimage1D), 
+            // [268] type_specifier_nonarray = 'uimage1D' ;
+            new(268, st.type_specifier_nonarray枝, st.@uimage1D), 
+            // [269] type_specifier_nonarray = 'image1DArray' ;
+            new(269, st.type_specifier_nonarray枝, st.@image1DArray), 
+            // [270] type_specifier_nonarray = 'iimage1DArray' ;
+            new(270, st.type_specifier_nonarray枝, st.@iimage1DArray), 
+            // [271] type_specifier_nonarray = 'uimage1DArray' ;
+            new(271, st.type_specifier_nonarray枝, st.@uimage1DArray), 
+            // [272] type_specifier_nonarray = 'image2DRect' ;
+            new(272, st.type_specifier_nonarray枝, st.@image2DRect), 
+            // [273] type_specifier_nonarray = 'iimage2DRect' ;
+            new(273, st.type_specifier_nonarray枝, st.@iimage2DRect), 
+            // [274] type_specifier_nonarray = 'uimage2DRect' ;
+            new(274, st.type_specifier_nonarray枝, st.@uimage2DRect), 
+            // [275] type_specifier_nonarray = 'image2DArray' ;
+            new(275, st.type_specifier_nonarray枝, st.@image2DArray), 
+            // [276] type_specifier_nonarray = 'iimage2DArray' ;
+            new(276, st.type_specifier_nonarray枝, st.@iimage2DArray), 
+            // [277] type_specifier_nonarray = 'uimage2DArray' ;
+            new(277, st.type_specifier_nonarray枝, st.@uimage2DArray), 
+            // [278] type_specifier_nonarray = 'imageCubeArray' ;
+            new(278, st.type_specifier_nonarray枝, st.@imageCubeArray), 
+            // [279] type_specifier_nonarray = 'iimageCubeArray' ;
+            new(279, st.type_specifier_nonarray枝, st.@iimageCubeArray), 
+            // [280] type_specifier_nonarray = 'uimageCubeArray' ;
+            new(280, st.type_specifier_nonarray枝, st.@uimageCubeArray), 
+            // [281] type_specifier_nonarray = 'image2DMS' ;
+            new(281, st.type_specifier_nonarray枝, st.@image2DMS), 
+            // [282] type_specifier_nonarray = 'iimage2DMS' ;
+            new(282, st.type_specifier_nonarray枝, st.@iimage2DMS), 
+            // [283] type_specifier_nonarray = 'uimage2DMS' ;
+            new(283, st.type_specifier_nonarray枝, st.@uimage2DMS), 
+            // [284] type_specifier_nonarray = 'image2DMSArray' ;
+            new(284, st.type_specifier_nonarray枝, st.@image2DMSArray), 
+            // [285] type_specifier_nonarray = 'iimage2DMSArray' ;
+            new(285, st.type_specifier_nonarray枝, st.@iimage2DMSArray), 
+            // [286] type_specifier_nonarray = 'uimage2DMSArray' ;
+            new(286, st.type_specifier_nonarray枝, st.@uimage2DMSArray), 
+            // [287] type_specifier_nonarray = struct_specifier ;
+            new(287, st.type_specifier_nonarray枝, st.struct_specifier枝), 
+            // [288] type_specifier_nonarray = 'type_name' ;
+            new(288, st.type_specifier_nonarray枝, st.@type_name), 
+            // [289] precision_qualifier = 'highp' ;
+            new(289, st.precision_qualifier枝, st.@highp), 
+            // [290] precision_qualifier = 'mediump' ;
+            new(290, st.precision_qualifier枝, st.@mediump), 
+            // [291] precision_qualifier = 'lowp' ;
+            new(291, st.precision_qualifier枝, st.@lowp), 
+            // [292] struct_specifier = 'struct' 'type_name' '{' struct_declaration_list '}' ;
+            new(292, st.struct_specifier枝, st.@struct, st.@type_name, st.@LeftBrace符, st.struct_declaration_list枝, st.@RightBrace符), 
+            // [293] struct_specifier = 'struct' '{' struct_declaration_list '}' ;
+            new(293, st.struct_specifier枝, st.@struct, st.@LeftBrace符, st.struct_declaration_list枝, st.@RightBrace符), 
+            // [294] struct_declaration_list = struct_declaration ;
+            new(294, st.struct_declaration_list枝, st.struct_declaration枝), 
+            // [295] struct_declaration_list = struct_declaration_list struct_declaration ;
+            new(295, st.struct_declaration_list枝, st.struct_declaration_list枝, st.struct_declaration枝), 
+            // [296] struct_declaration = type_specifier struct_declarator_list ';' ;
+            new(296, st.struct_declaration枝, st.type_specifier枝, st.struct_declarator_list枝, st.@Semicolon符), 
+            // [297] struct_declaration = type_qualifier type_specifier struct_declarator_list ';' ;
+            new(297, st.struct_declaration枝, st.type_qualifier枝, st.type_specifier枝, st.struct_declarator_list枝, st.@Semicolon符), 
+            // [298] struct_declarator_list = struct_declarator ;
+            new(298, st.struct_declarator_list枝, st.struct_declarator枝), 
+            // [299] struct_declarator_list = struct_declarator_list ',' struct_declarator ;
+            new(299, st.struct_declarator_list枝, st.struct_declarator_list枝, st.@Comma符, st.struct_declarator枝), 
+            // [300] struct_declarator = 'identifier' ;
+            new(300, st.struct_declarator枝, st.@identifier), 
+            // [301] struct_declarator = 'identifier' array_specifier ;
+            new(301, st.struct_declarator枝, st.@identifier, st.array_specifier枝), 
+            // [302] initializer = assignment_expression ;
+            new(302, st.initializer枝, st.assignment_expression枝), 
+            // [303] initializer = '{' initializer_list '}' ;
+            new(303, st.initializer枝, st.@LeftBrace符, st.initializer_list枝, st.@RightBrace符), 
+            // [304] initializer = '{' initializer_list ',' '}' ;
+            new(304, st.initializer枝, st.@LeftBrace符, st.initializer_list枝, st.@Comma符, st.@RightBrace符), 
+            // [305] initializer_list = initializer ;
+            new(305, st.initializer_list枝, st.initializer枝), 
+            // [306] initializer_list = initializer_list ',' initializer ;
+            new(306, st.initializer_list枝, st.initializer_list枝, st.@Comma符, st.initializer枝), 
+            // [307] declaration_statement = declaration ;
+            new(307, st.declaration_statement枝, st.declaration枝), 
+            // [308] statement = compound_statement ;
+            new(308, st.statement枝, st.compound_statement枝), 
+            // [309] statement = simple_statement ;
+            new(309, st.statement枝, st.simple_statement枝), 
+            // [310] simple_statement = declaration_statement ;
+            new(310, st.simple_statement枝, st.declaration_statement枝), 
+            // [311] simple_statement = expression_statement ;
+            new(311, st.simple_statement枝, st.expression_statement枝), 
+            // [312] simple_statement = selection_statement ;
+            new(312, st.simple_statement枝, st.selection_statement枝), 
+            // [313] simple_statement = switch_statement ;
+            new(313, st.simple_statement枝, st.switch_statement枝), 
+            // [314] simple_statement = case_label ;
+            new(314, st.simple_statement枝, st.case_label枝), 
+            // [315] simple_statement = iteration_statement ;
+            new(315, st.simple_statement枝, st.iteration_statement枝), 
+            // [316] simple_statement = jump_statement ;
+            new(316, st.simple_statement枝, st.jump_statement枝), 
+            // [317] compound_statement = '{' '}' ;
+            new(317, st.compound_statement枝, st.@LeftBrace符, st.@RightBrace符), 
+            // [318] compound_statement = '{' statement_list '}' ;
+            new(318, st.compound_statement枝, st.@LeftBrace符, st.statement_list枝, st.@RightBrace符), 
+            // [319] statement_list = statement ;
+            new(319, st.statement_list枝, st.statement枝), 
+            // [320] statement_list = statement_list statement ;
+            new(320, st.statement_list枝, st.statement_list枝, st.statement枝), 
+            // [321] expression_statement = ';' ;
+            new(321, st.expression_statement枝, st.@Semicolon符), 
+            // [322] expression_statement = expression ';' ;
+            new(322, st.expression_statement枝, st.expression枝, st.@Semicolon符), 
+            // [323] selection_statement = 'if' '(' expression ')' selection_rest_statement ;
+            new(323, st.selection_statement枝, st.@if, st.@LeftParenthesis符, st.expression枝, st.@RightParenthesis符, st.selection_rest_statement枝), 
+            // [324] selection_rest_statement = statement 'else' statement ;
+            new(324, st.selection_rest_statement枝, st.statement枝, st.@else, st.statement枝), 
+            // [325] selection_rest_statement = statement ;
+            new(325, st.selection_rest_statement枝, st.statement枝), 
+            // [326] condition = expression ;
+            new(326, st.condition枝, st.expression枝), 
+            // [327] condition = fully_specified_type 'identifier' '=' initializer ;
+            new(327, st.condition枝, st.fully_specified_type枝, st.@identifier, st.@Equal符, st.initializer枝), 
+            // [328] switch_statement = 'switch' '(' expression ')' '{' switch_statement_list '}' ;
+            new(328, st.switch_statement枝, st.@switch, st.@LeftParenthesis符, st.expression枝, st.@RightParenthesis符, st.@LeftBrace符, st.switch_statement_list枝, st.@RightBrace符), 
+            // [329] switch_statement_list = null ;
+            new(329, st.switch_statement_list枝), 
+            // [330] switch_statement_list = statement_list ;
+            new(330, st.switch_statement_list枝, st.statement_list枝), 
+            // [331] case_label = 'case' expression ':' ;
+            new(331, st.case_label枝, st.@case, st.expression枝, st.@Colon符), 
+            // [332] case_label = 'default' ':' ;
+            new(332, st.case_label枝, st.@default, st.@Colon符), 
+            // [333] iteration_statement = 'while' '(' condition ')' statement ;
+            new(333, st.iteration_statement枝, st.@while, st.@LeftParenthesis符, st.condition枝, st.@RightParenthesis符, st.statement枝), 
+            // [334] iteration_statement = 'do' statement 'while' '(' expression ')' ';' ;
+            new(334, st.iteration_statement枝, st.@do, st.statement枝, st.@while, st.@LeftParenthesis符, st.expression枝, st.@RightParenthesis符, st.@Semicolon符), 
+            // [335] iteration_statement = 'for' '(' for_init_statement for_rest_statement ')' statement ;
+            new(335, st.iteration_statement枝, st.@for, st.@LeftParenthesis符, st.for_init_statement枝, st.for_rest_statement枝, st.@RightParenthesis符, st.statement枝), 
+            // [336] for_init_statement = expression_statement ;
+            new(336, st.for_init_statement枝, st.expression_statement枝), 
+            // [337] for_init_statement = declaration_statement ;
+            new(337, st.for_init_statement枝, st.declaration_statement枝), 
+            // [338] conditionopt = condition ;
+            new(338, st.conditionopt枝, st.condition枝), 
+            // [339] conditionopt = null ;
+            new(339, st.conditionopt枝), 
+            // [340] for_rest_statement = conditionopt ';' ;
+            new(340, st.for_rest_statement枝, st.conditionopt枝, st.@Semicolon符), 
+            // [341] for_rest_statement = conditionopt ';' expression ;
+            new(341, st.for_rest_statement枝, st.conditionopt枝, st.@Semicolon符, st.expression枝), 
+            // [342] jump_statement = 'continue' ';' ;
+            new(342, st.jump_statement枝, st.@continue, st.@Semicolon符), 
+            // [343] jump_statement = 'break' ';' ;
+            new(343, st.jump_statement枝, st.@break, st.@Semicolon符), 
+            // [344] jump_statement = 'return' ';' ;
+            new(344, st.jump_statement枝, st.@return, st.@Semicolon符), 
+            // [345] jump_statement = 'return' expression ';' ;
+            new(345, st.jump_statement枝, st.@return, st.expression枝, st.@Semicolon符), 
+            // [346] jump_statement = 'discard' ';' ;
+            new(346, st.jump_statement枝, st.@discard, st.@Semicolon符), 
+
+        };
+      
+    }
+}

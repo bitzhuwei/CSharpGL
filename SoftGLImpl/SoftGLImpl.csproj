@@ -1,0 +1,278 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Compile Remove="BasicDataStructures\ShaderCodes\**" />
+		<Compile Remove="BasicDataStructures\UnamangedArray\**" />
+		<Compile Remove="BasicDataStructures\×ShaderCodes\**" />
+		<Compile Remove="BasicDataStructures\×UnamangedArray\**" />
+		<Compile Remove="Conditional.gen\**" />
+		<Compile Remove="Conditional.manual\**" />
+		<Compile Remove="GLSL4.60.8.gen\doc\**" />
+		<Compile Remove="GLSL4.60.8.gen\LexicalAnalyzer\DFA\**" />
+		<Compile Remove="GLSL4.60.8.gen\LexicalAnalyzer\miniDFA\**" />
+		<Compile Remove="GLSL4.60.8.gen\LexicalAnalyzer\tableDFA\**" />
+		<Compile Remove="GLSL4.60.8.gen\LexicalAnalyzer\×DFA\**" />
+		<Compile Remove="GLSL4.60.8.gen\LexicalAnalyzer\×miniDFA\**" />
+		<Compile Remove="GLSL4.60.8.gen\LexicalAnalyzer\×tableDFA\**" />
+		<Compile Remove="GLSL4.60.8.gen\×SyntaxParser\**" />
+		<Compile Remove="PreDirective.gen\DataStructure\**" />
+		<Compile Remove="PreDirective.gen\doc\**" />
+		<Compile Remove="PreDirective.gen\LexicalAnalyzer\DFA\**" />
+		<Compile Remove="PreDirective.gen\LexicalAnalyzer\miniDFA\**" />
+		<Compile Remove="PreDirective.gen\LexicalAnalyzer\tableDFA\**" />
+		<Compile Remove="PreDirective.gen\SyntaxParser\**" />
+		<EmbeddedResource Remove="BasicDataStructures\ShaderCodes\**" />
+		<EmbeddedResource Remove="BasicDataStructures\UnamangedArray\**" />
+		<EmbeddedResource Remove="BasicDataStructures\×ShaderCodes\**" />
+		<EmbeddedResource Remove="BasicDataStructures\×UnamangedArray\**" />
+		<EmbeddedResource Remove="Conditional.gen\**" />
+		<EmbeddedResource Remove="Conditional.manual\**" />
+		<EmbeddedResource Remove="GLSL4.60.8.gen\doc\**" />
+		<EmbeddedResource Remove="GLSL4.60.8.gen\LexicalAnalyzer\DFA\**" />
+		<EmbeddedResource Remove="GLSL4.60.8.gen\LexicalAnalyzer\miniDFA\**" />
+		<EmbeddedResource Remove="GLSL4.60.8.gen\LexicalAnalyzer\tableDFA\**" />
+		<EmbeddedResource Remove="GLSL4.60.8.gen\LexicalAnalyzer\×DFA\**" />
+		<EmbeddedResource Remove="GLSL4.60.8.gen\LexicalAnalyzer\×miniDFA\**" />
+		<EmbeddedResource Remove="GLSL4.60.8.gen\LexicalAnalyzer\×tableDFA\**" />
+		<EmbeddedResource Remove="GLSL4.60.8.gen\×SyntaxParser\**" />
+		<EmbeddedResource Remove="PreDirective.gen\DataStructure\**" />
+		<EmbeddedResource Remove="PreDirective.gen\doc\**" />
+		<EmbeddedResource Remove="PreDirective.gen\LexicalAnalyzer\DFA\**" />
+		<EmbeddedResource Remove="PreDirective.gen\LexicalAnalyzer\miniDFA\**" />
+		<EmbeddedResource Remove="PreDirective.gen\LexicalAnalyzer\tableDFA\**" />
+		<EmbeddedResource Remove="PreDirective.gen\SyntaxParser\**" />
+		<None Remove="BasicDataStructures\ShaderCodes\**" />
+		<None Remove="BasicDataStructures\UnamangedArray\**" />
+		<None Remove="BasicDataStructures\×ShaderCodes\**" />
+		<None Remove="BasicDataStructures\×UnamangedArray\**" />
+		<None Remove="Conditional.gen\**" />
+		<None Remove="Conditional.manual\**" />
+		<None Remove="GLSL4.60.8.gen\doc\**" />
+		<None Remove="GLSL4.60.8.gen\LexicalAnalyzer\DFA\**" />
+		<None Remove="GLSL4.60.8.gen\LexicalAnalyzer\miniDFA\**" />
+		<None Remove="GLSL4.60.8.gen\LexicalAnalyzer\tableDFA\**" />
+		<None Remove="GLSL4.60.8.gen\LexicalAnalyzer\×DFA\**" />
+		<None Remove="GLSL4.60.8.gen\LexicalAnalyzer\×miniDFA\**" />
+		<None Remove="GLSL4.60.8.gen\LexicalAnalyzer\×tableDFA\**" />
+		<None Remove="GLSL4.60.8.gen\×SyntaxParser\**" />
+		<None Remove="PreDirective.gen\DataStructure\**" />
+		<None Remove="PreDirective.gen\doc\**" />
+		<None Remove="PreDirective.gen\LexicalAnalyzer\DFA\**" />
+		<None Remove="PreDirective.gen\LexicalAnalyzer\miniDFA\**" />
+		<None Remove="PreDirective.gen\LexicalAnalyzer\tableDFA\**" />
+		<None Remove="PreDirective.gen\SyntaxParser\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Remove="BasicDataStructures\Utilities\ManifestResourceLoader.cs" />
+		<Compile Remove="GLImpl.Objects\ShaderProgram\PassBuffer\FragmentIn.cs" />
+		<Compile Remove="GLImpl.Objects\ShaderProgram\PassBuffer\PassBuffer.cs" />
+		<Compile Remove="GLImpl.Objects\ShaderProgram\PassBuffer\VertexOut.cs" />
+		<Compile Remove="GLImpl.Objects\Utilities\SpaceHelper.cs" />
+		<Compile Remove="GLImpl.Objects\Utilities\TypeHelper.cs" />
+		<Compile Remove="GLImpl\Draw\FindFragments.V1.cs" />
+		<Compile Remove="GLImpl\Draw\FindFragments.V2.cs" />
+		<Compile Remove="GLImpl\Draw\FindPixelsAtLine.cs" />
+		<Compile Remove="GLImpl\Draw\FindPixelsAtTriangle.cs" />
+		<Compile Remove="GLImpl\Draw\Fragment.cs" />
+		<Compile Remove="GLImpl\Draw\FragmentShaderStage.cs" />
+		<Compile Remove="GLImpl\Draw\GetVertexSize.cs" />
+		<Compile Remove="GLImpl\Framebuffer\InitFramebuffer.cs" />
+		<Compile Remove="GLImpl\IdObject`1.cs" />
+		<Compile Remove="GLImpl\SoftGL.GenBindDelete`1.cs" />
+		<Compile Remove="GLSL.notes\ref-GLSLLexer.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Remove="GLImpl.Objects\ShaderProgram\PassBuffer\PassBuffer.cs_" />
+		<None Remove="GLImpl.Objects\ShaderProgram\PassBuffer\VertexOut.cs_" />
+		<None Remove="GLImpl.Objects\Utilities\SpaceHelper.cs_" />
+		<None Remove="GLImpl.Objects\Utilities\TypeHelper.cs_" />
+		<None Remove="GLImpl\Draw\FindFragments.V1.cs_" />
+		<None Remove="GLImpl\Draw\FindFragments.V2.cs_" />
+		<None Remove="GLImpl\Draw\FindFragmentsInTriangle.V1.cs_" />
+		<None Remove="GLImpl\Draw\FindFragmentsInTriangle.V2.cs_" />
+		<None Remove="GLImpl\Draw\FindPixelsAtLine.cs_" />
+		<None Remove="GLImpl\Draw\FindPixelsAtTriangle.cs_" />
+		<None Remove="GLImpl\Draw\FindPixelsInLine.cs_" />
+		<None Remove="GLImpl\Draw\FindPixelsInTriangle.cs_" />
+		<None Remove="GLImpl\Draw\Fragment.cs_" />
+		<None Remove="GLImpl\Draw\FragmentShaderStage.cs_" />
+		<None Remove="GLImpl\Draw\浅议像素化与体素化Part.1——平面图形像素化 - Jumanco&amp;Hide - 博客园.html" />
+		<None Remove="GLImpl\Framebuffer\InitFramebuffer.cs_" />
+		<None Remove="GLImpl\IdObject`1.cs_" />
+		<None Remove="GLImpl\SoftGL.GenBindDelete`1.cs_" />
+		<None Remove="GLImpl\Misc\ContextManager.cs_" />
+		<None Remove="GLSL4.60.8.gen\CompilerGLSL.gen.log_" />
+		<None Remove="GLSL4.60.8.gen\CompilerGLSL.stArray.gen.cs_" />
+		<None Remove="GLSL4.60.8.gen\GLSL.gen.node" />
+		<None Remove="GLSL4.60.8.gen\GLSL.gen.st" />
+		<None Remove="GLSL4.60.8.gen\GLSL.gen.st.ext" />
+		<None Remove="GLSL4.60.8.gen\GLSL.gen.tokens" />
+		<None Remove="GLSL4.60.8.gen\GLSL.LexiTable.gen.txt" />
+		<None Remove="GLSL4.60.8.gen\GLSL.README.gen.md" />
+		<None Remove="GLSL4.60.8.gen\GLSL.Regulations.gen.txt" />
+		<None Remove="GLSL4.60.8.gen\GLSL.stArray.gen.txt" />
+		<None Remove="GLSL4.60.8.gen\GLSL.Table.LALR%281%29.gen.txt" />
+		<None Remove="GLSL4.60.8.gen\GLSL.Table.LR%280%29.gen.bin" />
+		<None Remove="GLSL4.60.8.gen\GLSL.Table.LR%280%29.gen.txt" />
+		<None Remove="GLSL4.60.8.gen\GLSL.Table.LR%281%29.gen.bin" />
+		<None Remove="GLSL4.60.8.gen\GLSL.Table.LR%281%29.gen.txt" />
+		<None Remove="GLSL4.60.8.gen\GLSL.Table.SLR%281%29.gen.bin" />
+		<None Remove="GLSL4.60.8.gen\GLSL.Table.SLR%281%29.gen.txt" />
+		<None Remove="PreDirective.manual\readme.txt" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="GLSL.notes\ref-GLSLLexer.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.CodeAnalysis.CSharp.Scripting" Version="4.14.0" />
+		<PackageReference Include="System.CodeDom" Version="10.0.0-preview.3.25171.5" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Using Include="System.UInt32">
+			<Alias>GLenum</Alias>
+		</Using>
+		<Using Include="System.Boolean">
+			<Alias>GLboolean</Alias>
+		</Using>
+		<Using Include="System.UInt32">
+			<Alias>GLbitfield</Alias>
+		</Using>
+		<Using Include="System.SByte">
+			<Alias>GLbyte</Alias>
+		</Using>
+		<Using Include="System.Byte">
+			<Alias>GLubyte</Alias>
+		</Using>
+		<Using Include="System.Int16">
+			<Alias>GLshort</Alias>
+		</Using>
+		<Using Include="System.UInt16">
+			<Alias>GLushort</Alias>
+		</Using>
+		<Using Include="System.UInt16">
+			<Alias>GLhalfNV</Alias>
+		</Using>
+		<Using Include="System.Int32">
+			<Alias>GLint</Alias>
+		</Using>
+		<Using Include="System.UInt32">
+			<Alias>GLuint</Alias>
+		</Using>
+		<Using Include="System.Int32">
+			<Alias>GLclampx</Alias>
+		</Using>
+		<Using Include="System.Single">
+			<Alias>GLfloat</Alias>
+		</Using>
+		<Using Include="System.Single">
+			<Alias>GLclampf</Alias>
+		</Using>
+		<Using Include="System.Double">
+			<Alias>GLdouble</Alias>
+		</Using>
+		<Using Include="System.Double">
+			<Alias>GLclampd</Alias>
+		</Using>
+		<Using Include="System.IntPtr">
+			<Alias>GLeglClientBufferEXT</Alias>
+		</Using>
+		<Using Include="System.IntPtr">
+			<Alias>GLeglImageOES</Alias>
+		</Using>
+		<Using Include="System.IntPtr">
+			<Alias>GLvdpauSurfaceNV</Alias>
+		</Using>
+		<Using Include="System.Char">
+			<Alias>GLchar</Alias>
+		</Using>
+		<Using Include="System.Char">
+			<Alias>GLcharARB</Alias>
+		</Using>
+		<Using Include="System.UInt32">
+			<Alias>GLhandleARB</Alias>
+		</Using>
+		<Using Include="System.UInt16">
+			<Alias>GLhalf</Alias>
+		</Using>
+		<Using Include="System.UInt16">
+			<Alias>GLhalfARB</Alias>
+		</Using>
+		<Using Include="System.Int32">
+			<Alias>GLfixed</Alias>
+		</Using>
+		<Using Include="System.IntPtr">
+			<Alias>GLintptr</Alias>
+		</Using>
+		<Using Include="System.IntPtr">
+			<Alias>GLintptrARB</Alias>
+		</Using>
+		<Using Include="System.IntPtr">
+			<Alias>GLsync</Alias>
+		</Using>
+		<Using Include="System.Int32">
+			<Alias>GLsizei</Alias>
+		</Using>
+		<Using Include="System.Int32">
+			<Alias>GLsizeiptr</Alias>
+		</Using>
+		<Using Include="System.Int32">
+			<Alias>GLsizeiptrARB</Alias>
+		</Using>
+		<Using Include="System.Int64">
+			<Alias>GLint64</Alias>
+		</Using>
+		<Using Include="System.Int64">
+			<Alias>GLint64EXT</Alias>
+		</Using>
+		<Using Include="System.UInt64">
+			<Alias>GLuint64</Alias>
+		</Using>
+		<Using Include="System.UInt64">
+			<Alias>GLuint64EXT</Alias>
+		</Using>
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Update="GLSL4.60.8.gen\GLSL.LexiTable.gen.bin">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="GLSL4.60.8.gen\GLSL.Regulations.gen.bin">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="GLSL4.60.8.gen\GLSL.stArray.gen.bin">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="GLSL4.60.8.gen\GLSL.Table.LALR%281%29.gen.bin">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="PreDirective.gen\PreDirective.LexiTable.gen.bin">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="PreDirective.gen\PreDirective.Regulations.gen.bin">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="PreDirective.gen\PreDirective.stArray.gen.bin">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="PreDirective.gen\PreDirective.Table.LALR%281%29.gen.bin">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="GLImpl.Objects\Utilities\" />
+		<Folder Include="GLSLParser.Base\" />
+	</ItemGroup>
+</Project>

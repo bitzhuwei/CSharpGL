@@ -3,14 +3,12 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Design;
 
-namespace CSharpGL
-{
+namespace CSharpGL {
     /// <summary>
     /// Supports shadow volume.
     /// </summary>
-    [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
-    public interface ISupportShadowVolume
-    {
+
+    public interface ISupportShadowVolume {
         /// <summary>
         /// Is shadow volume technique for this object and its children?
         /// </summary>
@@ -49,8 +47,7 @@ namespace CSharpGL
     /// <summary>
     /// 
     /// </summary>
-    public class ShadowVolumeAmbientEventArgs : RenderEventArgs
-    {
+    public class ShadowVolumeAmbientEventArgs : RenderEventArgs {
         /// <summary>
         /// 
         /// </summary>
@@ -58,8 +55,7 @@ namespace CSharpGL
         /// <param name="camera"></param>
         /// <param name="ambient"></param>
         public ShadowVolumeAmbientEventArgs(ActionParams param, ICamera camera, vec3 ambient)
-            : base(param, camera)
-        {
+            : base(param, camera) {
             this.Ambient = ambient;
         }
 
@@ -73,8 +69,7 @@ namespace CSharpGL
     /// <summary>
     /// 
     /// </summary>
-    public class ShadowVolumeExtrudeEventArgs : RenderEventArgs
-    {
+    public class ShadowVolumeExtrudeEventArgs : RenderEventArgs {
         /// <summary>
         /// 
         /// </summary>
@@ -82,8 +77,7 @@ namespace CSharpGL
         /// <param name="camera"></param>
         /// <param name="light"></param>
         public ShadowVolumeExtrudeEventArgs(ActionParams param, ICamera camera, LightBase light)
-            : base(param, camera)
-        {
+            : base(param, camera) {
             this.Light = light;
         }
 
@@ -96,8 +90,7 @@ namespace CSharpGL
 
     /// <summary>
     /// </summary>
-    public class ShadowVolumeUnderLightEventArgs : RenderEventArgs
-    {
+    public class ShadowVolumeUnderLightEventArgs : RenderEventArgs {
         /// <summary>
         /// 
         /// </summary>
@@ -105,8 +98,7 @@ namespace CSharpGL
         /// <param name="camera"></param>
         /// <param name="light"></param>
         public ShadowVolumeUnderLightEventArgs(ActionParams param, ICamera camera, LightBase light)
-            : base(param, camera)
-        {
+            : base(param, camera) {
             this.Light = light;
         }
 

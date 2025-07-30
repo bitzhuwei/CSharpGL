@@ -1,0 +1,719 @@
+conflicts(158)=not sovled(0)+solved(158)(158 warnings)
+
+169 states.
+190 re-used actions
+[0]:Goto[34] [1]:Goto[35] [2]:Goto[36] [3]:Goto[37] 
+[4]:Goto[38] [5]:Goto[39] [6]:Goto[40] [7]:Goto[41] [8]:Goto[42] 
+[9]:Goto[43] [10]:Goto[44] [11]:Goto[45] [12]:Goto[46] [13]:Shift[47] 
+[14]:Shift[48] [15]:Shift[49] [16]:Shift[50] [17]:Shift[51] [18]:Shift[52] 
+[19]:Shift[53] [20]:Shift[54] [21]:Reduce[15] [22]:Goto[60] [23]:Shift[61] 
+[24]:Shift[62] [25]:Shift[63] [26]:Shift[64] [27]:Shift[65] [28]:Shift[66] 
+[29]:Shift[67] [30]:Shift[68] [31]:Shift[69] [32]:Shift[70] [33]:Shift[71] 
+[34]:Shift[72] [35]:Shift[73] [36]:Shift[74] [37]:Shift[75] [38]:Shift[76] 
+[39]:Shift[77] [40]:Shift[78] [41]:Shift[79] [42]:Shift[80] [43]:Shift[81] 
+[44]:Shift[82] [45]:Shift[83] [46]:Shift[84] [47]:Shift[85] [48]:Shift[86] 
+[49]:Shift[87] [50]:Shift[88] [51]:Shift[89] [52]:Shift[90] [53]:Shift[91] 
+[54]:Shift[92] [55]:Shift[93] [56]:Shift[94] [57]:Shift[95] [58]:Shift[96] 
+[59]:Shift[97] [60]:Shift[98] [61]:Shift[99] [62]:Shift[100] [63]:Shift[101] 
+[64]:Shift[102] [65]:Shift[103] [66]:Shift[104] [67]:Shift[105] [68]:Shift[106] 
+[69]:Shift[107] [70]:Shift[108] [71]:Shift[109] [72]:Shift[110] [73]:Shift[111] 
+[74]:Reduce[87] [75]:Shift[117] [76]:Reduce[88] [77]:Shift[118] [78]:Reduce[90] 
+[79]:Shift[119] [80]:Reduce[92] [81]:Shift[120] [82]:Reduce[94] [83]:Shift[121] 
+[84]:Shift[122] [85]:Reduce[96] [86]:Shift[123] [87]:Shift[124] [88]:Shift[125] 
+[89]:Shift[126] [90]:Reduce[98] [91]:Shift[127] [92]:Shift[128] [93]:Reduce[101] 
+[94]:Shift[129] [95]:Shift[130] [96]:Reduce[106] [97]:Shift[131] [98]:Shift[132] 
+[99]:Shift[133] [100]:Reduce[109] [101]:Reduce[112] [102]:Reduce[116] [103]:Reduce[123] 
+[104]:Reduce[124] [105]:Reduce[118] [106]:Reduce[119] [107]:Reduce[120] [108]:Reduce[121] 
+[109]:Reduce[122] [110]:Reduce[23] [111]:Shift[138] [112]:Goto[139] [113]:Shift[140] 
+[114]:Reduce[14] [115]:Reduce[16] [116]:Reduce[17] [117]:Reduce[18] [118]:Reduce[19] 
+[119]:Reduce[20] [120]:Reduce[21] [121]:Reduce[22] [122]:Reduce[24] [123]:Reduce[25] 
+[124]:Reduce[26] [125]:Reduce[27] [126]:Reduce[28] [127]:Reduce[29] [128]:Reduce[30] 
+[129]:Reduce[31] [130]:Reduce[32] [131]:Reduce[33] [132]:Reduce[34] [133]:Reduce[35] 
+[134]:Reduce[36] [135]:Reduce[37] [136]:Reduce[38] [137]:Reduce[39] [138]:Reduce[40] 
+[139]:Reduce[41] [140]:Reduce[42] [141]:Reduce[43] [142]:Reduce[44] [143]:Reduce[45] 
+[144]:Reduce[46] [145]:Reduce[47] [146]:Reduce[48] [147]:Reduce[49] [148]:Reduce[50] 
+[149]:Reduce[51] [150]:Reduce[52] [151]:Reduce[53] [152]:Reduce[54] [153]:Reduce[55] 
+[154]:Reduce[56] [155]:Reduce[57] [156]:Reduce[58] [157]:Reduce[59] [158]:Reduce[60] 
+[159]:Reduce[61] [160]:Reduce[62] [161]:Reduce[63] [162]:Reduce[64] [163]:Reduce[65] 
+[164]:Reduce[66] [165]:Reduce[67] [166]:Reduce[117] [167]:Shift[164] [168]:Reduce[11] 
+[169]:Reduce[13] [170]:Reduce[89] [171]:Reduce[91] [172]:Reduce[93] [173]:Reduce[95] 
+[174]:Reduce[97] [175]:Reduce[99] [176]:Reduce[100] [177]:Reduce[102] [178]:Reduce[103] 
+[179]:Reduce[104] [180]:Reduce[105] [181]:Reduce[107] [182]:Reduce[108] [183]:Reduce[110] 
+[184]:Reduce[111] [185]:Reduce[113] [186]:Reduce[114] [187]:Reduce[115] [188]:Reduce[125] 
+[189]:Reduce[12] 
+states[0].nodes[25]:
+2 6 56 57 58 59 60 61 62 64 65 66 68 70 71 75 76 77 78 79 80 81 82 83 84 
+states[0].actions[25]:
+Shift[9] Shift[10] Shift[20] Shift[21] Shift[22] Shift[23] Shift[24] Shift[25] Shift[15] Shift[16] Shift[17] Shift[18] Shift[19] Goto[1] Goto[2] Goto[3] Goto[11] Goto[12] Goto[13] Goto[14] Goto[4] Goto[5] Goto[6] Goto[7] Goto[8] 
+states[1].nodes[1]:
+0 
+states[1].actions[1]:
+Accept[0] 
+states[2].nodes[1]:
+0 
+states[2].actions[1]:
+Reduce[0] 
+states[3].nodes[1]:
+0 
+states[3].actions[1]:
+Reduce[1] 
+states[4].nodes[1]:
+0 
+states[4].actions[1]:
+Reduce[2] 
+states[5].nodes[1]:
+0 
+states[5].actions[1]:
+Reduce[3] 
+states[6].nodes[1]:
+0 
+states[6].actions[1]:
+Reduce[4] 
+states[7].nodes[1]:
+0 
+states[7].actions[1]:
+Reduce[5] 
+states[8].nodes[1]:
+0 
+states[8].actions[1]:
+Reduce[6] 
+states[9].nodes[1]:
+3 
+states[9].actions[1]:
+Shift[26] 
+states[10].nodes[1]:
+3 
+states[10].actions[1]:
+Shift[27] 
+states[11].nodes[1]:
+0 
+states[11].actions[1]:
+Reduce[68] 
+states[12].nodes[1]:
+0 
+states[12].actions[1]:
+Reduce[69] 
+states[13].nodes[1]:
+0 
+states[13].actions[1]:
+Reduce[70] 
+states[14].nodes[1]:
+0 
+states[14].actions[1]:
+Reduce[71] 
+states[15].nodes[1]:
+63 
+states[15].actions[1]:
+Shift[28] 
+states[16].nodes[1]:
+3 
+states[16].actions[1]:
+Shift[29] 
+states[17].nodes[1]:
+63 
+states[17].actions[1]:
+Shift[30] 
+states[18].nodes[1]:
+67 
+states[18].actions[1]:
+Shift[31] 
+states[19].nodes[1]:
+67 
+states[19].actions[1]:
+Shift[32] 
+states[20].nodes[22]:
+3 4 19 20 21 22 67 69 85 86 87 88 89 90 91 92 93 94 95 96 97 98 
+states[20].actions[22]:
+-24(14)Shift[48] -24(15)Shift[49] -24(17)Shift[51] -24(18)Shift[52] -24(20)Shift[54] -24(19)Shift[53] -24(13)Shift[47] -24(16)Shift[50] Goto[33] -5(0)Goto[34] -5(1)Goto[35] -6(2)Goto[36] -7(3)Goto[37] -8(4)Goto[38] -9(5)Goto[39] -10(6)Goto[40] -12(7)Goto[41] -16(8)Goto[42] -18(9)Goto[43] -20(10)Goto[44] -24(12)Goto[46] -24(11)Goto[45] 
+states[21].nodes[22]:
+3 4 19 20 21 22 67 69 85 86 87 88 89 90 91 92 93 94 95 96 97 98 
+states[21].actions[22]:
+-24(14)Shift[48] -24(15)Shift[49] -24(17)Shift[51] -24(18)Shift[52] -24(20)Shift[54] -24(19)Shift[53] -24(13)Shift[47] -24(16)Shift[50] Goto[55] -5(0)Goto[34] -5(1)Goto[35] -6(2)Goto[36] -7(3)Goto[37] -8(4)Goto[38] -9(5)Goto[39] -10(6)Goto[40] -12(7)Goto[41] -16(8)Goto[42] -18(9)Goto[43] -20(10)Goto[44] -24(12)Goto[46] -24(11)Goto[45] 
+states[22].nodes[22]:
+3 4 19 20 21 22 67 69 85 86 87 88 89 90 91 92 93 94 95 96 97 98 
+states[22].actions[22]:
+-24(14)Shift[48] -24(15)Shift[49] -24(17)Shift[51] -24(18)Shift[52] -24(20)Shift[54] -24(19)Shift[53] -24(13)Shift[47] -24(16)Shift[50] Goto[56] -5(0)Goto[34] -5(1)Goto[35] -6(2)Goto[36] -7(3)Goto[37] -8(4)Goto[38] -9(5)Goto[39] -10(6)Goto[40] -12(7)Goto[41] -16(8)Goto[42] -18(9)Goto[43] -20(10)Goto[44] -24(12)Goto[46] -24(11)Goto[45] 
+states[23].nodes[1]:
+0 
+states[23].actions[1]:
+Reduce[75] 
+states[24].nodes[22]:
+3 4 19 20 21 22 67 69 85 86 87 88 89 90 91 92 93 94 95 96 97 98 
+states[24].actions[22]:
+-24(14)Shift[48] -24(15)Shift[49] -24(17)Shift[51] -24(18)Shift[52] -24(20)Shift[54] -24(19)Shift[53] -24(13)Shift[47] -24(16)Shift[50] Goto[57] -5(0)Goto[34] -5(1)Goto[35] -6(2)Goto[36] -7(3)Goto[37] -8(4)Goto[38] -9(5)Goto[39] -10(6)Goto[40] -12(7)Goto[41] -16(8)Goto[42] -18(9)Goto[43] -20(10)Goto[44] -24(12)Goto[46] -24(11)Goto[45] 
+states[25].nodes[1]:
+0 
+states[25].actions[1]:
+Reduce[77] 
+states[26].nodes[55]:
+0 3 4 5 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 73 74 
+states[26].actions[55]:
+-159(21)Reduce[15] -6(23)Shift[61] Shift[58] -6(30)Shift[68] -6(36)Shift[74] -6(24)Shift[62] -6(25)Shift[63] -6(26)Shift[64] -6(27)Shift[65] -6(28)Shift[66] -6(29)Shift[67] -6(31)Shift[69] -6(32)Shift[70] -6(33)Shift[71] -6(34)Shift[72] -6(35)Shift[73] -6(37)Shift[75] -6(38)Shift[76] -6(39)Shift[77] -6(40)Shift[78] -6(41)Shift[79] -6(42)Shift[80] -6(43)Shift[81] -6(44)Shift[82] -6(45)Shift[83] -6(46)Shift[84] -6(47)Shift[85] -6(48)Shift[86] -6(49)Shift[87] -6(50)Shift[88] -6(51)Shift[89] -6(52)Shift[90] -6(53)Shift[91] -6(54)Shift[92] -6(55)Shift[93] -6(56)Shift[94] -6(57)Shift[95] -6(58)Shift[96] -6(59)Shift[97] -6(60)Shift[98] -6(61)Shift[99] -6(62)Shift[100] -6(63)Shift[101] -6(64)Shift[102] -6(65)Shift[103] -6(66)Shift[104] -6(67)Shift[105] -6(68)Shift[106] -6(69)Shift[107] -6(70)Shift[108] -6(71)Shift[109] -6(72)Shift[110] -6(73)Shift[111] Goto[59] -3(22)Goto[60] 
+states[27].nodes[1]:
+0 
+states[27].actions[1]:
+Reduce[10] 
+states[28].nodes[1]:
+0 
+states[28].actions[1]:
+Reduce[78] 
+states[29].nodes[2]:
+0 4 
+states[29].actions[2]:
+Reduce[79] Shift[112] 
+states[30].nodes[1]:
+41 
+states[30].actions[1]:
+Shift[113] 
+states[31].nodes[2]:
+0 3 
+states[31].actions[2]:
+Reduce[83] Shift[114] 
+states[32].nodes[2]:
+0 67 
+states[32].actions[2]:
+Reduce[85] Shift[115] 
+states[33].nodes[1]:
+0 
+states[33].actions[1]:
+Reduce[72] 
+states[34].nodes[3]:
+0 5 39 
+states[34].actions[3]:
+-2(74)Reduce[87] -2(74)Reduce[87] Shift[116] 
+states[35].nodes[4]:
+0 5 37 39 
+states[35].actions[4]:
+-3(76)Reduce[88] -3(76)Reduce[88] -2(75)Shift[117] -3(76)Reduce[88] 
+states[36].nodes[5]:
+0 5 36 37 39 
+states[36].actions[5]:
+-4(78)Reduce[90] -4(78)Reduce[90] -2(77)Shift[118] -4(78)Reduce[90] -4(78)Reduce[90] 
+states[37].nodes[6]:
+0 5 35 36 37 39 
+states[37].actions[6]:
+-5(80)Reduce[92] -5(80)Reduce[92] -2(79)Shift[119] -5(80)Reduce[92] -5(80)Reduce[92] -5(80)Reduce[92] 
+states[38].nodes[7]:
+0 5 34 35 36 37 39 
+states[38].actions[7]:
+-6(82)Reduce[94] -6(82)Reduce[94] -2(81)Shift[120] -6(82)Reduce[94] -6(82)Reduce[94] -6(82)Reduce[94] -6(82)Reduce[94] 
+states[39].nodes[9]:
+0 5 32 33 34 35 36 37 39 
+states[39].actions[9]:
+-7(85)Reduce[96] -7(85)Reduce[96] -2(83)Shift[121] -2(84)Shift[122] -7(85)Reduce[96] -7(85)Reduce[96] -7(85)Reduce[96] -7(85)Reduce[96] -7(85)Reduce[96] 
+states[40].nodes[13]:
+0 5 28 29 30 31 32 33 34 35 36 37 39 
+states[40].actions[13]:
+-9(90)Reduce[98] -9(90)Reduce[98] -3(86)Shift[123] -3(87)Shift[124] -3(88)Shift[125] -3(89)Shift[126] -9(90)Reduce[98] -9(90)Reduce[98] -9(90)Reduce[98] -9(90)Reduce[98] -9(90)Reduce[98] -9(90)Reduce[98] -9(90)Reduce[98] 
+states[41].nodes[15]:
+0 5 26 27 28 29 30 31 32 33 34 35 36 37 39 
+states[41].actions[15]:
+-13(93)Reduce[101] -13(93)Reduce[101] -5(91)Shift[127] -5(92)Shift[128] -13(93)Reduce[101] -13(93)Reduce[101] -13(93)Reduce[101] -13(93)Reduce[101] -13(93)Reduce[101] -13(93)Reduce[101] -13(93)Reduce[101] -13(93)Reduce[101] -13(93)Reduce[101] -13(93)Reduce[101] -13(93)Reduce[101] 
+states[42].nodes[17]:
+0 5 19 20 26 27 28 29 30 31 32 33 34 35 36 37 39 
+states[42].actions[17]:
+-15(96)Reduce[106] -15(96)Reduce[106] -3(94)Shift[129] -3(95)Shift[130] -15(96)Reduce[106] -15(96)Reduce[106] -15(96)Reduce[106] -15(96)Reduce[106] -15(96)Reduce[106] -15(96)Reduce[106] -15(96)Reduce[106] -15(96)Reduce[106] -15(96)Reduce[106] -15(96)Reduce[106] -15(96)Reduce[106] -15(96)Reduce[106] -15(96)Reduce[106] 
+states[43].nodes[20]:
+0 5 19 20 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 39 
+states[43].actions[20]:
+-17(100)Reduce[109] -17(100)Reduce[109] -17(100)Reduce[109] -17(100)Reduce[109] -3(97)Shift[131] -3(98)Shift[132] -3(99)Shift[133] -17(100)Reduce[109] -17(100)Reduce[109] -17(100)Reduce[109] -17(100)Reduce[109] -17(100)Reduce[109] -17(100)Reduce[109] -17(100)Reduce[109] -17(100)Reduce[109] -17(100)Reduce[109] -17(100)Reduce[109] -17(100)Reduce[109] -17(100)Reduce[109] -17(100)Reduce[109] 
+states[44].nodes[20]:
+0 5 19 20 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 39 
+states[44].actions[20]:
+-20(101)Reduce[112] -20(101)Reduce[112] -20(101)Reduce[112] -20(101)Reduce[112] -20(101)Reduce[112] -20(101)Reduce[112] -20(101)Reduce[112] -20(101)Reduce[112] -20(101)Reduce[112] -20(101)Reduce[112] -20(101)Reduce[112] -20(101)Reduce[112] -20(101)Reduce[112] -20(101)Reduce[112] -20(101)Reduce[112] -20(101)Reduce[112] -20(101)Reduce[112] -20(101)Reduce[112] -20(101)Reduce[112] -20(101)Reduce[112] 
+states[45].nodes[20]:
+0 5 19 20 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 39 
+states[45].actions[20]:
+-20(102)Reduce[116] -20(102)Reduce[116] -20(102)Reduce[116] -20(102)Reduce[116] -20(102)Reduce[116] -20(102)Reduce[116] -20(102)Reduce[116] -20(102)Reduce[116] -20(102)Reduce[116] -20(102)Reduce[116] -20(102)Reduce[116] -20(102)Reduce[116] -20(102)Reduce[116] -20(102)Reduce[116] -20(102)Reduce[116] -20(102)Reduce[116] -20(102)Reduce[116] -20(102)Reduce[116] -20(102)Reduce[116] -20(102)Reduce[116] 
+states[46].nodes[11]:
+3 4 19 20 21 22 67 69 96 97 98 
+states[46].actions[11]:
+-24(14)Shift[48] -24(15)Shift[49] -24(17)Shift[51] -24(18)Shift[52] -24(20)Shift[54] -24(19)Shift[53] -24(13)Shift[47] -24(16)Shift[50] Goto[134] -24(12)Goto[46] -24(11)Goto[45] 
+states[47].nodes[20]:
+0 5 19 20 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 39 
+states[47].actions[20]:
+-20(103)Reduce[123] -20(103)Reduce[123] -20(103)Reduce[123] -20(103)Reduce[123] -20(103)Reduce[123] -20(103)Reduce[123] -20(103)Reduce[123] -20(103)Reduce[123] -20(103)Reduce[123] -20(103)Reduce[123] -20(103)Reduce[123] -20(103)Reduce[123] -20(103)Reduce[123] -20(103)Reduce[123] -20(103)Reduce[123] -20(103)Reduce[123] -20(103)Reduce[123] -20(103)Reduce[123] -20(103)Reduce[123] -20(103)Reduce[123] 
+states[48].nodes[20]:
+0 5 19 20 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 39 
+states[48].actions[20]:
+-20(104)Reduce[124] -20(104)Reduce[124] -20(104)Reduce[124] -20(104)Reduce[124] -20(104)Reduce[124] -20(104)Reduce[124] -20(104)Reduce[124] -20(104)Reduce[124] -20(104)Reduce[124] -20(104)Reduce[124] -20(104)Reduce[124] -20(104)Reduce[124] -20(104)Reduce[124] -20(104)Reduce[124] -20(104)Reduce[124] -20(104)Reduce[124] -20(104)Reduce[124] -20(104)Reduce[124] -20(104)Reduce[124] -20(104)Reduce[124] 
+states[49].nodes[22]:
+3 4 19 20 21 22 67 69 85 86 87 88 89 90 91 92 93 94 95 96 97 98 
+states[49].actions[22]:
+-24(14)Shift[48] -24(15)Shift[49] -24(17)Shift[51] -24(18)Shift[52] -24(20)Shift[54] -24(19)Shift[53] -24(13)Shift[47] -24(16)Shift[50] Goto[135] -5(0)Goto[34] -5(1)Goto[35] -6(2)Goto[36] -7(3)Goto[37] -8(4)Goto[38] -9(5)Goto[39] -10(6)Goto[40] -12(7)Goto[41] -16(8)Goto[42] -18(9)Goto[43] -20(10)Goto[44] -24(12)Goto[46] -24(11)Goto[45] 
+states[50].nodes[8]:
+3 4 19 20 21 22 67 69 
+states[50].actions[8]:
+-8(105)Reduce[118] -8(105)Reduce[118] -8(105)Reduce[118] -8(105)Reduce[118] -8(105)Reduce[118] -8(105)Reduce[118] -8(105)Reduce[118] -8(105)Reduce[118] 
+states[51].nodes[8]:
+3 4 19 20 21 22 67 69 
+states[51].actions[8]:
+-8(106)Reduce[119] -8(106)Reduce[119] -8(106)Reduce[119] -8(106)Reduce[119] -8(106)Reduce[119] -8(106)Reduce[119] -8(106)Reduce[119] -8(106)Reduce[119] 
+states[52].nodes[8]:
+3 4 19 20 21 22 67 69 
+states[52].actions[8]:
+-8(107)Reduce[120] -8(107)Reduce[120] -8(107)Reduce[120] -8(107)Reduce[120] -8(107)Reduce[120] -8(107)Reduce[120] -8(107)Reduce[120] -8(107)Reduce[120] 
+states[53].nodes[8]:
+3 4 19 20 21 22 67 69 
+states[53].actions[8]:
+-8(108)Reduce[121] -8(108)Reduce[121] -8(108)Reduce[121] -8(108)Reduce[121] -8(108)Reduce[121] -8(108)Reduce[121] -8(108)Reduce[121] -8(108)Reduce[121] 
+states[54].nodes[8]:
+3 4 19 20 21 22 67 69 
+states[54].actions[8]:
+-8(109)Reduce[122] -8(109)Reduce[122] -8(109)Reduce[122] -8(109)Reduce[122] -8(109)Reduce[122] -8(109)Reduce[122] -8(109)Reduce[122] -8(109)Reduce[122] 
+states[55].nodes[1]:
+0 
+states[55].actions[1]:
+Reduce[73] 
+states[56].nodes[1]:
+0 
+states[56].actions[1]:
+Reduce[74] 
+states[57].nodes[1]:
+0 
+states[57].actions[1]:
+Reduce[76] 
+states[58].nodes[54]:
+0 3 4 5 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 72 
+states[58].actions[54]:
+-106(110)Reduce[23] -2(111)Shift[138] -106(110)Reduce[23] Shift[137] -106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] Goto[136] 
+states[59].nodes[54]:
+0 3 4 5 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 74 
+states[59].actions[54]:
+Reduce[9] -6(23)Shift[61] -5(113)Shift[140] -6(30)Shift[68] -6(36)Shift[74] -6(24)Shift[62] -6(25)Shift[63] -6(26)Shift[64] -6(27)Shift[65] -6(28)Shift[66] -6(29)Shift[67] -6(31)Shift[69] -6(32)Shift[70] -6(33)Shift[71] -6(34)Shift[72] -6(35)Shift[73] -6(37)Shift[75] -6(38)Shift[76] -6(39)Shift[77] -6(40)Shift[78] -6(41)Shift[79] -6(42)Shift[80] -6(43)Shift[81] -6(44)Shift[82] -6(45)Shift[83] -6(46)Shift[84] -6(47)Shift[85] -6(48)Shift[86] -6(49)Shift[87] -6(50)Shift[88] -6(51)Shift[89] -6(52)Shift[90] -6(53)Shift[91] -6(54)Shift[92] -6(55)Shift[93] -6(56)Shift[94] -6(57)Shift[95] -6(58)Shift[96] -6(59)Shift[97] -6(60)Shift[98] -6(61)Shift[99] -6(62)Shift[100] -6(63)Shift[101] -6(64)Shift[102] -6(65)Shift[103] -6(66)Shift[104] -6(67)Shift[105] -6(68)Shift[106] -6(69)Shift[107] -6(70)Shift[108] -6(71)Shift[109] -6(72)Shift[110] -6(73)Shift[111] -3(112)Goto[139] 
+states[60].nodes[53]:
+0 3 4 5 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 
+states[60].actions[53]:
+-53(114)Reduce[14] -53(114)Reduce[14] -53(114)Reduce[14] -53(114)Reduce[14] -53(114)Reduce[14] -53(114)Reduce[14] -53(114)Reduce[14] -53(114)Reduce[14] -53(114)Reduce[14] -53(114)Reduce[14] -53(114)Reduce[14] -53(114)Reduce[14] -53(114)Reduce[14] -53(114)Reduce[14] -53(114)Reduce[14] -53(114)Reduce[14] -53(114)Reduce[14] -53(114)Reduce[14] -53(114)Reduce[14] -53(114)Reduce[14] -53(114)Reduce[14] -53(114)Reduce[14] -53(114)Reduce[14] -53(114)Reduce[14] -53(114)Reduce[14] -53(114)Reduce[14] -53(114)Reduce[14] -53(114)Reduce[14] -53(114)Reduce[14] -53(114)Reduce[14] -53(114)Reduce[14] -53(114)Reduce[14] -53(114)Reduce[14] -53(114)Reduce[14] -53(114)Reduce[14] -53(114)Reduce[14] -53(114)Reduce[14] -53(114)Reduce[14] -53(114)Reduce[14] -53(114)Reduce[14] -53(114)Reduce[14] -53(114)Reduce[14] -53(114)Reduce[14] -53(114)Reduce[14] -53(114)Reduce[14] -53(114)Reduce[14] -53(114)Reduce[14] -53(114)Reduce[14] -53(114)Reduce[14] -53(114)Reduce[14] -53(114)Reduce[14] -53(114)Reduce[14] -53(114)Reduce[14] 
+states[61].nodes[53]:
+0 3 4 5 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 
+states[61].actions[53]:
+-53(115)Reduce[16] -53(115)Reduce[16] -53(115)Reduce[16] -53(115)Reduce[16] -53(115)Reduce[16] -53(115)Reduce[16] -53(115)Reduce[16] -53(115)Reduce[16] -53(115)Reduce[16] -53(115)Reduce[16] -53(115)Reduce[16] -53(115)Reduce[16] -53(115)Reduce[16] -53(115)Reduce[16] -53(115)Reduce[16] -53(115)Reduce[16] -53(115)Reduce[16] -53(115)Reduce[16] -53(115)Reduce[16] -53(115)Reduce[16] -53(115)Reduce[16] -53(115)Reduce[16] -53(115)Reduce[16] -53(115)Reduce[16] -53(115)Reduce[16] -53(115)Reduce[16] -53(115)Reduce[16] -53(115)Reduce[16] -53(115)Reduce[16] -53(115)Reduce[16] -53(115)Reduce[16] -53(115)Reduce[16] -53(115)Reduce[16] -53(115)Reduce[16] -53(115)Reduce[16] -53(115)Reduce[16] -53(115)Reduce[16] -53(115)Reduce[16] -53(115)Reduce[16] -53(115)Reduce[16] -53(115)Reduce[16] -53(115)Reduce[16] -53(115)Reduce[16] -53(115)Reduce[16] -53(115)Reduce[16] -53(115)Reduce[16] -53(115)Reduce[16] -53(115)Reduce[16] -53(115)Reduce[16] -53(115)Reduce[16] -53(115)Reduce[16] -53(115)Reduce[16] -53(115)Reduce[16] 
+states[62].nodes[53]:
+0 3 4 5 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 
+states[62].actions[53]:
+-53(116)Reduce[17] -53(116)Reduce[17] -53(116)Reduce[17] -53(116)Reduce[17] -53(116)Reduce[17] -53(116)Reduce[17] -53(116)Reduce[17] -53(116)Reduce[17] -53(116)Reduce[17] -53(116)Reduce[17] -53(116)Reduce[17] -53(116)Reduce[17] -53(116)Reduce[17] -53(116)Reduce[17] -53(116)Reduce[17] -53(116)Reduce[17] -53(116)Reduce[17] -53(116)Reduce[17] -53(116)Reduce[17] -53(116)Reduce[17] -53(116)Reduce[17] -53(116)Reduce[17] -53(116)Reduce[17] -53(116)Reduce[17] -53(116)Reduce[17] -53(116)Reduce[17] -53(116)Reduce[17] -53(116)Reduce[17] -53(116)Reduce[17] -53(116)Reduce[17] -53(116)Reduce[17] -53(116)Reduce[17] -53(116)Reduce[17] -53(116)Reduce[17] -53(116)Reduce[17] -53(116)Reduce[17] -53(116)Reduce[17] -53(116)Reduce[17] -53(116)Reduce[17] -53(116)Reduce[17] -53(116)Reduce[17] -53(116)Reduce[17] -53(116)Reduce[17] -53(116)Reduce[17] -53(116)Reduce[17] -53(116)Reduce[17] -53(116)Reduce[17] -53(116)Reduce[17] -53(116)Reduce[17] -53(116)Reduce[17] -53(116)Reduce[17] -53(116)Reduce[17] -53(116)Reduce[17] 
+states[63].nodes[53]:
+0 3 4 5 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 
+states[63].actions[53]:
+-53(117)Reduce[18] -53(117)Reduce[18] -53(117)Reduce[18] -53(117)Reduce[18] -53(117)Reduce[18] -53(117)Reduce[18] -53(117)Reduce[18] -53(117)Reduce[18] -53(117)Reduce[18] -53(117)Reduce[18] -53(117)Reduce[18] -53(117)Reduce[18] -53(117)Reduce[18] -53(117)Reduce[18] -53(117)Reduce[18] -53(117)Reduce[18] -53(117)Reduce[18] -53(117)Reduce[18] -53(117)Reduce[18] -53(117)Reduce[18] -53(117)Reduce[18] -53(117)Reduce[18] -53(117)Reduce[18] -53(117)Reduce[18] -53(117)Reduce[18] -53(117)Reduce[18] -53(117)Reduce[18] -53(117)Reduce[18] -53(117)Reduce[18] -53(117)Reduce[18] -53(117)Reduce[18] -53(117)Reduce[18] -53(117)Reduce[18] -53(117)Reduce[18] -53(117)Reduce[18] -53(117)Reduce[18] -53(117)Reduce[18] -53(117)Reduce[18] -53(117)Reduce[18] -53(117)Reduce[18] -53(117)Reduce[18] -53(117)Reduce[18] -53(117)Reduce[18] -53(117)Reduce[18] -53(117)Reduce[18] -53(117)Reduce[18] -53(117)Reduce[18] -53(117)Reduce[18] -53(117)Reduce[18] -53(117)Reduce[18] -53(117)Reduce[18] -53(117)Reduce[18] -53(117)Reduce[18] 
+states[64].nodes[53]:
+0 3 4 5 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 
+states[64].actions[53]:
+-53(118)Reduce[19] -53(118)Reduce[19] -53(118)Reduce[19] -53(118)Reduce[19] -53(118)Reduce[19] -53(118)Reduce[19] -53(118)Reduce[19] -53(118)Reduce[19] -53(118)Reduce[19] -53(118)Reduce[19] -53(118)Reduce[19] -53(118)Reduce[19] -53(118)Reduce[19] -53(118)Reduce[19] -53(118)Reduce[19] -53(118)Reduce[19] -53(118)Reduce[19] -53(118)Reduce[19] -53(118)Reduce[19] -53(118)Reduce[19] -53(118)Reduce[19] -53(118)Reduce[19] -53(118)Reduce[19] -53(118)Reduce[19] -53(118)Reduce[19] -53(118)Reduce[19] -53(118)Reduce[19] -53(118)Reduce[19] -53(118)Reduce[19] -53(118)Reduce[19] -53(118)Reduce[19] -53(118)Reduce[19] -53(118)Reduce[19] -53(118)Reduce[19] -53(118)Reduce[19] -53(118)Reduce[19] -53(118)Reduce[19] -53(118)Reduce[19] -53(118)Reduce[19] -53(118)Reduce[19] -53(118)Reduce[19] -53(118)Reduce[19] -53(118)Reduce[19] -53(118)Reduce[19] -53(118)Reduce[19] -53(118)Reduce[19] -53(118)Reduce[19] -53(118)Reduce[19] -53(118)Reduce[19] -53(118)Reduce[19] -53(118)Reduce[19] -53(118)Reduce[19] -53(118)Reduce[19] 
+states[65].nodes[53]:
+0 3 4 5 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 
+states[65].actions[53]:
+-53(119)Reduce[20] -53(119)Reduce[20] -53(119)Reduce[20] -53(119)Reduce[20] -53(119)Reduce[20] -53(119)Reduce[20] -53(119)Reduce[20] -53(119)Reduce[20] -53(119)Reduce[20] -53(119)Reduce[20] -53(119)Reduce[20] -53(119)Reduce[20] -53(119)Reduce[20] -53(119)Reduce[20] -53(119)Reduce[20] -53(119)Reduce[20] -53(119)Reduce[20] -53(119)Reduce[20] -53(119)Reduce[20] -53(119)Reduce[20] -53(119)Reduce[20] -53(119)Reduce[20] -53(119)Reduce[20] -53(119)Reduce[20] -53(119)Reduce[20] -53(119)Reduce[20] -53(119)Reduce[20] -53(119)Reduce[20] -53(119)Reduce[20] -53(119)Reduce[20] -53(119)Reduce[20] -53(119)Reduce[20] -53(119)Reduce[20] -53(119)Reduce[20] -53(119)Reduce[20] -53(119)Reduce[20] -53(119)Reduce[20] -53(119)Reduce[20] -53(119)Reduce[20] -53(119)Reduce[20] -53(119)Reduce[20] -53(119)Reduce[20] -53(119)Reduce[20] -53(119)Reduce[20] -53(119)Reduce[20] -53(119)Reduce[20] -53(119)Reduce[20] -53(119)Reduce[20] -53(119)Reduce[20] -53(119)Reduce[20] -53(119)Reduce[20] -53(119)Reduce[20] -53(119)Reduce[20] 
+states[66].nodes[53]:
+0 3 4 5 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 
+states[66].actions[53]:
+-53(120)Reduce[21] -53(120)Reduce[21] -53(120)Reduce[21] -53(120)Reduce[21] -53(120)Reduce[21] -53(120)Reduce[21] -53(120)Reduce[21] -53(120)Reduce[21] -53(120)Reduce[21] -53(120)Reduce[21] -53(120)Reduce[21] -53(120)Reduce[21] -53(120)Reduce[21] -53(120)Reduce[21] -53(120)Reduce[21] -53(120)Reduce[21] -53(120)Reduce[21] -53(120)Reduce[21] -53(120)Reduce[21] -53(120)Reduce[21] -53(120)Reduce[21] -53(120)Reduce[21] -53(120)Reduce[21] -53(120)Reduce[21] -53(120)Reduce[21] -53(120)Reduce[21] -53(120)Reduce[21] -53(120)Reduce[21] -53(120)Reduce[21] -53(120)Reduce[21] -53(120)Reduce[21] -53(120)Reduce[21] -53(120)Reduce[21] -53(120)Reduce[21] -53(120)Reduce[21] -53(120)Reduce[21] -53(120)Reduce[21] -53(120)Reduce[21] -53(120)Reduce[21] -53(120)Reduce[21] -53(120)Reduce[21] -53(120)Reduce[21] -53(120)Reduce[21] -53(120)Reduce[21] -53(120)Reduce[21] -53(120)Reduce[21] -53(120)Reduce[21] -53(120)Reduce[21] -53(120)Reduce[21] -53(120)Reduce[21] -53(120)Reduce[21] -53(120)Reduce[21] -53(120)Reduce[21] 
+states[67].nodes[53]:
+0 3 4 5 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 
+states[67].actions[53]:
+-53(121)Reduce[22] -53(121)Reduce[22] -53(121)Reduce[22] -53(121)Reduce[22] -53(121)Reduce[22] -53(121)Reduce[22] -53(121)Reduce[22] -53(121)Reduce[22] -53(121)Reduce[22] -53(121)Reduce[22] -53(121)Reduce[22] -53(121)Reduce[22] -53(121)Reduce[22] -53(121)Reduce[22] -53(121)Reduce[22] -53(121)Reduce[22] -53(121)Reduce[22] -53(121)Reduce[22] -53(121)Reduce[22] -53(121)Reduce[22] -53(121)Reduce[22] -53(121)Reduce[22] -53(121)Reduce[22] -53(121)Reduce[22] -53(121)Reduce[22] -53(121)Reduce[22] -53(121)Reduce[22] -53(121)Reduce[22] -53(121)Reduce[22] -53(121)Reduce[22] -53(121)Reduce[22] -53(121)Reduce[22] -53(121)Reduce[22] -53(121)Reduce[22] -53(121)Reduce[22] -53(121)Reduce[22] -53(121)Reduce[22] -53(121)Reduce[22] -53(121)Reduce[22] -53(121)Reduce[22] -53(121)Reduce[22] -53(121)Reduce[22] -53(121)Reduce[22] -53(121)Reduce[22] -53(121)Reduce[22] -53(121)Reduce[22] -53(121)Reduce[22] -53(121)Reduce[22] -53(121)Reduce[22] -53(121)Reduce[22] -53(121)Reduce[22] -53(121)Reduce[22] -53(121)Reduce[22] 
+states[68].nodes[53]:
+0 3 4 5 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 
+states[68].actions[53]:
+-53(122)Reduce[24] -53(122)Reduce[24] -53(122)Reduce[24] -53(122)Reduce[24] -53(122)Reduce[24] -53(122)Reduce[24] -53(122)Reduce[24] -53(122)Reduce[24] -53(122)Reduce[24] -53(122)Reduce[24] -53(122)Reduce[24] -53(122)Reduce[24] -53(122)Reduce[24] -53(122)Reduce[24] -53(122)Reduce[24] -53(122)Reduce[24] -53(122)Reduce[24] -53(122)Reduce[24] -53(122)Reduce[24] -53(122)Reduce[24] -53(122)Reduce[24] -53(122)Reduce[24] -53(122)Reduce[24] -53(122)Reduce[24] -53(122)Reduce[24] -53(122)Reduce[24] -53(122)Reduce[24] -53(122)Reduce[24] -53(122)Reduce[24] -53(122)Reduce[24] -53(122)Reduce[24] -53(122)Reduce[24] -53(122)Reduce[24] -53(122)Reduce[24] -53(122)Reduce[24] -53(122)Reduce[24] -53(122)Reduce[24] -53(122)Reduce[24] -53(122)Reduce[24] -53(122)Reduce[24] -53(122)Reduce[24] -53(122)Reduce[24] -53(122)Reduce[24] -53(122)Reduce[24] -53(122)Reduce[24] -53(122)Reduce[24] -53(122)Reduce[24] -53(122)Reduce[24] -53(122)Reduce[24] -53(122)Reduce[24] -53(122)Reduce[24] -53(122)Reduce[24] -53(122)Reduce[24] 
+states[69].nodes[53]:
+0 3 4 5 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 
+states[69].actions[53]:
+-53(123)Reduce[25] -53(123)Reduce[25] -53(123)Reduce[25] -53(123)Reduce[25] -53(123)Reduce[25] -53(123)Reduce[25] -53(123)Reduce[25] -53(123)Reduce[25] -53(123)Reduce[25] -53(123)Reduce[25] -53(123)Reduce[25] -53(123)Reduce[25] -53(123)Reduce[25] -53(123)Reduce[25] -53(123)Reduce[25] -53(123)Reduce[25] -53(123)Reduce[25] -53(123)Reduce[25] -53(123)Reduce[25] -53(123)Reduce[25] -53(123)Reduce[25] -53(123)Reduce[25] -53(123)Reduce[25] -53(123)Reduce[25] -53(123)Reduce[25] -53(123)Reduce[25] -53(123)Reduce[25] -53(123)Reduce[25] -53(123)Reduce[25] -53(123)Reduce[25] -53(123)Reduce[25] -53(123)Reduce[25] -53(123)Reduce[25] -53(123)Reduce[25] -53(123)Reduce[25] -53(123)Reduce[25] -53(123)Reduce[25] -53(123)Reduce[25] -53(123)Reduce[25] -53(123)Reduce[25] -53(123)Reduce[25] -53(123)Reduce[25] -53(123)Reduce[25] -53(123)Reduce[25] -53(123)Reduce[25] -53(123)Reduce[25] -53(123)Reduce[25] -53(123)Reduce[25] -53(123)Reduce[25] -53(123)Reduce[25] -53(123)Reduce[25] -53(123)Reduce[25] -53(123)Reduce[25] 
+states[70].nodes[53]:
+0 3 4 5 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 
+states[70].actions[53]:
+-53(124)Reduce[26] -53(124)Reduce[26] -53(124)Reduce[26] -53(124)Reduce[26] -53(124)Reduce[26] -53(124)Reduce[26] -53(124)Reduce[26] -53(124)Reduce[26] -53(124)Reduce[26] -53(124)Reduce[26] -53(124)Reduce[26] -53(124)Reduce[26] -53(124)Reduce[26] -53(124)Reduce[26] -53(124)Reduce[26] -53(124)Reduce[26] -53(124)Reduce[26] -53(124)Reduce[26] -53(124)Reduce[26] -53(124)Reduce[26] -53(124)Reduce[26] -53(124)Reduce[26] -53(124)Reduce[26] -53(124)Reduce[26] -53(124)Reduce[26] -53(124)Reduce[26] -53(124)Reduce[26] -53(124)Reduce[26] -53(124)Reduce[26] -53(124)Reduce[26] -53(124)Reduce[26] -53(124)Reduce[26] -53(124)Reduce[26] -53(124)Reduce[26] -53(124)Reduce[26] -53(124)Reduce[26] -53(124)Reduce[26] -53(124)Reduce[26] -53(124)Reduce[26] -53(124)Reduce[26] -53(124)Reduce[26] -53(124)Reduce[26] -53(124)Reduce[26] -53(124)Reduce[26] -53(124)Reduce[26] -53(124)Reduce[26] -53(124)Reduce[26] -53(124)Reduce[26] -53(124)Reduce[26] -53(124)Reduce[26] -53(124)Reduce[26] -53(124)Reduce[26] -53(124)Reduce[26] 
+states[71].nodes[53]:
+0 3 4 5 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 
+states[71].actions[53]:
+-53(125)Reduce[27] -53(125)Reduce[27] -53(125)Reduce[27] -53(125)Reduce[27] -53(125)Reduce[27] -53(125)Reduce[27] -53(125)Reduce[27] -53(125)Reduce[27] -53(125)Reduce[27] -53(125)Reduce[27] -53(125)Reduce[27] -53(125)Reduce[27] -53(125)Reduce[27] -53(125)Reduce[27] -53(125)Reduce[27] -53(125)Reduce[27] -53(125)Reduce[27] -53(125)Reduce[27] -53(125)Reduce[27] -53(125)Reduce[27] -53(125)Reduce[27] -53(125)Reduce[27] -53(125)Reduce[27] -53(125)Reduce[27] -53(125)Reduce[27] -53(125)Reduce[27] -53(125)Reduce[27] -53(125)Reduce[27] -53(125)Reduce[27] -53(125)Reduce[27] -53(125)Reduce[27] -53(125)Reduce[27] -53(125)Reduce[27] -53(125)Reduce[27] -53(125)Reduce[27] -53(125)Reduce[27] -53(125)Reduce[27] -53(125)Reduce[27] -53(125)Reduce[27] -53(125)Reduce[27] -53(125)Reduce[27] -53(125)Reduce[27] -53(125)Reduce[27] -53(125)Reduce[27] -53(125)Reduce[27] -53(125)Reduce[27] -53(125)Reduce[27] -53(125)Reduce[27] -53(125)Reduce[27] -53(125)Reduce[27] -53(125)Reduce[27] -53(125)Reduce[27] -53(125)Reduce[27] 
+states[72].nodes[53]:
+0 3 4 5 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 
+states[72].actions[53]:
+-53(126)Reduce[28] -53(126)Reduce[28] -53(126)Reduce[28] -53(126)Reduce[28] -53(126)Reduce[28] -53(126)Reduce[28] -53(126)Reduce[28] -53(126)Reduce[28] -53(126)Reduce[28] -53(126)Reduce[28] -53(126)Reduce[28] -53(126)Reduce[28] -53(126)Reduce[28] -53(126)Reduce[28] -53(126)Reduce[28] -53(126)Reduce[28] -53(126)Reduce[28] -53(126)Reduce[28] -53(126)Reduce[28] -53(126)Reduce[28] -53(126)Reduce[28] -53(126)Reduce[28] -53(126)Reduce[28] -53(126)Reduce[28] -53(126)Reduce[28] -53(126)Reduce[28] -53(126)Reduce[28] -53(126)Reduce[28] -53(126)Reduce[28] -53(126)Reduce[28] -53(126)Reduce[28] -53(126)Reduce[28] -53(126)Reduce[28] -53(126)Reduce[28] -53(126)Reduce[28] -53(126)Reduce[28] -53(126)Reduce[28] -53(126)Reduce[28] -53(126)Reduce[28] -53(126)Reduce[28] -53(126)Reduce[28] -53(126)Reduce[28] -53(126)Reduce[28] -53(126)Reduce[28] -53(126)Reduce[28] -53(126)Reduce[28] -53(126)Reduce[28] -53(126)Reduce[28] -53(126)Reduce[28] -53(126)Reduce[28] -53(126)Reduce[28] -53(126)Reduce[28] -53(126)Reduce[28] 
+states[73].nodes[53]:
+0 3 4 5 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 
+states[73].actions[53]:
+-53(127)Reduce[29] -53(127)Reduce[29] -53(127)Reduce[29] -53(127)Reduce[29] -53(127)Reduce[29] -53(127)Reduce[29] -53(127)Reduce[29] -53(127)Reduce[29] -53(127)Reduce[29] -53(127)Reduce[29] -53(127)Reduce[29] -53(127)Reduce[29] -53(127)Reduce[29] -53(127)Reduce[29] -53(127)Reduce[29] -53(127)Reduce[29] -53(127)Reduce[29] -53(127)Reduce[29] -53(127)Reduce[29] -53(127)Reduce[29] -53(127)Reduce[29] -53(127)Reduce[29] -53(127)Reduce[29] -53(127)Reduce[29] -53(127)Reduce[29] -53(127)Reduce[29] -53(127)Reduce[29] -53(127)Reduce[29] -53(127)Reduce[29] -53(127)Reduce[29] -53(127)Reduce[29] -53(127)Reduce[29] -53(127)Reduce[29] -53(127)Reduce[29] -53(127)Reduce[29] -53(127)Reduce[29] -53(127)Reduce[29] -53(127)Reduce[29] -53(127)Reduce[29] -53(127)Reduce[29] -53(127)Reduce[29] -53(127)Reduce[29] -53(127)Reduce[29] -53(127)Reduce[29] -53(127)Reduce[29] -53(127)Reduce[29] -53(127)Reduce[29] -53(127)Reduce[29] -53(127)Reduce[29] -53(127)Reduce[29] -53(127)Reduce[29] -53(127)Reduce[29] -53(127)Reduce[29] 
+states[74].nodes[53]:
+0 3 4 5 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 
+states[74].actions[53]:
+-53(128)Reduce[30] -53(128)Reduce[30] -53(128)Reduce[30] -53(128)Reduce[30] -53(128)Reduce[30] -53(128)Reduce[30] -53(128)Reduce[30] -53(128)Reduce[30] -53(128)Reduce[30] -53(128)Reduce[30] -53(128)Reduce[30] -53(128)Reduce[30] -53(128)Reduce[30] -53(128)Reduce[30] -53(128)Reduce[30] -53(128)Reduce[30] -53(128)Reduce[30] -53(128)Reduce[30] -53(128)Reduce[30] -53(128)Reduce[30] -53(128)Reduce[30] -53(128)Reduce[30] -53(128)Reduce[30] -53(128)Reduce[30] -53(128)Reduce[30] -53(128)Reduce[30] -53(128)Reduce[30] -53(128)Reduce[30] -53(128)Reduce[30] -53(128)Reduce[30] -53(128)Reduce[30] -53(128)Reduce[30] -53(128)Reduce[30] -53(128)Reduce[30] -53(128)Reduce[30] -53(128)Reduce[30] -53(128)Reduce[30] -53(128)Reduce[30] -53(128)Reduce[30] -53(128)Reduce[30] -53(128)Reduce[30] -53(128)Reduce[30] -53(128)Reduce[30] -53(128)Reduce[30] -53(128)Reduce[30] -53(128)Reduce[30] -53(128)Reduce[30] -53(128)Reduce[30] -53(128)Reduce[30] -53(128)Reduce[30] -53(128)Reduce[30] -53(128)Reduce[30] -53(128)Reduce[30] 
+states[75].nodes[53]:
+0 3 4 5 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 
+states[75].actions[53]:
+-53(129)Reduce[31] -53(129)Reduce[31] -53(129)Reduce[31] -53(129)Reduce[31] -53(129)Reduce[31] -53(129)Reduce[31] -53(129)Reduce[31] -53(129)Reduce[31] -53(129)Reduce[31] -53(129)Reduce[31] -53(129)Reduce[31] -53(129)Reduce[31] -53(129)Reduce[31] -53(129)Reduce[31] -53(129)Reduce[31] -53(129)Reduce[31] -53(129)Reduce[31] -53(129)Reduce[31] -53(129)Reduce[31] -53(129)Reduce[31] -53(129)Reduce[31] -53(129)Reduce[31] -53(129)Reduce[31] -53(129)Reduce[31] -53(129)Reduce[31] -53(129)Reduce[31] -53(129)Reduce[31] -53(129)Reduce[31] -53(129)Reduce[31] -53(129)Reduce[31] -53(129)Reduce[31] -53(129)Reduce[31] -53(129)Reduce[31] -53(129)Reduce[31] -53(129)Reduce[31] -53(129)Reduce[31] -53(129)Reduce[31] -53(129)Reduce[31] -53(129)Reduce[31] -53(129)Reduce[31] -53(129)Reduce[31] -53(129)Reduce[31] -53(129)Reduce[31] -53(129)Reduce[31] -53(129)Reduce[31] -53(129)Reduce[31] -53(129)Reduce[31] -53(129)Reduce[31] -53(129)Reduce[31] -53(129)Reduce[31] -53(129)Reduce[31] -53(129)Reduce[31] -53(129)Reduce[31] 
+states[76].nodes[53]:
+0 3 4 5 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 
+states[76].actions[53]:
+-53(130)Reduce[32] -53(130)Reduce[32] -53(130)Reduce[32] -53(130)Reduce[32] -53(130)Reduce[32] -53(130)Reduce[32] -53(130)Reduce[32] -53(130)Reduce[32] -53(130)Reduce[32] -53(130)Reduce[32] -53(130)Reduce[32] -53(130)Reduce[32] -53(130)Reduce[32] -53(130)Reduce[32] -53(130)Reduce[32] -53(130)Reduce[32] -53(130)Reduce[32] -53(130)Reduce[32] -53(130)Reduce[32] -53(130)Reduce[32] -53(130)Reduce[32] -53(130)Reduce[32] -53(130)Reduce[32] -53(130)Reduce[32] -53(130)Reduce[32] -53(130)Reduce[32] -53(130)Reduce[32] -53(130)Reduce[32] -53(130)Reduce[32] -53(130)Reduce[32] -53(130)Reduce[32] -53(130)Reduce[32] -53(130)Reduce[32] -53(130)Reduce[32] -53(130)Reduce[32] -53(130)Reduce[32] -53(130)Reduce[32] -53(130)Reduce[32] -53(130)Reduce[32] -53(130)Reduce[32] -53(130)Reduce[32] -53(130)Reduce[32] -53(130)Reduce[32] -53(130)Reduce[32] -53(130)Reduce[32] -53(130)Reduce[32] -53(130)Reduce[32] -53(130)Reduce[32] -53(130)Reduce[32] -53(130)Reduce[32] -53(130)Reduce[32] -53(130)Reduce[32] -53(130)Reduce[32] 
+states[77].nodes[53]:
+0 3 4 5 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 
+states[77].actions[53]:
+-53(131)Reduce[33] -53(131)Reduce[33] -53(131)Reduce[33] -53(131)Reduce[33] -53(131)Reduce[33] -53(131)Reduce[33] -53(131)Reduce[33] -53(131)Reduce[33] -53(131)Reduce[33] -53(131)Reduce[33] -53(131)Reduce[33] -53(131)Reduce[33] -53(131)Reduce[33] -53(131)Reduce[33] -53(131)Reduce[33] -53(131)Reduce[33] -53(131)Reduce[33] -53(131)Reduce[33] -53(131)Reduce[33] -53(131)Reduce[33] -53(131)Reduce[33] -53(131)Reduce[33] -53(131)Reduce[33] -53(131)Reduce[33] -53(131)Reduce[33] -53(131)Reduce[33] -53(131)Reduce[33] -53(131)Reduce[33] -53(131)Reduce[33] -53(131)Reduce[33] -53(131)Reduce[33] -53(131)Reduce[33] -53(131)Reduce[33] -53(131)Reduce[33] -53(131)Reduce[33] -53(131)Reduce[33] -53(131)Reduce[33] -53(131)Reduce[33] -53(131)Reduce[33] -53(131)Reduce[33] -53(131)Reduce[33] -53(131)Reduce[33] -53(131)Reduce[33] -53(131)Reduce[33] -53(131)Reduce[33] -53(131)Reduce[33] -53(131)Reduce[33] -53(131)Reduce[33] -53(131)Reduce[33] -53(131)Reduce[33] -53(131)Reduce[33] -53(131)Reduce[33] -53(131)Reduce[33] 
+states[78].nodes[53]:
+0 3 4 5 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 
+states[78].actions[53]:
+-53(132)Reduce[34] -53(132)Reduce[34] -53(132)Reduce[34] -53(132)Reduce[34] -53(132)Reduce[34] -53(132)Reduce[34] -53(132)Reduce[34] -53(132)Reduce[34] -53(132)Reduce[34] -53(132)Reduce[34] -53(132)Reduce[34] -53(132)Reduce[34] -53(132)Reduce[34] -53(132)Reduce[34] -53(132)Reduce[34] -53(132)Reduce[34] -53(132)Reduce[34] -53(132)Reduce[34] -53(132)Reduce[34] -53(132)Reduce[34] -53(132)Reduce[34] -53(132)Reduce[34] -53(132)Reduce[34] -53(132)Reduce[34] -53(132)Reduce[34] -53(132)Reduce[34] -53(132)Reduce[34] -53(132)Reduce[34] -53(132)Reduce[34] -53(132)Reduce[34] -53(132)Reduce[34] -53(132)Reduce[34] -53(132)Reduce[34] -53(132)Reduce[34] -53(132)Reduce[34] -53(132)Reduce[34] -53(132)Reduce[34] -53(132)Reduce[34] -53(132)Reduce[34] -53(132)Reduce[34] -53(132)Reduce[34] -53(132)Reduce[34] -53(132)Reduce[34] -53(132)Reduce[34] -53(132)Reduce[34] -53(132)Reduce[34] -53(132)Reduce[34] -53(132)Reduce[34] -53(132)Reduce[34] -53(132)Reduce[34] -53(132)Reduce[34] -53(132)Reduce[34] -53(132)Reduce[34] 
+states[79].nodes[53]:
+0 3 4 5 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 
+states[79].actions[53]:
+-53(133)Reduce[35] -53(133)Reduce[35] -53(133)Reduce[35] -53(133)Reduce[35] -53(133)Reduce[35] -53(133)Reduce[35] -53(133)Reduce[35] -53(133)Reduce[35] -53(133)Reduce[35] -53(133)Reduce[35] -53(133)Reduce[35] -53(133)Reduce[35] -53(133)Reduce[35] -53(133)Reduce[35] -53(133)Reduce[35] -53(133)Reduce[35] -53(133)Reduce[35] -53(133)Reduce[35] -53(133)Reduce[35] -53(133)Reduce[35] -53(133)Reduce[35] -53(133)Reduce[35] -53(133)Reduce[35] -53(133)Reduce[35] -53(133)Reduce[35] -53(133)Reduce[35] -53(133)Reduce[35] -53(133)Reduce[35] -53(133)Reduce[35] -53(133)Reduce[35] -53(133)Reduce[35] -53(133)Reduce[35] -53(133)Reduce[35] -53(133)Reduce[35] -53(133)Reduce[35] -53(133)Reduce[35] -53(133)Reduce[35] -53(133)Reduce[35] -53(133)Reduce[35] -53(133)Reduce[35] -53(133)Reduce[35] -53(133)Reduce[35] -53(133)Reduce[35] -53(133)Reduce[35] -53(133)Reduce[35] -53(133)Reduce[35] -53(133)Reduce[35] -53(133)Reduce[35] -53(133)Reduce[35] -53(133)Reduce[35] -53(133)Reduce[35] -53(133)Reduce[35] -53(133)Reduce[35] 
+states[80].nodes[53]:
+0 3 4 5 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 
+states[80].actions[53]:
+-53(134)Reduce[36] -53(134)Reduce[36] -53(134)Reduce[36] -53(134)Reduce[36] -53(134)Reduce[36] -53(134)Reduce[36] -53(134)Reduce[36] -53(134)Reduce[36] -53(134)Reduce[36] -53(134)Reduce[36] -53(134)Reduce[36] -53(134)Reduce[36] -53(134)Reduce[36] -53(134)Reduce[36] -53(134)Reduce[36] -53(134)Reduce[36] -53(134)Reduce[36] -53(134)Reduce[36] -53(134)Reduce[36] -53(134)Reduce[36] -53(134)Reduce[36] -53(134)Reduce[36] -53(134)Reduce[36] -53(134)Reduce[36] -53(134)Reduce[36] -53(134)Reduce[36] -53(134)Reduce[36] -53(134)Reduce[36] -53(134)Reduce[36] -53(134)Reduce[36] -53(134)Reduce[36] -53(134)Reduce[36] -53(134)Reduce[36] -53(134)Reduce[36] -53(134)Reduce[36] -53(134)Reduce[36] -53(134)Reduce[36] -53(134)Reduce[36] -53(134)Reduce[36] -53(134)Reduce[36] -53(134)Reduce[36] -53(134)Reduce[36] -53(134)Reduce[36] -53(134)Reduce[36] -53(134)Reduce[36] -53(134)Reduce[36] -53(134)Reduce[36] -53(134)Reduce[36] -53(134)Reduce[36] -53(134)Reduce[36] -53(134)Reduce[36] -53(134)Reduce[36] -53(134)Reduce[36] 
+states[81].nodes[53]:
+0 3 4 5 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 
+states[81].actions[53]:
+-53(135)Reduce[37] -53(135)Reduce[37] -53(135)Reduce[37] -53(135)Reduce[37] -53(135)Reduce[37] -53(135)Reduce[37] -53(135)Reduce[37] -53(135)Reduce[37] -53(135)Reduce[37] -53(135)Reduce[37] -53(135)Reduce[37] -53(135)Reduce[37] -53(135)Reduce[37] -53(135)Reduce[37] -53(135)Reduce[37] -53(135)Reduce[37] -53(135)Reduce[37] -53(135)Reduce[37] -53(135)Reduce[37] -53(135)Reduce[37] -53(135)Reduce[37] -53(135)Reduce[37] -53(135)Reduce[37] -53(135)Reduce[37] -53(135)Reduce[37] -53(135)Reduce[37] -53(135)Reduce[37] -53(135)Reduce[37] -53(135)Reduce[37] -53(135)Reduce[37] -53(135)Reduce[37] -53(135)Reduce[37] -53(135)Reduce[37] -53(135)Reduce[37] -53(135)Reduce[37] -53(135)Reduce[37] -53(135)Reduce[37] -53(135)Reduce[37] -53(135)Reduce[37] -53(135)Reduce[37] -53(135)Reduce[37] -53(135)Reduce[37] -53(135)Reduce[37] -53(135)Reduce[37] -53(135)Reduce[37] -53(135)Reduce[37] -53(135)Reduce[37] -53(135)Reduce[37] -53(135)Reduce[37] -53(135)Reduce[37] -53(135)Reduce[37] -53(135)Reduce[37] -53(135)Reduce[37] 
+states[82].nodes[53]:
+0 3 4 5 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 
+states[82].actions[53]:
+-53(136)Reduce[38] -53(136)Reduce[38] -53(136)Reduce[38] -53(136)Reduce[38] -53(136)Reduce[38] -53(136)Reduce[38] -53(136)Reduce[38] -53(136)Reduce[38] -53(136)Reduce[38] -53(136)Reduce[38] -53(136)Reduce[38] -53(136)Reduce[38] -53(136)Reduce[38] -53(136)Reduce[38] -53(136)Reduce[38] -53(136)Reduce[38] -53(136)Reduce[38] -53(136)Reduce[38] -53(136)Reduce[38] -53(136)Reduce[38] -53(136)Reduce[38] -53(136)Reduce[38] -53(136)Reduce[38] -53(136)Reduce[38] -53(136)Reduce[38] -53(136)Reduce[38] -53(136)Reduce[38] -53(136)Reduce[38] -53(136)Reduce[38] -53(136)Reduce[38] -53(136)Reduce[38] -53(136)Reduce[38] -53(136)Reduce[38] -53(136)Reduce[38] -53(136)Reduce[38] -53(136)Reduce[38] -53(136)Reduce[38] -53(136)Reduce[38] -53(136)Reduce[38] -53(136)Reduce[38] -53(136)Reduce[38] -53(136)Reduce[38] -53(136)Reduce[38] -53(136)Reduce[38] -53(136)Reduce[38] -53(136)Reduce[38] -53(136)Reduce[38] -53(136)Reduce[38] -53(136)Reduce[38] -53(136)Reduce[38] -53(136)Reduce[38] -53(136)Reduce[38] -53(136)Reduce[38] 
+states[83].nodes[53]:
+0 3 4 5 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 
+states[83].actions[53]:
+-53(137)Reduce[39] -53(137)Reduce[39] -53(137)Reduce[39] -53(137)Reduce[39] -53(137)Reduce[39] -53(137)Reduce[39] -53(137)Reduce[39] -53(137)Reduce[39] -53(137)Reduce[39] -53(137)Reduce[39] -53(137)Reduce[39] -53(137)Reduce[39] -53(137)Reduce[39] -53(137)Reduce[39] -53(137)Reduce[39] -53(137)Reduce[39] -53(137)Reduce[39] -53(137)Reduce[39] -53(137)Reduce[39] -53(137)Reduce[39] -53(137)Reduce[39] -53(137)Reduce[39] -53(137)Reduce[39] -53(137)Reduce[39] -53(137)Reduce[39] -53(137)Reduce[39] -53(137)Reduce[39] -53(137)Reduce[39] -53(137)Reduce[39] -53(137)Reduce[39] -53(137)Reduce[39] -53(137)Reduce[39] -53(137)Reduce[39] -53(137)Reduce[39] -53(137)Reduce[39] -53(137)Reduce[39] -53(137)Reduce[39] -53(137)Reduce[39] -53(137)Reduce[39] -53(137)Reduce[39] -53(137)Reduce[39] -53(137)Reduce[39] -53(137)Reduce[39] -53(137)Reduce[39] -53(137)Reduce[39] -53(137)Reduce[39] -53(137)Reduce[39] -53(137)Reduce[39] -53(137)Reduce[39] -53(137)Reduce[39] -53(137)Reduce[39] -53(137)Reduce[39] -53(137)Reduce[39] 
+states[84].nodes[53]:
+0 3 4 5 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 
+states[84].actions[53]:
+-53(138)Reduce[40] -53(138)Reduce[40] -53(138)Reduce[40] -53(138)Reduce[40] -53(138)Reduce[40] -53(138)Reduce[40] -53(138)Reduce[40] -53(138)Reduce[40] -53(138)Reduce[40] -53(138)Reduce[40] -53(138)Reduce[40] -53(138)Reduce[40] -53(138)Reduce[40] -53(138)Reduce[40] -53(138)Reduce[40] -53(138)Reduce[40] -53(138)Reduce[40] -53(138)Reduce[40] -53(138)Reduce[40] -53(138)Reduce[40] -53(138)Reduce[40] -53(138)Reduce[40] -53(138)Reduce[40] -53(138)Reduce[40] -53(138)Reduce[40] -53(138)Reduce[40] -53(138)Reduce[40] -53(138)Reduce[40] -53(138)Reduce[40] -53(138)Reduce[40] -53(138)Reduce[40] -53(138)Reduce[40] -53(138)Reduce[40] -53(138)Reduce[40] -53(138)Reduce[40] -53(138)Reduce[40] -53(138)Reduce[40] -53(138)Reduce[40] -53(138)Reduce[40] -53(138)Reduce[40] -53(138)Reduce[40] -53(138)Reduce[40] -53(138)Reduce[40] -53(138)Reduce[40] -53(138)Reduce[40] -53(138)Reduce[40] -53(138)Reduce[40] -53(138)Reduce[40] -53(138)Reduce[40] -53(138)Reduce[40] -53(138)Reduce[40] -53(138)Reduce[40] -53(138)Reduce[40] 
+states[85].nodes[53]:
+0 3 4 5 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 
+states[85].actions[53]:
+-53(139)Reduce[41] -53(139)Reduce[41] -53(139)Reduce[41] -53(139)Reduce[41] -53(139)Reduce[41] -53(139)Reduce[41] -53(139)Reduce[41] -53(139)Reduce[41] -53(139)Reduce[41] -53(139)Reduce[41] -53(139)Reduce[41] -53(139)Reduce[41] -53(139)Reduce[41] -53(139)Reduce[41] -53(139)Reduce[41] -53(139)Reduce[41] -53(139)Reduce[41] -53(139)Reduce[41] -53(139)Reduce[41] -53(139)Reduce[41] -53(139)Reduce[41] -53(139)Reduce[41] -53(139)Reduce[41] -53(139)Reduce[41] -53(139)Reduce[41] -53(139)Reduce[41] -53(139)Reduce[41] -53(139)Reduce[41] -53(139)Reduce[41] -53(139)Reduce[41] -53(139)Reduce[41] -53(139)Reduce[41] -53(139)Reduce[41] -53(139)Reduce[41] -53(139)Reduce[41] -53(139)Reduce[41] -53(139)Reduce[41] -53(139)Reduce[41] -53(139)Reduce[41] -53(139)Reduce[41] -53(139)Reduce[41] -53(139)Reduce[41] -53(139)Reduce[41] -53(139)Reduce[41] -53(139)Reduce[41] -53(139)Reduce[41] -53(139)Reduce[41] -53(139)Reduce[41] -53(139)Reduce[41] -53(139)Reduce[41] -53(139)Reduce[41] -53(139)Reduce[41] -53(139)Reduce[41] 
+states[86].nodes[53]:
+0 3 4 5 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 
+states[86].actions[53]:
+-53(140)Reduce[42] -53(140)Reduce[42] -53(140)Reduce[42] -53(140)Reduce[42] -53(140)Reduce[42] -53(140)Reduce[42] -53(140)Reduce[42] -53(140)Reduce[42] -53(140)Reduce[42] -53(140)Reduce[42] -53(140)Reduce[42] -53(140)Reduce[42] -53(140)Reduce[42] -53(140)Reduce[42] -53(140)Reduce[42] -53(140)Reduce[42] -53(140)Reduce[42] -53(140)Reduce[42] -53(140)Reduce[42] -53(140)Reduce[42] -53(140)Reduce[42] -53(140)Reduce[42] -53(140)Reduce[42] -53(140)Reduce[42] -53(140)Reduce[42] -53(140)Reduce[42] -53(140)Reduce[42] -53(140)Reduce[42] -53(140)Reduce[42] -53(140)Reduce[42] -53(140)Reduce[42] -53(140)Reduce[42] -53(140)Reduce[42] -53(140)Reduce[42] -53(140)Reduce[42] -53(140)Reduce[42] -53(140)Reduce[42] -53(140)Reduce[42] -53(140)Reduce[42] -53(140)Reduce[42] -53(140)Reduce[42] -53(140)Reduce[42] -53(140)Reduce[42] -53(140)Reduce[42] -53(140)Reduce[42] -53(140)Reduce[42] -53(140)Reduce[42] -53(140)Reduce[42] -53(140)Reduce[42] -53(140)Reduce[42] -53(140)Reduce[42] -53(140)Reduce[42] -53(140)Reduce[42] 
+states[87].nodes[53]:
+0 3 4 5 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 
+states[87].actions[53]:
+-53(141)Reduce[43] -53(141)Reduce[43] -53(141)Reduce[43] -53(141)Reduce[43] -53(141)Reduce[43] -53(141)Reduce[43] -53(141)Reduce[43] -53(141)Reduce[43] -53(141)Reduce[43] -53(141)Reduce[43] -53(141)Reduce[43] -53(141)Reduce[43] -53(141)Reduce[43] -53(141)Reduce[43] -53(141)Reduce[43] -53(141)Reduce[43] -53(141)Reduce[43] -53(141)Reduce[43] -53(141)Reduce[43] -53(141)Reduce[43] -53(141)Reduce[43] -53(141)Reduce[43] -53(141)Reduce[43] -53(141)Reduce[43] -53(141)Reduce[43] -53(141)Reduce[43] -53(141)Reduce[43] -53(141)Reduce[43] -53(141)Reduce[43] -53(141)Reduce[43] -53(141)Reduce[43] -53(141)Reduce[43] -53(141)Reduce[43] -53(141)Reduce[43] -53(141)Reduce[43] -53(141)Reduce[43] -53(141)Reduce[43] -53(141)Reduce[43] -53(141)Reduce[43] -53(141)Reduce[43] -53(141)Reduce[43] -53(141)Reduce[43] -53(141)Reduce[43] -53(141)Reduce[43] -53(141)Reduce[43] -53(141)Reduce[43] -53(141)Reduce[43] -53(141)Reduce[43] -53(141)Reduce[43] -53(141)Reduce[43] -53(141)Reduce[43] -53(141)Reduce[43] -53(141)Reduce[43] 
+states[88].nodes[53]:
+0 3 4 5 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 
+states[88].actions[53]:
+-53(142)Reduce[44] -53(142)Reduce[44] -53(142)Reduce[44] -53(142)Reduce[44] -53(142)Reduce[44] -53(142)Reduce[44] -53(142)Reduce[44] -53(142)Reduce[44] -53(142)Reduce[44] -53(142)Reduce[44] -53(142)Reduce[44] -53(142)Reduce[44] -53(142)Reduce[44] -53(142)Reduce[44] -53(142)Reduce[44] -53(142)Reduce[44] -53(142)Reduce[44] -53(142)Reduce[44] -53(142)Reduce[44] -53(142)Reduce[44] -53(142)Reduce[44] -53(142)Reduce[44] -53(142)Reduce[44] -53(142)Reduce[44] -53(142)Reduce[44] -53(142)Reduce[44] -53(142)Reduce[44] -53(142)Reduce[44] -53(142)Reduce[44] -53(142)Reduce[44] -53(142)Reduce[44] -53(142)Reduce[44] -53(142)Reduce[44] -53(142)Reduce[44] -53(142)Reduce[44] -53(142)Reduce[44] -53(142)Reduce[44] -53(142)Reduce[44] -53(142)Reduce[44] -53(142)Reduce[44] -53(142)Reduce[44] -53(142)Reduce[44] -53(142)Reduce[44] -53(142)Reduce[44] -53(142)Reduce[44] -53(142)Reduce[44] -53(142)Reduce[44] -53(142)Reduce[44] -53(142)Reduce[44] -53(142)Reduce[44] -53(142)Reduce[44] -53(142)Reduce[44] -53(142)Reduce[44] 
+states[89].nodes[53]:
+0 3 4 5 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 
+states[89].actions[53]:
+-53(143)Reduce[45] -53(143)Reduce[45] -53(143)Reduce[45] -53(143)Reduce[45] -53(143)Reduce[45] -53(143)Reduce[45] -53(143)Reduce[45] -53(143)Reduce[45] -53(143)Reduce[45] -53(143)Reduce[45] -53(143)Reduce[45] -53(143)Reduce[45] -53(143)Reduce[45] -53(143)Reduce[45] -53(143)Reduce[45] -53(143)Reduce[45] -53(143)Reduce[45] -53(143)Reduce[45] -53(143)Reduce[45] -53(143)Reduce[45] -53(143)Reduce[45] -53(143)Reduce[45] -53(143)Reduce[45] -53(143)Reduce[45] -53(143)Reduce[45] -53(143)Reduce[45] -53(143)Reduce[45] -53(143)Reduce[45] -53(143)Reduce[45] -53(143)Reduce[45] -53(143)Reduce[45] -53(143)Reduce[45] -53(143)Reduce[45] -53(143)Reduce[45] -53(143)Reduce[45] -53(143)Reduce[45] -53(143)Reduce[45] -53(143)Reduce[45] -53(143)Reduce[45] -53(143)Reduce[45] -53(143)Reduce[45] -53(143)Reduce[45] -53(143)Reduce[45] -53(143)Reduce[45] -53(143)Reduce[45] -53(143)Reduce[45] -53(143)Reduce[45] -53(143)Reduce[45] -53(143)Reduce[45] -53(143)Reduce[45] -53(143)Reduce[45] -53(143)Reduce[45] -53(143)Reduce[45] 
+states[90].nodes[53]:
+0 3 4 5 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 
+states[90].actions[53]:
+-53(144)Reduce[46] -53(144)Reduce[46] -53(144)Reduce[46] -53(144)Reduce[46] -53(144)Reduce[46] -53(144)Reduce[46] -53(144)Reduce[46] -53(144)Reduce[46] -53(144)Reduce[46] -53(144)Reduce[46] -53(144)Reduce[46] -53(144)Reduce[46] -53(144)Reduce[46] -53(144)Reduce[46] -53(144)Reduce[46] -53(144)Reduce[46] -53(144)Reduce[46] -53(144)Reduce[46] -53(144)Reduce[46] -53(144)Reduce[46] -53(144)Reduce[46] -53(144)Reduce[46] -53(144)Reduce[46] -53(144)Reduce[46] -53(144)Reduce[46] -53(144)Reduce[46] -53(144)Reduce[46] -53(144)Reduce[46] -53(144)Reduce[46] -53(144)Reduce[46] -53(144)Reduce[46] -53(144)Reduce[46] -53(144)Reduce[46] -53(144)Reduce[46] -53(144)Reduce[46] -53(144)Reduce[46] -53(144)Reduce[46] -53(144)Reduce[46] -53(144)Reduce[46] -53(144)Reduce[46] -53(144)Reduce[46] -53(144)Reduce[46] -53(144)Reduce[46] -53(144)Reduce[46] -53(144)Reduce[46] -53(144)Reduce[46] -53(144)Reduce[46] -53(144)Reduce[46] -53(144)Reduce[46] -53(144)Reduce[46] -53(144)Reduce[46] -53(144)Reduce[46] -53(144)Reduce[46] 
+states[91].nodes[53]:
+0 3 4 5 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 
+states[91].actions[53]:
+-53(145)Reduce[47] -53(145)Reduce[47] -53(145)Reduce[47] -53(145)Reduce[47] -53(145)Reduce[47] -53(145)Reduce[47] -53(145)Reduce[47] -53(145)Reduce[47] -53(145)Reduce[47] -53(145)Reduce[47] -53(145)Reduce[47] -53(145)Reduce[47] -53(145)Reduce[47] -53(145)Reduce[47] -53(145)Reduce[47] -53(145)Reduce[47] -53(145)Reduce[47] -53(145)Reduce[47] -53(145)Reduce[47] -53(145)Reduce[47] -53(145)Reduce[47] -53(145)Reduce[47] -53(145)Reduce[47] -53(145)Reduce[47] -53(145)Reduce[47] -53(145)Reduce[47] -53(145)Reduce[47] -53(145)Reduce[47] -53(145)Reduce[47] -53(145)Reduce[47] -53(145)Reduce[47] -53(145)Reduce[47] -53(145)Reduce[47] -53(145)Reduce[47] -53(145)Reduce[47] -53(145)Reduce[47] -53(145)Reduce[47] -53(145)Reduce[47] -53(145)Reduce[47] -53(145)Reduce[47] -53(145)Reduce[47] -53(145)Reduce[47] -53(145)Reduce[47] -53(145)Reduce[47] -53(145)Reduce[47] -53(145)Reduce[47] -53(145)Reduce[47] -53(145)Reduce[47] -53(145)Reduce[47] -53(145)Reduce[47] -53(145)Reduce[47] -53(145)Reduce[47] -53(145)Reduce[47] 
+states[92].nodes[53]:
+0 3 4 5 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 
+states[92].actions[53]:
+-53(146)Reduce[48] -53(146)Reduce[48] -53(146)Reduce[48] -53(146)Reduce[48] -53(146)Reduce[48] -53(146)Reduce[48] -53(146)Reduce[48] -53(146)Reduce[48] -53(146)Reduce[48] -53(146)Reduce[48] -53(146)Reduce[48] -53(146)Reduce[48] -53(146)Reduce[48] -53(146)Reduce[48] -53(146)Reduce[48] -53(146)Reduce[48] -53(146)Reduce[48] -53(146)Reduce[48] -53(146)Reduce[48] -53(146)Reduce[48] -53(146)Reduce[48] -53(146)Reduce[48] -53(146)Reduce[48] -53(146)Reduce[48] -53(146)Reduce[48] -53(146)Reduce[48] -53(146)Reduce[48] -53(146)Reduce[48] -53(146)Reduce[48] -53(146)Reduce[48] -53(146)Reduce[48] -53(146)Reduce[48] -53(146)Reduce[48] -53(146)Reduce[48] -53(146)Reduce[48] -53(146)Reduce[48] -53(146)Reduce[48] -53(146)Reduce[48] -53(146)Reduce[48] -53(146)Reduce[48] -53(146)Reduce[48] -53(146)Reduce[48] -53(146)Reduce[48] -53(146)Reduce[48] -53(146)Reduce[48] -53(146)Reduce[48] -53(146)Reduce[48] -53(146)Reduce[48] -53(146)Reduce[48] -53(146)Reduce[48] -53(146)Reduce[48] -53(146)Reduce[48] -53(146)Reduce[48] 
+states[93].nodes[53]:
+0 3 4 5 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 
+states[93].actions[53]:
+-53(147)Reduce[49] -53(147)Reduce[49] -53(147)Reduce[49] -53(147)Reduce[49] -53(147)Reduce[49] -53(147)Reduce[49] -53(147)Reduce[49] -53(147)Reduce[49] -53(147)Reduce[49] -53(147)Reduce[49] -53(147)Reduce[49] -53(147)Reduce[49] -53(147)Reduce[49] -53(147)Reduce[49] -53(147)Reduce[49] -53(147)Reduce[49] -53(147)Reduce[49] -53(147)Reduce[49] -53(147)Reduce[49] -53(147)Reduce[49] -53(147)Reduce[49] -53(147)Reduce[49] -53(147)Reduce[49] -53(147)Reduce[49] -53(147)Reduce[49] -53(147)Reduce[49] -53(147)Reduce[49] -53(147)Reduce[49] -53(147)Reduce[49] -53(147)Reduce[49] -53(147)Reduce[49] -53(147)Reduce[49] -53(147)Reduce[49] -53(147)Reduce[49] -53(147)Reduce[49] -53(147)Reduce[49] -53(147)Reduce[49] -53(147)Reduce[49] -53(147)Reduce[49] -53(147)Reduce[49] -53(147)Reduce[49] -53(147)Reduce[49] -53(147)Reduce[49] -53(147)Reduce[49] -53(147)Reduce[49] -53(147)Reduce[49] -53(147)Reduce[49] -53(147)Reduce[49] -53(147)Reduce[49] -53(147)Reduce[49] -53(147)Reduce[49] -53(147)Reduce[49] -53(147)Reduce[49] 
+states[94].nodes[53]:
+0 3 4 5 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 
+states[94].actions[53]:
+-53(148)Reduce[50] -53(148)Reduce[50] -53(148)Reduce[50] -53(148)Reduce[50] -53(148)Reduce[50] -53(148)Reduce[50] -53(148)Reduce[50] -53(148)Reduce[50] -53(148)Reduce[50] -53(148)Reduce[50] -53(148)Reduce[50] -53(148)Reduce[50] -53(148)Reduce[50] -53(148)Reduce[50] -53(148)Reduce[50] -53(148)Reduce[50] -53(148)Reduce[50] -53(148)Reduce[50] -53(148)Reduce[50] -53(148)Reduce[50] -53(148)Reduce[50] -53(148)Reduce[50] -53(148)Reduce[50] -53(148)Reduce[50] -53(148)Reduce[50] -53(148)Reduce[50] -53(148)Reduce[50] -53(148)Reduce[50] -53(148)Reduce[50] -53(148)Reduce[50] -53(148)Reduce[50] -53(148)Reduce[50] -53(148)Reduce[50] -53(148)Reduce[50] -53(148)Reduce[50] -53(148)Reduce[50] -53(148)Reduce[50] -53(148)Reduce[50] -53(148)Reduce[50] -53(148)Reduce[50] -53(148)Reduce[50] -53(148)Reduce[50] -53(148)Reduce[50] -53(148)Reduce[50] -53(148)Reduce[50] -53(148)Reduce[50] -53(148)Reduce[50] -53(148)Reduce[50] -53(148)Reduce[50] -53(148)Reduce[50] -53(148)Reduce[50] -53(148)Reduce[50] -53(148)Reduce[50] 
+states[95].nodes[53]:
+0 3 4 5 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 
+states[95].actions[53]:
+-53(149)Reduce[51] -53(149)Reduce[51] -53(149)Reduce[51] -53(149)Reduce[51] -53(149)Reduce[51] -53(149)Reduce[51] -53(149)Reduce[51] -53(149)Reduce[51] -53(149)Reduce[51] -53(149)Reduce[51] -53(149)Reduce[51] -53(149)Reduce[51] -53(149)Reduce[51] -53(149)Reduce[51] -53(149)Reduce[51] -53(149)Reduce[51] -53(149)Reduce[51] -53(149)Reduce[51] -53(149)Reduce[51] -53(149)Reduce[51] -53(149)Reduce[51] -53(149)Reduce[51] -53(149)Reduce[51] -53(149)Reduce[51] -53(149)Reduce[51] -53(149)Reduce[51] -53(149)Reduce[51] -53(149)Reduce[51] -53(149)Reduce[51] -53(149)Reduce[51] -53(149)Reduce[51] -53(149)Reduce[51] -53(149)Reduce[51] -53(149)Reduce[51] -53(149)Reduce[51] -53(149)Reduce[51] -53(149)Reduce[51] -53(149)Reduce[51] -53(149)Reduce[51] -53(149)Reduce[51] -53(149)Reduce[51] -53(149)Reduce[51] -53(149)Reduce[51] -53(149)Reduce[51] -53(149)Reduce[51] -53(149)Reduce[51] -53(149)Reduce[51] -53(149)Reduce[51] -53(149)Reduce[51] -53(149)Reduce[51] -53(149)Reduce[51] -53(149)Reduce[51] -53(149)Reduce[51] 
+states[96].nodes[53]:
+0 3 4 5 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 
+states[96].actions[53]:
+-53(150)Reduce[52] -53(150)Reduce[52] -53(150)Reduce[52] -53(150)Reduce[52] -53(150)Reduce[52] -53(150)Reduce[52] -53(150)Reduce[52] -53(150)Reduce[52] -53(150)Reduce[52] -53(150)Reduce[52] -53(150)Reduce[52] -53(150)Reduce[52] -53(150)Reduce[52] -53(150)Reduce[52] -53(150)Reduce[52] -53(150)Reduce[52] -53(150)Reduce[52] -53(150)Reduce[52] -53(150)Reduce[52] -53(150)Reduce[52] -53(150)Reduce[52] -53(150)Reduce[52] -53(150)Reduce[52] -53(150)Reduce[52] -53(150)Reduce[52] -53(150)Reduce[52] -53(150)Reduce[52] -53(150)Reduce[52] -53(150)Reduce[52] -53(150)Reduce[52] -53(150)Reduce[52] -53(150)Reduce[52] -53(150)Reduce[52] -53(150)Reduce[52] -53(150)Reduce[52] -53(150)Reduce[52] -53(150)Reduce[52] -53(150)Reduce[52] -53(150)Reduce[52] -53(150)Reduce[52] -53(150)Reduce[52] -53(150)Reduce[52] -53(150)Reduce[52] -53(150)Reduce[52] -53(150)Reduce[52] -53(150)Reduce[52] -53(150)Reduce[52] -53(150)Reduce[52] -53(150)Reduce[52] -53(150)Reduce[52] -53(150)Reduce[52] -53(150)Reduce[52] -53(150)Reduce[52] 
+states[97].nodes[53]:
+0 3 4 5 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 
+states[97].actions[53]:
+-53(151)Reduce[53] -53(151)Reduce[53] -53(151)Reduce[53] -53(151)Reduce[53] -53(151)Reduce[53] -53(151)Reduce[53] -53(151)Reduce[53] -53(151)Reduce[53] -53(151)Reduce[53] -53(151)Reduce[53] -53(151)Reduce[53] -53(151)Reduce[53] -53(151)Reduce[53] -53(151)Reduce[53] -53(151)Reduce[53] -53(151)Reduce[53] -53(151)Reduce[53] -53(151)Reduce[53] -53(151)Reduce[53] -53(151)Reduce[53] -53(151)Reduce[53] -53(151)Reduce[53] -53(151)Reduce[53] -53(151)Reduce[53] -53(151)Reduce[53] -53(151)Reduce[53] -53(151)Reduce[53] -53(151)Reduce[53] -53(151)Reduce[53] -53(151)Reduce[53] -53(151)Reduce[53] -53(151)Reduce[53] -53(151)Reduce[53] -53(151)Reduce[53] -53(151)Reduce[53] -53(151)Reduce[53] -53(151)Reduce[53] -53(151)Reduce[53] -53(151)Reduce[53] -53(151)Reduce[53] -53(151)Reduce[53] -53(151)Reduce[53] -53(151)Reduce[53] -53(151)Reduce[53] -53(151)Reduce[53] -53(151)Reduce[53] -53(151)Reduce[53] -53(151)Reduce[53] -53(151)Reduce[53] -53(151)Reduce[53] -53(151)Reduce[53] -53(151)Reduce[53] -53(151)Reduce[53] 
+states[98].nodes[53]:
+0 3 4 5 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 
+states[98].actions[53]:
+-53(152)Reduce[54] -53(152)Reduce[54] -53(152)Reduce[54] -53(152)Reduce[54] -53(152)Reduce[54] -53(152)Reduce[54] -53(152)Reduce[54] -53(152)Reduce[54] -53(152)Reduce[54] -53(152)Reduce[54] -53(152)Reduce[54] -53(152)Reduce[54] -53(152)Reduce[54] -53(152)Reduce[54] -53(152)Reduce[54] -53(152)Reduce[54] -53(152)Reduce[54] -53(152)Reduce[54] -53(152)Reduce[54] -53(152)Reduce[54] -53(152)Reduce[54] -53(152)Reduce[54] -53(152)Reduce[54] -53(152)Reduce[54] -53(152)Reduce[54] -53(152)Reduce[54] -53(152)Reduce[54] -53(152)Reduce[54] -53(152)Reduce[54] -53(152)Reduce[54] -53(152)Reduce[54] -53(152)Reduce[54] -53(152)Reduce[54] -53(152)Reduce[54] -53(152)Reduce[54] -53(152)Reduce[54] -53(152)Reduce[54] -53(152)Reduce[54] -53(152)Reduce[54] -53(152)Reduce[54] -53(152)Reduce[54] -53(152)Reduce[54] -53(152)Reduce[54] -53(152)Reduce[54] -53(152)Reduce[54] -53(152)Reduce[54] -53(152)Reduce[54] -53(152)Reduce[54] -53(152)Reduce[54] -53(152)Reduce[54] -53(152)Reduce[54] -53(152)Reduce[54] -53(152)Reduce[54] 
+states[99].nodes[53]:
+0 3 4 5 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 
+states[99].actions[53]:
+-53(153)Reduce[55] -53(153)Reduce[55] -53(153)Reduce[55] -53(153)Reduce[55] -53(153)Reduce[55] -53(153)Reduce[55] -53(153)Reduce[55] -53(153)Reduce[55] -53(153)Reduce[55] -53(153)Reduce[55] -53(153)Reduce[55] -53(153)Reduce[55] -53(153)Reduce[55] -53(153)Reduce[55] -53(153)Reduce[55] -53(153)Reduce[55] -53(153)Reduce[55] -53(153)Reduce[55] -53(153)Reduce[55] -53(153)Reduce[55] -53(153)Reduce[55] -53(153)Reduce[55] -53(153)Reduce[55] -53(153)Reduce[55] -53(153)Reduce[55] -53(153)Reduce[55] -53(153)Reduce[55] -53(153)Reduce[55] -53(153)Reduce[55] -53(153)Reduce[55] -53(153)Reduce[55] -53(153)Reduce[55] -53(153)Reduce[55] -53(153)Reduce[55] -53(153)Reduce[55] -53(153)Reduce[55] -53(153)Reduce[55] -53(153)Reduce[55] -53(153)Reduce[55] -53(153)Reduce[55] -53(153)Reduce[55] -53(153)Reduce[55] -53(153)Reduce[55] -53(153)Reduce[55] -53(153)Reduce[55] -53(153)Reduce[55] -53(153)Reduce[55] -53(153)Reduce[55] -53(153)Reduce[55] -53(153)Reduce[55] -53(153)Reduce[55] -53(153)Reduce[55] -53(153)Reduce[55] 
+states[100].nodes[53]:
+0 3 4 5 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 
+states[100].actions[53]:
+-53(154)Reduce[56] -53(154)Reduce[56] -53(154)Reduce[56] -53(154)Reduce[56] -53(154)Reduce[56] -53(154)Reduce[56] -53(154)Reduce[56] -53(154)Reduce[56] -53(154)Reduce[56] -53(154)Reduce[56] -53(154)Reduce[56] -53(154)Reduce[56] -53(154)Reduce[56] -53(154)Reduce[56] -53(154)Reduce[56] -53(154)Reduce[56] -53(154)Reduce[56] -53(154)Reduce[56] -53(154)Reduce[56] -53(154)Reduce[56] -53(154)Reduce[56] -53(154)Reduce[56] -53(154)Reduce[56] -53(154)Reduce[56] -53(154)Reduce[56] -53(154)Reduce[56] -53(154)Reduce[56] -53(154)Reduce[56] -53(154)Reduce[56] -53(154)Reduce[56] -53(154)Reduce[56] -53(154)Reduce[56] -53(154)Reduce[56] -53(154)Reduce[56] -53(154)Reduce[56] -53(154)Reduce[56] -53(154)Reduce[56] -53(154)Reduce[56] -53(154)Reduce[56] -53(154)Reduce[56] -53(154)Reduce[56] -53(154)Reduce[56] -53(154)Reduce[56] -53(154)Reduce[56] -53(154)Reduce[56] -53(154)Reduce[56] -53(154)Reduce[56] -53(154)Reduce[56] -53(154)Reduce[56] -53(154)Reduce[56] -53(154)Reduce[56] -53(154)Reduce[56] -53(154)Reduce[56] 
+states[101].nodes[53]:
+0 3 4 5 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 
+states[101].actions[53]:
+-53(155)Reduce[57] -53(155)Reduce[57] -53(155)Reduce[57] -53(155)Reduce[57] -53(155)Reduce[57] -53(155)Reduce[57] -53(155)Reduce[57] -53(155)Reduce[57] -53(155)Reduce[57] -53(155)Reduce[57] -53(155)Reduce[57] -53(155)Reduce[57] -53(155)Reduce[57] -53(155)Reduce[57] -53(155)Reduce[57] -53(155)Reduce[57] -53(155)Reduce[57] -53(155)Reduce[57] -53(155)Reduce[57] -53(155)Reduce[57] -53(155)Reduce[57] -53(155)Reduce[57] -53(155)Reduce[57] -53(155)Reduce[57] -53(155)Reduce[57] -53(155)Reduce[57] -53(155)Reduce[57] -53(155)Reduce[57] -53(155)Reduce[57] -53(155)Reduce[57] -53(155)Reduce[57] -53(155)Reduce[57] -53(155)Reduce[57] -53(155)Reduce[57] -53(155)Reduce[57] -53(155)Reduce[57] -53(155)Reduce[57] -53(155)Reduce[57] -53(155)Reduce[57] -53(155)Reduce[57] -53(155)Reduce[57] -53(155)Reduce[57] -53(155)Reduce[57] -53(155)Reduce[57] -53(155)Reduce[57] -53(155)Reduce[57] -53(155)Reduce[57] -53(155)Reduce[57] -53(155)Reduce[57] -53(155)Reduce[57] -53(155)Reduce[57] -53(155)Reduce[57] -53(155)Reduce[57] 
+states[102].nodes[53]:
+0 3 4 5 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 
+states[102].actions[53]:
+-53(156)Reduce[58] -53(156)Reduce[58] -53(156)Reduce[58] -53(156)Reduce[58] -53(156)Reduce[58] -53(156)Reduce[58] -53(156)Reduce[58] -53(156)Reduce[58] -53(156)Reduce[58] -53(156)Reduce[58] -53(156)Reduce[58] -53(156)Reduce[58] -53(156)Reduce[58] -53(156)Reduce[58] -53(156)Reduce[58] -53(156)Reduce[58] -53(156)Reduce[58] -53(156)Reduce[58] -53(156)Reduce[58] -53(156)Reduce[58] -53(156)Reduce[58] -53(156)Reduce[58] -53(156)Reduce[58] -53(156)Reduce[58] -53(156)Reduce[58] -53(156)Reduce[58] -53(156)Reduce[58] -53(156)Reduce[58] -53(156)Reduce[58] -53(156)Reduce[58] -53(156)Reduce[58] -53(156)Reduce[58] -53(156)Reduce[58] -53(156)Reduce[58] -53(156)Reduce[58] -53(156)Reduce[58] -53(156)Reduce[58] -53(156)Reduce[58] -53(156)Reduce[58] -53(156)Reduce[58] -53(156)Reduce[58] -53(156)Reduce[58] -53(156)Reduce[58] -53(156)Reduce[58] -53(156)Reduce[58] -53(156)Reduce[58] -53(156)Reduce[58] -53(156)Reduce[58] -53(156)Reduce[58] -53(156)Reduce[58] -53(156)Reduce[58] -53(156)Reduce[58] -53(156)Reduce[58] 
+states[103].nodes[53]:
+0 3 4 5 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 
+states[103].actions[53]:
+-53(157)Reduce[59] -53(157)Reduce[59] -53(157)Reduce[59] -53(157)Reduce[59] -53(157)Reduce[59] -53(157)Reduce[59] -53(157)Reduce[59] -53(157)Reduce[59] -53(157)Reduce[59] -53(157)Reduce[59] -53(157)Reduce[59] -53(157)Reduce[59] -53(157)Reduce[59] -53(157)Reduce[59] -53(157)Reduce[59] -53(157)Reduce[59] -53(157)Reduce[59] -53(157)Reduce[59] -53(157)Reduce[59] -53(157)Reduce[59] -53(157)Reduce[59] -53(157)Reduce[59] -53(157)Reduce[59] -53(157)Reduce[59] -53(157)Reduce[59] -53(157)Reduce[59] -53(157)Reduce[59] -53(157)Reduce[59] -53(157)Reduce[59] -53(157)Reduce[59] -53(157)Reduce[59] -53(157)Reduce[59] -53(157)Reduce[59] -53(157)Reduce[59] -53(157)Reduce[59] -53(157)Reduce[59] -53(157)Reduce[59] -53(157)Reduce[59] -53(157)Reduce[59] -53(157)Reduce[59] -53(157)Reduce[59] -53(157)Reduce[59] -53(157)Reduce[59] -53(157)Reduce[59] -53(157)Reduce[59] -53(157)Reduce[59] -53(157)Reduce[59] -53(157)Reduce[59] -53(157)Reduce[59] -53(157)Reduce[59] -53(157)Reduce[59] -53(157)Reduce[59] -53(157)Reduce[59] 
+states[104].nodes[53]:
+0 3 4 5 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 
+states[104].actions[53]:
+-53(158)Reduce[60] -53(158)Reduce[60] -53(158)Reduce[60] -53(158)Reduce[60] -53(158)Reduce[60] -53(158)Reduce[60] -53(158)Reduce[60] -53(158)Reduce[60] -53(158)Reduce[60] -53(158)Reduce[60] -53(158)Reduce[60] -53(158)Reduce[60] -53(158)Reduce[60] -53(158)Reduce[60] -53(158)Reduce[60] -53(158)Reduce[60] -53(158)Reduce[60] -53(158)Reduce[60] -53(158)Reduce[60] -53(158)Reduce[60] -53(158)Reduce[60] -53(158)Reduce[60] -53(158)Reduce[60] -53(158)Reduce[60] -53(158)Reduce[60] -53(158)Reduce[60] -53(158)Reduce[60] -53(158)Reduce[60] -53(158)Reduce[60] -53(158)Reduce[60] -53(158)Reduce[60] -53(158)Reduce[60] -53(158)Reduce[60] -53(158)Reduce[60] -53(158)Reduce[60] -53(158)Reduce[60] -53(158)Reduce[60] -53(158)Reduce[60] -53(158)Reduce[60] -53(158)Reduce[60] -53(158)Reduce[60] -53(158)Reduce[60] -53(158)Reduce[60] -53(158)Reduce[60] -53(158)Reduce[60] -53(158)Reduce[60] -53(158)Reduce[60] -53(158)Reduce[60] -53(158)Reduce[60] -53(158)Reduce[60] -53(158)Reduce[60] -53(158)Reduce[60] -53(158)Reduce[60] 
+states[105].nodes[53]:
+0 3 4 5 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 
+states[105].actions[53]:
+-53(159)Reduce[61] -53(159)Reduce[61] -53(159)Reduce[61] -53(159)Reduce[61] -53(159)Reduce[61] -53(159)Reduce[61] -53(159)Reduce[61] -53(159)Reduce[61] -53(159)Reduce[61] -53(159)Reduce[61] -53(159)Reduce[61] -53(159)Reduce[61] -53(159)Reduce[61] -53(159)Reduce[61] -53(159)Reduce[61] -53(159)Reduce[61] -53(159)Reduce[61] -53(159)Reduce[61] -53(159)Reduce[61] -53(159)Reduce[61] -53(159)Reduce[61] -53(159)Reduce[61] -53(159)Reduce[61] -53(159)Reduce[61] -53(159)Reduce[61] -53(159)Reduce[61] -53(159)Reduce[61] -53(159)Reduce[61] -53(159)Reduce[61] -53(159)Reduce[61] -53(159)Reduce[61] -53(159)Reduce[61] -53(159)Reduce[61] -53(159)Reduce[61] -53(159)Reduce[61] -53(159)Reduce[61] -53(159)Reduce[61] -53(159)Reduce[61] -53(159)Reduce[61] -53(159)Reduce[61] -53(159)Reduce[61] -53(159)Reduce[61] -53(159)Reduce[61] -53(159)Reduce[61] -53(159)Reduce[61] -53(159)Reduce[61] -53(159)Reduce[61] -53(159)Reduce[61] -53(159)Reduce[61] -53(159)Reduce[61] -53(159)Reduce[61] -53(159)Reduce[61] -53(159)Reduce[61] 
+states[106].nodes[53]:
+0 3 4 5 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 
+states[106].actions[53]:
+-53(160)Reduce[62] -53(160)Reduce[62] -53(160)Reduce[62] -53(160)Reduce[62] -53(160)Reduce[62] -53(160)Reduce[62] -53(160)Reduce[62] -53(160)Reduce[62] -53(160)Reduce[62] -53(160)Reduce[62] -53(160)Reduce[62] -53(160)Reduce[62] -53(160)Reduce[62] -53(160)Reduce[62] -53(160)Reduce[62] -53(160)Reduce[62] -53(160)Reduce[62] -53(160)Reduce[62] -53(160)Reduce[62] -53(160)Reduce[62] -53(160)Reduce[62] -53(160)Reduce[62] -53(160)Reduce[62] -53(160)Reduce[62] -53(160)Reduce[62] -53(160)Reduce[62] -53(160)Reduce[62] -53(160)Reduce[62] -53(160)Reduce[62] -53(160)Reduce[62] -53(160)Reduce[62] -53(160)Reduce[62] -53(160)Reduce[62] -53(160)Reduce[62] -53(160)Reduce[62] -53(160)Reduce[62] -53(160)Reduce[62] -53(160)Reduce[62] -53(160)Reduce[62] -53(160)Reduce[62] -53(160)Reduce[62] -53(160)Reduce[62] -53(160)Reduce[62] -53(160)Reduce[62] -53(160)Reduce[62] -53(160)Reduce[62] -53(160)Reduce[62] -53(160)Reduce[62] -53(160)Reduce[62] -53(160)Reduce[62] -53(160)Reduce[62] -53(160)Reduce[62] -53(160)Reduce[62] 
+states[107].nodes[53]:
+0 3 4 5 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 
+states[107].actions[53]:
+-53(161)Reduce[63] -53(161)Reduce[63] -53(161)Reduce[63] -53(161)Reduce[63] -53(161)Reduce[63] -53(161)Reduce[63] -53(161)Reduce[63] -53(161)Reduce[63] -53(161)Reduce[63] -53(161)Reduce[63] -53(161)Reduce[63] -53(161)Reduce[63] -53(161)Reduce[63] -53(161)Reduce[63] -53(161)Reduce[63] -53(161)Reduce[63] -53(161)Reduce[63] -53(161)Reduce[63] -53(161)Reduce[63] -53(161)Reduce[63] -53(161)Reduce[63] -53(161)Reduce[63] -53(161)Reduce[63] -53(161)Reduce[63] -53(161)Reduce[63] -53(161)Reduce[63] -53(161)Reduce[63] -53(161)Reduce[63] -53(161)Reduce[63] -53(161)Reduce[63] -53(161)Reduce[63] -53(161)Reduce[63] -53(161)Reduce[63] -53(161)Reduce[63] -53(161)Reduce[63] -53(161)Reduce[63] -53(161)Reduce[63] -53(161)Reduce[63] -53(161)Reduce[63] -53(161)Reduce[63] -53(161)Reduce[63] -53(161)Reduce[63] -53(161)Reduce[63] -53(161)Reduce[63] -53(161)Reduce[63] -53(161)Reduce[63] -53(161)Reduce[63] -53(161)Reduce[63] -53(161)Reduce[63] -53(161)Reduce[63] -53(161)Reduce[63] -53(161)Reduce[63] -53(161)Reduce[63] 
+states[108].nodes[53]:
+0 3 4 5 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 
+states[108].actions[53]:
+-53(162)Reduce[64] -53(162)Reduce[64] -53(162)Reduce[64] -53(162)Reduce[64] -53(162)Reduce[64] -53(162)Reduce[64] -53(162)Reduce[64] -53(162)Reduce[64] -53(162)Reduce[64] -53(162)Reduce[64] -53(162)Reduce[64] -53(162)Reduce[64] -53(162)Reduce[64] -53(162)Reduce[64] -53(162)Reduce[64] -53(162)Reduce[64] -53(162)Reduce[64] -53(162)Reduce[64] -53(162)Reduce[64] -53(162)Reduce[64] -53(162)Reduce[64] -53(162)Reduce[64] -53(162)Reduce[64] -53(162)Reduce[64] -53(162)Reduce[64] -53(162)Reduce[64] -53(162)Reduce[64] -53(162)Reduce[64] -53(162)Reduce[64] -53(162)Reduce[64] -53(162)Reduce[64] -53(162)Reduce[64] -53(162)Reduce[64] -53(162)Reduce[64] -53(162)Reduce[64] -53(162)Reduce[64] -53(162)Reduce[64] -53(162)Reduce[64] -53(162)Reduce[64] -53(162)Reduce[64] -53(162)Reduce[64] -53(162)Reduce[64] -53(162)Reduce[64] -53(162)Reduce[64] -53(162)Reduce[64] -53(162)Reduce[64] -53(162)Reduce[64] -53(162)Reduce[64] -53(162)Reduce[64] -53(162)Reduce[64] -53(162)Reduce[64] -53(162)Reduce[64] -53(162)Reduce[64] 
+states[109].nodes[53]:
+0 3 4 5 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 
+states[109].actions[53]:
+-53(163)Reduce[65] -53(163)Reduce[65] -53(163)Reduce[65] -53(163)Reduce[65] -53(163)Reduce[65] -53(163)Reduce[65] -53(163)Reduce[65] -53(163)Reduce[65] -53(163)Reduce[65] -53(163)Reduce[65] -53(163)Reduce[65] -53(163)Reduce[65] -53(163)Reduce[65] -53(163)Reduce[65] -53(163)Reduce[65] -53(163)Reduce[65] -53(163)Reduce[65] -53(163)Reduce[65] -53(163)Reduce[65] -53(163)Reduce[65] -53(163)Reduce[65] -53(163)Reduce[65] -53(163)Reduce[65] -53(163)Reduce[65] -53(163)Reduce[65] -53(163)Reduce[65] -53(163)Reduce[65] -53(163)Reduce[65] -53(163)Reduce[65] -53(163)Reduce[65] -53(163)Reduce[65] -53(163)Reduce[65] -53(163)Reduce[65] -53(163)Reduce[65] -53(163)Reduce[65] -53(163)Reduce[65] -53(163)Reduce[65] -53(163)Reduce[65] -53(163)Reduce[65] -53(163)Reduce[65] -53(163)Reduce[65] -53(163)Reduce[65] -53(163)Reduce[65] -53(163)Reduce[65] -53(163)Reduce[65] -53(163)Reduce[65] -53(163)Reduce[65] -53(163)Reduce[65] -53(163)Reduce[65] -53(163)Reduce[65] -53(163)Reduce[65] -53(163)Reduce[65] -53(163)Reduce[65] 
+states[110].nodes[53]:
+0 3 4 5 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 
+states[110].actions[53]:
+-53(164)Reduce[66] -53(164)Reduce[66] -53(164)Reduce[66] -53(164)Reduce[66] -53(164)Reduce[66] -53(164)Reduce[66] -53(164)Reduce[66] -53(164)Reduce[66] -53(164)Reduce[66] -53(164)Reduce[66] -53(164)Reduce[66] -53(164)Reduce[66] -53(164)Reduce[66] -53(164)Reduce[66] -53(164)Reduce[66] -53(164)Reduce[66] -53(164)Reduce[66] -53(164)Reduce[66] -53(164)Reduce[66] -53(164)Reduce[66] -53(164)Reduce[66] -53(164)Reduce[66] -53(164)Reduce[66] -53(164)Reduce[66] -53(164)Reduce[66] -53(164)Reduce[66] -53(164)Reduce[66] -53(164)Reduce[66] -53(164)Reduce[66] -53(164)Reduce[66] -53(164)Reduce[66] -53(164)Reduce[66] -53(164)Reduce[66] -53(164)Reduce[66] -53(164)Reduce[66] -53(164)Reduce[66] -53(164)Reduce[66] -53(164)Reduce[66] -53(164)Reduce[66] -53(164)Reduce[66] -53(164)Reduce[66] -53(164)Reduce[66] -53(164)Reduce[66] -53(164)Reduce[66] -53(164)Reduce[66] -53(164)Reduce[66] -53(164)Reduce[66] -53(164)Reduce[66] -53(164)Reduce[66] -53(164)Reduce[66] -53(164)Reduce[66] -53(164)Reduce[66] -53(164)Reduce[66] 
+states[111].nodes[53]:
+0 3 4 5 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 
+states[111].actions[53]:
+-53(165)Reduce[67] -53(165)Reduce[67] -53(165)Reduce[67] -53(165)Reduce[67] -53(165)Reduce[67] -53(165)Reduce[67] -53(165)Reduce[67] -53(165)Reduce[67] -53(165)Reduce[67] -53(165)Reduce[67] -53(165)Reduce[67] -53(165)Reduce[67] -53(165)Reduce[67] -53(165)Reduce[67] -53(165)Reduce[67] -53(165)Reduce[67] -53(165)Reduce[67] -53(165)Reduce[67] -53(165)Reduce[67] -53(165)Reduce[67] -53(165)Reduce[67] -53(165)Reduce[67] -53(165)Reduce[67] -53(165)Reduce[67] -53(165)Reduce[67] -53(165)Reduce[67] -53(165)Reduce[67] -53(165)Reduce[67] -53(165)Reduce[67] -53(165)Reduce[67] -53(165)Reduce[67] -53(165)Reduce[67] -53(165)Reduce[67] -53(165)Reduce[67] -53(165)Reduce[67] -53(165)Reduce[67] -53(165)Reduce[67] -53(165)Reduce[67] -53(165)Reduce[67] -53(165)Reduce[67] -53(165)Reduce[67] -53(165)Reduce[67] -53(165)Reduce[67] -53(165)Reduce[67] -53(165)Reduce[67] -53(165)Reduce[67] -53(165)Reduce[67] -53(165)Reduce[67] -53(165)Reduce[67] -53(165)Reduce[67] -53(165)Reduce[67] -53(165)Reduce[67] -53(165)Reduce[67] 
+states[112].nodes[3]:
+3 5 72 
+states[112].actions[3]:
+-2(111)Shift[138] Shift[142] Goto[141] 
+states[113].nodes[1]:
+63 
+states[113].actions[1]:
+Shift[143] 
+states[114].nodes[1]:
+0 
+states[114].actions[1]:
+Reduce[84] 
+states[115].nodes[1]:
+0 
+states[115].actions[1]:
+Reduce[86] 
+states[116].nodes[20]:
+3 4 19 20 21 22 67 69 87 88 89 90 91 92 93 94 95 96 97 98 
+states[116].actions[20]:
+-24(14)Shift[48] -24(15)Shift[49] -24(17)Shift[51] -24(18)Shift[52] -24(20)Shift[54] -24(19)Shift[53] -24(13)Shift[47] -24(16)Shift[50] Goto[144] -6(2)Goto[36] -7(3)Goto[37] -8(4)Goto[38] -9(5)Goto[39] -10(6)Goto[40] -12(7)Goto[41] -16(8)Goto[42] -18(9)Goto[43] -20(10)Goto[44] -24(12)Goto[46] -24(11)Goto[45] 
+states[117].nodes[19]:
+3 4 19 20 21 22 67 69 88 89 90 91 92 93 94 95 96 97 98 
+states[117].actions[19]:
+-24(14)Shift[48] -24(15)Shift[49] -24(17)Shift[51] -24(18)Shift[52] -24(20)Shift[54] -24(19)Shift[53] -24(13)Shift[47] -24(16)Shift[50] Goto[145] -7(3)Goto[37] -8(4)Goto[38] -9(5)Goto[39] -10(6)Goto[40] -12(7)Goto[41] -16(8)Goto[42] -18(9)Goto[43] -20(10)Goto[44] -24(12)Goto[46] -24(11)Goto[45] 
+states[118].nodes[18]:
+3 4 19 20 21 22 67 69 89 90 91 92 93 94 95 96 97 98 
+states[118].actions[18]:
+-24(14)Shift[48] -24(15)Shift[49] -24(17)Shift[51] -24(18)Shift[52] -24(20)Shift[54] -24(19)Shift[53] -24(13)Shift[47] -24(16)Shift[50] Goto[146] -8(4)Goto[38] -9(5)Goto[39] -10(6)Goto[40] -12(7)Goto[41] -16(8)Goto[42] -18(9)Goto[43] -20(10)Goto[44] -24(12)Goto[46] -24(11)Goto[45] 
+states[119].nodes[17]:
+3 4 19 20 21 22 67 69 90 91 92 93 94 95 96 97 98 
+states[119].actions[17]:
+-24(14)Shift[48] -24(15)Shift[49] -24(17)Shift[51] -24(18)Shift[52] -24(20)Shift[54] -24(19)Shift[53] -24(13)Shift[47] -24(16)Shift[50] Goto[147] -9(5)Goto[39] -10(6)Goto[40] -12(7)Goto[41] -16(8)Goto[42] -18(9)Goto[43] -20(10)Goto[44] -24(12)Goto[46] -24(11)Goto[45] 
+states[120].nodes[16]:
+3 4 19 20 21 22 67 69 91 92 93 94 95 96 97 98 
+states[120].actions[16]:
+-24(14)Shift[48] -24(15)Shift[49] -24(17)Shift[51] -24(18)Shift[52] -24(20)Shift[54] -24(19)Shift[53] -24(13)Shift[47] -24(16)Shift[50] Goto[148] -10(6)Goto[40] -12(7)Goto[41] -16(8)Goto[42] -18(9)Goto[43] -20(10)Goto[44] -24(12)Goto[46] -24(11)Goto[45] 
+states[121].nodes[15]:
+3 4 19 20 21 22 67 69 92 93 94 95 96 97 98 
+states[121].actions[15]:
+-24(14)Shift[48] -24(15)Shift[49] -24(17)Shift[51] -24(18)Shift[52] -24(20)Shift[54] -24(19)Shift[53] -24(13)Shift[47] -24(16)Shift[50] Goto[149] -12(7)Goto[41] -16(8)Goto[42] -18(9)Goto[43] -20(10)Goto[44] -24(12)Goto[46] -24(11)Goto[45] 
+states[122].nodes[15]:
+3 4 19 20 21 22 67 69 92 93 94 95 96 97 98 
+states[122].actions[15]:
+-24(14)Shift[48] -24(15)Shift[49] -24(17)Shift[51] -24(18)Shift[52] -24(20)Shift[54] -24(19)Shift[53] -24(13)Shift[47] -24(16)Shift[50] Goto[150] -12(7)Goto[41] -16(8)Goto[42] -18(9)Goto[43] -20(10)Goto[44] -24(12)Goto[46] -24(11)Goto[45] 
+states[123].nodes[14]:
+3 4 19 20 21 22 67 69 93 94 95 96 97 98 
+states[123].actions[14]:
+-24(14)Shift[48] -24(15)Shift[49] -24(17)Shift[51] -24(18)Shift[52] -24(20)Shift[54] -24(19)Shift[53] -24(13)Shift[47] -24(16)Shift[50] Goto[151] -16(8)Goto[42] -18(9)Goto[43] -20(10)Goto[44] -24(12)Goto[46] -24(11)Goto[45] 
+states[124].nodes[14]:
+3 4 19 20 21 22 67 69 93 94 95 96 97 98 
+states[124].actions[14]:
+-24(14)Shift[48] -24(15)Shift[49] -24(17)Shift[51] -24(18)Shift[52] -24(20)Shift[54] -24(19)Shift[53] -24(13)Shift[47] -24(16)Shift[50] Goto[152] -16(8)Goto[42] -18(9)Goto[43] -20(10)Goto[44] -24(12)Goto[46] -24(11)Goto[45] 
+states[125].nodes[14]:
+3 4 19 20 21 22 67 69 93 94 95 96 97 98 
+states[125].actions[14]:
+-24(14)Shift[48] -24(15)Shift[49] -24(17)Shift[51] -24(18)Shift[52] -24(20)Shift[54] -24(19)Shift[53] -24(13)Shift[47] -24(16)Shift[50] Goto[153] -16(8)Goto[42] -18(9)Goto[43] -20(10)Goto[44] -24(12)Goto[46] -24(11)Goto[45] 
+states[126].nodes[14]:
+3 4 19 20 21 22 67 69 93 94 95 96 97 98 
+states[126].actions[14]:
+-24(14)Shift[48] -24(15)Shift[49] -24(17)Shift[51] -24(18)Shift[52] -24(20)Shift[54] -24(19)Shift[53] -24(13)Shift[47] -24(16)Shift[50] Goto[154] -16(8)Goto[42] -18(9)Goto[43] -20(10)Goto[44] -24(12)Goto[46] -24(11)Goto[45] 
+states[127].nodes[13]:
+3 4 19 20 21 22 67 69 94 95 96 97 98 
+states[127].actions[13]:
+-24(14)Shift[48] -24(15)Shift[49] -24(17)Shift[51] -24(18)Shift[52] -24(20)Shift[54] -24(19)Shift[53] -24(13)Shift[47] -24(16)Shift[50] Goto[155] -18(9)Goto[43] -20(10)Goto[44] -24(12)Goto[46] -24(11)Goto[45] 
+states[128].nodes[13]:
+3 4 19 20 21 22 67 69 94 95 96 97 98 
+states[128].actions[13]:
+-24(14)Shift[48] -24(15)Shift[49] -24(17)Shift[51] -24(18)Shift[52] -24(20)Shift[54] -24(19)Shift[53] -24(13)Shift[47] -24(16)Shift[50] Goto[156] -18(9)Goto[43] -20(10)Goto[44] -24(12)Goto[46] -24(11)Goto[45] 
+states[129].nodes[12]:
+3 4 19 20 21 22 67 69 95 96 97 98 
+states[129].actions[12]:
+-24(14)Shift[48] -24(15)Shift[49] -24(17)Shift[51] -24(18)Shift[52] -24(20)Shift[54] -24(19)Shift[53] -24(13)Shift[47] -24(16)Shift[50] Goto[157] -20(10)Goto[44] -24(12)Goto[46] -24(11)Goto[45] 
+states[130].nodes[12]:
+3 4 19 20 21 22 67 69 95 96 97 98 
+states[130].actions[12]:
+-24(14)Shift[48] -24(15)Shift[49] -24(17)Shift[51] -24(18)Shift[52] -24(20)Shift[54] -24(19)Shift[53] -24(13)Shift[47] -24(16)Shift[50] Goto[158] -20(10)Goto[44] -24(12)Goto[46] -24(11)Goto[45] 
+states[131].nodes[11]:
+3 4 19 20 21 22 67 69 96 97 98 
+states[131].actions[11]:
+-24(14)Shift[48] -24(15)Shift[49] -24(17)Shift[51] -24(18)Shift[52] -24(20)Shift[54] -24(19)Shift[53] -24(13)Shift[47] -24(16)Shift[50] Goto[159] -24(12)Goto[46] -24(11)Goto[45] 
+states[132].nodes[11]:
+3 4 19 20 21 22 67 69 96 97 98 
+states[132].actions[11]:
+-24(14)Shift[48] -24(15)Shift[49] -24(17)Shift[51] -24(18)Shift[52] -24(20)Shift[54] -24(19)Shift[53] -24(13)Shift[47] -24(16)Shift[50] Goto[160] -24(12)Goto[46] -24(11)Goto[45] 
+states[133].nodes[11]:
+3 4 19 20 21 22 67 69 96 97 98 
+states[133].actions[11]:
+-24(14)Shift[48] -24(15)Shift[49] -24(17)Shift[51] -24(18)Shift[52] -24(20)Shift[54] -24(19)Shift[53] -24(13)Shift[47] -24(16)Shift[50] Goto[161] -24(12)Goto[46] -24(11)Goto[45] 
+states[134].nodes[20]:
+0 5 19 20 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 39 
+states[134].actions[20]:
+-20(166)Reduce[117] -20(166)Reduce[117] -20(166)Reduce[117] -20(166)Reduce[117] -20(166)Reduce[117] -20(166)Reduce[117] -20(166)Reduce[117] -20(166)Reduce[117] -20(166)Reduce[117] -20(166)Reduce[117] -20(166)Reduce[117] -20(166)Reduce[117] -20(166)Reduce[117] -20(166)Reduce[117] -20(166)Reduce[117] -20(166)Reduce[117] -20(166)Reduce[117] -20(166)Reduce[117] -20(166)Reduce[117] -20(166)Reduce[117] 
+states[135].nodes[1]:
+5 
+states[135].actions[1]:
+Shift[162] 
+states[136].nodes[2]:
+5 7 
+states[136].actions[2]:
+Shift[163] -2(167)Shift[164] 
+states[137].nodes[55]:
+0 3 4 5 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 73 74 
+states[137].actions[55]:
+-159(21)Reduce[15] -6(23)Shift[61] -5(113)Shift[140] -6(30)Shift[68] -6(36)Shift[74] -6(24)Shift[62] -6(25)Shift[63] -6(26)Shift[64] -6(27)Shift[65] -6(28)Shift[66] -6(29)Shift[67] -6(31)Shift[69] -6(32)Shift[70] -6(33)Shift[71] -6(34)Shift[72] -6(35)Shift[73] -6(37)Shift[75] -6(38)Shift[76] -6(39)Shift[77] -6(40)Shift[78] -6(41)Shift[79] -6(42)Shift[80] -6(43)Shift[81] -6(44)Shift[82] -6(45)Shift[83] -6(46)Shift[84] -6(47)Shift[85] -6(48)Shift[86] -6(49)Shift[87] -6(50)Shift[88] -6(51)Shift[89] -6(52)Shift[90] -6(53)Shift[91] -6(54)Shift[92] -6(55)Shift[93] -6(56)Shift[94] -6(57)Shift[95] -6(58)Shift[96] -6(59)Shift[97] -6(60)Shift[98] -6(61)Shift[99] -6(62)Shift[100] -6(63)Shift[101] -6(64)Shift[102] -6(65)Shift[103] -6(66)Shift[104] -6(67)Shift[105] -6(68)Shift[106] -6(69)Shift[107] -6(70)Shift[108] -6(71)Shift[109] -6(72)Shift[110] -6(73)Shift[111] Goto[165] -3(22)Goto[60] 
+states[138].nodes[2]:
+5 7 
+states[138].actions[2]:
+-2(168)Reduce[11] -2(168)Reduce[11] 
+states[139].nodes[53]:
+0 3 4 5 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 
+states[139].actions[53]:
+-53(169)Reduce[13] -53(169)Reduce[13] -53(169)Reduce[13] -53(169)Reduce[13] -53(169)Reduce[13] -53(169)Reduce[13] -53(169)Reduce[13] -53(169)Reduce[13] -53(169)Reduce[13] -53(169)Reduce[13] -53(169)Reduce[13] -53(169)Reduce[13] -53(169)Reduce[13] -53(169)Reduce[13] -53(169)Reduce[13] -53(169)Reduce[13] -53(169)Reduce[13] -53(169)Reduce[13] -53(169)Reduce[13] -53(169)Reduce[13] -53(169)Reduce[13] -53(169)Reduce[13] -53(169)Reduce[13] -53(169)Reduce[13] -53(169)Reduce[13] -53(169)Reduce[13] -53(169)Reduce[13] -53(169)Reduce[13] -53(169)Reduce[13] -53(169)Reduce[13] -53(169)Reduce[13] -53(169)Reduce[13] -53(169)Reduce[13] -53(169)Reduce[13] -53(169)Reduce[13] -53(169)Reduce[13] -53(169)Reduce[13] -53(169)Reduce[13] -53(169)Reduce[13] -53(169)Reduce[13] -53(169)Reduce[13] -53(169)Reduce[13] -53(169)Reduce[13] -53(169)Reduce[13] -53(169)Reduce[13] -53(169)Reduce[13] -53(169)Reduce[13] -53(169)Reduce[13] -53(169)Reduce[13] -53(169)Reduce[13] -53(169)Reduce[13] -53(169)Reduce[13] -53(169)Reduce[13] 
+states[140].nodes[53]:
+0 3 4 5 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 
+states[140].actions[53]:
+-106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] -106(110)Reduce[23] 
+states[141].nodes[2]:
+5 7 
+states[141].actions[2]:
+Shift[166] -2(167)Shift[164] 
+states[142].nodes[1]:
+0 
+states[142].actions[1]:
+Reduce[81] 
+states[143].nodes[1]:
+0 
+states[143].actions[1]:
+Reduce[82] 
+states[144].nodes[4]:
+0 5 37 39 
+states[144].actions[4]:
+-3(170)Reduce[89] -3(170)Reduce[89] -2(75)Shift[117] -3(170)Reduce[89] 
+states[145].nodes[5]:
+0 5 36 37 39 
+states[145].actions[5]:
+-4(171)Reduce[91] -4(171)Reduce[91] -2(77)Shift[118] -4(171)Reduce[91] -4(171)Reduce[91] 
+states[146].nodes[6]:
+0 5 35 36 37 39 
+states[146].actions[6]:
+-5(172)Reduce[93] -5(172)Reduce[93] -2(79)Shift[119] -5(172)Reduce[93] -5(172)Reduce[93] -5(172)Reduce[93] 
+states[147].nodes[7]:
+0 5 34 35 36 37 39 
+states[147].actions[7]:
+-6(173)Reduce[95] -6(173)Reduce[95] -2(81)Shift[120] -6(173)Reduce[95] -6(173)Reduce[95] -6(173)Reduce[95] -6(173)Reduce[95] 
+states[148].nodes[9]:
+0 5 32 33 34 35 36 37 39 
+states[148].actions[9]:
+-7(174)Reduce[97] -7(174)Reduce[97] -2(83)Shift[121] -2(84)Shift[122] -7(174)Reduce[97] -7(174)Reduce[97] -7(174)Reduce[97] -7(174)Reduce[97] -7(174)Reduce[97] 
+states[149].nodes[13]:
+0 5 28 29 30 31 32 33 34 35 36 37 39 
+states[149].actions[13]:
+-9(175)Reduce[99] -9(175)Reduce[99] -3(86)Shift[123] -3(87)Shift[124] -3(88)Shift[125] -3(89)Shift[126] -9(175)Reduce[99] -9(175)Reduce[99] -9(175)Reduce[99] -9(175)Reduce[99] -9(175)Reduce[99] -9(175)Reduce[99] -9(175)Reduce[99] 
+states[150].nodes[13]:
+0 5 28 29 30 31 32 33 34 35 36 37 39 
+states[150].actions[13]:
+-9(176)Reduce[100] -9(176)Reduce[100] -3(86)Shift[123] -3(87)Shift[124] -3(88)Shift[125] -3(89)Shift[126] -9(176)Reduce[100] -9(176)Reduce[100] -9(176)Reduce[100] -9(176)Reduce[100] -9(176)Reduce[100] -9(176)Reduce[100] -9(176)Reduce[100] 
+states[151].nodes[15]:
+0 5 26 27 28 29 30 31 32 33 34 35 36 37 39 
+states[151].actions[15]:
+-13(177)Reduce[102] -13(177)Reduce[102] -5(91)Shift[127] -5(92)Shift[128] -13(177)Reduce[102] -13(177)Reduce[102] -13(177)Reduce[102] -13(177)Reduce[102] -13(177)Reduce[102] -13(177)Reduce[102] -13(177)Reduce[102] -13(177)Reduce[102] -13(177)Reduce[102] -13(177)Reduce[102] -13(177)Reduce[102] 
+states[152].nodes[15]:
+0 5 26 27 28 29 30 31 32 33 34 35 36 37 39 
+states[152].actions[15]:
+-13(178)Reduce[103] -13(178)Reduce[103] -5(91)Shift[127] -5(92)Shift[128] -13(178)Reduce[103] -13(178)Reduce[103] -13(178)Reduce[103] -13(178)Reduce[103] -13(178)Reduce[103] -13(178)Reduce[103] -13(178)Reduce[103] -13(178)Reduce[103] -13(178)Reduce[103] -13(178)Reduce[103] -13(178)Reduce[103] 
+states[153].nodes[15]:
+0 5 26 27 28 29 30 31 32 33 34 35 36 37 39 
+states[153].actions[15]:
+-13(179)Reduce[104] -13(179)Reduce[104] -5(91)Shift[127] -5(92)Shift[128] -13(179)Reduce[104] -13(179)Reduce[104] -13(179)Reduce[104] -13(179)Reduce[104] -13(179)Reduce[104] -13(179)Reduce[104] -13(179)Reduce[104] -13(179)Reduce[104] -13(179)Reduce[104] -13(179)Reduce[104] -13(179)Reduce[104] 
+states[154].nodes[15]:
+0 5 26 27 28 29 30 31 32 33 34 35 36 37 39 
+states[154].actions[15]:
+-13(180)Reduce[105] -13(180)Reduce[105] -5(91)Shift[127] -5(92)Shift[128] -13(180)Reduce[105] -13(180)Reduce[105] -13(180)Reduce[105] -13(180)Reduce[105] -13(180)Reduce[105] -13(180)Reduce[105] -13(180)Reduce[105] -13(180)Reduce[105] -13(180)Reduce[105] -13(180)Reduce[105] -13(180)Reduce[105] 
+states[155].nodes[17]:
+0 5 19 20 26 27 28 29 30 31 32 33 34 35 36 37 39 
+states[155].actions[17]:
+-15(181)Reduce[107] -15(181)Reduce[107] -3(94)Shift[129] -3(95)Shift[130] -15(181)Reduce[107] -15(181)Reduce[107] -15(181)Reduce[107] -15(181)Reduce[107] -15(181)Reduce[107] -15(181)Reduce[107] -15(181)Reduce[107] -15(181)Reduce[107] -15(181)Reduce[107] -15(181)Reduce[107] -15(181)Reduce[107] -15(181)Reduce[107] -15(181)Reduce[107] 
+states[156].nodes[17]:
+0 5 19 20 26 27 28 29 30 31 32 33 34 35 36 37 39 
+states[156].actions[17]:
+-15(182)Reduce[108] -15(182)Reduce[108] -3(94)Shift[129] -3(95)Shift[130] -15(182)Reduce[108] -15(182)Reduce[108] -15(182)Reduce[108] -15(182)Reduce[108] -15(182)Reduce[108] -15(182)Reduce[108] -15(182)Reduce[108] -15(182)Reduce[108] -15(182)Reduce[108] -15(182)Reduce[108] -15(182)Reduce[108] -15(182)Reduce[108] -15(182)Reduce[108] 
+states[157].nodes[20]:
+0 5 19 20 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 39 
+states[157].actions[20]:
+-17(183)Reduce[110] -17(183)Reduce[110] -17(183)Reduce[110] -17(183)Reduce[110] -3(97)Shift[131] -3(98)Shift[132] -3(99)Shift[133] -17(183)Reduce[110] -17(183)Reduce[110] -17(183)Reduce[110] -17(183)Reduce[110] -17(183)Reduce[110] -17(183)Reduce[110] -17(183)Reduce[110] -17(183)Reduce[110] -17(183)Reduce[110] -17(183)Reduce[110] -17(183)Reduce[110] -17(183)Reduce[110] -17(183)Reduce[110] 
+states[158].nodes[20]:
+0 5 19 20 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 39 
+states[158].actions[20]:
+-17(184)Reduce[111] -17(184)Reduce[111] -17(184)Reduce[111] -17(184)Reduce[111] -3(97)Shift[131] -3(98)Shift[132] -3(99)Shift[133] -17(184)Reduce[111] -17(184)Reduce[111] -17(184)Reduce[111] -17(184)Reduce[111] -17(184)Reduce[111] -17(184)Reduce[111] -17(184)Reduce[111] -17(184)Reduce[111] -17(184)Reduce[111] -17(184)Reduce[111] -17(184)Reduce[111] -17(184)Reduce[111] -17(184)Reduce[111] 
+states[159].nodes[20]:
+0 5 19 20 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 39 
+states[159].actions[20]:
+-20(185)Reduce[113] -20(185)Reduce[113] -20(185)Reduce[113] -20(185)Reduce[113] -20(185)Reduce[113] -20(185)Reduce[113] -20(185)Reduce[113] -20(185)Reduce[113] -20(185)Reduce[113] -20(185)Reduce[113] -20(185)Reduce[113] -20(185)Reduce[113] -20(185)Reduce[113] -20(185)Reduce[113] -20(185)Reduce[113] -20(185)Reduce[113] -20(185)Reduce[113] -20(185)Reduce[113] -20(185)Reduce[113] -20(185)Reduce[113] 
+states[160].nodes[20]:
+0 5 19 20 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 39 
+states[160].actions[20]:
+-20(186)Reduce[114] -20(186)Reduce[114] -20(186)Reduce[114] -20(186)Reduce[114] -20(186)Reduce[114] -20(186)Reduce[114] -20(186)Reduce[114] -20(186)Reduce[114] -20(186)Reduce[114] -20(186)Reduce[114] -20(186)Reduce[114] -20(186)Reduce[114] -20(186)Reduce[114] -20(186)Reduce[114] -20(186)Reduce[114] -20(186)Reduce[114] -20(186)Reduce[114] -20(186)Reduce[114] -20(186)Reduce[114] -20(186)Reduce[114] 
+states[161].nodes[20]:
+0 5 19 20 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 39 
+states[161].actions[20]:
+-20(187)Reduce[115] -20(187)Reduce[115] -20(187)Reduce[115] -20(187)Reduce[115] -20(187)Reduce[115] -20(187)Reduce[115] -20(187)Reduce[115] -20(187)Reduce[115] -20(187)Reduce[115] -20(187)Reduce[115] -20(187)Reduce[115] -20(187)Reduce[115] -20(187)Reduce[115] -20(187)Reduce[115] -20(187)Reduce[115] -20(187)Reduce[115] -20(187)Reduce[115] -20(187)Reduce[115] -20(187)Reduce[115] -20(187)Reduce[115] 
+states[162].nodes[20]:
+0 5 19 20 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 39 
+states[162].actions[20]:
+-20(188)Reduce[125] -20(188)Reduce[125] -20(188)Reduce[125] -20(188)Reduce[125] -20(188)Reduce[125] -20(188)Reduce[125] -20(188)Reduce[125] -20(188)Reduce[125] -20(188)Reduce[125] -20(188)Reduce[125] -20(188)Reduce[125] -20(188)Reduce[125] -20(188)Reduce[125] -20(188)Reduce[125] -20(188)Reduce[125] -20(188)Reduce[125] -20(188)Reduce[125] -20(188)Reduce[125] -20(188)Reduce[125] -20(188)Reduce[125] 
+states[163].nodes[55]:
+0 3 4 5 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 73 74 
+states[163].actions[55]:
+-159(21)Reduce[15] -6(23)Shift[61] -5(113)Shift[140] -6(30)Shift[68] -6(36)Shift[74] -6(24)Shift[62] -6(25)Shift[63] -6(26)Shift[64] -6(27)Shift[65] -6(28)Shift[66] -6(29)Shift[67] -6(31)Shift[69] -6(32)Shift[70] -6(33)Shift[71] -6(34)Shift[72] -6(35)Shift[73] -6(37)Shift[75] -6(38)Shift[76] -6(39)Shift[77] -6(40)Shift[78] -6(41)Shift[79] -6(42)Shift[80] -6(43)Shift[81] -6(44)Shift[82] -6(45)Shift[83] -6(46)Shift[84] -6(47)Shift[85] -6(48)Shift[86] -6(49)Shift[87] -6(50)Shift[88] -6(51)Shift[89] -6(52)Shift[90] -6(53)Shift[91] -6(54)Shift[92] -6(55)Shift[93] -6(56)Shift[94] -6(57)Shift[95] -6(58)Shift[96] -6(59)Shift[97] -6(60)Shift[98] -6(61)Shift[99] -6(62)Shift[100] -6(63)Shift[101] -6(64)Shift[102] -6(65)Shift[103] -6(66)Shift[104] -6(67)Shift[105] -6(68)Shift[106] -6(69)Shift[107] -6(70)Shift[108] -6(71)Shift[109] -6(72)Shift[110] -6(73)Shift[111] Goto[167] -3(22)Goto[60] 
+states[164].nodes[1]:
+3 
+states[164].actions[1]:
+Shift[168] 
+states[165].nodes[54]:
+0 3 4 5 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 74 
+states[165].actions[54]:
+Reduce[8] -6(23)Shift[61] -5(113)Shift[140] -6(30)Shift[68] -6(36)Shift[74] -6(24)Shift[62] -6(25)Shift[63] -6(26)Shift[64] -6(27)Shift[65] -6(28)Shift[66] -6(29)Shift[67] -6(31)Shift[69] -6(32)Shift[70] -6(33)Shift[71] -6(34)Shift[72] -6(35)Shift[73] -6(37)Shift[75] -6(38)Shift[76] -6(39)Shift[77] -6(40)Shift[78] -6(41)Shift[79] -6(42)Shift[80] -6(43)Shift[81] -6(44)Shift[82] -6(45)Shift[83] -6(46)Shift[84] -6(47)Shift[85] -6(48)Shift[86] -6(49)Shift[87] -6(50)Shift[88] -6(51)Shift[89] -6(52)Shift[90] -6(53)Shift[91] -6(54)Shift[92] -6(55)Shift[93] -6(56)Shift[94] -6(57)Shift[95] -6(58)Shift[96] -6(59)Shift[97] -6(60)Shift[98] -6(61)Shift[99] -6(62)Shift[100] -6(63)Shift[101] -6(64)Shift[102] -6(65)Shift[103] -6(66)Shift[104] -6(67)Shift[105] -6(68)Shift[106] -6(69)Shift[107] -6(70)Shift[108] -6(71)Shift[109] -6(72)Shift[110] -6(73)Shift[111] -3(112)Goto[139] 
+states[166].nodes[1]:
+0 
+states[166].actions[1]:
+Reduce[80] 
+states[167].nodes[54]:
+0 3 4 5 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 74 
+states[167].actions[54]:
+Reduce[7] -6(23)Shift[61] -5(113)Shift[140] -6(30)Shift[68] -6(36)Shift[74] -6(24)Shift[62] -6(25)Shift[63] -6(26)Shift[64] -6(27)Shift[65] -6(28)Shift[66] -6(29)Shift[67] -6(31)Shift[69] -6(32)Shift[70] -6(33)Shift[71] -6(34)Shift[72] -6(35)Shift[73] -6(37)Shift[75] -6(38)Shift[76] -6(39)Shift[77] -6(40)Shift[78] -6(41)Shift[79] -6(42)Shift[80] -6(43)Shift[81] -6(44)Shift[82] -6(45)Shift[83] -6(46)Shift[84] -6(47)Shift[85] -6(48)Shift[86] -6(49)Shift[87] -6(50)Shift[88] -6(51)Shift[89] -6(52)Shift[90] -6(53)Shift[91] -6(54)Shift[92] -6(55)Shift[93] -6(56)Shift[94] -6(57)Shift[95] -6(58)Shift[96] -6(59)Shift[97] -6(60)Shift[98] -6(61)Shift[99] -6(62)Shift[100] -6(63)Shift[101] -6(64)Shift[102] -6(65)Shift[103] -6(66)Shift[104] -6(67)Shift[105] -6(68)Shift[106] -6(69)Shift[107] -6(70)Shift[108] -6(71)Shift[109] -6(72)Shift[110] -6(73)Shift[111] -3(112)Goto[139] 
+states[168].nodes[2]:
+5 7 
+states[168].actions[2]:
+-2(189)Reduce[12] -2(189)Reduce[12] 

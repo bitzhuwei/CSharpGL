@@ -4,13 +4,11 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 
-namespace CSharpGL
-{
+namespace CSharpGL {
     /// <summary>
     /// Get picked geometry from a <see cref="PickableNode"/> with <see cref="DrawArraysCmd"/> as index buffer.
     /// </summary>
-    partial class DrawElementsPicker : PickerBase
-    {
+    partial class DrawElementsPicker : PickerBase {
         /// <summary>
         /// 
         /// </summary>
@@ -23,8 +21,7 @@ namespace CSharpGL
         /// <param name="positionBuffer"></param>
         /// <param name="drawCommand"></param>
         public DrawElementsPicker(PickableNode node, VertexBuffer positionBuffer, DrawElementsCmd drawCommand)
-            : base(node, positionBuffer)
-        {
+            : base(node, positionBuffer) {
             this.DrawCommand = drawCommand;
         }
 
@@ -37,18 +34,16 @@ namespace CSharpGL
         /// <param name="baseId">Index of first vertex of the buffer that The geometry belongs to.
         /// <para>This id is in scene's all <see cref="IPickable"/>s' order.</para></param>
         /// <returns></returns>
-        public override PickedGeometry GetPickedGeometry(PickingEventArgs arg, uint stageVertexId, uint baseId)
-        {
+        public override PickedGeometry? GetPickedGeometry(PickingEventArgs arg, uint stageVertexId, uint baseId) {
             if (stageVertexId < baseId) { return null; }
             uint singleNodeVertexId = stageVertexId - baseId;
-            if (this.PositionBuffer.Length <= singleNodeVertexId) { return null; }
+            if (this.PositionBuffer.count <= singleNodeVertexId) { return null; }
 
             PickableNode node = this.Node;
 
             // Find primitiveInfo
-            RecognizedPrimitiveInfo primitiveInfo = this.GetPrimitiveInfoOfPickedGeometry(arg, singleNodeVertexId, baseId);
-            if (primitiveInfo == null)
-            {
+            var primitiveInfo = this.GetPrimitiveInfoOfPickedGeometry(arg, singleNodeVertexId, baseId);
+            if (primitiveInfo == null) {
                 Debug.WriteLine(string.Format(
                     "Got singleNodeVertexId[{0}] but no primitiveInfo! Params are [{1}] [{2}]",
                     singleNodeVertexId, arg, stageVertexId));
@@ -56,45 +51,35 @@ namespace CSharpGL
             }
 
             PickingGeometryTypes geometryType = arg.GeometryType;
-            DrawMode drawMode = this.DrawCommand.CurrentMode;
+            DrawMode drawMode = this.DrawCommand.Mode;
             GeometryType typeOfMode = drawMode.ToGeometryType();
 
-            if ((geometryType & PickingGeometryTypes.Point) == PickingGeometryTypes.Point)
-            {
+            if ((geometryType & PickingGeometryTypes.Point) == PickingGeometryTypes.Point) {
                 // 获取pickedGeometry
-                if (typeOfMode == GeometryType.Point)
-                { return PickWhateverItIs(arg, stageVertexId, primitiveInfo, typeOfMode); }
-                else
-                {
-                    DrawElementsPointSearcher searcher = GetPointSearcher(drawMode);
+                if (typeOfMode == GeometryType.Point) { return PickWhateverItIs(arg, stageVertexId, primitiveInfo, typeOfMode); }
+                else {
+                    var searcher = GetPointSearcher(drawMode);
                     if (searcher != null)// line is from triangle, quad or polygon
                     { return SearchPoint(arg, singleNodeVertexId, stageVertexId, primitiveInfo, searcher); }
-                    else
-                    { throw new Exception(string.Format("Lack of searcher for [{0}]", drawMode)); }
+                    else { throw new Exception(string.Format("Lack of searcher for [{0}]", drawMode)); }
                 }
             }
-            else if ((geometryType & PickingGeometryTypes.Line) == PickingGeometryTypes.Line)
-            {
+            else if ((geometryType & PickingGeometryTypes.Line) == PickingGeometryTypes.Line) {
                 // 获取pickedGeometry
                 if (typeOfMode == GeometryType.Point) // want a line when rendering GL_POINTS
                 { return null; }
-                if (typeOfMode == GeometryType.Line)
-                { return PickWhateverItIs(arg, stageVertexId, primitiveInfo, typeOfMode); }
-                else
-                {
-                    DrawElementsLineSearcher searcher = GetLineSearcher(drawMode);
+                if (typeOfMode == GeometryType.Line) { return PickWhateverItIs(arg, stageVertexId, primitiveInfo, typeOfMode); }
+                else {
+                    var searcher = GetLineSearcher(drawMode);
                     if (searcher != null)// line is from triangle, quad or polygon
                     { return SearchLine(arg, singleNodeVertexId, stageVertexId, primitiveInfo, searcher); }
-                    else
-                    { throw new Exception(string.Format("Lack of searcher for [{0}]", drawMode)); }
+                    else { throw new Exception(string.Format("Lack of searcher for [{0}]", drawMode)); }
                 }
             }
-            else
-            {
+            else {
                 if (geometryType.Contains(typeOfMode)) // I want what it is
                 { return PickWhateverItIs(arg, stageVertexId, primitiveInfo, typeOfMode); }
-                else
-                { return null; }
+                else { return null; }
                 //{ throw new Exception(string.Format("Lack of searcher for [{0}]", mode)); }
             }
         }
@@ -108,8 +93,7 @@ namespace CSharpGL
         /// <param name="primitiveInfo"></param>
         /// <param name="searcher"></param>
         /// <returns></returns>
-        private PickedGeometry SearchPoint(PickingEventArgs arg, uint singleNodeVertexId, uint stageVertexId, RecognizedPrimitiveInfo primitiveInfo, DrawElementsPointSearcher searcher)
-        {
+        private PickedGeometry? SearchPoint(PickingEventArgs arg, uint singleNodeVertexId, uint stageVertexId, RecognizedPrimitiveInfo primitiveInfo, DrawElementsPointSearcher searcher) {
             uint id = searcher.Search(arg, primitiveInfo, singleNodeVertexId, stageVertexId, this);
             if (id == uint.MaxValue) { return null; }// Scene's changed before second rendering for picking>
 
@@ -129,8 +113,7 @@ namespace CSharpGL
         /// <param name="primitiveInfo"></param>
         /// <param name="searcher"></param>
         /// <returns></returns>
-        private PickedGeometry SearchLine(PickingEventArgs arg, uint singleNodeVertexId, uint stageVertexId, RecognizedPrimitiveInfo primitiveInfo, DrawElementsLineSearcher searcher)
-        {
+        private PickedGeometry SearchLine(PickingEventArgs arg, uint singleNodeVertexId, uint stageVertexId, RecognizedPrimitiveInfo primitiveInfo, DrawElementsLineSearcher searcher) {
             var vertexIds = searcher.Search(arg, primitiveInfo, singleNodeVertexId, stageVertexId, this);
             vec3[] positions = FillPickedGeometrysPosition(vertexIds);
             var pickedGeometry = new PickedGeometry(GeometryType.Line, positions, vertexIds, stageVertexId, this.Node);
@@ -146,8 +129,7 @@ namespace CSharpGL
         /// <param name="primitiveInfo"></param>
         /// <param name="typeOfMode"></param>
         /// <returns></returns>
-        private PickedGeometry PickWhateverItIs(PickingEventArgs arg, uint stageVertexId, RecognizedPrimitiveInfo primitiveInfo, GeometryType typeOfMode)
-        {
+        private PickedGeometry PickWhateverItIs(PickingEventArgs arg, uint stageVertexId, RecognizedPrimitiveInfo primitiveInfo, GeometryType typeOfMode) {
             uint[] vertexIds = primitiveInfo.VertexIds;
             vec3[] positions = FillPickedGeometrysPosition(vertexIds);
             var pickedGeometry = new PickedGeometry(typeOfMode, positions, vertexIds, stageVertexId, this.Node);
@@ -163,13 +145,11 @@ namespace CSharpGL
         /// <param name="singleNodeVertexId"></param>
         /// <param name="mode"></param>
         /// <returns></returns>
-        private bool OnPrimitiveTest(uint singleNodeVertexId, DrawMode mode)
-        {
+        private bool OnPrimitiveTest(uint singleNodeVertexId, DrawMode mode) {
             return true;
         }
 
-        private PickedGeometry PickPoint(PickingEventArgs arg, uint stageVertexId, uint singleNodeVertexId)
-        {
+        private PickedGeometry PickPoint(PickingEventArgs arg, uint stageVertexId, uint singleNodeVertexId) {
             var vertexIds = new uint[] { singleNodeVertexId, };
             vec3[] positions = FillPickedGeometrysPosition(vertexIds);
             var pickedGeometry = new PickedGeometry(GeometryType.Point, positions, vertexIds, stageVertexId, this.Node);
@@ -183,15 +163,14 @@ namespace CSharpGL
         /// <param name="arg"></param>
         /// <param name="singleNodeVertexId"></param>
         /// <returns></returns>
-        private RecognizedPrimitiveInfo GetPrimitiveInfoOfPickedGeometry(
+        private RecognizedPrimitiveInfo? GetPrimitiveInfoOfPickedGeometry(
             PickingEventArgs arg,
-            uint singleNodeVertexId, uint baseId)
-        {
+            uint singleNodeVertexId, uint baseId) {
             List<RecognizedPrimitiveInfo> primitiveInfoList = GetPossiblePrimitives(arg, singleNodeVertexId);
 
             if (primitiveInfoList.Count == 0) { return null; }
 
-            RecognizedPrimitiveInfo primitiveInfo = FindThePickedOne(arg, primitiveInfoList, baseId);
+            var primitiveInfo = FindThePickedOne(arg, primitiveInfoList, baseId);
 
             return primitiveInfo;
         }
@@ -204,10 +183,9 @@ namespace CSharpGL
         /// <param name="arg"></param>
         /// <param name="singleNodeVertexId"></param>
         /// <returns></returns>
-        private List<RecognizedPrimitiveInfo> GetPossiblePrimitives(PickingEventArgs arg, uint singleNodeVertexId)
-        {
+        private List<RecognizedPrimitiveInfo> GetPossiblePrimitives(PickingEventArgs arg, uint singleNodeVertexId) {
             var drawCmd = this.DrawCommand;
-            DrawMode mode = drawCmd.CurrentMode;
+            DrawMode mode = drawCmd.Mode;
             //PrimitiveRecognizer recognizer = PrimitiveRecognizerFactory.Create(
             //    (arg.GeometryType.Contains(GeometryType.Point)
             //    && mode.ToGeometryType() == GeometryType.Line) ?

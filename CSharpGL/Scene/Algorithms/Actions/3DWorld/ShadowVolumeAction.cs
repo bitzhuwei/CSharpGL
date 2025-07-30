@@ -5,13 +5,11 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace CSharpGL
-{
+namespace CSharpGL {
     /// <summary>
     /// Render depth buffer, extrude shadow volume, record occlusions by stencil operation, light up the scene according to stencil test and finally render the ambient color.
     /// </summary>
-    public class ShadowVolumeAction : ActionBase
-    {
+    public class ShadowVolumeAction : ActionBase {
         private Scene scene;
         /// <summary>
         /// Specifies whether render shadow volume or not.
@@ -22,8 +20,7 @@ namespace CSharpGL
         /// Render depth buffer, extrude shadow volume, record occlusions by stencil operation, light up the scene according to stencil test and finally render the ambient color.
         /// </summary>
         /// <param name="scene"></param>
-        public ShadowVolumeAction(Scene scene)
-        {
+        public ShadowVolumeAction(Scene scene) {
             this.scene = scene;
             this.clearStencilNode = ClearStencilNode.Create();
         }
@@ -39,107 +36,99 @@ namespace CSharpGL
         private readonly LineStippleSwitch lineSipple = new LineStippleSwitch();
         private readonly ClearStencilNode clearStencilNode;
 
-        private static readonly GLDelegates.void_uint_uint_uint_uint glStencilOpSeparate;
-        static ShadowVolumeAction()
-        {
-            glStencilOpSeparate = GL.Instance.GetDelegateFor("glStencilOpSeparate", GLDelegates.typeof_void_uint_uint_uint_uint) as GLDelegates.void_uint_uint_uint_uint;
-        }
+        //private static readonly GLDelegates.void_uint_uint_uint_uint glStencilOpSeparate;
+        //static ShadowVolumeAction() {
+        //    glStencilOpSeparate = gl.glGetDelegateFor("glStencilOpSeparate", GLDelegates.typeof_void_uint_uint_uint_uint) as GLDelegates.void_uint_uint_uint_uint;
+        //}
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="param"></param>
-        public override void Act(ActionParams param)
-        {
-            Scene scene = this.scene;
-            bool displayShadowVolume = this.DisplayShadowVolume;
-            this.depthClamp.On();// for infinite back cap of shadow volumes.
+        public unsafe override void Act(ActionParams param) {
+            var gl = GL.current; if (gl != null) {
+                Scene scene = this.scene;
+                bool displayShadowVolume = this.DisplayShadowVolume;
+                this.depthClamp.On();// for infinite back cap of shadow volumes.
 
-            // Render depth info into depth buffer and ambient color into color buffer.
-            {
-                var arg = new ShadowVolumeAmbientEventArgs(param, scene.Camera, scene.AmbientColor);
-                RenderAmbientColor(scene.RootNode, arg);
-            }
-
-            this.stencilTest.On(); // enable stencil test.
-            foreach (var light in scene.Lights)
-            {
-                // Clear stencil buffer.
+                // Render depth info into depth buffer and ambient color into color buffer.
                 {
-                    GL.Instance.Clear(GL.GL_STENCIL_BUFFER_BIT); // this seems not working.
-                    // do the same thing.
-                    this.depthTest.On(); // Disable depth test to make sure this node works for every stencil point.
-                    this.depthMask.On(); // Disable writing to depth buffer.
-                    this.clearStencilNode.RenderBeforeChildren(null); // this helps clear stencil buffer because `glClear(GL_STENCIL_BUFFER_BIT);` doesn't work on my laptop.
-                    this.depthMask.Off();
-                    this.depthTest.Off();
+                    var arg = new ShadowVolumeAmbientEventArgs(param, scene.camera, scene.ambientColor);
+                    RenderAmbientColor(scene.RootNode, arg);
                 }
-                // Extrude shadow volume and save shadow info into stencil buffer.
-                {
-                    this.depthMask.On(); // Disable writing to depth buffer.
-                    if (!displayShadowVolume) { this.colorMask.On(); } // Disable writing to color buffer.
-                    else
+
+                this.stencilTest.On(); // enable stencil test.
+                foreach (var light in scene.lights) {
+                    // Clear stencil buffer.
                     {
-                        //this.polygonMode.On(); this.lineSipple.On(); 
+                        gl.glClear(GL.GL_STENCIL_BUFFER_BIT); // this seems not working.
+                                                              // do the same thing.
+                        this.depthTest.On(); // Disable depth test to make sure this node works for every stencil point.
+                        this.depthMask.On(); // Disable writing to depth buffer.
+                        this.clearStencilNode.RenderBeforeChildren(null); // this helps clear stencil buffer because `glClear(GL_STENCIL_BUFFER_BIT);` doesn't work on my laptop.
+                        this.depthMask.Off();
+                        this.depthTest.Off();
                     }
-                    this.cullFace.On();  // Disable culling face.
-                    GL.Instance.StencilFunc(GL.GL_ALWAYS, 0, 0xFF); // always pass stencil test.
-                    // If depth test fails for back face, increase value in stencil buffer.
-                    glStencilOpSeparate(GL.GL_BACK, GL.GL_KEEP, GL.GL_INCR_WRAP, GL.GL_KEEP);
-                    // If depth test fails for front face, decrease value in stencil buffer.
-                    glStencilOpSeparate(GL.GL_FRONT, GL.GL_KEEP, GL.GL_DECR_WRAP, GL.GL_KEEP);
-
-                    // Extrude shadow volume. And shadow info will be saved into stencil buffer automatically according to `glStencilOp...`.
-                    var arg = new ShadowVolumeExtrudeEventArgs(param, scene.Camera, light);
-                    Extrude(scene.RootNode, arg);
-
-                    this.cullFace.Off();
-                    if (!displayShadowVolume) { this.colorMask.Off(); }
-                    else
+                    // Extrude shadow volume and save shadow info into stencil buffer.
                     {
-                        //this.polygonMode.Off(); this.lineSipple.Off();
+                        this.depthMask.On(); // Disable writing to depth buffer.
+                        if (!displayShadowVolume) { this.colorMask.On(); } // Disable writing to color buffer.
+                        else {
+                            //this.polygonMode.On(); this.lineSipple.On(); 
+                        }
+                        this.cullFace.On();  // Disable culling face.
+                        gl.glStencilFunc(GL.GL_ALWAYS, 0, 0xFF); // always pass stencil test.
+                                                                 // If depth test fails for back face, increase value in stencil buffer.
+                        gl.glStencilOpSeparate(GL.GL_BACK, GL.GL_KEEP, GL.GL_INCR_WRAP, GL.GL_KEEP);
+                        // If depth test fails for front face, decrease value in stencil buffer.
+                        gl.glStencilOpSeparate(GL.GL_FRONT, GL.GL_KEEP, GL.GL_DECR_WRAP, GL.GL_KEEP);
+
+                        // Extrude shadow volume. And shadow info will be saved into stencil buffer automatically according to `glStencilOp...`.
+                        var arg = new ShadowVolumeExtrudeEventArgs(param, scene.camera, light);
+                        Extrude(scene.RootNode, arg);
+
+                        this.cullFace.Off();
+                        if (!displayShadowVolume) { this.colorMask.Off(); }
+                        else {
+                            //this.polygonMode.Off(); this.lineSipple.Off();
+                        }
+                        this.depthMask.Off();
                     }
-                    this.depthMask.Off();
+                    // 
+                    {
+                        // Draw only if the corresponding stencil value is zero.
+                        gl.glStencilFunc(GL.GL_EQUAL, 0x0, 0xFF);
+                        // prevent updating to the stencil buffer.
+                        gl.glStencilOp(GL.GL_KEEP, GL.GL_KEEP, GL.GL_KEEP);
+
+                        this.blend.On(); // add illuminated color to ambient color.
+
+                        // light the scene up.
+                        var arg = new ShadowVolumeUnderLightEventArgs(param, scene.camera, light);
+                        RenderUnderLight(scene.RootNode, arg);
+
+                        this.blend.Off();
+                    }
                 }
-                // 
-                {
-                    // Draw only if the corresponding stencil value is zero.
-                    GL.Instance.StencilFunc(GL.GL_EQUAL, 0x0, 0xFF);
-                    // prevent updating to the stencil buffer.
-                    GL.Instance.StencilOp(GL.GL_KEEP, GL.GL_KEEP, GL.GL_KEEP);
+                this.stencilTest.Off();
 
-                    this.blend.On(); // add illuminated color to ambient color.
-
-                    // light the scene up.
-                    var arg = new ShadowVolumeUnderLightEventArgs(param, scene.Camera, light);
-                    RenderUnderLight(scene.RootNode, arg);
-
-                    this.blend.Off();
-                }
+                this.depthClamp.Off();
             }
-            this.stencilTest.Off();
-
-            this.depthClamp.Off();
         }
 
-        private void RenderAmbientColor(SceneNodeBase sceneNodeBase, ShadowVolumeAmbientEventArgs arg)
-        {
-            if (sceneNodeBase != null)
-            {
+        private void RenderAmbientColor(SceneNodeBase? sceneNodeBase, ShadowVolumeAmbientEventArgs arg) {
+            if (sceneNodeBase != null) {
                 var node = sceneNodeBase as ISupportShadowVolume;
                 TwoFlags flags = (node != null) ? node.EnableShadowVolume : TwoFlags.None;
                 bool before = (node != null) && ((flags & TwoFlags.BeforeChildren) == TwoFlags.BeforeChildren);
                 bool children = (node == null) || ((flags & TwoFlags.Children) == TwoFlags.Children);
 
-                if (before)
-                {
-                    node.RenderAmbientColor(arg);
+                if (before) {
+                    if (node != null) node.RenderAmbientColor(arg);
                 }
 
-                if (children)
-                {
-                    foreach (var item in sceneNodeBase.Children)
-                    {
+                if (children) {
+                    foreach (var item in sceneNodeBase.Children) {
                         RenderAmbientColor(item, arg);
                     }
                 }
@@ -151,72 +140,58 @@ namespace CSharpGL
         /// </summary>
         /// <param name="sceneNodeBase"></param>
         /// <param name="arg"></param>
-        static void Extrude(SceneNodeBase sceneNodeBase, ShadowVolumeExtrudeEventArgs arg)
-        {
-            if (sceneNodeBase != null)
-            {
+        static void Extrude(SceneNodeBase? sceneNodeBase, ShadowVolumeExtrudeEventArgs arg) {
+            if (sceneNodeBase != null) {
                 var node = sceneNodeBase as ISupportShadowVolume;
                 TwoFlags flags = (node != null) ? node.EnableShadowVolume : TwoFlags.None;
                 bool before = (node != null) && ((flags & TwoFlags.BeforeChildren) == TwoFlags.BeforeChildren);
                 bool children = (node == null) || ((flags & TwoFlags.Children) == TwoFlags.Children);
 
-                if (before)
-                {
-                    flags = node.EnableExtrude;
+                if (before) {
+                    if (node != null) flags = node.EnableExtrude;
                     before = (flags & TwoFlags.BeforeChildren) == TwoFlags.BeforeChildren;
                 }
 
-                if (children)
-                {
+                if (children) {
                     flags = (node != null) ? node.EnableExtrude : TwoFlags.None;
                     children = (node == null) || ((flags & TwoFlags.Children) == TwoFlags.Children);
                 }
 
-                if (before)
-                {
-                    node.ExtrudeShadow(arg);
+                if (before) {
+                    if (node != null) node.ExtrudeShadow(arg);
                 }
 
-                if (children)
-                {
-                    foreach (var item in sceneNodeBase.Children)
-                    {
+                if (children) {
+                    foreach (var item in sceneNodeBase.Children) {
                         Extrude(item, arg);
                     }
                 }
             }
         }
 
-        private static void RenderUnderLight(SceneNodeBase sceneNodeBase, ShadowVolumeUnderLightEventArgs arg)
-        {
-            if (sceneNodeBase != null)
-            {
+        private static void RenderUnderLight(SceneNodeBase? sceneNodeBase, ShadowVolumeUnderLightEventArgs arg) {
+            if (sceneNodeBase != null) {
                 var node = sceneNodeBase as ISupportShadowVolume;
                 TwoFlags flags = (node != null) ? node.EnableShadowVolume : TwoFlags.None;
                 bool before = (node != null) && ((flags & TwoFlags.BeforeChildren) == TwoFlags.BeforeChildren);
                 bool children = (node == null) || ((flags & TwoFlags.Children) == TwoFlags.Children);
 
-                if (before)
-                {
-                    flags = node.EnableRenderUnderLight;
+                if (before) {
+                    if (node != null) flags = node.EnableRenderUnderLight;
                     before = (flags & TwoFlags.BeforeChildren) == TwoFlags.BeforeChildren;
                 }
 
-                if (children)
-                {
+                if (children) {
                     flags = (node != null) ? node.EnableRenderUnderLight : TwoFlags.None;
                     children = (node == null) || ((flags & TwoFlags.Children) == TwoFlags.Children);
                 }
 
-                if (before)
-                {
-                    node.RenderUnderLight(arg);
+                if (before) {
+                    if (node != null) node.RenderUnderLight(arg);
                 }
 
-                if (children)
-                {
-                    foreach (var item in sceneNodeBase.Children)
-                    {
+                if (children) {
+                    foreach (var item in sceneNodeBase.Children) {
                         RenderUnderLight(item, arg);
                     }
                 }

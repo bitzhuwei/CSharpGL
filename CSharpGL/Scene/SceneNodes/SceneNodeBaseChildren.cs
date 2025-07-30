@@ -4,15 +4,12 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing.Design;
 
-namespace CSharpGL
-{
+namespace CSharpGL {
     /// <summary>
     /// children in <see cref="SceneNodeBase"/>.
     /// </summary>
-    [Editor(typeof(IListEditor<SceneNodeBase>), typeof(UITypeEditor))]
-    public class SceneNodeBaseChildren : IList<SceneNodeBase>
-    {
-        private List<SceneNodeBase> list = new List<SceneNodeBase>();
+    public class SceneNodeBaseChildren : IList<SceneNodeBase> {
+        private readonly List<SceneNodeBase> list = new();
 
         /// <summary>
         /// parent of this list's items.
@@ -23,8 +20,7 @@ namespace CSharpGL
         /// children in <paramref name="parent"/>.
         /// </summary>
         /// <param name="parent"></param>
-        public SceneNodeBaseChildren(SceneNodeBase parent)
-        {
+        public SceneNodeBaseChildren(SceneNodeBase parent) {
             Debug.Assert(parent != null);
 
             this.parent = parent;
@@ -35,8 +31,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="item">要在 System.Collections.Generic.List&lt;T&gt; 中定位的对象。对于引用类型，该值可以为 null。</param>
         /// <returns>如果在整个 System.Collections.Generic.List&lt;T&gt; 中找到 item 的第一个匹配项，则为该项的从零开始的索引；否则为-1。</returns>
-        public int IndexOf(SceneNodeBase item)
-        {
+        public int IndexOf(SceneNodeBase item) {
             return this.list.IndexOf(item);
         }
 
@@ -45,8 +40,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="index">从零开始的索引，应在该位置插入 item。</param>
         /// <param name="item">要插入的对象。对于引用类型，该值可以为 null。</param>
-        public void Insert(int index, SceneNodeBase item)
-        {
+        public void Insert(int index, SceneNodeBase item) {
             item.parent = this.parent;
             this.list.Insert(index, item);
         }
@@ -55,8 +49,7 @@ namespace CSharpGL
         /// 移除 System.Collections.Generic.List&lt;T&gt; 的指定索引处的元素。
         /// </summary>
         /// <param name="index">要移除的元素的从零开始的索引。</param>
-        public void RemoveAt(int index)
-        {
+        public void RemoveAt(int index) {
             SceneNodeBase obj = this.list[index];
             this.list.RemoveAt(index);
             obj.parent = null;
@@ -67,14 +60,11 @@ namespace CSharpGL
         /// </summary>
         /// <param name="index">要获得或设置的元素从零开始的索引。</param>
         /// <returns>指定索引处的元素。</returns>
-        public SceneNodeBase this[int index]
-        {
-            get
-            {
+        public SceneNodeBase this[int index] {
+            get {
                 return this.list[index];
             }
-            set
-            {
+            set {
                 this.list[index] = value;
             }
         }
@@ -83,12 +73,10 @@ namespace CSharpGL
         /// 将对象添加到 System.Collections.Generic.List&lt;T&gt; 的结尾处。
         /// </summary>
         /// <param name="item">要添加到 System.Collections.Generic.List&lt;T&gt; 的末尾处的对象。对于引用类型，该值可以为 null。</param>
-        public void Add(SceneNodeBase item)
-        {
+        public void Add(SceneNodeBase item) {
             item.parent = this.parent;
 
-            if (!this.list.Contains(item))
-            {
+            if (!this.list.Contains(item)) {
                 this.list.Add(item);
             }
         }
@@ -97,10 +85,8 @@ namespace CSharpGL
         /// 将指定集合的元素添加到 System.Collections.Generic.List&lt;T&gt; 的末尾。
         /// </summary>
         /// <param name="items">一个集合，其元素应被添加到 System.Collections.Generic.List&lt;T&gt; 的末尾。集合自身不能为 null，但它可以包含为null 的元素（如果类型 T 为引用类型）。</param>
-        public void AddRange(IEnumerable<SceneNodeBase> items)
-        {
-            foreach (var item in items)
-            {
+        public void AddRange(IEnumerable<SceneNodeBase> items) {
+            foreach (var item in items) {
                 this.Add(item);
             }
         }
@@ -108,13 +94,11 @@ namespace CSharpGL
         /// <summary>
         /// 从 System.Collections.Generic.List&lt;T&gt;中移除所有元素。
         /// </summary>
-        public void Clear()
-        {
+        public void Clear() {
             SceneNodeBase[] array = this.list.ToArray();
             this.list.Clear();
 
-            foreach (var item in array)
-            {
+            foreach (var item in array) {
                 item.parent = null;
             }
         }
@@ -124,8 +108,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="item">要在 System.Collections.Generic.List&lt;T&gt; 中定位的对象。对于引用类型，该值可以为 null。</param>
         /// <returns>如果在 System.Collections.Generic.List&lt;T&gt; 中找到 item，则为 true，否则为 false。</returns>
-        public bool Contains(SceneNodeBase item)
-        {
+        public bool Contains(SceneNodeBase item) {
             return this.list.Contains(item);
         }
 
@@ -134,24 +117,21 @@ namespace CSharpGL
         /// </summary>
         /// <param name="array">作为从 System.Collections.Generic.List&lt;T&gt; 复制的元素的目标位置的一维 System.Array。System.Array必须具有从零开始的索引。</param>
         /// <param name="arrayIndex">array 中从零开始的索引，从此处开始复制。</param>
-        public void CopyTo(SceneNodeBase[] array, int arrayIndex)
-        {
+        public void CopyTo(SceneNodeBase[] array, int arrayIndex) {
             this.list.CopyTo(array, arrayIndex);
         }
 
         /// <summary>
         /// 获取 System.Collections.Generic.List&lt;T&gt; 中实际包含的元素数。
         /// </summary>
-        public int Count
-        {
+        public int Count {
             get { return list.Count; }
         }
 
         /// <summary>
         /// 获取一个值，该值指示 System.Collections.Generic.ICollection&lt;T&gt; 是否为只读。
         /// </summary>
-        public bool IsReadOnly
-        {
+        public bool IsReadOnly {
             get { return ((ICollection<SceneNodeBase>)(this.list)).IsReadOnly; }
         }
 
@@ -160,11 +140,9 @@ namespace CSharpGL
         /// </summary>
         /// <param name="item">要从 System.Collections.Generic.List&lt;T&gt; 中移除的对象。对于引用类型，该值可以为 null。</param>
         /// <returns>如果成功移除 item，则为 true；否则为 false。如果在 System.Collections.Generic.List&lt;T&gt; 中没有找到item，该方法也会返回 false。</returns>
-        public bool Remove(SceneNodeBase item)
-        {
+        public bool Remove(SceneNodeBase item) {
             bool result = this.list.Remove(item);
-            if (result)
-            {
+            if (result) {
                 item.parent = null;
             }
 
@@ -175,13 +153,11 @@ namespace CSharpGL
         /// 返回循环访问 System.Collections.Generic.List&lt;T&gt; 的枚举数。
         /// </summary>
         /// <returns>用于 System.Collections.Generic.List&lt;T&gt; 的 System.Collections.Generic.List&lt;T&gt;.Enumerator。</returns>
-        public IEnumerator<SceneNodeBase> GetEnumerator()
-        {
+        public IEnumerator<SceneNodeBase> GetEnumerator() {
             return this.list.GetEnumerator();
         }
 
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
-        {
+        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() {
             return this.GetEnumerator();
         }
 
@@ -189,8 +165,7 @@ namespace CSharpGL
         ///
         /// </summary>
         /// <returns></returns>
-        public override string ToString()
-        {
+        public override string ToString() {
             return string.Format("Count: {0}", this.list.Count);
         }
     }

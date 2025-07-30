@@ -5,15 +5,13 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 
-namespace CSharpGL
-{
+namespace CSharpGL {
     //[ComVisible(true)]
     /// <summary>
     /// 表示在二维平面中定义点的浮点 x 和 y 坐标的有序对。
     /// </summary>
     [Serializable]
-    public struct GUIPointF
-    {
+    public struct GUIPointF {
         /// <summary>
         /// 表示 CSharpGL.GUIPointF 类的、成员数据未被初始化的新实例。
         /// </summary>
@@ -28,10 +26,8 @@ namespace CSharpGL
         /// 如果 CSharpGL.GUIPointF.X 和 CSharpGL.GUIPointF.Y 均为 0，该值为 true；否则为 false。
         /// </summary>
         [Browsable(false)]
-        public bool IsEmpty
-        {
-            get
-            {
+        public bool IsEmpty {
+            get {
                 return this.x == 0f && this.y == 0f;
             }
         }
@@ -39,14 +35,11 @@ namespace CSharpGL
         /// <summary>
         /// 获取或设置此 CSharpGL.GUIPointF 的 x 坐标。
         /// </summary>
-        public float X
-        {
-            get
-            {
+        public float X {
+            get {
                 return this.x;
             }
-            set
-            {
+            set {
                 this.x = value;
             }
         }
@@ -54,14 +47,11 @@ namespace CSharpGL
         /// <summary>
         /// 获取或设置此 CSharpGL.GUIPointF 的 y 坐标。
         /// </summary>
-        public float Y
-        {
-            get
-            {
+        public float Y {
+            get {
                 return this.y;
             }
-            set
-            {
+            set {
                 this.y = value;
             }
         }
@@ -71,8 +61,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="x">该点的水平位置。</param>
         /// <param name="y">该点的垂直位置。</param>
-        public GUIPointF(float x, float y)
-        {
+        public GUIPointF(float x, float y) {
             this.x = x;
             this.y = y;
         }
@@ -83,8 +72,7 @@ namespace CSharpGL
         /// <param name="pt">要平移的 CSharpGL.GUIPointF。</param>
         /// <param name="sz">CSharpGL.GUISize，它指定要添加到 pt 的坐标的数字对。</param>
         /// <returns>返回经过平移的 CSharpGL.GUIPointF。</returns>
-        public static GUIPointF operator +(GUIPointF pt, GUISize sz)
-        {
+        public static GUIPointF operator +(GUIPointF pt, GUISize sz) {
             return GUIPointF.Add(pt, sz);
         }
 
@@ -94,8 +82,7 @@ namespace CSharpGL
         /// <param name="pt">要比较的 CSharpGL.GUIPointF。</param>
         /// <param name="sz">要比较的 CSharpGL.GUIPointF。</param>
         /// <returns>平移后的 CSharpGL.GUIPointF。</returns>
-        public static GUIPointF operator -(GUIPointF pt, GUISize sz)
-        {
+        public static GUIPointF operator -(GUIPointF pt, GUISize sz) {
             return GUIPointF.Subtract(pt, sz);
         }
 
@@ -105,8 +92,7 @@ namespace CSharpGL
         /// <param name="pt">要平移的 CSharpGL.GUIPointF。</param>
         /// <param name="sz">CSharpGL.GUISizeF，它指定要增加到 CSharpGL.GUIPointF 的 x 坐标和 y 坐标的数。</param>
         /// <returns>平移后的 CSharpGL.GUIPointF。</returns>
-        public static GUIPointF operator +(GUIPointF pt, GUISizeF sz)
-        {
+        public static GUIPointF operator +(GUIPointF pt, GUISizeF sz) {
             return GUIPointF.Add(pt, sz);
         }
 
@@ -116,8 +102,7 @@ namespace CSharpGL
         /// <param name="pt">要平移的 CSharpGL.GUIPointF。</param>
         /// <param name="sz">CSharpGL.GUISizeF，它指定要从 pt 的坐标中减去的数。</param>
         /// <returns>平移后的 CSharpGL.GUIPointF。</returns>
-        public static GUIPointF operator -(GUIPointF pt, GUISizeF sz)
-        {
+        public static GUIPointF operator -(GUIPointF pt, GUISizeF sz) {
             return GUIPointF.Subtract(pt, sz);
         }
 
@@ -127,8 +112,7 @@ namespace CSharpGL
         /// <param name="left">要比较的 CSharpGL.GUIPointF。</param>
         /// <param name="right">要比较的 CSharpGL.GUIPointF。</param>
         /// <returns>如果左边和右边的 CSharpGL.GUIPointF 结构的 CSharpGL.GUIPointF.X 和 CSharpGL.GUIPointF.Y 值相等，为 true；否则为 false。</returns>
-        public static bool operator ==(GUIPointF left, GUIPointF right)
-        {
+        public static bool operator ==(GUIPointF left, GUIPointF right) {
             return left.X == right.X && left.Y == right.Y;
         }
 
@@ -138,8 +122,7 @@ namespace CSharpGL
         /// <param name="left">要比较的 CSharpGL.GUIPointF。</param>
         /// <param name="right">要比较的 CSharpGL.GUIPointF。</param>
         /// <returns>要指示 left 和 right 的 CSharpGL.GUIPointF.X 和 CSharpGL.GUIPointF.Y 值不等，为 true；否则为 false。</returns>
-        public static bool operator !=(GUIPointF left, GUIPointF right)
-        {
+        public static bool operator !=(GUIPointF left, GUIPointF right) {
             return !(left == right);
         }
 
@@ -149,8 +132,7 @@ namespace CSharpGL
         /// <param name="pt">要平移的 CSharpGL.GUIPointF。</param>
         /// <param name="sz">CSharpGL.GUISize，它指定要增加到 pt 的坐标的数。</param>
         /// <returns>平移后的 CSharpGL.GUIPointF。</returns>
-        public static GUIPointF Add(GUIPointF pt, GUISize sz)
-        {
+        public static GUIPointF Add(GUIPointF pt, GUISize sz) {
             return new GUIPointF(pt.X + (float)sz.Width, pt.Y + (float)sz.Height);
         }
 
@@ -160,8 +142,7 @@ namespace CSharpGL
         /// <param name="pt">要平移的 CSharpGL.GUIPointF。</param>
         /// <param name="sz">CSharpGL.GUISize，它指定要从 pt 的坐标中减去的数。</param>
         /// <returns>平移后的 CSharpGL.GUIPointF。</returns>
-        public static GUIPointF Subtract(GUIPointF pt, GUISize sz)
-        {
+        public static GUIPointF Subtract(GUIPointF pt, GUISize sz) {
             return new GUIPointF(pt.X - (float)sz.Width, pt.Y - (float)sz.Height);
         }
 
@@ -171,8 +152,7 @@ namespace CSharpGL
         /// <param name="pt">要平移的 CSharpGL.GUIPointF。</param>
         /// <param name="sz">CSharpGL.GUISizeF，它指定要增加到 pt 的坐标的数。</param>
         /// <returns>平移后的 CSharpGL.GUIPointF。</returns>
-        public static GUIPointF Add(GUIPointF pt, GUISizeF sz)
-        {
+        public static GUIPointF Add(GUIPointF pt, GUISizeF sz) {
             return new GUIPointF(pt.X + sz.Width, pt.Y + sz.Height);
         }
 
@@ -182,8 +162,7 @@ namespace CSharpGL
         /// <param name="pt">要平移的 CSharpGL.GUIPointF。</param>
         /// <param name="sz">CSharpGL.GUISizeF，它指定要从 pt 的坐标中减去的数。</param>
         /// <returns>平移后的 CSharpGL.GUIPointF。</returns>
-        public static GUIPointF Subtract(GUIPointF pt, GUISizeF sz)
-        {
+        public static GUIPointF Subtract(GUIPointF pt, GUISizeF sz) {
             return new GUIPointF(pt.X - sz.Width, pt.Y - sz.Height);
         }
 
@@ -192,10 +171,8 @@ namespace CSharpGL
         /// </summary>
         /// <param name="obj">要测试的 System.Object。</param>
         /// <returns>如果 obj 是一个 CSharpGL.GUIPointF，并且具有与此 CSharpGL.GUIPoint 相同的坐标，则此方法将返回 true。</returns>
-        public override bool Equals(object obj)
-        {
-            if (!(obj is GUIPointF))
-            {
+        public override bool Equals(object? obj) {
+            if (!(obj is GUIPointF)) {
                 return false;
             }
             GUIPointF pointF = (GUIPointF)obj;
@@ -206,8 +183,7 @@ namespace CSharpGL
         /// 返回此 CSharpGL.GUIPointF 结构的哈希代码。
         /// </summary>
         /// <returns></returns>
-        public override int GetHashCode()
-        {
+        public override int GetHashCode() {
             return base.GetHashCode();
         }
 
@@ -215,13 +191,12 @@ namespace CSharpGL
         /// 将此 CSharpGL.GUIPointF 转换为可读字符串。
         /// </summary>
         /// <returns></returns>
-        public override string ToString()
-        {
+        public override string ToString() {
             return string.Format(CultureInfo.CurrentCulture, "{{X={0}, Y={1}}}", new object[]
-			{
-				this.x,
-				this.y
-			});
+            {
+                this.x,
+                this.y
+            });
         }
     }
 }

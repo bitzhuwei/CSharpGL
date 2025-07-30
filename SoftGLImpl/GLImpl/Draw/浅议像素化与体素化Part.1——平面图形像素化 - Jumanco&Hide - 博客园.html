@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="referrer" content="origin-when-cross-origin" />
+    <meta name="keywords" content="像素化算法 DDA Bresenham SuperCover" />
+    <meta name="description" content="什么是像素化 学计算机的人往往都比较清楚图形和图像的区别，而且往往能够从数据结构的角度理解这两者的区别，一般来说，图形是由几何空间中的基本图元所组成，表现为用外部轮廓线条勾勒成的矢量图。例如由计算机绘制的直线、圆、矩形、曲线、图表等。而图像是由扫描仪、摄像机等输入设备捕捉实际的画面产生的数字图像，是" />
+    <meta property="og:description" content="什么是像素化 学计算机的人往往都比较清楚图形和图像的区别，而且往往能够从数据结构的角度理解这两者的区别，一般来说，图形是由几何空间中的基本图元所组成，表现为用外部轮廓线条勾勒成的矢量图。例如由计算机绘制的直线、圆、矩形、曲线、图表等。而图像是由扫描仪、摄像机等输入设备捕捉实际的画面产生的数字图像，是" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>浅议像素化与体素化Part.1——平面图形像素化 - Jumanco&amp;Hide - 博客园</title>
+    <link rel="icon" id="favicon" href="https://assets.cnblogs.com/favicon_v3_2.ico" type="image/x-icon" />
+    <link rel="canonical" href="https://www.cnblogs.com/chnhideyoshi/p/Voxelize1.html" />
+    
+    <link rel="stylesheet" href="/css/blog-common.min.css?v=gA7iLq8Mj3m7ZjzMQNuntD1CJ0_mwA02FEkHgn1Lrq0" />
+    
+
+    <link id="MainCss" rel="stylesheet" href="/skins/cogitation/bundle-cogitation.min.css?v=vXgiBV7rfqJIBrseDCZQrdUYOe4t7ReaKw6XrQJKhks" />
+        <link id="highlighter-theme-cnblogs" type="text/css" rel="stylesheet" href="/css/hljs/cnblogs.css?v=5J1NDtbnnIr2Rc2SdhEMlMxD4l9Eydj88B31E7_NhS4" />
+    
+    
+    <link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="/skins/cogitation/bundle-cogitation-mobile.min.css?v=vkE-LXaPiX_Pn3bw97LFiriSpcy6kdQ7SR8JPQXiS0I" />
+    
+    <link type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/chnhideyoshi/rss" />
+    <link type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/chnhideyoshi/rsd.xml" />
+    <link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/chnhideyoshi/wlwmanifest.xml" />
+    
+    <script type="application/ld&#x2B;json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "@id": "https://www.cnblogs.com/chnhideyoshi/p/Voxelize1.html",
+      "headline": "浅议像素化与体素化Part.1——平面图形像素化",
+      "description": "什么是像素化 学计算机的人往往都比较清楚图形和图像的区别，而且往往能够从数据结构的角度理解这两者的区别，一般来说，图形是由几何空间中的基本图元所组成，表现为用外部轮廓线条勾勒成的矢量图。例如由计算机绘制的直线、圆、矩形、曲线、图表等。而图像是由扫描仪、摄像机等输入设备捕捉实际的画面产生的数字图像，是",
+      "image": [
+        
+      ],
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.cnblogs.com/chnhideyoshi/",
+        "name": "Jumanco&amp;Hide",
+        "url": "https://www.cnblogs.com/chnhideyoshi/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "@id": "https://www.cnblogs.com/",
+        "name": "博客园",
+        "url": "https://www.cnblogs.com/"
+      },
+      "datePublished": "2014-01-22T13:03:00.0000000&#x2B;08:00",
+      "dateModified": "2019-08-30T17:40:00.0000000&#x2B;08:00",
+      "wordCount": "38519",
+      "isPartOf": {
+        "@type": "Blog",
+        "@id": "https://www.cnblogs.com/chnhideyoshi/",
+        "name": "chnhideyoshi",
+        "publisher": {
+          "@type": "Organization",
+          "@id": "https://www.cnblogs.com/",
+          "name": "博客园"
+        }
+      }
+    }
+    </script>
+
+    <script>
+        var currentBlogId = 155357;
+        var currentBlogApp = 'chnhideyoshi';
+        var isLogined = true;
+        var isBlogOwner = false;
+        var skinName = 'Cogitation';
+        var visitorUserId = '87d3407a-6b68-e111-aa3f-842b2b196315';
+        var hasCustomScript = false;
+        window.cb_enable_mathjax = true;
+        window.mathEngine = 0;
+        window.codeHighlightEngine = 1;
+        window.enableCodeLineNumber = false;
+        window.codeHighlightTheme = 'cnblogs';
+        window.darkModeCodeHighlightTheme = 'vs2015';
+        window.isDarkCodeHighlightTheme = false;
+        window.isDarkModeCodeHighlightThemeDark = true;
+        window.isDisableCodeHighlighter = false;
+        window.enableCodeThemeTypeFollowSystem = false;
+        window.enableMacStyleCodeBlock = false;
+    </script>
+        <script>
+            window.currentPostId = 3529543;
+            window.currentPostDateAdded = '2014-01-22 13:03';
+        </script>
+    <script src="https://assets.cnblogs.com/scripts/jquery-3.3.1.min.js"></script>
+    <script src="https://cdn-www.cnblogs.com/js/blog-common.min.js?v=PuVcbMJHC5Mgi-tn5Y3_8uL2xj60paE0SRkK2ZQWbPc"></script>
+    
+</head>
+<body class="skin-cogitation has-navbar mathjax2">
+    <a name="top"></a>
+        <div id="imagebar" class="imagebar-mobile imagebar-text-mobile formobile">
+                <a href="https://www.doubao.com?channel=cnblogs&amp;source=hw_db_cnblogs&amp;type=lunt&amp;theme=bianc" onclick="countCreativeClicks('M2-字节-豆包')" rel="nofollow">
+                    <img src="https://img2024.cnblogs.com/blog/35695/202506/35695-20250620221146444-645204917.webp" alt="" onload="countCreativeImpressionsOnMobile('M2-字节-豆包')" />
+                    <span id="m2_impression" style="display:none"></span>
+                </a>
+        </div>
+    <div id="top_nav" class="navbar forpc">
+        <nav id="nav_main" class="navbar-main">
+            <ul id="nav_left" class="navbar-list navbar-left">
+                <li class="navbar-branding">                    
+                    <a href="https://www.cnblogs.com/" title="开发者的网上家园" role="banner">
+                        <img src="//assets.cnblogs.com/logo.svg" alt="博客园logo" />
+                    </a>
+                </li>               
+                <li><a href="https://cnblogs.vip/">会员</a></li>
+                <li><a href="https://cnblogs.vip/store">周边</a></li>
+                <li><a href="https://www.cnblogs.com/cmt/p/18500368">众包</a></li>
+                <li><a href="https://news.cnblogs.com/" onclick="countClicks('nav', 'skin-navbar-news')">新闻</a></li>
+                <li><a href="https://q.cnblogs.com/" onclick="countClicks('nav', 'skin-navbar-q')">博问</a></li>
+                <li><a href="https://ing.cnblogs.com/" onclick="countClicks('nav', 'skin-navbar-ing')">闪存</a></li>
+                <li><a href="https://www.cnblogs.com/cmt/p/18341478">赞助商</a></li>
+                <li><a href="https://chat2db-ai.com/" target="_blank" onclick="countClicks('nav', 'skin-navbar-chat2db')">Chat2DB</a></li>
+            </ul>
+            <ul id="nav_right" class="navbar-list navbar-right">
+                <li>
+                    <form id="zzk_search" class="navbar-search dropdown" action="https://zzk.cnblogs.com/s" method="get" role="search">
+                        <input name="w" id="zzk_search_input" placeholder="代码改变世界" type="search" tabindex="3" autocomplete="off" />
+                        <button id="zzk_search_button" onclick="window.navbarSearchManager.triggerActiveOption()">
+                            <img id="search_icon" class="focus-hidden" src="//assets.cnblogs.com/icons/search.svg" alt="搜索" />
+                            <img class="hidden focus-visible" src="//assets.cnblogs.com/icons/enter.svg" alt="搜索" />
+                        </button>
+                        <ul id="navbar_search_options" class="dropdown-menu quick-search-menu">
+                            <li tabindex="0" class="active" onclick="zzkSearch(event, document.getElementById('zzk_search_input').value)">
+                                <div class="keyword-wrapper">
+                                    <img src="//assets.cnblogs.com/icons/search.svg" alt="搜索" />
+                                    <div class="keyword"></div>
+                                </div>
+                                <span class="search-area">所有博客</span>
+                            </li>
+                                    <li tabindex="1" onclick="zzkBlogSearch(event, 'chnhideyoshi', document.getElementById('zzk_search_input').value)">
+                                        <div class="keyword-wrapper">
+                                            <img src="//assets.cnblogs.com/icons/search.svg" alt="搜索" />
+                                            <div class="keyword"></div>
+                                        </div>
+                                        <span class="search-area">当前博客</span>
+                                    </li>
+                                    <li tabindex="2" onclick="zzkBlogSearch(event, 'bitzhuwei', document.getElementById('zzk_search_input').value)">
+                                        <div class="keyword-wrapper">
+                                            <img src="//assets.cnblogs.com/icons/search.svg" alt="搜索" />
+                                            <div class="keyword"></div>
+                                        </div>
+                                        <span class="search-area">我的博客</span>
+                                    </li>
+                        </ul>
+                    </form>
+                </li>
+                <li id="navbar_login_status" class="navbar-list">
+                    <a class="navbar-user-info navbar-blog" href="https://i.cnblogs.com/EditPosts.aspx?opt=1" alt="写随笔" title="写随笔">
+                        <img id="new_post_icon" class="navbar-icon" src="//assets.cnblogs.com/icons/newpost.svg" alt="写随笔" />
+                    </a>
+                    <a id="navblog-myblog-icon" class="navbar-user-info navbar-blog" href="https://passport.cnblogs.com/GetBlogApplyStatus.aspx" alt="我的博客" title="我的博客">
+                        <img id="myblog_icon" class="navbar-icon" src="//assets.cnblogs.com/icons/myblog.svg" alt="我的博客" />
+                    </a>
+                    <a class="navbar-user-info navbar-message navbar-icon-wrapper" href="https://msg.cnblogs.com/" alt="短消息" title="短消息">
+                        <img id="msg_icon" class="navbar-icon" src="//assets.cnblogs.com/icons/message.svg" alt="短消息" />
+                        <span id="msg_count" style="display: none"></span>
+                    </a>
+                    <a id="navbar_lite_mode_indicator" data-current-page="blog" style="display: none" href="javascript:void(0)" alt="简洁模式" title="简洁模式启用，您在访问他人博客时会使用简洁款皮肤展示">
+                        <img class="navbar-icon" src="//assets.cnblogs.com/icons/lite-mode-on.svg" alt="简洁模式" />
+                    </a>
+                    <div id="user_info" class="navbar-user-info dropdown">
+                        <a class="dropdown-button" href="https://home.cnblogs.com/">
+                            <img id="user_icon" class="navbar-avatar" src="//assets.cnblogs.com/icons/avatar-default.svg" alt="用户头像" />
+                        </a>
+                        <div class="dropdown-menu">
+                            <a id="navblog-myblog-text" href="https://passport.cnblogs.com/GetBlogApplyStatus.aspx">我的博客</a>
+                            <a href="https://home.cnblogs.com/">我的园子</a>
+                            <a href="https://account.cnblogs.com/settings/account">账号设置</a>
+                            <a href="https://vip.cnblogs.com/my">会员中心</a>
+                            <a href="javascript:void(0)" id="navbar_lite_mode_toggle" title="简洁模式会使用简洁款皮肤显示所有博客">
+    简洁模式 <span id="navbar_lite_mode_spinner" class="hide">...</span>
+</a>
+
+                            <a href="javascript:void(0)" onclick="account.logout();">退出登录</a>
+                        </div>
+                    </div>
+                    <a class="navbar-anonymous" href="https://account.cnblogs.com/signup">注册</a>
+                    <a class="navbar-anonymous" href="javascript:void(0);" onclick="account.login()">登录</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    
+
+    <div id="top">
+	
+<div>
+	<table>
+		<tr>
+			<td class="HeaderTitles">
+				<h1 class="HeaderTitle"><a id="Header1_HeaderTitle" class="headermaintitle HeaderMainTitle" href="https://www.cnblogs.com/chnhideyoshi">chnhideyoshi</a>
+</h1>
+				<p id="tagline">Focus On Algorithm Implementation On Geometry Processing & Scientific Visulization & Image Processing</p>
+			</td>
+		</tr>
+	</table>
+</div>
+<div class="HeaderBar">
+	<table id="HeaderBar" class="HeaderBar" cellpadding="0" cellspacing="0">
+		<tr>
+			<td class="HeaderBarTab" nowrap>
+&nbsp;
+
+ ::
+
+
+ ::
+<a href="http://q.cnblogs.com" class="menu">博问</a> ::
+<a href="http://home.cnblogs.com/ing/" class="menu">闪存</a> ::
+
+
+
+ ::
+
+ ::
+
+
+
+ ::
+
+<a id="blog_nav_admin" class="menu" href="https://i.cnblogs.com/">
+管理</a>
+ ::
+
+
+</td>
+			<td><img id="Header1_BlueTab" src="/skins/cogitation/images/BlueTabRight.gif" align="absmiddle" alt="" /></td>
+			<td class="HeaderBarTabBack" nowrap width="100%">
+				<div id="blog_stats_place_holder"><script>loadBlogStats();</script></div>
+			</td>
+		</tr>
+	</table>
+</div>
+
+
+</div>
+<div id="leftmenu">	
+
+	    <div id="blog-calendar" style="display:none"></div><script>loadBlogDefaultCalendar();</script>
+		
+<div id="sidebar_c3"></div>
+		<div id="blog-sidecolumn"></div>
+                    <script>loadBlogSideColumn();</script>
+	
+</div>
+<div id="main">
+	<div id="post_detail">
+<div class="post">
+	<div class="postTitle">
+		<a id="cb_post_title_url" class="postTitle2 vertical-middle" href="https://www.cnblogs.com/chnhideyoshi/p/Voxelize1.html" title="发布于 2014-01-22 13:03">
+    <span role="heading" aria-level="2">浅议像素化与体素化Part.1——平面图形像素化</span>
+    
+
+</a>
+
+	</div>
+	
+	<div class="postText">
+		    <div id="cnblogs_post_description" style="display: none">
+        
+        <img class="desc_img" style="width: 120px; height: 120px" src="http://images.cnblogs.com/cnblogs_com/chnhideyoshi/549616/o_QQ%E5%9B%BE%E7%89%8720140122120616.jpg">学计算机的人往往都比较清楚图形和图像的区别，而且往往能够从数据结构的角度理解这两者的区别，一般来说，图形是由几何空间中的基本图元所组成，表现为用外部轮廓线条勾勒成的矢量图。例如由计算机绘制的直线、圆、矩形、曲线、图表等。而图像是由扫描仪、摄像机等输入设备捕捉实际的画面产生的数字图像，是由像素点阵构成的位图。例如在二维几何空间中，同样是为了表述一个四边形，从图形的角度去看，需要提供四个顶点的坐标作为基本图元，然后提供一个画线的指令，将四个顶点按顺序提供出来。而从图像的角度看，一个四边形需要映射为一个特定分辨率位图上的像素集合。
+    </div>
+<div id="cnblogs_post_body" class="blogpost-body blogpost-body-html">
+<p class="p0"><strong><span style="font-family: arial, helvetica, sans-serif">什么是像素化</span></strong></p>
+<p class="p0"><span style="font-family: arial, helvetica, sans-serif"> 　　学计算机的人往往都比较清楚图形和图像的区别，而且往往能够从数据结构的角度理解这两者的区别，一般来说，图形是由几何空间中的基本图元所组成，表现为用外部轮廓线条勾勒成的矢量图。例如由计算机绘制的直线、圆、矩形、曲线、图表等。而图像是由扫描仪、摄像机等输入设备捕捉实际的画面产生的数字图像，是由像素点阵构成的位图。例如在二维几何空间中，同样是为了表述一个四边形，从图形的角度去看，需要提供四个顶点的坐标作为基本图元，然后提供一个画线的指令，将四个顶点按顺序提供出来。而从图像的角度看，一个四边形需要映射为一个特定分辨率位图上的像素集合。例如一张大小为9*9的位图上，四边形的边所在的像素集被涂为与背景不用的颜色，用以表述这个形状。</span></p>
+<p class="p0"><span style="font-family: arial, helvetica, sans-serif"><img style="display: block; margin-left: auto; margin-right: auto" src="https://images.cnblogs.com/cnblogs_com/chnhideyoshi/549616/o_QQ%e5%9b%be%e7%89%8720140122120616.jpg" alt="" width="234" height="230"></span></p>
+<p class="p0"><span style="font-family: arial, helvetica, sans-serif"> 　　像素化、以及体素化的过程是图形转变为图像的一个过程，在一些场合被称作离散化(discretization)，而其逆向过程，即由图像生成图形的过程可以被称作轮廓生成(2D)或者表面生成(3D)。在之前的博客介绍了几种从三维图像生成表面的算法，它们就属于从图像到图形的表面生成算法范畴。而这篇文章主要介绍一下二维空间像素化的方法，同时为引申到三维空间做准备。下表显示了这几种概念和相应算法之间的关系：</span></p>
+<table style="height: 71px; width: 602px" border="0" align="center">
+<tbody>
+<tr>
+<td style="text-align: center">&nbsp;</td>
+<td style="text-align: center"><strong>图像到图形</strong></td>
+<td style="text-align: center"><strong>图形<strong>到</strong>图像</strong></td>
+</tr>
+<tr>
+<td style="text-align: center"><strong>二维</strong></td>
+<td style="text-align: center"><span>轮廓生成：</span><span>MarchingSquares算法</span><span>等</span></td>
+<td style="text-align: center"><span>像素化</span><span>算法</span></td>
+</tr>
+<tr>
+<td style="text-align: center"><strong>三维</strong></td>
+<td style="text-align: center"><span>表面生成：</span><span>Marchingcubes</span><span>算法</span><span>,Cuberille</span><span>算法</span><span>等</span></td>
+<td style="text-align: center"><span>体素化</span><span>算法</span></td>
+</tr>
+</tbody>
+</table>
+<p class="p0"><span style="font-family: arial, helvetica, sans-serif"> 　　而下面的图片也形象的说明了图像与图形的区别，同样的箭头，在不同的表示下是不同的形式。事实上计算机内部无时无刻不在进行这样的转换，通常人们大脑中习惯按几何方式去理解图形，但用屏幕显示他们时，计算机需要将其转为像素点阵的模式。</span></p>
+<table border="0" align="center">
+<tbody>
+<tr>
+<td style="text-align: center"><img src="https://images.cnblogs.com/cnblogs_com/chnhideyoshi/549616/o_1.png" alt="" width="261" height="216"></td>
+<td style="text-align: center"><img src="https://images.cnblogs.com/cnblogs_com/chnhideyoshi/549616/o_2.png" alt="" width="253" height="227"></td>
+<td style="text-align: center"><img src="https://images.cnblogs.com/cnblogs_com/chnhideyoshi/549616/o_3.png" alt="" width="258" height="230"></td>
+</tr>
+<tr>
+<td style="text-align: center">图形</td>
+<td style="text-align: center">图形映射图像的像素</td>
+<td style="text-align: center">生成图像</td>
+</tr>
+</tbody>
+</table>
+<p class="p0">&nbsp;</p>
+<p class="p0"><strong><span style="font-family: arial, helvetica, sans-serif">基本图元的像素化—线段的像素化</span></strong></p>
+<p class="p0"><span style="font-family: arial, helvetica, sans-serif"> 　　任意二维形状像素化的基础是基本图元的像素化，二维空间的基本图元就是点和线段。不难知道，对任意几何点P（X,Y）的像素化即是在给定分辨率下寻找到P的对应像素点，像素点也可以理解为二维空间中的格子，P落在哪个格子上，该格子即是P对应的像素。P（345.6，233.1）在512*512的位图上，可以将像素(346,223)作为P的近似来表示P。</span><span style="font-family: arial, helvetica, sans-serif">关键的算法是线段的像素化，有一定计算机图形学或者图像处理基础的人应该都听说过DrawLine算法，这个算法就是一种线段像素化的手段。在Windows画图中画过下图的这种细线段的人应该知道这样的像素化的线段。</span></p>
+<p class="p0"><span style="font-family: arial, helvetica, sans-serif"><img style="display: block; margin-left: auto; margin-right: auto" src="https://images.cnblogs.com/cnblogs_com/chnhideyoshi/549616/o_QQ%e6%88%aa%e5%9b%be20140120230806.png" alt="" width="320" height="195"></span></p>
+<p class="p0"><span style="font-family: arial, helvetica, sans-serif"> 　　这种线段又被称作Bresenham线，是线段像素化的一种，可以用来渲染线段，事实上，还有一种SuperCover线，同样能够用来表征线段像素化的结果，不过其跟Bresenham线有所不同，细节从下图对比中可以看出，若画线段AB，Bresenham线只要求从A到B有着8向联通关系最细像素组合；而SuperCover线要求像素组合是AB所穿过的所有像素。不难看出，SuperCover线的像素集包含Bresenham线的像素集。</span></p>
+<table border="0" align="center">
+<tbody>
+<tr>
+<td style="text-align: center"><img src="https://images.cnblogs.com/cnblogs_com/chnhideyoshi/549616/o_B.png" alt="" width="259" height="239"></td>
+<td style="text-align: center"><img src="https://images.cnblogs.com/cnblogs_com/chnhideyoshi/549616/o_QQ%e5%9b%be%e7%89%8720140122121406.jpg" alt="" width="228" height="231"></td>
+<td><img style="display: block; margin-left: auto; margin-right: auto" src="https://images.cnblogs.com/cnblogs_com/chnhideyoshi/549616/o_diff.png" alt="" width="275" height="275"></td>
+</tr>
+<tr>
+<td style="text-align: center">Bresenham线</td>
+<td style="text-align: center">SuperCover线</td>
+<td style="text-align: center">同一张图对比,引自<span>Eugen&nbsp;Dedu，ThisAlg指的就是SuperCover</span></td>
+</tr>
+</tbody>
+</table>
+<p class="p0"><span style="font-family: arial, helvetica, sans-serif"> 　　下面提供两种画Bresenham线的方法，一种是使用简单的DDA算法，一种是使用Bresenham算法。为此特意声明一个ByteMatrix类型用来表示8位图结构，对外提供获取像素值和设置像素值的接口，所有的像素化算法都在此结构上进行，每一个位图结构初始化为0，涂色操作是将其修改为255。其代码如下：</span></p>
+<div class="cnblogs_code">
+<pre><span style="color: rgba(0, 0, 255, 1)">class</span><span style="color: rgba(0, 0, 0, 1)"> ByteMatrix
+{
+</span><span style="color: rgba(0, 0, 255, 1)">public</span><span style="color: rgba(0, 0, 0, 1)">:
+    </span><span style="color: rgba(0, 0, 255, 1)">int</span><span style="color: rgba(0, 0, 0, 1)"> width;
+    </span><span style="color: rgba(0, 0, 255, 1)">int</span><span style="color: rgba(0, 0, 0, 1)"> height;
+    ByteMatrix(</span><span style="color: rgba(0, 0, 255, 1)">int</span> width,<span style="color: rgba(0, 0, 255, 1)">int</span> height,<span style="color: rgba(0, 0, 255, 1)">byte</span><span style="color: rgba(0, 0, 0, 1)"> value)
+    {
+        </span><span style="color: rgba(0, 0, 255, 1)">this</span>-&gt;width=<span style="color: rgba(0, 0, 0, 1)">width;
+        </span><span style="color: rgba(0, 0, 255, 1)">this</span>-&gt;height=<span style="color: rgba(0, 0, 0, 1)">height;
+        </span><span style="color: rgba(0, 0, 255, 1)">this</span>-&gt;data=<span style="color: rgba(0, 0, 255, 1)">new</span> <span style="color: rgba(0, 0, 255, 1)">byte</span>[width*<span style="color: rgba(0, 0, 0, 1)">height];
+        memset(data,</span><span style="color: rgba(128, 0, 128, 1)">0</span>,width*<span style="color: rgba(0, 0, 0, 1)">height);
+    }
+    </span>~<span style="color: rgba(0, 0, 0, 1)">ByteMatrix()
+    {
+        delete[] data;
+    }
+    inline </span><span style="color: rgba(0, 0, 255, 1)">void</span> SetValue(<span style="color: rgba(0, 0, 255, 1)">int</span> x,<span style="color: rgba(0, 0, 255, 1)">int</span> y, <span style="color: rgba(0, 0, 255, 1)">byte</span><span style="color: rgba(0, 0, 0, 1)"> v)
+    {
+        data[x</span>+width*y]=<span style="color: rgba(0, 0, 0, 1)">v;
+    }
+    inline </span><span style="color: rgba(0, 0, 255, 1)">byte</span> GetValue(<span style="color: rgba(0, 0, 255, 1)">int</span> x,<span style="color: rgba(0, 0, 255, 1)">int</span><span style="color: rgba(0, 0, 0, 1)"> y)
+    {
+        </span><span style="color: rgba(0, 0, 255, 1)">return</span> data[x+width*<span style="color: rgba(0, 0, 0, 1)">y];
+    }
+    </span><span style="color: rgba(0, 0, 255, 1)">void</span> SaveRaw(<span style="color: rgba(0, 0, 255, 1)">const</span> <span style="color: rgba(0, 0, 255, 1)">char</span>*<span style="color: rgba(0, 0, 0, 1)"> fileName)
+    {
+            FILE </span>*<span style="color: rgba(0, 0, 255, 1)">const</span> nfile = fopen(fileName,<span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(128, 0, 0, 1)">wb</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(0, 0, 0, 1)">);
+            fwrite(data,</span><span style="color: rgba(0, 0, 255, 1)">sizeof</span>(unsigned <span style="color: rgba(0, 0, 255, 1)">char</span>),width*<span style="color: rgba(0, 0, 0, 1)">height,nfile);
+            fclose(nfile);
+            </span><span style="color: rgba(0, 0, 255, 1)">return</span><span style="color: rgba(0, 0, 0, 1)">;
+    }
+</span><span style="color: rgba(0, 0, 255, 1)">private</span><span style="color: rgba(0, 0, 0, 1)">:
+    </span><span style="color: rgba(0, 0, 255, 1)">byte</span>*<span style="color: rgba(0, 0, 0, 1)"> data;
+};</span></pre>
+</div>
+<p class="p0">&nbsp;</p>
+<p class="p0"><strong><span style="font-family: arial, helvetica, sans-serif">算法1—DDA法</span></strong></p>
+<p class="p0"><span style="font-family: arial, helvetica, sans-serif"> 　　DDA法利用了Bresenham线的一个性质，即在线拥有最长投影的那个轴上，选择任意整数点作为自变量，Bresenham线上拥有其唯一对应的像素点。</span></p>
+<table border="0" align="center">
+<tbody>
+<tr>
+<td style="text-align: center"><img src="https://images.cnblogs.com/cnblogs_com/chnhideyoshi/549616/o_QQ%e6%88%aa%e5%9b%be20140121113842.png" alt="" width="284" height="273"></td>
+</tr>
+<tr>
+<td style="text-align: center">在横轴方向上每个X有唯一方块对应，而Y方向上不唯一</td>
+</tr>
+</tbody>
+</table>
+<p class="p0"><span style="font-family: arial, helvetica, sans-serif"> 　　这样DDA算法可以采用这样的思路实现：对从A(X0,Y0)到B(X1,Y1)的线段，寻找投影最长的一个轴，然后从此轴上的最小值开始，依次使用直线方程计算出Y的位置，然后将离此位置最近的像素涂色。代码如下所示（其中Trunc函数是四舍五入函数，实现方式是+0.5取整）：</span></p>
+<div class="cnblogs_code">
+<pre><span style="color: rgba(0, 0, 255, 1)">static</span> <span style="color: rgba(0, 0, 255, 1)">void</span> DrawLine_DDA(ByteMatrix&amp;<span style="color: rgba(0, 0, 0, 1)"> bmp,Point2d p0,Point2d p1)
+{
+    </span><span style="color: rgba(0, 0, 255, 1)">int</span> dx=p1.X-<span style="color: rgba(0, 0, 0, 1)">p0.X;
+    </span><span style="color: rgba(0, 0, 255, 1)">int</span> dy=p1.Y-<span style="color: rgba(0, 0, 0, 1)">p0.Y;
+    </span><span style="color: rgba(0, 0, 255, 1)">if</span>(abs(dx)&gt;<span style="color: rgba(0, 0, 0, 1)">abs(dy))
+    {
+        </span><span style="color: rgba(0, 0, 255, 1)">if</span>(p0.X&gt;<span style="color: rgba(0, 0, 0, 1)">p1.X)
+        {
+            Point2d temp</span>=<span style="color: rgba(0, 0, 0, 1)">p1;
+            p1</span>=<span style="color: rgba(0, 0, 0, 1)">p0;
+            p0</span>=<span style="color: rgba(0, 0, 0, 1)">temp;
+        }
+        </span><span style="color: rgba(0, 0, 255, 1)">for</span>(<span style="color: rgba(0, 0, 255, 1)">int</span> i=p0.X;i&lt;=p1.X;i++<span style="color: rgba(0, 0, 0, 1)">)
+        {
+            </span><span style="color: rgba(0, 0, 255, 1)">float</span> y=dy*(i-p0.X)/dx+<span style="color: rgba(0, 0, 0, 1)">p0.Y;
+            bmp.SetValue(i,Trunc(y),</span><span style="color: rgba(128, 0, 128, 1)">255</span><span style="color: rgba(0, 0, 0, 1)">);
+        }
+    }
+    </span><span style="color: rgba(0, 0, 255, 1)">else</span><span style="color: rgba(0, 0, 0, 1)">
+    {
+        </span><span style="color: rgba(0, 0, 255, 1)">if</span>(p0.Y&gt;<span style="color: rgba(0, 0, 0, 1)">p1.Y)
+        {
+            Point2d temp</span>=<span style="color: rgba(0, 0, 0, 1)">p1;
+            p1</span>=<span style="color: rgba(0, 0, 0, 1)">p0;
+            p0</span>=<span style="color: rgba(0, 0, 0, 1)">temp;
+        }
+        </span><span style="color: rgba(0, 0, 255, 1)">for</span>(<span style="color: rgba(0, 0, 255, 1)">int</span> i=p0.Y;i&lt;=p1.Y;i++<span style="color: rgba(0, 0, 0, 1)">)
+        {
+            </span><span style="color: rgba(0, 0, 255, 1)">float</span> x=dx*(i-p0.Y)/dy+<span style="color: rgba(0, 0, 0, 1)">p0.X;
+            bmp.SetValue(Trunc(x),i,</span><span style="color: rgba(128, 0, 128, 1)">255</span><span style="color: rgba(0, 0, 0, 1)">);
+        }
+    }
+}</span></pre>
+</div>
+<p><strong style="line-height: 1.5"><span style="font-family: arial, helvetica, sans-serif">算法2—Bresenham算法</span></strong></p>
+<p class="p0"><span style="font-family: arial, helvetica, sans-serif"> 　　Bresenham算法是DDA算法画线算法的一种改进算法。本质上它也是采取了步进的思想。不过它比DDA算法作了优化，避免了步进时浮点数运算，同时为选取符合直线方程的点提供了一个好思路。首先通过直线的斜率确定了在x方向进行单位步进还是y方向进行单位步进：当斜率k的绝对值|k|&lt;1时，在x方向进行单位步进；当斜率k的绝对值|k|&gt;1时，在y方向进行单位步进。http://blog.csdn.net/clever101/article/details/6076841详细介绍了这一算法，网上也能找到特别多关于这个算法的实现和思路讲解，所以这里就不多重复。这里贴上一份代码：</span></p>
+<div class="cnblogs_code">
+<pre><span style="color: rgba(0, 0, 255, 1)">static</span> <span style="color: rgba(0, 0, 255, 1)">void</span> DrawLine_Bresenham(ByteMatrix&amp;<span style="color: rgba(0, 0, 0, 1)"> bmp,Point2d p0,Point2d p1)
+{
+    </span><span style="color: rgba(0, 0, 255, 1)">int</span> y1=<span style="color: rgba(0, 0, 0, 1)">p0.Y;
+    </span><span style="color: rgba(0, 0, 255, 1)">int</span> x1=<span style="color: rgba(0, 0, 0, 1)">p0.X;
+    </span><span style="color: rgba(0, 0, 255, 1)">int</span> y2=<span style="color: rgba(0, 0, 0, 1)">p1.Y;
+    </span><span style="color: rgba(0, 0, 255, 1)">int</span> x2=<span style="color: rgba(0, 0, 0, 1)">p1.X;</span>
+    <span style="color: rgba(0, 0, 255, 1)">const</span> <span style="color: rgba(0, 0, 255, 1)">bool</span> steep = (abs(y2 - y1) &gt; abs(x2 -<span style="color: rgba(0, 0, 0, 1)"> x1));
+    </span><span style="color: rgba(0, 0, 255, 1)">if</span><span style="color: rgba(0, 0, 0, 1)">(steep)
+    {
+        std::swap(x1, y1);
+        std::swap(x2, y2);
+    }
+    </span><span style="color: rgba(0, 0, 255, 1)">if</span>(x1 &gt;<span style="color: rgba(0, 0, 0, 1)"> x2)
+    {
+        std::swap(x1, x2);
+        std::swap(y1, y2);
+    }
+    </span><span style="color: rgba(0, 0, 255, 1)">const</span> <span style="color: rgba(0, 0, 255, 1)">float</span> dx = x2 -<span style="color: rgba(0, 0, 0, 1)"> x1;
+    </span><span style="color: rgba(0, 0, 255, 1)">const</span> <span style="color: rgba(0, 0, 255, 1)">float</span> dy = abs(y2 -<span style="color: rgba(0, 0, 0, 1)"> y1);
+    </span><span style="color: rgba(0, 0, 255, 1)">float</span> error = dx / <span style="color: rgba(128, 0, 128, 1)">2.0f</span><span style="color: rgba(0, 0, 0, 1)">;
+    </span><span style="color: rgba(0, 0, 255, 1)">const</span> <span style="color: rgba(0, 0, 255, 1)">int</span> ystep = (y1 &lt; y2) ? <span style="color: rgba(128, 0, 128, 1)">1</span> : -<span style="color: rgba(128, 0, 128, 1)">1</span><span style="color: rgba(0, 0, 0, 1)">;
+    </span><span style="color: rgba(0, 0, 255, 1)">int</span> y = (<span style="color: rgba(0, 0, 255, 1)">int</span><span style="color: rgba(0, 0, 0, 1)">)y1;
+    </span><span style="color: rgba(0, 0, 255, 1)">const</span> <span style="color: rgba(0, 0, 255, 1)">int</span> maxX = (<span style="color: rgba(0, 0, 255, 1)">int</span><span style="color: rgba(0, 0, 0, 1)">)x2;
+    </span><span style="color: rgba(0, 0, 255, 1)">for</span>(<span style="color: rgba(0, 0, 255, 1)">int</span> x=(<span style="color: rgba(0, 0, 255, 1)">int</span>)x1; x&lt;maxX; x++<span style="color: rgba(0, 0, 0, 1)">)
+    {
+        </span><span style="color: rgba(0, 0, 255, 1)">if</span><span style="color: rgba(0, 0, 0, 1)">(steep)
+        {
+            bmp.SetValue(y,x, </span><span style="color: rgba(128, 0, 128, 1)">255</span><span style="color: rgba(0, 0, 0, 1)">);
+        }
+        </span><span style="color: rgba(0, 0, 255, 1)">else</span><span style="color: rgba(0, 0, 0, 1)">
+        {
+            bmp.SetValue(x,y, </span><span style="color: rgba(128, 0, 128, 1)">255</span><span style="color: rgba(0, 0, 0, 1)">);
+        }
+
+        error </span>-=<span style="color: rgba(0, 0, 0, 1)"> dy;
+        </span><span style="color: rgba(0, 0, 255, 1)">if</span>(error &lt; <span style="color: rgba(128, 0, 128, 1)">0</span><span style="color: rgba(0, 0, 0, 1)">)
+        {
+            y </span>+=<span style="color: rgba(0, 0, 0, 1)"> ystep;
+            error </span>+=<span style="color: rgba(0, 0, 0, 1)"> dx;
+        }
+    }
+}</span></pre>
+</div>
+<p class="p0"><span style="font-family: arial, helvetica, sans-serif"> 　　关于画SuperCover线的方法，网上的资料就不如Bresenham线多了，毕竟这条线比起Bresenham线，画的像素更多，因此在渲染线段上面不如Bresenham线简单高效。但SuperCover线也有不少其他方面的用途，所以这里也简单的叙述一下实现SuperCover线画法的算法。</span></p>
+<p class="p0"><strong><span style="font-family: arial, helvetica, sans-serif">算法3—像素求交法</span></strong></p>
+<p class="p0"><span style="font-family: arial, helvetica, sans-serif"> 　　根据SuperCover线的定义，该线的所有像素都必须被线段穿过。若将像素想象成方块的形状，位图想象成网格图，线段与这些网格相交，不难分析出交点要么是在平行与X的格线上，要么是在平行Y的格线上。假如线段AB的X范围为X0~X1，Y范围是Y0~Y1，那所有在X0~X1范围的所有垂直X轴的格线都能与线段AB有交点，同理Y0~Y1范围的所有垂直于Y轴的格线也有交点，而且不难知道，AB在哪个轴投影更长，则垂直于哪个轴的格线与AB的交点则更多。因此一个简单的画SuperCover线的思路是：先找出投影长的那一维，不妨假设是X轴投影更长，则求出X0-~X1所有垂直X轴格线与AB的交点，例如下图所示的交点：</span></p>
+<p class="p0"><span style="font-family: arial, helvetica, sans-serif"><img style="display: block; margin-left: auto; margin-right: auto" src="https://images.cnblogs.com/cnblogs_com/chnhideyoshi/549616/o_QQ%e6%88%aa%e5%9b%be20140121143620.png" alt="" width="299" height="211"></span></p>
+<p class="p0"><span style="font-family: arial, helvetica, sans-serif"> 　　每一个交点都能对应找到两个和它相邻的像素(绿色标注)。这样，每一个交点都找出两个关联像素并涂色后，就实现了SuperCover线的绘制。实现的代码如下：</span></p>
+<div class="cnblogs_code">
+<pre><span style="color: rgba(0, 0, 255, 1)">static</span> <span style="color: rgba(0, 0, 255, 1)">void</span> DrawSuperCoverLine_Simple(ByteMatrix&amp;<span style="color: rgba(0, 0, 0, 1)"> bmp,Point2d p0,Point2d p1)
+{
+    </span><span style="color: rgba(0, 0, 255, 1)">int</span> dx=p1.X-<span style="color: rgba(0, 0, 0, 1)">p0.X;
+    </span><span style="color: rgba(0, 0, 255, 1)">int</span> dy=p1.Y-<span style="color: rgba(0, 0, 0, 1)">p0.Y;
+    </span><span style="color: rgba(0, 0, 255, 1)">if</span>(abs(dx)&gt;<span style="color: rgba(0, 0, 0, 1)">abs(dy))
+    {
+        </span><span style="color: rgba(0, 0, 255, 1)">if</span>(p0.X&gt;<span style="color: rgba(0, 0, 0, 1)">p1.X)
+        {
+            Point2d temp</span>=<span style="color: rgba(0, 0, 0, 1)">p1;
+            p1</span>=<span style="color: rgba(0, 0, 0, 1)">p0;
+            p0</span>=<span style="color: rgba(0, 0, 0, 1)">temp;
+        }
+        </span><span style="color: rgba(0, 0, 255, 1)">for</span>(<span style="color: rgba(0, 0, 255, 1)">float</span> i=p0.X+<span style="color: rgba(128, 0, 128, 1)">0.5f</span>;i&lt;=p1.X;i+=<span style="color: rgba(128, 0, 128, 1)">1.0f</span><span style="color: rgba(0, 0, 0, 1)">)
+        {
+            </span><span style="color: rgba(0, 0, 255, 1)">float</span> y=dy*(i-p0.X)/dx+<span style="color: rgba(0, 0, 0, 1)">p0.Y;
+            bmp.SetValue((</span><span style="color: rgba(0, 0, 255, 1)">int</span>)(i-<span style="color: rgba(128, 0, 128, 1)">0.5f</span>),Trunc(y),<span style="color: rgba(128, 0, 128, 1)">255</span><span style="color: rgba(0, 0, 0, 1)">);
+            bmp.SetValue((</span><span style="color: rgba(0, 0, 255, 1)">int</span>)(i+<span style="color: rgba(128, 0, 128, 1)">0.5f</span>),Trunc(y),<span style="color: rgba(128, 0, 128, 1)">255</span><span style="color: rgba(0, 0, 0, 1)">);
+        }
+    }
+    </span><span style="color: rgba(0, 0, 255, 1)">else</span><span style="color: rgba(0, 0, 0, 1)">
+    {
+        </span><span style="color: rgba(0, 0, 255, 1)">if</span>(p0.Y&gt;<span style="color: rgba(0, 0, 0, 1)">p1.Y)
+        {
+            Point2d temp</span>=<span style="color: rgba(0, 0, 0, 1)">p1;
+            p1</span>=<span style="color: rgba(0, 0, 0, 1)">p0;
+            p0</span>=<span style="color: rgba(0, 0, 0, 1)">temp;
+        }
+        </span><span style="color: rgba(0, 0, 255, 1)">for</span>(<span style="color: rgba(0, 0, 255, 1)">float</span> i=p0.Y+<span style="color: rgba(128, 0, 128, 1)">0.5f</span>;i&lt;=p1.Y;i+=<span style="color: rgba(128, 0, 128, 1)">1.0f</span><span style="color: rgba(0, 0, 0, 1)">)
+        {
+            </span><span style="color: rgba(0, 0, 255, 1)">float</span> x=dx*(i-p0.Y)/dy+<span style="color: rgba(0, 0, 0, 1)">p0.X;
+            bmp.SetValue(Trunc(x),(</span><span style="color: rgba(0, 0, 255, 1)">int</span>)(i-<span style="color: rgba(128, 0, 128, 1)">0.5f</span>),<span style="color: rgba(128, 0, 128, 1)">255</span><span style="color: rgba(0, 0, 0, 1)">);
+            bmp.SetValue(Trunc(x),(</span><span style="color: rgba(0, 0, 255, 1)">int</span>)(i+<span style="color: rgba(128, 0, 128, 1)">0.5f</span>),<span style="color: rgba(128, 0, 128, 1)">255</span><span style="color: rgba(0, 0, 0, 1)">);
+        }
+    }
+}</span></pre>
+</div>
+<p class="p0"><strong><span style="font-family: arial, helvetica, sans-serif">算法4—基于Bresenham的改进方法</span></strong></p>
+<p class="p0"><span style="font-family: arial, helvetica, sans-serif"> 　　上面那个算法其实是作者自己想的直接了当的算法，自然比不上专业的高效的算法。Eugen&nbsp;Dedu在他的网页上谈到了一种通过修改Bresenham算法的代码来实现画SuperCover线的算法。在网页http://lifc.univ-fcomte.fr/~dedu/projects/bresenham/index.html上他详细的提出了自己的思路，这个思路简单的说就是：Bresenham算法不是一步一步的从A到B涂色吗？那么在每一次涂色时注意一下是往那个像素涂色的，Y方向有没有变化，如果有，就计算一下这个线是偏向那个方向，顺便把那个方向的角落也给填上。例如下图所示的：Bresenham算法若从A画到B，一般来说不会正好经过AB交点的那个像素，根据直线的斜率应该是会向上或下有个偏移，那么根据这个偏移，把D或者C填上即可。详情可以看他链接里的内容，说的比较详细，这里就不重复了。顺便把他的代码贴这：</span></p>
+<div class="cnblogs_code">
+<pre><span style="color: rgba(0, 0, 255, 1)">static</span> <span style="color: rgba(0, 0, 255, 1)">void</span> DrawSuperCoverLine_Bresenham(ByteMatrix&amp;<span style="color: rgba(0, 0, 0, 1)"> bmp,Point2d p0,Point2d p1)
+{
+    </span><span style="color: rgba(0, 0, 255, 1)">int</span> y1=<span style="color: rgba(0, 0, 0, 1)">p0.Y;
+    </span><span style="color: rgba(0, 0, 255, 1)">int</span> x1=<span style="color: rgba(0, 0, 0, 1)">p0.X;
+    </span><span style="color: rgba(0, 0, 255, 1)">int</span> y2=<span style="color: rgba(0, 0, 0, 1)">p1.Y;
+    </span><span style="color: rgba(0, 0, 255, 1)">int</span> x2=<span style="color: rgba(0, 0, 0, 1)">p1.X;
+    </span><span style="color: rgba(0, 0, 255, 1)">int</span> i;               <span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)"> loop counter </span>
+    <span style="color: rgba(0, 0, 255, 1)">int</span> ystep, xstep;    <span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)"> the step on y and x axis </span>
+    <span style="color: rgba(0, 0, 255, 1)">int</span> error;           <span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)"> the error accumulated during the increment </span>
+    <span style="color: rgba(0, 0, 255, 1)">int</span> errorprev;       <span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)"> *vision the previous value of the error variable </span>
+    <span style="color: rgba(0, 0, 255, 1)">int</span> y = y1, x = x1;  <span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)"> the line points </span>
+    <span style="color: rgba(0, 0, 255, 1)">int</span> ddy, ddx;        <span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)"> compulsory variables: the double values of dy and dx </span>
+    <span style="color: rgba(0, 0, 255, 1)">int</span> dx = x2 -<span style="color: rgba(0, 0, 0, 1)"> x1; 
+    </span><span style="color: rgba(0, 0, 255, 1)">int</span> dy = y2 -<span style="color: rgba(0, 0, 0, 1)"> y1; 
+    bmp.SetValue(x1, y1,</span><span style="color: rgba(128, 0, 128, 1)">255</span>);  <span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)"> first point 
+    </span><span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)"> NB the last point can't be here, because of its previous point (which has to be verified) </span>
+    <span style="color: rgba(0, 0, 255, 1)">if</span> (dy &lt; <span style="color: rgba(128, 0, 128, 1)">0</span><span style="color: rgba(0, 0, 0, 1)">){ 
+        ystep </span>= -<span style="color: rgba(128, 0, 128, 1)">1</span><span style="color: rgba(0, 0, 0, 1)">; 
+        dy </span>= -<span style="color: rgba(0, 0, 0, 1)">dy; 
+    }</span><span style="color: rgba(0, 0, 255, 1)">else</span><span style="color: rgba(0, 0, 0, 1)"> 
+        ystep </span>= <span style="color: rgba(128, 0, 128, 1)">1</span><span style="color: rgba(0, 0, 0, 1)">; 
+    </span><span style="color: rgba(0, 0, 255, 1)">if</span> (dx &lt; <span style="color: rgba(128, 0, 128, 1)">0</span><span style="color: rgba(0, 0, 0, 1)">){ 
+        xstep </span>= -<span style="color: rgba(128, 0, 128, 1)">1</span><span style="color: rgba(0, 0, 0, 1)">; 
+        dx </span>= -<span style="color: rgba(0, 0, 0, 1)">dx; 
+    }</span><span style="color: rgba(0, 0, 255, 1)">else</span><span style="color: rgba(0, 0, 0, 1)"> 
+        xstep </span>= <span style="color: rgba(128, 0, 128, 1)">1</span><span style="color: rgba(0, 0, 0, 1)">; 
+    ddy </span>= <span style="color: rgba(128, 0, 128, 1)">2</span> * dy;  <span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)"> work with double values for full precision </span>
+    ddx = <span style="color: rgba(128, 0, 128, 1)">2</span> *<span style="color: rgba(0, 0, 0, 1)"> dx; 
+    </span><span style="color: rgba(0, 0, 255, 1)">if</span> (ddx &gt;= ddy){  <span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)"> first octant (0 &lt;= slope &lt;= 1) 
+        </span><span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)"> compulsory initialization (even for errorprev, needed when dx==dy) </span>
+        errorprev = error = dx;  <span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)"> start in the middle of the square </span>
+        <span style="color: rgba(0, 0, 255, 1)">for</span> (i=<span style="color: rgba(128, 0, 128, 1)">0</span> ; i &lt; dx ; i++){  <span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)"> do not use the first point (already done) </span>
+            x +=<span style="color: rgba(0, 0, 0, 1)"> xstep; 
+            error </span>+=<span style="color: rgba(0, 0, 0, 1)"> ddy; 
+            </span><span style="color: rgba(0, 0, 255, 1)">if</span> (error &gt; ddx){  <span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)"> increment y if AFTER the middle ( &gt; ) </span>
+                y +=<span style="color: rgba(0, 0, 0, 1)"> ystep; 
+                error </span>-=<span style="color: rgba(0, 0, 0, 1)"> ddx; 
+                </span><span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)"> three cases (octant == right-&gt;right-top for directions below): </span>
+                <span style="color: rgba(0, 0, 255, 1)">if</span> (error + errorprev &lt; ddx)  <span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)"> bottom square also </span>
+                    bmp.SetValue(x,y-ystep,<span style="color: rgba(128, 0, 128, 1)">255</span><span style="color: rgba(0, 0, 0, 1)">); 
+                </span><span style="color: rgba(0, 0, 255, 1)">else</span> <span style="color: rgba(0, 0, 255, 1)">if</span> (error + errorprev &gt; ddx)  <span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)"> left square also </span>
+                    bmp.SetValue(x-xstep,y ,<span style="color: rgba(128, 0, 128, 1)">255</span><span style="color: rgba(0, 0, 0, 1)">); 
+                </span><span style="color: rgba(0, 0, 255, 1)">else</span>{  <span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)"> corner: bottom and left squares also </span>
+                    bmp.SetValue(x,y-ystep,<span style="color: rgba(128, 0, 128, 1)">255</span><span style="color: rgba(0, 0, 0, 1)">); 
+                    bmp.SetValue(x</span>-xstep,y,<span style="color: rgba(128, 0, 128, 1)">255</span><span style="color: rgba(0, 0, 0, 1)">); 
+                } 
+            } 
+            bmp.SetValue(x,y,</span><span style="color: rgba(128, 0, 128, 1)">255</span><span style="color: rgba(0, 0, 0, 1)">); 
+            errorprev </span>=<span style="color: rgba(0, 0, 0, 1)"> error; 
+        } 
+    }</span><span style="color: rgba(0, 0, 255, 1)">else</span>{  <span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)"> the same as above </span>
+        errorprev = error =<span style="color: rgba(0, 0, 0, 1)"> dy; 
+        </span><span style="color: rgba(0, 0, 255, 1)">for</span> (i=<span style="color: rgba(128, 0, 128, 1)">0</span> ; i &lt; dy ; i++<span style="color: rgba(0, 0, 0, 1)">){ 
+            y </span>+=<span style="color: rgba(0, 0, 0, 1)"> ystep; 
+            error </span>+=<span style="color: rgba(0, 0, 0, 1)"> ddx; 
+            </span><span style="color: rgba(0, 0, 255, 1)">if</span> (error &gt;<span style="color: rgba(0, 0, 0, 1)"> ddy){ 
+                x </span>+=<span style="color: rgba(0, 0, 0, 1)"> xstep; 
+                error </span>-=<span style="color: rgba(0, 0, 0, 1)"> ddy; 
+                </span><span style="color: rgba(0, 0, 255, 1)">if</span> (error + errorprev &lt;<span style="color: rgba(0, 0, 0, 1)"> ddy) 
+                    bmp.SetValue(x</span>-xstep,y,<span style="color: rgba(128, 0, 128, 1)">255</span><span style="color: rgba(0, 0, 0, 1)">); 
+                </span><span style="color: rgba(0, 0, 255, 1)">else</span> <span style="color: rgba(0, 0, 255, 1)">if</span> (error + errorprev &gt;<span style="color: rgba(0, 0, 0, 1)"> ddy) 
+                    bmp.SetValue(x,y</span>-ystep,<span style="color: rgba(128, 0, 128, 1)">255</span><span style="color: rgba(0, 0, 0, 1)">); 
+                </span><span style="color: rgba(0, 0, 255, 1)">else</span><span style="color: rgba(0, 0, 0, 1)">{ 
+                    bmp.SetValue( x</span>-xstep,y,<span style="color: rgba(128, 0, 128, 1)">255</span><span style="color: rgba(0, 0, 0, 1)">); 
+                    bmp.SetValue( x,y</span>-ystep,<span style="color: rgba(128, 0, 128, 1)">255</span><span style="color: rgba(0, 0, 0, 1)">); 
+                } 
+            } 
+            bmp.SetValue( x,y,</span><span style="color: rgba(128, 0, 128, 1)">255</span><span style="color: rgba(0, 0, 0, 1)">); 
+            errorprev </span>=<span style="color: rgba(0, 0, 0, 1)"> error; 
+        } 
+    } 
+    </span><span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)"> assert ((y == y2) &amp;&amp; (x == x2));  </span><span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)"> the last point (y2,x2) has to be the same with the last point of the algorithm </span>
+}</pre>
+</div>
+<p class="p0"><span style="font-family: arial, helvetica, sans-serif"> 　　我没有真比过哪个代码更高效，理论上应该是后者，因为后者与Bresenham算法一样只使用了Integer&nbsp;Arithmetic。</span></p>
+<p class="p0"><span style="font-family: arial, helvetica, sans-serif">&nbsp;</span></p>
+<p class="p0"><strong><span style="font-family: arial, helvetica, sans-serif">基本图元的像素化—三角形像素化</span></strong></p>
+<p class="p0"><span style="font-family: arial, helvetica, sans-serif"> 　　三角形的像素化其实有两种思路去实现，一种是基于像素点的位置，一种是基于直线像素化。</span></p>
+<p class="p0"><strong><span style="font-family: arial, helvetica, sans-serif">算法5—基于像素位置判断的三角形像素化</span></strong></p>
+<p class="p0"><span style="font-family: arial, helvetica, sans-serif"> 　　首先我们有比较经典的Point&nbsp;in&nbsp;Triangle算法，StackOverFlow上有各种对“How&nbsp;to&nbsp;determine&nbsp;a&nbsp;point&nbsp;is&nbsp;in&nbsp;a&nbsp;triangle”这样问题的回答，被引用的比较多的是下面这一段代码：</span></p>
+<div class="cnblogs_code">
+<pre><span style="color: rgba(0, 0, 255, 1)">static</span> <span style="color: rgba(0, 0, 255, 1)">float</span><span style="color: rgba(0, 0, 0, 1)"> sign(Point2d p1, Point2d p2, Point2d p3)
+{
+    </span><span style="color: rgba(0, 0, 255, 1)">return</span> (<span style="color: rgba(0, 0, 255, 1)">float</span>)((p1.X - p3.X) * (p2.Y - p3.Y) - (p2.X- p3.X) * (p1.Y -<span style="color: rgba(0, 0, 0, 1)"> p3.Y));
+}
+</span><span style="color: rgba(0, 0, 255, 1)">static</span> <span style="color: rgba(0, 0, 255, 1)">bool</span><span style="color: rgba(0, 0, 0, 1)"> PointInTriangle(Point2d pt, Point2d v1, Point2d v2, Point2d v3)
+{
+    </span><span style="color: rgba(0, 0, 255, 1)">bool</span><span style="color: rgba(0, 0, 0, 1)"> b1, b2, b3;
+
+    b1 </span>= sign(pt, v1, v2) &lt; <span style="color: rgba(128, 0, 128, 1)">0.0f</span><span style="color: rgba(0, 0, 0, 1)">;
+    b2 </span>= sign(pt, v2, v3) &lt; <span style="color: rgba(128, 0, 128, 1)">0.0f</span><span style="color: rgba(0, 0, 0, 1)">;
+    b3 </span>= sign(pt, v3, v1) &lt; <span style="color: rgba(128, 0, 128, 1)">0.0f</span><span style="color: rgba(0, 0, 0, 1)">;
+
+    </span><span style="color: rgba(0, 0, 255, 1)">return</span> ((b1 == b2) &amp;&amp; (b2 ==<span style="color: rgba(0, 0, 0, 1)"> b3));
+}</span></pre>
+</div>
+<p class="p0"><span style="font-family: arial, helvetica, sans-serif"> 　　上面的代码使用了向量叉积和向量夹角的的一些几何知识，核心思想是判断点对三角形三条边的三个张角是不是至少有两个钝角。假如有了这个函数，那么一个简单粗暴的三角形像素化的方法是，对三角形ABC的BOX范围的所有像素点，进行一次PointInTriangle的判断，在三角形内则涂色。不过此法过于粗暴，因而效率不高，不建议使用。</span></p>
+<p class="p0"><strong><span style="font-family: arial, helvetica, sans-serif">算法6—基于直线像素化的三角形像素化</span></strong></p>
+<p class="p0"><span style="font-family: arial, helvetica, sans-serif"> 　　还有一种做法略显奇葩，不过在这里介绍一下，之后的三维体素化会用到这个方法，这个方法可以被称作“连线法”。其大致思路是：先用Bresenham法连接ABC中任意一边，假如是BC，连的时候顺便记录下涂上的所有像素。之后使用画SuperCover线算法来依次连接A与这些像素。</span></p>
+<p class="p0"><span style="font-family: arial, helvetica, sans-serif"><img style="display: block; margin-left: auto; margin-right: auto" src="https://images.cnblogs.com/cnblogs_com/chnhideyoshi/549616/o_QQ%e6%88%aa%e5%9b%be20140121113428.png" alt="" width="180" height="200"></span></p>
+<p class="p0"><span style="font-family: arial, helvetica, sans-serif"> 　　这个方法为什么不会漏填像素，可以简单的用反证法证明一下：例如下图中，假设漏填了像素P，则根据SuperCover线的定义，不可能有任何连线是经过P的，则连线至多相对P处于图中那两个射线的状态，由于像素方块的大小都是一样的，则必然出现比P更远位置的A像素，其也没有被任何线穿过。而上述算法中需要依次连接BC上所有的像素点与A，这样不可能出现A像素，因而矛盾，故这算法是逻辑正确的。</span></p>
+<p class="p0"><span style="font-family: arial, helvetica, sans-serif"><img style="display: block; margin-left: auto; margin-right: auto" src="https://images.cnblogs.com/cnblogs_com/chnhideyoshi/549616/o_QQ%e6%88%aa%e5%9b%be20140121113529.png" alt="" width="150" height="217"></span></p>
+<p class="p0">代码贴上来：</p>
+<div class="cnblogs_code">
+<pre><span style="color: rgba(0, 0, 255, 1)">static</span> <span style="color: rgba(0, 0, 255, 1)">void</span> FillTriangle_Alg_2(ByteMatrix&amp;<span style="color: rgba(0, 0, 0, 1)"> bmp,Point2d p0,Point2d p1,Point2d p2)
+{
+    std::vector</span>&lt;Point2d&gt;<span style="color: rgba(0, 0, 0, 1)"> plist;
+    Bresenham(bmp,p1,p2,plist);
+    </span><span style="color: rgba(0, 0, 255, 1)">for</span>(<span style="color: rgba(0, 0, 255, 1)">int</span> i=<span style="color: rgba(128, 0, 128, 1)">0</span>;i&lt;plist.size();i++<span style="color: rgba(0, 0, 0, 1)">)
+    {
+        SuperCover(bmp,plist[i],p0);
+    }
+}</span></pre>
+</div>
+<p class="p0"><strong><span style="font-family: arial, helvetica, sans-serif">算法7—基于直线像素化的三角形像素化思路2</span></strong></p>
+<p class="p0"><span style="font-family: arial, helvetica, sans-serif"> 　　个人认为其实在二维平面空间上最具效率的三角形像素化方法是这个方法，叫做填充法。其思路是先使用Super算法涂上三角形ABC的三条边。然后利用三角形的重心一定在三角形内这个性质，找到三角形重心所对应的像素P，然后以P为种子点执行漫水填充算法。有相关基础的人应该都清楚这个漫水填充算法，在之前的博文里也有详细的说明这算法的几种实现方式。以P为种子点执行8向漫水填充，遇到已经被填充的则会停止，这样使得内部的像素被涂上颜色，即完成三角形像素化。其实现代码如下：</span></p>
+<div class="cnblogs_code">
+<pre><span style="color: rgba(0, 0, 255, 1)">static</span> <span style="color: rgba(0, 0, 255, 1)">void</span> FillTriangle_Alg_3(ByteMatrix&amp;<span style="color: rgba(0, 0, 0, 1)"> bmp,Point2d p0,Point2d p1,Point2d p2)
+{
+    Box2d box;
+    box.UpdateRange(p0.X,p0.Y);
+    box.UpdateRange(p1.X,p1.Y);
+    box.UpdateRange(p2.X,p2.Y);
+    Point2d seed((box.XMin</span>+box.XMax)/<span style="color: rgba(128, 0, 128, 1)">2</span>,(box.YMin+box.YMax)/<span style="color: rgba(128, 0, 128, 1)">2</span><span style="color: rgba(0, 0, 0, 1)">);
+    SuperCover(bmp,p0,p1);
+    SuperCover(bmp,p0,p2);
+    SuperCover(bmp,p1,p2);
+    FloodFill(bmp,seed);
+}</span></pre>
+</div>
+<p class="p0">&nbsp;</p>
+<p class="p0"><strong><span style="font-family: arial, helvetica, sans-serif">测试数据展示</span></strong></p>
+<p class="p0"><span style="font-family: arial, helvetica, sans-serif"> 在30*30的ByteMatrix上测试画线算法的输出：</span></p>
+<table border="0" align="center">
+<tbody>
+<tr>
+<td style="text-align: center"><img src="https://images.cnblogs.com/cnblogs_com/chnhideyoshi/549616/o_dda.png" alt="" width="202" height="202"></td>
+<td style="text-align: center"><img src="https://images.cnblogs.com/cnblogs_com/chnhideyoshi/549616/o_Bresenham.png" alt="" width="203" height="203"></td>
+<td style="text-align: center"><img src="https://images.cnblogs.com/cnblogs_com/chnhideyoshi/549616/o_SC_SIM.png" alt="" width="208" height="208"></td>
+<td style="text-align: center"><img src="https://images.cnblogs.com/cnblogs_com/chnhideyoshi/549616/o_SC_BRE.png" alt="" width="208" height="208"></td>
+</tr>
+<tr>
+<td style="text-align: center">算法1-DDA</td>
+<td style="text-align: center">算法2-Bresenham</td>
+<td style="text-align: center">算法3-CrossPixels</td>
+<td style="text-align: center">算法4—Enhanced Bresenham</td>
+</tr>
+</tbody>
+</table>
+<p class="p0"><span style="font-family: arial, helvetica, sans-serif"> <span>在30*30的ByteMatrix上测试画三角形算法的输出：</span></span></p>
+<table border="0" align="center">
+<tbody>
+<tr>
+<td style="text-align: center"><img src="https://images.cnblogs.com/cnblogs_com/chnhideyoshi/549616/o_11.jpg" alt="" width="241" height="241"></td>
+<td style="text-align: center"><img src="https://images.cnblogs.com/cnblogs_com/chnhideyoshi/549616/o_2.jpg" alt="" width="243" height="243"></td>
+<td style="text-align: center"><img src="https://images.cnblogs.com/cnblogs_com/chnhideyoshi/549616/o_33.jpg" alt="" width="257" height="242"></td>
+</tr>
+<tr>
+<td style="text-align: center">算法5输出三角形</td>
+<td style="text-align: center">算法6输出三角形</td>
+<td style="text-align: center">算法7输出三角形</td>
+</tr>
+</tbody>
+</table>
+<p class="p0"><strong style="line-height: 1.5"><span style="font-family: arial, helvetica, sans-serif"><br>多边形像素化</span></strong></p>
+<p class="p0"><span style="font-family: arial, helvetica, sans-serif"> 　　综合了上面讲的算法，则不难想出像素化一般平面几何图形的方法，无非是下面两个思路：</span></p>
+<ul>
+<li class="p0"><span style="font-family: arial, helvetica, sans-serif">将多边形三角化，然后对所有三角形像素化。</span></li>
+<li class="p0"><span style="font-family: arial, helvetica, sans-serif">将多边形的边像素化，然后在多边形内部选择种子点进行漫水填充算法。</span></li>
+
+
+
+
+
+
+ 
+</ul>
+<p class="p0"><span style="font-family: arial, helvetica, sans-serif"> 　　任意多边形三角化的方法在关于轮廓线的博文中有提到这里就不重复贴了。第二种采取漫水填充法的思路中涉及到如何找到一个种子点的问题，因为任意多边形的重心不见得一定在图形内部，故漫水填充算法可以采用一种逆向思路，即先填充图形外部，再反色，即可以得到多边形的像素化。关于这部分，思路其实比较简单直接，就不贴代码了。算法1-7的相关完整工程代码下载链接：</span></p>
+<blockquote>
+<p class="p0"> 　　<a href="https://github.com/chnhideyoshi/SeededGrow2d/tree/master/DrawLine2d" rel="noopener nofollow">https://github.com/chnhideyoshi/SeededGrow2d/tree/master/DrawLine2d</a></p>
+
+
+
+
+
+
+</blockquote>
+<p class="p0"> 　　<span>爬网的太疯狂了，转载本文要注明出处啊：</span><a id="Editor_Edit_hlEntryLink" title="view: 三角网格上的寻路算法Part.1—Dijkstra算法" href="http://www.cnblogs.com/chnhideyoshi/p/Dijkstra.html" target="_blank">http://www.cnblogs.com/chnhideyoshi/</a></p>
+<p>&nbsp;</p>
+<p><audio controls="controls" style="display: none"></audio></p>
+</div>
+<div class="clear"></div>
+<div id="blog_post_info_block" role="contentinfo">
+    <div id="blog_post_info"></div>
+    <div class="clear"></div>
+    <div id="post_next_prev"></div>
+</div>
+	</div>
+	
+	<div class="postfoot">
+		posted on 
+<span id="post-date" data-last-update-days="2046.192361111111" data-date-updated="2019-08-30 17:40">2014-01-22 13:03</span>&nbsp;
+<a href="https://www.cnblogs.com/chnhideyoshi">Jumanco&amp;Hide</a>&nbsp;
+阅读(<span id="post_view_count">1299</span>)&nbsp;
+评论(<span id="post_comment_count">0</span>)&nbsp;
+&nbsp;
+<a href="javascript:void(0)" onclick="AddToWz(3529543);return false;">收藏</a>&nbsp;
+<a href="javascript:void(0)" onclick="reportManager.report({ currentUserId: '87d3407a-6b68-e111-aa3f-842b2b196315', targetType: 'blogPost', targetId: '3529543', targetLink: 'https://www.cnblogs.com/chnhideyoshi/p/Voxelize1.html', title: '浅议像素化与体素化Part.1——平面图形像素化' })">举报</a>
+
+	</div>
+</div>
+
+
+<script>
+    var cb_entryId = 3529543, cb_entryCreatedDate = '2014-01-22 13:03', cb_postType = 1, cb_postTitle = '浅议像素化与体素化Part.1——平面图形像素化';
+    var allowComments = false, cb_blogId = 155357, cb_blogApp = 'chnhideyoshi', cb_blogUserGuid = 'd098db6a-4bb0-df11-8eb9-001cf0cd104b';
+    mermaidRender.render()
+    markdown_highlight()
+    zoomManager.apply("#cnblogs_post_body img:not(.code_img_closed):not(.code_img_opened)");    
+</script>
+<a id="!comments"></a>
+<div id="blog-comments-placeholder"></div>
+<div id="comment_form" class="commentform">
+    <a name="commentform"></a>
+    <div id="divCommentShow"></div>
+    <div id="comment_nav">
+        <div class="comment-nav-right">
+            <span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="#" onclick="return RefreshPage();">刷新页面</a><a href="#top">返回顶部</a>
+        </div>
+    </div>
+    <div id="comment_form_container"></div>
+    <div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+        <div id="cnblogs_ch"></div>
+    <div id="opt_under_post"></div>
+        <div id="blog_c1" class="under-post-card">
+            <a href="https://www.trae.com.cn/?utm_source=advertising&amp;utm_medium=cnblogs_ug_cpa&amp;utm_term=hw_trae_cnblogs" rel="nofollow" target="_blank" onclick="countCreativeClicks('C1-字节-trae')">
+                <img src="https://img2024.cnblogs.com/blog/35695/202506/35695-20250620220945933-1739907729.webp" onload="countCreativeImpressions('C1-字节-trae')" alt="" style="width:300px!important;height:250px!important;min-width:300px!important;max-width:300px!important;" />
+                <span id="c1_impression" style="display:none"></span>
+            </a>
+        </div>
+    <div id="under_post_card1"></div>
+    <div id="under_post_card2"></div>
+    <div id="HistoryToday" class="under-post-card"></div>
+    <script type="text/javascript">
+        var commentManager = new blogCommentManager();
+        commentManager.renderComments(0);
+        fixPostBody();
+        window.footnoteTipManager.generateFootnoteTips();
+
+                                window.tocManager.displayDisableTocTips = false;
+                                window.tocManager.generateToc();
+            
+                                    setTimeout(function() { countViews(cb_blogId, cb_entryId); }, 50);
+            
+                                deliverT2();
+                                deliverC1C2();
+                                loadNewsAndKb();
+            
+                                    LoadPostCategoriesTags(cb_blogId, cb_entryId);
+            
+                                LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+                                GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+                                loadOptUnderPost();
+                                GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);
+                </script>
+</div>
+
+</div>
+
+
+</div>
+<div class="footer">
+<p id="footer">
+    <a href="https://www.cnblogs.com/" id="footer_site_link" class="footer-brand">博客园</a><span class="footer-copyright"> &nbsp;&copy;&nbsp; 2004-2025</span>
+<br /><span class="footer-icp">
+    <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33010602011771"><img src="//assets.cnblogs.com/images/ghs.png" />浙公网安备 33010602011771号</a>
+    <a href="https://beian.miit.gov.cn" target="_blank">浙ICP备2021040463号-3</a>
+</span>
+
+</p>
+
+
+</div>
+
+
+
+    
+
+    <input type="hidden" id="antiforgery_token" value="CfDJ8Ct_7-Gh-gZNte6RB_khjDqL4fIRscLXti5Lc74MkGoG8ueb46N_SnPCKG8DWbAKrf8eP7OVkcRvS1-D6WlUiIiWfMSJSOYWGxjtZNTDY3GsKBmIVTCBsB3qA7DOCMrSk7Fn701_TS486vT1Cl3H2yB0C8ehwHgfiXiY9Bh9XdSTLORROD9NAhGDssYK5zMyyg" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-M95P3TTWJZ"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-M95P3TTWJZ');
+</script>
+<script defer src="https://hm.baidu.com/hm.js?866c9be12d4a814454792b1fd0fed295"></script>
+</body>
+</html>

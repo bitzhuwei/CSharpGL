@@ -5,23 +5,19 @@ using System.Drawing.Design;
 using System.Linq;
 using System.Text;
 
-namespace CSharpGL
-{
+namespace CSharpGL {
     /// <summary>
     /// 
     /// </summary>
-    public static partial class TransformFeedbackObjectHelper
-    {
+    public static partial class TransformFeedbackObjectHelper {
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="transformFeedbackObj"></param>
         /// <param name="unit"></param>
-        public static void Draw(this TransformFeedbackObject transformFeedbackObj, RenderMethod unit)
-        {
-            if (transformFeedbackObj == null || unit == null)
-            {
+        public static void Draw(this TransformFeedbackObject transformFeedbackObj, RenderMethod unit) {
+            if (transformFeedbackObj == null || unit == null) {
                 throw new ArgumentNullException();
             }
 

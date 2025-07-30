@@ -1,0 +1,27 @@
+using System;
+using bitzhuwei.Compiler;
+
+namespace bitzhuwei.PreDirectiveFormat {
+    partial class CompilerPreDirective {
+
+#if noTableDFA
+        /// <summary>
+        /// lexicalState5
+        /// <para>CompilerPreDirective.Lexical●[1 NFA States]</para>
+        /// </summary>
+        private static readonly Action<LexicalContext, char, CurrentStateWrap> lexicalState5 =
+        static (context, c, wrap) => {
+            if (false) { /* for simpler code generation purpose. */ }
+            /* deal with everything else. */
+            else {
+                AcceptToken(st.@Question符, context);
+                wrap.currentState = lexicalState0;
+            }
+
+
+        };
+#endif
+
+    }
+}
+

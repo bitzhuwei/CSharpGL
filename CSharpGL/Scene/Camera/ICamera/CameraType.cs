@@ -1,10 +1,8 @@
-﻿namespace CSharpGL
-{
+﻿namespace CSharpGL {
     /// <summary>
     /// 摄像机透视类型
     /// </summary>
-    public enum CameraType
-    {
+    public enum CameraType {
         /// <summary>
         /// 透视
         /// </summary>

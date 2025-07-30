@@ -1,7 +1,5 @@
-﻿namespace CSharpGL
-{
-    internal abstract class DrawArraysLineSearcher
-    {
+﻿namespace CSharpGL {
+    internal abstract class DrawArraysLineSearcher {
         /// <summary>
         ///
         /// </summary>

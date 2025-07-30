@@ -1,22 +1,19 @@
 ﻿using System.ComponentModel;
 
-namespace CSharpGL
-{
+namespace CSharpGL {
     /// <summary>
     /// specify pixel arithmetic for RGB and alpha components separately.
     /// </summary>
-    public class BlendSwitch : EnableSwitch
-    {
-        private static readonly GLDelegates.void_uint glBlendEquation;
-        private static readonly GLDelegates.void_uint_uint glBlendEquationSeparate;
-        private static readonly GLDelegates.void_uint_uint_uint_uint glBlendFuncSeparate;
+    public unsafe class BlendSwitch : EnableSwitch {
+        ////private static readonly GLDelegates.void_uint glBlendEquation;
+        ////private static readonly GLDelegates.void_uint_uint glBlendEquationSeparate;
+        ////private static readonly GLDelegates.void_uint_uint_uint_uint glBlendFuncSeparate;
 
-        static BlendSwitch()
-        {
-            glBlendEquation = GL.Instance.GetDelegateFor("glBlendEquation", GLDelegates.typeof_void_uint) as GLDelegates.void_uint;
-            glBlendEquationSeparate = GL.Instance.GetDelegateFor("glBlendEquationSeparate", GLDelegates.typeof_void_uint_uint) as GLDelegates.void_uint_uint;
-            glBlendFuncSeparate = GL.Instance.GetDelegateFor("glBlendFuncSeparate", GLDelegates.typeof_void_uint_uint_uint_uint) as GLDelegates.void_uint_uint_uint_uint;
-        }
+        //static BlendSwitch() {
+        //    glBlendEquation = gl.glGetDelegateFor("glBlendEquation", GLDelegates.typeof_void_uint) as GLDelegates.void_uint;
+        //    glBlendEquationSeparate = gl.glGetDelegateFor("glBlendEquationSeparate", GLDelegates.typeof_void_uint_uint) as GLDelegates.void_uint_uint;
+        //    glBlendFuncSeparate = gl.glGetDelegateFor("glBlendFuncSeparate", GLDelegates.typeof_void_uint_uint_uint_uint) as GLDelegates.void_uint_uint_uint_uint;
+        //}
 
         // Activator needs a non-parameter constructor.
         /// <summary>
@@ -34,8 +31,7 @@ namespace CSharpGL
         /// <param name="destFactor">Specifies how the red, green blue and alpha destination blending factors are computed. The initial value is GL_ZERO.</param>
         /// <param name="enableCapacity"></param>
         public BlendSwitch(BlendEquationMode rgbMode, BlendEquationMode alphaMode, BlendSrcFactor srcFactor, BlendDestFactor destFactor, bool enableCapacity = true)
-            : this(rgbMode, alphaMode, srcFactor, destFactor, srcFactor, destFactor, enableCapacity)
-        { }
+            : this(rgbMode, alphaMode, srcFactor, destFactor, srcFactor, destFactor, enableCapacity) { }
 
         /// <summary>
         /// specify pixel arithmetic for RGB and alpha components separately.
@@ -47,8 +43,7 @@ namespace CSharpGL
         /// <param name="alphaDestFactor">Specifies how the alpha destination blending factors are computed. The initial value is GL_ZERO.</param>
         /// <param name="enableCapacity"></param>
         public BlendSwitch(BlendEquationMode mode, BlendSrcFactor rgbSrcFactor, BlendDestFactor rgbDestFactor, BlendSrcFactor alphaSrcFactor, BlendDestFactor alphaDestFactor, bool enableCapacity = true)
-            : this(mode, mode, rgbSrcFactor, rgbDestFactor, alphaSrcFactor, alphaDestFactor, enableCapacity)
-        { }
+            : this(mode, mode, rgbSrcFactor, rgbDestFactor, alphaSrcFactor, alphaDestFactor, enableCapacity) { }
 
         /// <summary>
         /// specify pixel arithmetic for RGB and alpha components separately.
@@ -58,8 +53,7 @@ namespace CSharpGL
         /// <param name="destFactor">Specifies how the red, green blue and alpha destination blending factors are computed. The initial value is GL_ZERO.</param>
         /// <param name="enableCapacity"></param>
         public BlendSwitch(BlendEquationMode mode, BlendSrcFactor srcFactor, BlendDestFactor destFactor, bool enableCapacity = true)
-            : this(mode, mode, srcFactor, destFactor, srcFactor, destFactor, enableCapacity)
-        { }
+            : this(mode, mode, srcFactor, destFactor, srcFactor, destFactor, enableCapacity) { }
 
         /// <summary>
         /// specify pixel arithmetic for RGB and alpha components separately.
@@ -72,8 +66,7 @@ namespace CSharpGL
         /// <param name="alphaDestFactor">Specifies how the alpha destination blending factors are computed. The initial value is GL_ZERO.</param>
         /// <param name="enableCapacity"></param>
         public BlendSwitch(BlendEquationMode rgbMode, BlendEquationMode alphaMode, BlendSrcFactor rgbSrcFactor, BlendDestFactor rgbDestFactor, BlendSrcFactor alphaSrcFactor, BlendDestFactor alphaDestFactor, bool enableCapacity = true)
-            : base(GL.GL_BLEND, enableCapacity)
-        {
+            : base(GL.GL_BLEND, enableCapacity) {
             this.RGBMode = rgbMode;
             this.AlphaMode = alphaMode;
             this.RGBSrcFactor = rgbSrcFactor;
@@ -85,16 +78,13 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        public override string ToString()
-        {
-            if (this.EnableCapacity)
-            {
+        public override string ToString() {
+            if (this.EnableCapacity) {
                 return string.Format("glBlendFuncSeparate({0}, {1}, {2}, {3});",
                     this.RGBSrcFactor, this.RGBDestFactor,
                     this.AlphaSrcFactor, this.AlphaDestFactor);
             }
-            else
-            {
+            else {
                 return string.Format("Disabled glBlendFuncSeparate({0}, {1}, {2}, {3});",
                     this.RGBSrcFactor, this.RGBDestFactor,
                     this.AlphaSrcFactor, this.AlphaDestFactor);
@@ -104,21 +94,16 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        protected override void StateOn()
-        {
+        protected override void StateOn() {
+            var gl = GL.current; if (gl == null) { return; }
             base.StateOn();
 
-            if (this.enableCapacityWhenStateOn)
-            {
-                if (this.rgbMode == this.alphaMode)
-                { glBlendEquation(this.rgbMode); }
-                else
-                { glBlendEquationSeparate(this.rgbMode, this.alphaMode); }
+            if (this.enableCapacityWhenStateOn) {
+                if (this.rgbMode == this.alphaMode) { gl.glBlendEquation(this.rgbMode); }
+                else { gl.glBlendEquationSeparate(this.rgbMode, this.alphaMode); }
 
-                if (this.rgbSrcFactor == this.alphaSrcFactor && this.rgbDestFactor == this.alphaDestFactor)
-                { GL.Instance.BlendFunc(this.rgbSrcFactor, this.rgbDestFactor); }
-                else
-                { glBlendFuncSeparate(this.rgbSrcFactor, this.rgbDestFactor, this.alphaSrcFactor, this.alphaDestFactor); }
+                if (this.rgbSrcFactor == this.alphaSrcFactor && this.rgbDestFactor == this.alphaDestFactor) { gl.glBlendFunc(this.rgbSrcFactor, this.rgbDestFactor); }
+                else { gl.glBlendFuncSeparate(this.rgbSrcFactor, this.rgbDestFactor, this.alphaSrcFactor, this.alphaDestFactor); }
             }
         }
 
@@ -140,8 +125,7 @@ namespace CSharpGL
         /// 
         /// </summary>
         /// <param name="mode"></param>
-        public void SetMode(BlendEquationMode mode)
-        {
+        public void SetMode(BlendEquationMode mode) {
             this.rgbMode = (uint)mode;
             this.alphaMode = (uint)mode;
         }
@@ -164,8 +148,7 @@ namespace CSharpGL
         /// 
         /// </summary>
         /// <param name="srcFactor"></param>
-        public void SetSrcFactor(BlendSrcFactor srcFactor)
-        {
+        public void SetSrcFactor(BlendSrcFactor srcFactor) {
             this.rgbSrcFactor = (uint)srcFactor;
             this.alphaSrcFactor = (uint)srcFactor;
         }
@@ -188,8 +171,7 @@ namespace CSharpGL
         /// 
         /// </summary>
         /// <param name="destFactor"></param>
-        public void SetDestFactor(BlendDestFactor destFactor)
-        {
+        public void SetDestFactor(BlendDestFactor destFactor) {
             this.rgbDestFactor = (uint)destFactor;
             this.alphaDestFactor = (uint)destFactor;
         }

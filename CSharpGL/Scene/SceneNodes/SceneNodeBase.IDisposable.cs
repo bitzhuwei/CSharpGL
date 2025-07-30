@@ -1,14 +1,11 @@
 ﻿using System;
 
-namespace CSharpGL
-{
-    public abstract partial class SceneNodeBase
-    {
+namespace CSharpGL {
+    public abstract partial class SceneNodeBase {
         /// <summary>
         /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
         /// </summary>
-        public void Dispose()
-        {
+        public void Dispose() {
             this.Dispose(true);
             GC.SuppressFinalize(this);
         } // end sub
@@ -16,8 +13,7 @@ namespace CSharpGL
         /// <summary>
         /// Destruct instance of the class.
         /// </summary>
-        ~SceneNodeBase()
-        {
+        ~SceneNodeBase() {
             this.Dispose(false);
         }
 
@@ -30,12 +26,9 @@ namespace CSharpGL
         /// Dispose managed and unmanaged resources of this instance.
         /// </summary>
         /// <param name="disposing">If disposing equals true, managed and unmanaged resources can be disposed. If disposing equals false, only unmanaged resources can be disposed. </param>
-        private void Dispose(bool disposing)
-        {
-            if (this.disposedValue == false)
-            {
-                if (disposing)
-                {
+        private void Dispose(bool disposing) {
+            if (this.disposedValue == false) {
+                if (disposing) {
                     // Dispose managed resources.
                     DisposeManagedResources();
                 } // end if

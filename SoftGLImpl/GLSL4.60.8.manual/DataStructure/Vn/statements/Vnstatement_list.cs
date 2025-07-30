@@ -1,0 +1,79 @@
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Reflection.Emit;
+using System.Text;
+using System.Threading.Tasks;
+using bitzhuwei.Compiler;
+
+namespace bitzhuwei.GLSLFormat {
+    /// <summary>
+    /// Correspond to the Vn node statement_list in the grammar(GLSL).
+    /// </summary>
+    partial class Vnstatement_list : IFullFormat {
+        // [319]: statement_list : statement ;
+        // [320]: statement_list : statement_list statement ;
+
+        private readonly Vnstatement first;
+        private readonly List<Vnstatement> list = new();
+        internal void Add(Vnstatement r0) {
+            this.list.Add(r0);
+            this._tokenRange.end = r0.Scope.end;
+        }
+        public Vnstatement_list(Vnstatement first) {
+            this._tokenRange = new TokenRange(first);
+            this.first = first;
+        }
+
+        private readonly TokenRange _tokenRange;
+
+
+        public TokenRange Scope => _tokenRange;
+
+
+        public void FullFormat(BlankConfig? preConfig, TextWriter writer, FormatContext context) {
+            {
+                this.first.FullFormat(preConfig, writer, context);
+            }
+            var config = new BlankConfig(inlineBlank: 1, forceNewline: false);
+            var first = true;
+            for (var i = 0; i < this.list.Count; i++) {
+                var exp = this.list[i];
+                if (first) {
+                    context.PrintCommentsBetween(this.first, exp, config, writer);
+                    first = false;
+                }
+                else {
+                    context.PrintCommentsBetween(this.list[i - 1], exp, config, writer);
+                }
+                exp.FullFormat(config, writer, context);
+            }
+        }
+
+
+        //public void Format(TextWriter writer, FormatContext context) {
+        //    {
+        //        this.first.Format(writer, context);
+        //    }
+        //    for (var i = 0; i < this.list.Count; i++) {
+        //        var exp = this.list[i];
+        //        exp.Format(writer, context);
+        //    }
+        //}
+
+        //public IEnumerable<string> YieldTokens(TextWriter writer, FormatContext context) {
+        //    {
+        //        foreach (var item in this.first.YieldTokens(writer, context)) {
+        //            yield return item;
+        //        }
+        //    }
+        //    for (var i = 0; i < this.list.Count; i++) {
+        //        var exp = this.list[i];
+        //        foreach (var item in exp.YieldTokens(writer, context)) {
+        //            yield return item;
+        //        }
+        //    }
+        //}
+    }
+}

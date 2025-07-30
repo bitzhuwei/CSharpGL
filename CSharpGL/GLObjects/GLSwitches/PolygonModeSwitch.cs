@@ -1,11 +1,15 @@
-﻿namespace CSharpGL
-{
+﻿namespace CSharpGL {
     /// <summary>
     ///
     /// </summary>
-    public class PolygonModeSwitch : GLSwitch
-    {
-        private int[] originalPolygonMode = new int[2];
+    public unsafe class PolygonModeSwitch : GLSwitch {
+        private GLint originalFrontMode;
+        private GLint originalBackMode;
+
+        /// <summary>
+        ///
+        /// </summary>
+        public PolygonMode mode;
 
         // Activator needs a non-parameter constructor.
         /// <summary>
@@ -17,50 +21,44 @@
         ///
         /// </summary>
         /// <param name="mode"></param>
-        public PolygonModeSwitch(PolygonMode mode)
-        {
-            this.Mode = mode;
+        public PolygonModeSwitch(PolygonMode mode) {
+            this.mode = mode;
         }
 
         /// <summary>
         ///
         /// </summary>
         /// <returns></returns>
-        public override string ToString()
-        {
-            return string.Format("Polygon Mode: {0}", Mode);
+        public override string ToString() {
+            return string.Format("Polygon Mode: {0}", mode);
         }
 
         /// <summary>
         ///
         /// </summary>
-        protected override void StateOn()
-        {
-            GL.Instance.GetIntegerv((uint)GetTarget.PolygonMode, originalPolygonMode);
+        protected override void StateOn() {
+            var gl = GL.current; if (gl == null) { return; }
+            var original = stackalloc GLint[2];
+            gl.glGetIntegerv((GLenum)GetTarget.PolygonMode, original);
+            this.originalFrontMode = original[0];
+            this.originalBackMode = original[1];
 
-            GL.Instance.PolygonMode(GL.GL_FRONT_AND_BACK, (uint)this.Mode);
+            gl.glPolygonMode(GL.GL_FRONT_AND_BACK, (GLenum)this.mode);
         }
 
         /// <summary>
         ///
         /// </summary>
-        protected override void StateOff()
-        {
-            if (originalPolygonMode[0] == originalPolygonMode[1])
-            {
-                GL.Instance.PolygonMode(GL.GL_FRONT_AND_BACK, (uint)(originalPolygonMode[0]));
+        protected override void StateOff() {
+            var gl = GL.current; if (gl == null) { return; }
+            if (originalFrontMode == originalBackMode) {
+                gl.glPolygonMode(GL.GL_FRONT_AND_BACK, (uint)(originalFrontMode));
             }
-            else
-            {
+            else {
                 //TODO: not tested yet
-                GL.Instance.PolygonMode(GL.GL_FRONT, (uint)originalPolygonMode[0]);
-                GL.Instance.PolygonMode(GL.GL_BACK, (uint)originalPolygonMode[1]);
+                gl.glPolygonMode(GL.GL_FRONT, (uint)originalFrontMode);
+                gl.glPolygonMode(GL.GL_BACK, (uint)originalBackMode);
             }
         }
-
-        /// <summary>
-        ///
-        /// </summary>
-        public PolygonMode Mode { get; set; }
     }
 }

@@ -1,12 +1,9 @@
-﻿namespace CSharpGL
-{
-    public partial class ModernNode
-    {
+﻿namespace CSharpGL {
+    public partial class ModernNode {
         /// <summary>
         ///
         /// </summary>
-        protected override void DisposeUnmanagedResources()
-        {
+        protected override void DisposeUnmanagedResources() {
             this.RenderUnit.Dispose();
         }
     }

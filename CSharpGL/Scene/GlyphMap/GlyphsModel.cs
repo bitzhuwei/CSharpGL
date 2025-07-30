@@ -3,32 +3,29 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CSharpGL
-{
+namespace CSharpGL {
     /// <summary>
     /// Renders a string.
     /// </summary>
-    public class GlyphsModel : IBufferSource
-    {
+    public class GlyphsModel : IBufferSource {
         /// <summary>
         /// 
         /// </summary>
         public const string position = "position";
-        private VertexBuffer positionBuffer;
+        private VertexBuffer? positionBuffer;
         /// <summary>
         /// 
         /// </summary>
         public const string STR = "str";
-        private VertexBuffer uvBuffer;
+        private VertexBuffer? uvBuffer;
 
-        private IDrawCommand drawCmd;
+        private IDrawCommand? drawCmd;
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="capacity"></param>
-        public GlyphsModel(int capacity)
-        {
+        public GlyphsModel(int capacity) {
             this.Capacity = capacity;
         }
 
@@ -39,28 +36,22 @@ namespace CSharpGL
         /// </summary>
         /// <param name="bufferName"></param>
         /// <returns></returns>
-        public IEnumerable<VertexBuffer> GetVertexAttribute(string bufferName)
-        {
-            if (bufferName == position)
-            {
-                if (this.positionBuffer == null)
-                {
-                    this.positionBuffer = VertexBuffer.Create(typeof(QuadPositionStruct), this.Capacity, VBOConfig.Vec2, BufferUsage.DynamicDraw);
+        public IEnumerable<VertexBuffer> GetVertexAttribute(string bufferName) {
+            if (bufferName == position) {
+                if (this.positionBuffer == null) {
+                    this.positionBuffer = VertexBuffer.Create(typeof(QuadPositionStruct), this.Capacity, VBOConfig.Vec2, GLBuffer.Usage.DynamicDraw);
                 }
 
                 yield return this.positionBuffer;
             }
-            else if (bufferName == STR)
-            {
-                if (this.uvBuffer == null)
-                {
-                    this.uvBuffer = VertexBuffer.Create(typeof(QuadSTRStruct), this.Capacity, VBOConfig.Vec3, BufferUsage.DynamicDraw);
+            else if (bufferName == STR) {
+                if (this.uvBuffer == null) {
+                    this.uvBuffer = VertexBuffer.Create(typeof(QuadSTRStruct), this.Capacity, VBOConfig.Vec3, GLBuffer.Usage.DynamicDraw);
                 }
 
                 yield return this.uvBuffer;
             }
-            else
-            {
+            else {
                 throw new ArgumentException();
             }
         }
@@ -69,13 +60,11 @@ namespace CSharpGL
         /// 
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<IDrawCommand> GetDrawCommand()
-        {
-            if (this.drawCmd == null)
-            {
+        public IEnumerable<IDrawCommand> GetDrawCommand() {
+            if (this.drawCmd == null) {
                 var drawCmd = new DrawArraysCmd(DrawMode.Quads, this.Capacity * 4);
                 // note: use IDrawCommand.Draw(ControlMode.Random) to enable this property.
-                drawCmd.VertexCount = 0;
+                drawCmd.vertexCount = 0;
                 this.drawCmd = drawCmd;
             }
 

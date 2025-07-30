@@ -1,83 +1,78 @@
 ﻿using System;
 
-namespace CSharpGL
-{
-    internal static class PrimitiveRecognizerFactory
-    {
+namespace CSharpGL {
+    internal static class PrimitiveRecognizerFactory {
         // TODO: finish this method!
         /// <summary>
         /// 
         /// </summary>
         /// <param name="mode"></param>
         /// <returns></returns>
-        public static PrimitiveRecognizer Create(DrawMode mode)
-        {
-            PrimitiveRecognizer recognizer = null;
+        public static PrimitiveRecognizer Create(DrawMode mode) {
+            PrimitiveRecognizer? recognizer = null;
 
-            switch (mode)
-            {
-                case DrawMode.Points:
-                    recognizer = new PointsRecognizer();
-                    break;
+            switch (mode) {
+            case DrawMode.Points:
+            recognizer = new PointsRecognizer();
+            break;
 
-                case DrawMode.LineStrip:
-                    recognizer = new LineStripRecognizer();
-                    break;
+            case DrawMode.LineStrip:
+            recognizer = new LineStripRecognizer();
+            break;
 
-                case DrawMode.LineLoop:
-                    recognizer = new LineLoopRecognizer();
-                    break;
+            case DrawMode.LineLoop:
+            recognizer = new LineLoopRecognizer();
+            break;
 
-                case DrawMode.Lines:
-                    recognizer = new LinesRecognizer();
-                    break;
+            case DrawMode.Lines:
+            recognizer = new LinesRecognizer();
+            break;
 
-                case DrawMode.LineStripAdjacency:
-                    break;
+            case DrawMode.LineStripAdjacency:
+            break;
 
-                case DrawMode.LinesAdjacency:
-                    recognizer = new LinesAdjacencyRecognizer();
-                    break;
+            case DrawMode.LinesAdjacency:
+            recognizer = new LinesAdjacencyRecognizer();
+            break;
 
-                case DrawMode.TriangleStrip:
-                    recognizer = new TriangleStripRecognizer();
-                    break;
+            case DrawMode.TriangleStrip:
+            recognizer = new TriangleStripRecognizer();
+            break;
 
-                case DrawMode.TriangleFan:
-                    recognizer = new TriangleFanRecognizer();
-                    break;
+            case DrawMode.TriangleFan:
+            recognizer = new TriangleFanRecognizer();
+            break;
 
-                case DrawMode.Triangles:
-                    recognizer = new TrianglesRecognizer();
-                    break;
+            case DrawMode.Triangles:
+            recognizer = new TrianglesRecognizer();
+            break;
 
-                case DrawMode.TriangleStripAdjacency:
-                    break;
+            case DrawMode.TriangleStripAdjacency:
+            break;
 
-                case DrawMode.TrianglesAdjacency:
-                    recognizer = new TrianglesAdjacencyRecognizer();
-                    break;
+            case DrawMode.TrianglesAdjacency:
+            recognizer = new TrianglesAdjacencyRecognizer();
+            break;
 
-                case DrawMode.Patches:
-                    break;
+            case DrawMode.Patches:
+            break;
 
-                case DrawMode.QuadStrip:
-                    recognizer = new QuadStripRecognizer();
-                    break;
+            case DrawMode.QuadStrip:
+            recognizer = new QuadStripRecognizer();
+            break;
 
-                case DrawMode.Quads:
-                    recognizer = new QuadsRecognizer();
-                    break;
+            case DrawMode.Quads:
+            recognizer = new QuadsRecognizer();
+            break;
 
-                case DrawMode.Polygon:
-                    break;
+            case DrawMode.Polygon:
+            break;
 
-                default:
-                    throw new NotDealWithNewEnumItemException(typeof(DrawMode));
+            default:
+            throw new NotDealWithNewEnumItemException(typeof(DrawMode));
             }
 
-            if (recognizer == null)
-            {
+            if (recognizer == null) {
                 throw new NotImplementedException(string.Format(
                     "尚未实现[{0}]的recognizer!", mode));
             }

@@ -8,7 +8,7 @@ namespace CSharpGL {
     /// 
     /// </summary>
     /// <typeparam name="T">data type.</typeparam>
-    public abstract class TexImageDataProvider<T> : IEnumerable<T> {
+    public abstract unsafe class TexImageDataProvider<T> : IEnumerable<T> {
         #region IEnumerable<T> 成员
 
         /// <summary>

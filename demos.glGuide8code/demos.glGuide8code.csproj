@@ -1,0 +1,446 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net8.0-windows</TargetFramework>
+		<Nullable>enable</Nullable>
+		<UseWindowsForms>true</UseWindowsForms>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\CSharpGL.Windows\CSharpGL.Windows.csproj" />
+		<ProjectReference Include="..\CSharpGL\CSharpGL.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Update="FormGLGuide8.cs">
+		  <SubType>Form</SubType>
+		</Compile>
+		<Compile Update="FormInstance.cs">
+		  <SubType>Form</SubType>
+		</Compile>
+		<Compile Update="WindowsGLCanvas.cs">
+			<SubType>UserControl</SubType>
+		</Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Using Include="System.UInt32">
+			<Alias>GLenum</Alias>
+		</Using>
+		<Using Include="System.Boolean">
+			<Alias>GLboolean</Alias>
+		</Using>
+		<Using Include="System.UInt32">
+			<Alias>GLbitfield</Alias>
+		</Using>
+		<Using Include="System.SByte">
+			<Alias>GLbyte</Alias>
+		</Using>
+		<Using Include="System.Byte">
+			<Alias>GLubyte</Alias>
+		</Using>
+		<Using Include="System.Int16">
+			<Alias>GLshort</Alias>
+		</Using>
+		<Using Include="System.UInt16">
+			<Alias>GLushort</Alias>
+		</Using>
+		<Using Include="System.UInt16">
+			<Alias>GLhalfNV</Alias>
+		</Using>
+		<Using Include="System.Int32">
+			<Alias>GLint</Alias>
+		</Using>
+		<Using Include="System.UInt32">
+			<Alias>GLuint</Alias>
+		</Using>
+		<Using Include="System.Int32">
+			<Alias>GLclampx</Alias>
+		</Using>
+		<Using Include="System.Single">
+			<Alias>GLfloat</Alias>
+		</Using>
+		<Using Include="System.Single">
+			<Alias>GLclampf</Alias>
+		</Using>
+		<Using Include="System.Double">
+			<Alias>GLdouble</Alias>
+		</Using>
+		<Using Include="System.Double">
+			<Alias>GLclampd</Alias>
+		</Using>
+		<Using Include="System.IntPtr">
+			<Alias>GLeglClientBufferEXT</Alias>
+		</Using>
+		<Using Include="System.IntPtr">
+			<Alias>GLeglImageOES</Alias>
+		</Using>
+		<Using Include="System.IntPtr">
+			<Alias>GLvdpauSurfaceNV</Alias>
+		</Using>
+		<Using Include="System.Char">
+			<Alias>GLchar</Alias>
+		</Using>
+		<Using Include="System.Char">
+			<Alias>GLcharARB</Alias>
+		</Using>
+		<Using Include="System.UInt32">
+			<Alias>GLhandleARB</Alias>
+		</Using>
+		<Using Include="System.UInt16">
+			<Alias>GLhalf</Alias>
+		</Using>
+		<Using Include="System.UInt16">
+			<Alias>GLhalfARB</Alias>
+		</Using>
+		<Using Include="System.Int32">
+			<Alias>GLfixed</Alias>
+		</Using>
+		<Using Include="System.IntPtr">
+			<Alias>GLintptr</Alias>
+		</Using>
+		<Using Include="System.IntPtr">
+			<Alias>GLintptrARB</Alias>
+		</Using>
+		<Using Include="System.IntPtr">
+			<Alias>GLsync</Alias>
+		</Using>
+		<Using Include="System.Int32">
+			<Alias>GLsizei</Alias>
+		</Using>
+		<Using Include="System.Int32">
+			<Alias>GLsizeiptr</Alias>
+		</Using>
+		<Using Include="System.Int32">
+			<Alias>GLsizeiptrARB</Alias>
+		</Using>
+		<Using Include="System.Int64">
+			<Alias>GLint64</Alias>
+		</Using>
+		<Using Include="System.Int64">
+			<Alias>GLint64EXT</Alias>
+		</Using>
+		<Using Include="System.UInt64">
+			<Alias>GLuint64</Alias>
+		</Using>
+		<Using Include="System.UInt64">
+			<Alias>GLuint64EXT</Alias>
+		</Using>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Update="03\ch03_instancing2\ch03_instancing2.fs.glsl">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="03\ch03_instancing2\ch03_instancing2.vs.glsl">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="03\ch03_instancing3\ch03_instancing3.fs.glsl">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="03\ch03_instancing3\ch03_instancing3.vs.glsl">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="03\ch03_instancing\ch03_instancing.fs.glsl">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="03\ch03_instancing\ch03_instancing.vs.glsl">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="03\ch03_pointsprites\pointsprites.fs.glsl">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="03\ch03_pointsprites\pointsprites.vs.glsl">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="03\ch03_pointsprites\pointsprites2.fs.glsl">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="03\ch03_pointsprites\sprite.tga">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="03\ch03_pointsprites\sprite2.tga">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="03\ch03_xfb\ch03_xfb.render.fs.glsl">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="03\ch03_xfb\ch03_xfb.render.vs.glsl">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="03\ch03_xfb\ch03_xfb.update.fs.glsl">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="03\ch03_xfb\ch03_xfb.update.vs.glsl">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="04\ch04_shadowmap\shadowmap_scene.fs.glsl">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="04\ch04_shadowmap\shadowmap_scene.vs.glsl">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="04\ch04_shadowmap\shadowmap_shadow.fs.glsl">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="04\ch04_shadowmap\shadowmap_shadow.vs.glsl">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="06\ch06_cube_map\object_shader.fs.glsl">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="06\ch06_cube_map\object_shader.vs.glsl">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="06\ch06_cube_map\skybox_shader.vs.glsl">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="06\ch06_cube_map\skybox_shader.fs.glsl">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="06\ch06_volume_texture\quad_shader.fs.glsl">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="06\ch06_volume_texture\quad_shader.vs.glsl">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="06\ch06_texture_wrapping\quad_shader.fs.glsl">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="06\ch06_texture_wrapping\quad_shader.vs.glsl">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="06\ch06_static_texture\quad_shader.fs.glsl">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="06\ch06_static_texture\quad_shader.vs.glsl">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="06\ch06_multi_texture\quad_shader.fs.glsl">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="06\ch06_multi_texture\quad_shader.vs.glsl">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="06\ch06_load_texture\quad_shader.fs.glsl">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="06\ch06_load_texture\quad_shader.vs.glsl">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="06\ch06_mipmap\skybox_shader.fs.glsl">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="06\ch06_mipmap\skybox_shader.vs.glsl">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="06\ch06_mip_filters\skybox_shader.fs.glsl">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="06\ch06_mip_filters\skybox_shader.vs.glsl">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="12\ch12_simplecompute\simple.comp">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="12\ch12_simplecompute\render.frag">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="12\ch12_simplecompute\render.vert">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="12\ch12_particlesimulator\particle.comp">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="12\ch12_particlesimulator\render.frag">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="12\ch12_particlesimulator\render.vert">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="12\ch12_imageprocessing\imageProc.comp">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="12\ch12_imageprocessing\render.frag">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="12\ch12_imageprocessing\render.vert">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="11\ch11_doublewrite\blit.frag">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="11\ch11_doublewrite\blit.vert">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="11\ch11_doublewrite\double_write.frag">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="11\ch11_doublewrite\double_write.vert">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="10\ch10_fur\base.frag">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="10\ch10_fur\base.vert">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="10\ch10_fur\fur.frag">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="10\ch10_fur\fur.geom">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="10\ch10_fur\fur.vert">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="10\ch10_viewport_array3\render.frag">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="10\ch10_viewport_array3\render.geom">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="10\ch10_viewport_array3\render.vert">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="10\ch10_viewport_array2\render.frag">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="10\ch10_viewport_array2\render.geom">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="10\ch10_viewport_array2\render.vert">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="10\ch10_viewport_array\render.geom">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="10\ch10_viewport_array\render.frag">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="10\ch10_viewport_array\render.vert">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="10\ch10_draw_xfb\render.frag">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="10\ch10_draw_xfb\render.vert">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="10\ch10_draw_xfb\sort.geom">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="10\ch10_draw_xfb\sort.vert">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="09\ch09_simple\simple.cont">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="09\ch09_simple\simple.eval">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="09\ch09_simple\simple.frag">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="09\ch09_simple\simple.vert">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="09\ch09_Teapot\teapot.cont">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="09\ch09_Teapot\teapot.eval">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="09\ch09_Teapot\teapot.frag">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="09\ch09_Teapot\teapot.vert">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="08\ch08_lightmodels\render.fs.glsl">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="08\ch08_lightmodels\render.vs.glsl">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="11\ch11_OIT - 复制\build_lists.fs.glsl">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="11\ch11_OIT - 复制\build_lists.vs.glsl">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="11\ch11_OIT - 复制\resolve_lists.fs.glsl">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="11\ch11_OIT - 复制\resolve_lists.vs.glsl">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="11\ch11_OIT\build_lists.fs.glsl">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="11\ch11_OIT\build_lists.vs.glsl">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="11\ch11_OIT\resolve_lists.fs.glsl">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="11\ch11_OIT\resolve_lists.vs.glsl">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="11\ch11_overdrawcount\blit.frag">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="11\ch11_overdrawcount\blit.vert">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="11\ch11_overdrawcount\overdraw_count.frag">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="11\ch11_overdrawcount\overdraw_count.vert">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\armadillo_low.vbm">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="03\ch03_primitive_restart\ch03_instancing2.fs.glsl">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="03\ch03_primitive_restart\ch03_instancing2.vs.glsl">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="03\ch03_primitive_restart\primitive_restart.fs.glsl">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="03\ch03_primitive_restart\primitive_restart.vs.glsl">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\cloud.dds">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\ninja.vbm">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\TantolundenCube.dds">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\test.dds">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\test2.dds">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\test3.dds">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\unit_pipe.vbm">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\unit_torus.vbm">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	</ItemGroup>
+
+</Project>

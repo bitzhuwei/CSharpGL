@@ -1,0 +1,441 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="robots" content="index,follow" />
+    <meta name="creator" content="rfchandler version 0.2" />
+      <meta name="citation_author" content="L. Masinter"/>
+      <meta name="citation_publication_date" content="August, 1998"/>
+      <meta name="citation_title" content="The &quot;data&quot; URL scheme "/>
+      <meta name="citation_doi" content="10.17487/RFC2397"/>
+      <meta name="citation_issn" content="2070-1721"/>
+      <meta name="citation_technical_report_number" content="rfc2397"/>
+      <meta name="citation_pdf_url" content="https://www.rfc-editor.org/rfc/pdfrfc/rfc2397.txt.pdf"/>
+<title>RFC 2397: The &quot;data&quot; URL scheme </title>    
+        
+
+        <style type="text/css">
+	@media only screen 
+	  and (min-width: 992px)
+	  and (max-width: 1199px) {
+	    body { font-size: 14pt; }
+            div.content { width: 96ex; margin: 0 auto; }
+        }
+	@media only screen 
+	  and (min-width: 768px)
+	  and (max-width: 991px) {
+            body { font-size: 14pt; }
+            div.content { width: 96ex; margin: 0 auto; }
+        }
+	@media only screen 
+	  and (min-width: 480px)
+	  and (max-width: 767px) {
+            body { font-size: 11pt; }
+            div.content { width: 96ex; margin: 0 auto; }
+        }
+	@media only screen 
+	  and (max-width: 479px) {
+            body { font-size: 8pt; }
+            div.content { width: 96ex; margin: 0 auto; }
+        }
+	@media only screen 
+	  and (min-device-width : 375px) 
+	  and (max-device-width : 667px) {
+            body { font-size: 9.5pt; }
+            div.content { width: 96ex; margin: 0; }
+        }
+	@media only screen 
+	  and (min-device-width: 1200px) {
+            body { font-size: 10pt; margin: 0 4em; }
+            div.content { width: 96ex; margin: 0; }
+        }
+        h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+	    font-weight: bold;
+           /* line-height: 0pt; */
+            display: inline;
+            white-space: pre;
+            font-family: monospace;
+            font-size: 1em;
+	    font-weight: bold;
+        }
+        pre {
+            font-size: 1em;
+            margin-top: 0px;
+            margin-bottom: 0px;
+        }
+	.pre {
+	    white-space: pre;
+	    font-family: monospace;
+	}
+	.header{
+	    font-weight: bold;
+	}
+        .newpage {
+            page-break-before: always;
+        }
+        .invisible {
+            text-decoration: none;
+            color: white;
+        }
+        a.selflink {
+          color: black;
+          text-decoration: none;
+        }
+        @media print {
+            body {
+                font-family: monospace;
+                font-size: 10.5pt;
+            }
+            h1, h2, h3, h4, h5, h6 {
+                font-size: 1em;
+            }
+        
+            a:link, a:visited {
+                color: inherit;
+                text-decoration: none;
+            }
+            .noprint {
+                display: none;
+            }
+        }
+	@media screen {
+	    .grey, .grey a:link, .grey a:visited {
+		color: #777;
+	    }
+            .docinfo {
+                background-color: #EEE;
+            }
+            .top {
+                border-top: 7px solid #EEE;
+            }
+            .bgwhite  { background-color: white; }
+            .bgred    { background-color: #F44; }
+            .bggrey   { background-color: #666; }
+            .bgbrown  { background-color: #840; }            
+            .bgorange { background-color: #FA0; }
+            .bgyellow { background-color: #EE0; }
+            .bgmagenta{ background-color: #F4F; }
+            .bgblue   { background-color: #66F; }
+            .bgcyan   { background-color: #4DD; }
+            .bggreen  { background-color: #4F4; }
+
+            .legend   { font-size: 90%; }
+            .cplate   { font-size: 70%; border: solid grey 1px; }
+	}
+    </style>
+    <!--[if IE]>
+    <style>
+    body {
+       font-size: 13px;
+       margin: 10px 10px;
+    }
+    </style>
+    <![endif]-->    <script type="text/javascript"><!--
+    function addHeaderTags() {
+        var spans = document.getElementsByTagName("span");
+        for (var i=0; i < spans.length; i++) {
+            var elem = spans[i];
+            if (elem) {
+                var level = elem.getAttribute("class");
+                if (level == "h1" || level == "h2" || level == "h3" || level == "h4" || level == "h5" || level == "h6") {
+                    elem.innerHTML = "<"+level+">"+elem.innerHTML+"</"+level+">";               
+                }
+            }
+        }
+    }
+    var legend_html = "Colour legend:<br />      <table>         <tr><td>Unknown:</td>                   <td><span class='cplate bgwhite'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>         <tr><td>Draft:</td>                     <td><span class='cplate bgred'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>         <tr><td>Informational:</td>             <td><span class='cplate bgorange'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>         <tr><td>Experimental:</td>              <td><span class='cplate bgyellow'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>         <tr><td>Best Common Practice:</td>      <td><span class='cplate bgmagenta'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>         <tr><td>Proposed Standard:</td>         <td><span class='cplate bgblue'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>         <tr><td>Draft Standard (old designation):</td> <td><span class='cplate bgcyan'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>         <tr><td>Internet Standard:</td>         <td><span class='cplate bggreen'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>         <tr><td>Historic:</td>                  <td><span class='cplate bggrey'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>         <tr><td>Obsolete:</td>                  <td><span class='cplate bgbrown'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>     </table>";
+    function showElem(id) {
+        var elem = document.getElementById(id);
+        elem.innerHTML = eval(id+"_html");
+        elem.style.visibility='visible';
+    }
+    function hideElem(id) {
+        var elem = document.getElementById(id);
+        elem.style.visibility='hidden';        
+        elem.innerHTML = "";
+    }
+    // -->
+    </script></head>
+<body>
+<span class="pre noprint docinfo">[<a href="https://www.rfc-editor.org" title="RFC Editor">RFC Home</a>] [<a href="/rfc/rfc2397.txt">TEXT</a>|<a href="/rfc/pdfrfc/rfc2397.txt.pdf">PDF</a>|<a href="/rfc/rfc2397.html">HTML</a>] [<a href='https://datatracker.ietf.org/doc/rfc2397' title='IETF Datatracker information for this document'>Tracker</a>] [<a href="https://datatracker.ietf.org/ipr/search/?rfc=2397&amp;submit=rfc" title="IPR disclosures related to this document">IPR</a>] [<a class="boldtext" href="/errata/rfc2397" target="_blank">Errata</a>] [<a href='https://www.rfc-editor.org/info/rfc2397' title='Info page'>Info page</a>]         </span><br/><span class="pre noprint docinfo">                                                                        </span><br /><span class="pre noprint docinfo">                                                       PROPOSED STANDARD</span><br /><span class="pre noprint docinfo">                                                            <span style='color: #C00;'>Errata Exist</span></span><pre>Network Working Group                                      L. Masinter
+Request for Comments: 2397                           Xerox Corporation
+Category: Standards Track                                  August 1998
+
+
+                         <span class="h1">The "data" URL scheme</span>
+
+Status of this Memo
+
+   This document specifies an Internet standards track protocol for the
+   Internet community, and requests discussion and suggestions for
+   improvements.  Please refer to the current edition of the "Internet
+   Official Protocol Standards" (STD 1) for the standardization state
+   and status of this protocol.  Distribution of this memo is unlimited.
+
+Copyright Notice
+
+   Copyright (C) The Internet Society (1998).  All Rights Reserved.
+
+<span class="h2"><a class="selflink" id="section-1" href="#section-1">1</a>. Abstract</span>
+
+   A new URL scheme, "data", is defined. It allows inclusion of small
+   data items as "immediate" data, as if it had been included
+   externally.
+
+<span class="h2"><a class="selflink" id="section-2" href="#section-2">2</a>. Description</span>
+
+   Some applications that use URLs also have a need to embed (small)
+   media type data directly inline. This document defines a new URL
+   scheme that would work like 'immediate addressing'. The URLs are of
+   the form:
+
+                    data:[&lt;mediatype&gt;][;base64],&lt;data&gt;
+
+   The &lt;mediatype&gt; is an Internet media type specification (with
+   optional parameters.) The appearance of ";base64" means that the data
+   is encoded as base64. Without ";base64", the data (as a sequence of
+   octets) is represented using ASCII encoding for octets inside the
+   range of safe URL characters and using the standard %xx hex encoding
+   of URLs for octets outside that range.  If &lt;mediatype&gt; is omitted, it
+   defaults to text/plain;charset=US-ASCII.  As a shorthand,
+   "text/plain" can be omitted but the charset parameter supplied.
+
+   The "data:" URL scheme is only useful for short values. Note that
+   some applications that use URLs may impose a length limit; for
+   example, URLs embedded within &lt;A&gt; anchors in HTML have a length limit
+   determined by the SGML declaration for HTML [<a href="./rfc1866" title="&quot;Hypertext Markup Language - 2.0.&quot;">RFC1866</a>]. The LITLEN
+   (1024) limits the number of characters which can appear in a single
+
+
+
+<span class="grey">Masinter                    Standards Track                     [Page 1]</span></pre>
+<hr class='noprint'/><!--NewPage--><pre class='newpage'><span id="page-2" ></span>
+<span class="grey"><a href="./rfc2397">RFC 2397</a>                 The "data" URL scheme               August 1998</span>
+
+
+   attribute value literal, the ATTSPLEN (2100) limits the sum of all
+   lengths of all attribute value specifications which appear in a tag,
+   and the TAGLEN (2100) limits the overall length of a tag.
+
+   The "data" URL scheme has no relative URL forms.
+
+<span class="h2"><a class="selflink" id="section-3" href="#section-3">3</a>. Syntax</span>
+
+       dataurl    := "data:" [ mediatype ] [ ";base64" ] "," data
+       mediatype  := [ type "/" subtype ] *( ";" parameter )
+       data       := *urlchar
+       parameter  := attribute "=" value
+
+   where "urlchar" is imported from [<a href="./rfc2396" title="&quot;Uniform Resource Identifiers (URI): Generic Syntax&quot;">RFC2396</a>], and "type", "subtype",
+   "attribute" and "value" are the corresponding tokens from [<a href="./rfc2045" title="&quot;Multipurpose Internet Mail Extensions (MIME) Part One: Format of Internet Message Bodies&quot;">RFC2045</a>],
+   represented using URL escaped encoding of [<a href="./rfc2396" title="&quot;Uniform Resource Identifiers (URI): Generic Syntax&quot;">RFC2396</a>] as necessary.
+
+   Attribute values in [<a href="./rfc2045" title="&quot;Multipurpose Internet Mail Extensions (MIME) Part One: Format of Internet Message Bodies&quot;">RFC2045</a>] are allowed to be either represented as
+   tokens or as quoted strings. However, within a "data" URL, the
+   "quoted-string" representation would be awkward, since the quote mark
+   is itself not a valid urlchar. For this reason, parameter values
+   should use the URL Escaped encoding instead of quoted string if the
+   parameter values contain any "tspecial".
+
+   The ";base64" extension is distinguishable from a content-type
+   parameter by the fact that it doesn't have a following "=" sign.
+
+<span class="h2"><a class="selflink" id="section-4" href="#section-4">4</a>. Examples</span>
+
+   A data URL might be used for arbitrary types of data. The URL
+
+                          data:,A%20brief%20note
+
+   encodes the text/plain string "A brief note", which might be useful
+   in a footnote link.
+
+   The HTML fragment:
+
+   &lt;IMG
+   SRC="data:image/gif;base64,R0lGODdhMAAwAPAAAAAAAP///ywAAAAAMAAw
+   AAAC8IyPqcvt3wCcDkiLc7C0qwyGHhSWpjQu5yqmCYsapyuvUUlvONmOZtfzgFz
+   ByTB10QgxOR0TqBQejhRNzOfkVJ+5YiUqrXF5Y5lKh/DeuNcP5yLWGsEbtLiOSp
+   a/TPg7JpJHxyendzWTBfX0cxOnKPjgBzi4diinWGdkF8kjdfnycQZXZeYGejmJl
+   ZeGl9i2icVqaNVailT6F5iJ90m6mvuTS4OK05M0vDk0Q4XUtwvKOzrcd3iq9uis
+   F81M1OIcR7lEewwcLp7tuNNkM3uNna3F2JQFo97Vriy/Xl4/f1cf5VWzXyym7PH
+   hhx4dbgYKAAA7"
+   ALT="Larry"&gt;
+
+
+
+
+<span class="grey">Masinter                    Standards Track                     [Page 2]</span></pre>
+<hr class='noprint'/><!--NewPage--><pre class='newpage'><span id="page-3" ></span>
+<span class="grey"><a href="./rfc2397">RFC 2397</a>                 The "data" URL scheme               August 1998</span>
+
+
+   could be used for a small inline image in a HTML document.  (The
+   embedded image is probably near the limit of utility. For anything
+   else larger, data URLs are likely to be inappropriate.)
+
+   A data URL scheme's media type specification can include other
+   parameters; for example, one might specify a charset parameter.
+
+      data:text/plain;charset=iso-8859-7,%be%fg%be
+
+   can be used for a short sequence of greek characters.
+
+   Some applications may use the "data" URL scheme in order to provide
+   setup parameters for other kinds of networking applications. For
+   example, one might create a media type
+           application/vnd-xxx-query
+
+   whose content consists of a query string and a database identifier
+   for the "xxx" vendor's databases. A URL of the form:
+
+   data:application/vnd-xxx-
+   query,select_vcount,fcol_from_fieldtable/local
+
+   could then be used in a local application to launch the "helper" for
+   application/vnd-xxx-query and give it the immediate data included.
+
+<span class="h2"><a class="selflink" id="section-5" href="#section-5">5</a>. History</span>
+
+   This idea was originally proposed August 1995. Some versions of the
+   data URL scheme have been used in the definition of VRML, and a
+   version has appeared as part of a proposal for embedded data in HTML.
+   Various changes have been made, based on requests, to elide the media
+   type, pack the indication of the base64 encoding more tightly, and
+   eliminate "quoted printable" as an encoding since it would not easily
+   yield valid URLs without additional %xx encoding, which itself is
+   sufficient. The "data" URL scheme is in use in VRML, new applications
+   of HTML, and various commercial products. It is being used for object
+   parameters in Java and ActiveX applications.
+
+<span class="h2"><a class="selflink" id="section-6" href="#section-6">6</a>. Security</span>
+
+   Interpretation of the data within a "data" URL has the same security
+   considerations as any implementation of the given media type.  An
+   application should not interpret the contents of a data URL which is
+   marked with a media type that has been disallowed for processing by
+   the application's configuration.
+
+
+
+
+
+
+<span class="grey">Masinter                    Standards Track                     [Page 3]</span></pre>
+<hr class='noprint'/><!--NewPage--><pre class='newpage'><span id="page-4" ></span>
+<span class="grey"><a href="./rfc2397">RFC 2397</a>                 The "data" URL scheme               August 1998</span>
+
+
+   Sites which use firewall proxies to disallow the retrieval of certain
+   media types (such as application script languages or types with known
+   security problems) will find it difficult to screen against the
+   inclusion of such types using the "data" URL scheme.  However, they
+   should be aware of the threat and take whatever precautions are
+   considered necessary within their domain.
+
+   The effect of using long "data" URLs in applications is currently
+   unknown; some software packages may exhibit unreasonable behavior
+   when confronted with data that exceeds its allocated buffer size.
+
+<span class="h2"><a class="selflink" id="section-7" href="#section-7">7</a>. References</span>
+
+   [<a id="ref-RFC2396">RFC2396</a>] Berners-Lee, T., Fielding, R., and L. Masinter,
+               "Uniform Resource Identifiers (URI): Generic Syntax", <a href="./rfc2396">RFC</a>
+               <a href="./rfc2396">2396</a>, August 1998.
+
+   [<a id="ref-RFC1866">RFC1866</a>]   Berners-Lee, T., and D. Connolly, "Hypertext Markup
+               Language - 2.0.", <a href="./rfc1866">RFC 1866</a>, November 1995.
+
+   [<a id="ref-RFC2045">RFC2045</a>]   Freed N., and N. Borenstein., "Multipurpose Internet Mail
+               Extensions (MIME) Part One: Format of Internet Message
+               Bodies", <a href="./rfc2045">RFC 2045</a>, November 1996.
+
+Author contact information:
+
+   Larry Masinter
+   Xerox Palo Alto Research Center
+   3333 Coyote Hill Road
+   Palo Alto, CA 94304
+
+   EMail: masinter@parc.xerox.com
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="grey">Masinter                    Standards Track                     [Page 4]</span></pre>
+<hr class='noprint'/><!--NewPage--><pre class='newpage'><span id="page-5" ></span>
+<span class="grey"><a href="./rfc2397">RFC 2397</a>                 The "data" URL scheme               August 1998</span>
+
+
+Full Copyright Statement
+
+   Copyright (C) The Internet Society (1998).  All Rights Reserved.
+
+   This document and translations of it may be copied and furnished to
+   others, and derivative works that comment on or otherwise explain it
+   or assist in its implementation may be prepared, copied, published
+   and distributed, in whole or in part, without restriction of any
+   kind, provided that the above copyright notice and this paragraph are
+   included on all such copies and derivative works.  However, this
+   document itself may not be modified in any way, such as by removing
+   the copyright notice or references to the Internet Society or other
+   Internet organizations, except as needed for the purpose of
+   developing Internet standards in which case the procedures for
+   copyrights defined in the Internet Standards process must be
+   followed, or as required to translate it into languages other than
+   English.
+
+   The limited permissions granted above are perpetual and will not be
+   revoked by the Internet Society or its successors or assigns.
+
+   This document and the information contained herein is provided on an
+   "AS IS" basis and THE INTERNET SOCIETY AND THE INTERNET ENGINEERING
+   TASK FORCE DISCLAIMS ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING
+   BUT NOT LIMITED TO ANY WARRANTY THAT THE USE OF THE INFORMATION
+   HEREIN WILL NOT INFRINGE ANY RIGHTS OR ANY IMPLIED WARRANTIES OF
+   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Masinter                    Standards Track                     [Page 5]
+</pre>
+
+</body>
+</html>
+

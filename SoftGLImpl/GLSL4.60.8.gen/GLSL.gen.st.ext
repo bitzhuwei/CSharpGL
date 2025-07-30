@@ -1,0 +1,2290 @@
+// use this file as template to put extractor code between ``` and ``` for each regulation.
+
+TranslationUnit = translation_unit ;
+```
+                var @translation_unit0 = (Vntranslation_unit)context.rightStack.Pop();
+                var @translationUnit0 = new TranslationUnit(@translation_unit0);
+                context.result = @translationUnit0; // final step, no need to push into stack.
+```
+translation_unit = external_declaration ;
+```
+                    var @external_declaration0 = (Vnexternal_declaration)context.rightStack.Pop();
+                    var @translation_unit0 = new Vntranslation_unit(external_declaration0);
+                    context.rightStack.Push(@translation_unit0);
+```
+translation_unit = translation_unit external_declaration ;
+```
+                    var @external_declaration0 = (Vnexternal_declaration)context.rightStack.Pop();
+                    var @translation_unit1 = (Vntranslation_unit)context.rightStack.Pop();
+                    translation_unit1.Add(external_declaration0);
+                    context.rightStack.Push(@translation_unit1);
+```
+external_declaration = function_definition ;
+```
+
+```
+external_declaration = declaration ;
+```
+
+```
+external_declaration = ';' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @external_declaration0 = new empty_declaration(r0);
+                    context.rightStack.Push(@external_declaration0);
+```
+function_definition = function_prototype compound_statement ;
+```
+                    var @compound_statement0 = (Vncompound_statement)context.rightStack.Pop();
+                    var @function_prototype1 = (Vnfunction_prototype)context.rightStack.Pop();
+                    var @function_definition = new Vnfunction_definition(@function_prototype1, @compound_statement0);
+                    context.rightStack.Push(@function_definition);
+```
+variable_identifier = 'identifier' ;
+```
+
+```
+primary_expression = variable_identifier ;
+```
+                    var @r0 = (Token)context.rightStack.Pop(); // optimized for variable_identifier
+                    var @primary_expression0 = new Vnprimary_expression(@r0);
+                    context.rightStack.Push(@primary_expression0);
+```
+primary_expression = 'intConstant' ;
+```
+                    var @r0 = (Token)context.rightStack.Pop();
+                    var @primary_expression0 = new Vnprimary_expression(@r0);
+                    context.rightStack.Push(@primary_expression0);
+```
+primary_expression = 'uintConstant' ;
+```
+                    var @r0 = (Token)context.rightStack.Pop();
+                    var @primary_expression0 = new Vnprimary_expression(@r0);
+                    context.rightStack.Push(@primary_expression0);
+```
+primary_expression = 'floatConstant' ;
+```
+                    var @r0 = (Token)context.rightStack.Pop();
+                    var @primary_expression0 = new Vnprimary_expression(@r0);
+                    context.rightStack.Push(@primary_expression0);
+```
+primary_expression = 'boolConstant' ;
+```
+                    var @r0 = (Token)context.rightStack.Pop();
+                    var @primary_expression0 = new Vnprimary_expression(@r0);
+                    context.rightStack.Push(@primary_expression0);
+```
+primary_expression = 'doubleConstant' ;
+```
+                    var @r0 = (Token)context.rightStack.Pop();
+                    var @primary_expression0 = new Vnprimary_expression(@r0);
+                    context.rightStack.Push(@primary_expression0);
+```
+primary_expression = '(' expression ')' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @r1 = (Vnexpression)context.rightStack.Pop();
+                    var r2 = (Token)context.rightStack.Pop();
+                    var @primary_expression0 = new Vnprimary_expression(r2, r1, r0);
+                    context.rightStack.Push(@primary_expression0);
+```
+postfix_expression = primary_expression ;
+```
+                    var @primary_expression0 = (Vnprimary_expression)context.rightStack.Pop();
+                    var @postfix_expression = new Vnpostfix_expression(@primary_expression0);
+                    context.rightStack.Push(@postfix_expression);
+```
+postfix_expression = postfix_expression '[' integer_expression ']' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @integer_expression1 = (Vninteger_expression)context.rightStack.Pop();
+                    var r2 = (Token)context.rightStack.Pop();
+                    var @postfix_expression3 = (Vnpostfix_expression)context.rightStack.Pop();
+                    postfix_expression3.Add(r2, integer_expression1, r0);
+                    context.rightStack.Push(@postfix_expression3);
+```
+postfix_expression = function_call ;
+```
+                    var @function_call0 = (Vnfunction_call)context.rightStack.Pop();
+                    var @postfix_expression = new Vnpostfix_expression(@function_call0);
+                    context.rightStack.Push(@postfix_expression);
+```
+postfix_expression = postfix_expression '.' 'identifier' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var r1 = (Token)context.rightStack.Pop();
+                    var @postfix_expression2 = (Vnpostfix_expression)context.rightStack.Pop();
+                    postfix_expression2.Add(r1, r0);
+                    context.rightStack.Push(@postfix_expression2);
+```
+postfix_expression = postfix_expression '++' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @postfix_expression1 = (Vnpostfix_expression)context.rightStack.Pop();
+                    postfix_expression1.Add(r0);
+                    context.rightStack.Push(@postfix_expression1);
+```
+postfix_expression = postfix_expression '--' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @postfix_expression1 = (Vnpostfix_expression)context.rightStack.Pop();
+                    postfix_expression1.Add(r0);
+                    context.rightStack.Push(@postfix_expression1);
+```
+integer_expression = expression ;
+```
+                    var @expression0 = (Vnexpression)context.rightStack.Pop();
+                    var @integer_expression = new Vninteger_expression(@expression0);
+                    context.rightStack.Push(@integer_expression);
+```
+function_call = function_call_or_method ;
+```
+                    var @function_call_or_method0 = (Vnfunction_call_or_method)context.rightStack.Pop();
+                    var @function_call = new Vnfunction_call(@function_call_or_method0);
+                    context.rightStack.Push(@function_call);
+```
+function_call_or_method = function_call_generic ;
+```
+                    var @function_call_generic0 = (Vnfunction_call_generic)context.rightStack.Pop();
+                    var @function_call_or_method = new Vnfunction_call_or_method(@function_call_generic0);
+                    context.rightStack.Push(@function_call_or_method);
+```
+function_call_generic = function_call_header_with_parameters ')' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @r1 = (Vnfunction_call_header_with_parameters)context.rightStack.Pop();
+                    var @function_call_generic = new function_call_with_parameters(r1, r0);
+                    context.rightStack.Push(@function_call_generic);
+```
+function_call_generic = function_call_header_no_parameters ')' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @r1 = (Vnfunction_call_header_no_parameters)context.rightStack.Pop();
+                    var @function_call_generic = new function_call_no_parameters(@r1, r0);
+                    context.rightStack.Push(@function_call_generic);
+```
+function_call_header_no_parameters = function_call_header 'void' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @function_call_header1 = (Vnfunction_call_header)context.rightStack.Pop();
+                    var r2 = new Vnfunction_call_header_no_parameters(@function_call_header1, r0);
+                    context.rightStack.Push(@r2);
+```
+function_call_header_no_parameters = function_call_header ;
+```
+                    var @function_call_header1 = (Vnfunction_call_header)context.rightStack.Pop();
+                    var r2 = new Vnfunction_call_header_no_parameters(@function_call_header1, null);
+                    context.rightStack.Push(@r2);
+```
+function_call_header_with_parameters = function_call_header assignment_expression ;
+```
+                    var @assignment_expression0 = (Vnassignment_expression)context.rightStack.Pop();
+                    var @function_call_header1 = (Vnfunction_call_header)context.rightStack.Pop();
+                    var left = new Vnfunction_call_header_with_parameters(@function_call_header1, @assignment_expression0);
+                    context.rightStack.Push(left);
+```
+function_call_header_with_parameters = function_call_header_with_parameters ',' assignment_expression ;
+```
+                    var @assignment_expression0 = (Vnassignment_expression)context.rightStack.Pop();
+                    var r1 = (Token)context.rightStack.Pop();
+                    var left = (Vnfunction_call_header_with_parameters)context.rightStack.Pop();
+                    left.Add(r1, assignment_expression0);
+                    context.rightStack.Push(left);
+```
+function_call_header = function_identifier '(' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @function_identifier1 = (Vnfunction_identifier)context.rightStack.Pop();
+                    var @function_call_header = new Vnfunction_call_header(@function_identifier1, r0);
+                    context.rightStack.Push(@function_call_header);
+```
+function_identifier = type_specifier ;
+```
+                    var @type_specifier0 = (Vntype_specifier)context.rightStack.Pop();
+                    var @function_identifier0 = new function_identifier_type_specifier(@type_specifier0);
+                    context.rightStack.Push(@function_identifier0);
+```
+function_identifier = postfix_expression ;
+```
+                    var @postfix_expression0 = (Vnpostfix_expression)context.rightStack.Pop();
+                    var @function_identifier0 = new function_identifier_postfix_expression(@postfix_expression0);
+                    context.rightStack.Push(@function_identifier0);
+```
+unary_expression = postfix_expression ;
+```
+                    var @postfix_expression0 = (Vnpostfix_expression)context.rightStack.Pop();
+                    var @unary_expression = new Vnunary_expression(@postfix_expression0);
+                    context.rightStack.Push(@unary_expression);
+```
+unary_expression = '++' unary_expression ;
+```
+                    var @unary_expression0 = (Vnunary_expression)context.rightStack.Pop();
+                    var r1 = (Token)context.rightStack.Pop();
+                    unary_expression0.Insert(r1);
+                    context.rightStack.Push(@unary_expression0);
+```
+unary_expression = '--' unary_expression ;
+```
+                    var @unary_expression0 = (Vnunary_expression)context.rightStack.Pop();
+                    var r1 = (Token)context.rightStack.Pop();
+                    unary_expression0.Insert(r1);
+                    context.rightStack.Push(@unary_expression0);
+```
+unary_expression = unary_operator unary_expression ;
+```
+                    var @unary_expression0 = (Vnunary_expression)context.rightStack.Pop();
+                    var @unary_operator1 = (Vnunary_operator)context.rightStack.Pop();
+                    unary_expression0.Insert(unary_operator1);
+                    context.rightStack.Push(@unary_expression0);
+```
+unary_operator = '+' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @unary_operator0 = new Vnunary_operator(r0);
+                    context.rightStack.Push(@unary_operator0);
+```
+unary_operator = '-' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @unary_operator0 = new Vnunary_operator(r0);
+                    context.rightStack.Push(@unary_operator0);
+```
+unary_operator = '!' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @unary_operator0 = new Vnunary_operator(r0);
+                    context.rightStack.Push(@unary_operator0);
+```
+unary_operator = '~' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @unary_operator0 = new Vnunary_operator(r0);
+                    context.rightStack.Push(@unary_operator0);
+```
+multiplicative_expression = unary_expression ;
+```
+                    var @unary_expression0 = (Vnunary_expression)context.rightStack.Pop();
+                    var @multiplicative_expression0 = new Vnmultiplicative_expression(@unary_expression0);
+                    context.rightStack.Push(@multiplicative_expression0);
+```
+multiplicative_expression = multiplicative_expression '*' unary_expression ;
+```
+                    var r0 = (Vnunary_expression)context.rightStack.Pop();
+                    var r1 = (Token)context.rightStack.Pop();
+                    var r2 = (Vnmultiplicative_expression)context.rightStack.Pop();
+                    r2.Add(r1, r0);
+                    context.rightStack.Push(r2);
+```
+multiplicative_expression = multiplicative_expression '/' unary_expression ;
+```
+                    var r0 = (Vnunary_expression)context.rightStack.Pop();
+                    var r1 = (Token)context.rightStack.Pop();
+                    var @r2 = (Vnmultiplicative_expression)context.rightStack.Pop();
+                    r2.Add(r1, r0);
+                    context.rightStack.Push(@r2);
+```
+multiplicative_expression = multiplicative_expression '%' unary_expression ;
+```
+                    var @r0 = (Vnunary_expression)context.rightStack.Pop();
+                    var r1 = (Token)context.rightStack.Pop();
+                    var @r2 = (Vnmultiplicative_expression)context.rightStack.Pop();
+                    r2.Add(r1, r0);
+                    context.rightStack.Push(@r2);
+```
+additive_expression = multiplicative_expression ;
+```
+                    var @multiplicative_expression0 = (Vnmultiplicative_expression)context.rightStack.Pop();
+                    var @additive_expression0 = new Vnadditive_expression(@multiplicative_expression0);
+                    context.rightStack.Push(@additive_expression0);
+```
+additive_expression = additive_expression '+' multiplicative_expression ;
+```
+                    var @multiplicative_expression0 = (Vnmultiplicative_expression)context.rightStack.Pop();
+                    var r1 = (Token)context.rightStack.Pop();
+                    var @additive_expression2 = (Vnadditive_expression)context.rightStack.Pop();
+                    additive_expression2.Add(r1, multiplicative_expression0);
+                    context.rightStack.Push(@additive_expression2);
+```
+additive_expression = additive_expression '-' multiplicative_expression ;
+```
+                    var @multiplicative_expression0 = (Vnmultiplicative_expression)context.rightStack.Pop();
+                    var r1 = (Token)context.rightStack.Pop();
+                    var @additive_expression2 = (Vnadditive_expression)context.rightStack.Pop();
+                    additive_expression2.Add(r1, multiplicative_expression0);
+                    context.rightStack.Push(@additive_expression2);
+```
+shift_expression = additive_expression ;
+```
+                    var @additive_expression0 = (Vnadditive_expression)context.rightStack.Pop();
+                    var @shift_expression0 = new Vnshift_expression(@additive_expression0);
+                    context.rightStack.Push(@shift_expression0);
+```
+shift_expression = shift_expression '<<' additive_expression ;
+```
+                    var @additive_expression0 = (Vnadditive_expression)context.rightStack.Pop();
+                    var r1 = (Token)context.rightStack.Pop();
+                    var @shift_expression2 = (Vnshift_expression)context.rightStack.Pop();
+                    shift_expression2.Add(r1, additive_expression0);
+                    context.rightStack.Push(@shift_expression2);
+```
+shift_expression = shift_expression '>>' additive_expression ;
+```
+                    var @additive_expression0 = (Vnadditive_expression)context.rightStack.Pop();
+                    var r1 = (Token)context.rightStack.Pop();
+                    var @shift_expression2 = (Vnshift_expression)context.rightStack.Pop();
+                    shift_expression2.Add(r1, additive_expression0);
+                    context.rightStack.Push(@shift_expression2);
+```
+relational_expression = shift_expression ;
+```
+                    var @shift_expression0 = (Vnshift_expression)context.rightStack.Pop();
+                    var @relational_expression = new Vnrelational_expression(@shift_expression0);
+                    context.rightStack.Push(@relational_expression);
+```
+relational_expression = relational_expression '<' shift_expression ;
+```
+                    var @shift_expression0 = (Vnshift_expression)context.rightStack.Pop();
+                    var r1 = (Token)context.rightStack.Pop();
+                    var @relational_expression2 = (Vnrelational_expression)context.rightStack.Pop();
+                    relational_expression2.Add(r1, shift_expression0);
+                    context.rightStack.Push(@relational_expression2);
+```
+relational_expression = relational_expression '>' shift_expression ;
+```
+                    var @shift_expression0 = (Vnshift_expression)context.rightStack.Pop();
+                    var r1 = (Token)context.rightStack.Pop();
+                    var @relational_expression2 = (Vnrelational_expression)context.rightStack.Pop();
+                    relational_expression2.Add(r1, shift_expression0);
+                    context.rightStack.Push(@relational_expression2);
+```
+relational_expression = relational_expression '<=' shift_expression ;
+```
+                    var @shift_expression0 = (Vnshift_expression)context.rightStack.Pop();
+                    var r1 = (Token)context.rightStack.Pop();
+                    var @relational_expression2 = (Vnrelational_expression)context.rightStack.Pop();
+                    relational_expression2.Add(r1, shift_expression0);
+                    context.rightStack.Push(@relational_expression2);
+```
+relational_expression = relational_expression '>=' shift_expression ;
+```
+                    var @shift_expression0 = (Vnshift_expression)context.rightStack.Pop();
+                    var r1 = (Token)context.rightStack.Pop();
+                    var @relational_expression2 = (Vnrelational_expression)context.rightStack.Pop();
+                    relational_expression2.Add(r1, shift_expression0);
+                    context.rightStack.Push(@relational_expression2);
+```
+equality_expression = relational_expression ;
+```
+                    var @relational_expression0 = (Vnrelational_expression)context.rightStack.Pop();
+                    var @equality_expression0 = new Vnequality_expression(relational_expression0);
+                    context.rightStack.Push(@equality_expression0);
+```
+equality_expression = equality_expression '==' relational_expression ;
+```
+                   var @relational_expression0 = (Vnrelational_expression)context.rightStack.Pop();
+                    var r1 = (Token)context.rightStack.Pop();
+                    var @equality_expression2 = (Vnequality_expression)context.rightStack.Pop();
+                    equality_expression2.Add(r1, relational_expression0);
+                    context.rightStack.Push(@equality_expression2);
+```
+equality_expression = equality_expression '!=' relational_expression ;
+```
+                    var @relational_expression0 = (Vnrelational_expression)context.rightStack.Pop();
+                    var r1 = (Token)context.rightStack.Pop();
+                    var @equality_expression2 = (Vnequality_expression)context.rightStack.Pop();
+                    equality_expression2.Add(r1, relational_expression0);
+                    context.rightStack.Push(@equality_expression2);
+```
+and_expression = equality_expression ;
+```
+                    var @equality_expression0 = (Vnequality_expression)context.rightStack.Pop();
+                    var @and_expression0 = new Vnand_expression(equality_expression0);
+                    context.rightStack.Push(@and_expression0);
+```
+and_expression = and_expression '&' equality_expression ;
+```
+                    var @equality_expression0 = (Vnequality_expression)context.rightStack.Pop();
+                    var r1 = (Token)context.rightStack.Pop();
+                    var @and_expression2 = (Vnand_expression)context.rightStack.Pop();
+                    and_expression2.Add(r1, equality_expression0);
+                    context.rightStack.Push(@and_expression2);
+```
+exclusive_or_expression = and_expression ;
+```
+                    var @and_expression0 = (Vnand_expression)context.rightStack.Pop();
+                    var @exclusive_or_expression0 = new Vnexclusive_or_expression(and_expression0);
+                    context.rightStack.Push(@exclusive_or_expression0);
+```
+exclusive_or_expression = exclusive_or_expression '^' and_expression ;
+```
+                    var @and_expression0 = (Vnand_expression)context.rightStack.Pop();
+                    var r1 = (Token)context.rightStack.Pop();
+                    var @exclusive_or_expression2 = (Vnexclusive_or_expression)context.rightStack.Pop();
+                    exclusive_or_expression2.Add(r1, and_expression0);
+                    context.rightStack.Push(@exclusive_or_expression2);
+```
+inclusive_or_expression = exclusive_or_expression ;
+```
+                    var @exclusive_or_expression0 = (Vnexclusive_or_expression)context.rightStack.Pop();
+                    var @inclusive_or_expression0 = new Vninclusive_or_expression(exclusive_or_expression0);
+                    context.rightStack.Push(@inclusive_or_expression0);
+```
+inclusive_or_expression = inclusive_or_expression '|' exclusive_or_expression ;
+```
+                    var @exclusive_or_expression0 = (Vnexclusive_or_expression)context.rightStack.Pop();
+                    var r1 = (Token)context.rightStack.Pop();
+                    var @inclusive_or_expression2 = (Vninclusive_or_expression)context.rightStack.Pop();
+                    inclusive_or_expression2.Add(r1, exclusive_or_expression0);
+                    context.rightStack.Push(@inclusive_or_expression2);
+```
+logical_and_expression = inclusive_or_expression ;
+```
+                    var @inclusive_or_expression0 = (Vninclusive_or_expression)context.rightStack.Pop();
+                    var @logical_and_expression0 = new Vnlogical_and_expression(inclusive_or_expression0);
+                    context.rightStack.Push(@logical_and_expression0);
+```
+logical_and_expression = logical_and_expression '&&' inclusive_or_expression ;
+```
+                    var @inclusive_or_expression0 = (Vninclusive_or_expression)context.rightStack.Pop();
+                    var r1 = (Token)context.rightStack.Pop();
+                    var @logical_and_expression2 = (Vnlogical_and_expression)context.rightStack.Pop();
+                    logical_and_expression2.Add(r1, inclusive_or_expression0);
+                    context.rightStack.Push(@logical_and_expression2);
+```
+logical_xor_expression = logical_and_expression ;
+```
+                    var @logical_and_expression0 = (Vnlogical_and_expression)context.rightStack.Pop();
+                    var @logical_xor_expression0 = new Vnlogical_xor_expression(logical_and_expression0);
+                    context.rightStack.Push(@logical_xor_expression0);
+```
+logical_xor_expression = logical_xor_expression '^^' logical_and_expression ;
+```
+                    var @logical_and_expression0 = (Vnlogical_and_expression)context.rightStack.Pop();
+                    var r1 = (Token)context.rightStack.Pop();
+                    var @logical_xor_expression2 = (Vnlogical_xor_expression)context.rightStack.Pop();
+                    logical_xor_expression2.Add(r1, logical_and_expression0);
+                    context.rightStack.Push(@logical_xor_expression2);
+```
+logical_or_expression = logical_xor_expression ;
+```
+                    var @logical_xor_expression0 = (Vnlogical_xor_expression)context.rightStack.Pop();
+                    var @logical_or_expression0 = new Vnlogical_or_expression(logical_xor_expression0);
+                    context.rightStack.Push(@logical_or_expression0);
+```
+logical_or_expression = logical_or_expression '||' logical_xor_expression ;
+```
+                    var @logical_xor_expression0 = (Vnlogical_xor_expression)context.rightStack.Pop();
+                    var r1 = (Token)context.rightStack.Pop();
+                    var @logical_or_expression2 = (Vnlogical_or_expression)context.rightStack.Pop();
+                    logical_or_expression2.Add(r1, logical_xor_expression0);
+                    context.rightStack.Push(@logical_or_expression2);
+```
+conditional_expression = logical_or_expression ;
+```
+                    var @logical_or_expression0 = (Vnlogical_or_expression)context.rightStack.Pop();
+                    var @conditional_expression0 = new Vnconditional_expression(
+                        @logical_or_expression0, null, null, null, null);
+                    context.rightStack.Push(@conditional_expression0);
+```
+conditional_expression = logical_or_expression '?' expression ':' assignment_expression ;
+```
+                    var @assignment_expression0 = (Vnassignment_expression)context.rightStack.Pop();
+                    var r1 = (Token)context.rightStack.Pop();
+                    var @expression2 = (Vnexpression)context.rightStack.Pop();
+                    var r3 = (Token)context.rightStack.Pop();
+                    var @logical_or_expression4 = (Vnlogical_or_expression)context.rightStack.Pop();
+                    var @conditional_expression0 = new Vnconditional_expression(
+                        @logical_or_expression4, r3, @expression2, r1, @assignment_expression0);
+                    context.rightStack.Push(@conditional_expression0);
+```
+assignment_expression = conditional_expression ;
+```
+                    var @conditional_expression0 = (Vnconditional_expression)context.rightStack.Pop();
+                    var @assignment_expression0 = new Vnassignment_expression(@conditional_expression0);
+                    context.rightStack.Push(@assignment_expression0);
+```
+assignment_expression = unary_expression assignment_operator assignment_expression ;
+```
+                    var @assignment_expression0 = (Vnassignment_expression)context.rightStack.Pop();
+                    var @r1 = (Vnassignment_operator)context.rightStack.Pop();
+                    var @unary_expression2 = (Vnunary_expression)context.rightStack.Pop();
+                    assignment_expression0.Insert(unary_expression2, r1);
+                    context.rightStack.Push(@assignment_expression0);
+```
+assignment_operator = '=' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @assignment_operator0 = new Vnassignment_operator(r0);
+                    context.rightStack.Push(@assignment_operator0);
+```
+assignment_operator = '*=' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @assignment_operator0 = new Vnassignment_operator(r0);
+                    context.rightStack.Push(@assignment_operator0);
+```
+assignment_operator = '/=' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @assignment_operator0 = new Vnassignment_operator(r0);
+                    context.rightStack.Push(@assignment_operator0);
+```
+assignment_operator = '%=' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @assignment_operator0 = new Vnassignment_operator(r0);
+                    context.rightStack.Push(@assignment_operator0);
+```
+assignment_operator = '+=' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @assignment_operator0 = new Vnassignment_operator(r0);
+                    context.rightStack.Push(@assignment_operator0);
+```
+assignment_operator = '-=' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @assignment_operator0 = new Vnassignment_operator(r0);
+                    context.rightStack.Push(@assignment_operator0);
+```
+assignment_operator = '<<=' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @assignment_operator0 = new Vnassignment_operator(r0);
+                    context.rightStack.Push(@assignment_operator0);
+```
+assignment_operator = '>>=' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @assignment_operator0 = new Vnassignment_operator(r0);
+                    context.rightStack.Push(@assignment_operator0);
+```
+assignment_operator = '&=' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @assignment_operator0 = new Vnassignment_operator(r0);
+                    context.rightStack.Push(@assignment_operator0);
+```
+assignment_operator = '^=' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @assignment_operator0 = new Vnassignment_operator(r0);
+                    context.rightStack.Push(@assignment_operator0);
+```
+assignment_operator = '|=' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @assignment_operator0 = new Vnassignment_operator(r0);
+                    context.rightStack.Push(@assignment_operator0);
+```
+expression = assignment_expression ;
+```
+                    var @assignment_expression0 = (Vnassignment_expression)context.rightStack.Pop();
+                    var @expression0 = new Vnexpression(assignment_expression0);
+                    context.rightStack.Push(@expression0);
+```
+expression = expression ',' assignment_expression ;
+```
+                    var @assignment_expression0 = (Vnassignment_expression)context.rightStack.Pop();
+                    var r1 = (Token)context.rightStack.Pop();
+                    var @expression2 = (Vnexpression)context.rightStack.Pop();
+                    expression2.Add(r1, assignment_expression0);
+                    context.rightStack.Push(@expression2);
+```
+constant_expression = conditional_expression ;
+```
+                    var @conditional_expression0 = (Vnconditional_expression)context.rightStack.Pop();
+                    var @constant_expression = new Vnconstant_expression(@conditional_expression0);
+                    context.rightStack.Push(@constant_expression);
+```
+declaration = function_prototype ';' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @function_prototype1 = (Vnfunction_prototype)context.rightStack.Pop();
+                    var @declaration = new declaration_function_prototype(@function_prototype1, r0);
+                    context.rightStack.Push(@declaration);
+```
+declaration = init_declarator_list ';' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @init_declarator_list1 = (Vninit_declarator_list)context.rightStack.Pop();
+                    var @declaration = new declaration_init_declarator_list(@init_declarator_list1, r0);
+                    context.rightStack.Push(@declaration);
+```
+declaration = 'precision' precision_qualifier type_specifier ';' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier1 = (Vntype_specifier)context.rightStack.Pop();
+                    var @precision_qualifier2 = (Vnprecision_qualifier)context.rightStack.Pop();
+                    var r3 = (Token)context.rightStack.Pop();
+                    var @declaration = new declaration_precision(r3, @precision_qualifier2, @type_specifier1, r0);
+                    context.rightStack.Push(@declaration);
+```
+declaration = type_qualifier 'identifier' '{' struct_declaration_list '}' ';' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var r1 = (Token)context.rightStack.Pop();
+                    var @struct_declaration_list2 = (Vnstruct_declaration_list)context.rightStack.Pop();
+                    var r3 = (Token)context.rightStack.Pop();
+                    var @identifier4 = (Token)context.rightStack.Pop();
+                    var @type_qualifier5 = (Vntype_qualifier)context.rightStack.Pop();
+                    var @declaration = new declaration_type_qualifier(
+                        @type_qualifier5, @identifier4, r3, @struct_declaration_list2, r1, null, null, r0);
+                    context.rightStack.Push(@declaration);
+```
+declaration = type_qualifier 'identifier' '{' struct_declaration_list '}' 'identifier' ';' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @identifier1 = (Token)context.rightStack.Pop();
+                    var r2 = (Token)context.rightStack.Pop();
+                    var @struct_declaration_list3 = (Vnstruct_declaration_list)context.rightStack.Pop();
+                    var r4 = (Token)context.rightStack.Pop();
+                    var @identifier5 = (Token)context.rightStack.Pop();
+                    var @type_qualifier6 = (Vntype_qualifier)context.rightStack.Pop();
+                    var @declaration = new declaration_type_qualifier(
+                        @type_qualifier6, @identifier5, r4, @struct_declaration_list3, r2, @identifier1, null, r0);
+                    context.rightStack.Push(@declaration);
+```
+declaration = type_qualifier 'identifier' '{' struct_declaration_list '}' 'identifier' array_specifier ';' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @array_specifier1 = (Vnarray_specifier)context.rightStack.Pop();
+                    var @identifier2 = (Token)context.rightStack.Pop();
+                    var r3 = (Token)context.rightStack.Pop();
+                    var @struct_declaration_list4 = (Vnstruct_declaration_list)context.rightStack.Pop();
+                    var r5 = (Token)context.rightStack.Pop();
+                    var @identifier6 = (Token)context.rightStack.Pop();
+                    var @type_qualifier7 = (Vntype_qualifier)context.rightStack.Pop();
+                    var @declaration = new declaration_type_qualifier(
+                        @type_qualifier7, @identifier6, r5, @struct_declaration_list4, r3, @identifier2, @array_specifier1, r0);
+                    context.rightStack.Push(@declaration);
+```
+declaration = type_qualifier ';' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_qualifier1 = (Vntype_qualifier)context.rightStack.Pop();
+                    var @declaration = new declaration_identifiers(
+                        @type_qualifier1, null, null, r0);
+                    context.rightStack.Push(@declaration);
+```
+declaration = type_qualifier 'identifier' ';' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @identifier1 = (Token)context.rightStack.Pop();
+                    var @type_qualifier2 = (Vntype_qualifier)context.rightStack.Pop();
+                    var @declaration = new declaration_identifiers(
+                        @type_qualifier2, @identifier1, null, r0);
+                    context.rightStack.Push(@declaration);
+```
+declaration = type_qualifier 'identifier' identifier_list ';' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @identifier_list1 = (Vnidentifier_list)context.rightStack.Pop();
+                    var @identifier2 = (Token)context.rightStack.Pop();
+                    var @type_qualifier3 = (Vntype_qualifier)context.rightStack.Pop();
+                    var @declaration = new declaration_identifiers(
+                        @type_qualifier3, @identifier2, @identifier_list1, r0);
+                    context.rightStack.Push(@declaration);
+```
+identifier_list = ',' 'identifier' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var r1 = (Token)context.rightStack.Pop();
+                    var @identifier_list0 = new Vnidentifier_list(r1, r0);
+                    context.rightStack.Push(@identifier_list0);
+```
+identifier_list = identifier_list ',' 'identifier' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var r1 = (Token)context.rightStack.Pop();
+                    var r2 = (Vnidentifier_list)context.rightStack.Pop();
+                    r2.Add(r1, r0);
+                    context.rightStack.Push(r2);
+```
+function_prototype = function_declarator ')' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @function_declarator1 = (Vnfunction_declarator)context.rightStack.Pop();
+                    var @function_prototype = new Vnfunction_prototype(@function_declarator1, r0);
+                    context.rightStack.Push(@function_prototype);
+```
+function_declarator = function_header ;
+```
+
+```
+function_declarator = function_header_with_parameters ;
+```
+
+```
+function_header_with_parameters = function_header parameter_declaration ;
+```
+                    var @parameter_declaration0 = (Vnparameter_declaration)context.rightStack.Pop();
+                    var @function_header1 = (Vnfunction_header)context.rightStack.Pop();
+                    var @function_header_with_parameters0 = new Vnfunction_header_with_parameters(@function_header1, @parameter_declaration0);
+                    context.rightStack.Push(@function_header_with_parameters0);
+```
+function_header_with_parameters = function_header_with_parameters ',' parameter_declaration ;
+```
+                    var r0 = (Vnparameter_declaration)context.rightStack.Pop();
+                    var r1 = (Token)context.rightStack.Pop();
+                    var r2 = (Vnfunction_header_with_parameters)context.rightStack.Pop();
+                    r2.Add(r1, r0);
+                    context.rightStack.Push(r2);
+```
+function_header = fully_specified_type 'identifier' '(' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @identifier1 = (Token)context.rightStack.Pop();
+                    var @fully_specified_type2 = (Vnfully_specified_type)context.rightStack.Pop();
+                    var @function_header = new Vnfunction_header(@fully_specified_type2, @identifier1, r0);
+                    context.rightStack.Push(@function_header);
+```
+parameter_declarator = type_specifier 'identifier' ;
+```
+                    var @identifier0 = (Token)context.rightStack.Pop();
+                    var @type_specifier1 = (Vntype_specifier)context.rightStack.Pop();
+                    var @parameter_declarator = new Vnparameter_declarator(@type_specifier1, @identifier0, null);
+                    context.rightStack.Push(@parameter_declarator);
+```
+parameter_declarator = type_specifier 'identifier' array_specifier ;
+```
+                    var @array_specifier0 = (Vnarray_specifier)context.rightStack.Pop();
+                    var @identifier1 = (Token)context.rightStack.Pop();
+                    var @type_specifier2 = (Vntype_specifier)context.rightStack.Pop();
+                    var @parameter_declarator = new Vnparameter_declarator(@type_specifier2, @identifier1, @array_specifier0);
+                    context.rightStack.Push(@parameter_declarator);
+```
+parameter_declaration = type_qualifier parameter_declarator ;
+```
+                    var @parameter_declarator0 = (Vnparameter_declarator)context.rightStack.Pop();
+                    var @type_qualifier1 = (Vntype_qualifier)context.rightStack.Pop();
+                    var @parameter_declaration = new parameter_declaration_parameter_declarator(@type_qualifier1, @parameter_declarator0);
+                    context.rightStack.Push(@parameter_declaration);
+```
+parameter_declaration = parameter_declarator ;
+```
+                    var @parameter_declarator0 = (Vnparameter_declarator)context.rightStack.Pop();
+                    var @parameter_declaration = new parameter_declaration_parameter_declarator(null, @parameter_declarator0);
+                    context.rightStack.Push(@parameter_declaration);
+```
+parameter_declaration = type_qualifier parameter_type_specifier ;
+```
+                    var @parameter_type_specifier0 = (Vnparameter_type_specifier)context.rightStack.Pop();
+                    var @type_qualifier1 = (Vntype_qualifier)context.rightStack.Pop();
+                    var @parameter_declaration = new parameter_declaration_type_specifier(@type_qualifier1, @parameter_type_specifier0);
+                    context.rightStack.Push(@parameter_declaration);
+```
+parameter_declaration = parameter_type_specifier ;
+```
+                    var @parameter_type_specifier0 = (Vnparameter_type_specifier)context.rightStack.Pop();
+                    var @parameter_declaration = new parameter_declaration_type_specifier(null, @parameter_type_specifier0);
+                    context.rightStack.Push(@parameter_declaration);
+```
+parameter_type_specifier = type_specifier ;
+```
+                    var @type_specifier0 = (Vntype_specifier)context.rightStack.Pop();
+                    var @parameter_type_specifier = new Vnparameter_type_specifier(@type_specifier0);
+                    context.rightStack.Push(@parameter_type_specifier);
+```
+init_declarator_list = single_declaration ;
+```
+                    var @single_declaration0 = (Vnsingle_declaration)context.rightStack.Pop();
+                    var @init_declarator_list = new Vninit_declarator_list(single_declaration0);
+                    context.rightStack.Push(@init_declarator_list);
+```
+init_declarator_list = init_declarator_list ',' 'identifier' ;
+```
+                    var @identifier0 = (Token)context.rightStack.Pop();
+                    var r1 = (Token)context.rightStack.Pop();
+                    var @init_declarator_list2 = (Vninit_declarator_list)context.rightStack.Pop();
+                    init_declarator_list2.Add(r1, identifier0, null, null, null);
+                    context.rightStack.Push(@init_declarator_list2);
+```
+init_declarator_list = init_declarator_list ',' 'identifier' array_specifier ;
+```
+                    var @array_specifier0 = (Vnarray_specifier)context.rightStack.Pop();
+                    var @identifier1 = (Token)context.rightStack.Pop();
+                    var r2 = (Token)context.rightStack.Pop();
+                    var @init_declarator_list3 = (Vninit_declarator_list)context.rightStack.Pop();
+                    init_declarator_list3.Add(r2, identifier1, array_specifier0, null, null);
+                    context.rightStack.Push(@init_declarator_list3);
+```
+init_declarator_list = init_declarator_list ',' 'identifier' array_specifier '=' initializer ;
+```
+                    var @initializer0 = (Vninitializer)context.rightStack.Pop();
+                    var r1 = (Token)context.rightStack.Pop();
+                    var @array_specifier2 = (Vnarray_specifier)context.rightStack.Pop();
+                    var @identifier3 = (Token)context.rightStack.Pop();
+                    var r4 = (Token)context.rightStack.Pop();
+                    var @init_declarator_list5 = (Vninit_declarator_list)context.rightStack.Pop();
+                    init_declarator_list5.Add(r4, identifier3, array_specifier2, r1, initializer0);
+                    context.rightStack.Push(@init_declarator_list5);
+```
+init_declarator_list = init_declarator_list ',' 'identifier' '=' initializer ;
+```
+                    var @initializer0 = (Vninitializer)context.rightStack.Pop();
+                    var r1 = (Token)context.rightStack.Pop();
+                    var @identifier2 = (Token)context.rightStack.Pop();
+                    var r3 = (Token)context.rightStack.Pop();
+                    var @init_declarator_list4 = (Vninit_declarator_list)context.rightStack.Pop();
+                    init_declarator_list4.Add(r3, identifier2, null, r1, initializer0);
+                    context.rightStack.Push(@init_declarator_list4);
+```
+single_declaration = fully_specified_type ;
+```
+                    var @fully_specified_type0 = (Vnfully_specified_type)context.rightStack.Pop();
+                    var @single_declaration0 = new Vnsingle_declaration(@fully_specified_type0, null, null, null, null);
+                    context.rightStack.Push(@single_declaration0);
+```
+single_declaration = fully_specified_type 'identifier' ;
+```
+                    var @identifier0 = (Token)context.rightStack.Pop();
+                    var @fully_specified_type1 = (Vnfully_specified_type)context.rightStack.Pop();
+                    var @single_declaration0 = new Vnsingle_declaration(@fully_specified_type1, @identifier0, null, null, null);
+                    context.rightStack.Push(@single_declaration0);
+```
+single_declaration = fully_specified_type 'identifier' array_specifier ;
+```
+                    var @array_specifier0 = (Vnarray_specifier)context.rightStack.Pop();
+                    var @identifier1 = (Token)context.rightStack.Pop();
+                    var @fully_specified_type2 = (Vnfully_specified_type)context.rightStack.Pop();
+                    var @single_declaration0 = new Vnsingle_declaration(@fully_specified_type2, @identifier1, @array_specifier0, null, null);
+                    context.rightStack.Push(@single_declaration0);
+```
+single_declaration = fully_specified_type 'identifier' array_specifier '=' initializer ;
+```
+                    var @initializer0 = (Vninitializer)context.rightStack.Pop();
+                    var r1 = (Token)context.rightStack.Pop();
+                    var @array_specifier2 = (Vnarray_specifier)context.rightStack.Pop();
+                    var @identifier3 = (Token)context.rightStack.Pop();
+                    var @fully_specified_type4 = (Vnfully_specified_type)context.rightStack.Pop();
+                    var @single_declaration0 = new Vnsingle_declaration(@fully_specified_type4, @identifier3, @array_specifier2, r1, @initializer0);
+                    context.rightStack.Push(@single_declaration0);
+```
+single_declaration = fully_specified_type 'identifier' '=' initializer ;
+```
+                    var @initializer0 = (Vninitializer)context.rightStack.Pop();
+                    var r1 = (Token)context.rightStack.Pop();
+                    var @identifier2 = (Token)context.rightStack.Pop();
+                    var @fully_specified_type3 = (Vnfully_specified_type)context.rightStack.Pop();
+                    var @single_declaration0 = new Vnsingle_declaration(@fully_specified_type3, @identifier2, null, r1, @initializer0);
+                    context.rightStack.Push(@single_declaration0);
+```
+fully_specified_type = type_specifier ;
+```
+                    var @type_specifier0 = (Vntype_specifier)context.rightStack.Pop();
+                    var @fully_specified_type = new Vnfully_specified_type(null, @type_specifier0);
+                    context.rightStack.Push(@fully_specified_type);
+```
+fully_specified_type = type_qualifier type_specifier ;
+```
+                    var @type_specifier0 = (Vntype_specifier)context.rightStack.Pop();
+                    var @type_qualifier1 = (Vntype_qualifier)context.rightStack.Pop();
+                    var @fully_specified_type = new Vnfully_specified_type(@type_qualifier1, @type_specifier0);
+                    context.rightStack.Push(@fully_specified_type);
+```
+invariant_qualifier = 'invariant' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @invariant_qualifier0 = new Vninvariant_qualifier(r0);
+                    context.rightStack.Push(@invariant_qualifier0);
+```
+interpolation_qualifier = 'smooth' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @interpolation_qualifier0 = new Vninterpolation_qualifier(r0);
+                    context.rightStack.Push(@interpolation_qualifier0);
+```
+interpolation_qualifier = 'flat' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @interpolation_qualifier0 = new Vninterpolation_qualifier(r0);
+                    context.rightStack.Push(@interpolation_qualifier0);
+```
+interpolation_qualifier = 'noperspective' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @interpolation_qualifier0 = new Vninterpolation_qualifier(r0);
+                    context.rightStack.Push(@interpolation_qualifier0);
+```
+layout_qualifier = 'layout' '(' layout_qualifier_id_list ')' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @layout_qualifier_id_list1 = (Vnlayout_qualifier_id_list)context.rightStack.Pop();
+                    var r2 = (Token)context.rightStack.Pop();
+                    var r3 = (Token)context.rightStack.Pop();
+                    var @layout_qualifier = new Vnlayout_qualifier(r3, r2, @layout_qualifier_id_list1, r0);
+                    context.rightStack.Push(@layout_qualifier);
+```
+layout_qualifier_id_list = layout_qualifier_id ;
+```
+                    var @layout_qualifier_id0 = (Vnlayout_qualifier_id)context.rightStack.Pop();
+                    var @layout_qualifier_id_list0 = new Vnlayout_qualifier_id_list(layout_qualifier_id0);
+                    context.rightStack.Push(@layout_qualifier_id_list0);
+```
+layout_qualifier_id_list = layout_qualifier_id_list ',' layout_qualifier_id ;
+```
+                    var @layout_qualifier_id0 = (Vnlayout_qualifier_id)context.rightStack.Pop();
+                    var r1 = (Token)context.rightStack.Pop();
+                    var @layout_qualifier_id_list2 = (Vnlayout_qualifier_id_list)context.rightStack.Pop();
+                    layout_qualifier_id_list2.Add(r1, layout_qualifier_id0);
+                    context.rightStack.Push(@layout_qualifier_id_list2);
+```
+layout_qualifier_id = 'identifier' ;
+```
+                    var @identifier0 = (Token)context.rightStack.Pop();
+                    var @layout_qualifier_id0 = new Vnlayout_qualifier_id(@identifier0, null, null);
+                    context.rightStack.Push(@layout_qualifier_id0);
+```
+layout_qualifier_id = 'identifier' '=' constant_expression ;
+```
+                    var @constant_expression0 = (Vnconstant_expression)context.rightStack.Pop();
+                    var r1 = (Token)context.rightStack.Pop();
+                    var @identifier2 = (Token)context.rightStack.Pop();
+                    var @layout_qualifier_id0 = new Vnlayout_qualifier_id(@identifier2, r1, @constant_expression0);
+                    context.rightStack.Push(@layout_qualifier_id0);
+```
+layout_qualifier_id = 'shared' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @layout_qualifier_id0 = new Vnlayout_qualifier_id(r0, null, null);
+                    context.rightStack.Push(@layout_qualifier_id0);
+```
+precise_qualifier = 'precise' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @precise_qualifier0 = new Vnprecise_qualifier(r0);
+                    context.rightStack.Push(@precise_qualifier0);
+```
+type_qualifier = single_type_qualifier ;
+```
+                    var @single_type_qualifier0 = (Vnsingle_type_qualifier)context.rightStack.Pop();
+                    var @type_qualifier0 = new Vntype_qualifier(single_type_qualifier0);
+                    context.rightStack.Push(@type_qualifier0);
+```
+type_qualifier = type_qualifier single_type_qualifier ;
+```
+                    var @single_type_qualifier0 = (Vnsingle_type_qualifier)context.rightStack.Pop();
+                    var @type_qualifier1 = (Vntype_qualifier)context.rightStack.Pop();
+                    type_qualifier1.Add(single_type_qualifier0);
+                    context.rightStack.Push(@type_qualifier1);
+```
+single_type_qualifier = storage_qualifier ;
+```
+
+```
+single_type_qualifier = layout_qualifier ;
+```
+
+```
+single_type_qualifier = precision_qualifier ;
+```
+
+```
+single_type_qualifier = interpolation_qualifier ;
+```
+
+```
+single_type_qualifier = invariant_qualifier ;
+```
+
+```
+single_type_qualifier = precise_qualifier ;
+```
+
+```
+storage_qualifier = 'const' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @storage_qualifier0 = new Vnstorage_qualifier(r0);
+                    context.rightStack.Push(@storage_qualifier0);
+```
+storage_qualifier = 'in' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @storage_qualifier0 = new Vnstorage_qualifier(r0);
+                    context.rightStack.Push(@storage_qualifier0);
+```
+storage_qualifier = 'out' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @storage_qualifier0 = new Vnstorage_qualifier(r0);
+                    context.rightStack.Push(@storage_qualifier0);
+```
+storage_qualifier = 'inout' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @storage_qualifier0 = new Vnstorage_qualifier(r0);
+                    context.rightStack.Push(@storage_qualifier0);
+```
+storage_qualifier = 'centroid' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @storage_qualifier0 = new Vnstorage_qualifier(r0);
+                    context.rightStack.Push(@storage_qualifier0);
+```
+storage_qualifier = 'patch' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @storage_qualifier0 = new Vnstorage_qualifier(r0);
+                    context.rightStack.Push(@storage_qualifier0);
+```
+storage_qualifier = 'sample' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @storage_qualifier0 = new Vnstorage_qualifier(r0);
+                    context.rightStack.Push(@storage_qualifier0);
+```
+storage_qualifier = 'uniform' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @storage_qualifier0 = new Vnstorage_qualifier(r0);
+                    context.rightStack.Push(@storage_qualifier0);
+```
+storage_qualifier = 'buffer' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @storage_qualifier0 = new Vnstorage_qualifier(r0);
+                    context.rightStack.Push(@storage_qualifier0);
+```
+storage_qualifier = 'shared' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @storage_qualifier0 = new Vnstorage_qualifier(r0);
+                    context.rightStack.Push(@storage_qualifier0);
+```
+storage_qualifier = 'coherent' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @storage_qualifier0 = new Vnstorage_qualifier(r0);
+                    context.rightStack.Push(@storage_qualifier0);
+```
+storage_qualifier = 'volatile' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @storage_qualifier0 = new Vnstorage_qualifier(r0);
+                    context.rightStack.Push(@storage_qualifier0);
+```
+storage_qualifier = 'restrict' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @storage_qualifier0 = new Vnstorage_qualifier(r0);
+                    context.rightStack.Push(@storage_qualifier0);
+```
+storage_qualifier = 'readonly' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @storage_qualifier0 = new Vnstorage_qualifier(r0);
+                    context.rightStack.Push(@storage_qualifier0);
+```
+storage_qualifier = 'writeonly' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @storage_qualifier0 = new Vnstorage_qualifier(r0);
+                    context.rightStack.Push(@storage_qualifier0);
+```
+storage_qualifier = 'subroutine' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @storage_qualifier0 = new Vnstorage_qualifier(r0);
+                    context.rightStack.Push(@storage_qualifier0);
+```
+storage_qualifier = 'subroutine' '(' type_name_list ')' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_name_list1 = (Vntype_name_list)context.rightStack.Pop();
+                    var r2 = (Token)context.rightStack.Pop();
+                    var r3 = (Token)context.rightStack.Pop();
+                    var @storage_qualifier = new storage_qualifier_subroutine(
+                        r3, r2, @type_name_list1, r0);
+                    context.rightStack.Push(@storage_qualifier);
+```
+type_name_list = 'type_name' ;
+```
+                    var @type_name0 = (Token)context.rightStack.Pop();
+                    var @type_name_list0 = new Vntype_name_list(type_name0);
+                    context.rightStack.Push(@type_name_list0);
+```
+type_name_list = type_name_list ',' 'type_name' ;
+```
+                    var @type_name0 = (Token)context.rightStack.Pop();
+                    var r1 = (Token)context.rightStack.Pop();
+                    var @type_name_list2 = (Vntype_name_list)context.rightStack.Pop();
+                    type_name_list2.Add(r1, type_name0);
+                    context.rightStack.Push(@type_name_list2);
+```
+type_specifier = type_specifier_nonarray ;
+```
+                    var @type_specifier_nonarray0 = (Vntype_specifier_nonarray)context.rightStack.Pop();
+                    var @type_specifier = new Vntype_specifier(@type_specifier_nonarray0, null);
+                    context.rightStack.Push(@type_specifier);
+```
+type_specifier = type_specifier_nonarray array_specifier ;
+```
+                    var @array_specifier0 = (Vnarray_specifier)context.rightStack.Pop();
+                    var @type_specifier_nonarray1 = (Vntype_specifier_nonarray)context.rightStack.Pop();
+                    var @type_specifier = new Vntype_specifier(@type_specifier_nonarray1, @array_specifier0);
+                    context.rightStack.Push(@type_specifier);
+```
+array_specifier = '[' ']' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var r1 = (Token)context.rightStack.Pop();
+                    var @array_specifier0 = new Vnarray_specifier(r1, null, r0);
+                    context.rightStack.Push(@array_specifier0);
+```
+array_specifier = '[' conditional_expression ']' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @conditional_expression1 = (Vnconditional_expression)context.rightStack.Pop();
+                    var r2 = (Token)context.rightStack.Pop();
+                    var @array_specifier0 = new Vnarray_specifier(r2, conditional_expression1, r0);
+                    context.rightStack.Push(@array_specifier0);
+```
+array_specifier = array_specifier '[' ']' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var r1 = (Token)context.rightStack.Pop();
+                    var @array_specifier2 = (Vnarray_specifier)context.rightStack.Pop();
+                    array_specifier2.Add(r1, null, r0);
+                    context.rightStack.Push(@array_specifier2);
+```
+array_specifier = array_specifier '[' conditional_expression ']' ;
+```
+                   var r0 = (Token)context.rightStack.Pop();
+                    var @conditional_expression1 = (Vnconditional_expression)context.rightStack.Pop();
+                    var r2 = (Token)context.rightStack.Pop();
+                    var @array_specifier3 = (Vnarray_specifier)context.rightStack.Pop();
+                    array_specifier3.Add(r2, conditional_expression1, r0);
+                    context.rightStack.Push(@array_specifier3);
+```
+type_specifier_nonarray = 'void' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'float' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'double' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'int' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'uint' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'bool' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'vec2' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'vec3' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'vec4' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'dvec2' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'dvec3' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'dvec4' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'bvec2' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'bvec3' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'bvec4' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'ivec2' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'ivec3' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'ivec4' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'uvec2' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'uvec3' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'uvec4' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'mat2' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'mat3' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'mat4' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'mat2x2' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'mat2x3' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'mat2x4' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'mat3x2' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'mat3x3' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'mat3x4' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'mat4x2' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'mat4x3' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'mat4x4' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'dmat2' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'dmat3' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'dmat4' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'dmat2x2' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'dmat2x3' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'dmat2x4' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'dmat3x2' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'dmat3x3' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'dmat3x4' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'dmat4x2' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'dmat4x3' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'dmat4x4' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'atomic_uint' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'sampler2D' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'sampler3D' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'samplerCube' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'sampler2DShadow' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'samplerCubeShadow' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'sampler2DArray' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'sampler2DArrayShadow' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'samplerCubeArray' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'samplerCubeArrayShadow' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'isampler2D' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'isampler3D' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'isamplerCube' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'isampler2DArray' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'isamplerCubeArray' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'usampler2D' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'usampler3D' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'usamplerCube' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'usampler2DArray' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'usamplerCubeArray' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'sampler1D' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'sampler1DShadow' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'sampler1DArray' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'sampler1DArrayShadow' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'isampler1D' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'isampler1DArray' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'usampler1D' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'usampler1DArray' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'sampler2DRect' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'sampler2DRectShadow' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'isampler2DRect' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'usampler2DRect' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'samplerBuffer' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'isamplerBuffer' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'usamplerBuffer' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'sampler2DMS' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'isampler2DMS' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'usampler2DMS' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'sampler2DMSArray' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'isampler2DMSArray' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'usampler2DMSArray' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'image2D' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'iimage2D' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'uimage2D' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'image3D' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'iimage3D' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'uimage3D' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'imageCube' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'iimageCube' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'uimageCube' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'imageBuffer' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'iimageBuffer' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'uimageBuffer' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'image1D' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'iimage1D' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'uimage1D' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'image1DArray' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'iimage1DArray' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'uimage1DArray' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'image2DRect' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'iimage2DRect' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'uimage2DRect' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'image2DArray' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'iimage2DArray' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'uimage2DArray' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'imageCubeArray' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'iimageCubeArray' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'uimageCubeArray' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'image2DMS' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'iimage2DMS' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'uimage2DMS' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'image2DMSArray' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'iimage2DMSArray' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'uimage2DMSArray' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(r0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = struct_specifier ;
+```
+                    var @struct_specifier0 = (Vnstruct_specifier)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_struct_specifier(@struct_specifier0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+type_specifier_nonarray = 'type_name' ;
+```
+                    var @type_name0 = (Token)context.rightStack.Pop();
+                    var @type_specifier_nonarray = new type_specifier_nonarray_string(@type_name0);
+                    context.rightStack.Push(@type_specifier_nonarray);
+```
+precision_qualifier = 'highp' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @precision_qualifier0 = new Vnprecision_qualifier(r0);
+                    context.rightStack.Push(@precision_qualifier0);
+```
+precision_qualifier = 'mediump' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @precision_qualifier0 = new Vnprecision_qualifier(r0);
+                    context.rightStack.Push(@precision_qualifier0);
+```
+precision_qualifier = 'lowp' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @precision_qualifier0 = new Vnprecision_qualifier(r0);
+                    context.rightStack.Push(@precision_qualifier0);
+```
+struct_specifier = 'struct' 'type_name' '{' struct_declaration_list '}' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @struct_declaration_list1 = (Vnstruct_declaration_list)context.rightStack.Pop();
+                    var r2 = (Token)context.rightStack.Pop();
+                    var @type_name3 = (Token)context.rightStack.Pop();
+                    var r4 = (Token)context.rightStack.Pop();
+                    var @struct_specifier = new Vnstruct_specifier(r4, @type_name3, r2, @struct_declaration_list1, r0);
+                    context.rightStack.Push(@struct_specifier);
+```
+struct_specifier = 'struct' '{' struct_declaration_list '}' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @struct_declaration_list1 = (Vnstruct_declaration_list)context.rightStack.Pop();
+                    var r2 = (Token)context.rightStack.Pop();
+                    var r3 = (Token)context.rightStack.Pop();
+                    var @struct_specifier = new Vnstruct_specifier(r3, null, r2, @struct_declaration_list1, r0);
+                    context.rightStack.Push(@struct_specifier);
+```
+struct_declaration_list = struct_declaration ;
+```
+                    var @struct_declaration0 = (Vnstruct_declaration)context.rightStack.Pop();
+                    var @struct_declaration_list0 = new Vnstruct_declaration_list(struct_declaration0);
+                    context.rightStack.Push(@struct_declaration_list0);
+```
+struct_declaration_list = struct_declaration_list struct_declaration ;
+```
+                    var @struct_declaration0 = (Vnstruct_declaration)context.rightStack.Pop();
+                    var @struct_declaration_list1 = (Vnstruct_declaration_list)context.rightStack.Pop();
+                    struct_declaration_list1.Add(struct_declaration0);
+                    context.rightStack.Push(@struct_declaration_list1);
+```
+struct_declaration = type_specifier struct_declarator_list ';' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @struct_declarator_list1 = (Vnstruct_declarator_list)context.rightStack.Pop();
+                    var @type_specifier2 = (Vntype_specifier)context.rightStack.Pop();
+                    var @struct_declaration = new Vnstruct_declaration(
+                        null, @type_specifier2, @struct_declarator_list1, r0);
+                    context.rightStack.Push(@struct_declaration);
+```
+struct_declaration = type_qualifier type_specifier struct_declarator_list ';' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @struct_declarator_list1 = (Vnstruct_declarator_list)context.rightStack.Pop();
+                    var @type_specifier2 = (Vntype_specifier)context.rightStack.Pop();
+                    var @type_qualifier3 = (Vntype_qualifier)context.rightStack.Pop();
+                    var @struct_declaration = new Vnstruct_declaration(
+                        @type_qualifier3, @type_specifier2, @struct_declarator_list1, r0);
+                    context.rightStack.Push(@struct_declaration);
+```
+struct_declarator_list = struct_declarator ;
+```
+                    var @struct_declarator0 = (Vnstruct_declarator)context.rightStack.Pop();
+                    var @struct_declarator_list0 = new Vnstruct_declarator_list(struct_declarator0);
+                    context.rightStack.Push(@struct_declarator_list0);
+```
+struct_declarator_list = struct_declarator_list ',' struct_declarator ;
+```
+                    var @struct_declarator0 = (Vnstruct_declarator)context.rightStack.Pop();
+                    var r1 = (Token)context.rightStack.Pop();
+                    var @struct_declarator_list2 = (Vnstruct_declarator_list)context.rightStack.Pop();
+                    struct_declarator_list2.Add(r1, struct_declarator0);
+                    context.rightStack.Push(@struct_declarator_list2);
+```
+struct_declarator = 'identifier' ;
+```
+                    var @identifier0 = (Token)context.rightStack.Pop();
+                    var @struct_declarator = new Vnstruct_declarator(@identifier0, null);
+                    context.rightStack.Push(@struct_declarator);
+```
+struct_declarator = 'identifier' array_specifier ;
+```
+                    var @array_specifier0 = (Vnarray_specifier)context.rightStack.Pop();
+                    var @identifier1 = (Token)context.rightStack.Pop();
+                    var @struct_declarator = new Vnstruct_declarator(@identifier1, @array_specifier0);
+                    context.rightStack.Push(@struct_declarator);
+```
+initializer = assignment_expression ;
+```
+                    var @assignment_expression0 = (Vnassignment_expression)context.rightStack.Pop();
+                    var @initializer = new Vninitializer(@assignment_expression0);
+                    context.rightStack.Push(@initializer);
+```
+initializer = '{' initializer_list '}' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @initializer_list1 = (Vninitializer_list)context.rightStack.Pop();
+                    var r2 = (Token)context.rightStack.Pop();
+                    var @initializer = new Vninitializer(r2, @initializer_list1, null, r0);
+                    context.rightStack.Push(@initializer);
+```
+initializer = '{' initializer_list ',' '}' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var r1 = (Token)context.rightStack.Pop();
+                    var @initializer_list2 = (Vninitializer_list)context.rightStack.Pop();
+                    var r3 = (Token)context.rightStack.Pop();
+                    var @initializer = new Vninitializer(r3, @initializer_list2, r1, r0);
+                    context.rightStack.Push(@initializer);
+```
+initializer_list = initializer ;
+```
+                    var @initializer0 = (Vninitializer)context.rightStack.Pop();
+                    var @initializer_list = new Vninitializer_list(initializer0);
+                    context.rightStack.Push(@initializer_list);
+```
+initializer_list = initializer_list ',' initializer ;
+```
+                    var @initializer0 = (Vninitializer)context.rightStack.Pop();
+                    var r1 = (Token)context.rightStack.Pop();
+                    var @initializer_list2 = (Vninitializer_list)context.rightStack.Pop();
+                    initializer_list2.Add(r1, initializer0);
+                    context.rightStack.Push(@initializer_list2);
+```
+declaration_statement = declaration ;
+```
+                    var @declaration0 = (Vndeclaration)context.rightStack.Pop();
+                    var @declaration_statement = new Vndeclaration_statement(@declaration0);
+                    context.rightStack.Push(@declaration_statement);
+```
+statement = compound_statement ;
+```
+
+```
+statement = simple_statement ;
+```
+
+```
+simple_statement = declaration_statement ;
+```
+
+```
+simple_statement = expression_statement ;
+```
+
+```
+simple_statement = selection_statement ;
+```
+
+```
+simple_statement = switch_statement ;
+```
+
+```
+simple_statement = case_label ;
+```
+
+```
+simple_statement = iteration_statement ;
+```
+
+```
+simple_statement = jump_statement ;
+```
+
+```
+compound_statement = '{' '}' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var r1 = (Token)context.rightStack.Pop();
+                    var @compound_statement = new Vncompound_statement(r1, null, r0);
+                    context.rightStack.Push(@compound_statement);
+```
+compound_statement = '{' statement_list '}' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @statement_list1 = (Vnstatement_list)context.rightStack.Pop();
+                    var r2 = (Token)context.rightStack.Pop();
+                    var @compound_statement = new Vncompound_statement(r2, @statement_list1, r0);
+                    context.rightStack.Push(@compound_statement);
+```
+statement_list = statement ;
+```
+                    var @statement0 = (Vnstatement)context.rightStack.Pop();
+                    var @statement_list = new Vnstatement_list(statement0);
+                    context.rightStack.Push(@statement_list);
+```
+statement_list = statement_list statement ;
+```
+                    var @statement0 = (Vnstatement)context.rightStack.Pop();
+                    var @statement_list1 = (Vnstatement_list)context.rightStack.Pop();
+                    statement_list1.Add(statement0);
+                    context.rightStack.Push(@statement_list1);
+```
+expression_statement = ';' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @expression_statement = new Vnexpression_statement(null, r0);
+                    context.rightStack.Push(@expression_statement);
+```
+expression_statement = expression ';' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @expression1 = (Vnexpression)context.rightStack.Pop();
+                    var @expression_statement = new Vnexpression_statement(@expression1, r0);
+                    context.rightStack.Push(@expression_statement);
+```
+selection_statement = 'if' '(' expression ')' selection_rest_statement ;
+```
+                    var @selection_rest_statement0 = (Vnselection_rest_statement)context.rightStack.Pop();
+                    var r1 = (Token)context.rightStack.Pop();
+                    var @expression2 = (Vnexpression)context.rightStack.Pop();
+                    var r3 = (Token)context.rightStack.Pop();
+                    var r4 = (Token)context.rightStack.Pop();
+                    var @selection_statement = new Vnselection_statement(r4, r3, @expression2, r1, @selection_rest_statement0);
+                    context.rightStack.Push(@selection_statement);
+```
+selection_rest_statement = statement 'else' statement ;
+```
+                    var @statement0 = (Vnstatement)context.rightStack.Pop();
+                    var r1 = (Token)context.rightStack.Pop();
+                    var @statement2 = (Vnstatement)context.rightStack.Pop();
+                    var @selection_rest_statement = new Vnselection_rest_statement(@statement2, r1, @statement0);
+                    context.rightStack.Push(@selection_rest_statement);
+```
+selection_rest_statement = statement ;
+```
+                    var @statement0 = (Vnstatement)context.rightStack.Pop();
+                    var @selection_rest_statement = new Vnselection_rest_statement(@statement0, null, null);
+                    context.rightStack.Push(@selection_rest_statement);
+```
+condition = expression ;
+```
+                    var @expression0 = (Vnexpression)context.rightStack.Pop();
+                    var @condition = new condition_1(@expression0);
+                    context.rightStack.Push(@condition);
+```
+condition = fully_specified_type 'identifier' '=' initializer ;
+```
+                    var @initializer0 = (Vninitializer)context.rightStack.Pop();
+                    var r1 = (Token)context.rightStack.Pop();
+                    var @identifier2 = (Token)context.rightStack.Pop();
+                    var @fully_specified_type3 = (Vnfully_specified_type)context.rightStack.Pop();
+                    var @condition = new condition_2(@fully_specified_type3, @identifier2, r1, @initializer0);
+                    context.rightStack.Push(@condition);
+```
+switch_statement = 'switch' '(' expression ')' '{' switch_statement_list '}' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @switch_statement_list1 = (Vnswitch_statement_list)context.rightStack.Pop();
+                    var r2 = (Token)context.rightStack.Pop();
+                    var r3 = (Token)context.rightStack.Pop();
+                    var @expression4 = (Vnexpression)context.rightStack.Pop();
+                    var r5 = (Token)context.rightStack.Pop();
+                    var r6 = (Token)context.rightStack.Pop();
+                    var @switch_statement = new Vnswitch_statement(r6, r5, @expression4, r3, r2, @switch_statement_list1, r0);
+                    context.rightStack.Push(@switch_statement);
+```
+switch_statement_list = null ;
+```
+                    var @switch_statement_list = new Vnswitch_statement_list(null);
+                    context.rightStack.Push(@switch_statement_list);
+```
+switch_statement_list = statement_list ;
+```
+                    var @statement_list0 = (Vnstatement_list)context.rightStack.Pop();
+                    var @switch_statement_list = new Vnswitch_statement_list(@statement_list0);
+                    context.rightStack.Push(@switch_statement_list);
+```
+case_label = 'case' expression ':' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @expression1 = (Vnexpression)context.rightStack.Pop();
+                    var r2 = (Token)context.rightStack.Pop();
+                    var @case_label = new case_label_expression(r2, @expression1, r0);
+                    context.rightStack.Push(@case_label);
+```
+case_label = 'default' ':' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var r1 = (Token)context.rightStack.Pop();
+                    var @case_label = new case_label_default(r1, r0);
+                    context.rightStack.Push(@case_label);
+```
+iteration_statement = 'while' '(' condition ')' statement ;
+```
+                    var @statement_no_new_scope0 = (Vnstatement)context.rightStack.Pop();
+                    var r1 = (Token)context.rightStack.Pop();
+                    var @condition2 = (Vncondition)context.rightStack.Pop();
+                    var r3 = (Token)context.rightStack.Pop();
+                    var r4 = (Token)context.rightStack.Pop();
+                    var @iteration_statement = new iteration_while(
+                        r4, r3, @condition2, r1, @statement_no_new_scope0);
+                    context.rightStack.Push(@iteration_statement);
+```
+iteration_statement = 'do' statement 'while' '(' expression ')' ';' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var r1 = (Token)context.rightStack.Pop();
+                    var @expression2 = (Vnexpression)context.rightStack.Pop();
+                    var r3 = (Token)context.rightStack.Pop();
+                    var r4 = (Token)context.rightStack.Pop();
+                    var @statement5 = (Vnstatement)context.rightStack.Pop();
+                    var r6 = (Token)context.rightStack.Pop();
+                    var @iteration_statement = new iteration_do_while(
+                        r6, @statement5, r4, r3, @expression2, r1, r0);
+                    context.rightStack.Push(@iteration_statement);
+```
+iteration_statement = 'for' '(' for_init_statement for_rest_statement ')' statement ;
+```
+                    var @statement_no_new_scope0 = (Vnstatement)context.rightStack.Pop();
+                    var r1 = (Token)context.rightStack.Pop();
+                    var @for_rest_statement2 = (Vnfor_rest_statement)context.rightStack.Pop();
+                    var @for_init_statement3 = (Vnfor_init_statement)context.rightStack.Pop();
+                    var r4 = (Token)context.rightStack.Pop();
+                    var r5 = (Token)context.rightStack.Pop();
+                    var @iteration_statement = new iteration_for(
+                        r5, r4, @for_init_statement3, @for_rest_statement2, r1, @statement_no_new_scope0);
+                    context.rightStack.Push(@iteration_statement);
+```
+for_init_statement = expression_statement ;
+```
+                    var @expression_statement0 = (Vnexpression_statement)context.rightStack.Pop();
+                    var @for_init_statement = new Vnfor_init_statement(@expression_statement0);
+                    context.rightStack.Push(@for_init_statement);
+```
+for_init_statement = declaration_statement ;
+```
+                    var @declaration_statement0 = (Vndeclaration_statement)context.rightStack.Pop();
+                    var @for_init_statement = new Vnfor_init_statement(@declaration_statement0);
+                    context.rightStack.Push(@for_init_statement);
+```
+conditionopt = condition ;
+```
+                    var @condition0 = (Vncondition)context.rightStack.Pop();
+                    var @conditionopt = new Vnconditionopt(@condition0);
+                    context.rightStack.Push(@conditionopt);
+```
+conditionopt = null ;
+```
+                    var @conditionopt = new Vnconditionopt(null);
+                    context.rightStack.Push(@conditionopt);
+```
+for_rest_statement = conditionopt ';' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @conditionopt1 = (Vnconditionopt)context.rightStack.Pop();
+                    var @for_rest_statement = new Vnfor_rest_statement(@conditionopt1, r0, null);
+                    context.rightStack.Push(@for_rest_statement);
+```
+for_rest_statement = conditionopt ';' expression ;
+```
+                    var @expression0 = (Vnexpression)context.rightStack.Pop();
+                    var r1 = (Token)context.rightStack.Pop();
+                    var @conditionopt2 = (Vnconditionopt)context.rightStack.Pop();
+                    var @for_rest_statement = new Vnfor_rest_statement(@conditionopt2, r1, @expression0);
+                    context.rightStack.Push(@for_rest_statement);
+```
+jump_statement = 'continue' ';' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var r1 = (Token)context.rightStack.Pop();
+                    var @jump_statement = new continue_(r1, r0);
+                    context.rightStack.Push(@jump_statement);
+```
+jump_statement = 'break' ';' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var r1 = (Token)context.rightStack.Pop();
+                    var @jump_statement = new break_(r1, r0);
+                    context.rightStack.Push(@jump_statement);
+```
+jump_statement = 'return' ';' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var r1 = (Token)context.rightStack.Pop();
+                    var @jump_statement = new return_(r1, null, r0);
+                    context.rightStack.Push(@jump_statement);
+```
+jump_statement = 'return' expression ';' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var @expression1 = (Vnexpression)context.rightStack.Pop();
+                    var r2 = (Token)context.rightStack.Pop();
+                    var @jump_statement = new return_(r2, @expression1, r0);
+                    context.rightStack.Push(@jump_statement);
+```
+jump_statement = 'discard' ';' ;
+```
+                    var r0 = (Token)context.rightStack.Pop();
+                    var r1 = (Token)context.rightStack.Pop();
+                    var @jump_statement = new discard(r1, r0);
+                    context.rightStack.Push(@jump_statement);
+```
+

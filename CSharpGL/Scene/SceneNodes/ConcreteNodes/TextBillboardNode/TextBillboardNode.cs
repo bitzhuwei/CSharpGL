@@ -1,16 +1,15 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
 
-namespace CSharpGL
-{
+namespace CSharpGL {
     /// <summary>
     /// A billboard that renders text and always faces camera in 3D world. Its size is described by Width\Height(in pixels).
     /// </summary>
-    public partial class TextBillboardNode : ModernNode
-    {
+    public partial class TextBillboardNode : ModernNode {
         /// <summary>
         /// Creates a billboard in 3D world. Its size is described by Width\Height(in pixels).
         /// </summary>
@@ -19,16 +18,14 @@ namespace CSharpGL
         /// <param name="capacity">Maximum characters count.</param>
         /// <param name="glyphServer"></param>
         /// <returns></returns>
-        public static TextBillboardNode Create(int width, int height, int capacity, GlyphServer glyphServer = null)
-        {
-            var vs = new VertexShader(vertexCode);// this vertex shader has no vertex attributes.
-            var fs = new FragmentShader(fragmentCode);
-            var provider = new ShaderArray(vs, fs);
+        public static TextBillboardNode Create(int width, int height, int capacity, GlyphServer? glyphServer = null) {
+            // this vertex shader has no vertex attributes.
+            var program = GLProgram.Create(vertexCode, fragmentCode); Debug.Assert(program != null);
             var map = new AttributeMap();
             map.Add(inPosition, GlyphsModel.position);
             map.Add(inSTR, GlyphsModel.STR);
             var blendState = new BlendFuncSwitch(BlendSrcFactor.SrcAlpha, BlendDestFactor.OneMinusSrcAlpha);
-            var builder = new RenderMethodBuilder(provider, map, blendState);
+            var builder = new RenderMethodBuilder(program, map, blendState);
             var node = new TextBillboardNode(width, height, new GlyphsModel(capacity), builder, glyphServer);
             node.Initialize();
             node.blend = blendState;
@@ -41,16 +38,14 @@ namespace CSharpGL
         /// <summary>
         /// Provides glyph information.
         /// </summary>
-        public GlyphServer GlyphServer
-        {
+        public GlyphServer GlyphServer {
             get { return glyphServer; }
             set { glyphServer = value; }
         }
 
 
-        private TextBillboardNode(int width, int height, GlyphsModel model, RenderMethodBuilder renderUnitBuilder, GlyphServer glyphServer = null)
-            : base(model, renderUnitBuilder)
-        {
+        private TextBillboardNode(int width, int height, GlyphsModel model, RenderMethodBuilder renderUnitBuilder, GlyphServer? glyphServer = null)
+            : base(model, renderUnitBuilder) {
             if (width <= 0) { width = 1; }
             if (height <= 0) { height = 1; }
 
@@ -68,8 +63,7 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        protected override void DoInitialize()
-        {
+        protected override void DoInitialize() {
             base.DoInitialize();
 
             // make sure textModel only returns once.
@@ -78,9 +72,9 @@ namespace CSharpGL
             this.drawCmd = (from item in this.textModel.GetDrawCommand() select item).First() as DrawArraysCmd;
 
             GlyphServer server = this.glyphServer;
-            Texture texture = server.GlyphTexture;
+            Texture texture = server.glyphTexture;
             RenderMethod method = this.RenderUnit.Methods[0]; // the only render unit in this node.
-            ShaderProgram program = method.Program;
+            GLProgram program = method.Program;
             program.SetUniform(glyphTexture, texture);
             program.SetUniform(width, this._width);
             program.SetUniform(height, this._height);
@@ -96,8 +90,7 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        public BlendFuncSwitch Blend
-        {
+        public BlendFuncSwitch Blend {
             get { return blend; }
         }
 
@@ -105,11 +98,7 @@ namespace CSharpGL
         /// Render before/after children? Render children? 
         /// RenderAction cares about this property. Other actions, maybe, maybe not, your choice.
         /// </summary>
-        [Browsable(false)]
-        [Category("IRenderable")]
-        [Description("Render before/after children? Render children?")]
-        public ThreeFlags EnableRendering
-        {
+        public ThreeFlags EnableRendering {
             get { return this.enableRendering; }
             set { this.enableRendering = value; }
         }
@@ -118,19 +107,20 @@ namespace CSharpGL
         /// 
         /// </summary>
         /// <param name="arg"></param>
-        public void RenderBeforeChildren(RenderEventArgs arg)
-        {
+        public unsafe void RenderBeforeChildren(RenderEventArgs arg) {
             if (!this.IsInitialized) { Initialize(); }
 
             ICamera camera = arg.Camera;
             mat4 projection = camera.GetProjectionMatrix();
             mat4 view = camera.GetViewMatrix();
             mat4 model = this.GetModelMatrix();
-            var viewport = new int[4];
-            GL.Instance.GetIntegerv((uint)GetTarget.Viewport, viewport);
+            var viewport = stackalloc int[4];
+            var gl = GL.current; if (gl != null) {
+                gl.glGetIntegerv((GLenum)GetTarget.Viewport, viewport);
+            }
 
             var method = this.RenderUnit.Methods[0]; // the only render unit in this node.
-            ShaderProgram program = method.Program;
+            GLProgram program = method.Program;
             program.SetUniform(projectionMat, projection);
             program.SetUniform(viewMat, view);
             program.SetUniform(modelMat, model);
@@ -143,8 +133,7 @@ namespace CSharpGL
         /// 
         /// </summary>
         /// <param name="arg"></param>
-        public void RenderAfterChildren(RenderEventArgs arg)
-        {
+        public void RenderAfterChildren(RenderEventArgs arg) {
         }
 
         #endregion
@@ -153,8 +142,7 @@ namespace CSharpGL
         /// 
         /// </summary>
         /// <returns></returns>
-        public override string ToString()
-        {
+        public override string ToString() {
             return string.Format("{0}", this.Text);
         }
     }

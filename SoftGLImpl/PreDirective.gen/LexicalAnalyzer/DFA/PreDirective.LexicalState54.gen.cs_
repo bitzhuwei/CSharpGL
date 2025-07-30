@@ -1,0 +1,38 @@
+using System;
+using bitzhuwei.Compiler;
+
+namespace bitzhuwei.PreDirectiveFormat {
+    partial class CompilerPreDirective {
+
+#if noTableDFA
+        /// <summary>
+        /// lexicalState54
+        /// <para>CompilerPreDirective.Lexical●[1 NFA States]</para>
+        /// </summary>
+        private static readonly Action<LexicalContext, char, CurrentStateWrap> lexicalState54 =
+        static (context, c, wrap) => {
+            if (false) { /* for simpler code generation purpose. */ }
+            /* user-input condition code */
+            /* [^\n\r\u0000] */
+            else if (/* possible Vt : 'inlineComment' */
+            /* no possible signal */
+            /* 'inlineComment' : comment ignores 'validScopeChars'([\u0001-\uFFFF]) and 'validGlobalChars'([\u0001-\uFFFF]) */
+            !((c == '\n'/*'\u000A'(10)*/)
+            || (c == '\r'/*'\u000D'(13)*/)
+            || (c == '\u0000'/*(0)*/))) {
+                ExtendToken(context, st.@inlineComment行);
+                wrap.currentState = lexicalState80;
+            }
+            /* deal with everything else. */
+            else {
+                AcceptToken(st.@inlineComment行, context);
+                wrap.currentState = lexicalState0;
+            }
+
+
+        };
+#endif
+
+    }
+}
+

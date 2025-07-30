@@ -1,13 +1,11 @@
 ﻿using System.Text;
 
-namespace CSharpGL
-{
+namespace CSharpGL {
     /// <summary>
     /// The color-coded picking result.
     /// <para>Representing a primitive.</para>
     /// </summary>
-    public class PickedGeometry : IPickedGeometry
-    {
+    public class PickedGeometry : IPickedGeometry {
         ///// <summary>
         ///// This geometry is picked from which view port?
         ///// </summary>
@@ -16,7 +14,7 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        public string ErrorInfo { get; set; }
+        public string ErrorInfo { get; set; } = "";
 
         /// <summary>
         /// Where mouse points.(Window space position)
@@ -59,8 +57,7 @@ namespace CSharpGL
         /// <param name="vertexIds"></param>
         /// <param name="stageVertexId"></param>
         /// <param name="fromRenderer"></param>
-        public PickedGeometry(GeometryType geometryType, vec3[] positions, uint[] vertexIds, uint stageVertexId, IPickable fromRenderer)
-        {
+        public PickedGeometry(GeometryType geometryType, vec3[] positions, uint[] vertexIds, uint stageVertexId, IPickable fromRenderer) {
             this.Type = geometryType;
             this.Positions = positions;
             this.VertexIds = vertexIds;
@@ -75,8 +72,7 @@ namespace CSharpGL
         /// <param name="view"></param>
         /// <param name="model"></param>
         /// <returns></returns>
-        public string ToString(mat4 projection, mat4 view, mat4 model)
-        {
+        public unsafe string ToString(mat4 projection, mat4 view, mat4 model) {
             StringBuilder builder = BasicInfo();
             builder.AppendLine();
 
@@ -92,8 +88,7 @@ namespace CSharpGL
             builder.Append("Positions in World Space:");
             builder.AppendLine();
 
-            for (int i = 0; i < positions.Length; i++)
-            {
+            for (int i = 0; i < positions.Length; i++) {
                 var pos4 = new vec4(positions[i], 1);
                 worldSpacePos[i] = model * pos4;
                 builder.Append("BigBuffer["); builder.Append(indexes[i]); builder.Append("]: ");
@@ -104,8 +99,7 @@ namespace CSharpGL
             builder.Append("Positions in Camera/View Space:");
             builder.AppendLine();
 
-            for (int i = 0; i < positions.Length; i++)
-            {
+            for (int i = 0; i < positions.Length; i++) {
                 var pos4 = new vec4(positions[i], 1);
                 viewPos[i] = view * worldSpacePos[i];
                 builder.Append('['); builder.Append(indexes[i]); builder.Append("]: ");
@@ -114,8 +108,7 @@ namespace CSharpGL
             }
             builder.Append("Positions in Projection Space:");
             builder.AppendLine();
-            for (int i = 0; i < positions.Length; i++)
-            {
+            for (int i = 0; i < positions.Length; i++) {
                 projectionPos[i] = projection * viewPos[i];
                 builder.Append('['); builder.Append(indexes[i]); builder.Append("]: ");
                 builder.Append(projectionPos[i]);
@@ -123,8 +116,7 @@ namespace CSharpGL
             }
             builder.Append("Positions in Normalized Space:");
             builder.AppendLine();
-            for (int i = 0; i < positions.Length; i++)
-            {
+            for (int i = 0; i < positions.Length; i++) {
                 builder.Append('['); builder.Append(indexes[i]); builder.Append("]: ");
                 normalizedPos[i] = new vec3(projectionPos[i] / projectionPos[i].w);
                 builder.Append(normalizedPos[i]);
@@ -132,14 +124,19 @@ namespace CSharpGL
             }
             builder.Append("Positions in Screen Space:");
             builder.AppendLine();
-            var viewport = new int[4];
-            GL.Instance.GetIntegerv((uint)GetTarget.Viewport, viewport);
+            var viewport = stackalloc int[4];
+            var gl = GL.current; if (gl != null) {
+                gl.glGetIntegerv((GLenum)GetTarget.Viewport, viewport);
+            }
             int x = viewport[0], y = viewport[1], width = viewport[2], height = viewport[3];
             var depthRange = new float[4];
-            GL.Instance.GetFloatv((uint)GetTarget.DepthRange, depthRange);
+            if (gl != null) {
+                fixed (float* p = depthRange) {
+                    gl.glGetFloatv((GLenum)GetTarget.DepthRange, p);
+                }
+            }
             float near = depthRange[0], far = depthRange[1];
-            for (int i = 0; i < positions.Length; i++)
-            {
+            for (int i = 0; i < positions.Length; i++) {
                 builder.Append('['); builder.Append(indexes[i]); builder.Append("]: ");
                 screenPos[i] = new vec3(
                     normalizedPos[i].x * width / 2 + (x + width / 2),
@@ -157,8 +154,7 @@ namespace CSharpGL
         ///
         /// </summary>
         /// <returns></returns>
-        public override string ToString()
-        {
+        public override string ToString() {
             StringBuilder builder = BasicInfo();
 
             return builder.ToString();
@@ -169,8 +165,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="stageVertexId"></param>
         /// <returns></returns>
-        private static Pixel FromStageVertexId(uint stageVertexId)
-        {
+        private static Pixel FromStageVertexId(uint stageVertexId) {
             byte r = (byte)(stageVertexId & 0xFF);
             byte g = (byte)((stageVertexId >> 8) & 0xFF);
             byte b = (byte)((stageVertexId >> 16) & 0xFF);
@@ -179,8 +174,7 @@ namespace CSharpGL
             return new Pixel(r, g, b, a);
         }
 
-        private StringBuilder BasicInfo()
-        {
+        private StringBuilder BasicInfo() {
             StringBuilder builder = new StringBuilder();
 
             builder.AppendFormat("Stage Vertex ID: {0}", this.StageVertexId);
@@ -190,8 +184,7 @@ namespace CSharpGL
             builder.AppendFormat("From: {0}", this.FromObject);
             builder.AppendLine();
 
-            if (!string.IsNullOrEmpty(this.ErrorInfo))
-            {
+            if (!string.IsNullOrEmpty(this.ErrorInfo)) {
                 builder.AppendLine("Error:");
                 builder.AppendLine(this.ErrorInfo);
             }
@@ -205,12 +198,10 @@ namespace CSharpGL
 
             builder.Append("Positions in Model Space:");
             builder.AppendLine();
-            for (int i = 0; i < positions.Length; i++)
-            {
+            for (int i = 0; i < positions.Length; i++) {
                 builder.Append("BigBuffer["); builder.Append(indexes[i]); builder.Append("]: ");
                 builder.Append(positions[i]);
-                if (i + 1 < positions.Length)
-                {
+                if (i + 1 < positions.Length) {
                     builder.AppendLine();
                 }
             }

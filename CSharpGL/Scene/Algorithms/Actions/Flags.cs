@@ -3,14 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CSharpGL
-{
+namespace CSharpGL {
     /// <summary>
     /// 
     /// </summary>
     [Flags]
-    public enum TwoFlags : byte
-    {
+    public enum TwoFlags : byte {
         /// <summary>
         /// 
         /// </summary>
@@ -31,8 +29,7 @@ namespace CSharpGL
     /// 
     /// </summary>
     [Flags]
-    public enum ThreeFlags : byte
-    {
+    public enum ThreeFlags : byte {
         /// <summary>
         /// 
         /// </summary>

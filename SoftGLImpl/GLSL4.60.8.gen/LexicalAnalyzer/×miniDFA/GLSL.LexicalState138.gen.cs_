@@ -1,0 +1,48 @@
+using System;
+using bitzhuwei.Compiler;
+
+namespace bitzhuwei.GLSLFormat {
+    partial class CompilerGLSL {
+
+#if noTableDFA
+        /// <summary>
+        /// lexicalState138
+        /// <para>CompilerGLSL.Lexical●[1 DFA States]</para>
+        /// </summary>
+        private static readonly Action<LexicalContext, char, CurrentStateWrap> lexicalState138 =
+        static (context, c, wrap) => {
+            if (false) { /* for simpler code generation purpose. */ }
+            /* user-input condition code */
+            /* [uU] */
+            else if (/* possible Vt : 'uintConstant' */
+            /* no possible signal */
+            /* [xxx] scope */
+            (c == 'u'/*'\u0075'(117)*/)
+            || (c == 'U'/*'\u0055'(85)*/)) {
+                ExtendToken(context, st.@uintConstant);
+                wrap.currentState = lexicalState195;
+            }
+            /* user-input condition code */
+            /* [0-9A-Fa-f] */
+            else if (/* possible Vt : 'intConstant' 'uintConstant' */
+            /* no possible signal */
+            /* [xxx] scope */
+            ('0'/*'\u0030'(48)*/ <= c && c <= '9'/*'\u0039'(57)*/)
+            || ('A'/*'\u0041'(65)*/ <= c && c <= 'F'/*'\u0046'(70)*/)
+            || ('a'/*'\u0061'(97)*/ <= c && c <= 'f'/*'\u0066'(102)*/)) {
+                ExtendToken(context, st.@intConstant);
+                wrap.currentState = lexicalState138;
+            }
+            /* deal with everything else. */
+            else {
+                AcceptToken(st.@intConstant, context);
+                wrap.currentState = lexicalState0;
+            }
+
+
+        };
+#endif
+
+    }
+}
+

@@ -1,11 +1,9 @@
-﻿namespace CSharpGL
-{
+﻿namespace CSharpGL {
     // https://www.khronos.org/opengles/sdk/docs/man/xhtml/glCullFace.xml
     /// <summary>
     /// Cull front/back face?
     /// </summary>
-    public class CullFaceSwitch : EnableSwitch
-    {
+    public unsafe class CullFaceSwitch : EnableSwitch {
         // Activator needs a non-parameter constructor.
         /// <summary>
         /// Cull back face.
@@ -18,22 +16,18 @@
         /// <param name="mode"></param>
         /// <param name="enableCapacity">Enable() or Disable() this capacity?</param>
         public CullFaceSwitch(CullFaceMode mode, bool enableCapacity = true)
-            : base(GL.GL_CULL_FACE, enableCapacity)
-        {
+            : base(GL.GL_CULL_FACE, enableCapacity) {
             this.Mode = mode;
         }
 
         /// <summary>
         ///
         /// </summary>
-        public override string ToString()
-        {
-            if (this.EnableCapacity)
-            {
+        public override string ToString() {
+            if (this.EnableCapacity) {
                 return string.Format("Enabled glCullFace({0});", this.Mode);
             }
-            else
-            {
+            else {
                 return string.Format("Disabled glCullFace({0});", this.Mode);
             }
         }
@@ -41,13 +35,12 @@
         /// <summary>
         ///
         /// </summary>
-        protected override void StateOn()
-        {
+        protected override void StateOn() {
+            var gl = GL.current; if (gl == null) { return; }
             base.StateOn();
 
-            if (this.enableCapacityWhenStateOn)
-            {
-                GL.Instance.CullFace(this.mode);
+            if (this.enableCapacityWhenStateOn) {
+                gl.glCullFace(this.mode);
             }
         }
 
@@ -59,8 +52,7 @@
         /// <summary>
         /// Cull front/back face?
         /// </summary>
-        public CullFaceMode Mode
-        {
+        public CullFaceMode Mode {
             get { return (CullFaceMode)mode; }
             set { mode = (uint)value; }
         }
@@ -69,8 +61,7 @@
     /// <summary>
     /// Cull front/back face?
     /// </summary>
-    public enum CullFaceMode : uint
-    {
+    public enum CullFaceMode : GLuint {
         /// <summary>
         /// Cull front face.
         /// </summary>

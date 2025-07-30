@@ -1,0 +1,4 @@
+﻿# ZeroAttributeInVertexShader
+
+![ZeroAttributeInVertexShader](ZeroAttributeInVertexShader.png)
+

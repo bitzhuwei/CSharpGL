@@ -1,0 +1,500 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net8.0-windows</TargetFramework>
+		<Nullable>enable</Nullable>
+		<UseWindowsForms>true</UseWindowsForms>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+		<PlatformTarget>AnyCPU</PlatformTarget>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <Compile Remove="demoCodes\z_demoCode.cs" />
+	  <Compile Remove="TestHelpers\UnamangedArrayTest.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Remove="Assimp32.dll" />
+	  <None Remove="Assimp64.dll" />
+	  <None Remove="AssimpNet.dll" />
+	  <None Remove="AssimpNet.pdb" />
+	  <None Remove="AssimpNet.XML" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Include="Assimp32.dll">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </Content>
+	  <Content Include="Assimp64.dll">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </Content>
+	  <Content Include="AssimpNet.dll">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </Content>
+	  <Content Include="AssimpNet.pdb">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </Content>
+	  <Content Include="AssimpNet.XML">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </Content>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Include="demoCodes\LogicOperation\LogicOperation_.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\CSharpGL.Models\CSharpGL.Models.csproj" />
+		<ProjectReference Include="..\CSharpGL.Windows\CSharpGL.Windows.csproj" />
+		<ProjectReference Include="..\CSharpGL\CSharpGL.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Reference Include="AssimpNet">
+	    <HintPath>demoCodes\FirstSightOfAssimpNet\AssimpNet.dll</HintPath>
+	  </Reference>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Update="FormBoard.cs">
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Update="FormGLControlPropertyGrid.cs">
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Update="FormInstance.cs">
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Update="FormNodePropertyGrid.cs">
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Update="FormObjPropertyGrid.cs">
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Update="FormAnyting.cs">
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Update="WindowsGLCanvas.cs">
+			<SubType>UserControl</SubType>
+		</Compile>
+	</ItemGroup>
+
+
+	<ItemGroup>
+		<Using Include="System.UInt32">
+			<Alias>GLenum</Alias>
+		</Using>
+		<Using Include="System.Boolean">
+			<Alias>GLboolean</Alias>
+		</Using>
+		<Using Include="System.UInt32">
+			<Alias>GLbitfield</Alias>
+		</Using>
+		<Using Include="System.SByte">
+			<Alias>GLbyte</Alias>
+		</Using>
+		<Using Include="System.Byte">
+			<Alias>GLubyte</Alias>
+		</Using>
+		<Using Include="System.Int16">
+			<Alias>GLshort</Alias>
+		</Using>
+		<Using Include="System.UInt16">
+			<Alias>GLushort</Alias>
+		</Using>
+		<Using Include="System.UInt16">
+			<Alias>GLhalfNV</Alias>
+		</Using>
+		<Using Include="System.Int32">
+			<Alias>GLint</Alias>
+		</Using>
+		<Using Include="System.UInt32">
+			<Alias>GLuint</Alias>
+		</Using>
+		<Using Include="System.Int32">
+			<Alias>GLclampx</Alias>
+		</Using>
+		<Using Include="System.Single">
+			<Alias>GLfloat</Alias>
+		</Using>
+		<Using Include="System.Single">
+			<Alias>GLclampf</Alias>
+		</Using>
+		<Using Include="System.Double">
+			<Alias>GLdouble</Alias>
+		</Using>
+		<Using Include="System.Double">
+			<Alias>GLclampd</Alias>
+		</Using>
+		<Using Include="System.IntPtr">
+			<Alias>GLeglClientBufferEXT</Alias>
+		</Using>
+		<Using Include="System.IntPtr">
+			<Alias>GLeglImageOES</Alias>
+		</Using>
+		<Using Include="System.IntPtr">
+			<Alias>GLvdpauSurfaceNV</Alias>
+		</Using>
+		<Using Include="System.Char">
+			<Alias>GLchar</Alias>
+		</Using>
+		<Using Include="System.Char">
+			<Alias>GLcharARB</Alias>
+		</Using>
+		<Using Include="System.UInt32">
+			<Alias>GLhandleARB</Alias>
+		</Using>
+		<Using Include="System.UInt16">
+			<Alias>GLhalf</Alias>
+		</Using>
+		<Using Include="System.UInt16">
+			<Alias>GLhalfARB</Alias>
+		</Using>
+		<Using Include="System.Int32">
+			<Alias>GLfixed</Alias>
+		</Using>
+		<Using Include="System.IntPtr">
+			<Alias>GLintptr</Alias>
+		</Using>
+		<Using Include="System.IntPtr">
+			<Alias>GLintptrARB</Alias>
+		</Using>
+		<Using Include="System.IntPtr">
+			<Alias>GLsync</Alias>
+		</Using>
+		<Using Include="System.Int32">
+			<Alias>GLsizei</Alias>
+		</Using>
+		<Using Include="System.Int32">
+			<Alias>GLsizeiptr</Alias>
+		</Using>
+		<Using Include="System.Int32">
+			<Alias>GLsizeiptrARB</Alias>
+		</Using>
+		<Using Include="System.Int64">
+			<Alias>GLint64</Alias>
+		</Using>
+		<Using Include="System.Int64">
+			<Alias>GLint64EXT</Alias>
+		</Using>
+		<Using Include="System.UInt64">
+			<Alias>GLuint64</Alias>
+		</Using>
+		<Using Include="System.UInt64">
+			<Alias>GLuint64EXT</Alias>
+		</Using>
+	</ItemGroup>
+
+
+	<ItemGroup>
+	  <None Update="demoCodes\BasicTessellationShader\BasicTessellationShader.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </None>
+	  <None Update="demoCodes\BasicTessellationShader\BasicTessellationShader2.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </None>
+	  <None Update="demoCodes\BasicTessellationShader\BasicTessellationShader3.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </None>
+	  <None Update="demoCodes\BasicTessellationShader\BasicTessellationShader4.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\ezm-demo\BODY03_color.png">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\ezm-demo\dude.ezm">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\ezm-demo\dwarf.txt">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\ezm-demo\dwarf_anim.ezm">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\ezm-demo\head.jpg">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\ezm-demo\HEAD03_color.png">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\ezm-demo\jacket.jpg">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\ezm-demo\LEG03_color.png">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\ezm-demo\License.txt">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\ezm-demo\pants.jpg">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\ezm-demo\upBodyC.jpg">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\fonts\VeraMoBI.ttf_sdf.png">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\fonts\VeraMoBI.ttf_sdf.txt">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\irr-demo\animMesh.irr">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\irr-demo\assets\1.png">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\irr-demo\assets\axe.jpg">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\irr-demo\assets\brownground_1-1.jpg">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\irr-demo\assets\crackedground_1-6.jpg">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\irr-demo\assets\default.png">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\irr-demo\assets\default_texture.png">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\irr-demo\assets\drkwood2.jpg">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\irr-demo\assets\dwarf.jpg">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\irr-demo\assets\dwarf.x">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\irr-demo\assets\earthSpherical.jpg">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\irr-demo\assets\engineflare1.jpg">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\irr-demo\assets\spider.mtl">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\irr-demo\assets\SpiderTex.jpg">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\irr-demo\assets\UVTransformTestImg.png">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\irr-demo\assets\wal67ar_small.jpg">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\irr-demo\assets\wal69ar_small.jpg">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\textures\2DArray\0.png">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\textures\2DArray\1.png">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\textures\2DArray\2.png">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\textures\2DArray\3.png">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\textures\2DArray\4.png">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\textures\cerberus\albedo.png">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\textures\cerberus\ao.png">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\textures\cerberus\metallic.png">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\textures\cerberus\normal.png">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\textures\cerberus\roughness.png">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\textures\cloth.png">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\textures\Crate.bmp">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\textures\cubemaps_skybox-on-water.png">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\textures\cubemaps_skybox-world-map-cartoon.png">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\textures\diffuse.png">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\textures\earth-bump.png">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\textures\earth-nobump.png">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\textures\earth.png">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\textures\flower.png">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\textures\gold\albedo.png">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\textures\gold\ao.png">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\textures\gold\metallic.png">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\textures\gold\normal.png">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\textures\gold\roughness.png">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\textures\grass\albedo.png">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\textures\grass\ao.png">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\textures\grass\metallic.png">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\textures\grass\normal.png">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\textures\grass\roughness.png">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\textures\heightmap.png">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\textures\heightmap512x512.png">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\textures\Lenna.png">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\textures\newport_loft.hdr">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\textures\particle.png">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\textures\plastic\albedo.png">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\textures\plastic\ao.png">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\textures\plastic\metallic.png">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\textures\plastic\normal.png">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\textures\plastic\roughness.png">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\textures\rock\albedo.png">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\textures\rock\ao.png">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\textures\rock\limestone-rock-height.png">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\textures\rock\metallic.png">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\textures\rock\normal.png">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\textures\rock\roughness.png">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\textures\rusted_iron\albedo.png">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\textures\rusted_iron\ao.png">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\textures\rusted_iron\metallic.png">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\textures\rusted_iron\normal.png">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\textures\rusted_iron\roughness.png">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\textures\skybox\default_skybox0.jpg">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\textures\skybox\default_skybox1.jpg">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\textures\skybox\default_skybox2.jpg">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\textures\skybox\default_skybox3.jpg">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\textures\skybox\default_skyboxdn.jpg">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\textures\skybox\default_skyboxup.jpg">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\textures\sunColor.png">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\textures\tff.png">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\textures\wall\albedo.png">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\textures\wall\ao.png">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\textures\wall\metallic.png">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\textures\wall\normal.png">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\textures\wall\roughness.png">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\textures\wood\albedo.png">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\textures\wood\ao.png">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\textures\wood\metallic.png">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\textures\wood\normal.png">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\textures\wood\roughness.png">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	</ItemGroup>
+
+</Project>

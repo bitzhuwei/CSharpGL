@@ -4,19 +4,17 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 
-namespace CSharpGL
-{
+namespace CSharpGL {
     /// <summary>
     /// Provides specified bitmap's data as <see cref="Texture"/>'s image content.
     /// </summary>
-    public class CubemapDataProvider : TexImageDataProvider<CubemapData>, IDisposable
-    {
-        private readonly Bitmap positiveX;
-        private readonly Bitmap negtiveX;
-        private readonly Bitmap positiveY;
-        private readonly Bitmap negtiveY;
-        private readonly Bitmap positiveZ;
-        private readonly Bitmap negtiveZ;
+    public unsafe class CubemapDataProvider : TexImageDataProvider<CubemapData>, IDisposable {
+        private readonly IGLBitmap positiveX;
+        private readonly IGLBitmap negtiveX;
+        private readonly IGLBitmap positiveY;
+        private readonly IGLBitmap negtiveY;
+        private readonly IGLBitmap positiveZ;
+        private readonly IGLBitmap negtiveZ;
 
         private readonly bool autoDispose;
         private readonly int levelCount;
@@ -33,11 +31,10 @@ namespace CSharpGL
         /// <param name="autoDisose">dispose bitmaps when disposing this <see cref="ImageDataProvider"/> object.</param>
         /// <param name="levelCount">[1, 2, 3, 4, 5, 6, 7, 8]</param>
         public CubemapDataProvider(
-            Bitmap positiveX, Bitmap negtiveX,
-            Bitmap positiveY, Bitmap negtiveY,
-            Bitmap positiveZ, Bitmap negtiveZ,
-            bool autoDisose = false, int levelCount = 1)
-        {
+            IGLBitmap positiveX, IGLBitmap negtiveX,
+            IGLBitmap positiveY, IGLBitmap negtiveY,
+            IGLBitmap positiveZ, IGLBitmap negtiveZ,
+            bool autoDisose = false, int levelCount = 1) {
             this.positiveX = positiveX;
             this.positiveY = positiveY;
             this.positiveZ = positiveZ;
@@ -53,8 +50,7 @@ namespace CSharpGL
         /// 
         /// </summary>
         /// <returns></returns>
-        public override IEnumerator<CubemapData> GetEnumerator()
-        {
+        public override IEnumerator<CubemapData> GetEnumerator() {
             yield return new CubemapData(this.positiveX, CubemapFace.PositiveX, false);
             yield return new CubemapData(this.negtiveX, CubemapFace.NegtiveX, false);
             yield return new CubemapData(this.positiveY, CubemapFace.PositiveY, false);
@@ -68,17 +64,15 @@ namespace CSharpGL
         /// <summary>
         /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
         /// </summary>
-        public void Dispose()
-        {
+        public void Dispose() {
             this.Dispose(true);
             GC.SuppressFinalize(this);
         } // end sub
 
         /// <summary>
-        /// Destruct instance of the class.
+        /// Destruct instance of the unsafe class.
         /// </summary>
-        ~CubemapDataProvider()
-        {
+        ~CubemapDataProvider() {
             this.Dispose(false);
         }
 
@@ -91,24 +85,18 @@ namespace CSharpGL
         /// Dispose managed and unmanaged resources of this instance.
         /// </summary>
         /// <param name="disposing">If disposing equals true, managed and unmanaged resources can be disposed. If disposing equals false, only unmanaged resources can be disposed. </param>
-        private void Dispose(bool disposing)
-        {
-            if (this.disposedValue == false)
-            {
-                if (disposing)
-                {
+        private void Dispose(bool disposing) {
+            if (this.disposedValue == false) {
+                if (disposing) {
                     // Dispose managed resources.
 
                 } // end if
 
                 // Dispose unmanaged resources.
-                if (this.autoDispose)
-                {
-                    var array = new Bitmap[] { this.positiveX, this.negtiveX, this.positiveY, this.negtiveY, this.positiveZ, this.negtiveZ, };
-                    foreach (var item in array)
-                    {
-                        if (item != null)
-                        {
+                if (this.autoDispose) {
+                    var array = new IGLBitmap[] { this.positiveX, this.negtiveX, this.positiveY, this.negtiveY, this.positiveZ, this.negtiveZ, };
+                    foreach (var item in array) {
+                        if (item != null) {
                             item.Dispose();
                         }
                     }

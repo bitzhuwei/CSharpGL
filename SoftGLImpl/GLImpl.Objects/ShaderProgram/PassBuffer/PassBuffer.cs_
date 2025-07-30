@@ -1,0 +1,42 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.InteropServices;
+using System.Text;
+
+namespace SoftGLImpl {
+    /// <summary>
+    /// transfer data from one stage to next.
+    /// </summary>
+    class PassBuffer {
+        public readonly PassType elementType;
+        public readonly byte[] array;
+
+        public PassBuffer(PassType type, int length) {
+            this.elementType = type;
+            this.array = new byte[type.ByteSize() * length];
+        }
+
+        public int Length() {
+            int result = this.array.Length / this.elementType.ByteSize();
+
+            return result;
+        }
+        GCHandle pin;
+
+        public unsafe IntPtr Mapbuffer() {
+            this.pin = GCHandle.Alloc(this.array, GCHandleType.Pinned);
+            IntPtr pointer = this.pin.AddrOfPinnedObject();
+            return pointer;
+        }
+
+        public void Unmapbuffer() {
+            this.pin.Free();
+        }
+
+        public override string ToString() {
+            byte[] array = this.array;
+            return string.Format("this = new byte[{1}]; inner type:{0}", this.elementType, array != null ? array.Length : 0);
+        }
+    }
+}

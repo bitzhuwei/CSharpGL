@@ -1,0 +1,48 @@
+﻿# notes about preprocessor
+
+// GLSL
+// predefined macros
+// line.Replace("__LINE__", this.currentLineNo);
+// line.Replace("__FILE__", this.currentFileNo);
+// line.Replace("__VERSION__", this.currentVersion);
+__LINE__ // 1, 2, 3, ...
+__FILE__ // 0, 1, 2, ...
+__VERSION__ // 460 ...
+// All macro names prefixed with “GL_” (“GL” followed by a single underscore) are also reserved, and defining or undefining such a name results in a compile-time error.
+
+// preprocessor directives
+# // The number sign (#) on a line by itself is ignored.
+#define
+#undef
+
+#if
+#ifdef
+#ifndef
+#else
+#elif
+#endif
+
+#error // #error will cause the implementation to put a compile-time diagnostic message into the shader object’s information log
+#pragma
+
+#extension
+#version
+
+#line
+// Any directive not listed above will cause a compile-time error.
+
+// operators
+defined // defined identifier 
+        // defined ( identifier )
+## // token pasting (##) operator, macro expansion happens only after token pasting
+
+SomeDirective = '#define' ... ;
+%%[ \t]*#define%% '#define'
+
+
+
+
+
+
+
+

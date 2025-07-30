@@ -4,14 +4,12 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 
-namespace CSharpGL
-{
+namespace CSharpGL {
     /// <summary>
     /// Render To Texture.
     /// contains a framebuffer.
     /// </summary>
-    public class DepthFramebufferProvider : IFramebufferProvider
-    {
+    public class DepthFramebufferProvider : IFramebufferProvider {
         private Framebuffer framebuffer;
 
         /// <summary>
@@ -20,26 +18,20 @@ namespace CSharpGL
         /// <param name="width"></param>
         /// <param name="height"></param>
         /// <returns></returns>
-        public Framebuffer GetFramebuffer(int width, int height)
-        {
-            if (width <= 0)
-            {
+        public Framebuffer GetFramebuffer(int width, int height) {
+            if (width <= 0) {
                 throw new ArgumentOutOfRangeException("width");
             }
 
-            if (height <= 0)
-            {
+            if (height <= 0) {
                 throw new ArgumentOutOfRangeException("height");
             }
 
-            if (this.framebuffer == null)
-            {
+            if (this.framebuffer == null) {
                 this.framebuffer = CreateFramebuffer(width, height);
             }
-            else
-            {
-                if (this.framebuffer.Width != width || this.framebuffer.Height != height)
-                {
+            else {
+                if (this.framebuffer.width != width || this.framebuffer.height != height) {
                     this.framebuffer.Dispose();
                     this.framebuffer = CreateFramebuffer(width, height);
                 }
@@ -49,8 +41,7 @@ namespace CSharpGL
         }
 
 
-        private Framebuffer CreateFramebuffer(int width, int height)
-        {
+        private Framebuffer CreateFramebuffer(int width, int height) {
             //Renderbuffer colorBuffer = Renderbuffer.CreateColorbuffer(width, height, GL.GL_RGBA);
             //Renderbuffer depthBuffer = Renderbuffer.CreateDepthbuffer(width, height, DepthComponentType.DepthComponent24);
             var framebuffer = new Framebuffer(width, height);
@@ -68,7 +59,7 @@ namespace CSharpGL
                 new TexParameteri(TexParameter.PropertyName.TextureWrapS, (int)GL.GL_CLAMP_TO_EDGE),
                 new TexParameteri(TexParameter.PropertyName.TextureWrapT, (int)GL.GL_CLAMP_TO_EDGE));
             texture.Initialize();
-            framebuffer.Attach(FramebufferTarget.Framebuffer, texture, AttachmentLocation.Depth);
+            framebuffer.Attach(Framebuffer.Target.Framebuffer, texture, AttachmentLocation.Depth);
             this.BindingTexture = texture;
 
             //framebuffer.Attach(depthBuffer);// special

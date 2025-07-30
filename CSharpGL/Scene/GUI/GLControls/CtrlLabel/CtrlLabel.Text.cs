@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CSharpGL
-{
-    public partial class CtrlLabel
-    {
+namespace CSharpGL {
+    public partial class CtrlLabel {
         private string text = string.Empty;
         private GlyphsModel labelModel;
         private VertexBuffer positionBuffer;
@@ -20,25 +18,20 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        protected void DoTextChanged()
-        {
+        protected void DoTextChanged() {
             var textChanged = this.TextChanged;
-            if (textChanged != null)
-            {
+            if (textChanged != null) {
                 TextChanged(this, EventArgs.Empty);
             }
         }
         /// <summary>
         /// 
         /// </summary>
-        public unsafe string Text
-        {
+        public unsafe string Text {
             get { return text; }
-            set
-            {
+            set {
                 string v = value == null ? string.Empty : value;
-                if (v != text)
-                {
+                if (v != text) {
                     text = v;
                     ArrangeCharaters(v, GlyphServer.DefaultServer);
                     DoTextChanged();
@@ -46,13 +39,12 @@ namespace CSharpGL
             }
         }
 
-        unsafe private void ArrangeCharaters(string text, GlyphServer server)
-        {
+        unsafe private void ArrangeCharaters(string text, GlyphServer server) {
             float totalWidth, totalHeight;
             PositionPass(text, server, out totalWidth, out totalHeight);
             UVPass(text, server);
 
-            this.drawCmd.VertexCount = text.Length * 4; // each alphabet needs 4 vertexes.
+            this.drawCmd.vertexCount = text.Length * 4; // each alphabet needs 4 vertexes.
 
             this.Width = (int)(totalWidth * this.Height / totalHeight); // auto size means auto width.
         }
@@ -62,18 +54,14 @@ namespace CSharpGL
         /// </summary>
         /// <param name="text"></param>
         /// <param name="server"></param>
-        unsafe private void UVPass(string text, GlyphServer server)
-        {
+        unsafe private void UVPass(string text, GlyphServer server) {
             VertexBuffer buffer = this.stringBuffer;
             var textureIndexArray = (QuadSTRStruct*)buffer.MapBuffer(MapBufferAccess.WriteOnly);
             int index = 0;
-            foreach (var c in text)
-            {
+            foreach (var c in text) {
                 if (index >= this.labelModel.Capacity) { break; }
 
-                GlyphInfo glyphInfo;
-                if (server.GetGlyphInfo(c, out glyphInfo))
-                {
+                if (server.GetGlyphInfo(c, out var glyphInfo)) {
                     textureIndexArray[index] = glyphInfo.quad;
                 }
 
@@ -91,30 +79,25 @@ namespace CSharpGL
         /// <param name="totalWidth"></param>
         /// <param name="totalHeight"></param>
         unsafe private void PositionPass(string text, GlyphServer server,
-            out float totalWidth, out float totalHeight)
-        {
-            int textureWidth = server.TextureWidth;
-            int textureHeight = server.TextureHeight;
+            out float totalWidth, out float totalHeight) {
+            int textureWidth = server.textureWidth;
+            int textureHeight = server.textureHeight;
             VertexBuffer buffer = this.positionBuffer;
             var positionArray = (QuadPositionStruct*)buffer.MapBuffer(MapBufferAccess.ReadWrite);
             const float height = 2.0f; // let's say height is 2.0f.
             totalWidth = 0;
             totalHeight = height;
             int index = 0;
-            foreach (var c in text)
-            {
+            foreach (var c in text) {
                 if (index >= this.labelModel.Capacity) { break; }
 
-                GlyphInfo glyphInfo;
                 float wByH = 0;
-                if (server.GetGlyphInfo(c, out glyphInfo))
-                {
+                if (server.GetGlyphInfo(c, out var glyphInfo)) {
                     float w = (glyphInfo.quad.rightBottom.x - glyphInfo.quad.leftBottom.x) * textureWidth;
                     float h = (glyphInfo.quad.rightBottom.y - glyphInfo.quad.rightTop.y) * textureHeight;
                     wByH = height * w / h;
                 }
-                else
-                {
+                else {
                     // put an empty glyph(square) here.
                     wByH = height * 1.0f / 1.0f;
                 }
@@ -129,8 +112,7 @@ namespace CSharpGL
 
             // move to center.
             const float scale = 1f;
-            for (int i = 0; i < text.Length; i++)
-            {
+            for (int i = 0; i < text.Length; i++) {
                 if (i >= this.labelModel.Capacity) { break; }
 
                 QuadPositionStruct quad = positionArray[i];
@@ -152,20 +134,17 @@ namespace CSharpGL
         /// <summary>
         /// Text color.
         /// </summary>
-        public vec3 Color
-        {
+        public vec3 Color {
             get { return color; }
-            set
-            {
-                if (color != value)
-                {
+            set {
+                if (color != value) {
                     color = value;
 
                     ModernRenderUnit unit = this.RenderUnit;
                     if (unit == null) { return; }
                     RenderMethod method = unit.Methods[0];
                     if (method == null) { return; }
-                    ShaderProgram program = method.Program;
+                    GLProgram program = method.Program;
                     if (program == null) { return; }
 
                     program.SetUniform("textColor", value);

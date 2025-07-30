@@ -1,0 +1,46 @@
+using System;
+using bitzhuwei.Compiler;
+
+namespace bitzhuwei.PreDirectiveFormat {
+    partial class CompilerPreDirective {
+
+#if noTableDFA
+        /// <summary>
+        /// lexicalState100
+        /// <para>CompilerPreDirective.Lexical●[2 NFA States]</para>
+        /// </summary>
+        private static readonly Action<LexicalContext, char, CurrentStateWrap> lexicalState100 =
+        static (context, c, wrap) => {
+            if (false) { /* for simpler code generation purpose. */ }
+            /* user-input condition code */
+            /* [0-9] */
+            else if (/* possible Vt : 'floatConstant' 'doubleConstant' */
+            /* no possible signal */
+            /* [xxx] scope */
+            '0'/*'\u0030'(48)*/ <= c && c <= '9'/*'\u0039'(57)*/) {
+                ExtendToken(context, st.@doubleConstant);
+                wrap.currentState = lexicalState120;
+            }
+            /* user-input condition code */
+            /* [-+] */
+            else if (/* possible Vt : 'floatConstant' 'doubleConstant' */
+            /* no possible signal */
+            /* [xxx] scope */
+            (c == '-'/*'\u002D'(45)*/)
+            || (c == '+'/*'\u002B'(43)*/)) {
+                wrap.currentState = lexicalState121;
+            }
+            /* deal with everything else. */
+            else { // token with error type
+                ExtendToken(context);
+                AcceptToken(st.Error错, context);
+                wrap.currentState = lexicalState0;
+            }
+
+
+        };
+#endif
+
+    }
+}
+

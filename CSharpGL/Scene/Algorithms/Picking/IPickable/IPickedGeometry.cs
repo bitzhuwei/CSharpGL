@@ -1,11 +1,9 @@
-﻿namespace CSharpGL
-{
+﻿namespace CSharpGL {
     /// <summary>
     /// The picked geometry of color-coded picking.
     /// <para>Representing a basic geometry.</para>
     /// </summary>
-    public interface IPickedGeometry
-    {
+    public interface IPickedGeometry {
         /// <summary>
         /// Gets or sets primitive's geometry type.
         /// </summary>

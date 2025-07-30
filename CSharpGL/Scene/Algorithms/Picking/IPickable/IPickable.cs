@@ -1,12 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Drawing;
-namespace CSharpGL
-{
+namespace CSharpGL {
     /// <summary>
     /// Scene element that implemented this interface will take part in color-coded picking.
     /// </summary>
-    public interface IPickable
-    {
+    public interface IPickable {
         /// <summary>
         /// 
         /// </summary>
@@ -36,14 +34,13 @@ namespace CSharpGL
         /// <param name="arg"></param>
         /// <param name="stageVertexId">Refers to the last vertex that constructs the primitive. And it's unique in scene's all elements.</param>
         /// <returns></returns>
-        PickedGeometry GetPickedGeometry(PickingEventArgs arg, uint stageVertexId);
+        PickedGeometry? GetPickedGeometry(PickingEventArgs arg, uint stageVertexId);
     }
 
     /// <summary>
     /// 
     /// </summary>
-    public class PickingEventArgs
-    {
+    public class PickingEventArgs {
         /// <summary>
         /// 
         /// </summary>
@@ -51,8 +48,7 @@ namespace CSharpGL
         /// <param name="x"></param>
         /// <param name="y"></param>
         /// <param name="geometryType">Target geometry type(point, line, triangle, quad or polygon) for color-coded-picking or none(nothing to pick).</param>
-        internal PickingEventArgs(Scene scene, int x, int y, PickingGeometryTypes geometryType)
-        {
+        internal PickingEventArgs(Scene scene, int x, int y, PickingGeometryTypes geometryType) {
             this.Scene = scene;
             this.X = x;
             this.Y = y;
@@ -96,8 +92,7 @@ namespace CSharpGL
         /// 
         /// </summary>
         /// <returns></returns>
-        public override string ToString()
-        {
+        public override string ToString() {
             return string.Format("{0} @ [{1}, {2}]", this.GeometryType, this.X, this.Y);
         }
     }

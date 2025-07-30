@@ -3,21 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CSharpGL
-{
+namespace CSharpGL {
     /// <summary>
     /// 
     /// </summary>
-    public class CameraNode : SceneNodeBase, IRenderable
-    {
+    public class CameraNode : SceneNodeBase, IRenderable {
         private ICamera camera;
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="camera"></param>
-        public CameraNode(ICamera camera)
-        {
+        public CameraNode(ICamera camera) {
             this.camera = camera;
         }
 
@@ -28,8 +25,7 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        public ThreeFlags EnableRendering
-        {
+        public ThreeFlags EnableRendering {
             get { return enableRendering; }
             set { enableRendering = value; }
         }
@@ -37,8 +33,7 @@ namespace CSharpGL
         /// <summary>
         /// </summary>
         /// <param name="arg"></param>
-        public void RenderBeforeChildren(RenderEventArgs arg)
-        {
+        public void RenderBeforeChildren(RenderEventArgs arg) {
             // update camera's position.
             this.camera.Position = this.GetAbsoluteWorldPosition();
         }
@@ -47,8 +42,7 @@ namespace CSharpGL
         /// 
         /// </summary>
         /// <param name="arg"></param>
-        public void RenderAfterChildren(RenderEventArgs arg)
-        {
+        public void RenderAfterChildren(RenderEventArgs arg) {
         }
 
         #endregion

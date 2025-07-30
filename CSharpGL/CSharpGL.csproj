@@ -1,742 +1,208 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
-  <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A03CFFFF-433C-4A6E-8BD1-3A60EF9817A5}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CSharpGL</RootNamespace>
-    <AssemblyName>CSharpGL</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <DocumentationFile>
-    </DocumentationFile>
-    <UseVSHostingProcess>false</UseVSHostingProcess>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="BasicDataStructures\Connection\readme.md" />
-    <Compile Include="BasicDataStructures\Connection\ConnectionFieldBase.cs" />
-    <Compile Include="BasicDataStructures\Connection\ConnectionField.cs" />
-    <Compile Include="BasicDataStructures\Events\GLKeyPressEventArgs.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="BasicDataStructures\FullDictionary.cs" />
-    <Compile Include="BasicDataStructures\GLSL\glm_clamp.cs" />
-    <Compile Include="BasicDataStructures\GLSL\glm_unorm4x8.cs" />
-    <Compile Include="BasicDataStructures\IBoundingBox\BoundingBox.cs" />
-    <Compile Include="BasicDataStructures\IBoundingBox\IBoundingBox.cs" />
-    <Compile Include="BasicDataStructures\IBoundingBox\IBoundingBoxHelper.cs" />
-    <Compile Include="BasicDataStructures\GLSL\bvec2.cs" />
-    <Compile Include="BasicDataStructures\GLSL\bvec3.cs" />
-    <Compile Include="BasicDataStructures\GLSL\bvec4.cs" />
-    <Compile Include="BasicDataStructures\GLSL\dvec2.cs" />
-    <Compile Include="BasicDataStructures\GLSL\dvec3.cs" />
-    <Compile Include="BasicDataStructures\GLSL\dvec4.cs" />
-    <Compile Include="BasicDataStructures\GLSL\glm_camera.cs" />
-    <Compile Include="BasicDataStructures\GLSL\glm_inverse.cs" />
-    <Compile Include="BasicDataStructures\GLSL\glm_trigonometric.cs" />
-    <Compile Include="BasicDataStructures\GLSL\ivec2.cs" />
-    <Compile Include="BasicDataStructures\GLSL\ivec3.cs" />
-    <Compile Include="BasicDataStructures\GLSL\ivec4.cs" />
-    <Compile Include="BasicDataStructures\GLSL\mat2.cs" />
-    <Compile Include="BasicDataStructures\GLSL\mat3.cs" />
-    <Compile Include="BasicDataStructures\GLSL\mat4.cs" />
-    <Compile Include="BasicDataStructures\GLSL\MatrixHelper.cs" />
-    <Compile Include="BasicDataStructures\GLSL\ModelMatrixHelper.cs" />
-    <Compile Include="BasicDataStructures\GLSL\Quaternion.cs" />
-    <Compile Include="BasicDataStructures\GLSL\uvec2.cs" />
-    <Compile Include="BasicDataStructures\GLSL\uvec3.cs" />
-    <Compile Include="BasicDataStructures\GLSL\uvec4.cs" />
-    <Compile Include="BasicDataStructures\GLSL\vec2.cs" />
-    <Compile Include="BasicDataStructures\GLSL\vec3.cs" />
-    <Compile Include="BasicDataStructures\GLSL\vec4.cs" />
-    <Compile Include="BasicDataStructures\GLSL\VectorHelper.cs" />
-    <Compile Include="BasicDataStructures\PropertyGrid\TypeConverters\ILoadFromString.cs" />
-    <Compile Include="BasicDataStructures\Utilities\AssemblyHelper.cs" />
-    <Compile Include="BasicDataStructures\Utilities\ColorHelper.cs" />
-    <Compile Include="BasicDataStructures\Utilities\Log\Log.cs" />
-    <Compile Include="BasicDataStructures\Utilities\NotDealWithNewEnumItemException.cs" />
-    <Compile Include="BasicDataStructures\Utilities\PositionHelper.cs" />
-    <None Include="GLCanvas\GLRenderContext\readme.md" />
-    <Content Include="GLObjects\Texture\Storages\TexImages.FromBitmap\readme.md" />
-    <Content Include="GLObjects\Texture\Storages\TexImages\readme.md" />
-    <Content Include="GLObjects\DrawCommands\readme.md" />
-    <None Include="GLObjects\Texture\Storages\readme.md" />
-    <None Include="Scene\Algorithms\Actions\readme.md" />
-    <None Include="Scene\Manipulaters\readme.md" />
-    <None Include="GLCanvas\readme.md" />
-    <Compile Include="BasicDataStructures\Viewport.cs" />
-    <Compile Include="GLAPI\GL.Enumerations\Blend.cs" />
-    <Compile Include="GLAPI\GL.Enumerations\CubemapFace.cs" />
-    <Compile Include="GLAPI\GL.Enumerations\StencilTest.cs" />
-    <Compile Include="GLAPI\GL.PrintError.cs" />
-    <Compile Include="GLAPI\GL.DrawText.cs" />
-    <Compile Include="GLCanvas\GLRenderContext\ContextGenerationParams.cs" />
-    <Compile Include="GLCanvas\RenderTrigger.cs" />
-    <Compile Include="GLObjects\DrawCommands\DrawArraysInstancedCmd.cs" />
-    <Compile Include="GLObjects\DrawCommands\DrawElementsBaseVertexCmd.cs" />
-    <Compile Include="GLObjects\DrawCommands\DrawElementsInstancedBaseVertexCmd.cs" />
-    <Compile Include="GLObjects\DrawCommands\DrawElementsInstancedCmd.cs" />
-    <Compile Include="GLObjects\DrawCommands\MultiDrawElementsBaseVertexCmd.cs" />
-    <Compile Include="GLObjects\Framebuffer\FramebufferTarget.cs" />
-    <Compile Include="GLObjects\Framebuffer\Framebuffer.Attach.Renderbuffer.cs" />
-    <Compile Include="GLObjects\Framebuffer\Framebuffer.Attach.Texture.cs" />
-    <Compile Include="GLObjects\Framebuffer\AttachmentLocation.cs" />
-    <Compile Include="GLObjects\GLBuffers\Data2Buffer\GenIndexBuffer.UnmanagedArrayBase.cs" />
-    <Compile Include="GLObjects\GLBuffers\Data2Buffer\GenIndexBuffers.T[].cs" />
-    <Compile Include="GLObjects\GLBuffers\Data2Buffer\GenVertexBuffers.T[].cs" />
-    <None Include="GLObjects\DrawCommands\MultiDrawElementsCmd.demo.cpp" />
-    <Compile Include="GLObjects\DrawCommands\MultiDrawElementsCmd.cs" />
-    <Compile Include="GLObjects\GLBuffers\IndependentBuffers\TransformFeedbackBuffer.AsVertexBuffer.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="GLObjects\DrawCommands\IDrawCommand.cs" />
-    <Compile Include="GLObjects\DrawCommands\MultiDrawArraysCmd.cs" />
-    <Compile Include="GLObjects\GLBuffers\VertexBuffers\VertexBuffer%28VBO%29\VeretxBufferArrayHelper.cs" />
-    <Compile Include="GLObjects\GLSwitches\AccumBufferSwitch.cs" />
-    <Compile Include="GLObjects\GLSwitches\ClearColorSwitch.cs" />
-    <Compile Include="GLObjects\GLSwitches\ColorMaskSwitch.cs" />
-    <Compile Include="GLObjects\GLSwitches\DepthMaskSwitch.cs" />
-    <Compile Include="GLObjects\GLSwitches\EnableSwitches\AlphaFuncSwitch.cs" />
-    <Compile Include="GLObjects\GLSwitches\EnableSwitches\BlendEquationSeprateSwitch.cs" />
-    <Compile Include="GLObjects\GLSwitches\EnableSwitches\BlendEquationSwitch.cs" />
-    <Compile Include="GLObjects\GLSwitches\EnableSwitches\BlendSwitch.cs" />
-    <Compile Include="GLObjects\GLSwitches\EnableSwitches\BlendFuncSeparateSwitch.cs" />
-    <Compile Include="GLObjects\GLSwitches\EnableSwitches\BlendFuncSwitch.cs" />
-    <Compile Include="GLObjects\GLSwitches\EnableSwitches\ClipPlaneSwitch.cs" />
-    <Compile Include="GLObjects\GLSwitches\EnableSwitches\CullFaceSwitch.cs" />
-    <Compile Include="GLObjects\GLSwitches\EnableSwitches\DepthClampSwitch.cs" />
-    <Compile Include="GLObjects\GLSwitches\EnableSwitches\DepthTestSwitch.cs" />
-    <Compile Include="GLObjects\GLSwitches\EnableSwitches\DitherSwitch.cs" />
-    <Compile Include="GLObjects\GLSwitches\EnableSwitches\EnableSwitch.cs" />
-    <Compile Include="GLObjects\GLSwitches\EnableSwitches\LineStippleSwitch.cs" />
-    <Compile Include="GLObjects\GLSwitches\EnableSwitches\LogicOpSwitch.cs" />
-    <Compile Include="GLObjects\GLSwitches\EnableSwitches\PointSmoothSwitch.cs" />
-    <Compile Include="GLObjects\GLSwitches\EnableSwitches\PolygonOffsetFillSwitch.cs" />
-    <Compile Include="GLObjects\GLSwitches\EnableSwitches\PolygonOffsetLineSwitch.cs" />
-    <Compile Include="GLObjects\GLSwitches\EnableSwitches\PolygonOffsetPointSwitch.cs" />
-    <Compile Include="GLObjects\GLSwitches\EnableSwitches\PolygonOffsetSwitch.cs" />
-    <Compile Include="GLObjects\GLSwitches\EnableSwitches\PrimitiveRestartSwitch.cs" />
-    <Compile Include="GLObjects\GLSwitches\EnableSwitches\ScissorTestSwitch.cs" />
-    <Compile Include="GLObjects\GLSwitches\EnableSwitches\StencilTestSwitch.cs" />
-    <Compile Include="GLObjects\GLSwitches\FrontFaceSwitch.cs" />
-    <Compile Include="GLObjects\GLSwitches\GLSwitch.cs" />
-    <Compile Include="GLObjects\GLSwitches\GLSwitchList.cs" />
-    <Compile Include="GLObjects\GLSwitches\IGLSwitch.cs" />
-    <Compile Include="GLObjects\GLSwitches\LineWidthSwitch.cs" />
-    <Compile Include="GLObjects\GLSwitches\PointSizeSwitch.cs" />
-    <Compile Include="GLObjects\GLSwitches\PointSpriteSwitch.cs" />
-    <Compile Include="GLObjects\GLSwitches\PolygonModeSwitch.cs" />
-    <Compile Include="GLObjects\GLSwitches\StencilFuncSwitch.cs" />
-    <Compile Include="GLObjects\GLSwitches\StencilMaskSwitch.cs" />
-    <Compile Include="GLObjects\GLSwitches\StencilOpSwitch.cs" />
-    <Compile Include="GLObjects\GLSwitches\UserDefineSwitch.cs" />
-    <Compile Include="GLObjects\GLSwitches\ViewportSwitch.cs" />
-    <Compile Include="GLObjects\ShaderProgram\ShaderProgram.StaticCtor.cs" />
-    <Compile Include="GLObjects\ShaderProgram\ShaderProgram.LoadAllUniforms.cs" />
-    <Compile Include="GLObjects\Shaders\Shaders\TessEvaluationShader.cs" />
-    <Compile Include="GLObjects\Shaders\Shaders\TessControlShader.cs" />
-    <Compile Include="GLObjects\Texture\MipmapBuilder.cs" />
-    <Compile Include="GLObjects\Texture\Samplers\BuiltInSampler\TexParameters\TexParameterfv.cs" />
-    <Compile Include="GLObjects\Texture\Samplers\BuiltInSampler\TexParameters\TexParameteriv.cs" />
-    <Compile Include="GLObjects\Texture\Storages\TexImages.FromBitmap\TexImageBitmaps.cs" />
-    <Compile Include="GLObjects\Texture\Storages\TexImages.FromBitmap\TexImageBitmap.cs" />
-    <Compile Include="GLObjects\Texture\Storages\TexImages\CubemapTexImage2D.cs" />
-    <Compile Include="GLObjects\Texture\Storages\TexImages\TexImage2D.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="GLObjects\Texture\Storages\TexImages\TexImageDataProvider\DataProviders\CubemapDataProvider.cs" />
-    <Compile Include="GLObjects\Texture\Storages\TexImages\TexImageDataProvider\DataProviders\CubemapData.cs" />
-    <Compile Include="GLObjects\Texture\Storages\TexImages\TexImageDataProvider\DataProviders\LeveledDataProviders\ArrayDataProvider`1.cs" />
-    <Compile Include="GLObjects\Texture\Storages\TexImages\TexImageDataProvider\DataProviders\LeveledDataProviders\LeveledDataProvider.cs" />
-    <None Include="GLObjects\Texture\Storages\TexStorages\readme.md" />
-    <Compile Include="GLObjects\Texture\Texture.GetImage.cs" />
-    <Compile Include="GLObjects\TransformFeedbackObject\TransformFeedbackObject.IDisposable.cs" />
-    <Compile Include="GLObjects\TransformFeedbackObject\TransformFeedbackObject.StaticCtor.cs" />
-    <Compile Include="GLObjects\TransformFeedbackObject\TransformFeedbackObject.cs" />
-    <Compile Include="GLObjects\GLBuffers\IndependentBuffers\TransformFeedbackBuffer.cs" />
-    <Compile Include="Scene\Algorithms\Actions\3DWorld\BillboardRenderAction.cs" />
-    <Compile Include="Scene\Algorithms\Actions\3DWorld\BillboardSortAction.cs" />
-    <Compile Include="Scene\Algorithms\Actions\3DWorld\LightEquipment.cs" />
-    <Compile Include="Scene\Algorithms\Actions\GUI\GUIRenderAction.cs" />
-    <Compile Include="Scene\Algorithms\Actions\GUI\IGUIRenderable.cs" />
-    <Compile Include="Scene\GUI\GLControl.absLocation.cs" />
-    <Compile Include="Scene\GUI\GLControl.Events.cs" />
-    <Compile Include="Scene\GUI\GLControl.Height.cs" />
-    <Compile Include="Scene\GUI\GLControl.Parent.cs" />
-    <Compile Include="Scene\GUI\GLControl.Y.cs" />
-    <Compile Include="Scene\GUI\GLControl.X.cs" />
-    <Compile Include="Scene\GUI\GLControl.Width.cs" />
-    <Compile Include="Scene\GUI\GLControl.cs" />
-    <Compile Include="Scene\GUI\GLControl.IGUIRenderable.cs" />
-    <Compile Include="Scene\GUI\GLControl.Properties.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Scene\GUI\GLControlChildren.cs" />
-    <Compile Include="Scene\GUI\GLControls\CtrlButton\CtrlButton.cs" />
-    <Compile Include="Scene\GUI\GLControls\CtrlButton\CtrlButton.Text.cs" />
-    <Compile Include="Scene\GUI\GUIRenderer\CtrlButtonModel.cs" />
-    <Compile Include="Scene\GUI\GLControls\CtrlImage\CtrlImage.cs" />
-    <Compile Include="Scene\GUI\GLControls\CtrlImage\CtrlImage.shaders.cs" />
-    <Compile Include="Scene\GUI\GLControls\CtrlImage\CtrlImageModel.cs" />
-    <Compile Include="Scene\GUI\GLControls\CtrlLabel\CtrlLabel.cs" />
-    <Compile Include="Scene\GUI\GLControls\CtrlLabel\CtrlLabel.shaders.cs" />
-    <Compile Include="Scene\GUI\GLControls\CtrlLabel\CtrlLabel.Text.cs" />
-    <Compile Include="Scene\GUI\GLControls\CtrlRoot\EventManager.cs" />
-    <Compile Include="Scene\GUI\GLControls\CtrlRoot\CtrlRoot.EventManager.cs" />
-    <Compile Include="Scene\GUI\GLControls\CtrlRoot\CtrlRoot.cs" />
-    <Compile Include="Scene\GUI\GLControls\CtrlTexture\CtrlTexture.cs" />
-    <Compile Include="Scene\GUI\GLControls\CtrlTexture\CtrlTexture.shaders.cs" />
-    <Compile Include="Scene\GUI\GLControls\CtrlTexture\CtrlTextureModel.cs" />
-    <Compile Include="Scene\GUI\GUIRenderer\CtrlButtonRenderer.cs" />
-    <Compile Include="Scene\GUI\Structs\GUIAnchorStyles.cs" />
-    <Compile Include="Scene\GUI\Structs\GUIPoint.cs" />
-    <Compile Include="Scene\GUI\Structs\GUIPointF.cs" />
-    <Compile Include="Scene\GUI\Structs\GUISize.cs" />
-    <Compile Include="Scene\GUI\Structs\GUISizeF.cs" />
-    <Compile Include="Scene\Lights\TSpotLight.cs" />
-    <Compile Include="Scene\Lights\__LightSetUniformsHelper.cs" />
-    <Compile Include="Scene\Lights\__LightToMatrixHelper.cs" />
-    <Compile Include="Scene\SceneNodes\ConcreteNodes\ClearStencil\ClearStencilModel.cs" />
-    <Compile Include="Scene\SceneNodes\ConcreteNodes\ClearStencil\ClearStencilNode.cs" />
-    <Compile Include="Scene\SceneNodes\ConcreteNodes\ClearStencil\ClearStencilNode.shader.cs" />
-    <Compile Include="Scene\Algorithms\Actions\3DWorld\IBlinnPhong.cs" />
-    <Compile Include="Scene\Algorithms\Actions\3DWorld\BlinnPhongAction.cs" />
-    <Compile Include="Scene\Algorithms\Actions\3DWorld\ShadowVolumeAction.cs" />
-    <Compile Include="Scene\Algorithms\Actions\3DWorld\ISupportShadowVolume.cs" />
-    <Compile Include="Scene\Algorithms\Actions\ActionParams.cs" />
-    <Compile Include="BasicDataStructures\Events\GLEventHandler`1.cs" />
-    <Compile Include="Scene\GlyphMap\ChunkBase.cs" />
-    <Compile Include="Scene\GlyphMap\CharDumper.cs" />
-    <Compile Include="Scene\GlyphMap\GlyphInfo.cs" />
-    <Compile Include="Scene\GlyphMap\GlyphServer.cs" />
-    <Compile Include="Scene\GlyphMap\PagesContext.cs" />
-    <Compile Include="Scene\GlyphMap\StringChunk.cs" />
-    <Compile Include="BasicDataStructures\Events\GLKeyEventArgs.cs" />
-    <Compile Include="BasicDataStructures\Events\GLMouseEventArgs.cs" />
-    <Compile Include="BasicDataStructures\Events\GLEventArgs.cs" />
-    <Compile Include="Scene\Manipulaters\CameraManipulaters\FirstPerspectiveManipulater.cs" />
-    <Compile Include="Scene\Manipulaters\CameraManipulaters\SatelliteManipulater.cs" />
-    <Compile Include="Scene\Manipulaters\IKeyboardHandler.cs" />
-    <Compile Include="Scene\Manipulaters\IMouseHandler.cs" />
-    <Compile Include="Scene\Manipulaters\Manipulater.cs" />
-    <Compile Include="Scene\Manipulaters\ModelManipulaters\ArcBallManipulater.cs" />
-    <Compile Include="Scene\Manipulaters\ModelManipulaters\TranslateManipulater.cs" />
-    <Compile Include="Scene\Algorithms\Actions\3DWorld\TransformAction.cs" />
-    <Compile Include="Scene\Algorithms\Picking\Picking.cs" />
-    <Compile Include="GLObjects\GLBuffers\VertexBuffers\VertexBuffer%28VBO%29\VertexShaderAttribute.cs" />
-    <Compile Include="GLObjects\ShaderProgram\ShaderProgram.UniformArrays.cs" />
-    <Compile Include="GLObjects\ShaderProgram\ShaderProgram.Uniforms.cs" />
-    <Compile Include="GLObjects\Shaders\Shaders\ComputeShader.cs" />
-    <Compile Include="GLObjects\Shaders\Shaders\GeometryShader.cs" />
-    <Compile Include="GLObjects\Shaders\Shaders\FragmentShader.cs" />
-    <Compile Include="GLObjects\Shaders\Shaders\VertexShader.cs" />
-    <Compile Include="GLCanvas\GLRenderContext\GLRenderContext.cs" />
-    <Compile Include="GLCanvas\GLRenderContext\GLRenderContext.IDisposable.cs" />
-    <Compile Include="GLObjects\Texture\Samplers\BuiltInSampler\TexParameters\TexParameter.PropertyName.cs" />
-    <Compile Include="GLObjects\Texture\Storages\TexBuffer\TexBufferStorage.cs" />
-    <Compile Include="GLObjects\Texture\Storages\TexImages\TexImageDataProvider\DataProviders\LeveledDataProviders\ImageData.cs" />
-    <Compile Include="GLObjects\Texture\Storages\TexImages\TexImageDataProvider\DataProviders\LeveledDataProviders\LeveledData.cs" />
-    <Compile Include="GLObjects\Texture\Texture.IDisposable.cs" />
-    <Compile Include="GLObjects\Texture\PixelStore\PixelStoref.cs" />
-    <Compile Include="GLObjects\Texture\PixelStore\PixelStorei.cs" />
-    <Compile Include="GLObjects\Texture\PixelStore\PixelStore.cs" />
-    <Compile Include="GLObjects\Texture\Samplers\SamplerObject\Sampler.IDisposable.cs" />
-    <Compile Include="GLObjects\Texture\Samplers\SamplerObject\Sampler.cs" />
-    <Compile Include="GLObjects\Texture\Samplers\BuiltInSampler\BuiltInSampler.cs" />
-    <Compile Include="GLObjects\Texture\Samplers\SamplerObject\SamplerParameters\SamplerParameter.cs" />
-    <Compile Include="GLObjects\Texture\Samplers\SamplerObject\SamplerParameters\SamplerParameteri.cs" />
-    <Compile Include="GLObjects\Texture\Samplers\SamplerObject\SamplerParameters\SamplerParameterf.cs" />
-    <Compile Include="GLObjects\Texture\Samplers\BuiltInSampler\TexParameters\TexParameterf.cs" />
-    <Compile Include="GLObjects\Texture\Samplers\BuiltInSampler\TexParameters\TexParameteri.cs" />
-    <Compile Include="GLObjects\Texture\Samplers\BuiltInSampler\TexParameters\TexParameter.cs" />
-    <Compile Include="GLObjects\Texture\Storages\TexImages\TexImageDataProvider\DataProviders\LeveledDataProviders\ImageDataProvider.cs" />
-    <Compile Include="GLObjects\Texture\Storages\TexImages\TexImageDataProvider\TexImageDataProvider.cs" />
-    <Compile Include="GLObjects\Texture\Storages\TexImages\TexImage2DMultisample.cs" />
-    <Compile Include="GLObjects\Texture\Storages\TexImages\TexImage3D.cs" />
-    <Compile Include="GLObjects\Texture\Storages\TexImages\TexImage1D.cs" />
-    <Compile Include="GLObjects\Texture\Storages\TexImages\TexImage3DMultisample.cs" />
-    <Compile Include="GLObjects\Texture\Storages\TexStorageBase.cs" />
-    <Compile Include="GLObjects\Texture\Storages\TexStorages\TexStorage3DMultisample.cs" />
-    <Compile Include="GLObjects\Texture\Storages\TexStorages\TexStorage2DMultisample.cs" />
-    <Compile Include="GLObjects\Texture\Storages\TexStorages\TexStorage3D.cs" />
-    <Compile Include="GLObjects\Texture\Storages\TexStorages\TexStorage2D.cs" />
-    <Compile Include="GLObjects\Texture\Storages\TexStorages\TexStorage1D.cs" />
-    <Compile Include="GLObjects\Texture\Texture.cs" />
-    <Compile Include="Scene\Algorithms\Actions\ActionList.cs" />
-    <Compile Include="Scene\GlyphMap\GlyphsModel.cs" />
-    <Compile Include="Scene\GlyphMap\QuadStruct.cs" />
-    <Compile Include="Scene\Lights\Attenuation.cs" />
-    <Compile Include="Scene\Lights\DirectionalLight.cs" />
-    <Compile Include="Scene\Lights\LightBase.cs" />
-    <Compile Include="Scene\Lights\PointLight.cs" />
-    <Compile Include="Scene\Lights\SpotLight.cs" />
-    <Compile Include="Scene\SceneNodes\ConcreteNodes\TextBillboardNode\TextBillboardNode.Size.cs" />
-    <Compile Include="Scene\SceneNodes\ConcreteNodes\TextBillboardNode\TextBillboardNode.Text.cs" />
-    <Compile Include="Scene\SceneNodes\ConcreteNodes\TextBillboardNode\TextBillboardNode.shaders.cs" />
-    <Compile Include="Scene\SceneNodes\ConcreteNodes\TextBillboardNode\TextBillboardNode.cs" />
-    <Compile Include="Scene\SceneNodes\ConcreteNodes\RenderToTextureNode\RenderToTextureNode.cs" />
-    <Compile Include="Scene\SceneNodes\CameraNode\CameraNode.cs" />
-    <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\ColorCodedPicking\PrimivitiveRecognizers\LinesAdjacencyRecognizer.cs" />
-    <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\ColorCodedPicking\PrimivitiveRecognizers\TrianglesAdjacencyRecognizer.cs" />
-    <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\Pickers\+DrawElementsPicker\PointSearcher\DrawElementsPointInTriangle+Searcher.cs" />
-    <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.MovePosition.cs" />
-    <Compile Include="Scene\SceneNodes\RenderUnits\IPickableRenderUnit\IPickableRenderUnit.cs" />
-    <Compile Include="Scene\SceneNodes\RenderUnits\ModenrRenderUnit\ModernRenderUnit.cs" />
-    <Compile Include="Scene\SceneNodes\RenderUnits\IShaderProgramProvider.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Scene\SceneNodes\RenderUnits\AttributeMap.cs" />
-    <Compile Include="Scene\SceneNodes\RenderUnits\IBufferSource.cs" />
-    <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\ColorCodedPicking\ColorCodedPicking.cs" />
-    <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\ColorCodedPicking\GeometryTypeHelper.cs" />
-    <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\ColorCodedPicking\PickingShaderHelper.cs" />
-    <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\ColorCodedPicking\PrimitiveModesHelper.cs" />
-    <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\ColorCodedPicking\PrimivitiveRecognizers\LineLoopRecognizer.cs" />
-    <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\ColorCodedPicking\PrimivitiveRecognizers\LinesRecognizer.cs" />
-    <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\ColorCodedPicking\PrimivitiveRecognizers\LineStripRecognizer.cs" />
-    <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\ColorCodedPicking\PrimivitiveRecognizers\PointsRecognizer.cs" />
-    <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\ColorCodedPicking\PrimivitiveRecognizers\PrimitiveRecognizer.cs" />
-    <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\ColorCodedPicking\PrimivitiveRecognizers\PrimitiveRecognizerFactory.cs" />
-    <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\ColorCodedPicking\PrimivitiveRecognizers\QuadsRecognizer.cs" />
-    <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\ColorCodedPicking\PrimivitiveRecognizers\QuadStripRecognizer.cs" />
-    <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\ColorCodedPicking\PrimivitiveRecognizers\RecognizedPrimitiveInfo.cs" />
-    <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\ColorCodedPicking\PrimivitiveRecognizers\TriangleFanRecognizer.cs" />
-    <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\ColorCodedPicking\PrimivitiveRecognizers\TrianglesRecognizer.cs" />
-    <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\ColorCodedPicking\PrimivitiveRecognizers\TriangleStripRecognizer.cs" />
-    <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\PickableNode.GetPickedGeometry.cs" />
-    <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\PickableNode.GetVertexCount.cs" />
-    <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\PickableNode.EnablePicking.cs" />
-    <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\PickableNode.RenderForPicking.cs" />
-    <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\PickableNode.PickingBaseId.cs" />
-    <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.cs" />
-    <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.IDisposable.cs" />
-    <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.DoInitialize.cs" />
-    <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\Pickers\+DrawElementsPicker\LineSearcher\DrawElementsLineInPolygonSearcher.cs" />
-    <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\Pickers\+DrawElementsPicker\LineSearcher\DrawElementsLineInQuad+Searcher.cs" />
-    <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\Pickers\+DrawElementsPicker\LineSearcher\DrawElementsLineInTriangle+Searcher.cs" />
-    <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\Pickers\+DrawElementsPicker\LineSearcher\DrawElementsLineSearcher.cs" />
-    <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\Pickers\+DrawElementsPicker\DrawElementsPicker.cs" />
-    <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\Pickers\+DrawElementsPicker\DrawElementsPicker.Searcher.cs" />
-    <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\Pickers\+DrawElementsPicker\DrawElementsPicker.GetLastIndexId.cs" />
-    <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\Pickers\+DrawElementsPicker\PointSearcher\DrawElementsPointInPolygonSearcher.cs" />
-    <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\Pickers\+DrawElementsPicker\PointSearcher\DrawElementsPointInQuad+Searcher.cs" />
-    <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\Pickers\+DrawElementsPicker\PointSearcher\DrawElementsPointInLine+Searcher.cs" />
-    <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\Pickers\+DrawElementsPicker\PointSearcher\DrawElementsPointSearcher.cs" />
-    <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\Pickers\+DrawArraysPicker\DrawArraysPicker.cs" />
-    <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\Pickers\PickerBase.cs" />
-    <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\Pickers\+DrawArraysPicker\LineSearcher\DrawArraysLineInPolygonSearcher.cs" />
-    <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\Pickers\+DrawArraysPicker\LineSearcher\DrawArraysLineInQuadsSearcher.cs" />
-    <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\Pickers\+DrawArraysPicker\LineSearcher\DrawArraysLineInQuadStripSearcher.cs" />
-    <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\Pickers\+DrawArraysPicker\LineSearcher\DrawArraysLineInTriangleFanSearcher.cs" />
-    <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\Pickers\+DrawArraysPicker\LineSearcher\DrawArraysLineInTrianglesAdjacencySearcher.cs" />
-    <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\Pickers\+DrawArraysPicker\LineSearcher\DrawArraysLineInTrianglesSearcher.cs" />
-    <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\Pickers\+DrawArraysPicker\LineSearcher\DrawArraysLineInTriangleStripAdjacencySearcher.cs" />
-    <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\Pickers\+DrawArraysPicker\LineSearcher\DrawArraysLineInTriangleStripSearcher.cs" />
-    <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\Pickers\+DrawArraysPicker\LineSearcher\DrawArraysLineSearcher.cs" />
-    <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\Pickers\+DrawArraysPicker\PointSearcher\DrawArraysPointInPolygonSearcher.cs" />
-    <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\Pickers\+DrawArraysPicker\PointSearcher\DrawArraysPointInQuadsSearcher.cs" />
-    <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\Pickers\+DrawArraysPicker\PointSearcher\DrawArraysPointInQuadStripSearcher.cs" />
-    <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\Pickers\+DrawArraysPicker\PointSearcher\DrawArraysPointInTriangleFanSearcher.cs" />
-    <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\Pickers\+DrawArraysPicker\PointSearcher\DrawArraysPointInTrianglesAdjacencySearcher.cs" />
-    <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\Pickers\+DrawArraysPicker\PointSearcher\DrawArraysPointInTrianglesSearcher.cs" />
-    <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\Pickers\+DrawArraysPicker\PointSearcher\DrawArraysPointInTriangleStripAdjacencySearcher.cs" />
-    <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\Pickers\+DrawArraysPicker\PointSearcher\DrawArraysPointInTriangleStripSearcher.cs" />
-    <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\Pickers\+DrawArraysPicker\PointSearcher\DrawArraysPointSearcher.cs" />
-    <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\Pickers\+DrawArraysPicker\DrawArraysPicker.Searcher.cs" />
-    <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.Property.cs" />
-    <Compile Include="Scene\SceneNodes\ModernNode\ModernNode.cs" />
-    <Compile Include="Scene\SceneNodes\ModernNode\ModernNode.IDisposable.cs" />
-    <Compile Include="Scene\SceneNodes\ModernNode\ModernNode.DoInitialize.cs" />
-    <Compile Include="Scene\SceneNodes\ModernNode\ModernNode.Property.cs" />
-    <Compile Include="Scene\SceneNodes\ModernNode\ModernNode.UniformArrays.cs" />
-    <Compile Include="Scene\SceneNodes\ModernNode\ModernNode.Uniforms.cs" />
-    <Compile Include="BasicDataStructures\PropertyGrid\TypeConverters\StructTypeConverter.cs" />
-    <Compile Include="BasicDataStructures\PropertyGrid\UITypeEditors\FormIListEditor`1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="BasicDataStructures\PropertyGrid\UITypeEditors\FormIListEditor`1.Designer.cs">
-      <DependentUpon>FormIListEditor`1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="BasicDataStructures\PropertyGrid\UITypeEditors\FormDrawCommandBoard.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="BasicDataStructures\PropertyGrid\UITypeEditors\FormDrawCommandBoard.Designer.cs">
-      <DependentUpon>FormDrawCommandBoard.cs</DependentUpon>
-    </Compile>
-    <Compile Include="BasicDataStructures\PropertyGrid\UITypeEditors\FormPropertyGridEditor.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="BasicDataStructures\PropertyGrid\UITypeEditors\FormPropertyGridEditor.Designer.cs">
-      <DependentUpon>FormPropertyGridEditor.cs</DependentUpon>
-    </Compile>
-    <Compile Include="BasicDataStructures\PropertyGrid\UITypeEditors\FormSelectType.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="BasicDataStructures\PropertyGrid\UITypeEditors\FormSelectType.Designer.cs">
-      <DependentUpon>FormSelectType.cs</DependentUpon>
-    </Compile>
-    <Compile Include="BasicDataStructures\PropertyGrid\UITypeEditors\FormUniformVariableDictEditor.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="BasicDataStructures\PropertyGrid\UITypeEditors\FormUniformVariableDictEditor.Designer.cs">
-      <DependentUpon>FormUniformVariableDictEditor.cs</DependentUpon>
-    </Compile>
-    <Compile Include="BasicDataStructures\PropertyGrid\UITypeEditors\FormUniformVariableType.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="BasicDataStructures\PropertyGrid\UITypeEditors\FormUniformVariableType.Designer.cs">
-      <DependentUpon>FormUniformVariableType.cs</DependentUpon>
-    </Compile>
-    <Compile Include="BasicDataStructures\PropertyGrid\UITypeEditors\IListEditor.cs" />
-    <Compile Include="BasicDataStructures\PropertyGrid\UITypeEditors\IDrawCommandEditor.cs" />
-    <Compile Include="BasicDataStructures\PropertyGrid\UITypeEditors\PropertyGridEditor.cs" />
-    <Compile Include="BasicDataStructures\PropertyGrid\UITypeEditors\UniformVariableListEditor.cs" />
-    <Compile Include="Scene\SceneNodes\RenderUnits\IPickableRenderUnit\IPickableRenderMethodBuilder.cs" />
-    <Compile Include="Scene\SceneNodes\RenderUnits\IPickableRenderUnit\IPickableRenderMethod.cs" />
-    <Compile Include="Scene\SceneNodes\RenderUnits\ModenrRenderUnit\RenderMethod.IDisposable.cs" />
-    <Compile Include="Scene\SceneNodes\RenderUnits\ModenrRenderUnit\RenderMethodBuilder.cs" />
-    <Compile Include="Scene\SceneNodes\RenderUnits\ModenrRenderUnit\RenderMethod.cs" />
-    <Compile Include="Scene\SceneNodes\ConcreteNodes\RenderToTextureNode\DepthFramebufferProvider.cs" />
-    <Compile Include="Scene\SceneNodes\ConcreteNodes\RenderToTextureNode\IFrameufferProvider.cs" />
-    <Compile Include="Scene\SceneNodes\ConcreteNodes\RenderToTextureNode\ITextureSource.cs" />
-    <Compile Include="Scene\SceneNodes\ConcreteNodes\RenderToTextureNode\ColoredFramebufferProvider.cs" />
-    <Compile Include="Scene\SceneNodes\ConcreteNodes\LegacyBoundingBoxNode.cs" />
-    <Compile Include="Scene\SceneNodes\ConcreteNodes\GroupNode.cs" />
-    <Compile Include="Scene\Algorithms\Actions\ActionBase.cs" />
-    <Compile Include="Scene\Algorithms\Actions\3DWorld\ShadowMappingAction.cs" />
-    <Compile Include="Scene\Algorithms\Picking\ILegacyPickable\ILegacyPickable.cs" />
-    <Compile Include="Scene\Algorithms\Actions\3DWorld\ISupportShadowMapping.cs" />
-    <Compile Include="Scene\Algorithms\Actions\3DWorld\IWorldSpace.cs" />
-    <Compile Include="Scene\Algorithms\Picking\IPickable\IPickable.cs" />
-    <Compile Include="Scene\Algorithms\Picking\IPickable\IPickedGeometry.cs" />
-    <Compile Include="Scene\Algorithms\Picking\IPickable\PickedGeometry.cs" />
-    <Compile Include="Scene\Algorithms\Picking\IPickable\PickingGeometryType.cs" />
-    <Compile Include="Scene\Algorithms\Picking\IPickable\PickingGeometryTypeHelper.cs" />
-    <Compile Include="Scene\Algorithms\Actions\3DWorld\IRenderable.cs" />
-    <Compile Include="Scene\SceneNodes\RenderUnits\ModenrRenderUnit\ModernRenderUnit.IDisposable.cs" />
-    <Compile Include="Scene\SceneNodes\RenderUnits\TransformFeedbackObjectHelper.cs" />
-    <Compile Include="Scene\SceneNodes\SceneNodeBase.cs" />
-    <Compile Include="Scene\SceneNodes\SceneNodeBase.IDisposable.cs" />
-    <Compile Include="Scene\SceneNodes\SceneNodeBase.AbsoluteTransformInfo.cs" />
-    <Compile Include="Scene\SceneNodes\SceneNodeBase.IWorldSpace.cs" />
-    <Compile Include="Scene\Algorithms\Actions\Flags.cs" />
-    <Compile Include="Scene\SceneNodes\SceneNodeBaseChildren.cs" />
-    <Content Include="GLObjects\TransformFeedbackObject\TransformFeedbackObject.BindBufferBase.png" />
-    <Content Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\readme.md" />
-    <Content Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\Pickers\readme.md" />
-    <Content Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\Pickers\+DrawElementsPicker\readme.md" />
-    <Content Include="Scene\Algorithms\Picking\IPickable\readme.md" />
-    <Content Include="Scene\Algorithms\Picking\ILegacyPickable\readme.md" />
-    <Content Include="BasicDataStructures\PropertyGrid\TypeConverters\readme.md" />
-    <Content Include="BasicDataStructures\PropertyGrid\UITypeEditors\readme.md" />
-    <None Include="Scene\Algorithms\Picking\readme.md" />
-    <None Include="Scene\GlyphMap\readme.md" />
-    <None Include="Scene\Lights\readme.md" />
-    <None Include="Scene\readme.md" />
-    <Compile Include="Scene\SceneNodes\SceneNodeBase.LagacyMatrix.cs" />
-    <Compile Include="Scene\Algorithms\Picking\LegacyPicking.cs" />
-    <Compile Include="Scene\Algorithms\Actions\3DWorld\RenderAction.cs" />
-    <Compile Include="Scene\Scene.cs" />
-    <None Include="BasicDataStructures\IBoundingBox\readme.md" />
-    <None Include="BasicDataStructures\readme.md" />
-    <Compile Include="BasicDataStructures\NoisyArray.cs" />
-    <Compile Include="BasicDataStructures\Pixel.cs" />
-    <Compile Include="BasicDataStructures\UnamangedArray\TempUnmanagedArray`1.cs" />
-    <Compile Include="BasicDataStructures\UnamangedArray\TempUnmanagedArray`1.IDisposable.cs" />
-    <Compile Include="BasicDataStructures\UnamangedArray\UnmanagedArrayBase.cs" />
-    <Compile Include="BasicDataStructures\UnamangedArray\UnmanagedArrayBase.IDisposable.cs" />
-    <Compile Include="BasicDataStructures\UnamangedArray\UnmanagedArray`1.cs" />
-    <Compile Include="BasicDataStructures\UnamangedArray\UnmanagedArray`1.IDisposable.cs" />
-    <Compile Include="BasicDataStructures\UpdatingRecord.cs" />
-    <Compile Include="BasicDataStructures\Utilities\ArrayHelper.cs" />
-    <Compile Include="BasicDataStructures\Utilities\DoubleHelper.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="BasicDataStructures\Utilities\FloatHelper.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="BasicDataStructures\Utilities\StructHelper.cs" />
-    <None Include="GLAPI\readme.md" />
-    <Compile Include="GLAPI\GL.Enumerations\Buffer.cs" />
-    <Compile Include="GLAPI\GL.Enumerations\DrawMode.cs" />
-    <Compile Include="GLAPI\GL.Enumerations\ErrorCode.cs" />
-    <Compile Include="GLAPI\GL.Enumerations\FrontFaceMode.cs" />
-    <Compile Include="GLAPI\GL.Enumerations\GetTarget.cs" />
-    <Compile Include="GLAPI\GL.Enumerations\MapBufferAccess.cs" />
-    <Compile Include="GLAPI\GL.Enumerations\MapBufferRangeAccess.cs" />
-    <Compile Include="GLAPI\GL.Enumerations\PolugonOffset.cs" />
-    <Compile Include="GLAPI\GL.Enumerations\PolygonMode.cs" />
-    <Compile Include="GLAPI\GL.Enumerations\QueryTarget.cs" />
-    <Compile Include="GLAPI\GL.Enumerations\ShaderType.cs" />
-    <Compile Include="GLAPI\GL.Enumerations\TextureTarget.cs" />
-    <Compile Include="GLAPI\GL.Constants\GL.1.2.Consts.cs" />
-    <Compile Include="GLAPI\GL.Constants\GL.1.3.Consts.cs" />
-    <Compile Include="GLAPI\GL.Constants\GL.1.4.Consts.cs" />
-    <Compile Include="GLAPI\GL.Constants\GL.1.5.Consts.cs" />
-    <Compile Include="GLAPI\GL.Constants\GL.2.0.Consts.cs" />
-    <Compile Include="GLAPI\GL.Constants\GL.2.1.Consts.cs" />
-    <Compile Include="GLAPI\GL.Constants\GL.3.0.Consts.cs" />
-    <Compile Include="GLAPI\GL.Constants\GL.3.1.Consts.cs" />
-    <Compile Include="GLAPI\GL.Constants\GL.3.2.Consts.cs" />
-    <Compile Include="GLAPI\GL.Constants\GL.3.3.Consts.cs" />
-    <Compile Include="GLAPI\GL.Constants\GL.4.0.Consts.cs" />
-    <Compile Include="GLAPI\GL.Constants\GL.Constants.cs" />
-    <Compile Include="GLAPI\GL.Constants\GL.Extensions.Consts.cs" />
-    <Compile Include="GLAPI\GL.Constants\GL.Framebuffer.Consts.cs" />
-    <Compile Include="GLAPI\GLDelegates.cs" />
-    <Compile Include="GLAPI\GL.cs" />
-    <Compile Include="GLAPI\GL.ExntendedAPI.cs" />
-    <Compile Include="Scene\Camera\ICamera.MouseWheel.cs" />
-    <Compile Include="Scene\Camera\ICamera.Resize.cs" />
-    <Compile Include="Scene\Camera\ICamera.Zoom.cs" />
-    <Compile Include="Scene\Camera\ICamera\Camera.cs" />
-    <Compile Include="Scene\Camera\ICamera\Camera.ICamera.cs" />
-    <Compile Include="Scene\Camera\ICamera\Camera.IOrthoCamera.cs" />
-    <Compile Include="Scene\Camera\ICamera\Camera.IPerspectiveCamera.cs" />
-    <Compile Include="Scene\Camera\ICamera\Camera.IViewCamera.cs" />
-    <Compile Include="Scene\Camera\ICamera\CameraType.cs" />
-    <Compile Include="Scene\Camera\ICamera\ICamera.cs" />
-    <Compile Include="Scene\Camera\ICamera\IOrthoCamera.cs" />
-    <Compile Include="Scene\Camera\ICamera\IOrthoViewCamera.cs" />
-    <Compile Include="Scene\Camera\ICamera\IPerspectiveCamera.cs" />
-    <Compile Include="Scene\Camera\ICamera\IPerspectiveViewCamera.cs" />
-    <Compile Include="Scene\Camera\ICamera\IViewCamera.cs" />
-    <Compile Include="Scene\Camera\IViewCamera.Orientation.cs" />
-    <Compile Include="GLObjects\Framebuffer\Framebuffer.Attach.cs" />
-    <Compile Include="GLObjects\Framebuffer\Framebuffer.Completeness.cs" />
-    <Compile Include="GLObjects\Framebuffer\Framebuffer.cs" />
-    <Compile Include="GLObjects\Framebuffer\Framebuffer.IDisposable.cs" />
-    <Compile Include="GLObjects\Framebuffer\Framebuffer.Limits.cs" />
-    <Compile Include="GLObjects\Framebuffer\Framebuffer.Parameter.cs" />
-    <Compile Include="GLObjects\Framebuffer\Renderbuffer.cs" />
-    <Compile Include="GLObjects\Framebuffer\Renderbuffer.IDisposable.cs" />
-    <Compile Include="GLObjects\Framebuffer\Renderbuffer.Special.cs" />
-    <Compile Include="GLObjects\Framebuffer\RenderbufferType.cs" />
-    <Compile Include="GLObjects\GLBuffers\Data2Buffer\Data2Buffer.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="GLObjects\GLBuffers\Data2Buffer\GenIndexBuffer.T[].cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="GLObjects\GLBuffers\Data2Buffer\GenOtherBuffers.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="GLObjects\GLBuffers\Data2Buffer\GenOtherBuffers.T[].cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="GLObjects\GLBuffers\Data2Buffer\GenOtherBuffers.UnmanagedArrayBase.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="GLObjects\GLBuffers\Data2Buffer\GenVertexBuffer.T.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="GLObjects\GLBuffers\Data2Buffer\GenVertexBuffer.T[].cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="GLObjects\GLBuffers\Data2Buffer\GenVertexBuffer.UnmanagedArrayBase.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="GLObjects\GLBuffers\GLBuffer.BufferTexture.cs" />
-    <Compile Include="GLObjects\GLBuffers\GLBuffer.Static.cs" />
-    <Compile Include="GLObjects\GLBuffers\GLBuffer.ClearBufferData.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="GLObjects\GLBuffers\GLBuffer.Create.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="GLObjects\GLBuffers\GLBuffer.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="GLObjects\GLBuffers\GLBuffer.IDisposable.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="GLObjects\GLBuffers\IndependentBuffers\AtomicCounterBuffer.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="GLObjects\GLBuffers\IndependentBuffers\IndependentBufferTarget.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="GLObjects\GLBuffers\IndependentBuffers\PixelPackBuffer.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="GLObjects\GLBuffers\IndependentBuffers\PixelUnpackBuffer.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="GLObjects\GLBuffers\IndependentBuffers\ShaderStorageBuffer.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="GLObjects\GLBuffers\IndependentBuffers\TextureBuffer.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="GLObjects\GLBuffers\IndependentBuffers\UniformBuffer.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="GLObjects\VertexArrayObject.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="GLObjects\GLBuffers\VertexBuffers\IndexBuffer%28IBO%29\IndexBuffer.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="GLObjects\GLBuffers\VertexBuffers\IndexBuffer%28IBO%29\IndexBufferElementType.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="GLObjects\DrawCommands\DrawElementsCmd.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="GLObjects\DrawCommands\DrawArraysCmd.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="GLObjects\GLBuffers\VertexBuffers\VertexBuffer%28VBO%29\VBOConfig.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="GLObjects\GLBuffers\VertexBuffers\VertexBuffer%28VBO%29\VBOConfig.GetDataSize.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="GLObjects\GLBuffers\VertexBuffers\VertexBuffer%28VBO%29\VBOConfig.GetDataTypeByteLength.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="GLObjects\GLBuffers\VertexBuffers\VertexBuffer%28VBO%29\VBOConfig.Parse.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="GLObjects\GLBuffers\VertexBuffers\VertexBuffer%28VBO%29\VertexBuffer.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="GLObjects\Query\Query.cs" />
-    <Compile Include="GLObjects\Query\Query.IDisposable.cs" />
-    <Compile Include="GLObjects\ShaderProgram\ShaderProgram.cs" />
-    <Compile Include="GLObjects\ShaderProgram\ShaderProgram.glUniforms.cs" />
-    <Compile Include="GLObjects\ShaderProgram\ShaderProgram.IDisposable.cs" />
-    <Compile Include="GLObjects\Shaders\Shader.cs" />
-    <Compile Include="GLObjects\Shaders\Shader.IDisposable.cs" />
-    <Compile Include="GLObjects\ShaderProgram\UniformVariables\UniformArrayVariables\UniformArrayVariable.cs" />
-    <Compile Include="GLObjects\ShaderProgram\UniformVariables\UniformArrayVariables\UniformArrayVariableBase.cs" />
-    <Compile Include="GLObjects\ShaderProgram\UniformVariables\UniformArrayVariables\UniformBoolArray.cs" />
-    <Compile Include="GLObjects\ShaderProgram\UniformVariables\UniformArrayVariables\UniformBVec2Array.cs" />
-    <Compile Include="GLObjects\ShaderProgram\UniformVariables\UniformArrayVariables\UniformBVec3Array.cs" />
-    <Compile Include="GLObjects\ShaderProgram\UniformVariables\UniformArrayVariables\UniformBVec4Array.cs" />
-    <Compile Include="GLObjects\ShaderProgram\UniformVariables\UniformArrayVariables\UniformFloatArray.cs" />
-    <Compile Include="GLObjects\ShaderProgram\UniformVariables\UniformArrayVariables\UniformInt32Array.cs" />
-    <Compile Include="GLObjects\ShaderProgram\UniformVariables\UniformArrayVariables\UniformIVec2Array.cs" />
-    <Compile Include="GLObjects\ShaderProgram\UniformVariables\UniformArrayVariables\UniformIVec3Array.cs" />
-    <Compile Include="GLObjects\ShaderProgram\UniformVariables\UniformArrayVariables\UniformIVec4Array.cs" />
-    <Compile Include="GLObjects\ShaderProgram\UniformVariables\UniformArrayVariables\UniformMat2Array.cs" />
-    <Compile Include="GLObjects\ShaderProgram\UniformVariables\UniformArrayVariables\UniformMat3Array.cs" />
-    <Compile Include="GLObjects\ShaderProgram\UniformVariables\UniformArrayVariables\UniformMat4Array.cs" />
-    <Compile Include="GLObjects\ShaderProgram\UniformVariables\UniformArrayVariables\UniformSamplerXDArray.cs" />
-    <Compile Include="GLObjects\ShaderProgram\UniformVariables\UniformArrayVariables\UniformUVec2Array.cs" />
-    <Compile Include="GLObjects\ShaderProgram\UniformVariables\UniformArrayVariables\UniformUVec3Array.cs" />
-    <Compile Include="GLObjects\ShaderProgram\UniformVariables\UniformArrayVariables\UniformUVec4Array.cs" />
-    <Compile Include="GLObjects\ShaderProgram\UniformVariables\UniformArrayVariables\UniformVec2Array.cs" />
-    <Compile Include="GLObjects\ShaderProgram\UniformVariables\UniformArrayVariables\UniformVec3Array.cs" />
-    <Compile Include="GLObjects\ShaderProgram\UniformVariables\UniformArrayVariables\UniformVec4Array.cs" />
-    <Compile Include="GLObjects\ShaderProgram\UniformVariables\UniformSingleVariables\UniformBlock.cs" />
-    <Compile Include="GLObjects\ShaderProgram\UniformVariables\UniformSingleVariables\UniformBool.cs" />
-    <Compile Include="GLObjects\ShaderProgram\UniformVariables\UniformSingleVariables\UniformBVec2.cs" />
-    <Compile Include="GLObjects\ShaderProgram\UniformVariables\UniformSingleVariables\UniformBVec3.cs" />
-    <Compile Include="GLObjects\ShaderProgram\UniformVariables\UniformSingleVariables\UniformBVec4.cs" />
-    <Compile Include="GLObjects\ShaderProgram\UniformVariables\UniformSingleVariables\UniformFloat.cs" />
-    <Compile Include="GLObjects\ShaderProgram\UniformVariables\UniformSingleVariables\UniformInt32.cs" />
-    <Compile Include="GLObjects\ShaderProgram\UniformVariables\UniformSingleVariables\UniformIVec2.cs" />
-    <Compile Include="GLObjects\ShaderProgram\UniformVariables\UniformSingleVariables\UniformIVec3.cs" />
-    <Compile Include="GLObjects\ShaderProgram\UniformVariables\UniformSingleVariables\UniformIVec4.cs" />
-    <Compile Include="GLObjects\ShaderProgram\UniformVariables\UniformSingleVariables\UniformMat2.cs" />
-    <Compile Include="GLObjects\ShaderProgram\UniformVariables\UniformSingleVariables\UniformMat3.cs" />
-    <Compile Include="GLObjects\ShaderProgram\UniformVariables\UniformSingleVariables\UniformMat4.cs" />
-    <Compile Include="GLObjects\ShaderProgram\UniformVariables\UniformSingleVariables\UniformSamplerXD.cs" />
-    <Compile Include="GLObjects\ShaderProgram\UniformVariables\UniformSingleVariables\UniformSingleVariable.cs" />
-    <Compile Include="GLObjects\ShaderProgram\UniformVariables\UniformSingleVariables\UniformSingleVariableBase.cs" />
-    <Compile Include="GLObjects\ShaderProgram\UniformVariables\UniformSingleVariables\UniformUVec2.cs" />
-    <Compile Include="GLObjects\ShaderProgram\UniformVariables\UniformSingleVariables\UniformUVec3.cs" />
-    <Compile Include="GLObjects\ShaderProgram\UniformVariables\UniformSingleVariables\UniformUVec4.cs" />
-    <Compile Include="GLObjects\ShaderProgram\UniformVariables\UniformSingleVariables\UniformValueAttribute.cs" />
-    <Compile Include="GLObjects\ShaderProgram\UniformVariables\UniformSingleVariables\UniformVec2.cs" />
-    <Compile Include="GLObjects\ShaderProgram\UniformVariables\UniformSingleVariables\UniformVec3.cs" />
-    <Compile Include="GLObjects\ShaderProgram\UniformVariables\UniformSingleVariables\UniformVec4.cs" />
-    <Compile Include="GLObjects\ShaderProgram\UniformVariables\UniformVariable.cs" />
-    <Compile Include="GLCanvas\IGLCanvas.cs" />
-    <Compile Include="GLAPI\GL.BasicAPI.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <None Include="GLObjects\Framebuffer\readme.md" />
-    <None Include="GLObjects\Query\readme.md" />
-    <Content Include="GLObjects\readme.md" />
-    <None Include="GLObjects\ShaderProgram\UniformVariables\readme.md" />
-    <None Include="GLObjects\ShaderProgram\UniformVariables\UniformArrayVariables\readme.md" />
-    <None Include="GLObjects\ShaderProgram\UniformVariables\UniformSingleVariables\readme.md" />
-    <Content Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\ColorCodedPicking\PrimivitiveRecognizers\RecognizedPrimitiveInfo.jpg" />
-    <Content Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\Pickers\+DrawElementsPicker\LineSearcher\DrawElementsLineInPolygonSearcher.jpg" />
-    <Content Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\Pickers\+DrawElementsPicker\LineSearcher\DrawElementsLineInQuad+Searcher.jpg" />
-    <Content Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\Pickers\+DrawElementsPicker\LineSearcher\DrawElementsLineInTriangle+Searcher.jpg" />
-    <Content Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\Pickers\+DrawArraysPicker\LineSearcher\DrawArraysLineInPolygonSearcher.jpg" />
-    <Content Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\Pickers\+DrawArraysPicker\LineSearcher\DrawArraysLineInQuadsSearcher.jpg" />
-    <Content Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\Pickers\+DrawArraysPicker\LineSearcher\DrawArraysLineInQuadStripSearcher.jpg" />
-    <Content Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\Pickers\+DrawArraysPicker\LineSearcher\DrawArraysLineInTriangleFanSearcher.jpg" />
-    <Content Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\Pickers\+DrawArraysPicker\LineSearcher\DrawArraysLineInTrianglesAdjacencySearcher.jpg" />
-    <Content Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\Pickers\+DrawArraysPicker\LineSearcher\DrawArraysLineInTrianglesSearcher.jpg" />
-    <Content Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\Pickers\+DrawArraysPicker\LineSearcher\DrawArraysLineInTriangleStripAdjacencySearcher.jpg" />
-    <Content Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\Pickers\+DrawArraysPicker\LineSearcher\DrawArraysLineInTriangleStripSearcher.jpg" />
-    <Content Include="readme.md" />
-    <Content Include="Scene\SceneNodes\readme.md" />
-    <Content Include="Scene\SceneNodes\PickableNode\readme.md" />
-    <Content Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\ColorCodedPicking\PrimivitiveRecognizers\readme.md" />
-    <Content Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\ColorCodedPicking\readme.md" />
-    <Content Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\Pickers\+DrawArraysPicker\readme.md" />
-    <Compile Include="Scene\SceneNodes\PickableNode\PickableNode.IPickable\PickableNode.RenderForInnerPicking.cs" />
-    <None Include="Scene\SceneNodes\ModernNode\readme.md" />
-    <Content Include="Scene\SceneNodes\ConcreteNodes\readme.md" />
-    <Content Include="Scene\SceneNodes\RenderUnits\readme.md" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="GLAPI\GL.Enumerations\DrawMode.png" />
-    <Content Include="GLObjects\GLBuffers\IndependentBuffers\readme.md" />
-    <Content Include="GLObjects\GLBuffers\readme.md" />
-    <Content Include="GLObjects\GLBuffers\VertexBuffers\readme.md" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="BasicDataStructures\PropertyGrid\UITypeEditors\FormPropertyGridEditor.resx">
-      <DependentUpon>FormPropertyGridEditor.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="BasicDataStructures\PropertyGrid\UITypeEditors\FormUniformVariableDictEditor.resx">
-      <DependentUpon>FormUniformVariableDictEditor.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<IsTrimmable>False</IsTrimmable>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+		<IsTrimmable>False</IsTrimmable>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Compile Remove="DummyRenderer\**" />
+		<Compile Remove="DummyScene\**" />
+		<Compile Remove="GLObjects\Shaders\xShaders\**" />
+		<Compile Remove="GLObjects\Shaders\×Shaders\**" />
+		<Compile Remove="GL\DataStructure\UnamangedArray\**" />
+		<Compile Remove="GL\DataStructure\xUnamangedArray\**" />
+		<Compile Remove="GL\DataStructure\×UnamangedArray\**" />
+		<Compile Remove="GL\docs\**" />
+		<Compile Remove="Scene\SceneNodes\ConcreteNodes\TextureBillboardNode\**" />
+		<Compile Remove="Scene\SceneNodes\ConcreteNodes\Transformers\**" />
+		<Compile Remove="Scene\SceneNodes\ConcreteNodes\xTextureBillboardNode\**" />
+		<Compile Remove="Scene\SceneNodes\ConcreteNodes\xTransformers\**" />
+		<Compile Remove="Scene\SceneNodes\ConcreteNodes\×TextureBillboardNode\**" />
+		<Compile Remove="Scene\SceneNodes\ConcreteNodes\×Transformers\**" />
+		<EmbeddedResource Remove="DummyRenderer\**" />
+		<EmbeddedResource Remove="DummyScene\**" />
+		<EmbeddedResource Remove="GLObjects\Shaders\xShaders\**" />
+		<EmbeddedResource Remove="GLObjects\Shaders\×Shaders\**" />
+		<EmbeddedResource Remove="GL\DataStructure\UnamangedArray\**" />
+		<EmbeddedResource Remove="GL\DataStructure\xUnamangedArray\**" />
+		<EmbeddedResource Remove="GL\DataStructure\×UnamangedArray\**" />
+		<EmbeddedResource Remove="GL\docs\**" />
+		<EmbeddedResource Remove="Scene\SceneNodes\ConcreteNodes\TextureBillboardNode\**" />
+		<EmbeddedResource Remove="Scene\SceneNodes\ConcreteNodes\Transformers\**" />
+		<EmbeddedResource Remove="Scene\SceneNodes\ConcreteNodes\xTextureBillboardNode\**" />
+		<EmbeddedResource Remove="Scene\SceneNodes\ConcreteNodes\xTransformers\**" />
+		<EmbeddedResource Remove="Scene\SceneNodes\ConcreteNodes\×TextureBillboardNode\**" />
+		<EmbeddedResource Remove="Scene\SceneNodes\ConcreteNodes\×Transformers\**" />
+		<None Remove="DummyRenderer\**" />
+		<None Remove="DummyScene\**" />
+		<None Remove="GLObjects\Shaders\xShaders\**" />
+		<None Remove="GLObjects\Shaders\×Shaders\**" />
+		<None Remove="GL\DataStructure\UnamangedArray\**" />
+		<None Remove="GL\DataStructure\xUnamangedArray\**" />
+		<None Remove="GL\DataStructure\×UnamangedArray\**" />
+		<None Remove="GL\docs\**" />
+		<None Remove="Scene\SceneNodes\ConcreteNodes\TextureBillboardNode\**" />
+		<None Remove="Scene\SceneNodes\ConcreteNodes\Transformers\**" />
+		<None Remove="Scene\SceneNodes\ConcreteNodes\xTextureBillboardNode\**" />
+		<None Remove="Scene\SceneNodes\ConcreteNodes\xTransformers\**" />
+		<None Remove="Scene\SceneNodes\ConcreteNodes\×TextureBillboardNode\**" />
+		<None Remove="Scene\SceneNodes\ConcreteNodes\×Transformers\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Remove="GLObjects\DataStructure\PixelBGRA.cs" />
+		<Compile Remove="GL\DataStructure\Utilities\StructHelper.cs" />
+		<Compile Remove="Scene\GlyphMap\CharDumper.cs" />
+		<Compile Remove="Scene\GUI\Structs\GUIPadding.cs" />
+		<Compile Remove="Scene\SceneNodes\ConcreteNodes\TextBillboardNode\TextBillboardNode.backup.cs" />
+		<Compile Remove="Scene\SceneNodes\ModernNode\ModernNode.IRenderable.cs" />
+		<Compile Remove="Scene\SceneNodes\PickableNode\PickableNode.IRenderable.cs" />
+		<Compile Remove="Scene\SceneNodes\PickableNode\PickableNode.UniformArrays.cs" />
+		<Compile Remove="Scene\SceneNodes\PickableNode\PickableNode.Uniforms.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Remove="GLObjects\DataStructure\PixelBGRA.cs_" />
+		<None Remove="GL\DataStructure\Utilities\StructHelper.cs_" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Include="GLObjects\Framebuffer\RenderbufferType.cs_" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="SixLabors.ImageSharp" Version="3.1.8" />
+		<PackageReference Include="System.Drawing.Common" Version="10.0.0-preview.3.25173.2" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Using Include="System.UInt32">
+			<Alias>GLenum</Alias>
+		</Using>
+		<Using Include="System.Boolean">
+			<Alias>GLboolean</Alias>
+		</Using>
+		<Using Include="System.UInt32">
+			<Alias>GLbitfield</Alias>
+		</Using>
+		<Using Include="System.SByte">
+			<Alias>GLbyte</Alias>
+		</Using>
+		<Using Include="System.Byte">
+			<Alias>GLubyte</Alias>
+		</Using>
+		<Using Include="System.Int16">
+			<Alias>GLshort</Alias>
+		</Using>
+		<Using Include="System.UInt16">
+			<Alias>GLushort</Alias>
+		</Using>
+		<Using Include="System.UInt16">
+			<Alias>GLhalfNV</Alias>
+		</Using>
+		<Using Include="System.Int32">
+			<Alias>GLint</Alias>
+		</Using>
+		<Using Include="System.UInt32">
+			<Alias>GLuint</Alias>
+		</Using>
+		<Using Include="System.Int32">
+			<Alias>GLclampx</Alias>
+		</Using>
+		<Using Include="System.Single">
+			<Alias>GLfloat</Alias>
+		</Using>
+		<Using Include="System.Single">
+			<Alias>GLclampf</Alias>
+		</Using>
+		<Using Include="System.Double">
+			<Alias>GLdouble</Alias>
+		</Using>
+		<Using Include="System.Double">
+			<Alias>GLclampd</Alias>
+		</Using>
+		<Using Include="System.IntPtr">
+			<Alias>GLeglClientBufferEXT</Alias>
+		</Using>
+		<Using Include="System.IntPtr">
+			<Alias>GLeglImageOES</Alias>
+		</Using>
+		<Using Include="System.IntPtr">
+			<Alias>GLvdpauSurfaceNV</Alias>
+		</Using>
+		<Using Include="System.Char">
+			<Alias>GLchar</Alias>
+		</Using>
+		<Using Include="System.Char">
+			<Alias>GLcharARB</Alias>
+		</Using>
+		<Using Include="System.UInt32">
+			<Alias>GLhandleARB</Alias>
+		</Using>
+		<Using Include="System.UInt16">
+			<Alias>GLhalf</Alias>
+		</Using>
+		<Using Include="System.UInt16">
+			<Alias>GLhalfARB</Alias>
+		</Using>
+		<Using Include="System.Int32">
+			<Alias>GLfixed</Alias>
+		</Using>
+		<Using Include="System.IntPtr">
+			<Alias>GLintptr</Alias>
+		</Using>
+		<Using Include="System.IntPtr">
+			<Alias>GLintptrARB</Alias>
+		</Using>
+		<Using Include="System.IntPtr">
+			<Alias>GLsync</Alias>
+		</Using>
+		<Using Include="System.Int32">
+			<Alias>GLsizei</Alias>
+		</Using>
+		<Using Include="System.Int32">
+			<Alias>GLsizeiptr</Alias>
+		</Using>
+		<Using Include="System.Int32">
+			<Alias>GLsizeiptrARB</Alias>
+		</Using>
+		<Using Include="System.Int64">
+			<Alias>GLint64</Alias>
+		</Using>
+		<Using Include="System.Int64">
+			<Alias>GLint64EXT</Alias>
+		</Using>
+		<Using Include="System.UInt64">
+			<Alias>GLuint64</Alias>
+		</Using>
+		<Using Include="System.UInt64">
+			<Alias>GLuint64EXT</Alias>
+		</Using>
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Update="shaders\a.frag">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="shaders\a.vert">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="shaders\position.fs">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="shaders\position.vs">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
 </Project>

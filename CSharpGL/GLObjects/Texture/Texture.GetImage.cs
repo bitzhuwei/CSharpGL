@@ -5,13 +5,11 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace CSharpGL
-{
+namespace CSharpGL {
     /// <summary>
     /// 
     /// </summary>
-    public static partial class TextureHelper
-    {
+    public static unsafe partial class TextureHelper {
         /// <summary>
         /// Get image from texture.
         /// </summary>
@@ -20,14 +18,15 @@ namespace CSharpGL
         /// <param name="height"></param>
         /// <param name="level"></param>
         /// <returns></returns>
-        public static unsafe Bitmap GetImage(this Texture texture, int width, int height, int level = 0)
-        {
+        public static unsafe IGLBitmap GetImage(this Texture texture, int width, int height, int level = 0) {
+            var bmp = new GLBitmap(width, height, 4);
+            var gl = GL.current; if (gl == null) { return bmp; }
             texture.Bind();
 
-            var bmp = new Bitmap(width, height);
-            var data = bmp.LockBits(new Rectangle(0, 0, width, height), System.Drawing.Imaging.ImageLockMode.ReadWrite, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
-            GL.Instance.GetTexImage((uint)texture.Target, level, GL.GL_BGRA, GL.GL_UNSIGNED_BYTE, data.Scan0);
-            bmp.UnlockBits(data);
+            //var data = bmp.LockBits(new Rectangle(0, 0, width, height), System.Drawing.Imaging.ImageLockMode.ReadWrite, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+            //var data = bmp.Lock();
+            gl.glGetTexImage((GLenum)texture.Target, level, GL.GL_BGRA, GL.GL_UNSIGNED_BYTE, bmp.scan0);
+            //bmp.Unlock();
             //bmp.RotateFlip(RotateFlipType.Rotate180FlipX);
 
             texture.Unbind();
@@ -44,14 +43,15 @@ namespace CSharpGL
         /// <param name="height"></param>
         /// <param name="level"></param>
         /// <returns></returns>
-        public static unsafe Bitmap GetImage(this Texture texture, CubemapFace face, int width, int height, int level = 0)
-        {
+        public static unsafe IGLBitmap GetImage(this Texture texture, CubemapFace face, int width, int height, int level = 0) {
+            var bmp = new GLBitmap(width, height, 4);
+            var gl = GL.current; if (gl == null) { return bmp; }
             texture.Bind();
 
-            var bmp = new Bitmap(width, height);
-            var data = bmp.LockBits(new Rectangle(0, 0, width, height), System.Drawing.Imaging.ImageLockMode.ReadWrite, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
-            GL.Instance.GetTexImage((uint)face, level, GL.GL_BGRA, GL.GL_UNSIGNED_BYTE, data.Scan0);
-            bmp.UnlockBits(data);
+            //var data = bmp.LockBits(new Rectangle(0, 0, width, height), System.Drawing.Imaging.ImageLockMode.ReadWrite, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+            //var data = bmp.Lock();
+            gl.glGetTexImage((uint)face, level, GL.GL_BGRA, GL.GL_UNSIGNED_BYTE, bmp.Scan0);
+            //bmp.Unlock();
             //bmp.RotateFlip(RotateFlipType.Rotate180FlipX);
 
             texture.Unbind();

@@ -4,13 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CSharpGL
-{
+namespace CSharpGL {
     /// <summary>
     /// Provides a <see cref="Framebuffer"/> object.
     /// </summary>
-    public interface IFramebufferProvider
-    {
+    public interface IFramebufferProvider {
         /// <summary>
         /// Provides a framebuffer object with specified <paramref name="width"/> and <paramref name="height"/>.
         /// </summary>

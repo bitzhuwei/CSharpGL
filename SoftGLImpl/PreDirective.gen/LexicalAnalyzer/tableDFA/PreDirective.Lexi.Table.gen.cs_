@@ -1,0 +1,1457 @@
+using System;
+using bitzhuwei.Compiler;
+
+namespace bitzhuwei.PreDirectiveFormat {
+    partial class CompilerPreDirective {
+#if ! noTableDFA
+        private static readonly ElseIf2[] omitChars = new ElseIf2[] {
+                new('\u0000'/*(0)*/, nextStateId: 0, Acts.None),
+                new('\t'/*'\u0009'(9)*/, '\n'/*'\u000A'(10)*/, nextStateId: 0, Acts.None),
+                new('\r'/*'\u000D'(13)*/, nextStateId: 0, Acts.None),
+                new(' '/*'\u0020'(32)*/, nextStateId: 0, Acts.None),
+
+        };
+        private static readonly ElseIf2[][] lexiStates = new ElseIf2[154][];
+#endif
+        static void InitializeLexiTable() {
+#if ! noTableDFA
+            int[] ints_number_intConstant_doubleConstant = {
+                st.@number,
+                st.@intConstant,
+                st.@doubleConstant,
+            };//refered 6 times
+            int[] ints_intConstant_doubleConstant = {
+                st.@intConstant,
+                st.@doubleConstant,
+            };//refered 4 times
+            int[] ints_number_doubleConstant = {
+                st.@number,
+                st.@doubleConstant,
+            };//refered 6 times
+            int[] ints_identifier_boolConstant = {
+                st.@identifier,
+                st.@boolConstant,
+            };//refered 2 times
+            int[] ints_defined_identifier = {
+                st.@defined,
+                st.@identifier,
+            };//refered 2 times
+            ElseIf2 segment_34_34_1_1 = new('"'/*'\u0022'(34)*/, 1, Acts.Begin);//refered 5 times
+            ElseIf2 segment_48_57_121_2_ints_doubleConstant = new('0'/*'\u0030'(48)*/, '9'/*'\u0039'(57)*/, 121, Acts.Extend, st.@doubleConstant);//refered 3 times
+            ElseIf2 segment_48_57_124_2_ints_intConstant = new('0'/*'\u0030'(48)*/, '9'/*'\u0039'(57)*/, 124, Acts.Extend, st.@intConstant);//refered 2 times
+            ElseIf2 segment_65_70_124_2_ints_intConstant = new('A'/*'\u0041'(65)*/, 'F'/*'\u0046'(70)*/, 124, Acts.Extend, st.@intConstant);//refered 2 times
+            ElseIf2 segment_97_102_124_2_ints_intConstant = new('a'/*'\u0061'(97)*/, 'f'/*'\u0066'(102)*/, 124, Acts.Extend, st.@intConstant);//refered 2 times
+            ElseIf2 segment_48_57_137_2_ints_doubleConstant = new('0'/*'\u0030'(48)*/, '9'/*'\u0039'(57)*/, 137, Acts.Extend, st.@doubleConstant);//refered 3 times
+            ElseIf2 segment_48_57_86_2_ints_identifier = new('0'/*'\u0030'(48)*/, '9'/*'\u0039'(57)*/, 86, Acts.Extend, st.@identifier);//refered 18 times
+            ElseIf2 segment_65_90_86_2_ints_identifier = new('A'/*'\u0041'(65)*/, 'Z'/*'\u005A'(90)*/, 86, Acts.Extend, st.@identifier);//refered 18 times
+            ElseIf2 segment_95_95_86_2_ints_identifier = new('_'/*'\u005F'(95)*/, 86, Acts.Extend, st.@identifier);//refered 18 times
+            ElseIf2 segment_97_122_86_2_ints_identifier = new('a'/*'\u0061'(97)*/, 'z'/*'\u007A'(122)*/, 86, Acts.Extend, st.@identifier);//refered 5 times
+            ElseIf2 segment_0_65535_0_4_ints_identifier = new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@identifier);//refered 17 times
+            ElseIf2 segment_97_100_86_2_ints_identifier = new('a'/*'\u0061'(97)*/, 'd'/*'\u0064'(100)*/, 86, Acts.Extend, st.@identifier);//refered 4 times
+            ElseIf2 segment_102_122_86_2_ints_identifier = new('f'/*'\u0066'(102)*/, 'z'/*'\u007A'(122)*/, 86, Acts.Extend, st.@identifier);//refered 4 times
+            ElseIf2 segment_46_46_108_2_ints_doubleConstant = new('.'/*'\u002E'(46)*/, 108, Acts.Extend, st.@doubleConstant);//refered 2 times
+            ElseIf2 segment_48_57_81_8_ints_number_intConstant_doubleConstant = new('0'/*'\u0030'(48)*/, '9'/*'\u0039'(57)*/, 81, Acts.Extend2, st.@number, st.@intConstant, st.@doubleConstant);//refered 2 times
+            ElseIf2 segment_69_69_4_0 = new('E'/*'\u0045'(69)*/, 4, Acts.None);//refered 11 times
+            ElseIf2 segment_70_70_106_2_ints_floatConstant = new('F'/*'\u0046'(70)*/, 106, Acts.Extend, st.@floatConstant);//refered 13 times
+            ElseIf2 segment_85_85_107_2_ints_uintConstant = new('U'/*'\u0055'(85)*/, 107, Acts.Extend, st.@uintConstant);//refered 3 times
+            ElseIf2 segment_101_101_4_0 = new('e'/*'\u0065'(101)*/, 4, Acts.None);//refered 11 times
+            ElseIf2 segment_102_102_106_2_ints_floatConstant = new('f'/*'\u0066'(102)*/, 106, Acts.Extend, st.@floatConstant);//refered 13 times
+            ElseIf2 segment_117_117_107_2_ints_uintConstant = new('u'/*'\u0075'(117)*/, 107, Acts.Extend, st.@uintConstant);//refered 3 times
+            ElseIf2 segment_0_65535_0_16_ints_number_intConstant_doubleConstant = new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept2, st.@number, st.@intConstant, st.@doubleConstant);//refered 2 times
+            ElseIf2 segment_48_57_111_9_ints_intConstant_doubleConstant = new('0'/*'\u0030'(48)*/, '9'/*'\u0039'(57)*/, 111, Acts.Begin | Acts.Extend2, st.@intConstant, st.@doubleConstant);//refered 2 times
+            ElseIf2 segment_1_9_120_2_ints_inlineComment行 = new('\u0001'/*(1)*/, '\t'/*'\u0009'(9)*/, 120, Acts.Extend, st.@inlineComment行);//refered 2 times
+            ElseIf2 segment_11_12_120_2_ints_inlineComment行 = new('\u000B'/*(11)*/, '\u000C'/*(12)*/, 120, Acts.Extend, st.@inlineComment行);//refered 2 times
+            ElseIf2 segment_14_65535_120_2_ints_inlineComment行 = new('\u000E'/*(14)*/, '\uFFFF'/*￿(65535)*/, 120, Acts.Extend, st.@inlineComment行);//refered 2 times
+            ElseIf2 segment_0_65535_0_4_ints_inlineComment行 = new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@inlineComment行);//refered 2 times
+            ElseIf2 segment_0_65535_0_4_ints_uintConstant = new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@uintConstant);//refered 2 times
+            ElseIf2 segment_46_46_122_2_ints_doubleConstant = new('.'/*'\u002E'(46)*/, 122, Acts.Extend, st.@doubleConstant);//refered 3 times
+            ElseIf2 segment_48_57_123_8_ints_number_doubleConstant = new('0'/*'\u0030'(48)*/, '9'/*'\u0039'(57)*/, 123, Acts.Extend2, st.@number, st.@doubleConstant);//refered 2 times
+            ElseIf2 segment_0_65535_0_4_ints_doubleConstant = new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@doubleConstant);//refered 8 times
+            ElseIf2 segment_48_57_130_2_ints_doubleConstant = new('0'/*'\u0030'(48)*/, '9'/*'\u0039'(57)*/, 130, Acts.Extend, st.@doubleConstant);//refered 2 times
+            ElseIf2 segment_0_65535_0_16_ints_number_doubleConstant = new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept2, st.@number, st.@doubleConstant);//refered 2 times
+            ElseIf2 segment_48_57_133_2_ints_doubleConstant = new('0'/*'\u0030'(48)*/, '9'/*'\u0039'(57)*/, 133, Acts.Extend, st.@doubleConstant);//refered 2 times
+            ElseIf2 segment_48_57_138_8_ints_number_doubleConstant = new('0'/*'\u0030'(48)*/, '9'/*'\u0039'(57)*/, 138, Acts.Extend2, st.@number, st.@doubleConstant);//refered 2 times
+            ElseIf2 segment_0_65535_0_4_ints_boolConstant = new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@boolConstant);//refered 2 times
+            lexiStates[0] = new ElseIf2[] {
+            // possible Vt: '!' '!='
+            /*0*/new('!'/*'\u0021'(33)*/, 71, Acts.Begin | Acts.Extend, st.@Bang符),
+            // possible Vt: 'literalString'
+            /*1*///new('"'/*'\u0022'(34)*/, 1, Acts.Begin),
+            /*1*/segment_34_34_1_1,
+            // possible Vt: '#define' '#undef' '##' '#if' '#ifdef' '#ifndef' '#else' '#elif' '#endif' '#error' '#pragma' '#extension' '#version' '#line'
+            /*2*/new('#'/*'\u0023'(35)*/, 2, Acts.Begin),
+            // possible Vt: '%' '%='
+            /*3*/new('%'/*'\u0025'(37)*/, 69, Acts.Begin | Acts.Extend, st.@Percent符),
+            // possible Vt: '&' '&&' '&='
+            /*4*/new('&'/*'\u0026'(38)*/, 77, Acts.Begin | Acts.Extend, st.@And符),
+            // possible Vt: '('
+            /*5*/new('('/*'\u0028'(40)*/, 66, Acts.Begin | Acts.Extend, st.@LeftParenthesis符),
+            // possible Vt: ')'
+            /*6*/new(')'/*'\u0029'(41)*/, 65, Acts.Begin | Acts.Extend, st.@RightParenthesis符),
+            // possible Vt: '*' '*='
+            /*7*/new('*'/*'\u002A'(42)*/, 70, Acts.Begin | Acts.Extend, st.@Asterisk符),
+            // possible Vt: '++' '+' '+=' 'intConstant' 'uintConstant' 'floatConstant' 'doubleConstant'
+            /*8*/new('+'/*'\u002B'(43)*/, 84, Acts.Begin | Acts.Extend, st.@Plus符),
+            // possible Vt: ','
+            /*9*/new(','/*'\u002C'(44)*/, 64, Acts.Begin | Acts.Extend, st.@Comma符),
+            // possible Vt: '--' '-' '-=' 'intConstant' 'uintConstant' 'floatConstant' 'doubleConstant'
+            /*10*/new('-'/*'\u002D'(45)*/, 83, Acts.Begin | Acts.Extend, st.@Dash符),
+            // possible Vt: '.'
+            /*11*/new('.'/*'\u002E'(46)*/, 60, Acts.Begin | Acts.Extend, st.@Dot符),
+            // possible Vt: '/' '/=' 'inlineComment'
+            /*12*/new('/'/*'\u002F'(47)*/, 80, Acts.Begin | Acts.Extend, st.@Slash符),
+            // possible Vt: 'number' 'intConstant' 'uintConstant' 'floatConstant' 'doubleConstant'
+            /*13*/new('0'/*'\u0030'(48)*/, 82, Acts.Begin | Acts.Extend2, ints_number_intConstant_doubleConstant),
+            // possible Vt: 'number' 'intConstant' 'uintConstant' 'floatConstant' 'doubleConstant'
+            /*14*/new('1'/*'\u0031'(49)*/, '9'/*'\u0039'(57)*/, 81, Acts.Begin | Acts.Extend2, ints_number_intConstant_doubleConstant),
+            // possible Vt: ':'
+            /*15*/new(':'/*'\u003A'(58)*/, 57, Acts.Begin | Acts.Extend, st.@Colon符),
+            // possible Vt: ';'
+            /*16*/new(';'/*'\u003B'(59)*/, 63, Acts.Begin | Acts.Extend, st.@Semicolon符),
+            // possible Vt: '<<' '<' '<=' '<<='
+            /*17*/new('<'/*'\u003C'(60)*/, 79, Acts.Begin | Acts.Extend, st.@LeftAngle符),
+            // possible Vt: '==' '='
+            /*18*/new('='/*'\u003D'(61)*/, 68, Acts.Begin | Acts.Extend, st.@Equal符),
+            // possible Vt: '>>' '>' '>=' '>>='
+            /*19*/new('>'/*'\u003E'(62)*/, 78, Acts.Begin | Acts.Extend, st.@RightAngle符),
+            // possible Vt: '?'
+            /*20*/new('?'/*'\u003F'(63)*/, 58, Acts.Begin | Acts.Extend, st.@Question符),
+            // possible Vt: 'identifier' 'literalString'
+            /*21*/new('A'/*'\u0041'(65)*/, 'Z'/*'\u005A'(90)*/, 67, Acts.Begin | Acts.Extend, st.@identifier),
+            // possible Vt: '['
+            /*22*/new('['/*'\u005B'(91)*/, 62, Acts.Begin | Acts.Extend, st.@LeftBracket符),
+            // possible Vt: ']'
+            /*23*/new(']'/*'\u005D'(93)*/, 61, Acts.Begin | Acts.Extend, st.@RightBracket符),
+            // possible Vt: '^' '^^' '^='
+            /*24*/new('^'/*'\u005E'(94)*/, 76, Acts.Begin | Acts.Extend, st.@Caret符),
+            // possible Vt: 'identifier' 'literalString'
+            /*25*/new('_'/*'\u005F'(95)*/, 67, Acts.Begin | Acts.Extend, st.@identifier),
+            // possible Vt: 'identifier' 'literalString'
+            /*26*/new('a'/*'\u0061'(97)*/, 'c'/*'\u0063'(99)*/, 67, Acts.Begin | Acts.Extend, st.@identifier),
+            // possible Vt: 'defined' 'identifier' 'literalString'
+            /*27*/new('d'/*'\u0064'(100)*/, 74, Acts.Begin | Acts.Extend, st.@identifier),
+            // possible Vt: 'identifier' 'literalString'
+            /*28*/new('e'/*'\u0065'(101)*/, 67, Acts.Begin | Acts.Extend, st.@identifier),
+            // possible Vt: 'identifier' 'literalString' 'boolConstant'
+            /*29*/new('f'/*'\u0066'(102)*/, 72, Acts.Begin | Acts.Extend, st.@identifier),
+            // possible Vt: 'identifier' 'literalString'
+            /*30*/new('g'/*'\u0067'(103)*/, 's'/*'\u0073'(115)*/, 67, Acts.Begin | Acts.Extend, st.@identifier),
+            // possible Vt: 'identifier' 'literalString' 'boolConstant'
+            /*31*/new('t'/*'\u0074'(116)*/, 73, Acts.Begin | Acts.Extend, st.@identifier),
+            // possible Vt: 'identifier' 'literalString'
+            /*32*/new('u'/*'\u0075'(117)*/, 'z'/*'\u007A'(122)*/, 67, Acts.Begin | Acts.Extend, st.@identifier),
+            // possible Vt: '{'
+            /*33*/new('{'/*'\u007B'(123)*/, 56, Acts.Begin | Acts.Extend, st.@LeftBrace符),
+            // possible Vt: '|' '||' '|='
+            /*34*/new('|'/*'\u007C'(124)*/, 75, Acts.Begin | Acts.Extend, st.@Pipe符),
+            // possible Vt: '}'
+            /*35*/new('}'/*'\u007D'(125)*/, 55, Acts.Begin | Acts.Extend, st.@RightBrace符),
+            // possible Vt: '~'
+            /*36*/new('~'/*'\u007E'(126)*/, 59, Acts.Begin | Acts.Extend, st.@Tilde符),
+            };
+            lexiStates[1] = new ElseIf2[] {
+            // possible Vt: 'literalString'
+            new('\u0001'/*(1)*/, '!'/*'\u0021'(33)*/, 1, Acts.None),
+            // possible Vt: 'literalString'
+            new('"'/*'\u0022'(34)*/, 85, Acts.Extend, st.@literalString),
+            // possible Vt: 'literalString'
+            new('#'/*'\u0023'(35)*/, '['/*'\u005B'(91)*/, 1, Acts.None),
+            // possible Vt: 'literalString'
+            new('\\'/*'\u005C'(92)*/, 3, Acts.None),
+            // possible Vt: 'literalString'
+            new(']'/*'\u005D'(93)*/, '\uFFFF'/*￿(65535)*/, 1, Acts.None),
+            };
+            lexiStates[2] = new ElseIf2[] {
+            // possible Vt: '##'
+            new('#'/*'\u0023'(35)*/, 114, Acts.Extend, st.@Pound符Pound符),
+            // possible Vt: '#define'
+            new('d'/*'\u0064'(100)*/, 12, Acts.None),
+            // possible Vt: '#else' '#elif' '#endif' '#error' '#extension'
+            new('e'/*'\u0065'(101)*/, 25, Acts.None),
+            // possible Vt: '#if' '#ifdef' '#ifndef'
+            new('i'/*'\u0069'(105)*/, 24, Acts.None),
+            // possible Vt: '#line'
+            new('l'/*'\u006C'(108)*/, 6, Acts.None),
+            // possible Vt: '#pragma'
+            new('p'/*'\u0070'(112)*/, 17, Acts.None),
+            // possible Vt: '#undef'
+            new('u'/*'\u0075'(117)*/, 20, Acts.None),
+            // possible Vt: '#version'
+            new('v'/*'\u0076'(118)*/, 11, Acts.None),
+            };
+            lexiStates[3] = new ElseIf2[] {
+            // possible Vt: 'literalString'
+            new(' '/*'\u0020'(32)*/, '~'/*'\u007E'(126)*/, 1, Acts.None),
+            };
+            lexiStates[4] = new ElseIf2[] {
+            // possible Vt: 'floatConstant' 'doubleConstant'
+            new('+'/*'\u002B'(43)*/, 26, Acts.None),
+            // possible Vt: 'floatConstant' 'doubleConstant'
+            new('-'/*'\u002D'(45)*/, 26, Acts.None),
+            // possible Vt: 'floatConstant' 'doubleConstant'
+            //new('0'/*'\u0030'(48)*/, '9'/*'\u0039'(57)*/, 121, Acts.Extend, st.@doubleConstant),
+            segment_48_57_121_2_ints_doubleConstant,
+            };
+            lexiStates[5] = new ElseIf2[] {
+            // possible Vt: 'intConstant' 'uintConstant'
+            //new('0'/*'\u0030'(48)*/, '9'/*'\u0039'(57)*/, 124, Acts.Extend, st.@intConstant),
+            segment_48_57_124_2_ints_intConstant,
+            // possible Vt: 'intConstant' 'uintConstant'
+            //new('A'/*'\u0041'(65)*/, 'F'/*'\u0046'(70)*/, 124, Acts.Extend, st.@intConstant),
+            segment_65_70_124_2_ints_intConstant,
+            // possible Vt: 'intConstant' 'uintConstant'
+            //new('a'/*'\u0061'(97)*/, 'f'/*'\u0066'(102)*/, 124, Acts.Extend, st.@intConstant),
+            segment_97_102_124_2_ints_intConstant,
+            };
+            lexiStates[6] = new ElseIf2[] {
+            // possible Vt: '#line'
+            new('i'/*'\u0069'(105)*/, 21, Acts.None),
+            };
+            lexiStates[7] = new ElseIf2[] {
+            // possible Vt: '#define'
+            new('i'/*'\u0069'(105)*/, 22, Acts.None),
+            };
+            lexiStates[8] = new ElseIf2[] {
+            // possible Vt: '#endif'
+            new('i'/*'\u0069'(105)*/, 49, Acts.None),
+            };
+            lexiStates[9] = new ElseIf2[] {
+            // possible Vt: '#version'
+            new('i'/*'\u0069'(105)*/, 40, Acts.None),
+            };
+            lexiStates[10] = new ElseIf2[] {
+            // possible Vt: '#extension'
+            new('i'/*'\u0069'(105)*/, 41, Acts.None),
+            };
+            lexiStates[11] = new ElseIf2[] {
+            // possible Vt: '#version'
+            new('e'/*'\u0065'(101)*/, 18, Acts.None),
+            };
+            lexiStates[12] = new ElseIf2[] {
+            // possible Vt: '#define'
+            new('e'/*'\u0065'(101)*/, 31, Acts.None),
+            };
+            lexiStates[13] = new ElseIf2[] {
+            // possible Vt: '#undef'
+            new('e'/*'\u0065'(101)*/, 46, Acts.None),
+            };
+            lexiStates[14] = new ElseIf2[] {
+            // possible Vt: '#ifdef'
+            new('e'/*'\u0065'(101)*/, 47, Acts.None),
+            };
+            lexiStates[15] = new ElseIf2[] {
+            // possible Vt: '#extension'
+            new('e'/*'\u0065'(101)*/, 23, Acts.None),
+            };
+            lexiStates[16] = new ElseIf2[] {
+            // possible Vt: '#ifndef'
+            new('e'/*'\u0065'(101)*/, 52, Acts.None),
+            };
+            lexiStates[17] = new ElseIf2[] {
+            // possible Vt: '#pragma'
+            new('r'/*'\u0072'(114)*/, 27, Acts.None),
+            };
+            lexiStates[18] = new ElseIf2[] {
+            // possible Vt: '#version'
+            new('r'/*'\u0072'(114)*/, 36, Acts.None),
+            };
+            lexiStates[19] = new ElseIf2[] {
+            // possible Vt: '#error'
+            new('r'/*'\u0072'(114)*/, 39, Acts.None),
+            };
+            lexiStates[20] = new ElseIf2[] {
+            // possible Vt: '#undef'
+            new('n'/*'\u006E'(110)*/, 28, Acts.None),
+            };
+            lexiStates[21] = new ElseIf2[] {
+            // possible Vt: '#line'
+            new('n'/*'\u006E'(110)*/, 35, Acts.None),
+            };
+            lexiStates[22] = new ElseIf2[] {
+            // possible Vt: '#define'
+            new('n'/*'\u006E'(110)*/, 51, Acts.None),
+            };
+            lexiStates[23] = new ElseIf2[] {
+            // possible Vt: '#extension'
+            new('n'/*'\u006E'(110)*/, 37, Acts.None),
+            };
+            lexiStates[24] = new ElseIf2[] {
+            // possible Vt: '#if' '#ifdef' '#ifndef'
+            new('f'/*'\u0066'(102)*/, 126, Acts.Extend, st.@Pound符if),
+            };
+            lexiStates[25] = new ElseIf2[] {
+            // possible Vt: '#else' '#elif'
+            new('l'/*'\u006C'(108)*/, 33, Acts.None),
+            // possible Vt: '#endif'
+            new('n'/*'\u006E'(110)*/, 30, Acts.None),
+            // possible Vt: '#error'
+            new('r'/*'\u0072'(114)*/, 19, Acts.None),
+            // possible Vt: '#extension'
+            new('x'/*'\u0078'(120)*/, 32, Acts.None),
+            };
+            lexiStates[26] = new ElseIf2[] {
+            // possible Vt: 'floatConstant' 'doubleConstant'
+            //new('0'/*'\u0030'(48)*/, '9'/*'\u0039'(57)*/, 121, Acts.Extend, st.@doubleConstant),
+            segment_48_57_121_2_ints_doubleConstant,
+            };
+            lexiStates[27] = new ElseIf2[] {
+            // possible Vt: '#pragma'
+            new('a'/*'\u0061'(97)*/, 38, Acts.None),
+            };
+            lexiStates[28] = new ElseIf2[] {
+            // possible Vt: '#undef'
+            new('d'/*'\u0064'(100)*/, 13, Acts.None),
+            };
+            lexiStates[29] = new ElseIf2[] {
+            // possible Vt: '#ifndef'
+            new('d'/*'\u0064'(100)*/, 16, Acts.None),
+            };
+            lexiStates[30] = new ElseIf2[] {
+            // possible Vt: '#endif'
+            new('d'/*'\u0064'(100)*/, 8, Acts.None),
+            };
+            lexiStates[31] = new ElseIf2[] {
+            // possible Vt: '#define'
+            new('f'/*'\u0066'(102)*/, 7, Acts.None),
+            };
+            lexiStates[32] = new ElseIf2[] {
+            // possible Vt: '#extension'
+            new('t'/*'\u0074'(116)*/, 15, Acts.None),
+            };
+            lexiStates[33] = new ElseIf2[] {
+            // possible Vt: '#elif'
+            new('i'/*'\u0069'(105)*/, 42, Acts.None),
+            // possible Vt: '#else'
+            new('s'/*'\u0073'(115)*/, 43, Acts.None),
+            };
+            lexiStates[34] = new ElseIf2[] {
+            // possible Vt: 'floatConstant' 'doubleConstant'
+            new('+'/*'\u002B'(43)*/, 44, Acts.None),
+            // possible Vt: 'floatConstant' 'doubleConstant'
+            new('-'/*'\u002D'(45)*/, 44, Acts.None),
+            // possible Vt: 'floatConstant' 'doubleConstant'
+            //new('0'/*'\u0030'(48)*/, '9'/*'\u0039'(57)*/, 137, Acts.Extend, st.@doubleConstant),
+            segment_48_57_137_2_ints_doubleConstant,
+            };
+            lexiStates[35] = new ElseIf2[] {
+            // possible Vt: '#line'
+            new('e'/*'\u0065'(101)*/, 139, Acts.Extend, st.@Pound符line),
+            };
+            lexiStates[36] = new ElseIf2[] {
+            // possible Vt: '#version'
+            new('s'/*'\u0073'(115)*/, 9, Acts.None),
+            };
+            lexiStates[37] = new ElseIf2[] {
+            // possible Vt: '#extension'
+            new('s'/*'\u0073'(115)*/, 10, Acts.None),
+            };
+            lexiStates[38] = new ElseIf2[] {
+            // possible Vt: '#pragma'
+            new('g'/*'\u0067'(103)*/, 45, Acts.None),
+            };
+            lexiStates[39] = new ElseIf2[] {
+            // possible Vt: '#error'
+            new('o'/*'\u006F'(111)*/, 48, Acts.None),
+            };
+            lexiStates[40] = new ElseIf2[] {
+            // possible Vt: '#version'
+            new('o'/*'\u006F'(111)*/, 53, Acts.None),
+            };
+            lexiStates[41] = new ElseIf2[] {
+            // possible Vt: '#extension'
+            new('o'/*'\u006F'(111)*/, 54, Acts.None),
+            };
+            lexiStates[42] = new ElseIf2[] {
+            // possible Vt: '#elif'
+            new('f'/*'\u0066'(102)*/, 140, Acts.Extend, st.@Pound符elif),
+            };
+            lexiStates[43] = new ElseIf2[] {
+            // possible Vt: '#else'
+            new('e'/*'\u0065'(101)*/, 141, Acts.Extend, st.@Pound符else),
+            };
+            lexiStates[44] = new ElseIf2[] {
+            // possible Vt: 'floatConstant' 'doubleConstant'
+            //new('0'/*'\u0030'(48)*/, '9'/*'\u0039'(57)*/, 137, Acts.Extend, st.@doubleConstant),
+            segment_48_57_137_2_ints_doubleConstant,
+            };
+            lexiStates[45] = new ElseIf2[] {
+            // possible Vt: '#pragma'
+            new('m'/*'\u006D'(109)*/, 50, Acts.None),
+            };
+            lexiStates[46] = new ElseIf2[] {
+            // possible Vt: '#undef'
+            new('f'/*'\u0066'(102)*/, 144, Acts.Extend, st.@Pound符undef),
+            };
+            lexiStates[47] = new ElseIf2[] {
+            // possible Vt: '#ifdef'
+            new('f'/*'\u0066'(102)*/, 145, Acts.Extend, st.@Pound符ifdef),
+            };
+            lexiStates[48] = new ElseIf2[] {
+            // possible Vt: '#error'
+            new('r'/*'\u0072'(114)*/, 146, Acts.Extend, st.@Pound符error),
+            };
+            lexiStates[49] = new ElseIf2[] {
+            // possible Vt: '#endif'
+            new('f'/*'\u0066'(102)*/, 147, Acts.Extend, st.@Pound符endif),
+            };
+            lexiStates[50] = new ElseIf2[] {
+            // possible Vt: '#pragma'
+            new('a'/*'\u0061'(97)*/, 149, Acts.Extend, st.@Pound符pragma),
+            };
+            lexiStates[51] = new ElseIf2[] {
+            // possible Vt: '#define'
+            new('e'/*'\u0065'(101)*/, 150, Acts.Extend, st.@Pound符define),
+            };
+            lexiStates[52] = new ElseIf2[] {
+            // possible Vt: '#ifndef'
+            new('f'/*'\u0066'(102)*/, 151, Acts.Extend, st.@Pound符ifndef),
+            };
+            lexiStates[53] = new ElseIf2[] {
+            // possible Vt: '#version'
+            new('n'/*'\u006E'(110)*/, 152, Acts.Extend, st.@Pound符version),
+            };
+            lexiStates[54] = new ElseIf2[] {
+            // possible Vt: '#extension'
+            new('n'/*'\u006E'(110)*/, 153, Acts.Extend, st.@Pound符extension),
+            };
+            lexiStates[55] = new ElseIf2[] {
+            // possible Vt: '}'
+            new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@RightBrace符),
+            };
+            lexiStates[56] = new ElseIf2[] {
+            // possible Vt: '{'
+            new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@LeftBrace符),
+            };
+            lexiStates[57] = new ElseIf2[] {
+            // possible Vt: ':'
+            new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@Colon符),
+            };
+            lexiStates[58] = new ElseIf2[] {
+            // possible Vt: '?'
+            new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@Question符),
+            };
+            lexiStates[59] = new ElseIf2[] {
+            // possible Vt: '~'
+            new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@Tilde符),
+            };
+            lexiStates[60] = new ElseIf2[] {
+            // possible Vt: '.'
+            new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@Dot符),
+            };
+            lexiStates[61] = new ElseIf2[] {
+            // possible Vt: ']'
+            new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@RightBracket符),
+            };
+            lexiStates[62] = new ElseIf2[] {
+            // possible Vt: '['
+            new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@LeftBracket符),
+            };
+            lexiStates[63] = new ElseIf2[] {
+            // possible Vt: ';'
+            new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@Semicolon符),
+            };
+            lexiStates[64] = new ElseIf2[] {
+            // possible Vt: ','
+            new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@Comma符),
+            };
+            lexiStates[65] = new ElseIf2[] {
+            // possible Vt: ')'
+            new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@RightParenthesis符),
+            };
+            lexiStates[66] = new ElseIf2[] {
+            // possible Vt: '('
+            new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@LeftParenthesis符),
+            };
+            lexiStates[67] = new ElseIf2[] {
+            // possible Vt: 'literalString'
+            //new('"'/*'\u0022'(34)*/, 1, Acts.Begin),
+            segment_34_34_1_1,
+            // possible Vt: 'identifier'
+            //new('0'/*'\u0030'(48)*/, '9'/*'\u0039'(57)*/, 86, Acts.Extend, st.@identifier),
+            segment_48_57_86_2_ints_identifier,
+            // possible Vt: 'identifier'
+            //new('A'/*'\u0041'(65)*/, 'Z'/*'\u005A'(90)*/, 86, Acts.Extend, st.@identifier),
+            segment_65_90_86_2_ints_identifier,
+            // possible Vt: 'identifier'
+            //new('_'/*'\u005F'(95)*/, 86, Acts.Extend, st.@identifier),
+            segment_95_95_86_2_ints_identifier,
+            // possible Vt: 'identifier'
+            //new('a'/*'\u0061'(97)*/, 'z'/*'\u007A'(122)*/, 86, Acts.Extend, st.@identifier),
+            segment_97_122_86_2_ints_identifier,
+            // possible Vt: 'identifier'
+            //new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@identifier),
+            segment_0_65535_0_4_ints_identifier,
+            };
+            lexiStates[68] = new ElseIf2[] {
+            // possible Vt: '=='
+            new('='/*'\u003D'(61)*/, 87, Acts.Extend, st.@Equal符Equal符),
+            // possible Vt: '='
+            new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@Equal符),
+            };
+            lexiStates[69] = new ElseIf2[] {
+            // possible Vt: '%='
+            new('='/*'\u003D'(61)*/, 88, Acts.Extend, st.@Percent符Equal符),
+            // possible Vt: '%'
+            new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@Percent符),
+            };
+            lexiStates[70] = new ElseIf2[] {
+            // possible Vt: '*='
+            new('='/*'\u003D'(61)*/, 89, Acts.Extend, st.@Asterisk符Equal符),
+            // possible Vt: '*'
+            new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@Asterisk符),
+            };
+            lexiStates[71] = new ElseIf2[] {
+            // possible Vt: '!='
+            new('='/*'\u003D'(61)*/, 90, Acts.Extend, st.@Bang符Equal符),
+            // possible Vt: '!'
+            new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@Bang符),
+            };
+            lexiStates[72] = new ElseIf2[] {
+            // possible Vt: 'literalString'
+            //new('"'/*'\u0022'(34)*/, 1, Acts.Begin),
+            segment_34_34_1_1,
+            // possible Vt: 'identifier'
+            //new('0'/*'\u0030'(48)*/, '9'/*'\u0039'(57)*/, 86, Acts.Extend, st.@identifier),
+            segment_48_57_86_2_ints_identifier,
+            // possible Vt: 'identifier'
+            //new('A'/*'\u0041'(65)*/, 'Z'/*'\u005A'(90)*/, 86, Acts.Extend, st.@identifier),
+            segment_65_90_86_2_ints_identifier,
+            // possible Vt: 'identifier'
+            //new('_'/*'\u005F'(95)*/, 86, Acts.Extend, st.@identifier),
+            segment_95_95_86_2_ints_identifier,
+            // possible Vt: 'identifier' 'boolConstant'
+            new('a'/*'\u0061'(97)*/, 91, Acts.Extend, st.@identifier),
+            // possible Vt: 'identifier'
+            new('b'/*'\u0062'(98)*/, 'z'/*'\u007A'(122)*/, 86, Acts.Extend, st.@identifier),
+            // possible Vt: 'identifier'
+            //new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@identifier),
+            segment_0_65535_0_4_ints_identifier,
+            };
+            lexiStates[73] = new ElseIf2[] {
+            // possible Vt: 'literalString'
+            //new('"'/*'\u0022'(34)*/, 1, Acts.Begin),
+            segment_34_34_1_1,
+            // possible Vt: 'identifier'
+            //new('0'/*'\u0030'(48)*/, '9'/*'\u0039'(57)*/, 86, Acts.Extend, st.@identifier),
+            segment_48_57_86_2_ints_identifier,
+            // possible Vt: 'identifier'
+            //new('A'/*'\u0041'(65)*/, 'Z'/*'\u005A'(90)*/, 86, Acts.Extend, st.@identifier),
+            segment_65_90_86_2_ints_identifier,
+            // possible Vt: 'identifier'
+            //new('_'/*'\u005F'(95)*/, 86, Acts.Extend, st.@identifier),
+            segment_95_95_86_2_ints_identifier,
+            // possible Vt: 'identifier'
+            new('a'/*'\u0061'(97)*/, 'q'/*'\u0071'(113)*/, 86, Acts.Extend, st.@identifier),
+            // possible Vt: 'identifier' 'boolConstant'
+            new('r'/*'\u0072'(114)*/, 92, Acts.Extend, st.@identifier),
+            // possible Vt: 'identifier'
+            new('s'/*'\u0073'(115)*/, 'z'/*'\u007A'(122)*/, 86, Acts.Extend, st.@identifier),
+            // possible Vt: 'identifier'
+            //new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@identifier),
+            segment_0_65535_0_4_ints_identifier,
+            };
+            lexiStates[74] = new ElseIf2[] {
+            // possible Vt: 'literalString'
+            //new('"'/*'\u0022'(34)*/, 1, Acts.Begin),
+            segment_34_34_1_1,
+            // possible Vt: 'identifier'
+            //new('0'/*'\u0030'(48)*/, '9'/*'\u0039'(57)*/, 86, Acts.Extend, st.@identifier),
+            segment_48_57_86_2_ints_identifier,
+            // possible Vt: 'identifier'
+            //new('A'/*'\u0041'(65)*/, 'Z'/*'\u005A'(90)*/, 86, Acts.Extend, st.@identifier),
+            segment_65_90_86_2_ints_identifier,
+            // possible Vt: 'identifier'
+            //new('_'/*'\u005F'(95)*/, 86, Acts.Extend, st.@identifier),
+            segment_95_95_86_2_ints_identifier,
+            // possible Vt: 'identifier'
+            //new('a'/*'\u0061'(97)*/, 'd'/*'\u0064'(100)*/, 86, Acts.Extend, st.@identifier),
+            segment_97_100_86_2_ints_identifier,
+            // possible Vt: 'defined' 'identifier'
+            new('e'/*'\u0065'(101)*/, 93, Acts.Extend, st.@identifier),
+            // possible Vt: 'identifier'
+            //new('f'/*'\u0066'(102)*/, 'z'/*'\u007A'(122)*/, 86, Acts.Extend, st.@identifier),
+            segment_102_122_86_2_ints_identifier,
+            // possible Vt: 'identifier'
+            //new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@identifier),
+            segment_0_65535_0_4_ints_identifier,
+            };
+            lexiStates[75] = new ElseIf2[] {
+            // possible Vt: '|='
+            new('='/*'\u003D'(61)*/, 94, Acts.Extend, st.@Pipe符Equal符),
+            // possible Vt: '||'
+            new('|'/*'\u007C'(124)*/, 95, Acts.Extend, st.@Pipe符Pipe符),
+            // possible Vt: '|'
+            new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@Pipe符),
+            };
+            lexiStates[76] = new ElseIf2[] {
+            // possible Vt: '^='
+            new('='/*'\u003D'(61)*/, 96, Acts.Extend, st.@Caret符Equal符),
+            // possible Vt: '^^'
+            new('^'/*'\u005E'(94)*/, 97, Acts.Extend, st.@Caret符Caret符),
+            // possible Vt: '^'
+            new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@Caret符),
+            };
+            lexiStates[77] = new ElseIf2[] {
+            // possible Vt: '&&'
+            new('&'/*'\u0026'(38)*/, 99, Acts.Extend, st.@And符And符),
+            // possible Vt: '&='
+            new('='/*'\u003D'(61)*/, 98, Acts.Extend, st.@And符Equal符),
+            // possible Vt: '&'
+            new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@And符),
+            };
+            lexiStates[78] = new ElseIf2[] {
+            // possible Vt: '>='
+            new('='/*'\u003D'(61)*/, 100, Acts.Extend, st.@RightAngle符Equal符),
+            // possible Vt: '>>' '>>='
+            new('>'/*'\u003E'(62)*/, 101, Acts.Extend, st.@RightAngle符RightAngle符),
+            // possible Vt: '>'
+            new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@RightAngle符),
+            };
+            lexiStates[79] = new ElseIf2[] {
+            // possible Vt: '<<' '<<='
+            new('<'/*'\u003C'(60)*/, 103, Acts.Extend, st.@LeftAngle符LeftAngle符),
+            // possible Vt: '<='
+            new('='/*'\u003D'(61)*/, 102, Acts.Extend, st.@LeftAngle符Equal符),
+            // possible Vt: '<'
+            new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@LeftAngle符),
+            };
+            lexiStates[80] = new ElseIf2[] {
+            // possible Vt: 'inlineComment'
+            new('/'/*'\u002F'(47)*/, 104, Acts.Extend, st.@inlineComment行),
+            // possible Vt: '/='
+            new('='/*'\u003D'(61)*/, 105, Acts.Extend, st.@Slash符Equal符),
+            // possible Vt: '/'
+            new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@Slash符),
+            };
+            lexiStates[81] = new ElseIf2[] {
+            // possible Vt: 'number' 'floatConstant' 'doubleConstant'
+            //new('.'/*'\u002E'(46)*/, 108, Acts.Extend, st.@doubleConstant),
+            segment_46_46_108_2_ints_doubleConstant,
+            // possible Vt: 'number' 'intConstant' 'uintConstant' 'floatConstant' 'doubleConstant'
+            //new('0'/*'\u0030'(48)*/, '9'/*'\u0039'(57)*/, 81, Acts.Extend2, st.@number, st.@intConstant, st.@doubleConstant),
+            segment_48_57_81_8_ints_number_intConstant_doubleConstant,
+            // possible Vt: 'floatConstant' 'doubleConstant'
+            //new('E'/*'\u0045'(69)*/, 4, Acts.None),
+            segment_69_69_4_0,
+            // possible Vt: 'floatConstant'
+            //new('F'/*'\u0046'(70)*/, 106, Acts.Extend, st.@floatConstant),
+            segment_70_70_106_2_ints_floatConstant,
+            // possible Vt: 'uintConstant'
+            //new('U'/*'\u0055'(85)*/, 107, Acts.Extend, st.@uintConstant),
+            segment_85_85_107_2_ints_uintConstant,
+            // possible Vt: 'floatConstant' 'doubleConstant'
+            //new('e'/*'\u0065'(101)*/, 4, Acts.None),
+            segment_101_101_4_0,
+            // possible Vt: 'floatConstant'
+            //new('f'/*'\u0066'(102)*/, 106, Acts.Extend, st.@floatConstant),
+            segment_102_102_106_2_ints_floatConstant,
+            // possible Vt: 'uintConstant'
+            //new('u'/*'\u0075'(117)*/, 107, Acts.Extend, st.@uintConstant),
+            segment_117_117_107_2_ints_uintConstant,
+            // possible Vt: 'number' 'intConstant' 'doubleConstant'
+            //new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept2, st.@number, st.@intConstant, st.@doubleConstant),
+            segment_0_65535_0_16_ints_number_intConstant_doubleConstant,
+            };
+            lexiStates[82] = new ElseIf2[] {
+            // possible Vt: 'number' 'floatConstant' 'doubleConstant'
+            //new('.'/*'\u002E'(46)*/, 108, Acts.Extend, st.@doubleConstant),
+            segment_46_46_108_2_ints_doubleConstant,
+            // possible Vt: 'number' 'intConstant' 'uintConstant' 'floatConstant' 'doubleConstant'
+            //new('0'/*'\u0030'(48)*/, '9'/*'\u0039'(57)*/, 81, Acts.Extend2, st.@number, st.@intConstant, st.@doubleConstant),
+            segment_48_57_81_8_ints_number_intConstant_doubleConstant,
+            // possible Vt: 'floatConstant' 'doubleConstant'
+            //new('E'/*'\u0045'(69)*/, 4, Acts.None),
+            segment_69_69_4_0,
+            // possible Vt: 'floatConstant'
+            //new('F'/*'\u0046'(70)*/, 106, Acts.Extend, st.@floatConstant),
+            segment_70_70_106_2_ints_floatConstant,
+            // possible Vt: 'uintConstant'
+            //new('U'/*'\u0055'(85)*/, 107, Acts.Extend, st.@uintConstant),
+            segment_85_85_107_2_ints_uintConstant,
+            // possible Vt: 'floatConstant' 'doubleConstant'
+            //new('e'/*'\u0065'(101)*/, 4, Acts.None),
+            segment_101_101_4_0,
+            // possible Vt: 'floatConstant'
+            //new('f'/*'\u0066'(102)*/, 106, Acts.Extend, st.@floatConstant),
+            segment_102_102_106_2_ints_floatConstant,
+            // possible Vt: 'uintConstant'
+            //new('u'/*'\u0075'(117)*/, 107, Acts.Extend, st.@uintConstant),
+            segment_117_117_107_2_ints_uintConstant,
+            // possible Vt: 'intConstant' 'uintConstant'
+            new('x'/*'\u0078'(120)*/, 5, Acts.None),
+            // possible Vt: 'number' 'intConstant' 'doubleConstant'
+            //new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept2, st.@number, st.@intConstant, st.@doubleConstant),
+            segment_0_65535_0_16_ints_number_intConstant_doubleConstant,
+            };
+            lexiStates[83] = new ElseIf2[] {
+            // possible Vt: '--'
+            new('-'/*'\u002D'(45)*/, 110, Acts.Extend, st.@Dash符Dash符),
+            // possible Vt: 'intConstant' 'uintConstant' 'floatConstant' 'doubleConstant'
+            //new('0'/*'\u0030'(48)*/, '9'/*'\u0039'(57)*/, 111, Acts.Begin | Acts.Extend2, st.@intConstant, st.@doubleConstant),
+            segment_48_57_111_9_ints_intConstant_doubleConstant,
+            // possible Vt: '-='
+            new('='/*'\u003D'(61)*/, 109, Acts.Extend, st.@Dash符Equal符),
+            // possible Vt: '-'
+            new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@Dash符),
+            };
+            lexiStates[84] = new ElseIf2[] {
+            // possible Vt: '++'
+            new('+'/*'\u002B'(43)*/, 113, Acts.Extend, st.@Plus符Plus符),
+            // possible Vt: 'intConstant' 'uintConstant' 'floatConstant' 'doubleConstant'
+            //new('0'/*'\u0030'(48)*/, '9'/*'\u0039'(57)*/, 111, Acts.Begin | Acts.Extend2, st.@intConstant, st.@doubleConstant),
+            segment_48_57_111_9_ints_intConstant_doubleConstant,
+            // possible Vt: '+='
+            new('='/*'\u003D'(61)*/, 112, Acts.Extend, st.@Plus符Equal符),
+            // possible Vt: '+'
+            new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@Plus符),
+            };
+            lexiStates[85] = new ElseIf2[] {
+            // possible Vt: 'literalString'
+            new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@literalString),
+            };
+            lexiStates[86] = new ElseIf2[] {
+            // possible Vt: 'identifier'
+            //new('0'/*'\u0030'(48)*/, '9'/*'\u0039'(57)*/, 86, Acts.Extend, st.@identifier),
+            segment_48_57_86_2_ints_identifier,
+            // possible Vt: 'identifier'
+            //new('A'/*'\u0041'(65)*/, 'Z'/*'\u005A'(90)*/, 86, Acts.Extend, st.@identifier),
+            segment_65_90_86_2_ints_identifier,
+            // possible Vt: 'identifier'
+            //new('_'/*'\u005F'(95)*/, 86, Acts.Extend, st.@identifier),
+            segment_95_95_86_2_ints_identifier,
+            // possible Vt: 'identifier'
+            //new('a'/*'\u0061'(97)*/, 'z'/*'\u007A'(122)*/, 86, Acts.Extend, st.@identifier),
+            segment_97_122_86_2_ints_identifier,
+            // possible Vt: 'identifier'
+            //new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@identifier),
+            segment_0_65535_0_4_ints_identifier,
+            };
+            lexiStates[87] = new ElseIf2[] {
+            // possible Vt: '=='
+            new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@Equal符Equal符),
+            };
+            lexiStates[88] = new ElseIf2[] {
+            // possible Vt: '%='
+            new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@Percent符Equal符),
+            };
+            lexiStates[89] = new ElseIf2[] {
+            // possible Vt: '*='
+            new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@Asterisk符Equal符),
+            };
+            lexiStates[90] = new ElseIf2[] {
+            // possible Vt: '!='
+            new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@Bang符Equal符),
+            };
+            lexiStates[91] = new ElseIf2[] {
+            // possible Vt: 'identifier'
+            //new('0'/*'\u0030'(48)*/, '9'/*'\u0039'(57)*/, 86, Acts.Extend, st.@identifier),
+            segment_48_57_86_2_ints_identifier,
+            // possible Vt: 'identifier'
+            //new('A'/*'\u0041'(65)*/, 'Z'/*'\u005A'(90)*/, 86, Acts.Extend, st.@identifier),
+            segment_65_90_86_2_ints_identifier,
+            // possible Vt: 'identifier'
+            //new('_'/*'\u005F'(95)*/, 86, Acts.Extend, st.@identifier),
+            segment_95_95_86_2_ints_identifier,
+            // possible Vt: 'identifier'
+            new('a'/*'\u0061'(97)*/, 'k'/*'\u006B'(107)*/, 86, Acts.Extend, st.@identifier),
+            // possible Vt: 'identifier' 'boolConstant'
+            new('l'/*'\u006C'(108)*/, 115, Acts.Extend, st.@identifier),
+            // possible Vt: 'identifier'
+            new('m'/*'\u006D'(109)*/, 'z'/*'\u007A'(122)*/, 86, Acts.Extend, st.@identifier),
+            // possible Vt: 'identifier'
+            //new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@identifier),
+            segment_0_65535_0_4_ints_identifier,
+            };
+            lexiStates[92] = new ElseIf2[] {
+            // possible Vt: 'identifier'
+            //new('0'/*'\u0030'(48)*/, '9'/*'\u0039'(57)*/, 86, Acts.Extend, st.@identifier),
+            segment_48_57_86_2_ints_identifier,
+            // possible Vt: 'identifier'
+            //new('A'/*'\u0041'(65)*/, 'Z'/*'\u005A'(90)*/, 86, Acts.Extend, st.@identifier),
+            segment_65_90_86_2_ints_identifier,
+            // possible Vt: 'identifier'
+            //new('_'/*'\u005F'(95)*/, 86, Acts.Extend, st.@identifier),
+            segment_95_95_86_2_ints_identifier,
+            // possible Vt: 'identifier'
+            new('a'/*'\u0061'(97)*/, 't'/*'\u0074'(116)*/, 86, Acts.Extend, st.@identifier),
+            // possible Vt: 'identifier' 'boolConstant'
+            new('u'/*'\u0075'(117)*/, 116, Acts.Extend, st.@identifier),
+            // possible Vt: 'identifier'
+            new('v'/*'\u0076'(118)*/, 'z'/*'\u007A'(122)*/, 86, Acts.Extend, st.@identifier),
+            // possible Vt: 'identifier'
+            //new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@identifier),
+            segment_0_65535_0_4_ints_identifier,
+            };
+            lexiStates[93] = new ElseIf2[] {
+            // possible Vt: 'identifier'
+            //new('0'/*'\u0030'(48)*/, '9'/*'\u0039'(57)*/, 86, Acts.Extend, st.@identifier),
+            segment_48_57_86_2_ints_identifier,
+            // possible Vt: 'identifier'
+            //new('A'/*'\u0041'(65)*/, 'Z'/*'\u005A'(90)*/, 86, Acts.Extend, st.@identifier),
+            segment_65_90_86_2_ints_identifier,
+            // possible Vt: 'identifier'
+            //new('_'/*'\u005F'(95)*/, 86, Acts.Extend, st.@identifier),
+            segment_95_95_86_2_ints_identifier,
+            // possible Vt: 'identifier'
+            new('a'/*'\u0061'(97)*/, 'e'/*'\u0065'(101)*/, 86, Acts.Extend, st.@identifier),
+            // possible Vt: 'defined' 'identifier'
+            new('f'/*'\u0066'(102)*/, 117, Acts.Extend, st.@identifier),
+            // possible Vt: 'identifier'
+            new('g'/*'\u0067'(103)*/, 'z'/*'\u007A'(122)*/, 86, Acts.Extend, st.@identifier),
+            // possible Vt: 'identifier'
+            //new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@identifier),
+            segment_0_65535_0_4_ints_identifier,
+            };
+            lexiStates[94] = new ElseIf2[] {
+            // possible Vt: '|='
+            new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@Pipe符Equal符),
+            };
+            lexiStates[95] = new ElseIf2[] {
+            // possible Vt: '||'
+            new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@Pipe符Pipe符),
+            };
+            lexiStates[96] = new ElseIf2[] {
+            // possible Vt: '^='
+            new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@Caret符Equal符),
+            };
+            lexiStates[97] = new ElseIf2[] {
+            // possible Vt: '^^'
+            new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@Caret符Caret符),
+            };
+            lexiStates[98] = new ElseIf2[] {
+            // possible Vt: '&='
+            new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@And符Equal符),
+            };
+            lexiStates[99] = new ElseIf2[] {
+            // possible Vt: '&&'
+            new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@And符And符),
+            };
+            lexiStates[100] = new ElseIf2[] {
+            // possible Vt: '>='
+            new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@RightAngle符Equal符),
+            };
+            lexiStates[101] = new ElseIf2[] {
+            // possible Vt: '>>='
+            new('='/*'\u003D'(61)*/, 118, Acts.Extend, st.@RightAngle符RightAngle符Equal符),
+            // possible Vt: '>>'
+            new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@RightAngle符RightAngle符),
+            };
+            lexiStates[102] = new ElseIf2[] {
+            // possible Vt: '<='
+            new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@LeftAngle符Equal符),
+            };
+            lexiStates[103] = new ElseIf2[] {
+            // possible Vt: '<<='
+            new('='/*'\u003D'(61)*/, 119, Acts.Extend, st.@LeftAngle符LeftAngle符Equal符),
+            // possible Vt: '<<'
+            new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@LeftAngle符LeftAngle符),
+            };
+            lexiStates[104] = new ElseIf2[] {
+            // possible Vt: 'inlineComment'
+            //new('\u0001'/*(1)*/, '\t'/*'\u0009'(9)*/, 120, Acts.Extend, st.@inlineComment行),
+            segment_1_9_120_2_ints_inlineComment行,
+            // possible Vt: 'inlineComment'
+            //new('\u000B'/*(11)*/, '\u000C'/*(12)*/, 120, Acts.Extend, st.@inlineComment行),
+            segment_11_12_120_2_ints_inlineComment行,
+            // possible Vt: 'inlineComment'
+            //new('\u000E'/*(14)*/, '\uFFFF'/*￿(65535)*/, 120, Acts.Extend, st.@inlineComment行),
+            segment_14_65535_120_2_ints_inlineComment行,
+            // possible Vt: 'inlineComment'
+            //new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@inlineComment行),
+            segment_0_65535_0_4_ints_inlineComment行,
+            };
+            lexiStates[105] = new ElseIf2[] {
+            // possible Vt: '/='
+            new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@Slash符Equal符),
+            };
+            lexiStates[106] = new ElseIf2[] {
+            // possible Vt: 'floatConstant'
+            new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@floatConstant),
+            };
+            lexiStates[107] = new ElseIf2[] {
+            // possible Vt: 'uintConstant'
+            //new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@uintConstant),
+            segment_0_65535_0_4_ints_uintConstant,
+            };
+            lexiStates[108] = new ElseIf2[] {
+            // possible Vt: 'floatConstant' 'doubleConstant'
+            //new('.'/*'\u002E'(46)*/, 122, Acts.Extend, st.@doubleConstant),
+            segment_46_46_122_2_ints_doubleConstant,
+            // possible Vt: 'number' 'floatConstant' 'doubleConstant'
+            //new('0'/*'\u0030'(48)*/, '9'/*'\u0039'(57)*/, 123, Acts.Extend2, st.@number, st.@doubleConstant),
+            segment_48_57_123_8_ints_number_doubleConstant,
+            // possible Vt: 'floatConstant' 'doubleConstant'
+            //new('E'/*'\u0045'(69)*/, 4, Acts.None),
+            segment_69_69_4_0,
+            // possible Vt: 'floatConstant'
+            //new('F'/*'\u0046'(70)*/, 106, Acts.Extend, st.@floatConstant),
+            segment_70_70_106_2_ints_floatConstant,
+            // possible Vt: 'floatConstant' 'doubleConstant'
+            //new('e'/*'\u0065'(101)*/, 4, Acts.None),
+            segment_101_101_4_0,
+            // possible Vt: 'floatConstant'
+            //new('f'/*'\u0066'(102)*/, 106, Acts.Extend, st.@floatConstant),
+            segment_102_102_106_2_ints_floatConstant,
+            // possible Vt: 'doubleConstant'
+            //new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@doubleConstant),
+            segment_0_65535_0_4_ints_doubleConstant,
+            };
+            lexiStates[109] = new ElseIf2[] {
+            // possible Vt: '-='
+            new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@Dash符Equal符),
+            };
+            lexiStates[110] = new ElseIf2[] {
+            // possible Vt: '--'
+            new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@Dash符Dash符),
+            };
+            lexiStates[111] = new ElseIf2[] {
+            // possible Vt: 'floatConstant' 'doubleConstant'
+            new('.'/*'\u002E'(46)*/, 125, Acts.Extend, st.@doubleConstant),
+            // possible Vt: 'intConstant' 'uintConstant' 'floatConstant' 'doubleConstant'
+            new('0'/*'\u0030'(48)*/, '9'/*'\u0039'(57)*/, 111, Acts.Extend2, ints_intConstant_doubleConstant),
+            // possible Vt: 'floatConstant' 'doubleConstant'
+            //new('E'/*'\u0045'(69)*/, 4, Acts.None),
+            segment_69_69_4_0,
+            // possible Vt: 'floatConstant'
+            //new('F'/*'\u0046'(70)*/, 106, Acts.Extend, st.@floatConstant),
+            segment_70_70_106_2_ints_floatConstant,
+            // possible Vt: 'uintConstant'
+            //new('U'/*'\u0055'(85)*/, 107, Acts.Extend, st.@uintConstant),
+            segment_85_85_107_2_ints_uintConstant,
+            // possible Vt: 'floatConstant' 'doubleConstant'
+            //new('e'/*'\u0065'(101)*/, 4, Acts.None),
+            segment_101_101_4_0,
+            // possible Vt: 'floatConstant'
+            //new('f'/*'\u0066'(102)*/, 106, Acts.Extend, st.@floatConstant),
+            segment_102_102_106_2_ints_floatConstant,
+            // possible Vt: 'uintConstant'
+            //new('u'/*'\u0075'(117)*/, 107, Acts.Extend, st.@uintConstant),
+            segment_117_117_107_2_ints_uintConstant,
+            // possible Vt: 'intConstant' 'doubleConstant'
+            new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept2, ints_intConstant_doubleConstant),
+            };
+            lexiStates[112] = new ElseIf2[] {
+            // possible Vt: '+='
+            new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@Plus符Equal符),
+            };
+            lexiStates[113] = new ElseIf2[] {
+            // possible Vt: '++'
+            new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@Plus符Plus符),
+            };
+            lexiStates[114] = new ElseIf2[] {
+            // possible Vt: '##'
+            new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@Pound符Pound符),
+            };
+            lexiStates[115] = new ElseIf2[] {
+            // possible Vt: 'identifier'
+            //new('0'/*'\u0030'(48)*/, '9'/*'\u0039'(57)*/, 86, Acts.Extend, st.@identifier),
+            segment_48_57_86_2_ints_identifier,
+            // possible Vt: 'identifier'
+            //new('A'/*'\u0041'(65)*/, 'Z'/*'\u005A'(90)*/, 86, Acts.Extend, st.@identifier),
+            segment_65_90_86_2_ints_identifier,
+            // possible Vt: 'identifier'
+            //new('_'/*'\u005F'(95)*/, 86, Acts.Extend, st.@identifier),
+            segment_95_95_86_2_ints_identifier,
+            // possible Vt: 'identifier'
+            new('a'/*'\u0061'(97)*/, 'r'/*'\u0072'(114)*/, 86, Acts.Extend, st.@identifier),
+            // possible Vt: 'identifier' 'boolConstant'
+            new('s'/*'\u0073'(115)*/, 127, Acts.Extend, st.@identifier),
+            // possible Vt: 'identifier'
+            new('t'/*'\u0074'(116)*/, 'z'/*'\u007A'(122)*/, 86, Acts.Extend, st.@identifier),
+            // possible Vt: 'identifier'
+            //new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@identifier),
+            segment_0_65535_0_4_ints_identifier,
+            };
+            lexiStates[116] = new ElseIf2[] {
+            // possible Vt: 'identifier'
+            //new('0'/*'\u0030'(48)*/, '9'/*'\u0039'(57)*/, 86, Acts.Extend, st.@identifier),
+            segment_48_57_86_2_ints_identifier,
+            // possible Vt: 'identifier'
+            //new('A'/*'\u0041'(65)*/, 'Z'/*'\u005A'(90)*/, 86, Acts.Extend, st.@identifier),
+            segment_65_90_86_2_ints_identifier,
+            // possible Vt: 'identifier'
+            //new('_'/*'\u005F'(95)*/, 86, Acts.Extend, st.@identifier),
+            segment_95_95_86_2_ints_identifier,
+            // possible Vt: 'identifier'
+            //new('a'/*'\u0061'(97)*/, 'd'/*'\u0064'(100)*/, 86, Acts.Extend, st.@identifier),
+            segment_97_100_86_2_ints_identifier,
+            // possible Vt: 'identifier' 'boolConstant'
+            new('e'/*'\u0065'(101)*/, 128, Acts.Extend2, ints_identifier_boolConstant),
+            // possible Vt: 'identifier'
+            //new('f'/*'\u0066'(102)*/, 'z'/*'\u007A'(122)*/, 86, Acts.Extend, st.@identifier),
+            segment_102_122_86_2_ints_identifier,
+            // possible Vt: 'identifier'
+            //new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@identifier),
+            segment_0_65535_0_4_ints_identifier,
+            };
+            lexiStates[117] = new ElseIf2[] {
+            // possible Vt: 'identifier'
+            //new('0'/*'\u0030'(48)*/, '9'/*'\u0039'(57)*/, 86, Acts.Extend, st.@identifier),
+            segment_48_57_86_2_ints_identifier,
+            // possible Vt: 'identifier'
+            //new('A'/*'\u0041'(65)*/, 'Z'/*'\u005A'(90)*/, 86, Acts.Extend, st.@identifier),
+            segment_65_90_86_2_ints_identifier,
+            // possible Vt: 'identifier'
+            //new('_'/*'\u005F'(95)*/, 86, Acts.Extend, st.@identifier),
+            segment_95_95_86_2_ints_identifier,
+            // possible Vt: 'identifier'
+            new('a'/*'\u0061'(97)*/, 'h'/*'\u0068'(104)*/, 86, Acts.Extend, st.@identifier),
+            // possible Vt: 'defined' 'identifier'
+            new('i'/*'\u0069'(105)*/, 129, Acts.Extend, st.@identifier),
+            // possible Vt: 'identifier'
+            new('j'/*'\u006A'(106)*/, 'z'/*'\u007A'(122)*/, 86, Acts.Extend, st.@identifier),
+            // possible Vt: 'identifier'
+            //new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@identifier),
+            segment_0_65535_0_4_ints_identifier,
+            };
+            lexiStates[118] = new ElseIf2[] {
+            // possible Vt: '>>='
+            new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@RightAngle符RightAngle符Equal符),
+            };
+            lexiStates[119] = new ElseIf2[] {
+            // possible Vt: '<<='
+            new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@LeftAngle符LeftAngle符Equal符),
+            };
+            lexiStates[120] = new ElseIf2[] {
+            // possible Vt: 'inlineComment'
+            //new('\u0001'/*(1)*/, '\t'/*'\u0009'(9)*/, 120, Acts.Extend, st.@inlineComment行),
+            segment_1_9_120_2_ints_inlineComment行,
+            // possible Vt: 'inlineComment'
+            //new('\u000B'/*(11)*/, '\u000C'/*(12)*/, 120, Acts.Extend, st.@inlineComment行),
+            segment_11_12_120_2_ints_inlineComment行,
+            // possible Vt: 'inlineComment'
+            //new('\u000E'/*(14)*/, '\uFFFF'/*￿(65535)*/, 120, Acts.Extend, st.@inlineComment行),
+            segment_14_65535_120_2_ints_inlineComment行,
+            // possible Vt: 'inlineComment'
+            //new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@inlineComment行),
+            segment_0_65535_0_4_ints_inlineComment行,
+            };
+            lexiStates[121] = new ElseIf2[] {
+            // possible Vt: 'floatConstant' 'doubleConstant'
+            //new('0'/*'\u0030'(48)*/, '9'/*'\u0039'(57)*/, 121, Acts.Extend, st.@doubleConstant),
+            segment_48_57_121_2_ints_doubleConstant,
+            // possible Vt: 'floatConstant' 'doubleConstant'
+            new('E'/*'\u0045'(69)*/, 34, Acts.None),
+            // possible Vt: 'floatConstant'
+            //new('F'/*'\u0046'(70)*/, 106, Acts.Extend, st.@floatConstant),
+            segment_70_70_106_2_ints_floatConstant,
+            // possible Vt: 'floatConstant' 'doubleConstant'
+            new('e'/*'\u0065'(101)*/, 34, Acts.None),
+            // possible Vt: 'floatConstant'
+            //new('f'/*'\u0066'(102)*/, 106, Acts.Extend, st.@floatConstant),
+            segment_102_102_106_2_ints_floatConstant,
+            // possible Vt: 'doubleConstant'
+            //new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@doubleConstant),
+            segment_0_65535_0_4_ints_doubleConstant,
+            };
+            lexiStates[122] = new ElseIf2[] {
+            // possible Vt: 'floatConstant' 'doubleConstant'
+            //new('0'/*'\u0030'(48)*/, '9'/*'\u0039'(57)*/, 130, Acts.Extend, st.@doubleConstant),
+            segment_48_57_130_2_ints_doubleConstant,
+            // possible Vt: 'floatConstant' 'doubleConstant'
+            //new('E'/*'\u0045'(69)*/, 4, Acts.None),
+            segment_69_69_4_0,
+            // possible Vt: 'floatConstant'
+            //new('F'/*'\u0046'(70)*/, 106, Acts.Extend, st.@floatConstant),
+            segment_70_70_106_2_ints_floatConstant,
+            // possible Vt: 'floatConstant' 'doubleConstant'
+            //new('e'/*'\u0065'(101)*/, 4, Acts.None),
+            segment_101_101_4_0,
+            // possible Vt: 'floatConstant'
+            //new('f'/*'\u0066'(102)*/, 106, Acts.Extend, st.@floatConstant),
+            segment_102_102_106_2_ints_floatConstant,
+            // possible Vt: 'doubleConstant'
+            //new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@doubleConstant),
+            segment_0_65535_0_4_ints_doubleConstant,
+            };
+            lexiStates[123] = new ElseIf2[] {
+            // possible Vt: 'number' 'floatConstant' 'doubleConstant'
+            new('.'/*'\u002E'(46)*/, 131, Acts.Extend, st.@doubleConstant),
+            // possible Vt: 'number' 'floatConstant' 'doubleConstant'
+            //new('0'/*'\u0030'(48)*/, '9'/*'\u0039'(57)*/, 123, Acts.Extend2, st.@number, st.@doubleConstant),
+            segment_48_57_123_8_ints_number_doubleConstant,
+            // possible Vt: 'floatConstant' 'doubleConstant'
+            //new('E'/*'\u0045'(69)*/, 4, Acts.None),
+            segment_69_69_4_0,
+            // possible Vt: 'floatConstant'
+            //new('F'/*'\u0046'(70)*/, 106, Acts.Extend, st.@floatConstant),
+            segment_70_70_106_2_ints_floatConstant,
+            // possible Vt: 'floatConstant' 'doubleConstant'
+            //new('e'/*'\u0065'(101)*/, 4, Acts.None),
+            segment_101_101_4_0,
+            // possible Vt: 'floatConstant'
+            //new('f'/*'\u0066'(102)*/, 106, Acts.Extend, st.@floatConstant),
+            segment_102_102_106_2_ints_floatConstant,
+            // possible Vt: 'number' 'doubleConstant'
+            //new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept2, st.@number, st.@doubleConstant),
+            segment_0_65535_0_16_ints_number_doubleConstant,
+            };
+            lexiStates[124] = new ElseIf2[] {
+            // possible Vt: 'intConstant' 'uintConstant'
+            //new('0'/*'\u0030'(48)*/, '9'/*'\u0039'(57)*/, 124, Acts.Extend, st.@intConstant),
+            segment_48_57_124_2_ints_intConstant,
+            // possible Vt: 'intConstant' 'uintConstant'
+            //new('A'/*'\u0041'(65)*/, 'F'/*'\u0046'(70)*/, 124, Acts.Extend, st.@intConstant),
+            segment_65_70_124_2_ints_intConstant,
+            // possible Vt: 'uintConstant'
+            new('U'/*'\u0055'(85)*/, 132, Acts.Extend, st.@uintConstant),
+            // possible Vt: 'intConstant' 'uintConstant'
+            //new('a'/*'\u0061'(97)*/, 'f'/*'\u0066'(102)*/, 124, Acts.Extend, st.@intConstant),
+            segment_97_102_124_2_ints_intConstant,
+            // possible Vt: 'uintConstant'
+            new('u'/*'\u0075'(117)*/, 132, Acts.Extend, st.@uintConstant),
+            // possible Vt: 'intConstant'
+            new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@intConstant),
+            };
+            lexiStates[125] = new ElseIf2[] {
+            // possible Vt: 'floatConstant' 'doubleConstant'
+            //new('.'/*'\u002E'(46)*/, 122, Acts.Extend, st.@doubleConstant),
+            segment_46_46_122_2_ints_doubleConstant,
+            // possible Vt: 'floatConstant' 'doubleConstant'
+            //new('0'/*'\u0030'(48)*/, '9'/*'\u0039'(57)*/, 133, Acts.Extend, st.@doubleConstant),
+            segment_48_57_133_2_ints_doubleConstant,
+            // possible Vt: 'floatConstant' 'doubleConstant'
+            //new('E'/*'\u0045'(69)*/, 4, Acts.None),
+            segment_69_69_4_0,
+            // possible Vt: 'floatConstant'
+            //new('F'/*'\u0046'(70)*/, 106, Acts.Extend, st.@floatConstant),
+            segment_70_70_106_2_ints_floatConstant,
+            // possible Vt: 'floatConstant' 'doubleConstant'
+            //new('e'/*'\u0065'(101)*/, 4, Acts.None),
+            segment_101_101_4_0,
+            // possible Vt: 'floatConstant'
+            //new('f'/*'\u0066'(102)*/, 106, Acts.Extend, st.@floatConstant),
+            segment_102_102_106_2_ints_floatConstant,
+            // possible Vt: 'doubleConstant'
+            //new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@doubleConstant),
+            segment_0_65535_0_4_ints_doubleConstant,
+            };
+            lexiStates[126] = new ElseIf2[] {
+            // possible Vt: '#ifdef'
+            new('d'/*'\u0064'(100)*/, 14, Acts.None),
+            // possible Vt: '#ifndef'
+            new('n'/*'\u006E'(110)*/, 29, Acts.None),
+            // possible Vt: '#if'
+            new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@Pound符if),
+            };
+            lexiStates[127] = new ElseIf2[] {
+            // possible Vt: 'identifier'
+            //new('0'/*'\u0030'(48)*/, '9'/*'\u0039'(57)*/, 86, Acts.Extend, st.@identifier),
+            segment_48_57_86_2_ints_identifier,
+            // possible Vt: 'identifier'
+            //new('A'/*'\u0041'(65)*/, 'Z'/*'\u005A'(90)*/, 86, Acts.Extend, st.@identifier),
+            segment_65_90_86_2_ints_identifier,
+            // possible Vt: 'identifier'
+            //new('_'/*'\u005F'(95)*/, 86, Acts.Extend, st.@identifier),
+            segment_95_95_86_2_ints_identifier,
+            // possible Vt: 'identifier'
+            //new('a'/*'\u0061'(97)*/, 'd'/*'\u0064'(100)*/, 86, Acts.Extend, st.@identifier),
+            segment_97_100_86_2_ints_identifier,
+            // possible Vt: 'identifier' 'boolConstant'
+            new('e'/*'\u0065'(101)*/, 134, Acts.Extend2, ints_identifier_boolConstant),
+            // possible Vt: 'identifier'
+            //new('f'/*'\u0066'(102)*/, 'z'/*'\u007A'(122)*/, 86, Acts.Extend, st.@identifier),
+            segment_102_122_86_2_ints_identifier,
+            // possible Vt: 'identifier'
+            //new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@identifier),
+            segment_0_65535_0_4_ints_identifier,
+            };
+            lexiStates[128] = new ElseIf2[] {
+            // possible Vt: 'boolConstant'
+            new('\u0001'/*(1)*/, '/'/*'\u002F'(47)*/, 135, Acts.None),
+            // possible Vt: 'identifier'
+            //new('0'/*'\u0030'(48)*/, '9'/*'\u0039'(57)*/, 86, Acts.Extend, st.@identifier),
+            segment_48_57_86_2_ints_identifier,
+            // possible Vt: 'boolConstant'
+            new(':'/*'\u003A'(58)*/, '@'/*'\u0040'(64)*/, 135, Acts.None),
+            // possible Vt: 'identifier'
+            //new('A'/*'\u0041'(65)*/, 'Z'/*'\u005A'(90)*/, 86, Acts.Extend, st.@identifier),
+            segment_65_90_86_2_ints_identifier,
+            // possible Vt: 'boolConstant'
+            new('['/*'\u005B'(91)*/, '^'/*'\u005E'(94)*/, 135, Acts.None),
+            // possible Vt: 'identifier'
+            //new('_'/*'\u005F'(95)*/, 86, Acts.Extend, st.@identifier),
+            segment_95_95_86_2_ints_identifier,
+            // possible Vt: 'boolConstant'
+            new('`'/*'\u0060'(96)*/, 135, Acts.None),
+            // possible Vt: 'identifier'
+            //new('a'/*'\u0061'(97)*/, 'z'/*'\u007A'(122)*/, 86, Acts.Extend, st.@identifier),
+            segment_97_122_86_2_ints_identifier,
+            // possible Vt: 'boolConstant'
+            new('{'/*'\u007B'(123)*/, '\uFFFF'/*￿(65535)*/, 135, Acts.None),
+            // possible Vt: 'identifier'
+            //new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@identifier),
+            segment_0_65535_0_4_ints_identifier,
+            };
+            lexiStates[129] = new ElseIf2[] {
+            // possible Vt: 'identifier'
+            //new('0'/*'\u0030'(48)*/, '9'/*'\u0039'(57)*/, 86, Acts.Extend, st.@identifier),
+            segment_48_57_86_2_ints_identifier,
+            // possible Vt: 'identifier'
+            //new('A'/*'\u0041'(65)*/, 'Z'/*'\u005A'(90)*/, 86, Acts.Extend, st.@identifier),
+            segment_65_90_86_2_ints_identifier,
+            // possible Vt: 'identifier'
+            //new('_'/*'\u005F'(95)*/, 86, Acts.Extend, st.@identifier),
+            segment_95_95_86_2_ints_identifier,
+            // possible Vt: 'identifier'
+            new('a'/*'\u0061'(97)*/, 'm'/*'\u006D'(109)*/, 86, Acts.Extend, st.@identifier),
+            // possible Vt: 'defined' 'identifier'
+            new('n'/*'\u006E'(110)*/, 136, Acts.Extend, st.@identifier),
+            // possible Vt: 'identifier'
+            new('o'/*'\u006F'(111)*/, 'z'/*'\u007A'(122)*/, 86, Acts.Extend, st.@identifier),
+            // possible Vt: 'identifier'
+            //new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@identifier),
+            segment_0_65535_0_4_ints_identifier,
+            };
+            lexiStates[130] = new ElseIf2[] {
+            // possible Vt: 'floatConstant' 'doubleConstant'
+            //new('0'/*'\u0030'(48)*/, '9'/*'\u0039'(57)*/, 130, Acts.Extend, st.@doubleConstant),
+            segment_48_57_130_2_ints_doubleConstant,
+            // possible Vt: 'floatConstant' 'doubleConstant'
+            //new('E'/*'\u0045'(69)*/, 4, Acts.None),
+            segment_69_69_4_0,
+            // possible Vt: 'floatConstant'
+            //new('F'/*'\u0046'(70)*/, 106, Acts.Extend, st.@floatConstant),
+            segment_70_70_106_2_ints_floatConstant,
+            // possible Vt: 'floatConstant' 'doubleConstant'
+            //new('e'/*'\u0065'(101)*/, 4, Acts.None),
+            segment_101_101_4_0,
+            // possible Vt: 'floatConstant'
+            //new('f'/*'\u0066'(102)*/, 106, Acts.Extend, st.@floatConstant),
+            segment_102_102_106_2_ints_floatConstant,
+            // possible Vt: 'doubleConstant'
+            //new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@doubleConstant),
+            segment_0_65535_0_4_ints_doubleConstant,
+            };
+            lexiStates[131] = new ElseIf2[] {
+            // possible Vt: 'number' 'floatConstant' 'doubleConstant'
+            //new('0'/*'\u0030'(48)*/, '9'/*'\u0039'(57)*/, 138, Acts.Extend2, st.@number, st.@doubleConstant),
+            segment_48_57_138_8_ints_number_doubleConstant,
+            // possible Vt: 'floatConstant' 'doubleConstant'
+            //new('E'/*'\u0045'(69)*/, 4, Acts.None),
+            segment_69_69_4_0,
+            // possible Vt: 'floatConstant'
+            //new('F'/*'\u0046'(70)*/, 106, Acts.Extend, st.@floatConstant),
+            segment_70_70_106_2_ints_floatConstant,
+            // possible Vt: 'floatConstant' 'doubleConstant'
+            //new('e'/*'\u0065'(101)*/, 4, Acts.None),
+            segment_101_101_4_0,
+            // possible Vt: 'floatConstant'
+            //new('f'/*'\u0066'(102)*/, 106, Acts.Extend, st.@floatConstant),
+            segment_102_102_106_2_ints_floatConstant,
+            // possible Vt: 'doubleConstant'
+            //new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@doubleConstant),
+            segment_0_65535_0_4_ints_doubleConstant,
+            };
+            lexiStates[132] = new ElseIf2[] {
+            // possible Vt: 'uintConstant'
+            //new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@uintConstant),
+            segment_0_65535_0_4_ints_uintConstant,
+            };
+            lexiStates[133] = new ElseIf2[] {
+            // possible Vt: 'floatConstant' 'doubleConstant'
+            //new('.'/*'\u002E'(46)*/, 122, Acts.Extend, st.@doubleConstant),
+            segment_46_46_122_2_ints_doubleConstant,
+            // possible Vt: 'floatConstant' 'doubleConstant'
+            //new('0'/*'\u0030'(48)*/, '9'/*'\u0039'(57)*/, 133, Acts.Extend, st.@doubleConstant),
+            segment_48_57_133_2_ints_doubleConstant,
+            // possible Vt: 'floatConstant' 'doubleConstant'
+            //new('E'/*'\u0045'(69)*/, 4, Acts.None),
+            segment_69_69_4_0,
+            // possible Vt: 'floatConstant'
+            //new('F'/*'\u0046'(70)*/, 106, Acts.Extend, st.@floatConstant),
+            segment_70_70_106_2_ints_floatConstant,
+            // possible Vt: 'floatConstant' 'doubleConstant'
+            //new('e'/*'\u0065'(101)*/, 4, Acts.None),
+            segment_101_101_4_0,
+            // possible Vt: 'floatConstant'
+            //new('f'/*'\u0066'(102)*/, 106, Acts.Extend, st.@floatConstant),
+            segment_102_102_106_2_ints_floatConstant,
+            // possible Vt: 'doubleConstant'
+            //new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@doubleConstant),
+            segment_0_65535_0_4_ints_doubleConstant,
+            };
+            lexiStates[134] = new ElseIf2[] {
+            // possible Vt: 'boolConstant'
+            new('\u0001'/*(1)*/, '/'/*'\u002F'(47)*/, 142, Acts.None),
+            // possible Vt: 'identifier'
+            //new('0'/*'\u0030'(48)*/, '9'/*'\u0039'(57)*/, 86, Acts.Extend, st.@identifier),
+            segment_48_57_86_2_ints_identifier,
+            // possible Vt: 'boolConstant'
+            new(':'/*'\u003A'(58)*/, '@'/*'\u0040'(64)*/, 142, Acts.None),
+            // possible Vt: 'identifier'
+            //new('A'/*'\u0041'(65)*/, 'Z'/*'\u005A'(90)*/, 86, Acts.Extend, st.@identifier),
+            segment_65_90_86_2_ints_identifier,
+            // possible Vt: 'boolConstant'
+            new('['/*'\u005B'(91)*/, '^'/*'\u005E'(94)*/, 142, Acts.None),
+            // possible Vt: 'identifier'
+            //new('_'/*'\u005F'(95)*/, 86, Acts.Extend, st.@identifier),
+            segment_95_95_86_2_ints_identifier,
+            // possible Vt: 'boolConstant'
+            new('`'/*'\u0060'(96)*/, 142, Acts.None),
+            // possible Vt: 'identifier'
+            //new('a'/*'\u0061'(97)*/, 'z'/*'\u007A'(122)*/, 86, Acts.Extend, st.@identifier),
+            segment_97_122_86_2_ints_identifier,
+            // possible Vt: 'boolConstant'
+            new('{'/*'\u007B'(123)*/, '\uFFFF'/*￿(65535)*/, 142, Acts.None),
+            // possible Vt: 'identifier'
+            //new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@identifier),
+            segment_0_65535_0_4_ints_identifier,
+            };
+            lexiStates[135] = new ElseIf2[] {
+            // possible Vt: 'boolConstant'
+            //new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@boolConstant),
+            segment_0_65535_0_4_ints_boolConstant,
+            };
+            lexiStates[136] = new ElseIf2[] {
+            // possible Vt: 'identifier'
+            //new('0'/*'\u0030'(48)*/, '9'/*'\u0039'(57)*/, 86, Acts.Extend, st.@identifier),
+            segment_48_57_86_2_ints_identifier,
+            // possible Vt: 'identifier'
+            //new('A'/*'\u0041'(65)*/, 'Z'/*'\u005A'(90)*/, 86, Acts.Extend, st.@identifier),
+            segment_65_90_86_2_ints_identifier,
+            // possible Vt: 'identifier'
+            //new('_'/*'\u005F'(95)*/, 86, Acts.Extend, st.@identifier),
+            segment_95_95_86_2_ints_identifier,
+            // possible Vt: 'identifier'
+            //new('a'/*'\u0061'(97)*/, 'd'/*'\u0064'(100)*/, 86, Acts.Extend, st.@identifier),
+            segment_97_100_86_2_ints_identifier,
+            // possible Vt: 'defined' 'identifier'
+            new('e'/*'\u0065'(101)*/, 143, Acts.Extend, st.@identifier),
+            // possible Vt: 'identifier'
+            //new('f'/*'\u0066'(102)*/, 'z'/*'\u007A'(122)*/, 86, Acts.Extend, st.@identifier),
+            segment_102_122_86_2_ints_identifier,
+            // possible Vt: 'identifier'
+            //new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@identifier),
+            segment_0_65535_0_4_ints_identifier,
+            };
+            lexiStates[137] = new ElseIf2[] {
+            // possible Vt: 'floatConstant' 'doubleConstant'
+            //new('0'/*'\u0030'(48)*/, '9'/*'\u0039'(57)*/, 137, Acts.Extend, st.@doubleConstant),
+            segment_48_57_137_2_ints_doubleConstant,
+            // possible Vt: 'floatConstant'
+            //new('F'/*'\u0046'(70)*/, 106, Acts.Extend, st.@floatConstant),
+            segment_70_70_106_2_ints_floatConstant,
+            // possible Vt: 'floatConstant'
+            //new('f'/*'\u0066'(102)*/, 106, Acts.Extend, st.@floatConstant),
+            segment_102_102_106_2_ints_floatConstant,
+            // possible Vt: 'doubleConstant'
+            //new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@doubleConstant),
+            segment_0_65535_0_4_ints_doubleConstant,
+            };
+            lexiStates[138] = new ElseIf2[] {
+            // possible Vt: 'number' 'floatConstant' 'doubleConstant'
+            //new('0'/*'\u0030'(48)*/, '9'/*'\u0039'(57)*/, 138, Acts.Extend2, st.@number, st.@doubleConstant),
+            segment_48_57_138_8_ints_number_doubleConstant,
+            // possible Vt: 'floatConstant' 'doubleConstant'
+            //new('E'/*'\u0045'(69)*/, 4, Acts.None),
+            segment_69_69_4_0,
+            // possible Vt: 'floatConstant'
+            //new('F'/*'\u0046'(70)*/, 106, Acts.Extend, st.@floatConstant),
+            segment_70_70_106_2_ints_floatConstant,
+            // possible Vt: 'floatConstant' 'doubleConstant'
+            //new('e'/*'\u0065'(101)*/, 4, Acts.None),
+            segment_101_101_4_0,
+            // possible Vt: 'floatConstant'
+            //new('f'/*'\u0066'(102)*/, 106, Acts.Extend, st.@floatConstant),
+            segment_102_102_106_2_ints_floatConstant,
+            // possible Vt: 'number' 'doubleConstant'
+            //new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept2, st.@number, st.@doubleConstant),
+            segment_0_65535_0_16_ints_number_doubleConstant,
+            };
+            lexiStates[139] = new ElseIf2[] {
+            // possible Vt: '#line'
+            new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@Pound符line),
+            };
+            lexiStates[140] = new ElseIf2[] {
+            // possible Vt: '#elif'
+            new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@Pound符elif),
+            };
+            lexiStates[141] = new ElseIf2[] {
+            // possible Vt: '#else'
+            new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@Pound符else),
+            };
+            lexiStates[142] = new ElseIf2[] {
+            // possible Vt: 'boolConstant'
+            //new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@boolConstant),
+            segment_0_65535_0_4_ints_boolConstant,
+            };
+            lexiStates[143] = new ElseIf2[] {
+            // possible Vt: 'identifier'
+            //new('0'/*'\u0030'(48)*/, '9'/*'\u0039'(57)*/, 86, Acts.Extend, st.@identifier),
+            segment_48_57_86_2_ints_identifier,
+            // possible Vt: 'identifier'
+            //new('A'/*'\u0041'(65)*/, 'Z'/*'\u005A'(90)*/, 86, Acts.Extend, st.@identifier),
+            segment_65_90_86_2_ints_identifier,
+            // possible Vt: 'identifier'
+            //new('_'/*'\u005F'(95)*/, 86, Acts.Extend, st.@identifier),
+            segment_95_95_86_2_ints_identifier,
+            // possible Vt: 'identifier'
+            new('a'/*'\u0061'(97)*/, 'c'/*'\u0063'(99)*/, 86, Acts.Extend, st.@identifier),
+            // possible Vt: 'defined' 'identifier'
+            new('d'/*'\u0064'(100)*/, 148, Acts.Extend2, ints_defined_identifier),
+            // possible Vt: 'identifier'
+            new('e'/*'\u0065'(101)*/, 'z'/*'\u007A'(122)*/, 86, Acts.Extend, st.@identifier),
+            // possible Vt: 'identifier'
+            //new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@identifier),
+            segment_0_65535_0_4_ints_identifier,
+            };
+            lexiStates[144] = new ElseIf2[] {
+            // possible Vt: '#undef'
+            new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@Pound符undef),
+            };
+            lexiStates[145] = new ElseIf2[] {
+            // possible Vt: '#ifdef'
+            new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@Pound符ifdef),
+            };
+            lexiStates[146] = new ElseIf2[] {
+            // possible Vt: '#error'
+            new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@Pound符error),
+            };
+            lexiStates[147] = new ElseIf2[] {
+            // possible Vt: '#endif'
+            new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@Pound符endif),
+            };
+            lexiStates[148] = new ElseIf2[] {
+            // possible Vt: 'identifier'
+            //new('0'/*'\u0030'(48)*/, '9'/*'\u0039'(57)*/, 86, Acts.Extend, st.@identifier),
+            segment_48_57_86_2_ints_identifier,
+            // possible Vt: 'identifier'
+            //new('A'/*'\u0041'(65)*/, 'Z'/*'\u005A'(90)*/, 86, Acts.Extend, st.@identifier),
+            segment_65_90_86_2_ints_identifier,
+            // possible Vt: 'identifier'
+            //new('_'/*'\u005F'(95)*/, 86, Acts.Extend, st.@identifier),
+            segment_95_95_86_2_ints_identifier,
+            // possible Vt: 'identifier'
+            //new('a'/*'\u0061'(97)*/, 'z'/*'\u007A'(122)*/, 86, Acts.Extend, st.@identifier),
+            segment_97_122_86_2_ints_identifier,
+            // possible Vt: 'defined' 'identifier'
+            new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept2, ints_defined_identifier),
+            };
+            lexiStates[149] = new ElseIf2[] {
+            // possible Vt: '#pragma'
+            new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@Pound符pragma),
+            };
+            lexiStates[150] = new ElseIf2[] {
+            // possible Vt: '#define'
+            new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@Pound符define),
+            };
+            lexiStates[151] = new ElseIf2[] {
+            // possible Vt: '#ifndef'
+            new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@Pound符ifndef),
+            };
+            lexiStates[152] = new ElseIf2[] {
+            // possible Vt: '#version'
+            new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@Pound符version),
+            };
+            lexiStates[153] = new ElseIf2[] {
+            // possible Vt: '#extension'
+            new('\u0000'/*(0)*/, '\uFFFF'/*￿(65535)*/, 0, Acts.Accept, st.@Pound符extension),
+            };
+
+#endif
+        }
+
+    }
+}
+

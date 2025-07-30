@@ -1,0 +1,228 @@
+﻿using System;
+using System.Collections.Concurrent;
+using System.Collections.Generic;
+using System.Data;
+using System.Diagnostics;
+using System.Linq;
+using System.Numerics;
+using System.Reflection;
+using System.Runtime.InteropServices;
+using System.Runtime.Serialization.Formatters;
+
+namespace SoftGLImpl {
+    partial class SoftGL {
+        private static unsafe void FragmentShaderStage(GLProgram program, ConcurrentBag<Fragment> fragmentList) {
+            if (fragmentList.Count == 0) { return; }
+            var fs = program.FragmentShader; if (fs == null || fs.codeType == null) { return; }
+
+            const BindingFlags flags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static;
+            var inFieldInfos = (from item in fs.codeType.GetFields(flags)
+                                where item.IsDefined(typeof(InAttribute), true)
+                                select item).ToArray();
+            var name2fielfInfo = new Dictionary<string, FieldInfo>();
+            foreach (var item in fragmentList.ElementAt(0).endpoints0.GetType().GetFields(flags)) {
+                name2fielfInfo.Add(item.Name, item);
+            }
+            // way #1
+            foreach (var fragment in fragmentList) {
+                var instance = fs.CreateCodeInstance() as FragmentCodeBase; // an executable fragment shader.
+                Debug.Assert(instance != null);
+                instance.gl_FragCoord = fragment.gl_FragCoord; // setup fragment coordinate in window/screen space.
+                // setup "in SomeType varName;" vertex attributes.
+                foreach (var field in inFieldInfos) {
+                    if (name2fielfInfo.TryGetValue(field.Name, out var endpointField)) {
+                        var type = endpointField.FieldType; object value;
+                        if (false) { }
+                        else if (type == typeof(float)) { value = fragment.GetValue(endpointField, PassType.Float); }
+                        else if (type == typeof(vec2)) { value = fragment.GetValue(endpointField, PassType.Vec2); }
+                        else if (type == typeof(vec3)) { value = fragment.GetValue(endpointField, PassType.Vec3); }
+                        else if (type == typeof(vec4)) { value = fragment.GetValue(endpointField, PassType.Vec4); }
+                        else if (type == typeof(mat2)) { value = fragment.GetValue(endpointField, PassType.Mat2); }
+                        else if (type == typeof(mat3)) { value = fragment.GetValue(endpointField, PassType.Mat3); }
+                        else if (type == typeof(mat4)) { value = fragment.GetValue(endpointField, PassType.Mat4); }
+                        else { throw new NotDealWithNewEnumItemException(type); }
+                        field.SetValue(instance, value);
+                    }
+                }
+
+                // TODO: uniform var in shader should be a static member in C# ?
+                // setup "uniform SomeType varName;" in fragment shader.
+                Dictionary<string, UniformValue> nameUniformDict = program.name2Uniform;
+                foreach (UniformVariable uniformVar in fs.Name2uniformVar.Values) {
+                    string name = uniformVar.fieldInfo.Name;
+                    if (nameUniformDict.TryGetValue(name, out var obj)) {
+                        if (obj.value != null) {
+                            uniformVar.fieldInfo.SetValue(instance, obj.value);
+                        }
+                    }
+                }
+
+                instance.main(); // execute fragment shader code.
+                fragment.discard = instance.discard;
+                if (!instance.discard) {// if this fragment is not discarded.
+                    PassVariable[] outVariables = fs.name2outVar.Values.ToArray();
+                    var outBuffers = new PassBuffer[outVariables.Length];
+                    for (int index = 0; index < outVariables.Length; index++) {
+                        PassVariable outVar = outVariables[index];
+                        var outBuffer = new PassBuffer(outVar.fieldInfo.FieldType.GetPassType(), 1);
+                        var pointer = outBuffer.Mapbuffer();
+                        var value = outVar.fieldInfo.GetValue(instance);
+                        Debug.Assert(value != null);
+                        switch (outBuffer.elementType) {
+                        case PassType.Float: {// make sure no negtive values
+                            var v = (float)value;
+                            if (v < 0) { v = 0; } else if (v > 1) { v = 1; }
+                            ((float*)pointer)[0] = v >= 0 ? v : 0;
+                        }
+                        break;
+                        case PassType.Vec2: {// make sure no negtive values
+                            var v = (vec2)value;
+                            if (v.x < 0) { v.x = 0; } else if (v.x > 1) { v.x = 1; }
+                            if (v.y < 0) { v.y = 0; } else if (v.y > 1) { v.y = 1; }
+                            ((vec2*)pointer)[0] = v;
+                        }
+                        break;
+                        case PassType.Vec3: {// make sure no negtive values
+                            var v = (vec3)value;
+                            if (v.x < 0) { v.x = 0; } else if (v.x > 1) { v.x = 1; }
+                            if (v.y < 0) { v.y = 0; } else if (v.y > 1) { v.y = 1; }
+                            if (v.z < 0) { v.z = 0; } else if (v.z > 1) { v.z = 1; }
+                            ((vec3*)pointer)[0] = v;
+                        }
+                        break;
+                        case PassType.Vec4: {// make sure no negtive values
+                            var v = (vec4)value;
+                            if (v.x < 0) { v.x = 0; } else if (v.x > 1) { v.x = 1; }
+                            if (v.y < 0) { v.y = 0; } else if (v.y > 1) { v.y = 1; }
+                            if (v.z < 0) { v.z = 0; } else if (v.z > 1) { v.z = 1; }
+                            if (v.w < 0) { v.w = 0; } else if (v.w > 1) { v.w = 1; }
+                            ((vec4*)pointer)[0] = v;
+                        }
+                        break;
+                        case PassType.Mat2: ((mat2*)pointer)[0] = (mat2)value; break;
+                        case PassType.Mat3: ((mat3*)pointer)[0] = (mat3)value; break;
+                        case PassType.Mat4: ((mat4*)pointer)[0] = (mat4)value; break;
+                        default: throw new NotDealWithNewEnumItemException(typeof(PassType));
+                        }
+                        outBuffer.Unmapbuffer();
+                        outBuffers[index] = outBuffer;
+                    }
+                    fragment.outVariables = outBuffers;
+                }
+            }
+            // way #3
+            //ThreadPool.SetMaxThreads(Environment.ProcessorCount, Environment.ProcessorCount);
+            //var countdown = new CountdownEvent(fragmentList.Count);
+            //foreach (var fragment in fragmentList) {
+            //    var state = new InitParamFragmentShader(program, fragment, inFieldInfos, name2fielfInfo, countdown);
+            //    ThreadPool.QueueUserWorkItem(exeFragmentShader, state, true);
+            //}
+            //countdown.Wait(3000);//wait for 3 seconds at most
+        }
+
+        class InitParamFragmentShader {
+            public GLProgram program;
+            public Fragment fragment;
+            public FieldInfo[] inFieldInfos;
+            public Dictionary<string, FieldInfo> name2fielfInfo;
+            public CountdownEvent countdown;
+
+            public InitParamFragmentShader(GLProgram program, Fragment fragment, FieldInfo[] inFieldInfos, Dictionary<string, FieldInfo> name2fielfInfo, CountdownEvent countdown) {
+                this.program = program;
+                this.fragment = fragment;
+                this.inFieldInfos = inFieldInfos;
+                this.name2fielfInfo = name2fielfInfo;
+                this.countdown = countdown;
+            }
+        }
+        private static unsafe readonly Action<InitParamFragmentShader> exeFragmentShader = (state) => {
+            var program = state.program;
+            var fs = program.FragmentShader; //Debug.Assert(fs != null);
+            var instance = fs.CreateCodeInstance() as FragmentCodeBase; // an executable fragment shader.
+            Debug.Assert(instance != null);
+            instance.gl_FragCoord = state.fragment.gl_FragCoord; // setup fragment coordinate in window/screen space.
+                                                                 // setup "in SomeType varName;" vertex attributes.
+            foreach (var field in state.inFieldInfos) {
+                if (state.name2fielfInfo.TryGetValue(field.Name, out var endpointField)) {
+                    var type = endpointField.FieldType; object value;
+                    if (false) { }
+                    else if (type == typeof(float)) { value = state.fragment.GetValue(endpointField, PassType.Float); }
+                    else if (type == typeof(vec2)) { value = state.fragment.GetValue(endpointField, PassType.Vec2); }
+                    else if (type == typeof(vec3)) { value = state.fragment.GetValue(endpointField, PassType.Vec3); }
+                    else if (type == typeof(vec4)) { value = state.fragment.GetValue(endpointField, PassType.Vec4); }
+                    else if (type == typeof(mat2)) { value = state.fragment.GetValue(endpointField, PassType.Mat2); }
+                    else if (type == typeof(mat3)) { value = state.fragment.GetValue(endpointField, PassType.Mat3); }
+                    else if (type == typeof(mat4)) { value = state.fragment.GetValue(endpointField, PassType.Mat4); }
+                    else { throw new NotDealWithNewEnumItemException(type); }
+                    field.SetValue(instance, value);
+                }
+            }
+
+            // TODO: uniform var in shader should be a static member in C# ?
+            // setup "uniform SomeType varName;" in fragment shader.
+            Dictionary<string, UniformValue> nameUniformDict = program.name2Uniform;
+            foreach (UniformVariable uniformVar in fs.Name2uniformVar.Values) {
+                string name = uniformVar.fieldInfo.Name;
+                if (nameUniformDict.TryGetValue(name, out var obj)) {
+                    if (obj.value != null) {
+                        uniformVar.fieldInfo.SetValue(instance, obj.value);
+                    }
+                }
+            }
+
+            instance.main(); // execute fragment shader code.
+            state.fragment.discard = instance.discard;
+            if (!instance.discard) {// if this fragment is not discarded.
+                PassVariable[] outVariables = fs.name2outVar.Values.ToArray();
+                var outBuffers = new PassBuffer[outVariables.Length];
+                for (int index = 0; index < outVariables.Length; index++) {
+                    PassVariable outVar = outVariables[index];
+                    var outBuffer = new PassBuffer(outVar.fieldInfo.FieldType.GetPassType(), 1);
+                    var pointer = outBuffer.Mapbuffer();
+                    var value = outVar.fieldInfo.GetValue(instance);
+                    Debug.Assert(value != null);
+                    switch (outBuffer.elementType) {
+                    case PassType.Float: {// make sure no negtive values
+                        var v = (float)value;
+                        if (v < 0) { v = 0; } else if (v > 1) { v = 1; }
+                        ((float*)pointer)[0] = v >= 0 ? v : 0;
+                    }
+                    break;
+                    case PassType.Vec2: {// make sure no negtive values
+                        var v = (vec2)value;
+                        if (v.x < 0) { v.x = 0; } else if (v.x > 1) { v.x = 1; }
+                        if (v.y < 0) { v.y = 0; } else if (v.y > 1) { v.y = 1; }
+                        ((vec2*)pointer)[0] = v;
+                    }
+                    break;
+                    case PassType.Vec3: {// make sure no negtive values
+                        var v = (vec3)value;
+                        if (v.x < 0) { v.x = 0; } else if (v.x > 1) { v.x = 1; }
+                        if (v.y < 0) { v.y = 0; } else if (v.y > 1) { v.y = 1; }
+                        if (v.z < 0) { v.z = 0; } else if (v.z > 1) { v.z = 1; }
+                        ((vec3*)pointer)[0] = v;
+                    }
+                    break;
+                    case PassType.Vec4: {// make sure no negtive values
+                        var v = (vec4)value;
+                        if (v.x < 0) { v.x = 0; } else if (v.x > 1) { v.x = 1; }
+                        if (v.y < 0) { v.y = 0; } else if (v.y > 1) { v.y = 1; }
+                        if (v.z < 0) { v.z = 0; } else if (v.z > 1) { v.z = 1; }
+                        if (v.w < 0) { v.w = 0; } else if (v.w > 1) { v.w = 1; }
+                        ((vec4*)pointer)[0] = v;
+                    }
+                    break;
+                    case PassType.Mat2: ((mat2*)pointer)[0] = (mat2)value; break;
+                    case PassType.Mat3: ((mat3*)pointer)[0] = (mat3)value; break;
+                    case PassType.Mat4: ((mat4*)pointer)[0] = (mat4)value; break;
+                    default: throw new NotDealWithNewEnumItemException(typeof(PassType));
+                    }
+                    outBuffer.Unmapbuffer();
+                    outBuffers[index] = outBuffer;
+                }
+                state.fragment.outVariables = outBuffers;
+            }
+            state.countdown.Signal();
+        };
+    }
+}

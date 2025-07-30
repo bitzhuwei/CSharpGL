@@ -9,7 +9,7 @@ from([http://blog.csdn.net/csxiaoshui/article/details/45894867](http://blog.csdn
 
 用一个固定的值填充缓冲区对象的一部分（或者全部）
 
-<div class="cnblogs_code">
+<div unsafe class="cnblogs_code">
 <pre><span style="color: #008080;">1</span> <span style="color: #008000;">//</span><span style="color: #008000;"> OpenGL &gt;= 4.3</span>
 <span style="color: #008080;">2</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> glClearBufferSubData(  
 </span><span style="color: #008080;">3</span> <span style="color: #000000;">    GLenum target,

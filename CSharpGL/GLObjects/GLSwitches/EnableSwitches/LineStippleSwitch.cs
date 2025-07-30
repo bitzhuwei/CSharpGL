@@ -1,12 +1,10 @@
 ﻿using System.ComponentModel;
 
-namespace CSharpGL
-{
+namespace CSharpGL {
     /// <summary>
     /// Dashed line.
     /// </summary>
-    public class LineStippleSwitch : EnableSwitch
-    {
+    public unsafe class LineStippleSwitch : EnableSwitch {
         // Activator needs a non-parameter constructor.
         /// <summary>
         /// Dashed line.
@@ -20,8 +18,7 @@ namespace CSharpGL
         /// <param name="pattern">pattern in 'void glLineStipple(int factor, ushort pattern);'.</param>
         /// <param name="enableCapacity">Enable() or Disable() this capacity?</param>
         public LineStippleSwitch(int factor, ushort pattern, bool enableCapacity = true)
-            : base(GL.GL_LINE_STIPPLE, enableCapacity)
-        {
+            : base(GL.GL_LINE_STIPPLE, enableCapacity) {
             this.Factor = factor;
             this.Pattern = pattern;
         }
@@ -29,14 +26,11 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        public override string ToString()
-        {
-            if (this.EnableCapacity)
-            {
+        public override string ToString() {
+            if (this.EnableCapacity) {
                 return string.Format("Enabled glLineStipple({0}, 0x{1:X4});", this.Factor, this.Pattern);
             }
-            else
-            {
+            else {
                 return string.Format("Disabled glLineStipple({0}, 0x{1:X4});", this.Factor, this.Pattern);
             }
         }
@@ -44,13 +38,12 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        protected override void StateOn()
-        {
+        protected override void StateOn() {
+            var gl = GL.current; if (gl == null) { return; }
             base.StateOn();
 
-            if (this.enableCapacityWhenStateOn)
-            {
-                GL.Instance.LineStipple(this.Factor, this.Pattern);
+            if (this.enableCapacityWhenStateOn) {
+                gl.glLineStipple(this.Factor, this.Pattern);
             }
         }
 

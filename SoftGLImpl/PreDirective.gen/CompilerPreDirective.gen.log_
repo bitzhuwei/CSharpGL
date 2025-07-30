@@ -1,0 +1,38 @@
+2025/6/7 17:00:00 Generating for CompilerPreDirective started.
+2025/6/7 17:00:00 Dump GrammarInfo..
+2025/6/7 17:00:00 Dump CompilerXxx..
+2025/6/7 17:00:00 Dump README..
+2025/6/7 17:00:00 Dump SharpConditionCode(.gen.st.mmd)..
+2025/6/7 17:00:00 Dump st..
+2025/6/7 17:00:00 Dump DataStructure..
+2025/6/7 17:00:00 Dump Regulations..
+2025/6/7 17:00:00 Dump SyntaxParser README..
+2025/6/7 17:00:00 Dump RefExtractor..
+2025/6/7 17:00:00 Dump TExtractor..
+2025/6/7 17:00:00 Dump LexicalAnalyzer Vt.md..
+2025/6/7 17:00:00 Dump LexicalAnalyzer Reserved Words..
+2025/6/7 17:00:00 Dump LexicalAnalyzer Scripts..
+2025/6/7 17:00:00 Dump LexicalAnalyzer Mermaid..
+2025/6/7 17:00:00 Dump LexicalAnalyzer README..
+2025/6/7 17:00:00 Dump LexicalAnalyzer DFAStates..
+2025/6/7 17:00:00 Dump LexicalAnalyzer miniDFAStates..
+2025/6/7 17:00:00 Dump LexicalAnalyzer tableDFA..
+2025/6/7 17:00:00 Dump LexicalAnalyzer tableDFA bin..
+2025/6/7 17:00:00 Dump Nullable-FIRST-FOLLOW.gen.md
+2025/6/7 17:00:00 Generating LL(1) syntax info..
+2025/6/7 17:00:00 Dump SyntaxStates.1.LL(1).gen.md
+2025/6/7 17:00:00 Dump Table.LL(1).gen.cs_
+2025/6/7 17:00:00 Generating LR(0) syntax info..
+2025/6/7 17:00:00 Dump Doc LR(0)..
+2025/6/7 17:00:00 Dump SyntaxParser Table LR(0)..
+2025/6/7 17:00:00 Generating SLR(1) syntax info..
+2025/6/7 17:00:00 Dump Doc SLR(1)..
+2025/6/7 17:00:00 Dump SyntaxParser Table SLR(1)..
+2025/6/7 17:00:00 Generating LR(1) syntax info..
+2025/6/7 17:00:00 Dump Doc LR(1)..
+2025/6/7 17:00:00 Dump SyntaxParser Table LR(1)..
+2025/6/7 17:00:01 Generating LALR(1) syntax info..
+2025/6/7 17:00:01 Dump Doc LALR(1)..
+2025/6/7 17:00:01 Dump SyntaxParser Table LALR(1)..
+2025/6/7 17:00:01 Dump README-full.gen.md..
+2025/6/7 17:00:01 Generating for PreDirective ended.

@@ -3,13 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CSharpGL
-{
+namespace CSharpGL {
     /// <summary>
     /// Supports picking in legacy OpenGL.
     /// </summary>
-    public interface ILegacyPickable
-    {
+    public interface ILegacyPickable {
         /// <summary>
         /// 
         /// </summary>
@@ -31,8 +29,7 @@ namespace CSharpGL
     /// <summary>
     /// 
     /// </summary>
-    public class LegacyPickingEventArgs
-    {
+    public class LegacyPickingEventArgs {
         /// <summary>
         /// 
         /// </summary>
@@ -61,8 +58,7 @@ namespace CSharpGL
         /// <param name="scene"></param>
         /// <param name="x"></param>
         /// <param name="y"></param>
-        public LegacyPickingEventArgs(mat4 pickMatrix, Scene scene, int x, int y)
-        {
+        public LegacyPickingEventArgs(mat4 pickMatrix, Scene scene, int x, int y) {
             this.pickMatrix = pickMatrix;
             this.scene = scene;
             this.x = x;
@@ -83,8 +79,7 @@ namespace CSharpGL
     /// <summary>
     /// 
     /// </summary>
-    public class HitTarget
-    {
+    public class HitTarget {
         /// <summary>
         /// 
         /// </summary>
@@ -106,8 +101,7 @@ namespace CSharpGL
         /// <param name="sceneElement"></param>
         /// <param name="zNear"></param>
         /// <param name="zFar"></param>
-        public HitTarget(SceneNodeBase sceneElement, uint zNear, uint zFar)
-        {
+        public HitTarget(SceneNodeBase sceneElement, uint zNear, uint zFar) {
             this.node = sceneElement;
             this.zNear = zNear;
             this.zFar = zFar;

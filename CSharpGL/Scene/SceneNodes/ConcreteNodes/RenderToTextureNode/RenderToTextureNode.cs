@@ -4,13 +4,11 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 
-namespace CSharpGL
-{
+namespace CSharpGL {
     /// <summary>
     /// Render children to framebuffer, then To Texture.
     /// </summary>
-    public class RenderToTextureNode : SceneNodeBase, IRenderable, ITextureSource
-    {
+    public class RenderToTextureNode : SceneNodeBase, IRenderable, ITextureSource {
         /// <summary>
         /// Billboard's width(in pixels).
         /// </summary>
@@ -38,8 +36,7 @@ namespace CSharpGL
         /// <param name="height"></param>
         /// <param name="innerCamera">Camera used in rendering children.</param>
         /// <param name="framebufferSource">Provides framebuffer.</param>
-        public RenderToTextureNode(int width, int height, ICamera innerCamera, IFramebufferProvider framebufferSource)
-        {
+        public RenderToTextureNode(int width, int height, ICamera innerCamera, IFramebufferProvider framebufferSource) {
             this.Width = width;
             this.Height = height;
             this.Camera = innerCamera;
@@ -53,11 +50,10 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        public ThreeFlags EnableRendering
-        {
+        public ThreeFlags EnableRendering {
             get { return this.enableRendering; }
             set { } // nothing to do.
-            //set { this.enableRendering = value; }
+                    //set { this.enableRendering = value; }
         }
 
         private PolygonOffsetFillSwitch polygonFillOffset = new PolygonOffsetFillSwitch();
@@ -69,39 +65,43 @@ namespace CSharpGL
         /// 
         /// </summary>
         /// <param name="arg"></param>
-        public void RenderBeforeChildren(RenderEventArgs arg)
-        {
+        public unsafe void RenderBeforeChildren(RenderEventArgs arg) {
             if (this.Width <= 0 || this.Height <= 0) { return; }
 
-            GL.Instance.GetIntegerv((uint)GetTarget.Viewport, viewport);
+            var gl = GL.current; if (gl != null) {
+                fixed (GLint* pOriginal = viewport) {
+                    gl.glGetIntegerv((GLenum)GetTarget.Viewport, pOriginal);
+                }
+                this.framebuffer = this.framebufferSource.GetFramebuffer(this.Width, this.Height);
+                framebuffer.Bind();
+                gl.glViewport(0, 0, this.Width, this.Height);
+                this.polygonFillOffset.On();
+                //{
+                fixed (GLint* pOriginal = colorClearValue) {
+                    gl.glGetIntegerv((GLenum)GetTarget.ColorClearValue, pOriginal);
+                }
+                {
+                    vec3 color = this.BackgroundColor.ToVec3();
+                    gl.glClearColor(color.x, color.y, color.z, 0.0f); // 0.0f for alpha channel, in case that transparent background is needed.
+                    gl.glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT | GL.GL_STENCIL_BUFFER_BIT);
 
-            this.framebuffer = this.framebufferSource.GetFramebuffer(this.Width, this.Height);
-            framebuffer.Bind();
-            GL.Instance.Viewport(0, 0, this.Width, this.Height);
-            this.polygonFillOffset.On();
-            //{
-            GL.Instance.GetIntegerv((uint)GetTarget.ColorClearValue, colorClearValue);
-            {
-                vec3 color = this.BackgroundColor.ToVec3();
-                GL.Instance.ClearColor(color.x, color.y, color.z, 0.0f); // 0.0f for alpha channel, in case that transparent background is needed.
-                GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT | GL.GL_STENCIL_BUFFER_BIT);
-
-                this.originalCamera = arg.Camera;
-                arg.Camera = this.Camera;
+                    this.originalCamera = arg.Camera;
+                    arg.Camera = this.Camera;
+                }
             }
         }
-
         /// <summary>
         /// 
         /// </summary>
         /// <param name="arg"></param>
-        public void RenderAfterChildren(RenderEventArgs arg)
-        {
-            arg.Camera = this.originalCamera;
-            GL.Instance.ClearColor(colorClearValue[0], colorClearValue[1], colorClearValue[2], colorClearValue[3]);// recover clear color.
-            this.polygonFillOffset.Off();
-            GL.Instance.Viewport(viewport[0], viewport[1], viewport[2], viewport[3]);// recover viewport.
-            this.framebuffer.Unbind();
+        public unsafe void RenderAfterChildren(RenderEventArgs arg) {
+            var gl = GL.current; if (gl != null) {
+                arg.Camera = this.originalCamera;
+                gl.glClearColor(colorClearValue[0], colorClearValue[1], colorClearValue[2], colorClearValue[3]);// recover clear color.
+                this.polygonFillOffset.Off();
+                gl.glViewport(viewport[0], viewport[1], viewport[2], viewport[3]);// recover viewport.
+                this.framebuffer.Unbind();
+            }
         }
 
         #endregion

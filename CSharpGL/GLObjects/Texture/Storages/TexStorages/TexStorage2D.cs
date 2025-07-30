@@ -3,21 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CSharpGL
-{
+namespace CSharpGL {
     /// <summary>
     /// 
     /// </summary>
-    public class TexStorage2D : TexStorageBase
-    {
+    public unsafe class TexStorage2D : TexStorageBase {
         private int width;
         private int height;
 
-        internal static readonly GLDelegates.void_uint_int_uint_int_int glTexStorage2D;
-        static TexStorage2D()
-        {
-            glTexStorage2D = GL.Instance.GetDelegateFor("glTexStorage2D", GLDelegates.typeof_void_uint_int_uint_int_int) as GLDelegates.void_uint_int_uint_int_int;
-        }
+        //internal static readonly GLDelegates.void_uint_int_uint_int_int glTexStorage2D;
+        //static TexStorage2D() {
+        //    glTexStorage2D = gl.glGetDelegateFor("glTexStorage2D", GLDelegates.typeof_void_uint_int_uint_int_int) as GLDelegates.void_uint_int_uint_int_int;
+        //}
 
         /// <summary>
         /// 
@@ -28,8 +25,7 @@ namespace CSharpGL
         /// <param name="height"></param>
         /// <param name="mipmapLevelCount"></param>
         public TexStorage2D(Target target, uint internalFormat, int width, int height, int mipmapLevelCount = 1)
-            : base((TextureTarget)target, internalFormat, mipmapLevelCount)
-        {
+            : base((TextureTarget)target, internalFormat, mipmapLevelCount) {
             this.width = width;
             this.height = height;
         }
@@ -37,16 +33,15 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        public override void Apply()
-        {
-            glTexStorage2D((uint)target, mipmapLevelCount, internalFormat, width, height);
+        public override void Apply() {
+            var gl = GL.current; if (gl == null) { return; }
+            gl.glTexStorage2D((GLenum)target, mipmapLevelCount, internalFormat, width, height);
         }
 
         /// <summary>
         /// 
         /// </summary>
-        public enum Target : uint
-        {
+        public enum Target : GLuint {
             /// <summary>
             /// 
             /// </summary>

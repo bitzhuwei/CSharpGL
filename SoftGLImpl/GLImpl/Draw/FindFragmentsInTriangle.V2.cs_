@@ -1,0 +1,220 @@
+﻿using System;
+using System.Collections.Concurrent;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Net.Http.Headers;
+using System.Reflection.Metadata.Ecma335;
+using System.Text;
+
+namespace SoftGLImpl {
+    unsafe partial class SoftGL {
+        // note: something is a little bit wrong in this method, I didn't fix it because I implemented a better algorithm(ie. V3)
+        /// <summary>
+        /// Find fragments in the specified triangle.
+        /// </summary>
+        /// <param name="fragCoord0"></param>
+        /// <param name="fragCoord1"></param>
+        /// <param name="fragCoord2"></param>
+        /// <param name="endpoints0"></param>
+        /// <param name="endpoints1"></param>
+        /// <param name="endpoints2"></param>
+        /// <param name="result"></param>
+        unsafe private static void FindFragmentsInTriangle_V2(
+            vec3 fragCoord0, vec3 fragCoord1, vec3 fragCoord2,
+            VertexCodeBase endpoints0, VertexCodeBase endpoints1, VertexCodeBase endpoints2,
+            ConcurrentBag<Fragment> result) {
+            // TODO: according to experimenet: if fragCoord0/1/2 makes a line in screen space, no fragment should be generated.
+
+            //var pixelList = new List<vec3>();
+            if ((int)fragCoord0.x != (int)fragCoord1.x || (int)fragCoord0.x != (int)fragCoord2.x || (int)fragCoord1.x != (int)fragCoord2.x) {
+                var left = fragCoord0; var leftEnd = endpoints0; var leftId = 0;
+                if (fragCoord1.x < left.x) { left = fragCoord1; leftEnd = endpoints1; leftId = 1; }
+                if (fragCoord2.x < left.x) { left = fragCoord2; leftEnd = endpoints2; leftId = 2; }
+                var right = fragCoord0; var rightEnd = endpoints0; var rightId = 0;
+                if (fragCoord1.x > right.x) { right = fragCoord1; rightEnd = endpoints1; rightId = 1; }
+                if (fragCoord2.x > right.x) { right = fragCoord2; rightEnd = endpoints2; rightId = 2; }
+                var middle = fragCoord0; var middleEnd = endpoints0;
+                if (leftId == 0) {
+                    Debug.Assert(rightId != 0);
+                    if (rightId == 1) { middle = fragCoord2; middleEnd = endpoints2; }
+                    else { middle = fragCoord1; middleEnd = endpoints1; }
+                }
+                else if (leftId == 1) {
+                    Debug.Assert(rightId != 1);
+                    if (rightId == 0) { middle = fragCoord2; middleEnd = endpoints2; }
+                    else { middle = fragCoord0; middleEnd = endpoints0; }
+                }
+                else if (leftId == 2) {
+                    Debug.Assert(rightId != 2);
+                    if (rightId == 0) { middle = fragCoord1; middleEnd = endpoints1; }
+                    else { middle = fragCoord0; middleEnd = endpoints0; }
+                }
+                else { throw new Exception("bug, fix it!"); }
+
+                FindFragmentsInTriangle_UpForward(
+                    left, middle, right,
+                    leftEnd, middleEnd, rightEnd,
+                    UpForward(left, middle, right), result);
+            }
+            else if ((int)fragCoord0.y != (int)fragCoord1.y || (int)fragCoord0.y != (int)fragCoord2.y || (int)fragCoord1.y != (int)fragCoord2.y) {
+                var bottom = fragCoord0; var bottomEnd = endpoints0; var bottomId = 0;
+                if (fragCoord1.y < bottom.y) { bottom = fragCoord1; bottomEnd = endpoints1; bottomId = 1; }
+                if (fragCoord2.y < bottom.y) { bottom = fragCoord2; bottomEnd = endpoints2; bottomId = 2; }
+                var top = fragCoord0; var topEnd = endpoints0; var topId = 0;
+                if (fragCoord1.y > top.y) { top = fragCoord1; topEnd = endpoints1; topId = 1; }
+                if (fragCoord2.y > top.y) { top = fragCoord2; topEnd = endpoints2; topId = 2; }
+                var middle = fragCoord0; var middleEnd = endpoints0;
+                if (bottomId == 0) {
+                    Debug.Assert(topId != 0);
+                    if (topId == 1) { middle = fragCoord2; middleEnd = endpoints2; }
+                    else { middle = fragCoord1; middleEnd = endpoints1; }
+                }
+                else if (bottomId == 1) {
+                    Debug.Assert(topId != 1);
+                    if (topId == 0) { middle = fragCoord2; middleEnd = endpoints2; }
+                    else { middle = fragCoord0; middleEnd = endpoints0; }
+                }
+                else if (bottomId == 2) {
+                    Debug.Assert(topId != 2);
+                    if (topId == 0) { middle = fragCoord1; middleEnd = endpoints1; }
+                    else { middle = fragCoord0; middleEnd = endpoints0; }
+                }
+                else { throw new Exception("bug, fix it!"); }
+                FindFragmentsInTriangle_UpForward(
+                    bottom, middle, top,
+                    bottomEnd, middleEnd, topEnd,
+                    false, result);
+            }
+            else {// 3 vertexes are on the same pixel
+                var pixel = new vec3(
+                    (int)fragCoord0.x + 0.5f,
+                    (int)fragCoord0.y + 0.5f,
+                    fragCoord0.z / 3 + fragCoord1.z / 3 + fragCoord2.z / 3);
+                var fragment = new Fragment(pixel, endpoints0, endpoints1, endpoints2, 1.0f / 3.0f, 1.0f / 3.0f, 1.0f / 3.0f);
+                result.Add(fragment);
+            }
+
+            var originalResult = new ConcurrentBag<Fragment>();
+            FindFragmentsInTriangle_V1(fragCoord0, fragCoord1, fragCoord2,
+                endpoints0, endpoints1, endpoints2, originalResult);
+            if (result.Count != originalResult.Count) { Console.WriteLine("error"); }
+            for (int i = 0; i < result.Count && i < originalResult.Count; i++) {
+                var a = result.ElementAt(i); var b = originalResult.ElementAt(i);
+                if (a.gl_FragCoord.x != b.gl_FragCoord.x) { Console.WriteLine("error"); }
+                if (a.gl_FragCoord.y != b.gl_FragCoord.y) { Console.WriteLine("error"); }
+                if (Math.Abs(a.gl_FragCoord.z - b.gl_FragCoord.z) > 0.01f) { Console.WriteLine("error"); }
+                //if (a.gl_FragCoord.z != b.gl_FragCoord.z) { Console.WriteLine("error"); }
+                if (a.gl_FragCoord.w != b.gl_FragCoord.w) { Console.WriteLine("error"); }
+            }
+        }
+
+        private static void FindFragmentsInTriangle_DownForward(vec3 left, vec3 middle, vec3 right, VertexCodeBase leftEnd, VertexCodeBase middleEnd, VertexCodeBase rightEnd, ConcurrentBag<Fragment> result) {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// the <paramref name="middle"/> point is above the <paramref name="left"/>------<paramref name="right"/> line
+        /// </summary>
+        /// <param name="left"></param>
+        /// <param name="middle"></param>
+        /// <param name="right"></param>
+        /// <returns></returns>
+        private static bool UpForward(vec3 left, vec3 middle, vec3 right) {
+            Debug.Assert(left.x != right.x);
+            var a = (middle.x - left.x) / (right.x - left.x);
+            var y = left.y + a * (right.y - left.y);
+            return middle.y >= y;
+        }
+
+        private static void FindFragmentsInTriangle_UpForward(
+            vec3 small, vec3 middle, vec3 big,
+            VertexCodeBase smallEnd, VertexCodeBase middleEnd, VertexCodeBase bigEnd,
+            bool upForward,
+            ConcurrentBag<Fragment> result) {
+            Debug.Assert(small.x <= middle.x && middle.x <= big.x);
+            var mainLine = new List<Pixel3>(); FindPixelsAtLine(small, big, mainLine);
+            var twoParts = new List<Pixel3>(); FindPixelsAtLine(small, middle, twoParts); FindPixelsAtLine(middle, big, twoParts);
+            for (int i = 0; i < mainLine.Count - 1; i++) {
+                var a = mainLine[i]; var b = mainLine[i + 1];
+                Debug.Assert(a.x <= b.x);
+            }
+            for (int i = 0; i < twoParts.Count - 1; i++) {
+                var a = twoParts[i]; var b = twoParts[i + 1];
+                Debug.Assert(a.x <= b.x);
+            }
+            var matrix = new mat3(small, middle, big);
+            var inverseMat = CodeBase.inverse(matrix);
+            var cursor = 0; var cursor2 = 0;
+            while (cursor < mainLine.Count && cursor2 < twoParts.Count) {
+                var one = new Pixel3();
+                {
+                    var first = true; var standard = new Pixel3();
+                    while (cursor < mainLine.Count) {
+                        var tmp = mainLine[cursor];
+                        if (first) { standard = tmp; one = tmp; cursor++; first = false; }
+                        else {
+                            if (tmp.x == standard.x) {
+                                if (upForward) { if (tmp.y <= standard.y) { standard = tmp; one = tmp; } }
+                                else { if (tmp.y >= standard.y) { standard = tmp; one = tmp; } }
+                                cursor++;
+                            }
+                            else { break; }
+                        }
+                    }
+                }
+                var two = new Pixel3();
+                {
+                    var first = true; var standard = new Pixel3();
+                    while (cursor2 < twoParts.Count) {
+                        var tmp = twoParts[cursor2];
+                        if (first) { standard = tmp; two = tmp; cursor2++; first = false; }
+                        else {
+                            if (tmp.x == standard.x) {
+                                if (upForward) { if (tmp.y >= standard.y) { standard = tmp; two = tmp; } }
+                                else { if (tmp.y <= standard.y) { standard = tmp; two = tmp; } }
+                                cursor2++;
+                            }
+                            else { break; }
+                        }
+                    }
+                }
+                Debug.Assert(one.x == two.x);
+                if (one.y != two.y) {
+                    var minY = one.y; var maxY = one.y;
+                    if (minY > two.y) { minY = two.y; }
+                    if (maxY < two.y) { maxY = two.y; }
+                    var minZ = one.depth; var maxZ = one.depth;
+                    if (minZ > two.depth) { minZ = two.depth; }
+                    if (maxZ < two.depth) { maxZ = two.depth; }
+                    for (var y = minY; y <= maxY; y++) {
+                        var a = (y + 0.5f - minY) / (maxY - minY);
+                        var z = minZ + a * (maxZ - minZ);
+                        var pixel = new vec3(one.x + 0.5f, y + 0.5f, z);
+                        Debug.Assert(pixel.x > -10000 && pixel.x < 10000 && pixel.y > -10000 && pixel.y < 10000 && pixel.z > -10000 && pixel.z < 10000);
+                        vec3 p012 = inverseMat * pixel;
+                        //// note: "sum" is not needed.
+                        // float sum = p012.x + p012.y + p012.z;
+                        //// note: so, just need to assign values to p0, p1, p2.
+                        //var p0 = p012.x; var p1 = p012.y; var p2 = p012.z;
+                        var fragment = new Fragment(pixel, smallEnd, middleEnd, bigEnd, p012.x, p012.y, p012.z);
+                        result.Add(fragment);
+                    }
+                }
+                else {// one equals two
+                    var pixel = new vec3(one.x + 0.5f, one.y + 0.5f, one.depth);
+                    Debug.Assert(pixel.x > -10000 && pixel.x < 10000 && pixel.y > -10000 && pixel.y < 10000 && pixel.z > -10000 && pixel.z < 10000);
+                    vec3 p012 = inverseMat * pixel;
+                    //// note: "sum" is not needed.
+                    // float sum = p012.x + p012.y + p012.z;
+                    //// note: so, just need to assign values to p0, p1, p2.
+                    //var p0 = p012.x; var p1 = p012.y; var p2 = p012.z;
+                    var fragment = new Fragment(pixel, smallEnd, middleEnd, bigEnd, p012.x, p012.y, p012.z);
+                    result.Add(fragment);
+                }
+            }
+            Debug.Assert(cursor == mainLine.Count && cursor2 == twoParts.Count);
+        }
+
+    }
+}

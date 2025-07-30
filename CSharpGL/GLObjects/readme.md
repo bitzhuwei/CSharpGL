@@ -1,5 +1,9 @@
 ﻿# Object-Oriented OpenGL
-OpenGL API is all funtions. But all concepts in OpenGL are Object-Orinted. Types in this folder encapsulate objects underneath the APIs.
+
+OpenGL API is all funtions. But all concepts in OpenGL are Object-Orinted. 
+
+Types in this folder encapsulate objects underneath the APIs.
+
 ## `GLBuffer`
 
 ## `Shader`
@@ -13,4 +17,6 @@ OpenGL API is all funtions. But all concepts in OpenGL are Object-Orinted. Types
 ## `Query`
 
 ## `TransformFeedback`
+
+# End
 

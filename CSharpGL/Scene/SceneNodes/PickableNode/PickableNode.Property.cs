@@ -2,10 +2,8 @@
 using System.ComponentModel;
 using System.Drawing.Design;
 
-namespace CSharpGL
-{
-    public partial class PickableNode
-    {
+namespace CSharpGL {
+    public partial class PickableNode {
         private const string strPickableRenderer = "PickableRenderer";
 
         ///// <summary>

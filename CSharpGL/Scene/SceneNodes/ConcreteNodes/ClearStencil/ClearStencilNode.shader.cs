@@ -4,10 +4,8 @@ using System.Linq;
 using System.Text;
 using CSharpGL;
 
-namespace CSharpGL
-{
-    partial class ClearStencilNode
-    {
+namespace CSharpGL {
+    partial class ClearStencilNode {
         private const string vertexCode =
             @"#version 150 core
 

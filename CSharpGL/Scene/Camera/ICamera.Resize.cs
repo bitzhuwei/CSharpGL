@@ -1,11 +1,9 @@
 ﻿using System.Drawing;
-namespace CSharpGL
-{
+namespace CSharpGL {
     /// <summary>
     /// 
     /// </summary>
-    public static partial class ICameraHelper
-    {
+    public static partial class ICameraHelper {
         /// <summary>
         /// opengl控件的大小改变时调整camera.
         /// Adjust camera when OpenGL canvas's size changed.
@@ -13,8 +11,7 @@ namespace CSharpGL
         /// <param name="camera"></param>
         /// <param name="lastSize">canvas' last size.</param>
         /// <param name="currentSize">canvas' current size.</param>
-        public static void Resize(this ICamera camera, Size lastSize, Size currentSize)
-        {
+        public static void Resize(this ICamera camera, Size lastSize, Size currentSize) {
             // update perspective camera.
             {
                 IPerspectiveCamera perspectiveCamera = camera;
@@ -25,8 +22,7 @@ namespace CSharpGL
             {
                 IOrthoCamera orthoCamera = camera;
                 // fit window size.
-                if (lastSize.Width != currentSize.Width)
-                {
+                if (lastSize.Width != currentSize.Width) {
                     double lastWidth = orthoCamera.Right - orthoCamera.Left;
                     double widthRatio = ((double)currentSize.Width) / ((double)lastSize.Width);
                     double currentWidth = lastWidth * widthRatio;
@@ -35,8 +31,7 @@ namespace CSharpGL
                     orthoCamera.Right = center + currentWidth / 2.0;
                 }
                 // fit window size.
-                if (lastSize.Height != currentSize.Height)
-                {
+                if (lastSize.Height != currentSize.Height) {
                     double lastHeight = orthoCamera.Top - orthoCamera.Bottom;
                     double heightRatio = ((double)currentSize.Height) / ((double)lastSize.Height);
                     double currentHeight = lastHeight * heightRatio;

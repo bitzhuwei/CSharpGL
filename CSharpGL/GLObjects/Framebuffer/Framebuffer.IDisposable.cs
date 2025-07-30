@@ -1,14 +1,11 @@
 ﻿using System;
 
-namespace CSharpGL
-{
-    public partial class Framebuffer
-    {
+namespace CSharpGL {
+    public unsafe partial class Framebuffer {
         /// <summary>
         ///
         /// </summary>
-        public void Dispose()
-        {
+        public void Dispose() {
             this.Dispose(true);
             GC.SuppressFinalize(this);
         }
@@ -16,45 +13,41 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        ~Framebuffer()
-        {
+        ~Framebuffer() {
             this.Dispose(false);
         }
 
         private bool disposedValue = false;
 
-        private void Dispose(bool disposing)
-        {
-            if (this.disposedValue == false)
-            {
-                if (disposing)
-                {
+        private void Dispose(bool disposing) {
+            if (this.disposedValue == false) {
+                if (disposing) {
                     // Dispose managed resources.
                 }
 
                 // Dispose unmanaged resources.
                 {
-                    Renderbuffer depthBuffer = this.depthBuffer;
-                    if (depthBuffer != null)
-                    {
+                    var depthBuffer = this.depthBuffer;
+                    if (depthBuffer != null) {
                         depthBuffer.Dispose();
                     }
                 }
                 {
-                    Renderbuffer[] array = this.colorBuffers;
-                    foreach (var item in array)
-                    {
-                        if (item != null)
-                        {
+                    foreach (var item in this.renderBuffers) {
+                        if (item != null) {
                             item.Dispose();
                         }
                     }
                 }
                 {
-                    IntPtr context = GL.Instance.GetCurrentContext();
-                    if (context != IntPtr.Zero)
-                    {
-                        glDeleteFramebuffers(this.frameBufferId.Length, this.frameBufferId);
+                    var gl = GL.current;
+                    if (gl != null) {
+                        //IntPtr context = gl.glGetCurrentContext();
+                        //if (context != IntPtr.Zero) {
+                        var framebuffers = stackalloc GLuint[1];
+                        framebuffers[0] = this.id;
+                        gl.glDeleteFramebuffers(1, framebuffers);
+                        //}
                     }
                 }
             }

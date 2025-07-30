@@ -1,0 +1,38 @@
+﻿using System;
+
+namespace bitzhuwei.Compiler {
+
+    /// <summary>
+    /// use this in <see cref="ElseIf2"/> to save memory space.
+    /// </summary>
+    internal class VtWrap {
+        /// <summary>
+        /// Vt kind in <see cref="Token.kind"/>
+        /// </summary>
+        public readonly int value;
+
+        /// <summary>
+        /// use this in <see cref="ElseIf2"/> to save memory space.
+        /// </summary>
+        /// <param name="value">Vt kind in <see cref="Token.kind"/></param>
+        private VtWrap(int value) { this.value = value; }
+
+        private static readonly Dictionary<int, VtWrap> Vt2Wrap = new();
+        /// <summary>
+        /// use <see cref="VtWrap"/> in <see cref="ElseIf2"/> to save memory space.
+        /// </summary>
+        /// <param name="Vt"></param>
+        /// <returns></returns>
+        public static VtWrap GetWrap(int Vt) {
+            if (!Vt2Wrap.TryGetValue(Vt, out var wrap)) {
+                wrap = new VtWrap(Vt);
+                Vt2Wrap.Add(Vt, wrap);
+            }
+            return wrap;
+        }
+
+        public override string ToString() {
+            return $"Vt: {value}";
+        }
+    }
+}

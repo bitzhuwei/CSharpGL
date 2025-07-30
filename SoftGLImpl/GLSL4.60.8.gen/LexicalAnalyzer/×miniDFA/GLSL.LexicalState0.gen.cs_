@@ -1,0 +1,526 @@
+using System;
+using bitzhuwei.Compiler;
+
+namespace bitzhuwei.GLSLFormat {
+    partial class CompilerGLSL {
+
+#if noTableDFA
+        /// <summary>
+        /// lexicalState0
+        /// <para>CompilerGLSL.Lexical●[1 DFA States]</para>
+        /// </summary>
+        private static readonly Action<LexicalContext, char, CurrentStateWrap> lexicalState0 =
+        static (context, c, wrap) => {
+            if (false) { /* for simpler code generation purpose. */ }
+            /* user-input condition code */
+            /* } */
+            else if (/* possible Vt : '}' */
+            /* no possible signal */
+            /* single char */
+            c == '}'/*'\u007D'(125)*/) {
+                BeginToken(context);
+                ExtendToken(context, st.@RightBrace符);
+                wrap.currentState = lexicalState8;
+            }
+            /* user-input condition code */
+            /* \{ */
+            else if (/* possible Vt : '{' */
+            /* no possible signal */
+            /* single char */
+            c == '{'/*'\u007B'(123)*/) {
+                BeginToken(context);
+                ExtendToken(context, st.@LeftBrace符);
+                wrap.currentState = lexicalState9;
+            }
+            /* user-input condition code */
+            /* : */
+            else if (/* possible Vt : ':' */
+            /* no possible signal */
+            /* single char */
+            c == ':'/*'\u003A'(58)*/) {
+                BeginToken(context);
+                ExtendToken(context, st.@Colon符);
+                wrap.currentState = lexicalState10;
+            }
+            /* user-input condition code */
+            /* \? */
+            else if (/* possible Vt : '?' */
+            /* no possible signal */
+            /* single char */
+            c == '?'/*'\u003F'(63)*/) {
+                BeginToken(context);
+                ExtendToken(context, st.@Question符);
+                wrap.currentState = lexicalState11;
+            }
+            /* user-input condition code */
+            /* ~ */
+            else if (/* possible Vt : '~' */
+            /* no possible signal */
+            /* single char */
+            c == '~'/*'\u007E'(126)*/) {
+                BeginToken(context);
+                ExtendToken(context, st.@Tilde符);
+                wrap.currentState = lexicalState12;
+            }
+            /* user-input condition code */
+            /* \. */
+            else if (/* possible Vt : '.' */
+            /* no possible signal */
+            /* single char */
+            c == '.'/*'\u002E'(46)*/) {
+                BeginToken(context);
+                ExtendToken(context, st.@Dot符);
+                wrap.currentState = lexicalState13;
+            }
+            /* user-input condition code */
+            /* ] */
+            else if (/* possible Vt : ']' */
+            /* no possible signal */
+            /* single char */
+            c == ']'/*'\u005D'(93)*/) {
+                BeginToken(context);
+                ExtendToken(context, st.@RightBracket符);
+                wrap.currentState = lexicalState14;
+            }
+            /* user-input condition code */
+            /* \[ */
+            else if (/* possible Vt : '[' */
+            /* no possible signal */
+            /* single char */
+            c == '['/*'\u005B'(91)*/) {
+                BeginToken(context);
+                ExtendToken(context, st.@LeftBracket符);
+                wrap.currentState = lexicalState15;
+            }
+            /* user-input condition code */
+            /* ; */
+            else if (/* possible Vt : ';' */
+            /* no possible signal */
+            /* single char */
+            c == ';'/*'\u003B'(59)*/) {
+                BeginToken(context);
+                ExtendToken(context, st.@Semicolon符);
+                wrap.currentState = lexicalState16;
+            }
+            /* user-input condition code */
+            /* [)] */
+            else if (/* possible Vt : ')' */
+            /* possible signal : default */
+            /* [xxx] scope */
+            c == ')'/*'\u0029'(41)*/) {
+                BeginToken(context);
+                ExtendToken(context, st.@RightParenthesis符, st.@RightParenthesis符);
+                wrap.currentState = lexicalState17;
+            }
+            /* user-input condition code */
+            /* [,] */
+            else if (/* possible Vt : ',' */
+            /* no possible signal */
+            /* [xxx] scope */
+            c == ','/*'\u002C'(44)*/) {
+                BeginToken(context);
+                ExtendToken(context, st.@Comma符, st.@Comma符);
+                wrap.currentState = lexicalState18;
+            }
+            /* user-input condition code */
+            /* [(] */
+            else if (/* possible Vt : '(' */
+            /* possible signal : subroutine1 */
+            /* [xxx] scope */
+            c == '('/*'\u0028'(40)*/) {
+                BeginToken(context);
+                ExtendToken(context, st.@LeftParenthesis符, st.@LeftParenthesis符);
+                wrap.currentState = lexicalState19;
+            }
+            /* user-input condition code */
+            /* = */
+            else if (/* possible Vt : '==' '=' */
+            /* no possible signal */
+            /* single char */
+            c == '='/*'\u003D'(61)*/) {
+                BeginToken(context);
+                ExtendToken(context, st.@Equal符);
+                wrap.currentState = lexicalState20;
+            }
+            /* user-input condition code */
+            /* % */
+            else if (/* possible Vt : '%' '%=' */
+            /* no possible signal */
+            /* single char */
+            c == '%'/*'\u0025'(37)*/) {
+                BeginToken(context);
+                ExtendToken(context, st.@Percent符);
+                wrap.currentState = lexicalState21;
+            }
+            /* user-input condition code */
+            /* \* */
+            else if (/* possible Vt : '*' '*=' */
+            /* no possible signal */
+            /* single char */
+            c == '*'/*'\u002A'(42)*/) {
+                BeginToken(context);
+                ExtendToken(context, st.@Asterisk符);
+                wrap.currentState = lexicalState22;
+            }
+            /* user-input condition code */
+            /* ! */
+            else if (/* possible Vt : '!' '!=' */
+            /* no possible signal */
+            /* single char */
+            c == '!'/*'\u0021'(33)*/) {
+                BeginToken(context);
+                ExtendToken(context, st.@Bang符);
+                wrap.currentState = lexicalState23;
+            }
+            /* auto-generated condition code */
+            /* [1-9] */
+            else if (/* possible Vt : 'intConstant' 'uintConstant' 'floatConstant' 'doubleConstant' */
+            /* no possible signal */
+            /* RangeList */
+            /* [xxx] scope */
+            '1'/*'\u0031'(49)*/ <= c && c <= '9'/*'\u0039'(57)*/) {
+                BeginToken(context);
+                ExtendToken(context, st.@intConstant, st.@doubleConstant);
+                wrap.currentState = lexicalState24;
+            }
+            /* auto-generated condition code */
+            /* [A-Z]_g[j-k]q[x-z] */
+            else if (/* possible Vt : 'type_name' 'identifier' */
+            /* no possible signal */
+            /* RangeList */
+            (/* [xxx] scope */
+            'A'/*'\u0041'(65)*/ <= c && c <= 'Z'/*'\u005A'(90)*/)
+             || (/* single char */
+            c == '_'/*'\u005F'(95)*/)
+             || (/* single char */
+            c == 'g'/*'\u0067'(103)*/)
+             || (/* [xxx] scope */
+            'j'/*'\u006A'(106)*/ <= c && c <= 'k'/*'\u006B'(107)*/)
+             || (/* single char */
+            c == 'q'/*'\u0071'(113)*/)
+             || (/* [xxx] scope */
+            'x'/*'\u0078'(120)*/ <= c && c <= 'z'/*'\u007A'(122)*/)) {
+                BeginToken(context);
+                ExtendToken(context, st.@type_name, st.@type_name, st.@identifier);
+                wrap.currentState = lexicalState25;
+            }
+            /* auto-generated condition code */
+            /* t */
+            else if (/* possible Vt : 'type_name' 'boolConstant' 'identifier' */
+            /* no possible signal */
+            /* RangeList */
+            /* single char */
+            c == 't'/*'\u0074'(116)*/) {
+                BeginToken(context);
+                ExtendToken(context, st.@type_name, st.@type_name, st.@identifier);
+                wrap.currentState = lexicalState26;
+            }
+            /* auto-generated condition code */
+            /* e */
+            else if (/* possible Vt : 'else' 'type_name' 'identifier' */
+            /* no possible signal */
+            /* RangeList */
+            /* single char */
+            c == 'e'/*'\u0065'(101)*/) {
+                BeginToken(context);
+                ExtendToken(context, st.@type_name, st.@type_name, st.@identifier);
+                wrap.currentState = lexicalState27;
+            }
+            /* auto-generated condition code */
+            /* h */
+            else if (/* possible Vt : 'highp' 'type_name' 'identifier' */
+            /* no possible signal */
+            /* RangeList */
+            /* single char */
+            c == 'h'/*'\u0068'(104)*/) {
+                BeginToken(context);
+                ExtendToken(context, st.@type_name, st.@type_name, st.@identifier);
+                wrap.currentState = lexicalState28;
+            }
+            /* auto-generated condition code */
+            /* a */
+            else if (/* possible Vt : 'atomic_uint' 'type_name' 'identifier' */
+            /* no possible signal */
+            /* RangeList */
+            /* single char */
+            c == 'a'/*'\u0061'(97)*/) {
+                BeginToken(context);
+                ExtendToken(context, st.@type_name, st.@type_name, st.@identifier);
+                wrap.currentState = lexicalState29;
+            }
+            /* auto-generated condition code */
+            /* o */
+            else if (/* possible Vt : 'out' 'type_name' 'identifier' */
+            /* no possible signal */
+            /* RangeList */
+            /* single char */
+            c == 'o'/*'\u006F'(111)*/) {
+                BeginToken(context);
+                ExtendToken(context, st.@type_name, st.@type_name, st.@identifier);
+                wrap.currentState = lexicalState30;
+            }
+            /* auto-generated condition code */
+            /* n */
+            else if (/* possible Vt : 'noperspective' 'type_name' 'identifier' */
+            /* no possible signal */
+            /* RangeList */
+            /* single char */
+            c == 'n'/*'\u006E'(110)*/) {
+                BeginToken(context);
+                ExtendToken(context, st.@type_name, st.@type_name, st.@identifier);
+                wrap.currentState = lexicalState31;
+            }
+            /* user-input condition code */
+            /* \| */
+            else if (/* possible Vt : '|' '||' '|=' */
+            /* no possible signal */
+            /* single char */
+            c == '|'/*'\u007C'(124)*/) {
+                BeginToken(context);
+                ExtendToken(context, st.@Pipe符);
+                wrap.currentState = lexicalState32;
+            }
+            /* user-input condition code */
+            /* ^ */
+            else if (/* possible Vt : '^' '^^' '^=' */
+            /* no possible signal */
+            /* single char */
+            c == '^'/*'\u005E'(94)*/) {
+                BeginToken(context);
+                ExtendToken(context, st.@Caret符);
+                wrap.currentState = lexicalState33;
+            }
+            /* user-input condition code */
+            /* & */
+            else if (/* possible Vt : '&' '&&' '&=' */
+            /* no possible signal */
+            /* single char */
+            c == '&'/*'\u0026'(38)*/) {
+                BeginToken(context);
+                ExtendToken(context, st.@And符);
+                wrap.currentState = lexicalState34;
+            }
+            /* user-input condition code */
+            /* > */
+            else if (/* possible Vt : '>>' '>' '>=' '>>=' */
+            /* no possible signal */
+            /* single char */
+            c == '>'/*'\u003E'(62)*/) {
+                BeginToken(context);
+                ExtendToken(context, st.@RightAngle符);
+                wrap.currentState = lexicalState35;
+            }
+            /* user-input condition code */
+            /* \< */
+            else if (/* possible Vt : '<<' '<' '<=' '<<=' */
+            /* no possible signal */
+            /* single char */
+            c == '<'/*'\u003C'(60)*/) {
+                BeginToken(context);
+                ExtendToken(context, st.@LeftAngle符);
+                wrap.currentState = lexicalState36;
+            }
+            /* user-input condition code */
+            /* \/ */
+            else if (/* possible Vt : '/' '/=' 'blockComment' 'inlineComment' */
+            /* no possible signal */
+            /* 'blockComment' 'inlineComment' : comment ignores 'validScopeChars'([\u0001-\uFFFF]) and 'validGlobalChars'([\u0001-\uFFFF]) */
+            c == '/'/*'\u002F'(47)*/) {
+                BeginToken(context);
+                ExtendToken(context, st.@Slash符);
+                wrap.currentState = lexicalState37;
+            }
+            /* auto-generated condition code */
+            /* 0 */
+            else if (/* possible Vt : 'intConstant' 'uintConstant' 'floatConstant' 'doubleConstant' */
+            /* no possible signal */
+            /* RangeList */
+            /* single char */
+            c == '0'/*'\u0030'(48)*/) {
+                BeginToken(context);
+                ExtendToken(context, st.@intConstant, st.@doubleConstant);
+                wrap.currentState = lexicalState38;
+            }
+            /* auto-generated condition code */
+            /* w */
+            else if (/* possible Vt : 'writeonly' 'while' 'type_name' 'identifier' */
+            /* no possible signal */
+            /* RangeList */
+            /* single char */
+            c == 'w'/*'\u0077'(119)*/) {
+                BeginToken(context);
+                ExtendToken(context, st.@type_name, st.@type_name, st.@identifier);
+                wrap.currentState = lexicalState39;
+            }
+            /* auto-generated condition code */
+            /* r */
+            else if (/* possible Vt : 'restrict' 'readonly' 'return' 'type_name' 'identifier' */
+            /* no possible signal */
+            /* RangeList */
+            /* single char */
+            c == 'r'/*'\u0072'(114)*/) {
+                BeginToken(context);
+                ExtendToken(context, st.@type_name, st.@type_name, st.@identifier);
+                wrap.currentState = lexicalState40;
+            }
+            /* auto-generated condition code */
+            /* c */
+            else if (/* possible Vt : 'const' 'centroid' 'coherent' 'case' 'continue' 'type_name' 'identifier' */
+            /* no possible signal */
+            /* RangeList */
+            /* single char */
+            c == 'c'/*'\u0063'(99)*/) {
+                BeginToken(context);
+                ExtendToken(context, st.@type_name, st.@type_name, st.@identifier);
+                wrap.currentState = lexicalState41;
+            }
+            /* auto-generated condition code */
+            /* l */
+            else if (/* possible Vt : 'layout' 'lowp' 'type_name' 'identifier' */
+            /* no possible signal */
+            /* RangeList */
+            /* single char */
+            c == 'l'/*'\u006C'(108)*/) {
+                BeginToken(context);
+                ExtendToken(context, st.@type_name, st.@type_name, st.@identifier);
+                wrap.currentState = lexicalState42;
+            }
+            /* auto-generated condition code */
+            /* f */
+            else if (/* possible Vt : 'flat' 'float' 'for' 'type_name' 'boolConstant' 'identifier' */
+            /* no possible signal */
+            /* RangeList */
+            /* single char */
+            c == 'f'/*'\u0066'(102)*/) {
+                BeginToken(context);
+                ExtendToken(context, st.@type_name, st.@type_name, st.@identifier);
+                wrap.currentState = lexicalState43;
+            }
+            /* auto-generated condition code */
+            /* p */
+            else if (/* possible Vt : 'precision' 'precise' 'patch' 'type_name' 'identifier' */
+            /* no possible signal */
+            /* RangeList */
+            /* single char */
+            c == 'p'/*'\u0070'(112)*/) {
+                BeginToken(context);
+                ExtendToken(context, st.@type_name, st.@type_name, st.@identifier);
+                wrap.currentState = lexicalState44;
+            }
+            /* auto-generated condition code */
+            /* v */
+            else if (/* possible Vt : 'void' 'volatile' 'vec2' 'vec3' 'vec4' 'type_name' 'identifier' */
+            /* no possible signal */
+            /* RangeList */
+            /* single char */
+            c == 'v'/*'\u0076'(118)*/) {
+                BeginToken(context);
+                ExtendToken(context, st.@type_name, st.@type_name, st.@identifier);
+                wrap.currentState = lexicalState45;
+            }
+            /* auto-generated condition code */
+            /* - */
+            else if (/* possible Vt : '--' '-' '-=' 'intConstant' 'uintConstant' 'floatConstant' 'doubleConstant' */
+            /* no possible signal */
+            /* RangeList */
+            /* single char */
+            c == '-'/*'\u002D'(45)*/) {
+                BeginToken(context);
+                ExtendToken(context, st.@Dash符);
+                wrap.currentState = lexicalState46;
+            }
+            /* auto-generated condition code */
+            /* \+ */
+            else if (/* possible Vt : '++' '+' '+=' 'intConstant' 'uintConstant' 'floatConstant' 'doubleConstant' */
+            /* no possible signal */
+            /* RangeList */
+            /* single char */
+            c == '+'/*'\u002B'(43)*/) {
+                BeginToken(context);
+                ExtendToken(context, st.@Plus符);
+                wrap.currentState = lexicalState47;
+            }
+            /* auto-generated condition code */
+            /* m */
+            else if (/* possible Vt : 'mat2' 'mat3' 'mat4' 'mat2x2' 'mat2x3' 'mat2x4' 'mat3x2' 'mat3x3' 'mat3x4' 'mat4x2' 'mat4x3' 'mat4x4' 'mediump' 'type_name' 'identifier' */
+            /* no possible signal */
+            /* RangeList */
+            /* single char */
+            c == 'm'/*'\u006D'(109)*/) {
+                BeginToken(context);
+                ExtendToken(context, st.@type_name, st.@type_name, st.@identifier);
+                wrap.currentState = lexicalState48;
+            }
+            /* auto-generated condition code */
+            /* b */
+            else if (/* possible Vt : 'buffer' 'bool' 'bvec2' 'bvec3' 'bvec4' 'break' 'type_name' 'identifier' */
+            /* no possible signal */
+            /* RangeList */
+            /* single char */
+            c == 'b'/*'\u0062'(98)*/) {
+                BeginToken(context);
+                ExtendToken(context, st.@type_name, st.@type_name, st.@identifier);
+                wrap.currentState = lexicalState49;
+            }
+            /* auto-generated condition code */
+            /* d */
+            else if (/* possible Vt : 'double' 'dvec2' 'dvec3' 'dvec4' 'dmat2' 'dmat3' 'dmat4' 'dmat2x2' 'dmat2x3' 'dmat2x4' 'dmat3x2' 'dmat3x3' 'dmat3x4' 'dmat4x2' 'dmat4x3' 'dmat4x4' 'default' 'do' 'discard' 'type_name' 'identifier' */
+            /* no possible signal */
+            /* RangeList */
+            /* single char */
+            c == 'd'/*'\u0064'(100)*/) {
+                BeginToken(context);
+                ExtendToken(context, st.@type_name, st.@type_name, st.@identifier);
+                wrap.currentState = lexicalState50;
+            }
+            /* auto-generated condition code */
+            /* u */
+            else if (/* possible Vt : 'uniform' 'uint' 'uvec2' 'uvec3' 'uvec4' 'usampler2D' 'usampler3D' 'usamplerCube' 'usampler2DArray' 'usamplerCubeArray' 'usampler1D' 'usampler1DArray' 'usampler2DRect' 'usamplerBuffer' 'usampler2DMS' 'usampler2DMSArray' 'uimage2D' 'uimage3D' 'uimageCube' 'uimageBuffer' 'uimage1D' 'uimage1DArray' 'uimage2DRect' 'uimage2DArray' 'uimageCubeArray' 'uimage2DMS' 'uimage2DMSArray' 'type_name' 'identifier' */
+            /* no possible signal */
+            /* RangeList */
+            /* single char */
+            c == 'u'/*'\u0075'(117)*/) {
+                BeginToken(context);
+                ExtendToken(context, st.@type_name, st.@type_name, st.@identifier);
+                wrap.currentState = lexicalState51;
+            }
+            /* auto-generated condition code */
+            /* s */
+            else if (/* possible Vt : 'smooth' 'shared' 'sample' 'sampler2D' 'sampler3D' 'samplerCube' 'sampler2DShadow' 'samplerCubeShadow' 'sampler2DArray' 'sampler2DArrayShadow' 'samplerCubeArray' 'samplerCubeArrayShadow' 'sampler1D' 'sampler1DShadow' 'sampler1DArray' 'sampler1DArrayShadow' 'sampler2DRect' 'sampler2DRectShadow' 'samplerBuffer' 'sampler2DMS' 'sampler2DMSArray' 'struct' 'switch' 'type_name' 'subroutine' 'identifier' */
+            /* possible signal : subroutine0 */
+            /* RangeList */
+            /* single char */
+            c == 's'/*'\u0073'(115)*/) {
+                BeginToken(context);
+                ExtendToken(context, st.@type_name, st.@type_name, st.@identifier);
+                wrap.currentState = lexicalState52;
+            }
+            /* auto-generated condition code */
+            /* i */
+            else if (/* possible Vt : 'invariant' 'in' 'inout' 'int' 'ivec2' 'ivec3' 'ivec4' 'isampler2D' 'isampler3D' 'isamplerCube' 'isampler2DArray' 'isamplerCubeArray' 'isampler1D' 'isampler1DArray' 'isampler2DRect' 'isamplerBuffer' 'isampler2DMS' 'isampler2DMSArray' 'image2D' 'iimage2D' 'image3D' 'iimage3D' 'imageCube' 'iimageCube' 'imageBuffer' 'iimageBuffer' 'image1D' 'iimage1D' 'image1DArray' 'iimage1DArray' 'image2DRect' 'iimage2DRect' 'image2DArray' 'iimage2DArray' 'imageCubeArray' 'iimageCubeArray' 'image2DMS' 'iimage2DMS' 'image2DMSArray' 'iimage2DMSArray' 'if' 'type_name' 'identifier' */
+            /* no possible signal */
+            /* RangeList */
+            /* single char */
+            c == 'i'/*'\u0069'(105)*/) {
+                BeginToken(context);
+                ExtendToken(context, st.@type_name, st.@type_name, st.@identifier);
+                wrap.currentState = lexicalState53;
+            }
+            /* deal with everything else. */
+            else if (c == ' ' || c == '\r' || c == '\n' || c == '\t' || c == '\0') {
+                wrap.currentState = lexicalState0; // skip them.
+            }
+            else { // unexpected char.
+                BeginToken(context);
+                ExtendToken(context);
+                AcceptToken(st.Error错, context);
+                wrap.currentState = lexicalState0;
+            }
+
+
+        };
+#endif
+
+    }
+}
+

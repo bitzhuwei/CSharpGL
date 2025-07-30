@@ -1,155 +1,149 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace CSharpGL
-{
+namespace CSharpGL {
     /// <summary>
     /// Create, update, use and delete a framebuffer object.
     /// </summary>
-    public partial class Framebuffer : IDisposable
-    {
-        private static GLDelegates.void_int_uintN glGenFramebuffers;
-        private static GLDelegates.void_uint_uint glBindFramebuffer;
-        /// <summary>
-        /// void glFramebufferTexture(GLenum target​, GLenum attachment​, GLuint texture​, GLint level​);
-        /// </summary>
-        private static GLDelegates.void_uint_uint_uint_int glFramebufferTexture;
+    public unsafe partial class Framebuffer : IDisposable {
+        //private static GLDelegates.void_int_uintN glGenFramebuffers;
+        //private static GLDelegates.void_uint_uint glBindFramebuffer;
         ///// <summary>
-        ///// void glFramebufferTexture1D(GLenum target​, GLenum attachment​, GLenum textarget​, GLuint texture​, GLint level​);
+        ///// void glFramebufferTexture(GLenum target​, GLenum attachment​, GLuint texture​, GLint level​);
         ///// </summary>
-        //private static GLDelegates.void_uint_uint_uint_uint_int glFramebufferTexture1D;
+        //private static GLDelegates.void_uint_uint_uint_int glFramebufferTexture;
+        /////// <summary>
+        /////// void glFramebufferTexture1D(GLenum target​, GLenum attachment​, GLenum textarget​, GLuint texture​, GLint level​);
+        /////// </summary>
+        ////private static GLDelegates.void_uint_uint_uint_uint_int glFramebufferTexture1D;
+        /////// <summary>
+        /////// void glFramebufferTexture2D(GLenum target​, GLenum attachment​, GLenum textarget​, GLuint texture​, GLint level​);
+        //private static GLDelegates.void_uint_uint_uint_uint_int glFramebufferTexture2D;
+        /////// void glFramebufferTexture3D(GLenum target​, GLenum attachment​, GLenum textarget​, GLuint texture​, GLint level​, GLint layer​);
+        /////// </summary>
+        ////private static GLDelegates.void_uint_uint_uint_uint_int_int glFramebufferTexture3D;
         ///// <summary>
-        ///// void glFramebufferTexture2D(GLenum target​, GLenum attachment​, GLenum textarget​, GLuint texture​, GLint level​);
-        private static GLDelegates.void_uint_uint_uint_uint_int glFramebufferTexture2D;
-        ///// void glFramebufferTexture3D(GLenum target​, GLenum attachment​, GLenum textarget​, GLuint texture​, GLint level​, GLint layer​);
+        ///// void glFramebufferTextureLayer(GLenum target​, GLenum attachment​, GLuint texture​, GLint level​, GLint layer​);
         ///// </summary>
-        //private static GLDelegates.void_uint_uint_uint_uint_int_int glFramebufferTexture3D;
-        /// <summary>
-        /// void glFramebufferTextureLayer(GLenum target​, GLenum attachment​, GLuint texture​, GLint level​, GLint layer​);
-        /// </summary>
-        private static GLDelegates.void_uint_uint_uint_int_int glFramebufferTextureLayer;
-        private static GLDelegates.void_int_uintN glDrawBuffers;
-        private static GLDelegates.void_uint glDrawBuffer;
-        private static GLDelegates.void_uint glReadBuffer;
-        private static GLDelegates.void_uint_uint_uint_uint glFramebufferRenderbuffer;
-        private static GLDelegates.void_uint_uint_int glFramebufferParameteri;
-        private static GLDelegates.uint_uint glCheckFramebufferStatus;
-        private static GLDelegates.void_int_uintN glDeleteFramebuffers;
+        //private static GLDelegates.void_uint_uint_uint_int_int glFramebufferTextureLayer;
+        //private static GLDelegates.void_int_uintN glDrawBuffers;
+        //private static GLDelegates.void_uint glDrawBuffer;
+        //private static GLDelegates.void_uint glReadBuffer;
+        //private static GLDelegates.void_uint_uint_uint_uint glFramebufferRenderbuffer;
+        //private static GLDelegates.void_uint_uint_int glFramebufferParameteri;
+        //private static GLDelegates.uint_uint glCheckFramebufferStatus;
+        //private static GLDelegates.void_int_uintN glDeleteFramebuffers;
 
-        private uint[] frameBufferId = new uint[1];
+        //private GLuint[] frameBufferId = new GLuint[1];
 
         /// <summary>
         /// Framebuffer Id.
         /// </summary>
-        public uint Id { get { return frameBufferId[0]; } }
+        public readonly GLuint id;// { get { return frameBufferId[0]; } }
 
         /// <summary>
         /// 0 means no renderbuffer attached.
         /// </summary>
-        public readonly int Width;
+        public readonly int width;
 
         /// <summary>
         /// 0 means no renderbuffer attached.
         /// </summary>
-        public readonly int Height;
+        public readonly int height;
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public static Framebuffer CurrentFramebuffer
-        {
-            get
-            {
-                if (Framebuffer.bindingStack.Count < 1)
-                {
-                    throw new Exception();
-                }
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public static Framebuffer? CurrentFramebuffer {
+        //    get {
+        //        if (Framebuffer.bindingStack.Count < 1) {
+        //            return null;
+        //        }
 
-                return Framebuffer.bindingStack.Peek();
-            }
-        }
+        //        return Framebuffer.bindingStack.Peek();
+        //    }
+        //}
 
-        private static Stack<Framebuffer> bindingStack = new Stack<Framebuffer>();
+        //private static readonly Stack<Framebuffer> bindingStack = new();
 
-        static Framebuffer()
-        {
-            glGenFramebuffers = GL.Instance.GetDelegateFor("glGenFramebuffers", GLDelegates.typeof_void_int_uintN) as GLDelegates.void_int_uintN;
-            glBindFramebuffer = GL.Instance.GetDelegateFor("glBindFramebuffer", GLDelegates.typeof_void_uint_uint) as GLDelegates.void_uint_uint;
-            glFramebufferTexture = GL.Instance.GetDelegateFor("glFramebufferTexture", GLDelegates.typeof_void_uint_uint_uint_int) as GLDelegates.void_uint_uint_uint_int;
-            //glFramebufferTexture1D = GL.Instance.GetDelegateFor("glFramebufferTexture1D", GLDelegates.typeof_void_uint_uint_uint_uint_int) as GLDelegates.void_uint_uint_uint_uint_int;
-            glFramebufferTexture2D = GL.Instance.GetDelegateFor("glFramebufferTexture2D", GLDelegates.typeof_void_uint_uint_uint_uint_int) as GLDelegates.void_uint_uint_uint_uint_int;
-            //glFramebufferTexture3D = GL.Instance.GetDelegateFor("glFramebufferTexture3D", GLDelegates.typeof_void_uint_uint_uint_uint_int_int) as GLDelegates.void_uint_uint_uint_uint_int_int;
-            glFramebufferTextureLayer = GL.Instance.GetDelegateFor("glFramebufferTextureLayer", GLDelegates.typeof_void_uint_uint_uint_int_int) as GLDelegates.void_uint_uint_uint_int_int;
-            glDrawBuffers = GL.Instance.GetDelegateFor("glDrawBuffers", GLDelegates.typeof_void_int_uintN) as GLDelegates.void_int_uintN;
-            glDrawBuffer = GL.Instance.GetDelegateFor("glDrawBuffer", GLDelegates.typeof_void_uint) as GLDelegates.void_uint;
-            glReadBuffer = GL.Instance.GetDelegateFor("glReadBuffer", GLDelegates.typeof_void_uint) as GLDelegates.void_uint;
-            glFramebufferRenderbuffer = GL.Instance.GetDelegateFor("glFramebufferRenderbuffer", GLDelegates.typeof_void_uint_uint_uint_uint) as GLDelegates.void_uint_uint_uint_uint;
-            glFramebufferParameteri = GL.Instance.GetDelegateFor("glFramebufferParameteri", GLDelegates.typeof_void_uint_uint_int) as GLDelegates.void_uint_uint_int;
-            glCheckFramebufferStatus = GL.Instance.GetDelegateFor("glCheckFramebufferStatus", GLDelegates.typeof_uint_uint) as GLDelegates.uint_uint;
-            glDeleteFramebuffers = GL.Instance.GetDelegateFor("glDeleteFramebuffers", GLDelegates.typeof_void_int_uintN) as GLDelegates.void_int_uintN;
+        //static Framebuffer()
+        //{
+        //    glGenFramebuffers = gl.glGetDelegateFor("glGenFramebuffers", GLDelegates.typeof_void_int_uintN) as GLDelegates.void_int_uintN;
+        //    glBindFramebuffer = gl.glGetDelegateFor("glBindFramebuffer", GLDelegates.typeof_void_uint_uint) as GLDelegates.void_uint_uint;
+        //    glFramebufferTexture = gl.glGetDelegateFor("glFramebufferTexture", GLDelegates.typeof_void_uint_uint_uint_int) as GLDelegates.void_uint_uint_uint_int;
+        //    //glFramebufferTexture1D = GL.Instance.GetDelegateFor("glFramebufferTexture1D", GLDelegates.typeof_void_uint_uint_uint_uint_int) as GLDelegates.void_uint_uint_uint_uint_int;
+        //    glFramebufferTexture2D = gl.glGetDelegateFor("glFramebufferTexture2D", GLDelegates.typeof_void_uint_uint_uint_uint_int) as GLDelegates.void_uint_uint_uint_uint_int;
+        //    //glFramebufferTexture3D = GL.Instance.GetDelegateFor("glFramebufferTexture3D", GLDelegates.typeof_void_uint_uint_uint_uint_int_int) as GLDelegates.void_uint_uint_uint_uint_int_int;
+        //    glFramebufferTextureLayer = gl.glGetDelegateFor("glFramebufferTextureLayer", GLDelegates.typeof_void_uint_uint_uint_int_int) as GLDelegates.void_uint_uint_uint_int_int;
+        //    glDrawBuffers = gl.glGetDelegateFor("glDrawBuffers", GLDelegates.typeof_void_int_uintN) as GLDelegates.void_int_uintN;
+        //    glDrawBuffer = gl.glGetDelegateFor("glDrawBuffer", GLDelegates.typeof_void_uint) as GLDelegates.void_uint;
+        //    glReadBuffer = gl.glGetDelegateFor("glReadBuffer", GLDelegates.typeof_void_uint) as GLDelegates.void_uint;
+        //    glFramebufferRenderbuffer = gl.glGetDelegateFor("glFramebufferRenderbuffer", GLDelegates.typeof_void_uint_uint_uint_uint) as GLDelegates.void_uint_uint_uint_uint;
+        //    glFramebufferParameteri = gl.glGetDelegateFor("glFramebufferParameteri", GLDelegates.typeof_void_uint_uint_int) as GLDelegates.void_uint_uint_int;
+        //    glCheckFramebufferStatus = gl.glGetDelegateFor("glCheckFramebufferStatus", GLDelegates.typeof_uint_uint) as GLDelegates.uint_uint;
+        //    glDeleteFramebuffers = gl.glGetDelegateFor("glDeleteFramebuffers", GLDelegates.typeof_void_int_uintN) as GLDelegates.void_int_uintN;
 
-            Framebuffer.maxColorAttachmentCount = Framebuffer.MaxColorAttachments();
+        //    Framebuffer.maxColorAttachmentCount = Framebuffer.MaxColorAttachments();
 
-            Framebuffer.bindingStack.Push(null);// default framebuffer with Id = 0.
-        }
+        //    Framebuffer.bindingStack.Push(null);// default framebuffer with Id = 0.
+        //}
 
         /// <summary>
         /// Create an empty framebuffer object.
         /// </summary>
         /// <param name="width"></param>
         /// <param name="height"></param>
-        public Framebuffer(int width, int height)
-        {
-            glGenFramebuffers(1, frameBufferId);
+        public Framebuffer(int width, int height) {
+            //this.colorBuffers = new Renderbuffer[colorBufferCount];
+            this.width = width;
+            this.height = height;
 
-            this.Width = width;
-            this.Height = height;
-
-            this.colorBuffers = new Renderbuffer[Framebuffer.maxColorAttachmentCount];
+            var gl = GL.current; if (gl == null) { return; }
+            var framebuffers = stackalloc GLuint[1];
+            gl.glGenFramebuffers(1, framebuffers);
+            this.id = framebuffers[0];
         }
 
         /// <summary>
         /// start to use this framebuffer.
         /// </summary>
         /// <param name="target"></param>
-        public void Bind(FramebufferTarget target = FramebufferTarget.Framebuffer)
-        {
-            Framebuffer framebuffer = Framebuffer.bindingStack.Peek();
-            if (framebuffer != this)
-            {
-                Framebuffer.bindingStack.Push(this);
+        public void Bind(Framebuffer.Target target = Framebuffer.Target.Framebuffer) {
+            var gl = GL.current; if (gl == null) { return; }
+            //Framebuffer framebuffer = Framebuffer.bindingStack.Peek();
+            //if (framebuffer != this) {
+            //    Framebuffer.bindingStack.Push(this);
 
-                glBindFramebuffer((uint)target, this.Id);
-            }
+            //    gl.glBindFramebuffer((GLenum)target, this.id);
+            //}
+            gl.glBindFramebuffer((GLenum)target, this.id);
         }
 
         /// <summary>
         /// stop to use this framebuffer(and use last framebuffer).
         /// </summary>
         /// <param name="target"></param>
-        public void Unbind(FramebufferTarget target = FramebufferTarget.Framebuffer)
-        {
-            Framebuffer framebuffer = Framebuffer.bindingStack.Pop();
-            if (framebuffer != this) { throw new Exception("FrameBuffer Bind/Unbind not matching!"); }
+        public void Unbind(Framebuffer.Target target = Framebuffer.Target.Framebuffer) {
+            //Framebuffer framebuffer = Framebuffer.bindingStack.Pop();
+            //if (framebuffer != this) { throw new Exception("FrameBuffer Bind/Unbind not matching!"); }
 
-            Framebuffer top = Framebuffer.bindingStack.Peek();
-            if (top == null)
-            {
-                glBindFramebuffer((uint)target, 0);
-            }
-            else
-            {
-                glBindFramebuffer((uint)target, top.Id);
-            }
+            var gl = GL.current; if (gl == null) { return; }
+            //Framebuffer top = Framebuffer.bindingStack.Peek();
+            //if (top == null) {
+            //    gl.glBindFramebuffer((GLenum)target, 0);
+            //}
+            //else {
+            //    gl.glBindFramebuffer((GLenum)target, top.id);
+            //}
+            gl.glBindFramebuffer((GLenum)target, 0);
         }
 
         /// <summary>
         ///
         /// </summary>
         /// <returns></returns>
-        public override string ToString()
-        {
-            return string.Format("Framebuffer Id: {0}", this.Id);
+        public override string ToString() {
+            return string.Format("Framebuffer Id: {0}", this.id);
         }
     }
 }

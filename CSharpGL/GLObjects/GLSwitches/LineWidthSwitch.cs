@@ -1,43 +1,41 @@
-﻿namespace CSharpGL
-{
+﻿namespace CSharpGL {
     /// <summary>
     ///
     /// </summary>
-    public class LineWidthSwitch : GLSwitch
-    {
-        /// <summary>
-        /// 
-        /// </summary>
-        public static readonly float min;
+    public unsafe class LineWidthSwitch : GLSwitch {
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public static readonly float min;
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public static readonly float max;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public static readonly float max;
 
-        static LineWidthSwitch()
-        {
-            float[] lineWidthRange = new float[2];
-            GL.Instance.GetFloatv((uint)GetTarget.LineWidthRange, lineWidthRange);
-            min = lineWidthRange[0];
-            max = lineWidthRange[1];
-            //OpenGL.GetFloat(GetTarget.LineWidthGranularity, lineWidthRange);//TODO: what does LineWidthGranularity mean?
-        }
+        //static LineWidthSwitch() {
+        //    var gl = GL.current; if (gl == null) { return; }
+        //    float[] lineWidthRange = new float[2];
+        //    gl.glGetFloatv((GLenum)GetTarget.LineWidthRange, lineWidthRange);
+        //    min = lineWidthRange[0];
+        //    max = lineWidthRange[1];
+        //    //OpenGL.GetFloat(GetTarget.LineWidthGranularity, lineWidthRange);//TODO: what does LineWidthGranularity mean?
+        //}
+
+        ///// <summary>
+        /////
+        ///// </summary>
+        //public float MinLineWidth { get; private set; }
+
+        ///// <summary>
+        /////
+        ///// </summary>
+        //public float MaxLineWidth { get; private set; }
 
         /// <summary>
         ///
         /// </summary>
-        public float MinLineWidth { get; private set; }
-
-        /// <summary>
-        ///
-        /// </summary>
-        public float MaxLineWidth { get; private set; }
-
-        /// <summary>
-        ///
-        /// </summary>
-        public float LineWidth { get; set; }
+        public float lineWidth;
 
         // Activator needs a non-parameter constructor.
         /// <summary>
@@ -49,11 +47,10 @@
         ///
         /// </summary>
         /// <param name="lineWidth"></param>
-        public LineWidthSwitch(float lineWidth)
-        {
-            this.LineWidth = lineWidth;
-            this.MinLineWidth = min;
-            this.MaxLineWidth = max;
+        public LineWidthSwitch(float lineWidth) {
+            this.lineWidth = lineWidth;
+            //this.MinLineWidth = min;
+            //this.MaxLineWidth = max;
         }
 
         private float[] original = new float[1];
@@ -61,27 +58,28 @@
         /// <summary>
         ///
         /// </summary>
-        public override string ToString()
-        {
-            return string.Format("Line Width: {0}", LineWidth);
+        public override string ToString() {
+            return string.Format("Line Width: {0}", lineWidth);
         }
 
         /// <summary>
         ///
         /// </summary>
-        protected override void StateOn()
-        {
-            GL.Instance.GetFloatv((uint)GetTarget.LineWidth, original);
+        protected override void StateOn() {
+            var gl = GL.current; if (gl == null) { return; }
+            fixed (float* p = original) {
+                gl.glGetFloatv((GLenum)GetTarget.LineWidth, p);
+            }
 
-            GL.Instance.LineWidth(LineWidth);
+            gl.glLineWidth(lineWidth);
         }
 
         /// <summary>
         ///
         /// </summary>
-        protected override void StateOff()
-        {
-            GL.Instance.LineWidth(original[0]);
+        protected override void StateOff() {
+            var gl = GL.current; if (gl == null) { return; }
+            gl.glLineWidth(original[0]);
         }
     }
 }

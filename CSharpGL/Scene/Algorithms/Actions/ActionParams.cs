@@ -3,13 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CSharpGL
-{
+namespace CSharpGL {
     /// <summary>
     /// 
     /// </summary>
-    public class ActionParams
-    {
+    public class ActionParams {
         ///// <summary>
         ///// 
         ///// </summary>
@@ -23,8 +21,7 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        public ActionParams(Viewport viewport)
-        {
+        public ActionParams(Viewport viewport) {
             this.Viewport = viewport;
         }
 
@@ -32,8 +29,7 @@ namespace CSharpGL
         /// 
         /// </summary>
         /// <returns></returns>
-        public override string ToString()
-        {
+        public override string ToString() {
             return string.Format("{0}", this.Viewport);
         }
     }

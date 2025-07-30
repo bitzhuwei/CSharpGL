@@ -1,0 +1,82 @@
+using System;
+using bitzhuwei.Compiler;
+
+namespace bitzhuwei.PreDirectiveFormat {
+    partial class CompilerPreDirective {
+
+#if noTableDFA
+        /// <summary>
+        /// lexicalState82
+        /// <para>CompilerPreDirective.Lexical●[1 DFA States]</para>
+        /// </summary>
+        private static readonly Action<LexicalContext, char, CurrentStateWrap> lexicalState82 =
+        static (context, c, wrap) => {
+            if (false) { /* for simpler code generation purpose. */ }
+            /* user-input condition code */
+            /* [fF] */
+            else if (/* possible Vt : 'floatConstant' */
+            /* no possible signal */
+            /* [xxx] scope */
+            (c == 'f'/*'\u0066'(102)*/)
+            || (c == 'F'/*'\u0046'(70)*/)) {
+                ExtendToken(context, st.@floatConstant);
+                wrap.currentState = lexicalState106;
+            }
+            /* user-input condition code */
+            /* [uU] */
+            else if (/* possible Vt : 'uintConstant' */
+            /* no possible signal */
+            /* [xxx] scope */
+            (c == 'u'/*'\u0075'(117)*/)
+            || (c == 'U'/*'\u0055'(85)*/)) {
+                ExtendToken(context, st.@uintConstant);
+                wrap.currentState = lexicalState107;
+            }
+            /* user-input condition code */
+            /* [Ee] */
+            else if (/* possible Vt : 'floatConstant' 'doubleConstant' */
+            /* no possible signal */
+            /* [xxx] scope */
+            (c == 'E'/*'\u0045'(69)*/)
+            || (c == 'e'/*'\u0065'(101)*/)) {
+                wrap.currentState = lexicalState4;
+            }
+            /* user-input condition code */
+            /* x */
+            else if (/* possible Vt : 'intConstant' 'uintConstant' */
+            /* no possible signal */
+            /* single char */
+            c == 'x'/*'\u0078'(120)*/) {
+                wrap.currentState = lexicalState5;
+            }
+            /* user-input condition code */
+            /* [.] */
+            else if (/* possible Vt : 'number' 'floatConstant' 'doubleConstant' */
+            /* no possible signal */
+            /* [xxx] scope */
+            c == '.'/*'\u002E'(46)*/) {
+                ExtendToken(context, st.@doubleConstant);
+                wrap.currentState = lexicalState108;
+            }
+            /* user-input condition code */
+            /* [0-9] */
+            else if (/* possible Vt : 'number' 'intConstant' 'uintConstant' 'floatConstant' 'doubleConstant' */
+            /* no possible signal */
+            /* [xxx] scope */
+            '0'/*'\u0030'(48)*/ <= c && c <= '9'/*'\u0039'(57)*/) {
+                ExtendToken(context, st.@number, st.@intConstant, st.@doubleConstant);
+                wrap.currentState = lexicalState81;
+            }
+            /* deal with everything else. */
+            else {
+                AcceptToken(st.@number, /* st.@intConstant, st.@doubleConstant,  */context);
+                wrap.currentState = lexicalState0;
+            }
+
+
+        };
+#endif
+
+    }
+}
+

@@ -1,0 +1,2051 @@
+var Jed=function(){"use strict";var a,u,c,l;a={"(":9,"!":8,"*":7,"/":7,"%":7,"+":6,"-":6,"<":5,"<=":5,">":5,">=":5,"==":4,"!=":4,"&&":3,"||":2,"?":1,"?:":1},u=["(","?"],c={")":["("],":":["?","?:"]},l=/<=|>=|==|!=|&&|\|\||\?:|\(|!|\*|\/|%|\+|-|<|>|\?|\)|:/;var p={"!":function(t){return!t},"*":function(t,n){return t*n},"/":function(t,n){return t/n},"%":function(t,n){return t%n},"+":function(t,n){return t+n},"-":function(t,n){return t-n},"<":function(t,n){return t<n},"<=":function(t,n){return t<=n},">":function(t,n){return n<t},">=":function(t,n){return n<=t},"==":function(t,n){return t===n},"!=":function(t,n){return t!==n},"&&":function(t,n){return t&&n},"||":function(t,n){return t||n},"?:":function(t,n,e){if(t)throw n;return e}};function o(t){var n=function(t){for(var n,e,r,i,o=[],s=[];n=t.match(l);){for(e=n[0],(r=t.substr(0,n.index).trim())&&o.push(r);i=s.pop();){if(c[e]){if(c[e][0]===i){e=c[e][1]||e;break}}else if(0<=u.indexOf(i)||a[i]<a[e]){s.push(i);break}o.push(i)}c[e]||s.push(e),t=t.substr(n.index+e.length)}return(t=t.trim())&&o.push(t),o.concat(s.reverse())}(t);return function(t){return function(t,n){var e,r,i,o,s,a,u=[];for(e=0;e<t.length;e++){if(s=t[e],o=p[s]){for(r=o.length,i=Array(r);r--;)i[r]=u.pop();try{a=o.apply(null,i)}catch(t){return t}}else a=n.hasOwnProperty(s)?n[s]:+s;u.push(a)}return u[0]}(n,t)}}var r={contextDelimiter:"",onMissingKey:null};function i(t,n){var e;for(e in this.data=t,this.pluralForms={},this.options={},r)this.options[e]=void 0!==n&&e in n?n[e]:r[e]}i.prototype.getPluralForm=function(t,n){var e,r,i=this.pluralForms[t];return i||("function"!=typeof(r=(e=this.data[t][""])["Plural-Forms"]||e["plural-forms"]||e.plural_forms)&&(r=function(t){var n=o(t);return function(t){return+n({n:t})}}(function(t){var n,e,r;for(n=t.split(";"),e=0;e<n.length;e++)if(0===(r=n[e].trim()).indexOf("plural="))return r.substr(7)}(e["Plural-Forms"]||e["plural-forms"]||e.plural_forms))),i=this.pluralForms[t]=r),i(n)},i.prototype.dcnpgettext=function(t,n,e,r,i){var o,s,a;return o=void 0===i?0:this.getPluralForm(t,i),s=e,n&&(s=n+this.options.contextDelimiter+e),(a=this.data[t][s])&&a[o]?a[o]:(this.options.onMissingKey&&this.options.onMissingKey(e,t),0===o?e:r)};var n=/%(((\d+)\$)|(\(([$_a-zA-Z][$_a-zA-Z0-9]*)\)))?[ +0#-]*\d*(\.(\d+|\*))?(ll|[lhqL])?([cduxXefgsp%])/g;function s(t,o){var s;if(!Array.isArray(o))for(o=new Array(arguments.length-1),s=1;s<arguments.length;s++)o[s-1]=arguments[s];return s=1,t.replace(n,function(){var t,n,e,r,i;return t=arguments[3],n=arguments[5],e=arguments[7],"%"===(r=arguments[9])?"%":("*"===e&&(e=o[s-1],s++),void 0!==n?o[0]&&"object"==typeof o[0]&&o[0].hasOwnProperty(n)&&(i=o[0][n]):(void 0===t&&(t=s),s++,i=o[t-1]),"f"===r?i=parseFloat(i)||0:"d"===r&&(i=parseInt(i)||0),void 0!==e&&("f"===r?i=i.toFixed(e):"s"===r&&(i=i.substr(0,e))),null!=i?i:"")})}var f={locale_data:{messages:{"":{domain:"messages",lang:"en",plural_forms:"nplurals=2; plural=(n != 1);"}}},domain:"messages"};function e(t,n){this._key=t,this._instance=n}function h(t){var n,e,r;for(n in t=t||{},this.options={},f)this.options[n]=t[n]||f[n];for(n in this.options.locale_data)(e=this.options.locale_data[n][""]).plural_forms||e["Plural-Forms"]||e["plural-forms"]||(e.plural_forms=f.locale_data.messages.plural_forms);if(t.domain&&!this.options.locale_data[this.options.domain])throw new Error("Text domain set to non-existent domain: `"+t.domain+"`");this.textdomain(this.options.domain),this.sprintf=s,r=this.tannin=new i(this.options.locale_data,{contextDelimiter:h.context_delimiter,onMissingKey:t.missing_key_callback}),Object.defineProperty(this.options,"locale_data",{get:function(){return r.data},set:function(t){r.data=t}}),h.instances.push(this)}return e.prototype.onDomain=function(t){return this._domain=t,this},e.prototype.withContext=function(t){return this._context=t,this},e.prototype.ifPlural=function(t,n){return this._val=t,this._pkey=n,this},e.prototype.fetch=function(t){var n;return Array.isArray(t)||(t=Array.prototype.slice.call(arguments,0)),n=this._instance.dcnpgettext(this._domain,this._context,this._key,this._pkey,this._val),t.length?h.sprintf(n,t):n},h.instances=[],Object.defineProperty(h,"context_delimiter",{get:function(){return h.instances.length?h.instances[0].tannin.options.contextDelimiter:String.fromCharCode(4)},set:function(n){h.instances.forEach(function(t){t.tannin.options.contextDelimiter=n})}}),h.sprintf=s,(h.PF={}).compile=function(t){var n=new i({default:{"":{plural_forms:t}}});return function(t){return n.getPluralForm("default",t)}},h.prototype.textdomain=function(t){if(!t)return this._textdomain;this._textdomain=t},h.prototype.dcnpgettext=function(t,n,e,r,i){return r=r||e,t=t||this._textdomain,this.tannin.dcnpgettext(t,n,e,r,i)},h.prototype.translate=function(t){return new e(t,this)},h.prototype.gettext=function(t){return this.dcnpgettext.call(this,void 0,void 0,t)},h.prototype.dgettext=function(t,n){return this.dcnpgettext.call(this,t,void 0,n)},h.prototype.dcgettext=function(t,n){return this.dcnpgettext.call(this,t,void 0,n)},h.prototype.ngettext=function(t,n,e){return this.dcnpgettext.call(this,void 0,void 0,t,n,e)},h.prototype.dngettext=function(t,n,e,r){return this.dcnpgettext.call(this,t,void 0,n,e,r)},h.prototype.dcngettext=function(t,n,e,r){return this.dcnpgettext.call(this,t,void 0,n,e,r)},h.prototype.pgettext=function(t,n){return this.dcnpgettext.call(this,void 0,t,n)},h.prototype.dpgettext=function(t,n,e){return this.dcnpgettext.call(this,t,n,e)},h.prototype.dcpgettext=function(t,n,e){return this.dcnpgettext.call(this,t,n,e)},h.prototype.npgettext=function(t,n,e,r){return this.dcnpgettext.call(this,void 0,t,n,e,r)},h.prototype.dnpgettext=function(t,n,e,r,i){return this.dcnpgettext.call(this,t,n,e,r,i)},h}();;
+/*
+ * WordPress REST Proxy Request
+ * Name:   WPCOM_Proxy_Request
+ * Author: Dan Walmsley <dan.walmsley@automattic.com>, Beau Collins <beaucollins@gmail.com>
+ *
+ * A function that makes proxy requests (using window.postMessage) to the
+ * WordPress.com REST api (https://public-api.wordpress.com/rest/v1/help)
+ *
+ * Usage:
+ * 	window.WPCOM_Proxy_Request( path );
+ * 	window.WPCOM_Proxy_Request( path, request );
+ * 	window.WPCOM_Proxy_Request( request );
+ *
+ * Arguments:
+ * 	path     : the REST URL path to request (will be appended to the rest base URL)
+ * 	request  : request parameters: method (string), path (string), query (object), body (object)
+ *
+ * Returns
+ * 	A promise()-like object whose callbacks accept the following arguments:
+ * 		response : the JSON response for your request
+ * 		statusCode : the HTTP statusCode for your request
+ *
+ * Example:
+ * 	// For simple GET requests
+ * 	window.WPCOM_Proxy_Request( '/me' ).done( function( response, statusCode ){
+ * 		/// ...
+ * 	} );
+ *
+ * 	// More Advanced GET request
+ * 	window.WPCOM_Proxy_Request( {
+ * 		path: '/sites/en.blog.wordpress.com/posts',
+ * 		query: { number: 100 }
+ * 	} );
+ *
+ * 	// POST request
+ * 	window.WPCOM_Proxy_Request( {
+ * 		method: 'POST',
+ * 		path: '/sites/en.blog.wordpress.com/posts/9776/replies/new',
+ * 		body: { content: 'This is a comment' }
+ * 	} );
+ */
+(function(){
+	// don't run this more than once per context
+	if ( window.WPCOM_Proxy_Request) {
+		return;
+	}
+
+	// polyfill for jQuery Deferred
+	var Deferred = function() {
+		this._done = [];
+		this._fail = [];
+	};
+
+	Deferred.prototype = {
+		execute: function(list, args){
+			var i = list.length;
+
+			// convert arguments to an array
+			// so they can be sent to the
+			// callbacks via the apply method
+			args = Array.prototype.slice.call(args);
+
+			while(i--) list[i].apply(null, args);
+		},
+		resolve: function(){
+			this.execute(this._done, arguments);
+		},
+		reject: function(){
+			this.execute(this._fail, arguments);
+		},
+		done: function(callback){
+			this._done.push(callback);
+			return this;
+		},
+		fail: function(callback){
+			this._fail.push(callback);
+			return this;
+		},
+		promise: function() {
+			var x = {};
+			x.done = this.done.bind( this );
+			x.fail = this.fail.bind( this );
+			return x;
+		}
+	};
+
+	// polyfill for jQuery.extend
+	var extend = function( out ) {
+		out = out || {};
+
+		for (var i = 1; i < arguments.length; i++) {
+			if (!arguments[i])
+				continue;
+
+			for (var key in arguments[i]) {
+				if (arguments[i].hasOwnProperty(key))
+					out[key] = arguments[i][key];
+			}
+		}
+
+		return out;
+	}
+
+	var proxy,
+	origin         = window.location.protocol + '//' + window.location.hostname,
+	proxyOrigin    = 'https://public-api.wordpress.com',
+
+	ready          = false,
+	supported      = true, // assume window.postMessage is supported
+	usingPM        = false, // If we don't have window.postMessage, postmessage.js may be available
+	structuredData = true, // supports passing of structured data
+
+	bufferedOps    = [],   // store requests while we wait for the proxy iframe to initialize
+
+	// Store `Deferred` objects for each pending request.
+	deferreds      = {},
+
+	// Store `this` context objects for each pending request, if given.
+	callbackContexts = {},
+
+	/**
+	 * Firefox apparently doesn't like sending `File` instances cross-domain.
+	 * It results in a "DataCloneError: The object could not be cloned." error.
+	 * Apparently this is for "security purposes" but it's actually silly if that's
+	 * the argument because we can just read the File manually into an ArrayBuffer
+	 * and we can work around this "security restriction".
+	 *
+	 * See: https://bugzilla.mozilla.org/show_bug.cgi?id=722126#c8
+	 */
+	 hasFileSerializationBug = false,
+
+	 // Can we pass structured data via postMessage or just strings?
+	check = function( event ){
+		structuredData = 'object' === typeof event.data;
+		window.removeEventListener( 'message', check );
+		buildProxy();
+	},
+
+	// Initialize the proxy iframe
+	buildProxy = function() {
+		// Start listening to messages
+		if ( !usingPM ) {
+			window.addEventListener( 'message', receive );
+		} else {
+			pm.bind( 'proxy', function( e ) { receive( e ); } );
+		}
+
+		proxy = document.createElement( 'iframe' );
+		proxy.src = 'https://public-api.wordpress.com/wp-admin/rest-proxy/#' + origin;
+		proxy.style.display = 'none';
+
+		// Process any buffered API calls after the iframe proxy is ready
+		proxy.addEventListener( 'load', function() {
+			var request;
+			ready = true;
+			while ( request = bufferedOps.shift() ) {
+				postRequest( request );
+			}
+		});
+
+		var appendProxy = function() {
+			document.body.appendChild( proxy );
+		};
+
+		// Bring it
+		if (document.readyState === 'complete' || document.readyState !== 'loading') {
+			appendProxy();
+		} else {
+			document.addEventListener('DOMContentLoaded', appendProxy);
+		}
+	},
+
+	// Message event listener
+	receive = function( e ){
+		var data,
+			deferred_id,
+			deferred,
+			context;
+
+		if ( !usingPM ) {
+			if ( e.origin !== proxyOrigin ) {
+				return;
+			}
+
+			data = structuredData ? e.data : JSON.parse( e.data );
+		} else {
+			data = e;
+		}
+
+		if ( !data || !data.length ) {
+			return;
+		}
+
+		deferred_id = data[ data.length - 1 ];
+
+		if ( 'undefined' === typeof deferreds[deferred_id] ) {
+			return;
+		}
+
+		deferred = deferreds[deferred_id];
+		delete deferreds[deferred_id];
+
+		context = callbackContexts[ deferred_id ];
+		if ( context ) {
+			// `resolveWith` takes args as an array.
+			deferred.resolveWith.call( deferred, context, data.slice( 0, -1 ) );
+			delete callbackContexts[ deferred_id ];
+		} else {
+			// `resolve` takes args as a list of parameters.
+			deferred.resolve.apply( deferred, data.slice( 0, -1 ) );
+		}
+	},
+
+	// Calls API
+	perform = function() {
+		var request = buildRequest.apply( null, arguments );
+
+		postRequest( request );
+
+		return deferreds[request.callback].promise();
+	},
+
+	// Buffers API request
+	buffer = function() {
+		var request = buildRequest.apply( null, arguments );
+
+		bufferedOps.push( request );
+
+		return deferreds[request.callback].promise();
+	},
+
+	// Submits the API request to the proxy iframe
+	postRequest = function( request ) {
+		var files = findFilesInRequest( request ),
+	 		data = structuredData ? request : JSON.stringify( request );
+
+		if ( hasFileSerializationBug && files.has_files ) {
+			postAsArrayBuffer( request, files );
+		} else {
+			try {
+				sendPostMessage( data );
+			} catch( e ) {
+				// were we trying to serialize a `File`?
+				if ( files.has_files ) {
+
+					// cache this check for the next API request
+					hasFileSerializationBug = true;
+					postAsArrayBuffer( request, files );
+				} else {
+					// not interested, rethrow
+					throw e;
+				}
+			}
+		}
+	},
+
+	sendPostMessage = function( data ) {
+		if ( !usingPM ) {
+			proxy.contentWindow.postMessage( data, proxyOrigin );
+		} else if ( window.pm ) {
+			pm( {
+				data  : data,
+				type  : 'proxy',
+				target: proxy.contentWindow,
+				url   : 'https://public-api.wordpress.com/wp-admin/rest-proxy/#' + origin,
+				origin: proxyOrigin
+			} );
+		}
+	},
+
+	postAsArrayBuffer = function( request, files ) {
+		if ( ! files.has_files )
+			return;
+
+		for(i=0; i<files.file_keys.length; ++i) {
+			var reader = new FileReader(),
+				key = request.formData[i][0],
+				file = request.formData[i][1];
+
+			reader.onload = function(e) {
+				request.formData[i] = [ key, {
+					fileContents: e.target.result,
+					fileName : file.name,
+					mimeType: file.type
+				} ];
+
+				var are_there_still_files = findFilesInRequest( request );
+				if ( ! are_there_still_files.has_files ) {
+					proxy.contentWindow.postMessage( request, proxyOrigin );
+				}
+			};
+
+			reader.readAsArrayBuffer( file );
+		}
+	},
+
+	findFilesInRequest = function( request ) {
+		var files = {
+			has_files : false,
+			file_keys : []
+		};
+
+		if ( ! structuredData || ! request.formData || request.formData.length <= 0 )
+			return files;
+
+		for(i=0; i<request.formData.length; i++) {
+			var arr = request.formData[i];
+			var maybe_a_file = arr[1];
+			if ( 'object' == typeof maybe_a_file && '[object File]' == Object.prototype.toString.call( maybe_a_file ) ) {
+				files.has_files = true;
+				files.file_keys.push( i );
+			}
+		}
+
+		return files;
+	},
+
+	// Builds the postMessage request object
+	buildRequest = function() {
+		var args     = [].slice.call( arguments );
+		    request  = args.pop(),
+		    path     = args.pop(),
+		    deferred = new Deferred(),
+			deferred_id = Math.random();
+
+		// @todo - remove this back-compat code
+		if ( 'function' === typeof( request ) ) {
+			deferred.done( request );
+			request = path;
+			path    = args.pop();
+		}
+
+		if ( 'string' === typeof( request ) ) {
+			request = { path: request };
+		}
+
+		if ( path ) {
+			request.path = path;
+		}
+
+		deferreds[deferred_id] = deferred;
+
+		if ( request.context ) {
+			callbackContexts[ deferred_id ] = request.context;
+			// Trying to pass functions through `postMessage` is a bad time.
+			request = extend( {}, request );
+			delete request.context;
+		}
+
+		request.callback = deferred_id;
+		request.supports_args = true; // supports receiving variable amount of arguments
+		return request;
+	};
+
+	// Step 1: do we have postMessage? ( in IE8, typeof window.postMessage == 'object' )
+	if ( [ 'function', 'object' ].indexOf( typeof window.postMessage ) >= 0 ) {
+		// Step 2: Check if we can pass structured data or just strings
+		window.addEventListener( 'message', check );
+		window.postMessage( {}, origin );
+	} else if ( window.pm ) {
+		usingPM = true;
+		// Step 2: We can always just used structured data.
+		buildProxy();
+	} else {
+		supported = false;
+	}
+
+	window.WPCOM_Proxy_Request = function(){
+		if ( !supported ) {
+			throw( 'Browser does not support window.postMessage' );
+		}
+
+		if ( ready ) {
+			// Make API request
+			return perform.apply( null, arguments );
+		} else {
+			// Buffer API request
+			return buffer.apply( null, arguments );
+		}
+	};
+
+	window.WPCOM_Proxy_Rebuild = function() {
+		if ( !ready )
+			return;
+
+		ready = false;
+		proxy.parentNode.removeChild( proxy );
+
+		buildProxy();
+	};
+})();
+;
+/*
+ *  - wpLikes wraps all the proxied REST calls
+ */
+var wpLikes;
+var resizeEvents = {};
+
+/*
+ * Helpers
+ */
+function isChildOverflowingWidth(parent, child) {
+  const parentRect = parent.getBoundingClientRect();
+  const childRect = child.getBoundingClientRect();
+
+  return childRect.right > parentRect.right || childRect.left < parentRect.left;
+}
+
+// Hide the like button label if it doesn't fit.
+function checkLikeButtonSize( iframe ) {
+	const doc       = iframe.document;
+	const buttons   = doc.querySelectorAll('.wpl-button');
+
+	buttons.forEach(function( button ) {
+		const link   = button.querySelector('a');
+		const label  = button.querySelector('a > span');
+
+		label.style.display = 'block';
+		if ( isChildOverflowingWidth( button, link ) || isChildOverflowingWidth( link, label ) ) {
+			label.style.display = 'none';
+		}
+	});
+}
+
+function registerResizeListener( iframe ) {
+	if ( resizeEvents[iframe.name] ) {
+		return;
+	}
+
+	resizeEvents[iframe.name] = () => checkLikeButtonSize( iframe );
+	iframe.addEventListener( 'resize', resizeEvents[iframe.name] );
+}
+
+/*!
+	https://gist.github.com/marlun78/2701678
+	Underscore.js templates as a standalone implementation.
+	JavaScript micro-templating, similar to John Resig's implementation.
+	Underscore templates documentation: http://documentcloud.github.com/underscore/#template
+	Modifyed by marlun78
+*/
+( function () {
+	'use strict';
+
+	// By default, Underscore uses ERB-style template delimiters, change the
+	// following template settings to use alternative delimiters.
+	var settings = {
+		evaluate: /<%([\s\S]+?)%>/g,
+		interpolate: /<%=([\s\S]+?)%>/g,
+		escape: /<%-([\s\S]+?)%>/g,
+	};
+
+	// When customizing `templateSettings`, if you don't want to define an
+	// interpolation, evaluation or escaping regex, we need one that is
+	// guaranteed not to match.
+	var noMatch = /.^/;
+
+	// Certain characters need to be escaped so that they can be put into a
+	// string literal.
+	var escapes = {
+		'\\': '\\',
+		"'": "'",
+		r: '\r',
+		n: '\n',
+		t: '\t',
+		u2028: '\u2028',
+		u2029: '\u2029',
+	};
+
+	for ( var p in escapes ) {
+		escapes[ escapes[ p ] ] = p;
+	}
+
+	var escaper = /\\|'|\r|\n|\t|\u2028|\u2029/g;
+
+	var tmpl = function ( text, data, objectName ) {
+		settings.variable = objectName;
+
+		// Compile the template source, taking care to escape characters that
+		// cannot be included in a string literal and then unescape them in code
+		// blocks.
+		var source =
+			"__p+='" +
+			text
+				.replace( escaper, function ( match ) {
+					return '\\' + escapes[ match ];
+				} )
+				.replace( settings.escape || noMatch, function ( match, code ) {
+					return "'+\nwindow.escapeHTML(" + unescape( code ) + ")+\n'";
+				} )
+				.replace( settings.interpolate || noMatch, function ( match, code ) {
+					return "'+\n(" + unescape( code ) + ")+\n'";
+				} )
+				.replace( settings.evaluate || noMatch, function ( match, code ) {
+					return "';\n" + unescape( code ) + "\n;__p+='";
+				} ) +
+			"';\n";
+
+		// If a variable is not specified, place data values in local scope.
+		if ( ! settings.variable ) {
+			source = 'with(obj||{}){\n' + source + '}\n';
+		}
+
+		source =
+			"var __p='';var print=function(){__p+=Array.prototype.join.call(arguments, '')};\n" +
+			source +
+			'return __p;\n';
+
+		var render = new Function( settings.variable || 'obj', source );
+
+		if ( data ) {
+			return render( data );
+		}
+
+		var template = function ( templateData ) {
+			return render.call( this, templateData );
+		};
+
+		// Provide the compiled function source as a convenience for build time
+		// precompilation.
+		template.source = 'function(' + ( settings.variable || 'obj' ) + '){\n' + source + '}';
+
+		return template;
+	};
+
+	window.tmpl = tmpl;
+} )();
+
+/**
+ * Escape function brought in from Underscore.js
+ */
+( function () {
+	var escapeMap = {
+		'&': '&amp;',
+		'<': '&lt;',
+		'>': '&gt;',
+		'"': '&quot;',
+		"'": '&#x27;',
+		'`': '&#x60;',
+	};
+
+	var createEscaper = function ( map ) {
+		var escaper = function ( match ) {
+			return map[ match ];
+		};
+
+		var source = '(?:' + Object.keys( map ).join( '|' ) + ')';
+		var testRegexp = RegExp( source );
+		var replaceRegexp = RegExp( source, 'g' );
+		return function ( string ) {
+			string = string == null ? '' : '' + string;
+			return testRegexp.test( string ) ? string.replace( replaceRegexp, escaper ) : string;
+		};
+	};
+
+	window.escapeHTML = createEscaper( escapeMap );
+} )();
+
+( function () {
+	var extWin;
+	var i18n;
+
+	function throttleArgs(func, limit) {
+		let inThrottle;
+		let lastArgs;
+		return function() {
+			const args = arguments;
+			if ( !inThrottle || ( inThrottle && lastArgs !== JSON.stringify( args ) ) ) {
+				func.apply( this, args );
+				inThrottle = true;
+				lastArgs = JSON.stringify( args );
+				setTimeout( () => inThrottle = false, limit );
+			}
+		}
+	};
+
+	const AVATAR_DISPLAY_LIMIT = 5;
+
+	wpLikes = {
+		version: '',
+		lang: 'en',
+		langVersion: '',
+
+		jsonAPIbase: 'https://public-api.wordpress.com/rest/v1',
+		hasUpgradedProxy: false,
+		isLoggedIn: false,
+		masterReady: false,
+		requests: {},
+		me: false,
+		askedMe: false,
+		cache: [],
+		reblogsEnabled: false,
+
+		batches: [],
+
+		widgetDims: {},
+
+		login_blog_id: false,
+		login_post_id: false,
+		login_comment_id: false,
+		login_obj_id: false,
+		pre_login_action: '',
+
+		textStyles: {},
+		linkStyles: {},
+
+		likers: {},
+		total: {},
+
+		objSettings: {},
+
+		wpLikes: function () {
+			var info = wpLikes.splitParams( location.hash.replace( /^#/, '' ) );
+			if ( 'ver' in info ) {
+				wpLikes.version = info.ver;
+			}
+		},
+
+		getAllFrames: function( blogId, postId ) {
+
+			const total = window.parent.frames.length;
+			const names = [];
+			let i = 0;
+
+			do {
+				// Collect all the frame names while
+				// avoiding cross-site errors being thrown.
+				try {
+					names.push( window.parent.frames[i].name );
+				} catch( e ) {}
+				i++;
+			} while ( i < total );
+
+			// From all the frame names that we've collected,
+			// look for frames that belong to us.
+			// Example iframe: <iframe class="post-likes-widget jetpack-likes-widget" name="like-post-frame-202566594-34-65a8d73d754ec" src="https://widgets.wp.com/likes/?ver=13.1-a.2#blog_id=202566594&amp;post_id=34&amp;origin=yoursite&amp;obj_id=202566594-34-65a8d73d754ec&amp;n=1&amp;block=1" ...></iframe>
+
+			const frames = [];
+			names.forEach(name => {
+
+				// Skip irrelevant frames
+				if ( name.indexOf( 'like-post-frame' ) !== 0 ) {
+					return;
+				}
+
+				// Get frames
+				const frame = window.parent.frames[ name ];
+
+				// Further filter by specific blogId & postId if provided.
+				if ( blogId && postId ) {
+					const hash = frame.location.hash;
+					const params = new URLSearchParams( hash.substr( 1 ) );
+
+					if ( params.get('blog_id') == blogId && params.get('post_id') == postId ) {
+						frames.push( frame );
+					}
+				// Else include this frame
+				} else {
+					frames.push( frame );
+				}
+			});
+
+			return frames;
+		},
+
+		resizeFrame: function ( name ) {
+			var likeBox = window.parent.frames[ name ].document.querySelector( '.wpl-likebox' );
+			var likeboxHeight = this.outerHeight( likeBox );
+			var likeboxWidth = this.outerWidth( likeBox );
+
+			wpLikes.postMessage(
+				{
+					action: 'resize',
+					name: name,
+					height: likeboxHeight,
+					width: likeboxWidth,
+				},
+				parent,
+				'resizeMessage'
+			);
+		},
+
+		likePost: function ( blog_id, post_id, success, fail ) {
+			return this.ajax( {
+				type: 'POST',
+				path: '/sites/' + blog_id + '/posts/' + post_id + '/likes/new',
+				query: 'source=post_flair',
+				success: success,
+				error: fail,
+				blogId: blog_id,
+				postId: post_id,
+			} );
+		},
+
+		unlikePost: function ( blog_id, post_id, success, fail ) {
+			return this.ajax( {
+				type: 'POST',
+				path: '/sites/' + blog_id + '/posts/' + post_id + '/likes/mine/delete',
+				success: success,
+				error: fail,
+				blogId: blog_id,
+				postId: post_id,
+			} );
+		},
+
+		likeComment: function ( blog_id, comment_id, success, fail ) {
+			return this.ajax( {
+				type: 'POST',
+				path: '/sites/' + blog_id + '/comments/' + comment_id + '/likes/new',
+				success: success,
+				error: fail,
+				blogId: blog_id,
+				commentId: comment_id,
+			} );
+		},
+
+		unlikeComment: function ( blog_id, comment_id, success, fail ) {
+			return this.ajax( {
+				type: 'POST',
+				path: '/sites/' + blog_id + '/comments/' + comment_id + '/likes/mine/delete',
+				success: success,
+				error: fail,
+				blogId: blog_id,
+				commentId: comment_id,
+			} );
+		},
+
+		getPostLikes: function ( blog_id, post_id, success, fail, fromCache ) {
+			if ( typeof fromCache === 'undefined' ) {
+				var info = wpLikes.splitParams( location.hash.replace( /^#/, '' ) );
+				if ( 'ver' in info ) {
+					wpLikes.version = info.ver;
+				}
+			}
+			return this.ajax( {
+				type: 'GET',
+				path: '/sites/' + blog_id + '/posts/' + post_id + '/likes?chronological=true',
+				success: success,
+				error: fail,
+				fromCache: fromCache,
+				blogId: blog_id,
+				postId: post_id,
+			} );
+		},
+
+		getCommentLikes: function ( blog_id, comment_id, success, fail, fromCache ) {
+			if ( typeof fromCache === 'undefined' ) {
+				fromCache = true;
+			}
+			return this.ajax( {
+				type: 'GET',
+				path: '/sites/' + blog_id + '/comments/' + comment_id + '/likes',
+				success: success,
+				error: fail,
+				fromCache: fromCache,
+				blogId: blog_id,
+				commentId: comment_id,
+			} );
+		},
+
+		getMyInfo: (() => {
+
+			let request = null;
+
+			return ( success, fail ) => {
+
+				if ( wpLikes.me ) {
+					success( wpLikes.me, '/me' );
+					return;
+				}
+
+				if ( ! request ) {
+					request = wpLikes.ajax( {
+						type: 'GET',
+						path: '/me'
+					} );
+				}
+
+				request
+					.done( success )
+					.fail( fail );
+
+				// Stack consecutive calls as one
+				setTimeout(() => {
+					request = null;
+				}, 250);
+			}
+		})(),
+
+		splitParams: function ( queryString ) {
+			var params = {};
+
+			queryString.split( '&' ).forEach( function ( value ) {
+				var pair = value.split( '=' );
+				params[ pair[ 0 ] ] = decodeURIComponent( pair[ 1 ] );
+			} );
+
+			return params;
+		},
+
+		ajax: function ( options, batch ) {
+			var request = {
+				path: options.path,
+				method: options.type,
+				url: wpLikes.jsonAPIbase + options.path,
+			};
+
+			if ( batch && ! batch.batchFinished && options.path !== '/batch' ) {
+				batch.batchWaiting.push( options );
+				return;
+			}
+
+			if ( options.blogId && options.postId && options.path !== '/batch' ) {
+				let foundInitialBatchPost = false;
+
+				// Look for an initial batch for this post.
+				wpLikes.batches.forEach( function ( initialBatch ) {
+					if (
+						initialBatch.blogId === options.blogId &&
+						initialBatch.postId === options.postId &&
+						! initialBatch.batchFinished
+					) {
+						initialBatch.batchWaiting.push( options );
+						foundInitialBatchPost = true;
+						return;
+					}
+				} );
+
+				if ( foundInitialBatchPost ) {
+					return;
+				}
+			}
+
+			if ( options.blogId && options.commentId && options.path !== '/batch' ) {
+				let foundInitialBatchComment = false;
+
+				// Look for an initial batch for this comment.
+				wpLikes.batches.forEach( function ( initialBatch ) {
+					if (
+						initialBatch.blogId === options.blogId &&
+						initialBatch.commentId === options.commentId &&
+						! initialBatch.batchFinished
+					) {
+						initialBatch.batchWaiting.push( options );
+						foundInitialBatchComment = true;
+						return;
+					}
+				} );
+
+				if ( foundInitialBatchComment ) {
+					return;
+				}
+			}
+
+			if ( typeof options.fromCache === 'undefined' ) {
+				options.fromCache = true;
+			}
+
+			if ( options.path in wpLikes.cache && options.fromCache ) {
+				typeof options.success === 'function' &&
+					options.success( wpLikes.cache[ options.path ], options.path );
+				return;
+			}
+
+			if ( options.type.toLowerCase() === 'post' ) {
+				request.body = options.data;
+				request.query = options.query;
+			} else {
+				request.query = options.data;
+			}
+
+			var makeProxyCall = function () {
+				return window.WPCOM_Proxy_Request( request, function ( response, statusCode ) {
+					if ( statusCode === 200 ) {
+						typeof options.success === 'function' && options.success( response, request.path );
+					} else {
+						typeof options.error === 'function' && options.error( statusCode, request.path );
+					}
+				} );
+			};
+
+			if ( wpLikes.hasUpgradedProxy ) {
+				return makeProxyCall();
+			}
+
+			return window
+				.WPCOM_Proxy_Request( { metaAPI: { accessAllUsersBlogs: true } } )
+				.done( function () {
+					wpLikes.hasUpgradedProxy = true;
+					makeProxyCall();
+				} );
+		},
+
+		/* postMessage */
+		/* The messageType argument specifies the message type */
+		/* Likes messages use likesMessage */
+		/* An example of a message that doesn't use likesMessage is the resize request */
+		postMessage: function ( message, target, messageType ) {
+			if ( typeof message === 'string' ) {
+				try {
+					message = JSON.parse( message );
+				} catch ( e ) {
+					return;
+				}
+			}
+
+			if ( typeof messageType === 'undefined' ) {
+				messageType = 'likesMessage';
+			}
+
+			if ( target && typeof target.postMessage === 'function' ) {
+				try {
+					target.postMessage(
+						JSON.stringify( {
+							type: messageType,
+							data: message,
+						} ),
+						'*'
+					);
+				} catch ( e ) {
+					return;
+				}
+			}
+		},
+
+		openLoginWindow: function () {
+			// Remove any lingering login window from any previous aborted login
+			if ( extWin ) {
+				if ( ! extWin.closed ) {
+					extWin.close();
+				}
+				extWin = false;
+			}
+
+			// Open new window for user to login in
+			// We want to open it here (from the master iframe) so that our popup won't be blocked
+			// (this keeps us in the context of the user's click)
+			var url = 'https://r-login.wordpress.com/public.api/connect/?action=request&service=wordpress&blog_id=' + encodeURIComponent( wpLikes.login_blog_id );
+
+			extWin = window.open(
+				url,
+				'likeconn',
+				'status=0,toolbar=0,location=1,menubar=0,directories=0,resizable=1,scrollbars=1,height=660,width=500'
+			);
+		},
+
+		outerWidth: function ( el ) {
+			var width = el.offsetWidth;
+			var style = getComputedStyle( el );
+			if ( style ) {
+				width += parseInt( style.marginLeft ) + parseInt( style.marginRight );
+			}
+			return width;
+		},
+
+		outerHeight: function ( el ) {
+			var height = el.offsetHeight;
+			var style = getComputedStyle( el );
+			if ( style ) {
+				height += parseInt( style.marginTop ) + parseInt( style.marginBottom );
+			}
+			return height;
+		},
+
+		readMessage: function ( msg ) {
+			var event = msg.data;
+
+			if ( typeof event.event === 'undefined' ) {
+				return;
+			} else if ( event.event === 'login' && event.success && ! wpLikes.isLoggedIn ) {
+				// Increment a statsd counter when the login popup successfully reports back and the action can proceed
+				const loginType = event.type === 'rlt' ? 'rlt' : 'cookie';
+				let action = 'unknown';
+				if ( wpLikes.pre_login_action === 'like' && wpLikes.login_post_id ) {
+					action = 'post_like';
+				} else if ( wpLikes.pre_login_action === 'reblog' && wpLikes.login_post_id ) {
+					action = 'reblog';
+				} else if ( wpLikes.login_comment_id ) {
+					action = 'comment_like';
+				}
+				new Image().src = `https://pixel.wp.com/boom.gif?json={"beacons":["c3po.login.${ loginType }.${ action }:1|c"]}`;
+
+				// Remove any lingering login window
+				if ( extWin ) {
+					if ( ! extWin.closed ) {
+						extWin.close();
+					}
+					extWin = false;
+				}
+
+				// If the RLT token is available, then we must have auth'd successfully
+				wpLikes.isLoggedIn = true;
+
+				if ( wpLikes.pre_login_action === 'like' && wpLikes.login_post_id ) {
+					wpLikes.getPostLikes(
+						wpLikes.login_blog_id,
+						wpLikes.login_post_id,
+						function ( response ) {
+
+							const blogId = wpLikes.login_blog_id;
+							const postId = wpLikes.login_post_id;
+							const frames = wpLikes.getAllFrames( blogId, postId );
+
+							frames.forEach( frame => {
+								const objId = frame.name.replace( 'like-post-frame-', '' );
+								const objSettings = wpLikes.objSettings[ objId ];
+								wpLikes.displayWidget(
+									response,
+									objSettings.path,
+									objSettings.info,
+									objSettings.request
+								);
+							} );
+
+							if ( ! response.i_like ) {
+								wpLikes.doLikeMultiple( blogId, postId );
+							}
+						},
+						function () {},
+						false
+					);
+				}
+
+				if ( wpLikes.pre_login_action === 'reblog' && wpLikes.login_post_id ) {
+					var reblogButton = window.parent.frames['like-post-frame-' + wpLikes.login_obj_id].document.querySelector( '.wpl-button a.reblog' );
+					if ( reblogButton ) {
+						wpLikes.doReblog(wpLikes.login_blog_id, wpLikes.login_post_id, wpLikes.login_obj_id, reblogButton);
+					}
+				}
+
+				if ( wpLikes.login_comment_id ) {
+					wpLikes.getCommentLikes(
+						wpLikes.login_blog_id,
+						wpLikes.login_comment_id,
+						( results ) => {
+							var links = window.parent.frames[
+								'like-comment-frame-' + wpLikes.login_obj_id
+							].document.querySelectorAll( 'a.comment-like-link' );
+
+							if ( links.length === 0 ) {
+								return;
+							}
+
+							links.forEach( ( link ) => {
+								link.classList.add( 'loading' );
+
+								if ( ! results.i_like ) {
+									wpLikes.likeComment(
+										wpLikes.login_blog_id,
+										wpLikes.login_comment_id,
+										( r ) => {
+											link.parentNode.classList.remove( 'comment-not-liked' );
+											link.parentNode.classList.add( 'comment-liked' );
+											link.textContent = getCommentLikeFeedback( r.i_like, r.like_count );
+										}
+									);
+								} else {
+									wpLikes.unlikeComment(
+										wpLikes.login_blog_id,
+										wpLikes.login_comment_id,
+										( r ) => {
+											link.parentNode.classList.remove( 'comment-liked' );
+											link.parentNode.classList.add( 'comment-not-liked' );
+											link.textContent = getCommentLikeFeedback( r.i_like, r.like_count );
+										}
+									);
+								}
+
+								link.classList.remove( 'loading' );
+							} );
+						},
+						function () {},
+						false
+					);
+				}
+			} else if ( event.event === 'injectStyles' ) {
+				wpLikes.textStyles = event.textStyles;
+				wpLikes.linkStyles = event.linkStyles;
+			} else if ( event.event === 'initialBatch' ) {
+				wpLikes.initialBatch( event.requests );
+			} else if ( event.event === 'reblogsEnabled' ) {
+				wpLikes.reblogsEnabled = true;
+			} else if ( event.event === 'loadLikeWidget' ) {
+				if ( window.parent.frames[ event.name ] !== undefined ) {
+					var info = wpLikes.splitParams(
+						window.parent.frames[ event.name ].location.hash.replace( /^#/, '' )
+					);
+					var path;
+					var request;
+
+					if ( info.obj_id && info.obj_id.match( /[^\w-]/ ) ) {
+						return;
+					}
+
+					if ( info.blog_id && info.post_id && info.origin ) {
+						path = '/sites/' + info.blog_id + '/posts/' + info.post_id + '/likes';
+						if ( typeof info.slim === 'undefined' ) {
+							info.slim = false;
+						}
+
+						request = {
+							type: 'post',
+							blog_id: info.blog_id,
+							post_id: info.post_id,
+							obj_id: info.obj_id,
+							width: event.width,
+							slim: info.slim,
+						};
+						wpLikes.objSettings[ info.obj_id ] = { path, info, request };
+						wpLikes.requests[ path ] = request;
+						wpLikes.getPostLikes( info.blog_id, info.post_id, ( response, path ) => wpLikes.displayWidget( response, path, info, request ) );
+					} else if (
+						info.blog_id &&
+						info.comment_id &&
+						info.origin
+					) {
+						path = '/sites/' + info.blog_id + '/comments/' + info.comment_id + '/likes';
+						request = {
+							type: 'comment',
+							blog_id: info.blog_id,
+							comment_id: info.comment_id,
+							obj_id: info.obj_id,
+							width: event.width,
+						};
+						wpLikes.requests[ path ] = request;
+
+						wpLikes.getCommentLikes( info.blog_id, info.comment_id, ( response, path ) => wpLikes.displayWidget( response, path, info, request ) );
+					}
+				}
+			} else if ( event.event === 'didReblog' && 'obj_id' in event ) {
+				// Update the display of the button
+				var wplbuttonlink = window.parent.frames[
+					'like-post-frame-' + event.obj_id
+				].document.querySelector( '.wpl-button a.reblog' );
+				wplbuttonlink.classList.remove( 'reblog' );
+				wplbuttonlink.classList.add( 'reblogged' );
+
+				wplbuttonlink.innerHTML = '<span>' + i18n.translate( 'Reblogged' ).fetch() + '</span> ';
+				wplbuttonlink.style.display = null;
+			} else if ( event.event === 'focusLikesCount' && 'parent' in event ) {
+				var wplbuttonlink = window.parent.frames[ event.parent ].document.querySelector( '#other-gravatars' );
+				wplbuttonlink.focus();
+			}
+		},
+
+		siblings: function ( selector, el ) {
+			return Array.prototype.filter.call( el.parentNode.children, function ( child ) {
+				var matches = el.parentNode.querySelectorAll( selector );
+				var i = matches.length;
+				while ( --i >= 0 && matches.item( i ) !== child ) {
+					// Do nothing.
+				}
+				return child !== el && i > -1;
+			} );
+		},
+
+		doReblog: function( blog_id, post_id, obj_id, reblogButton ) {
+			if ( ! wpLikes.isLoggedIn ) {
+				wpLikes.login_blog_id = blog_id;
+				wpLikes.login_post_id = post_id;
+				wpLikes.login_obj_id  = obj_id;
+				wpLikes.pre_login_action = 'reblog';
+
+				new Image().src = 'https://pixel.wp.com/b.gif?v=wpcom-no-pv&x_likes=loggedout_reblog_click&baba=' + Math.random();
+				new Image().src = `https://pixel.wp.com/boom.gif?json={"beacons":["c3po.login.request.reblog:1|c"]}`;
+
+				return wpLikes.openLoginWindow();
+			} else {
+				if ( reblogButton.classList.contains( 'reblog' ) ) {
+					new Image().src = 'https://pixel.wp.com/g.gif?v=wpcom-no-pv&x_reblog_source=post_flair_click&baba=' + Math.random();
+					wpLikes.postMessage( { event: 'clickReblogFlair', obj_id: obj_id, post_id: post_id }, window.parent );
+				}
+			}
+		},
+
+		doLikeMultiple: function( blog_id, post_id ) {
+			const frames = wpLikes.getAllFrames( blog_id, post_id );
+			frames.forEach( frame => {
+				const obj_id = frame.name.replace( 'like-post-frame-', '' );
+				wpLikes.doLike( blog_id, post_id, obj_id );
+			});
+		},
+
+		doLike: function ( blog_id, post_id, obj_id ) {
+			if ( ! wpLikes.isLoggedIn ) {
+				wpLikes.login_blog_id = blog_id;
+				wpLikes.login_post_id = post_id;
+				wpLikes.login_obj_id = obj_id;
+				wpLikes.pre_login_action = 'like';
+
+				new Image().src = 'https://pixel.wp.com/b.gif?v=wpcom-no-pv&x_likes=loggedout_like_click&baba=' + Math.random();
+				new Image().src = `https://pixel.wp.com/boom.gif?json={"beacons":["c3po.login.request.post_like:1|c"]}`;
+
+				// User isn't logged in, so we should get them to do that.
+				wpLikes.throttledOpenLoginWindow();
+				return;
+			}
+
+			var wplbuttonlink = window.parent.frames[
+				'like-post-frame-' + obj_id
+			].document.querySelector( '.wpl-button a.like, .wpl-button a.liked' );
+			var wplbutton = wplbuttonlink.parentNode;
+			var wplcount = this.siblings( '.wpl-count', wplbutton )[ 0 ];
+			var wplavatars = this.siblings( '.wpl-avatars', wplbutton );
+			var wplcounttext = wplcount.querySelector( '.wpl-count-text' );
+
+			var likeText = '';
+
+			// Let the queueHandler know that the like button was pressed.
+			wpLikes.postMessage(
+				{
+					event: 'clickPostLike',
+					id: 'like-post-wrapper-' + obj_id,
+					total: wplbuttonlink.classList.contains( 'like' ) ? parseInt( wplcount.dataset.likes ) + 1 : parseInt( wplcount.dataset.likes ) - 1,
+				},
+				parent
+			);
+
+			if ( wplbuttonlink.classList.contains( 'like' ) ) {
+				var slim = wplbutton.parentNode.classList.contains( 'wpl-slim-likebox' );
+
+				// Figure out what the feedback text should say
+				const likesCount = wplcount.dataset.likes;
+				const newCount = parseInt( likesCount ) + 1;
+
+				if ( likesCount === '0' ) {
+					likeText =
+						'<span class="wpl-count-text">' +
+						i18n.translate( 'You like this.' ).fetch() +
+						'</span>';
+				} else {
+					likeText =
+						'<span class="wpl-count-text">' +
+						i18n.sprintf(
+							i18n.translate( '<a href="%1$s" id="%2$s">%3$s likes</a>' ).fetch(),
+							'#',
+							'other-gravatars',
+							'<span class="wpl-count-number">' + newCount + '</span>'
+						) +
+						'</span>';
+				}
+
+				wplcount.setAttribute( 'data-likes', newCount );
+
+				// Update the display of the button
+				wplbuttonlink.classList.remove( 'like' );
+				wplbuttonlink.classList.add( 'liked' );
+
+				wplbutton.classList.remove( 'like' );
+				wplbutton.classList.add( 'liked' );
+
+				wplcount.innerHTML = likeText;
+				wplcount.style.display = null;
+
+				if ( ! slim ) {
+					wpLikes.getMyInfo(
+						( me ) => {
+							me.css_class = 'wp-liker-me';
+
+							const key = blog_id + '-' + post_id;
+							const oldLikers = wpLikes.likers[ key ];
+							const newLikers = oldLikers.filter( liker => liker.ID !== me.ID );
+							newLikers.unshift( me );
+							const totalDiff = newLikers.length - oldLikers.length;
+							wpLikes.likers[ key ] = newLikers;
+							wpLikes.total[ key ] += totalDiff;
+
+							// Find any existing liker item and remove it.
+							const wpLikerItem = wplbutton.parentNode.querySelector( `li[data-liker-id="${ me.ID }"]` );
+							if ( wpLikerItem ) {
+								wpLikerItem.parentNode.removeChild( wpLikerItem );
+							}
+
+							if ( ! wplbutton.parentNode.querySelectorAll( '.wp-liker-me' ).length ) {
+								const meMarkup = '<li class="wp-liker-me" data-liker-id="' + window.escapeHTML( me.ID ) + '">' +
+									'<a title="' +
+									window.escapeHTML( me.display_name ) +
+									'" href="' +
+									window.escapeHTML( me.profile_URL ) +
+									'" class="wpl-liker" rel="nofollow" target="_parent">' +
+									'<img src="' +
+									window.escapeHTML( me.avatar_URL ) +
+									'" alt="' +
+									window.escapeHTML( me.display_name ) +
+									'" width="30" height="30" />' +
+									'</a>' +
+									'</li>';
+
+								if ( ! wplavatars.length ) {
+									wplbutton.insertAdjacentHTML( 'afterend', '<ul class="wpl-avatars">' + meMarkup + '</ul>' );
+								} else {
+									var avatars = wplavatars[0].querySelectorAll('li');
+									if ( avatars.length === AVATAR_DISPLAY_LIMIT ) {
+										// Delete the last avatar before inserting the new one, the array is in reverse order
+										avatars[0].remove();
+									}
+									wplavatars[ 0 ].insertAdjacentHTML( 'beforeend', meMarkup );
+								}
+							}
+						}
+					);
+				}
+
+				wplbuttonlink.innerHTML = '<span>' + i18n.translate( 'Liked' ).fetch() + '</span> ';
+
+				// Ask parent to resize the frame
+				wpLikes.resizeFrame( 'like-post-frame-' + obj_id );
+
+				// ANNNNND like it
+				wpLikes.throttledLikePost( blog_id, post_id );
+			} else if ( wplbuttonlink.classList.contains( 'liked' ) ) {
+				wplbuttonlink.classList.remove( 'liked' );
+				wplbuttonlink.classList.add( 'like' );
+
+				wplbutton.classList.remove( 'liked' );
+				wplbutton.classList.add( 'like' );
+
+				const likesCount = wplcount.dataset.likes;
+				const newCount = parseInt( likesCount ) - 1;
+
+				if ( wplcounttext && i18n.translate( 'You like this.' ).fetch() === wplcounttext.innerHTML ) {
+					likeText =
+						'<span class="wpl-count-text">' +
+						i18n.translate( 'Be the first to like this.' ).fetch() +
+						'</span>';
+				} else {
+					likeText = i18n.sprintf(
+						newCount === 1
+							? i18n.translate( '<a href="%1$s" id="%2$s">%3$s like</a>' ).fetch()
+							: i18n.translate( '<a href="%1$s" id="%2$s">%3$s likes</a>' ).fetch(),
+						'#',
+						'other-gravatars',
+						'<span class="wpl-count-number">' + newCount + '</span>'
+					);
+				}
+
+				wplcount.setAttribute( 'data-likes', newCount );
+				wplcount.innerHTML = likeText;
+				wplcount.style.display = null;
+
+				var wpLikerMe = wplbutton.parentNode.querySelector( 'li.wp-liker-me' );
+
+				if ( wpLikerMe ) {
+					wpLikerMe.parentNode.removeChild( wpLikerMe );
+
+					// Get the 5th liker, excluding the current user from the list of likers
+					const fifthLiker = wpLikes.likers[ blog_id + '-' + post_id ].filter(
+						liker => liker.ID !== wpLikes.me.ID
+					)[ AVATAR_DISPLAY_LIMIT - 1 ];
+
+					if ( fifthLiker ) {
+						wplavatars[ 0 ].insertAdjacentHTML(
+							'afterbegin',
+							'<li data-liker-id="' + window.escapeHTML( fifthLiker.ID ) + '">' +
+								'<a title="' +
+								window.escapeHTML( fifthLiker.display_name ) +
+								'" href="' +
+								window.escapeHTML( fifthLiker.profile_URL ) +
+								'" class="wpl-liker" rel="nofollow" target="_parent">' +
+								'<img src="' +
+								window.escapeHTML( fifthLiker.avatar_URL ) +
+								'" alt="' +
+								window.escapeHTML( fifthLiker.display_name ) +
+								'" width="30" height="30" />' +
+								'</a>' +
+								'</li>'
+						);
+					}
+
+					// If the `wpl-avatars` list is empty after removing the liker, remove it
+					if ( wplavatars[ 0 ].querySelectorAll( 'li' ).length === 0 ) {
+						wplavatars[ 0 ].parentNode.removeChild( wplavatars[ 0 ] );
+					}
+				}
+
+				wpLikes.getMyInfo( (me) => {
+					const key = blog_id + '-' + post_id;
+					const oldLikers = wpLikes.likers[ key ];
+					const newLikers = oldLikers.filter( liker => liker.ID !== me.ID );
+					const totalDiff = newLikers.length - oldLikers.length;
+					wpLikes.likers[ key ] = newLikers;
+					wpLikes.total[ key ] += totalDiff;
+
+					// Find liker that matches the ID and remove it.
+					// This is for liker item that didn't have `.wp-liker-me` className
+					// for non-logged-in unlike flow.
+					const wpLikerItem = wplbutton.parentNode.querySelector( `li[data-liker-id="${ me.ID }"]` );
+					if ( wpLikerItem ) {
+						wpLikerItem.parentNode.removeChild( wpLikerItem );
+					}
+				} );
+
+				wplbuttonlink.innerHTML = '<span>' + i18n.translate( 'Like' ).fetch() + '</span>';
+
+				// Ask parent to resize the frames
+				wpLikes.resizeFrame( 'like-post-frame-' + obj_id );
+
+				// ANNNNND unlike it
+				wpLikes.throttledUnlikePost( blog_id, post_id );
+			}
+
+			var likePostFrame = window.parent.frames[ 'like-post-frame-' + obj_id ];
+			registerResizeListener( likePostFrame );
+			checkLikeButtonSize( likePostFrame );
+		},
+
+		updatePostFeedback: function ( likes, blog_id, post_id, slim, obj_id, isBlock, showReblog ) {
+			if ( ! obj_id ) {
+				obj_id = blog_id + '-' + post_id;
+			}
+
+			var isLiked = likes.i_like;
+			var canLike = likes.can_like || isBlock;
+			var label = '';
+			var css_state = '';
+			var feedback = '';
+
+			var canReblog = isBlock ? showReblog : false;
+			var canUserReblog = false;
+
+			var reblog_css_state = 'reblog';
+			var reblog_feedback_no_html = i18n.translate( 'Reblog this post on your main site.' ).fetch();
+			var reblog_label = i18n.translate( 'Reblog' ).fetch();
+			var reblog_path = '/sites/' + blog_id + '/posts/' + post_id + '/reblogs/mine';
+
+			if ( reblog_path in this.cache ) {
+				canReblog = isBlock ? showReblog : Boolean( this.cache[ reblog_path ].can_reblog );
+				canUserReblog = Boolean(this.cache[ reblog_path ].can_user_reblog);
+
+				if ( this.cache[ reblog_path ].is_reblogged ) {
+					reblog_css_state = 'reblogged';
+					reblog_label = i18n.translate( 'Reblogged' ).fetch();
+				}
+			}
+
+			// Figure out the button label and css class for this button
+			if ( isLiked ) {
+				label = i18n.translate( 'Liked' ).fetch();
+				css_state = 'liked';
+			} else {
+				label = i18n.translate( 'Like' ).fetch();
+				css_state = 'like';
+			}
+
+			var hasLikes = true;
+
+			// Figure out the inital feedback text
+			if ( likes.found === 0 ) {
+				hasLikes = false;
+				feedback = i18n.translate( 'Be the first to like this.' ).fetch();
+			} else if ( likes.found === 1 && isLiked ) {
+				feedback = i18n.translate( 'You like this.' ).fetch();
+			} else if ( likes.found === 1 && ! isLiked ) {
+				feedback = i18n.sprintf(
+					i18n.translate( '<a href="%1$s" id="%2$s">%3$s like</a>' ).fetch(),
+					'#',
+					'other-gravatars',
+					'<span class="wpl-count-number">' + likes.found + '</span>'
+				);
+			} else {
+				feedback = i18n.sprintf(
+					i18n.translate( '<a href="%1$s" id="%2$s">%3$s likes</a>' ).fetch(),
+					'#',
+					'other-gravatars',
+					'<span class="wpl-count-number">' + likes.found + '</span>'
+				);
+			}
+
+			feedback = '<span class="wpl-count-text">' + feedback + '</span>';
+
+			function createPostLikeTemplate() {
+				var template;
+				var slicedLikers = likers.slice( 0, AVATAR_DISPLAY_LIMIT ).reverse()
+				var widgetDocument = window.parent.frames[ 'like-post-frame-' + obj_id ].document;
+
+				// Insert the theme styles (sent by parent frame with `injectStyles`) on the iframe document
+				wpLikes.applyInjectedStyles( widgetDocument, 'body', '.wpl-count a' );
+
+				if ( slim ) {
+					template = window.tmpl( document.querySelector( '#slim-likes' ).innerHTML );
+				} else {
+					template = window.tmpl( document.querySelector( '#post-likes' ).innerHTML );
+				}
+
+				widgetDocument.querySelector( '#target' ).innerHTML = template( {
+					likers: slicedLikers,
+					css_state: css_state,
+					label: label,
+					feedback: feedback,
+					feedback_no_html: feedback.replace( /(<.*?>)/gi, '' ),
+					hasLikes: hasLikes,
+					reblog_css_state: reblog_css_state,
+					reblog_feedback_no_html: reblog_feedback_no_html,
+					canReblog: canReblog,
+					canUserReblog: canUserReblog,
+					canLike: canLike,
+					reblog_label: reblog_label,
+				} );
+
+				const wplcount = widgetDocument.querySelector( '.wpl-count' );
+				if ( wplcount ) {
+					wplcount.setAttribute( 'data-likes', likes.found );
+				}
+
+				wpLikes.postMessage(
+					{
+						event: 'showLikeWidget',
+						id: 'like-post-wrapper-' + obj_id,
+						blog_id: blog_id,
+						post_id: post_id,
+						obj_id: obj_id,
+						total: likes.found,
+					},
+					parent
+				);
+			}
+
+			// Build the likers array
+			var likers = likes.likes;
+			if ( likers.length > 0 ) {
+				var max_remove = likers.length - 90;
+				for ( var i = likers.length - 1; i >= 0 && max_remove > 0; i-- ) {
+					if (
+						likers[ i ].default_avatar &&
+						( ! wpLikes.me || wpLikes.me.ID !== likers[ i ].ID )
+					) {
+						likers.splice( i, 1 );
+						max_remove--;
+					}
+				}
+			}
+
+			if ( wpLikes.me ) {
+				wpLikes.isLoggedIn = true;
+
+				for ( var j = 0; j < likers.length; j++ ) {
+					if ( likers[ j ].ID === wpLikes.me.ID ) {
+						likers[ j ].css_class = 'wp-liker-me';
+						// Move this user's avatar to the front of the face pile
+						likers.unshift( likers.splice( j, 1 )[ 0 ] );
+						break;
+					}
+				}
+			}
+
+			wpLikes.likers[ blog_id + '-' + post_id ] = likers;
+			wpLikes.total[ blog_id + '-' + post_id ] = likes.found;
+
+			createPostLikeTemplate.bind( this ).call();
+
+			var likePostFrame = window.parent.frames[ 'like-post-frame-' + obj_id ];
+
+			registerResizeListener( likePostFrame );
+			checkLikeButtonSize( likePostFrame );
+		},
+
+		initialBatch: function ( requests ) {
+			var info;
+			var request;
+			var path;
+
+			var batch = {
+				queue: [],
+				batchFinished: false,
+				batchWaiting: [],
+				blogId: null,
+				postId: null,
+				commentId: null,
+			};
+
+			if ( wpLikes.isLoggedIn && ! wpLikes.me && ! wpLikes.askedMe ) {
+				batch.queue.push( '/me' );
+				wpLikes.askedMe = true;
+			}
+
+			for ( var i = 0; i < requests.length; i++ ) {
+				info = requests[ i ];
+
+				if ( info.obj_id && info.obj_id.match( /[^\w-]/ ) ) {
+					continue;
+				}
+
+				if ( info.blog_id && info.post_id ) {
+					batch.blogId = info.blog_id;
+					batch.postId = info.post_id;
+
+					path = '/sites/' + info.blog_id + '/posts/' + info.post_id + '/likes?chronological=true';
+
+
+					request = {
+						type: 'post',
+						blog_id: info.blog_id,
+						post_id: info.post_id,
+						obj_id: info.obj_id,
+						width: info.width,
+					};
+					wpLikes.requests[ path ] = request;
+					batch.queue.push( path );
+					path = '/sites/' + info.blog_id + '/posts/' + info.post_id + '/reblogs/mine';
+					request = {
+						blog_id: info.blog_id,
+						post_id: info.post_id,
+					};
+					wpLikes.requests[ path ] = request;
+					batch.queue.push( path );
+				} else if ( info.blog_id && info.comment_id ) {
+					batch.blogId = info.blog_id;
+					batch.commentId = info.comment_id;
+
+					path = '/sites/' + info.blog_id + '/comments/' + info.comment_id + '/likes';
+					request = {
+						type: 'comment',
+						blog_id: info.blog_id,
+						comment_id: info.comment_id,
+						width: info.width,
+					};
+					wpLikes.requests[ path ] = request;
+					batch.queue.push( path );
+				}
+			}
+
+			var batchRequest = {
+				path: '/batch',
+				type: 'GET',
+				url: 'https://public-api.wordpress.com/rest/v1/batch',
+				data: '',
+				success: function ( response ) {
+					for ( var responsePath in response ) {
+						if ( ! response[ responsePath ].error_data && ! response[ responsePath ].errors ) {
+							if ( responsePath === '/me' ) {
+								wpLikes.me = response[ responsePath ];
+							} else {
+								wpLikes.cache[ responsePath ] = response[ responsePath ];
+							}
+						}
+					}
+
+					batch.batchFinished = true;
+					for ( var item in batch.batchWaiting ) {
+						wpLikes.ajax( batch.batchWaiting[ item ], batch );
+					}
+				},
+				error: function () {
+					batch.batchFinished = true;
+					for ( var item in batch.batchWaiting ) {
+						wpLikes.ajax( batch.batchWaiting[ item ], batch );
+					}
+				},
+			};
+
+			var amp = '';
+			for ( var j = 0; j < batch.queue.length; j++ ) {
+				if ( j > 0 ) {
+					amp = '&';
+				}
+				batchRequest.data += amp + 'urls[]=' + batch.queue[ j ];
+			}
+
+			wpLikes.batches.push( batch );
+			wpLikes.ajax( batchRequest );
+		},
+	};
+
+	// I'm going with the throttled function approach instead
+	// because it would require less code modification to
+	// support multiple like instances.
+	wpLikes.throttledLikePost = throttleArgs(wpLikes.likePost, 100);
+	wpLikes.throttledUnlikePost = throttleArgs(wpLikes.unlikePost, 100);
+	wpLikes.throttledOpenLoginWindow = throttleArgs(wpLikes.openLoginWindow, 100);
+
+	wpLikes.applyInjectedStyles = ( doc, textSelector, linkSelector ) => {
+		if ( ! wpLikes.textStyles && ! wpLikes.linkStyles ) {
+			return;
+		}
+
+		const styleSheet = doc.createElement( 'style' );
+		doc.head.appendChild( styleSheet );
+		const sheet = styleSheet.sheet;
+
+		if ( wpLikes.textStyles ) {
+			const textRule = sheet.cssRules[ sheet.insertRule( textSelector + ' {}', sheet.cssRules.length ) ];
+			for ( const [ prop, value ] of Object.entries( wpLikes.textStyles ) ) {
+				textRule.style[ prop ] = value;
+			}
+			if ( wpLikes.textStyles.direction === 'rtl' ) {
+				doc.body.classList.add( 'rtl' );
+			}
+		}
+
+		if ( wpLikes.linkStyles ) {
+			const linkRule = sheet.cssRules[ sheet.insertRule( linkSelector + ' {}', sheet.cssRules.length ) ];
+			for ( const [ prop, value ] of Object.entries( wpLikes.linkStyles ) ) {
+				linkRule.style[ prop ] = value;
+			}
+		}
+	};
+
+	// wpLikes.displayWidget is called when the ajax request for post or comment likes completes successfully
+	// it is used to display the widget with the likes data
+	//
+	// request is used to pass along the request object instead of looking it up in wpLikes.requests
+	wpLikes.displayWidget = function ( response, path, frameInfo = {}, request = false ) {
+		/**
+		 * Translation
+		 */
+		var info = wpLikes.splitParams( location.hash.replace( /^#/, '' ) );
+		if ( info.lang ) {
+			wpLikes.lang = info.lang;
+			wpLikes.langVersion = info.lang_ver ? info.lang_ver : info.ver;
+		}
+
+		var load_default = true;
+		var json_locale_data;
+		if ( wpLikes.lang !== 'en' ) {
+			var xhr = new XMLHttpRequest();
+			xhr.open(
+				'GET',
+				'/languages/' + wpLikes.lang + '-v1.1.json' + '?ver=' + wpLikes.langVersion,
+				false
+			);
+			xhr.onload = function () {
+				if ( xhr.status === 200 ) {
+					var json = JSON.parse( xhr.responseText );
+					json_locale_data = json;
+					load_default = false;
+				}
+			};
+			xhr.send();
+		}
+		if ( json_locale_data === null ) {
+			load_default = true;
+		}
+
+		if ( load_default ) {
+			json_locale_data = {
+				'': {
+					domain: 'messages',
+					lang: wpLikes.lang,
+					'plural-forms': 'nplurals=2; plural=(n !== 1);',
+				},
+			};
+		}
+
+		i18n = new window.Jed( { locale_data: { messages: json_locale_data }, domain: 'messages' } );
+
+		const isBlock = !! frameInfo.block;
+
+		const showReblog = !! frameInfo.reblog;
+
+		const currentRequest = request ? request : wpLikes.requests[ path ];
+
+		if ( currentRequest ) {
+			if ( currentRequest.type === 'post' ) {
+				displayPostLikeWidget(
+					currentRequest.blog_id,
+					currentRequest.post_id,
+					currentRequest.width,
+					currentRequest.slim,
+					response,
+					currentRequest.obj_id,
+					isBlock,
+					showReblog
+				);
+			 }
+			 if ( currentRequest.type === 'comment' ) {
+				displayCommentLikeWidget(
+					currentRequest.blog_id,
+					currentRequest.comment_id,
+					currentRequest.width,
+					response,
+					currentRequest.obj_id
+				);
+			}
+		}
+	};
+
+	// displayPostLikeWidget is called when a post's likes data arrives via ajax (see wpLikes.displayWidget i.e. the ajax success handler)
+	function displayPostLikeWidget( blog_id, post_id, width, slim, result, obj_id, isBlock, showReblog ) {
+		if ( ! obj_id ) {
+			obj_id = blog_id + '-' + post_id;
+		}
+
+		wpLikes.updatePostFeedback( result, blog_id, post_id, slim, obj_id, isBlock, showReblog );
+
+		var likePostFrameDoc = window.parent.frames[ 'like-post-frame-' + obj_id ].document;
+
+		// Add a click handler to handle the liking action
+		var likeButton = likePostFrameDoc.querySelector( '.wpl-button a.like, .wpl-button a.liked' );
+		if ( likeButton ) {
+			likeButton.onclick = ( e ) => {
+				e.preventDefault();
+				wpLikes.doLikeMultiple( blog_id, post_id );
+			};
+		}
+
+		// Add a reblog handler to handle the reblog action
+		var reblogButton = likePostFrameDoc.querySelector( '.wpl-button a.reblog' );
+		if ( reblogButton ) {
+			reblogButton.onclick = ( e ) => {
+				e.preventDefault();
+				if ( reblogButton.classList.contains( 'reblog') ) {
+					wpLikes.doReblog( blog_id, post_id, obj_id, reblogButton );
+				}
+			};
+		}
+
+		if ( ! slim ) {
+			// Handle the "n other bloggers" list
+			// Listen on .wpl-count, since a#other-gravatar link gets replaced on every update
+			var wpLikesCount = likePostFrameDoc.querySelector( '.wpl-count' );
+			if ( wpLikesCount ) {
+				wpLikesCount.onclick = function ( e ) {
+					if (e.target && e.target.closest( '#other-gravatars' ) ) {
+						e.preventDefault();
+
+						var $avatars = window.parent.frames['like-post-frame-' + obj_id].document.querySelector(
+							'.wpl-avatars'
+						);
+
+						var likersToSend = 90;
+						var myArrayId = -1;
+						for (
+							var i = 0;
+							i < likersToSend && i < wpLikes.likers[blog_id + '-' + post_id].length;
+							i++
+						) {
+							if (wpLikes.likers[blog_id + '-' + post_id][i].css_class === 'wpl-liker-me') {
+								myArrayId = i;
+							}
+							if( ! wpLikes.likers[blog_id + '-' + post_id][i].name && wpLikes.likers[blog_id + '-' + post_id][i].display_name ) {
+								wpLikes.likers[blog_id + '-' + post_id][i].name = wpLikes.likers[blog_id + '-' + post_id][i].display_name;
+							}
+							wpLikes.likers[blog_id + '-' + post_id][i].css_class = 'wpl-liker';
+						}
+
+						// Send a message to the likes master iframe (jetpack-likes.php) to update this frame's gravatars (likers)
+						var data = {
+							event: 'showOtherGravatars',
+							likers: wpLikes.likers[blog_id + '-' + post_id].slice(0, likersToSend),
+							total: wpLikes.total[blog_id + '-' + post_id],
+							parent: 'like-post-frame-' + obj_id,
+							width: $avatars.offsetWidth,
+							position: {
+								top: $avatars.offsetTop,
+								left: $avatars.offsetLeft,
+							},
+							totalLikesLabel: wpLikes.total[blog_id + '-' + post_id] === 1
+								? i18n.translate( '1 like' ).fetch()
+								// translators: %d: number of likes
+								: i18n.sprintf( i18n.translate( '%d likes' ).fetch(), wpLikes.total[blog_id + '-' + post_id] ),
+							// translators: %s: is the liker name
+							avatarAltTitle: i18n.translate( '%s\'s avatar' ).fetch(),
+						};
+
+						wpLikes.postMessage(data, window.parent);
+
+						if (myArrayId >= 0) {
+							wpLikes.likers[blog_id + '-' + post_id][myArrayId].css_class = 'wpl-liker-me';
+						}
+
+						e.stopPropagation();
+
+						likePostFrameDoc.addEventListener( 'click', function ( e ) {
+							wpLikes.postMessage(
+								{ event: 'hideOtherGravatars', parent: 'like-post-frame-' + obj_id },
+								window.parent
+							);
+							likePostFrameDoc.removeEventListener( 'click', arguments.callee );
+						} );
+					}
+				};
+			}
+		}
+	}
+
+	function getCommentLikeFeedback( isLiked, found ) {
+		var feedback = '';
+		var likers = '';
+		if ( found === 0 ) {
+			feedback = i18n.translate( 'Like' ).fetch();
+		} else if ( found === 1 ) {
+			if ( isLiked ) {
+				feedback = i18n.translate( 'Liked by you' ).fetch();
+			} else {
+				likers = i18n.translate( '%d person' ).fetch( 1 );
+				feedback = i18n.translate( 'Liked by %s' ).fetch( likers );
+			}
+		} else if ( isLiked ) {
+			var userCount = found - 1;
+			if ( userCount !== 1 ) {
+				likers = i18n.translate( '%d other people' ).fetch( userCount );
+				feedback = i18n.translate( 'Liked by you and %s' ).fetch( likers );
+			} else {
+				likers = i18n.translate( '%d other person' ).fetch( userCount );
+				feedback = i18n.translate( 'Liked by you and %s' ).fetch( likers );
+			}
+		} else {
+			likers = i18n.translate( '%d people' ).fetch( found );
+			feedback = i18n.translate( 'Liked by %s' ).fetch( likers );
+		}
+		return feedback;
+	}
+
+	// Display the widget
+	function displayCommentLikeWidget( blog_id, comment_id, width, likes, obj_id ) {
+		var isLiked = likes.i_like;
+
+		var label = '';
+		var css_state = '';
+
+		var feedback = getCommentLikeFeedback( isLiked, likes.found );
+
+		// Figure out the button label and css class for this button
+		if ( isLiked ) {
+			label = feedback;
+			css_state = 'comment-liked';
+		} else {
+			label = feedback;
+			css_state = 'comment-not-liked';
+		}
+
+		var widgetDocument = window.parent.frames[ 'like-comment-frame-' + obj_id ].document;
+
+		// Insert the theme styles (sent by parent frame with `injectStyles`) on the iframe document
+		wpLikes.applyInjectedStyles( widgetDocument, 'body', 'a.comment-like-link' );
+
+		// Just the star in the iframe
+		var template = window.tmpl( document.querySelector( '#comment-likes' ).innerHTML );
+		widgetDocument.querySelector( '#target' ).innerHTML = template( {
+			css_state: css_state,
+			label: label,
+		} );
+
+		wpLikes.postMessage(
+			{
+				event: 'showCommentLikeWidget',
+				id: 'like-comment-wrapper-' + obj_id,
+				blog_id: blog_id,
+				comment_id: comment_id,
+				obj_id: obj_id,
+			},
+			window.parent
+		);
+
+		var likeLink = widgetDocument.querySelector( 'a.comment-like-link' );
+		if ( likeLink ) {
+			likeLink.onclick = function ( e ) {
+				e.preventDefault();
+
+				if ( ! wpLikes.isLoggedIn ) {
+					wpLikes.login_blog_id = blog_id;
+					wpLikes.login_comment_id = comment_id;
+					wpLikes.login_obj_id = obj_id;
+
+					new Image().src = 'https://pixel.wp.com/b.gif?v=wpcom-no-pv&x_likes=loggedout_comment_like_click&baba=' + Math.random();
+					new Image().src = `https://pixel.wp.com/boom.gif?json={"beacons":["c3po.login.request.comment_like:1|c"]}`;
+
+					// User isn't logged in, so we should get them to do that.
+					wpLikes.openLoginWindow();
+					return;
+				}
+
+				var link = e.target;
+				link.classList.add( 'loading' );
+
+				function updateCommentFeedback( action, i_like, count ) {
+					if ( action === 'like' ) {
+						link.parentNode.classList.remove( 'comment-not-liked' );
+						link.parentNode.classList.add( 'comment-liked' );
+					} else {
+						link.parentNode.classList.remove( 'comment-liked' );
+						link.parentNode.classList.add( 'comment-not-liked' );
+					}
+
+					link.textContent = getCommentLikeFeedback( i_like, count );
+
+					wpLikes.postMessage(
+						{
+							event: 'showCommentLikeWidget',
+							id: 'like-comment-wrapper-' + obj_id,
+							blog_id: blog_id,
+							comment_id: comment_id,
+							obj_id: obj_id,
+						},
+						window.parent
+					);
+				}
+
+				if ( link.parentNode.classList.contains( 'comment-not-liked' ) ) {
+					wpLikes.likeComment( blog_id, comment_id, function ( r ) {
+						updateCommentFeedback( 'like', true, r.like_count );
+						link.classList.remove( 'loading' );
+					} );
+				} else {
+					wpLikes.unlikeComment( blog_id, comment_id, function ( r ) {
+						updateCommentFeedback( 'unlike', false, r.like_count );
+						link.classList.remove( 'loading' );
+					} );
+				}
+
+				return false;
+			};
+		}
+	}
+
+	// Since we can't know definitively when an iframe has finished loading
+	function updateWidgetDimensions() {
+		for ( var name in wpLikes.widgetDims ) {
+			var widgetDocument = window.parent.frames[ name ].document;
+			var likeboxWidth = this.outerWidth( widgetDocument.querySelector( '.wpl-likebox' ) );
+			var likeboxHeight = this.outerHeight( widgetDocument.querySelector( '.wpl-likebox' ) );
+
+			// For now, we only care about width changes really
+			if ( likeboxWidth > 0 && likeboxWidth !== wpLikes.widgetDims[ name ].w ) {
+				wpLikes.widgetDims[ name ].w = likeboxWidth;
+				wpLikes.widgetDims[ name ].h = likeboxHeight;
+				wpLikes.resizeFrame( name );
+			}
+		}
+	}
+
+	wpLikes.wpLikes();
+	window.addEventListener( 'message', function ( e ) {
+		var message = e && e.data;
+		if ( typeof message === 'string' ) {
+			try {
+				message = JSON.parse( message );
+			} catch ( err ) {
+				return;
+			}
+		}
+
+		var type = message && message.type;
+
+		if ( type === 'rltMessage' && message && message.data && message.data.event === 'invalidate') {
+			wpLikes.me = false;
+			wpLikes.isLoggedIn = false;
+		}
+
+		if ( type === 'likesMessage' || type === 'loginMessage' ) {
+			wpLikes.readMessage( message );
+		}
+	} );
+
+	window.addEventListener( 'load', function () {
+		wpLikes.postMessage( { event: 'masterReady' }, parent );
+	} );
+
+	setInterval( updateWidgetDimensions, 500 );
+} )();
+;

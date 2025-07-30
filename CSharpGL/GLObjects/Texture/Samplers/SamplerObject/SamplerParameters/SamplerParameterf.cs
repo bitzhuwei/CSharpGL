@@ -3,23 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CSharpGL
-{
+namespace CSharpGL {
     /// <summary>
     /// glTexParameteri();
     /// </summary>
-    public class SamplerParameterf : SamplerParameter
-    {
-        internal static readonly GLDelegates.void_uint_uint_float glSamplerParameterf;
-        static SamplerParameterf()
-        {
-            glSamplerParameterf = GL.Instance.GetDelegateFor("glSamplerParameterf", GLDelegates.typeof_void_uint_uint_float) as GLDelegates.void_uint_uint_float;
-        }
+    public unsafe class SamplerParameterf : SamplerParameter {
+        //internal static readonly GLDelegates.void_uint_uint_float glSamplerParameterf;
+        //static SamplerParameterf() {
+        //    glSamplerParameterf = gl.glGetDelegateFor("glSamplerParameterf", GLDelegates.typeof_void_uint_uint_float) as GLDelegates.void_uint_uint_float;
+        //}
 
         /// <summary>
         /// 
         /// </summary>
-        public float PValue { get; set; }
+        public float PValue;
 
         /// <summary>
         /// 
@@ -28,8 +25,7 @@ namespace CSharpGL
         /// <param name="pnameString"></param>
         /// <param name="pValue"></param>
         public SamplerParameterf(uint pname, string pnameString, float pValue)
-            : base(pname, pnameString)
-        {
+            : base(pname, pnameString) {
             this.PValue = pValue;
         }
 
@@ -37,17 +33,16 @@ namespace CSharpGL
         /// 
         /// </summary>
         /// <param name="samplerId"></param>
-        public override void Apply(uint samplerId)
-        {
-            glSamplerParameterf(samplerId, this.PName, this.PValue);
+        public override void Apply(uint samplerId) {
+            var gl = GL.current; if (gl == null) { return; }
+            gl.glSamplerParameterf(samplerId, this.PName, this.PValue);
         }
 
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        public override string ToString()
-        {
+        public override string ToString() {
             return string.Format("glSamplerParameterf({0}, {1}, {2});", " ", this.PNameString, this.PValue);
         }
     }

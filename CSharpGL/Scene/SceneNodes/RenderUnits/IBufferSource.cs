@@ -1,11 +1,9 @@
 ﻿using System.Collections.Generic;
-namespace CSharpGL
-{
+namespace CSharpGL {
     /// <summary>
     /// Provides <see cref="VertexBuffer"/>s and <see cref="IDrawCommand"/>s for GPU memory from data in CPU memory.
     /// </summary>
-    public interface IBufferSource
-    {
+    public interface IBufferSource {
         /// <summary>
         /// Gets buffers that contains the vertex attribute specified with <paramref name="bufferName"/>.
         /// <para>The vertex buffer is sliced into blocks of same size(except the last one when the remainder is not 0.) I recommend 1024*1024*4(bytes) as block size, which is the block size in OVITO.</para>

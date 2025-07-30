@@ -1,0 +1,46 @@
+using System;
+using bitzhuwei.Compiler;
+
+namespace bitzhuwei.GLSLFormat {
+    partial class CompilerGLSL {
+
+#if noTableDFA
+        /// <summary>
+        /// lexicalState5
+        /// <para>CompilerGLSL.Lexical●[1 DFA States]</para>
+        /// </summary>
+        private static readonly Action<LexicalContext, char, CurrentStateWrap> lexicalState5 =
+        static (context, c, wrap) => {
+            if (false) { /* for simpler code generation purpose. */ }
+            /* user-input condition code */
+            /* \/ */
+            else if (/* possible Vt : 'blockComment' */
+            /* no possible signal */
+            /* 'blockComment' : comment ignores 'validScopeChars'([\u0001-\uFFFF]) and 'validGlobalChars'([\u0001-\uFFFF]) */
+            c == '/'/*'\u002F'(47)*/) {
+                ExtendToken(context, st.@blockComment块);
+                wrap.currentState = lexicalState194;
+            }
+            /* user-input condition code */
+            /* [^/\u0000] */
+            else if (/* possible Vt : 'blockComment' */
+            /* no possible signal */
+            /* 'blockComment' : comment ignores 'validScopeChars'([\u0001-\uFFFF]) and 'validGlobalChars'([\u0001-\uFFFF]) */
+            !((c == '/'/*'\u002F'(47)*/)
+            || (c == '\u0000'/*(0)*/))) {
+                wrap.currentState = lexicalState2;
+            }
+            /* deal with everything else. */
+            else { // token with error type
+                ExtendToken(context);
+                AcceptToken(st.Error错, context);
+                wrap.currentState = lexicalState0;
+            }
+
+
+        };
+#endif
+
+    }
+}
+

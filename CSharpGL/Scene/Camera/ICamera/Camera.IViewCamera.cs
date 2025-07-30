@@ -1,9 +1,7 @@
 ﻿using System.ComponentModel;
 
-namespace CSharpGL
-{
-    public partial class Camera
-    {
+namespace CSharpGL {
+    public partial class Camera {
         #region IViewCamera
 
         private UpdatingRecord viewMatRecord = new UpdatingRecord(true);
@@ -11,17 +9,12 @@ namespace CSharpGL
         private vec3 target;
 
         /// <summary>
-        /// Gets or sets world coordinate of the camera's target.
+        /// Gets or sets world coordinate of the camera's target(the point it's looking at).
         /// </summary>
-        [Description("world coordinate of the camera's target(the point it's looking at).")]
-        [Category(strCamera)]
-        public vec3 Target
-        {
+        public vec3 Target {
             get { return target; }
-            set
-            {
-                if (target != value)
-                {
+            set {
+                if (target != value) {
                     target = value;
                     viewMatRecord.Mark();
                 }
@@ -36,15 +29,10 @@ namespace CSharpGL
         /// <value>
         /// Up vector.
         /// </value>
-        [Description("world coordinate of the camera's up vector.")]
-        [Category(strCamera)]
-        public vec3 UpVector
-        {
+        public vec3 UpVector {
             get { return upVector; }
-            set
-            {
-                if (upVector != value)
-                {
+            set {
+                if (upVector != value) {
                     upVector = value;
                     viewMatRecord.Mark();
                 }
@@ -59,15 +47,10 @@ namespace CSharpGL
         /// <value>
         /// The position.
         /// </value>
-        [Description("world coordinate of the camera 's position.")]
-        [Category(strCamera)]
-        public vec3 Position
-        {
+        public vec3 Position {
             get { return position; }
-            set
-            {
-                if (position != value)
-                {
+            set {
+                if (position != value) {
                     position = value;
                     viewMatRecord.Mark();
                 }
@@ -80,10 +63,8 @@ namespace CSharpGL
         ///
         /// </summary>
         /// <returns></returns>
-        public mat4 GetViewMatrix()
-        {
-            if (this.viewMatRecord.IsMarked())
-            {
+        public mat4 GetViewMatrix() {
+            if (this.viewMatRecord.IsMarked()) {
                 this.viewMat = glm.lookAt(this.position, this.target, this.upVector);
                 this.viewMatRecord.CancelMark();
             }

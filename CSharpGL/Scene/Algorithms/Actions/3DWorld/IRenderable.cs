@@ -3,14 +3,12 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Design;
 
-namespace CSharpGL
-{
+namespace CSharpGL {
     /// <summary>
     /// Render something.
     /// </summary>
-    [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
-    public interface IRenderable
-    {
+
+    public interface IRenderable {
         /// <summary>
         /// 
         /// </summary>
@@ -32,15 +30,13 @@ namespace CSharpGL
     /// <summary>
     /// Render event argument.
     /// </summary>
-    public class RenderEventArgs
-    {
+    public class RenderEventArgs {
         /// <summary>
         /// Initializes a new instance of the <see cref="RenderEventArgs"/> class.
         /// </summary>
         /// <param name="param"></param>
         /// <param name="camera"></param>
-        public RenderEventArgs(ActionParams param, ICamera camera)
-        {
+        public RenderEventArgs(ActionParams param, ICamera camera) {
             this.Param = param;
             this.Camera = camera;
         }

@@ -1,0 +1,263 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+
+namespace SoftGLImpl {
+    unsafe partial class SoftGL {
+
+        private static void FindPixelsInLine(vec3 start, vec3 end, List<Pixel3> pixels) {
+            if (start.x < end.x) { DoFindPixelsAtLine(start, end, pixels); }
+            else { DoFindPixelsAtLine(end, start, pixels); }
+        }
+
+        /// <summary>
+        /// from left(start) to right(end)
+        /// </summary>
+        /// <param name="start"></param>
+        /// <param name="end"></param>
+        /// <param name="pixels"></param>
+        /// <exception cref="NotImplementedException"></exception>
+        private static void DoFindPixelsAtLine(vec3 start, vec3 end, List<Pixel3> pixels) {
+            // now start.X <= end.X
+            if (start.y < end.y) { FindPixelsAtLine1(start, end, pixels); }
+            else { FindPixelsAtLine2(start, end, pixels); }
+        }
+
+        /// <summary>
+        /// from (0, height - 1)(start) to (width - 1, 0)(end)
+        /// </summary>
+        /// <param name="start"></param>
+        /// <param name="end"></param>
+        /// <param name="pixels"></param>
+        private static void FindPixelsAtLine2(vec3 start, vec3 end, List<Pixel3> pixels) {
+            var x0 = (int)start.x; var y0 = (int)start.y;
+            var x1 = (int)end.x; var y1 = (int)end.y;
+            //float dx = end.x - start.x, dy = start.y - end.y;
+            float dx = x1 - x0, dy = y0 - y1;
+            if (dx >= dy) {
+                float p = dy + dy - dx;
+                for (; x0 <= x1; x0++) {
+                    var a = (x0 + 0.5f - start.x) / (end.x - start.x);
+                    //Debug.Assert(x0 > -10000 && x0 < 10000 && y0 > -10000 && y0 < 10000);
+                    if (x0 == x1) { y0 = y1; }
+                    pixels.Add(new Pixel3(x0, y0, start.z + a * (end.z - start.z)));
+                    if (p > 0) {
+                        y0 -= 1;
+                        p = p + dy + dy - dx - dx;
+                    }
+                    else {
+                        p = p + dy + dy;
+                    }
+                }
+            }
+            else {
+                float p = dx + dx - dy;
+                for (; y0 >= y1; y0--) {
+                    var a = (y0 + 0.5f - end.y) / (start.y - end.y);
+                    //Debug.Assert(x0 > -10000 && x0 < 10000 && y0 > -10000 && y0 < 10000);
+                    if (y0 == y1) { x0 = x1; }
+                    pixels.Add(new Pixel3(x0, y0, end.z + a * (start.z - end.z)));
+                    if (p >= 0) {
+                        x0 += 1;
+                        p = p + dx + dx - dy - dy;
+                    }
+                    else {
+                        p = p + dx + dx;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// from (0, 0)(start) to (width - 1, height - 1)(end)
+        /// </summary>
+        /// <param name="start"></param>
+        /// <param name="end"></param>
+        /// <param name="pixels"></param>
+        private static void FindPixelsAtLine1(vec3 start, vec3 end, List<Pixel3> pixels) {
+            var x0 = (int)start.x; var y0 = (int)start.y;
+            var x1 = (int)end.x; var y1 = (int)end.y;
+            //float dx = end.x - start.x, dy = end.y - start.y;
+            float dx = x1 - x0, dy = y1 - y0;
+            if (dx >= dy) {
+                float p = dy + dy - dx;
+                for (; x0 <= x1; x0++) {
+                    var a = (x0 + 0.5f - start.x) / (end.x - start.x);
+                    //Debug.Assert(x0 > -10000 && x0 < 10000 && y0 > -10000 && y0 < 10000);
+                    if (x0 == x1) { y0 = y1; }
+                    pixels.Add(new Pixel3(x0, y0, start.z + a * (end.z - start.z)));
+                    if (p >= 0) {
+                        y0 += 1;
+                        p = p + dy + dy - dx - dx;
+                    }
+                    else {
+                        p = p + dy + dy;
+                    }
+                }
+            }
+            else {
+                float p = dx + dx - dy;
+                for (; y0 <= y1; y0++) {
+                    var a = (y0 + 0.5f - start.y) / (end.y - start.y);
+                    //Debug.Assert(x0 > -10000 && x0 < 10000 && y0 > -10000 && y0 < 10000);
+                    if (y0 == y1) { x0 = x1; }// the last pixel
+                    pixels.Add(new Pixel3(x0, y0, start.z + a * (end.z - start.z)));
+                    if (p >= 0) {
+                        x0 += 1;
+                        p = p + dx + dx - dy - dy;
+                    }
+                    else {
+                        p = p + dx + dx;
+                    }
+                }
+            }
+        }
+
+        private static void FindPixelsAtLine_Old(vec3 start, vec3 end, List<vec3> pixels) {
+            //vec3 originalP0 = p0;
+            //vec3 originalP1 = p1;
+            //Console.WriteLine("{0},{1}", originalP0, originalP1);
+            start += new vec3(0.5f, 0.5f, 0); end += new vec3(0.5f, 0.5f, 0); // use a better(convenient) coordinate system.
+            var list = new List<vec3>();
+            if (start.x < end.x) {
+                var x0Integer = (int)Math.Ceiling(start.x);
+                var x1Integer = (int)end.x;
+                for (int x = x0Integer; x <= x1Integer; x++) {
+                    float alpha = (x - start.x) / (end.x - start.x);
+                    float y = (end.y - start.y) * alpha + start.y;
+                    float z = (end.z - start.z) * alpha + start.z;
+                    list.Add(new vec3(x, y, z));
+                }
+            }
+            else {// p1.x < p0.x
+                var x1Integer = (int)Math.Ceiling(end.x);
+                var x0Integer = (int)start.x;
+                for (int x = x1Integer; x <= x0Integer; x++) {
+                    float alpha = (x - end.x) / (start.x - end.x);
+                    float y = (start.y - end.y) * alpha + end.y;
+                    float z = (start.z - end.z) * alpha + end.z;
+                    list.Add(new vec3(x, y, z));
+                }
+            }
+
+            vec3[] yPoints;
+            if (start.y < end.y) {
+                var y0Integer = (int)Math.Ceiling(start.y);
+                var y1Integer = (int)end.y;
+                for (int y = y0Integer; y <= y1Integer; y++) {
+                    float alpha = (y - start.y) / (end.y - start.y);
+                    float x = (end.x - start.x) * alpha + start.x;
+                    float z = (end.z - start.z) * alpha + start.z;
+                    list.Add(new vec3(x, y, z));
+                }
+            }
+            else {// p1.x < p0.x
+                var y1Integer = (int)Math.Ceiling(end.y);
+                var y0Integer = (int)start.y;
+                yPoints = new vec3[y0Integer - y1Integer + 1];
+                for (int y = y1Integer; y <= y0Integer; y++) {
+                    float alpha = (y - end.y) / (start.y - end.y);
+                    float x = (start.x - end.x) * alpha + end.x;
+                    float z = (start.z - end.z) * alpha + end.z;
+                    list.Add(new vec3(x, y, z));
+                }
+            }
+
+            vec3[] points = (from item in list orderby item.x ascending select item).ToArray();
+            vec3[]? midPoints = GetMidPoints(points);
+            if (midPoints != null && midPoints.Length > 0) {
+                int index = 0, t = 0;
+                if (pixels.Count == 0) {
+                    vec3 item = midPoints[0];
+                    pixels.Add(item);
+                    index = 1;
+                }
+
+                while (index < midPoints.Length) {
+                    vec3 item = midPoints[index];
+                    if ((((int)item.x) != ((int)pixels[t].x))
+                        || (((int)item.y) != ((int)pixels[t].y))) {
+                        pixels.Add(item);
+                        t++;
+                    }
+
+                    index++;
+                }
+            }
+        }
+
+        private static vec3[]? GetMidPoints(vec3[] points) {
+            if (points == null || points.Length < 2) { return null; }
+            var midPoints = new vec3[points.Length - 1];
+            for (int i = 0; i < midPoints.Length; i++) {
+                midPoints[i] = (points[i] + points[i + 1]) / 2.0f;
+            }
+
+            return midPoints;
+        }
+
+        private static vec3[] SortPoints(vec3 min, vec3[] xPoints, vec3[] yPoints, vec3 max) {
+            bool horizontal = Math.Abs(max.x - min.x) >= Math.Abs(max.y - min.y);
+            bool increase = min.y < max.y;
+            int index = 0;
+            var points = new vec3[1 + xPoints.Length + yPoints.Length + 1];
+
+            points[index++] = min;
+
+            int xIndex = 0, yIndex = 0;
+            while (xIndex < xPoints.Length && yIndex < yPoints.Length) {
+                if (horizontal) {
+                    if (increase) {
+                        if (xPoints[xIndex].x < yPoints[yIndex].x) {
+                            points[index++] = xPoints[xIndex++];
+                        }
+                        else {
+                            points[index++] = yPoints[yIndex++];
+                        }
+                    }
+                    else {
+                        if (xPoints[xIndex].x > yPoints[yIndex].x) {
+                            points[index++] = xPoints[xIndex++];
+                        }
+                        else {
+                            points[index++] = yPoints[yIndex++];
+                        }
+                    }
+                }
+                else {
+                    if (increase) {
+                        if (xPoints[xIndex].y < yPoints[yIndex].y) {
+                            points[index++] = xPoints[xIndex++];
+                        }
+                        else {
+                            points[index++] = yPoints[yIndex++];
+                        }
+                    }
+                    else {
+                        if (xPoints[xIndex].y > yPoints[yIndex].y) {
+                            points[index++] = xPoints[xIndex++];
+                        }
+                        else {
+                            points[index++] = yPoints[yIndex++];
+                        }
+                    }
+                }
+            }
+
+            while (xIndex < xPoints.Length) {
+                points[index++] = xPoints[xIndex++];
+            }
+
+            while (yIndex < yPoints.Length) {
+                points[index++] = yPoints[yIndex++];
+            }
+
+            points[index++] = max;
+
+            return points;
+        }
+    }
+}

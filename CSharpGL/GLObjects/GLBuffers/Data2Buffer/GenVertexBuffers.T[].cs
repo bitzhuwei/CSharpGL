@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 
-namespace CSharpGL
-{
-    public static partial class Data2Buffer
-    {
+namespace CSharpGL {
+    public static unsafe partial class Data2Buffer {
 
         /// <summary>
         /// 获取顶点属性Buffer。描述顶点的位置或颜色或UV等各种属性。
@@ -20,8 +18,7 @@ namespace CSharpGL
         /// <param name="instancedDivisor">0: not instanced. 1: instanced divisor is 1.</param>
         /// <param name="patchVertexes">How many vertexes makes a patch? No patch if <paramref name="patchVertexes"/> is 0.</param>
         /// <returns></returns>
-        public static VertexBuffer[] GenVertexBuffers<T>(this T[] array, VBOConfig config, BufferUsage usage, int blockSize, uint instancedDivisor = 0, int patchVertexes = 0) where T : struct
-        {
+        public static VertexBuffer[] GenVertexBuffers<T>(this T[] array, VBOConfig config, GLBuffer.Usage usage, int blockSize, uint instancedDivisor = 0, int patchVertexes = 0) where T : struct {
             if (array == null) { throw new ArgumentNullException("array"); }
 
             const int first = 0;
@@ -42,8 +39,7 @@ namespace CSharpGL
         /// <param name="instancedDivisor">0: not instanced. 1: instanced divisor is 1.</param>
         /// <param name="patchVertexes">How many vertexes makes a patch? No patch if <paramref name="patchVertexes"/> is 0.</param>
         /// <returns></returns>
-        public static VertexBuffer[] GenVertexBuffers<T>(this T[] array, VBOConfig config, BufferUsage usage, int first, int blockSize, uint instancedDivisor = 0, int patchVertexes = 0) where T : struct
-        {
+        public static VertexBuffer[] GenVertexBuffers<T>(this T[] array, VBOConfig config, GLBuffer.Usage usage, int first, int blockSize, uint instancedDivisor = 0, int patchVertexes = 0) where T : struct {
             if (array == null) { throw new ArgumentNullException("array"); }
             if (first < 0) { throw new ArgumentOutOfRangeException("first"); }
             if (blockSize <= 0) { throw new ArgumentOutOfRangeException("count"); }
@@ -55,12 +51,14 @@ namespace CSharpGL
             var list = new List<VertexBuffer>();
             int current = first;
             int totalLength = array.Length;
-            do
-            {
+            do {
                 IntPtr header = Marshal.UnsafeAddrOfPinnedArrayElement(array, current);
                 int length = (current + blockSize <= totalLength) ? blockSize : (totalLength - current);
-                UnmanagedArrayBase unmanagedArray = new TempUnmanagedArray<T>(header, length);// It's not necessary to call Dispose() for this unmanaged array.
-                VertexBuffer buffer = GenVertexBuffer(unmanagedArray, config, usage, instancedDivisor, patchVertexes);
+                //UnmanagedArrayBase unmanagedArray = new TempUnmanagedArray<T>(header, length);// It's not necessary to call Dispose() for this unmanaged array.
+                var elementCount = length;
+                var byteLength = Marshal.SizeOf(typeof(T)) * elementCount;
+                var buffer = GenVertexBuffer(header, elementCount, byteLength, config, usage, instancedDivisor, patchVertexes);
+                ArgumentNullException.ThrowIfNull(buffer);
                 list.Add(buffer);
 
                 current += length;

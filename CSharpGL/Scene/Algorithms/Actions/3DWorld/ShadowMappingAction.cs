@@ -5,13 +5,11 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace CSharpGL
-{
+namespace CSharpGL {
     /// <summary>
     /// Cast shaow mapping textures for <see cref="ISupportShadowMapping"/>.
     /// </summary>
-    public class ShadowMappingAction : ActionBase
-    {
+    public class ShadowMappingAction : ActionBase {
         private readonly ColorMaskSwitch colorMask = new ColorMaskSwitch(false, false, false, false);
         private readonly BlendFuncSwitch blend = new BlendFuncSwitch(BlendSrcFactor.One, BlendDestFactor.One);
         private LightEquipment lightEquipment = new LightEquipment();
@@ -19,8 +17,7 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        public LightEquipment LightEquipment
-        {
+        public LightEquipment LightEquipment {
             get { return lightEquipment; }
         }
 
@@ -29,8 +26,7 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        public BlendFuncSwitch Blend
-        {
+        public BlendFuncSwitch Blend {
             get { return blend; }
         }
 
@@ -38,8 +34,7 @@ namespace CSharpGL
         /// Cast shaow mapping textures for <see cref="ISupportShadowMapping"/>.
         /// </summary>
         /// <param name="scene"></param>
-        public ShadowMappingAction(Scene scene)
-        {
+        public ShadowMappingAction(Scene scene) {
             this.scene = scene;
         }
 
@@ -47,23 +42,19 @@ namespace CSharpGL
         /// Cast shadow.(Prepare shadow mapping texture)
         /// </summary>
         /// <param name="param"></param>
-        public override void Act(ActionParams param)
-        {
+        public override void Act(ActionParams param) {
             Scene scene = this.scene;
             // Render ambient color.
             {
-                var arg = new ShadowMappingAmbientEventArgs(param, scene.Camera, scene.AmbientColor);
+                var arg = new ShadowMappingAmbientEventArgs(param, scene.camera, scene.ambientColor);
                 RenderAmbientColor(scene.RootNode, arg);
             }
 
-            foreach (var light in scene.Lights)
-            {
-                if (light is SpotLight || light is DirectionalLight)
-                {
+            foreach (var light in scene.lights) {
+                if (light is SpotLight || light is DirectionalLight) {
                     LightTheScene(light, scene, param);
                 }
-                else if (light is PointLight)
-                {
+                else if (light is PointLight) {
                     var xLight = new TSpotLight(light.Position, TSpotLightDirection.X, light.Attenuation) { Diffuse = light.Diffuse, Specular = light.Specular, };
                     var nxLight = new TSpotLight(light.Position, TSpotLightDirection.NX, light.Attenuation) { Diffuse = light.Diffuse, Specular = light.Specular, };
                     var yLight = new TSpotLight(light.Position, TSpotLightDirection.Y, light.Attenuation) { Diffuse = light.Diffuse, Specular = light.Specular, };
@@ -71,25 +62,22 @@ namespace CSharpGL
                     var zLight = new TSpotLight(light.Position, TSpotLightDirection.Z, light.Attenuation) { Diffuse = light.Diffuse, Specular = light.Specular, };
                     var nzLight = new TSpotLight(light.Position, TSpotLightDirection.NZ, light.Attenuation) { Diffuse = light.Diffuse, Specular = light.Specular, };
                     var lights = new TSpotLight[] { xLight, nxLight, yLight, nyLight, zLight, nzLight };
-                    foreach (var item in lights)
-                    {
+                    foreach (var item in lights) {
                         LightTheScene(item, scene, param);
                     }
                 }
-                else
-                {
+                else {
                     throw new Exception(string.Format("Unexpected light type:{0}", light.GetType().FullName));
                 }
             }
         }
 
-        private void LightTheScene(LightBase light, Scene scene, ActionParams param)
-        {
+        private void LightTheScene(LightBase light, Scene scene, ActionParams param) {
             // cast shadow from specified light.
             {
                 this.lightEquipment.Begin(param.Viewport);
 
-                var arg = new ShadowMappingCastShadowEventArgs(param, scene.Camera, light);
+                var arg = new ShadowMappingCastShadowEventArgs(param, scene.camera, light);
                 //this.colorMask.On();
                 CastShadow(scene.RootNode, arg);
                 //this.colorMask.Off();
@@ -98,103 +86,84 @@ namespace CSharpGL
 
             // light up the scene with specified light.
             {
-                var arg = new ShadowMappingUnderLightEventArgs(param, scene.Camera, this.lightEquipment.BindingTexture, light);
+                var arg = new ShadowMappingUnderLightEventArgs(param, scene.camera, this.lightEquipment.BindingTexture, light);
                 this.blend.On();
                 RenderUnderLight(this.scene.RootNode, arg);
                 this.blend.Off();
             }
         }
 
-        private void RenderAmbientColor(SceneNodeBase sceneNodeBase, ShadowMappingAmbientEventArgs arg)
-        {
-            if (sceneNodeBase != null)
-            {
+        private void RenderAmbientColor(SceneNodeBase? sceneNodeBase, ShadowMappingAmbientEventArgs arg) {
+            if (sceneNodeBase != null) {
                 var node = sceneNodeBase as ISupportShadowMapping;
                 TwoFlags flags = (node != null) ? node.EnableShadowMapping : TwoFlags.None;
                 bool before = (node != null) && ((flags & TwoFlags.BeforeChildren) == TwoFlags.BeforeChildren);
                 bool children = (node == null) || ((flags & TwoFlags.Children) == TwoFlags.Children);
 
-                if (before)
-                {
-                    node.RenderAmbientColor(arg);
+                if (before) {
+                    if (node != null) node.RenderAmbientColor(arg);
                 }
 
-                if (children)
-                {
-                    foreach (var item in sceneNodeBase.Children)
-                    {
+                if (children) {
+                    foreach (var item in sceneNodeBase.Children) {
                         RenderAmbientColor(item, arg);
                     }
                 }
             }
         }
 
-        private void CastShadow(SceneNodeBase sceneNodeBase, ShadowMappingCastShadowEventArgs arg)
-        {
-            if (sceneNodeBase != null)
-            {
+        private void CastShadow(SceneNodeBase? sceneNodeBase, ShadowMappingCastShadowEventArgs arg) {
+            if (sceneNodeBase != null) {
                 var node = sceneNodeBase as ISupportShadowMapping;
                 TwoFlags flags = (node != null) ? node.EnableShadowMapping : TwoFlags.None;
                 bool before = (node != null) && ((flags & TwoFlags.BeforeChildren) == TwoFlags.BeforeChildren);
                 bool children = (node == null) || ((flags & TwoFlags.Children) == TwoFlags.Children);
 
-                if (before)
-                {
-                    flags = node.EnableCastShadow;
+                if (before) {
+                    if (node != null) flags = node.EnableCastShadow;
                     before = (flags & TwoFlags.BeforeChildren) == TwoFlags.BeforeChildren;
                 }
 
-                if (children)
-                {
+                if (children) {
                     flags = (node != null) ? node.EnableCastShadow : TwoFlags.None;
                     children = (node == null) || ((flags & TwoFlags.Children) == TwoFlags.Children);
                 }
 
-                if (before)
-                {
-                    node.CastShadow(arg);
+                if (before) {
+                    if (node != null) node.CastShadow(arg);
                 }
 
-                if (children)
-                {
-                    foreach (var item in sceneNodeBase.Children)
-                    {
+                if (children) {
+                    foreach (var item in sceneNodeBase.Children) {
                         CastShadow(item, arg);
                     }
                 }
             }
         }
 
-        private void RenderUnderLight(SceneNodeBase sceneNodeBase, ShadowMappingUnderLightEventArgs arg)
-        {
-            if (sceneNodeBase != null)
-            {
+        private void RenderUnderLight(SceneNodeBase? sceneNodeBase, ShadowMappingUnderLightEventArgs arg) {
+            if (sceneNodeBase != null) {
                 var node = sceneNodeBase as ISupportShadowMapping;
                 TwoFlags flags = (node != null) ? node.EnableShadowMapping : TwoFlags.None;
                 bool before = (node != null) && ((flags & TwoFlags.BeforeChildren) == TwoFlags.BeforeChildren);
                 bool children = (node == null) || ((flags & TwoFlags.Children) == TwoFlags.Children);
 
-                if (before)
-                {
-                    flags = node.EnableRenderUnderLight;
+                if (before) {
+                    if (node != null) flags = node.EnableRenderUnderLight;
                     before = (flags & TwoFlags.BeforeChildren) == TwoFlags.BeforeChildren;
                 }
 
-                if (children)
-                {
+                if (children) {
                     flags = (node != null) ? node.EnableRenderUnderLight : TwoFlags.None;
                     children = (node == null) || ((flags & TwoFlags.Children) == TwoFlags.Children);
                 }
 
-                if (before)
-                {
-                    node.RenderUnderLight(arg);
+                if (before) {
+                    if (node != null) node.RenderUnderLight(arg);
                 }
 
-                if (children)
-                {
-                    foreach (var item in sceneNodeBase.Children)
-                    {
+                if (children) {
+                    foreach (var item in sceneNodeBase.Children) {
                         RenderUnderLight(item, arg);
                     }
                 }

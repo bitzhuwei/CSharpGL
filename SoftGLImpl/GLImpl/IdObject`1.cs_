@@ -1,0 +1,33 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace SoftGLImpl {
+
+    internal class IdObject<T> where T : IGenBindDelete {
+        /// <summary>
+        /// from glGenObjects
+        /// </summary>
+        public readonly GLuint id;
+        /// <summary>
+        /// from glBindObject
+        /// </summary>
+        public T? obj;
+
+        public IdObject(uint id) {
+            this.id = id;
+        }
+
+        public override string ToString() => $"{id}:{obj}";
+    }
+
+    internal interface IGenBindDelete {
+
+        GLenum target { get; }
+
+        GLuint id { get; }
+
+        bool deleteFlag { get; set; }
+    }
+}

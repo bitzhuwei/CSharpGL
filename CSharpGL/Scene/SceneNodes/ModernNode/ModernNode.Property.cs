@@ -2,10 +2,8 @@
 using System.ComponentModel;
 using System.Drawing.Design;
 
-namespace CSharpGL
-{
-    public partial class ModernNode
-    {
+namespace CSharpGL {
+    public partial class ModernNode {
         private const string strModernNode = "ModernNode";
 
         /// <summary>

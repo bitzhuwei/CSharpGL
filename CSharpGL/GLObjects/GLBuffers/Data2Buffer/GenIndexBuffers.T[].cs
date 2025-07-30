@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 
-namespace CSharpGL
-{
-    public static partial class Data2Buffer
-    {
+namespace CSharpGL {
+    public static unsafe partial class Data2Buffer {
         /// <summary>
         /// 生成若干用于存储索引的IBO。索引指定了<see cref="VertexBuffer"/>里各个顶点的渲染顺序。
         /// Generates some Index Buffer Objects storing vertexes' indexes, which indicate the rendering order of each vertex.
@@ -15,8 +13,7 @@ namespace CSharpGL
         /// <param name="usage"></param>
         /// <param name="blockSize">How many elements per index buffer?(sometimes except the last one)</param>
         /// <returns></returns>
-        public static IndexBuffer[] GenIndexBuffers<T>(this T[] array, IndexBufferElementType type, BufferUsage usage, int blockSize) where T : struct
-        {
+        public static IndexBuffer[] GenIndexBuffers<T>(this T[] array, IndexBuffer.ElementType type, GLBuffer.Usage usage, int blockSize) where T : struct {
             if (array == null) { throw new ArgumentNullException("array"); }
 
             const int first = 0;
@@ -32,8 +29,7 @@ namespace CSharpGL
         /// <param name="first"></param>
         /// <param name="blockSize">How many elements per index buffer?(sometimes except the last one)</param>
         /// <returns></returns>
-        public static IndexBuffer[] GenIndexBuffers<T>(this T[] array, IndexBufferElementType type, BufferUsage usage, int first, int blockSize) where T : struct
-        {
+        public static IndexBuffer[] GenIndexBuffers<T>(this T[] array, IndexBuffer.ElementType type, GLBuffer.Usage usage, int first, int blockSize) where T : struct {
             if (array == null) { throw new ArgumentNullException("array"); }
             if (first < 0) { throw new ArgumentOutOfRangeException("first"); }
             if (blockSize <= 0) { throw new ArgumentOutOfRangeException("count"); }
@@ -45,12 +41,12 @@ namespace CSharpGL
             var list = new List<IndexBuffer>();
             int current = first;
             int totalLength = array.Length;
-            do
-            {
+            do {
                 IntPtr header = Marshal.UnsafeAddrOfPinnedArrayElement(array, current);
                 int length = (current + blockSize <= totalLength) ? blockSize : (totalLength - current);
-                UnmanagedArrayBase unmanagedArray = new TempUnmanagedArray<T>(header, length);// It's not necessary to call Dispose() for this unmanaged array.
-                IndexBuffer buffer = GenIndexBuffer(unmanagedArray, type, usage);
+                var byteLength = Marshal.SizeOf(typeof(T)) * length;
+                var buffer = GenIndexBuffer(header, byteLength, type, usage);
+                ArgumentNullException.ThrowIfNull(buffer);
                 list.Add(buffer);
 
                 current += length;

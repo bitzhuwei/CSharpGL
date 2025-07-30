@@ -4,21 +4,18 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 
-namespace CSharpGL
-{
+namespace CSharpGL {
     /// <summary>
     /// Root control in control tree.
     /// </summary>
-    public abstract partial class CtrlRoot : GLControl
-    {
+    public abstract partial class CtrlRoot : GLControl {
         /// <summary>
         /// 
         /// </summary>
         /// <param name="width"></param>
         /// <param name="height"></param>
         public CtrlRoot(int width, int height)
-            : base(GUIAnchorStyles.Left | GUIAnchorStyles.Bottom | GUIAnchorStyles.Right | GUIAnchorStyles.Top)
-        {
+            : base(GUIAnchorStyles.Left | GUIAnchorStyles.Bottom | GUIAnchorStyles.Right | GUIAnchorStyles.Top) {
             this.Width = width;
             this.Height = height;
         }

@@ -3,14 +3,12 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Design;
 
-namespace CSharpGL
-{
+namespace CSharpGL {
     /// <summary>
     /// Render something with Blinn-Phong shading model.
     /// </summary>
-    [Editor(typeof(PropertyGridEditor), typeof(UITypeEditor))]
-    public interface IBlinnPhong
-    {
+
+    public interface IBlinnPhong {
         /// <summary>
         /// 
         /// </summary>
@@ -39,8 +37,7 @@ namespace CSharpGL
 
     /// <summary>
     /// </summary>
-    public class BlinnPhongAmbientEventArgs : RenderEventArgs
-    {
+    public class BlinnPhongAmbientEventArgs : RenderEventArgs {
         /// <summary>
         /// 
         /// </summary>
@@ -48,8 +45,7 @@ namespace CSharpGL
         /// <param name="camera"></param>
         /// <param name="ambient"></param>
         public BlinnPhongAmbientEventArgs(ActionParams param, ICamera camera, vec3 ambient)
-            : base(param, camera)
-        {
+            : base(param, camera) {
             this.Ambient = ambient;
         }
 

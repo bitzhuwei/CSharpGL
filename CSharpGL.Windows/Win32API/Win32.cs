@@ -1,30 +1,61 @@
 using System;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 
-namespace CSharpGL
-{
+namespace CSharpGL.Windows {
     /// <summary>
     /// Useful functions imported from the Win32 SDK.
     /// </summary>
-    internal static partial class Win32
-    {
-        private static readonly OpenGL32Library lib = OpenGL32Library.Instance;
+    internal static partial class Win32 {
 
-        internal static IntPtr GetProcAddress(string name)
-        {
-            return Win32.GetProcAddress(lib.libPtr, name);
+        private static readonly OpenGL32Library openGL32lib = OpenGL32Library.Instance;
+
+        internal static IntPtr GetProcAddress(string procName) {
+            var addr = Win32.GetProcAddress(openGL32lib.module, procName);
+            return addr;
         }
 
+        //  The names of the libraries we're importing.
+        /// <summary>
+        /// private const string kernel32 = "kernel32.dll";
+        /// </summary>
+        private const string kernel32 = "kernel32.dll";
+
+        /// <summary>
+        /// private const string gdi32 = "gdi32.dll"
+        /// </summary>
+        private const string gdi32 = "gdi32.dll";
+
+        /// <summary>
+        /// private const string user32 = "user32.dll"
+        /// </summary>
+        private const string user32 = "user32.dll";
+
+        /// <summary>
+        /// internal const string OpenGL32 = "opengl32.dll"
+        /// </summary>
+        internal const string opengl32 = "opengl32.dll";
+        //Linux => new[] { "libGL.so.1" };
+        //MacOS => new[] { "/System/Library/Frameworks/OpenGL.framework/OpenGL" };
+        //Android => new[] { "libGL.so.1" };
+        //IOS => new[] { "/System/Library/Frameworks/OpenGL.framework/OpenGL" };
+        //Windows64 => new[] { "opengl32.dll" };
+        //Windows86 => new[] { "opengl32.dll" };
         #region Kernel32 Functions
 
-        [DllImport(kernel32, SetLastError = true)]
-        internal static extern IntPtr LoadLibrary(string lpFileName);
+        [LibraryImport(kernel32, SetLastError = true, EntryPoint = "LoadLibraryW", StringMarshalling = StringMarshalling.Utf16)]
+        internal static partial IntPtr LoadLibrary(string fileName);
 
-        [DllImport(kernel32, SetLastError = true)]
-        internal extern static IntPtr GetProcAddress(IntPtr lib, String funcName);
+        class MyStringMarshal {
 
-        [DllImport(kernel32, SetLastError = true)]
-        internal extern static bool FreeLibrary(IntPtr lib);
+        }
+
+        [LibraryImport(kernel32, SetLastError = true, StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial IntPtr GetProcAddress(IntPtr module, String procName);
+
+        [LibraryImport(kernel32, SetLastError = true)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        internal static partial bool FreeLibrary(IntPtr module);
 
         #endregion Kernel32 Functions
 
@@ -34,15 +65,15 @@ namespace CSharpGL
         /// Gets the current render context.
         /// </summary>
         /// <returns>The current render context.</returns>
-        [DllImport(opengl32, SetLastError = true)]
-        internal static extern IntPtr wglGetCurrentContext();
+        [LibraryImport(opengl32, SetLastError = true)]
+        internal static partial IntPtr wglGetCurrentContext();
 
         /// <summary>
         /// The wglGetCurrentDC function obtains a handle to the device context that is associated with the current OpenGL rendering context of the calling thread.
         /// </summary>
         /// <returns></returns>
-        [DllImport(opengl32, SetLastError = true)]
-        internal static extern IntPtr wglGetCurrentDC();
+        [LibraryImport(opengl32, SetLastError = true)]
+        internal static partial IntPtr wglGetCurrentDC();
 
         /// <summary>
         /// Make the specified render context current.
@@ -50,33 +81,45 @@ namespace CSharpGL
         /// <param name="hdc">The handle to the device context.</param>
         /// <param name="hrc">The handle to the render context.</param>
         /// <returns></returns>
-        [DllImport(opengl32, SetLastError = true)]
-        internal static extern bool wglMakeCurrent(IntPtr hdc, IntPtr hrc);
+        [LibraryImport(opengl32, SetLastError = true)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        internal static partial bool wglMakeCurrent(IntPtr hdc, IntPtr hrc);
 
         /// <summary>
         /// Creates a render context from the device context.
         /// </summary>
         /// <param name="hdc">The handle to the device context.</param>
         /// <returns>The handle to the render context.</returns>
-        [DllImport(opengl32, SetLastError = true)]
-        internal static extern IntPtr wglCreateContext(IntPtr hdc);
+        [LibraryImport(opengl32, SetLastError = true)]
+        internal static partial IntPtr wglCreateContext(IntPtr hdc);
 
         /// <summary>
         /// Deletes the render context.
         /// </summary>
         /// <param name="hrc">The handle to the render context.</param>
         /// <returns></returns>
-        [DllImport(opengl32, SetLastError = true)]
-        internal static extern int wglDeleteContext(IntPtr hrc);
+        [LibraryImport(opengl32, SetLastError = true)]
+        internal static partial int wglDeleteContext(IntPtr hrc);
 
         /// <summary>
         /// Gets a proc address.
         /// </summary>
         /// <param name="name">The name of the function.</param>
         /// <returns>The address of the function.</returns>
-        [DllImport(opengl32, SetLastError = true)]
-        internal static extern IntPtr wglGetProcAddress(string name);
+        [LibraryImport(opengl32, SetLastError = true, StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial IntPtr wglGetProcAddress(string name);
 
+        ///// <summary>
+        ///// The wglUseFontBitmaps function creates a set of bitmap display lists for use in the current OpenGL rendering context. The set of bitmap display lists is based on the glyphs in the currently selected font in the device context. You can then use bitmaps to draw characters in an OpenGL image.
+        ///// </summary>
+        ///// <param name="hDC">Specifies the device context whose currently selected font will be used to form the glyph bitmap display lists in the current OpenGL rendering context..</param>
+        ///// <param name="first">Specifies the first glyph in the run of glyphs that will be used to form glyph bitmap display lists.</param>
+        ///// <param name="count">Specifies the number of glyphs in the run of glyphs that will be used to form glyph bitmap display lists. The function creates count display lists, one for each glyph in the run.</param>
+        ///// <param name="listBase">Specifies a starting display list.</param>
+        ///// <returns>If the function succeeds, the return value is TRUE. If the function fails, the return value is FALSE. To get extended error information, call GetLastError.</returns>
+        //[LibraryImport(opengl32, SetLastError = true)]
+        //[return: MarshalAs(UnmanagedType.Bool)]
+        //internal static partial bool wglUseFontBitmaps(IntPtr hDC, uint first, uint count, uint listBase);
         /// <summary>
         /// The wglUseFontBitmaps function creates a set of bitmap display lists for use in the current OpenGL rendering context. The set of bitmap display lists is based on the glyphs in the currently selected font in the device context. You can then use bitmaps to draw characters in an OpenGL image.
         /// </summary>
@@ -104,37 +147,38 @@ namespace CSharpGL
         //internal static extern bool wglUseFontOutlines(IntPtr hDC, uint first, uint count, uint listBase,
         //    float deviation, float extrusion, int format, [Out, MarshalAs(UnmanagedType.LPArray)] GLYPHMETRICSFLOAT[] lpgmf);
 
-        ///// <summary>
-        ///// Link two render contexts so they share lists (buffer IDs, etc.)
-        ///// </summary>
-        ///// <param name="hrc1">The first context.</param>
-        ///// <param name="hrc2">The second context.</param>
-        ///// <returns>If the function succeeds, the return value is TRUE. If the function fails, the return value is FALSE.
-        ///// To get extended error information, call GetLastError.</returns>
-        //[DllImport(opengl32, SetLastError = true)]
-        //internal static extern bool wglShareLists(IntPtr hrc1, IntPtr hrc2);
+        /// <summary>
+        /// Link two render contexts so they share lists (buffer IDs, etc.)
+        /// </summary>
+        /// <param name="hrc1">The first context.</param>
+        /// <param name="hrc2">The second context.</param>
+        /// <returns>If the function succeeds, the return value is TRUE. If the function fails, the return value is FALSE.
+        /// To get extended error information, call GetLastError.</returns>
+        [LibraryImport(opengl32, SetLastError = true)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        internal static partial bool wglShareLists(IntPtr hrc1, IntPtr hrc2);
 
         #endregion WGL Functions
 
         #region PixelFormatDescriptor structure and flags.
 
-        [DllImport(user32, SetLastError = true)]
-        internal static extern IntPtr DefWindowProc(IntPtr hWnd, uint uMsg, IntPtr wParam, IntPtr lParam);
+        [LibraryImport(user32, SetLastError = true)]
+        internal static partial IntPtr DefWindowProc(IntPtr hWnd, uint uMsg, IntPtr wParam, IntPtr lParam);
 
-        [DllImport(user32, SetLastError = true)]
-        internal static extern IntPtr CreateWindowEx(
-           WindowStylesEx dwExStyle,
-           string lpClassName,
-           string lpWindowName,
-           WindowStyles dwStyle,
-           int x,
-           int y,
-           int nWidth,
-           int nHeight,
-           IntPtr hWndParent,
-           IntPtr hMenu,
-           IntPtr hInstance,
-           IntPtr lpParam);
+        //[DllImport(user32, SetLastError = true)]
+        //internal static extern IntPtr CreateWindowEx(
+        //   WindowStylesEx dwExStyle,
+        //   string lpClassName,
+        //   string lpWindowName,
+        //   WindowStyles dwStyle,
+        //   int x,
+        //   int y,
+        //   int nWidth,
+        //   int nHeight,
+        //   IntPtr hWndParent,
+        //   IntPtr hMenu,
+        //   IntPtr hInstance,
+        //   IntPtr lpParam);
 
         #endregion PixelFormatDescriptor structure and flags.
 
@@ -152,62 +196,70 @@ namespace CSharpGL
         //[DllImport(gdi32, SetLastError = true)]
         //internal static extern IntPtr GetStockObject(uint fnObject);
 
-        [DllImport(gdi32, SetLastError = true)]
-        internal static extern int SwapBuffers(IntPtr hDC);
+        [LibraryImport(gdi32, SetLastError = true)]
+        internal static partial int SwapBuffers(IntPtr hDC);
 
-        [DllImport(gdi32, SetLastError = true)]
-        internal static extern bool BitBlt(IntPtr hDC, int x, int y, int width,
+        [LibraryImport(gdi32, SetLastError = true)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        internal static partial bool BitBlt(IntPtr hDC, int x, int y, int width,
             int height, IntPtr hDCSource, int sourceX, int sourceY, uint type);
 
-        [DllImport(gdi32, SetLastError = true)]
-        internal static extern IntPtr CreateDIBSection(IntPtr hdc, [In] ref BitmapInfo pbmi,
+        [LibraryImport(gdi32, SetLastError = true)]
+        internal static partial IntPtr CreateDIBSection(IntPtr hdc, ref BitmapInfo pbmi,
            uint pila, out IntPtr ppvBits, IntPtr hSection, uint dwOffset);
 
-        [DllImport(gdi32, SetLastError = true)]
-        internal static extern IntPtr SelectObject(IntPtr hdc, IntPtr hgdiobj);
+        [LibraryImport(gdi32, SetLastError = true)]
+        internal static partial IntPtr SelectObject(IntPtr hdc, IntPtr hgdiobj);
 
-        [DllImport(gdi32, SetLastError = true)]
-        internal static extern bool DeleteObject(IntPtr hObject);
+        [LibraryImport(gdi32, SetLastError = true)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        internal static partial bool DeleteObject(IntPtr hObject);
 
         /// <summary>
         /// This function creates a memory device context (DC) compatible with the specified device.
         /// </summary>
         /// <param name="hDC">Handle to an existing device context.If this handle is NULL, the function creates a memory device context compatible with the application's current screen.</param>
         /// <returns>The handle to a memory device context indicates success. NULL indicates failure.</returns>
-        [DllImport(gdi32, SetLastError = true)]
-        internal static extern IntPtr CreateCompatibleDC(IntPtr hDC);
+        [LibraryImport(gdi32, SetLastError = true)]
+        internal static partial IntPtr CreateCompatibleDC(IntPtr hDC);
 
-        [DllImport(gdi32, SetLastError = true)]
+        [LibraryImport(gdi32, SetLastError = true)]
         [return: MarshalAs(UnmanagedType.Bool)]
-        internal static extern bool DeleteDC(IntPtr hDC);
+        internal static partial bool DeleteDC(IntPtr hDC);
 
+        //[LibraryImport(gdi32, SetLastError = true, StringMarshalling = StringMarshalling.Utf16)]
+        //internal static partial IntPtr CreateFont(int nHeight, int nWidth, int nEscapement,
+        //   int nOrientation, uint fnWeight, uint fdwItalic, uint fdwUnderline, uint
+        //   fdwStrikeOut, uint fdwCharSet, uint fdwOutputPrecision, uint
+        //   fdwClipPrecision, uint fdwQuality, uint fdwPitchAndFamily, string lpszFace);
         [DllImport(gdi32, SetLastError = true)]
         internal static extern IntPtr CreateFont(int nHeight, int nWidth, int nEscapement,
-           int nOrientation, uint fnWeight, uint fdwItalic, uint fdwUnderline, uint
-           fdwStrikeOut, uint fdwCharSet, uint fdwOutputPrecision, uint
-           fdwClipPrecision, uint fdwQuality, uint fdwPitchAndFamily, string lpszFace);
+          int nOrientation, uint fnWeight, uint fdwItalic, uint fdwUnderline, uint
+          fdwStrikeOut, uint fdwCharSet, uint fdwOutputPrecision, uint
+          fdwClipPrecision, uint fdwQuality, uint fdwPitchAndFamily, string lpszFace);
+
 
         #endregion Win32 Function Definitions.
 
         #region User32 Functions
 
-        [DllImport(user32, SetLastError = true)]
-        internal static extern IntPtr GetDC(IntPtr hWnd);
+        [LibraryImport(user32, SetLastError = true)]
+        internal static partial IntPtr GetDC(IntPtr hWnd);
 
-        [DllImport(user32, SetLastError = true)]
-        internal static extern int ReleaseDC(IntPtr hWnd, IntPtr hDC);
+        [LibraryImport(user32, SetLastError = true)]
+        internal static partial int ReleaseDC(IntPtr hWnd, IntPtr hDC);
 
-        [DllImport(user32, SetLastError = true)]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        internal static extern bool DestroyWindow(IntPtr hWnd);
+        //[LibraryImport(user32, SetLastError = true)]
+        //[return: MarshalAs(UnmanagedType.Bool)]
+        //internal static partial bool DestroyWindow(IntPtr hWnd);
 
-        [DllImport(user32, SetLastError = true)]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        internal static extern bool SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int X, int Y, int cx, int cy, SetWindowPosFlags uFlags);
+        //[DllImport(user32, SetLastError = true)]
+        //[return: MarshalAs(UnmanagedType.Bool)]
+        //internal static extern bool SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int X, int Y, int cx, int cy, SetWindowPosFlags uFlags);
 
-        [DllImport(user32, SetLastError = true)]
-        [return: MarshalAs(UnmanagedType.U2)]
-        internal static extern short RegisterClassEx([In] ref WNDCLASSEX lpwcx);
+        //[DllImport(user32, SetLastError = true)]
+        //[return: MarshalAs(UnmanagedType.U2)]
+        //internal static extern short RegisterClassEx([In] ref WNDCLASSEX lpwcx);
 
         #endregion User32 Functions
     }

@@ -2,23 +2,18 @@
 using System.ComponentModel;
 using System.Drawing.Design;
 
-namespace CSharpGL
-{
+namespace CSharpGL {
     /// <summary>
     /// Renders a <see cref="GLControl"/>.
     /// </summary>
-    public abstract partial class GLControl
-    {
+    public abstract partial class GLControl {
         #region IGUIRenderable 成员
 
         private ThreeFlags enableRendering = ThreeFlags.BeforeChildren | ThreeFlags.Children;
         /// <summary>
-        /// 
+        /// Render this control or not? 
         /// </summary>
-        [Category(strGLControl)]
-        [Description("Render this control or not?")]
-        public ThreeFlags EnableGUIRendering
-        {
+        public ThreeFlags EnableGUIRendering {
             get { return this.enableRendering; }
             set { this.enableRendering = value; }
         }
@@ -26,18 +21,13 @@ namespace CSharpGL
         /// <summary>
         /// Render back ground or not?
         /// </summary>
-        [Category(strGLControl)]
-        [Description("Render back ground or not?")]
         public bool RenderBackground { get; set; }
 
         private vec4 backgroundColor = new vec4(1, 0, 0, 1);
         /// <summary>
         /// Rendder background in what color?
         /// </summary>
-        [Category(strGLControl)]
-        [Description("Rendder background in what color?")]
-        public vec4 BackgroundColor
-        {
+        public vec4 BackgroundColor {
             get { return backgroundColor; }
             set { backgroundColor = value; }
         }
@@ -46,17 +36,17 @@ namespace CSharpGL
         /// 
         /// </summary>
         /// <param name="arg"></param>
-        public virtual void RenderGUIBeforeChildren(GUIRenderEventArgs arg)
-        {
-            GL.Instance.Enable(GL.GL_SCISSOR_TEST);
-            GL.Instance.Scissor(this.absLeft, this.absBottom, this.width, this.height);
-            GL.Instance.Viewport(this.absLeft, this.absBottom, this.width, this.height);
+        public unsafe virtual void RenderGUIBeforeChildren(GUIRenderEventArgs arg) {
+            var gl = GL.current; if (gl != null) {
+                gl.glEnable(GL.GL_SCISSOR_TEST);
+                gl.glScissor(this.absLeft, this.absBottom, this.width, this.height);
+                gl.glViewport(this.absLeft, this.absBottom, this.width, this.height);
 
-            if (this.RenderBackground)
-            {
-                vec4 color = this.BackgroundColor;
-                GL.Instance.ClearColor(color.x, color.y, color.z, color.w);
-                GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT);
+                if (this.RenderBackground) {
+                    vec4 color = this.BackgroundColor;
+                    gl.glClearColor(color.x, color.y, color.z, color.w);
+                    gl.glClear(GL.GL_COLOR_BUFFER_BIT);
+                }
             }
         }
 
@@ -86,23 +76,17 @@ namespace CSharpGL
         private bool isInitialized = false;
 
         /// <summary>
-        /// Already initialized.
+        /// Is this node initialized or not?
         /// </summary>
-        [Category(strGLControl)]
-        [Description("Is this node initialized or not?")]
         public bool IsInitialized { get { return isInitialized; } }
 
         /// <summary>
         /// Initialize all stuff related to OpenGL.
         /// </summary>
-        public void Initialize()
-        {
-            if (!isInitialized)
-            {
-                lock (synObj)
-                {
-                    if (!isInitialized)
-                    {
+        public void Initialize() {
+            if (!isInitialized) {
+                lock (synObj) {
+                    if (!isInitialized) {
                         //initializing = true;
                         DoInitialize();
                         //initializing = false;

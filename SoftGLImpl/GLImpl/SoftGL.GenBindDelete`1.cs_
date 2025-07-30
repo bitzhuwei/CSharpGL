@@ -1,0 +1,73 @@
+﻿using System.Reflection.Emit;
+
+namespace SoftGLImpl {
+    public unsafe partial class SoftGL {
+        internal static void GenObject<T>(List<IdObject<T>> array, GLsizei n, GLuint[] objectIds) where T : IGenBindDelete {
+            //var array = context.idGLBuffers;
+            var generated = 0;
+            // try to reuse freed buffer ids
+            for (var i = 0; i < array.Count && generated < n; i++) {
+                if (array[i].id == 0) {
+                    var id = (GLuint)(i + 1);
+                    array[i] = new IdObject<T>(id);// new IdGLBuffer(id);
+                    objectIds[generated] = id;
+                    generated++;
+                }
+            }
+            if (generated < n) {
+                // expand new buffer ids
+                var last = n - generated;
+                var count = array.Count;
+                for (var i = 0; i < last; i++) {
+                    var id = (GLuint)(count + i + 1);
+                    array.Add(new IdObject<T>(id)/*new IdGLBuffer(id)*/);
+                    objectIds[generated] = id;
+                    generated++;
+                }
+            }
+        }
+
+        public static void glBindObject<T>(List<IdObject<T>> array, GLenum target, GLuint name) where T : IGenBindDelete {
+            var index = (int)(name - 1);
+            var item = array[index];
+            if (item.obj == null) {
+                item.obj = new IdObject<T>(target, name);
+                //context.target2Buffers.Add(target,)
+            }
+            else if (idGLBuffer.buffer.Target != target) { context.lastErrorCode = (uint)(ErrorCode.InvalidOperation); return; }
+
+            context.target2CurrentBuffer[target] = idGLBuffer.buffer;
+        }
+
+        public static bool glIsBuffer<T>(GLuint name) where T : IGenBindDelete {
+            var context = SoftGL.GetCurrentContextObj();
+            if (context == null) { return false; }
+            return (name == 0 || context.idGLBuffers.Count < name || context.idGLBuffers[(int)(name - 1)].id == 0);
+        }
+
+        public static void glDeleteBuffers<T>(GLsizei count, GLuint[] names) where T : IGenBindDelete {
+            var context = SoftGL.GetCurrentContextObj();
+            if (context == null) { return; }
+
+            if (count < 0) { context.lastErrorCode = (uint)(ErrorCode.InvalidValue); return; }
+
+            var array = context.idGLBuffers;
+            for (int i = 0; i < count; i++) {
+                var name = names[i]; if (name == 0) { continue; }
+                var index = (int)(name - 1);
+                var idGLBuffer = array[index];
+                if (idGLBuffer != null) {
+                    var buffer = idGLBuffer.buffer;
+                    if (buffer != null) {
+                        buffer.deleteFlag = true;
+                        // If a buffer object that is currently bound is deleted, the binding reverts to 0 (the absence of any buffer object).
+                        if (context.target2CurrentBuffer[buffer.Target] == buffer) {
+                            context.target2CurrentBuffer[buffer.Target] = null;
+                        }
+                    }
+                    array[index] = null;
+                }
+            }
+        }
+    }
+}

@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Text;
 
-namespace CSharpGL
-{
+namespace CSharpGL {
     // 
     //                ----------------------------------------------------------------------
     // IndexBuffer:          | vertexIds[0] | vertexIds[1] | .. | vertexIds[last] |
@@ -12,8 +11,7 @@ namespace CSharpGL
     /// <summary>
     /// All vertexs' ids of picked geometry and their indexes in <see cref="IndexBuffer"/>.
     /// </summary>
-    internal class RecognizedPrimitiveInfo
-    {
+    internal class RecognizedPrimitiveInfo {
         private uint index;
 
         /// <summary>
@@ -21,8 +19,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="index">index of LastVertexId in the <see cref="IndexBuffer"/>.</param>
         /// <param name="vertexIds">All vertexs' ids of picked geometry.</param>
-        public RecognizedPrimitiveInfo(uint index, params uint[] vertexIds)
-        {
+        public RecognizedPrimitiveInfo(uint index, params uint[] vertexIds) {
             if (vertexIds.Length < 1) { throw new ArgumentException("There should be at least 1 vertexId!", "vertexIds"); }
 
             this.index = index;
@@ -39,11 +36,9 @@ namespace CSharpGL
         /// </summary>
         public uint[] VertexIds { get; private set; }
 
-        public override string ToString()
-        {
+        public override string ToString() {
             StringBuilder builder = new StringBuilder();
-            for (int i = 0; i < this.VertexIds.Length - 1; i++)
-            {
+            for (int i = 0; i < this.VertexIds.Length - 1; i++) {
                 builder.Append(this.VertexIds[i]); builder.Append(", ");
             }
 

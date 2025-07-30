@@ -1,0 +1,220 @@
+
+
+ <!DOCTYPE html>
+<html lang="en"> 
+<head>
+    <meta charset="utf-8"/>
+    <title>LearnOpenGL - nav button_bottom arrow.png</title>	<!--<title>Learn OpenGL, extensive tutorial resource for learning Modern OpenGL</title>-->
+    <link rel="shortcut icon" type="image/ico" href="/favicon.ico"  />
+    <meta name="description" content="Learn OpenGL . com provides good and clear modern 3.3+ OpenGL tutorials with clear examples. A great resource to learn modern OpenGL aimed at beginners.">
+	<meta name="fragment" content="!"> 
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-51879160-1', 'learnopengl.com');
+      ga('send', 'pageview');
+
+    </script>
+    <script>
+	    </script>
+	<script async='async' src='https://www.googletagservices.com/tag/js/gpt.js'></script>
+	<script>
+		</script>
+		<script src="/js/jquery-1.11.0.min.js"></script>
+	<script src="/js/hoverintent.js"></script>
+	<link rel="stylesheet" type="text/css" href="/layout.css">
+    <link rel="stylesheet" type="text/css" href="/js/styles/obsidian.css">
+    <script src="/js/highlight.pack.js"></script>    
+    <script src="/js/functions.js"></script>
+    <script type="text/javascript" src="/js/mathjax/MathJax.js?config=TeX-AMS_HTML"></script>
+    <script>
+    // Has to be loaded last due to content bug 
+    MathJax.Hub.Config({
+        TeX: { equationNumbers: { autoNumber: "AMS" } }
+    });
+    </script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script>  
+        $(document).ready(function() {
+            // check if user visited from the old # based urls, re-direct to ?p= form
+            if(window.location.hash)
+            {
+                var name = window.location.hash.substring(2);
+                // name = name.replace(/-/g," ");
+                var index = name.indexOf('#'); // Remove any hash fragments from the url (Disquss adds hash fragments for comments, but results in 404 pages)
+                if(index >= 0)
+                    name = name.substring(0, index);
+                
+                window.location.href = "https://learnopengl.com/" + name;
+            } else {
+                    // Check if data has been succesfully loaded, if so: change title bar as ajax hash fragment
+                    var title = $('#content-url').text();
+                  
+					// place video tag 
+					 if(title != '' ) {
+										}
+					
+                    // Adjust ads for correct bottom positioning based on content size
+                    // window.setTimeout(function() {  
+                        // AdPositioning();
+                     // }, 3000);
+                  
+                  
+                    // set API resets after time-out (once content is properly loaded)
+                    window.setTimeout(function() {  
+                        MathJax.Hub.Queue(["Typeset",MathJax.Hub]);    
+                        
+                        var page_url = title == "" ? "http://www.learnopengl.com/" : "http://www.learnopengl.com/" + title;
+                        if(typeof DISQUS !== 'undefined') {                                              
+                            DISQUS.reset({
+                              reload: true,
+                              config: function () {  
+                                this.page.identifier = title;  
+                                this.page.url = page_url;
+                              }
+                            });
+                            $('#disqus_thread').show();
+                        }
+                           // Refresh callbacks on <function> tags
+                        SetFunctionTagCallbacks();        
+                    }, 1000);
+                                        
+                    // Zet ook de juiste button op 'selected'
+                    $('#nav li span, #nav li a').removeClass('selected');                
+                    if(title != '')
+                    {                    
+                        $('#nav li[id=\'' + title + '\']').children('span, a').addClass('selected');
+                    }
+                    // En open menu waar nodig
+                    var parents = $('#nav span.selected, #nav a.selected').parents('li').children('span.closed, a.closed');
+                    var index = 0;
+                    for(index = parents.length - 1; index >= 0; index--)
+                    {             
+                        
+                        var id = $(parents[index]).attr("id").replace( /^\D+/g, '');
+                        MenuClick(id, false);
+                    }                          
+                
+            }
+        });
+        
+        // Set up DISQUS
+        // $(document).ready(function() {
+            var disqus_shortname = 'learnopengl';
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();           
+        // });
+    </script>
+</head>
+<body>
+<a href="https://learnopengl.com">
+<div id="header">
+</div>
+</a>
+
+<div id="supercontainer">
+    <!-- 728x90/320x50 -->
+    <div id="header_ad">
+	    </div>
+    <div id="rightad_container">
+        <div id="rightad">       
+			        </div>
+
+        <div id="admessage">
+            If you're running AdBlock, please consider whitelisting this site if you'd like to support LearnOpenGL (it helps <strong>a lot</strong>); and no worries, I won't be mad if you don't :)
+        </div>
+		
+		<!--<div id="rightonetenthad">
+
+        </div>-->
+        
+        <!--<div id="rightthreetenthad">
+
+        </div>-->
+		
+				
+		<!--<div id="rightseventhtenthdad">
+
+        </div>-->
+
+        		
+    </div>
+    <div id="container">
+        <div id="loading"></div>
+<script> 
+$(document).ready(function() {
+$('#menu-item4').mousedown(function() { MenuClick(4, true) });
+$('#menu-item48').mousedown(function() { MenuClick(48, true) });
+$('#menu-item56').mousedown(function() { MenuClick(56, true) });
+$('#menu-item63').mousedown(function() { MenuClick(63, true) });
+$('#menu-item100').mousedown(function() { MenuClick(100, true) });
+$('#menu-item102').mousedown(function() { MenuClick(102, true) });
+$('#menu-item113').mousedown(function() { MenuClick(113, true) });
+$('#menu-item116').mousedown(function() { MenuClick(116, true) });
+$('#menu-item78').mousedown(function() { MenuClick(78, true) });
+$('#menu-item81').mousedown(function() { MenuClick(81, true) });
+$('#menu-item85').mousedown(function() { MenuClick(85, true) });
+$('#menu-item125').mousedown(function() { MenuClick(125, true) });
+$('#menu-item128').mousedown(function() { MenuClick(128, true) });
+$('#menu-item129').mousedown(function() { MenuClick(129, true) });
+$('#menu-item133').mousedown(function() { MenuClick(133, true) });
+$('#menu-item134').mousedown(function() { MenuClick(134, true) });
+$('#menu-item138').mousedown(function() { MenuClick(138, true) });
+$('#menu-item142').mousedown(function() { MenuClick(142, true) });
+$('#menu-item143').mousedown(function() { MenuClick(143, true) });
+}); 
+</script>   
+    <div id="nav">
+         <div id="social">
+            <a href="https://github.com/JoeyDeVries/LearnOpenGL" target="_blank">
+                    <img src="/img/github.png" class="social_ico">
+            </a>
+            <a href="https://twitter.com/JoeyDeVriez" target="_blank">
+                <img src="/img/twitter.png" class="social_ico">
+            </a>
+          
+        </div>
+    <img src='img/nav-button_bottom-arrow.png' style='display: none'><ol><li id='Introduction'><a id="menu-item1" href="https://learnopengl.com/Introduction">Introduction </a></li><li id='Getting-started'><span id="menu-item4" class="closed">Getting started </span><ol id="menu-items-of4" style="display:none;"><li id='Getting-started/OpenGL'><a id="menu-item49" href="https://learnopengl.com/Getting-started/OpenGL">OpenGL </a></li><li id='Getting-started/Creating-a-window'><a id="menu-item5" href="https://learnopengl.com/Getting-started/Creating-a-window">Creating a window </a></li><li id='Getting-started/Hello-Window'><a id="menu-item6" href="https://learnopengl.com/Getting-started/Hello-Window">Hello Window </a></li><li id='Getting-started/Hello-Triangle'><a id="menu-item38" href="https://learnopengl.com/Getting-started/Hello-Triangle">Hello Triangle </a></li><li id='Getting-started/Shaders'><a id="menu-item39" href="https://learnopengl.com/Getting-started/Shaders">Shaders </a></li><li id='Getting-started/Textures'><a id="menu-item40" href="https://learnopengl.com/Getting-started/Textures">Textures </a></li><li id='Getting-started/Transformations'><a id="menu-item43" href="https://learnopengl.com/Getting-started/Transformations">Transformations </a></li><li id='Getting-started/Coordinate-Systems'><a id="menu-item44" href="https://learnopengl.com/Getting-started/Coordinate-Systems">Coordinate Systems </a></li><li id='Getting-started/Camera'><a id="menu-item47" href="https://learnopengl.com/Getting-started/Camera">Camera </a></li><li id='Getting-started/Review'><a id="menu-item50" href="https://learnopengl.com/Getting-started/Review">Review </a></li></ol></li><li id='Lighting'><span id="menu-item48" class="closed">Lighting </span><ol id="menu-items-of48" style="display:none;"><li id='Lighting/Colors'><a id="menu-item51" href="https://learnopengl.com/Lighting/Colors">Colors </a></li><li id='Lighting/Basic-Lighting'><a id="menu-item52" href="https://learnopengl.com/Lighting/Basic-Lighting">Basic Lighting </a></li><li id='Lighting/Materials'><a id="menu-item53" href="https://learnopengl.com/Lighting/Materials">Materials </a></li><li id='Lighting/Lighting-maps'><a id="menu-item54" href="https://learnopengl.com/Lighting/Lighting-maps">Lighting maps </a></li><li id='Lighting/Light-casters'><a id="menu-item55" href="https://learnopengl.com/Lighting/Light-casters">Light casters </a></li><li id='Lighting/Multiple-lights'><a id="menu-item58" href="https://learnopengl.com/Lighting/Multiple-lights">Multiple lights </a></li><li id='Lighting/Review'><a id="menu-item57" href="https://learnopengl.com/Lighting/Review">Review </a></li></ol></li><li id='Model-Loading'><span id="menu-item56" class="closed">Model Loading </span><ol id="menu-items-of56" style="display:none;"><li id='Model-Loading/Assimp'><a id="menu-item59" href="https://learnopengl.com/Model-Loading/Assimp">Assimp </a></li><li id='Model-Loading/Mesh'><a id="menu-item60" href="https://learnopengl.com/Model-Loading/Mesh">Mesh </a></li><li id='Model-Loading/Model'><a id="menu-item61" href="https://learnopengl.com/Model-Loading/Model">Model </a></li></ol></li><li id='Advanced-OpenGL'><span id="menu-item63" class="closed">Advanced OpenGL </span><ol id="menu-items-of63" style="display:none;"><li id='Advanced-OpenGL/Depth-testing'><a id="menu-item72" href="https://learnopengl.com/Advanced-OpenGL/Depth-testing">Depth testing </a></li><li id='Advanced-OpenGL/Stencil-testing'><a id="menu-item73" href="https://learnopengl.com/Advanced-OpenGL/Stencil-testing">Stencil testing </a></li><li id='Advanced-OpenGL/Blending'><a id="menu-item74" href="https://learnopengl.com/Advanced-OpenGL/Blending">Blending </a></li><li id='Advanced-OpenGL/Face-culling'><a id="menu-item77" href="https://learnopengl.com/Advanced-OpenGL/Face-culling">Face culling </a></li><li id='Advanced-OpenGL/Framebuffers'><a id="menu-item65" href="https://learnopengl.com/Advanced-OpenGL/Framebuffers">Framebuffers </a></li><li id='Advanced-OpenGL/Cubemaps'><a id="menu-item66" href="https://learnopengl.com/Advanced-OpenGL/Cubemaps">Cubemaps </a></li><li id='Advanced-OpenGL/Advanced-Data'><a id="menu-item69" href="https://learnopengl.com/Advanced-OpenGL/Advanced-Data">Advanced Data </a></li><li id='Advanced-OpenGL/Advanced-GLSL'><a id="menu-item67" href="https://learnopengl.com/Advanced-OpenGL/Advanced-GLSL">Advanced GLSL </a></li><li id='Advanced-OpenGL/Geometry-Shader'><a id="menu-item68" href="https://learnopengl.com/Advanced-OpenGL/Geometry-Shader">Geometry Shader </a></li><li id='Advanced-OpenGL/Instancing'><a id="menu-item70" href="https://learnopengl.com/Advanced-OpenGL/Instancing">Instancing </a></li><li id='Advanced-OpenGL/Anti-Aliasing'><a id="menu-item75" href="https://learnopengl.com/Advanced-OpenGL/Anti-Aliasing">Anti Aliasing </a></li></ol></li><li id='Advanced-Lighting'><span id="menu-item100" class="closed">Advanced Lighting </span><ol id="menu-items-of100" style="display:none;"><li id='Advanced-Lighting/Advanced-Lighting'><a id="menu-item101" href="https://learnopengl.com/Advanced-Lighting/Advanced-Lighting">Advanced Lighting </a></li><li id='Advanced-Lighting/Gamma-Correction'><a id="menu-item110" href="https://learnopengl.com/Advanced-Lighting/Gamma-Correction">Gamma Correction </a></li><li id='Advanced-Lighting/Shadows'><span id="menu-item102" class="closed">Shadows </span><ol id="menu-items-of102" style="display:none;"><li id='Advanced-Lighting/Shadows/Shadow-Mapping'><a id="menu-item103" href="https://learnopengl.com/Advanced-Lighting/Shadows/Shadow-Mapping">Shadow Mapping </a></li><li id='Advanced-Lighting/Shadows/Point-Shadows'><a id="menu-item104" href="https://learnopengl.com/Advanced-Lighting/Shadows/Point-Shadows">Point Shadows </a></li></ol></li><li id='Advanced-Lighting/Normal-Mapping'><a id="menu-item106" href="https://learnopengl.com/Advanced-Lighting/Normal-Mapping">Normal Mapping </a></li><li id='Advanced-Lighting/Parallax-Mapping'><a id="menu-item107" href="https://learnopengl.com/Advanced-Lighting/Parallax-Mapping">Parallax Mapping </a></li><li id='Advanced-Lighting/HDR'><a id="menu-item111" href="https://learnopengl.com/Advanced-Lighting/HDR">HDR </a></li><li id='Advanced-Lighting/Bloom'><a id="menu-item112" href="https://learnopengl.com/Advanced-Lighting/Bloom">Bloom </a></li><li id='Advanced-Lighting/Deferred-Shading'><a id="menu-item108" href="https://learnopengl.com/Advanced-Lighting/Deferred-Shading">Deferred Shading </a></li><li id='Advanced-Lighting/SSAO'><a id="menu-item109" href="https://learnopengl.com/Advanced-Lighting/SSAO">SSAO </a></li></ol></li><li id='PBR'><span id="menu-item113" class="closed">PBR </span><ol id="menu-items-of113" style="display:none;"><li id='PBR/Theory'><a id="menu-item114" href="https://learnopengl.com/PBR/Theory">Theory </a></li><li id='PBR/Lighting'><a id="menu-item115" href="https://learnopengl.com/PBR/Lighting">Lighting </a></li><li id='PBR/IBL'><span id="menu-item116" class="closed">IBL </span><ol id="menu-items-of116" style="display:none;"><li id='PBR/IBL/Diffuse-irradiance'><a id="menu-item117" href="https://learnopengl.com/PBR/IBL/Diffuse-irradiance">Diffuse irradiance </a></li><li id='PBR/IBL/Specular-IBL'><a id="menu-item118" href="https://learnopengl.com/PBR/IBL/Specular-IBL">Specular IBL </a></li></ol></li></ol></li><li id='In-Practice'><span id="menu-item78" class="closed">In Practice </span><ol id="menu-items-of78" style="display:none;"><li id='In-Practice/Debugging'><a id="menu-item79" href="https://learnopengl.com/In-Practice/Debugging">Debugging </a></li><li id='In-Practice/Text-Rendering'><a id="menu-item80" href="https://learnopengl.com/In-Practice/Text-Rendering">Text Rendering </a></li><li id='In-Practice/2D-Game'><span id="menu-item81" class="closed">2D Game </span><ol id="menu-items-of81" style="display:none;"><li id='In-Practice/2D-Game/Breakout'><a id="menu-item82" href="https://learnopengl.com/In-Practice/2D-Game/Breakout">Breakout </a></li><li id='In-Practice/2D-Game/Setting-up'><a id="menu-item88" href="https://learnopengl.com/In-Practice/2D-Game/Setting-up">Setting up </a></li><li id='In-Practice/2D-Game/Rendering-Sprites'><a id="menu-item83" href="https://learnopengl.com/In-Practice/2D-Game/Rendering-Sprites">Rendering Sprites </a></li><li id='In-Practice/2D-Game/Levels'><a id="menu-item84" href="https://learnopengl.com/In-Practice/2D-Game/Levels">Levels </a></li><li id='In-Practice/2D-Game/Collisions'><span id="menu-item85" class="closed">Collisions </span><ol id="menu-items-of85" style="display:none;"><li id='In-Practice/2D-Game/Collisions/Ball'><a id="menu-item95" href="https://learnopengl.com/In-Practice/2D-Game/Collisions/Ball">Ball </a></li><li id='In-Practice/2D-Game/Collisions/Collision-detection'><a id="menu-item96" href="https://learnopengl.com/In-Practice/2D-Game/Collisions/Collision-detection">Collision detection </a></li><li id='In-Practice/2D-Game/Collisions/Collision-resolution'><a id="menu-item97" href="https://learnopengl.com/In-Practice/2D-Game/Collisions/Collision-resolution">Collision resolution </a></li></ol></li><li id='In-Practice/2D-Game/Particles'><a id="menu-item89" href="https://learnopengl.com/In-Practice/2D-Game/Particles">Particles </a></li><li id='In-Practice/2D-Game/Postprocessing'><a id="menu-item90" href="https://learnopengl.com/In-Practice/2D-Game/Postprocessing">Postprocessing </a></li><li id='In-Practice/2D-Game/Powerups'><a id="menu-item91" href="https://learnopengl.com/In-Practice/2D-Game/Powerups">Powerups </a></li><li id='In-Practice/2D-Game/Audio'><a id="menu-item94" href="https://learnopengl.com/In-Practice/2D-Game/Audio">Audio </a></li><li id='In-Practice/2D-Game/Render-text'><a id="menu-item92" href="https://learnopengl.com/In-Practice/2D-Game/Render-text">Render text </a></li><li id='In-Practice/2D-Game/Final-thoughts'><a id="menu-item93" href="https://learnopengl.com/In-Practice/2D-Game/Final-thoughts">Final thoughts </a></li></ol></li></ol></li><li id='Guest-Articles'><span id="menu-item125" class="closed">Guest Articles </span><ol id="menu-items-of125" style="display:none;"><li id='Guest-Articles/How-to-publish'><a id="menu-item126" href="https://learnopengl.com/Guest-Articles/How-to-publish">How to publish </a></li><li id='Guest-Articles/2020'><span id="menu-item128" class="closed">2020 </span><ol id="menu-items-of128" style="display:none;"><li id='Guest-Articles/2020/OIT'><span id="menu-item129" class="closed">OIT </span><ol id="menu-items-of129" style="display:none;"><li id='Guest-Articles/2020/OIT/Introduction'><a id="menu-item130" href="https://learnopengl.com/Guest-Articles/2020/OIT/Introduction">Introduction </a></li><li id='Guest-Articles/2020/OIT/Weighted-Blended'><a id="menu-item132" href="https://learnopengl.com/Guest-Articles/2020/OIT/Weighted-Blended">Weighted Blended </a></li></ol></li><li id='Guest-Articles/2020/Skeletal-Animation'><a id="menu-item131" href="https://learnopengl.com/Guest-Articles/2020/Skeletal-Animation">Skeletal Animation </a></li></ol></li><li id='Guest-Articles/2021'><span id="menu-item133" class="closed">2021 </span><ol id="menu-items-of133" style="display:none;"><li id='Guest-Articles/2021/CSM'><a id="menu-item137" href="https://learnopengl.com/Guest-Articles/2021/CSM">CSM </a></li><li id='Guest-Articles/2021/Scene'><span id="menu-item134" class="closed">Scene </span><ol id="menu-items-of134" style="display:none;"><li id='Guest-Articles/2021/Scene/Scene-Graph'><a id="menu-item135" href="https://learnopengl.com/Guest-Articles/2021/Scene/Scene-Graph">Scene Graph </a></li><li id='Guest-Articles/2021/Scene/Frustum-Culling'><a id="menu-item136" href="https://learnopengl.com/Guest-Articles/2021/Scene/Frustum-Culling">Frustum Culling </a></li></ol></li><li id='Guest-Articles/2021/Tessellation'><span id="menu-item138" class="closed">Tessellation </span><ol id="menu-items-of138" style="display:none;"><li id='Guest-Articles/2021/Tessellation/Height-map'><a id="menu-item139" href="https://learnopengl.com/Guest-Articles/2021/Tessellation/Height-map">Height map </a></li><li id='Guest-Articles/2021/Tessellation/Tessellation'><a id="menu-item140" href="https://learnopengl.com/Guest-Articles/2021/Tessellation/Tessellation">Tessellation </a></li></ol></li><li id='Guest-Articles/2021/DSA'><a id="menu-item141" href="https://learnopengl.com/Guest-Articles/2021/DSA">DSA </a></li></ol></li><li id='Guest-Articles/2022'><span id="menu-item142" class="closed">2022 </span><ol id="menu-items-of142" style="display:none;"><li id='Guest-Articles/2022/Compute-Shaders'><span id="menu-item143" class="closed">Compute Shaders </span><ol id="menu-items-of143" style="display:none;"><li id='Guest-Articles/2022/Compute-Shaders/Introduction'><a id="menu-item144" href="https://learnopengl.com/Guest-Articles/2022/Compute-Shaders/Introduction">Introduction </a></li></ol></li><li id='Guest-Articles/2022/Phys.-Based-Bloom'><a id="menu-item145" href="https://learnopengl.com/Guest-Articles/2022/Phys.-Based-Bloom">Phys. Based Bloom </a></li><li id='Guest-Articles/2022/Area-Lights'><a id="menu-item146" href="https://learnopengl.com/Guest-Articles/2022/Area-Lights">Area Lights </a></li></ol></li></ol></li><li id='Code-repository'><a id="menu-item99" href="https://learnopengl.com/Code-repository">Code repository </a></li><li id='Translations'><a id="menu-item119" href="https://learnopengl.com/Translations">Translations </a></li><li id='Privacy'><a id="menu-item147" href="https://learnopengl.com/Privacy">Privacy </a></li><li id='About'><a id="menu-item2" href="https://learnopengl.com/About">About </a></li></ol>		<div id="menu_book">
+            <a href="https://geni.us/learnopengl" target="_blank"><img src="/book/below_menu.png" class="clean"/></a>
+        </div>
+       <div id="donate">
+            <a href="https://www.paypal.me/learnopengl/" target="_blank">
+                <div id="donate_img"></div>
+                <img style="display: none" src="/img/donate_button_hover.png"/>
+            </a>
+        </div>       
+		
+				
+		<!--<div id="leftfourthtenthad">
+
+        </div>-->
+		
+				
+		<!--<div id="lefteighttenthad">
+
+        </div>-->
+		    </div>
+    
+    <div id="content">
+    <h1 id="content-url"> 404: Page does not exist </h1> <p> The page you requested does not exist in the database. Y u do this!?</p><img src='/img/404.png' class='clean'/>    </div>
+    
+    <div id="hover">
+        HI
+    </div>
+	
+	
+<!-- 728x90/320x50 sticky footer -->
+<div id="disqus_thread"></div>
+
+</div> <!-- container div -->
+
+
+</div> <!-- super container div -->
+</body>
+</html>

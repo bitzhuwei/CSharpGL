@@ -1,60 +1,48 @@
-﻿﻿using System.Drawing;
+﻿//using System.Drawing;
 
-namespace CSharpGL
-{
+namespace CSharpGL {
     /// <summary>
     ///
     /// </summary>
-    public class AccumBufferSwitch : GLSwitch
-    {
+    public unsafe class AccumBufferSwitch : GLSwitch {
         private vec3 clearValue = new vec3(0, 0, 0);
 
-        /// <summary>
-        ///
-        /// </summary>
-        public Color ClearValue
-        {
-            get
-            {
-                return Color.FromArgb(
-                    (int)(clearAlphazValue * 255),
-                    (int)(clearValue.x * 255),
-                    (int)(clearValue.y * 255),
-                    (int)(clearValue.z * 255));
-            }
-            set
-            {
-                this.clearValue.x = value.R / 255.0f;
-                this.clearValue.y = value.G / 255.0f;
-                this.clearValue.z = value.B / 255.0f;
-            }
-        }
-
-        private float clearAlphazValue = 0.0f;
+        ///// <summary>
+        /////
+        ///// </summary>
+        //public System.Drawing.Color ClearValue {
+        //    get {
+        //        return System.Drawing.Color.FromArgb(
+        //            (int)(clearAlphazValue * 255),
+        //            (int)(clearValue.x * 255),
+        //            (int)(clearValue.y * 255),
+        //            (int)(clearValue.z * 255));
+        //    }
+        //    set {
+        //        this.clearValue.x = value.R / 255.0f;
+        //        this.clearValue.y = value.G / 255.0f;
+        //        this.clearValue.z = value.B / 255.0f;
+        //    }
+        //}
 
         /// <summary>
         /// Alpha value.
         /// </summary>
-        public float ClearAlphaValue
-        {
-            get { return clearAlphazValue; }
-            set { clearAlphazValue = value; }
-        }
+        public float clearAlphazValue = 0.0f;
 
-        // Activator needs a non-parameter constructor.
-        /// <summary>
-        ///
-        /// </summary>
-        public AccumBufferSwitch() { }
+        //// Activator needs a non-parameter constructor.
+        ///// <summary>
+        /////
+        ///// </summary>
+        //public AccumBufferSwitch() { }
 
         /// <summary>
         ///
         /// </summary>
         /// <param name="clearColor"></param>
         /// <param name="clearAlphazValue">Ranges between [0, 1.0].</param>
-        public AccumBufferSwitch(Color clearColor, float clearAlphazValue)
-        {
-            this.ClearValue = clearColor;
+        public AccumBufferSwitch(/*System.Drawing.Color*/vec3 clearColor, float clearAlphazValue) {
+            this.clearValue = clearColor;
             this.clearAlphazValue = clearAlphazValue;
         }
 
@@ -63,8 +51,7 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        public override string ToString()
-        {
+        public override string ToString() {
             return string.Format("glClearAccum({0}, {1}, {2}, {3});",
                 clearValue.x, clearValue.y, clearValue.z, clearAlphazValue);
         }
@@ -72,19 +59,21 @@ namespace CSharpGL
         /// <summary>
         ///
         /// </summary>
-        protected override void StateOn()
-        {
-            GL.Instance.GetFloatv((uint)GetTarget.AccumClearValue, original);
+        protected override void StateOn() {
+            var gl = GL.current; if (gl == null) { return; }
+            fixed (float* p = original) {
+                gl.glGetFloatv((GLenum)GetTarget.AccumClearValue, p);
+            }
 
-            GL.Instance.ClearAccum(clearValue.x, clearValue.y, clearValue.z, clearAlphazValue);
+            gl.glClearAccum(clearValue.x, clearValue.y, clearValue.z, clearAlphazValue);
         }
 
         /// <summary>
         ///
         /// </summary>
-        protected override void StateOff()
-        {
-            GL.Instance.ClearAccum(original[0], original[1], original[2], original[3]);
+        protected override void StateOff() {
+            var gl = GL.current; if (gl == null) { return; }
+            gl.glClearAccum(original[0], original[1], original[2], original[3]);
         }
     }
 }

@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CSharpGL
-{
-    public partial class TextBillboardNode
-    {
+namespace CSharpGL {
+    public partial class TextBillboardNode {
         /// <summary>
         /// height / width.
         /// </summary>
@@ -20,17 +18,13 @@ namespace CSharpGL
         /// <summary>
         /// Billboard's width(in pixels).
         /// </summary>
-        public int Width
-        {
+        public int Width {
             get { return this._width; }
-            set
-            {
-                if (this._width != value)
-                {
+            set {
+                if (this._width != value) {
                     this._width = value;
 
-                    if (value != 0.0f)
-                    {
+                    if (value != 0.0f) {
                         this._height = (int)(value * this.heightByWidth);
                     }
 
@@ -38,7 +32,7 @@ namespace CSharpGL
                     if (unit == null) { return; }
                     RenderMethod method = unit.Methods[0];
                     if (method == null) { return; }
-                    ShaderProgram program = method.Program;
+                    GLProgram program = method.Program;
                     if (program == null) { return; }
 
                     program.SetUniform(width, this._width);
@@ -51,17 +45,13 @@ namespace CSharpGL
         /// <summary>
         /// Billboard's height(in pixels).
         /// </summary>
-        public int Height
-        {
+        public int Height {
             get { return this._height; }
-            set
-            {
-                if (this._height != value)
-                {
+            set {
+                if (this._height != value) {
                     this._height = value;
 
-                    if (value != 0.0f)
-                    {
+                    if (value != 0.0f) {
                         this._width = (int)(value * this.widthByHeight);
                     }
 
@@ -69,7 +59,7 @@ namespace CSharpGL
                     if (unit == null) { return; }
                     RenderMethod method = unit.Methods[0];
                     if (method == null) { return; }
-                    ShaderProgram program = method.Program;
+                    GLProgram program = method.Program;
                     if (program == null) { return; }
 
                     program.SetUniform(width, this._width);

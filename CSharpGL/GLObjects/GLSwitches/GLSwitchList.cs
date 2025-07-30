@@ -2,14 +2,12 @@
 using System.ComponentModel;
 using System.Drawing.Design;
 
-namespace CSharpGL
-{
+namespace CSharpGL {
     /// <summary>
     ///
     /// </summary>
-    [Editor(typeof(IListEditor<IGLSwitch>), typeof(UITypeEditor))]
-    public class GLSwitchList : List<IGLSwitch>, IGLSwitch
-    {
+
+    public unsafe class GLSwitchList : List<IGLSwitch>, IGLSwitch {
         /// <summary>
         /// 
         /// </summary>
@@ -19,18 +17,15 @@ namespace CSharpGL
         /// 
         /// </summary>
         /// <param name="items"></param>
-        public GLSwitchList(params IGLSwitch[] items)
-        {
+        public GLSwitchList(params IGLSwitch[] items) {
             this.AddRange(items);
         }
 
         /// <summary>
         /// 
         /// </summary>
-        public void On()
-        {
-            for (int i = 0; i < this.Count; i++)
-            {
+        public void On() {
+            for (int i = 0; i < this.Count; i++) {
                 this[i].On();
             }
         }
@@ -38,10 +33,8 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        public void Off()
-        {
-            for (int i = this.Count - 1; i >= 0; i--)
-            {
+        public void Off() {
+            for (int i = this.Count - 1; i >= 0; i--) {
                 this[i].Off();
             }
         }

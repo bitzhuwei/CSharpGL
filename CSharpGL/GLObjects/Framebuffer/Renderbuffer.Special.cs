@@ -1,10 +1,8 @@
-﻿namespace CSharpGL
-{
+﻿namespace CSharpGL {
     /// <summary>
     /// Create, update, use and delete a framebuffer object.
     /// </summary>
-    public partial class Renderbuffer
-    {
+    public unsafe partial class Renderbuffer {
         /// <summary>
         ///
         /// </summary>
@@ -12,21 +10,8 @@
         /// <param name="height"></param>
         /// <param name="internalFormat"></param>
         /// <returns></returns>
-        public static Renderbuffer CreateDepthbuffer(int width, int height, DepthComponentType internalFormat = DepthComponentType.DepthComponent)
-        {
-            return CreateDepthbuffer(width, height, (uint)internalFormat);
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="width"></param>
-        /// <param name="height"></param>
-        /// <param name="internalFormat"></param>
-        /// <returns></returns>
-        public static Renderbuffer CreateDepthbuffer(int width, int height, uint internalFormat = GL.GL_DEPTH_COMPONENT)
-        {
-            var renderbuffer = new Renderbuffer(width, height, internalFormat);
+        public static Renderbuffer CreateDepthbuffer(int width, int height, DepthComponentType internalFormat = DepthComponentType.DepthComponent) {
+            var renderbuffer = new Renderbuffer(width, height, (GLenum)internalFormat);
 
             return renderbuffer;
         }
@@ -38,8 +23,7 @@
         /// <param name="height"></param>
         /// <param name="internalFormat"></param>
         /// <returns></returns>
-        public static Renderbuffer CreateColorbuffer(int width, int height, uint internalFormat = GL.GL_RGBA)
-        {
+        public static Renderbuffer CreateColorbuffer(int width, int height, GLenum internalFormat = GL.GL_RGBA) {
             var renderbuffer = new Renderbuffer(width, height, internalFormat);
 
             return renderbuffer;
@@ -49,8 +33,7 @@
     /// <summary>
     ///
     /// </summary>
-    public enum DepthComponentType : uint
-    {
+    public enum DepthComponentType : GLuint {
         /// <summary>
         ///
         /// </summary>

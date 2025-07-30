@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<!-- saved from url=(0100)https://widgets.wp.com/follow/index.html#href=computeranimations.wordpress.com&lang=en&blog=71051732 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+		<script type="text/html" id="wordpress-follow-button">
+			<div class="wordpress-follow-button">
+				<table cellspacing="0" cellpadding="0">
+					<tbody>
+						<tr>
+							<td>
+								<div class="<%- following %>-button">
+									<a href="#" class="button" rel="nofollow">
+										<!-- WordPress Logo-->
+										<span class="follow-button-logo"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" width="14px" height="14px" viewBox="0 0 14 14" enable-background="new 0 0 14 14" xml:space="preserve"><path fill="#FFFFFF" d="M14 7c0 3.859-3.141 7-7 7s-7-3.141-7-7s3.141-7 7-7S14 3.1 14 7z M4.25 12.664l-3-8.227 C0.898 5.2 0.7 6.1 0.7 7C0.703 9.5 2.2 11.6 4.2 12.664z M10.766 8.719c0.273-0.875 0.484-1.5 0.484-2.039 c0-0.773-0.281-1.312-0.523-1.734c-0.312-0.516-0.617-0.953-0.617-1.477c0-0.578 0.438-1.117 1.055-1.117l0.086 0 C10.133 1.3 8.6 0.7 7 0.703c-2.195 0-4.133 1.133-5.258 2.836l0.406 0.008c0.656 0 1.672-0.078 1.672-0.078 c0.344-0.016 0.4 0.5 0 0.523c0 0-0.344 0.039-0.727 0.055l2.297 6.82l1.375-4.133L5.836 4 C5.492 4 5.2 4 5.2 3.992C4.836 4 4.9 3.5 5.2 3.469c0 0 1 0.1 1.7 0.1 c0.664 0 1.68-0.078 1.68-0.078C8.883 3.5 8.9 3.9 8.6 3.992c0 0-0.336 0.039-0.719 0.055l2.273 6.766L10.766 8.719z M9.086 12.938c-0.016-0.031-0.031-0.055-0.039-0.086L7.109 7.547l-1.891 5.492c0.57 0.2 1.2 0.2 1.8 0.2 C7.734 13.3 8.4 13.2 9.1 12.938z M12.562 4.625c0 0.641-0.117 1.359-0.477 2.258l-1.922 5.6 C12.031 11.4 13.3 9.3 13.3 7c0-1.094-0.273-2.125-0.766-3.023C12.547 4.2 12.6 4.4 12.6 4.625z"/></svg></span>
+										<span><%- label %></span>
+									</a>
+								</div>
+							</td>
+							<% if ( show_follower_count ) { %>
+								<td>
+									<div class="follow-count"><%- subscribers_count %></div>
+									<div class="follow-count-arrow">
+										<span><!-- --></span>
+										<span><!-- --></span>
+									</div>
+								</td>
+							<% } %>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</script>
+	<script type="text/javascript">
+	//<![CDATA[
+
+	var jqjs = document.createElement('script');
+	jqjs.src = '//s0.wp.com/wp-includes/js/jquery/jquery.js';
+	jqjs.type = 'text/javascript';
+	document.getElementsByTagName('head')[0].appendChild( jqjs );
+
+	function loadScripts() {
+		if ( ! window.jQuery ) {
+			// jQuery hasn't loaded yet. Try again in 50ms.
+			window.setTimeout( loadScripts, 50 );
+			return;
+		}
+
+		var scripts = [
+			'//s0.wp.com/wp-content/js/postmessage.js',
+			'//s0.wp.com/wp-content/js/jed/jed.js',
+			'//s0.wp.com/wp-includes/js/underscore.min.js',
+			'//stats.wp.com/w.js?64' // W_JS_VER
+		];
+
+		var head = document.getElementsByTagName('head')[0];
+		for ( i = 0; i < scripts.length; i++ ) {
+			var script = document.createElement('script');
+			script.src = scripts[i];
+			script.type = 'text/javascript';
+			head.appendChild( script );
+		}
+
+		loadProxyScript();
+	}
+	loadScripts();
+
+	function loadProxyScript() {
+		if ( ! window.Jed || ! window._ ) {
+			// Libs haven't loaded yet. Try again in 50ms.
+			window.setTimeout( loadProxyScript, 50 );
+			return;
+		}
+
+		var script = document.createElement('script');
+		script.src = '//s0.wp.com/wp-content/js/jquery/jquery.wpcom-proxy-request.js?ver=20140528';
+		script.type = 'text/javascript';
+		document.getElementsByTagName('head')[0].appendChild( script );
+
+		loadFollowScript();
+	}
+
+	function loadFollowScript() {
+		if ( ! jQuery.wpcom_proxy_request ) {
+			// proxy hasn't loaded yet. Try again in 50ms.
+			 window.setTimeout( loadFollowScript, 50 );
+			 return;
+		}
+
+		var script = document.createElement('script');
+		script.src = 'follow-rest.js?ver=2022020801';
+		script.type = 'text/javascript';
+		document.getElementsByTagName('head')[0].appendChild( script );
+	}
+	//]]>
+	</script><script src="./jquery.js.&#19979;&#36733;" type="text/javascript"></script><script src="./postmessage.js.&#19979;&#36733;" type="text/javascript"></script><script src="./jed.js.&#19979;&#36733;" type="text/javascript"></script><script src="./underscore.min.js.&#19979;&#36733;" type="text/javascript"></script><script src="./w.js.&#19979;&#36733;" type="text/javascript"></script><script src="./jquery.wpcom-proxy-request.js.&#19979;&#36733;" type="text/javascript"></script><script src="./follow-rest.js.&#19979;&#36733;" type="text/javascript"></script><link type="text/css" rel="stylesheet" href="./style.css"></head>
+	
+	<body>
+		<div id="target">
+			<div class="wordpress-follow-button">
+				<table cellspacing="0" cellpadding="0">
+					<tbody>
+						<tr>
+							<td>
+								<div class="follow-button">
+									<a href="https://widgets.wp.com/follow/index.html#" class="button" rel="nofollow">
+										<!-- WordPress Logo-->
+										<span class="follow-button-logo"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" width="14px" height="14px" viewBox="0 0 14 14" enable-background="new 0 0 14 14" xml:space="preserve"><path fill="#FFFFFF" d="M14 7c0 3.859-3.141 7-7 7s-7-3.141-7-7s3.141-7 7-7S14 3.1 14 7z M4.25 12.664l-3-8.227 C0.898 5.2 0.7 6.1 0.7 7C0.703 9.5 2.2 11.6 4.2 12.664z M10.766 8.719c0.273-0.875 0.484-1.5 0.484-2.039 c0-0.773-0.281-1.312-0.523-1.734c-0.312-0.516-0.617-0.953-0.617-1.477c0-0.578 0.438-1.117 1.055-1.117l0.086 0 C10.133 1.3 8.6 0.7 7 0.703c-2.195 0-4.133 1.133-5.258 2.836l0.406 0.008c0.656 0 1.672-0.078 1.672-0.078 c0.344-0.016 0.4 0.5 0 0.523c0 0-0.344 0.039-0.727 0.055l2.297 6.82l1.375-4.133L5.836 4 C5.492 4 5.2 4 5.2 3.992C4.836 4 4.9 3.5 5.2 3.469c0 0 1 0.1 1.7 0.1 c0.664 0 1.68-0.078 1.68-0.078C8.883 3.5 8.9 3.9 8.6 3.992c0 0-0.336 0.039-0.719 0.055l2.273 6.766L10.766 8.719z M9.086 12.938c-0.016-0.031-0.031-0.055-0.039-0.086L7.109 7.547l-1.891 5.492c0.57 0.2 1.2 0.2 1.8 0.2 C7.734 13.3 8.4 13.2 9.1 12.938z M12.562 4.625c0 0.641-0.117 1.359-0.477 2.258l-1.922 5.6 C12.031 11.4 13.3 9.3 13.3 7c0-1.094-0.273-2.125-0.766-3.023C12.547 4.2 12.6 4.4 12.6 4.625z"></path></svg></span>
+										<span>Follow Computer Animations</span>
+									</a>
+								</div>
+							</td>
+							
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	
+
+<iframe src="./saved_resource(28).html" style="display: none;"></iframe></body></html>

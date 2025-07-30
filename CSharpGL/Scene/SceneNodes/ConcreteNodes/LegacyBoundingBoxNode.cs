@@ -4,13 +4,11 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 
-namespace CSharpGL
-{
+namespace CSharpGL {
     /// <summary>
     /// render a bounding box with legacy opengl.
     /// </summary>
-    public class LegacyBoundingBoxNode : SceneNodeBase, IRenderable, ILegacyPickable
-    {
+    public class LegacyBoundingBoxNode : SceneNodeBase, IRenderable, ILegacyPickable {
         private const float xLength = 0.5f;
         private const float yLength = 0.5f;
         private const float zLength = 0.5f;
@@ -55,13 +53,11 @@ namespace CSharpGL
         /// contains some nodes in its children.
         /// </summary>
         /// <param name="modelSize"></param>
-        public LegacyBoundingBoxNode(vec3 modelSize)
-        {
+        public LegacyBoundingBoxNode(vec3 modelSize) {
             this.ModelSize = ModelSize;
 
             var positions = new vec3[8];
-            for (int i = 0; i < positions.Length; i++)
-            {
+            for (int i = 0; i < positions.Length; i++) {
                 positions[i] = standardPosiions[i] * modelSize;
             }
 
@@ -74,8 +70,7 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        public ThreeFlags EnableRendering
-        {
+        public ThreeFlags EnableRendering {
             get { return this.enableRendering; }
             set { this.enableRendering = value; }
         }
@@ -86,8 +81,7 @@ namespace CSharpGL
         /// 
         /// </summary>
         /// <param name="arg"></param>
-        public void RenderBeforeChildren(RenderEventArgs arg)
-        {
+        public void RenderBeforeChildren(RenderEventArgs arg) {
             this.PushProjectionViewMatrix(arg);
             this.PushModelMatrix();
 
@@ -104,24 +98,23 @@ namespace CSharpGL
         }
 
 
-        private void DoRender(vec3[] positions, byte[] indexes, vec3 lineColor)
-        {
-            GL.Instance.Begin((uint)DrawMode.Quads);
-            GL.Instance.Color3f(lineColor.x, lineColor.y, lineColor.z);
-            for (int i = 0; i < indexes.Length; i++)
-            {
-                vec3 position = positions[indexes[i]];
-                GL.Instance.Vertex3f(position.x, position.y, position.z);
+        private unsafe void DoRender(vec3[] positions, byte[] indexes, vec3 lineColor) {
+            var gl = GL.current; if (gl != null) {
+                gl.glBegin((uint)DrawMode.Quads);
+                gl.glColor3f(lineColor.x, lineColor.y, lineColor.z);
+                for (int i = 0; i < indexes.Length; i++) {
+                    vec3 position = positions[indexes[i]];
+                    gl.glVertex3f(position.x, position.y, position.z);
+                }
+                gl.glEnd();
             }
-            GL.Instance.End();
         }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="arg"></param>
-        public void RenderAfterChildren(RenderEventArgs arg)
-        {
+        public void RenderAfterChildren(RenderEventArgs arg) {
         }
 
         #endregion
@@ -132,8 +125,7 @@ namespace CSharpGL
         /// <summary>
         /// 
         /// </summary>
-        public ThreeFlags EnableLegacyPicking
-        {
+        public ThreeFlags EnableLegacyPicking {
             get { return this.enableLegacyPicking; }
             set { this.enableLegacyPicking = value; }
         }
@@ -142,8 +134,7 @@ namespace CSharpGL
         /// 
         /// </summary>
         /// <param name="arg"></param>
-        public void RenderBeforeChildrenForLegacyPicking(LegacyPickingEventArgs arg)
-        {
+        public void RenderBeforeChildrenForLegacyPicking(LegacyPickingEventArgs arg) {
             this.PushProjectionViewMatrix(arg);
             this.PushModelMatrix();
 

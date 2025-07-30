@@ -25,3 +25,26 @@ Get to know how CSharpGL\OpenGL implements picking and draging with modern OpenG
 ![OrderIndependentTransparency](/Demos/OrderIndependentTransparency/OrderIndependentTransparency.png?raw=true)
 # :question:Support or Contact
 Check my blog [here](http://www.cnblogs.com/bitzhuwei/) or join my QQ Group<a target="_blank" href="http://shang.qq.com/wpa/qunwpa?idkey=98131e619f6da03b96ad2213a1278da4fdd05b42a58d053125ce6ba76cf991f9"><img border="0" src="http://pub.idqqimg.com/wpa/images/group.png" alt="CSharpGL(C#+OpenGL)" title="CSharpGL(C#+OpenGL)"></a>.
+
+# simple guide
+
+```
+if (use OpenGL in C#) {
+    add ref to CSharpGL.dll
+    
+    if (render with GPU) {
+        if (on Windows) {
+            add ref to CSharpGL.Windows.dll
+        }
+        else { not implemented. }
+    }
+    
+    if (render with SoftGLImpl) {
+        add ref to CSharpGL.SoftGL.dll
+        add ref to SoftGLImpl.dll // work as graphics card
+    }
+}
+else {
+    go away.
+}
+```
