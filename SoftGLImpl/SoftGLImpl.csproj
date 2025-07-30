@@ -88,6 +88,7 @@
 		<Compile Remove="GLImpl\IdObject`1.cs" />
 		<Compile Remove="GLImpl\SoftGL.GenBindDelete`1.cs" />
 		<Compile Remove="GLSL.notes\ref-GLSLLexer.cs" />
+		<Compile Remove="Test.GLSL2cs.cs" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -132,6 +133,7 @@
 
 	<ItemGroup>
 		<None Include="GLSL.notes\ref-GLSLLexer.cs" />
+		<None Include="Test.GLSL2cs.cs" />
 	</ItemGroup>
 
 	<ItemGroup>
