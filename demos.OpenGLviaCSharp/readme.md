@@ -6,4 +6,5 @@ This is demo project of my book.
 
 # watch the video
 
-<https://github.com/bitzhuwei/CSharpGL2/blob/master/OpenGLviaC%23_Compress.MP4>
+![video](https://github.com/bitzhuwei/CSharpGL2/blob/master/OpenGLviaC%23_Compress.MP4)
+
