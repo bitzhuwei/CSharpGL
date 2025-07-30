@@ -1,5 +1,5 @@
 ﻿namespace demos.anything {
-    partial class FormAnyting {
+    partial class FormAnything {
         /// <summary>
         ///  Required designer variable.
         /// </summary>
