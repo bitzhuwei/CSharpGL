@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpGL", "CSharpGL\CSharp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpGL.Windows", "CSharpGL.Windows\CSharpGL.Windows.csproj", "{704921FB-E30A-4C8A-BC73-F343AB2EB690}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "OpenGLviaCSharp", "OpenGLviaCSharp", "{7CF86F60-2BAC-4F60-AF1C-869737385E1B}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MergePictures", "Infrastructure\MergePictures\MergePictures.csproj", "{19DEE214-B9C3-4EB0-8A1E-21E7DB21B018}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MipmapGenerator", "Infrastructure\MipmapGenerator\MipmapGenerator.csproj", "{B9285B42-9DF1-4529-9097-2513DBE43F4A}"
