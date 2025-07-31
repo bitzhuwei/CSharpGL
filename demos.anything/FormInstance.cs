@@ -37,6 +37,7 @@ namespace demos.anything {
             if (instance != null && gl != null) {
                 this.currentInstance = instance;
                 instance.init(gl);
+                instance.reshape(gl, this.glCanvas1.Width, this.glCanvas1.Height);
             }
         }
 

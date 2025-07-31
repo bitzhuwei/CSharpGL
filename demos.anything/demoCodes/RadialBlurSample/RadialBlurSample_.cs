@@ -31,21 +31,10 @@ namespace RadialBlurSample_ {
         }
 
         public override void init(GL gl) {
-            //  Get GL.
             // Start Of User Initialization
             angle = 0.0f;											// Set Starting Angle To Zero
 
             BlurTexture = EmptyTexture();								// Create Our Empty Texture
-
-            gl.glViewport(0, 0, this.canvas.Width, this.canvas.Height);	// Set Up A Viewport
-            gl.glMatrixMode(GL.GL_PROJECTION);								// Select The Projection Matrix
-            gl.glLoadIdentity();											// Reset The Projection Matrix
-            //gl.glPerspective(50, (float)this.canvas.Width / (float)this.canvas.Height, 5, 2000); // Set Our Perspective
-            var mat = glm.perspective(50.0f * (float)Math.PI / 180.0f,
-                (float)this.canvas.Width / (float)this.canvas.Height, 5, 2000);
-            gl.glMultMatrixf(mat.ToArray());
-            gl.glMatrixMode(GL.GL_MODELVIEW);									// Select The Modelview Matrix
-            gl.glLoadIdentity();											// Reset The Modelview Matrix
 
             gl.glEnable(GL.GL_DEPTH_TEST);									// Enable Depth Testing
 
@@ -74,6 +63,16 @@ namespace RadialBlurSample_ {
         }
 
         public override void reshape(GL gl, int width, int height) {
+
+            gl.glViewport(0, 0, this.canvas.Width, this.canvas.Height);	// Set Up A Viewport
+            gl.glMatrixMode(GL.GL_PROJECTION);								// Select The Projection Matrix
+            gl.glLoadIdentity();											// Reset The Projection Matrix
+            //gl.glPerspective(50, (float)this.canvas.Width / (float)this.canvas.Height, 5, 2000); // Set Our Perspective
+            var mat = glm.perspective(50.0f * (float)Math.PI / 180.0f,
+                (float)this.canvas.Width / (float)this.canvas.Height, 5, 2000);
+            gl.glMultMatrixf(mat.ToArray());
+            gl.glMatrixMode(GL.GL_MODELVIEW);									// Select The Modelview Matrix
+            gl.glLoadIdentity();											// Reset The Modelview Matrix
 
         }
 
