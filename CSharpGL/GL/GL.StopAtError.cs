@@ -12,12 +12,19 @@ namespace CSharpGL {
     /// <para><see cref="GLRenderContext"/> objects with the same initial parameters share function pointers in <see cref="GL"/>.</para>
     /// </summary>
     unsafe partial class GL {
+        /// <summary>
+        /// Help programmer to quickly find which openGL function throws the error.
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="NullReferenceException"></exception>
         public static ErrorCode StopAtError() {
             var gl = GL.current;
             if (gl == null) { throw new NullReferenceException("openGL context not ready!"); }
 
             var error = (ErrorCode)gl.glGetError();
             if (error != 0) {
+                // tip: Add a breakpoint here and call this function anywhere error may occur,
+                //      so that you can quickly find which openGL function throws the error.
                 //throw new Exception($"{error}");
                 Console.WriteLine(error);
             }
