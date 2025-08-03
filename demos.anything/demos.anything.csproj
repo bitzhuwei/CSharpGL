@@ -13,7 +13,6 @@
 	<ItemGroup>
 	  <Compile Remove="demoCodes\z_demoCode.cs" />
 	  <Compile Remove="TestHelpers\UnamangedArrayTest.cs" />
-	  <Compile Remove="WindowsGLCanvas.cs" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -22,10 +21,6 @@
 	  <None Remove="AssimpNet.dll" />
 	  <None Remove="AssimpNet.pdb" />
 	  <None Remove="AssimpNet.XML" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Content Include="readme.md" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -48,9 +43,6 @@
 
 	<ItemGroup>
 	  <None Include="demoCodes\LogicOperation\LogicOperation_.cs" />
-	  <None Include="WindowsGLCanvas.cs">
-	    <SubType>UserControl</SubType>
-	  </None>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -83,6 +75,9 @@
 		</Compile>
 		<Compile Update="FormAnything.cs">
 			<SubType>Form</SubType>
+		</Compile>
+		<Compile Update="WindowsGLCanvas.cs">
+			<SubType>UserControl</SubType>
 		</Compile>
 	</ItemGroup>
 
