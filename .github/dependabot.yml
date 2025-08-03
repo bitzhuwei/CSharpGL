@@ -13,4 +13,4 @@ updates:
       - dependency-type: "direct"
     ignore:
       - dependency-name: "*"
-        update-types: ["version-update:semver-prerelease"]
+        update-types: ["version-update:semver-major"]
