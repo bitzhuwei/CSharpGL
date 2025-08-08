@@ -1,0 +1,17 @@
+# 4. Texture-mapped square
+# This example describes a 2 x 2 square. It is mapped with a 1 x 1
+# square texture. The texture is stretched to fit the square exactly.
+
+mtllib master.mtl
+v 0.000000 2.000000 0.000000
+v 0.000000 0.000000 0.000000
+v 2.000000 0.000000 0.000000
+v 2.000000 2.000000 0.000000
+vt 0.000000 1.000000 0.000000
+vt 0.000000 0.000000 0.000000
+vt 1.000000 0.000000 0.000000
+vt 1.000000 1.000000 0.000000
+# 4 vertices
+usemtl wood
+f 1/1 2/2 3/3 4/4
+# 1 element

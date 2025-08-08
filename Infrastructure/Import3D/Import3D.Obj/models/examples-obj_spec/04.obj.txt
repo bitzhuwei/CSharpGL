@@ -1,0 +1,11 @@
+# 1. Square
+# This example shows a square that measures two units on each side
+# and faces in the positive direction (toward the camera). Note that
+# the ordering of the vertices is counterclockwise. This ordering
+# determines that the square is facing forward.
+
+v 0.000000 2.000000 0.000000
+v 0.000000 0.000000 0.000000
+v 2.000000 0.000000 0.000000
+v 2.000000 2.000000 0.000000
+f 1 2 3 4

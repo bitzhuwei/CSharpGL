@@ -1,0 +1,91 @@
+<html>
+<head>
+<link rel=StyleSheet href="../../pdbstyle.css" type="text/css" media=all>
+<title>Vertex colour in OBJ files</title>
+</head>
+<body>
+<center><table width=80%><tr><td>
+
+<center>
+<h1>Vertex colour in OBJ files</h1>
+Written by <a href="../">Paul Bourke</a><br>
+October 2020
+</center>
+<p><br><p>
+
+<p align="justify">
+The formal OBJ format specification does not include the opportunity to have per-vertex
+colour, only a per face colour through the MTL file standard.
+The usual approach of specifying vertex colour is to add the colour components, RGB as
+floating point values between 0 and 1, at the end of each vertex line. This does
+not break existing OBJ readers which are supposed to operate on a line by line
+basis and vertex colours defined in this way are widely supported. If a vertex line
+contains 3 values then they are interpretted as (x,y,z), 
+if there are 4 values then they correspond to
+(x,y,z,w), if there are 6 values then they correspond to (x,y,z,r,g,b).
+So, for example a red vertex might be:
+</p>
+<pre>
+   v 0.5 0.5 0.5 1.0 0.0 0.0
+</pre>
+<p><br><p>
+
+<p align="justify">
+It is possible for software to define their own extensions to OBJ by preceding
+the line with the comment indicator "#". This ensures that existing OBJ parsing
+code can still read the file, although of course not taking into account
+the meaning of the extension. ZBrush, when exporting models with vertex
+colour does exactly this. They have named the extension tag "MRGB", for
+Mask, Red, Green, Blue. These tags
+normally appear after all the vertex lines and before the face lines. There
+should be exactly the same number of vertex colours as vertices. The MRGB comment lines
+looks like the following:
+</p>
+<pre>
+   #MRGB ffdfa79effe4aea5ffd5998fffe0a69dffe3aca1ffe2ab9 ...... and so on
+</pre>
+<p align="justify">
+There can be at most 64 vertex colours per line so there will be multiple lines 
+depending on the number of vertices. The data on this line, starting from character
+6, consist of 8 hexadecimal characters per vertex colour. The first 2 characters
+denote a mask followed by the red, green and blue in subsequent pairs.
+I ZBrush the first MRGB line is normally preceeded by the following statement
+</p>
+<pre>
+   # The following MRGB block contains ZBrush Vertex Color (Polypaint) and 
+   masking output as 4 hexadecimal values per vertex. The vertex color format 
+   is MMRRGGBB with up to 64 entries per MRGB line.
+</pre>
+
+<p align="justify">
+So for example, the first vertex corresponding to the MRGB line above has "ff" = 255 (1)
+for the mask value, "df" = 233 (0.874510) for the red component, "a7" = 167 (0.654902) for the 
+green component and "9e" = 158 (0.619608) for the blue component.
+</p>
+
+<p><br><p>
+
+<p align="justify">
+It is of course unfortunate that Pixologic chose this method to implement vertex colour
+when a perfectly standard approach already existed. Granted the standard approach
+does not support a mask,
+but for that a specific mask comment tag could have been used and the vertex colour
+stored on the vertex lines. After all, most uses of OBJ files would benefit from the 
+per vertex RGB value while a mask value is someone more uncommon. 
+This would at least mean that other OBJ parsing code would
+be able to deal the vertex colour information without parsing for non-standard 
+comment tags.
+<br>
+Doubly strange that software like ZBrush will read an OBJ with vertex colours in the
+more standard approach but then chooses to export to OBJ with their far less standard
+approach.
+</p>
+
+<p align="justify">
+Fortunately it is easy to write something that takes the Pixologic non-standard
+MRGB extesion vertex colours and re-insert them as the more standard vertex colours.
+</p>
+
+</td></tr></table></center><p>
+</body>
+</html>

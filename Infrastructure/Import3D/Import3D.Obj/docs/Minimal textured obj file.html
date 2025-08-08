@@ -1,0 +1,128 @@
+<html>
+<head>
+<link rel=StyleSheet href="../../pdbstyle.css" type="text/css" media=all>
+<title>Object Files (.obj)</title>
+</head>
+<body>
+<center><table width=80%><tr><td>
+
+<center>
+<h1>Minimal textured obj file</h1>
+Written by <a href="../">Paul Bourke</a><br>
+March 2012
+</center>
+<p><br><p>
+
+<p align="justify">
+The following outlines the minimal requirements to describe a textured mesh using
+the obj file format. 
+</p>
+
+<p align="justify">
+Three example files are supplied here:
+</p>
+<ul>
+<li>The obj file: <a href="capsule.obj.zip">capsule.obj.zip</a><p>
+<li>The mtl (material file): <a href="capsule.mtl">capsule.mtl</a><p>
+<li>And the jpg texture: <a href="capsule0.jpg">capsule0.jpg</a><p>
+</ul><p>
+
+<p align="justify">
+Using the above examples the various sections will be explained and commented on below.
+The first line indicates the name of the material file, in this case "capsule.mtl".
+</p>
+<pre>
+mtllib capsule.mtl
+</pre>
+
+<p align="justify">
+The subsequent lines starting with "v" are the list of vertices.
+</p>
+<pre>
+v 0.000000 0.000000 -1.500000
+v 0.000000 0.000000 -1.500000
+v 0.000000 0.000000 -1.500000
+v 0.000000 0.000000 -1.500000
+ :
+ :
+ :
+</pre>
+
+<p align="justify">
+The lines starting with "vn" indicate normals. 
+In this example there is the same number of normals as vertices.
+</p>
+<pre>
+vn 0.000000 0.000000 -1.000000
+vn 0.000000 0.000000 -1.000000
+vn 0.000000 0.000000 -1.000000
+vn 0.000000 0.000000 -1.000000
+ :
+ :
+ :
+</pre>
+<p align="justify">
+The following lines starting with "vt" give the texture coordinates, again in this
+example there is a matching number of texture coordinates.
+</p>
+<pre>
+vt 0.000000 0.000000
+vt 0.010000 0.000000
+vt 0.020000 0.000000
+vt 0.030000 0.000000
+ :
+ :
+ :
+</pre>
+
+<p align="justify">
+Note that while the vertices, normals, and tetxure coordinates are listed in separate
+blocks in this example, they can be intermixed in any order. Their respective index that
+is used in the next section for describing the faces simply gets incremented as they are
+encountered.
+</p>
+
+<p align="justify">
+The next section has lines starting with "f" giving the vertices making up each face.
+The vertex numbers start from 1 (not 0). Preceding the face information is the material
+to be applied, in this case it defines the texture image (see later).
+Each vertex is defined by three numbers, the vertex, normal, and texture coordinate
+index. Noting that, unlike the example here where they are all the same, duplicate normals or
+texture coordinates can be listed only once in the normal and texture lists described
+above.
+</p>
+<pre>
+usemtl material0
+f 1/1/1 2/2/2 103/103/103
+f 1/1/1 103/103/103 102/102/102
+f 2/2/2 3/3/3 104/104/104
+ :
+ :
+ :
+</pre>
+
+<p align="justify">
+It is also permissable to add vertices, normals, and texture coordinate intermixed with
+the faces section.
+</p>
+
+<p align="justify">
+The material file "capsule.mtl" defines the visual properties of the mesh, reflection
+coefficients (ambient, diffuse, specular), and of interest here the name of the texture file.
+The file can define a number of material types, the mesh faces defined above inherit
+the values after any "usemtl" line.
+</p>
+<pre>
+newmtl material0
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Tr 1.000000
+illum 1
+Ns 0.000000
+map_Kd capsule0.jpg
+</pre>
+
+</td></tr></table></center><p>
+</body>
+</html>

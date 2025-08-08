@@ -1,0 +1,25 @@
+# 3. Two adjoining squares with vertex normals
+# This example also shows two squares that share a common edge.
+# Vertex normals have been added to the corners of each square to
+# ensure that their common edge will be smoothed during display
+# in Model and PreView and when rendered with Image.
+
+v 0.000000 2.000000 0.000000
+v 0.000000 0.000000 0.000000
+v 2.000000 0.000000 0.000000
+v 2.000000 2.000000 0.000000
+v 4.000000 0.000000 -1.255298
+v 4.000000 2.000000 -1.255298
+vn 0.000000 0.000000 1.000000
+vn 0.000000 0.000000 1.000000
+vn 0.276597 0.000000 0.960986
+vn 0.276597 0.000000 0.960986
+vn 0.531611 0.000000 0.846988
+vn 0.531611 0.000000 0.846988
+# 6 vertices
+# 6 normals
+g all
+s 1
+f 1//1 2//2 3//3 4//4
+f 4//4 3//3 5//5 6//6
+# 2 elements

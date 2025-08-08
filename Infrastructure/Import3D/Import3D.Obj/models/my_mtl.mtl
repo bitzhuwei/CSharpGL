@@ -1,0 +1,24 @@
+newmtl my_mtl
+
+Ka 0.0435 0.0435 0.0435
+ 		Kd 0.1086 0.1086 0.1086
+ 		Ks 0.0000 0.0000 0.0000
+ 		Tf 0.9885 0.9885 0.9885
+ 		illum 6
+ 		d -halo 0.6600
+ 		Ns 10.0000
+ 		sharpness 60
+ 		Ni 1.19713
+
+
+map_Ka -s 1 1 1 -o 0 0 0 -mm 0 1 chrome.mpc
+ 		map_Kd -s 1 1 1 -o 0 0 0 -mm 0 1 chrome.mpc
+ 		map_Ks -s 1 1 1 -o 0 0 0 -mm 0 1 chrome.mpc
+ 		map_Ns -s 1 1 1 -o 0 0 0 -mm 0 1 wisp.mps
+ 		map_d -s 1 1 1 -o 0 0 0 -mm 0 1 wisp.mps
+ 		disp -s 1 1 .5 wisp.mps
+ 		decal -s 1 1 1 -o 0 0 0 -mm 0 1 sand.mps
+ 		bump -s 1 1 1 -o 0 0 0 -bm 1 sand.mpb
+
+
+refl -type sphere -mm 0 1 clouds.mpc

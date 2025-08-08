@@ -1,0 +1,17 @@
+# 2. Two adjoining squares with a smoothing group
+# This example shows two adjoining squares that share a common
+# edge. The squares are placed in a smoothing group to ensure that
+# their common edge will be smoothed when rendered with Image.
+
+v 0.000000 2.000000 0.000000
+v 0.000000 0.000000 0.000000
+v 2.000000 0.000000 0.000000
+v 2.000000 2.000000 0.000000
+v 4.000000 0.000000 -1.255298
+v 4.000000 2.000000 -1.255298
+# 6 vertices
+g all
+s 1
+f 1 2 3 4
+f 4 3 5 6
+# 2 elements

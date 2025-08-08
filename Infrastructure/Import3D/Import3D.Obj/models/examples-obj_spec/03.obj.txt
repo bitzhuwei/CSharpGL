@@ -1,0 +1,14 @@
+# 3. Bezier in u direction with B-spline in v direction;
+# made with a basis matrix
+# To create a surface with a cubic Bezier in the u direction and cubic uniform B-spline in the v direction:
+cstype bmatrix
+deg 3 3
+step 3 1
+bmat u 1 -3 3 -1 \
+0 3 -6 3 \
+0 0 3 -3 \
+0 0 0 1
+bmat v 0.16666 -0.50000 0.50000 -0.16666 \
+       0.66666 0.00000 -1.00000 0.50000 \
+       0.16666 0.50000 0.50000 -0.50000 \
+       0.00000 0.00000 0.00000 0.16666
