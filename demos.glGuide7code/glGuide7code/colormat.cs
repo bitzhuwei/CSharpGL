@@ -72,9 +72,12 @@ namespace demos.glGuide7code {
             case MouseButtons.Left:
             if (state == MouseState.Down) {
                 diffuseMaterial[0] += 0.1f;
-                if (diffuseMaterial[0] > 1.0f)
+                if (diffuseMaterial[0] > 1.0f) {
                     diffuseMaterial[0] = 0.0f;
-                gl.glColor4fv(diffuseMaterial);
+                }
+                fixed (GLfloat* p = diffuseMaterial) {
+                    gl.glColor4fv(p);
+                }
                 //gl.glutPostRedisplay();
                 this.mainForm.Invalidate();
             }
@@ -84,7 +87,9 @@ namespace demos.glGuide7code {
                 diffuseMaterial[1] += 0.1f;
                 if (diffuseMaterial[1] > 1.0f)
                     diffuseMaterial[1] = 0.0f;
-                gl.glColor4fv(diffuseMaterial);
+                fixed (GLfloat* p = diffuseMaterial) {
+                    gl.glColor4fv(p);
+                }
                 //gl.glutPostRedisplay();
                 this.mainForm.Invalidate();
             }
@@ -94,7 +99,9 @@ namespace demos.glGuide7code {
                 diffuseMaterial[2] += 0.1f;
                 if (diffuseMaterial[2] > 1.0f)
                     diffuseMaterial[2] = 0.0f;
-                gl.glColor4fv(diffuseMaterial);
+                fixed (GLfloat* p = diffuseMaterial) {
+                    gl.glColor4fv(p);
+                }
                 //gl.glutPostRedisplay();
                 this.mainForm.Invalidate();
             }

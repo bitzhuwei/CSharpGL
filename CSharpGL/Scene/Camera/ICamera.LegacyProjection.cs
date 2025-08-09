@@ -13,7 +13,10 @@
             mat4 view = camera.GetViewMatrix();
 
             //  Set the projection matrix.(projection and view matrix actually.)
-            gl.glMultMatrixf((projection * view).ToArray());
+            var array = (projection * view).ToArray();
+            fixed (GLfloat* p = array) {
+                gl.glMultMatrixf(p);
+            }
         }
     }
 }

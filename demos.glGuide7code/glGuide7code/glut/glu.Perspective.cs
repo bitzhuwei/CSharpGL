@@ -28,7 +28,10 @@ namespace demos.glGuide7code {
             };
 
             // 将矩阵应用到当前矩阵栈
-            gl.glMultMatrixf(matrix);
+            var array = matrix.ToArray();
+            fixed (GLfloat* p = array) {
+                gl.glMultMatrixf(p);
+            }
         }
     }
 }

@@ -54,8 +54,10 @@ namespace demos.glGuide7code {
             };
 
             // 应用旋转矩阵
-            gl.glMultMatrixf(matrix);
-
+            var array = matrix.ToArray();
+            fixed (GLfloat* p = array) {
+                gl.glMultMatrixf(p);
+            }
             // 应用平移（相机位置的逆变换）
             gl.glTranslatef(-eyeX, -eyeY, -eyeZ);
         }

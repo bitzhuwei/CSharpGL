@@ -21,7 +21,11 @@ namespace CSharpGL {
                 mat4 projection = camera.GetProjectionMatrix();
                 mat4 view = camera.GetViewMatrix();
                 gl.glLoadIdentity();
-                gl.glMultMatrixf((projection * view).ToArray());
+                var array = (projection * view).ToArray();
+                fixed (GLfloat* p = array) {
+                    gl.glMultMatrixf(p);
+                }
+
             }
         }
 
@@ -37,7 +41,10 @@ namespace CSharpGL {
                 mat4 projection = arg.pickMatrix * arg.scene.camera.GetProjectionMatrix();
                 mat4 view = arg.scene.camera.GetViewMatrix();
                 gl.glLoadIdentity();
-                gl.glMultMatrixf((projection * view).ToArray());
+                var array = (projection * view).ToArray();
+                fixed (GLfloat* p = array) {
+                    gl.glMultMatrixf(p);
+                }
             }
         }
 
@@ -51,7 +58,10 @@ namespace CSharpGL {
                 gl.glPushMatrix();
                 gl.glLoadIdentity();
                 // note: node.modelMat has already been updated in Scene.Render(RendererBase sceneElement, RenderEventArgs arg);
-                gl.glMultMatrixf(node.cascadeModelMatrix.ToArray());
+                var array = node.cascadeModelMatrix.ToArray();
+                fixed (GLfloat* p = array) {
+                    gl.glMultMatrixf(p);
+                }
             }
         }
 

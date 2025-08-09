@@ -1,4 +1,5 @@
-﻿using CSharpGL;
+﻿using Assimp;
+using CSharpGL;
 using demos.anything;
 using System;
 using System.Collections.Generic;
@@ -70,7 +71,10 @@ namespace RadialBlurSample_ {
             //gl.glPerspective(50, (float)this.canvas.Width / (float)this.canvas.Height, 5, 2000); // Set Our Perspective
             var mat = glm.perspective(50.0f * (float)Math.PI / 180.0f,
                 (float)this.canvas.Width / (float)this.canvas.Height, 5, 2000);
-            gl.glMultMatrixf(mat.ToArray());
+            var array = mat.ToArray();
+            fixed (GLfloat* p = array) {
+                gl.glMultMatrixf(p);
+            }
             gl.glMatrixMode(GL.GL_MODELVIEW);									// Select The Modelview Matrix
             gl.glLoadIdentity();											// Reset The Modelview Matrix
 
@@ -164,7 +168,10 @@ namespace RadialBlurSample_ {
             /*gl.glLookAt(0, 5, 50, 0, 0, 0, 0, 1, 0);*/              // Eye Position (0,5,50) Center Of Scene (0,0,0)
                                                                       // Up On Y Axis.
             var mat = glm.lookAt(new vec3(0, 5, 50), new vec3(0, 0, 0), new vec3(0, 1, 0));
-            gl.glMultMatrixf(mat.ToArray());
+            var array = mat.ToArray();
+            fixed (GLfloat* p = array) {
+                gl.glMultMatrixf(p);
+            }
             gl.glPushMatrix();                            // Push The Modelview Matrix
 
             gl.glTranslatef(0, 0, -50);                        // Translate 50 Units Into The Screen
@@ -252,7 +259,10 @@ namespace RadialBlurSample_ {
             gl.glLoadIdentity();                      // Reset The Matrix
             /*gl.glOrtho(0, Width, Height, 0, -1, 1);*/				// Select Ortho Mode (640x480)
             var mat = glm.ortho(0, this.canvas.Width, this.canvas.Height, 0, -1, 1);
-            gl.glMultMatrixf(mat.ToArray());
+            var array = mat.ToArray();
+            fixed (GLfloat* p = array) {
+                gl.glMultMatrixf(p);
+            }
             gl.glMatrixMode(GL.GL_MODELVIEW);                 // Select Modelview Matrix
             gl.glPushMatrix();                            // Push The Matrix
             gl.glLoadIdentity();						// Reset The Matrix

@@ -531,7 +531,7 @@ namespace CSharpGL {
         /// <summary>void glColor4fNormal3fVertex3fvSUN(GLfloat[] c, GLfloat[] n, GLfloat[] v);</summary>
         public readonly delegate* unmanaged<GLfloat[], GLfloat[], GLfloat[], void> glColor4fNormal3fVertex3fvSUN;
         /// <summary>void glColor4fv(GLfloat[] v);</summary>
-        public readonly delegate* unmanaged<GLfloat[], void> glColor4fv;
+        public readonly delegate* unmanaged<GLfloat*, void> glColor4fv;
         /// <summary>void glColor4hNV(GLhalfNV red, GLhalfNV green, GLhalfNV blue, GLhalfNV alpha);</summary>
         public readonly delegate* unmanaged<GLhalfNV, GLhalfNV, GLhalfNV, GLhalfNV, void> glColor4hNV;
         /// <summary>void glColor4hvNV(GLhalfNV[] v);</summary>
@@ -3216,7 +3216,7 @@ namespace CSharpGL {
         /// <summary>void glMultMatrixd(GLdouble[] m);</summary>
         public readonly delegate* unmanaged<GLdouble*, void> glMultMatrixd;
         /// <summary>void glMultMatrixf(GLfloat[] m);</summary>
-        public readonly delegate* unmanaged<GLfloat[], void> glMultMatrixf;
+        public readonly delegate* unmanaged<GLfloat*, void> glMultMatrixf;
         /// <summary>void glMultMatrixx(GLfixed[] m);</summary>
         public readonly delegate* unmanaged<GLfixed[], void> glMultMatrixx;
         /// <summary>void glMultMatrixxOES(GLfixed[] m);</summary>
@@ -3672,7 +3672,7 @@ namespace CSharpGL {
         /// <summary>void glNormal3fVertex3fvSUN(GLfloat[] n, GLfloat[] v);</summary>
         public readonly delegate* unmanaged<GLfloat[], GLfloat[], void> glNormal3fVertex3fvSUN;
         /// <summary>void glNormal3fv(GLfloat[] v);</summary>
-        public readonly delegate* unmanaged<GLfloat[], void> glNormal3fv;
+        public readonly delegate* unmanaged<GLfloat*, void> glNormal3fv;
         /// <summary>void glNormal3hNV(GLhalfNV nx, GLhalfNV ny, GLhalfNV nz);</summary>
         public readonly delegate* unmanaged<GLhalfNV, GLhalfNV, GLhalfNV, void> glNormal3hNV;
         /// <summary>void glNormal3hvNV(GLhalfNV[] v);</summary>
@@ -5714,7 +5714,7 @@ namespace CSharpGL {
         /// <summary>void glVertex3f(GLfloat x, GLfloat y, GLfloat z);</summary>
         public readonly delegate* unmanaged<GLfloat, GLfloat, GLfloat, void> glVertex3f;
         /// <summary>void glVertex3fv(GLfloat[] v);</summary>
-        public readonly delegate* unmanaged<GLfloat[], void> glVertex3fv;
+        public readonly delegate* unmanaged<GLfloat*, void> glVertex3fv;
         /// <summary>void glVertex3hNV(GLhalfNV x, GLhalfNV y, GLhalfNV z);</summary>
         public readonly delegate* unmanaged<GLhalfNV, GLhalfNV, GLhalfNV, void> glVertex3hNV;
         /// <summary>void glVertex3hvNV(GLhalfNV[] v);</summary>
