@@ -26,7 +26,7 @@ namespace Import3D {
         /// </summary>
         public aiNode mRootNode;
 
-        /// <summary> The number of meshes in the scene. /// </summary>
+        /// <summary> The number of meshes in the scene. </summary>
         public uint mNumMeshes;
 
         /// <summary> The array of meshes.
@@ -38,7 +38,7 @@ namespace Import3D {
         /// </summary>
         public aiMesh[]? mMeshes;
 
-        /// <summary> The number of materials in the scene. /// </summary>
+        /// <summary> The number of materials in the scene. </summary>
         public uint mNumMaterials;
 
         /// <summary> The array of materials.
@@ -50,7 +50,7 @@ namespace Import3D {
         /// </summary>
         public aiMaterial[]? mMaterials;
 
-        /// <summary> The number of animations in the scene. /// </summary>
+        /// <summary> The number of animations in the scene. </summary>
         public uint mNumAnimations;
 
         /// <summary> The array of animations.
@@ -60,7 +60,7 @@ namespace Import3D {
         /// </summary>
         public aiAnimation[]? mAnimations;
 
-        /// <summary> The number of textures embedded into the file /// </summary>
+        /// <summary> The number of textures embedded into the file </summary>
         public uint mNumTextures;
 
         /// <summary> The array of embedded textures.
@@ -105,8 +105,7 @@ namespace Import3D {
         /// </summary>
         public aiMetadata mMetaData;
 
-        /// <summary> The name of the scene itself.
-        /// </summary>
+        /// <summary> The name of the scene itself. </summary>
         public string mName = "";
 
 
