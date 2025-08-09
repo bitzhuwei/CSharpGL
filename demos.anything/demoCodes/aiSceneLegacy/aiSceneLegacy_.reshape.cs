@@ -38,7 +38,7 @@ namespace aiSceneLegacy {
             gl.glLoadIdentity();                           // Reset The Projection Matrix
 
             // Calculate The Aspect Ratio Of The Window
-            CSharpGL.mat4 projection = glm.perspective(45.0f * (float)Math.PI / 180.0f, (GLfloat)width / (GLfloat)height, 0.1f, 100.0f);
+            CSharpGL.mat4 projection = glm.perspective(45.0f * (float)Math.PI / 180.0f, (GLfloat)width / (GLfloat)height, 0.1f, 1000.0f);
 
             //  Set the projection matrix.(projection and view matrix actually.)
             var array = (projection).ToArray();
