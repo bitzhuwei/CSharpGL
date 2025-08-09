@@ -168,98 +168,26 @@ namespace Import3D.Obj {
                 model.materialMap.Add("Empty_Material", material);
             }
 
-            if (false) { }
-            else if (line.StartsWith(DiffuseTexture)) {
-                // Diffuse texture
-                strOut = model.currentMaterial.texture;
-                clampIndex = ObjMaterial.TextureType.TextureDiffuseType;
-            }
-            else if (line.StartsWith(AmbientTexture)) {
-                // Ambient texture
-                strOut = model.currentMaterial.textureAmbient;
-                clampIndex = ObjMaterial.TextureType.TextureAmbientType;
-            }
-            else if (line.StartsWith(SpecularTexture)) {
-                // Specular texture
-                strOut = model.currentMaterial.textureSpecular;
-                clampIndex = ObjMaterial.TextureType.TextureSpecularType;
-            }
-            else if (line.StartsWith(DisplacementTexture1) || line.StartsWith(DisplacementTexture2)) {
-                // Displacement texture
-                strOut = model.currentMaterial.textureDisp;
-                clampIndex = ObjMaterial.TextureType.TextureDispType;
-            }
-            else if (line.StartsWith(OpacityTexture)) {
-                // Opacity texture
-                strOut = model.currentMaterial.textureOpacity;
-                clampIndex = ObjMaterial.TextureType.TextureOpacityType;
-            }
-            else if (line.StartsWith(EmissiveTexture1) || line.StartsWith(EmissiveTexture2)) {
-                // Emissive texture
-                strOut = model.currentMaterial.textureEmissive;
-                clampIndex = ObjMaterial.TextureType.TextureEmissiveType;
-            }
-            else if (line.StartsWith(BumpTexture1) || line.StartsWith(BumpTexture2)) {
-                // Bump texture
-                strOut = model.currentMaterial.textureBump;
-                clampIndex = ObjMaterial.TextureType.TextureBumpType;
-            }
-            else if (line.StartsWith(NormalTextureV1) || line.StartsWith(NormalTextureV2)) {
-                // Normal map
-                strOut = model.currentMaterial.textureNormal;
-                clampIndex = ObjMaterial.TextureType.TextureNormalType;
-            }
-            else if (line.StartsWith(ReflectionTexture)) {
-                // Reflection texture(s)
-                // Do nothing here
-                return;
-            }
-            else if (line.StartsWith(SpecularityTexture)) {
-                // Specularity scaling (glossiness)
-                strOut = model.currentMaterial.textureSpecularity;
-                clampIndex = ObjMaterial.TextureType.TextureSpecularityType;
-            }
-            else if (line.StartsWith(RoughnessTexture)) {
-                // PBR Roughness texture
-                strOut = model.currentMaterial.textureRoughness;
-                clampIndex = ObjMaterial.TextureType.TextureRoughnessType;
-            }
-            else if (line.StartsWith(MetallicTexture)) {
-                // PBR Metallic texture
-                strOut = model.currentMaterial.textureMetallic;
-                clampIndex = ObjMaterial.TextureType.TextureMetallicType;
-            }
-            else if (line.StartsWith(SheenTexture)) {
-                // PBR Sheen (reflectance) texture
-                strOut = model.currentMaterial.textureSheen;
-                clampIndex = ObjMaterial.TextureType.TextureSheenType;
-            }
-            else if (line.StartsWith(RMATexture)) {
-                // PBR Rough/Metal/AO texture
-                strOut = model.currentMaterial.textureRMA;
-                clampIndex = ObjMaterial.TextureType.TextureRMAType;
-            }
-            else {
-                Log.WriteLine("OBJ/MTL: Encountered unknown texture type");
-                return;
-            }
+            clampIndex = model.currentMaterial.GetClampIndex(line);
+            bool clamp = false; ObjMaterial.TextureType clampIndex2 = clampIndex;
+            GetTextureOption(line, model, out clamp, out clampIndex2);
+            if (clampIndex2 == 0) { clampIndex2 = clampIndex; }
 
-            bool clamp = false;
-            GetTextureOption(line, model, out clamp, out clampIndex, out strOut);
-            model.currentMaterial.clamp[(int)clampIndex] = clamp;
+            model.currentMaterial.clamp[(int)clampIndex2] = clamp;
 
             string texture = "";
             {
                 var parts = line.Split(separator, StringSplitOptions.RemoveEmptyEntries);
                 if (parts.Length > 0) { texture = parts[parts.Length - 1]; }
             }
-            if (strOut != null) {
-                strOut = (absPath + texture);
+            if (clampIndex2 != ObjMaterial.TextureType.TextureTypeCount) {
+                var fullname = (absPath + texture);
+                model.currentMaterial.SetTexture(clampIndex2, fullname);
             }
         }
 
-        private static void GetTextureOption(string line, ObjFileModel model, out bool clamp, out ObjMaterial.TextureType clampIndex, out string? strOut) {
-            clamp = false; clampIndex = 0; strOut = null;
+        private static void GetTextureOption(string line, ObjFileModel model, out bool clamp, out ObjMaterial.TextureType clampIndex) {
+            clamp = false; clampIndex = 0;
 
             var parts = line.Split(separator, StringSplitOptions.RemoveEmptyEntries);
             var index = 1;
@@ -280,31 +208,31 @@ namespace Import3D.Obj {
                     var value = parts[index + 1];
                     if (value == "cube_top") {
                         clampIndex = ObjMaterial.TextureType.TextureReflectionCubeTopType;
-                        strOut = model.currentMaterial?.textureReflection[0];
+                        //strOut = model.currentMaterial?.textureReflection[0];
                     }
                     else if (value == "cube_bottom") {
                         clampIndex = ObjMaterial.TextureType.TextureReflectionCubeBottomType;
-                        strOut = model.currentMaterial?.textureReflection[1];
+                        //strOut = model.currentMaterial?.textureReflection[1];
                     }
                     else if (value == "cube_front") {
                         clampIndex = ObjMaterial.TextureType.TextureReflectionCubeFrontType;
-                        strOut = model.currentMaterial?.textureReflection[2];
+                        //strOut = model.currentMaterial?.textureReflection[2];
                     }
                     else if (value == "cube_back") {
                         clampIndex = ObjMaterial.TextureType.TextureReflectionCubeBackType;
-                        strOut = model.currentMaterial?.textureReflection[3];
+                        //strOut = model.currentMaterial?.textureReflection[3];
                     }
                     else if (value == "cube_left") {
                         clampIndex = ObjMaterial.TextureType.TextureReflectionCubeLeftType;
-                        strOut = model.currentMaterial?.textureReflection[4];
+                        //strOut = model.currentMaterial?.textureReflection[4];
                     }
                     else if (value == "cube_right") {
                         clampIndex = ObjMaterial.TextureType.TextureReflectionCubeRightType;
-                        strOut = model.currentMaterial?.textureReflection[5];
+                        //strOut = model.currentMaterial?.textureReflection[5];
                     }
                     else if (value == "sphere") {
                         clampIndex = ObjMaterial.TextureType.TextureReflectionSphereType;
-                        strOut = model.currentMaterial?.textureReflection[0];
+                        //strOut = model.currentMaterial?.textureReflection[0];
                     }
 
                     skipToken = 2;
@@ -353,25 +281,6 @@ namespace Import3D.Obj {
         }
 
 
-        // Material specific token (case insensitive compare)
-        private const string DiffuseTexture = "map_Kd";
-        private const string AmbientTexture = "map_Ka";
-        private const string SpecularTexture = "map_Ks";
-        private const string OpacityTexture = "map_d";
-        private const string EmissiveTexture1 = "map_emissive";
-        private const string EmissiveTexture2 = "map_Ke";
-        private const string BumpTexture1 = "map_bump";
-        private const string BumpTexture2 = "bump";
-        private const string NormalTextureV1 = "map_Kn";
-        private const string NormalTextureV2 = "norm";
-        private const string ReflectionTexture = "refl";
-        private const string DisplacementTexture1 = "map_disp";
-        private const string DisplacementTexture2 = "disp";
-        private const string SpecularityTexture = "map_ns";
-        private const string RoughnessTexture = "map_Pr";
-        private const string MetallicTexture = "map_Pm";
-        private const string SheenTexture = "map_Ps";
-        private const string RMATexture = "map_Ps";
 
         // texture option specific token
         private const string BlendUOption = "-blendu";
