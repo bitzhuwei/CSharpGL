@@ -4,11 +4,11 @@ using System.Diagnostics;
 namespace Import3D.Obj {
     public class ObjFileMtlImporter {
 
-        public static void Load(string absPath, ObjFileModel model) {
+        public static void Load(string materialFullname, ObjFileModel model) {
             if (model.defaultMaterial == null) {
                 model.defaultMaterial = new ObjMaterial("default");
             }
-            using (var reader = new StreamReader(absPath)) {
+            using (var reader = new StreamReader(materialFullname)) {
                 var lines = ObjFileMtlPreprocessor.Preprocess(reader);
                 foreach (var line in lines) {
                     if (false) { }
@@ -47,7 +47,7 @@ namespace Import3D.Obj {
                     }
                     else if (line.StartsWith("disp")) {
                         // A displacement map
-                        GetTexture(line, absPath, model);
+                        GetTexture(line, materialFullname, model);
                     }
                     else if (line.StartsWith("d")) {
                         // Alpha value
@@ -72,7 +72,7 @@ namespace Import3D.Obj {
                         CreateMaterial(line, model);
                     }
                     else if (line.StartsWith("No") || line.StartsWith("no")) {
-                        GetTexture(line, absPath, model);
+                        GetTexture(line, materialFullname, model);
                     }
                     else if (line.StartsWith("Pr")) {
                         var value = GetFloatValue(line);
@@ -108,7 +108,7 @@ namespace Import3D.Obj {
                     }
                     else if (line.StartsWith("m") || line.StartsWith("b") || line.StartsWith("r")) {
                         // Texture || quick'n'dirty - for 'bump' sections || quick'n'dirty - for 'refl' sections
-                        GetTexture(line, absPath, model);
+                        GetTexture(line, materialFullname, model);
                     }
                     else if (line.StartsWith("i")) {// Illumination model
                         var value = GetIntegerValue(line);
@@ -158,7 +158,7 @@ namespace Import3D.Obj {
             }
         }
 
-        private static void GetTexture(string line, string absPath, ObjFileModel model) {
+        private static void GetTexture(string line, string materialFullname, ObjFileModel model) {
             string? strOut = null;
             ObjMaterial.TextureType clampIndex;
 
@@ -179,9 +179,12 @@ namespace Import3D.Obj {
             {
                 var parts = line.Split(separator, StringSplitOptions.RemoveEmptyEntries);
                 if (parts.Length > 0) { texture = parts[parts.Length - 1]; }
+                else { throw new Exception("empty texture filename!"); }
             }
             if (clampIndex2 != ObjMaterial.TextureType.TextureTypeCount) {
-                var fullname = (absPath + texture);
+                var fileInfo = new FileInfo(materialFullname);
+                var dir = fileInfo.DirectoryName; Debug.Assert(dir != null);
+                var fullname = Path.Combine(dir, texture);
                 model.currentMaterial.SetTexture(clampIndex2, fullname);
             }
         }
