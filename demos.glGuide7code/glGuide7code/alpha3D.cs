@@ -24,12 +24,12 @@ namespace demos.glGuide7code {
         static float solidZ = MAXZ;
         static float transparentZ = MINZ;
         static GLuint sphereList, cubeList;
-        static readonly GLfloat[] mat_specular = { 1.0f, 1.0f, 1.0f, 0.15f };
-        static readonly GLfloat[] mat_shininess = { 100.0f };
         static readonly GLfloat[] position = { 0.5f, 0.5f, 1.0f, 0.0f };
 
         public override void init(CSharpGL.GL gl) {
 
+            var mat_specular = stackalloc GLfloat[] { 1.0f, 1.0f, 1.0f, 0.15f };
+            var mat_shininess = stackalloc GLfloat[] { 100.0f };
             gl.glMaterialfv(GL.GL_FRONT, GL.GL_SPECULAR, mat_specular);
             gl.glMaterialfv(GL.GL_FRONT, GL.GL_SHININESS, mat_shininess);
             gl.glLightfv(GL.GL_LIGHT0, GL.GL_POSITION, position);
@@ -51,12 +51,12 @@ namespace demos.glGuide7code {
             gl.glEndList();
         }
 
-        private static readonly GLfloat[] mat_solid = { 0.75f, 0.75f, 0.0f, 1.0f };
-        private static readonly GLfloat[] mat_zero = { 0.0f, 0.0f, 0.0f, 1.0f };
-        private static readonly GLfloat[] mat_transparent = { 0.0f, 0.8f, 0.8f, 0.6f };
-        private static readonly GLfloat[] mat_emission = { 0.0f, 0.3f, 0.3f, 0.6f };
         public override void display(CSharpGL.GL gl) {
             gl.glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
+            var mat_zero = stackalloc GLfloat[] { 0.0f, 0.0f, 0.0f, 1.0f };
+            var mat_solid = stackalloc GLfloat[] { 0.75f, 0.75f, 0.0f, 1.0f };
+            var mat_emission = stackalloc GLfloat[] { 0.0f, 0.3f, 0.3f, 0.6f };
+            var mat_transparent = stackalloc GLfloat[] { 0.0f, 0.8f, 0.8f, 0.6f };
 
             gl.glPushMatrix();
             gl.glTranslatef(-0.15f, -0.15f, solidZ);

@@ -27,8 +27,12 @@ namespace demos.glGuide7code {
             gl.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
             gl.glShadeModel(GL.GL_SMOOTH);
             gl.glEnable(GL.GL_DEPTH_TEST);
-            gl.glMaterialfv(GL.GL_FRONT, GL.GL_DIFFUSE, diffuseMaterial);
-            gl.glMaterialfv(GL.GL_FRONT, GL.GL_SPECULAR, mat_specular);
+            fixed (GLfloat* p = diffuseMaterial) {
+                gl.glMaterialfv(GL.GL_FRONT, GL.GL_DIFFUSE, p);
+            }
+            fixed (GLfloat* p = mat_specular) {
+                gl.glMaterialfv(GL.GL_FRONT, GL.GL_SPECULAR, p);
+            }
             gl.glMaterialf(GL.GL_FRONT, GL.GL_SHININESS, 25.0f);
             gl.glLightfv(GL.GL_LIGHT0, GL.GL_POSITION, light_position);
             gl.glEnable(GL.GL_LIGHTING);

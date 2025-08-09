@@ -72,8 +72,12 @@ namespace demos.glGuide7code {
             gl.glRotatef((GLfloat)spinx, 1.0f, 0.0f, 0.0f);
             gl.glRotatef((GLfloat)spiny, 0.0f, 1.0f, 0.0f);
 
-            gl.glMaterialfv(GL.GL_FRONT, GL.GL_AMBIENT_AND_DIFFUSE, gray);
-            gl.glMaterialfv(GL.GL_FRONT, GL.GL_SPECULAR, black);
+            fixed (GLfloat* p = gray) {
+                gl.glMaterialfv(GL.GL_FRONT, GL.GL_AMBIENT_AND_DIFFUSE, p);
+            }
+            fixed (GLfloat* p = black) {
+                gl.glMaterialfv(GL.GL_FRONT, GL.GL_SPECULAR, p);
+            }
             gl.glMaterialf(GL.GL_FRONT, GL.GL_SHININESS, 0.0f);
             gl.glEnable(GL.GL_LIGHTING);
             gl.glEnable(GL.GL_LIGHT0);

@@ -18,10 +18,10 @@ namespace demos.glGuide7code {
         /*  Initialize lighting and other values.
          */
         public override void init(CSharpGL.GL gl) {
-            GLfloat[] mat_ambient = { 1.0f, 1.0f, 1.0f, 1.0f };
-            GLfloat[] mat_specular = { 1.0f, 1.0f, 1.0f, 1.0f };
-            GLfloat[] light_position = { 0.0f, 0.0f, 10.0f, 1.0f };
-            GLfloat[] lm_ambient = { 0.2f, 0.2f, 0.2f, 1.0f };
+            var mat_ambient = stackalloc GLfloat[] { 1.0f, 1.0f, 1.0f, 1.0f };
+            var mat_specular = stackalloc GLfloat[] { 1.0f, 1.0f, 1.0f, 1.0f };
+            var light_position = new GLfloat[] { 0.0f, 0.0f, 10.0f, 1.0f };
+            var lm_ambient = new GLfloat[] { 0.2f, 0.2f, 0.2f, 1.0f };
 
             gl.glMaterialfv(GL.GL_FRONT, GL.GL_AMBIENT, mat_ambient);
             gl.glMaterialfv(GL.GL_FRONT, GL.GL_SPECULAR, mat_specular);
@@ -39,11 +39,11 @@ namespace demos.glGuide7code {
 
         }
 
-        GLfloat[] torus_diffuse = { 0.7f, 0.7f, 0.0f, 1.0f };
-        GLfloat[] cube_diffuse = { 0.0f, 0.7f, 0.7f, 1.0f };
-        GLfloat[] sphere_diffuse = { 0.7f, 0.0f, 0.7f, 1.0f };
-        GLfloat[] octa_diffuse = { 0.7f, 0.4f, 0.4f, 1.0f };
         void displayObjects(GL gl) {
+            var torus_diffuse = stackalloc GLfloat[] { 0.7f, 0.7f, 0.0f, 1.0f };
+            var cube_diffuse = stackalloc GLfloat[] { 0.0f, 0.7f, 0.7f, 1.0f };
+            var sphere_diffuse = stackalloc GLfloat[] { 0.7f, 0.0f, 0.7f, 1.0f };
+            var octa_diffuse = stackalloc GLfloat[] { 0.7f, 0.4f, 0.4f, 1.0f };
 
             gl.glPushMatrix();
             gl.glRotatef(30.0f, 1.0f, 0.0f, 0.0f);

@@ -3116,7 +3116,7 @@ namespace CSharpGL {
         /// <summary>void glMaterialf(GLenum face, GLenum pname, GLfloat param);</summary>
         public readonly delegate* unmanaged<GLenum, GLenum, GLfloat, void> glMaterialf;
         /// <summary>void glMaterialfv(GLenum face, GLenum pname, GLfloat[] params);</summary>
-        public readonly delegate* unmanaged<GLenum, GLenum, GLfloat[], void> glMaterialfv;
+        public readonly delegate* unmanaged<GLenum, GLenum, GLfloat*, void> glMaterialfv;
         /// <summary>void glMateriali(GLenum face, GLenum pname, GLint param);</summary>
         public readonly delegate* unmanaged<GLenum, GLenum, GLint, void> glMateriali;
         /// <summary>void glMaterialiv(GLenum face, GLenum pname, GLint[] params);</summary>

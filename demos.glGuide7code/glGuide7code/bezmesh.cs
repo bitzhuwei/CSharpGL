@@ -36,16 +36,16 @@ namespace demos.glGuide7code {
 
         private static readonly GLfloat[] ambient = { 0.2f, 0.2f, 0.2f, 1.0f };
         private static readonly GLfloat[] position = { 0.0f, 0.0f, 2.0f, 1.0f };
-        private static readonly GLfloat[] mat_diffuse = { 0.6f, 0.6f, 0.6f, 1.0f };
-        private static readonly GLfloat[] mat_specular = { 1.0f, 1.0f, 1.0f, 1.0f };
-        private static readonly GLfloat[] mat_shininess = { 50.0f };
+
         void initlights(GL gl) {
             gl.glEnable(GL.GL_LIGHTING);
             gl.glEnable(GL.GL_LIGHT0);
 
             gl.glLightfv(GL.GL_LIGHT0, GL.GL_AMBIENT, ambient);
             gl.glLightfv(GL.GL_LIGHT0, GL.GL_POSITION, position);
-
+            var mat_diffuse = stackalloc GLfloat[] { 0.6f, 0.6f, 0.6f, 1.0f };
+            var mat_specular = stackalloc GLfloat[] { 1.0f, 1.0f, 1.0f, 1.0f };
+            var mat_shininess = stackalloc GLfloat[] { 50.0f };
             gl.glMaterialfv(GL.GL_FRONT, GL.GL_DIFFUSE, mat_diffuse);
             gl.glMaterialfv(GL.GL_FRONT, GL.GL_SPECULAR, mat_specular);
             gl.glMaterialfv(GL.GL_FRONT, GL.GL_SHININESS, mat_shininess);

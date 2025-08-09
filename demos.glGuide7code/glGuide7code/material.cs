@@ -41,31 +41,31 @@ namespace demos.glGuide7code {
             gl.glEnable(GL.GL_LIGHT0);
         }
 
-        GLfloat[] no_mat = { 0.0f, 0.0f, 0.0f, 1.0f };
-        GLfloat[] mat_ambient = { 0.7f, 0.7f, 0.7f, 1.0f };
-        GLfloat[] mat_ambient_color = { 0.8f, 0.8f, 0.2f, 1.0f };
-        GLfloat[] mat_diffuse = { 0.1f, 0.5f, 0.8f, 1.0f };
-        GLfloat[] mat_specular = { 1.0f, 1.0f, 1.0f, 1.0f };
-        GLfloat[] no_shininess = { 0.0f };
-        GLfloat[] low_shininess = { 5.0f };
-        GLfloat[] high_shininess = { 100.0f };
-        GLfloat[] mat_emission = { 0.3f, 0.2f, 0.2f, 0.0f };
         /*  Draw twelve spheres in 3 rows with 4 columns.
-         *  The spheres in the first row have materials with no ambient reflection.
-         *  The second row has materials with significant ambient reflection.
-         *  The third row has materials with colored ambient reflection.
-         *
-         *  The first column has materials with blue, diffuse reflection only.
-         *  The second column has blue diffuse reflection, as well as specular
-         *  reflection with a low shininess exponent.
-         *  The third column has blue diffuse reflection, as well as specular
-         *  reflection with a high shininess exponent (a more concentrated highlight).
-         *  The fourth column has materials which also include an emissive component.
-         *
-         *  gl.glTranslatef() is used to move spheres to their appropriate locations.
-         */
+        *  The spheres in the first row have materials with no ambient reflection.
+        *  The second row has materials with significant ambient reflection.
+        *  The third row has materials with colored ambient reflection.
+        *
+        *  The first column has materials with blue, diffuse reflection only.
+        *  The second column has blue diffuse reflection, as well as specular
+        *  reflection with a low shininess exponent.
+        *  The third column has blue diffuse reflection, as well as specular
+        *  reflection with a high shininess exponent (a more concentrated highlight).
+        *  The fourth column has materials which also include an emissive component.
+        *
+        *  gl.glTranslatef() is used to move spheres to their appropriate locations.
+        */
         public override void display(CSharpGL.GL gl) {
             gl.glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
+            var no_mat = stackalloc GLfloat[] { 0.0f, 0.0f, 0.0f, 1.0f };
+            var mat_ambient = stackalloc GLfloat[] { 0.7f, 0.7f, 0.7f, 1.0f };
+            var mat_ambient_color = stackalloc GLfloat[] { 0.8f, 0.8f, 0.2f, 1.0f };
+            var mat_diffuse = stackalloc GLfloat[] { 0.1f, 0.5f, 0.8f, 1.0f };
+            var mat_specular = stackalloc GLfloat[] { 1.0f, 1.0f, 1.0f, 1.0f };
+            var no_shininess = stackalloc GLfloat[] { 0.0f };
+            var low_shininess = stackalloc GLfloat[] { 5.0f };
+            var high_shininess = stackalloc GLfloat[] { 100.0f };
+            var mat_emission = stackalloc GLfloat[] { 0.3f, 0.2f, 0.2f, 0.0f };
 
             /*  draw sphere in first row, first column
              *  diffuse reflection only; no ambient or specular

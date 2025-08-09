@@ -157,8 +157,8 @@ namespace RadialBlurSample_ {
             float r;                            // Radius Of Twist
             int twists = 5;                         // 5 Twists
 
-            float[] glfMaterialColor = new float[] { 0.4f, 0.2f, 0.8f, 1.0f };      // Set The Material Color
-            float[] specular = new float[] { 1.0f, 1.0f, 1.0f, 1.0f };          // Sets Up Specular Lighting
+            var glfMaterialColor = stackalloc float[] { 0.4f, 0.2f, 0.8f, 1.0f };      // Set The Material Color
+            var specular = stackalloc float[] { 1.0f, 1.0f, 1.0f, 1.0f };          // Sets Up Specular Lighting
 
             gl.glLoadIdentity();                      // Reset The Modelview Matrix
             /*gl.glLookAt(0, 5, 50, 0, 0, 0, 0, 1, 0);*/              // Eye Position (0,5,50) Center Of Scene (0,0,0)

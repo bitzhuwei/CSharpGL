@@ -150,7 +150,7 @@ namespace demos.glGuide7code {
             GLfloat specr, GLfloat specg, GLfloat specb, GLfloat shine) {
             var gl = GL.Current; if (gl == null) return;
 
-            var mat = new GLfloat[4];
+            var mat = stackalloc GLfloat[4];
 
             gl.glPushMatrix();
             gl.glTranslatef(x, y, 0.0f);

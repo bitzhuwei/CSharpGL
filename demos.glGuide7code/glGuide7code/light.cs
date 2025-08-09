@@ -17,8 +17,6 @@ namespace demos.glGuide7code {
         public light(Form mainForm, int width, int height, GL gl)
             : base(mainForm, width, height, gl) { }
 
-        GLfloat[] mat_specular = { 1.0f, 1.0f, 1.0f, 1.0f };
-        GLfloat[] mat_shininess = { 50.0f };
         GLfloat[] light_position = { 1.0f, 1.0f, 1.0f, 0.0f };
         /*  Initialize material property, light source, lighting model,
       *  and depth buffer.
@@ -28,6 +26,8 @@ namespace demos.glGuide7code {
             gl.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
             gl.glShadeModel(GL.GL_SMOOTH);
 
+            var mat_specular = stackalloc GLfloat[] { 1.0f, 1.0f, 1.0f, 1.0f };
+            var mat_shininess = stackalloc GLfloat[] { 50.0f };
             gl.glMaterialfv(GL.GL_FRONT, GL.GL_SPECULAR, mat_specular);
             gl.glMaterialfv(GL.GL_FRONT, GL.GL_SHININESS, mat_shininess);
             gl.glLightfv(GL.GL_LIGHT0, GL.GL_POSITION, light_position);

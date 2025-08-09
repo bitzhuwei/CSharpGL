@@ -30,14 +30,22 @@ namespace demos.glGuide7code {
         static GLfloat[] position_one = { 1.0f, 1.0f, 1.0f, 0.0f };
         public override void init(CSharpGL.GL gl) {
             gl.glNewList(YELLOWMAT, GL.GL_COMPILE);
-            gl.glMaterialfv(GL.GL_FRONT, GL.GL_DIFFUSE, yellow_diffuse);
-            gl.glMaterialfv(GL.GL_FRONT, GL.GL_SPECULAR, yellow_specular);
+            fixed (GLfloat* p = yellow_diffuse) {
+                gl.glMaterialfv(GL.GL_FRONT, GL.GL_DIFFUSE, p);
+            }
+            fixed (GLfloat* p = yellow_specular) {
+                gl.glMaterialfv(GL.GL_FRONT, GL.GL_SPECULAR, p);
+            }
             gl.glMaterialf(GL.GL_FRONT, GL.GL_SHININESS, 64.0f);
             gl.glEndList();
 
             gl.glNewList(BLUEMAT, GL.GL_COMPILE);
-            gl.glMaterialfv(GL.GL_FRONT, GL.GL_DIFFUSE, blue_diffuse);
-            gl.glMaterialfv(GL.GL_FRONT, GL.GL_SPECULAR, blue_specular);
+            fixed (GLfloat* p = blue_diffuse) {
+                gl.glMaterialfv(GL.GL_FRONT, GL.GL_DIFFUSE, p);
+            }
+            fixed (GLfloat* p = blue_specular) {
+                gl.glMaterialfv(GL.GL_FRONT, GL.GL_SPECULAR, p);
+            }
             gl.glMaterialf(GL.GL_FRONT, GL.GL_SHININESS, 45.0f);
             gl.glEndList();
 

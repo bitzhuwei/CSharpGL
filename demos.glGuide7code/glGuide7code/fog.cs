@@ -38,7 +38,7 @@ namespace demos.glGuide7code {
             gl.glEnable(GL.GL_LIGHTING);
             gl.glEnable(GL.GL_LIGHT0);
             {
-                GLfloat[] mat = { 0.1745f, 0.01175f, 0.01175f };
+                var mat = stackalloc GLfloat[] { 0.1745f, 0.01175f, 0.01175f };
                 gl.glMaterialfv(GL.GL_FRONT, GL.GL_AMBIENT, mat);
                 mat[0] = 0.61424f; mat[1] = 0.04136f; mat[2] = 0.04136f;
                 gl.glMaterialfv(GL.GL_FRONT, GL.GL_DIFFUSE, mat);
