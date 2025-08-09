@@ -33,16 +33,16 @@
         public string mName;
 
         /// <summary>The transformation relative to the node's parent. /// </summary>
-        public mat4 mTransformation;
+        public mat4 mTransformation = new mat4();
 
         /// <summary>Parent node. nullptr if this node is the root node. /// </summary>
-        public aiNode mParent;
+        public aiNode? mParent;
 
         /// <summary>The number of child nodes of this node. /// </summary>
         public int mNumChildren;
 
         /// <summary>The child nodes of this node. nullptr if mNumChildren is 0. /// </summary>
-        public aiNode[] mChildren;
+        public aiNode[]? mChildren;
 
         /// <summary>The number of meshes of this node. /// </summary>
         public int mNumMeshes;
@@ -50,7 +50,7 @@
         /// <summary>The meshes of this node. Each entry is an index into the
         /// mesh list of the #aiScene.
         /// </summary>
-        public uint[] mMeshes;
+        public uint[]? mMeshes;
 
         /// <summary>Metadata associated with this node or nullptr if there is no metadata.
         ///  Whether any metadata is generated depends on the source file format. See the

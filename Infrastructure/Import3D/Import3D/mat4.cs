@@ -12,5 +12,12 @@
             get { return this.values[row + column * 4]; }
             set { this.values[row + column * 4] = value; }
         }
+
+        public mat4() {
+            // identity matrix
+            for (int i = 0; i < 4; i++) {
+                values[i * 5] = 1.0f;
+            }
+        }
     }
 }
