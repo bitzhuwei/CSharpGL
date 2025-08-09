@@ -6,10 +6,10 @@ using System.Runtime.InteropServices;
 namespace Import3D {
     unsafe partial class aiMaterial {
         // Get a string from the material
-        private static aiReturn aiGetMaterialString(aiMaterial material, string pKey, int type, int index, out string? pOut) {
+        aiReturn aiGetMaterialString(string pKey, int type, int index, out string? pOut) {
             pOut = null;
             aiMaterialProperty? prop;
-            material.aiGetMaterialProperty(pKey, (int)type, index, out prop);
+            this.aiGetMaterialProperty(pKey, (int)type, index, out prop);
             if (prop == null) {
                 return aiReturn.aiReturn_FAILURE;
             }

@@ -147,7 +147,6 @@ namespace aiSceneLegacy {
 
                 apply_material(gl, scene.mMaterials[mesh.mMaterialIndex]);
 
-
                 if (mesh.mNormals == null) {
                     gl.glDisable(GL.GL_LIGHTING);
                 }
