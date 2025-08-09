@@ -19,5 +19,14 @@ namespace Import3D {
         public aiMaterial() {
         }
 
+        public override string ToString() {
+            var count = 0;
+            for (int i = 0; i < mProperties.Length; i++) {
+                if (mProperties[i] != null) {
+                    count++;
+                }
+            }
+            return $"{count} properties";
+        }
     }
 }

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.ComponentModel;
+using System.Text;
 
 namespace Import3D {
     /// <summary> @brief Data structure for a single material property
@@ -57,7 +59,64 @@ namespace Import3D {
         public byte* mData;
 
         public override string ToString() {
-            return $"{mKey}";
+            var value = "";
+            switch (this.mType) {
+            case aiPropertyTypeInfo.aiPTI_Float: {
+                var iWrite = this.mDataLength / sizeof(float);
+                var builder = new StringBuilder();
+                var array = (float*)(this.mData);
+                for (var a = 0; a < iWrite; ++a) {
+                    var element = array[a];
+                    builder.Append(element); builder.Append(", ");
+                }
+                value = builder.ToString();
+            }
+            break;
+            case aiPropertyTypeInfo.aiPTI_Double: {
+                var iWrite = this.mDataLength / sizeof(double);
+                var builder = new StringBuilder();
+                var array = (double*)(this.mData);
+                for (var a = 0; a < iWrite; ++a) {
+                    var element = array[a];
+                    builder.Append(element); builder.Append(", ");
+                }
+                value = builder.ToString();
+            }
+            break;
+            case aiPropertyTypeInfo.aiPTI_String:
+            value = System.Runtime.InteropServices.Marshal.PtrToStringAnsi((IntPtr)this.mData);
+            break;
+            case aiPropertyTypeInfo.aiPTI_Integer:
+            if (1 == this.mDataLength) {
+                // bool type, 1 byte
+                value = $"{(int)(*this.mData) != 0}";
+            }
+            else {
+                var iWrite = Math.Max((this.mDataLength / sizeof(Int32)), 1);
+                var builder = new StringBuilder();
+                var array = (int*)(this.mData);
+                for (var a = 0; a < iWrite; ++a) {
+                    var element = array[a];
+                    builder.Append(element); builder.Append(", ");
+                }
+                value = builder.ToString();
+            }
+            break;
+            case aiPropertyTypeInfo.aiPTI_Buffer: {
+                var iWrite = Math.Max((this.mDataLength / sizeof(Int32)), 1);
+                var builder = new StringBuilder();
+                var array = (int*)(this.mData);
+                for (var a = 0; a < iWrite; ++a) {
+                    var element = array[a];
+                    builder.Append(element); builder.Append(", ");
+                }
+                value = builder.ToString();
+            }
+            break;
+            default: throw new NotImplementedException();
+            }
+
+            return $"{mKey} : {value}";
         }
     }
 }

@@ -23,11 +23,13 @@ namespace Import3D {
                 }
                 if (1 == prop.mDataLength) {
                     // bool type, 1 byte
-                    *pOut = (*prop.mData);
+                    *pOut = (int)(*prop.mData);
                 }
                 else {
+                    var array = (int*)(prop.mData);
                     for (var a = 0; a < iWrite; ++a) {
-                        pOut[a] = ((prop.mData)[a]);
+                        var element = array[a];
+                        pOut[a] = element;
                     }
                 }
                 if (pMax != null) {
@@ -41,8 +43,10 @@ namespace Import3D {
                     iWrite = Math.Min(*pMax, iWrite);
                     ;
                 }
+                var array = (float*)(prop.mData);
                 for (var a = 0; a < iWrite; ++a) {
-                    pOut[a] = (prop.mData)[a];
+                    var element = array[a];
+                    pOut[a] = (int)element;
                 }
                 if (pMax != null) {
                     *pMax = iWrite;
