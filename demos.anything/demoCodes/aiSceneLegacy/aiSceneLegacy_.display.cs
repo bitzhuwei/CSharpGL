@@ -140,6 +140,17 @@ namespace aiSceneLegacy {
             gl.glMultMatrixf(m.values);
 
             // draw all meshes assigned to this node
+            RenderNode(gl, scene, node);
+
+            // draw all children
+            for (var n = 0; n < node.mNumChildren; ++n) {
+                recursive_render(gl, scene, node.mChildren[n], scale);
+            }
+
+            gl.glPopMatrix();
+        }
+
+        private void RenderNode(GL gl, aiScene scene, aiNode node) {
             for (var n = 0; n < node.mNumMeshes; ++n) {
                 aiMesh mesh = scene.mMeshes[node.mMeshes[n]];
 
@@ -159,52 +170,52 @@ namespace aiSceneLegacy {
                     gl.glDisable(GL.GL_COLOR_MATERIAL);
                 }
 
-                for (var t = 0; t < mesh.mNumFaces; ++t) {
-                    aiFace face = mesh.mFaces[t];
-                    GLenum face_mode;
-
-                    switch (face.mNumIndices) {
-                    case 1: face_mode = GL.GL_POINTS; break;
-                    case 2: face_mode = GL.GL_LINES; break;
-                    case 3: face_mode = GL.GL_TRIANGLES; break;
-                    default: face_mode = GL.GL_POLYGON; break;
-                    }
-
-                    gl.glBegin(face_mode);
-
-                    for (var i = 0; i < face.mNumIndices; i++)     // go through all vertices in face
-                    {
-                        int vertexIndex = face.mIndices[i];    // get group index for current index
-                        if (mesh.mColors[0] != null) {
-                            var color = mesh.mColors[0][vertexIndex];
-                            gl.glColor4fv((float*)&color);
-                        }
-                        if (mesh.mNormals != null) {
-                            if (mesh.HasTextureCoords(0))      //HasTextureCoords(texture_coordinates_set)
-                            {
-                                gl.glTexCoord2f(mesh.mTextureCoords[0][vertexIndex].x, 1 - mesh.mTextureCoords[0][vertexIndex].y); //mTextureCoords[channel][vertex]
-                            }
-                        }
-                        {
-                            var normal = mesh.mNormals[vertexIndex];
-                            gl.glNormal3fv((float*)&normal);
-                        }
-                        {
-                            var vertex = mesh.mVertices[vertexIndex];
-                            gl.glVertex3fv((float*)&vertex);
-                        }
-                    }
-                    gl.glEnd();
-                }
+                RenderMesh(gl, mesh);
             }
-
-            // draw all children
-            for (var n = 0; n < node.mNumChildren; ++n) {
-                recursive_render(gl, scene, node.mChildren[n], scale);
-            }
-
-            gl.glPopMatrix();
         }
 
+        private static void RenderMesh(GL gl, aiMesh mesh) {
+            for (var t = 0; t < mesh.mNumFaces; ++t) {
+                aiFace face = mesh.mFaces[t];
+                GLenum face_mode;
+
+                switch (face.mNumIndices) {
+                case 1: face_mode = GL.GL_POINTS; break;
+                case 2: face_mode = GL.GL_LINES; break;
+                case 3: face_mode = GL.GL_TRIANGLES; break;
+                default: face_mode = GL.GL_POLYGON; break;
+                }
+
+                gl.glBegin(face_mode);
+
+                RenderFace(gl, mesh, face);
+                gl.glEnd();
+            }
+        }
+
+        private static void RenderFace(GL gl, aiMesh mesh, aiFace face) {
+            for (var i = 0; i < face.mNumIndices; i++)     // go through all vertices in face
+            {
+                int vertexIndex = face.mIndices[i];    // get group index for current index
+                if (mesh.mColors[0] != null) {
+                    var color = mesh.mColors[0][vertexIndex];
+                    gl.glColor4fv((float*)&color);
+                }
+                if (mesh.mNormals != null) {
+                    if (mesh.HasTextureCoords(0))      //HasTextureCoords(texture_coordinates_set)
+                    {
+                        gl.glTexCoord2f(mesh.mTextureCoords[0][vertexIndex].x, 1 - mesh.mTextureCoords[0][vertexIndex].y); //mTextureCoords[channel][vertex]
+                    }
+                }
+                {
+                    var normal = mesh.mNormals[vertexIndex];
+                    gl.glNormal3fv((float*)&normal);
+                }
+                {
+                    var vertex = mesh.mVertices[vertexIndex];
+                    gl.glVertex3fv((float*)&vertex);
+                }
+            }
+        }
     }
 }
