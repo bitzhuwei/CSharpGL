@@ -18,6 +18,7 @@ using System.Windows.Forms;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.ConstrainedExecution;
 using System.Drawing.Design;
+using System.Numerics;
 
 namespace aiSceneLegacy {
     internal unsafe class aiSceneLegacy_ : demoCode {
@@ -32,6 +33,10 @@ namespace aiSceneLegacy {
         Dictionary<string, uint> textureIdMap;// map image filenames to textureId
         GLuint[] textureIds;                         // pointer to texture Array
         static string modelpath = "media/obj-spider/spider.obj.txt";
+        GLfloat xrot;
+        GLfloat yrot;
+        GLfloat zrot;
+
 
         private bool Import3DFromFile(string filename) {
             //g_scene = importer.ReadFile(filename, aiProcessPreset_TargetRealtime_Quality);
@@ -125,6 +130,21 @@ namespace aiSceneLegacy {
         public aiSceneLegacy_(FormInstance mainForm, WindowsGLCanvas canvas) : base(mainForm, canvas) { }
 
         public override void display(GL gl) {
+            gl.glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT); // Clear The Screen And The Depth Buffer
+            gl.glLoadIdentity();               // Reset MV Matrix
+
+
+            gl.glTranslatef(0.0f, -10.0f, -40.0f); // Move 40 Units And Into The Screen
+
+
+            gl.glRotatef(xrot, 1.0f, 0.0f, 0.0f);
+            gl.glRotatef(yrot, 0.0f, 1.0f, 0.0f);
+            gl.glRotatef(zrot, 0.0f, 0.0f, 1.0f);
+
+            recursive_render(gl, g_scene, g_scene.mRootNode, 0.5f);
+
+            yrot += 0.2f;
+
         }
 
         void apply_material(GL gl, aiMaterial material) {
@@ -665,11 +685,89 @@ namespace aiSceneLegacy {
 
         }
 
-        private void Canvas_GLKeyDown(object sender, GLKeyEventArgs e) {
+
+        void recursive_render(GL gl, aiScene scene, aiNode node, float scale) {
+            int i;
+            int n = 0, t;
+            Import3D.mat4 m = node.mTransformation;
+            CSharpGL.mat4* mat = (CSharpGL.mat4*)&m;
+
+            CSharpGL.mat4 m2 = new CSharpGL.mat4(scale);
+            *mat = *mat * m2;
+
+            // update transform
+            //m.Transpose();
+            gl.glPushMatrix();
+            gl.glMultMatrixf(m.values);
+
+            // draw all meshes assigned to this node
+            for (; n < node.mNumMeshes; ++n) {
+                aiMesh mesh = scene.mMeshes[node.mMeshes[n]];
+
+                apply_material(gl, scene.mMaterials[mesh.mMaterialIndex]);
+
+
+                if (mesh.mNormals == null) {
+                    gl.glDisable(GL.GL_LIGHTING);
+                }
+                else {
+                    gl.glEnable(GL.GL_LIGHTING);
+                }
+
+                if (mesh.mColors[0] != null) {
+                    gl.glEnable(GL.GL_COLOR_MATERIAL);
+                }
+                else {
+                    gl.glDisable(GL.GL_COLOR_MATERIAL);
+                }
+
+                for (t = 0; t < mesh.mNumFaces; ++t) {
+                    aiFace face = mesh.mFaces[t];
+                    GLenum face_mode;
+
+                    switch (face.mNumIndices) {
+                    case 1: face_mode = GL.GL_POINTS; break;
+                    case 2: face_mode = GL.GL_LINES; break;
+                    case 3: face_mode = GL.GL_TRIANGLES; break;
+                    default: face_mode = GL.GL_POLYGON; break;
+                    }
+
+                    gl.glBegin(face_mode);
+
+                    for (i = 0; i < face.mNumIndices; i++)     // go through all vertices in face
+                    {
+                        int vertexIndex = face.mIndices[i];    // get group index for current index
+                        if (mesh.mColors[0] != null) {
+                            var color = mesh.mColors[0][vertexIndex];
+                            gl.glColor4fv((float*)&color);
+                        }
+                        if (mesh.mNormals != null) {
+                            if (mesh.HasTextureCoords(0))      //HasTextureCoords(texture_coordinates_set)
+                            {
+                                gl.glTexCoord2f(mesh.mTextureCoords[0][vertexIndex].x, 1 - mesh.mTextureCoords[0][vertexIndex].y); //mTextureCoords[channel][vertex]
+                            }
+                        }
+                        {
+                            var normal = mesh.mNormals[vertexIndex];
+                            gl.glNormal3fv((float*)&normal);
+                        }
+                        {
+                            var vertex = mesh.mVertices[vertexIndex];
+                            gl.glVertex3fv((float*)&vertex);
+                        }
+                    }
+                    gl.glEnd();
+                }
+            }
+
+            // draw all children
+            for (n = 0; n < node.mNumChildren; ++n) {
+                recursive_render(gl, scene, node.mChildren[n], scale);
+            }
+
+            gl.glPopMatrix();
         }
 
-        private void Canvas_GLMouseMove(object sender, GLMouseEventArgs e) {
-        }
 
         public override void reshape(GL gl, int width, int height) {
             //this.scene.camera.AspectRatio = ((float)this.canvas.Width) / ((float)this.canvas.Height);
@@ -689,7 +787,10 @@ namespace aiSceneLegacy {
             CSharpGL.mat4 projection = glm.perspective(45.0f * (float)Math.PI / 180.0f, (GLfloat)width / (GLfloat)height, 0.1f, 100.0f);
 
             //  Set the projection matrix.(projection and view matrix actually.)
-            gl.glMultMatrixf((projection).ToArray());
+            var array = (projection).ToArray();
+            fixed (GLfloat* p = array) {
+                gl.glMultMatrixf(p);
+            }
 
             gl.glMatrixMode(GL.GL_MODELVIEW);                     // Select The Modelview Matrix
             gl.glLoadIdentity();                            // Reset The Modelview Matrix

@@ -1,4 +1,5 @@
 ﻿
+
 namespace Import3D {
     /// <summary>
     /// @brief A mesh represents a geometry or model with a single material.
@@ -222,6 +223,16 @@ namespace Import3D {
             }
 
             return n;
+        }
+
+        //! @brief Check whether the mesh contains a texture coordinate set
+        //! @param index    Index of the texture coordinates set
+        //! @return true, if texture coordinates are stored, false if not.
+        public bool HasTextureCoords(int index) {
+            if (index >= /*AI_MAX_NUMBER_OF_TEXTURECOORDS*/0x8) {
+                return false;
+            }
+            return (mTextureCoords[index] != null && mNumVertices > 0);
         }
     }
 }
