@@ -1,4 +1,6 @@
-﻿namespace Import3D {
+﻿using System.Text;
+
+namespace Import3D {
     /// <summary>
     /// column-major matrix4x4
     /// </summary>
@@ -18,6 +20,19 @@
             for (int i = 0; i < 4; i++) {
                 values[i * 5] = 1.0f;
             }
+        }
+
+        public override string ToString() {
+            var builder = new StringBuilder();
+            for (int row = 0; row < 4; row++) {
+                for (int column = 0; column < 4; column++) {
+                    var value = this[row, column];
+                    builder.Append(value);
+                    builder.Append(", ");
+                }
+                builder.AppendLine();
+            }
+            return builder.ToString();
         }
     }
 }

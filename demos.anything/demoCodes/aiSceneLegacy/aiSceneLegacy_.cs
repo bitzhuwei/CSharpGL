@@ -671,7 +671,7 @@ namespace aiSceneLegacy {
 
             gl.glEnable(GL.GL_TEXTURE_2D);
             gl.glShadeModel(GL.GL_SMOOTH);         // Enables Smooth Shading
-            gl.glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
+            //gl.glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
             gl.glClearDepth(1.0f);             // Depth Buffer Setup
             gl.glEnable(GL.GL_DEPTH_TEST);        // Enables Depth Testing
             gl.glDepthFunc(GL.GL_LEQUAL);         // The Type Of Depth Test To Do
@@ -695,10 +695,10 @@ namespace aiSceneLegacy {
             int i;
             int n = 0, t;
             Import3D.mat4 m = node.mTransformation;
-            CSharpGL.mat4* mat = (CSharpGL.mat4*)&m;
+            CSharpGL.mat4* appear = (CSharpGL.mat4*)&m;
 
             CSharpGL.mat4 m2 = new CSharpGL.mat4(scale);
-            *mat = *mat * m2;
+            *appear = *appear * m2;
 
             // update transform
             //m.Transpose();
