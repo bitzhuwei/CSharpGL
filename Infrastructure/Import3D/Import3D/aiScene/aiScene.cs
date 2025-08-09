@@ -117,5 +117,9 @@ namespace Import3D {
         public aiScene(string name) {
             this.mRootNode = new aiNode(name);
         }
+
+        public bool HasTextures() {
+            return mTextures != null && mNumTextures > 0;
+        }
     }
 }

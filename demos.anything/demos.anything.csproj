@@ -49,6 +49,8 @@
 		<ProjectReference Include="..\CSharpGL.Models\CSharpGL.Models.csproj" />
 		<ProjectReference Include="..\CSharpGL.Windows\CSharpGL.Windows.csproj" />
 		<ProjectReference Include="..\CSharpGL\CSharpGL.csproj" />
+		<ProjectReference Include="..\Infrastructure\Import3D\Import3D.Obj\Import3D.Obj.csproj" />
+		<ProjectReference Include="..\Infrastructure\Import3D\Import3D\Import3D.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -289,6 +291,27 @@
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </None>
 	  <None Update="media\irr-demo\assets\wal69ar_small.jpg">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\obj-spider\drkwood2.jpg">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\obj-spider\engineflare1.jpg">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\obj-spider\spider.mtl">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\obj-spider\spider.obj.txt">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\obj-spider\SpiderTex.jpg">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\obj-spider\wal67ar_small.jpg">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="media\obj-spider\wal69ar_small.jpg">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </None>
 	  <None Update="media\textures\2DArray\0.png">

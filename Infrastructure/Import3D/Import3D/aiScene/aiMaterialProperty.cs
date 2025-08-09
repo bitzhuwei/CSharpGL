@@ -20,7 +20,7 @@ namespace Import3D {
     ///  @endcode
     ///  @see aiMaterial
     /// </summary>
-    public unsafe struct aiMaterialProperty {
+    public unsafe class aiMaterialProperty {
         /// <summary> Specifies the name of the property (key)
         ///  Keys are generally case insensitive.
         /// </summary>
