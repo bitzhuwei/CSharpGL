@@ -113,7 +113,7 @@ namespace aiSceneLegacy {
                 // Texture specification
                 gl.glTexImage2D(GL.GL_TEXTURE_2D, 0, (int)GL.GL_RGBA,
                     winGLBitmap.Width, winGLBitmap.Height,
-                    0, GL.GL_RGBA, GL.GL_UNSIGNED_BYTE, winGLBitmap.Scan0);// Texture specification.
+                    0, GL.GL_BGRA, GL.GL_UNSIGNED_BYTE, winGLBitmap.Scan0);// Texture specification.
 
                 // we also want to be able to deal with odd texture dimensions
                 gl.glPixelStorei(GL.GL_UNPACK_ALIGNMENT, 1);
