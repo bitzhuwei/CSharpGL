@@ -35,7 +35,7 @@ namespace Import3D {
             for (var i = 0; i < this.mNumProperties; ++i) {
                 aiMaterialProperty prop = this.mProperties[i];
 
-                if (//prop != null /* just for safety */ &&
+                if (prop != null /* just for safety */ &&
                     prop.mKey == key && prop.mSemantic == type && prop.mIndex == index) {
                     //delete this.mProperties[i];
                     iOutIndex = (uint)i;

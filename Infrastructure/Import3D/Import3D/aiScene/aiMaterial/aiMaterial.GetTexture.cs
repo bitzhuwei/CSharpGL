@@ -22,7 +22,7 @@ namespace Import3D {
             aiTextureMapping* _mapping, int* uvindex, float* blend, aiTextureOp* op, aiTextureMapMode* mapmode, int* flags = null) {
 
             // Get the path to the texture
-            if (aiReturn.aiReturn_SUCCESS != this.aiGetMaterialString(/*AI_MATKEY_TEXTURE(type, index)*/"$tex.mapping", type, index, out path)) {
+            if (aiReturn.aiReturn_SUCCESS != this.aiGetMaterialString(/*AI_MATKEY_TEXTURE(type, index)*/"$tex.file", type, index, out path)) {
                 return aiReturn.aiReturn_FAILURE;
             }
 
