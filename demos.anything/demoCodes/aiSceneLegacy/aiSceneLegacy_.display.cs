@@ -128,8 +128,6 @@ namespace aiSceneLegacy {
 
 
         void recursive_render(GL gl, aiScene scene, aiNode node, float scale) {
-            int i;
-            int n = 0, t;
             Import3D.mat4 m = node.mTransformation;
             CSharpGL.mat4* appear = (CSharpGL.mat4*)&m;
 
@@ -142,7 +140,7 @@ namespace aiSceneLegacy {
             gl.glMultMatrixf(m.values);
 
             // draw all meshes assigned to this node
-            for (; n < node.mNumMeshes; ++n) {
+            for (var n = 0; n < node.mNumMeshes; ++n) {
                 aiMesh mesh = scene.mMeshes[node.mMeshes[n]];
 
                 apply_material(gl, scene.mMaterials[mesh.mMaterialIndex]);
@@ -161,7 +159,7 @@ namespace aiSceneLegacy {
                     gl.glDisable(GL.GL_COLOR_MATERIAL);
                 }
 
-                for (t = 0; t < mesh.mNumFaces; ++t) {
+                for (var t = 0; t < mesh.mNumFaces; ++t) {
                     aiFace face = mesh.mFaces[t];
                     GLenum face_mode;
 
@@ -174,7 +172,7 @@ namespace aiSceneLegacy {
 
                     gl.glBegin(face_mode);
 
-                    for (i = 0; i < face.mNumIndices; i++)     // go through all vertices in face
+                    for (var i = 0; i < face.mNumIndices; i++)     // go through all vertices in face
                     {
                         int vertexIndex = face.mIndices[i];    // get group index for current index
                         if (mesh.mColors[0] != null) {
@@ -201,7 +199,7 @@ namespace aiSceneLegacy {
             }
 
             // draw all children
-            for (n = 0; n < node.mNumChildren; ++n) {
+            for (var n = 0; n < node.mNumChildren; ++n) {
                 recursive_render(gl, scene, node.mChildren[n], scale);
             }
 
