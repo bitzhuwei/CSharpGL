@@ -30,7 +30,7 @@ namespace aiSceneLegacy {
         Import3D.aiScene g_scene;
         GLuint scene_list = 0;
         Import3D.vec3 scene_min, scene_max, scene_center;
-        Dictionary<string, uint> textureIdMap;// map image filenames to textureId
+        Dictionary<string, uint> textureIdMap = new();// map image filenames to textureId
         GLuint[] textureIds;                         // pointer to texture Array
         static string modelpath = "media/obj-spider/spider.obj.txt";
         GLfloat xrot;
@@ -59,10 +59,12 @@ namespace aiSceneLegacy {
                 string path = "";  // filename
 
                 while (texFound == aiReturn.aiReturn_SUCCESS) {
-                    texFound = scene.mMaterials[m].GetTexture(aiTextureType.aiTextureType_DIFFUSE, texIndex, out path);
-                    //textureIdMap[path.data] = null; //fill map with textures, pointers still NULL yet
-                    textureIdMap.Add(path, 0);
-                    texIndex++;
+                    texFound = scene.mMaterials[m].GetTexture((int)aiTextureType.aiTextureType_DIFFUSE, texIndex, out path);
+                    if (texFound == aiReturn.aiReturn_SUCCESS) {
+                        //textureIdMap[path.data] = null; //fill map with textures, pointers still NULL yet
+                        textureIdMap.Add(path, 0);
+                        texIndex++;
+                    }
                 }
             }
 
@@ -165,7 +167,7 @@ namespace aiSceneLegacy {
             int texIndex = 0;
             string texPath;   //contains filename of texture
 
-            if (aiReturn.aiReturn_SUCCESS == material.GetTexture(aiTextureType.aiTextureType_DIFFUSE, texIndex, out texPath)) {
+            if (aiReturn.aiReturn_SUCCESS == material.GetTexture((int)aiTextureType.aiTextureType_DIFFUSE, texIndex, out texPath)) {
                 //bind texture
                 uint texId = textureIdMap[texPath];
                 gl.glBindTexture(GL.GL_TEXTURE_2D, texId);
@@ -426,7 +428,7 @@ namespace aiSceneLegacy {
 
         }
 
-        private byte* fast_atoreal_move(byte* cur, float outValue, bool check_comma = true) {
+        private static byte* fast_atoreal_move(byte* cur, float outValue, bool check_comma = true) {
             float f = 0;
 
             bool inv = (*cur == '-');
@@ -662,6 +664,9 @@ namespace aiSceneLegacy {
         }
 
         public override void init(GL gl) {
+
+            Import3DFromFile(modelpath);
+
             LoadGLTextures(gl, g_scene);
 
             gl.glEnable(GL.GL_TEXTURE_2D);

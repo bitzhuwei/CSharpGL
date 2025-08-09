@@ -56,5 +56,8 @@ namespace Import3D {
         /// </summary>
         public byte* mData;
 
+        public override string ToString() {
+            return $"{mKey}";
+        }
     }
 }
